@@ -1,0 +1,20 @@
+{
+  "apphosting": {
+    "backendId": "velvet-grit"
+  },
+  "hosting": [
+    {
+      "site": "bigmuddytouring",
+      "public": "apps/web/.next/static",
+      "rewrites": [
+        {
+          "source": "**",
+          "run": {
+            "serviceId": "velvet-grit",
+            "region": "us-central1"
+          }
+        }
+      ]
+    }
+  ]
+}

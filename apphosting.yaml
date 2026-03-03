@@ -1,0 +1,18 @@
+runConfig:
+  runtime: nodejs20
+  maxInstances: 10
+
+env:
+  - variable: NODE_ENV
+    value: production
+  # All secrets via Firebase Secret Manager — never inline values here
+  - variable: DATABASE_URL
+    secret: DATABASE_URL
+  - variable: DIRECT_DATABASE_URL
+    secret: DIRECT_DATABASE_URL
+  - variable: NEXTAUTH_SECRET
+    secret: NEXTAUTH_SECRET
+  - variable: GOOGLE_CLIENT_ID
+    secret: GOOGLE_CLIENT_ID
+  - variable: GOOGLE_CLIENT_SECRET
+    secret: GOOGLE_CLIENT_SECRET

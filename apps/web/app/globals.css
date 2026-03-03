@@ -1,0 +1,6 @@
+/* apps/web/app/globals.css
+   This file is intentionally minimal — all tokens are in @bigmuddy/config/tokens.css
+   Import this in each route group's layout if needed for group-specific global styles.
+*/
+
+/* Nothing here — the token system handles all base styles. */

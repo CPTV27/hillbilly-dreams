@@ -1,0 +1,182 @@
+// packages/database/prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // Use connection pooling URL for serverless (Next.js API routes, Firebase Functions)
+  directUrl = env("DIRECT_DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────────────────────
+// MAGAZINE
+// ─────────────────────────────────────────────────────────────
+
+model Article {
+  id          Int       @id @default(autoincrement())
+  title       String
+  slug        String    @unique
+  category    String    // city-guide | feature | photo-essay | interview | food-drink | music
+  city        String?   // memphis | clarksdale | natchez | new-orleans | vicksburg | etc.
+  author      String    @default("Big Muddy Magazine")
+  status      String    @default("draft")     // draft | review | published
+  excerpt     String?
+  body        String?   @db.Text
+  heroImage   String?   // Cloudflare R2 URL
+  readTime    String?   // e.g. "6 min read"
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([status, publishedAt])
+  @@index([category])
+  @@index([city])
+}
+
+// ─────────────────────────────────────────────────────────────
+// RADIO
+// ─────────────────────────────────────────────────────────────
+
+model Playlist {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  trackCount  Int      @default(0)
+  spotifyUrl  String?  // spotify:playlist:xxx or https://open.spotify.com/playlist/xxx
+  coverImage  String?  // Cloudflare R2 URL
+  status      String   @default("active")  // active | archived
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([status])
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  name        String
+  date        DateTime
+  time        String?              // e.g. "7:00 PM CT" — stored separately for display flexibility
+  artist      String?
+  description String?
+  price       String?              // e.g. "$25" or "Free" — string to allow flexibility
+  capacity    Int      @default(50)
+  status      String   @default("upcoming")  // upcoming | sold-out | cancelled | completed
+  stream      Boolean  @default(false)       // whether this event will be livestreamed
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([date, status])
+}
+
+// ─────────────────────────────────────────────────────────────
+// NEWSLETTER
+// ─────────────────────────────────────────────────────────────
+
+model NewsletterIssue {
+  id          Int      @id @default(autoincrement())
+  issueNumber Int      @unique
+  subject     String
+  storyTitle  String?
+  storyBody   String?  @db.Text
+  playlist    String?  // Playlist name or Spotify URL
+  reason      String?  // "Why You Should Go" section
+  quickHits   String?  @db.Text  // Comma-separated or JSON array of bullets
+  status      String   @default("draft")  // draft | scheduled | sent
+  sendDate    DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([status, sendDate])
+}
+
+// ─────────────────────────────────────────────────────────────
+// CRM / CONTACTS
+// ─────────────────────────────────────────────────────────────
+
+model Contact {
+  id           Int       @id @default(autoincrement())
+  name         String
+  role         String?
+  organization String?
+  email        String?
+  phone        String?
+  category     String?   // artist | vendor | media | partner | guest | team
+  notes        String?   @db.Text
+  lastContact  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([category])
+  @@index([email])
+}
+
+// ─────────────────────────────────────────────────────────────
+// DASHBOARD METRICS
+// ─────────────────────────────────────────────────────────────
+
+model Metric {
+  id        Int      @id @default(autoincrement())
+  key       String   @unique  // e.g. "newsletter_subscribers", "inn_occupancy_rate", "spotify_followers"
+  value     Float
+  target    Float?
+  label     String?           // Display label: "Newsletter Subscribers"
+  unit      String?           // "subscribers", "%", "followers", etc.
+  source    String?           // "beehiiv" | "cloudbeds" | "spotify" | "manual"
+  updatedAt DateTime @updatedAt
+
+  @@index([key])
+}
+
+// ─────────────────────────────────────────────────────────────
+// AUTH (NextAuth.js)
+// ─────────────────────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          String    @default("viewer")  // admin | editor | viewer
+  accounts      Account[]
+  sessions      Session[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
