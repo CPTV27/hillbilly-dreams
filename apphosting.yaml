@@ -12,3 +12,5 @@ env:
     secret: DIRECT_DATABASE_URL
   - variable: NEXTAUTH_SECRET
     secret: NEXTAUTH_SECRET
+  - variable: ADMIN_SESSION_TOKEN
+    secret: ADMIN_SESSION_TOKEN
