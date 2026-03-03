@@ -12,7 +12,3 @@ env:
     secret: DIRECT_DATABASE_URL
   - variable: NEXTAUTH_SECRET
     secret: NEXTAUTH_SECRET
-  - variable: GOOGLE_CLIENT_ID
-    secret: GOOGLE_CLIENT_ID
-  - variable: GOOGLE_CLIENT_SECRET
-    secret: GOOGLE_CLIENT_SECRET
