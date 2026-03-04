@@ -10,10 +10,10 @@ export async function GET() {
     });
 
     // Transform array to a keyed object for easy dashboard consumption
-    const keyed = metrics.reduce<Record<string, typeof metrics[0]>>((acc, metric) => {
-      acc[metric.key] = metric;
-      return acc;
-    }, {});
+    const keyed: Record<string, (typeof metrics)[number]> = {};
+    for (const metric of metrics) {
+      keyed[metric.key] = metric;
+    }
 
     return NextResponse.json(keyed);
   } catch (error) {

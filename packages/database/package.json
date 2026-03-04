@@ -7,16 +7,17 @@
     ".": "./index.ts"
   },
   "scripts": {
+    "build": "prisma generate",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate deploy",
     "db:studio": "prisma studio"
   },
   "dependencies": {
-    "@prisma/client": "^5.14.0"
+    "@prisma/client": "^5.14.0",
+    "prisma": "^5.14.0"
   },
   "devDependencies": {
-    "prisma": "^5.14.0",
     "typescript": "^5.5.0"
   },
   "keywords": [],
