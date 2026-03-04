@@ -2,6 +2,7 @@
 // Live sessions / upcoming events
 
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { EventCard } from '@bigmuddy/ui';
 import type { Event } from '@bigmuddy/config';
 
@@ -74,20 +75,31 @@ export default async function LivePage() {
 
   return (
     <>
-      <section className="live-header">
-        <div className="section-container">
+      {/* ── Hero Header ── */}
+      <section className="live-hero">
+        <Image
+          src="/images/real/blues-room-live-show.webp"
+          alt="Live performance at the Blues Room"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover', zIndex: 0 }}
+        />
+        <div className="live-hero__overlay" />
+        <div className="live-hero__content">
           <div className="section-label">Blues Room Live</div>
-          <h1 className="live-title">
+          <h1 className="live-hero__title">
             Live from<br />
             <em>Natchez</em>
           </h1>
-          <p className="live-sub">
+          <p className="live-hero__sub">
             The Blues Room at the inn seats 40. Every session streams live.
             Subscribe to the newsletter for advance notice and stream links.
           </p>
         </div>
       </section>
 
+      {/* ── Upcoming Sessions ── */}
       <section className="live-events">
         <div className="section-container">
           <div className="live-events__header">
@@ -101,6 +113,7 @@ export default async function LivePage() {
         </div>
       </section>
 
+      {/* ── Info Cards ── */}
       <section className="live-info">
         <div className="section-container">
           <div className="live-info__inner">
@@ -121,11 +134,29 @@ export default async function LivePage() {
       </section>
 
       <style>{`
-        .live-header {
-          background: var(--bg);
-          border-bottom: 1px solid var(--border);
+        /* ── Hero ── */
+        .live-hero {
+          position: relative;
+          min-height: 50vh;
+          display: flex;
+          align-items: flex-end;
+          overflow: hidden;
         }
-        .live-title {
+        .live-hero__overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(15, 15, 13, 0.4) 0%, rgba(15, 15, 13, 0.85) 100%);
+          z-index: 1;
+        }
+        .live-hero__content {
+          position: relative;
+          z-index: 2;
+          max-width: var(--container-xl);
+          margin: 0 auto;
+          padding: var(--space-20) var(--space-6) var(--space-12);
+          width: 100%;
+        }
+        .live-hero__title {
           font-family: var(--font-display);
           font-size: var(--text-5xl);
           font-weight: 800;
@@ -134,8 +165,8 @@ export default async function LivePage() {
           line-height: var(--leading-tight);
           margin: 0 0 var(--space-5);
         }
-        .live-title em { font-style: italic; color: var(--accent); }
-        .live-sub {
+        .live-hero__title em { font-style: italic; color: var(--accent); }
+        .live-hero__sub {
           font-family: var(--font-body);
           font-size: var(--text-lg);
           color: var(--text-muted);
@@ -143,6 +174,8 @@ export default async function LivePage() {
           max-width: 520px;
           margin: 0;
         }
+
+        /* ── Events ── */
         .live-events__header { margin-bottom: var(--space-8); }
         .live-events__title {
           font-family: var(--font-display);
@@ -157,6 +190,8 @@ export default async function LivePage() {
           grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
           gap: var(--space-5);
         }
+
+        /* ── Info ── */
         .live-info {
           background: var(--surface);
           border-top: 1px solid var(--border);
@@ -181,6 +216,8 @@ export default async function LivePage() {
           line-height: var(--leading-normal);
           margin: 0;
         }
+
+        /* ── Shared ── */
         .section-container {
           max-width: var(--container-xl);
           margin: 0 auto;
