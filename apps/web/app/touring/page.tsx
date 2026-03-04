@@ -1,4 +1,4 @@
-// apps/web/app/(touring)/page.tsx
+// apps/web/app/touring/page.tsx
 // Touring homepage — bigmuddytouring.com
 // Server component. Uses static placeholder content until DATABASE_URL is connected.
 
@@ -12,7 +12,7 @@ import type { Article, Playlist } from '@bigmuddy/config';
 export const metadata: Metadata = {
   title: 'Big Muddy Touring',
   description:
-    "The Mississippi's music corridor. Inn, route, and travel from Memphis to New Orleans.",
+    'Eighteen cities across five states. The Mississippi music corridor and expanded Big Muddy network — from Memphis to New Orleans and beyond.',
 };
 
 // Static placeholder content — replace with prisma queries once DATABASE_URL is set
@@ -23,13 +23,13 @@ const PLACEHOLDER_ARTICLES: Article[] = [
     slug: 'clarksdale-at-midnight-where-the-blues-were-born',
     category: 'city-guide',
     city: 'clarksdale',
-    author: 'Chase Pierson',
+    author: 'Big Muddy Magazine',
     status: 'published',
     excerpt:
       'The crossroads is real. You can stand there at midnight and feel it — the weight of every note ever played in this delta town pressing up through the asphalt.',
-    readTime: '8 min read',
+    readTime: '5 min read',
     publishedAt: new Date('2026-02-15').toISOString(),
-    heroImage: '/images/magazine/clarksdale-crossroads.webp',
+    heroImage: '/images/magazine/clarksdale-guide.webp',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -45,7 +45,7 @@ const PLACEHOLDER_ARTICLES: Article[] = [
       'At 411 N Commerce Street, each suite is named for a legend. Sleep in the Muddy Waters room and wake to the river. Every night here is a night closer to the source.',
     readTime: '6 min read',
     publishedAt: new Date('2026-02-20').toISOString(),
-    heroImage: '/images/magazine/natchez-bluff-sunset.webp',
+    heroImage: '/images/magazine/natchez-guide.webp',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -55,13 +55,13 @@ const PLACEHOLDER_ARTICLES: Article[] = [
     slug: 'memphis-to-new-orleans-the-full-route',
     category: 'feature',
     city: 'memphis',
-    author: 'Chase Pierson',
+    author: 'Big Muddy Magazine',
     status: 'published',
     excerpt:
       'Five cities. Four hundred miles. A thousand years of American music. Here is how to drive it right.',
     readTime: '12 min read',
     publishedAt: new Date('2026-01-28').toISOString(),
-    heroImage: '/images/magazine/memphis-beale-street-neon.webp',
+    heroImage: '/images/magazine/memphis-guide.webp',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -136,6 +136,21 @@ const SUITES = [
   },
 ];
 
+const NETWORK_BY_STATE = [
+  {
+    state: 'Louisiana',
+    cities: ['St. Francisville', 'Baton Rouge', 'Lafayette', 'Alexandria', 'Monroe', 'Ruston', 'Natchitoches', 'Shreveport'],
+  },
+  {
+    state: 'Arkansas',
+    cities: ['El Dorado', 'Little Rock', 'Fayetteville', 'Bentonville'],
+  },
+  {
+    state: 'Missouri',
+    cities: ['Branson'],
+  },
+];
+
 export default async function TouringHomepage() {
   // TODO: Replace with live Prisma queries when DATABASE_URL is set:
   // const [articles, playlists] = await Promise.all([
@@ -171,7 +186,7 @@ export default async function TouringHomepage() {
         <div className="touring-hero__content">
           <div className="touring-hero__eyebrow">
             <span className="touring-hero__ornament">&#9670;</span>
-            <span>Memphis · Clarksdale · Vicksburg · Natchez · New Orleans</span>
+            <span>Memphis · Clarksdale · Natchez · New Orleans · and 14 more</span>
           </div>
           <h1 className="touring-hero__title">
             The Mississippi's
@@ -179,7 +194,7 @@ export default async function TouringHomepage() {
             <em>Music Corridor</em>
           </h1>
           <p className="touring-hero__sub">
-            Five cities. Four hundred miles. A thousand years of American music.
+            Eighteen cities. Five states. A thousand years of American music.
             Stay at the inn. Drive the route. Read the magazine. Hear the radio.
           </p>
           <div className="touring-hero__ctas">
@@ -253,6 +268,24 @@ export default async function TouringHomepage() {
                   </div>
                 ))}
               </div>
+
+              {/* ── Expanded Network ── */}
+              <div className="touring-route__network">
+                <div className="touring-route__network-label">The Expanded Network</div>
+                <div className="touring-route__network-grid">
+                  {NETWORK_BY_STATE.map((group) => (
+                    <div key={group.state} className="touring-route__network-group">
+                      <span className="touring-route__network-state">{group.state}</span>
+                      <div className="touring-route__network-cities">
+                        {group.cities.map((city) => (
+                          <span key={city} className="touring-route__network-city">{city}</span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <a href="/route" className="btn btn--primary" style={{ marginTop: 'var(--space-8)' }}>
                 View Full Route
               </a>
@@ -686,6 +719,60 @@ export default async function TouringHomepage() {
           color: var(--text-muted);
           letter-spacing: var(--tracking-wide);
           text-transform: uppercase;
+        }
+
+        /* ── Expanded Network ── */
+        .touring-route__network {
+          margin-top: var(--space-10);
+          padding-top: var(--space-8);
+          border-top: 1px solid var(--border);
+        }
+        .touring-route__network-label {
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          font-weight: 700;
+          color: var(--text-muted);
+          letter-spacing: var(--tracking-widest);
+          text-transform: uppercase;
+          margin-bottom: var(--space-5);
+        }
+        .touring-route__network-grid {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-4);
+        }
+        .touring-route__network-group {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-2);
+        }
+        .touring-route__network-state {
+          font-family: var(--font-mono);
+          font-size: var(--text-xs);
+          color: var(--accent);
+          opacity: 0.7;
+          letter-spacing: var(--tracking-wider);
+          text-transform: uppercase;
+        }
+        .touring-route__network-cities {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--space-1) var(--space-3);
+        }
+        .touring-route__network-city {
+          font-family: var(--font-body);
+          font-size: var(--text-sm);
+          font-weight: 500;
+          color: var(--text-muted);
+          letter-spacing: var(--tracking-tight);
+        }
+        .touring-route__network-city::after {
+          content: '·';
+          margin-left: var(--space-3);
+          color: var(--border-strong);
+        }
+        .touring-route__network-city:last-child::after {
+          content: '';
         }
 
         /* ── Article / Playlist Grids ── */
