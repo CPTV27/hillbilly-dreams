@@ -8,13 +8,12 @@ importers:
 
   .:
     dependencies:
-      turbo:
-        specifier: ^2.0.0
-        version: 2.8.13
-    devDependencies:
       prettier:
         specifier: ^3.3.0
         version: 3.8.1
+      turbo:
+        specifier: ^2.0.0
+        version: 2.8.13
       typescript:
         specifier: ^5.5.0
         version: 5.9.3
@@ -68,7 +67,7 @@ importers:
         version: 5.9.3
 
   packages/config:
-    devDependencies:
+    dependencies:
       typescript:
         specifier: ^5.5.0
         version: 5.9.3
@@ -81,13 +80,18 @@ importers:
       prisma:
         specifier: ^5.14.0
         version: 5.22.0
-    devDependencies:
       typescript:
         specifier: ^5.5.0
         version: 5.9.3
 
   packages/ui:
     dependencies:
+      '@types/react':
+        specifier: ^18.0.0
+        version: 18.3.28
+      '@types/react-dom':
+        specifier: ^18.0.0
+        version: 18.3.7(@types/react@18.3.28)
       next:
         specifier: ^14.0.0
         version: 14.2.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -97,13 +101,6 @@ importers:
       react-dom:
         specifier: ^18.0.0
         version: 18.3.1(react@18.3.1)
-    devDependencies:
-      '@types/react':
-        specifier: ^18.0.0
-        version: 18.3.28
-      '@types/react-dom':
-        specifier: ^18.0.0
-        version: 18.3.7(@types/react@18.3.28)
       typescript:
         specifier: ^5.5.0
         version: 5.9.3

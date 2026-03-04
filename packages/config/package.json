@@ -9,7 +9,7 @@
     "./brands": "./brands.ts",
     "./types": "./types.ts"
   },
-  "devDependencies": {
+  "dependencies": {
     "typescript": "^5.5.0"
   }
 }
