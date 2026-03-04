@@ -1,155 +1,49 @@
-// apps/web/app/(magazine)/page.tsx
-// Magazine homepage — featured article + article grid
+// apps/web/app/magazine/page.tsx
+// Magazine homepage — featured article + article grid with all 18 city guides
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { ArticleCard } from '@bigmuddy/ui';
 import { NewsletterSignup } from '@bigmuddy/ui';
-import type { Article } from '@bigmuddy/config';
+import { CITY_GUIDE_ARTICLES, CORRIDOR_CITIES, LOUISIANA_CITIES, ARKANSAS_MISSOURI_CITIES } from '@/lib/articles';
 
 export const metadata: Metadata = {
   title: 'Big Muddy Magazine',
   description:
-    'Long-form editorial, city guides, and stories from the Mississippi music corridor.',
+    'Long-form editorial, city guides, and stories from the Mississippi music corridor. Eighteen cities across five states.',
 };
 
-// Static placeholder articles
-const PLACEHOLDER_ARTICLES: Article[] = [
+const CATEGORIES = ['All', 'City Guide', 'Feature', 'Music', 'Interview', 'Photo Essay', 'Food & Drink'];
+
+const REGION_GROUPS = [
   {
-    id: 1,
-    title: 'Clarksdale at Midnight: Where the Blues Were Born',
-    slug: 'clarksdale-at-midnight-where-the-blues-were-born',
-    category: 'city-guide',
-    city: 'clarksdale',
-    author: 'Chase Pierson',
-    status: 'published',
-    excerpt:
-      'The crossroads is real. You can stand there at midnight and feel it — the weight of every note ever played in this delta town pressing up through the asphalt.',
-    readTime: '8 min read',
-    publishedAt: new Date('2026-02-15').toISOString(),
-    heroImage: '/images/magazine/clarksdale-crossroads.webp',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    id: 'corridor',
+    label: 'The Corridor',
+    description: 'Memphis to New Orleans',
+    citySlugs: CORRIDOR_CITIES,
   },
   {
-    id: 2,
-    title: 'The Inn at Natchez: Six Rooms, Six Stories',
-    slug: 'the-inn-at-natchez-six-rooms-six-stories',
-    category: 'feature',
-    city: 'natchez',
-    author: 'Big Muddy Magazine',
-    status: 'published',
-    excerpt:
-      'At 411 N Commerce Street, each suite is named for a legend. Sleep in the Muddy Waters room and wake to the river.',
-    readTime: '6 min read',
-    publishedAt: new Date('2026-02-20').toISOString(),
-    heroImage: '/images/magazine/natchez-bluff-sunset.webp',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    id: 'louisiana',
+    label: 'Louisiana',
+    description: 'St. Francisville to Shreveport',
+    citySlugs: LOUISIANA_CITIES,
   },
   {
-    id: 3,
-    title: 'Memphis to New Orleans: The Full Route',
-    slug: 'memphis-to-new-orleans-the-full-route',
-    category: 'feature',
-    city: 'memphis',
-    author: 'Chase Pierson',
-    status: 'published',
-    excerpt: 'Five cities. Four hundred miles. A thousand years of American music. Here is how to drive it right.',
-    readTime: '12 min read',
-    publishedAt: new Date('2026-01-28').toISOString(),
-    heroImage: '/images/magazine/memphis-beale-street-neon.webp',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 4,
-    title: "New Orleans After Dark: Frenchmen Street's Living Jazz Museum",
-    slug: 'new-orleans-after-dark-frenchmen-street',
-    category: 'city-guide',
-    city: 'new-orleans',
-    author: 'Miles Donovan',
-    status: 'published',
-    excerpt: 'Every night on Frenchmen Street is different. The Spotted Cat, Snug Harbor, the Maison — the music never stops.',
-    readTime: '7 min read',
-    publishedAt: new Date('2026-01-15').toISOString(),
-    heroImage: '/images/magazine/new-orleans-frenchmen.webp',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 5,
-    title: 'Robert Johnson: Chasing a Ghost Through the Delta',
-    slug: 'robert-johnson-chasing-a-ghost-through-the-delta',
-    category: 'music',
-    city: 'clarksdale',
-    author: 'Chase Pierson',
-    status: 'published',
-    excerpt: 'Twenty-nine songs and a face in one photograph. Everything else is delta dust and legend.',
-    readTime: '10 min read',
-    publishedAt: new Date('2026-01-08').toISOString(),
-    heroImage: '/images/magazine/juke-joint-saturday.webp',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 6,
-    title: "Vicksburg's Quiet Comeback: Art in a Civil War Town",
-    slug: 'vicksburg-quiet-comeback-art-civil-war-town',
-    category: 'city-guide',
-    city: 'vicksburg',
-    author: 'Amy Chen',
-    status: 'published',
-    excerpt: 'After decades of decline, Vicksburg is getting interesting again. The galleries on Washington Street are worth the detour.',
-    readTime: '5 min read',
-    publishedAt: new Date('2025-12-30').toISOString(),
-    heroImage: '/images/magazine/vicksburg-bluffs.webp',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 7,
-    title: "Son House and the Sermon: Delta Blues as Religion",
-    slug: 'son-house-delta-blues-as-religion',
-    category: 'music',
-    city: 'clarksdale',
-    author: 'Chase Pierson',
-    status: 'published',
-    excerpt: "Before Robert Johnson, before Muddy Waters — Son House was playing something that sounded less like music and more like prayer.",
-    readTime: '9 min read',
-    publishedAt: new Date('2025-12-20').toISOString(),
-    heroImage: '/images/magazine/blues-trail-marker.webp',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 8,
-    title: "The Trace: Natchez to Nashville on America's Oldest Road",
-    slug: 'natchez-trace-oldest-road-america',
-    category: 'feature',
-    city: 'natchez',
-    author: 'Big Muddy Magazine',
-    status: 'published',
-    excerpt: "The Natchez Trace Parkway follows a path older than the United States. Drive it slowly.",
-    readTime: '11 min read',
-    publishedAt: new Date('2025-12-10').toISOString(),
-    heroImage: '/images/magazine/natchez-trace-parkway.webp',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    id: 'arkansas-missouri',
+    label: 'Arkansas & Missouri',
+    description: 'El Dorado to Branson',
+    citySlugs: ARKANSAS_MISSOURI_CITIES,
   },
 ];
-
-const CATEGORIES = ['All', 'City Guide', 'Feature', 'Music', 'Interview', 'Photo Essay', 'Food & Drink'];
 
 export default async function MagazineHomepage() {
   // TODO: Replace with live Prisma queries:
   // const articles = await prisma.article.findMany({
   //   where: { status: 'published' },
   //   orderBy: { publishedAt: 'desc' },
-  //   take: 9,
   // });
 
-  const articles = PLACEHOLDER_ARTICLES;
+  const articles = CITY_GUIDE_ARTICLES;
   const [featured, ...grid] = articles;
 
   return (
@@ -180,7 +74,7 @@ export default async function MagazineHomepage() {
       <section className="mag-featured">
         <div className="section-container">
           <div className="section-label">Featured Story</div>
-          <ArticleCard article={featured} variant="featured" />
+          <ArticleCard article={featured} variant="featured" href={`/articles/${featured.slug}`} />
         </div>
       </section>
 
@@ -189,7 +83,6 @@ export default async function MagazineHomepage() {
         <div className="section-container">
           <div className="mag-grid__header">
             <h2 className="mag-grid__title">Latest Stories</h2>
-            {/* Client-side category filter would go here */}
             <div className="mag-grid__categories">
               {CATEGORIES.map((cat) => (
                 <button
@@ -203,7 +96,7 @@ export default async function MagazineHomepage() {
           </div>
           <div className="mag-article-grid">
             {grid.map((article) => (
-              <ArticleCard key={article.id} article={article} />
+              <ArticleCard key={article.id} article={article} href={`/articles/${article.slug}`} />
             ))}
           </div>
         </div>
@@ -215,25 +108,44 @@ export default async function MagazineHomepage() {
           <div className="mag-city-guides__inner">
             <div className="mag-city-guides__text">
               <div className="section-label">City Guides</div>
-              <h2 className="mag-city-guides__title">Five Cities. One River.</h2>
+              <h2 className="mag-city-guides__title">18 City Guides</h2>
               <p className="mag-city-guides__desc">
-                Comprehensive guides to every stop on the corridor — 
+                Comprehensive guides to every city in the Big Muddy network — 
                 where to eat, sleep, listen, and why it all matters.
+                Five states. A thousand years of American music.
               </p>
               <a href="/city-guides" className="btn btn--outline">
                 Browse City Guides
               </a>
             </div>
-            <div className="mag-city-guides__cities">
-              {['Memphis', 'Clarksdale', 'Vicksburg', 'Natchez', 'New Orleans'].map((city) => (
-                <a
-                  key={city}
-                  href={`/city-guides#${city.toLowerCase().replace(' ', '-')}`}
-                  className="mag-city-tag"
-                >
-                  {city}
-                </a>
-              ))}
+            <div className="mag-city-guides__regions">
+              {REGION_GROUPS.map((region) => {
+                const regionArticles = CITY_GUIDE_ARTICLES.filter((a) =>
+                  region.citySlugs.includes(a.city as string)
+                );
+                return (
+                  <div key={region.id} className="mag-region-group">
+                    <div className="mag-region-group__label">{region.label}</div>
+                    <div className="mag-region-group__desc">{region.description}</div>
+                    <div className="mag-region-group__cities">
+                      {regionArticles.map((article) => (
+                        <a
+                          key={article.id}
+                          href={`/articles/${article.slug}`}
+                          className="mag-city-tag"
+                        >
+                          {article.city
+                            ? article.city
+                                .split('-')
+                                .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
+                                .join(' ')
+                            : article.title}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -350,13 +262,13 @@ export default async function MagazineHomepage() {
         }
         .mag-city-guides__inner {
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           gap: var(--space-16);
           flex-wrap: wrap;
         }
         .mag-city-guides__text {
-          flex: 1;
-          min-width: 280px;
+          flex: 0 0 300px;
+          min-width: 260px;
         }
         .mag-city-guides__title {
           font-family: var(--font-display);
@@ -373,14 +285,40 @@ export default async function MagazineHomepage() {
           line-height: var(--leading-normal);
           margin: 0 0 var(--space-6);
         }
-        .mag-city-guides__cities {
+        .mag-city-guides__regions {
+          flex: 1;
+          display: flex;
+          gap: var(--space-10);
+          flex-wrap: wrap;
+          align-items: flex-start;
+        }
+        .mag-region-group {
+          min-width: 160px;
+        }
+        .mag-region-group__label {
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          font-weight: 700;
+          color: var(--accent);
+          letter-spacing: var(--tracking-widest);
+          text-transform: uppercase;
+          margin-bottom: var(--space-1);
+        }
+        .mag-region-group__desc {
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          color: var(--text-disabled);
+          letter-spacing: var(--tracking-wide);
+          margin-bottom: var(--space-3);
+        }
+        .mag-region-group__cities {
           display: flex;
           flex-direction: column;
-          gap: var(--space-3);
+          gap: var(--space-2);
         }
         .mag-city-tag {
           font-family: var(--font-display);
-          font-size: var(--text-2xl);
+          font-size: var(--text-lg);
           font-weight: 700;
           color: var(--text-muted);
           letter-spacing: var(--tracking-tight);

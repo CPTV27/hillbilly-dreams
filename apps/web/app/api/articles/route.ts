@@ -1,86 +1,153 @@
 // apps/web/app/api/articles/route.ts
-// GET /api/articles — list articles
-// POST /api/articles — create article
+// Articles API — GET (list) and POST (create)
+// Falls back to lib/articles.ts data when database is not connected
 
-import { NextResponse } from 'next/server';
-import { prisma } from '@bigmuddy/database';
+import { NextRequest, NextResponse } from 'next/server';
+import { CITY_GUIDE_ARTICLES } from '@/lib/articles';
 
-export async function GET(request: Request) {
+// ── GET /api/articles ──────────────────────────────────────────────────────
+// Returns all published articles. Tries Prisma first; falls back to static data.
+
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const status = searchParams.get('status');
+  const city = searchParams.get('city');
+  const category = searchParams.get('category');
+  const take = searchParams.get('take');
+
   try {
-    const { searchParams } = new URL(request.url);
-    const status = searchParams.get('status');
-    const category = searchParams.get('category');
-    const city = searchParams.get('city');
-    const limit = Math.min(parseInt(searchParams.get('limit') || '20'), 100);
-    const page = parseInt(searchParams.get('page') || '1');
-    const skip = (page - 1) * limit;
+    // Attempt Prisma query
+    const { default: prisma } = await import('@bigmuddy/database');
 
-    const articles = await prisma.article.findMany({
-      where: {
-        ...(status && { status }),
-        ...(category && { category }),
-        ...(city && { city }),
-      },
-      orderBy: { publishedAt: 'desc' },
-      take: limit,
-      skip,
+    const where: Record<string, unknown> = {};
+    if (status) where.status = status;
+    if (city) where.city = city;
+    if (category) where.category = category;
+
+    const articles = await (prisma as any).article.findMany({
+      where,
+      orderBy: { publishedAt: 'desc' as const },
+      ...(take ? { take: parseInt(take, 10) } : {}),
     });
 
-    const total = await prisma.article.count({
-      where: {
-        ...(status && { status }),
-        ...(category && { category }),
-        ...(city && { city }),
-      },
-    });
+    return NextResponse.json({ data: articles });
+  } catch (_dbError) {
+    // Database not available — serve static data
+    let articles = CITY_GUIDE_ARTICLES;
+
+    if (status) {
+      articles = articles.filter((a) => a.status === status);
+    }
+    if (city) {
+      articles = articles.filter((a) => a.city === city);
+    }
+    if (category) {
+      articles = articles.filter((a) => a.category === category);
+    }
+    if (take) {
+      articles = articles.slice(0, parseInt(take, 10));
+    }
 
     return NextResponse.json({
-      items: articles,
-      total,
-      page,
-      limit,
-      hasMore: skip + articles.length < total,
+      data: articles,
+      _source: 'static',
+      _note: 'Database not connected. Serving static article data from lib/articles.ts.',
     });
-  } catch (error) {
-    console.error('[API /articles GET]', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
-export async function POST(request: Request) {
+// ── POST /api/articles ─────────────────────────────────────────────────────
+// Creates a new article in the database.
+// Returns 503 if database is not available.
+
+export async function POST(request: NextRequest) {
+  let body: Record<string, unknown>;
+
   try {
-    const body = await request.json();
+    body = await request.json();
+  } catch {
+    return NextResponse.json(
+      { error: 'Invalid JSON body.' },
+      { status: 400 }
+    );
+  }
 
-    // Validate required fields
-    if (!body.title || !body.slug || !body.category) {
-      return NextResponse.json(
-        { error: 'Missing required fields: title, slug, category' },
-        { status: 400 }
-      );
-    }
+  // Basic validation
+  if (!body.title || typeof body.title !== 'string') {
+    return NextResponse.json(
+      { error: 'title is required and must be a string.' },
+      { status: 400 }
+    );
+  }
+  if (!body.slug || typeof body.slug !== 'string') {
+    return NextResponse.json(
+      { error: 'slug is required and must be a string.' },
+      { status: 400 }
+    );
+  }
 
-    const article = await prisma.article.create({
+  try {
+    const { default: prisma } = await import('@bigmuddy/database');
+
+    const article = await (prisma as any).article.create({
       data: {
-        title: body.title,
-        slug: body.slug,
-        category: body.category,
-        city: body.city || null,
-        author: body.author || 'Big Muddy Magazine',
-        status: body.status || 'draft',
-        excerpt: body.excerpt || null,
-        body: body.body || null,
-        heroImage: body.heroImage || null,
-        readTime: body.readTime || null,
-        publishedAt: body.publishedAt ? new Date(body.publishedAt) : null,
+        title: body.title as string,
+        slug: body.slug as string,
+        category: (body.category as string) ?? 'city-guide',
+        city: (body.city as string | null) ?? null,
+        author: (body.author as string) ?? 'Big Muddy Magazine',
+        status: (body.status as string) ?? 'draft',
+        excerpt: (body.excerpt as string | null) ?? null,
+        body: (body.body as string | null) ?? null,
+        heroImage: (body.heroImage as string | null) ?? null,
+        readTime: (body.readTime as string | null) ?? null,
+        publishedAt: body.publishedAt ? new Date(body.publishedAt as string) : null,
       },
     });
 
-    return NextResponse.json(article, { status: 201 });
-  } catch (error) {
-    console.error('[API /articles POST]', error);
-    if ((error as { code?: string }).code === 'P2002') {
-      return NextResponse.json({ error: 'Slug already exists' }, { status: 409 });
+    return NextResponse.json({ data: article }, { status: 201 });
+  } catch (dbError: unknown) {
+    const message =
+      dbError instanceof Error ? dbError.message : 'Unknown database error.';
+
+    // Check for unique constraint violation (slug already exists)
+    if (
+      message.includes('Unique constraint') ||
+      message.includes('unique constraint')
+    ) {
+      return NextResponse.json(
+        {
+          error: 'An article with this slug already exists.',
+          code: 'SLUG_CONFLICT',
+        },
+        { status: 409 }
+      );
     }
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+
+    // Database not configured
+    if (
+      message.includes('datasource') ||
+      message.includes('DATABASE_URL') ||
+      message.includes('Cannot find module') ||
+      message.includes('P1001') ||
+      message.includes('P1003')
+    ) {
+      return NextResponse.json(
+        {
+          error: 'Database not available. Set DATABASE_URL environment variable to enable article creation.',
+          code: 'DATABASE_UNAVAILABLE',
+        },
+        { status: 503 }
+      );
+    }
+
+    console.error('[POST /api/articles] Database error:', dbError);
+    return NextResponse.json(
+      {
+        error: 'Failed to create article.',
+        message,
+      },
+      { status: 500 }
+    );
   }
 }

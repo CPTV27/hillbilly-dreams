@@ -19,7 +19,20 @@ export type ArticleCity =
   | 'clarksdale'
   | 'vicksburg'
   | 'natchez'
+  | 'st-francisville'
+  | 'baton-rouge'
   | 'new-orleans'
+  | 'lafayette'
+  | 'alexandria'
+  | 'monroe'
+  | 'ruston'
+  | 'natchitoches'
+  | 'shreveport'
+  | 'el-dorado'
+  | 'little-rock'
+  | 'fayetteville'
+  | 'bentonville'
+  | 'branson'
   | 'other';
 
 export interface Article {
