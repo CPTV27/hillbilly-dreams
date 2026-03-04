@@ -127,12 +127,12 @@ const SUITES = [
   {
     name: 'British Invasion I',
     description: "What the British heard when they came looking for the source. Vintage meets Victorian.",
-    image: '/images/real/inn-crimson-parlor.webp',
+    image: '/images/real/inn-british-suite.webp',
   },
   {
     name: 'British Invasion II',
     description: 'The Rolling Stones came to Chess Studios. This room pays the debt.',
-    image: '/images/real/inn-british-suite.webp',
+    image: '/images/real/inn-pink-suite.webp',
   },
 ];
 
@@ -163,7 +163,8 @@ export default async function TouringHomepage() {
           alt=""
           fill
           priority
-          style={{ objectFit: 'cover' }}
+          sizes="100vw"
+          style={{ objectFit: 'cover', zIndex: 0 }}
         />
         <div className="touring-hero__overlay" />
         <div className="touring-hero__bg-pattern" aria-hidden="true" />
@@ -212,12 +213,9 @@ export default async function TouringHomepage() {
           <div className="touring-inn__suites">
             {SUITES.map((suite) => (
               <div key={suite.name} className="suite-card">
-                <div className="suite-card__number" aria-hidden="true">
-                  <div className="suite-card__num-inner" />
-                </div>
                 {suite.image && (
-                  <div className="suite-detail__image-wrap">
-                    <Image src={suite.image} alt={suite.name} fill style={{ objectFit: 'cover' }} />
+                  <div className="suite-card__image-wrap">
+                    <Image src={suite.image} alt={suite.name} fill sizes="(max-width: 639px) 100vw, 300px" style={{ objectFit: 'cover' }} />
                   </div>
                 )}
                 <div className="suite-card__body">
@@ -546,28 +544,28 @@ export default async function TouringHomepage() {
           background: var(--bg);
           border: 1px solid var(--border);
           border-radius: var(--radius-md);
-          padding: var(--space-6);
+          overflow: hidden;
           display: flex;
-          gap: var(--space-4);
+          flex-direction: column;
           transition: border-color var(--duration-normal) var(--ease-default);
         }
         .suite-card:hover {
           border-color: var(--border-strong);
         }
-        .suite-card__number {
-          flex-shrink: 0;
-          width: 36px;
-          height: 36px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        .suite-card__image-wrap {
+          position: relative;
+          aspect-ratio: 16/10;
+          overflow: hidden;
+          background: var(--surface-2);
         }
-        .suite-card__num-inner {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background: var(--accent);
-          opacity: 0.6;
+        .suite-card__image-wrap img {
+          transition: transform var(--duration-slow) var(--ease-default);
+        }
+        .suite-card:hover .suite-card__image-wrap img {
+          transform: scale(1.04);
+        }
+        .suite-card__body {
+          padding: var(--space-5);
         }
         .suite-card__name {
           font-family: var(--font-display);
@@ -688,20 +686,6 @@ export default async function TouringHomepage() {
           color: var(--text-muted);
           letter-spacing: var(--tracking-wide);
           text-transform: uppercase;
-        }
-
-        /* ── Suite Image ── */
-        .suite-detail__image-wrap {
-          position: relative;
-          width: 160px;
-          min-height: 120px;
-          flex-shrink: 0;
-          border-radius: var(--radius-sm);
-          overflow: hidden;
-        }
-        @media (max-width: 639px) {
-          .suite-detail__image-wrap { width: 100%; min-height: 180px; }
-          .suite-detail { flex-wrap: wrap; }
         }
 
         /* ── Article / Playlist Grids ── */

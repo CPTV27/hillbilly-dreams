@@ -2,6 +2,7 @@
 // Magazine homepage — featured article + article grid
 
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { ArticleCard } from '@bigmuddy/ui';
 import { NewsletterSignup } from '@bigmuddy/ui';
 import type { Article } from '@bigmuddy/config';
@@ -153,20 +154,25 @@ export default async function MagazineHomepage() {
 
   return (
     <>
-      {/* ── Masthead ── */}
-      <section className="mag-masthead">
-        <div className="mag-masthead__inner">
-          <div className="mag-masthead__rule" aria-hidden="true" />
-          <div className="mag-masthead__text">
-            <span className="mag-masthead__issue">
-              {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-            </span>
-            <h1 className="mag-masthead__title">Big Muddy Magazine</h1>
-            <p className="mag-masthead__sub">
-              Stories from the Southern Gothic heartland
-            </p>
-          </div>
-          <div className="mag-masthead__rule" aria-hidden="true" />
+      {/* ── Hero ── */}
+      <section className="mag-hero">
+        <Image
+          src="/images/generated/hero-magazine-bg.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover', zIndex: 0 }}
+        />
+        <div className="mag-hero__overlay" />
+        <div className="mag-hero__content">
+          <span className="mag-hero__issue">
+            {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+          </span>
+          <h1 className="mag-hero__title">Big Muddy Magazine</h1>
+          <p className="mag-hero__sub">
+            Stories from the Southern Gothic heartland
+          </p>
         </div>
       </section>
 
@@ -236,31 +242,29 @@ export default async function MagazineHomepage() {
       <NewsletterSignup variant="section" />
 
       <style>{`
-        /* ── Masthead ── */
-        .mag-masthead {
-          background: var(--bg);
-          padding: var(--space-16) 0 0;
-          border-bottom: 1px solid var(--border);
-        }
-        .mag-masthead__inner {
-          max-width: var(--container-xl);
-          margin: 0 auto;
-          padding: 0 var(--space-6);
+        /* ── Hero ── */
+        .mag-hero {
+          position: relative;
+          min-height: 100vh;
           display: flex;
-          flex-direction: column;
           align-items: center;
-          gap: var(--space-6);
-          padding-bottom: var(--space-12);
+          justify-content: center;
+          overflow: hidden;
+          background: var(--bg);
         }
-        .mag-masthead__rule {
-          width: 100%;
-          height: 1px;
-          background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+        .mag-hero__overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(15, 15, 13, 0.5) 0%, rgba(15, 15, 13, 0.65) 50%, rgba(15, 15, 13, 0.9) 100%);
+          z-index: 1;
         }
-        .mag-masthead__text {
+        .mag-hero__content {
+          position: relative;
+          z-index: 2;
           text-align: center;
+          padding: var(--space-24) var(--space-6);
         }
-        .mag-masthead__issue {
+        .mag-hero__issue {
           font-family: var(--font-body);
           font-size: var(--text-xs);
           font-weight: 600;
@@ -270,7 +274,7 @@ export default async function MagazineHomepage() {
           display: block;
           margin-bottom: var(--space-4);
         }
-        .mag-masthead__title {
+        .mag-hero__title {
           font-family: var(--font-display);
           font-size: clamp(2.5rem, 8vw, 5.5rem);
           font-weight: 800;
@@ -279,7 +283,7 @@ export default async function MagazineHomepage() {
           line-height: 1;
           margin: 0 0 var(--space-3);
         }
-        .mag-masthead__sub {
+        .mag-hero__sub {
           font-family: var(--font-body);
           font-size: var(--text-sm);
           color: var(--text-muted);

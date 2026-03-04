@@ -138,7 +138,8 @@ export default async function RadioHomepage() {
           alt=""
           fill
           priority
-          style={{ objectFit: 'cover' }}
+          sizes="100vw"
+          style={{ objectFit: 'cover', zIndex: 0 }}
         />
         <div className="radio-hero__overlay" />
         <div className="radio-hero__bg" aria-hidden="true">

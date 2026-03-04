@@ -113,9 +113,13 @@ export function PlaylistCard({ playlist, variant = 'default' }: PlaylistCardProp
       ) : (
         <div className="playlist-card__link">
           <div className="playlist-card__cover">
-            <div className="playlist-card__cover-placeholder">
-              <MusicNoteIcon />
-            </div>
+            {playlist.coverImage ? (
+              <Image src={playlist.coverImage} alt={playlist.name} fill sizes="180px" style={{ objectFit: 'cover' }} />
+            ) : (
+              <div className="playlist-card__cover-placeholder">
+                <MusicNoteIcon />
+              </div>
+            )}
           </div>
           <div className="playlist-card__body">
             <h3 className="playlist-card__title">{playlist.name}</h3>
