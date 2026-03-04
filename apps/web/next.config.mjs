@@ -1,7 +1,6 @@
-// apps/web/next.config.ts
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
+// apps/web/next.config.mjs
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   // DO NOT set output: 'export' — this disables API routes and SSR.
   // Firebase App Hosting supports full Next.js SSR natively.
 
