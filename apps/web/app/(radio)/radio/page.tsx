@@ -151,7 +151,7 @@ export default async function RadioHomepage() {
             and the full soundtrack of the Mississippi music corridor.
           </p>
           <div className="radio-hero__ctas">
-            <a href="/playlists" className="btn btn--primary">
+            <a href="/radio/playlists" className="btn btn--primary">
               Browse All Playlists
             </a>
             <a href="/live" className="btn btn--ghost">
@@ -169,7 +169,7 @@ export default async function RadioHomepage() {
               <div className="section-label">Playlists</div>
               <h2 className="section-title-sm">Curated for the Corridor</h2>
             </div>
-            <a href="/playlists" className="section-link">All Playlists →</a>
+            <a href="/radio/playlists" className="section-link">All Playlists →</a>
           </div>
           <div className="radio-playlist-grid">
             {playlists.map((playlist) => (

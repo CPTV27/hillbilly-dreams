@@ -192,7 +192,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <div className="article-footer__inner">
             <div className="article-footer__rule" aria-hidden="true" />
             <div className="article-footer__nav">
-              <a href="/" className="article-footer__back">← Back to Magazine</a>
+              <a href="/magazine" className="article-footer__back">← Back to Magazine</a>
               {article.city && (
                 <a
                   href={`/city-guides#${article.city}`}
