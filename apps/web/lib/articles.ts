@@ -15,7 +15,7 @@ export const CITY_GUIDE_ARTICLES: Article[] = [
     status: 'published',
     excerpt:
       'The heat comes off the asphalt on Union Avenue like something you can hold in your hand. Memphis doesn\'t whisper. It hums — low and constant, a frequency that gets into your blood the moment you cross the bridge over the Mississippi.',
-    heroImage: '/images/magazine/memphis-guide.webp',
+    heroImage: '/images/magazine/memphis-beale-street-neon.webp',
     readTime: '5 min read',
     publishedAt: new Date('2026-02-01').toISOString(),
     createdAt: new Date('2026-02-01').toISOString(),
@@ -64,7 +64,7 @@ Memphis will ruin you for other cities. Not because it's the prettiest or the cl
     status: 'published',
     excerpt:
       'The Delta is flat. So flat that the sky becomes the landscape and the land just holds it up. Clarksdale rises out of the cotton fields like a dream somebody forgot to finish — and on a Saturday night, the juke joints light up and the music spills out into the humid Delta air.',
-    heroImage: '/images/magazine/clarksdale-guide.webp',
+    heroImage: '/images/magazine/clarksdale-crossroads.webp',
     readTime: '5 min read',
     publishedAt: new Date('2026-02-03').toISOString(),
     createdAt: new Date('2026-02-03').toISOString(),
@@ -111,7 +111,7 @@ You leave Clarksdale changed. Not in a dramatic, cinematic way — in a quiet wa
     status: 'published',
     excerpt:
       'Vicksburg sits on bluffs above the Mississippi like a city that refused to let the river have the last word. Civil War cannons still point toward the river. The blues floats up from somewhere below.',
-    heroImage: '/images/magazine/vicksburg-guide.webp',
+    heroImage: '/images/magazine/vicksburg-bluffs.webp',
     readTime: '5 min read',
     publishedAt: new Date('2026-02-05').toISOString(),
     createdAt: new Date('2026-02-05').toISOString(),
@@ -158,7 +158,7 @@ Vicksburg is the city on the loop where the war and the music and the river all 
     status: 'published',
     excerpt:
       'Natchez is the oldest settlement on the Mississippi River, and it wears its age like a velvet coat — a little threadbare at the elbows, impossibly beautiful in the right light. The light in Natchez is golden. Not metaphorically — actually golden.',
-    heroImage: '/images/magazine/natchez-guide.webp',
+    heroImage: '/images/magazine/natchez-bluff-sunset.webp',
     readTime: '6 min read',
     publishedAt: new Date('2026-02-07').toISOString(),
     createdAt: new Date('2026-02-07').toISOString(),
@@ -207,7 +207,7 @@ Natchez is where the loop gets quiet and heavy. The beauty here is real — the 
     status: 'published',
     excerpt:
       'You cross into Louisiana and the world changes. St. Francisville appears like something out of a Walker Percy novel — a two-street town of antebellum homes and live oaks so old they\'ve forgotten what century it is.',
-    heroImage: '/images/magazine/st-francisville-guide.webp',
+    heroImage: '/images/magazine/natchez-trace-parkway.webp',
     readTime: '5 min read',
     publishedAt: new Date('2026-02-09').toISOString(),
     createdAt: new Date('2026-02-09').toISOString(),
@@ -254,7 +254,7 @@ St. Francisville is the pause on the loop. The deep breath between Mississippi's
     status: 'published',
     excerpt:
       'Underneath the politics and the Purple and Gold, Baton Rouge is a blues town. A juke joint town. A city where the music lives in the neighborhoods, not the tourist districts, and where you have to know where to look.',
-    heroImage: '/images/magazine/baton-rouge-guide.webp',
+    heroImage: '/images/magazine/jackson-capitol.webp',
     readTime: '5 min read',
     publishedAt: new Date('2026-02-11').toISOString(),
     createdAt: new Date('2026-02-11').toISOString(),
@@ -303,7 +303,7 @@ Baton Rouge is the crossroads of the loop — geographically and spiritually. Ca
     status: 'published',
     excerpt:
       'New Orleans is not on the Big Muddy Loop. It\'s a spur off Baton Rouge — an hour southeast, a world apart. But you cannot drive through Louisiana and not go to New Orleans. That would be like visiting Rome and skipping the Vatican.',
-    heroImage: '/images/magazine/new-orleans-guide.webp',
+    heroImage: '/images/magazine/new-orleans-frenchmen.webp',
     readTime: '6 min read',
     publishedAt: new Date('2026-02-13').toISOString(),
     createdAt: new Date('2026-02-13').toISOString(),
@@ -352,7 +352,7 @@ New Orleans is the city you carry forever. Not because it's perfect — it's dee
     status: 'published',
     excerpt:
       'Lafayette hits you like a two-step. The moment you cross the city limits, accordion and fiddle replace guitar and harmonica, the rhythms shift from 12-bar blues to Cajun waltz, and the food gets richer, spicier, more unapologetically itself.',
-    heroImage: '/images/magazine/lafayette-guide.webp',
+    heroImage: '/images/magazine/eating-the-delta.webp',
     readTime: '5 min read',
     publishedAt: new Date('2026-02-15').toISOString(),
     createdAt: new Date('2026-02-15').toISOString(),
@@ -401,7 +401,7 @@ Lafayette is joy. Pure, uncomplicated, accordion-fueled joy. You leave with boud
     status: 'published',
     excerpt:
       'Alexandria sits in the geographic center of Louisiana, which means most people drive through it on their way to somewhere else. That\'s a mistake. A Gilded Age hotel that once hosted World War II generals, bayou cottages hidden in pecan orchards.',
-    heroImage: '/images/magazine/alexandria-guide.webp',
+    heroImage: '/images/magazine/greenville-levee.webp',
     readTime: '5 min read',
     publishedAt: new Date('2026-02-17').toISOString(),
     createdAt: new Date('2026-02-17').toISOString(),
@@ -448,7 +448,7 @@ Alexandria is the surprise on the loop. The city nobody told you about, the one 
     status: 'published',
     excerpt:
       'Say it: NAK-uh-tish. Now you belong here. Natchitoches is the oldest permanent settlement in the Louisiana Purchase territory, founded in 1714. The brick streets are still here, the Cane River still curves through downtown like a ribbon.',
-    heroImage: '/images/magazine/natchitoches-guide.webp',
+    heroImage: '/images/magazine/blues-trail-marker.webp',
     readTime: '5 min read',
     publishedAt: new Date('2026-02-19').toISOString(),
     createdAt: new Date('2026-02-19').toISOString(),
@@ -497,7 +497,7 @@ Natchitoches is the most beautiful town on the loop, and possibly the most under
     status: 'published',
     excerpt:
       'Before there was Nashville, there was Shreveport. The Louisiana Hayride — the radio show that launched Elvis Presley, Hank Williams, Johnny Cash — broadcast from the Municipal Auditorium. Shreveport was the second city of country music, the place where rockabilly was born.',
-    heroImage: '/images/magazine/shreveport-guide.webp',
+    heroImage: '/images/magazine/juke-joint-saturday.webp',
     readTime: '5 min read',
     publishedAt: new Date('2026-02-21').toISOString(),
     createdAt: new Date('2026-02-21').toISOString(),
@@ -544,7 +544,7 @@ Shreveport is the city on the loop that surprises people most. They come expecti
     status: 'published',
     excerpt:
       'Oil burst from the ground in 1921 and turned this quiet South Arkansas town into a boomtown overnight. The boom faded, as booms do, but the architecture stayed, the pride stayed, and the Murphy Arts District has given El Dorado a second act.',
-    heroImage: '/images/magazine/el-dorado-guide.webp',
+    heroImage: '/images/magazine/helena-river-levee.webp',
     readTime: '5 min read',
     publishedAt: new Date('2026-02-23').toISOString(),
     createdAt: new Date('2026-02-23').toISOString(),
@@ -591,7 +591,7 @@ El Dorado is the last stop before Memphis, and it earns its place on the loop. T
     status: 'published',
     excerpt:
       'Monroe sits on the Ouachita River\'s western bank like a city that knows something the rest of Louisiana hasn\'t gotten around to admitting — that the real music, the raw and complicated kind, didn\'t only come from the Delta. Some of it came from right here.',
-    heroImage: '/images/magazine/monroe-guide.webp',
+    heroImage: '/images/magazine/oxford-square.webp',
     readTime: '5 min read',
     publishedAt: new Date('2026-02-25').toISOString(),
     createdAt: new Date('2026-02-25').toISOString(),
@@ -640,7 +640,7 @@ Monroe is the kind of city the Big Muddy network was built to celebrate — not 
     status: 'published',
     excerpt:
       'Ruston sits in Lincoln Parish like a rumor about what the South used to be. This is the town that produced Jeff Mangum of Neutral Milk Hotel — that somewhere in this quiet, gospel-scented college town, a musician figured out something transcendent about longing.',
-    heroImage: '/images/magazine/ruston-guide.webp',
+    heroImage: '/images/command/highway-61.jpg',
     readTime: '5 min read',
     publishedAt: new Date('2026-02-27').toISOString(),
     createdAt: new Date('2026-02-27').toISOString(),
@@ -689,7 +689,7 @@ Ruston earns its place on the Big Muddy's expanded map not by shouting but by be
     status: 'published',
     excerpt:
       'Central High School sits in the middle of a residential neighborhood and you can stand across the street and feel 1957 pressing against your chest. But Little Rock is more than its famous wound. The Dreamland Ballroom alone is worth the detour.',
-    heroImage: '/images/magazine/little-rock-guide.webp',
+    heroImage: '/images/command/juke-joint.jpg',
     readTime: '6 min read',
     publishedAt: new Date('2026-03-01').toISOString(),
     createdAt: new Date('2026-03-01').toISOString(),
@@ -738,7 +738,7 @@ Little Rock demands something from you. It's a city that has stared at hard thin
     status: 'published',
     excerpt:
       'Fayetteville is the kind of college town that sneaks up on you. You come expecting stadium banners and leave having drunk too many Arkansas craft beers in a bar that\'s been open since 1927. George\'s Majestic Lounge is a sacred site on the expanded Big Muddy map.',
-    heroImage: '/images/magazine/fayetteville-guide.webp',
+    heroImage: '/images/real/mississippi-river.jpg',
     readTime: '5 min read',
     publishedAt: new Date('2026-03-03').toISOString(),
     createdAt: new Date('2026-03-03').toISOString(),
@@ -787,7 +787,7 @@ Fayetteville is where the Big Muddy climbs into the hills and changes register �
     status: 'published',
     excerpt:
       'There\'s a joke in Arkansas that Bentonville is what happens when you give a small Ozark town more money than God. The Walton family dropped a world-class contemporary art museum into the middle of a town that was selling fishing tackle a generation ago.',
-    heroImage: '/images/magazine/bentonville-guide.webp',
+    heroImage: '/images/command/beale-street.jpg',
     readTime: '5 min read',
     publishedAt: new Date('2026-03-03').toISOString(),
     createdAt: new Date('2026-03-03').toISOString(),
@@ -836,7 +836,7 @@ Bentonville is the Big Muddy's most unexpected stop — a city that shouldn't co
     status: 'published',
     excerpt:
       'The fog comes down off the Ozark hills on autumn mornings while Highway 76 blinks to life with marquee lights advertising seventeen country shows. Branson is the city that confounds people who haven\'t been there and confirms everything they expected once they have.',
-    heroImage: '/images/magazine/branson-guide.webp',
+    heroImage: '/images/real/juke-joint-interior.jpg',
     readTime: '5 min read',
     publishedAt: new Date('2026-03-04').toISOString(),
     createdAt: new Date('2026-03-04').toISOString(),
