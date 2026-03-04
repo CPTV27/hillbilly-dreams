@@ -7,7 +7,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const hostname = request.headers.get('host') || '';
+  const hostname = request.headers.get('x-forwarded-host') || request.headers.get('host') || '';
   const pathname = request.nextUrl.pathname;
 
   // Skip rewrites for API routes, Next.js internals, and static assets
