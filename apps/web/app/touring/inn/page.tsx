@@ -254,12 +254,12 @@ const REGIONS: Region[] = [
           {
             name: 'The Hotel Monroe',
             description: 'Boutique stay in restored 1891 buildings with local art throughout. Downtown, walkable to everything.',
-            price: '$$\u2013$$$',
+            price: '$$–$$$',
           },
           {
             name: 'Hamilton House Inn',
             description: 'Luxury B&B in Antique Alley with rooftop terrace overlooking West Monroe.',
-            price: '$$\u2013$$$',
+            price: '$$–$$$',
           },
         ],
       },
@@ -271,12 +271,12 @@ const REGIONS: Region[] = [
           {
             name: 'The Big House',
             description: 'Historic downtown venue with luxurious king suites blending antebellum echoes and modern comfort.',
-            price: '$$\u2013$$$',
+            price: '$$–$$$',
           },
           {
             name: 'Ruston Lofts',
             description: 'Micro-boutique hotel in a restored 1920s department store. Minimalist suites with industrial charm.',
-            price: '$$\u2013$$$',
+            price: '$$–$$$',
           },
         ],
       },
@@ -286,7 +286,7 @@ const REGIONS: Region[] = [
         tagline: 'The oldest settlement in Louisiana',
         lodging: [
           {
-            name: 'Ch\u00e2teau Saint Denis Hotel',
+            name: 'Château Saint Denis Hotel',
             description: 'Downtown boutique with French Quarter-inspired courtyard. Brick, fountain, old-world lobby.',
             price: 'From $150/night',
             url: 'https://www.chateausaintdenis.com',
@@ -354,7 +354,7 @@ const REGIONS: Region[] = [
           {
             name: 'The Empress of Little Rock',
             description: 'Victorian B&B with ornate period charm. A queen of a house.',
-            price: '$$\u2013$$$',
+            price: '$$–$$$',
           },
         ],
       },
@@ -400,12 +400,12 @@ const REGIONS: Region[] = [
           {
             name: 'Carriage House Inn',
             description: 'Victorian-style inn near the Strip. Southern hospitality meets Ozark mountain charm.',
-            price: '$$\u2013$$$',
+            price: '$$–$$$',
           },
           {
             name: 'Bradford House B&B',
             description: 'Elegant Victorian downtown. A quieter Branson, away from the neon.',
-            price: '$$\u2013$$$',
+            price: '$$–$$$',
           },
         ],
       },
@@ -415,7 +415,7 @@ const REGIONS: Region[] = [
 
 const STATS = [
   { label: 'Cities', value: '18', sub: 'Across five states' },
-  { label: 'States', value: '5', sub: 'TN \u00b7 MS \u00b7 LA \u00b7 AR \u00b7 MO' },
+  { label: 'States', value: '5', sub: 'TN · MS · LA · AR · MO' },
   { label: 'Properties', value: '40+', sub: 'Curated lodging picks' },
   { label: 'Home Base', value: 'Natchez', sub: 'The Big Muddy Inn' },
 ];
@@ -426,7 +426,7 @@ export default function InnPage() {
       {/* ── Hero ── */}
       <section className="inn-hero">
         <Image
-          src="/images/generated/hero-bayou-mist.webp"
+          src="/images/heroes/hero-ozarks-sunrise.webp"
           alt=""
           fill
           priority
@@ -437,7 +437,7 @@ export default function InnPage() {
         <div className="inn-hero__content">
           <div className="inn-hero__eyebrow">
             <span className="inn-hero__ornament">&#9670;</span>
-            <span>Memphis to New Orleans \u00b7 and Beyond</span>
+            <span>Memphis to New Orleans · and Beyond</span>
           </div>
           <h1 className="inn-hero__title">
             Where to Stay
@@ -463,6 +463,13 @@ export default function InnPage() {
           <svg width="1" height="40" viewBox="0 0 1 40">
             <line x1="0.5" y1="0" x2="0.5" y2="40" stroke="currentColor" strokeWidth="1" />
           </svg>
+        </div>
+      </section>
+
+      {/* ── Fleet ── */}
+      <section className="fleet-banner">
+        <div className="fleet-banner__inner">
+          <Image src="/images/fleet/fleet-prevost-tour-bus.webp" alt="Big Muddy Prevost tour bus on a Southern road" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 
@@ -516,12 +523,121 @@ export default function InnPage() {
       </section>
 
       {/* ── Regions ── */}
-      {REGIONS.map((region, ri) => (
-        <section key={region.name} className="inn-region">
+      {[REGIONS[0]].map((region) => (
+        <section className="inn-region">
           <div className="section-container">
             <div className="inn-region__header">
               <div className="section-label">
-                {ri === 0 ? 'Memphis to New Orleans' : ri === 1 ? 'Louisiana' : 'Arkansas & Missouri'}
+                Memphis to New Orleans
+              </div>
+              <h2 className="section-title">{region.name}</h2>
+              <p className="section-desc">{region.description}</p>
+            </div>
+
+            <div className="inn-region__cities">
+              {region.cities.map((city) => (
+                <article key={city.city} className="inn-city">
+                  <div className="inn-city__header">
+                    <h3 className="inn-city__name">
+                      {city.city}, {city.state}
+                    </h3>
+                    <p className="inn-city__tagline">{city.tagline}</p>
+                  </div>
+                  <div className="inn-city__lodging">
+                    {city.lodging.map((place) => (
+                      <div key={place.name} className="inn-place">
+                        <div className="inn-place__header">
+                          <h4 className="inn-place__name">
+                            {place.url ? (
+                              <a
+                                href={place.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {place.name}
+                                <span className="inn-place__arrow"> &#8599;</span>
+                              </a>
+                            ) : (
+                              place.name
+                            )}
+                          </h4>
+                          <span className="inn-place__price">{place.price}</span>
+                        </div>
+                        <p className="inn-place__desc">{place.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* ── Fleet ── */}
+      <section className="fleet-banner">
+        <div className="fleet-banner__inner">
+          <Image src="/images/fleet/fleet-tesla-lafayette-cajun.webp" alt="Big Muddy Tesla in downtown Lafayette" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+        </div>
+      </section>
+
+      {[REGIONS[1]].map((region) => (
+        <section className="inn-region">
+          <div className="section-container">
+            <div className="inn-region__header">
+              <div className="section-label">
+                Louisiana
+              </div>
+              <h2 className="section-title">{region.name}</h2>
+              <p className="section-desc">{region.description}</p>
+            </div>
+
+            <div className="inn-region__cities">
+              {region.cities.map((city) => (
+                <article key={city.city} className="inn-city">
+                  <div className="inn-city__header">
+                    <h3 className="inn-city__name">
+                      {city.city}, {city.state}
+                    </h3>
+                    <p className="inn-city__tagline">{city.tagline}</p>
+                  </div>
+                  <div className="inn-city__lodging">
+                    {city.lodging.map((place) => (
+                      <div key={place.name} className="inn-place">
+                        <div className="inn-place__header">
+                          <h4 className="inn-place__name">
+                            {place.url ? (
+                              <a
+                                href={place.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {place.name}
+                                <span className="inn-place__arrow"> &#8599;</span>
+                              </a>
+                            ) : (
+                              place.name
+                            )}
+                          </h4>
+                          <span className="inn-place__price">{place.price}</span>
+                        </div>
+                        <p className="inn-place__desc">{place.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {[REGIONS[2]].map((region) => (
+        <section className="inn-region">
+          <div className="section-container">
+            <div className="inn-region__header">
+              <div className="section-label">
+                Arkansas & Missouri
               </div>
               <h2 className="section-title">{region.name}</h2>
               <p className="section-desc">{region.description}</p>
@@ -912,6 +1028,11 @@ export default function InnPage() {
           max-width: 520px;
           margin: 0 0 var(--space-6);
         }
+
+        /* ── Fleet Banner ── */
+        .fleet-banner { padding: var(--space-8) var(--space-6); max-width: var(--container-xl); margin: 0 auto; }
+        .fleet-banner__inner { border-radius: var(--radius-lg); overflow: hidden; }
+        .fleet-banner__inner img { display: block; }
       `}</style>
     </>
   );

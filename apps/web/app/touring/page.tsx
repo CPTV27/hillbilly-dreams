@@ -174,7 +174,7 @@ export default async function TouringHomepage() {
       {/* ── Hero ── */}
       <section className="touring-hero">
         <Image
-          src="/images/generated/hero-touring-bg.jpg"
+          src="/images/heroes/hero-highway-sunset.webp"
           alt=""
           fill
           priority
@@ -211,6 +211,13 @@ export default async function TouringHomepage() {
           <svg width="1" height="40" viewBox="0 0 1 40">
             <line x1="0.5" y1="0" x2="0.5" y2="40" stroke="currentColor" strokeWidth="1" />
           </svg>
+        </div>
+      </section>
+
+      {/* ── Fleet ── */}
+      <section className="fleet-banner">
+        <div className="fleet-banner__inner">
+          <Image src="/images/fleet/fleet-transit-beale-street.webp" alt="Big Muddy Transit van on Beale Street, Memphis" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 
@@ -304,6 +311,13 @@ export default async function TouringHomepage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Fleet ── */}
+      <section className="fleet-banner">
+        <div className="fleet-banner__inner">
+          <Image src="/images/fleet/fleet-prevost-french-quarter.webp" alt="Big Muddy Prevost tour bus in the French Quarter, New Orleans" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 
@@ -786,6 +800,11 @@ export default async function TouringHomepage() {
           grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
           gap: var(--space-6);
         }
+
+        /* ── Fleet Banner ── */
+        .fleet-banner { padding: var(--space-8) var(--space-6); max-width: var(--container-xl); margin: 0 auto; }
+        .fleet-banner__inner { border-radius: var(--radius-lg); overflow: hidden; }
+        .fleet-banner__inner img { display: block; }
       `}</style>
     </>
   );

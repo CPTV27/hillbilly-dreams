@@ -2,6 +2,7 @@
 // Route page — Memphis to New Orleans via Highway 61, plus the Big Muddy Network
 
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { NewsletterSignup } from '@bigmuddy/ui';
 
 export const metadata: Metadata = {
@@ -364,11 +365,47 @@ export default function RoutePage() {
       <section className="route-stops">
         <div className="section-container">
           <div className="section-label" style={{ marginBottom: 'var(--space-10)' }}>The Core Corridor</div>
-          {STOPS.map((stop, i) => (
+          {/* Memphis */}
+          {[STOPS[0]].map((stop) => (
             <article key={stop.id} id={stop.id} className="route-stop-detail">
               <div className="route-stop-detail__marker">
-                <span className="route-stop-detail__num">{String(i + 1).padStart(2, '0')}</span>
-                {i < STOPS.length - 1 && <div className="route-stop-detail__connector" />}
+                <span className="route-stop-detail__num">01</span>
+                <div className="route-stop-detail__connector" />
+              </div>
+              <div className="route-stop-detail__body">
+                <div className="route-stop-detail__header">
+                  <div>
+                    <h2 className="route-stop-detail__city">{stop.city}</h2>
+                    <p className="route-stop-detail__state">{stop.state}</p>
+                    <p className="route-stop-detail__tagline">{stop.tagline}</p>
+                  </div>
+                </div>
+                <p className="route-stop-detail__desc">{stop.description}</p>
+                <ul className="route-stop-detail__highlights">
+                  {stop.highlights.map((h) => (
+                    <li key={h}>
+                      <span className="route-stop-detail__bullet" aria-hidden="true">&#9670;</span>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+
+          {/* ── Fleet ── */}
+          <section className="fleet-banner">
+            <div className="fleet-banner__inner">
+              <Image src="/images/fleet/fleet-ford-transit.webp" alt="Big Muddy Ford Transit at a Delta cotton field" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+            </div>
+          </section>
+
+          {/* Clarksdale + Vicksburg */}
+          {STOPS.slice(1, 3).map((stop, idx) => (
+            <article key={stop.id} id={stop.id} className="route-stop-detail">
+              <div className="route-stop-detail__marker">
+                <span className="route-stop-detail__num">{String(idx + 2).padStart(2, '0')}</span>
+                <div className="route-stop-detail__connector" />
               </div>
               <div className="route-stop-detail__body">
                 <div className="route-stop-detail__header">
@@ -394,17 +431,98 @@ export default function RoutePage() {
                     </li>
                   ))}
                 </ul>
-                {stop.id === 'natchez' && (
-                  <div className="route-stop-detail__inn-callout">
-                    <p>
-                      <strong>Stay at the inn.</strong> 411 N Commerce Street is where the route 
-                      pauses. Six suites, each named for a legend.
-                    </p>
-                    <a href="/inn" className="btn btn--primary">
-                      View the Inn
-                    </a>
+              </div>
+            </article>
+          ))}
+
+          {/* ── Fleet ── */}
+          <section className="fleet-banner">
+            <div className="fleet-banner__inner">
+              <Image src="/images/fleet/fleet-prevost-vicksburg-battlefield.webp" alt="Big Muddy Prevost at Vicksburg National Military Park" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+            </div>
+          </section>
+
+          {/* Natchez */}
+          {[STOPS[3]].map((stop) => (
+            <article key={stop.id} id={stop.id} className="route-stop-detail">
+              <div className="route-stop-detail__marker">
+                <span className="route-stop-detail__num">04</span>
+                <div className="route-stop-detail__connector" />
+              </div>
+              <div className="route-stop-detail__body">
+                <div className="route-stop-detail__header">
+                  <div>
+                    <h2 className="route-stop-detail__city">{stop.city}</h2>
+                    <p className="route-stop-detail__state">{stop.state}</p>
+                    <p className="route-stop-detail__tagline">{stop.tagline}</p>
                   </div>
-                )}
+                  {stop.driveTime && (
+                    <div className="route-stop-detail__distance">
+                      <span className="route-stop-detail__dist-label">Drive from previous</span>
+                      <span className="route-stop-detail__dist-val">{stop.driveTime}</span>
+                      <span className="route-stop-detail__dist-mi">{stop.distance}</span>
+                    </div>
+                  )}
+                </div>
+                <p className="route-stop-detail__desc">{stop.description}</p>
+                <ul className="route-stop-detail__highlights">
+                  {stop.highlights.map((h) => (
+                    <li key={h}>
+                      <span className="route-stop-detail__bullet" aria-hidden="true">&#9670;</span>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+                <div className="route-stop-detail__inn-callout">
+                  <p>
+                    <strong>Stay at the inn.</strong> 411 N Commerce Street is where the route 
+                    pauses. Six suites, each named for a legend.
+                  </p>
+                  <a href="/inn" className="btn btn--primary">
+                    View the Inn
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+
+          {/* ── Fleet ── */}
+          <section className="fleet-banner">
+            <div className="fleet-banner__inner">
+              <Image src="/images/fleet/fleet-tesla-model-3.webp" alt="Big Muddy Tesla by the river with cypress trees" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+            </div>
+          </section>
+
+          {/* New Orleans */}
+          {[STOPS[4]].map((stop) => (
+            <article key={stop.id} id={stop.id} className="route-stop-detail">
+              <div className="route-stop-detail__marker">
+                <span className="route-stop-detail__num">05</span>
+              </div>
+              <div className="route-stop-detail__body">
+                <div className="route-stop-detail__header">
+                  <div>
+                    <h2 className="route-stop-detail__city">{stop.city}</h2>
+                    <p className="route-stop-detail__state">{stop.state}</p>
+                    <p className="route-stop-detail__tagline">{stop.tagline}</p>
+                  </div>
+                  {stop.driveTime && (
+                    <div className="route-stop-detail__distance">
+                      <span className="route-stop-detail__dist-label">Drive from previous</span>
+                      <span className="route-stop-detail__dist-val">{stop.driveTime}</span>
+                      <span className="route-stop-detail__dist-mi">{stop.distance}</span>
+                    </div>
+                  )}
+                </div>
+                <p className="route-stop-detail__desc">{stop.description}</p>
+                <ul className="route-stop-detail__highlights">
+                  {stop.highlights.map((h) => (
+                    <li key={h}>
+                      <span className="route-stop-detail__bullet" aria-hidden="true">&#9670;</span>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </article>
           ))}
@@ -865,6 +983,11 @@ export default function RoutePage() {
           margin-bottom: var(--space-3);
           display: block;
         }
+
+        /* ── Fleet Banner ── */
+        .fleet-banner { padding: var(--space-8) var(--space-6); max-width: var(--container-xl); margin: 0 auto; }
+        .fleet-banner__inner { border-radius: var(--radius-lg); overflow: hidden; }
+        .fleet-banner__inner img { display: block; }
       `}</style>
     </>
   );

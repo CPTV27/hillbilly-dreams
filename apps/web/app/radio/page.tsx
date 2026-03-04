@@ -134,7 +134,7 @@ export default async function RadioHomepage() {
       {/* ── Hero ── */}
       <section className="radio-hero">
         <Image
-          src="/images/generated/hero-radio-bg.jpg"
+          src="/images/heroes/hero-bayou-mist.webp"
           alt=""
           fill
           priority
@@ -186,6 +186,13 @@ export default async function RadioHomepage() {
               <PlaylistCard key={playlist.id} playlist={playlist} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Fleet ── */}
+      <section className="fleet-banner">
+        <div className="fleet-banner__inner">
+          <Image src="/images/fleet/fleet-transit-clarksdale-crossroads.webp" alt="Big Muddy Transit at the Clarksdale crossroads" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 
@@ -481,6 +488,11 @@ export default async function RadioHomepage() {
           white-space: nowrap;
         }
         .section-link:hover { color: var(--accent-hover); }
+
+        /* ── Fleet Banner ── */
+        .fleet-banner { padding: var(--space-8) var(--space-6); max-width: var(--container-xl); margin: 0 auto; }
+        .fleet-banner__inner { border-radius: var(--radius-lg); overflow: hidden; }
+        .fleet-banner__inner img { display: block; }
       `}</style>
     </>
   );

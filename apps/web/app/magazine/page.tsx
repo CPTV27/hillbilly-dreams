@@ -51,7 +51,7 @@ export default async function MagazineHomepage() {
       {/* ── Hero ── */}
       <section className="mag-hero">
         <Image
-          src="/images/generated/hero-magazine-bg.jpg"
+          src="/images/heroes/hero-mississippi-dawn.webp"
           alt=""
           fill
           priority
@@ -75,6 +75,13 @@ export default async function MagazineHomepage() {
         <div className="section-container">
           <div className="section-label">Featured Story</div>
           <ArticleCard article={featured} variant="featured" href={`/articles/${featured.slug}`} />
+        </div>
+      </section>
+
+      {/* ── Fleet ── */}
+      <section className="fleet-banner">
+        <div className="fleet-banner__inner">
+          <Image src="/images/fleet/fleet-tesla-natchez-bluff.webp" alt="Big Muddy Tesla at the Natchez bluff overlook" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 
@@ -367,6 +374,11 @@ export default async function MagazineHomepage() {
           margin-bottom: var(--space-4);
           display: block;
         }
+
+        /* ── Fleet Banner ── */
+        .fleet-banner { padding: var(--space-8) var(--space-6); max-width: var(--container-xl); margin: 0 auto; }
+        .fleet-banner__inner { border-radius: var(--radius-lg); overflow: hidden; }
+        .fleet-banner__inner img { display: block; }
       `}</style>
     </>
   );
