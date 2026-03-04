@@ -2,6 +2,7 @@
 // Card component for radio playlists
 
 import React from 'react';
+import Image from 'next/image';
 import type { Playlist } from '@bigmuddy/config';
 
 interface PlaylistCardProps {
@@ -45,12 +46,7 @@ export function PlaylistCard({ playlist, variant = 'default' }: PlaylistCardProp
       <article className="playlist-card playlist-card--featured">
         <div className="playlist-card__cover">
           {playlist.coverImage ? (
-            <img
-              src={playlist.coverImage}
-              alt={playlist.name}
-              className="playlist-card__cover-img"
-              loading="lazy"
-            />
+            <Image src={playlist.coverImage} alt={playlist.name} fill sizes="180px" style={{ objectFit: 'cover' }} />
           ) : (
             <div className="playlist-card__cover-placeholder">
               <MusicNoteIcon />
@@ -94,12 +90,7 @@ export function PlaylistCard({ playlist, variant = 'default' }: PlaylistCardProp
         >
           <div className="playlist-card__cover">
             {playlist.coverImage ? (
-              <img
-                src={playlist.coverImage}
-                alt={playlist.name}
-                className="playlist-card__cover-img"
-                loading="lazy"
-              />
+              <Image src={playlist.coverImage} alt={playlist.name} fill sizes="180px" style={{ objectFit: 'cover' }} />
             ) : (
               <div className="playlist-card__cover-placeholder">
                 <MusicNoteIcon />
@@ -166,14 +157,12 @@ const playlistCardStyles = `
     overflow: hidden;
     background: var(--surface-2);
     flex-shrink: 0;
+    position: relative;
   }
-  .playlist-card__cover-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .playlist-card__cover img {
     transition: transform var(--duration-slow) var(--ease-default);
   }
-  .playlist-card:hover .playlist-card__cover-img {
+  .playlist-card:hover .playlist-card__cover img {
     transform: scale(1.06);
   }
   .playlist-card__cover-placeholder {

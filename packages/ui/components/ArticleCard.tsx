@@ -2,6 +2,7 @@
 // Card component for magazine articles
 
 import React from 'react';
+import Image from 'next/image';
 import type { Article } from '@bigmuddy/config';
 
 interface ArticleCardProps {
@@ -36,12 +37,7 @@ export function ArticleCard({ article, variant = 'default', href }: ArticleCardP
         <a href={articleHref} className="article-card__link">
           <div className="article-card__image-wrap">
             {article.heroImage ? (
-              <img
-                src={article.heroImage}
-                alt={article.title}
-                className="article-card__image"
-                loading="lazy"
-              />
+              <Image src={article.heroImage} alt={article.title} fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
             ) : (
               <div className="article-card__image-placeholder" />
             )}
@@ -96,12 +92,7 @@ export function ArticleCard({ article, variant = 'default', href }: ArticleCardP
       <a href={articleHref} className="article-card__link">
         <div className="article-card__image-wrap">
           {article.heroImage ? (
-            <img
-              src={article.heroImage}
-              alt={article.title}
-              className="article-card__image"
-              loading="lazy"
-            />
+            <Image src={article.heroImage} alt={article.title} fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
           ) : (
             <div className="article-card__image-placeholder" />
           )}
@@ -156,14 +147,12 @@ const articleCardStyles = `
     aspect-ratio: 16/9;
     overflow: hidden;
     background: var(--surface-2);
+    position: relative;
   }
-  .article-card__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .article-card__image-wrap img {
     transition: transform var(--duration-slow) var(--ease-default);
   }
-  .article-card:hover .article-card__image {
+  .article-card:hover .article-card__image-wrap img {
     transform: scale(1.04);
   }
   .article-card__image-placeholder {

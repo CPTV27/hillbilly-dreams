@@ -2,6 +2,7 @@
 // Inn detail page — 411 N Commerce St, Natchez MS
 
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { NewsletterSignup } from '@bigmuddy/ui';
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ const SUITES = [
       'McKinley Morganfield — Muddy Waters — was born in Rolling Fork, Mississippi, a two-hour drive north. This suite faces the river, the direction he came from. King bed, cast iron soaking tub, and original hardwood floors from the 1840s.',
     amenities: ['King bed', 'River view', 'Cast iron tub', 'Record player', 'Private bath'],
     price: 'From $245/night',
+    image: '/images/real/inn-blue-suite.webp',
   },
   {
     id: 'robert-johnson',
@@ -28,6 +30,7 @@ const SUITES = [
       'Twenty-nine songs. That\'s all we have. This minimal, moody suite is stripped to what matters — a great bed, a wall of darkness, and the sound of the river at night. Double queen, lined with vintage vinyl and photography.',
     amenities: ['Double queen', 'Vinyl collection', 'Exposed brick', 'Rain shower', 'Sitting nook'],
     price: 'From $195/night',
+    image: '/images/real/inn-grey-suite.webp',
   },
   {
     id: 'john-lee-hooker',
@@ -37,6 +40,7 @@ const SUITES = [
       'Born in Clarksdale, John Lee Hooker played a boogie that went straight to the feet. This suite has the same effect — a turntable hardwired to the speaker system, floor-to-ceiling book and record shelves, and a claw-foot tub deep enough to think.',
     amenities: ['King bed', 'Turntable system', 'Claw-foot tub', 'Full library', 'Coffee bar'],
     price: 'From $225/night',
+    image: '/images/real/inn-green-suite.webp',
   },
   {
     id: 'bb-king',
@@ -46,6 +50,7 @@ const SUITES = [
       'Riley B. King was born in Indianola, two hours north. The largest suite at the inn — a sitting room, a balcony above Commerce Street, and the warmth of a man who never stopped touring. King bed plus pullout.',
     amenities: ['King bed', 'Private balcony', 'Sitting room', 'Soaking tub', 'Writing desk'],
     price: 'From $295/night',
+    image: '/images/real/inn-magenta-suite.webp',
   },
   {
     id: 'british-invasion-i',
@@ -55,6 +60,7 @@ const SUITES = [
       'When Mick Jagger, Keith Richards, Eric Clapton, and Jimmy Page came to America, they came looking for the Mississippi. This suite is the British interpretation — Victorian bones, vintage Americana, and the music that caused a continent to cross the Atlantic.',
     amenities: ['Queen bed', 'Victorian millwork', 'Vintage posters', 'Claw-foot tub', 'Reading nook'],
     price: 'From $185/night',
+    image: '/images/real/inn-crimson-parlor.webp',
   },
   {
     id: 'british-invasion-ii',
@@ -64,6 +70,7 @@ const SUITES = [
       'Chess Records, Chicago, 1964. The Stones wanted to record where their heroes had recorded. This suite is that debt paid — dark, electric, and unapologetically rock and roll. King bed, standing shower, Spotify-connected speaker system.',
     amenities: ['King bed', 'Standing shower', 'Bluetooth speakers', 'Bar setup', 'Courtyard access'],
     price: 'From $205/night',
+    image: '/images/real/inn-british-suite.webp',
   },
 ];
 
@@ -72,6 +79,14 @@ export default function InnPage() {
     <>
       {/* ── Hero ── */}
       <section className="inn-hero">
+        <Image
+          src="/images/real/inn-foyer.webp"
+          alt=""
+          fill
+          priority
+          style={{ objectFit: 'cover' }}
+        />
+        <div className="inn-hero__overlay" />
         <div className="inn-hero__content">
           <div className="inn-hero__eyebrow">
             <span>411 N Commerce Street · Natchez, Mississippi</span>
@@ -131,6 +146,11 @@ export default function InnPage() {
                 <div className="suite-detail__num">
                   <span>{String(i + 1).padStart(2, '0')}</span>
                 </div>
+                {suite.image && (
+                  <div className="suite-detail__image-wrap">
+                    <Image src={suite.image} alt={suite.name} fill style={{ objectFit: 'cover' }} />
+                  </div>
+                )}
                 <div className="suite-detail__body">
                   <div className="suite-detail__header">
                     <div>
@@ -185,17 +205,18 @@ export default function InnPage() {
           padding: var(--space-24) var(--space-6);
           position: relative;
         }
-        .inn-hero::before {
-          content: '';
+        .inn-hero__overlay {
           position: absolute;
           inset: 0;
-          background: radial-gradient(ellipse 60% 60% at 30% 50%, rgba(200, 148, 62, 0.07) 0%, transparent 70%);
+          background: linear-gradient(180deg, rgba(15, 15, 13, 0.85) 0%, rgba(15, 15, 13, 0.65) 50%, rgba(15, 15, 13, 0.9) 100%);
+          z-index: 1;
         }
         .inn-hero__content {
           position: relative;
           max-width: var(--container-xl);
           margin: 0 auto;
           width: 100%;
+          z-index: 2;
         }
         .inn-hero__eyebrow {
           font-family: var(--font-body);
@@ -348,6 +369,18 @@ export default function InnPage() {
           border: 1px solid var(--border);
           border-radius: var(--radius-full);
           padding: var(--space-1) var(--space-3);
+        }
+        .suite-detail__image-wrap {
+          position: relative;
+          width: 160px;
+          min-height: 120px;
+          flex-shrink: 0;
+          border-radius: var(--radius-sm);
+          overflow: hidden;
+        }
+        @media (max-width: 639px) {
+          .suite-detail__image-wrap { width: 100%; min-height: 180px; }
+          .suite-detail { flex-wrap: wrap; }
         }
         .inn-book {
           background: var(--surface);

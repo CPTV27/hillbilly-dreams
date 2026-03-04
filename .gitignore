@@ -50,3 +50,6 @@ coverage
 
 # Cache
 .cache
+
+# Image staging folder (originals live here, copied into apps/web/public/images/)
+bmt-public-images

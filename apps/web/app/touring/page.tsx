@@ -3,6 +3,7 @@
 // Server component. Uses static placeholder content until DATABASE_URL is connected.
 
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { ArticleCard } from '@bigmuddy/ui';
 import { PlaylistCard } from '@bigmuddy/ui';
 import { NewsletterSignup } from '@bigmuddy/ui';
@@ -28,7 +29,7 @@ const PLACEHOLDER_ARTICLES: Article[] = [
       'The crossroads is real. You can stand there at midnight and feel it — the weight of every note ever played in this delta town pressing up through the asphalt.',
     readTime: '8 min read',
     publishedAt: new Date('2026-02-15').toISOString(),
-    heroImage: null,
+    heroImage: '/images/magazine/clarksdale-crossroads.webp',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -44,7 +45,7 @@ const PLACEHOLDER_ARTICLES: Article[] = [
       'At 411 N Commerce Street, each suite is named for a legend. Sleep in the Muddy Waters room and wake to the river. Every night here is a night closer to the source.',
     readTime: '6 min read',
     publishedAt: new Date('2026-02-20').toISOString(),
-    heroImage: null,
+    heroImage: '/images/magazine/natchez-bluff-sunset.webp',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -60,7 +61,7 @@ const PLACEHOLDER_ARTICLES: Article[] = [
       'Five cities. Four hundred miles. A thousand years of American music. Here is how to drive it right.',
     readTime: '12 min read',
     publishedAt: new Date('2026-01-28').toISOString(),
-    heroImage: null,
+    heroImage: '/images/magazine/memphis-beale-street-neon.webp',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -73,7 +74,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'Robert Johnson, Muddy Waters, Howlin Wolf. The founding documents.',
     trackCount: 42,
     spotifyUrl: null,
-    coverImage: null,
+    coverImage: '/images/real/blues-room-harmonica.webp',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -84,7 +85,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'What plays in the inn after midnight. Soul, jazz, and something unnamed.',
     trackCount: 28,
     spotifyUrl: null,
-    coverImage: null,
+    coverImage: '/images/real/juke-joint-interior.jpg',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -95,7 +96,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'Road music for the corridor. Memphis to New Orleans at 70 mph.',
     trackCount: 55,
     spotifyUrl: null,
-    coverImage: null,
+    coverImage: '/images/real/blues-room-live-show.webp',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -106,26 +107,32 @@ const SUITES = [
   {
     name: 'Muddy Waters',
     description: 'Named for the father of Chicago blues, born in Rolling Fork, MS. River-facing, king bed, cast iron tub.',
+    image: '/images/real/inn-blue-suite.webp',
   },
   {
     name: 'Robert Johnson',
     description: 'The crossroads suite. Minimal, moody, and lined with vinyl. Double queen.',
+    image: '/images/real/inn-grey-suite.webp',
   },
   {
     name: 'John Lee Hooker',
     description: 'Boom boom boom. Floor-to-ceiling shelves, a turntable, and a claw-foot tub.',
+    image: '/images/real/inn-green-suite.webp',
   },
   {
     name: 'B.B. King',
     description: 'Named for the Indianola native. The largest suite, with a sitting room and balcony.',
+    image: '/images/real/inn-magenta-suite.webp',
   },
   {
     name: 'British Invasion I',
     description: "What the British heard when they came looking for the source. Vintage meets Victorian.",
+    image: '/images/real/inn-crimson-parlor.webp',
   },
   {
     name: 'British Invasion II',
     description: 'The Rolling Stones came to Chess Studios. This room pays the debt.',
+    image: '/images/real/inn-british-suite.webp',
   },
 ];
 
@@ -151,6 +158,14 @@ export default async function TouringHomepage() {
     <>
       {/* ── Hero ── */}
       <section className="touring-hero">
+        <Image
+          src="/images/generated/hero-touring-bg.jpg"
+          alt=""
+          fill
+          priority
+          style={{ objectFit: 'cover' }}
+        />
+        <div className="touring-hero__overlay" />
         <div className="touring-hero__bg-pattern" aria-hidden="true" />
         <div className="touring-hero__content">
           <div className="touring-hero__eyebrow">
@@ -200,6 +215,11 @@ export default async function TouringHomepage() {
                 <div className="suite-card__number" aria-hidden="true">
                   <div className="suite-card__num-inner" />
                 </div>
+                {suite.image && (
+                  <div className="suite-detail__image-wrap">
+                    <Image src={suite.image} alt={suite.name} fill style={{ objectFit: 'cover' }} />
+                  </div>
+                )}
                 <div className="suite-card__body">
                   <h3 className="suite-card__name">{suite.name}</h3>
                   <p className="suite-card__desc">{suite.description}</p>
@@ -317,6 +337,7 @@ export default async function TouringHomepage() {
         .touring-hero__bg-pattern {
           position: absolute;
           inset: 0;
+          z-index: 1;
           background:
             radial-gradient(ellipse 80% 50% at 50% -10%, rgba(200, 148, 62, 0.08) 0%, transparent 60%),
             repeating-linear-gradient(
@@ -326,6 +347,12 @@ export default async function TouringHomepage() {
               rgba(200, 148, 62, 0.03) 80px,
               rgba(200, 148, 62, 0.03) 81px
             );
+        }
+        .touring-hero__overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(15, 15, 13, 0.85) 0%, rgba(15, 15, 13, 0.65) 50%, rgba(15, 15, 13, 0.9) 100%);
+          z-index: 1;
         }
         .touring-hero__content {
           position: relative;
@@ -661,6 +688,20 @@ export default async function TouringHomepage() {
           color: var(--text-muted);
           letter-spacing: var(--tracking-wide);
           text-transform: uppercase;
+        }
+
+        /* ── Suite Image ── */
+        .suite-detail__image-wrap {
+          position: relative;
+          width: 160px;
+          min-height: 120px;
+          flex-shrink: 0;
+          border-radius: var(--radius-sm);
+          overflow: hidden;
+        }
+        @media (max-width: 639px) {
+          .suite-detail__image-wrap { width: 100%; min-height: 180px; }
+          .suite-detail { flex-wrap: wrap; }
         }
 
         /* ── Article / Playlist Grids ── */

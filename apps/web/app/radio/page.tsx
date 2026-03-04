@@ -2,6 +2,7 @@
 // Radio homepage — Now Playing hero + playlists + upcoming live sessions
 
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { PlaylistCard, EventCard, NewsletterSignup } from '@bigmuddy/ui';
 import type { Playlist, Event } from '@bigmuddy/config';
 
@@ -17,7 +18,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'Robert Johnson, Muddy Waters, Howlin Wolf. The founding documents of American music.',
     trackCount: 42,
     spotifyUrl: null,
-    coverImage: null,
+    coverImage: '/images/real/blues-room-harmonica.webp',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -28,7 +29,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'What plays in the inn after midnight. Soul, jazz, and something unnamed.',
     trackCount: 28,
     spotifyUrl: null,
-    coverImage: null,
+    coverImage: '/images/real/juke-joint-interior.jpg',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -39,7 +40,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'Road music for the corridor. Memphis to New Orleans at 70 mph.',
     trackCount: 55,
     spotifyUrl: null,
-    coverImage: null,
+    coverImage: '/images/real/blues-room-live-show.webp',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -50,7 +51,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'Louis Armstrong, Jelly Roll Morton, Preservation Hall Jazz Band.',
     trackCount: 38,
     spotifyUrl: null,
-    coverImage: null,
+    coverImage: '/images/real/blues-room-show.jpg',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -61,7 +62,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'The Stones, the Yardbirds, Led Zeppelin — following the thread back to Mississippi.',
     trackCount: 44,
     spotifyUrl: null,
-    coverImage: null,
+    coverImage: '/images/real/musician-performing.jpg',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -72,7 +73,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'Otis Redding, Al Green, Isaac Hayes, Sam & Dave. Memphis soul in its prime.',
     trackCount: 51,
     spotifyUrl: null,
-    coverImage: null,
+    coverImage: '/images/real/record-player.jpg',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -132,6 +133,14 @@ export default async function RadioHomepage() {
     <>
       {/* ── Hero ── */}
       <section className="radio-hero">
+        <Image
+          src="/images/generated/hero-radio-bg.jpg"
+          alt=""
+          fill
+          priority
+          style={{ objectFit: 'cover' }}
+        />
+        <div className="radio-hero__overlay" />
         <div className="radio-hero__bg" aria-hidden="true">
           <div className="radio-hero__wave radio-hero__wave--1" />
           <div className="radio-hero__wave radio-hero__wave--2" />
@@ -243,10 +252,17 @@ export default async function RadioHomepage() {
           background: var(--bg);
           overflow: hidden;
         }
+        .radio-hero__overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(15, 15, 13, 0.85) 0%, rgba(15, 15, 13, 0.65) 50%, rgba(15, 15, 13, 0.9) 100%);
+          z-index: 1;
+        }
         .radio-hero__bg {
           position: absolute;
           inset: 0;
           pointer-events: none;
+          z-index: 2;
         }
         .radio-hero__wave {
           position: absolute;
@@ -265,7 +281,7 @@ export default async function RadioHomepage() {
         }
         .radio-hero__content {
           position: relative;
-          z-index: 2;
+          z-index: 3;
           max-width: var(--container-xl);
           margin: 0 auto;
           padding: var(--space-24) var(--space-6);
