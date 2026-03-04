@@ -5,10 +5,9 @@ const nextConfig = {
   // Firebase App Hosting supports full Next.js SSR natively.
 
   images: {
-    // Bypass /_next/image optimization — sharp is not installed and the
-    // endpoint fails silently on Firebase App Hosting / Cloud Run.
-    // All public/ images are already in optimized formats (webp, jpg).
-    unoptimized: true,
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
       {
         protocol: 'https',
@@ -31,6 +30,29 @@ const nextConfig = {
   // Allow larger page payloads for rich article content
   experimental: {
     serverComponentsExternalPackages: ['@prisma/client', 'prisma'],
+  },
+
+  async headers() {
+    return [
+      {
+        source: '/images/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/_next/image',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+    ];
   },
 };
 

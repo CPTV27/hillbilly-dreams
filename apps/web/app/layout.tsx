@@ -8,7 +8,7 @@ import '@bigmuddy/config/tokens.css';
 
 const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
+  weight: ['400', '600', '700', '800'],
   style: ['normal', 'italic'],
   variable: '--font-display',
   display: 'swap',
@@ -16,7 +16,7 @@ const playfairDisplay = Playfair_Display({
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-body',
   display: 'swap',
 });

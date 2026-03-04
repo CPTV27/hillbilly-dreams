@@ -640,7 +640,7 @@ Monroe is the kind of city the Big Muddy network was built to celebrate — not 
     status: 'published',
     excerpt:
       'Ruston sits in Lincoln Parish like a rumor about what the South used to be. This is the town that produced Jeff Mangum of Neutral Milk Hotel — that somewhere in this quiet, gospel-scented college town, a musician figured out something transcendent about longing.',
-    heroImage: '/images/command/highway-61.jpg',
+    heroImage: '/images/command/highway-61.webp',
     readTime: '5 min read',
     publishedAt: new Date('2026-02-27').toISOString(),
     createdAt: new Date('2026-02-27').toISOString(),
@@ -689,7 +689,7 @@ Ruston earns its place on the Big Muddy's expanded map not by shouting but by be
     status: 'published',
     excerpt:
       'Central High School sits in the middle of a residential neighborhood and you can stand across the street and feel 1957 pressing against your chest. But Little Rock is more than its famous wound. The Dreamland Ballroom alone is worth the detour.',
-    heroImage: '/images/command/juke-joint.jpg',
+    heroImage: '/images/command/juke-joint.webp',
     readTime: '6 min read',
     publishedAt: new Date('2026-03-01').toISOString(),
     createdAt: new Date('2026-03-01').toISOString(),
@@ -738,7 +738,7 @@ Little Rock demands something from you. It's a city that has stared at hard thin
     status: 'published',
     excerpt:
       'Fayetteville is the kind of college town that sneaks up on you. You come expecting stadium banners and leave having drunk too many Arkansas craft beers in a bar that\'s been open since 1927. George\'s Majestic Lounge is a sacred site on the expanded Big Muddy map.',
-    heroImage: '/images/real/mississippi-river.jpg',
+    heroImage: '/images/real/mississippi-river.webp',
     readTime: '5 min read',
     publishedAt: new Date('2026-03-03').toISOString(),
     createdAt: new Date('2026-03-03').toISOString(),
@@ -787,7 +787,7 @@ Fayetteville is where the Big Muddy climbs into the hills and changes register �
     status: 'published',
     excerpt:
       'There\'s a joke in Arkansas that Bentonville is what happens when you give a small Ozark town more money than God. The Walton family dropped a world-class contemporary art museum into the middle of a town that was selling fishing tackle a generation ago.',
-    heroImage: '/images/command/beale-street.jpg',
+    heroImage: '/images/command/beale-street.webp',
     readTime: '5 min read',
     publishedAt: new Date('2026-03-03').toISOString(),
     createdAt: new Date('2026-03-03').toISOString(),
@@ -836,7 +836,7 @@ Bentonville is the Big Muddy's most unexpected stop — a city that shouldn't co
     status: 'published',
     excerpt:
       'The fog comes down off the Ozark hills on autumn mornings while Highway 76 blinks to life with marquee lights advertising seventeen country shows. Branson is the city that confounds people who haven\'t been there and confirms everything they expected once they have.',
-    heroImage: '/images/real/juke-joint-interior.jpg',
+    heroImage: '/images/real/juke-joint-interior.webp',
     readTime: '5 min read',
     publishedAt: new Date('2026-03-04').toISOString(),
     createdAt: new Date('2026-03-04').toISOString(),

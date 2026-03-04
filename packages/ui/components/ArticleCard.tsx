@@ -92,7 +92,7 @@ export function ArticleCard({ article, variant = 'default', href }: ArticleCardP
       <a href={articleHref} className="article-card__link">
         <div className="article-card__image-wrap">
           {article.heroImage ? (
-            <Image src={article.heroImage} alt={article.title} fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
+            <Image src={article.heroImage} alt={article.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" style={{ objectFit: 'cover' }} />
           ) : (
             <div className="article-card__image-placeholder" />
           )}

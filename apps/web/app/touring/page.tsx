@@ -85,7 +85,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'What plays in the inn after midnight. Soul, jazz, and something unnamed.',
     trackCount: 28,
     spotifyUrl: null,
-    coverImage: '/images/real/juke-joint-interior.jpg',
+    coverImage: '/images/real/juke-joint-interior.webp',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
