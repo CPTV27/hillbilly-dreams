@@ -1,3 +1,5 @@
+'use client';
+
 // packages/ui/components/NewsletterSignup.tsx
 // Beehiiv embed placeholder / newsletter signup component
 
