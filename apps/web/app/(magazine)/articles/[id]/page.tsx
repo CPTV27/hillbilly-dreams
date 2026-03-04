@@ -1,4 +1,4 @@
-// apps/web/app/(magazine)/articles/[slug]/page.tsx
+// apps/web/app/(magazine)/articles/[id]/page.tsx
 // Article detail page — rich editorial typography
 
 import { notFound } from 'next/navigation';
@@ -7,7 +7,7 @@ import { NewsletterSignup } from '@bigmuddy/ui';
 import type { Article } from '@bigmuddy/config';
 
 interface ArticlePageProps {
-  params: { slug: string };
+  params: { id: string };
 }
 
 // Static placeholder articles — replace with prisma queries when database is connected
@@ -66,7 +66,7 @@ export const revalidate = 3600; // Revalidate every hour
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   // TODO: Replace with prisma query
-  const article = PLACEHOLDER_ARTICLES.find((a) => a.slug === params.slug);
+  const article = PLACEHOLDER_ARTICLES.find((a) => a.slug === params.id);
 
   if (!article) {
     return { title: 'Article Not Found' };
@@ -91,7 +91,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   // });
   // if (!article || article.status !== 'published') notFound();
 
-  const article = PLACEHOLDER_ARTICLES.find((a) => a.slug === params.slug);
+  const article = PLACEHOLDER_ARTICLES.find((a) => a.slug === params.id);
 
   if (!article) {
     notFound();
