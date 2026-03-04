@@ -28,6 +28,14 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Admin paths are accessible from any domain — always route to /admin/*
+  const adminPaths = ['/dashboard', '/articles', '/calendar', '/contacts', '/events', '/newsletter', '/playlists'];
+  if (adminPaths.some(p => pathname === p || pathname.startsWith(p + '/'))) {
+    return NextResponse.rewrite(
+      new URL('/admin' + pathname, request.url)
+    );
+  }
+
   // Dev override: NEXT_PUBLIC_BRAND env var bypasses hostname detection.
   // Use this in local development if you don't want to set up /etc/hosts.
   // e.g. NEXT_PUBLIC_BRAND=magazine in .env.local
