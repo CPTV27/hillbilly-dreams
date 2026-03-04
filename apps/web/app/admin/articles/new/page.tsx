@@ -78,12 +78,8 @@ export default function NewArticlePage() {
     }
   }, [title, slugEdited]);
 
-  // Auto-generate hero image path from city
-  useEffect(() => {
-    if (city && !heroImage) {
-      setHeroImage(`/images/magazine/${city}-guide.webp`);
-    }
-  }, [city]);
+  // Hero image path is set manually — no auto-generation
+  // (image filenames don't follow a predictable city-based pattern)
 
   function validate(): boolean {
     if (!title.trim()) {
