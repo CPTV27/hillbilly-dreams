@@ -153,8 +153,8 @@ export default async function RadioHomepage() {
             <span>Now Playing</span>
           </div>
           <h1 className="radio-hero__title">
-            The Sound of<br />
-            <em>the River</em>
+            Big Muddy<br />
+            <em>Radio</em>
           </h1>
           <p className="radio-hero__sub">
             Curated playlists, live sessions from the Blues Room in Natchez,
