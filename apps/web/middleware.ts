@@ -20,6 +20,14 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // If the path already starts with a known brand prefix, pass through
+  // without rewriting. This allows direct access via full paths
+  // (e.g. /radio/live, /touring/inn) on the Firebase preview URL.
+  const brandPrefixes = ['/touring', '/magazine', '/radio', '/admin'];
+  if (brandPrefixes.some(p => pathname === p || pathname.startsWith(p + '/'))) {
+    return NextResponse.next();
+  }
+
   // Dev override: NEXT_PUBLIC_BRAND env var bypasses hostname detection.
   // Use this in local development if you don't want to set up /etc/hosts.
   // e.g. NEXT_PUBLIC_BRAND=magazine in .env.local
