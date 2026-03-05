@@ -9,7 +9,6 @@ import { PlaylistCard } from '@bigmuddy/ui';
 import { NewsletterSignup } from '@bigmuddy/ui';
 import type { Article, Playlist } from '@bigmuddy/config';
 import { BLUR_DATA_URL } from '@bigmuddy/ui';
-import { prisma } from '@bigmuddy/database';
 
 export const metadata: Metadata = {
   title: 'Big Muddy Touring',
@@ -17,93 +16,35 @@ export const metadata: Metadata = {
     'Eighteen cities across five states. The Mississippi music corridor and expanded Big Muddy network — from Memphis to New Orleans and beyond.',
 };
 
-// Static placeholder content — replace with prisma queries once DATABASE_URL is set
-const PLACEHOLDER_ARTICLES: Article[] = [
-  {
-    id: 1,
-    title: 'Clarksdale at Midnight: Where the Blues Were Born',
-    slug: 'clarksdale-at-midnight-where-the-blues-were-born',
-    category: 'city-guide',
-    city: 'clarksdale',
-    author: 'Big Muddy Magazine',
-    status: 'published',
-    excerpt:
-      'The crossroads is real. You can stand there at midnight and feel it — the weight of every note ever played in this delta town pressing up through the asphalt.',
-    readTime: '5 min read',
-    publishedAt: new Date('2026-02-15').toISOString(),
-    heroImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/clarksdale-crossroads.webp',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 2,
-    title: 'The Inn at Natchez: Six Rooms, Six Stories',
-    slug: 'the-inn-at-natchez-six-rooms-six-stories',
-    category: 'feature',
-    city: 'natchez',
-    author: 'Big Muddy Magazine',
-    status: 'published',
-    excerpt:
-      'At 411 N Commerce Street, each suite is named for a legend. Sleep in the Muddy Waters room and wake to the river. Every night here is a night closer to the source.',
-    readTime: '6 min read',
-    publishedAt: new Date('2026-02-20').toISOString(),
-    heroImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-bluff-sunset.webp',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 3,
-    title: 'Memphis to New Orleans: The Full Route',
-    slug: 'memphis-to-new-orleans-the-full-route',
-    category: 'feature',
-    city: 'memphis',
-    author: 'Big Muddy Magazine',
-    status: 'published',
-    excerpt:
-      'Five cities. Four hundred miles. A thousand years of American music. Here is how to drive it right.',
-    readTime: '12 min read',
-    publishedAt: new Date('2026-01-28').toISOString(),
-    heroImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/memphis-beale-street-neon.webp',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-];
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
 
-const PLACEHOLDER_PLAYLISTS: Playlist[] = [
-  {
-    id: 1,
-    name: 'Delta Blues Essentials',
-    description: 'Robert Johnson, Muddy Waters, Howlin Wolf. The founding documents.',
-    trackCount: 42,
-    spotifyUrl: null,
-    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/radio/cover-delta-blues-essentials.png',
-    status: 'active',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 2,
-    name: 'Natchez After Dark',
-    description: 'What plays in the inn after midnight. Soul, jazz, and something unnamed.',
-    trackCount: 28,
-    spotifyUrl: null,
-    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/radio/cover-juke-joint-saturday-night.png',
-    status: 'active',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 3,
-    name: 'Highway 61 North to South',
-    description: 'Road music for the corridor. Memphis to New Orleans at 70 mph.',
-    trackCount: 55,
-    spotifyUrl: null,
-    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/radio/cover-highway-61.png',
-    status: 'active',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-];
+async function getArticles(): Promise<Article[]> {
+  try {
+    const res = await fetch(`${baseUrl}/api/articles?status=published`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    const all: Article[] = Array.isArray(data) ? data : data.data ?? [];
+    return all.slice(0, 3);
+  } catch {
+    return [];
+  }
+}
+
+async function getPlaylists(): Promise<Playlist[]> {
+  try {
+    const res = await fetch(`${baseUrl}/api/playlists`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    const all: Playlist[] = Array.isArray(data) ? data : data.data ?? [];
+    return all.filter((p) => p.status === 'active').slice(0, 3);
+  } catch {
+    return [];
+  }
+}
 
 const NETWORK_BY_STATE = [
   {
@@ -121,27 +62,7 @@ const NETWORK_BY_STATE = [
 ];
 
 export default async function TouringHomepage() {
-  let articles: Article[] = PLACEHOLDER_ARTICLES;
-  let playlists: Playlist[] = PLACEHOLDER_PLAYLISTS;
-
-  try {
-    const [dbArticles, dbPlaylists] = await Promise.all([
-      prisma.article.findMany({
-        where: { status: 'published' },
-        orderBy: { publishedAt: 'desc' },
-        take: 3,
-      }),
-      prisma.playlist.findMany({
-        where: { status: 'active' },
-        orderBy: { createdAt: 'desc' },
-        take: 3,
-      }),
-    ]);
-    if (dbArticles.length) articles = dbArticles as Article[];
-    if (dbPlaylists.length) playlists = dbPlaylists as Playlist[];
-  } catch {
-    // Prisma unavailable — fall back to placeholder data
-  }
+  const [articles, playlists] = await Promise.all([getArticles(), getPlaylists()]);
 
   return (
     <>
