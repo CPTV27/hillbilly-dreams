@@ -10,6 +10,13 @@ export default auth((request) => {
   const hostname = request.headers.get('x-forwarded-host') || request.headers.get('host') || '';
   const pathname = request.nextUrl.pathname;
 
+  // www → apex redirect (301 permanent) — canonical URL for SEO
+  if (hostname.startsWith('www.')) {
+    const url = new URL(request.url);
+    url.host = hostname.replace(/^www\./, '');
+    return NextResponse.redirect(url, 301);
+  }
+
   // Skip rewrites for API routes, Next.js internals, and static assets
   if (
     pathname.startsWith('/api') ||
