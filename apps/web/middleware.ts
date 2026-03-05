@@ -49,46 +49,24 @@ export default auth((request) => {
     return NextResponse.next();
   }
 
-  // Admin paths are accessible from any domain — always route to /admin/*
-  // Note: /playlists is NOT here — it's used by both radio and admin.
-  // Admin domain handles it via the fallback rewrite at the bottom.
-  const adminPaths = ['/dashboard', '/articles', '/calendar', '/contacts', '/events', '/media', '/newsletter'];
-  if (adminPaths.some(p => pathname === p || pathname.startsWith(p + '/'))) {
-    if (!request.auth) return redirectToLogin();
-    return NextResponse.rewrite(
-      new URL('/admin' + pathname, request.url)
-    );
-  }
+  // ── Public domains: route by hostname FIRST ──
+  // Must run before admin path detection so that e.g.
+  // bigmuddymagazine.com/articles/slug → /magazine/articles/slug
+  // instead of being intercepted as an admin /articles path.
 
-  // Dev override: NEXT_PUBLIC_BRAND env var bypasses hostname detection.
-  // e.g. NEXT_PUBLIC_BRAND=magazine in .env.local
-  const devBrand = process.env.NEXT_PUBLIC_BRAND;
-  if (devBrand) {
-    const validBrands = ['touring', 'magazine', 'radio', 'admin'];
-    if (validBrands.includes(devBrand)) {
-      if (devBrand === 'admin' && !request.auth) return redirectToLogin();
-      return NextResponse.rewrite(
-        new URL(`/${devBrand}${pathname}`, request.url)
-      );
-    }
-  }
-
-  // Production: route by hostname
-  // bigmuddytouring.com → (touring) route group
+  // Production domains
   if (hostname.includes('bigmuddytouring') && !hostname.includes('admin')) {
     return NextResponse.rewrite(
       new URL('/touring' + pathname, request.url)
     );
   }
 
-  // bigmuddymagazine.com → (magazine) route group
   if (hostname.includes('bigmuddymagazine')) {
     return NextResponse.rewrite(
       new URL('/magazine' + pathname, request.url)
     );
   }
 
-  // bigmuddyradio.com → (radio) route group
   if (hostname.includes('bigmuddyradio')) {
     return NextResponse.rewrite(
       new URL('/radio' + pathname, request.url)
@@ -111,6 +89,30 @@ export default auth((request) => {
   if (hostname.includes('bigmuddyradio.local')) {
     return NextResponse.rewrite(
       new URL('/radio' + pathname, request.url)
+    );
+  }
+
+  // Dev override: NEXT_PUBLIC_BRAND env var bypasses hostname detection.
+  // e.g. NEXT_PUBLIC_BRAND=magazine in .env.local
+  const devBrand = process.env.NEXT_PUBLIC_BRAND;
+  if (devBrand) {
+    const validBrands = ['touring', 'magazine', 'radio', 'admin'];
+    if (validBrands.includes(devBrand)) {
+      if (devBrand === 'admin' && !request.auth) return redirectToLogin();
+      return NextResponse.rewrite(
+        new URL(`/${devBrand}${pathname}`, request.url)
+      );
+    }
+  }
+
+  // ── Admin domain: shortcut paths for admin UI ──
+  // Only reached for admin domain, localhost, and unmatched hosts.
+  // Note: /playlists is NOT here — it's used by both radio and admin.
+  const adminPaths = ['/dashboard', '/articles', '/calendar', '/contacts', '/events', '/media', '/newsletter'];
+  if (adminPaths.some(p => pathname === p || pathname.startsWith(p + '/'))) {
+    if (!request.auth) return redirectToLogin();
+    return NextResponse.rewrite(
+      new URL('/admin' + pathname, request.url)
     );
   }
 

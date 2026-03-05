@@ -1,5 +1,6 @@
 // apps/web/app/magazine/city-guides/page.tsx
 // City guides index — all 18 city guide articles grouped by region
+// Fetches from API with ISR revalidation; falls back to static data.
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
@@ -11,6 +12,24 @@ import {
   ARKANSAS_MISSOURI_CITIES,
 } from '@/lib/articles';
 import type { Article } from '@bigmuddy/config';
+
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
+
+async function getAllArticles(): Promise<Article[]> {
+  try {
+    const res = await fetch(`${baseUrl}/api/articles?status=published`, {
+      next: { revalidate: 300 },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      const articles: Article[] = Array.isArray(data) ? data : data.data ?? [];
+      if (articles.length) return articles;
+    }
+  } catch {
+    // fall through to static
+  }
+  return CITY_GUIDE_ARTICLES;
+}
 
 export const metadata: Metadata = {
   title: 'City Guides — Big Muddy Magazine',
@@ -90,7 +109,9 @@ function ArticleGuideCard({ article }: { article: Article }) {
   );
 }
 
-export default function CityGuidesPage() {
+export default async function CityGuidesPage() {
+  const articles = await getAllArticles();
+
   return (
     <>
       {/* ── Hero ── */}
@@ -102,12 +123,12 @@ export default function CityGuidesPage() {
           </div>
           <h1 className="guides-hero__title">City Guides</h1>
           <p className="guides-hero__sub">
-            Eighteen cities. Five states. From Memphis to Branson, from the Delta 
-            to the Ozarks — the places where American music was born, died, and 
+            Eighteen cities. Five states. From Memphis to Branson, from the Delta
+            to the Ozarks — the places where American music was born, died, and
             refuses to stop being reborn.
           </p>
           <div className="guides-hero__count">
-            <span className="guides-hero__count-num">18</span>
+            <span className="guides-hero__count-num">{articles.length}</span>
             <span className="guides-hero__count-label">City Guides</span>
           </div>
         </div>
@@ -115,7 +136,7 @@ export default function CityGuidesPage() {
 
       {/* ── Region Groups ── */}
       {REGIONS.map((region) => {
-        const regionArticles = CITY_GUIDE_ARTICLES.filter((a) =>
+        const regionArticles = articles.filter((a) =>
           region.citySlugs.includes(a.city as string)
         );
 
