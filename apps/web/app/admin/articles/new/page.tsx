@@ -3,7 +3,7 @@
 // apps/web/app/admin/articles/new/page.tsx
 // Article editor form — create new article
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const CATEGORIES = [
   { value: '', label: 'Select category…' },
@@ -70,6 +70,23 @@ export default function NewArticlePage() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [titleError, setTitleError] = useState('');
+  const [showImagePicker, setShowImagePicker] = useState(false);
+  const [pickerImages, setPickerImages] = useState<Record<string, Array<{ name: string; url: string }>>>({});
+  const [pickerLoading, setPickerLoading] = useState(false);
+  const [pickerAlbum, setPickerAlbum] = useState('all');
+
+  const loadPickerImages = useCallback(async () => {
+    if (pickerLoading) return;
+    setPickerLoading(true);
+    try {
+      const res = await fetch('/api/media');
+      if (res.ok) {
+        const data = await res.json();
+        setPickerImages(data.albums ?? {});
+      }
+    } catch { /* ignore */ }
+    finally { setPickerLoading(false); }
+  }, [pickerLoading]);
 
   // Auto-generate slug from title
   useEffect(() => {
@@ -373,16 +390,35 @@ export default function NewArticlePage() {
           <div className="admin-form-row">
             <div className="admin-form-group">
               <label htmlFor="heroImage" className="admin-label">
-                Hero Image URL
+                Hero Image
               </label>
-              <input
-                id="heroImage"
-                type="text"
-                value={heroImage}
-                onChange={(e) => setHeroImage(e.target.value)}
-                className="admin-input"
-                placeholder="/images/magazine/memphis-guide.webp"
-              />
+              <div className="hero-image-picker">
+                {heroImage && (
+                  <div className="hero-image-preview">
+                    <img src={heroImage} alt="Hero preview" className="hero-image-preview__img" />
+                  </div>
+                )}
+                <div className="hero-image-picker__row">
+                  <input
+                    id="heroImage"
+                    type="text"
+                    value={heroImage}
+                    onChange={(e) => setHeroImage(e.target.value)}
+                    className="admin-input"
+                    placeholder="Paste URL or pick from gallery"
+                  />
+                  <button
+                    type="button"
+                    className="admin-btn admin-btn--ghost"
+                    onClick={() => {
+                      setShowImagePicker(true);
+                      loadPickerImages();
+                    }}
+                  >
+                    Browse
+                  </button>
+                </div>
+              </div>
             </div>
             <div className="admin-form-group">
               <label htmlFor="readTime" className="admin-label">
@@ -398,6 +434,64 @@ export default function NewArticlePage() {
               />
             </div>
           </div>
+
+          {/* ── Image Picker Modal ── */}
+          {showImagePicker && (
+            <div className="picker-overlay" onClick={() => setShowImagePicker(false)}>
+              <div className="picker-modal" onClick={(e) => e.stopPropagation()}>
+                <div className="picker-header">
+                  <h3 className="picker-title">Select Hero Image</h3>
+                  <button
+                    className="picker-close"
+                    onClick={() => setShowImagePicker(false)}
+                  >
+                    &times;
+                  </button>
+                </div>
+
+                {/* Album tabs */}
+                <div className="admin-filter-bar" style={{ padding: '0 var(--space-4)' }}>
+                  <button
+                    className={`admin-filter-btn${pickerAlbum === 'all' ? ' admin-filter-btn--active' : ''}`}
+                    onClick={() => setPickerAlbum('all')}
+                  >
+                    All
+                  </button>
+                  {Object.keys(pickerImages).sort().map((a) => (
+                    <button
+                      key={a}
+                      className={`admin-filter-btn${pickerAlbum === a ? ' admin-filter-btn--active' : ''}`}
+                      onClick={() => setPickerAlbum(a)}
+                    >
+                      {a}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="picker-grid">
+                  {pickerLoading ? (
+                    <p className="picker-loading">Loading...</p>
+                  ) : (
+                    (pickerAlbum === 'all'
+                      ? Object.entries(pickerImages).flatMap(([, imgs]) => imgs)
+                      : pickerImages[pickerAlbum] ?? []
+                    ).map((img) => (
+                      <div
+                        key={img.url}
+                        className={`picker-thumb${heroImage === img.url ? ' picker-thumb--selected' : ''}`}
+                        onClick={() => {
+                          setHeroImage(img.url);
+                          setShowImagePicker(false);
+                        }}
+                        style={{ backgroundImage: `url(${img.url})` }}
+                        title={img.name}
+                      />
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Actions */}
           <div className="admin-form-actions">
@@ -470,6 +564,103 @@ export default function NewArticlePage() {
           font-weight: 400;
           color: var(--text-disabled);
           font-size: var(--text-xs);
+        }
+
+        /* ── Hero Image Picker ── */
+        .hero-image-picker__row {
+          display: flex;
+          gap: var(--space-2);
+        }
+        .hero-image-preview {
+          margin-bottom: var(--space-3);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-sm);
+          overflow: hidden;
+          max-height: 160px;
+        }
+        .hero-image-preview__img {
+          width: 100%;
+          max-height: 160px;
+          object-fit: cover;
+          display: block;
+        }
+
+        /* ── Picker Overlay ── */
+        .picker-overlay {
+          position: fixed;
+          inset: 0;
+          z-index: 9999;
+          background: rgba(0,0,0,0.75);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: var(--space-6);
+        }
+        .picker-modal {
+          background: var(--surface);
+          border-radius: var(--radius-lg);
+          max-width: 800px;
+          width: 100%;
+          max-height: 80vh;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+        }
+        .picker-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: var(--space-4) var(--space-5);
+          border-bottom: 1px solid var(--border);
+        }
+        .picker-title {
+          font-size: var(--text-lg);
+          font-weight: 700;
+          color: var(--text);
+          margin: 0;
+        }
+        .picker-close {
+          background: none;
+          border: none;
+          color: var(--text-muted);
+          font-size: 24px;
+          cursor: pointer;
+          padding: 0;
+          line-height: 1;
+        }
+        .picker-close:hover { color: var(--text); }
+        .picker-grid {
+          flex: 1;
+          overflow-y: auto;
+          padding: var(--space-4);
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+          gap: var(--space-3);
+        }
+        .picker-loading {
+          grid-column: 1 / -1;
+          text-align: center;
+          color: var(--text-disabled);
+          padding: var(--space-10);
+        }
+        .picker-thumb {
+          aspect-ratio: 4/3;
+          background-size: cover;
+          background-position: center;
+          background-color: var(--surface-2);
+          border-radius: var(--radius-sm);
+          border: 2px solid transparent;
+          cursor: pointer;
+          transition: border-color var(--duration-fast) var(--ease-default),
+                      transform var(--duration-fast) var(--ease-default);
+        }
+        .picker-thumb:hover {
+          border-color: var(--accent);
+          transform: scale(1.03);
+        }
+        .picker-thumb--selected {
+          border-color: var(--accent);
+          box-shadow: 0 0 0 2px var(--accent-muted);
         }
       `}</style>
     </>

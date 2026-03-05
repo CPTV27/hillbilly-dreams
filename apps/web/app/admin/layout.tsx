@@ -23,6 +23,7 @@ const NAV_SECTIONS = [
     label: 'Content',
     items: [
       { label: 'Articles', href: '/articles', icon: '◻' },
+      { label: 'Media', href: '/media', icon: '◈' },
       { label: 'Playlists', href: '/playlists', icon: '◈' },
       { label: 'Events', href: '/events', icon: '◷' },
       { label: 'Newsletter', href: '/newsletter', icon: '◻' },

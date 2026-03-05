@@ -18,6 +18,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'storage.googleapis.com',
+        pathname: '/bmt-media-bigmuddy/**',
+      },
+      {
+        protocol: 'https',
         hostname: '*.r2.cloudflarestorage.com',
       },
       {

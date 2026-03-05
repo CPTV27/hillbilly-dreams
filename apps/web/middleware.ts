@@ -31,7 +31,7 @@ export function middleware(request: NextRequest) {
   // Admin paths are accessible from any domain — always route to /admin/*
   // Note: /playlists is NOT here — it's used by both radio and admin.
   // Admin domain handles it via the fallback rewrite at the bottom.
-  const adminPaths = ['/dashboard', '/articles', '/calendar', '/contacts', '/events', '/newsletter'];
+  const adminPaths = ['/dashboard', '/articles', '/calendar', '/contacts', '/events', '/media', '/newsletter'];
   if (adminPaths.some(p => pathname === p || pathname.startsWith(p + '/'))) {
     return NextResponse.rewrite(
       new URL('/admin' + pathname, request.url)
