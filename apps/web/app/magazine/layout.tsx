@@ -6,13 +6,20 @@ import type { Metadata } from 'next';
 import { Navigation, Footer } from '@bigmuddy/ui';
 import { BRANDS } from '@bigmuddy/config';
 
-export const metadata: Metadata = {
+import { constructMetadata, themeColor } from '../metadata';
+import type { Viewport } from 'next';
+
+export const metadata: Metadata = constructMetadata({
   title: {
-    default: 'Big Muddy Magazine',
-    template: '%s — Big Muddy Magazine',
+    default: 'Big Muddy Magazine | Stories from the Southern Gothic Heartland',
+    template: '%s | Big Muddy Magazine',
   },
-  description:
-    'Long-form editorial, city guides, and stories from the Mississippi music corridor.',
+  description: 'Long-form editorial, city guides, and stories from the Mississippi music corridor.',
+  path: '/magazine',
+});
+
+export const viewport: Viewport = {
+  themeColor,
 };
 
 const brand = BRANDS.magazine;

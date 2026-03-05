@@ -6,13 +6,20 @@ import { Navigation } from '@bigmuddy/ui';
 import { Footer } from '@bigmuddy/ui';
 import { BRANDS } from '@bigmuddy/config';
 
-export const metadata: Metadata = {
+import { constructMetadata, themeColor } from '../metadata';
+import type { Viewport } from 'next';
+
+export const metadata: Metadata = constructMetadata({
   title: {
-    default: 'Big Muddy Touring',
-    template: '%s — Big Muddy Touring',
+    default: 'Big Muddy Touring | Memphis to New Orleans',
+    template: '%s | Big Muddy Touring',
   },
-  description:
-    "The Mississippi's music corridor — inn, route, and travel from Memphis to New Orleans.",
+  description: "Eighteen cities. Five states. A thousand years of American music. City guides, curated playlists, live events, and lodging along the Mississippi's music corridor.",
+  path: '/touring',
+});
+
+export const viewport: Viewport = {
+  themeColor,
 };
 
 const brand = BRANDS.touring;
