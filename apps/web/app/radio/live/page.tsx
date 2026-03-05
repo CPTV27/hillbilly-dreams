@@ -3,7 +3,7 @@
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { EventCard } from '@bigmuddy/ui';
+import { EventCard, BLUR_DATA_URL } from '@bigmuddy/ui';
 import type { Event } from '@bigmuddy/config';
 
 export const metadata: Metadata = {
@@ -83,6 +83,8 @@ export default async function LivePage() {
           fill
           priority
           sizes="100vw"
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
           style={{ objectFit: 'cover', zIndex: 0 }}
         />
         <div className="live-hero__overlay" />

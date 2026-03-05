@@ -3,8 +3,7 @@
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { ArticleCard } from '@bigmuddy/ui';
-import { NewsletterSignup } from '@bigmuddy/ui';
+import { ArticleCard, NewsletterSignup, BLUR_DATA_URL } from '@bigmuddy/ui';
 import { CITY_GUIDE_ARTICLES, CORRIDOR_CITIES, LOUISIANA_CITIES, ARKANSAS_MISSOURI_CITIES } from '@/lib/articles';
 
 export const metadata: Metadata = {
@@ -56,6 +55,8 @@ export default async function MagazineHomepage() {
           fill
           priority
           sizes="100vw"
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
           style={{ objectFit: 'cover', zIndex: 0 }}
         />
         <div className="mag-hero__overlay" />
@@ -81,7 +82,7 @@ export default async function MagazineHomepage() {
       {/* ── Fleet ── */}
       <section className="fleet-banner">
         <div className="fleet-banner__inner">
-          <Image src="/images/fleet/fleet-tesla-natchez-bluff.webp" alt="Big Muddy Tesla at the Natchez bluff overlook" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+          <Image src="/images/fleet/fleet-tesla-natchez-bluff.webp" alt="Big Muddy Tesla at the Natchez bluff overlook" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 

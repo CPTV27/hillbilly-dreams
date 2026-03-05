@@ -4,6 +4,7 @@
 import React from 'react';
 import Image from 'next/image';
 import type { Article } from '@bigmuddy/config';
+import { BLUR_DATA_URL } from '../index';
 
 interface ArticleCardProps {
   article: Article;
@@ -37,7 +38,7 @@ export function ArticleCard({ article, variant = 'default', href }: ArticleCardP
         <a href={articleHref} className="article-card__link">
           <div className="article-card__image-wrap">
             {article.heroImage ? (
-              <Image src={article.heroImage} alt={article.title} fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
+              <Image src={article.heroImage} alt={article.title} fill sizes="(max-width: 768px) 100vw, 50vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ objectFit: 'cover' }} />
             ) : (
               <div className="article-card__image-placeholder" />
             )}
@@ -92,7 +93,7 @@ export function ArticleCard({ article, variant = 'default', href }: ArticleCardP
       <a href={articleHref} className="article-card__link">
         <div className="article-card__image-wrap">
           {article.heroImage ? (
-            <Image src={article.heroImage} alt={article.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" style={{ objectFit: 'cover' }} />
+            <Image src={article.heroImage} alt={article.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ objectFit: 'cover' }} />
           ) : (
             <div className="article-card__image-placeholder" />
           )}

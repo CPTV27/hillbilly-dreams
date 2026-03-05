@@ -32,7 +32,7 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     primaryColor: '#c8943e',
     nav: {
       links: [
-        { label: 'The Inn', href: '/inn' },
+        { label: 'Lodging', href: '/inn' },
         { label: 'The Route', href: '/route' },
         { label: 'Magazine', href: 'https://bigmuddymagazine.com' },
         { label: 'Radio', href: 'https://bigmuddyradio.com' },

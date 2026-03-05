@@ -2,7 +2,7 @@
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { PlaylistCard } from '@bigmuddy/ui';
+import { PlaylistCard, BLUR_DATA_URL } from '@bigmuddy/ui';
 import type { Playlist } from '@bigmuddy/config';
 
 export const metadata: Metadata = {
@@ -34,6 +34,8 @@ export default async function PlaylistsPage() {
           fill
           priority
           sizes="100vw"
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
           style={{ objectFit: 'cover', zIndex: 0 }}
         />
         <div className="playlists-hero__overlay" />

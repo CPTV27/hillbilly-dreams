@@ -3,6 +3,7 @@
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { BLUR_DATA_URL } from '@bigmuddy/ui';
 import {
   CITY_GUIDE_ARTICLES,
   CORRIDOR_CITIES,
@@ -61,6 +62,8 @@ function ArticleGuideCard({ article }: { article: Article }) {
             alt={cityLabel ?? article.title}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
             style={{ objectFit: 'cover' }}
           />
         ) : (

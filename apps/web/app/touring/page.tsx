@@ -8,6 +8,7 @@ import { ArticleCard } from '@bigmuddy/ui';
 import { PlaylistCard } from '@bigmuddy/ui';
 import { NewsletterSignup } from '@bigmuddy/ui';
 import type { Article, Playlist } from '@bigmuddy/config';
+import { BLUR_DATA_URL } from '@bigmuddy/ui';
 
 export const metadata: Metadata = {
   title: 'Big Muddy Touring',
@@ -103,39 +104,6 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
   },
 ];
 
-const SUITES = [
-  {
-    name: 'Muddy Waters',
-    description: 'Named for the father of Chicago blues, born in Rolling Fork, MS. River-facing, king bed, cast iron tub.',
-    image: '/images/real/inn-blue-suite.webp',
-  },
-  {
-    name: 'Robert Johnson',
-    description: 'The crossroads suite. Minimal, moody, and lined with vinyl. Double queen.',
-    image: '/images/real/inn-grey-suite.webp',
-  },
-  {
-    name: 'John Lee Hooker',
-    description: 'Boom boom boom. Floor-to-ceiling shelves, a turntable, and a claw-foot tub.',
-    image: '/images/real/inn-green-suite.webp',
-  },
-  {
-    name: 'B.B. King',
-    description: 'Named for the Indianola native. The largest suite, with a sitting room and balcony.',
-    image: '/images/real/inn-magenta-suite.webp',
-  },
-  {
-    name: 'British Invasion I',
-    description: "What the British heard when they came looking for the source. Vintage meets Victorian.",
-    image: '/images/real/inn-british-suite.webp',
-  },
-  {
-    name: 'British Invasion II',
-    description: 'The Rolling Stones came to Chess Studios. This room pays the debt.',
-    image: '/images/real/inn-pink-suite.webp',
-  },
-];
-
 const NETWORK_BY_STATE = [
   {
     state: 'Louisiana',
@@ -179,6 +147,8 @@ export default async function TouringHomepage() {
           fill
           priority
           sizes="100vw"
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
           style={{ objectFit: 'cover', zIndex: 0 }}
         />
         <div className="touring-hero__overlay" />
@@ -202,7 +172,7 @@ export default async function TouringHomepage() {
               Plan the Route
             </a>
             <a href="/inn" className="btn btn--ghost">
-              The Inn in Natchez
+              Where to Stay
             </a>
           </div>
         </div>
@@ -217,39 +187,23 @@ export default async function TouringHomepage() {
       {/* ── Fleet ── */}
       <section className="fleet-banner">
         <div className="fleet-banner__inner">
-          <Image src="/images/fleet/fleet-transit-beale-street.webp" alt="Big Muddy Transit van on Beale Street, Memphis" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+          <Image src="/images/fleet/fleet-transit-beale-street.webp" alt="Big Muddy Transit van on Beale Street, Memphis" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 
-      {/* ── The Inn ── */}
-      <section className="touring-inn">
+      {/* ── Where to Stay ── */}
+      <section className="touring-lodging">
         <div className="section-container">
-          <div className="touring-inn__header">
-            <div className="section-label">The Inn</div>
-            <h2 className="section-title">411 N Commerce Street<br />Natchez, Mississippi</h2>
+          <div className="touring-lodging__inner">
+            <div className="section-label">Where to Stay</div>
+            <h2 className="section-title">Lodging Across the Corridor</h2>
             <p className="section-desc">
-              Six suites. Each named for a legend. Located in the oldest part of Natchez, 
-              overlooking the bluff and the river. This is where the route begins and ends.
+              Curated lodging in every city on the route — from the Big Muddy Inn
+              in Natchez to boutique hotels, historic B&Bs, and downtown stays
+              across five states. Forty-plus properties, hand-picked for the journey.
             </p>
-          </div>
-          <div className="touring-inn__suites">
-            {SUITES.map((suite) => (
-              <div key={suite.name} className="suite-card">
-                {suite.image && (
-                  <div className="suite-card__image-wrap">
-                    <Image src={suite.image} alt={suite.name} fill sizes="(max-width: 639px) 100vw, 300px" style={{ objectFit: 'cover' }} />
-                  </div>
-                )}
-                <div className="suite-card__body">
-                  <h3 className="suite-card__name">{suite.name}</h3>
-                  <p className="suite-card__desc">{suite.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="touring-inn__cta">
-            <a href="/inn" className="btn btn--outline">
-              View All Suites &amp; Availability
+            <a href="/inn" className="btn btn--outline" style={{ marginTop: 'var(--space-8)' }}>
+              Browse Lodging
             </a>
           </div>
         </div>
@@ -317,7 +271,7 @@ export default async function TouringHomepage() {
       {/* ── Fleet ── */}
       <section className="fleet-banner">
         <div className="fleet-banner__inner">
-          <Image src="/images/fleet/fleet-prevost-french-quarter.webp" alt="Big Muddy Prevost tour bus in the French Quarter, New Orleans" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+          <Image src="/images/fleet/fleet-prevost-french-quarter.webp" alt="Big Muddy Prevost tour bus in the French Quarter, New Orleans" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 
@@ -571,66 +525,14 @@ export default async function TouringHomepage() {
           color: var(--accent-hover);
         }
 
-        /* ── Inn Section ── */
-        .touring-inn {
+        /* ── Lodging Teaser ── */
+        .touring-lodging {
           background: var(--surface);
           border-top: 1px solid var(--border);
           border-bottom: 1px solid var(--border);
         }
-        .touring-inn__header {
+        .touring-lodging__inner {
           max-width: 640px;
-          margin-bottom: var(--space-12);
-        }
-        .touring-inn__suites {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-          gap: var(--space-4);
-          margin-bottom: var(--space-10);
-        }
-        .suite-card {
-          background: var(--bg);
-          border: 1px solid var(--border);
-          border-radius: var(--radius-md);
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          transition: border-color var(--duration-normal) var(--ease-default);
-        }
-        .suite-card:hover {
-          border-color: var(--border-strong);
-        }
-        .suite-card__image-wrap {
-          position: relative;
-          aspect-ratio: 16/10;
-          overflow: hidden;
-          background: var(--surface-2);
-        }
-        .suite-card__image-wrap img {
-          transition: transform var(--duration-slow) var(--ease-default);
-        }
-        .suite-card:hover .suite-card__image-wrap img {
-          transform: scale(1.04);
-        }
-        .suite-card__body {
-          padding: var(--space-5);
-        }
-        .suite-card__name {
-          font-family: var(--font-display);
-          font-size: var(--text-lg);
-          font-weight: 700;
-          color: var(--text);
-          margin: 0 0 var(--space-2);
-          letter-spacing: var(--tracking-tight);
-        }
-        .suite-card__desc {
-          font-family: var(--font-body);
-          font-size: var(--text-sm);
-          color: var(--text-muted);
-          line-height: var(--leading-normal);
-          margin: 0;
-        }
-        .touring-inn__cta {
-          text-align: center;
         }
 
         /* ── Route Section ── */

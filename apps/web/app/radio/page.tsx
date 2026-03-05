@@ -3,7 +3,7 @@
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { PlaylistCard, EventCard, NewsletterSignup } from '@bigmuddy/ui';
+import { PlaylistCard, EventCard, NewsletterSignup, BLUR_DATA_URL } from '@bigmuddy/ui';
 import type { Playlist, Event } from '@bigmuddy/config';
 
 export const metadata: Metadata = {
@@ -139,6 +139,8 @@ export default async function RadioHomepage() {
           fill
           priority
           sizes="100vw"
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
           style={{ objectFit: 'cover', zIndex: 0 }}
         />
         <div className="radio-hero__overlay" />
@@ -192,7 +194,7 @@ export default async function RadioHomepage() {
       {/* ── Fleet ── */}
       <section className="fleet-banner">
         <div className="fleet-banner__inner">
-          <Image src="/images/fleet/fleet-transit-clarksdale-crossroads.webp" alt="Big Muddy Transit at the Clarksdale crossroads" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+          <Image src="/images/fleet/fleet-transit-clarksdale-crossroads.webp" alt="Big Muddy Transit at the Clarksdale crossroads" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 

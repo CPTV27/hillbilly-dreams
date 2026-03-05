@@ -3,7 +3,7 @@
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { NewsletterSignup } from '@bigmuddy/ui';
+import { NewsletterSignup, BLUR_DATA_URL } from '@bigmuddy/ui';
 
 export const metadata: Metadata = {
   title: 'The Route — Memphis to New Orleans & The Big Muddy Network',
@@ -396,7 +396,7 @@ export default function RoutePage() {
           {/* ── Fleet ── */}
           <section className="fleet-banner">
             <div className="fleet-banner__inner">
-              <Image src="/images/fleet/fleet-ford-transit.webp" alt="Big Muddy Ford Transit at a Delta cotton field" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+              <Image src="/images/fleet/fleet-ford-transit.webp" alt="Big Muddy Ford Transit at a Delta cotton field" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
             </div>
           </section>
 
@@ -438,7 +438,7 @@ export default function RoutePage() {
           {/* ── Fleet ── */}
           <section className="fleet-banner">
             <div className="fleet-banner__inner">
-              <Image src="/images/fleet/fleet-prevost-vicksburg-battlefield.webp" alt="Big Muddy Prevost at Vicksburg National Military Park" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+              <Image src="/images/fleet/fleet-prevost-vicksburg-battlefield.webp" alt="Big Muddy Prevost at Vicksburg National Military Park" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
             </div>
           </section>
 
@@ -489,7 +489,7 @@ export default function RoutePage() {
           {/* ── Fleet ── */}
           <section className="fleet-banner">
             <div className="fleet-banner__inner">
-              <Image src="/images/fleet/fleet-tesla-model-3.webp" alt="Big Muddy Tesla by the river with cypress trees" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+              <Image src="/images/fleet/fleet-tesla-model-3.webp" alt="Big Muddy Tesla by the river with cypress trees" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
             </div>
           </section>
 

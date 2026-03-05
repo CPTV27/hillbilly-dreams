@@ -4,6 +4,7 @@
 import React from 'react';
 import Image from 'next/image';
 import type { Playlist } from '@bigmuddy/config';
+import { BLUR_DATA_URL } from '../index';
 
 interface PlaylistCardProps {
   playlist: Playlist;
@@ -46,7 +47,7 @@ export function PlaylistCard({ playlist, variant = 'default' }: PlaylistCardProp
       <article className="playlist-card playlist-card--featured">
         <div className="playlist-card__cover">
           {playlist.coverImage ? (
-            <Image src={playlist.coverImage} alt={playlist.name} fill sizes="180px" style={{ objectFit: 'cover' }} />
+            <Image src={playlist.coverImage} alt={playlist.name} fill sizes="180px" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ objectFit: 'cover' }} />
           ) : (
             <div className="playlist-card__cover-placeholder">
               <MusicNoteIcon />
@@ -90,7 +91,7 @@ export function PlaylistCard({ playlist, variant = 'default' }: PlaylistCardProp
         >
           <div className="playlist-card__cover">
             {playlist.coverImage ? (
-              <Image src={playlist.coverImage} alt={playlist.name} fill sizes="180px" style={{ objectFit: 'cover' }} />
+              <Image src={playlist.coverImage} alt={playlist.name} fill sizes="180px" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ objectFit: 'cover' }} />
             ) : (
               <div className="playlist-card__cover-placeholder">
                 <MusicNoteIcon />
@@ -114,7 +115,7 @@ export function PlaylistCard({ playlist, variant = 'default' }: PlaylistCardProp
         <div className="playlist-card__link">
           <div className="playlist-card__cover">
             {playlist.coverImage ? (
-              <Image src={playlist.coverImage} alt={playlist.name} fill sizes="180px" style={{ objectFit: 'cover' }} />
+              <Image src={playlist.coverImage} alt={playlist.name} fill sizes="180px" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ objectFit: 'cover' }} />
             ) : (
               <div className="playlist-card__cover-placeholder">
                 <MusicNoteIcon />

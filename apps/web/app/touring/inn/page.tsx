@@ -4,7 +4,7 @@
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { NewsletterSignup } from '@bigmuddy/ui';
+import { NewsletterSignup, BLUR_DATA_URL } from '@bigmuddy/ui';
 
 export const metadata: Metadata = {
   title: 'Where to Stay — Big Muddy Touring',
@@ -431,6 +431,8 @@ export default function InnPage() {
           fill
           priority
           sizes="100vw"
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
           style={{ objectFit: 'cover', zIndex: 0 }}
         />
         <div className="inn-hero__overlay" />
@@ -469,7 +471,7 @@ export default function InnPage() {
       {/* ── Fleet ── */}
       <section className="fleet-banner">
         <div className="fleet-banner__inner">
-          <Image src="/images/fleet/fleet-prevost-tour-bus.webp" alt="Big Muddy Prevost tour bus on a Southern road" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+          <Image src="/images/fleet/fleet-prevost-tour-bus.webp" alt="Big Muddy Prevost tour bus on a Southern road" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 
@@ -515,6 +517,8 @@ export default function InnPage() {
                 src="/images/real/inn-foyer.webp"
                 alt="The Big Muddy Inn foyer"
                 fill
+                placeholder="blur"
+                blurDataURL={BLUR_DATA_URL}
                 style={{ objectFit: 'cover' }}
               />
             </div>
@@ -577,7 +581,7 @@ export default function InnPage() {
       {/* ── Fleet ── */}
       <section className="fleet-banner">
         <div className="fleet-banner__inner">
-          <Image src="/images/fleet/fleet-tesla-lafayette-cajun.webp" alt="Big Muddy Tesla in downtown Lafayette" width={1600} height={893} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+          <Image src="/images/fleet/fleet-tesla-lafayette-cajun.webp" alt="Big Muddy Tesla in downtown Lafayette" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 
