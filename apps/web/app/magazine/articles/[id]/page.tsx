@@ -7,7 +7,9 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { BLUR_DATA_URL } from '@bigmuddy/ui';
 import { CITY_GUIDE_ARTICLES, getArticleBySlug } from '@/lib/articles';
-import { prisma } from '@bigmuddy/database';
+import type { Article } from '@bigmuddy/config';
+
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
 
 interface Props {
   params: { id: string };
@@ -15,11 +17,14 @@ interface Props {
 
 export async function generateStaticParams() {
   try {
-    const dbArticles = await prisma.article.findMany({
-      where: { status: 'published' },
-      select: { slug: true },
+    const res = await fetch(`${baseUrl}/api/articles?status=published`, {
+      next: { revalidate: 300 },
     });
-    if (dbArticles.length) return dbArticles.map((a) => ({ id: a.slug }));
+    if (res.ok) {
+      const data = await res.json();
+      const articles: Article[] = Array.isArray(data) ? data : data.data ?? [];
+      if (articles.length) return articles.map((a) => ({ id: a.slug }));
+    }
   } catch {
     // fall through to static
   }
@@ -30,23 +35,29 @@ export async function generateStaticParams() {
 
 async function getArticle(slug: string) {
   try {
-    const dbArticle = await prisma.article.findFirst({
-      where: { slug },
+    const res = await fetch(`${baseUrl}/api/articles/slug/${slug}`, {
+      next: { revalidate: 300 },
     });
-    if (dbArticle) return dbArticle;
+    if (res.ok) {
+      const article = await res.json();
+      if (article && article.slug) return article;
+    }
   } catch {
     // fall through to static
   }
   return getArticleBySlug(slug) ?? null;
 }
 
-async function getAllArticles() {
+async function getAllArticles(): Promise<Article[]> {
   try {
-    const dbArticles = await prisma.article.findMany({
-      where: { status: 'published' },
-      orderBy: { publishedAt: 'desc' },
+    const res = await fetch(`${baseUrl}/api/articles?status=published`, {
+      next: { revalidate: 300 },
     });
-    if (dbArticles.length) return dbArticles;
+    if (res.ok) {
+      const data = await res.json();
+      const articles: Article[] = Array.isArray(data) ? data : data.data ?? [];
+      if (articles.length) return articles;
+    }
   } catch {
     // fall through to static
   }
