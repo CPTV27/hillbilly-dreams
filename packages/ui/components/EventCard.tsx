@@ -121,10 +121,13 @@ const eventCardStyles = `
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
-    transition: border-color var(--duration-normal) var(--ease-default);
+    box-shadow: var(--shadow-sm);
+    transition: border-color var(--duration-normal) var(--ease-default),
+                box-shadow var(--duration-normal) var(--ease-default);
   }
   .event-card:hover {
     border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
   }
   .event-card__header {
     display: flex;

@@ -616,6 +616,7 @@ export default function RoutePage() {
           letter-spacing: var(--tracking-tight);
           line-height: var(--leading-tight);
           margin: 0 0 var(--space-4);
+          text-shadow: 0 2px 40px rgba(0,0,0,0.5);
         }
         .route-hero__title em {
           font-style: italic;
@@ -705,6 +706,7 @@ export default function RoutePage() {
           line-height: 1;
           min-width: 40px;
           text-align: center;
+          box-shadow: var(--shadow-glow);
         }
         .route-stop-detail__connector {
           flex: 1;
@@ -712,6 +714,7 @@ export default function RoutePage() {
           background: var(--border);
           margin-top: var(--space-2);
           min-height: 60px;
+          opacity: 0.6;
         }
         .route-stop-detail__body {
           padding-bottom: var(--space-16);
@@ -892,6 +895,7 @@ export default function RoutePage() {
           border-radius: var(--radius-md);
           padding: var(--space-6);
           transition: border-color var(--duration-normal) var(--ease-default);
+          box-shadow: var(--shadow-md);
         }
         .network-city-card:hover {
           border-color: var(--border-strong);
@@ -949,45 +953,6 @@ export default function RoutePage() {
           line-height: var(--leading-normal);
         }
 
-        /* Shared button */
-        .btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: var(--space-3) var(--space-8);
-          font-family: var(--font-body);
-          font-size: var(--text-sm);
-          font-weight: 700;
-          letter-spacing: var(--tracking-wide);
-          text-transform: uppercase;
-          text-decoration: none;
-          border-radius: var(--radius-sm);
-          transition: all var(--duration-fast) var(--ease-default);
-          cursor: pointer;
-          border: none;
-        }
-        .btn--primary { background: var(--accent); color: var(--bg); }
-        .btn--primary:hover { background: var(--accent-hover); }
-        .section-container {
-          max-width: var(--container-xl);
-          margin: 0 auto;
-          padding: var(--space-20) var(--space-6);
-        }
-        .section-label {
-          font-family: var(--font-body);
-          font-size: var(--text-xs);
-          font-weight: 700;
-          color: var(--accent);
-          letter-spacing: var(--tracking-widest);
-          text-transform: uppercase;
-          margin-bottom: var(--space-3);
-          display: block;
-        }
-
-        /* ── Fleet Banner ── */
-        .fleet-banner { padding: var(--space-8) var(--space-6); max-width: var(--container-xl); margin: 0 auto; }
-        .fleet-banner__inner { border-radius: var(--radius-lg); overflow: hidden; }
-        .fleet-banner__inner img { display: block; }
       `}</style>
     </>
   );

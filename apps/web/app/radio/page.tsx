@@ -331,6 +331,7 @@ export default async function RadioHomepage() {
           border: 1px solid var(--border-strong);
           border-radius: var(--radius-full);
           padding: var(--space-2) var(--space-4);
+          box-shadow: var(--shadow-md);
         }
         .radio-hero__live-dot {
           width: 6px;
@@ -351,6 +352,7 @@ export default async function RadioHomepage() {
           letter-spacing: var(--tracking-tight);
           line-height: var(--leading-tight);
           margin: 0 0 var(--space-6);
+          text-shadow: 0 2px 40px rgba(0,0,0,0.5);
         }
         .radio-hero__title em {
           font-style: italic;
@@ -376,7 +378,7 @@ export default async function RadioHomepage() {
         }
         .radio-playlist-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
           gap: var(--space-5);
         }
         /* ── Live ── */
@@ -389,6 +391,7 @@ export default async function RadioHomepage() {
         .radio-about {
           background: var(--surface);
           border-top: 1px solid var(--border);
+          box-shadow: var(--shadow-md);
         }
         .radio-about__inner {
           display: grid;
@@ -433,87 +436,12 @@ export default async function RadioHomepage() {
           border-radius: 2px;
           animation: barPulse 3s ease-in-out infinite;
           min-height: 4px;
+          transition: height var(--duration-slow) var(--ease-default);
         }
         @keyframes barPulse {
           0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
           50% { opacity: 0.6; transform: scaleY(1); }
         }
-
-        /* Shared */
-        .btn {
-          display: inline-flex;
-          align-items: center;
-          padding: var(--space-3) var(--space-8);
-          font-family: var(--font-body);
-          font-size: var(--text-sm);
-          font-weight: 700;
-          letter-spacing: var(--tracking-wide);
-          text-transform: uppercase;
-          text-decoration: none;
-          border-radius: var(--radius-sm);
-          transition: all var(--duration-fast) var(--ease-default);
-          cursor: pointer;
-          border: none;
-        }
-        .btn--primary { background: var(--accent); color: var(--bg); }
-        .btn--primary:hover { background: var(--accent-hover); }
-        .btn--ghost {
-          background: transparent;
-          color: var(--text-muted);
-          border: 1px solid var(--border-strong);
-        }
-        .btn--ghost:hover { color: var(--text); border-color: var(--accent); }
-        .btn--outline {
-          background: transparent;
-          color: var(--accent);
-          border: 1px solid var(--accent);
-        }
-        .btn--outline:hover { background: var(--accent-muted); }
-        .section-container {
-          max-width: var(--container-xl);
-          margin: 0 auto;
-          padding: var(--space-20) var(--space-6);
-        }
-        .section-label {
-          font-family: var(--font-body);
-          font-size: var(--text-xs);
-          font-weight: 700;
-          color: var(--accent);
-          letter-spacing: var(--tracking-widest);
-          text-transform: uppercase;
-          margin-bottom: var(--space-3);
-          display: block;
-        }
-        .section-title-sm {
-          font-family: var(--font-display);
-          font-size: var(--text-3xl);
-          font-weight: 700;
-          color: var(--text);
-          letter-spacing: var(--tracking-tight);
-          margin: 0;
-        }
-        .section-header {
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-          gap: var(--space-6);
-          margin-bottom: var(--space-10);
-          flex-wrap: wrap;
-        }
-        .section-link {
-          font-family: var(--font-body);
-          font-size: var(--text-sm);
-          font-weight: 600;
-          color: var(--accent);
-          text-decoration: none;
-          white-space: nowrap;
-        }
-        .section-link:hover { color: var(--accent-hover); }
-
-        /* ── Fleet Banner ── */
-        .fleet-banner { padding: var(--space-8) var(--space-6); max-width: var(--container-xl); margin: 0 auto; }
-        .fleet-banner__inner { border-radius: var(--radius-lg); overflow: hidden; }
-        .fleet-banner__inner img { display: block; }
       `}</style>
     </>
   );

@@ -153,6 +153,7 @@ export function Navigation({ brand, currentPath = '/', links, logoHref = '/' }: 
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
           border-bottom: 1px solid var(--border);
+          box-shadow: var(--shadow-sm);
         }
         .bm-nav__inner {
           display: flex;

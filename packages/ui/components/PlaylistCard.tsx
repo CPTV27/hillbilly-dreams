@@ -144,12 +144,15 @@ const playlistCardStyles = `
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     overflow: hidden;
+    box-shadow: var(--shadow-sm);
     transition: border-color var(--duration-normal) var(--ease-default),
-                transform var(--duration-normal) var(--ease-default);
+                transform var(--duration-normal) var(--ease-default),
+                box-shadow var(--duration-normal) var(--ease-default);
   }
   .playlist-card:hover {
     border-color: var(--border-strong);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
   }
   .playlist-card__link {
     display: flex;

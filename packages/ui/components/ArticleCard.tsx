@@ -132,12 +132,15 @@ const articleCardStyles = `
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     overflow: hidden;
+    box-shadow: var(--shadow-sm);
     transition: border-color var(--duration-normal) var(--ease-default),
-                transform var(--duration-normal) var(--ease-default);
+                transform var(--duration-normal) var(--ease-default),
+                box-shadow var(--duration-normal) var(--ease-default);
   }
   .article-card:hover {
     border-color: var(--border-strong);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
   }
   .article-card__link {
     display: block;
@@ -192,6 +195,7 @@ const articleCardStyles = `
     color: var(--text);
     line-height: var(--leading-snug);
     letter-spacing: var(--tracking-tight);
+    text-wrap: balance;
     margin: 0 0 var(--space-3);
     transition: color var(--duration-fast) var(--ease-default);
   }

@@ -5,6 +5,7 @@
 import type { Metadata } from 'next';
 import { Playfair_Display, DM_Sans } from 'next/font/google';
 import '@bigmuddy/config/tokens.css';
+import './globals.css';
 
 const playfairDisplay = Playfair_Display({
   subsets: ['latin'],

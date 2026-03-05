@@ -207,6 +207,7 @@ export default async function MagazineHomepage() {
           letter-spacing: var(--tracking-tight);
           line-height: 1;
           margin: 0 0 var(--space-3);
+          text-shadow: 0 2px 40px rgba(0,0,0,0.5);
         }
         .mag-hero__sub {
           font-family: var(--font-body);
@@ -223,6 +224,9 @@ export default async function MagazineHomepage() {
         }
 
         /* ── Grid ── */
+        .mag-grid {
+          border-bottom: 1px solid var(--border);
+        }
         .mag-grid__header {
           margin-bottom: var(--space-10);
         }
@@ -250,8 +254,9 @@ export default async function MagazineHomepage() {
           border: 1px solid var(--border);
           border-radius: var(--radius-full);
           cursor: pointer;
-          transition: all var(--duration-fast) var(--ease-default);
+          transition: all var(--duration-normal) var(--ease-default);
           text-transform: uppercase;
+          box-shadow: var(--shadow-md);
         }
         .mag-cat-btn:hover {
           border-color: var(--accent);
@@ -265,7 +270,7 @@ export default async function MagazineHomepage() {
         .mag-article-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: var(--space-8);
+          gap: var(--space-6);
         }
 
         /* ── City Guides ── */
@@ -338,53 +343,11 @@ export default async function MagazineHomepage() {
           text-decoration: none;
           transition: color var(--duration-fast) var(--ease-default);
           line-height: 1.2;
+          padding: var(--space-1) 0;
         }
         .mag-city-tag:hover {
           color: var(--accent);
         }
-
-        /* Shared */
-        .btn {
-          display: inline-flex;
-          align-items: center;
-          padding: var(--space-3) var(--space-8);
-          font-family: var(--font-body);
-          font-size: var(--text-sm);
-          font-weight: 700;
-          letter-spacing: var(--tracking-wide);
-          text-transform: uppercase;
-          text-decoration: none;
-          border-radius: var(--radius-sm);
-          transition: all var(--duration-fast) var(--ease-default);
-          cursor: pointer;
-          border: none;
-        }
-        .btn--outline {
-          background: transparent;
-          color: var(--accent);
-          border: 1px solid var(--accent);
-        }
-        .btn--outline:hover { background: var(--accent-muted); }
-        .section-container {
-          max-width: var(--container-xl);
-          margin: 0 auto;
-          padding: var(--space-20) var(--space-6);
-        }
-        .section-label {
-          font-family: var(--font-body);
-          font-size: var(--text-xs);
-          font-weight: 700;
-          color: var(--accent);
-          letter-spacing: var(--tracking-widest);
-          text-transform: uppercase;
-          margin-bottom: var(--space-4);
-          display: block;
-        }
-
-        /* ── Fleet Banner ── */
-        .fleet-banner { padding: var(--space-8) var(--space-6); max-width: var(--container-xl); margin: 0 auto; }
-        .fleet-banner__inner { border-radius: var(--radius-lg); overflow: hidden; }
-        .fleet-banner__inner img { display: block; }
       `}</style>
     </>
   );

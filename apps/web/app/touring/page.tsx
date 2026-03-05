@@ -390,6 +390,7 @@ export default async function TouringHomepage() {
           line-height: var(--leading-tight);
           letter-spacing: var(--tracking-tight);
           margin: 0 0 var(--space-6);
+          text-shadow: 0 2px 40px rgba(0,0,0,0.5);
         }
         .touring-hero__title em {
           font-style: italic;
@@ -424,116 +425,12 @@ export default async function TouringHomepage() {
           color: var(--text-disabled);
           letter-spacing: var(--tracking-widest);
           text-transform: uppercase;
-        }
-
-        /* ── Shared Buttons ── */
-        .btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: var(--space-3) var(--space-8);
-          font-family: var(--font-body);
-          font-size: var(--text-sm);
-          font-weight: 700;
-          letter-spacing: var(--tracking-wide);
-          text-transform: uppercase;
-          text-decoration: none;
-          border-radius: var(--radius-sm);
-          transition: all var(--duration-fast) var(--ease-default);
-          cursor: pointer;
-          border: none;
-        }
-        .btn--primary {
-          background: var(--accent);
-          color: var(--bg);
-        }
-        .btn--primary:hover {
-          background: var(--accent-hover);
-        }
-        .btn--ghost {
-          background: transparent;
-          color: var(--text-muted);
-          border: 1px solid var(--border-strong);
-        }
-        .btn--ghost:hover {
-          color: var(--text);
-          border-color: var(--accent);
-        }
-        .btn--outline {
-          background: transparent;
-          color: var(--accent);
-          border: 1px solid var(--accent);
-        }
-        .btn--outline:hover {
-          background: var(--accent-muted);
-        }
-
-        /* ── Shared Section Styles ── */
-        .section-container {
-          max-width: var(--container-xl);
-          margin: 0 auto;
-          padding: var(--space-20) var(--space-6);
-        }
-        .section-label {
-          font-family: var(--font-body);
-          font-size: var(--text-xs);
-          font-weight: 700;
-          color: var(--accent);
-          letter-spacing: var(--tracking-widest);
-          text-transform: uppercase;
-          margin-bottom: var(--space-3);
-        }
-        .section-title {
-          font-family: var(--font-display);
-          font-size: var(--text-4xl);
-          font-weight: 700;
-          color: var(--text);
-          letter-spacing: var(--tracking-tight);
-          line-height: var(--leading-snug);
-          margin: 0 0 var(--space-5);
-        }
-        .section-title-sm {
-          font-family: var(--font-display);
-          font-size: var(--text-3xl);
-          font-weight: 700;
-          color: var(--text);
-          letter-spacing: var(--tracking-tight);
-          line-height: var(--leading-snug);
-          margin: 0;
-        }
-        .section-desc {
-          font-family: var(--font-body);
-          font-size: var(--text-md);
-          color: var(--text-muted);
-          line-height: var(--leading-loose);
-          max-width: 520px;
-          margin: 0;
-        }
-        .section-header {
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-          gap: var(--space-6);
-          margin-bottom: var(--space-10);
-          flex-wrap: wrap;
-        }
-        .section-link {
-          font-family: var(--font-body);
-          font-size: var(--text-sm);
-          font-weight: 600;
-          color: var(--accent);
-          text-decoration: none;
-          letter-spacing: var(--tracking-wide);
-          white-space: nowrap;
-          transition: color var(--duration-fast) var(--ease-default);
-        }
-        .section-link:hover {
-          color: var(--accent-hover);
+          z-index: 2;
         }
 
         /* ── Lodging Teaser ── */
         .touring-lodging {
-          background: var(--surface);
+          background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
           border-top: 1px solid var(--border);
           border-bottom: 1px solid var(--border);
         }
@@ -591,6 +488,7 @@ export default async function TouringHomepage() {
           display: flex;
           align-items: center;
           justify-content: center;
+          box-shadow: var(--shadow-lg);
         }
         .touring-route__river-line {
           position: absolute;
@@ -696,23 +594,6 @@ export default async function TouringHomepage() {
         .touring-route__network-city:last-child::after {
           content: '';
         }
-
-        /* ── Article / Playlist Grids ── */
-        .article-grid-3 {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: var(--space-6);
-        }
-        .playlist-grid-3 {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-          gap: var(--space-6);
-        }
-
-        /* ── Fleet Banner ── */
-        .fleet-banner { padding: var(--space-8) var(--space-6); max-width: var(--container-xl); margin: 0 auto; }
-        .fleet-banner__inner { border-radius: var(--radius-lg); overflow: hidden; }
-        .fleet-banner__inner img { display: block; }
       `}</style>
     </>
   );
