@@ -12,7 +12,7 @@
     "db:generate": "turbo run db:generate",
     "db:push": "turbo run db:push",
     "db:migrate": "turbo run db:migrate",
-    "postinstall": "prisma generate --schema=packages/database/prisma/schema.prisma"
+    "postinstall": "pnpm --filter @bigmuddy/database exec prisma generate"
   },
   "dependencies": {
     "prettier": "^3.3.0",
