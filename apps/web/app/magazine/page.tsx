@@ -5,7 +5,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { ArticleCard, NewsletterSignup, BLUR_DATA_URL } from '@bigmuddy/ui';
 import { CITY_GUIDE_ARTICLES, CORRIDOR_CITIES, LOUISIANA_CITIES, ARKANSAS_MISSOURI_CITIES } from '@/lib/articles';
-import { prisma } from '@bigmuddy/database';
 
 export const metadata: Metadata = {
   title: 'Big Muddy Magazine',
@@ -36,18 +35,24 @@ const REGION_GROUPS = [
   },
 ];
 
-export default async function MagazineHomepage() {
-  let articles = CITY_GUIDE_ARTICLES;
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
 
+async function getArticles(): Promise<typeof CITY_GUIDE_ARTICLES> {
   try {
-    const dbArticles = await prisma.article.findMany({
-      where: { status: 'published' },
-      orderBy: { publishedAt: 'desc' },
+    const res = await fetch(`${baseUrl}/api/articles?status=published`, {
+      next: { revalidate: 300 },
     });
-    if (dbArticles.length) articles = dbArticles as typeof CITY_GUIDE_ARTICLES;
+    if (!res.ok) return CITY_GUIDE_ARTICLES;
+    const data = await res.json();
+    const all = Array.isArray(data) ? data : data.data ?? [];
+    return all.length > 0 ? all : CITY_GUIDE_ARTICLES;
   } catch {
-    // Prisma unavailable — fall back to static articles
+    return CITY_GUIDE_ARTICLES;
   }
+}
+
+export default async function MagazineHomepage() {
+  const articles = await getArticles();
   const [featured, ...grid] = articles;
 
   return (

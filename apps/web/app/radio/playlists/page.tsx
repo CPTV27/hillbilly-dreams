@@ -10,19 +10,23 @@ export const metadata: Metadata = {
   description: 'Every curated playlist from Big Muddy Radio — Delta blues, soul, jazz, and the full soundtrack of the Mississippi corridor.',
 };
 
-const PLAYLISTS: Playlist[] = [
-  { id: 1, name: 'Delta Blues Essentials', description: 'Robert Johnson, Muddy Waters, Howlin Wolf. The founding documents of American music.', trackCount: 42, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/radio/cover-delta-blues-essentials.png', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 2, name: 'Natchez After Dark', description: 'What plays in the inn after midnight. Soul, jazz, and something unnamed.', trackCount: 28, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/radio/cover-juke-joint-saturday-night.png', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 3, name: 'Highway 61 North to South', description: 'Road music for the corridor. Memphis to New Orleans at 70 mph.', trackCount: 55, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/radio/cover-highway-61.png', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 4, name: 'New Orleans Jazz Standards', description: 'Louis Armstrong, Jelly Roll Morton, Preservation Hall Jazz Band.', trackCount: 38, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/radio/cover-new-orleans-after-midnight.png', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 5, name: 'The British Came Looking', description: 'The Stones, the Yardbirds, Led Zeppelin — following the thread back to Mississippi.', trackCount: 44, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/radio/cover-porch-music.png', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 6, name: 'Memphis Soul: Stax and Hi Records', description: 'Otis Redding, Al Green, Isaac Hayes, Sam & Dave. Memphis soul in its prime.', trackCount: 51, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/record-player.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 7, name: 'Clarksdale Boogie', description: 'John Lee Hooker, Junior Kimbrough, R.L. Burnside. The hill country sound.', trackCount: 33, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 8, name: 'Sunday Morning in New Orleans', description: 'Gospel, jazz, and the sound of a city waking up slowly.', trackCount: 26, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-];
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
+
+async function getPlaylists(): Promise<Playlist[]> {
+  try {
+    const res = await fetch(`${baseUrl}/api/playlists`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return Array.isArray(data) ? data : data.data ?? [];
+  } catch {
+    return [];
+  }
+}
 
 export default async function PlaylistsPage() {
-  const playlists = PLAYLISTS;
+  const playlists = await getPlaylists();
 
   return (
     <>

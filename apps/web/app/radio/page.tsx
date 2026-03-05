@@ -5,148 +5,47 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { PlaylistCard, EventCard, NewsletterSignup, BLUR_DATA_URL } from '@bigmuddy/ui';
 import type { Playlist, Event } from '@bigmuddy/config';
-import { prisma } from '@bigmuddy/database';
 
 export const metadata: Metadata = {
   title: 'Big Muddy Radio',
   description: 'Curated playlists and live sessions from the Mississippi music corridor.',
 };
 
-const PLACEHOLDER_PLAYLISTS: Playlist[] = [
-  {
-    id: 1,
-    name: 'Delta Blues Essentials',
-    description: 'Robert Johnson, Muddy Waters, Howlin Wolf. The founding documents of American music.',
-    trackCount: 42,
-    spotifyUrl: null,
-    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/radio/cover-delta-blues-essentials.png',
-    status: 'active',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 2,
-    name: 'Natchez After Dark',
-    description: 'What plays in the inn after midnight. Soul, jazz, and something unnamed.',
-    trackCount: 28,
-    spotifyUrl: null,
-    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/radio/cover-juke-joint-saturday-night.png',
-    status: 'active',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 3,
-    name: 'Highway 61 North to South',
-    description: 'Road music for the corridor. Memphis to New Orleans at 70 mph.',
-    trackCount: 55,
-    spotifyUrl: null,
-    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/radio/cover-highway-61.png',
-    status: 'active',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 4,
-    name: 'New Orleans Jazz Standards',
-    description: 'Louis Armstrong, Jelly Roll Morton, Preservation Hall Jazz Band.',
-    trackCount: 38,
-    spotifyUrl: null,
-    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/radio/cover-new-orleans-after-midnight.png',
-    status: 'active',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 5,
-    name: 'The British Came Looking',
-    description: 'The Stones, the Yardbirds, Led Zeppelin — following the thread back to Mississippi.',
-    trackCount: 44,
-    spotifyUrl: null,
-    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/radio/cover-porch-music.png',
-    status: 'active',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 6,
-    name: 'Memphis Soul: Stax and Hi Records',
-    description: 'Otis Redding, Al Green, Isaac Hayes, Sam & Dave. Memphis soul in its prime.',
-    trackCount: 51,
-    spotifyUrl: null,
-    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/record-player.webp',
-    status: 'active',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-];
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
 
-const PLACEHOLDER_EVENTS: Event[] = [
-  {
-    id: 1,
-    name: 'Blues Room Live Session — Delta Night',
-    date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-    time: '8:00 PM CT',
-    artist: 'Marcus King',
-    description: 'A live session from the Blues Room at the inn. Streaming on Restream.',
-    price: 'Free to stream',
-    capacity: 40,
-    status: 'upcoming',
-    stream: true,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 2,
-    name: 'Playlist Listening Session — Highway 61',
-    date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
-    time: '7:30 PM CT',
-    artist: null,
-    description: 'Hosted listening session with the Highway 61 playlist. Community call.',
-    price: 'Free',
-    capacity: 100,
-    status: 'upcoming',
-    stream: true,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 3,
-    name: 'Blues Room Live — New Orleans Jazz Night',
-    date: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000).toISOString(),
-    time: '9:00 PM CT',
-    artist: 'Tank and the Bangas',
-    description: 'New Orleans Night at the Blues Room. Streaming live for subscribers.',
-    price: '$15',
-    capacity: 40,
-    status: 'upcoming',
-    stream: true,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-];
+async function getPlaylists(): Promise<Playlist[]> {
+  try {
+    const res = await fetch(`${baseUrl}/api/playlists`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    const all = Array.isArray(data) ? data : data.data ?? [];
+    return all.filter((p: Playlist) => p.status === 'active');
+  } catch {
+    return [];
+  }
+}
+
+async function getEvents(): Promise<Event[]> {
+  try {
+    const res = await fetch(`${baseUrl}/api/events`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    const all = Array.isArray(data) ? data : data.data ?? [];
+    return all
+      .filter((e: Event) => e.status === 'upcoming')
+      .sort((a: Event, b: Event) => new Date(a.date).getTime() - new Date(b.date).getTime())
+      .slice(0, 3);
+  } catch {
+    return [];
+  }
+}
 
 export default async function RadioHomepage() {
-  let playlists: Playlist[] = PLACEHOLDER_PLAYLISTS;
-  let events: Event[] = PLACEHOLDER_EVENTS;
-
-  try {
-    const [dbPlaylists, dbEvents] = await Promise.all([
-      prisma.playlist.findMany({
-        where: { status: 'active' },
-        orderBy: { createdAt: 'desc' },
-      }),
-      prisma.event.findMany({
-        where: { status: 'upcoming' },
-        orderBy: { date: 'asc' },
-        take: 3,
-      }),
-    ]);
-    if (dbPlaylists.length) playlists = dbPlaylists as Playlist[];
-    if (dbEvents.length) events = dbEvents as Event[];
-  } catch {
-    // Prisma unavailable — fall back to placeholder data
-  }
+  const [playlists, events] = await Promise.all([getPlaylists(), getEvents()]);
 
   return (
     <>
