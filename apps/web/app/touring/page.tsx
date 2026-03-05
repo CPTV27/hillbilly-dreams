@@ -31,7 +31,7 @@ const PLACEHOLDER_ARTICLES: Article[] = [
       'The crossroads is real. You can stand there at midnight and feel it — the weight of every note ever played in this delta town pressing up through the asphalt.',
     readTime: '5 min read',
     publishedAt: new Date('2026-02-15').toISOString(),
-    heroImage: '/images/magazine/clarksdale-crossroads.webp',
+    heroImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/clarksdale-crossroads.webp',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -47,7 +47,7 @@ const PLACEHOLDER_ARTICLES: Article[] = [
       'At 411 N Commerce Street, each suite is named for a legend. Sleep in the Muddy Waters room and wake to the river. Every night here is a night closer to the source.',
     readTime: '6 min read',
     publishedAt: new Date('2026-02-20').toISOString(),
-    heroImage: '/images/magazine/natchez-bluff-sunset.webp',
+    heroImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-bluff-sunset.webp',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -63,7 +63,7 @@ const PLACEHOLDER_ARTICLES: Article[] = [
       'Five cities. Four hundred miles. A thousand years of American music. Here is how to drive it right.',
     readTime: '12 min read',
     publishedAt: new Date('2026-01-28').toISOString(),
-    heroImage: '/images/magazine/memphis-beale-street-neon.webp',
+    heroImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/memphis-beale-street-neon.webp',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -76,7 +76,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'Robert Johnson, Muddy Waters, Howlin Wolf. The founding documents.',
     trackCount: 42,
     spotifyUrl: null,
-    coverImage: '/images/real/blues-room-harmonica.webp',
+    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -87,7 +87,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'What plays in the inn after midnight. Soul, jazz, and something unnamed.',
     trackCount: 28,
     spotifyUrl: null,
-    coverImage: '/images/real/juke-joint-interior.webp',
+    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -98,7 +98,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'Road music for the corridor. Memphis to New Orleans at 70 mph.',
     trackCount: 55,
     spotifyUrl: null,
-    coverImage: '/images/real/blues-room-live-show.webp',
+    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -148,7 +148,7 @@ export default async function TouringHomepage() {
       {/* ── Hero ── */}
       <section className="touring-hero">
         <Image
-          src="/images/heroes/hero-highway-sunset.webp"
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/heroes/hero-highway-sunset.webp"
           alt=""
           fill
           priority
@@ -193,7 +193,7 @@ export default async function TouringHomepage() {
       {/* ── Fleet ── */}
       <section className="fleet-banner">
         <div className="fleet-banner__inner">
-          <Image src="/images/fleet/fleet-transit-beale-street.webp" alt="Big Muddy Transit van on Beale Street, Memphis" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/fleet/fleet-transit-beale-street.webp" alt="Big Muddy Transit van on Beale Street, Memphis" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 
@@ -277,7 +277,7 @@ export default async function TouringHomepage() {
       {/* ── Fleet ── */}
       <section className="fleet-banner">
         <div className="fleet-banner__inner">
-          <Image src="/images/fleet/fleet-prevost-french-quarter.webp" alt="Big Muddy Prevost tour bus in the French Quarter, New Orleans" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/fleet/fleet-prevost-french-quarter.webp" alt="Big Muddy Prevost tour bus in the French Quarter, New Orleans" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 

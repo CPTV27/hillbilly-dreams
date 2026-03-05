@@ -16,7 +16,7 @@ export default async function PodcastPage() {
       {/* ── Hero Header ── */}
       <section className="podcast-hero">
         <Image
-          src="/images/real/musician-performing.webp"
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/real/musician-performing.webp"
           alt="Musician performing"
           fill
           priority

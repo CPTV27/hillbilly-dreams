@@ -11,14 +11,14 @@ export const metadata: Metadata = {
 };
 
 const PLAYLISTS: Playlist[] = [
-  { id: 1, name: 'Delta Blues Essentials', description: 'Robert Johnson, Muddy Waters, Howlin Wolf. The founding documents of American music.', trackCount: 42, spotifyUrl: null, coverImage: '/images/real/blues-room-harmonica.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 2, name: 'Natchez After Dark', description: 'What plays in the inn after midnight. Soul, jazz, and something unnamed.', trackCount: 28, spotifyUrl: null, coverImage: '/images/real/juke-joint-interior.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 3, name: 'Highway 61 North to South', description: 'Road music for the corridor. Memphis to New Orleans at 70 mph.', trackCount: 55, spotifyUrl: null, coverImage: '/images/real/blues-room-live-show.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 4, name: 'New Orleans Jazz Standards', description: 'Louis Armstrong, Jelly Roll Morton, Preservation Hall Jazz Band.', trackCount: 38, spotifyUrl: null, coverImage: '/images/real/blues-room-show.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 5, name: 'The British Came Looking', description: 'The Stones, the Yardbirds, Led Zeppelin — following the thread back to Mississippi.', trackCount: 44, spotifyUrl: null, coverImage: '/images/real/musician-performing.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 6, name: 'Memphis Soul: Stax and Hi Records', description: 'Otis Redding, Al Green, Isaac Hayes, Sam & Dave. Memphis soul in its prime.', trackCount: 51, spotifyUrl: null, coverImage: '/images/real/record-player.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 7, name: 'Clarksdale Boogie', description: 'John Lee Hooker, Junior Kimbrough, R.L. Burnside. The hill country sound.', trackCount: 33, spotifyUrl: null, coverImage: '/images/real/mississippi-river.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-  { id: 8, name: 'Sunday Morning in New Orleans', description: 'Gospel, jazz, and the sound of a city waking up slowly.', trackCount: 26, spotifyUrl: null, coverImage: '/images/real/inn-foyer.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+  { id: 1, name: 'Delta Blues Essentials', description: 'Robert Johnson, Muddy Waters, Howlin Wolf. The founding documents of American music.', trackCount: 42, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+  { id: 2, name: 'Natchez After Dark', description: 'What plays in the inn after midnight. Soul, jazz, and something unnamed.', trackCount: 28, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+  { id: 3, name: 'Highway 61 North to South', description: 'Road music for the corridor. Memphis to New Orleans at 70 mph.', trackCount: 55, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+  { id: 4, name: 'New Orleans Jazz Standards', description: 'Louis Armstrong, Jelly Roll Morton, Preservation Hall Jazz Band.', trackCount: 38, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-show.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+  { id: 5, name: 'The British Came Looking', description: 'The Stones, the Yardbirds, Led Zeppelin — following the thread back to Mississippi.', trackCount: 44, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/musician-performing.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+  { id: 6, name: 'Memphis Soul: Stax and Hi Records', description: 'Otis Redding, Al Green, Isaac Hayes, Sam & Dave. Memphis soul in its prime.', trackCount: 51, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/record-player.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+  { id: 7, name: 'Clarksdale Boogie', description: 'John Lee Hooker, Junior Kimbrough, R.L. Burnside. The hill country sound.', trackCount: 33, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+  { id: 8, name: 'Sunday Morning in New Orleans', description: 'Gospel, jazz, and the sound of a city waking up slowly.', trackCount: 26, spotifyUrl: null, coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp', status: 'active', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
 ];
 
 export default async function PlaylistsPage() {
@@ -29,7 +29,7 @@ export default async function PlaylistsPage() {
       {/* ── Hero Header ── */}
       <section className="playlists-hero">
         <Image
-          src="/images/real/record-player.webp"
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/real/record-player.webp"
           alt="Vintage record player"
           fill
           priority

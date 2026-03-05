@@ -1,6 +1,6 @@
 // lib/gcs.ts
 // Google Cloud Storage helper for image uploads
-// Bucket: gs://bmt-media-bigmuddy (public read, us-east4)
+// Bucket: gs://bmt-media-bigmuddy (public read via IAM, us-east4)
 
 import { Storage } from '@google-cloud/storage';
 
@@ -34,9 +34,7 @@ export async function uploadToGCS(
     resumable: false,
   });
 
-  // Make publicly readable
-  await file.makePublic();
-
+  // Bucket has public read via IAM — no per-object makePublic() needed
   return `${GCS_BASE_URL}/${path}`;
 }
 

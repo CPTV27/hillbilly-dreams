@@ -19,7 +19,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'Robert Johnson, Muddy Waters, Howlin Wolf. The founding documents of American music.',
     trackCount: 42,
     spotifyUrl: null,
-    coverImage: '/images/real/blues-room-harmonica.webp',
+    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -30,7 +30,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'What plays in the inn after midnight. Soul, jazz, and something unnamed.',
     trackCount: 28,
     spotifyUrl: null,
-    coverImage: '/images/real/juke-joint-interior.webp',
+    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -41,7 +41,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'Road music for the corridor. Memphis to New Orleans at 70 mph.',
     trackCount: 55,
     spotifyUrl: null,
-    coverImage: '/images/real/blues-room-live-show.webp',
+    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -52,7 +52,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'Louis Armstrong, Jelly Roll Morton, Preservation Hall Jazz Band.',
     trackCount: 38,
     spotifyUrl: null,
-    coverImage: '/images/real/blues-room-show.webp',
+    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-show.webp',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -63,7 +63,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'The Stones, the Yardbirds, Led Zeppelin — following the thread back to Mississippi.',
     trackCount: 44,
     spotifyUrl: null,
-    coverImage: '/images/real/musician-performing.webp',
+    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/musician-performing.webp',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -74,7 +74,7 @@ const PLACEHOLDER_PLAYLISTS: Playlist[] = [
     description: 'Otis Redding, Al Green, Isaac Hayes, Sam & Dave. Memphis soul in its prime.',
     trackCount: 51,
     spotifyUrl: null,
-    coverImage: '/images/real/record-player.webp',
+    coverImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/record-player.webp',
     status: 'active',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -153,7 +153,7 @@ export default async function RadioHomepage() {
       {/* ── Hero ── */}
       <section className="radio-hero">
         <Image
-          src="/images/heroes/hero-bayou-mist.webp"
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/heroes/hero-bayou-mist.webp"
           alt=""
           fill
           priority
@@ -213,7 +213,7 @@ export default async function RadioHomepage() {
       {/* ── Fleet ── */}
       <section className="fleet-banner">
         <div className="fleet-banner__inner">
-          <Image src="/images/fleet/fleet-transit-clarksdale-crossroads.webp" alt="Big Muddy Transit at the Clarksdale crossroads" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/fleet/fleet-transit-clarksdale-crossroads.webp" alt="Big Muddy Transit at the Clarksdale crossroads" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 

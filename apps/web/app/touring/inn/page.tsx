@@ -426,7 +426,7 @@ export default function InnPage() {
       {/* ── Hero ── */}
       <section className="inn-hero">
         <Image
-          src="/images/heroes/hero-ozarks-sunrise.webp"
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/heroes/hero-ozarks-sunrise.webp"
           alt=""
           fill
           priority
@@ -471,7 +471,7 @@ export default function InnPage() {
       {/* ── Fleet ── */}
       <section className="fleet-banner">
         <div className="fleet-banner__inner">
-          <Image src="/images/fleet/fleet-prevost-tour-bus.webp" alt="Big Muddy Prevost tour bus on a Southern road" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/fleet/fleet-prevost-tour-bus.webp" alt="Big Muddy Prevost tour bus on a Southern road" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 
@@ -514,7 +514,7 @@ export default function InnPage() {
             </div>
             <div className="inn-homebase__image">
               <Image
-                src="/images/real/inn-foyer.webp"
+                src="https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp"
                 alt="The Big Muddy Inn foyer"
                 fill
                 placeholder="blur"
@@ -581,7 +581,7 @@ export default function InnPage() {
       {/* ── Fleet ── */}
       <section className="fleet-banner">
         <div className="fleet-banner__inner">
-          <Image src="/images/fleet/fleet-tesla-lafayette-cajun.webp" alt="Big Muddy Tesla in downtown Lafayette" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/fleet/fleet-tesla-lafayette-cajun.webp" alt="Big Muddy Tesla in downtown Lafayette" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 

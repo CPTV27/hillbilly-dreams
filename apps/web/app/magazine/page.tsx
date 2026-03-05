@@ -55,7 +55,7 @@ export default async function MagazineHomepage() {
       {/* ── Hero ── */}
       <section className="mag-hero">
         <Image
-          src="/images/heroes/hero-mississippi-dawn.webp"
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/heroes/hero-mississippi-dawn.webp"
           alt=""
           fill
           priority
@@ -87,7 +87,7 @@ export default async function MagazineHomepage() {
       {/* ── Fleet ── */}
       <section className="fleet-banner">
         <div className="fleet-banner__inner">
-          <Image src="/images/fleet/fleet-tesla-natchez-bluff.webp" alt="Big Muddy Tesla at the Natchez bluff overlook" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/fleet/fleet-tesla-natchez-bluff.webp" alt="Big Muddy Tesla at the Natchez bluff overlook" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 
