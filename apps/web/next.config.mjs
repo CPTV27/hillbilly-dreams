@@ -9,7 +9,6 @@ const nextConfig = {
   // DO NOT set output: 'export' — this disables API routes and SSR.
   // Firebase App Hosting uses standalone output for deployment.
   output: 'standalone',
-  outputFileTracingRoot: resolve(__dirname, '../../'),
 
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -37,6 +36,7 @@ const nextConfig = {
 
   // Allow larger page payloads for rich article content
   experimental: {
+    outputFileTracingRoot: resolve(__dirname, '../../'),
     serverComponentsExternalPackages: ['@prisma/client', 'prisma'],
   },
 
