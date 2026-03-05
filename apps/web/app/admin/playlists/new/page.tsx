@@ -1,9 +1,46 @@
+'use client';
+
 // apps/web/app/(admin)/playlists/new/page.tsx
 
-import type { Metadata } from 'next';
-export const metadata: Metadata = { title: 'New Playlist' };
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function NewPlaylistPage() {
+  const router = useRouter();
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSaving(true);
+    setError(null);
+    const fd = new FormData(e.currentTarget);
+    const body: Record<string, unknown> = {
+      name: fd.get('name'),
+      description: fd.get('description') || null,
+      trackCount: fd.get('trackCount') ? parseInt(fd.get('trackCount') as string, 10) : 0,
+      status: fd.get('status') || 'active',
+      spotifyUrl: fd.get('spotifyUrl') || null,
+      coverImage: fd.get('coverImage') || null,
+    };
+    try {
+      const res = await fetch('/api/playlists', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || 'Failed to create playlist');
+      }
+      router.push('/playlists');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Something went wrong');
+    } finally {
+      setSaving(false);
+    }
+  };
+
   return (
     <>
       <div className="admin-page-header">
@@ -13,8 +50,9 @@ export default function NewPlaylistPage() {
         </div>
         <a href="/playlists" className="admin-btn admin-btn--ghost">← Back</a>
       </div>
+      {error && <div className="admin-error-banner">{error}</div>}
       <div className="admin-card">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="admin-form-group">
             <label className="admin-label admin-label--required">Name</label>
             <input type="text" name="name" className="admin-input" placeholder="Playlist name" required />
@@ -45,7 +83,9 @@ export default function NewPlaylistPage() {
             <input type="url" name="coverImage" className="admin-input" placeholder="https://cdn.bigmuddytouring.com/..." />
           </div>
           <div className="admin-form-actions">
-            <button type="submit" className="admin-btn admin-btn--primary">Create Playlist</button>
+            <button type="submit" className="admin-btn admin-btn--primary" disabled={saving}>
+              {saving ? 'Creating…' : 'Create Playlist'}
+            </button>
             <a href="/playlists" className="admin-btn admin-btn--ghost">Cancel</a>
           </div>
         </form>

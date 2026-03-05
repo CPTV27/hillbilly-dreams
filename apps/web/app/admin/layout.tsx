@@ -413,6 +413,43 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           background: var(--warning-muted);
           color: var(--warning);
         }
+        .admin-badge--sold-out {
+          background: var(--error-muted, rgba(239, 68, 68, 0.12));
+          color: var(--error, #ef4444);
+        }
+        .admin-badge--cancelled {
+          background: var(--surface-3);
+          color: var(--text-disabled);
+          text-decoration: line-through;
+        }
+        .admin-badge--completed {
+          background: var(--slate-muted);
+          color: var(--slate);
+        }
+        .admin-badge--artist {
+          background: var(--accent-muted);
+          color: var(--accent);
+        }
+        .admin-badge--vendor {
+          background: var(--warning-muted);
+          color: var(--warning);
+        }
+        .admin-badge--media {
+          background: var(--slate-muted);
+          color: var(--slate);
+        }
+        .admin-badge--partner {
+          background: var(--success-muted);
+          color: var(--success);
+        }
+        .admin-badge--guest {
+          background: var(--accent-muted);
+          color: var(--accent);
+        }
+        .admin-badge--team {
+          background: var(--success-muted);
+          color: var(--success);
+        }
         .admin-card {
           background: var(--surface);
           border: 1px solid var(--border);
@@ -529,6 +566,44 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           border: 1px solid var(--border);
           border-radius: var(--radius-md);
         }
+        .admin-error-banner {
+          background: rgba(239, 68, 68, 0.1);
+          border: 1px solid var(--error, #ef4444);
+          border-radius: var(--radius-md);
+          padding: var(--space-3) var(--space-4);
+          margin-bottom: var(--space-4);
+          color: var(--error, #ef4444);
+          font-size: var(--text-sm);
+          display: flex;
+          align-items: center;
+        }
+        .skeleton {
+          background: var(--surface);
+          border-radius: var(--radius-sm);
+          animation: shimmer 1.5s ease-in-out infinite;
+        }
+        .skeleton--text { height: 14px; }
+        .skeleton--badge { height: 22px; width: 70px; }
+        @keyframes shimmer {
+          0%, 100% { opacity: 0.4; }
+          50% { opacity: 0.8; }
+        }
+        .skeleton-row td {
+          padding: var(--space-3) var(--space-4);
+        }
+        .row-loading {
+          opacity: 0.5;
+          pointer-events: none;
+        }
+        .status-toggle-btn {
+          background: none;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          transition: opacity var(--duration-fast) var(--ease-default);
+        }
+        .status-toggle-btn:hover { opacity: 0.7; }
+        .status-toggle-btn:disabled { opacity: 0.4; cursor: not-allowed; }
       `}</style>
     </div>
   );

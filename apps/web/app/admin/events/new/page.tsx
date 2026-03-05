@@ -1,9 +1,49 @@
+'use client';
+
 // apps/web/app/(admin)/events/new/page.tsx
 
-import type { Metadata } from 'next';
-export const metadata: Metadata = { title: 'New Event' };
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function NewEventPage() {
+  const router = useRouter();
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSaving(true);
+    setError(null);
+    const fd = new FormData(e.currentTarget);
+    const body: Record<string, unknown> = {
+      name: fd.get('name'),
+      date: fd.get('date') ? new Date(fd.get('date') as string).toISOString() : null,
+      time: fd.get('time') || null,
+      artist: fd.get('artist') || null,
+      price: fd.get('price') || null,
+      description: fd.get('description') || null,
+      capacity: fd.get('capacity') ? parseInt(fd.get('capacity') as string, 10) : null,
+      status: fd.get('status') || 'upcoming',
+      stream: fd.get('stream') === 'true',
+    };
+    try {
+      const res = await fetch('/api/events', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || 'Failed to create event');
+      }
+      router.push('/events');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Something went wrong');
+    } finally {
+      setSaving(false);
+    }
+  };
+
   return (
     <>
       <div className="admin-page-header">
@@ -13,8 +53,9 @@ export default function NewEventPage() {
         </div>
         <a href="/events" className="admin-btn admin-btn--ghost">← Back</a>
       </div>
+      {error && <div className="admin-error-banner">{error}</div>}
       <div className="admin-card">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="admin-form-group">
             <label className="admin-label admin-label--required">Event Name</label>
             <input type="text" name="name" className="admin-input" placeholder="e.g. Blues Room Live — Delta Night" required />
@@ -60,13 +101,14 @@ export default function NewEventPage() {
           </div>
           <div className="admin-form-group">
             <label style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', cursor: 'pointer' }}>
-              <input type="checkbox" name="stream" value="true"
-                style={{ width: 16, height: 16, accentColor: 'var(--accent)' }} />
+              <input type="checkbox" name="stream" value="true" style={{ width: 16, height: 16, accentColor: 'var(--accent)' }} />
               <span className="admin-label" style={{ margin: 0 }}>Livestream this event</span>
             </label>
           </div>
           <div className="admin-form-actions">
-            <button type="submit" className="admin-btn admin-btn--primary">Create Event</button>
+            <button type="submit" className="admin-btn admin-btn--primary" disabled={saving}>
+              {saving ? 'Creating…' : 'Create Event'}
+            </button>
             <a href="/events" className="admin-btn admin-btn--ghost">Cancel</a>
           </div>
         </form>

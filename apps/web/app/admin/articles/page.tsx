@@ -249,7 +249,7 @@ export default function AdminArticlesPage() {
                   <td>
                     <div className="articles-title-cell">
                       <a
-                        href={`/articles/edit/${article.slug}`}
+                        href={`/articles/${article.id}/edit`}
                         className="articles-title-link"
                       >
                         {article.title}
@@ -281,7 +281,7 @@ export default function AdminArticlesPage() {
                   <td>
                     <div className="articles-actions">
                       <a
-                        href={`/articles/edit/${article.slug}`}
+                        href={`/articles/${article.id}/edit`}
                         className="admin-btn admin-btn--ghost articles-action-btn"
                       >
                         Edit
@@ -341,7 +341,7 @@ export default function AdminArticlesPage() {
                 <span className="articles-date">{formatDate(article.publishedAt)}</span>
               </div>
               <a
-                href={`/articles/edit/${article.slug}`}
+                href={`/articles/${article.id}/edit`}
                 className="articles-title-link article-mobile-card__title"
               >
                 {article.title}
@@ -355,7 +355,7 @@ export default function AdminArticlesPage() {
               </div>
               <div className="articles-actions" style={{ marginTop: 'var(--space-3)' }}>
                 <a
-                  href={`/articles/edit/${article.slug}`}
+                  href={`/articles/${article.id}/edit`}
                   className="admin-btn admin-btn--ghost articles-action-btn"
                 >
                   Edit
