@@ -1,7 +1,10 @@
 // apps/web/app/(admin)/layout.tsx
 // Admin layout — DM Sans only, sidebar nav, dark ops command center
+// Protected by Google OAuth via NextAuth — only whitelisted emails can access.
 
 import type { Metadata } from 'next';
+import { auth, signOut } from '@/auth';
+import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: {
@@ -45,7 +48,9 @@ const NAV_SECTIONS = [
   },
 ];
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  const session = await auth();
+  if (!session?.user) redirect('/admin/login');
   return (
     <div className="admin-shell theme-admin">
       {/* Sidebar */}
@@ -88,6 +93,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </nav>
 
         <div className="admin-sidebar__footer">
+          <div className="admin-sidebar__user">
+            <span className="admin-sidebar__email">{session.user.email}</span>
+            <form
+              action={async () => {
+                'use server';
+                await signOut({ redirectTo: '/admin/login' });
+              }}
+            >
+              <button type="submit" className="admin-sidebar__signout">
+                Sign out
+              </button>
+            </form>
+          </div>
           <div className="admin-sidebar__env">
             <span className="admin-sidebar__env-dot" />
             <span>Production</span>
@@ -214,6 +232,39 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         .admin-sidebar__footer {
           padding: var(--space-4) var(--space-6);
           border-top: 1px solid var(--border);
+        }
+        .admin-sidebar__user {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: var(--space-2);
+          margin-bottom: var(--space-3);
+        }
+        .admin-sidebar__email {
+          font-size: 11px;
+          color: var(--text-disabled);
+          letter-spacing: 0.01em;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          min-width: 0;
+        }
+        .admin-sidebar__signout {
+          background: none;
+          border: 1px solid var(--border);
+          color: var(--text-muted);
+          padding: 3px 8px;
+          font-size: 11px;
+          font-family: var(--font-body);
+          border-radius: var(--radius-sm);
+          cursor: pointer;
+          transition: all var(--duration-fast) var(--ease-default);
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+        .admin-sidebar__signout:hover {
+          border-color: var(--accent);
+          color: var(--accent);
         }
         .admin-sidebar__env {
           display: flex;

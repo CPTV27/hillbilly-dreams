@@ -1,12 +1,12 @@
 // apps/web/middleware.ts
-// Multi-tenant hostname routing for the Big Muddy platform
+// Multi-tenant hostname routing + admin auth protection
 // Reads the Host header and rewrites the URL to the correct route group.
-// The browser URL stays clean; Next.js serves from the appropriate subtree.
+// Admin routes require Google OAuth authentication via NextAuth.
 
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { auth } from './auth';
 
-export function middleware(request: NextRequest) {
+export default auth((request) => {
   const hostname = request.headers.get('x-forwarded-host') || request.headers.get('host') || '';
   const pathname = request.nextUrl.pathname;
 
@@ -20,11 +20,25 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Login page is always accessible without auth
+  if (pathname === '/admin/login') {
+    return NextResponse.next();
+  }
+
+  // Helper: redirect to login if not authenticated
+  const redirectToLogin = () => {
+    const loginUrl = new URL('/admin/login', request.url);
+    loginUrl.searchParams.set('callbackUrl', pathname);
+    return Response.redirect(loginUrl);
+  };
+
   // If the path already starts with a known brand prefix, pass through
-  // without rewriting. This allows direct access via full paths
-  // (e.g. /radio/live, /touring/inn) on the Firebase preview URL.
+  // without rewriting. Admin routes require authentication.
   const brandPrefixes = ['/touring', '/magazine', '/radio', '/admin'];
   if (brandPrefixes.some(p => pathname === p || pathname.startsWith(p + '/'))) {
+    if (pathname.startsWith('/admin') && !request.auth) {
+      return redirectToLogin();
+    }
     return NextResponse.next();
   }
 
@@ -33,18 +47,19 @@ export function middleware(request: NextRequest) {
   // Admin domain handles it via the fallback rewrite at the bottom.
   const adminPaths = ['/dashboard', '/articles', '/calendar', '/contacts', '/events', '/media', '/newsletter'];
   if (adminPaths.some(p => pathname === p || pathname.startsWith(p + '/'))) {
+    if (!request.auth) return redirectToLogin();
     return NextResponse.rewrite(
       new URL('/admin' + pathname, request.url)
     );
   }
 
   // Dev override: NEXT_PUBLIC_BRAND env var bypasses hostname detection.
-  // Use this in local development if you don't want to set up /etc/hosts.
   // e.g. NEXT_PUBLIC_BRAND=magazine in .env.local
   const devBrand = process.env.NEXT_PUBLIC_BRAND;
   if (devBrand) {
     const validBrands = ['touring', 'magazine', 'radio', 'admin'];
     if (validBrands.includes(devBrand)) {
+      if (devBrand === 'admin' && !request.auth) return redirectToLogin();
       return NextResponse.rewrite(
         new URL(`/${devBrand}${pathname}`, request.url)
       );
@@ -94,10 +109,11 @@ export function middleware(request: NextRequest) {
 
   // Admin domain, localhost, and all fallback → (admin) route group
   // Handles: admin.bigmuddytouring.com, admin.bigmuddy.local, localhost:3000
+  if (!request.auth) return redirectToLogin();
   return NextResponse.rewrite(
     new URL('/admin' + pathname, request.url)
   );
-}
+});
 
 export const config = {
   matcher: [

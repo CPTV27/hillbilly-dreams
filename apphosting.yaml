@@ -14,3 +14,9 @@ env:
     secret: NEXTAUTH_SECRET
   - variable: ADMIN_SESSION_TOKEN
     secret: ADMIN_SESSION_TOKEN
+  - variable: GOOGLE_CLIENT_ID
+    secret: GOOGLE_CLIENT_ID
+  - variable: GOOGLE_CLIENT_SECRET
+    secret: GOOGLE_CLIENT_SECRET
+  - variable: NEXTAUTH_URL
+    secret: NEXTAUTH_URL

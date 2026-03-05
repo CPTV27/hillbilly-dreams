@@ -10,6 +10,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.11.1",
     "@bigmuddy/config": "workspace:*",
     "@bigmuddy/database": "workspace:*",
     "@bigmuddy/ui": "workspace:*",
@@ -22,6 +23,7 @@
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.0",
     "next": "14.2.0",
+    "next-auth": "5.0.0-beta.30",
     "postcss": "^8.4.0",
     "prisma": "^5.14.0",
     "react": "^18.3.0",
