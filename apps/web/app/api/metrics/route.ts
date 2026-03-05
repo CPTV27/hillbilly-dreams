@@ -22,11 +22,19 @@ export async function GET() {
   }
 }
 
-// PUT /api/metrics
+// POST /api/metrics (also aliased as PUT for compatibility)
 // Bulk upsert metrics — used by integration sync jobs (Beehiiv, CloudBeds, Spotify).
 // Body: Array of metric objects or keyed object.
 // Example: [{ key: "newsletter_subscribers", value: 1234, source: "beehiiv" }, ...]
+export async function POST(request: Request) {
+  return upsertMetrics(request);
+}
+
 export async function PUT(request: Request) {
+  return upsertMetrics(request);
+}
+
+async function upsertMetrics(request: Request) {
   try {
     const body = await request.json();
 
