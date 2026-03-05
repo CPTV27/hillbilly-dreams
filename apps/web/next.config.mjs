@@ -1,8 +1,15 @@
 // apps/web/next.config.mjs
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // DO NOT set output: 'export' — this disables API routes and SSR.
-  // Firebase App Hosting supports full Next.js SSR natively.
+  // Firebase App Hosting uses standalone output for deployment.
+  output: 'standalone',
+  outputFileTracingRoot: resolve(__dirname, '../../'),
 
   images: {
     formats: ['image/avif', 'image/webp'],
