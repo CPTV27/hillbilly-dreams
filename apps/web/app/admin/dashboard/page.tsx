@@ -1,75 +1,90 @@
+'use client';
+
 // apps/web/app/(admin)/dashboard/page.tsx
-// HQ Dashboard — KPI tiles and recent activity
+// HQ Dashboard — live KPI tiles from /api/metrics + recent articles & events
 
-import type { Metadata } from 'next';
+import { useState, useEffect } from 'react';
 
-export const metadata: Metadata = { title: 'Dashboard' };
+interface MetricData {
+  key: string;
+  value: number;
+  target: number | null;
+  label: string | null;
+  unit: string | null;
+  source: string | null;
+}
 
-const KPI_TILES = [
+interface ArticleSummary {
+  id: number;
+  title: string;
+  slug: string;
+  status: string;
+  publishedAt: string | null;
+  city: string | null;
+}
+
+interface EventSummary {
+  id: number;
+  name: string;
+  date: string;
+  time: string | null;
+  artist: string | null;
+  status: string;
+}
+
+const KPI_CONFIG = [
   {
     key: 'newsletter_subscribers',
-    label: 'Newsletter Subscribers',
-    value: '—',
-    target: 2500,
-    unit: 'subscribers',
-    source: 'Beehiiv',
+    fallbackLabel: 'Newsletter Subscribers',
+    fallbackTarget: 2500,
+    fallbackUnit: 'subscribers',
+    fallbackSource: 'Beehiiv',
     icon: '◻',
-    trend: null,
     color: 'var(--accent)',
   },
   {
     key: 'inn_occupancy_rate',
-    label: 'Inn Occupancy Rate',
-    value: '—',
-    target: 80,
-    unit: '%',
-    source: 'CloudBeds',
+    fallbackLabel: 'Inn Occupancy Rate',
+    fallbackTarget: 80,
+    fallbackUnit: '%',
+    fallbackSource: 'CloudBeds',
     icon: '◻',
-    trend: null,
     color: 'var(--slate)',
   },
   {
     key: 'spotify_followers',
-    label: 'Spotify Followers',
-    value: '—',
-    target: 5000,
-    unit: 'followers',
-    source: 'Spotify',
+    fallbackLabel: 'Spotify Followers',
+    fallbackTarget: 5000,
+    fallbackUnit: 'followers',
+    fallbackSource: 'Spotify',
     icon: '◈',
-    trend: null,
     color: '#1DB954',
   },
   {
     key: 'articles_published',
-    label: 'Articles Published (MTD)',
-    value: '—',
-    target: 8,
-    unit: 'articles',
-    source: 'Database',
+    fallbackLabel: 'Articles Published (MTD)',
+    fallbackTarget: 8,
+    fallbackUnit: 'articles',
+    fallbackSource: 'Database',
     icon: '◻',
-    trend: null,
     color: 'var(--accent)',
   },
   {
     key: 'upcoming_events',
-    label: 'Upcoming Events',
-    value: '—',
-    target: null,
-    unit: 'events',
-    source: 'Database',
+    fallbackLabel: 'Upcoming Events',
+    fallbackTarget: null,
+    fallbackUnit: 'events',
+    fallbackSource: 'Database',
     icon: '◷',
-    trend: null,
     color: 'var(--warning)',
   },
   {
     key: 'google_review_rating',
-    label: 'Google Rating',
-    value: '—',
-    target: 4.8,
-    unit: '/ 5.0',
-    source: 'Google Business',
+    fallbackLabel: 'Google Rating',
+    fallbackTarget: 4.8,
+    fallbackUnit: '/ 5.0',
+    fallbackSource: 'Google Business',
     icon: '◈',
-    trend: null,
     color: 'var(--success)',
   },
 ];
@@ -81,11 +96,47 @@ const QUICK_ACTIONS = [
   { label: 'New Newsletter', href: '/newsletter/new', icon: '+' },
 ];
 
-export default async function DashboardPage() {
-  // TODO: Replace with real Prisma + metrics queries:
-  // const metrics = await prisma.metric.findMany();
-  // const articlesCount = await prisma.article.count({ where: { status: 'published', publishedAt: { gte: startOfMonth } } });
-  // const upcomingEvents = await prisma.event.count({ where: { status: 'upcoming' } });
+function formatDate(date: string | null | undefined): string {
+  if (!date) return '—';
+  return new Date(date).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+  });
+}
+
+function formatCityLabel(city: string | null | undefined): string {
+  if (!city) return '';
+  return city
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}
+
+export default function DashboardPage() {
+  const [metrics, setMetrics] = useState<Record<string, MetricData>>({});
+  const [articles, setArticles] = useState<ArticleSummary[]>([]);
+  const [events, setEvents] = useState<EventSummary[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchAll() {
+      try {
+        const [metricsRes, articlesRes, eventsRes] = await Promise.all([
+          fetch('/api/metrics').then((r) => r.json()).catch(() => ({})),
+          fetch('/api/articles?take=5').then((r) => r.json()).catch(() => ({ data: [] })),
+          fetch('/api/events?status=upcoming&take=5').then((r) => r.json()).catch(() => ({ data: [] })),
+        ]);
+        setMetrics(metricsRes ?? {});
+        setArticles(articlesRes?.data ?? []);
+        setEvents(eventsRes?.data ?? []);
+      } catch (err) {
+        console.error('Dashboard fetch error:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchAll();
+  }, []);
 
   return (
     <>
@@ -94,7 +145,7 @@ export default async function DashboardPage() {
           <h1 className="admin-page-title">Dashboard</h1>
           <p className="admin-page-sub">Big Muddy HQ — Operations Overview</p>
         </div>
-        <div style={{ display: 'flex', gap: 'var(--space-3)' }}>
+        <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
           {QUICK_ACTIONS.map((action) => (
             <a key={action.href} href={action.href} className="admin-btn admin-btn--ghost">
               {action.icon} {action.label}
@@ -105,28 +156,59 @@ export default async function DashboardPage() {
 
       {/* ── KPI Tiles ── */}
       <div className="dashboard-kpi-grid">
-        {KPI_TILES.map((tile) => (
-          <div key={tile.key} className="kpi-tile">
-            <div className="kpi-tile__header">
-              <span className="kpi-tile__label">{tile.label}</span>
-              <span className="kpi-tile__source">{tile.source}</span>
-            </div>
-            <div className="kpi-tile__value" style={{ color: tile.color }}>
-              {tile.value}
-              {tile.unit && tile.value !== '—' && (
-                <span className="kpi-tile__unit">{tile.unit}</span>
+        {KPI_CONFIG.map((tile) => {
+          const metric = metrics[tile.key];
+          const hasValue = metric && metric.value !== undefined && metric.value !== null;
+          const displayValue = hasValue
+            ? metric.value.toLocaleString()
+            : '—';
+          const label = metric?.label ?? tile.fallbackLabel;
+          const target = metric?.target ?? tile.fallbackTarget;
+          const unit = metric?.unit ?? tile.fallbackUnit;
+          const source = metric?.source ?? tile.fallbackSource;
+
+          return (
+            <div key={tile.key} className={`kpi-tile ${loading ? 'kpi-tile--loading' : ''}`}>
+              <div className="kpi-tile__header">
+                <span className="kpi-tile__label">{label}</span>
+                <span className="kpi-tile__source">{source}</span>
+              </div>
+              <div className="kpi-tile__value" style={{ color: hasValue ? tile.color : 'var(--text-disabled)' }}>
+                {loading ? (
+                  <div className="skeleton skeleton--value" />
+                ) : (
+                  <>
+                    {displayValue}
+                    {unit && hasValue && (
+                      <span className="kpi-tile__unit">{unit}</span>
+                    )}
+                  </>
+                )}
+              </div>
+              {target && (
+                <div className="kpi-tile__target">
+                  Target: {target.toLocaleString()} {unit}
+                </div>
+              )}
+              {!loading && !hasValue && (
+                <div className="kpi-tile__empty-note">
+                  Connect {source} to populate
+                </div>
+              )}
+              {!loading && hasValue && target && (
+                <div className="kpi-tile__progress">
+                  <div
+                    className="kpi-tile__progress-bar"
+                    style={{
+                      width: `${Math.min(100, (metric.value / target) * 100)}%`,
+                      background: tile.color,
+                    }}
+                  />
+                </div>
               )}
             </div>
-            {tile.target && (
-              <div className="kpi-tile__target">
-                Target: {tile.target.toLocaleString()} {tile.unit}
-              </div>
-            )}
-            <div className="kpi-tile__empty-note">
-              Connect {tile.source} to populate
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* ── Content Overview ── */}
@@ -136,12 +218,39 @@ export default async function DashboardPage() {
             <h2 className="dashboard-section__title">Recent Articles</h2>
             <a href="/articles" className="dashboard-section__link">View all →</a>
           </div>
-          <div className="admin-empty">
-            <div className="admin-empty__icon">◻</div>
-            <p className="admin-empty__text">
-              No articles yet. <a href="/articles/new" style={{ color: 'var(--accent)' }}>Create the first one.</a>
-            </p>
-          </div>
+          {loading ? (
+            <div className="dashboard-list">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="dashboard-list-item">
+                  <div className="skeleton skeleton--text" style={{ width: '70%' }} />
+                  <div className="skeleton skeleton--text" style={{ width: '30%', marginTop: '4px' }} />
+                </div>
+              ))}
+            </div>
+          ) : articles.length === 0 ? (
+            <div className="admin-empty">
+              <div className="admin-empty__icon">◻</div>
+              <p className="admin-empty__text">
+                No articles yet. <a href="/articles/new" style={{ color: 'var(--accent)' }}>Create the first one.</a>
+              </p>
+            </div>
+          ) : (
+            <div className="dashboard-list">
+              {articles.map((article) => (
+                <a key={article.id} href={`/articles/edit/${article.slug}`} className="dashboard-list-item dashboard-list-item--link">
+                  <div className="dashboard-list-item__main">
+                    <span className="dashboard-list-item__title">{article.title}</span>
+                    <span className="dashboard-list-item__meta">
+                      {formatCityLabel(article.city)}
+                      {article.city && ' · '}
+                      {formatDate(article.publishedAt)}
+                    </span>
+                  </div>
+                  <span className={`admin-badge admin-badge--${article.status}`}>{article.status}</span>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="dashboard-section">
@@ -149,12 +258,39 @@ export default async function DashboardPage() {
             <h2 className="dashboard-section__title">Upcoming Events</h2>
             <a href="/events" className="dashboard-section__link">View all →</a>
           </div>
-          <div className="admin-empty">
-            <div className="admin-empty__icon">◷</div>
-            <p className="admin-empty__text">
-              No upcoming events. <a href="/events/new" style={{ color: 'var(--accent)' }}>Schedule one.</a>
-            </p>
-          </div>
+          {loading ? (
+            <div className="dashboard-list">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="dashboard-list-item">
+                  <div className="skeleton skeleton--text" style={{ width: '70%' }} />
+                  <div className="skeleton skeleton--text" style={{ width: '30%', marginTop: '4px' }} />
+                </div>
+              ))}
+            </div>
+          ) : events.length === 0 ? (
+            <div className="admin-empty">
+              <div className="admin-empty__icon">◷</div>
+              <p className="admin-empty__text">
+                No upcoming events. <a href="/events/new" style={{ color: 'var(--accent)' }}>Schedule one.</a>
+              </p>
+            </div>
+          ) : (
+            <div className="dashboard-list">
+              {events.map((event) => (
+                <div key={event.id} className="dashboard-list-item">
+                  <div className="dashboard-list-item__main">
+                    <span className="dashboard-list-item__title">{event.name}</span>
+                    <span className="dashboard-list-item__meta">
+                      {formatDate(event.date)}
+                      {event.time && ` · ${event.time}`}
+                      {event.artist && ` · ${event.artist}`}
+                    </span>
+                  </div>
+                  <span className={`admin-badge admin-badge--${event.status}`}>{event.status}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -215,6 +351,33 @@ export default async function DashboardPage() {
           color: var(--text-disabled);
           font-style: italic;
         }
+        .kpi-tile__progress {
+          height: 3px;
+          background: var(--border);
+          border-radius: 2px;
+          overflow: hidden;
+          margin-top: var(--space-1);
+        }
+        .kpi-tile__progress-bar {
+          height: 100%;
+          border-radius: 2px;
+          transition: width 0.6s ease;
+        }
+
+        /* Skeleton */
+        .skeleton {
+          background: var(--surface);
+          border-radius: var(--radius-sm);
+          animation: shimmer 1.5s ease-in-out infinite;
+        }
+        .skeleton--text { height: 14px; }
+        .skeleton--value { height: 40px; width: 80px; }
+        @keyframes shimmer {
+          0%, 100% { opacity: 0.4; }
+          50% { opacity: 0.8; }
+        }
+
+        /* Sections */
         .dashboard-sections {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -246,6 +409,47 @@ export default async function DashboardPage() {
           font-weight: 600;
           color: var(--accent);
           text-decoration: none;
+        }
+
+        /* List items */
+        .dashboard-list {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-1);
+        }
+        .dashboard-list-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: var(--space-3);
+          padding: var(--space-3);
+          border-radius: var(--radius-sm);
+          transition: background var(--duration-fast) var(--ease-default);
+        }
+        .dashboard-list-item--link {
+          text-decoration: none;
+          cursor: pointer;
+        }
+        .dashboard-list-item--link:hover {
+          background: var(--bg);
+        }
+        .dashboard-list-item__main {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          min-width: 0;
+        }
+        .dashboard-list-item__title {
+          font-size: var(--text-sm);
+          font-weight: 600;
+          color: var(--text);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .dashboard-list-item__meta {
+          font-size: var(--text-xs);
+          color: var(--text-disabled);
         }
       `}</style>
     </>

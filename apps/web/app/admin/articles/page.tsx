@@ -1,10 +1,9 @@
 'use client';
 
 // apps/web/app/admin/articles/page.tsx
-// Article management CMS page — search, filter, table/cards
+// Article management CMS page — fetches from /api/articles, supports delete + status toggle
 
-import { useState, useMemo } from 'react';
-import { CITY_GUIDE_ARTICLES } from '@/lib/articles';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import type { Article } from '@bigmuddy/config';
 
 const ALL_CITIES = [
@@ -59,13 +58,88 @@ function formatCityLabel(city: string | null | undefined): string {
     .join(' ');
 }
 
+function SkeletonRow() {
+  return (
+    <tr className="skeleton-row">
+      <td><div className="skeleton skeleton--text" style={{ width: '70%' }} /></td>
+      <td><div className="skeleton skeleton--text" style={{ width: '60%' }} /></td>
+      <td><div className="skeleton skeleton--text" style={{ width: '50%' }} /></td>
+      <td><div className="skeleton skeleton--badge" /></td>
+      <td><div className="skeleton skeleton--text" style={{ width: '55%' }} /></td>
+      <td><div className="skeleton skeleton--text" style={{ width: '40%' }} /></td>
+    </tr>
+  );
+}
+
 export default function AdminArticlesPage() {
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
   const [cityFilter, setCityFilter] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
+  const [actionLoading, setActionLoading] = useState<number | null>(null);
+
+  const fetchArticles = useCallback(async () => {
+    try {
+      const res = await fetch('/api/articles');
+      const json = await res.json();
+      setArticles(json.data ?? []);
+      setError(null);
+    } catch (err) {
+      console.error('Failed to fetch articles:', err);
+      setError('Failed to load articles.');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchArticles();
+  }, [fetchArticles]);
+
+  const handleDelete = async (id: number, title: string) => {
+    if (!confirm(`Delete "${title}"? This cannot be undone.`)) return;
+    setActionLoading(id);
+    try {
+      const res = await fetch(`/api/articles/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Delete failed');
+      setArticles((prev) => prev.filter((a) => a.id !== id));
+    } catch (err) {
+      console.error('Delete error:', err);
+      alert('Failed to delete article.');
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  const handleStatusToggle = async (id: number, currentStatus: string) => {
+    const nextStatus = currentStatus === 'published' ? 'draft' : 'published';
+    setActionLoading(id);
+    try {
+      const res = await fetch(`/api/articles/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          status: nextStatus,
+          ...(nextStatus === 'published' ? { publishedAt: new Date().toISOString() } : {}),
+        }),
+      });
+      if (!res.ok) throw new Error('Update failed');
+      const updated = await res.json();
+      setArticles((prev) =>
+        prev.map((a) => (a.id === id ? { ...a, ...updated } : a))
+      );
+    } catch (err) {
+      console.error('Status toggle error:', err);
+      alert('Failed to update status.');
+    } finally {
+      setActionLoading(null);
+    }
+  };
 
   const filtered = useMemo(() => {
-    return CITY_GUIDE_ARTICLES.filter((a: Article) => {
+    return articles.filter((a: Article) => {
       const matchSearch =
         !search ||
         a.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -77,7 +151,7 @@ export default function AdminArticlesPage() {
 
       return matchSearch && matchCity && matchStatus;
     });
-  }, [search, cityFilter, statusFilter]);
+  }, [articles, search, cityFilter, statusFilter]);
 
   return (
     <>
@@ -85,12 +159,23 @@ export default function AdminArticlesPage() {
       <div className="admin-page-header">
         <div>
           <h1 className="admin-page-title">Articles</h1>
-          <p className="admin-page-sub">{CITY_GUIDE_ARTICLES.length} articles total · {filtered.length} shown</p>
+          <p className="admin-page-sub">
+            {loading ? '…' : `${articles.length} articles total · ${filtered.length} shown`}
+          </p>
         </div>
         <a href="/articles/new" className="admin-btn admin-btn--primary">
           + New Article
         </a>
       </div>
+
+      {error && (
+        <div className="admin-error-banner">
+          {error}
+          <button onClick={fetchArticles} className="admin-btn admin-btn--ghost" style={{ marginLeft: 'var(--space-3)' }}>
+            Retry
+          </button>
+        </div>
+      )}
 
       {/* ── Search + Filters ── */}
       <div className="articles-filters">
@@ -141,7 +226,15 @@ export default function AdminArticlesPage() {
             </tr>
           </thead>
           <tbody>
-            {filtered.length === 0 ? (
+            {loading ? (
+              <>
+                <SkeletonRow />
+                <SkeletonRow />
+                <SkeletonRow />
+                <SkeletonRow />
+                <SkeletonRow />
+              </>
+            ) : filtered.length === 0 ? (
               <tr>
                 <td colSpan={6}>
                   <div className="admin-empty">
@@ -152,7 +245,7 @@ export default function AdminArticlesPage() {
               </tr>
             ) : (
               filtered.map((article: Article) => (
-                <tr key={article.id}>
+                <tr key={article.id} className={actionLoading === article.id ? 'row-loading' : ''}>
                   <td>
                     <div className="articles-title-cell">
                       <a
@@ -173,7 +266,14 @@ export default function AdminArticlesPage() {
                     <span className="articles-category">{article.category}</span>
                   </td>
                   <td>
-                    <StatusBadge status={article.status as string} />
+                    <button
+                      className="status-toggle-btn"
+                      onClick={() => handleStatusToggle(article.id, article.status as string)}
+                      disabled={actionLoading === article.id}
+                      title={`Click to ${article.status === 'published' ? 'unpublish' : 'publish'}`}
+                    >
+                      <StatusBadge status={article.status as string} />
+                    </button>
                   </td>
                   <td>
                     <span className="articles-date">{formatDate(article.publishedAt)}</span>
@@ -194,6 +294,13 @@ export default function AdminArticlesPage() {
                       >
                         View ↗
                       </a>
+                      <button
+                        onClick={() => handleDelete(article.id, article.title)}
+                        className="admin-btn admin-btn--danger articles-action-btn"
+                        disabled={actionLoading === article.id}
+                      >
+                        {actionLoading === article.id ? '…' : 'Delete'}
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -205,16 +312,32 @@ export default function AdminArticlesPage() {
 
       {/* ── Mobile Cards ── */}
       <div className="articles-mobile-list">
-        {filtered.length === 0 ? (
+        {loading ? (
+          <>
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="article-mobile-card">
+                <div className="skeleton skeleton--badge" style={{ marginBottom: 'var(--space-3)' }} />
+                <div className="skeleton skeleton--text" style={{ width: '80%', marginBottom: 'var(--space-2)' }} />
+                <div className="skeleton skeleton--text" style={{ width: '50%' }} />
+              </div>
+            ))}
+          </>
+        ) : filtered.length === 0 ? (
           <div className="admin-empty">
             <div className="admin-empty__icon">◻</div>
             <p className="admin-empty__text">No articles match your filters.</p>
           </div>
         ) : (
           filtered.map((article: Article) => (
-            <div key={article.id} className="article-mobile-card">
+            <div key={article.id} className={`article-mobile-card ${actionLoading === article.id ? 'row-loading' : ''}`}>
               <div className="article-mobile-card__top">
-                <StatusBadge status={article.status as string} />
+                <button
+                  className="status-toggle-btn"
+                  onClick={() => handleStatusToggle(article.id, article.status as string)}
+                  disabled={actionLoading === article.id}
+                >
+                  <StatusBadge status={article.status as string} />
+                </button>
                 <span className="articles-date">{formatDate(article.publishedAt)}</span>
               </div>
               <a
@@ -245,6 +368,13 @@ export default function AdminArticlesPage() {
                 >
                   View ↗
                 </a>
+                <button
+                  onClick={() => handleDelete(article.id, article.title)}
+                  className="admin-btn admin-btn--danger articles-action-btn"
+                  disabled={actionLoading === article.id}
+                >
+                  {actionLoading === article.id ? '…' : 'Delete'}
+                </button>
               </div>
             </div>
           ))
@@ -322,6 +452,63 @@ export default function AdminArticlesPage() {
         .articles-action-btn {
           font-size: var(--text-xs);
           padding: var(--space-1) var(--space-3);
+        }
+        .status-toggle-btn {
+          background: none;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          transition: opacity var(--duration-fast) var(--ease-default);
+        }
+        .status-toggle-btn:hover {
+          opacity: 0.7;
+        }
+        .status-toggle-btn:disabled {
+          opacity: 0.4;
+          cursor: not-allowed;
+        }
+        .admin-btn--danger {
+          color: var(--error, #ef4444);
+          border-color: var(--error, #ef4444);
+        }
+        .admin-btn--danger:hover {
+          background: rgba(239, 68, 68, 0.1);
+        }
+        .row-loading {
+          opacity: 0.5;
+          pointer-events: none;
+        }
+        .admin-error-banner {
+          background: rgba(239, 68, 68, 0.1);
+          border: 1px solid var(--error, #ef4444);
+          border-radius: var(--radius-md);
+          padding: var(--space-3) var(--space-4);
+          margin-bottom: var(--space-4);
+          color: var(--error, #ef4444);
+          font-size: var(--text-sm);
+          display: flex;
+          align-items: center;
+        }
+
+        /* Skeleton loading */
+        .skeleton {
+          background: var(--surface);
+          border-radius: var(--radius-sm);
+          animation: shimmer 1.5s ease-in-out infinite;
+        }
+        .skeleton--text {
+          height: 14px;
+        }
+        .skeleton--badge {
+          height: 22px;
+          width: 70px;
+        }
+        @keyframes shimmer {
+          0%, 100% { opacity: 0.4; }
+          50% { opacity: 0.8; }
+        }
+        .skeleton-row td {
+          padding: var(--space-3) var(--space-4);
         }
 
         /* Mobile cards */

@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { PlaylistCard, EventCard, NewsletterSignup, BLUR_DATA_URL } from '@bigmuddy/ui';
 import type { Playlist, Event } from '@bigmuddy/config';
+import { prisma } from '@bigmuddy/database';
 
 export const metadata: Metadata = {
   title: 'Big Muddy Radio',
@@ -126,8 +127,26 @@ const PLACEHOLDER_EVENTS: Event[] = [
 ];
 
 export default async function RadioHomepage() {
-  const playlists = PLACEHOLDER_PLAYLISTS;
-  const events = PLACEHOLDER_EVENTS;
+  let playlists: Playlist[] = PLACEHOLDER_PLAYLISTS;
+  let events: Event[] = PLACEHOLDER_EVENTS;
+
+  try {
+    const [dbPlaylists, dbEvents] = await Promise.all([
+      prisma.playlist.findMany({
+        where: { status: 'active' },
+        orderBy: { createdAt: 'desc' },
+      }),
+      prisma.event.findMany({
+        where: { status: 'upcoming' },
+        orderBy: { date: 'asc' },
+        take: 3,
+      }),
+    ]);
+    if (dbPlaylists.length) playlists = dbPlaylists as Playlist[];
+    if (dbEvents.length) events = dbEvents as Event[];
+  } catch {
+    // Prisma unavailable — fall back to placeholder data
+  }
 
   return (
     <>

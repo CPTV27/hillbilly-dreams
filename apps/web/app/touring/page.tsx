@@ -9,6 +9,7 @@ import { PlaylistCard } from '@bigmuddy/ui';
 import { NewsletterSignup } from '@bigmuddy/ui';
 import type { Article, Playlist } from '@bigmuddy/config';
 import { BLUR_DATA_URL } from '@bigmuddy/ui';
+import { prisma } from '@bigmuddy/database';
 
 export const metadata: Metadata = {
   title: 'Big Muddy Touring',
@@ -120,22 +121,27 @@ const NETWORK_BY_STATE = [
 ];
 
 export default async function TouringHomepage() {
-  // TODO: Replace with live Prisma queries when DATABASE_URL is set:
-  // const [articles, playlists] = await Promise.all([
-  //   prisma.article.findMany({
-  //     where: { status: 'published' },
-  //     orderBy: { publishedAt: 'desc' },
-  //     take: 3,
-  //   }),
-  //   prisma.playlist.findMany({
-  //     where: { status: 'active' },
-  //     orderBy: { createdAt: 'desc' },
-  //     take: 3,
-  //   }),
-  // ]);
+  let articles: Article[] = PLACEHOLDER_ARTICLES;
+  let playlists: Playlist[] = PLACEHOLDER_PLAYLISTS;
 
-  const articles = PLACEHOLDER_ARTICLES;
-  const playlists = PLACEHOLDER_PLAYLISTS;
+  try {
+    const [dbArticles, dbPlaylists] = await Promise.all([
+      prisma.article.findMany({
+        where: { status: 'published' },
+        orderBy: { publishedAt: 'desc' },
+        take: 3,
+      }),
+      prisma.playlist.findMany({
+        where: { status: 'active' },
+        orderBy: { createdAt: 'desc' },
+        take: 3,
+      }),
+    ]);
+    if (dbArticles.length) articles = dbArticles as Article[];
+    if (dbPlaylists.length) playlists = dbPlaylists as Playlist[];
+  } catch {
+    // Prisma unavailable — fall back to placeholder data
+  }
 
   return (
     <>

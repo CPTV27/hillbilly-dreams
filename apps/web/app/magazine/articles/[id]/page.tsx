@@ -7,19 +7,54 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { BLUR_DATA_URL } from '@bigmuddy/ui';
 import { CITY_GUIDE_ARTICLES, getArticleBySlug } from '@/lib/articles';
+import { prisma } from '@bigmuddy/database';
 
 interface Props {
   params: { id: string };
 }
 
 export async function generateStaticParams() {
+  try {
+    const dbArticles = await prisma.article.findMany({
+      where: { status: 'published' },
+      select: { slug: true },
+    });
+    if (dbArticles.length) return dbArticles.map((a) => ({ id: a.slug }));
+  } catch {
+    // fall through to static
+  }
   return CITY_GUIDE_ARTICLES.map((article) => ({
     id: article.slug,
   }));
 }
 
+async function getArticle(slug: string) {
+  try {
+    const dbArticle = await prisma.article.findFirst({
+      where: { slug },
+    });
+    if (dbArticle) return dbArticle;
+  } catch {
+    // fall through to static
+  }
+  return getArticleBySlug(slug) ?? null;
+}
+
+async function getAllArticles() {
+  try {
+    const dbArticles = await prisma.article.findMany({
+      where: { status: 'published' },
+      orderBy: { publishedAt: 'desc' },
+    });
+    if (dbArticles.length) return dbArticles;
+  } catch {
+    // fall through to static
+  }
+  return CITY_GUIDE_ARTICLES;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const article = getArticleBySlug(params.id);
+  const article = await getArticle(params.id);
   if (!article) {
     return { title: 'Article Not Found' };
   }
@@ -91,16 +126,17 @@ function formatDate(date: string | Date | null | undefined): string {
   });
 }
 
-export default function ArticlePage({ params }: Props) {
-  const article = getArticleBySlug(params.id);
+export default async function ArticlePage({ params }: Props) {
+  const article = await getArticle(params.id);
 
   if (!article) {
     notFound();
   }
 
-  const currentIndex = CITY_GUIDE_ARTICLES.findIndex((a) => a.slug === article.slug);
-  const prevArticle = currentIndex > 0 ? CITY_GUIDE_ARTICLES[currentIndex - 1] : null;
-  const nextArticle = currentIndex < CITY_GUIDE_ARTICLES.length - 1 ? CITY_GUIDE_ARTICLES[currentIndex + 1] : null;
+  const allArticles = await getAllArticles();
+  const currentIndex = allArticles.findIndex((a) => a.slug === article.slug);
+  const prevArticle = currentIndex > 0 ? allArticles[currentIndex - 1] : null;
+  const nextArticle = currentIndex < allArticles.length - 1 ? allArticles[currentIndex + 1] : null;
 
   const cityLabel = article.city
     ? article.city

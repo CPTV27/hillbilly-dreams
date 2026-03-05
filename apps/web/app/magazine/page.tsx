@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { ArticleCard, NewsletterSignup, BLUR_DATA_URL } from '@bigmuddy/ui';
 import { CITY_GUIDE_ARTICLES, CORRIDOR_CITIES, LOUISIANA_CITIES, ARKANSAS_MISSOURI_CITIES } from '@/lib/articles';
+import { prisma } from '@bigmuddy/database';
 
 export const metadata: Metadata = {
   title: 'Big Muddy Magazine',
@@ -36,13 +37,17 @@ const REGION_GROUPS = [
 ];
 
 export default async function MagazineHomepage() {
-  // TODO: Replace with live Prisma queries:
-  // const articles = await prisma.article.findMany({
-  //   where: { status: 'published' },
-  //   orderBy: { publishedAt: 'desc' },
-  // });
+  let articles = CITY_GUIDE_ARTICLES;
 
-  const articles = CITY_GUIDE_ARTICLES;
+  try {
+    const dbArticles = await prisma.article.findMany({
+      where: { status: 'published' },
+      orderBy: { publishedAt: 'desc' },
+    });
+    if (dbArticles.length) articles = dbArticles as typeof CITY_GUIDE_ARTICLES;
+  } catch {
+    // Prisma unavailable — fall back to static articles
+  }
   const [featured, ...grid] = articles;
 
   return (
