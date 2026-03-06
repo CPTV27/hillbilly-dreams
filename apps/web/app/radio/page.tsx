@@ -84,7 +84,7 @@ export default async function RadioHomepage() {
             <a href="/radio/playlists" className="btn btn--primary">
               Browse All Playlists
             </a>
-            <a href="/live" className="btn btn--ghost">
+            <a href="/radio/live" className="btn btn--ghost">
               Upcoming Live Sessions
             </a>
           </div>
@@ -180,7 +180,7 @@ export default async function RadioHomepage() {
               <div className="section-label">Blues Room Live</div>
               <h2 className="section-title-sm">Upcoming Sessions</h2>
             </div>
-            <a href="/live" className="section-link">Full Schedule →</a>
+            <a href="/radio/live" className="section-link">Full Schedule →</a>
           </div>
           <div className="radio-events">
             {events.map((event) => (
@@ -202,7 +202,7 @@ export default async function RadioHomepage() {
                 built for the music that made the corridor famous. Live sessions stream 
                 to subscribers. Upcoming shows post here first.
               </p>
-              <a href="/live" className="btn btn--outline">
+              <a href="/radio/live" className="btn btn--outline">
                 See the Schedule
               </a>
             </div>

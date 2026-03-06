@@ -72,9 +72,9 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     primaryColor: '#c8943e',
     nav: {
       links: [
-        { label: 'Playlists', href: '/playlists' },
-        { label: 'Live Sessions', href: '/live' },
-        { label: 'Podcast', href: '/podcast' },
+        { label: 'Playlists', href: '/radio/playlists' },
+        { label: 'Live Sessions', href: '/radio/live' },
+        { label: 'Podcast', href: '/radio/podcast' },
       ],
     },
   },
