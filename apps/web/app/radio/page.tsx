@@ -52,8 +52,8 @@ export default async function RadioHomepage() {
       {/* ── Hero ── */}
       <section className="radio-hero">
         <Image
-          src="https://storage.googleapis.com/bmt-media-bigmuddy/heroes/hero-bayou-mist.webp"
-          alt=""
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/radio/bmt-radio-hero-studio-mmegjx47-1772777169991.webp"
+          alt="Radio studio microphone in warm light"
           fill
           priority
           sizes="100vw"
@@ -87,6 +87,62 @@ export default async function RadioHomepage() {
             <a href="/live" className="btn btn--ghost">
               Upcoming Live Sessions
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Studio Detail Shots ── */}
+      <section className="radio-details">
+        <div className="section-container">
+          <div className="radio-details__grid">
+            <div className="radio-details__item radio-details__item--wide">
+              <Image
+                src="https://storage.googleapis.com/bmt-media-bigmuddy/radio/bmt-radio-detail-mixer-mmegjm02-1772777179690.webp"
+                alt="Vintage mixer with glowing VU meters"
+                width={1600}
+                height={900}
+                sizes="(min-width: 768px) 66vw, 100vw"
+                placeholder="blur"
+                blurDataURL={BLUR_DATA_URL}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+            <div className="radio-details__item radio-details__item--square">
+              <Image
+                src="https://storage.googleapis.com/bmt-media-bigmuddy/radio/bmt-radio-detail-vinyl-mmegjsmv-1772777172990.webp"
+                alt="Vinyl records in a wooden crate"
+                width={800}
+                height={800}
+                sizes="(min-width: 768px) 33vw, 50vw"
+                placeholder="blur"
+                blurDataURL={BLUR_DATA_URL}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+            <div className="radio-details__item radio-details__item--square">
+              <Image
+                src="https://storage.googleapis.com/bmt-media-bigmuddy/radio/bmt-radio-detail-headphones-mmegjjfd-1772777176490.webp"
+                alt="Headphones and steaming coffee mug"
+                width={800}
+                height={800}
+                sizes="(min-width: 768px) 33vw, 50vw"
+                placeholder="blur"
+                blurDataURL={BLUR_DATA_URL}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+            <div className="radio-details__item radio-details__item--wide">
+              <Image
+                src="https://storage.googleapis.com/bmt-media-bigmuddy/radio/bmt-radio-atmosphere-guitar-mmegjj4e-1772777183158.webp"
+                alt="Acoustic guitar leaning against exposed brick wall"
+                width={1600}
+                height={900}
+                sizes="(min-width: 768px) 66vw, 100vw"
+                placeholder="blur"
+                blurDataURL={BLUR_DATA_URL}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -270,6 +326,40 @@ export default async function RadioHomepage() {
           gap: var(--space-4);
           flex-wrap: wrap;
         }
+        /* ── Studio Details ── */
+        .radio-details {
+          background: var(--bg);
+          border-top: 1px solid var(--border);
+        }
+        .radio-details__grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-3);
+        }
+        @media (min-width: 768px) {
+          .radio-details__grid {
+            grid-template-columns: 2fr 1fr;
+            gap: var(--space-4);
+          }
+        }
+        .radio-details__item {
+          position: relative;
+          overflow: hidden;
+          border-radius: var(--radius-lg, 8px);
+        }
+        .radio-details__item--wide {
+          aspect-ratio: 16 / 9;
+        }
+        .radio-details__item--square {
+          aspect-ratio: 1;
+        }
+        .radio-details__item img {
+          transition: transform var(--duration-slow, 0.5s) var(--ease-default, ease);
+        }
+        .radio-details__item:hover img {
+          transform: scale(1.03);
+        }
+
         /* ── Playlists ── */
         .radio-playlists {
           background: var(--surface);
