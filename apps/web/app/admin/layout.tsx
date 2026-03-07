@@ -39,6 +39,12 @@ const NAV_SECTIONS = [
     ],
   },
   {
+    label: 'Platform',
+    items: [
+      { label: 'Bridge Clients', href: '/bridge', icon: '◈' },
+    ],
+  },
+  {
     label: 'Sites',
     items: [
       { label: 'Touring ↗', href: 'https://bigmuddytouring.com', icon: '◻', external: true },

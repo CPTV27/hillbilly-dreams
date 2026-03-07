@@ -12,7 +12,8 @@ export type ArticleCategory =
   | 'photo-essay'
   | 'interview'
   | 'food-drink'
-  | 'music';
+  | 'music'
+  | 'case-study';
 
 export type ArticleCity =
   | 'memphis'
@@ -50,6 +51,11 @@ export interface Article {
   publishedAt?: Date | string | null;
   createdAt: Date | string;
   updatedAt: Date | string;
+
+  // S2PX Bridge Provenance
+  sourceSystem?: string | null;
+  sourceProjectId?: string | null;
+  sourceSyncedAt?: Date | string | null;
 }
 
 export type PlaylistStatus = 'active' | 'archived';
@@ -133,6 +139,26 @@ export interface Metric {
   unit?: string | null;
   source?: MetricSource | string | null;
   updatedAt: Date | string;
+}
+
+// ─────────────────────────────────────────────────────────────
+// BRIDGE CLIENTS (Multi-Tenant CaaS)
+// ─────────────────────────────────────────────────────────────
+
+export type BridgeClientStatus = 'active' | 'suspended';
+
+export interface BridgeClient {
+  id: number;
+  name: string;
+  apiKey: string;
+  apiSecret: string; // Only returned on creation (masked otherwise)
+  status: BridgeClientStatus | string;
+  allowedCategories: string[];
+  createdAt: Date | string;
+  updatedAt: Date | string;
+  lastSyncAt?: Date | string | null;
+  // Virtual field for list view
+  articleCount?: number;
 }
 
 // ─────────────────────────────────────────────────────────────

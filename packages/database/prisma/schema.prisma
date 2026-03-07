@@ -32,9 +32,16 @@ model Article {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
+  // ── S2PX Bridge Provenance ──
+  sourceSystem    String?   // "s2px" | null (manual)
+  sourceProjectId String?   // S2PX UPID e.g. "S2P-042-2025"
+  sourcePayload   String?   @db.Text  // Sanitized JSON audit trail
+  sourceSyncedAt  DateTime?
+
   @@index([status, publishedAt])
   @@index([category])
   @@index([city])
+  @@index([sourceSystem, sourceProjectId])
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -129,6 +136,25 @@ model Metric {
   updatedAt DateTime @updatedAt
 
   @@index([key])
+}
+
+// ─────────────────────────────────────────────────────────────
+// BRIDGE CLIENTS (Multi-Tenant Content-as-a-Service)
+// ─────────────────────────────────────────────────────────────
+
+model BridgeClient {
+  id          Int      @id @default(autoincrement())
+  name        String                    // "Scan2Plan", "FutureClient_X"
+  apiKey      String   @unique          // Public identifier (cuid)
+  apiSecret   String                    // HMAC-SHA256 secret (64-char hex, hashed at rest)
+  status      String   @default("active") // active | suspended
+  allowedCategories String[]            // Which article categories this client can create
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  lastSyncAt  DateTime?
+
+  @@index([apiKey])
+  @@index([status])
 }
 
 // ─────────────────────────────────────────────────────────────

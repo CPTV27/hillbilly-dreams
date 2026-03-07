@@ -41,6 +41,15 @@ function StatusBadge({ status }: { status: string }) {
   return <span className={cls}>{status}</span>;
 }
 
+function SourceBadge({ sourceSystem, sourceProjectId }: { sourceSystem?: string | null; sourceProjectId?: string | null }) {
+  if (!sourceSystem) return null;
+  return (
+    <span className="source-badge" title={`Source: ${sourceSystem} · ${sourceProjectId ?? ''}`}>
+      {sourceSystem === 's2px' ? 'S2PX' : sourceSystem}
+    </span>
+  );
+}
+
 function formatDate(date: string | Date | null | undefined): string {
   if (!date) return '—';
   return new Date(date).toLocaleDateString('en-US', {
@@ -248,12 +257,15 @@ export default function AdminArticlesPage() {
                 <tr key={article.id} className={actionLoading === article.id ? 'row-loading' : ''}>
                   <td>
                     <div className="articles-title-cell">
-                      <a
-                        href={`/articles/${article.id}/edit`}
-                        className="articles-title-link"
-                      >
-                        {article.title}
-                      </a>
+                      <div className="articles-title-row">
+                        <a
+                          href={`/articles/${article.id}/edit`}
+                          className="articles-title-link"
+                        >
+                          {article.title}
+                        </a>
+                        <SourceBadge sourceSystem={(article as any).sourceSystem} sourceProjectId={(article as any).sourceProjectId} />
+                      </div>
                       {article.readTime && (
                         <span className="articles-read-time">{article.readTime}</span>
                       )}
@@ -340,12 +352,15 @@ export default function AdminArticlesPage() {
                 </button>
                 <span className="articles-date">{formatDate(article.publishedAt)}</span>
               </div>
-              <a
-                href={`/articles/${article.id}/edit`}
-                className="articles-title-link article-mobile-card__title"
-              >
-                {article.title}
-              </a>
+              <div className="articles-title-row" style={{ marginBottom: 'var(--space-2)' }}>
+                <a
+                  href={`/articles/${article.id}/edit`}
+                  className="articles-title-link article-mobile-card__title"
+                >
+                  {article.title}
+                </a>
+                <SourceBadge sourceSystem={(article as any).sourceSystem} sourceProjectId={(article as any).sourceProjectId} />
+              </div>
               <div className="article-mobile-card__meta">
                 <span className="articles-city">{formatCityLabel(article.city as string | null)}</span>
                 <span className="articles-category">{article.category}</span>
@@ -412,6 +427,27 @@ export default function AdminArticlesPage() {
           display: flex;
           flex-direction: column;
           gap: 2px;
+        }
+        .articles-title-row {
+          display: flex;
+          align-items: center;
+          gap: var(--space-2);
+        }
+        .source-badge {
+          display: inline-flex;
+          align-items: center;
+          padding: 1px 6px;
+          font-size: 10px;
+          font-weight: 700;
+          font-family: var(--font-mono);
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+          color: #60a5fa;
+          background: rgba(96, 165, 250, 0.12);
+          border: 1px solid rgba(96, 165, 250, 0.25);
+          border-radius: 3px;
+          white-space: nowrap;
+          flex-shrink: 0;
         }
         .articles-title-link {
           font-size: var(--text-sm);

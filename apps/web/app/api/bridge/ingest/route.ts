@@ -1,0 +1,240 @@
+// ── Multi-Tenant Bridge Ingest Endpoint ──
+// Receives HMAC-signed payloads from any registered bridge client.
+// Resolves the client by x-api-key header → BridgeClient table.
+// Falls back to BMT_BRIDGE_SECRET env var for legacy/single-tenant mode.
+// No session auth — HMAC is the only security gate.
+
+import { NextRequest, NextResponse } from 'next/server';
+import { verifyPayload, isTimestampValid, type SignedPayload } from '@/lib/hmac';
+
+// ── Generic payload types ──
+
+interface ArticleDraft {
+  title: string;
+  slug: string;
+  excerpt: string;
+  body: string;
+  category: string;
+  city?: string;
+  author: string;
+  readTime?: string;
+}
+
+interface BridgePayload {
+  project?: Record<string, unknown>; // Opaque project metadata (stored as sourcePayload)
+  article: ArticleDraft;
+}
+
+// ── Resolve HMAC secret: multi-tenant or legacy ──
+
+async function resolveClient(
+  request: NextRequest
+): Promise<
+  | { secret: string; clientName: string; clientId: number | null; error?: never }
+  | { error: string; status: number; secret?: never }
+> {
+  const apiKey = request.headers.get('x-api-key');
+
+  if (apiKey) {
+    // Multi-tenant mode: look up client by API key
+    try {
+      const { default: prisma } = await import('@bigmuddy/database');
+      const client = await (prisma as any).bridgeClient.findUnique({
+        where: { apiKey },
+      });
+
+      if (!client) {
+        return { error: 'Unknown API key', status: 401 };
+      }
+      if (client.status !== 'active') {
+        return { error: 'Client suspended', status: 403 };
+      }
+
+      return {
+        secret: client.apiSecret,
+        clientName: client.name.toLowerCase().replace(/\s+/g, '-'),
+        clientId: client.id,
+      };
+    } catch (err) {
+      console.error('[bridge/ingest] Client lookup error:', err);
+      return { error: 'Client lookup failed', status: 500 };
+    }
+  }
+
+  // Legacy single-tenant mode: use env var
+  const envSecret = process.env.BMT_BRIDGE_SECRET;
+  if (!envSecret) {
+    return { error: 'Bridge not configured (no x-api-key header and no BMT_BRIDGE_SECRET)', status: 500 };
+  }
+  return { secret: envSecret, clientName: 's2px', clientId: null };
+}
+
+// ── POST /api/bridge/ingest ──
+
+export async function POST(request: NextRequest) {
+  // 1. Resolve client + secret
+  const client = await resolveClient(request);
+  if ('error' in client) {
+    return NextResponse.json({ error: client.error }, { status: client.status });
+  }
+
+  // 2. Parse the signed payload
+  let payload: SignedPayload<BridgePayload>;
+  try {
+    payload = await request.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+  }
+
+  // 3. Validate structure
+  if (!payload.version || !payload.timestamp || !payload.data || !payload.signature) {
+    return NextResponse.json(
+      { error: 'Missing required fields: version, timestamp, data, signature' },
+      { status: 400 }
+    );
+  }
+
+  // 4. Verify HMAC signature
+  try {
+    if (!verifyPayload(payload, client.secret)) {
+      console.warn(`[bridge/ingest] HMAC verification failed for client: ${client.clientName}`);
+      return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
+    }
+  } catch (err) {
+    console.error('[bridge/ingest] HMAC verification error:', err);
+    return NextResponse.json({ error: 'Signature verification failed' }, { status: 401 });
+  }
+
+  // 5. Check timestamp freshness (5 minute window)
+  if (!isTimestampValid(payload.timestamp)) {
+    return NextResponse.json(
+      { error: 'Payload timestamp expired or invalid' },
+      { status: 401 }
+    );
+  }
+
+  // 6. Extract article data
+  const { project, article } = payload.data;
+
+  if (!article?.slug || !article?.title) {
+    return NextResponse.json(
+      { error: 'Missing article.slug or article.title in payload' },
+      { status: 400 }
+    );
+  }
+
+  // Derive a source project ID from project metadata or slug
+  const sourceProjectId = (project as any)?.upid ?? article.slug;
+
+  // 7. Create draft article in database
+  try {
+    const { default: prisma } = await import('@bigmuddy/database');
+
+    // Check for duplicate — same source project already ingested by this client
+    const existing = await (prisma as any).article.findFirst({
+      where: {
+        sourceSystem: client.clientName,
+        sourceProjectId,
+      },
+    });
+
+    if (existing) {
+      console.log(`[bridge/ingest] Duplicate from ${client.clientName}/${sourceProjectId} — updating article ${existing.id}`);
+
+      const updated = await (prisma as any).article.update({
+        where: { id: existing.id },
+        data: {
+          title: article.title,
+          slug: article.slug,
+          category: article.category,
+          city: article.city || null,
+          author: article.author,
+          excerpt: article.excerpt || null,
+          body: article.body || null,
+          readTime: article.readTime || null,
+          sourcePayload: project ? JSON.stringify(project) : null,
+          sourceSyncedAt: new Date(),
+        },
+      });
+
+      // Update client lastSyncAt
+      if (client.clientId) {
+        await (prisma as any).bridgeClient.update({
+          where: { id: client.clientId },
+          data: { lastSyncAt: new Date() },
+        });
+      }
+
+      return NextResponse.json({
+        message: 'Article updated (duplicate source project)',
+        data: { id: updated.id, slug: updated.slug, status: updated.status },
+      });
+    }
+
+    // Handle slug collision — append timestamp suffix
+    let finalSlug = article.slug;
+    const slugExists = await (prisma as any).article.findUnique({
+      where: { slug: finalSlug },
+    });
+    if (slugExists) {
+      finalSlug = `${article.slug}-${Date.now()}`;
+    }
+
+    const created = await (prisma as any).article.create({
+      data: {
+        title: article.title,
+        slug: finalSlug,
+        category: article.category,
+        city: article.city || null,
+        author: article.author,
+        status: 'draft',
+        excerpt: article.excerpt || null,
+        body: article.body || null,
+        readTime: article.readTime || null,
+        sourceSystem: client.clientName,
+        sourceProjectId,
+        sourcePayload: project ? JSON.stringify(project) : null,
+        sourceSyncedAt: new Date(),
+      },
+    });
+
+    // Update client lastSyncAt
+    if (client.clientId) {
+      await (prisma as any).bridgeClient.update({
+        where: { id: client.clientId },
+        data: { lastSyncAt: new Date() },
+      });
+    }
+
+    console.log(`[bridge/ingest] Created draft article ${created.id} from ${client.clientName}/${sourceProjectId}`);
+
+    return NextResponse.json(
+      {
+        message: 'Draft article created',
+        data: { id: created.id, slug: created.slug, status: created.status },
+      },
+      { status: 201 }
+    );
+  } catch (dbError: unknown) {
+    const message = dbError instanceof Error ? dbError.message : 'Unknown database error';
+
+    if (
+      message.includes('datasource') ||
+      message.includes('DATABASE_URL') ||
+      message.includes('Cannot find module') ||
+      message.includes('P1001') ||
+      message.includes('P1003')
+    ) {
+      return NextResponse.json(
+        { error: 'Database not available', code: 'DATABASE_UNAVAILABLE' },
+        { status: 503 }
+      );
+    }
+
+    console.error('[bridge/ingest] Database error:', dbError);
+    return NextResponse.json(
+      { error: 'Failed to create article', message },
+      { status: 500 }
+    );
+  }
+}
