@@ -27,12 +27,12 @@ interface BridgePayload {
 
 // ── Resolve HMAC secret: multi-tenant or legacy ──
 
+type ClientResolved = { secret: string; clientName: string; clientId: number | null };
+type ClientError = { error: string; status: number };
+
 async function resolveClient(
   request: NextRequest
-): Promise<
-  | { secret: string; clientName: string; clientId: number | null; error?: never }
-  | { error: string; status: number; secret?: never }
-> {
+): Promise<ClientResolved | ClientError> {
   const apiKey = request.headers.get('x-api-key');
 
   if (apiKey) {
@@ -73,10 +73,11 @@ async function resolveClient(
 
 export async function POST(request: NextRequest) {
   // 1. Resolve client + secret
-  const client = await resolveClient(request);
-  if ('error' in client) {
-    return NextResponse.json({ error: client.error }, { status: client.status });
+  const resolved = await resolveClient(request);
+  if ('error' in resolved) {
+    return NextResponse.json({ error: resolved.error }, { status: resolved.status });
   }
+  const client = resolved;
 
   // 2. Parse the signed payload
   let payload: SignedPayload<BridgePayload>;
