@@ -41,11 +41,16 @@ function StatusBadge({ status }: { status: string }) {
   return <span className={cls}>{status}</span>;
 }
 
+function formatSourceName(slug: string): string {
+  if (slug === 's2px') return 'S2PX';
+  return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
+
 function SourceBadge({ sourceSystem, sourceProjectId }: { sourceSystem?: string | null; sourceProjectId?: string | null }) {
   if (!sourceSystem) return null;
   return (
     <span className="source-badge" title={`Source: ${sourceSystem} · ${sourceProjectId ?? ''}`}>
-      {sourceSystem === 's2px' ? 'S2PX' : sourceSystem}
+      {formatSourceName(sourceSystem)}
     </span>
   );
 }

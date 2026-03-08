@@ -35,6 +35,10 @@ export default function BridgeClientsPage() {
   const [rotateId, setRotateId] = useState<number | null>(null);
   const [rotateConfirm, setRotateConfirm] = useState('');
 
+  // UX feedback states
+  const [togglingId, setTogglingId] = useState<number | null>(null);
+  const [copiedId, setCopiedId] = useState<number | null>(null);
+
   const fetchClients = useCallback(async () => {
     try {
       const res = await fetch('/api/admin/bridge-clients');
@@ -82,6 +86,8 @@ export default function BridgeClientsPage() {
   // Toggle status
   async function handleToggleStatus(client: BridgeClient) {
     const newStatus = client.status === 'active' ? 'suspended' : 'active';
+    if (newStatus === 'suspended' && !confirm(`Suspend "${client.name}"? This client will not be able to sync until reactivated.`)) return;
+    setTogglingId(client.id);
     try {
       const res = await fetch(`/api/admin/bridge-clients/${client.id}`, {
         method: 'PATCH',
@@ -92,6 +98,8 @@ export default function BridgeClientsPage() {
       fetchClients();
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Status update failed');
+    } finally {
+      setTogglingId(null);
     }
   }
 
@@ -117,6 +125,7 @@ export default function BridgeClientsPage() {
       fetchClients();
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Rotation failed');
+      setRotateConfirm('');
     }
   }
 
@@ -138,6 +147,8 @@ export default function BridgeClientsPage() {
       },
     };
     navigator.clipboard.writeText(JSON.stringify(specs, null, 2));
+    setCopiedId(client.id);
+    setTimeout(() => setCopiedId(null), 2000);
   }
 
   function timeAgo(dateStr: string | null): string {
@@ -243,14 +254,15 @@ export default function BridgeClientsPage() {
                         onClick={() => copySpecs(c)}
                         title="Copy integration specs to clipboard"
                       >
-                        Copy Specs
+                        {copiedId === c.id ? 'Copied!' : 'Copy Specs'}
                       </button>
                       <button
                         className="admin-btn admin-btn--ghost"
                         style={{ fontSize: 11, padding: '2px 8px' }}
                         onClick={() => handleToggleStatus(c)}
+                        disabled={togglingId === c.id}
                       >
-                        {c.status === 'active' ? 'Suspend' : 'Activate'}
+                        {togglingId === c.id ? '...' : c.status === 'active' ? 'Suspend' : 'Activate'}
                       </button>
                       <button
                         className="admin-btn admin-btn--danger"
