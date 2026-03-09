@@ -1,10 +1,13 @@
 // ── Multi-Tenant Bridge Ingest Endpoint ──
 // Receives HMAC-signed payloads from any registered bridge client.
-// Resolves the client by x-api-key header → BridgeClient table.
+// Auth flow:
+//   1. x-api-key header  → lookup client in BridgeClient table
+//   2. x-api-secret header → bcrypt.compare against stored hash (authenticates)
+//   3. raw secret from header → verify HMAC-SHA256 signature (payload integrity)
 // Falls back to BMT_BRIDGE_SECRET env var for legacy/single-tenant mode.
-// No session auth — HMAC is the only security gate.
 
 import { NextRequest, NextResponse } from 'next/server';
+import bcrypt from 'bcryptjs';
 import { verifyPayload, isTimestampValid, type SignedPayload } from '@/lib/hmac';
 
 // ── Generic payload types ──
@@ -34,6 +37,7 @@ async function resolveClient(
   request: NextRequest
 ): Promise<ClientResolved | ClientError> {
   const apiKey = request.headers.get('x-api-key');
+  const apiSecret = request.headers.get('x-api-secret');
 
   if (apiKey) {
     // Multi-tenant mode: look up client by API key
@@ -50,6 +54,32 @@ async function resolveClient(
         return { error: 'Client suspended', status: 403 };
       }
 
+      // Determine the HMAC secret: prefer x-api-secret header (new protocol)
+      // Fall back to stored value for legacy clients with plaintext secrets
+      if (apiSecret) {
+        // New protocol: verify raw secret against bcrypt hash
+        const secretValid = await bcrypt.compare(apiSecret, client.apiSecret);
+        if (!secretValid) {
+          return { error: 'Invalid API secret', status: 401 };
+        }
+        return {
+          secret: apiSecret, // Use raw secret from header for HMAC verification
+          clientName: client.name.toLowerCase().replace(/\s+/g, '-'),
+          clientId: client.id,
+        };
+      }
+
+      // Legacy fallback: stored secret is plaintext (pre-migration clients)
+      // Detect by checking if stored value looks like a bcrypt hash
+      if (client.apiSecret.startsWith('$2')) {
+        // Stored value is hashed — can't use without x-api-secret header
+        return {
+          error: 'x-api-secret header required (client secret is hashed)',
+          status: 401,
+        };
+      }
+
+      // Plaintext legacy secret — use directly for HMAC
       return {
         secret: client.apiSecret,
         clientName: client.name.toLowerCase().replace(/\s+/g, '-'),

@@ -4,11 +4,16 @@
 
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
+import bcrypt from 'bcryptjs';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function PATCH(
   request: Request,
   { params }: { params: { id: string } }
 ) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     const id = parseInt(params.id);
     if (isNaN(id)) {
@@ -24,11 +29,11 @@ export async function PATCH(
     if (body.status !== undefined) data.status = body.status;
     if (body.allowedCategories !== undefined) data.allowedCategories = body.allowedCategories;
 
-    // Rotate secret if requested
-    let newSecret: string | null = null;
+    // Rotate secret if requested — hash before storing
+    let rawSecret: string | null = null;
     if (body.rotateSecret === true) {
-      newSecret = crypto.randomBytes(32).toString('hex');
-      data.apiSecret = newSecret;
+      rawSecret = crypto.randomBytes(32).toString('hex');
+      data.apiSecret = await bcrypt.hash(rawSecret, 10);
     }
 
     const updated = await (prisma as any).bridgeClient.update({
@@ -44,8 +49,8 @@ export async function PATCH(
     };
 
     // Only include full secret when rotated
-    if (newSecret) {
-      response.apiSecret = newSecret;
+    if (rawSecret) {
+      response.apiSecret = rawSecret;
       response.message = 'Secret rotated — save the new apiSecret now, it will not be shown again';
     }
 
@@ -63,6 +68,9 @@ export async function DELETE(
   _request: Request,
   { params }: { params: { id: string } }
 ) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     const id = parseInt(params.id);
     if (isNaN(id)) {

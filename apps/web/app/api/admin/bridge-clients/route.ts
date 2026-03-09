@@ -1,11 +1,16 @@
 // apps/web/app/api/admin/bridge-clients/route.ts
 // GET  — list all bridge clients with article counts
-// POST — create a new bridge client (generates apiKey + apiSecret)
+// POST — create a new bridge client (generates apiKey + apiSecret, stores bcrypt hash)
 
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
+import bcrypt from 'bcryptjs';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function GET() {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     const { default: prisma } = await import('@bigmuddy/database');
 
@@ -25,10 +30,10 @@ export async function GET() {
       countMap[row.sourceSystem] = row._count.id;
     }
 
-    // Mask secrets in list view
+    // Mask secrets in list view (show nothing — it's a hash now)
     const masked = clients.map((c: any) => ({
       ...c,
-      apiSecret: c.apiSecret.slice(0, 8) + '••••••••',
+      apiSecret: '••••••••••••',
       articleCount: countMap[c.name.toLowerCase().replace(/\s+/g, '-')] ?? 0,
     }));
 
@@ -40,6 +45,9 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     const body = await request.json();
     const { name, allowedCategories } = body;
@@ -66,13 +74,14 @@ export async function POST(request: Request) {
 
     // Generate credentials
     const apiKey = crypto.randomUUID();
-    const apiSecret = crypto.randomBytes(32).toString('hex'); // 64-char hex
+    const rawSecret = crypto.randomBytes(32).toString('hex'); // 64-char hex
+    const hashedSecret = await bcrypt.hash(rawSecret, 10);
 
     const client = await (prisma as any).bridgeClient.create({
       data: {
         name: name.trim(),
         apiKey,
-        apiSecret, // Stored as-is (in production, hash this)
+        apiSecret: hashedSecret,
         allowedCategories: allowedCategories ?? ['case-study'],
         status: 'active',
       },
@@ -86,7 +95,7 @@ export async function POST(request: Request) {
           id: client.id,
           name: client.name,
           apiKey: client.apiKey,
-          apiSecret, // Full secret — only on creation
+          apiSecret: rawSecret, // Full raw secret — only on creation
           status: client.status,
           allowedCategories: client.allowedCategories,
         },

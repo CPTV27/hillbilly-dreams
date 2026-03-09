@@ -137,8 +137,9 @@ export default function BridgeClientsPage() {
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': client.apiKey,
+        'x-api-secret': '<your-api-secret>',
       },
-      signatureFormat: 'HMAC-SHA256 → version:timestamp:JSON.stringify(data)',
+      signatureFormat: 'HMAC-SHA256(secret, "version:timestamp:JSON.stringify(data)")',
       payloadEnvelope: {
         version: '1.0',
         timestamp: 'ISO-8601',
