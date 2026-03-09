@@ -2,11 +2,15 @@
 // Multi-tenant hostname routing + admin auth protection
 // Reads the Host header and rewrites the URL to the correct route group.
 // Admin routes require Google OAuth authentication via NextAuth.
+//
+// NOTE: We use getToken() instead of auth() wrapper because NextResponse.rewrite()
+// inside auth() causes 401 errors on Firebase App Hosting (Cloud Run envoy proxy).
 
 import { NextResponse } from 'next/server';
-import { auth } from './auth';
+import type { NextRequest } from 'next/server';
+import { getToken } from 'next-auth/jwt';
 
-export default auth((request) => {
+export async function middleware(request: NextRequest) {
   // Firebase App Hosting may use different forwarded-host headers
   const hostname = request.headers.get('x-forwarded-host')
     || request.headers.get('x-fah-host')
@@ -17,8 +21,6 @@ export default auth((request) => {
   const pathname = request.nextUrl.pathname;
 
   // Helper: build a rewrite path, avoiding double/trailing slashes
-  // e.g. rewriteTo('touring', '/') → '/touring'
-  //      rewriteTo('touring', '/events') → '/touring/events'
   const rewriteTo = (prefix: string, path: string) => {
     const normalized = path === '/' ? '' : path;
     return NextResponse.rewrite(new URL(`/${prefix}${normalized}`, request.url));
@@ -46,10 +48,17 @@ export default auth((request) => {
     return NextResponse.next();
   }
 
-  // Auth API routes must always pass through (NextAuth callbacks, CSRF, etc.)
-  if (pathname.startsWith('/api/auth')) {
-    return NextResponse.next();
-  }
+  // Helper: check if the user is authenticated (reads JWT from cookies)
+  const getSession = async () => {
+    try {
+      return await getToken({
+        req: request,
+        secret: process.env.NEXTAUTH_SECRET,
+      });
+    } catch {
+      return null;
+    }
+  };
 
   // Helper: redirect to login if not authenticated
   const redirectToLogin = () => {
@@ -62,8 +71,9 @@ export default auth((request) => {
   // without rewriting. Admin and ops routes require authentication.
   const brandPrefixes = ['/touring', '/magazine', '/radio', '/admin', '/ops'];
   if (brandPrefixes.some(p => pathname === p || pathname.startsWith(p + '/'))) {
-    if ((pathname.startsWith('/admin') || pathname.startsWith('/ops')) && !request.auth) {
-      return redirectToLogin();
+    if (pathname.startsWith('/admin') || pathname.startsWith('/ops')) {
+      const token = await getSession();
+      if (!token) return redirectToLogin();
     }
     return NextResponse.next();
   }
@@ -105,30 +115,34 @@ export default auth((request) => {
   if (devBrand) {
     const validBrands = ['touring', 'magazine', 'radio', 'admin', 'ops'];
     if (validBrands.includes(devBrand)) {
-      if ((devBrand === 'admin' || devBrand === 'ops') && !request.auth) return redirectToLogin();
+      if (devBrand === 'admin' || devBrand === 'ops') {
+        const token = await getSession();
+        if (!token) return redirectToLogin();
+      }
       return rewriteTo(devBrand, pathname);
     }
   }
 
   // ── Admin domain: shortcut paths for admin UI ──
   // Only reached for admin domain, localhost, and unmatched hosts.
-  // Note: /playlists is NOT here — it's used by both radio and admin.
   const adminPaths = ['/dashboard', '/articles', '/calendar', '/contacts', '/events', '/media', '/newsletter'];
   if (adminPaths.some(p => pathname === p || pathname.startsWith(p + '/'))) {
-    if (!request.auth) return redirectToLogin();
+    const token = await getSession();
+    if (!token) return redirectToLogin();
     return rewriteTo('admin', pathname);
   }
 
   // If path is exactly /ops or starts with /ops/
   if (pathname === '/ops' || pathname.startsWith('/ops/')) {
-    if (!request.auth) return redirectToLogin();
-    // Native Next.js App Router routing handles /ops since its directory is /ops
+    const token = await getSession();
+    if (!token) return redirectToLogin();
     return NextResponse.next();
   }
 
   // Admin subdomain explicitly — requires auth
   if (hostname.includes('admin')) {
-    if (!request.auth) return redirectToLogin();
+    const token = await getSession();
+    if (!token) return redirectToLogin();
     return rewriteTo('admin', pathname);
   }
 
@@ -136,7 +150,7 @@ export default auth((request) => {
   // This handles bigmuddytouring.com, the Firebase hosted.app domain,
   // and any unmatched hostname that isn't admin.
   return rewriteTo('touring', pathname);
-});
+}
 
 export const config = {
   matcher: [
