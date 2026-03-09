@@ -7,7 +7,13 @@ import { NextResponse } from 'next/server';
 import { auth } from './auth';
 
 export default auth((request) => {
-  const hostname = request.headers.get('x-forwarded-host') || request.headers.get('host') || '';
+  // Firebase App Hosting may use different forwarded-host headers
+  const hostname = request.headers.get('x-forwarded-host')
+    || request.headers.get('x-fah-host')
+    || request.headers.get('x-original-host')
+    || request.headers.get('host')
+    || request.nextUrl.hostname
+    || '';
   const pathname = request.nextUrl.pathname;
 
   // www → apex redirect (301 permanent) — canonical URL for SEO
@@ -128,11 +134,19 @@ export default auth((request) => {
     return NextResponse.next();
   }
 
-  // Admin domain, localhost, and all fallback → (admin) route group
-  // Handles: admin.bigmuddytouring.com, admin.bigmuddy.local, localhost:3000
-  if (!request.auth) return redirectToLogin();
+  // Admin subdomain explicitly — requires auth
+  if (hostname.includes('admin')) {
+    if (!request.auth) return redirectToLogin();
+    return NextResponse.rewrite(
+      new URL('/admin' + pathname, request.url)
+    );
+  }
+
+  // Default fallback → touring (public site)
+  // This handles bigmuddytouring.com, the Firebase hosted.app domain,
+  // and any unmatched hostname that isn't admin.
   return NextResponse.rewrite(
-    new URL('/admin' + pathname, request.url)
+    new URL('/touring' + pathname, request.url)
   );
 });
 
