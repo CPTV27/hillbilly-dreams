@@ -1,6 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { prisma } from '@bigmuddy/database'
 import { auth } from '@/auth'
+import { requireRoleResponse } from '@/lib/requireRole';
 
 const anthropic = new Anthropic()
 
@@ -58,6 +59,8 @@ Your personality: warm, knowledgeable, encouraging, and Southern-friendly. You s
 export async function POST(req: Request) {
     const session = await auth()
     if (!session) return new Response('Unauthorized', { status: 401 })
+    const roleError = requireRoleResponse(session, 'admin', 'ops', 'artist');
+    if (roleError) return roleError;
 
     const { message, sessionId = 'default' } = await req.json()
     if (!message?.trim()) return new Response('Empty message', { status: 400 })

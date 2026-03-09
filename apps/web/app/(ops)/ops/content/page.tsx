@@ -1,5 +1,5 @@
 import { prisma } from '@bigmuddy/database';
-import ContentPackCard from '../components/ContentPackCard';
+import ContentLibraryClient from '../components/ContentLibraryClient';
 
 export const revalidate = 0;
 
@@ -22,11 +22,7 @@ export default async function ContentLibrary() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {packs.map((pack) => (
-                    <ContentPackCard key={pack.slug} pack={pack} />
-                ))}
-            </div>
+            <ContentLibraryClient initialPacks={packs} />
         </div>
     );
 }

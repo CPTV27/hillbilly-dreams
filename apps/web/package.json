@@ -22,8 +22,13 @@
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.0",
     "bcryptjs": "^3.0.3",
+    "clsx": "^2.1.1",
+    "dompurify": "^3.3.2",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.0",
+    "framer-motion": "^12.35.1",
+    "isomorphic-dompurify": "^3.0.0",
+    "lucide-react": "^0.577.0",
     "next": "14.2.0",
     "next-auth": "5.0.0-beta.30",
     "postcss": "^8.4.0",
@@ -31,10 +36,12 @@
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "sharp": "^0.33.0",
+    "tailwind-merge": "^3.5.0",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.5.0"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^3.0.0"
+    "@types/bcryptjs": "^3.0.0",
+    "@types/dompurify": "^3.2.0"
   }
 }

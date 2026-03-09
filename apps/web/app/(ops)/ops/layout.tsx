@@ -1,17 +1,19 @@
 import Link from 'next/link';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
+import { canAccessRoute, normalizeRole, ROLE_DEFAULT_ROUTE } from '@bigmuddy/config';
 
 export default async function OpsLayout({ children }: { children: React.ReactNode }) {
     const session = await auth();
 
-    // Note: Middleware protects this route as well, but we double-check session here
     if (!session?.user?.email) {
-        redirect('/api/auth/signin');
+        redirect('/admin/login');
     }
 
-    // We allow "ops", "artist", or basically any valid user on the allowed lists (via NextAuth)
-    // Let's assume the user object has the role, otherwise we rely on the `requireAdmin` logic or middleware.
+    const role = normalizeRole((session.user as any)?.role as string);
+    if (!canAccessRoute(role, '/ops')) {
+        redirect(ROLE_DEFAULT_ROUTE[role] || '/');
+    }
 
     return (
         <div className="min-h-screen bg-neutral-50 flex flex-col font-sans">

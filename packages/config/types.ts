@@ -216,7 +216,7 @@ export interface KpiTile {
 // USER / AUTH
 // ─────────────────────────────────────────────────────────────
 
-export type UserRole = 'admin' | 'editor' | 'viewer';
+export type UserRole = 'admin' | 'ops' | 'artist' | 'viewer';
 
 export interface User {
   id: string;

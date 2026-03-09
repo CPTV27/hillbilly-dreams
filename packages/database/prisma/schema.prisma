@@ -167,7 +167,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  role          String    @default("viewer")  // admin | editor | viewer
+  role          String    @default("viewer")  // admin | ops | artist | viewer
   accounts      Account[]
   sessions      Session[]
   createdAt     DateTime  @default(now())
