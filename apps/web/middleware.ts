@@ -32,15 +32,20 @@ export default auth((request) => {
     return NextResponse.next();
   }
 
+  // Auth API routes must always pass through (NextAuth callbacks, CSRF, etc.)
+  if (pathname.startsWith('/api/auth')) {
+    return NextResponse.next();
+  }
+
   // Helper: redirect to login if not authenticated
   const redirectToLogin = () => {
     const loginUrl = new URL('/admin/login', request.url);
     loginUrl.searchParams.set('callbackUrl', pathname);
-    return Response.redirect(loginUrl);
+    return NextResponse.redirect(loginUrl);
   };
 
   // If the path already starts with a known brand prefix, pass through
-  // without rewriting. Admin routes require authentication.
+  // without rewriting. Admin and ops routes require authentication.
   const brandPrefixes = ['/touring', '/magazine', '/radio', '/admin', '/ops'];
   if (brandPrefixes.some(p => pathname === p || pathname.startsWith(p + '/'))) {
     if ((pathname.startsWith('/admin') || pathname.startsWith('/ops')) && !request.auth) {
