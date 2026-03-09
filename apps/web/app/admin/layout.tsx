@@ -4,7 +4,7 @@
 
 import type { Metadata } from 'next';
 import { auth, signOut } from '@/auth';
-import { redirect } from 'next/navigation';
+
 
 export const metadata: Metadata = {
   title: {
@@ -62,7 +62,13 @@ const NAV_SECTIONS = [
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();
-  if (!session?.user) redirect('/admin/login');
+
+  // If not authenticated, render children without the admin shell (login page).
+  // Middleware already blocks unauthenticated access to all other /admin/* routes.
+  if (!session?.user) {
+    return <>{children}</>;
+  }
+
   return (
     <div className="admin-shell theme-admin">
       {/* Sidebar */}
