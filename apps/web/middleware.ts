@@ -41,9 +41,9 @@ export default auth((request) => {
 
   // If the path already starts with a known brand prefix, pass through
   // without rewriting. Admin routes require authentication.
-  const brandPrefixes = ['/touring', '/magazine', '/radio', '/admin'];
+  const brandPrefixes = ['/touring', '/magazine', '/radio', '/admin', '/ops'];
   if (brandPrefixes.some(p => pathname === p || pathname.startsWith(p + '/'))) {
-    if (pathname.startsWith('/admin') && !request.auth) {
+    if ((pathname.startsWith('/admin') || pathname.startsWith('/ops')) && !request.auth) {
       return redirectToLogin();
     }
     return NextResponse.next();
@@ -96,9 +96,9 @@ export default auth((request) => {
   // e.g. NEXT_PUBLIC_BRAND=magazine in .env.local
   const devBrand = process.env.NEXT_PUBLIC_BRAND;
   if (devBrand) {
-    const validBrands = ['touring', 'magazine', 'radio', 'admin'];
+    const validBrands = ['touring', 'magazine', 'radio', 'admin', 'ops'];
     if (validBrands.includes(devBrand)) {
-      if (devBrand === 'admin' && !request.auth) return redirectToLogin();
+      if ((devBrand === 'admin' || devBrand === 'ops') && !request.auth) return redirectToLogin();
       return NextResponse.rewrite(
         new URL(`/${devBrand}${pathname}`, request.url)
       );
@@ -114,6 +114,13 @@ export default auth((request) => {
     return NextResponse.rewrite(
       new URL('/admin' + pathname, request.url)
     );
+  }
+
+  // If path is exactly /ops or starts with /ops/
+  if (pathname === '/ops' || pathname.startsWith('/ops/')) {
+    if (!request.auth) return redirectToLogin();
+    // Native Next.js App Router routing handles /ops since its directory is /ops
+    return NextResponse.next();
   }
 
   // Admin domain, localhost, and all fallback → (admin) route group

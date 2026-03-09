@@ -1,0 +1,395 @@
+{
+  "google_description": {
+    "title": "Google Business Description",
+    "sections": [
+      {
+        "label": "Description (paste into Google Business Profile)",
+        "content": "Just a stone's throw from the Mississippi River, the Big Muddy Inn & Blues Room is a one-of-a-kind boutique hotel and live music venue in the heart of historic downtown Natchez. Our 6,000-square-foot property features six art-filled suites, each meticulously designed to honor a legendary blues figure. From the Delta-inspired Muddy Waters Suite to the British Invasion rooms, every corner of the inn celebrates the music and culture that shaped the South.\n\nGuests can enjoy live performances in our intimate, 50-seat Blues Room, relax with a cigar in the private courtyard, or explore the fine art collection curated throughout the inn."
+      }
+    ]
+  },
+  "google_qa": {
+    "title": "Google Q&A (10 Questions & Answers)",
+    "sections": [
+      {
+        "label": "Q1: Check-in/Check-out times",
+        "content": "Q: What are the check-in and check-out times?\nA: Check-in begins at 3:00 PM and check-out is at 11:00 AM. If you need an early check-in or late check-out, just reach out to us at info@thebigmuddyinn.com or call (769) 376-8045 and we'll do our best to accommodate you."
+      },
+      {
+        "label": "Q2: Parking",
+        "content": "Q: Is parking available at the hotel?\nA: Yes! We offer free on-site parking for all guests \u2014 no need to worry about finding a spot or paying for a garage. Simply pull in when you arrive and you're all set."
+      },
+      {
+        "label": "Q3: Pet policy",
+        "content": "Q: Are pets allowed at The Big Muddy Inn?\nA: We welcome well-behaved pets with a $50 pet fee per stay. Just let us know ahead of time when you book so we can prepare the right suite for you and your furry travel companion."
+      },
+      {
+        "label": "Q4: Blues Room / Live music",
+        "content": "Q: Does the Blues Room have live music? How does it work?\nA: The Blues Room is our intimate, speakeasy-style live music venue with seating for 50 guests. Live music schedules vary, so check our website at thebigmuddyinn.com or call (769) 376-8045 for the current lineup. Hotel guests get the added perk of being just steps away from the stage."
+      },
+      {
+        "label": "Q5: Suite types",
+        "content": "Q: What types of suites are available, and how do I choose the right one?\nA: We have six uniquely designed blues-themed suites: Muddy Waters, John Lee Hooker, Robert Johnson, B.B. King, and British Invasion I & II. Each pays homage to a legend of the blues. Browse descriptions at thebigmuddyinn.com or contact us and we'll help match you to the perfect room."
+      },
+      {
+        "label": "Q6: Breakfast / Dining",
+        "content": "Q: Is breakfast included? What are the food and dining options?\nA: Breakfast is not included, but our downtown Natchez location puts you within easy walking distance of wonderful local restaurants and cafes. We're happy to share our favorite recommendations when you check in."
+      },
+      {
+        "label": "Q7: Accessibility",
+        "content": "Q: Is The Big Muddy Inn accessible for guests with disabilities?\nA: We want every guest to feel comfortable and welcome. Please contact us directly at (769) 376-8045 or info@thebigmuddyinn.com before booking so we can discuss your specific accessibility needs."
+      },
+      {
+        "label": "Q8: Family friendliness",
+        "content": "Q: Is the hotel family-friendly? Can kids stay?\nA: Families are welcome! We do want guests to be aware that the Blues Room is a live music venue, so evenings can be lively \u2014 it's a great fit for older kids and music-loving families."
+      },
+      {
+        "label": "Q9: Nearby attractions",
+        "content": "Q: What attractions are nearby?\nA: Our location puts you right in the heart of historic downtown Natchez, within walking distance of the famous Natchez bluffs, antebellum pilgrimage homes, local restaurants, shops, and the Mississippi River waterfront."
+      },
+      {
+        "label": "Q10: Booking / Cancellation",
+        "content": "Q: How do I book a room, and what is the cancellation policy?\nA: Reservations can be made through thebigmuddyinn.com or by calling (769) 376-8045. For cancellation policy details, review the terms at booking or contact us at info@thebigmuddyinn.com."
+      }
+    ]
+  },
+  "google_review_responses": {
+    "title": "Google Review Responses \u2014 Ready to Post",
+    "sections": [
+      {
+        "label": "Zachary Shrift \u2605\u2605\u2605\u2605\u2605",
+        "content": "Thank you so much, Zachary! We're thrilled you loved your stay and felt right at home. It means the world to us when guests appreciate the history and the music \u2014 that's what The Big Muddy is all about. We can't wait to welcome you back. Your next visit is going to be even better!"
+      },
+      {
+        "label": "Tom Clark \u2605\u2605\u2605\u2605\u2605",
+        "content": "Tom, thank you for such a kind review! We put a lot of thought into the details \u2014 especially those linens \u2014 so it's wonderful to hear they made your stay special. Natchez has so many gems to discover, and we'd love to help you find even more on your next trip. Hope to see you again soon!"
+      },
+      {
+        "label": "Leslee Sandifer \u2605\u2605\u2605\u2605\u2605",
+        "content": "Leslee, what an honor to be part of your 39th anniversary celebration! The image of your husband playing guitar and harmonica with Amy on the patio \u2014 that's exactly the kind of magic we hoped this place would create. Happy anniversary to you both, and we'd love to help you celebrate your 40th!"
+      },
+      {
+        "label": "Anna Ellis \u2605\u2605\u2605\u2605\u2605",
+        "content": "Anna and John, thank you! \"Luxury with a casual friendly vibe\" is exactly what we're going for, so that made our day. So glad you caught one of Amy's blues shows \u2014 those nights in The Blues Room are something special. We always love welcoming our New Orleans neighbors. See y'all soon!"
+      },
+      {
+        "label": "Michael Gray \u2605\u2605\u2605\u2605\u2605",
+        "content": "Michael, we're blushing! \"The only home to stay when visiting Natchez\" \u2014 we might just put that on a plaque. Thank you for recognizing all the things that make The Big Muddy unique. The music, the location, the hospitality \u2014 it all comes from the heart. We hope to welcome you back soon."
+      },
+      {
+        "label": "Alex Pence \u2605\u2605\u2605\u2605\u2605",
+        "content": "Alex, 100 stars \u2014 we'll take it! It was such a joy to be part of your wedding celebration. Every suite has its own personality, and hosting a wedding group that gets to experience them all is one of our favorite things. Thank you for trusting us with such a special occasion. Congratulations again!"
+      },
+      {
+        "label": "Michele Anthony \u2605\u2605\u2605\u2605\u2605",
+        "content": "Michele, thank you! We're so glad you loved the musical theming and those dreamy beds. Natchez really is a foodie's paradise, and there's always something new to discover downtown. We'd love to have you back for another concert in the music hall \u2014 and maybe another stroll to your favorite restaurant!"
+      },
+      {
+        "label": "Zenarchy \u2605\u2605\u2605\u2605\u2605",
+        "content": "Thank you so much! The blues happy hours are one of our favorite traditions \u2014 there's nothing like live music with good company. We'd love to have you back for a full stay next time. The suites are just as special as The Blues Room!"
+      },
+      {
+        "label": "Andrea Brooks \u2605\u2605\u2605\u2605\u2605",
+        "content": "Andrea, \"love at first sight\" is the best compliment we could ask for! We worked hard to honor the history of this building while making it feel fresh and modern. So glad that came through for you. We miss you already \u2014 come back anytime!"
+      },
+      {
+        "label": "Rosemary Hallmark \u2605\u2605\u2605\u2605\u2605",
+        "content": "Rosemary, thank you for calling us a jewel! The music and the people really do make this place shine. We're grateful for guests like you who make every evening so much fun. Hope to see you back in Natchez soon!"
+      }
+    ]
+  },
+  "review_templates": {
+    "title": "Review Response Templates (All Platforms)",
+    "sections": [
+      {
+        "label": "5-Star \u2014 General",
+        "content": "[NAME], thank you so much for your wonderful review! We're thrilled you enjoyed [SPECIFIC THING THEY MENTIONED]. It's guests like you who make what we do so rewarding. We'd love to welcome you back to The Big Muddy anytime!"
+      },
+      {
+        "label": "5-Star \u2014 Music Focused",
+        "content": "[NAME], thank you! So glad you caught [a show in The Blues Room / the live music]. Those nights are what The Big Muddy is all about \u2014 great music, great company, and a little Mississippi magic. We've got more shows coming up and would love to have you back!"
+      },
+      {
+        "label": "5-Star \u2014 Special Occasion",
+        "content": "[NAME], what an honor to be part of your [anniversary / celebration / special trip]! Moments like those are exactly why we created this place. Thank you for sharing them with us, and we hope to see you back for the next milestone!"
+      },
+      {
+        "label": "4-Star \u2014 Minor Issue",
+        "content": "[NAME], thank you for staying with us and for your thoughtful feedback! We're so glad you enjoyed [POSITIVE THING]. We appreciate you mentioning [ISSUE] \u2014 we're always looking for ways to improve. We'd love another chance to give you a perfect 5-star stay!"
+      },
+      {
+        "label": "3-Star \u2014 Mixed",
+        "content": "[NAME], thank you for your honest review. We're glad [POSITIVE ASPECT] met your expectations, and we hear you on [CONCERN]. That's not the experience we want for our guests. Please reach out to us at info@thebigmuddyinn.com."
+      },
+      {
+        "label": "1-2 Star \u2014 Negative",
+        "content": "[NAME], we're sorry to hear your stay didn't meet expectations. We take feedback seriously and would love the opportunity to learn more. Please reach out at info@thebigmuddyinn.com or (769) 376-8045 so we can address this directly."
+      }
+    ]
+  },
+  "facebook_about": {
+    "title": "Facebook About Section",
+    "sections": [
+      {
+        "label": "Short Description (255 chars max)",
+        "content": "A boutique blues inn in the heart of historic Natchez, MS. Six uniquely designed suites, a 50-seat live music venue, and a cigar courtyard. Southern hospitality with a soundtrack. Book your stay at thebigmuddyinn.com."
+      },
+      {
+        "label": "Long Description / Our Story",
+        "content": "Welcome to The Big Muddy Inn & Blues Room \u2014 where the spirit of the Mississippi River meets the soul of Southern hospitality.\n\nNestled at 411 North Commerce Street in historic downtown Natchez, Mississippi, The Big Muddy Inn offers six thoughtfully appointed, blues-themed suites, each one a tribute to the musical heritage that flows through this storied city.\n\nOur Blues Room is a 50-seat live music venue where the best local and regional talent takes the stage. Step outside and you'll find our cigar courtyard \u2014 a quiet, beautifully curated outdoor space perfect for unwinding.\n\nWe're proud to be part of the Natchez community, and we can't wait to share it with you."
+      },
+      {
+        "label": "Categories",
+        "content": "Primary: Bed and Breakfast\nSecondary: Music Venue\nThird: Hotel"
+      },
+      {
+        "label": "Business Info Fields",
+        "content": "Phone: (769) 376-8045\nWebsite: https://thebigmuddyinn.com\nEmail: info@thebigmuddyinn.com\nAddress: 411 North Commerce Street, Natchez, MS 39120\nPrice Range: $$$"
+      }
+    ]
+  },
+  "facebook_messenger": {
+    "title": "Facebook Messenger Auto-Replies",
+    "sections": [
+      {
+        "label": "Instant Reply (auto-sends to first message)",
+        "content": "Hey there \u2014 thanks so much for reaching out to The Big Muddy Inn & Blues Room! We're so glad you stopped by.\n\nWe'll get back to you as soon as we can, usually within a few hours. In the meantime, here's everything you need:\n\n\ud83c\udf10 Browse rooms & book: thebigmuddyinn.com\n\ud83d\udcde Give us a call: (769) 376-8045\n\ud83d\udccd Find us: 411 N. Commerce St., Natchez, MS\n\nWhether you're planning a stay, looking for tickets to an upcoming show, or just want to know more \u2014 we'd love to help.\n\nTalk soon,\nThe Big Muddy Inn & Blues Room"
+      },
+      {
+        "label": "Away Message (after hours)",
+        "content": "Thanks for messaging The Big Muddy Inn & Blues Room! We're not at the desk right now, but we'll see your message first thing and get back to you next business day.\n\nIn the meantime, you're welcome to:\n\ud83d\udecf\ufe0f Browse our suites & reserve: thebigmuddyinn.com\n\ud83d\udcde Leave us a voicemail: (769) 376-8045\n\nWe love what we do here in Natchez, and we can't wait to share it with you. Sweet dreams \u2014 and we'll talk soon!\n\nWarmly,\nTracy & The Big Muddy Inn Team"
+      }
+    ]
+  },
+  "facebook_book_now": {
+    "title": "Facebook Book Now Button Setup",
+    "sections": [
+      {
+        "label": "Instructions",
+        "content": "1. Go to your Facebook Page (logged in as admin)\n2. Click \"+ Add a Button\" below your cover photo\n3. Under \"Book with You,\" select \"Book Now\"\n4. Enter URL: https://thebigmuddyinn.com (update to CloudBeds booking link once live)\n5. Click Save"
+      },
+      {
+        "label": "URL to use now",
+        "content": "https://thebigmuddyinn.com"
+      },
+      {
+        "label": "URL once CloudBeds is live",
+        "content": "Update to your CloudBeds direct booking URL"
+      }
+    ]
+  },
+  "instagram_bio": {
+    "title": "Instagram Bio Options",
+    "sections": [
+      {
+        "label": "Option A \u2014 Experience focused",
+        "content": "\ud83c\udfb6 Blues. Bourbon. Boutique.\n6 rooms + live music venue\nCigar courtyard \ud83c\udf3f\nNatchez, MS\n\ud83d\udd17 thebigmuddyinn.com"
+      },
+      {
+        "label": "Option B \u2014 Southern heritage",
+        "content": "\ud83c\udfdb\ufe0f Where the South sings\n6 blues-themed suites\nLive music & cigars\nNatchez, MS \ud83c\udfb8\nBook your stay \u2b07\ufe0f"
+      },
+      {
+        "label": "Option C \u2014 Punchy & memorable",
+        "content": "Live music. Boutique suites. Cigar courtyard. \ud83c\udfb7\nThe heart of Natchez, MS \ud83c\udf0a\nReserve your room \u2b07\ufe0f"
+      },
+      {
+        "label": "Profile settings",
+        "content": "Name: The Big Muddy Inn & Blues Room\nWebsite: thebigmuddyinn.com\nContact: Add email and phone buttons\nAction button: Add \"Book Now\" when booking engine is live"
+      }
+    ]
+  },
+  "instagram_highlights": {
+    "title": "Instagram Story Highlights Guide",
+    "sections": [
+      {
+        "label": "1. Suites \ud83d\udecf\ufe0f",
+        "content": "Room tours for each of the 6 suites. One story per room with name, key features, and \"Book at thebigmuddyinn.com\" link sticker."
+      },
+      {
+        "label": "2. Blues Room \ud83c\udfb8",
+        "content": "Video clips from live performances, upcoming show announcements, behind-the-stage shots, artist shoutouts."
+      },
+      {
+        "label": "3. Events \ud83d\udcc5",
+        "content": "Upcoming event announcements, holiday specials, \"sold out\" reposts for FOMO. Remove past events to keep current."
+      },
+      {
+        "label": "4. Natchez \ud83c\udf0a",
+        "content": "Local restaurant recommendations, river views, historic spots, seasonal events. Positions the inn as a local guide."
+      },
+      {
+        "label": "5. Cigars \ud83c\udf3f",
+        "content": "Courtyard ambiance photos/videos, cigar selections, pairing suggestions with bourbon."
+      },
+      {
+        "label": "6. Reviews \u2b50",
+        "content": "Screenshot or designed-card versions of great reviews. Use consistent branded template. Add \"Leave a review\" link sticker."
+      },
+      {
+        "label": "7. BTS \ud83c\udfac",
+        "content": "Day-in-the-life: prepping rooms, setting up the stage, new artwork, morning coffee prep. Personal stories from the innkeeper."
+      }
+    ]
+  },
+  "airbnb_bb_king": {
+    "title": "B.B. King Suite \u2014 Airbnb Listing",
+    "sections": [
+      {
+        "label": "Listing Title",
+        "content": "B.B. King Suite at The Big Muddy Inn \u2014 Boutique Blues Hotel"
+      },
+      {
+        "label": "Description",
+        "content": "Named for the King of the Blues himself, the B.B. King Suite is a celebration of the man who brought the blues to the world. Vibrant colors, regal furnishings, and an extensive art collection make this our most celebrated suite.\n\nYour stay includes access to our private cigar courtyard and the chance to enjoy live performances in The Blues Room \u2014 our intimate, 50-seat music venue right in the inn.\n\nWe're located in the heart of downtown Natchez, within walking distance of restaurants, the river bluffs, and historic pilgrimage homes."
+      },
+      {
+        "label": "Key settings",
+        "content": "Enable Instant Book: YES\nSmart Pricing: OFF (set your own rates)\nBase rate: $125/night\nCleaning fee: Set as appropriate\nCheck-in: 3:00 PM\nCheck-out: 11:00 AM"
+      }
+    ]
+  },
+  "booking_com_application": {
+    "title": "Booking.com Application Guide",
+    "sections": [
+      {
+        "label": "Step 1: Create account",
+        "content": "Go to join.booking.com\nEmail: tracy@thebigmuddyinn.com\nPhone: (769) 376-8045\nVerify email before proceeding."
+      },
+      {
+        "label": "Step 2: Property type",
+        "content": "Select: \"Hotel, B&Bs & More\" \u2192 \"Hotel\"\nNumber of rooms: 6"
+      },
+      {
+        "label": "Step 3: Property details",
+        "content": "Name: The Big Muddy Inn & Blues Room\nAddress: 411 North Commerce Street, Natchez, MS 39120\nPhone: (769) 376-8045\nEmail: info@thebigmuddyinn.com\nWebsite: https://www.thebigmuddyinn.com"
+      },
+      {
+        "label": "Step 4: Short description",
+        "content": "Boutique blues inn steps from the Mississippi \u2014 6 art-filled suites, live music"
+      },
+      {
+        "label": "Step 4: Long description",
+        "content": "Set just steps from the Mississippi River in the heart of historic downtown Natchez, The Big Muddy Inn & Blues Room is a one-of-a-kind boutique hotel and live music venue unlike anything else in the South.\n\nOur 6,000-square-foot property features six individually designed suites, each meticulously curated to honor a legendary figure in blues and rock history. At the heart of the inn is The Blues Room \u2014 our intimate, 50-seat live music venue. After the show, unwind with a cigar in our private courtyard.\n\nWhether you're in Natchez for history, culture, or simply a night worth remembering, The Big Muddy Inn delivers an experience that's as rich as the river it's named for."
+      },
+      {
+        "label": "Step 5: Room types (add each as separate)",
+        "content": "1. Muddy Waters Suite\n2. John Lee Hooker Suite\n3. Robert Johnson Suite\n4. British Invasion Suite I\n5. British Invasion Suite II\n6. B.B. King Suite\n\nUse suite descriptions from the Content Library for each."
+      },
+      {
+        "label": "Step 6: Policies",
+        "content": "Check-in: 3:00 PM\nCheck-out: 11:00 AM\nCancellation: Free cancellation 7 days before (Flexible)\nAlso offer: Non-refundable rate (-10%)\nPets: Allowed ($50 fee)\nSmoking: Not allowed\nParking: Free on-site"
+      },
+      {
+        "label": "After approval",
+        "content": "- Join the Genius Program for more visibility\n- Enable Mobile Rate\n- Apply for Preferred Partner status\n- Set base rate: $125/night"
+      }
+    ]
+  },
+  "expedia_application": {
+    "title": "Expedia Application Guide",
+    "sections": [
+      {
+        "label": "Step 1: Create account",
+        "content": "Go to apps.expediapartnercentral.com\nEmail: tracy@thebigmuddyinn.com\nSelect: Expedia Traveler Preference (ETP)"
+      },
+      {
+        "label": "Step 2: Property details",
+        "content": "Name: The Big Muddy Inn & Blues Room\nType: Hotel / Bed and Breakfast\nRooms: 6\nAddress: 411 North Commerce Street, Natchez, MS 39120"
+      },
+      {
+        "label": "Step 3: Description",
+        "content": "Use the same long description as Booking.com (see Content Library). Create 6 room types with suite names and descriptions."
+      },
+      {
+        "label": "Step 4: Photos",
+        "content": "Upload 20+ photos organized by: Exterior, each suite, Blues Room, courtyard, common areas."
+      },
+      {
+        "label": "After approval",
+        "content": "- Enable Member-Only Deals\n- Enable Package Path for more visibility\n- Download the Expedia Partner Central app\n- Set base rate: $125/night"
+      }
+    ]
+  },
+  "songkick_listing": {
+    "title": "Songkick Venue Listing Guide",
+    "sections": [
+      {
+        "label": "Venue details",
+        "content": "Venue Name: The Blues Room at The Big Muddy Inn\nAddress: 411 North Commerce Street, Natchez, MS 39120\nCapacity: 50\nType: Live Music Venue / Bar / Speakeasy\nWebsite: thebigmuddyinn.com"
+      },
+      {
+        "label": "Venue description",
+        "content": "The Blues Room is an intimate speakeasy-style live music venue tucked inside The Big Muddy Inn in historic Natchez, Mississippi. With just 50 seats, every performance delivers a front-row experience to Mississippi's living musical heritage \u2014 blues, roots, Americana, jazz, and Southern soul."
+      },
+      {
+        "label": "Setup steps",
+        "content": "1. Create account at songkick.com/login\n2. Check if Natchez, MS is in the database\n3. Search for \"The Blues Room\" or \"Big Muddy Inn\"\n4. If not found, add venue via \"Add an event\" flow\n5. Request venue representative access via support\n6. Add events regularly as shows are booked"
+      },
+      {
+        "label": "Genre tags",
+        "content": "Blues, Delta Blues, Americana, Jazz, Roots, Southern Soul, R&B, Rock"
+      }
+    ]
+  },
+  "bandsintown_listing": {
+    "title": "Bandsintown Venue Listing Guide",
+    "sections": [
+      {
+        "label": "Venue details",
+        "content": "Venue Name: The Blues Room at The Big Muddy Inn\nAddress: 411 North Commerce Street, Natchez, MS 39120\nCapacity: 50\nPhone: (769) 376-8045\nWebsite: thebigmuddyinn.com\nInstagram: @thebigmuddyinnandbluesroom"
+      },
+      {
+        "label": "Setup steps",
+        "content": "1. Go to venues.bandsintown.com/signup\n2. Create a free venue account\n3. Verify via phone, Facebook, or email\n4. Fill in all profile fields\n5. Add events as shows are booked"
+      },
+      {
+        "label": "Amy's artist profile",
+        "content": "Amy can also create an artist profile at artists.bandsintown.com/signup under the name \"Arrie B. Aslin\" \u2014 this links her as a performing artist to The Blues Room venue. When she adds events, fans get notified automatically."
+      },
+      {
+        "label": "Genre tags",
+        "content": "Blues, Delta Blues, Americana, Jazz, Roots, Southern Soul"
+      }
+    ]
+  },
+  "pre_arrival_email": {
+    "title": "Pre-Arrival Email Template",
+    "sections": [
+      {
+        "label": "Subject line",
+        "content": "Your Stay at The Big Muddy Inn \u2014 What You Need to Know"
+      },
+      {
+        "label": "Email body",
+        "content": "Hi [GUEST NAME],\n\nWe're looking forward to welcoming you to The Big Muddy Inn & Blues Room!\n\nHERE ARE YOUR DETAILS:\n- Check-in: [DATE] at 3:00 PM\n- Check-out: [DATE] at 11:00 AM\n- Suite: [ROOM NAME]\n\nGETTING HERE:\n411 North Commerce Street, Natchez, MS 39120\nFree parking is available on-site.\n\nWHAT TO EXPECT:\n- Your suite is one of six art-filled rooms honoring blues legends\n- The Blues Room hosts live music \u2014 check our Instagram (@thebigmuddyinnandbluesroom) for this week's schedule\n- The cigar courtyard is available for guests anytime\n\nNEED ANYTHING?\nReply to this email or call us at (769) 376-8045.\n\nWe'll see you soon!\n\nThe Big Muddy Inn & Blues Room\nNatchez, Mississippi\nthebigmuddyinn.com"
+      }
+    ]
+  },
+  "post_stay_email": {
+    "title": "Post-Stay Review Request Email",
+    "sections": [
+      {
+        "label": "Subject line",
+        "content": "Thanks for staying at The Big Muddy, [GUEST NAME]!"
+      },
+      {
+        "label": "Email body",
+        "content": "Hi [GUEST NAME],\n\nThank you for staying at The Big Muddy Inn! We hope you enjoyed your time in the [ROOM NAME] and everything Natchez has to offer.\n\nIf you had a great experience, we'd be grateful if you could take a moment to share it. Reviews from guests like you help other travelers discover us.\n\nLeave a review:\n\u2b50 Google: [INSERT GOOGLE REVIEW LINK]\n\u2b50 TripAdvisor: [INSERT TRIPADVISOR REVIEW LINK]\n\nIt only takes a minute and means the world to us.\n\nWe hope to welcome you back soon. The porch is always waiting.\n\nWarm regards,\n\nThe Big Muddy Inn & Blues Room\n411 North Commerce Street\nNatchez, MS 39120\n(769) 376-8045\nthebigmuddyinn.com"
+      }
+    ]
+  },
+  "email_signature": {
+    "title": "Email Signature",
+    "sections": [
+      {
+        "label": "Tracy's signature",
+        "content": "Tracy [Last Name]\n[Title]\nThe Big Muddy Inn & Blues Room\n411 North Commerce Street | Natchez, MS 39120\n(769) 376-8045 | info@thebigmuddyinn.com\nthebigmuddyinn.com | @thebigmuddyinnandbluesroom"
+      },
+      {
+        "label": "Amy's signature",
+        "content": "Amy [Last Name]\n[Title]\nThe Big Muddy Inn & Blues Room\n411 North Commerce Street | Natchez, MS 39120\n(769) 376-8045 | info@thebigmuddyinn.com\nthebigmuddyinn.com | @thebigmuddyinnandbluesroom"
+      }
+    ]
+  }
+}

@@ -207,3 +207,65 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+// ============================================================
+// INN OPERATIONS (Launch Tracker + Delta Dawn)
+// ============================================================
+
+model LaunchTask {
+  id           Int       @id @default(autoincrement())
+  taskNumber   Int       @unique
+  title        String
+  session      Int       // 1-7 (work session grouping)
+  sessionName  String    // e.g. "Quick Wins", "Google Business Profile"
+  platform     String?   // e.g. "Google", "Facebook", "Yelp"
+  timeEstimate String?   // e.g. "15 min", "1 hour"
+  status       String    @default("pending") // pending, done, skipped
+  assignedTo   String?   // "tracy", "amy", "chase"
+  guide        String?   @db.Text // HTML step-by-step instructions
+  link         String?   // external URL for the task
+  requiresLogin Boolean  @default(false)
+  contentPackSlug String? // FK reference to ContentPack.slug
+  triggers     Json?     // array of trigger objects
+  notes        Json?     @default("[]") // array of note objects
+  completedAt  DateTime?
+  completedBy  String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  contentPack  ContentPack? @relation(fields: [contentPackSlug], references: [slug])
+}
+
+model ContentPack {
+  slug     String @id // e.g. "google_description", "facebook_about"
+  title    String
+  sections Json   // array of { label: string, content: string }
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tasks    LaunchTask[]
+}
+
+model OpsActivity {
+  id        Int      @id @default(autoincrement())
+  type      String   // "login", "task_completed", "task_skipped", "chat", "content_viewed"
+  message   String
+  userId    String?  // email
+  userName  String?
+  taskId    Int?     // optional reference to task number
+  createdAt DateTime @default(now())
+}
+
+model ChatMessage {
+  id        Int      @id @default(autoincrement())
+  sessionId String
+  role      String   // "user" or "assistant"
+  content   String   @db.Text
+  userId    String   // email of the user
+  userName  String
+  createdAt DateTime @default(now())
+
+  @@index([sessionId])
+  @@index([userId])
+}
+

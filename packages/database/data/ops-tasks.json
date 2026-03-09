@@ -1,0 +1,867 @@
+[
+  {
+    "id": 1,
+    "session": 1,
+    "session_name": "Quick Wins",
+    "name": "Fix Yelp categories",
+    "platform": "Yelp",
+    "time": "15 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Log in at <strong>biz.yelp.com</strong>. Go to Business Information and add these categories: <strong>Hotels, Bed & Breakfast, Inn</strong>. Currently it only shows \"Music Venues\" which hides you from travelers.",
+    "link": "https://biz.yelp.com",
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [
+      {
+        "action": "unlock",
+        "task_id": 21,
+        "message": "Nice! Now update the Yelp description while you're logged in."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 2,
+    "session": 1,
+    "session_name": "Quick Wins",
+    "name": "Claim Apple Maps listing",
+    "platform": "Apple Maps",
+    "time": "15 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Go to <strong>mapsconnect.apple.com</strong>. Sign in with the Apple ID for the business. Search for \"Big Muddy Inn Natchez\" \u2014 if it exists, claim it. If not, add it. Set categories: <strong>Hotel, Bed & Breakfast</strong>.",
+    "link": "https://mapsconnect.apple.com",
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 3,
+    "session": 1,
+    "session_name": "Quick Wins",
+    "name": "Claim Bing Places listing",
+    "platform": "Bing",
+    "time": "15 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Go to <strong>bingplaces.com</strong>. You can import directly from Google Business Profile \u2014 click \"Import from Google\" to save time. This copies your name, address, hours, etc.",
+    "link": "https://www.bingplaces.com",
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 4,
+    "session": 1,
+    "session_name": "Quick Wins",
+    "name": "Claim Foursquare listing",
+    "platform": "Foursquare",
+    "time": "15 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Go to <strong>business.foursquare.com</strong>. Search for the listing and claim it. Categories: <strong>Hotel, Live Music Venue</strong>. Foursquare data feeds into Apple Maps and Uber, so this helps multiple platforms.",
+    "link": "https://business.foursquare.com",
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 5,
+    "session": 2,
+    "session_name": "Google Business Profile",
+    "name": "Update Google Business description",
+    "platform": "Google",
+    "time": "10 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Sign in at <strong>business.google.com</strong> with <strong>tracy@thebigmuddyinn.com</strong>. Go to Edit Profile > Description. Replace with the copy below (750 chars max).",
+    "link": "https://business.google.com",
+    "requires_login": true,
+    "content_pack": "google_description",
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 6,
+        "message": "Great! While you're in Google Business, verify the categories next."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 6,
+    "session": 2,
+    "session_name": "Google Business Profile",
+    "name": "Verify Google categories",
+    "platform": "Google",
+    "time": "5 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "In Google Business Profile, go to Edit Profile > Category. Set:<ul><li><strong>Primary:</strong> Inn <em>or</em> Bed & Breakfast</li><li><strong>Additional:</strong> Boutique Hotel, Live Music Venue, Fine Art Gallery</li></ul>Also verify attributes: check-in/out times, Free Wi-Fi, Free parking.",
+    "link": "https://business.google.com",
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 7,
+        "message": "Categories are set! Now add the Q&A \u2014 the content is pre-written for you."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 7,
+    "session": 2,
+    "session_name": "Google Business Profile",
+    "name": "Add Google Q&A (10 questions)",
+    "platform": "Google",
+    "time": "20 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "On your Google listing, scroll to the Q&A section. Post these questions yourself and answer them \u2014 this is totally allowed and Google recommends it. All 10 Q&A pairs are pre-written below.",
+    "link": "https://business.google.com",
+    "requires_login": true,
+    "content_pack": "google_qa",
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 8,
+        "message": "Q&A is done! Now respond to your Google reviews \u2014 responses are pre-written for each reviewer."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 8,
+    "session": 2,
+    "session_name": "Google Business Profile",
+    "name": "Respond to all Google reviews",
+    "platform": "Google",
+    "time": "15 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Go to your Google Business reviews. We've written personalized responses for all 10 visible reviews. Just copy-paste each one. Any new reviews that come in \u2014 use the templates at the bottom.",
+    "link": "https://business.google.com",
+    "requires_login": true,
+    "content_pack": "google_review_responses",
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 9,
+        "message": "Reviews are handled! Last Google task: upload photos if you have fewer than 20."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 9,
+    "session": 2,
+    "session_name": "Google Business Profile",
+    "name": "Upload Google photos (aim for 20+)",
+    "platform": "Google",
+    "time": "15 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Upload high-quality photos to your Google listing. Organize by:<ul><li>Exterior (2-3 photos)</li><li>Each suite (2-3 per room = 12-18 photos)</li><li>Blues Room venue (3-4 photos)</li><li>Courtyard and common areas (2-3 photos)</li><li>Food/drinks if applicable</li></ul>Google listings with 20+ photos get 35% more clicks.",
+    "link": "https://business.google.com",
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [
+      {
+        "action": "celebration",
+        "message": "Google Business Profile is fully optimized! That's your #1 listing done."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 10,
+    "session": 3,
+    "session_name": "Social Media",
+    "name": "Check Facebook page visibility",
+    "platform": "Facebook",
+    "time": "10 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Go to <strong>facebook.com/thebigmuddyinn</strong>. Click Settings > General. Make sure:<ul><li>Page Visibility: <strong>Published</strong></li><li>Country Restrictions: <strong>None</strong></li><li>Age Restrictions: <strong>None</strong></li></ul>If any restrictions are on, remove them \u2014 they may be hiding your page from search.",
+    "link": "https://facebook.com/thebigmuddyinn",
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 11,
+        "message": "Page is visible! Now update the About section \u2014 content is pre-written."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 11,
+    "session": 3,
+    "session_name": "Social Media",
+    "name": "Update Facebook About section",
+    "platform": "Facebook",
+    "time": "10 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Go to your Facebook page > About > Edit. Fill in each field using the pre-written content below.",
+    "link": "https://facebook.com/thebigmuddyinn",
+    "requires_login": true,
+    "content_pack": "facebook_about",
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 12,
+        "message": "About section is done! Add the Book Now button next \u2014 takes 2 minutes."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 12,
+    "session": 3,
+    "session_name": "Social Media",
+    "name": "Add Facebook \"Book Now\" button",
+    "platform": "Facebook",
+    "time": "5 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "On your Facebook page, click the button below your cover photo (it may say \"Contact Us\" or \"Send Message\"). Change it to <strong>Book Now</strong> and link to your CloudBeds booking engine URL. If CloudBeds isn't live yet, link to thebigmuddyinn.com.",
+    "link": "https://facebook.com/thebigmuddyinn",
+    "requires_login": true,
+    "content_pack": "facebook_book_now",
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 13,
+        "message": "Book Now button is live! Set up the auto-reply for Messenger next."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 13,
+    "session": 3,
+    "session_name": "Social Media",
+    "name": "Set up Messenger auto-reply",
+    "platform": "Facebook",
+    "time": "10 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Go to Settings > Messaging > Set Up Automated Responses. Turn on <strong>Instant Reply</strong> and set the message to the pre-written copy below. Also set the <strong>Away Message</strong>.",
+    "link": "https://facebook.com/thebigmuddyinn",
+    "requires_login": true,
+    "content_pack": "facebook_messenger",
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 14,
+        "message": "Auto-reply is set! Link Facebook to Instagram next."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 14,
+    "session": 3,
+    "session_name": "Social Media",
+    "name": "Link Facebook to Instagram",
+    "platform": "Facebook",
+    "time": "5 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Go to Facebook Business Settings > Instagram. Connect the Instagram account <strong>@thebigmuddyinnandbluesroom</strong>. This lets you cross-post and manage both from one place.",
+    "link": "https://business.facebook.com",
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 15,
+        "message": "Connected! Now switch over to Instagram on your phone."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 15,
+    "session": 3,
+    "session_name": "Social Media",
+    "name": "Verify Instagram business account",
+    "platform": "Instagram",
+    "time": "5 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Open Instagram app > Settings > Account > Switch to Professional Account (if not already). Choose <strong>Business</strong> (not Creator). Set category to <strong>Hotel</strong>. This unlocks insights, contact buttons, and the ability to run ads.",
+    "link": null,
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 16,
+        "message": "Business account is on! Update the bio next \u2014 3 options to choose from."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 16,
+    "session": 3,
+    "session_name": "Social Media",
+    "name": "Update Instagram bio & contact",
+    "platform": "Instagram",
+    "time": "10 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Update your Instagram profile with the bio, contact buttons, and action button. Three bio options are pre-written below \u2014 pick the one that feels right.",
+    "link": null,
+    "requires_login": true,
+    "content_pack": "instagram_bio",
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 17,
+        "message": "Bio looks great! Now create Story Highlights \u2014 guide is below."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 17,
+    "session": 3,
+    "session_name": "Social Media",
+    "name": "Create Instagram Story Highlights",
+    "platform": "Instagram",
+    "time": "20 min",
+    "status": "pending",
+    "assigned_to": "amy",
+    "guide": "Create Story Highlights on the Instagram profile. You can start with 2-3 stories per highlight and build over time. Suggested highlights and content ideas below.",
+    "link": null,
+    "requires_login": true,
+    "content_pack": "instagram_highlights",
+    "triggers": [
+      {
+        "action": "celebration",
+        "message": "Social media is dialed in! Facebook and Instagram are both optimized."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 18,
+    "session": 4,
+    "session_name": "Review Platforms",
+    "name": "Verify TripAdvisor listing is managed",
+    "platform": "TripAdvisor",
+    "time": "10 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Go to <strong>tripadvisor.com/Owners</strong>. Search for \"Big Muddy Inn Natchez\" and claim/verify management access. Sign in with <strong>tracy@thebigmuddyinn.com</strong>.",
+    "link": "https://www.tripadvisor.com/Owners",
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 19,
+        "message": "Listing is claimed! Update the description and room types next."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 19,
+    "session": 4,
+    "session_name": "Review Platforms",
+    "name": "Update TripAdvisor details",
+    "platform": "TripAdvisor",
+    "time": "15 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "In the TripAdvisor Management Center, update:<ul><li><strong>Description:</strong> Use the Long copy from Content Library</li><li><strong>Room types:</strong> Add all 6 suites with descriptions</li><li><strong>Amenities:</strong> Free Wi-Fi, Free parking, Live music venue, Art gallery, Courtyard</li><li><strong>Photos:</strong> Upload 20+ organized by category</li></ul>",
+    "link": "https://www.tripadvisor.com/Hotel_Review-g60910-d33023418-Reviews-The_Big_Muddy_Inn_And_Blues_Room-Natchez_Mississippi.html",
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 20,
+        "message": "Details updated! Now respond to any TripAdvisor reviews."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 20,
+    "session": 4,
+    "session_name": "Review Platforms",
+    "name": "Respond to all TripAdvisor reviews",
+    "platform": "TripAdvisor",
+    "time": "10 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "TripAdvisor management responses heavily influence ranking. Respond to every review. Use the review response templates below. Sign off as: Tracy \u2014 Owner, The Big Muddy Inn & Blues Room",
+    "link": "https://www.tripadvisor.com/Owners",
+    "requires_login": true,
+    "content_pack": "review_templates",
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 21,
+        "message": "TripAdvisor done! Move to Yelp next."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 21,
+    "session": 4,
+    "session_name": "Review Platforms",
+    "name": "Update Yelp description & history",
+    "platform": "Yelp",
+    "time": "10 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Log into <strong>biz.yelp.com</strong>. Go to Business Information and update:<ul><li><strong>Specialties:</strong> Boutique hotel with 6 blues-themed suites and 50-seat live music venue</li><li><strong>History:</strong> Tell the story of the property and the blues connection</li><li><strong>From the business:</strong> Use the Standard description copy from the Content Library</li></ul>",
+    "link": "https://biz.yelp.com",
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 22,
+        "message": "Description updated! Upload photos while you're logged in."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 22,
+    "session": 4,
+    "session_name": "Review Platforms",
+    "name": "Upload Yelp photos",
+    "platform": "Yelp",
+    "time": "10 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Upload photos to Yelp organized by:<ul><li>Exterior and entrance</li><li>Individual suites</li><li>The Blues Room</li><li>Courtyard and common areas</li></ul>Business-uploaded photos appear first and set the tone for your listing.",
+    "link": "https://biz.yelp.com",
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 23,
+        "message": "Photos uploaded! Respond to any Yelp reviews to finish up."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 23,
+    "session": 4,
+    "session_name": "Review Platforms",
+    "name": "Respond to all Yelp reviews",
+    "platform": "Yelp",
+    "time": "5 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Respond to every Yelp review. Same approach as Google \u2014 be personal, specific, and professional. Use the review response templates. Note: Yelp does NOT allow businesses to ask for reviews.",
+    "link": "https://biz.yelp.com",
+    "requires_login": true,
+    "content_pack": "review_templates",
+    "triggers": [
+      {
+        "action": "celebration",
+        "message": "All review platforms are handled! Your online reputation is in great shape."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 24,
+    "session": 5,
+    "session_name": "OTA Listings",
+    "name": "Create B.B. King Suite on Airbnb",
+    "platform": "Airbnb",
+    "time": "30 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "You have 5 listings on Airbnb but are missing the <strong>B.B. King Suite</strong>. Create a new listing with the pre-written content below.",
+    "link": "https://www.airbnb.com/hosting",
+    "requires_login": true,
+    "content_pack": "airbnb_bb_king",
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 25,
+        "message": "B.B. King Suite is listed! Update the other 5 listings next."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 25,
+    "session": 5,
+    "session_name": "OTA Listings",
+    "name": "Update 5 existing Airbnb listings",
+    "platform": "Airbnb",
+    "time": "15 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Go through each of the 5 existing Airbnb listings and update:<ul><li>Title format: \"[Suite Name] at The Big Muddy Inn \u2014 Boutique Blues Hotel\"</li><li>Description: Use the suite descriptions from Content Library</li><li>Verify 5-10 high-quality photos per listing</li><li>Check that all amenities are listed</li></ul>",
+    "link": "https://www.airbnb.com/hosting",
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 26,
+        "message": "Listings updated! Quick check \u2014 verify Instant Book is on."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 26,
+    "session": 5,
+    "session_name": "OTA Listings",
+    "name": "Verify Instant Book on all Airbnb",
+    "platform": "Airbnb",
+    "time": "5 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "For each listing, go to Listing Settings > Booking Settings. Make sure <strong>Instant Book is ON</strong> and <strong>Smart Pricing is OFF</strong>. Smart Pricing can undercut your rates.",
+    "link": "https://www.airbnb.com/hosting",
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 27,
+        "message": "Airbnb is all set! Check on the VRBO listing next."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 27,
+    "session": 5,
+    "session_name": "OTA Listings",
+    "name": "Verify VRBO listing status",
+    "platform": "VRBO",
+    "time": "15 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "The VRBO listing exists in innRoads but isn't showing up in search. Check:<ul><li>Log into innRoads and check VRBO distribution settings</li><li>Make sure the channel connection is active</li><li>Find your VRBO Property ID and search for it directly on vrbo.com</li><li>If the listing is hidden, make sure content, photos, and pricing are all complete</li></ul>",
+    "link": null,
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 28,
+    "session": 5,
+    "session_name": "OTA Listings",
+    "name": "Submit Booking.com application",
+    "platform": "Booking.com",
+    "time": "60 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "This is the <strong>#1 priority new channel</strong>. The complete application guide with all pre-written content is below \u2014 work through it step by step.",
+    "link": "https://join.booking.com",
+    "requires_login": true,
+    "content_pack": "booking_com_application",
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 29,
+        "message": "Booking.com application submitted! While it processes, do Expedia next."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 29,
+    "session": 5,
+    "session_name": "OTA Listings",
+    "name": "Submit Expedia application",
+    "platform": "Expedia",
+    "time": "45 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "The complete Expedia application guide is below \u2014 all content is pre-written.",
+    "link": "https://apps.expediapartnercentral.com",
+    "requires_login": true,
+    "content_pack": "expedia_application",
+    "triggers": [
+      {
+        "action": "celebration",
+        "message": "Both OTA applications are in! You'll hear back within 1-2 weeks."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 30,
+    "session": 6,
+    "session_name": "Music & Review System",
+    "name": "List Blues Room on Songkick",
+    "platform": "Songkick",
+    "time": "15 min",
+    "status": "pending",
+    "assigned_to": "amy",
+    "guide": "The step-by-step guide for listing The Blues Room on Songkick is below, including how to get venue representative access.",
+    "link": "https://www.songkick.com",
+    "requires_login": true,
+    "content_pack": "songkick_listing",
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 31,
+        "message": "Songkick is set up! Do Bandsintown next \u2014 same idea, different platform."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 31,
+    "session": 6,
+    "session_name": "Music & Review System",
+    "name": "List Blues Room on Bandsintown",
+    "platform": "Bandsintown",
+    "time": "15 min",
+    "status": "pending",
+    "assigned_to": "amy",
+    "guide": "The step-by-step guide for listing The Blues Room on Bandsintown is below. Also includes how Amy can create an artist profile.",
+    "link": "https://venues.bandsintown.com/signup",
+    "requires_login": true,
+    "content_pack": "bandsintown_listing",
+    "triggers": [],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 32,
+    "session": 6,
+    "session_name": "Music & Review System",
+    "name": "Generate Google review QR code",
+    "platform": "Google",
+    "time": "10 min",
+    "status": "done",
+    "assigned_to": null,
+    "guide": "This has already been created for you! The QR code links directly to the Google review form.",
+    "link": null,
+    "requires_login": false,
+    "content_pack": null,
+    "triggers": [],
+    "notes": [
+      {
+        "text": "QR code created by Delta Dawn system \u2014 file at google_review_qr.png",
+        "by": "system",
+        "at": "2026-03-01"
+      }
+    ],
+    "completed_at": "2026-03-01",
+    "completed_by": "system"
+  },
+  {
+    "id": 33,
+    "session": 6,
+    "session_name": "Music & Review System",
+    "name": "Print in-room review cards",
+    "platform": "Print",
+    "time": "30 min",
+    "status": "done",
+    "assigned_to": "tracy",
+    "guide": "A printable 5x7 review card has been designed for you. Print at least 12 cards (2 per suite) on nice card stock. Place them on the nightstand or desk in each suite.",
+    "link": null,
+    "requires_login": false,
+    "content_pack": null,
+    "triggers": [],
+    "notes": [
+      {
+        "text": "Review card PDF designed by Delta Dawn system \u2014 review_card.pdf",
+        "by": "system",
+        "at": "2026-03-01"
+      }
+    ],
+    "completed_at": "2026-03-01",
+    "completed_by": "system"
+  },
+  {
+    "id": 34,
+    "session": 6,
+    "session_name": "Music & Review System",
+    "name": "Set up post-stay review email",
+    "platform": "Email",
+    "time": "15 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Set up an automated email that goes out 24-48 hours after checkout. Use the post-stay email template from the Content Library. You can set this up in CloudBeds or your email marketing tool.",
+    "link": null,
+    "requires_login": true,
+    "content_pack": "post_stay_email",
+    "triggers": [],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 35,
+    "session": 6,
+    "session_name": "Music & Review System",
+    "name": "Troubleshoot VRBO if inactive",
+    "platform": "VRBO",
+    "time": "15 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "If the VRBO listing still isn't showing after checking innRoads:<ul><li>Contact VRBO Partner Support directly</li><li>Ask them to look up your property by address: 411 N Commerce St, Natchez, MS 39120</li><li>They can tell you if content is incomplete or if there's a technical block</li><li>Make sure all photos, descriptions, and pricing are filled in</li></ul>",
+    "link": null,
+    "requires_login": true,
+    "content_pack": null,
+    "triggers": [],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 36,
+    "session": 7,
+    "session_name": "Email Setup",
+    "name": "Set up pre-arrival email template",
+    "platform": "Email",
+    "time": "15 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Set up an email that sends automatically upon booking AND 3 days before arrival. The complete template is below \u2014 just copy into CloudBeds or draft it in Gmail.",
+    "link": null,
+    "requires_login": true,
+    "content_pack": "pre_arrival_email",
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 37,
+        "message": "Pre-arrival email is set! Set up the post-stay template next."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 37,
+    "session": 7,
+    "session_name": "Email Setup",
+    "name": "Set up post-stay email template",
+    "platform": "Email",
+    "time": "10 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Set up a follow-up email 24-48 hours after checkout asking for a review. This is your most powerful review generation tool. Template below.",
+    "link": null,
+    "requires_login": true,
+    "content_pack": "post_stay_email",
+    "triggers": [
+      {
+        "action": "suggest_next",
+        "task_id": 38,
+        "message": "Post-stay email done! Last one: set up the email signature."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  },
+  {
+    "id": 38,
+    "session": 7,
+    "session_name": "Email Setup",
+    "name": "Create email signature for staff",
+    "platform": "Email",
+    "time": "5 min",
+    "status": "pending",
+    "assigned_to": "tracy",
+    "guide": "Set up this signature in Gmail for tracy@thebigmuddyinn.com and any other staff email accounts. Go to Gmail > Settings > Signature and paste the content below.",
+    "link": null,
+    "requires_login": true,
+    "content_pack": "email_signature",
+    "triggers": [
+      {
+        "action": "celebration",
+        "message": "That's everything! All 38 tasks are complete. The Big Muddy is fully set up across every platform."
+      }
+    ],
+    "notes": [],
+    "completed_at": null,
+    "completed_by": null
+  }
+]

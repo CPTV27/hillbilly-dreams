@@ -23,6 +23,12 @@ const NAV_SECTIONS = [
     ],
   },
   {
+    label: 'Operations',
+    items: [
+      { label: 'Ops Dashboard', href: '/ops', icon: '⚡' },
+    ],
+  },
+  {
     label: 'Content',
     items: [
       { label: 'Articles', href: '/articles', icon: '◻' },

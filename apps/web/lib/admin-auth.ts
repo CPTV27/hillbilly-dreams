@@ -9,6 +9,8 @@ const ALLOWED_EMAILS = [
   'me@chasepierson.tv',
   'chase@scan2plan.io',
   'chase@scantoplan.io',
+  'tracy@thebigmuddyinn.com',
+  'amy@thebigmuddyinn.com',
 ];
 
 /**
