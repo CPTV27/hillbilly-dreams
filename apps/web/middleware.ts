@@ -16,6 +16,14 @@ export default auth((request) => {
     || '';
   const pathname = request.nextUrl.pathname;
 
+  // Helper: build a rewrite path, avoiding double/trailing slashes
+  // e.g. rewriteTo('touring', '/') → '/touring'
+  //      rewriteTo('touring', '/events') → '/touring/events'
+  const rewriteTo = (prefix: string, path: string) => {
+    const normalized = path === '/' ? '' : path;
+    return NextResponse.rewrite(new URL(`/${prefix}${normalized}`, request.url));
+  };
+
   // www → apex redirect (301 permanent) — canonical URL for SEO
   if (hostname.startsWith('www.')) {
     const url = new URL(request.url);
@@ -67,40 +75,28 @@ export default auth((request) => {
 
   // Production domains
   if (hostname.includes('bigmuddytouring') && !hostname.includes('admin')) {
-    return NextResponse.rewrite(
-      new URL('/touring' + pathname, request.url)
-    );
+    return rewriteTo('touring', pathname);
   }
 
   if (hostname.includes('bigmuddymagazine')) {
-    return NextResponse.rewrite(
-      new URL('/magazine' + pathname, request.url)
-    );
+    return rewriteTo('magazine', pathname);
   }
 
   if (hostname.includes('bigmuddyradio')) {
-    return NextResponse.rewrite(
-      new URL('/radio' + pathname, request.url)
-    );
+    return rewriteTo('radio', pathname);
   }
 
   // Local development .local domains
   if (hostname.includes('bigmuddytouring.local') && !hostname.includes('admin')) {
-    return NextResponse.rewrite(
-      new URL('/touring' + pathname, request.url)
-    );
+    return rewriteTo('touring', pathname);
   }
 
   if (hostname.includes('bigmuddymagazine.local')) {
-    return NextResponse.rewrite(
-      new URL('/magazine' + pathname, request.url)
-    );
+    return rewriteTo('magazine', pathname);
   }
 
   if (hostname.includes('bigmuddyradio.local')) {
-    return NextResponse.rewrite(
-      new URL('/radio' + pathname, request.url)
-    );
+    return rewriteTo('radio', pathname);
   }
 
   // Dev override: NEXT_PUBLIC_BRAND env var bypasses hostname detection.
@@ -110,9 +106,7 @@ export default auth((request) => {
     const validBrands = ['touring', 'magazine', 'radio', 'admin', 'ops'];
     if (validBrands.includes(devBrand)) {
       if ((devBrand === 'admin' || devBrand === 'ops') && !request.auth) return redirectToLogin();
-      return NextResponse.rewrite(
-        new URL(`/${devBrand}${pathname}`, request.url)
-      );
+      return rewriteTo(devBrand, pathname);
     }
   }
 
@@ -122,9 +116,7 @@ export default auth((request) => {
   const adminPaths = ['/dashboard', '/articles', '/calendar', '/contacts', '/events', '/media', '/newsletter'];
   if (adminPaths.some(p => pathname === p || pathname.startsWith(p + '/'))) {
     if (!request.auth) return redirectToLogin();
-    return NextResponse.rewrite(
-      new URL('/admin' + pathname, request.url)
-    );
+    return rewriteTo('admin', pathname);
   }
 
   // If path is exactly /ops or starts with /ops/
@@ -137,17 +129,13 @@ export default auth((request) => {
   // Admin subdomain explicitly — requires auth
   if (hostname.includes('admin')) {
     if (!request.auth) return redirectToLogin();
-    return NextResponse.rewrite(
-      new URL('/admin' + pathname, request.url)
-    );
+    return rewriteTo('admin', pathname);
   }
 
   // Default fallback → touring (public site)
   // This handles bigmuddytouring.com, the Firebase hosted.app domain,
   // and any unmatched hostname that isn't admin.
-  return NextResponse.rewrite(
-    new URL('/touring' + pathname, request.url)
-  );
+  return rewriteTo('touring', pathname);
 });
 
 export const config = {
