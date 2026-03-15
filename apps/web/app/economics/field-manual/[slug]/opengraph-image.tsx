@@ -20,6 +20,11 @@ const POST_ORDER: Record<string, number> = {
   '08-the-first-90-days': 8,
   '09-what-kills-coordination-systems': 9,
   '10-the-off-switch': 10,
+  '11-pod-types': 11,
+  '12-shared-services-without-money': 12,
+  '13-the-scaling-math': 13,
+  '14-the-legal-reality': 14,
+  '15-technology-sovereignty': 15,
 };
 
 // Human-friendly titles (avoids importing fs on edge runtime)
@@ -34,6 +39,11 @@ const POST_TITLES: Record<string, string> = {
   '08-the-first-90-days': 'The First 90 Days',
   '09-what-kills-coordination-systems': 'What Kills Coordination Systems',
   '10-the-off-switch': 'The Off Switch',
+  '11-pod-types': 'What Kind of Pod Are You Building?',
+  '12-shared-services-without-money': 'Shared Services You Can Launch Without Money',
+  '13-the-scaling-math': 'The Scaling Math',
+  '14-the-legal-reality': 'The Legal Reality',
+  '15-technology-sovereignty': 'Technology Sovereignty',
 };
 
 export default async function Image({ params }: { params: { slug: string } }) {
