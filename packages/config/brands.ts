@@ -1,7 +1,7 @@
 // packages/config/brands.ts
 // Brand configuration for the Big Muddy multi-tenant platform
 
-export type BrandId = 'touring' | 'magazine' | 'radio' | 'admin';
+export type BrandId = 'touring' | 'magazine' | 'radio' | 'economics' | 'admin';
 
 export interface BrandConfig {
   id: BrandId;
@@ -78,6 +78,26 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
       ],
     },
   },
+  economics: {
+    id: 'economics',
+    name: 'Outsider Economics',
+    shortName: 'Economics',
+    tagline: 'A Field Manual for Independent Economic Systems',
+    domain: 'outsidereconomics.com',
+    localDomain: 'outsidereconomics.local',
+    description:
+      'Resource center and community hub for building sovereign local economies — coordination math, extraction analysis, and field-tested frameworks.',
+    themeClass: 'theme-economics',
+    primaryColor: '#b54c4c',
+    nav: {
+      links: [
+        { label: 'Field Manual', href: '/field-manual' },
+        { label: 'The Math', href: '/the-math' },
+        { label: 'Community', href: '/community' },
+        { label: 'About', href: '/about' },
+      ],
+    },
+  },
   admin: {
     id: 'admin',
     name: 'Big Muddy HQ',
@@ -110,6 +130,7 @@ export function getBrandFromHostname(hostname: string): BrandId {
   if (hostname.includes('bigmuddytouring')) return 'touring';
   if (hostname.includes('bigmuddymagazine')) return 'magazine';
   if (hostname.includes('bigmuddyradio')) return 'radio';
+  if (hostname.includes('outsidereconomics')) return 'economics';
   // admin.bigmuddy.*, localhost, and fallback
   return 'admin';
 }

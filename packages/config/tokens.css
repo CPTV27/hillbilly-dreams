@@ -212,6 +212,21 @@ img, video {
   --surface-3: #2f2a22;
 }
 
+/* Economics: utilitarian, high-contrast, red/black/cream (matches book cover) */
+.theme-economics {
+  --bg: #0f0e0d;
+  --surface: #1a1816;
+  --surface-2: #231f1c;
+  --surface-3: #2d2824;
+  --accent: #b54c4c;
+  --accent-hover: #c95a5a;
+  --accent-muted: rgba(181, 76, 76, 0.15);
+  --accent-subtle: rgba(181, 76, 76, 0.08);
+  --border: rgba(181, 76, 76, 0.12);
+  --border-strong: rgba(181, 76, 76, 0.25);
+  --shadow-glow: 0 0 20px rgba(181, 76, 76, 0.12);
+}
+
 /* Admin: operational, clean, DM Sans only */
 .theme-admin {
   --font-display: var(--font-body);

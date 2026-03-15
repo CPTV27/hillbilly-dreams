@@ -69,7 +69,7 @@ export async function middleware(request: NextRequest) {
 
   // If the path already starts with a known brand prefix, pass through
   // without rewriting. Admin and ops routes require authentication.
-  const brandPrefixes = ['/touring', '/magazine', '/radio', '/admin', '/ops'];
+  const brandPrefixes = ['/touring', '/magazine', '/radio', '/economics', '/admin', '/ops'];
   if (brandPrefixes.some(p => pathname === p || pathname.startsWith(p + '/'))) {
     if (pathname.startsWith('/admin') || pathname.startsWith('/ops')) {
       const token = await getSession();
@@ -96,6 +96,12 @@ export async function middleware(request: NextRequest) {
     return rewriteTo('radio', pathname);
   }
 
+  if (hostname.includes('outsidereconomics')) {
+    return NextResponse.rewrite(
+      new URL('/economics' + pathname, request.url)
+    );
+  }
+
   // Local development .local domains
   if (hostname.includes('bigmuddytouring.local') && !hostname.includes('admin')) {
     return rewriteTo('touring', pathname);
@@ -109,11 +115,17 @@ export async function middleware(request: NextRequest) {
     return rewriteTo('radio', pathname);
   }
 
+  if (hostname.includes('outsidereconomics.local')) {
+    return NextResponse.rewrite(
+      new URL('/economics' + pathname, request.url)
+    );
+  }
+
   // Dev override: NEXT_PUBLIC_BRAND env var bypasses hostname detection.
   // e.g. NEXT_PUBLIC_BRAND=magazine in .env.local
   const devBrand = process.env.NEXT_PUBLIC_BRAND;
   if (devBrand) {
-    const validBrands = ['touring', 'magazine', 'radio', 'admin', 'ops'];
+    const validBrands = ['touring', 'magazine', 'radio', 'economics', 'admin', 'ops'];
     if (validBrands.includes(devBrand)) {
       if (devBrand === 'admin' || devBrand === 'ops') {
         const token = await getSession();

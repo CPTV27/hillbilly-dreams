@@ -13,6 +13,65 @@ const currentYear = new Date().getFullYear();
 export function Footer({ brand }: FooterProps) {
   const isAdmin = brand === 'admin';
 
+  const isEconomics = brand === 'economics';
+
+  if (isEconomics) {
+    return (
+      <footer className="bm-footer">
+        <div className="bm-footer__inner">
+          <div className="bm-footer__brand">
+            <div className="bm-footer__logo-text">
+              <span className="bm-footer__logo-name">Outsider Economics</span>
+              <span className="bm-footer__tagline">
+                A Field Manual for Independent Economic Systems
+              </span>
+            </div>
+            <p className="bm-footer__about">
+              Coordination math, extraction analysis, and field-tested frameworks
+              for building sovereign local economies. A Big Muddy media property.
+            </p>
+          </div>
+          <div className="bm-footer__nav">
+            <div className="bm-footer__nav-col">
+              <h4 className="bm-footer__nav-heading">Resources</h4>
+              <ul className="bm-footer__nav-list">
+                <li><a href="/field-manual">Field Manual</a></li>
+                <li><a href="/the-math">The Math</a></li>
+                <li><a href="/community">Community</a></li>
+                <li><a href="/about">About</a></li>
+              </ul>
+            </div>
+            <div className="bm-footer__nav-col">
+              <h4 className="bm-footer__nav-heading">The Network</h4>
+              <ul className="bm-footer__nav-list">
+                <li><a href="https://bigmuddytouring.com">Big Muddy Touring</a></li>
+                <li><a href="https://bigmuddymagazine.com">Big Muddy Magazine</a></li>
+                <li><a href="https://bigmuddyradio.com">Big Muddy Radio</a></li>
+              </ul>
+            </div>
+            <div className="bm-footer__nav-col">
+              <h4 className="bm-footer__nav-heading">Get the Book</h4>
+              <ul className="bm-footer__nav-list">
+                <li><a href="https://www.amazon.com/dp/B0F2HZBZFZ" target="_blank" rel="noopener noreferrer">Amazon</a></li>
+                <li><a href="https://outsidereconomics.substack.com" target="_blank" rel="noopener noreferrer">Substack</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="bm-footer__bottom">
+          <p className="bm-footer__copy">
+            &copy; {currentYear} Chase Tuthill Pierson. Creative Commons license.
+          </p>
+          <div className="bm-footer__legal">
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+          </div>
+        </div>
+        <style>{footerStyles}</style>
+      </footer>
+    );
+  }
+
   if (isAdmin) {
     return (
       <footer className="bm-footer bm-footer--admin">
@@ -49,6 +108,7 @@ export function Footer({ brand }: FooterProps) {
               <li><a href="https://bigmuddytouring.com">Big Muddy Touring</a></li>
               <li><a href="https://bigmuddymagazine.com">Big Muddy Magazine</a></li>
               <li><a href="https://bigmuddyradio.com">Big Muddy Radio</a></li>
+              <li><a href="https://outsidereconomics.com">Outsider Economics</a></li>
             </ul>
           </div>
           <div className="bm-footer__nav-col">
