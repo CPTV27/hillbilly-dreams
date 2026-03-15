@@ -40,6 +40,14 @@ export default function MediaGalleryPage() {
   const [copied, setCopied] = useState('');
   const fileRef = useRef<HTMLInputElement>(null);
 
+  // Generate state
+  const [genPrompt, setGenPrompt] = useState('');
+  const [genAlbum, setGenAlbum] = useState('generated');
+  const [genAspect, setGenAspect] = useState('16:9');
+  const [generating, setGenerating] = useState(false);
+  const [genError, setGenError] = useState('');
+  const [genSuccess, setGenSuccess] = useState('');
+
   const fetchMedia = useCallback(async () => {
     try {
       const res = await fetch('/api/media');
@@ -113,6 +121,41 @@ export default function MediaGalleryPage() {
     }
   }
 
+  async function handleGenerate(e: React.FormEvent) {
+    e.preventDefault();
+    if (!genPrompt.trim()) return;
+
+    setGenerating(true);
+    setGenError('');
+    setGenSuccess('');
+
+    try {
+      const res = await fetch('/api/media/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompt: genPrompt.trim(),
+          album: genAlbum,
+          aspectRatio: genAspect,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setGenError(data.error ?? `Generation failed (${res.status})`);
+      } else {
+        const data = await res.json();
+        setGenSuccess(`Generated: ${data.path}`);
+        setGenPrompt('');
+        await fetchMedia();
+      }
+    } catch {
+      setGenError('Network error during generation.');
+    } finally {
+      setGenerating(false);
+    }
+  }
+
   function copyUrl(url: string) {
     navigator.clipboard.writeText(url);
     setCopied(url);
@@ -151,6 +194,7 @@ export default function MediaGalleryPage() {
               className="admin-select"
             >
               <option value="uploads">uploads</option>
+              <option value="generated">generated</option>
               <option value="heroes">heroes</option>
               <option value="fleet">fleet</option>
               <option value="magazine">magazine</option>
@@ -176,6 +220,70 @@ export default function MediaGalleryPage() {
         </div>
         {uploadError && <div className="media-upload-msg media-upload-msg--error">{uploadError}</div>}
         {uploadSuccess && <div className="media-upload-msg media-upload-msg--success">{uploadSuccess}</div>}
+      </div>
+
+      {/* ── Generate with AI ── */}
+      <div className="media-generate admin-card">
+        <form onSubmit={handleGenerate} className="media-generate__form">
+          <div className="media-generate__row">
+            <div className="admin-form-group" style={{ marginBottom: 0, flex: 2 }}>
+              <label htmlFor="genPrompt" className="admin-label">Generate with AI</label>
+              <textarea
+                id="genPrompt"
+                value={genPrompt}
+                onChange={(e) => setGenPrompt(e.target.value)}
+                placeholder="Describe the image you want to create..."
+                className="admin-textarea"
+                rows={2}
+                maxLength={1000}
+                disabled={generating}
+              />
+            </div>
+            <div className="admin-form-group" style={{ marginBottom: 0 }}>
+              <label htmlFor="genAlbum" className="admin-label">Album</label>
+              <select
+                id="genAlbum"
+                value={genAlbum}
+                onChange={(e) => setGenAlbum(e.target.value)}
+                className="admin-select"
+                disabled={generating}
+              >
+                <option value="generated">generated</option>
+                <option value="heroes">heroes</option>
+                <option value="magazine">magazine</option>
+                <option value="textures">textures</option>
+                <option value="uploads">uploads</option>
+              </select>
+            </div>
+            <div className="admin-form-group" style={{ marginBottom: 0 }}>
+              <label htmlFor="genAspect" className="admin-label">Ratio</label>
+              <select
+                id="genAspect"
+                value={genAspect}
+                onChange={(e) => setGenAspect(e.target.value)}
+                className="admin-select"
+                disabled={generating}
+              >
+                <option value="16:9">16:9</option>
+                <option value="1:1">1:1</option>
+                <option value="4:3">4:3</option>
+                <option value="3:4">3:4</option>
+                <option value="9:16">9:16</option>
+              </select>
+            </div>
+            <div className="media-generate__btn-wrap">
+              <button
+                type="submit"
+                className="admin-btn admin-btn--primary"
+                disabled={generating || !genPrompt.trim()}
+              >
+                {generating ? 'Generating...' : 'Generate'}
+              </button>
+            </div>
+          </div>
+        </form>
+        {genError && <div className="media-upload-msg media-upload-msg--error">{genError}</div>}
+        {genSuccess && <div className="media-upload-msg media-upload-msg--success">{genSuccess}</div>}
       </div>
 
       {/* ── Error ── */}
@@ -319,6 +427,23 @@ export default function MediaGalleryPage() {
         .media-upload-msg--success {
           background: var(--success-muted);
           color: var(--success);
+        }
+
+        /* ── Generate Panel ── */
+        .media-generate {
+          margin-bottom: var(--space-6);
+        }
+        .media-generate__form {
+          display: flex;
+          flex-direction: column;
+        }
+        .media-generate__row {
+          display: flex;
+          align-items: flex-end;
+          gap: var(--space-4);
+        }
+        .media-generate__btn-wrap {
+          flex-shrink: 0;
         }
 
         /* ── Error ── */
@@ -475,7 +600,8 @@ export default function MediaGalleryPage() {
         }
 
         @media (max-width: 640px) {
-          .media-upload-row {
+          .media-upload-row,
+          .media-generate__row {
             flex-direction: column;
             align-items: stretch;
           }
