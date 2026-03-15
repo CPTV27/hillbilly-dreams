@@ -2,10 +2,19 @@
 // About — Chase and the project
 
 import type { Metadata } from 'next';
+const description = 'Chase Tuthill Pierson — Delta kid, systems thinker, reluctant economist. The story behind Outsider Economics.';
 export const metadata: Metadata = {
   title: 'About',
-  description:
-    'Chase Tuthill Pierson — Delta kid, systems thinker, reluctant economist. The story behind Outsider Economics.',
+  description,
+  openGraph: {
+    type: 'website',
+    title: 'About | Outsider Economics',
+    description,
+    url: 'https://outsidereconomics.com/about',
+    siteName: 'Outsider Economics',
+  },
+  twitter: { card: 'summary_large_image', title: 'About | Outsider Economics', description },
+  alternates: { canonical: 'https://outsidereconomics.com/about' },
 };
 
 export default function AboutPage() {

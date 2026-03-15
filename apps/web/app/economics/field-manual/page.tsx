@@ -4,10 +4,19 @@
 import type { Metadata } from 'next';
 import { getAllPosts } from '../../../lib/posts';
 
+const description = 'The complete playbook for building sovereign local economies. Six frameworks, real math, no theory.';
 export const metadata: Metadata = {
   title: 'Field Manual',
-  description:
-    'The complete playbook for building sovereign local economies. Six frameworks, real math, no theory.',
+  description,
+  openGraph: {
+    type: 'website',
+    title: 'Field Manual | Outsider Economics',
+    description,
+    url: 'https://outsidereconomics.com/field-manual',
+    siteName: 'Outsider Economics',
+  },
+  twitter: { card: 'summary_large_image', title: 'Field Manual | Outsider Economics', description },
+  alternates: { canonical: 'https://outsidereconomics.com/field-manual' },
 };
 
 export const dynamic = 'force-dynamic';

@@ -18,6 +18,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: post.title,
     description: post.excerpt,
+    openGraph: {
+      type: 'article',
+      title: `${post.title} | Outsider Economics`,
+      description: post.excerpt,
+      url: `https://outsidereconomics.com/field-manual/${slug}`,
+      siteName: 'Outsider Economics',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${post.title} | Outsider Economics`,
+      description: post.excerpt,
+    },
+    alternates: {
+      canonical: `https://outsidereconomics.com/field-manual/${slug}`,
+    },
   };
 }
 

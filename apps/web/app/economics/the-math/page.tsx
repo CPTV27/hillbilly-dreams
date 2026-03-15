@@ -2,10 +2,19 @@
 // The Math — every equation, every multiplier, one page
 
 import type { Metadata } from 'next';
+const description = 'Every equation behind Outsider Economics. Extraction rates, coordination multipliers, time-currency conversions, and network scaling formulas.';
 export const metadata: Metadata = {
   title: 'The Math',
-  description:
-    'Every equation behind Outsider Economics. Extraction rates, coordination multipliers, time-currency conversions, and network scaling formulas.',
+  description,
+  openGraph: {
+    type: 'website',
+    title: 'The Math | Outsider Economics',
+    description,
+    url: 'https://outsidereconomics.com/the-math',
+    siteName: 'Outsider Economics',
+  },
+  twitter: { card: 'summary_large_image', title: 'The Math | Outsider Economics', description },
+  alternates: { canonical: 'https://outsidereconomics.com/the-math' },
 };
 
 const EQUATIONS = [

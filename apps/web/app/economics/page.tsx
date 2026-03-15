@@ -3,10 +3,23 @@
 // Resource center + community hub for independent economic systems
 
 import type { Metadata } from 'next';
+const homeDescription = 'Your community is coordination-poor, not resource-poor. The math, the frameworks, and the field-tested playbook for building sovereign local economies.';
 export const metadata: Metadata = {
   title: 'Outsider Economics — A Field Manual for Independent Economic Systems',
-  description:
-    'Your community is coordination-poor, not resource-poor. The math, the frameworks, and the field-tested playbook for building sovereign local economies.',
+  description: homeDescription,
+  openGraph: {
+    type: 'website',
+    title: 'Outsider Economics — A Field Manual for Independent Economic Systems',
+    description: homeDescription,
+    url: 'https://outsidereconomics.com',
+    siteName: 'Outsider Economics',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Outsider Economics — A Field Manual for Independent Economic Systems',
+    description: homeDescription,
+  },
+  alternates: { canonical: 'https://outsidereconomics.com' },
 };
 
 const CORE_CONCEPTS = [

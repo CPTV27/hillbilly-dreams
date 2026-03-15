@@ -2,10 +2,19 @@
 // Community — find your 20, start building
 
 import type { Metadata } from 'next';
+const description = 'You already know your 20. Find them, coordinate them, and start building an economy that doesn\'t leak.';
 export const metadata: Metadata = {
   title: 'Community',
-  description:
-    'You already know your 20. Find them, coordinate them, and start building an economy that doesn\'t leak.',
+  description,
+  openGraph: {
+    type: 'website',
+    title: 'Find Your 20 | Outsider Economics',
+    description,
+    url: 'https://outsidereconomics.com/community',
+    siteName: 'Outsider Economics',
+  },
+  twitter: { card: 'summary_large_image', title: 'Find Your 20 | Outsider Economics', description },
+  alternates: { canonical: 'https://outsidereconomics.com/community' },
 };
 
 const STEPS = [
