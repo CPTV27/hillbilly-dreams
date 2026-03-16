@@ -133,7 +133,7 @@ export async function middleware(request: NextRequest) {
   // e.g. NEXT_PUBLIC_BRAND=magazine in .env.local
   const devBrand = process.env.NEXT_PUBLIC_BRAND;
   if (devBrand) {
-    const validBrands = ['touring', 'magazine', 'radio', 'economics', 'admin', 'ops'];
+    const validBrands = ['touring', 'magazine', 'radio', 'economics', 'media', 'admin', 'ops'];
     if (validBrands.includes(devBrand)) {
       if (devBrand === 'admin' || devBrand === 'ops') {
         const token = await getSession();

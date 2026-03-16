@@ -2,8 +2,7 @@
 
 // apps/web/app/media/MediaNav.tsx
 // Inline navigation for the Deep South Directory marketing site.
-// Mirrors the bm-nav pattern from Navigation.tsx but with media-specific links
-// and "Deep South / Directory" branding — without requiring 'media' as a BrandId.
+// Nav styles live in globals.css under "Shared Nav (bm-nav)".
 
 import React, { useState } from 'react';
 
@@ -106,13 +105,6 @@ export default function MediaNav() {
           </ul>
         </div>
       )}
-
-      <style>{`
-        .media-nav__cta {
-          padding: var(--space-2) var(--space-5);
-          font-size: var(--text-xs);
-        }
-      `}</style>
     </nav>
   );
 }
