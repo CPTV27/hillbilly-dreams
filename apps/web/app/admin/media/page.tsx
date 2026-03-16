@@ -48,6 +48,15 @@ export default function MediaGalleryPage() {
   const [genError, setGenError] = useState('');
   const [genSuccess, setGenSuccess] = useState('');
 
+  // Enhance state
+  const [enhPreset, setEnhPreset] = useState('auto');
+  const [enhAI, setEnhAI] = useState(false);
+  const [enhAlbum, setEnhAlbum] = useState('enhanced');
+  const [enhancing, setEnhancing] = useState(false);
+  const [enhError, setEnhError] = useState('');
+  const [enhSuccess, setEnhSuccess] = useState('');
+  const enhFileRef = useRef<HTMLInputElement>(null);
+
   const fetchMedia = useCallback(async () => {
     try {
       const res = await fetch('/api/media');
@@ -153,6 +162,80 @@ export default function MediaGalleryPage() {
       setGenError('Network error during generation.');
     } finally {
       setGenerating(false);
+    }
+  }
+
+  async function handleEnhance(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setEnhancing(true);
+    setEnhError('');
+    setEnhSuccess('');
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('preset', enhPreset);
+    formData.append('album', enhAlbum);
+    if (enhAI) formData.append('ai', 'true');
+
+    try {
+      const res = await fetch('/api/media/enhance', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setEnhError(data.error ?? `Enhancement failed (${res.status})`);
+      } else {
+        const data = await res.json();
+        setEnhSuccess(`Enhanced: ${data.path}${data.aiEnhanced ? ' (AI)' : ''}`);
+        await fetchMedia();
+      }
+    } catch {
+      setEnhError('Network error during enhancement.');
+    } finally {
+      setEnhancing(false);
+      if (enhFileRef.current) enhFileRef.current.value = '';
+    }
+  }
+
+  async function handleEnhanceExisting(image: ImageItem, album: string) {
+    setEnhancing(true);
+    setEnhError('');
+    setEnhSuccess('');
+
+    try {
+      // Fetch the existing image
+      const imgRes = await fetch(image.url);
+      if (!imgRes.ok) throw new Error('Failed to fetch image');
+      const blob = await imgRes.blob();
+      const file = new File([blob], image.name, { type: blob.type || 'image/webp' });
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('preset', enhPreset);
+      formData.append('album', enhAlbum);
+      if (enhAI) formData.append('ai', 'true');
+
+      const res = await fetch('/api/media/enhance', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setEnhError(data.error ?? `Enhancement failed (${res.status})`);
+      } else {
+        const data = await res.json();
+        setEnhSuccess(`Enhanced: ${data.path}${data.aiEnhanced ? ' (AI)' : ''}`);
+        await fetchMedia();
+      }
+    } catch {
+      setEnhError('Network error during enhancement.');
+    } finally {
+      setEnhancing(false);
     }
   }
 
@@ -286,6 +369,75 @@ export default function MediaGalleryPage() {
         {genSuccess && <div className="media-upload-msg media-upload-msg--success">{genSuccess}</div>}
       </div>
 
+      {/* ── Enhance Photo ── */}
+      <div className="media-enhance admin-card">
+        <div className="media-enhance__header">
+          <h3 className="media-enhance__title">Enhance Photo</h3>
+          <p className="media-enhance__sub">Upload a photo or enhance one from the gallery below</p>
+        </div>
+        <div className="media-enhance__row">
+          <div className="admin-form-group" style={{ marginBottom: 0 }}>
+            <label htmlFor="enhPreset" className="admin-label">Style Preset</label>
+            <select
+              id="enhPreset"
+              value={enhPreset}
+              onChange={(e) => setEnhPreset(e.target.value)}
+              className="admin-select"
+              disabled={enhancing}
+            >
+              <option value="auto">Auto — normalize, sharpen, subtle warmth</option>
+              <option value="editorial">Editorial — rich contrast, warm shadows</option>
+              <option value="moody">Moody — lifted blacks, cool shadows</option>
+              <option value="warm">Warm — golden hour, amber tones</option>
+              <option value="crisp">Crisp — high clarity, neutral color</option>
+            </select>
+          </div>
+          <div className="admin-form-group" style={{ marginBottom: 0 }}>
+            <label htmlFor="enhAlbum" className="admin-label">Save To</label>
+            <select
+              id="enhAlbum"
+              value={enhAlbum}
+              onChange={(e) => setEnhAlbum(e.target.value)}
+              className="admin-select"
+              disabled={enhancing}
+            >
+              <option value="enhanced">enhanced</option>
+              <option value="heroes">heroes</option>
+              <option value="magazine">magazine</option>
+              <option value="uploads">uploads</option>
+            </select>
+          </div>
+          <div className="admin-form-group media-enhance__ai-toggle" style={{ marginBottom: 0 }}>
+            <label className="admin-label">
+              <input
+                type="checkbox"
+                checked={enhAI}
+                onChange={(e) => setEnhAI(e.target.checked)}
+                disabled={enhancing}
+                style={{ marginRight: '0.5rem' }}
+              />
+              AI Enhance (Imagen)
+            </label>
+          </div>
+          <div className="media-upload-btn-wrap">
+            <input
+              ref={enhFileRef}
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/avif"
+              onChange={handleEnhance}
+              className="media-upload-input"
+              id="enhFileUpload"
+              disabled={enhancing}
+            />
+            <label htmlFor="enhFileUpload" className="admin-btn admin-btn--primary media-upload-label">
+              {enhancing ? 'Enhancing...' : 'Upload & Enhance'}
+            </label>
+          </div>
+        </div>
+        {enhError && <div className="media-upload-msg media-upload-msg--error">{enhError}</div>}
+        {enhSuccess && <div className="media-upload-msg media-upload-msg--success">{enhSuccess}</div>}
+      </div>
+
       {/* ── Error ── */}
       {error && (
         <div className="media-error" role="alert">{error}</div>
@@ -343,6 +495,14 @@ export default function MediaGalleryPage() {
                   <span className="media-card__meta">{formatBytes(image.size)}</span>
                 </div>
                 <div className="media-card__actions">
+                  <button
+                    className="admin-btn admin-btn--ghost media-card__btn"
+                    onClick={() => handleEnhanceExisting(image, album)}
+                    disabled={enhancing}
+                    title="Enhance this image"
+                  >
+                    {enhancing ? '...' : 'Enhance'}
+                  </button>
                   <button
                     className="admin-btn admin-btn--ghost media-card__btn"
                     onClick={() => copyUrl(image.url)}
@@ -444,6 +604,36 @@ export default function MediaGalleryPage() {
         }
         .media-generate__btn-wrap {
           flex-shrink: 0;
+        }
+
+        /* ── Enhance Panel ── */
+        .media-enhance {
+          margin-bottom: var(--space-6);
+        }
+        .media-enhance__header {
+          margin-bottom: var(--space-4);
+        }
+        .media-enhance__title {
+          font-size: var(--text-lg);
+          font-weight: 700;
+          color: var(--text);
+          margin: 0 0 var(--space-1) 0;
+        }
+        .media-enhance__sub {
+          font-size: var(--text-sm);
+          color: var(--text-muted);
+          margin: 0;
+        }
+        .media-enhance__row {
+          display: flex;
+          align-items: flex-end;
+          gap: var(--space-4);
+          flex-wrap: wrap;
+        }
+        .media-enhance__ai-toggle {
+          display: flex;
+          align-items: center;
+          padding-bottom: var(--space-2);
         }
 
         /* ── Error ── */

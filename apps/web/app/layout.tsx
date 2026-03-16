@@ -3,9 +3,12 @@
 // Brand routing is handled by middleware.ts; each route group has its own layout.
 
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Playfair_Display, DM_Sans } from 'next/font/google';
 import '@bigmuddy/config/tokens.css';
 import './globals.css';
+
+const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 
 const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
@@ -50,7 +53,16 @@ export default function RootLayout({
       lang="en"
       className={`${playfairDisplay.variable} ${dmSans.variable}`}
     >
-      <head />
+      <head>
+        {plausibleDomain && (
+          <Script
+            defer
+            data-domain={plausibleDomain}
+            src="https://plausible.io/js/script.js"
+            strategy="afterInteractive"
+          />
+        )}
+      </head>
       <body>{children}</body>
     </html>
   );

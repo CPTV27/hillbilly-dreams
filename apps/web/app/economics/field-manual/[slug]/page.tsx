@@ -3,7 +3,8 @@
 
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getPostBySlug } from '../../../../lib/posts';
+import { getPostBySlug, getAdjacentPosts } from '../../../../lib/posts';
+import { ReadingProgress } from './reading-progress';
 
 export const dynamic = 'force-dynamic';
 
@@ -41,8 +42,11 @@ export default async function PostPage({ params }: PageProps) {
   const post = await getPostBySlug(slug);
   if (!post) notFound();
 
+  const { prev, next } = getAdjacentPosts(slug);
+
   return (
     <>
+      <ReadingProgress />
       <article className="post">
         <div className="post__container">
           <header className="post__header">
@@ -57,6 +61,33 @@ export default async function PostPage({ params }: PageProps) {
             className="post__body"
             dangerouslySetInnerHTML={{ __html: post.htmlContent ?? '' }}
           />
+
+          {/* ── Prev/Next Navigation ── */}
+          <nav className="post__nav" aria-label="Post navigation">
+            {prev ? (
+              <a href={`/field-manual/${prev.slug}`} className="post__nav-link post__nav-link--prev">
+                <span className="post__nav-label">&larr; Previous</span>
+                <span className="post__nav-num">Dispatch {String(prev.order).padStart(2, '0')}</span>
+                <span className="post__nav-title">{prev.title}</span>
+              </a>
+            ) : (
+              <div />
+            )}
+            {next ? (
+              <a href={`/field-manual/${next.slug}`} className="post__nav-link post__nav-link--next">
+                <span className="post__nav-label">Next &rarr;</span>
+                <span className="post__nav-num">Dispatch {String(next.order).padStart(2, '0')}</span>
+                <span className="post__nav-title">{next.title}</span>
+              </a>
+            ) : (
+              <a href="/field-manual" className="post__nav-link post__nav-link--next">
+                <span className="post__nav-label">Finished &rarr;</span>
+                <span className="post__nav-num">Field Manual</span>
+                <span className="post__nav-title">Back to All Posts</span>
+              </a>
+            )}
+          </nav>
+
           <footer className="post__footer">
             <a href="/field-manual" className="btn btn--ghost">&larr; All Posts</a>
             <a
@@ -198,6 +229,55 @@ export default async function PostPage({ params }: PageProps) {
           color: var(--accent);
         }
 
+        /* ── Prev/Next Navigation ── */
+        .post__nav {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-4);
+          margin-top: var(--space-16);
+          padding-top: var(--space-12);
+          border-top: 1px solid var(--border);
+        }
+        .post__nav-link {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-2);
+          padding: var(--space-5);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-lg);
+          background: var(--surface);
+          text-decoration: none;
+          transition: border-color var(--duration-normal) var(--ease-default),
+                      box-shadow var(--duration-normal) var(--ease-default);
+        }
+        .post__nav-link:hover {
+          border-color: var(--accent);
+          box-shadow: var(--shadow-glow);
+        }
+        .post__nav-link--next {
+          text-align: right;
+        }
+        .post__nav-label {
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          font-weight: 600;
+          color: var(--accent);
+          letter-spacing: var(--tracking-wide);
+          text-transform: uppercase;
+        }
+        .post__nav-num {
+          font-family: var(--font-mono);
+          font-size: var(--text-xs);
+          color: var(--text-disabled);
+        }
+        .post__nav-title {
+          font-family: var(--font-display);
+          font-size: var(--text-md);
+          font-weight: 700;
+          color: var(--text);
+          line-height: var(--leading-tight);
+        }
+
         /* ── Footer ── */
         .post__footer {
           display: flex;
@@ -206,8 +286,7 @@ export default async function PostPage({ params }: PageProps) {
           gap: var(--space-4);
           flex-wrap: wrap;
           padding-top: var(--space-12);
-          border-top: 1px solid var(--border);
-          margin-top: var(--space-16);
+          margin-top: var(--space-8);
         }
 
         /* ── Buttons ── */
@@ -247,6 +326,12 @@ export default async function PostPage({ params }: PageProps) {
         @media (max-width: 640px) {
           .post__title {
             font-size: var(--text-4xl);
+          }
+          .post__nav {
+            grid-template-columns: 1fr;
+          }
+          .post__nav-link--next {
+            text-align: left;
           }
         }
       `}</style>

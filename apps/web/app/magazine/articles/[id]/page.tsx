@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { BLUR_DATA_URL } from '@bigmuddy/ui';
 import { CITY_GUIDE_ARTICLES, getArticleBySlug } from '@/lib/articles';
+import { JsonLd, getArticleSchema } from '@/lib/structured-data';
 import type { Article } from '@bigmuddy/config';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
@@ -158,6 +159,12 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <>
+      <JsonLd schema={getArticleSchema({
+        headline: article.title,
+        authorName: article.author,
+        datePublished: article.publishedAt ?? new Date().toISOString(),
+        images: article.heroImage ? [article.heroImage] : [],
+      })} />
       {/* ── Hero Image ── */}
       {article.heroImage && (
         <div className="article-hero">

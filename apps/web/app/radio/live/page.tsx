@@ -1,5 +1,5 @@
 // apps/web/app/(radio)/live/page.tsx
-// Live sessions / upcoming events
+// Live sessions / upcoming events — fetches from /api/events
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
@@ -11,67 +11,26 @@ export const metadata: Metadata = {
   description: 'Upcoming live sessions from the Blues Room at the inn in Natchez, Mississippi.',
 };
 
-const EVENTS: Event[] = [
-  {
-    id: 1,
-    name: 'Blues Room Live Session — Delta Night',
-    date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-    time: '8:00 PM CT',
-    artist: 'Marcus King',
-    description: 'A live session from the Blues Room at the inn. Streaming live on Restream for all subscribers.',
-    price: 'Free to stream',
-    capacity: 40,
-    status: 'upcoming',
-    stream: true,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 2,
-    name: 'Playlist Listening Session — Highway 61',
-    date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
-    time: '7:30 PM CT',
-    artist: null,
-    description: 'Hosted listening session with the Highway 61 playlist. Community Zoom call.',
-    price: 'Free',
-    capacity: 100,
-    status: 'upcoming',
-    stream: true,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 3,
-    name: 'Blues Room Live — New Orleans Jazz Night',
-    date: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000).toISOString(),
-    time: '9:00 PM CT',
-    artist: 'Tank and the Bangas',
-    description: 'New Orleans Night at the Blues Room. Streaming live for subscribers.',
-    price: '$15',
-    capacity: 40,
-    status: 'upcoming',
-    stream: true,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 4,
-    name: 'Delta Roots: Junior Kimbrough Tribute',
-    date: new Date(Date.now() + 35 * 24 * 60 * 60 * 1000).toISOString(),
-    time: '8:30 PM CT',
-    artist: 'Various Artists',
-    description: 'A tribute to Junior Kimbrough and the hill country blues tradition. Live from the Blues Room.',
-    price: '$20',
-    capacity: 40,
-    status: 'upcoming',
-    stream: true,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-];
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
+
+async function getEvents(): Promise<Event[]> {
+  try {
+    const res = await fetch(`${baseUrl}/api/events`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    const all = Array.isArray(data) ? data : data.data ?? [];
+    return all
+      .filter((e: Event) => e.status === 'upcoming')
+      .sort((a: Event, b: Event) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  } catch {
+    return [];
+  }
+}
 
 export default async function LivePage() {
-  const events = EVENTS;
+  const events = await getEvents();
 
   return (
     <>
@@ -108,9 +67,15 @@ export default async function LivePage() {
             <h2 className="live-events__title">Upcoming Sessions</h2>
           </div>
           <div className="live-events__grid">
-            {events.map((event) => (
-              <EventCard key={event.id} event={event} />
-            ))}
+            {events.length > 0 ? (
+              events.map((event) => (
+                <EventCard key={event.id} event={event} />
+              ))
+            ) : (
+              <div className="live-events__empty">
+                <p>No upcoming sessions scheduled yet. Subscribe to the newsletter to get notified when new sessions are announced.</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -191,6 +156,19 @@ export default async function LivePage() {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
           gap: var(--space-5);
+        }
+        .live-events__empty {
+          grid-column: 1 / -1;
+          text-align: center;
+          padding: var(--space-12) var(--space-6);
+          border: 1px dashed var(--border);
+          border-radius: var(--radius-md);
+        }
+        .live-events__empty p {
+          font-family: var(--font-body);
+          font-size: var(--text-md);
+          color: var(--text-muted);
+          margin: 0;
         }
 
         /* ── Info ── */

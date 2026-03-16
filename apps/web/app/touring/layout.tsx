@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { Navigation } from '@bigmuddy/ui';
 import { Footer } from '@bigmuddy/ui';
 import { BRANDS } from '@bigmuddy/config';
+import { JsonLd, getOrganizationSchema, getWebSiteSchema } from '@/lib/structured-data';
 
 import { constructMetadata, themeColor } from '../metadata';
 import type { Viewport } from 'next';
@@ -31,6 +32,8 @@ export default function TouringLayout({
 }) {
   return (
     <div className={brand.themeClass}>
+      <JsonLd schema={getOrganizationSchema()} />
+      <JsonLd schema={getWebSiteSchema()} />
       <Navigation
         brand="touring"
         links={brand.nav.links}

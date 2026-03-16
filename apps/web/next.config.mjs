@@ -11,6 +11,9 @@ const nextConfig = {
   output: 'standalone',
 
   images: {
+    // Custom loader: serves pre-optimized .webp/.avif from GCS directly,
+    // routes everything else through Next.js /_next/image optimizer.
+    loaderFile: './lib/image-loader.ts',
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],

@@ -67,6 +67,40 @@ export default async function PlaylistsPage() {
         </div>
       </section>
 
+      {/* ── Spotify Embed Player ── */}
+      {(() => {
+        const withSpotify = playlists.filter((pl) => pl.spotifyUrl);
+        if (!withSpotify.length) return null;
+        return (
+          <section className="playlists-listen">
+            <div className="section-container">
+              <h2 className="playlists-listen__title">Listen Now</h2>
+              <p className="playlists-listen__sub">Stream directly from Spotify</p>
+              <div className="playlists-listen__grid">
+                {withSpotify.map((pl) => {
+                  const spotifyId = pl.spotifyUrl!.match(/playlist\/([a-zA-Z0-9]+)/)?.[1];
+                  if (!spotifyId) return null;
+                  return (
+                    <div key={pl.id} className="playlists-listen__item">
+                      <h3 className="playlists-listen__name">{pl.name}</h3>
+                      <iframe
+                        src={`https://open.spotify.com/embed/playlist/${spotifyId}?utm_source=generator&theme=0`}
+                        width="100%"
+                        height="352"
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy"
+                        style={{ borderRadius: 'var(--radius-md)', border: 0 }}
+                        title={`${pl.name} on Spotify`}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
+
       <style>{`
         /* ── Hero ── */
         .playlists-hero {
@@ -118,6 +152,39 @@ export default async function PlaylistsPage() {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
           gap: var(--space-6);
+        }
+
+        /* ── Listen Now ── */
+        .playlists-listen {
+          background: var(--surface);
+          border-top: 1px solid var(--border);
+        }
+        .playlists-listen__title {
+          font-family: var(--font-display);
+          font-size: var(--text-3xl);
+          font-weight: 700;
+          color: var(--text);
+          letter-spacing: var(--tracking-tight);
+          margin: 0 0 var(--space-2);
+        }
+        .playlists-listen__sub {
+          font-family: var(--font-body);
+          font-size: var(--text-md);
+          color: var(--text-muted);
+          margin: 0 0 var(--space-8);
+        }
+        .playlists-listen__grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+          gap: var(--space-6);
+        }
+        .playlists-listen__name {
+          font-family: var(--font-display);
+          font-size: var(--text-lg);
+          font-weight: 700;
+          color: var(--text);
+          letter-spacing: var(--tracking-tight);
+          margin: 0 0 var(--space-3);
         }
         .section-container {
           max-width: var(--container-xl);

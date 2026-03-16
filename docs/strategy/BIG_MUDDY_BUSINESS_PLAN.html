@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Muddy Touring — Business Plan & Financial Projections</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d1117;
+            --bg-card: #161b22;
+            --bg-surface: #1c2128;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --accent-gold: #d4a853;
+            --accent-teal: #2b8a8a;
+            --accent-green: #3fb950;
+            --accent-red: #f85149;
+            --accent-blue: #58a6ff;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Cover */
+        .cover {
+            padding: 6rem 0 4rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cover-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .cover h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .cover-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .cover-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .cover-meta span {
+            color: var(--accent-gold);
+        }
+
+        /* Sections */
+        .section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent-teal);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .section h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--accent-gold);
+        }
+
+        .section p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            max-width: 700px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 2rem;
+            font-size: 0.85rem;
+        }
+
+        th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            background: var(--bg-surface);
+            border-bottom: 2px solid var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-gold);
+        }
+
+        td {
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .num {
+            text-align: right;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+        }
+
+        .total td {
+            font-weight: 700;
+            border-top: 2px solid var(--accent-gold);
+            border-bottom: 2px solid var(--accent-gold);
+            background: rgba(212, 168, 83, 0.05);
+        }
+
+        .highlight {
+            color: var(--accent-green);
+        }
+
+        .negative {
+            color: var(--accent-red);
+        }
+
+        .subtle {
+            color: var(--text-muted);
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .kpi {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        .kpi-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.25rem;
+        }
+
+        .kpi-delta {
+            font-size: 0.7rem;
+            margin-top: 0.25rem;
+        }
+
+        .kpi-delta.up {
+            color: var(--accent-green);
+        }
+
+        /* Bar Chart */
+        .bar-chart {
+            margin: 1.5rem 0;
+        }
+
+        .bar-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .bar-label {
+            width: 160px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        .bar-track {
+            flex: 1;
+            height: 24px;
+            background: var(--bg-surface);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .bar-fill.gold {
+            background: linear-gradient(90deg, var(--accent-gold), #e8c278);
+            color: #1a1a1a;
+        }
+
+        .bar-fill.teal {
+            background: linear-gradient(90deg, var(--accent-teal), #3db5b5);
+            color: #fff;
+        }
+
+        .bar-fill.blue {
+            background: linear-gradient(90deg, var(--accent-blue), #79b8ff);
+            color: #1a1a1a;
+        }
+
+        .bar-fill.green {
+            background: linear-gradient(90deg, var(--accent-green), #56d364);
+            color: #1a1a1a;
+        }
+
+        /* Notes */
+        .note {
+            background: var(--bg-card);
+            border-left: 3px solid var(--accent-teal);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .note strong {
+            color: var(--text);
+        }
+
+        /* Scenario cards */
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .scenario {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .scenario-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .scenario-cagr {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-teal);
+        }
+
+        .scenario-rev {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            margin: 0.75rem 0;
+        }
+
+        .scenario ul {
+            list-style: none;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .scenario ul li {
+            padding: 0.15rem 0;
+        }
+
+        .scenario.featured {
+            border-color: var(--accent-gold);
+        }
+
+        /* Print */
+        @media print {
+            body {
+                background: #fff;
+                color: #111;
+            }
+
+            .kpi {
+                border: 1px solid #ccc;
+            }
+
+            th {
+                background: #f5f5f5;
+                color: #333;
+                border-color: #333;
+            }
+
+            td {
+                border-color: #ddd;
+            }
+
+            .bar-fill {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .kpi-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .scenario-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cover h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- COVER -->
+        <div class="cover">
+            <div class="cover-eyebrow">Confidential Business Plan</div>
+            <h1>Big Muddy Touring</h1>
+            <p class="cover-subtitle">A Vertically Integrated Hospitality, Entertainment & Music Company</p>
+            <p class="cover-meta">Prepared by <span>Chase Pierson</span> · February 2026<br>
+                411 N Commerce St, Natchez, MS 39120 · <span>thebigmuddyinn.com</span></p>
+        </div>
+
+        <!-- EXECUTIVE SUMMARY -->
+        <div class="section">
+            <div class="section-label">Executive Summary</div>
+            <h2>The Opportunity</h2>
+            <p>Big Muddy Touring operates a vertically integrated hospitality and entertainment company anchored by The
+                Big Muddy Inn & Blues Room — a 6-suite boutique hotel and 50-seat intimate music venue in historic
+                downtown Natchez, Mississippi.</p>
+            <p>We control nine revenue engines spanning lodging, live events, touring, recording, merchandising, and
+                content production — all feeding a single brand ecosystem where each engine amplifies the others.</p>
+            <p>As AI-generated content floods the market, the value of <strong>authentic, human, in-the-room
+                    experiences</strong> is increasing. Big Muddy Touring is positioned at the intersection of this
+                scarcity premium and the $1.1 trillion U.S. travel industry.</p>
+
+            <div class="kpi-grid">
+                <div class="kpi">
+                    <div class="kpi-value">$69K</div>
+                    <div class="kpi-label">Trailing 12mo Revenue</div>
+                    <div class="kpi-delta up">Year 0 baseline</div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-value">44%</div>
+                    <div class="kpi-label">NOI Margin</div>
+                    <div class="kpi-delta up">$30,630 NOI</div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-value">6</div>
+                    <div class="kpi-label">Suites</div>
+                    <div class="kpi-delta">6,000 sq ft</div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-value">9</div>
+                    <div class="kpi-label">Revenue Engines</div>
+                    <div class="kpi-delta up">Vertically integrated</div>
+                </div>
+            </div>
+
+            <!-- THE MEDIA COMPANY -->
+            <div class="section">
+                <div class="section-label">The Media Company</div>
+                <h2>The Artifact and the Algorithm</h2>
+                <p>Big Muddy Touring is not just a hospitality provider; it is an editorial media company. By treating
+                    our touring circuit and network properties as a content engine, we generate high-fidelity stories
+                    that drive brand awareness, merchandise sales, and bookings.</p>
+                <p>The media operation is divided into two distinct components:</p>
+
+                <h3>1. The Artifact (Print Magazine)</h3>
+                <p>A premium, heavy-stock, matte print magazine distributed quarterly. This physical artifact is
+                    designed for the coffee tables of boutique hotels, high-end cocktail lounges, and cultural landmarks
+                    across the South. It establishes immediate prestige, acting as both a B2B media kit for tourism
+                    boards and a B2C collector's item.</p>
+
+                <h3>2. The Algorithm (Digital Ecosystem & AI Editorial Board)</h3>
+                <p>The digital presence operates at scale, powered by the **DT27 AI Architecture**. This system
+                    functions as an autonomous, "always-on" Editorial Board that drafts dispatches, reviews venues, and
+                    curates gig guides. By leveraging AI to process field reports and generate editorial content, we
+                    maintain a robust publishing schedule without the bloat of a traditional newsroom headcount.</p>
+
+                <div class="note">
+                    <strong>The Strategy:</strong> The Print Magazine provides the cultural capital and aesthetic
+                    authority. The Digital AI Ecosystem provides the scale, frequency, and direct ROI by linking
+                    editorial content directly to lodging and touring inventory.
+                </div>
+            </div>
+
+            <!-- YEAR 0 ACTUALS -->
+            <div class="section">
+                <div class="section-label">Year 0 — Actual Performance</div>
+                <h2>QuickBooks Financials (Feb 2025 – Feb 2026)</h2>
+
+                <h3>Income Statement</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Line Item</th>
+                            <th class="num">Amount</th>
+                            <th class="num">% of Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Room Rentals</td>
+                            <td class="num">$42,307</td>
+                            <td class="num">61%</td>
+                        </tr>
+                        <tr>
+                            <td>Other Income</td>
+                            <td class="num">$21,551</td>
+                            <td class="num">31%</td>
+                        </tr>
+                        <tr>
+                            <td>Special Events</td>
+                            <td class="num">$3,284</td>
+                            <td class="num">5%</td>
+                        </tr>
+                        <tr>
+                            <td>Sales (Merch / Products)</td>
+                            <td class="num">$2,058</td>
+                            <td class="num">3%</td>
+                        </tr>
+                        <tr class="total">
+                            <td>Total Income</td>
+                            <td class="num highlight">$69,201</td>
+                            <td class="num">100%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Expense Category</th>
+                            <th class="num">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Contractors</td>
+                            <td class="num">$9,715</td>
+                        </tr>
+                        <tr>
+                            <td>Utilities</td>
+                            <td class="num">$6,198</td>
+                        </tr>
+                        <tr>
+                            <td>Insurance</td>
+                            <td class="num">$5,705</td>
+                        </tr>
+                        <tr>
+                            <td>Taxes & Licenses</td>
+                            <td class="num">$3,860</td>
+                        </tr>
+                        <tr>
+                            <td>All Other Operating</td>
+                            <td class="num">$13,093</td>
+                        </tr>
+                        <tr class="total">
+                            <td>Total Operating Expenses</td>
+                            <td class="num">$38,571</td>
+                        </tr>
+                        <tr class="total">
+                            <td><strong>Net Operating Income</strong></td>
+                            <td class="num highlight"><strong>$30,630</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="subtle">Depreciation</td>
+                            <td class="num subtle">($19,848)</td>
+                        </tr>
+                        <tr>
+                            <td class="subtle">Net Income (after depreciation)</td>
+                            <td class="num subtle">$10,782</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Key Metrics</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th class="num">Actual</th>
+                            <th class="num">Target (Y1)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Keys (Suites)</td>
+                            <td class="num">6</td>
+                            <td class="num">6</td>
+                        </tr>
+                        <tr>
+                            <td>Listed ADR</td>
+                            <td class="num">$207</td>
+                            <td class="num">$265</td>
+                        </tr>
+                        <tr>
+                            <td>Effective Occupancy</td>
+                            <td class="num negative">~10%</td>
+                            <td class="num">42%</td>
+                        </tr>
+                        <tr>
+                            <td>Room Revenue</td>
+                            <td class="num">$42,307</td>
+                            <td class="num">$145,418</td>
+                        </tr>
+                        <tr>
+                            <td>Blues Room Shows / Year</td>
+                            <td class="num">—</td>
+                            <td class="num">156 (3/wk)</td>
+                        </tr>
+                        <tr>
+                            <td>Blues Room Ticket Revenue</td>
+                            <td class="num">$3,284</td>
+                            <td class="num">$136,500</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="note">
+                    <strong>Key Finding:</strong> Actual room revenue ($42,307) implies ~10% occupancy at $207 ADR, well
+                    below the 18% stated in early materials. The gap between Year 0 and Year 1 targets represents the
+                    core
+                    growth opportunity — driven by marketing, content production, Blues Room programming, and touring
+                    partnerships.
+                </div>
+            </div>
+
+            <!-- NINE REVENUE ENGINES -->
+            <div class="section">
+                <div class="section-label">Revenue Architecture</div>
+                <h2>Nine Revenue Engines</h2>
+                <p>Each engine is independently profitable but cross-promotes the others. A guest who attends a Blues
+                    Room
+                    show may book a suite; an artist who records with us wears our merch on tour.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Engine</th>
+                            <th>Year 0 Actual</th>
+                            <th class="num">Year 1 Target</th>
+                            <th class="num">Year 3 Target</th>
+                            <th class="num">Year 5 Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Lodging</strong> — 6 suites, $265 ADR target</td>
+                            <td class="num">$42,307</td>
+                            <td class="num">$145,418</td>
+                            <td class="num">$231,000</td>
+                            <td class="num">$310,000</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Events & Bar</strong> — Blues Room, 50 seats</td>
+                            <td class="num">$3,284</td>
+                            <td class="num">$136,500</td>
+                            <td class="num">$195,000</td>
+                            <td class="num">$250,000</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Private Buyouts</strong> — 5/yr at $3,500</td>
+                            <td class="num">—</td>
+                            <td class="num">$17,500</td>
+                            <td class="num">$35,000</td>
+                            <td class="num">$52,500</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><strong>Touring & Music</strong> — 12 dates at $1K</td>
+                            <td class="num">—</td>
+                            <td class="num">$12,000</td>
+                            <td class="num">$36,000</td>
+                            <td class="num">$60,000</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><strong>Merch</strong> — 3 channels</td>
+                            <td class="num">$2,058</td>
+                            <td class="num">$18,000</td>
+                            <td class="num">$42,000</td>
+                            <td class="num">$72,000</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><strong>Network Affiliate</strong> — 8% commission</td>
+                            <td class="num">—</td>
+                            <td class="num">$8,000</td>
+                            <td class="num">$32,000</td>
+                            <td class="num">$64,000</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><strong>Tour Packages</strong> — $1,800 avg, 25% margin</td>
+                            <td class="num">—</td>
+                            <td class="num">$27,000</td>
+                            <td class="num">$90,000</td>
+                            <td class="num">$162,000</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><strong>Transport</strong> — Ford Transit → sprinters</td>
+                            <td class="num">—</td>
+                            <td class="num">$6,000</td>
+                            <td class="num">$24,000</td>
+                            <td class="num">$48,000</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><strong>Production</strong> — Bronze/Silver/Gold pkgs</td>
+                            <td class="num">—</td>
+                            <td class="num">$18,000</td>
+                            <td class="num">$36,000</td>
+                            <td class="num">$54,000</td>
+                        </tr>
+                        <tr class="total">
+                            <td></td>
+                            <td><strong>TOTAL REVENUE</strong></td>
+                            <td class="num">$69,201</td>
+                            <td class="num highlight">$388,418</td>
+                            <td class="num highlight">$721,000</td>
+                            <td class="num highlight">$1,072,500</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Revenue Mix by Engine — Year 1</h3>
+                <div class="bar-chart">
+                    <div class="bar-row"><span class="bar-label">Lodging</span>
+                        <div class="bar-track">
+                            <div class="bar-fill gold" style="width:37.4%">$145K</div>
+                        </div>
+                    </div>
+                    <div class="bar-row"><span class="bar-label">Events & Bar</span>
+                        <div class="bar-track">
+                            <div class="bar-fill teal" style="width:35.1%">$137K</div>
+                        </div>
+                    </div>
+                    <div class="bar-row"><span class="bar-label">Tour Packages</span>
+                        <div class="bar-track">
+                            <div class="bar-fill blue" style="width:6.9%">$27K</div>
+                        </div>
+                    </div>
+                    <div class="bar-row"><span class="bar-label">Merch</span>
+                        <div class="bar-track">
+                            <div class="bar-fill green" style="width:4.6%">$18K</div>
+                        </div>
+                    </div>
+                    <div class="bar-row"><span class="bar-label">Production</span>
+                        <div class="bar-track">
+                            <div class="bar-fill gold" style="width:4.6%">$18K</div>
+                        </div>
+                    </div>
+                    <div class="bar-row"><span class="bar-label">Private Buyouts</span>
+                        <div class="bar-track">
+                            <div class="bar-fill teal" style="width:4.5%">$18K</div>
+                        </div>
+                    </div>
+                    <div class="bar-row"><span class="bar-label">Touring</span>
+                        <div class="bar-track">
+                            <div class="bar-fill blue" style="width:3.1%">$12K</div>
+                        </div>
+                    </div>
+                    <div class="bar-row"><span class="bar-label">Network Affiliate</span>
+                        <div class="bar-track">
+                            <div class="bar-fill green" style="width:2.1%">$8K</div>
+                        </div>
+                    </div>
+                    <div class="bar-row"><span class="bar-label">Transport</span>
+                        <div class="bar-track">
+                            <div class="bar-fill gold" style="width:1.5%">$6K</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ASSUMPTIONS -->
+            <div class="section">
+                <div class="section-label">Assumptions & Drivers</div>
+                <h2>Revenue Build Assumptions</h2>
+
+                <h3>1. Lodging</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th class="num">Y0 Actual</th>
+                            <th class="num">Y1</th>
+                            <th class="num">Y3</th>
+                            <th class="num">Y5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Keys</td>
+                            <td class="num">6</td>
+                            <td class="num">6</td>
+                            <td class="num">6</td>
+                            <td class="num">8</td>
+                        </tr>
+                        <tr>
+                            <td>ADR</td>
+                            <td class="num">$207</td>
+                            <td class="num">$265</td>
+                            <td class="num">$285</td>
+                            <td class="num">$310</td>
+                        </tr>
+                        <tr>
+                            <td>Occupancy</td>
+                            <td class="num">~10%</td>
+                            <td class="num">42%</td>
+                            <td class="num">55%</td>
+                            <td class="num">62%</td>
+                        </tr>
+                        <tr>
+                            <td>ADR Elasticity</td>
+                            <td class="num" colspan="4">-2% occupancy per $25 above $200 baseline</td>
+                        </tr>
+                        <tr class="total">
+                            <td>Room Revenue</td>
+                            <td class="num">$42,307</td>
+                            <td class="num highlight">$145,418</td>
+                            <td class="num highlight">$231,000</td>
+                            <td class="num highlight">$310,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>2. Events & Bar (Blues Room)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th class="num">Y0</th>
+                            <th class="num">Y1</th>
+                            <th class="num">Y3</th>
+                            <th class="num">Y5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Shows / Week</td>
+                            <td class="num">—</td>
+                            <td class="num">3</td>
+                            <td class="num">4</td>
+                            <td class="num">4</td>
+                        </tr>
+                        <tr>
+                            <td>Avg Attendance</td>
+                            <td class="num">—</td>
+                            <td class="num">25</td>
+                            <td class="num">35</td>
+                            <td class="num">40</td>
+                        </tr>
+                        <tr>
+                            <td>Ticket Price</td>
+                            <td class="num">—</td>
+                            <td class="num">$35</td>
+                            <td class="num">$35</td>
+                            <td class="num">$40</td>
+                        </tr>
+                        <tr>
+                            <td>Bar Spend / Head</td>
+                            <td class="num">—</td>
+                            <td class="num">$45</td>
+                            <td class="num">$45</td>
+                            <td class="num">$50</td>
+                        </tr>
+                        <tr class="total">
+                            <td>Events & Bar Revenue</td>
+                            <td class="num">$3,284</td>
+                            <td class="num highlight">$136,500</td>
+                            <td class="num highlight">$195,000</td>
+                            <td class="num highlight">$250,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="note">
+                    <strong>Blues Room math (Y1):</strong> 3 shows/wk × 52 wk = 156 shows. 25 avg attendance × ($35
+                    ticket +
+                    $45 bar) = $2,000/show. 156 × $2,000 = $312,000 gross. At ~44% margin after COGS/talent = $136,500
+                    net
+                    contribution.
+                </div>
+
+                <h3>3. Tour Packages</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th class="num">Y1</th>
+                            <th class="num">Y3</th>
+                            <th class="num">Y5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Avg Package Price</td>
+                            <td class="num">$1,800</td>
+                            <td class="num">$2,000</td>
+                            <td class="num">$2,200</td>
+                        </tr>
+                        <tr>
+                            <td>Packages Sold / Year</td>
+                            <td class="num">60</td>
+                            <td class="num">180</td>
+                            <td class="num">300</td>
+                        </tr>
+                        <tr>
+                            <td>Gross Package Revenue</td>
+                            <td class="num">$108,000</td>
+                            <td class="num">$360,000</td>
+                            <td class="num">$660,000</td>
+                        </tr>
+                        <tr>
+                            <td>Net Margin (25%)</td>
+                            <td class="num">25%</td>
+                            <td class="num">25%</td>
+                            <td class="num">25%</td>
+                        </tr>
+                        <tr class="total">
+                            <td>Net Package Revenue</td>
+                            <td class="num highlight">$27,000</td>
+                            <td class="num highlight">$90,000</td>
+                            <td class="num highlight">$162,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="note">
+                    <strong>Package margin breakdown:</strong> Flights 25% pass-through, Transport 10%, Lodging 40%,
+                    Experience 10%. The 25% net margin is after all pass-through costs. Lodging revenue is
+                    double-counted
+                    here (also in Engine 1), but the package drives the booking.
+                </div>
+            </div>
+
+            <!-- 5-YEAR P&L -->
+            <div class="section">
+                <div class="section-label">Five-Year Projections</div>
+                <h2>Pro Forma Income Statement</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Line Item</th>
+                            <th class="num">Y0 Actual</th>
+                            <th class="num">Year 1</th>
+                            <th class="num">Year 2</th>
+                            <th class="num">Year 3</th>
+                            <th class="num">Year 4</th>
+                            <th class="num">Year 5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Total Revenue</strong></td>
+                            <td class="num">$69,201</td>
+                            <td class="num highlight">$388,418</td>
+                            <td class="num highlight">$540,000</td>
+                            <td class="num highlight">$721,000</td>
+                            <td class="num highlight">$890,000</td>
+                            <td class="num highlight">$1,072,500</td>
+                        </tr>
+                        <tr>
+                            <td colspan="7" style="padding:0.25rem; border:none"></td>
+                        </tr>
+                        <tr>
+                            <td>Personnel (Manager + Staff)</td>
+                            <td class="num">$9,715</td>
+                            <td class="num">$72,000</td>
+                            <td class="num">$96,000</td>
+                            <td class="num">$120,000</td>
+                            <td class="num">$144,000</td>
+                            <td class="num">$168,000</td>
+                        </tr>
+                        <tr>
+                            <td>Talent / Artist Fees</td>
+                            <td class="num">—</td>
+                            <td class="num">$36,000</td>
+                            <td class="num">$48,000</td>
+                            <td class="num">$60,000</td>
+                            <td class="num">$66,000</td>
+                            <td class="num">$72,000</td>
+                        </tr>
+                        <tr>
+                            <td>Utilities & Insurance</td>
+                            <td class="num">$11,903</td>
+                            <td class="num">$18,000</td>
+                            <td class="num">$19,500</td>
+                            <td class="num">$21,000</td>
+                            <td class="num">$22,500</td>
+                            <td class="num">$24,000</td>
+                        </tr>
+                        <tr>
+                            <td>COGS (Bar, Merch, Transport)</td>
+                            <td class="num">—</td>
+                            <td class="num">$42,000</td>
+                            <td class="num">$58,000</td>
+                            <td class="num">$78,000</td>
+                            <td class="num">$95,000</td>
+                            <td class="num">$115,000</td>
+                        </tr>
+                        <tr>
+                            <td>Marketing & Content</td>
+                            <td class="num">$730</td>
+                            <td class="num">$18,000</td>
+                            <td class="num">$24,000</td>
+                            <td class="num">$30,000</td>
+                            <td class="num">$36,000</td>
+                            <td class="num">$42,000</td>
+                        </tr>
+                        <tr>
+                            <td>Maintenance & Repairs</td>
+                            <td class="num">$944</td>
+                            <td class="num">$8,000</td>
+                            <td class="num">$10,000</td>
+                            <td class="num">$12,000</td>
+                            <td class="num">$14,000</td>
+                            <td class="num">$16,000</td>
+                        </tr>
+                        <tr>
+                            <td>Technology & Software</td>
+                            <td class="num">—</td>
+                            <td class="num">$6,000</td>
+                            <td class="num">$8,000</td>
+                            <td class="num">$10,000</td>
+                            <td class="num">$10,000</td>
+                            <td class="num">$10,000</td>
+                        </tr>
+                        <tr>
+                            <td>Other Operating</td>
+                            <td class="num">$15,279</td>
+                            <td class="num">$12,000</td>
+                            <td class="num">$14,000</td>
+                            <td class="num">$16,000</td>
+                            <td class="num">$18,000</td>
+                            <td class="num">$20,000</td>
+                        </tr>
+                        <tr class="total">
+                            <td><strong>Total Expenses</strong></td>
+                            <td class="num">$38,571</td>
+                            <td class="num">$212,000</td>
+                            <td class="num">$277,500</td>
+                            <td class="num">$347,000</td>
+                            <td class="num">$405,500</td>
+                            <td class="num">$467,000</td>
+                        </tr>
+                        <tr>
+                            <td colspan="7" style="padding:0.25rem; border:none"></td>
+                        </tr>
+                        <tr class="total">
+                            <td><strong>Net Operating Income</strong></td>
+                            <td class="num highlight">$30,630</td>
+                            <td class="num highlight">$176,418</td>
+                            <td class="num highlight">$262,500</td>
+                            <td class="num highlight">$374,000</td>
+                            <td class="num highlight">$484,500</td>
+                            <td class="num highlight">$605,500</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NOI Margin</strong></td>
+                            <td class="num">44%</td>
+                            <td class="num highlight">45%</td>
+                            <td class="num highlight">49%</td>
+                            <td class="num highlight">52%</td>
+                            <td class="num highlight">54%</td>
+                            <td class="num highlight">56%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- GROWTH SCENARIOS -->
+            <div class="section">
+                <div class="section-label">Scenario Analysis</div>
+                <h2>Three Growth Paths</h2>
+                <p>Based on simulation models with 60-month time horizons:</p>
+
+                <div class="scenario-grid">
+                    <div class="scenario">
+                        <div class="scenario-name">Conservative</div>
+                        <div class="scenario-cagr">5% CAGR</div>
+                        <div class="scenario-rev">$88K</div>
+                        <ul>
+                            <li>Minimal marketing investment</li>
+                            <li>Blues Room 1-2 nights/week</li>
+                            <li>No touring or packages</li>
+                            <li>Year 5 Revenue: $88,000</li>
+                            <li>NOI: ~$40,000</li>
+                        </ul>
+                    </div>
+                    <div class="scenario featured">
+                        <div class="scenario-name" style="color:var(--accent-gold)">Base Case</div>
+                        <div class="scenario-cagr">15% CAGR (Modeled Above)</div>
+                        <div class="scenario-rev">$1.07M</div>
+                        <ul>
+                            <li>Full Blues Room programming</li>
+                            <li>Active touring & packages</li>
+                            <li>Content-driven marketing</li>
+                            <li>Year 5 Revenue: $1,072,500</li>
+                            <li>NOI: $605,500</li>
+                        </ul>
+                    </div>
+                    <div class="scenario">
+                        <div class="scenario-name">Aggressive</div>
+                        <div class="scenario-cagr">40% CAGR</div>
+                        <div class="scenario-rev">$2.1M</div>
+                        <ul>
+                            <li>2nd property acquisition</li>
+                            <li>National touring circuit</li>
+                            <li>Record label distribution</li>
+                            <li>Year 5 Revenue: $2,100,000</li>
+                            <li>NOI: ~$900,000</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CAPEX -->
+            <div class="section">
+                <div class="section-label">Capital Requirements</div>
+                <h2>Investment Needed</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Initiative</th>
+                            <th>Timeline</th>
+                            <th class="num">Investment</th>
+                            <th>Revenue Unlock</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Blues Room sound/lighting upgrade</td>
+                            <td>Q2 2026</td>
+                            <td class="num">$15,000</td>
+                            <td>Events & Bar revenue</td>
+                        </tr>
+                        <tr>
+                            <td>Ford Transit 350 (12-pax)</td>
+                            <td>Q3 2026</td>
+                            <td class="num">$45,000</td>
+                            <td>Transport + Packages</td>
+                        </tr>
+                        <tr>
+                            <td>Recording equipment (multi-track)</td>
+                            <td>Q2 2026</td>
+                            <td class="num">$8,000</td>
+                            <td>Production services</td>
+                        </tr>
+                        <tr>
+                            <td>Marketing & content production</td>
+                            <td>Ongoing</td>
+                            <td class="num">$18,000/yr</td>
+                            <td>Occupancy + awareness</td>
+                        </tr>
+                        <tr>
+                            <td>Booking platform & POS system</td>
+                            <td>Q1 2026</td>
+                            <td class="num">$5,000</td>
+                            <td>Operational efficiency</td>
+                        </tr>
+                        <tr class="total">
+                            <td colspan="2"><strong>Total Phase 1 CapEx</strong></td>
+                            <td class="num highlight"><strong>$91,000</strong></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- COMPETITIVE POSITION -->
+            <div class="section">
+                <div class="section-label">Market Position</div>
+                <h2>Why Big Muddy Wins</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Advantage</th>
+                            <th>Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Vertical Integration</strong></td>
+                            <td>No competitor controls lodging + venue + touring + recording + merch in one ecosystem
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Location Monopoly</strong></td>
+                            <td>Downtown Natchez, 2 blocks from Mississippi River — limited hotel supply, growing
+                                tourism
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Blues Trail Position</strong></td>
+                            <td>Network of 16 cities across 5 states; only operator building a branded corridor</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Content Moat</strong></td>
+                            <td>Every performance creates content that markets the next booking — zero-cost flywheel
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Artist-in-Residence</strong></td>
+                            <td>Amy Allen as permanent draw; rotating guest artists create recurring reasons to visit
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Authenticity Premium</strong></td>
+                            <td>In a world of AI-generated content, real humans playing real blues in a real venue is
+                                scarce
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- REGIONAL BANKING INTEGRATION -->
+            <div class="section">
+                <div class="section-label">Strategic Partnerships</div>
+                <h2>Regional Banking Integration</h2>
+                <p>Big Muddy Touring is actively integrating with regional banking partners to extend marketing
+                    reach and
+                    core financial services. This partnership model is designed around mutual growth, local economic
+                    impact, and shared community value.</p>
+
+                <h3>SBA & CRA Eligibility</h3>
+                <p>The project provides strong avenues for <strong>SBA 7(a) or 504 loan participation</strong> based on
+                    rural job creation. For banks with <strong>Community Reinvestment Act (CRA)</strong> obligations,
+                    Magnolia Art Farm directly addresses rural housing shortages and regional economic revitalization in
+                    underserved
+                    corridors.</p>
+                <p>The combination of affordable housing, small business incubation, and agricultural activity checks
+                    multiple CRA boxes while delivering tangible community impact.</p>
+
+                <h3>De-Risked Capital Stack (65% LTV)</h3>
+                <p>Our financial model utilizes a <strong>65% LTV ratio</strong> for senior debt, providing the bank
+                    with a
+                    secure 35% equity cushion. Senior debt is secured by hard assets (land and modular units), while the
+                    revenue architecture ensures a highly defensible baseline Debt Service Coverage Ratio (DSCR).</p>
+            </div>
+
+            <!-- TEAM -->
+            <div class="section">
+                <div class="section-label">Team</div>
+                <h2>Key People</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Role</th>
+                            <th>Who</th>
+                            <th>Background</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Autonomous Editorial Board</strong></td>
+                            <td>DT27 AI Agents</td>
+                            <td>A custom-built swarm of specialized AI agents (Antigravity, Claude, Kimi) operating via
+                                the DT27 hub to generate editorial content, curate gig guides, and manage digital
+                                publishing.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Managing Partner</strong></td>
+                            <td>Chase Pierson</td>
+                            <td>Photographer/Director, SaaS founder (Scan2Plan), PGA producer, 20+ year media career.
+                                HBO,
+                                BET, Discovery, Microsoft, Airbnb.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Artist-in-Residence</strong></td>
+                            <td>Amy Allen</td>
+                            <td>Blues performer, Big Muddy Radio host, community connector</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Designer</strong></td>
+                            <td>Andrea Brooks</td>
+                            <td>Interior design for all 6 suites and common areas (Rosemary Hallmark Creative)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Featured Artist</strong></td>
+                            <td>Doug Duffey / BADD</td>
+                            <td>Blues artist performing the Blues Trail circuit</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="section" style="text-align: center; padding: 3rem 0;">
+                <p class="cover-eyebrow">Confidential</p>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">
+                    Big Muddy Touring · 411 N Commerce St, Natchez, MS 39120<br>
+                    Chase Pierson · me@chasepierson.tv · 845-303-4294<br>
+                    <span style="color: var(--accent-gold);">thebigmuddyinn.com</span> · <span
+                        style="color: var(--accent-gold);">bigmuddy-touring.web.app</span>
+                </p>
+                <p style="color: var(--text-muted); font-size: 0.75rem; margin-top: 1rem;">
+                    Financial projections based on QuickBooks actuals (Feb 2025–2026) and industry benchmarks.<br>
+                    All figures are forward-looking estimates and subject to market conditions.
+                </p>
+            </div>
+
+        </div><!-- /container -->
+</body>
+
+</html>

@@ -1,20 +1,21 @@
 # Big Muddy Touring — Claude Code Handoff Document
 
-**Last updated:** March 4, 2026
-**Last commit:** `f4b0b71` — fix: radio subpage routing, hero images, and podcast page
+**Last updated:** March 15, 2026
+**Last commit:** `be25348` — feat(economics): add posts 11-15, complete Substack drafts, voice guide
 
 ---
 
 ## What Is This Project?
 
-A **multi-tenant Next.js 14 monorepo** deployed on **Firebase App Hosting** that serves four branded websites from a single codebase:
+A **multi-tenant Next.js 14 monorepo** deployed on **Firebase App Hosting** that serves five branded websites from a single codebase:
 
 | Brand | Domain | Purpose |
 |---|---|---|
 | **Touring** | bigmuddytouring.com | Primary editorial hub — inn, music route, travel |
 | **Magazine** | bigmuddymagazine.com | Long-form articles, 18 city guides |
 | **Radio** | bigmuddyradio.com | Curated playlists, live sessions, podcast |
-| **Admin** | admin.bigmuddytouring.com / localhost:3000 | Operations center — CMS, CRM, metrics |
+| **Economics** | outsidereconomics.com | Field manual for independent economic systems — Chase's book |
+| **Admin** | admin.bigmuddytouring.com / localhost:3000 | Operations center — CMS, CRM, metrics, AI media generation |
 
 All four sites share one Next.js deployment. **Middleware** (`apps/web/middleware.ts`) reads the hostname and rewrites requests to the correct route group.
 
@@ -25,6 +26,10 @@ All four sites share one Next.js deployment. **Middleware** (`apps/web/middlewar
 ```
 bmt/
 ├── apps/web/                         # Next.js 14 app (App Router)
+│   ├── lib/
+│   │   ├── gcs.ts                    # Google Cloud Storage helper
+│   │   ├── imagen.ts                 # Vertex AI Imagen 3.0 wrapper
+│   │   └── posts.ts                  # Markdown post discovery/rendering
 │   ├── app/
 │   │   ├── touring/                  # bigmuddytouring.com pages
 │   │   │   ├── page.tsx              # Homepage (hero, suites, route, articles)
@@ -39,6 +44,13 @@ bmt/
 │   │   │   ├── playlists/page.tsx    # All playlists with hero image
 │   │   │   ├── live/page.tsx         # Live sessions with hero image
 │   │   │   └── podcast/page.tsx      # Podcast (coming soon) with hero image
+│   │   ├── economics/                # outsidereconomics.com pages
+│   │   │   ├── page.tsx              # Homepage (concept cards, CTA)
+│   │   │   ├── field-manual/page.tsx  # 10-post index (auto-discovers markdown)
+│   │   │   ├── field-manual/[slug]/   # Individual post pages (dynamic)
+│   │   │   ├── the-math/page.tsx     # 6 equations with worked examples
+│   │   │   ├── community/page.tsx    # "Find Your 20" playbook
+│   │   │   └── about/page.tsx        # Origin story + Big Muddy brands
 │   │   ├── admin/                    # admin.bigmuddytouring.com pages
 │   │   │   ├── dashboard/page.tsx    # KPI dashboard
 │   │   │   ├── articles/             # Article CRUD (list, new, [id]/edit)
@@ -68,6 +80,8 @@ bmt/
 │   │   └── prisma/schema.prisma      # 8 models: Article, Playlist, Event, etc.
 │   └── ui/                           # Shared React components
 │       └── index.ts                  # Navigation, ArticleCard, PlaylistCard, etc.
+├── outsider-economics-v2/            # 15 posts + Substack drafts + voice guide
+├── apps/video/                       # Remotion video pipeline (untracked)
 ├── apphosting.yaml                   # Firebase App Hosting config
 ├── firebase.json                     # Firebase project config
 ├── turbo.json                        # Turborepo task config
@@ -180,6 +194,14 @@ All hardcoded in `apps/web/lib/articles.ts`. Each city has a full article with:
 | Admin dashboard | ✅ KPI metrics |
 | Admin CRUD pages | ✅ All working |
 | API routes | ✅ All CRUD endpoints |
+| Economics homepage | ✅ Concept cards link to field manual posts |
+| Economics /field-manual | ✅ 10 posts auto-discovered from markdown |
+| Economics /field-manual/[slug] | ✅ All 10 render with styled prose |
+| Economics /the-math | ✅ 6 equations with worked examples |
+| Economics /community | ✅ "Find Your 20" playbook |
+| Economics /about | ✅ Origin story + Big Muddy brands |
+| Admin /media (generate) | ✅ AI image generation panel |
+| Video pipeline | ⚠️ Working locally, not committed |
 | Mobile responsive | ⚠️ Not thoroughly tested |
 | Database integration | ⚠️ Wired but pages use placeholder arrays |
 
@@ -218,7 +240,53 @@ pnpm db:push        # Push schema to database
 | `apps/web/app/radio/page.tsx` | Radio homepage with placeholder data |
 | `apps/web/app/touring/page.tsx` | Touring homepage with placeholder articles |
 | `apps/web/next.config.mjs` | Image optimization, caching, remote patterns |
+| `apps/web/lib/imagen.ts` | Vertex AI Imagen wrapper for AI image generation |
+| `apps/web/lib/posts.ts` | Markdown post pipeline for economics |
+| `outsider-economics-v2/VOICE-GUIDE.md` | Chase's writing voice rules |
+| `apps/video/src/data/equations.ts` | All video content (stories, stats, quotes) |
 | `apphosting.yaml` | Firebase deployment config + secrets |
+
+---
+
+## Session 3 — March 15, 2026
+
+### Outsider Economics (5th Brand)
+- **Full website built** — homepage, field manual (10 posts w/ markdown pipeline), the math (6 equations), community ("Find Your 20"), about
+- **15 posts written** in `outsider-economics-v2/` (~30K words total, chapters 1-15)
+- **Markdown rendering pipeline** — `lib/posts.ts` auto-discovers posts, parses with gray-matter/remark, renders to styled HTML
+- **10 Substack drafts** ready to paste in `outsider-economics-v2/substack/`
+- **Twitter hooks** for all 10 core posts (2-3 options each) in `twitter-hooks.md`
+- **Voice guide** at `outsider-economics-v2/VOICE-GUIDE.md`
+- **Content matrix** — 30 rows seeded via Google Apps Script engine, all 30 social posts generated
+- **SEO** — OG images, Twitter cards, sitemap.ts, robots.ts
+
+### Google Imagen AI Media Generation
+- **`lib/imagen.ts`** — Vertex AI Imagen 3.0 wrapper using Application Default Credentials
+- **`POST /api/media/generate`** — admin-only endpoint: prompt → Imagen → PNG → WebP → GCS
+- **Admin media UI** updated with "Generate with AI" panel (prompt textarea, album picker, aspect ratio selector)
+- **GCP setup done:** Vertex AI API enabled on `bigmuddy-ff651`, IAM role granted to Firebase App Hosting service account
+
+### Video Pipeline (`apps/video/`) — NOT YET COMMITTED
+- **Remotion-based** programmatic video generation
+- **3 composition types:** EquationReveal (narrative story beats), StatCounter (animated number reveals), QuoteCard (line-by-line quote reveals)
+- **30 compositions registered** — 6 stories + 4 stats + 5 quotes, each in YouTube (1920×1080) and Shorts (1080×1920) format
+- **Test renders completed** — `extraction-v3-shorts.mp4` is latest (3.9 MB, 60s vertical)
+- **Data:** `src/data/equations.ts` has all video content (stories, stats, quotes)
+- **Commands:**
+  - `pnpm --filter @bigmuddy/video exec remotion studio src/index.ts` — preview
+  - `pnpm --filter @bigmuddy/video exec remotion render src/index.ts <composition-id> --output <path>` — render single
+
+### Infrastructure
+- **gcloud** switched from `chase@scan2plan.io` / `s2px-production` → `me@chasepierson.tv` / `bigmuddy-ff651`
+- Projects confirmed airlocked — no cross-contamination
+- Apps Script content engine redeployed as @3
+
+### Pending / Needs Chase
+- Set up Substack account → paste 10 prepped drafts
+- Point `outsidereconomics.com` DNS → Firebase Console
+- Post Twitter hooks
+- Commit `apps/video/` after approving render style
+- Batch render all 30 videos
 
 ---
 

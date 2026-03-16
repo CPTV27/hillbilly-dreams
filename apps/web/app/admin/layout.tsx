@@ -36,6 +36,7 @@ const NAV_SECTIONS = [
       { label: 'Playlists', href: '/playlists', icon: '◈' },
       { label: 'Events', href: '/events', icon: '◷' },
       { label: 'Newsletter', href: '/newsletter', icon: '◻' },
+      { label: 'Social', href: '/social', icon: '◈' },
     ],
   },
   {

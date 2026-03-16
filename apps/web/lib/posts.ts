@@ -103,7 +103,12 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   };
 }
 
-// getAllSlugs can be used by generateStaticParams if we switch to static generation
-// export function getAllSlugs(): string[] {
-//   return getAllPosts().map((p) => p.slug);
-// }
+export function getAdjacentPosts(slug: string): { prev: Post | null; next: Post | null } {
+  const posts = getAllPosts();
+  const index = posts.findIndex((p) => p.slug === slug);
+  if (index === -1) return { prev: null, next: null };
+  return {
+    prev: index > 0 ? posts[index - 1] : null,
+    next: index < posts.length - 1 ? posts[index + 1] : null,
+  };
+}

@@ -158,6 +158,47 @@ model BridgeClient {
 }
 
 // ─────────────────────────────────────────────────────────────
+// SOCIAL MEDIA
+// ─────────────────────────────────────────────────────────────
+
+model SocialAccount {
+  id          Int      @id @default(autoincrement())
+  platform    String   // twitter | tiktok | instagram | threads | bluesky | linkedin
+  handle      String   // @outsiderecon, @bigmuddymedia, etc.
+  brand       String   @default("bigmuddy") // bigmuddy | radio | magazine | touring | economics
+  status      String   @default("active")   // active | paused | disconnected
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  posts       SocialPost[]
+
+  @@unique([platform, handle])
+  @@index([brand])
+  @@index([status])
+}
+
+model SocialPost {
+  id          Int       @id @default(autoincrement())
+  accountId   Int
+  account     SocialAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  content     String    @db.Text           // Post body / caption
+  mediaUrls   String[]                     // GCS image/video URLs
+  postUrl     String?                      // URL after publishing (paste back)
+  status      String    @default("draft")  // draft | ready | published | failed
+  scheduledAt DateTime?                    // When to publish (null = no schedule)
+  publishedAt DateTime?                    // When actually published
+  sourceType  String?                      // article | newsletter | event | economics | manual
+  sourceId    String?                      // Reference to source content ID
+  tags        String[]                     // hashtags, topics
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([accountId, status])
+  @@index([status, scheduledAt])
+  @@index([sourceType, sourceId])
+}
+
+// ─────────────────────────────────────────────────────────────
 // AUTH (NextAuth.js)
 // ─────────────────────────────────────────────────────────────
 
