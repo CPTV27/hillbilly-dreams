@@ -162,6 +162,187 @@ export interface BridgeClient {
 }
 
 // ─────────────────────────────────────────────────────────────
+// CLIENT MANAGEMENT (Media-as-a-Service)
+// ─────────────────────────────────────────────────────────────
+
+export type ClientTier = 'front-porch' | 'route' | 'river-room' | 'blues-room';
+export type ClientStatus = 'onboarding' | 'active' | 'paused' | 'churned';
+export type BusinessType = 'restaurant' | 'venue' | 'hotel' | 'shop' | 'tour' | 'service' | 'other';
+
+export interface Client {
+  id: number;
+  name: string;
+  slug: string;
+  tier: ClientTier | string;
+  businessType: BusinessType | string;
+  city: string;
+  state: string;
+  address?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  website?: string | null;
+  description?: string | null;
+  voiceProfile?: Record<string, unknown> | null;
+  platforms: string[];
+  gbpPlaceId?: string | null;
+  gbpUrl?: string | null;
+  stripeCustomerId?: string | null;
+  logoUrl?: string | null;
+  heroImageUrl?: string | null;
+  contactName?: string | null;
+  contactEmail?: string | null;
+  contactPhone?: string | null;
+  notes?: string | null;
+  status: ClientStatus | string;
+  onboardedAt?: Date | string | null;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+  // Virtual fields
+  _count?: { accounts?: number; reviews?: number; reports?: number };
+}
+
+export type ReviewResponseStatus = 'pending' | 'drafted' | 'approved' | 'posted' | 'skipped';
+
+export interface Review {
+  id: number;
+  clientId: number;
+  platform: string;
+  externalId: string;
+  author: string;
+  rating: number;
+  text?: string | null;
+  response?: string | null;
+  responseStatus: ReviewResponseStatus | string;
+  aiDraft?: string | null;
+  postedAt: Date | string;
+  respondedAt?: Date | string | null;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+  client?: Client;
+}
+
+export type CalendarStatus = 'draft' | 'review' | 'approved' | 'active' | 'completed';
+
+export interface ContentCalendar {
+  id: number;
+  clientId: number;
+  month: number;
+  year: number;
+  posts: Array<{
+    content: string;
+    platform: string;
+    scheduledDate: string;
+    status: string;
+    mediaUrl?: string;
+    hashtags?: string[];
+  }>;
+  status: CalendarStatus | string;
+  generatedAt: Date | string;
+  approvedAt?: Date | string | null;
+  approvedBy?: string | null;
+  notes?: string | null;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+  client?: Client;
+}
+
+export interface Report {
+  id: number;
+  clientId: number;
+  month: number;
+  year: number;
+  data: Record<string, unknown>;
+  summary?: string | null;
+  pdfUrl?: string | null;
+  sentAt?: Date | string | null;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+  client?: Client;
+}
+
+export interface Invoice {
+  id: number;
+  clientId: number;
+  stripeInvoiceId?: string | null;
+  amount: number;
+  currency: string;
+  status: string;
+  periodStart: Date | string;
+  periodEnd: Date | string;
+  paidAt?: Date | string | null;
+  dueDate?: Date | string | null;
+  pdfUrl?: string | null;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+  client?: Client;
+}
+
+export type PublishJobStatus = 'pending' | 'processing' | 'published' | 'failed' | 'cancelled';
+
+export interface PublishJob {
+  id: number;
+  postId: number;
+  platform: string;
+  status: PublishJobStatus | string;
+  externalId?: string | null;
+  externalUrl?: string | null;
+  error?: string | null;
+  attempts: number;
+  scheduledAt?: Date | string | null;
+  publishedAt?: Date | string | null;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}
+
+// Tier configuration for pricing/features
+export const CLIENT_TIERS: Record<ClientTier, {
+  label: string;
+  price: number; // Monthly price in dollars
+  postsPerMonth: number;
+  platforms: number;
+  imagesPerMonth: number;
+  videosPerMonth: number;
+  features: string[];
+}> = {
+  'front-porch': {
+    label: 'Front Porch',
+    price: 99,
+    postsPerMonth: 12,
+    platforms: 1,
+    imagesPerMonth: 0,
+    videosPerMonth: 0,
+    features: ['GBP optimization', 'Monthly report', 'Magazine directory listing'],
+  },
+  'route': {
+    label: 'The Route',
+    price: 299,
+    postsPerMonth: 30,
+    platforms: 3,
+    imagesPerMonth: 4,
+    videosPerMonth: 0,
+    features: ['Review response management', 'Bi-weekly newsletter', 'Basic website', 'Quarterly strategy call', 'Magazine features'],
+  },
+  'river-room': {
+    label: 'River Room',
+    price: 599,
+    postsPerMonth: 60,
+    platforms: 6,
+    imagesPerMonth: 8,
+    videosPerMonth: 2,
+    features: ['Full review management', 'Weekly email', 'Event promotion', 'Dedicated magazine page', 'Monthly strategy call'],
+  },
+  'blues-room': {
+    label: 'The Blues Room',
+    price: 1200,
+    postsPerMonth: 100,
+    platforms: 6,
+    imagesPerMonth: 20,
+    videosPerMonth: 4,
+    features: ['Custom strategy', 'Professional photography', 'Long-form video', 'Managed ads', 'PR outreach', 'White-label dashboard', 'Co-branded events'],
+  },
+};
+
+// ─────────────────────────────────────────────────────────────
 // API RESPONSE TYPES
 // ─────────────────────────────────────────────────────────────
 

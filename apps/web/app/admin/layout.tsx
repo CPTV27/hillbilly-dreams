@@ -43,6 +43,7 @@ const NAV_SECTIONS = [
     label: 'CRM',
     items: [
       { label: 'Contacts', href: '/contacts', icon: '◻' },
+      { label: 'Clients', href: '/clients', icon: '◈' },
     ],
   },
   {

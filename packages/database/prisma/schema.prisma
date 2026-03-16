@@ -168,6 +168,8 @@ model SocialAccount {
   brand       String   @default("bigmuddy") // bigmuddy | radio | magazine | touring | economics
   status      String   @default("active")   // active | paused | disconnected
   notes       String?
+  clientId    Int?
+  client      Client?  @relation(fields: [clientId], references: [id])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   posts       SocialPost[]
@@ -196,6 +198,149 @@ model SocialPost {
   @@index([accountId, status])
   @@index([status, scheduledAt])
   @@index([sourceType, sourceId])
+}
+
+// ─────────────────────────────────────────────────────────────
+// CLIENT MANAGEMENT (Media-as-a-Service)
+// ─────────────────────────────────────────────────────────────
+
+model Client {
+  id               Int       @id @default(autoincrement())
+  name             String
+  slug             String    @unique
+  tier             String    @default("front-porch") // front-porch | route | river-room | blues-room
+  businessType     String    // restaurant | venue | hotel | shop | tour | service | other
+  city             String
+  state            String    @default("MS")
+  address          String?
+  phone            String?
+  email            String?
+  website          String?
+  description      String?   @db.Text
+  voiceProfile     Json?     // AI-generated brand voice document
+  platforms        String[]  // which social platforms they're on
+  gbpPlaceId       String?   // Google Business Profile place ID
+  gbpUrl           String?   // Google Maps URL
+  stripeCustomerId String?
+  logoUrl          String?
+  heroImageUrl     String?
+  contactName      String?   // Primary contact person
+  contactEmail     String?
+  contactPhone     String?
+  notes            String?   @db.Text
+  status           String    @default("onboarding") // onboarding | active | paused | churned
+  onboardedAt      DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  accounts         SocialAccount[]
+  reviews          Review[]
+  calendars        ContentCalendar[]
+  reports          Report[]
+  invoices         Invoice[]
+
+  @@index([city])
+  @@index([tier, status])
+  @@index([status])
+}
+
+model Review {
+  id             Int       @id @default(autoincrement())
+  clientId       Int
+  client         Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  platform       String    // google | yelp | tripadvisor | facebook
+  externalId     String    @unique
+  author         String
+  rating         Int       // 1-5
+  text           String?   @db.Text
+  response       String?   @db.Text   // Our drafted response
+  responseStatus String    @default("pending") // pending | drafted | approved | posted | skipped
+  aiDraft        String?   @db.Text   // AI-generated response draft
+  postedAt       DateTime  // When the review was posted
+  respondedAt    DateTime? // When we responded
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([clientId, platform])
+  @@index([responseStatus])
+  @@index([clientId, postedAt])
+}
+
+model ContentCalendar {
+  id          Int       @id @default(autoincrement())
+  clientId    Int
+  client      Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  month       Int       // 1-12
+  year        Int
+  posts       Json      // Array of planned post objects with content, platform, scheduledDate, status
+  status      String    @default("draft") // draft | review | approved | active | completed
+  generatedAt DateTime  @default(now())
+  approvedAt  DateTime?
+  approvedBy  String?
+  notes       String?   @db.Text
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([clientId, month, year])
+  @@index([status])
+}
+
+model Report {
+  id          Int       @id @default(autoincrement())
+  clientId    Int
+  client      Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  month       Int
+  year        Int
+  data        Json      // Metrics snapshot: posts published, engagement, reviews, etc.
+  summary     String?   @db.Text // AI-generated narrative summary
+  pdfUrl      String?   // GCS URL for generated PDF
+  sentAt      DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([clientId, month, year])
+}
+
+model Invoice {
+  id               Int       @id @default(autoincrement())
+  clientId         Int
+  client           Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  stripeInvoiceId  String?   @unique
+  amount           Int       // Amount in cents
+  currency         String    @default("usd")
+  status           String    @default("draft") // draft | open | paid | void | uncollectible
+  periodStart      DateTime
+  periodEnd        DateTime
+  paidAt           DateTime?
+  dueDate          DateTime?
+  pdfUrl           String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@index([clientId, status])
+  @@index([status])
+}
+
+// ─────────────────────────────────────────────────────────────
+// PUBLISHING PIPELINE
+// ─────────────────────────────────────────────────────────────
+
+model PublishJob {
+  id          Int       @id @default(autoincrement())
+  postId      Int       // Reference to SocialPost
+  platform    String    // twitter | instagram | tiktok | bluesky | linkedin | facebook | gbp
+  status      String    @default("pending") // pending | processing | published | failed | cancelled
+  externalId  String?   // Platform's post ID after publishing
+  externalUrl String?   // URL of published post
+  error       String?   @db.Text
+  attempts    Int       @default(0)
+  scheduledAt DateTime?
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([status, scheduledAt])
+  @@index([postId])
 }
 
 // ─────────────────────────────────────────────────────────────

@@ -69,7 +69,7 @@ export async function middleware(request: NextRequest) {
 
   // If the path already starts with a known brand prefix, pass through
   // without rewriting. Admin and ops routes require authentication.
-  const brandPrefixes = ['/touring', '/magazine', '/radio', '/economics', '/admin', '/ops'];
+  const brandPrefixes = ['/touring', '/magazine', '/radio', '/economics', '/admin', '/ops', '/portal'];
   if (brandPrefixes.some(p => pathname === p || pathname.startsWith(p + '/'))) {
     if (pathname.startsWith('/admin') || pathname.startsWith('/ops')) {
       const token = await getSession();
