@@ -294,6 +294,46 @@ export interface PublishJob {
   updatedAt: Date | string;
 }
 
+// ─────────────────────────────────────────────────────────────
+// PUBLICATIONS (Books, Zines, Print)
+// ─────────────────────────────────────────────────────────────
+
+export type PublicationCategory = 'book' | 'zine' | 'print' | 'catalog';
+export type PublicationFormat = 'hardcover' | 'softcover' | 'digital' | 'limited-edition';
+export type PublicationStatus = 'draft' | 'production' | 'preorder' | 'available' | 'sold-out' | 'archived';
+
+export interface Publication {
+  id: number;
+  title: string;
+  slug: string;
+  subtitle?: string | null;
+  author: string;
+  description?: string | null;
+  longDescription?: string | null;
+  category: PublicationCategory | string;
+  format: PublicationFormat | string;
+  pageCount?: number | null;
+  dimensions?: string | null;
+  isbn?: string | null;
+  price?: number | null;
+  currency: string;
+  coverImageUrl?: string | null;
+  backCoverUrl?: string | null;
+  previewImages: string[];
+  printPartner?: string | null;
+  printUrl?: string | null;
+  shopifyUrl?: string | null;
+  status: PublicationStatus | string;
+  edition?: string | null;
+  printRun?: number | null;
+  soldCount: number;
+  relatedCity?: string | null;
+  tags: string[];
+  publishedAt?: Date | string | null;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}
+
 // Tier configuration for pricing/features
 export const CLIENT_TIERS: Record<ClientTier, {
   label: string;

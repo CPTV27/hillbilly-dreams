@@ -37,6 +37,7 @@ const NAV_SECTIONS = [
       { label: 'Events', href: '/events', icon: '◷' },
       { label: 'Newsletter', href: '/newsletter', icon: '◻' },
       { label: 'Social', href: '/social', icon: '◈' },
+      { label: 'Publications', href: '/publications', icon: '◻' },
     ],
   },
   {
