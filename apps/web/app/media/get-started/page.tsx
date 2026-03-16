@@ -1,7 +1,7 @@
 'use client';
 
 // apps/web/app/media/get-started/page.tsx
-// Big Muddy Media — Get Started / Contact page
+// Deep South Directory — Get Started / Contact page
 // Client component — contains the onboarding form.
 
 import { useState, type FormEvent } from 'react';
@@ -149,7 +149,7 @@ export default function GetStartedPage() {
                     spam folder, just in case.
                   </p>
                   <a href="/media" className="btn btn--outline gs-success__home">
-                    Back to Big Muddy Media
+                    Back to Deep South Directory
                   </a>
                 </div>
               ) : (
@@ -157,7 +157,7 @@ export default function GetStartedPage() {
                   onSubmit={handleSubmit}
                   className="gs-form"
                   noValidate
-                  aria-label="Get started with Big Muddy Media"
+                  aria-label="Get started with Deep South Directory"
                 >
                   <div className="gs-form__grid">
                     {/* Business Name */}

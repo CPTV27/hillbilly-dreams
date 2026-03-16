@@ -96,7 +96,7 @@ export async function middleware(request: NextRequest) {
     return rewriteTo('radio', pathname);
   }
 
-  if (hostname.includes('bigmuddymedia') && !hostname.includes('admin')) {
+  if ((hostname.includes('deepsouthdirectory') || hostname.includes('bigmuddymedia')) && !hostname.includes('admin')) {
     return rewriteTo('media', pathname);
   }
 
@@ -119,7 +119,7 @@ export async function middleware(request: NextRequest) {
     return rewriteTo('radio', pathname);
   }
 
-  if (hostname.includes('bigmuddymedia.local')) {
+  if (hostname.includes('deepsouthdirectory.local') || hostname.includes('bigmuddymedia.local')) {
     return rewriteTo('media', pathname);
   }
 

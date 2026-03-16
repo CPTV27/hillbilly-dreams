@@ -1,13 +1,13 @@
 // apps/web/app/media/page.tsx
-// Big Muddy Media — homepage / landing page
+// Deep South Directory — homepage / landing page
 // Server component. Dark, editorial, Southern Gothic.
 
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Big Muddy Media | Media Services for Local Businesses',
+  title: 'Deep South Directory | Media Services for Local Businesses',
   description:
-    'AI-powered media services for local businesses along the Mississippi corridor. Content creation, social media management, local SEO, and more — starting at $99/month.',
+    'AI-powered media services for local businesses along the Mississippi corridor — powered by the Big Muddy network. Content creation, social media management, local SEO, and more — starting at $99/month.',
 };
 
 const PROBLEMS = [
@@ -129,9 +129,9 @@ export default function MediaHomepage() {
             Rooted in the Corridor.
           </h1>
           <p className="media-hero__sub">
-            Big Muddy Media gives local businesses the same content engine that powers our magazine,
-            radio station, and touring brand — at prices that make sense for a 40-seat restaurant
-            in Natchez.
+            Deep South Directory gives local businesses the same content engine that powers our magazine,
+            radio station, and touring brand — powered by the Big Muddy network, at prices that make sense
+            for a 40-seat restaurant in Natchez.
           </p>
           <div className="media-hero__ctas">
             <a href="/media/pricing" className="btn btn--primary">

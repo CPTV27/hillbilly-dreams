@@ -1,5 +1,5 @@
 // apps/web/app/media/brands/page.tsx
-// Big Muddy Media — Our Brands page
+// Deep South Directory — Our Brands page
 // Server component. Credibility through the portfolio.
 
 import type { Metadata } from 'next';
@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Our Brands',
   description:
-    'Big Muddy Media runs five brands across the Mississippi corridor — Touring, Magazine, Radio, the Inn, and Outsider Economics. The same engine now powers your business.',
+    'Deep South Directory is powered by five Big Muddy brands across the Mississippi corridor — Touring, Magazine, Radio, the Inn, and Outsider Economics. The same engine now powers your business.',
 };
 
 const BRANDS = [

@@ -1,5 +1,5 @@
 // apps/web/app/media/how-it-works/page.tsx
-// Big Muddy Media — How It Works page
+// Deep South Directory — How It Works page
 // Server component. Visual timeline layout.
 
 import type { Metadata } from 'next';
@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'How It Works',
   description:
-    'How Big Muddy Media works: we visit, build your brand voice, generate your content calendar, get your approval, publish, and report — every month.',
+    'How Deep South Directory works: we visit, build your brand voice, generate your content calendar, get your approval, publish, and report — every month.',
 };
 
 const STEPS = [

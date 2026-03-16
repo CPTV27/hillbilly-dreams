@@ -1,5 +1,5 @@
 // apps/web/app/media/pricing/page.tsx
-// Big Muddy Media — Pricing page
+// Deep South Directory — Pricing page
 // Server component.
 
 import type { Metadata } from 'next';
@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Pricing',
   description:
-    'Big Muddy Media pricing plans for local businesses. From $99/month for the Front Porch plan to custom Blues Room engagements.',
+    'Deep South Directory pricing plans for local businesses. From $99/month for the Front Porch plan to custom Blues Room engagements.',
 };
 
 const TIERS = [

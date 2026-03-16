@@ -1,9 +1,9 @@
 'use client';
 
 // apps/web/app/media/MediaNav.tsx
-// Inline navigation for the Big Muddy Media marketing site.
+// Inline navigation for the Deep South Directory marketing site.
 // Mirrors the bm-nav pattern from Navigation.tsx but with media-specific links
-// and "Big Muddy / Media" branding — without requiring 'media' as a BrandId.
+// and "Deep South / Directory" branding — without requiring 'media' as a BrandId.
 
 import React, { useState } from 'react';
 
@@ -22,7 +22,7 @@ export default function MediaNav() {
     <nav className="bm-nav" role="navigation" aria-label="Main navigation">
       <div className="bm-nav__inner">
         {/* Logo */}
-        <a href="/media" className="bm-nav__logo" aria-label="Big Muddy Media — home">
+        <a href="/media" className="bm-nav__logo" aria-label="Deep South Directory — home">
           <span className="bm-nav__logo-icon" aria-hidden="true">
             <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
               <path
@@ -51,8 +51,8 @@ export default function MediaNav() {
             </svg>
           </span>
           <span className="bm-nav__logo-text">
-            <span className="bm-nav__logo-name">Big Muddy</span>
-            <span className="bm-nav__logo-brand">Media</span>
+            <span className="bm-nav__logo-name">Deep South</span>
+            <span className="bm-nav__logo-brand">Directory</span>
           </span>
         </a>
 

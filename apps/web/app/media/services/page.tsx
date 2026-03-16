@@ -1,5 +1,5 @@
 // apps/web/app/media/services/page.tsx
-// Big Muddy Media — Services detail page
+// Deep South Directory — Services detail page
 // Server component.
 
 import type { Metadata } from 'next';
@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Services',
   description:
-    'Big Muddy Media services: AI content creation, social media management, photo and video production, local SEO, email marketing, analytics, and website hosting.',
+    'Deep South Directory services: AI content creation, social media management, photo and video production, local SEO, email marketing, analytics, and website hosting — powered by the Big Muddy network.',
 };
 
 const SERVICES = [
@@ -136,7 +136,7 @@ const SERVICES = [
     icon: '▲',
     label: 'Website & Microsites',
     title: 'A Home Base That Actually Works',
-    desc: 'Hosted on the Big Muddy platform, your brand. Fast, mobile-first, SEO-optimized. Basic sites on The Route; full feature sites on River Room; custom builds on Blues Room.',
+    desc: 'Hosted on the Deep South Directory platform, your brand. Fast, mobile-first, SEO-optimized. Basic sites on The Route; full feature sites on River Room; custom builds on Blues Room.',
     tiers: [
       { name: 'Front Porch', detail: 'Not included' },
       { name: 'The Route', detail: 'Basic site (5 pages, hosted)' },
@@ -144,7 +144,7 @@ const SERVICES = [
       { name: 'Blues Room', detail: 'Custom build, CMS, integrations' },
     ],
     details: [
-      'Hosted on Big Muddy infrastructure — no separate hosting bill',
+      'Hosted on Deep South Directory infrastructure — no separate hosting bill',
       'Mobile-first, Core Web Vitals optimized',
       'Menu, hours, events, and gallery updated by us',
       'Online reservation or booking links integrated',
@@ -168,7 +168,7 @@ export default function ServicesPage() {
             </h1>
             <p className="svc-header__sub">
               Seven service categories. One integrated platform. Powered by the same AI stack
-              that runs Big Muddy Magazine, Radio, and Touring.
+              that runs the Big Muddy network — Magazine, Radio, and Touring.
             </p>
             <div className="svc-header__nav" role="navigation" aria-label="Service sections">
               {SERVICES.map((s) => (
