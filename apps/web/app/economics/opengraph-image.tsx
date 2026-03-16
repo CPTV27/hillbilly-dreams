@@ -37,6 +37,8 @@ export default async function Image() {
         </div>
         <div
           style={{
+            display: 'flex',
+            flexDirection: 'column',
             fontSize: 72,
             fontWeight: 800,
             color: '#f5f0e8',
@@ -44,8 +46,7 @@ export default async function Image() {
             marginBottom: 32,
           }}
         >
-          Outsider
-          <br />
+          <span>Outsider</span>
           <span style={{ color: '#b54c4c' }}>Economics</span>
         </div>
         <div
