@@ -5,41 +5,41 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Deep South Directory | Media Services for Local Businesses',
+  title: 'Deep South Directory | The Local Business Network for the Mississippi Corridor',
   description:
-    'AI-powered media services for local businesses along the Mississippi corridor — powered by the Big Muddy network. Content creation, social media management, local SEO, and more — starting at $99/month.',
+    'Join the directory. Get featured in the magazine. Get played on the radio. Get found on the route. AI-powered media services for local businesses — starting at $99/month.',
 };
 
-const PROBLEMS = [
+const WHAT_YOU_GET = [
   {
-    icon: '▸',
-    title: 'No Content Engine',
-    desc: 'Posting one photo a week isn\'t a strategy. You need 30–100 pieces of content every month — and zero time to make them.',
+    icon: '01',
+    title: 'Listed in the Directory',
+    desc: 'Your business shows up in the Deep South Directory — a curated, SEO-optimized listing that puts you in front of travelers, locals, and people planning trips along the corridor.',
   },
   {
-    icon: '▸',
-    title: 'No Media Production',
-    desc: 'Professional photography and video cost $500–$2,000 per shoot. Most local businesses do it once and call it good.',
+    icon: '02',
+    title: 'Featured in the Magazine',
+    desc: 'Big Muddy Magazine writes city guides, features, and photo essays. Directory members get included in the editorial — real stories, not ads.',
   },
   {
-    icon: '▸',
-    title: 'No Local SEO',
-    desc: 'Your Google Business Profile is sitting there half-filled. Your competitors are showing up first. You don\'t know why.',
+    icon: '03',
+    title: 'Played on the Radio',
+    desc: 'Big Muddy Radio produces audio and video content. Your events, your music, your story — featured in shows and playlists that reach the whole corridor.',
   },
   {
-    icon: '▸',
-    title: 'No Social Presence',
-    desc: 'You\'re on Instagram but you\'re not consistent. You\'re not on TikTok. You\'re not where your customers actually are.',
+    icon: '04',
+    title: 'On the Touring Route',
+    desc: 'Big Muddy Touring drives people down the corridor. Directory businesses become stops on the route — recommended by name in every city guide.',
   },
   {
-    icon: '▸',
-    title: 'No Analytics',
-    desc: 'You have no idea what\'s working. Which posts drive reservations? Which neighborhoods are your customers coming from?',
+    icon: '05',
+    title: 'Social Media Done for You',
+    desc: 'AI-generated posts matched to your brand voice, published across your platforms. The higher your tier, the more posts, more platforms, more content.',
   },
   {
-    icon: '▸',
-    title: 'No Agency Budget',
-    desc: 'Full-service agencies start at $3,000–$5,000/month. That math doesn\'t work for a 40-seat restaurant in Natchez.',
+    icon: '06',
+    title: 'Reviews, SEO & Reporting',
+    desc: 'Google Business Profile optimization, AI-drafted review responses, and a monthly report showing exactly what happened. No mystery.',
   },
 ];
 
@@ -93,20 +93,20 @@ const BRANDS = [
 
 const MOAT = [
   {
-    title: 'We Own the Media',
-    desc: 'We\'re not an agency pretending to understand content. We run a magazine, a radio station, and a touring brand. We know what good looks like.',
+    title: 'The Network Is the Product',
+    desc: 'This isn\'t an agency. It\'s a network. Every business in the directory makes the network more valuable for every other business. Cross-promotion, event packaging, corridor-wide campaigns.',
   },
   {
-    title: 'AI Economics',
-    desc: 'Claude generates your content at a fraction of agency cost. We\'ve already built the pipeline. You get the output.',
+    title: 'We\'re Already Doing the Marketing',
+    desc: 'The magazine is publishing. The radio is broadcasting. The touring content is live. You\'re not hiring us to start — you\'re joining something that\'s already running.',
   },
   {
-    title: 'Corridor Network',
-    desc: 'Your business gets listed in our magazine, featured in our guides, and promoted to our audience across the Mississippi corridor.',
+    title: 'AI Does the Heavy Lifting',
+    desc: 'Content generation, review responses, scheduling, reporting — the AI handles 90% of the work. That\'s why this starts at $99 instead of $3,000.',
   },
   {
-    title: 'Vertical Integration',
-    desc: 'Content, SEO, reviews, email, analytics — one platform, one invoice, one point of contact. No vendor coordination.',
+    title: 'One River. One Story.',
+    desc: 'Every business in the directory is part of one story — the Mississippi corridor. Travelers don\'t visit one restaurant. They drive the route. You\'re a stop on that route.',
   },
 ];
 
@@ -119,19 +119,17 @@ export default function MediaHomepage() {
         <div className="media-hero__content">
           <div className="media-hero__eyebrow">
             <span className="media-hero__ornament">&#9670;</span>
-            <span>Media as a Service · Mississippi Corridor</span>
+            <span>Deep South Directory · Mississippi Corridor</span>
           </div>
           <h1 className="media-hero__title">
-            Your Media Team.
+            Join the Directory.
             <br />
-            <em>Powered by AI.</em>
-            <br />
-            Rooted in the Corridor.
+            <em>Join the Network.</em>
           </h1>
           <p className="media-hero__sub">
-            Deep South Directory gives local businesses the same content engine that powers our magazine,
-            radio station, and touring brand — powered by the Big Muddy network, at prices that make sense
-            for a 40-seat restaurant in Natchez.
+            We run a magazine, a radio show, and a touring brand along the Mississippi corridor.
+            Thousands of people read, listen, and travel the route every month.
+            The Deep South Directory puts your business in front of all of them.
           </p>
           <div className="media-hero__ctas">
             <a href="/media/pricing" className="btn btn--primary">
@@ -146,7 +144,7 @@ export default function MediaHomepage() {
             <span className="media-hero__proof-dot" aria-hidden="true">·</span>
             <span>No contracts</span>
             <span className="media-hero__proof-dot" aria-hidden="true">·</span>
-            <span>No setup fees</span>
+            <span>Cancel anytime</span>
           </div>
         </div>
         <div className="media-hero__scroll-hint" aria-hidden="true">
@@ -157,23 +155,24 @@ export default function MediaHomepage() {
         </div>
       </section>
 
-      {/* ── Problem ── */}
+      {/* ── What You Get ── */}
       <section className="media-problem">
         <div className="section-container">
           <div className="media-problem__header">
-            <div className="section-label">The Problem</div>
-            <h2 className="section-title">The Local Business Media Problem</h2>
+            <div className="section-label">What You Get</div>
+            <h2 className="section-title">One Subscription. The Whole Network.</h2>
             <p className="section-desc">
-              Local businesses have the story, the product, the community. What they don't have is
-              the infrastructure to tell that story at scale.
+              When you join the Deep South Directory, you don't just get a listing.
+              You get plugged into a media network that's already reaching people across the corridor —
+              magazine, radio, touring, social, all of it.
             </p>
           </div>
           <div className="media-problem__grid">
-            {PROBLEMS.map((p) => (
-              <div key={p.title} className="media-problem__card">
-                <span className="media-problem__icon" aria-hidden="true">{p.icon}</span>
-                <h3 className="media-problem__card-title">{p.title}</h3>
-                <p className="media-problem__card-desc">{p.desc}</p>
+            {WHAT_YOU_GET.map((item) => (
+              <div key={item.title} className="media-problem__card">
+                <span className="media-problem__icon" aria-hidden="true">{item.icon}</span>
+                <h3 className="media-problem__card-title">{item.title}</h3>
+                <p className="media-problem__card-desc">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -184,11 +183,12 @@ export default function MediaHomepage() {
       <section className="media-solution">
         <div className="section-container">
           <div className="media-solution__header">
-            <div className="section-label">The Solution</div>
-            <h2 className="section-title">One Platform. Your Brand.</h2>
+            <div className="section-label">The Tiers</div>
+            <h2 className="section-title">More Tier. More Action.</h2>
             <p className="section-desc">
-              Everything a mid-size agency charges $3,000/month for — built into one system,
-              powered by AI, and tuned specifically for the Mississippi corridor.
+              Every tier gets you in the directory and into the network. Go up a tier and we do more —
+              more posts, more platforms, more media, more features. All powered by AI at prices
+              that don't require a board meeting.
             </p>
           </div>
           <div className="media-cap-table-wrap">
@@ -231,10 +231,12 @@ export default function MediaHomepage() {
       <section className="media-proof">
         <div className="section-container">
           <div className="media-proof__header">
-            <div className="section-label">Social Proof</div>
-            <h2 className="section-title">Built on a Proven Engine</h2>
+            <div className="section-label">The Network</div>
+            <h2 className="section-title">The Brands Behind the Directory</h2>
             <p className="section-desc">
-              We built this platform to run five brands. Now we're opening the door.
+              The Deep South Directory is powered by these properties. When you join,
+              you get featured across all of them — magazine articles, radio segments,
+              touring guides. This is the network you're subscribing to.
             </p>
           </div>
           <div className="media-proof__brands">
@@ -274,10 +276,10 @@ export default function MediaHomepage() {
         <div className="section-container">
           <div className="media-cta-section__inner">
             <div className="section-label">Get Started</div>
-            <h2 className="media-cta-section__title">Ready to Get Started?</h2>
+            <h2 className="media-cta-section__title">Get In the Directory.</h2>
             <p className="media-cta-section__sub">
-              Your first month is on us. No contracts. No setup fees.
-              We visit, we build your voice, we fill your calendar.
+              First month free. No contracts. Cancel anytime.
+              We come to you, learn your business, build your voice, and put you in front of the whole corridor.
             </p>
             <div className="media-cta-section__buttons">
               <a href="/media/get-started" className="btn btn--primary">Get Started</a>

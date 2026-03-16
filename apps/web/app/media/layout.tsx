@@ -11,11 +11,11 @@ import MediaNav from './MediaNav';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Deep South Directory | Media Services for Local Businesses',
+    default: 'Deep South Directory | The Local Business Network for the Mississippi Corridor',
     template: '%s | Deep South Directory',
   },
   description:
-    'AI-powered media services for local businesses along the Mississippi corridor — powered by the Big Muddy network. Content creation, social media management, local SEO, and more — starting at $99/month.',
+    'Join the directory. Get featured in the magazine, played on the radio, and listed on the touring route. AI-powered media services for local businesses along the Mississippi corridor — starting at $99/month.',
   openGraph: {
     type: 'website',
     locale: 'en_US',

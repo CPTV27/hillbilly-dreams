@@ -16,15 +16,16 @@ const TIERS = [
     name: 'Front Porch',
     price: '$99',
     period: '/month',
-    tagline: 'Get visible. Stay consistent.',
+    tagline: 'Get in the directory. Get found.',
     popular: false,
     features: [
+      'Deep South Directory listing',
+      'Featured in Big Muddy Magazine directory',
+      'Included in corridor touring guides',
       '12 social posts/month (1 platform)',
       'Google Business Profile optimization',
       'Monthly performance report',
-      'Big Muddy Magazine directory listing',
       'Brand voice onboarding',
-      'Email support',
     ],
     cta: 'Get Started',
     href: '/media/get-started?tier=front-porch',
@@ -34,18 +35,19 @@ const TIERS = [
     name: 'The Route',
     price: '$299',
     period: '/month',
-    tagline: 'Build a real presence.',
+    tagline: 'The workhorse. Most businesses start here.',
     popular: true,
     features: [
+      'Everything in Front Porch, plus:',
       '30 posts/month across 3 platforms',
       '4 AI-enhanced photos/month',
+      'Magazine feature articles about your business',
+      'Radio mentions & event spotlights',
       'Review response management',
       'Bi-weekly email newsletter',
       'Basic website (hosted)',
       'Quarterly strategy call',
-      'Magazine feature opportunities',
-      'Local SEO — full GBP management',
-      'Monthly analytics report',
+      'Full GBP management & local SEO',
     ],
     cta: 'Start The Route',
     href: '/media/get-started?tier=the-route',
@@ -55,19 +57,19 @@ const TIERS = [
     name: 'River Room',
     price: '$599',
     period: '/month',
-    tagline: 'Full-service content operation.',
+    tagline: 'Full-service. Full network access.',
     popular: false,
     features: [
+      'Everything in The Route, plus:',
       '60 posts/month across all platforms',
       '8 enhanced images + 2 videos/month',
+      'Dedicated magazine brand page',
+      'Radio show features & audio content',
       'Full review management & responses',
       'Weekly email newsletter',
       'Event promotion (up to 4/month)',
-      'Dedicated Big Muddy Magazine page',
       'Monthly strategy call',
       'Full website with blog',
-      'Structured data & local SEO suite',
-      'Bi-weekly analytics report',
     ],
     cta: 'Book River Room',
     href: '/media/get-started?tier=river-room',
@@ -77,18 +79,18 @@ const TIERS = [
     name: 'The Blues Room',
     price: '$1,200+',
     period: '/month',
-    tagline: 'Total media partnership.',
+    tagline: 'Total media partnership. Co-branded everything.',
     popular: false,
     features: [
+      'Everything in River Room, plus:',
       '100+ posts/month, all platforms',
       '20 enhanced images + 4 videos/month',
-      'Custom content strategy',
+      'Co-branded corridor events',
       'Professional photography sessions',
       'Long-form video production',
       'Managed advertising campaigns',
       'PR outreach & press placements',
       'White-label analytics dashboard',
-      'Co-branded corridor events',
       'Dedicated account manager',
       'Weekly strategy calls',
     ],
@@ -122,8 +124,8 @@ const FAQS = [
     a: 'We use Claude (Anthropic\'s AI) to generate content matched to your brand voice. Every post is reviewed by our team before it goes out. You also get final approval — nothing publishes without your green light.',
   },
   {
-    q: 'What\'s the "magazine directory listing" on Front Porch?',
-    a: 'Every client gets a free listing in the Big Muddy Magazine business directory, which gets regional traffic from our audience across the Mississippi corridor. Higher tiers get editorial feature opportunities.',
+    q: 'What does "in the directory" actually mean?',
+    a: 'Every subscriber gets a curated listing on deepsouthdirectory.com — SEO-optimized, linked to your socials, featured in our corridor city guides. You also get listed in Big Muddy Magazine\'s business directory. Higher tiers get full editorial features, radio mentions, and dedicated brand pages.',
   },
   {
     q: 'Is there a setup fee?',
@@ -152,11 +154,12 @@ export default function PricingPage() {
           <div className="pricing-header__inner">
             <div className="section-label">Pricing</div>
             <h1 className="pricing-header__title">
-              Media Services for<br /><em>Real Businesses</em>
+              Join the Directory.<br /><em>Pick Your Tier.</em>
             </h1>
             <p className="pricing-header__sub">
-              Four tiers. One platform. Built for local businesses along the Mississippi corridor.
-              Your first month is free while we set everything up.
+              Every tier gets you listed in the directory, featured in the magazine, and plugged into the network.
+              Go up a tier and we do more — more posts, more platforms, more media.
+              First month free while we build your profile.
             </p>
             <div className="pricing-header__proof">
               <span>No contracts</span>
