@@ -38,9 +38,14 @@ model Article {
   sourcePayload   String?   @db.Text  // Sanitized JSON audit trail
   sourceSyncedAt  DateTime?
 
+  // ── Deep South Directory Link ──
+  clientId    Int?
+  client      Client?   @relation(fields: [clientId], references: [id])
+
   @@index([status, publishedAt])
   @@index([category])
   @@index([city])
+  @@index([clientId])
   @@index([sourceSystem, sourceProjectId])
 }
 
@@ -234,6 +239,7 @@ model Client {
   updatedAt        DateTime  @updatedAt
 
   accounts         SocialAccount[]
+  articles         Article[]
   reviews          Review[]
   calendars        ContentCalendar[]
   reports          Report[]

@@ -8,6 +8,7 @@
 import React, { useState } from 'react';
 
 const NAV_LINKS = [
+  { label: 'Directory', href: '/media/directory' },
   { label: 'Services', href: '/media/services' },
   { label: 'Pricing', href: '/media/pricing' },
   { label: 'How It Works', href: '/media/how-it-works' },

@@ -49,6 +49,20 @@ async function getArticle(slug: string) {
   return getArticleBySlug(slug) ?? null;
 }
 
+async function getDirectoryListings(city?: string | null) {
+  if (!city) return [];
+  try {
+    const res = await fetch(`${baseUrl}/api/directory?city=${encodeURIComponent(city)}`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.data ?? [];
+  } catch {
+    return [];
+  }
+}
+
 async function getAllArticles(): Promise<Article[]> {
   try {
     const res = await fetch(`${baseUrl}/api/articles?status=published`, {
@@ -145,7 +159,10 @@ export default async function ArticlePage({ params }: Props) {
     notFound();
   }
 
-  const allArticles = await getAllArticles();
+  const [allArticles, directoryListings] = await Promise.all([
+    getAllArticles(),
+    getDirectoryListings(article.city),
+  ]);
   const currentIndex = allArticles.findIndex((a) => a.slug === article.slug);
   const prevArticle = currentIndex > 0 ? allArticles[currentIndex - 1] : null;
   const nextArticle = currentIndex < allArticles.length - 1 ? allArticles[currentIndex + 1] : null;
@@ -226,6 +243,43 @@ export default async function ArticlePage({ params }: Props) {
               <p className="article-body__p">Article content coming soon.</p>
             )}
           </div>
+
+          {/* Directory Cross-Link */}
+          {directoryListings.length > 0 && (
+            <section className="article-directory" aria-label="Featured local businesses">
+              <div className="article-directory__header">
+                <span className="article-directory__label">Deep South Directory</span>
+                <h3 className="article-directory__title">
+                  Businesses in {cityLabel} featured in our directory
+                </h3>
+              </div>
+              <div className="article-directory__grid">
+                {directoryListings.map((client: { slug: string; businessType: string; name: string }) => (
+                  <a
+                    key={client.slug}
+                    href={`https://deepsouthdirectory.com/directory/${client.slug}`}
+                    className="article-directory__card"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="article-directory__type">{client.businessType}</span>
+                    <span className="article-directory__name">{client.name}</span>
+                    <span className="article-directory__cta">View listing ↗</span>
+                  </a>
+                ))}
+              </div>
+              <div className="article-directory__footer">
+                <a
+                  href={`https://deepsouthdirectory.com/directory?city=${article.city ?? ''}`}
+                  className="article-directory__all"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Browse all {cityLabel} listings →
+                </a>
+              </div>
+            </section>
+          )}
 
           {/* Prev / Next Navigation */}
           <nav className="article-nav" aria-label="Article navigation">
@@ -410,6 +464,108 @@ export default async function ArticlePage({ params }: Props) {
           color: var(--text);
           letter-spacing: var(--tracking-tight);
           margin: var(--space-8) 0 var(--space-4);
+        }
+
+        /* ── Directory Cross-Link ── */
+        .article-directory {
+          margin-bottom: var(--space-12);
+          padding: var(--space-8);
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-md);
+          border-left: 3px solid var(--accent);
+        }
+        .article-directory__header {
+          margin-bottom: var(--space-6);
+        }
+        .article-directory__label {
+          display: inline-block;
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          font-weight: 700;
+          color: var(--accent);
+          letter-spacing: var(--tracking-widest);
+          text-transform: uppercase;
+          margin-bottom: var(--space-2);
+        }
+        .article-directory__title {
+          font-family: var(--font-display);
+          font-size: var(--text-lg);
+          font-weight: 700;
+          color: var(--text);
+          letter-spacing: var(--tracking-tight);
+          margin: 0;
+        }
+        .article-directory__grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: var(--space-3);
+          margin-bottom: var(--space-5);
+        }
+        @media (min-width: 480px) {
+          .article-directory__grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        @media (min-width: 640px) {
+          .article-directory__grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+        .article-directory__card {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-1);
+          padding: var(--space-4);
+          background: var(--bg);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-sm);
+          text-decoration: none;
+          transition: border-color var(--duration-fast) var(--ease-default),
+                      transform var(--duration-fast) var(--ease-default);
+        }
+        .article-directory__card:hover {
+          border-color: var(--accent);
+          transform: translateY(-1px);
+        }
+        .article-directory__type {
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          font-weight: 600;
+          color: var(--text-disabled);
+          letter-spacing: var(--tracking-wider);
+          text-transform: uppercase;
+        }
+        .article-directory__name {
+          font-family: var(--font-display);
+          font-size: var(--text-sm);
+          font-weight: 700;
+          color: var(--text);
+          line-height: var(--leading-snug);
+        }
+        .article-directory__cta {
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          font-weight: 600;
+          color: var(--accent);
+          margin-top: var(--space-1);
+          letter-spacing: var(--tracking-wide);
+        }
+        .article-directory__footer {
+          padding-top: var(--space-4);
+          border-top: 1px solid var(--border);
+        }
+        .article-directory__all {
+          font-family: var(--font-body);
+          font-size: var(--text-sm);
+          font-weight: 600;
+          color: var(--text-muted);
+          text-decoration: none;
+          letter-spacing: var(--tracking-wide);
+          transition: color var(--duration-fast) var(--ease-default);
+        }
+        .article-directory__all:hover {
+          color: var(--accent);
         }
 
         /* ── Prev/Next Nav ── */

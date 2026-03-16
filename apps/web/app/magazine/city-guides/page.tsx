@@ -15,6 +15,32 @@ import type { Article } from '@bigmuddy/config';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
 
+interface DirectoryClient {
+  id: number;
+  name: string;
+  slug: string;
+  businessType: string;
+  city: string;
+  state: string;
+  website: string | null;
+  description: string | null;
+  logoUrl: string | null;
+  tier: string;
+}
+
+async function getAllDirectoryClients(): Promise<DirectoryClient[]> {
+  try {
+    const res = await fetch(`${baseUrl}/api/directory`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.data ?? [];
+  } catch {
+    return [];
+  }
+}
+
 async function getAllArticles(): Promise<Article[]> {
   try {
     const res = await fetch(`${baseUrl}/api/articles?status=published`, {
@@ -110,7 +136,10 @@ function ArticleGuideCard({ article }: { article: Article }) {
 }
 
 export default async function CityGuidesPage() {
-  const articles = await getAllArticles();
+  const [articles, directoryClients] = await Promise.all([
+    getAllArticles(),
+    getAllDirectoryClients(),
+  ]);
 
   return (
     <>
@@ -140,6 +169,21 @@ export default async function CityGuidesPage() {
           region.citySlugs.includes(a.city as string)
         );
 
+        // Directory clients for any city covered by this region
+        const regionClients = directoryClients.filter((c) =>
+          region.citySlugs.includes(c.city)
+        );
+
+        // Group by city slug for display
+        const clientsByCity = regionClients.reduce<Record<string, DirectoryClient[]>>(
+          (acc, c) => {
+            if (!acc[c.city]) acc[c.city] = [];
+            acc[c.city].push(c);
+            return acc;
+          },
+          {}
+        );
+
         return (
           <section key={region.id} id={region.id} className="guides-region">
             <div className="guides-region__container">
@@ -160,6 +204,56 @@ export default async function CityGuidesPage() {
                   <ArticleGuideCard key={article.id} article={article} />
                 ))}
               </div>
+
+              {/* Directory Businesses for this region */}
+              {regionClients.length > 0 && (
+                <div className="guides-directory">
+                  <div className="guides-directory__header">
+                    <span className="guides-directory__label">Deep South Directory</span>
+                    <h3 className="guides-directory__title">
+                      Featured Businesses in {region.label}
+                    </h3>
+                  </div>
+                  <div className="guides-directory__cities">
+                    {Object.entries(clientsByCity).map(([citySlug, clients]) => {
+                      const cityLabel = citySlug
+                        .split('-')
+                        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+                        .join(' ');
+                      return (
+                        <div key={citySlug} className="guides-directory__city-group">
+                          <div className="guides-directory__city-name">{cityLabel}</div>
+                          <div className="guides-directory__client-row">
+                            {clients.map((client) => (
+                              <a
+                                key={client.slug}
+                                href={`https://deepsouthdirectory.com/directory/${client.slug}`}
+                                className="guides-directory__client-chip"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title={client.description ?? client.name}
+                              >
+                                <span className="guides-directory__chip-type">{client.businessType}</span>
+                                <span className="guides-directory__chip-name">{client.name}</span>
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="guides-directory__footer">
+                    <a
+                      href="https://deepsouthdirectory.com"
+                      className="guides-directory__all-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Explore the full Deep South Directory →
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           </section>
         );
@@ -421,6 +515,106 @@ export default async function CityGuidesPage() {
         }
         .guide-card:hover .guide-card__read-link {
           color: var(--accent-hover);
+        }
+
+        /* ── Directory Block ── */
+        .guides-directory {
+          margin-top: var(--space-12);
+          padding: var(--space-8);
+          background: var(--bg);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-md);
+          border-left: 3px solid var(--accent);
+        }
+        .guides-directory__header {
+          margin-bottom: var(--space-6);
+        }
+        .guides-directory__label {
+          display: inline-block;
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          font-weight: 700;
+          color: var(--accent);
+          letter-spacing: var(--tracking-widest);
+          text-transform: uppercase;
+          margin-bottom: var(--space-2);
+        }
+        .guides-directory__title {
+          font-family: var(--font-display);
+          font-size: var(--text-xl);
+          font-weight: 700;
+          color: var(--text);
+          letter-spacing: var(--tracking-tight);
+          margin: 0;
+        }
+        .guides-directory__cities {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-6);
+          margin-bottom: var(--space-6);
+        }
+        .guides-directory__city-group {}
+        .guides-directory__city-name {
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          font-weight: 700;
+          color: var(--text-disabled);
+          letter-spacing: var(--tracking-widest);
+          text-transform: uppercase;
+          margin-bottom: var(--space-3);
+        }
+        .guides-directory__client-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--space-3);
+        }
+        .guides-directory__client-chip {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          padding: var(--space-3) var(--space-4);
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-sm);
+          text-decoration: none;
+          min-width: 140px;
+          transition: border-color var(--duration-fast) var(--ease-default),
+                      background var(--duration-fast) var(--ease-default);
+        }
+        .guides-directory__client-chip:hover {
+          border-color: var(--accent);
+          background: var(--accent-muted);
+        }
+        .guides-directory__chip-type {
+          font-family: var(--font-body);
+          font-size: 10px;
+          font-weight: 700;
+          color: var(--text-disabled);
+          letter-spacing: var(--tracking-wider);
+          text-transform: uppercase;
+        }
+        .guides-directory__chip-name {
+          font-family: var(--font-display);
+          font-size: var(--text-sm);
+          font-weight: 700;
+          color: var(--text);
+          line-height: var(--leading-snug);
+        }
+        .guides-directory__footer {
+          padding-top: var(--space-5);
+          border-top: 1px solid var(--border);
+        }
+        .guides-directory__all-link {
+          font-family: var(--font-body);
+          font-size: var(--text-sm);
+          font-weight: 600;
+          color: var(--text-muted);
+          text-decoration: none;
+          letter-spacing: var(--tracking-wide);
+          transition: color var(--duration-fast) var(--ease-default);
+        }
+        .guides-directory__all-link:hover {
+          color: var(--accent);
         }
 
         /* Shared */
