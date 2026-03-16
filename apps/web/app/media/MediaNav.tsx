@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { label: 'Services', href: '/media/services' },
   { label: 'Pricing', href: '/media/pricing' },
   { label: 'How It Works', href: '/media/how-it-works' },
+  { label: 'Publications', href: '/media/publications' },
   { label: 'Our Brands', href: '/media/brands' },
   { label: 'Get Started', href: '/media/get-started', cta: true },
 ];

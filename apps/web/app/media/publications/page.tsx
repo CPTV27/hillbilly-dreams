@@ -8,7 +8,7 @@ import type { Publication } from '@bigmuddy/config';
 export const metadata: Metadata = {
   title: 'Deep South Press | Books & Print from the Mississippi Corridor',
   description:
-    'Small-run books, portrait photography, and art publications from Deep South Press — the publishing arm of Big Muddy Media. Natchez, Mississippi and beyond.',
+    'Small-run books, portrait photography, and art publications from Deep South Press — the publishing arm of Deep South Directory. Natchez, Mississippi and beyond.',
   openGraph: {
     title: 'Deep South Press',
     description: 'Small-run books, portraits, and art from the Mississippi corridor.',
@@ -186,7 +186,7 @@ export default async function PublicationsPage() {
         <div className="dsp-hero__content">
           <div className="dsp-hero__eyebrow">
             <span className="dsp-hero__ornament" aria-hidden="true">&#9670;</span>
-            <span>Big Muddy Media · Publishing Arm</span>
+            <span>Deep South Directory · Publishing Arm</span>
           </div>
           <h1 className="dsp-hero__title">
             Deep South Press
@@ -270,7 +270,7 @@ export default async function PublicationsPage() {
               <div className="section-label">About</div>
               <h2 className="dsp-about__title">Deep South Press</h2>
               <p className="dsp-about__body">
-                Deep South Press is the publishing arm of Big Muddy Media. We produce
+                Deep South Press is the publishing arm of Deep South Directory. We produce
                 small-run, high-quality printed books focused on the people, places, and art
                 of the Mississippi corridor — with a focus on Natchez, the Blues Highway,
                 and the communities along the river.
