@@ -69,7 +69,7 @@ export async function middleware(request: NextRequest) {
 
   // If the path already starts with a known brand prefix, pass through
   // without rewriting. Admin and ops routes require authentication.
-  const brandPrefixes = ['/touring', '/magazine', '/radio', '/economics', '/admin', '/ops', '/portal'];
+  const brandPrefixes = ['/touring', '/magazine', '/radio', '/economics', '/media', '/admin', '/ops', '/portal'];
   if (brandPrefixes.some(p => pathname === p || pathname.startsWith(p + '/'))) {
     if (pathname.startsWith('/admin') || pathname.startsWith('/ops')) {
       const token = await getSession();
@@ -96,6 +96,10 @@ export async function middleware(request: NextRequest) {
     return rewriteTo('radio', pathname);
   }
 
+  if (hostname.includes('bigmuddymedia') && !hostname.includes('admin')) {
+    return rewriteTo('media', pathname);
+  }
+
   if (hostname.includes('outsidereconomics')) {
     return NextResponse.rewrite(
       new URL('/economics' + pathname, request.url)
@@ -113,6 +117,10 @@ export async function middleware(request: NextRequest) {
 
   if (hostname.includes('bigmuddyradio.local')) {
     return rewriteTo('radio', pathname);
+  }
+
+  if (hostname.includes('bigmuddymedia.local')) {
+    return rewriteTo('media', pathname);
   }
 
   if (hostname.includes('outsidereconomics.local')) {
