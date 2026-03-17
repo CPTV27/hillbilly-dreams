@@ -116,7 +116,7 @@ export const IMAGE_SLOTS: Record<string, ImageSlotEntry> = {
   },
   'cat-venue': {
     file: 'cat-venue.webp',
-    alt: 'Ardent Studios control room with mixing console and piano',
+    alt: 'Historic downtown Natchez building with wooden doors and awning',
     aspectRatio: '4/3',
     status: 'ready',
   },
@@ -160,7 +160,7 @@ export const IMAGE_SLOTS: Record<string, ImageSlotEntry> = {
   },
   'brand-radio': {
     file: 'brand-radio.webp',
-    alt: 'Ardent Studios mixing console in Memphis',
+    alt: 'Downtown Natchez storefront with black awning and string lights',
     aspectRatio: '16/9',
     status: 'ready',
   },
