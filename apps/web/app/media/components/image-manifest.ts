@@ -14,14 +14,23 @@
 //   const slot = IMAGE_SLOTS['hero-mainstreet'];
 //   <ImageSlot src={`/images/dsd/${slot.file}`} alt={slot.alt} aspectRatio={slot.aspectRatio} />
 
-export const IMAGE_SLOTS = {
+export type ImageSlotStatus = 'placeholder' | 'needed' | 'ready';
+
+interface ImageSlotEntry {
+  file: string;
+  alt: string;
+  aspectRatio: string;
+  status: ImageSlotStatus;
+}
+
+export const IMAGE_SLOTS: Record<string, ImageSlotEntry> = {
 
   // ── Homepage ──────────────────────────────────────────────────────────────
   'hero-mainstreet': {
     file: 'hero-mainstreet.webp',
-    alt: 'Historic Southern main street at golden hour',
+    alt: 'Natchez main street with azaleas and brick sidewalk',
     aspectRatio: '16/9',
-    status: 'placeholder',
+    status: 'ready',
   },
   'southern-food': {
     file: 'southern-food.webp',
@@ -37,29 +46,29 @@ export const IMAGE_SLOTS = {
   },
   'mississippi-sunset': {
     file: 'mississippi-sunset.webp',
-    alt: 'Mississippi River at sunset',
+    alt: 'Antebellum mansion with live oaks and carriage',
     aspectRatio: '16/9',
-    status: 'placeholder',
+    status: 'ready',
   },
   'restaurant-owner': {
     file: 'restaurant-owner.webp',
-    alt: 'Restaurant owner in their establishment',
+    alt: 'Art gallery gathering in Natchez',
     aspectRatio: '1/1',
-    status: 'placeholder',
+    status: 'ready',
   },
   'hotel-room': {
     file: 'hotel-room.webp',
-    alt: 'Boutique hotel room in the Deep South',
+    alt: 'Victorian B&B with porch and garden in Natchez',
     aspectRatio: '16/9',
-    status: 'placeholder',
+    status: 'ready',
   },
 
   // ── Services page ─────────────────────────────────────────────────────────
   'service-content': {
     file: 'service-content.webp',
-    alt: 'Content creation workspace',
+    alt: 'Community gathering with warm interior lighting',
     aspectRatio: '16/9',
-    status: 'placeholder',
+    status: 'ready',
   },
   'service-social': {
     file: 'service-social.webp',
@@ -69,9 +78,9 @@ export const IMAGE_SLOTS = {
   },
   'service-photo': {
     file: 'service-photo.webp',
-    alt: 'Photo enhancement before and after',
+    alt: 'Pink azaleas blooming on Southern main street',
     aspectRatio: '16/9',
-    status: 'placeholder',
+    status: 'ready',
   },
   'service-seo': {
     file: 'service-seo.webp',
@@ -101,47 +110,47 @@ export const IMAGE_SLOTS = {
   // ── Directory category images ─────────────────────────────────────────────
   'cat-restaurant': {
     file: 'cat-restaurant.webp',
-    alt: 'Southern restaurant exterior',
+    alt: 'Bistro tables on brick sidewalk under awning in Natchez',
     aspectRatio: '4/3',
-    status: 'placeholder',
+    status: 'ready',
   },
   'cat-venue': {
     file: 'cat-venue.webp',
-    alt: 'Live music venue stage',
+    alt: 'Ardent Studios control room with mixing console and piano',
     aspectRatio: '4/3',
-    status: 'placeholder',
+    status: 'ready',
   },
   'cat-hotel': {
     file: 'cat-hotel.webp',
-    alt: 'Boutique hotel facade',
+    alt: 'Charming Southern cottage with American flag and garden',
     aspectRatio: '4/3',
-    status: 'placeholder',
+    status: 'ready',
   },
   'cat-shop': {
     file: 'cat-shop.webp',
-    alt: 'Artisan retail shop interior',
+    alt: 'OutsideIN MS artisan shop on brick sidewalk',
     aspectRatio: '4/3',
-    status: 'placeholder',
+    status: 'ready',
   },
   'cat-tour': {
     file: 'cat-tour.webp',
-    alt: 'Tour group on historic street',
+    alt: 'Beach with bridge and families on the Gulf Coast',
     aspectRatio: '4/3',
-    status: 'placeholder',
+    status: 'ready',
   },
   'cat-service': {
     file: 'cat-service.webp',
-    alt: 'Local service business',
+    alt: 'Marina porch with boats and locals',
     aspectRatio: '4/3',
-    status: 'placeholder',
+    status: 'ready',
   },
 
   // ── Brand images ──────────────────────────────────────────────────────────
   'brand-touring': {
     file: 'brand-touring.webp',
-    alt: 'Big Muddy Touring highway scene',
+    alt: 'Antebellum mansion with live oaks along the corridor',
     aspectRatio: '16/9',
-    status: 'placeholder',
+    status: 'ready',
   },
   'brand-magazine': {
     file: 'brand-magazine.webp',
@@ -151,15 +160,15 @@ export const IMAGE_SLOTS = {
   },
   'brand-radio': {
     file: 'brand-radio.webp',
-    alt: 'Big Muddy Radio studio',
+    alt: 'Ardent Studios mixing console in Memphis',
     aspectRatio: '16/9',
-    status: 'placeholder',
+    status: 'ready',
   },
   'brand-inn': {
     file: 'brand-inn.webp',
-    alt: 'The Big Muddy Inn exterior',
+    alt: 'Victorian B&B exterior in Natchez',
     aspectRatio: '16/9',
-    status: 'placeholder',
+    status: 'ready',
   },
   'brand-economics': {
     file: 'brand-economics.webp',
@@ -209,21 +218,21 @@ export const IMAGE_SLOTS = {
   // ── Backgrounds / cinematic wide ──────────────────────────────────────────
   'bg-river-aerial': {
     file: 'bg-river-aerial.webp',
-    alt: 'Aerial view of Mississippi River',
+    alt: 'Palm trees and pier on Gulf Coast waterfront',
     aspectRatio: '21/9',
-    status: 'placeholder',
+    status: 'ready',
   },
   'bg-natchez-street': {
     file: 'bg-natchez-street.webp',
-    alt: 'Natchez historic street',
+    alt: 'Historic two-story building with iron balcony in Natchez',
     aspectRatio: '21/9',
-    status: 'placeholder',
+    status: 'ready',
   },
   'bg-memphis-beale': {
     file: 'bg-memphis-beale.webp',
-    alt: 'Beale Street Memphis',
+    alt: 'Downtown Natchez with azaleas and brick storefronts',
     aspectRatio: '21/9',
-    status: 'placeholder',
+    status: 'ready',
   },
   'bg-nola-quarter': {
     file: 'bg-nola-quarter.webp',
@@ -232,34 +241,26 @@ export const IMAGE_SLOTS = {
     status: 'placeholder',
   },
 
-} as const;
+};
 
 export type ImageSlotKey = keyof typeof IMAGE_SLOTS;
-
-// All valid status values — includes 'ready' even though no slot carries it
-// yet, so callers can use the full union without compiler errors.
-export type ImageSlotStatus = 'placeholder' | 'needed' | 'ready';
 
 // ---------------------------------------------------------------------------
 // Manifest helpers — useful for build-time audits or a dev admin page
 // ---------------------------------------------------------------------------
 
 /** Returns all slots that still need a real photo. */
-export function getSlotsNeedingPhotos(): ImageSlotKey[] {
-  return (Object.keys(IMAGE_SLOTS) as ImageSlotKey[]).filter(
-    (key) => {
-      const status: string = IMAGE_SLOTS[key].status;
-      return status !== 'ready';
-    }
+export function getSlotsNeedingPhotos(): string[] {
+  return Object.keys(IMAGE_SLOTS).filter(
+    (key) => IMAGE_SLOTS[key].status !== 'ready'
   );
 }
 
 /** Returns counts per status — quick audit without iterating manually. */
 export function getManifestSummary(): Record<ImageSlotStatus, number> {
   const counts: Record<ImageSlotStatus, number> = { placeholder: 0, needed: 0, ready: 0 };
-  for (const key of Object.keys(IMAGE_SLOTS) as ImageSlotKey[]) {
-    const s = IMAGE_SLOTS[key].status as ImageSlotStatus;
-    counts[s]++;
+  for (const key of Object.keys(IMAGE_SLOTS)) {
+    counts[IMAGE_SLOTS[key].status]++;
   }
   return counts;
 }
