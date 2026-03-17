@@ -120,6 +120,16 @@ export default async function MagazineHomepage() {
         </div>
       </section>
 
+      {/* ── Corridor Photo Strip ── */}
+      <section className="mag-photostrip">
+        <div className="mag-photostrip__inner">
+          <Image src="/images/library/corridor-0339.webp" alt="Brick sidewalk with awnings on Natchez main street" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="/images/library/corridor-0657.webp" alt="Live oak canopy over Ocean Springs street" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="/images/library/corridor-0630.webp" alt="Antebellum mansion with iron fence and carriage" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="/images/library/corridor-0954.webp" alt="Teal shrimp boat at Ocean Springs marina" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+        </div>
+      </section>
+
       {/* ── City Guides CTA ── */}
       <section className="mag-city-guides">
         <div className="section-container">
@@ -128,7 +138,7 @@ export default async function MagazineHomepage() {
               <div className="section-label">City Guides</div>
               <h2 className="mag-city-guides__title">18 City Guides</h2>
               <p className="mag-city-guides__desc">
-                Comprehensive guides to every city in the Big Muddy network — 
+                Comprehensive guides to every city in the Big Muddy network —
                 where to eat, sleep, listen, and why it all matters.
                 Five states. A thousand years of American music.
               </p>
@@ -276,6 +286,23 @@ export default async function MagazineHomepage() {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
           gap: var(--space-6);
+        }
+
+        /* ── Photo Strip ── */
+        .mag-photostrip {
+          border-top: 1px solid var(--border);
+          border-bottom: 1px solid var(--border);
+          overflow: hidden;
+        }
+        .mag-photostrip__inner {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 0;
+        }
+        @media (max-width: 640px) {
+          .mag-photostrip__inner {
+            grid-template-columns: repeat(2, 1fr);
+          }
         }
 
         /* ── City Guides ── */

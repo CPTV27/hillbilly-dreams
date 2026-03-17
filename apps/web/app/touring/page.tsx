@@ -121,17 +121,27 @@ export default async function TouringHomepage() {
       {/* ── Where to Stay ── */}
       <section className="touring-lodging">
         <div className="section-container">
-          <div className="touring-lodging__inner">
-            <div className="section-label">Where to Stay</div>
-            <h2 className="section-title">Lodging Across the Corridor</h2>
-            <p className="section-desc">
-              Curated lodging in every city on the route — from the Big Muddy Inn
-              in Natchez to boutique hotels, historic B&Bs, and downtown stays
-              across five states. Forty-plus properties, hand-picked for the journey.
-            </p>
-            <a href="/inn" className="btn btn--outline" style={{ marginTop: 'var(--space-8)' }}>
-              Browse Lodging
-            </a>
+          <div className="touring-lodging__layout">
+            <div className="touring-lodging__inner">
+              <div className="section-label">Where to Stay</div>
+              <h2 className="section-title">Lodging Across the Corridor</h2>
+              <p className="section-desc">
+                Curated lodging in every city on the route — from the Big Muddy Inn
+                in Natchez to boutique hotels, historic B&Bs, and downtown stays
+                across five states. Forty-plus properties, hand-picked for the journey.
+              </p>
+              <a href="/inn" className="btn btn--outline" style={{ marginTop: 'var(--space-8)' }}>
+                Browse Lodging
+              </a>
+            </div>
+            <div className="touring-lodging__photos">
+              <div className="touring-lodging__photo">
+                <Image src="/images/library/corridor-0642.webp" alt="Victorian B&B with wraparound porch in Natchez" width={600} height={400} sizes="(min-width: 768px) 50vw, 100vw" style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-sm)' }} />
+              </div>
+              <div className="touring-lodging__photo">
+                <Image src="/images/library/corridor-0630.webp" alt="Antebellum mansion with iron fence and carriage" width={600} height={400} sizes="(min-width: 768px) 50vw, 100vw" style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-sm)' }} />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -178,16 +188,16 @@ export default async function TouringHomepage() {
                 View Full Route
               </a>
             </div>
-            <div className="touring-route__visual" aria-hidden="true">
-              <div className="touring-route__map-placeholder">
-                <div className="touring-route__river-line" />
-                <div className="touring-route__city-dots">
-                  {['Memphis', 'Clarksdale', 'Vicksburg', 'Natchez', 'New Orleans'].map((city) => (
-                    <div key={city} className="touring-route__dot">
-                      <div className="touring-route__dot-mark" />
-                      <span>{city}</span>
-                    </div>
-                  ))}
+            <div className="touring-route__visual">
+              <div className="touring-route__photo-stack">
+                <div className="touring-route__photo touring-route__photo--1">
+                  <Image src="/images/library/corridor-0339.webp" alt="Brick sidewalk with awnings on Natchez main street" width={500} height={375} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
+                </div>
+                <div className="touring-route__photo touring-route__photo--2">
+                  <Image src="/images/library/corridor-0501.webp" alt="Pink azaleas cascading along Natchez sidewalk" width={500} height={375} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
+                </div>
+                <div className="touring-route__photo touring-route__photo--3">
+                  <Image src="/images/library/corridor-0954.webp" alt="Teal shrimp boat at Ocean Springs marina" width={500} height={375} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
               </div>
             </div>
@@ -355,8 +365,29 @@ export default async function TouringHomepage() {
           border-top: 1px solid var(--border);
           border-bottom: 1px solid var(--border);
         }
+        .touring-lodging__layout {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: var(--space-10);
+          align-items: center;
+        }
+        @media (min-width: 768px) {
+          .touring-lodging__layout {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
         .touring-lodging__inner {
           max-width: 640px;
+        }
+        .touring-lodging__photos {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-4);
+        }
+        .touring-lodging__photo {
+          overflow: hidden;
+          border-radius: var(--radius-sm);
+          box-shadow: var(--shadow-lg);
         }
 
         /* ── Route Section ── */
@@ -399,67 +430,28 @@ export default async function TouringHomepage() {
           color: var(--text);
           letter-spacing: var(--tracking-tight);
         }
-        .touring-route__map-placeholder {
-          height: 400px;
-          background: var(--surface);
-          border: 1px solid var(--border);
-          border-radius: var(--radius-lg);
-          position: relative;
+        .touring-route__photo-stack {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto auto;
+          gap: var(--space-4);
+        }
+        .touring-route__photo {
           overflow: hidden;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          border-radius: var(--radius-sm);
           box-shadow: var(--shadow-lg);
         }
-        .touring-route__river-line {
-          position: absolute;
-          left: 50%;
-          top: 5%;
-          bottom: 5%;
-          width: 2px;
-          background: linear-gradient(
-            to bottom,
-            transparent,
-            var(--accent) 10%,
-            var(--slate) 50%,
-            var(--accent) 90%,
-            transparent
-          );
-          transform: translateX(-50%);
+        .touring-route__photo--1 {
+          grid-column: 1 / 2;
+          grid-row: 1 / 2;
         }
-        .touring-route__city-dots {
-          position: absolute;
-          left: 0;
-          right: 0;
-          top: 0;
-          bottom: 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          padding: 40px 0;
-          align-items: center;
+        .touring-route__photo--2 {
+          grid-column: 2 / 3;
+          grid-row: 1 / 3;
         }
-        .touring-route__dot {
-          display: flex;
-          align-items: center;
-          gap: var(--space-3);
-          position: relative;
-        }
-        .touring-route__dot-mark {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background: var(--accent);
-          border: 2px solid var(--bg);
-          flex-shrink: 0;
-        }
-        .touring-route__dot span {
-          font-family: var(--font-body);
-          font-size: var(--text-xs);
-          font-weight: 600;
-          color: var(--text-muted);
-          letter-spacing: var(--tracking-wide);
-          text-transform: uppercase;
+        .touring-route__photo--3 {
+          grid-column: 1 / 2;
+          grid-row: 2 / 3;
         }
 
         /* ── Expanded Network ── */

@@ -585,6 +585,15 @@ export default function InnPage() {
         </div>
       </section>
 
+      {/* ── Corridor Photo Break ── */}
+      <section className="inn-photobreak">
+        <div className="inn-photobreak__inner">
+          <Image src="/images/library/corridor-0501.webp" alt="Azaleas cascading along Natchez sidewalk" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+          <Image src="/images/library/corridor-0642.webp" alt="Victorian B&B with wraparound porch" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+          <Image src="/images/library/corridor-0339.webp" alt="Brick sidewalk with awnings in Natchez" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+        </div>
+      </section>
+
       {[REGIONS[1]].map((region) => (
         <section className="inn-region">
           <div className="section-container">
@@ -635,6 +644,15 @@ export default function InnPage() {
           </div>
         </section>
       ))}
+
+      {/* ── Corridor Photo Break ── */}
+      <section className="inn-photobreak">
+        <div className="inn-photobreak__inner">
+          <Image src="/images/library/corridor-0657.webp" alt="Live oak canopy over Ocean Springs" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+          <Image src="/images/library/corridor-0954.webp" alt="Shrimp boat at Ocean Springs marina" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+          <Image src="/images/library/corridor-0630.webp" alt="Antebellum mansion with iron fence" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+        </div>
+      </section>
 
       {[REGIONS[2]].map((region) => (
         <section className="inn-region">
@@ -977,6 +995,23 @@ export default function InnPage() {
           color: var(--text-muted);
           line-height: var(--leading-relaxed);
           margin: 0;
+        }
+
+        /* ── Photo Break ── */
+        .inn-photobreak {
+          border-top: 1px solid var(--border);
+          border-bottom: 1px solid var(--border);
+          overflow: hidden;
+        }
+        .inn-photobreak__inner {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0;
+        }
+        @media (max-width: 640px) {
+          .inn-photobreak__inner {
+            grid-template-columns: 1fr;
+          }
         }
 
         /* ── Book CTA ── */
