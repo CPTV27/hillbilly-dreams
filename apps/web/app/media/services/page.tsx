@@ -16,10 +16,11 @@ const SERVICES = [
     icon: '✦',
     label: 'AI Content Creation',
     title: 'Content That Sounds Like You',
+    image: '/images/dsd/service-content.webp',
     desc: 'Claude-powered, brand-voice-matched content across every format — captions, blog posts, event copy, menus, email campaigns. We train the AI on your voice once. Every piece of content matches it.',
     tiers: [
-      { name: 'Front Porch', detail: '12 posts/month, 1 platform' },
-      { name: 'The Route', detail: '30 posts/month, 3 platforms' },
+      { name: 'Front Porch', detail: '20 posts/month, 2 platforms' },
+      { name: 'The Route', detail: '40 posts/month, 3 platforms' },
       { name: 'River Room', detail: '60 posts/month, all platforms' },
       { name: 'Blues Room', detail: '100+ posts/month, custom calendar' },
     ],
@@ -36,9 +37,10 @@ const SERVICES = [
     icon: '◈',
     label: 'Social Media Management',
     title: 'Consistent. Scheduled. Done.',
+    image: '/images/dsd/service-social.webp',
     desc: 'Multi-platform posting and scheduling, optimized for each platform\'s algorithm. You don\'t touch it. You just see the results in your monthly report.',
     tiers: [
-      { name: 'Front Porch', detail: 'Facebook or Instagram' },
+      { name: 'Front Porch', detail: 'Facebook + Instagram' },
       { name: 'The Route', detail: 'Facebook, Instagram, + 1 more' },
       { name: 'River Room', detail: 'All major platforms' },
       { name: 'Blues Room', detail: 'All platforms + paid promotion' },
@@ -56,12 +58,13 @@ const SERVICES = [
     icon: '⬡',
     label: 'Photo & Video Production',
     title: 'Every Business Has a Visual Story',
+    image: '/images/dsd/service-photo.webp',
     desc: 'AI-powered photo enhancement transforms your existing photos into editorial-quality assets. River Room and Blues Room include video — short-form Reels/TikToks and longer-form features built on the Remotion pipeline.',
     tiers: [
-      { name: 'Front Porch', detail: 'Not included' },
-      { name: 'The Route', detail: '4 enhanced images/month' },
-      { name: 'River Room', detail: '8 enhanced images + 2 videos/month' },
-      { name: 'Blues Room', detail: '20 images + 4 videos + photography sessions' },
+      { name: 'Front Porch', detail: '10 enhanced images/month' },
+      { name: 'The Route', detail: '25 enhanced images/month' },
+      { name: 'River Room', detail: 'Unlimited images + 2 videos/month' },
+      { name: 'Blues Room', detail: 'Unlimited images + 4 videos + photography' },
     ],
     details: [
       'AI enhancement: lighting, color grading, background cleanup',
@@ -76,10 +79,11 @@ const SERVICES = [
     icon: '◎',
     label: 'Local SEO & Reviews',
     title: 'Show Up Where People Are Looking',
+    image: '/images/dsd/service-seo.webp',
     desc: 'Google Business Profile optimization, review response management, structured data implementation, and citation building. The unglamorous work that compounds into real search visibility.',
     tiers: [
-      { name: 'Front Porch', detail: 'GBP optimization only' },
-      { name: 'The Route', detail: 'Full GBP + review response' },
+      { name: 'Front Porch', detail: 'GBP optimization + review monitoring' },
+      { name: 'The Route', detail: 'Full GBP + review responses' },
       { name: 'River Room', detail: 'Full suite + structured data' },
       { name: 'Blues Room', detail: 'Custom SEO strategy + PR' },
     ],
@@ -96,9 +100,10 @@ const SERVICES = [
     icon: '▣',
     label: 'Email & Newsletter',
     title: 'Your Audience. Your Inbox.',
+    image: '/images/dsd/service-email.webp',
     desc: 'Template-based campaigns and subscriber management. Monthly digests, event announcements, seasonal promotions, and loyalty programs — all written to your brand voice.',
     tiers: [
-      { name: 'Front Porch', detail: 'Not included' },
+      { name: 'Front Porch', detail: 'Monthly newsletter' },
       { name: 'The Route', detail: 'Bi-weekly newsletter' },
       { name: 'River Room', detail: 'Weekly newsletter + automations' },
       { name: 'Blues Room', detail: 'Full email strategy + segmentation' },
@@ -116,11 +121,12 @@ const SERVICES = [
     icon: '◇',
     label: 'Analytics & Reporting',
     title: 'Know What\'s Working',
+    image: '/images/dsd/service-analytics.webp',
     desc: 'Monthly reports showing what we did, what happened, and what we\'re doing next. No vanity metrics — just the numbers that connect to customers and revenue.',
     tiers: [
       { name: 'Front Porch', detail: 'Monthly report' },
       { name: 'The Route', detail: 'Monthly report + benchmarks' },
-      { name: 'River Room', detail: 'Bi-weekly report + competitor tracking' },
+      { name: 'River Room', detail: 'Bi-weekly report + competitor intel' },
       { name: 'Blues Room', detail: 'Weekly dashboard + custom KPIs' },
     ],
     details: [
@@ -136,9 +142,10 @@ const SERVICES = [
     icon: '▲',
     label: 'Website & Microsites',
     title: 'A Home Base That Actually Works',
+    image: '/images/dsd/service-website.webp',
     desc: 'Hosted on the Deep South Directory platform, your brand. Fast, mobile-first, SEO-optimized. Basic sites on The Route; full feature sites on River Room; custom builds on Blues Room.',
     tiers: [
-      { name: 'Front Porch', detail: 'Not included' },
+      { name: 'Front Porch', detail: 'Directory listing page' },
       { name: 'The Route', detail: 'Basic site (5 pages, hosted)' },
       { name: 'River Room', detail: 'Full site with blog + events' },
       { name: 'Blues Room', detail: 'Custom build, CMS, integrations' },
@@ -190,6 +197,15 @@ export default function ServicesPage() {
         >
           <div className="section-container">
             <div className="svc-section__layout">
+              {/* Image banner */}
+              {svc.image && (
+                <div className="svc-section__image" aria-hidden="true">
+                  <div
+                    className="svc-section__image-bg"
+                    style={{ backgroundImage: `url(${svc.image})` }}
+                  />
+                </div>
+              )}
               {/* Left: content */}
               <div className="svc-section__text">
                 <div className="svc-section__eyebrow">
@@ -294,6 +310,30 @@ export default function ServicesPage() {
         .svc-header__nav-link:hover {
           color: var(--accent);
           border-color: var(--accent);
+        }
+
+        /* ── Service Image ── */
+        .svc-section__image {
+          grid-column: 1 / -1;
+          width: 100%;
+          height: 200px;
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          margin-bottom: var(--space-2);
+        }
+        .svc-section__image-bg {
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+          background-position: center;
+          opacity: 0.5;
+          transition: opacity 0.4s ease;
+        }
+        .svc-section:hover .svc-section__image-bg {
+          opacity: 0.7;
+        }
+        @media (min-width: 768px) {
+          .svc-section__image { height: 240px; }
         }
 
         /* ── Service Sections ── */

@@ -15,48 +15,54 @@ const WHAT_YOU_GET = [
     icon: '01',
     title: 'Listed in the Directory',
     desc: 'Your business shows up in the Deep South Directory — a curated, SEO-optimized listing that puts you in front of travelers, locals, and people planning trips along the corridor.',
+    image: '/images/dsd/hero-mainstreet.webp',
   },
   {
     icon: '02',
     title: 'Featured in the Magazine',
     desc: 'Big Muddy Magazine writes city guides, features, and photo essays. Directory members get included in the editorial — real stories, not ads.',
+    image: '/images/dsd/southern-food.webp',
   },
   {
     icon: '03',
     title: 'Played on the Radio',
     desc: 'Big Muddy Radio produces audio and video content. Your events, your music, your story — featured in shows and playlists that reach the whole corridor.',
+    image: '/images/dsd/blues-musician.webp',
   },
   {
     icon: '04',
     title: 'On the Touring Route',
     desc: 'Big Muddy Touring drives people down the corridor. Directory businesses become stops on the route — recommended by name in every city guide.',
+    image: '/images/dsd/mississippi-sunset.webp',
   },
   {
     icon: '05',
     title: 'Social Media Done for You',
     desc: 'AI-generated posts matched to your brand voice, published across your platforms. The higher your tier, the more posts, more platforms, more content.',
+    image: '/images/dsd/restaurant-owner.webp',
   },
   {
     icon: '06',
     title: 'Reviews, SEO & Reporting',
     desc: 'Google Business Profile optimization, AI-drafted review responses, and a monthly report showing exactly what happened. No mystery.',
+    image: '/images/dsd/hotel-room.webp',
   },
 ];
 
 const CAPABILITIES = [
   { name: 'AI Content Generation', tiers: ['Basic', 'Full', 'Full', 'Custom'] },
-  { name: 'Social Media Management', tiers: ['1 platform', '3 platforms', 'All platforms', 'All + ads'] },
-  { name: 'Photo Enhancement', tiers: ['—', '4/mo', '8/mo', '20/mo'] },
+  { name: 'Social Media Management', tiers: ['2 platforms', '3 platforms', 'All platforms', 'All + ads'] },
+  { name: 'Photo Enhancement', tiers: ['10/mo', '25/mo', 'Unlimited', 'Unlimited'] },
   { name: 'Video Production', tiers: ['—', '—', '2/mo', '4/mo'] },
   { name: 'Local SEO & GBP', tiers: ['Basic', 'Full', 'Full', 'Custom'] },
-  { name: 'Review Management', tiers: ['—', 'Included', 'Full', 'Full'] },
+  { name: 'Review Management', tiers: ['Monitoring', 'Responses', 'Full', 'Full'] },
   { name: 'Email Marketing', tiers: ['—', 'Bi-weekly', 'Weekly', 'Custom'] },
-  { name: 'Analytics & Reporting', tiers: ['Monthly', 'Monthly', 'Monthly', 'Weekly'] },
+  { name: 'Analytics & Reporting', tiers: ['Monthly', 'Monthly', 'Bi-weekly', 'Weekly'] },
   { name: 'Strategy Calls', tiers: ['—', 'Quarterly', 'Monthly', 'Weekly'] },
   { name: 'Website', tiers: ['—', 'Basic', 'Full', 'Custom'] },
 ];
 
-const TIER_NAMES = ['Front Porch\n$99', 'The Route\n$299', 'River Room\n$599', 'Blues Room\n$1,200+'];
+const TIER_NAMES = ['Front Porch\n$99', 'The Route\n$249', 'River Room\n$499', 'Blues Room\n$999'];
 
 const BRANDS = [
   {
@@ -64,30 +70,35 @@ const BRANDS = [
     url: 'https://bigmuddytouring.com',
     desc: 'The flagship. Memphis to New Orleans music corridor. City guides, lodging, the route.',
     stat: '18 cities',
+    image: '/images/dsd/brand-touring.webp',
   },
   {
     name: 'Big Muddy Magazine',
     url: 'https://bigmuddymagazine.com',
     desc: 'Long-form editorial, photo essays, and city guides. Southern Gothic storytelling.',
     stat: 'Weekly',
+    image: '/images/dsd/brand-magazine.webp',
   },
   {
     name: 'Big Muddy Radio',
     url: 'https://bigmuddyradio.com',
     desc: 'Curated playlists and live sessions. The sound of the river.',
     stat: 'Always on',
+    image: '/images/dsd/brand-radio.webp',
   },
   {
     name: 'The Big Muddy Inn',
     url: 'https://bigmuddytouring.com/inn',
     desc: 'Six-suite boutique hotel in Natchez, Mississippi. 411 N Commerce St.',
     stat: '6 suites',
+    image: '/images/dsd/brand-inn.webp',
   },
   {
     name: 'Outsider Economics',
     url: 'https://outsidereconomics.com',
     desc: 'Counter-narrative economics. The intellectual arm of the Big Muddy network.',
     stat: 'Published',
+    image: '/images/dsd/brand-economics.webp',
   },
 ];
 
@@ -115,6 +126,7 @@ export default function MediaHomepage() {
     <>
       {/* ── Hero ── */}
       <section className="media-hero">
+        <div className="media-hero__bg-image" aria-hidden="true" />
         <div className="media-hero__bg-pattern" aria-hidden="true" />
         <div className="media-hero__content">
           <div className="media-hero__eyebrow">
@@ -131,20 +143,25 @@ export default function MediaHomepage() {
             Thousands of people read, listen, and travel the route every month.
             The Deep South Directory puts your business in front of all of them.
           </p>
+          <div className="media-hero__free-badge">
+            3 Months Free — Then Starting at $99/month
+          </div>
           <div className="media-hero__ctas">
-            <a href="/media/pricing" className="btn btn--primary">
-              See Pricing
+            <a href="/media/get-started" className="btn btn--primary">
+              Start Free Today
             </a>
             <a href="/media/how-it-works" className="btn btn--ghost">
               How It Works
             </a>
           </div>
           <div className="media-hero__proof">
-            <span>Starting at $99/month</span>
+            <span>3 months free</span>
             <span className="media-hero__proof-dot" aria-hidden="true">·</span>
             <span>No contracts</span>
             <span className="media-hero__proof-dot" aria-hidden="true">·</span>
             <span>Cancel anytime</span>
+            <span className="media-hero__proof-dot" aria-hidden="true">·</span>
+            <span>No credit card required</span>
           </div>
         </div>
         <div className="media-hero__scroll-hint" aria-hidden="true">
@@ -170,9 +187,16 @@ export default function MediaHomepage() {
           <div className="media-problem__grid">
             {WHAT_YOU_GET.map((item) => (
               <div key={item.title} className="media-problem__card">
-                <span className="media-problem__icon" aria-hidden="true">{item.icon}</span>
-                <h3 className="media-problem__card-title">{item.title}</h3>
-                <p className="media-problem__card-desc">{item.desc}</p>
+                <div
+                  className="media-problem__card-img"
+                  style={{ backgroundImage: `url(${item.image})` }}
+                  aria-hidden="true"
+                />
+                <div className="media-problem__card-body">
+                  <span className="media-problem__icon" aria-hidden="true">{item.icon}</span>
+                  <h3 className="media-problem__card-title">{item.title}</h3>
+                  <p className="media-problem__card-desc">{item.desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -242,6 +266,13 @@ export default function MediaHomepage() {
           <div className="media-proof__brands">
             {BRANDS.map((brand) => (
               <a key={brand.name} href={brand.url} className="media-proof__brand" target="_blank" rel="noopener noreferrer">
+                {brand.image && (
+                  <div
+                    className="media-proof__brand-img"
+                    style={{ backgroundImage: `url(${brand.image})` }}
+                    aria-hidden="true"
+                  />
+                )}
                 <div className="media-proof__brand-stat">{brand.stat}</div>
                 <div className="media-proof__brand-name">{brand.name}</div>
                 <p className="media-proof__brand-desc">{brand.desc}</p>
@@ -273,13 +304,14 @@ export default function MediaHomepage() {
 
       {/* ── Final CTA ── */}
       <section className="media-cta-section">
+        <div className="media-cta-section__bg" aria-hidden="true" />
         <div className="section-container">
           <div className="media-cta-section__inner">
             <div className="section-label">Get Started</div>
-            <h2 className="media-cta-section__title">Get In the Directory.</h2>
+            <h2 className="media-cta-section__title">3 Months Free. Zero Risk.</h2>
             <p className="media-cta-section__sub">
-              First month free. No contracts. Cancel anytime.
               We come to you, learn your business, build your voice, and put you in front of the whole corridor.
+              No credit card. No contracts. If it works, stay. If it doesn't, walk away. But it works.
             </p>
             <div className="media-cta-section__buttons">
               <a href="/media/get-started" className="btn btn--primary">Get Started</a>
@@ -300,20 +332,21 @@ export default function MediaHomepage() {
           overflow: hidden;
           background: var(--bg);
         }
+        .media-hero__bg-image {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          background: url('/images/dsd/hero-mainstreet.webp') center center / cover no-repeat;
+          opacity: 0.18;
+        }
         .media-hero__bg-pattern {
           position: absolute;
           inset: 0;
           z-index: 0;
           background:
+            linear-gradient(180deg, var(--bg) 0%, transparent 30%, transparent 70%, var(--bg) 100%),
             radial-gradient(ellipse 70% 60% at 50% -5%, rgba(200, 148, 62, 0.1) 0%, transparent 65%),
-            radial-gradient(ellipse 40% 40% at 80% 80%, rgba(200, 148, 62, 0.04) 0%, transparent 60%),
-            repeating-linear-gradient(
-              0deg,
-              transparent,
-              transparent 80px,
-              rgba(200, 148, 62, 0.025) 80px,
-              rgba(200, 148, 62, 0.025) 81px
-            );
+            radial-gradient(ellipse 40% 40% at 80% 80%, rgba(200, 148, 62, 0.04) 0%, transparent 60%);
         }
         .media-hero__content {
           position: relative;
@@ -366,6 +399,23 @@ export default function MediaHomepage() {
           gap: var(--space-4);
           flex-wrap: wrap;
           margin-bottom: var(--space-8);
+        }
+        .media-hero__free-badge {
+          display: inline-block;
+          font-family: var(--font-display);
+          font-size: var(--text-lg);
+          font-weight: 800;
+          color: var(--bg);
+          background: var(--accent);
+          padding: var(--space-3) var(--space-8);
+          border-radius: var(--radius-full);
+          letter-spacing: var(--tracking-tight);
+          margin-bottom: var(--space-8);
+          animation: pulse-glow 2s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(200, 148, 62, 0.4); }
+          50% { box-shadow: 0 0 20px 4px rgba(200, 148, 62, 0.2); }
         }
         .media-hero__proof {
           display: flex;
@@ -426,11 +476,26 @@ export default function MediaHomepage() {
           background: var(--surface-2);
           border: 1px solid var(--border);
           border-radius: var(--radius-lg);
-          padding: var(--space-6);
-          transition: border-color var(--duration-fast) var(--ease-default);
+          overflow: hidden;
+          transition: border-color var(--duration-fast) var(--ease-default), transform var(--duration-fast) var(--ease-default);
         }
         .media-problem__card:hover {
           border-color: var(--border-strong);
+          transform: translateY(-2px);
+        }
+        .media-problem__card-img {
+          width: 100%;
+          height: 160px;
+          background-size: cover;
+          background-position: center;
+          opacity: 0.6;
+          transition: opacity var(--duration-fast) var(--ease-default);
+        }
+        .media-problem__card:hover .media-problem__card-img {
+          opacity: 0.8;
+        }
+        .media-problem__card-body {
+          padding: var(--space-6);
         }
         .media-problem__icon {
           display: block;
@@ -568,9 +633,21 @@ export default function MediaHomepage() {
           background: var(--surface-2);
           border: 1px solid var(--border);
           border-radius: var(--radius-lg);
-          padding: var(--space-6);
+          padding: 0;
+          overflow: hidden;
           text-decoration: none;
           transition: border-color var(--duration-fast) var(--ease-default), box-shadow var(--duration-fast) var(--ease-default);
+        }
+        .media-proof__brand-img {
+          width: 100%;
+          height: 120px;
+          background-size: cover;
+          background-position: center;
+          opacity: 0.5;
+          transition: opacity var(--duration-fast) var(--ease-default);
+        }
+        .media-proof__brand:hover .media-proof__brand-img {
+          opacity: 0.75;
         }
         .media-proof__brand:hover {
           border-color: var(--accent);
@@ -583,6 +660,7 @@ export default function MediaHomepage() {
           letter-spacing: var(--tracking-wider);
           text-transform: uppercase;
           margin-bottom: var(--space-3);
+          padding: var(--space-5) var(--space-5) 0;
         }
         .media-proof__brand-name {
           font-family: var(--font-display);
@@ -591,6 +669,7 @@ export default function MediaHomepage() {
           color: var(--text);
           letter-spacing: var(--tracking-tight);
           margin-bottom: var(--space-3);
+          padding: 0 var(--space-5);
         }
         .media-proof__brand-desc {
           font-family: var(--font-body);
@@ -598,6 +677,7 @@ export default function MediaHomepage() {
           color: var(--text-muted);
           line-height: var(--leading-normal);
           margin: 0 0 var(--space-5);
+          padding: 0 var(--space-5);
           flex: 1;
         }
         .media-proof__brand-link {
@@ -608,6 +688,7 @@ export default function MediaHomepage() {
           letter-spacing: var(--tracking-wide);
           text-transform: uppercase;
           margin-top: auto;
+          padding: 0 var(--space-5) var(--space-5);
         }
 
         /* ── Moat ── */
@@ -671,8 +752,16 @@ export default function MediaHomepage() {
 
         /* ── Final CTA ── */
         .media-cta-section {
+          position: relative;
           background: var(--surface);
           border-top: 1px solid var(--border);
+          overflow: hidden;
+        }
+        .media-cta-section__bg {
+          position: absolute;
+          inset: 0;
+          background: url('/images/dsd/mississippi-sunset.webp') center center / cover no-repeat;
+          opacity: 0.12;
         }
         .media-cta-section__inner {
           text-align: center;

@@ -16,14 +16,16 @@ const TIERS = [
     name: 'Front Porch',
     price: '$99',
     period: '/month',
-    tagline: 'Get in the directory. Get found.',
+    tagline: 'Everything a local business needs to get found.',
     popular: false,
     features: [
       'Deep South Directory listing',
       'Featured in Big Muddy Magazine directory',
       'Included in corridor touring guides',
-      '12 social posts/month (1 platform)',
+      '20 social posts/month (2 platforms)',
+      '10 AI-enhanced photos/month',
       'Google Business Profile optimization',
+      'Review monitoring & alerts',
       'Monthly performance report',
       'Brand voice onboarding',
     ],
@@ -33,14 +35,14 @@ const TIERS = [
   {
     id: 'the-route',
     name: 'The Route',
-    price: '$299',
+    price: '$249',
     period: '/month',
     tagline: 'The workhorse. Most businesses start here.',
     popular: true,
     features: [
       'Everything in Front Porch, plus:',
-      '30 posts/month across 3 platforms',
-      '4 AI-enhanced photos/month',
+      '40 posts/month across 3 platforms',
+      '25 AI-enhanced photos/month',
       'Magazine feature articles about your business',
       'Radio mentions & event spotlights',
       'Review response management',
@@ -55,14 +57,15 @@ const TIERS = [
   {
     id: 'river-room',
     name: 'River Room',
-    price: '$599',
+    price: '$499',
     period: '/month',
     tagline: 'Full-service. Full network access.',
     popular: false,
     features: [
       'Everything in The Route, plus:',
       '60 posts/month across all platforms',
-      '8 enhanced images + 2 videos/month',
+      'Unlimited photo enhancement',
+      '2 short-form videos/month',
       'Dedicated magazine brand page',
       'Radio show features & audio content',
       'Full review management & responses',
@@ -77,14 +80,14 @@ const TIERS = [
   {
     id: 'blues-room',
     name: 'The Blues Room',
-    price: '$1,200+',
+    price: '$999',
     period: '/month',
     tagline: 'Total media partnership. Co-branded everything.',
     popular: false,
     features: [
       'Everything in River Room, plus:',
       '100+ posts/month, all platforms',
-      '20 enhanced images + 4 videos/month',
+      'Unlimited photos + 4 videos/month',
       'Co-branded corridor events',
       'Professional photography sessions',
       'Long-form video production',
@@ -100,14 +103,14 @@ const TIERS = [
 ];
 
 const ADD_ONS = [
-  { name: 'Additional social platform', price: '$49/mo' },
-  { name: 'Extra enhanced photos (pack of 4)', price: '$79' },
-  { name: 'Short-form video (pack of 2)', price: '$149' },
-  { name: 'One-time brand voice audit', price: '$199' },
-  { name: 'Event photography + content', price: '$299/event' },
-  { name: 'Press release & distribution', price: '$249' },
-  { name: 'Google Ads management', price: '$199/mo + spend' },
-  { name: 'Custom landing page', price: '$499' },
+  { name: 'Additional social platform', price: '$39/mo' },
+  { name: 'Extra enhanced photos (pack of 10)', price: '$49' },
+  { name: 'Short-form video (pack of 2)', price: '$129' },
+  { name: 'One-time brand voice audit', price: '$149' },
+  { name: 'Event photography + content', price: '$249/event' },
+  { name: 'Press release & distribution', price: '$199' },
+  { name: 'Google Ads management', price: '$149/mo + spend' },
+  { name: 'Custom landing page', price: '$399' },
 ];
 
 const FAQS = [
@@ -116,8 +119,8 @@ const FAQS = [
     a: 'No. All plans are month-to-month. Cancel any time with 30 days notice. We don\'t lock you in — we earn your business every month.',
   },
   {
-    q: 'What does the first month look like?',
-    a: 'We start with an onboarding call (or in-person visit for River Room and Blues Room clients). We learn your brand, take photos if needed, and build your voice profile. Your first month of content is free while we set everything up.',
+    q: 'How does the 3 months free work?',
+    a: 'You sign up, we onboard your business, and you get the full service for 3 months — no credit card, no commitment. We learn your brand, build your voice profile, and start creating content. After 3 months, you decide if you want to keep going. Most businesses see results by month two.',
   },
   {
     q: 'How does the AI content generation work?',
@@ -129,7 +132,7 @@ const FAQS = [
   },
   {
     q: 'Is there a setup fee?',
-    a: 'No setup fees. Ever. Your first month is included free while we build your brand profile and content calendar.',
+    a: 'No setup fees. Ever. Your first 3 months are completely free — we build your brand profile, content calendar, and start publishing while you pay nothing.',
   },
   {
     q: 'Can I upgrade or downgrade my plan?',
@@ -150,6 +153,7 @@ export default function PricingPage() {
     <>
       {/* ── Header ── */}
       <section className="pricing-header">
+        <div className="pricing-header__bg" aria-hidden="true" />
         <div className="section-container">
           <div className="pricing-header__inner">
             <div className="section-label">Pricing</div>
@@ -159,14 +163,16 @@ export default function PricingPage() {
             <p className="pricing-header__sub">
               Every tier gets you listed in the directory, featured in the magazine, and plugged into the network.
               Go up a tier and we do more — more posts, more platforms, more media.
-              First month free while we build your profile.
             </p>
+            <div className="pricing-header__free-banner">
+              3 Months Free on Every Plan — No Credit Card Required
+            </div>
             <div className="pricing-header__proof">
               <span>No contracts</span>
               <span className="pricing-header__dot" aria-hidden="true">·</span>
               <span>No setup fees</span>
               <span className="pricing-header__dot" aria-hidden="true">·</span>
-              <span>First month free</span>
+              <span>3 months free</span>
               <span className="pricing-header__dot" aria-hidden="true">·</span>
               <span>Cancel anytime</span>
             </div>
@@ -193,6 +199,7 @@ export default function PricingPage() {
                     <span className="pricing-card__period">{tier.period}</span>
                   </div>
                   <p className="pricing-card__tagline">{tier.tagline}</p>
+                  <div className="pricing-card__free-tag">First 3 months free</div>
                 </div>
                 <ul className="pricing-card__features" role="list">
                   {tier.features.map((f) => (
@@ -210,6 +217,63 @@ export default function PricingPage() {
                 </a>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Value Comparison ── */}
+      <section className="pricing-compare">
+        <div className="section-container">
+          <div className="pricing-compare__header">
+            <div className="section-label">The Math</div>
+            <h2 className="section-title">What You'd Pay Elsewhere</h2>
+            <p className="section-desc">
+              To get what the Front Porch plan includes, you'd cobble together 6 different services.
+              Here's what that actually costs.
+            </p>
+          </div>
+          <div className="pricing-compare__grid">
+            <div className="pricing-compare__card pricing-compare__card--them">
+              <div className="pricing-compare__card-label">Doing It Yourself</div>
+              <div className="pricing-compare__items">
+                <div className="pricing-compare__item">
+                  <span>Yelp Business upgrade</span><span>$180/mo</span>
+                </div>
+                <div className="pricing-compare__item">
+                  <span>Social media tool (Hootsuite)</span><span>$99/mo</span>
+                </div>
+                <div className="pricing-compare__item">
+                  <span>Email marketing (Constant Contact)</span><span>$35/mo</span>
+                </div>
+                <div className="pricing-compare__item">
+                  <span>GBP management (freelancer)</span><span>$200/mo</span>
+                </div>
+                <div className="pricing-compare__item">
+                  <span>Photo editing (freelancer)</span><span>$200/mo</span>
+                </div>
+                <div className="pricing-compare__item">
+                  <span>Basic website hosting</span><span>$22/mo</span>
+                </div>
+              </div>
+              <div className="pricing-compare__total">
+                <span>Total</span><span>$736/mo</span>
+              </div>
+              <div className="pricing-compare__note">And you still don't get magazine, radio, or AI content.</div>
+            </div>
+            <div className="pricing-compare__card pricing-compare__card--us">
+              <div className="pricing-compare__card-label">Deep South Directory</div>
+              <div className="pricing-compare__us-price">$99<span>/mo</span></div>
+              <div className="pricing-compare__us-detail">Everything above, plus:</div>
+              <div className="pricing-compare__us-list">
+                <div>Featured in Big Muddy Magazine</div>
+                <div>Mentioned on Big Muddy Radio</div>
+                <div>Listed on corridor touring guides</div>
+                <div>AI-generated content matched to your voice</div>
+                <div>10 AI-enhanced photos every month</div>
+              </div>
+              <div className="pricing-compare__us-free">First 3 months completely free</div>
+              <a href="/media/get-started" className="btn btn--primary pricing-compare__cta">Start Free Today</a>
+            </div>
           </div>
         </div>
       </section>
@@ -268,10 +332,10 @@ export default function PricingPage() {
         <div className="section-container">
           <div className="pricing-bottom-cta__inner">
             <div className="section-label">Ready?</div>
-            <h2 className="pricing-bottom-cta__title">Start Your First Month Free</h2>
+            <h2 className="pricing-bottom-cta__title">Start Your 3 Months Free</h2>
             <p className="pricing-bottom-cta__sub">
               Tell us about your business and we'll put together a plan that fits.
-              No hard sell. Just an honest conversation about what we can do for you.
+              No credit card. No hard sell. Just an honest conversation about what we can do for you.
             </p>
             <a href="/media/get-started" className="btn btn--primary">Get Started</a>
           </div>
@@ -281,8 +345,16 @@ export default function PricingPage() {
       <style>{`
         /* ── Header ── */
         .pricing-header {
+          position: relative;
           background: var(--bg);
           border-bottom: 1px solid var(--border);
+          overflow: hidden;
+        }
+        .pricing-header__bg {
+          position: absolute;
+          inset: 0;
+          background: url('/images/dsd/blues-musician.webp') center center / cover no-repeat;
+          opacity: 0.1;
         }
         .pricing-header__inner {
           max-width: 680px;
@@ -308,6 +380,18 @@ export default function PricingPage() {
           line-height: var(--leading-loose);
           margin: 0 0 var(--space-8);
           max-width: 580px;
+        }
+        .pricing-header__free-banner {
+          display: inline-block;
+          font-family: var(--font-display);
+          font-size: var(--text-lg);
+          font-weight: 800;
+          color: var(--bg);
+          background: var(--accent);
+          padding: var(--space-3) var(--space-8);
+          border-radius: var(--radius-full);
+          letter-spacing: var(--tracking-tight);
+          margin-bottom: var(--space-6);
         }
         .pricing-header__proof {
           display: flex;
@@ -415,8 +499,21 @@ export default function PricingPage() {
           font-family: var(--font-body);
           font-size: var(--text-sm);
           color: var(--text-muted);
-          margin: 0;
+          margin: 0 0 var(--space-3);
           font-style: italic;
+        }
+        .pricing-card__free-tag {
+          display: inline-block;
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          font-weight: 700;
+          color: var(--accent);
+          background: rgba(200, 148, 62, 0.1);
+          border: 1px solid rgba(200, 148, 62, 0.3);
+          padding: var(--space-1) var(--space-3);
+          border-radius: var(--radius-full);
+          letter-spacing: var(--tracking-wide);
+          text-transform: uppercase;
         }
         .pricing-card__features {
           list-style: none;
@@ -443,6 +540,142 @@ export default function PricingPage() {
           margin-top: 1px;
         }
         .pricing-card__cta {
+          width: 100%;
+          justify-content: center;
+        }
+
+        /* ── Value Comparison ── */
+        .pricing-compare {
+          background: var(--bg);
+          border-bottom: 1px solid var(--border);
+        }
+        .pricing-compare__header {
+          margin-bottom: var(--space-10);
+        }
+        .pricing-compare__grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: var(--space-6);
+          max-width: 900px;
+        }
+        @media (min-width: 768px) {
+          .pricing-compare__grid {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+        .pricing-compare__card {
+          border-radius: var(--radius-xl);
+          padding: var(--space-8);
+        }
+        .pricing-compare__card--them {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          opacity: 0.7;
+        }
+        .pricing-compare__card--us {
+          background: var(--surface-2);
+          border: 2px solid var(--accent);
+          box-shadow: var(--shadow-glow);
+        }
+        .pricing-compare__card-label {
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          font-weight: 700;
+          color: var(--text-disabled);
+          letter-spacing: var(--tracking-widest);
+          text-transform: uppercase;
+          margin-bottom: var(--space-6);
+        }
+        .pricing-compare__card--us .pricing-compare__card-label {
+          color: var(--accent);
+        }
+        .pricing-compare__items {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-3);
+          margin-bottom: var(--space-6);
+        }
+        .pricing-compare__item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: var(--space-4);
+          font-family: var(--font-body);
+          font-size: var(--text-sm);
+          color: var(--text-muted);
+          padding-bottom: var(--space-3);
+          border-bottom: 1px solid var(--border-subtle);
+        }
+        .pricing-compare__item span:last-child {
+          font-family: var(--font-mono);
+          font-size: var(--text-xs);
+          color: var(--text-disabled);
+          white-space: nowrap;
+        }
+        .pricing-compare__total {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-family: var(--font-display);
+          font-size: var(--text-xl);
+          font-weight: 800;
+          color: var(--text);
+          padding-top: var(--space-4);
+          border-top: 2px solid var(--border-strong);
+          margin-bottom: var(--space-4);
+        }
+        .pricing-compare__note {
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          color: var(--text-disabled);
+          font-style: italic;
+        }
+        .pricing-compare__us-price {
+          font-family: var(--font-display);
+          font-size: var(--text-hero);
+          font-weight: 800;
+          color: var(--accent);
+          letter-spacing: var(--tracking-tight);
+          line-height: 1;
+          margin-bottom: var(--space-2);
+        }
+        .pricing-compare__us-price span {
+          font-size: var(--text-lg);
+          color: var(--text-muted);
+          font-weight: 400;
+        }
+        .pricing-compare__us-detail {
+          font-family: var(--font-body);
+          font-size: var(--text-sm);
+          color: var(--text-muted);
+          margin-bottom: var(--space-6);
+        }
+        .pricing-compare__us-list {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-3);
+          font-family: var(--font-body);
+          font-size: var(--text-sm);
+          color: var(--text);
+          margin-bottom: var(--space-6);
+        }
+        .pricing-compare__us-list div::before {
+          content: '\\2713  ';
+          color: var(--accent);
+        }
+        .pricing-compare__us-free {
+          font-family: var(--font-display);
+          font-size: var(--text-base);
+          font-weight: 700;
+          color: var(--accent);
+          background: rgba(200, 148, 62, 0.1);
+          border: 1px solid rgba(200, 148, 62, 0.3);
+          border-radius: var(--radius-lg);
+          padding: var(--space-3) var(--space-5);
+          text-align: center;
+          margin-bottom: var(--space-6);
+        }
+        .pricing-compare__cta {
           width: 100%;
           justify-content: center;
         }

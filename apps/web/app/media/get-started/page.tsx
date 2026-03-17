@@ -20,9 +20,9 @@ const BUSINESS_TYPES = [
 const TIERS = [
   { value: '', label: 'Not sure yet' },
   { value: 'front-porch', label: 'Front Porch — $99/month' },
-  { value: 'the-route', label: 'The Route — $299/month' },
-  { value: 'river-room', label: 'River Room — $599/month' },
-  { value: 'blues-room', label: 'The Blues Room — $1,200+/month' },
+  { value: 'the-route', label: 'The Route — $249/month' },
+  { value: 'river-room', label: 'River Room — $499/month' },
+  { value: 'blues-room', label: 'The Blues Room — $999/month' },
 ];
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error';
