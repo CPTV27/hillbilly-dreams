@@ -43,8 +43,8 @@ export default function PlatformPage() {
       <section className="hero" aria-labelledby="hero-heading">
         <div className="hero__photo-wrap">
           <img
-            src="/images/library/corridor-1007.webp"
-            alt="Natchez bluff homes overlooking the Mississippi River with bridge in distance"
+            src="/images/platform/hero-tatonut.webp"
+            alt="TatoNut Doughnut Shop sign with Orleans iron gate and pink flowers in Natchez"
             className="hero__photo"
           />
           <div className="hero__overlay" />
@@ -85,8 +85,8 @@ export default function PlatformPage() {
       <section className="split-section" id="what-we-built" aria-labelledby="ww-heading">
         <div className="split-section__photo-side split-section__photo-side--left">
           <img
-            src="/images/library/corridor-1033.webp"
-            alt="Natchez mansion with columns and iron fence under live oaks"
+            src="/images/platform/courtyard-fountain.webp"
+            alt="Victorian home with brick courtyard, iron fountain, and wraparound porch"
             className="split-section__photo"
           />
         </div>
@@ -103,8 +103,8 @@ export default function PlatformPage() {
       <section className="lifecycle-section" aria-labelledby="lifecycle-heading">
         <div className="lifecycle-section__photo-wrap">
           <img
-            src="/images/library/corridor-1045.webp"
-            alt="Band performing in a chandelier-lit Natchez parlor"
+            src="/images/platform/guitarist-riverbar.webp"
+            alt="Guitarist performing at River Bar in intimate parlor setting"
             className="lifecycle-section__photo"
           />
           <div className="lifecycle-section__overlay" />
@@ -127,8 +127,8 @@ export default function PlatformPage() {
       <section className="split-section split-section--reverse" id="brands" aria-labelledby="brands-heading">
         <div className="split-section__photo-side split-section__photo-side--right">
           <img
-            src="/images/library/corridor-0642.webp"
-            alt="Victorian B&B with wraparound porch and gingerbread trim"
+            src="/images/platform/bluff-azaleas-river.webp"
+            alt="Natchez bluff homes with azalea hedges overlooking Mississippi River and bridge"
             className="split-section__photo"
           />
         </div>
@@ -168,8 +168,8 @@ export default function PlatformPage() {
       <section className="split-section" id="ai" aria-labelledby="ai-heading">
         <div className="split-section__photo-side split-section__photo-side--left">
           <img
-            src="/images/library/corridor-0657.webp"
-            alt="Massive live oak canopy arching over an Ocean Springs street"
+            src="/images/platform/live-oak-canopy.webp"
+            alt="Massive live oak tree canopy with azaleas blooming underneath"
             className="split-section__photo"
           />
         </div>
@@ -197,8 +197,8 @@ export default function PlatformPage() {
       <section className="stack-section" id="stack" aria-labelledby="stack-heading">
         <div className="stack-section__photo-wrap">
           <img
-            src="/images/library/corridor-1084.webp"
-            alt="Mississippi River bluff walkway with iron fence and bridge view"
+            src="/images/platform/river-bluff-walkway.webp"
+            alt="Natchez bluff walkway with iron fence overlooking Mississippi River bridge"
             className="stack-section__photo"
           />
           <div className="stack-section__overlay" />
@@ -220,14 +220,22 @@ export default function PlatformPage() {
       {/* ── 8. PHOTO BREAK ── */}
       <div className="photo-break" aria-hidden="true">
         <img
-          src="/images/library/corridor-0501.webp"
-          alt=""
+          src="/images/platform/floral-bar.webp"
+          alt="Cocktail bar with red floral wallpaper and marble counter"
           className="photo-break__img"
         />
       </div>
 
       {/* ── 9. PRICING ── */}
       <section className="pricing-section" id="pricing" aria-labelledby="pricing-heading">
+        <div className="pricing-section__photo-wrap">
+          <img
+            src="/images/platform/lost-spring-brewing.webp"
+            alt="Lost Spring Brewing Co neon sign with patrons on covered patio"
+            className="pricing-section__photo"
+          />
+          <div className="pricing-section__overlay" />
+        </div>
         <div className="pricing-section__inner">
           <div className="pricing-section__header">
             <div className="pricing-section__label">Pricing</div>
@@ -798,10 +806,28 @@ export default function PlatformPage() {
 
         /* ─── 9. Pricing ─── */
         .pricing-section {
+          position: relative;
           background: #0d1424;
           padding: 120px 32px;
         }
+        .pricing-section__photo-wrap {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+        }
+        .pricing-section__photo {
+          width: 100%; height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        .pricing-section__overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(13, 20, 36, 0.88);
+        }
         .pricing-section__inner {
+          position: relative;
+          z-index: 1;
           max-width: 1280px;
           margin: 0 auto;
         }
