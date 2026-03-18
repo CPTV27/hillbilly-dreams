@@ -3,6 +3,7 @@
 // Server component. ISR revalidate 300s.
 
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import type { Publication } from '@bigmuddy/config';
 
 export const metadata: Metadata = {
@@ -182,7 +183,15 @@ export default async function PublicationsPage() {
     <>
       {/* ── Hero ── */}
       <section className="dsp-hero">
-        <div className="dsp-hero__bg" aria-hidden="true" />
+        <Image
+          src="/images/corridor/historic-home-natchez.webp"
+          alt="Historic home in Natchez, Mississippi"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover', zIndex: 0 }}
+        />
+        <div className="dsp-hero__overlay" />
         <div className="dsp-hero__content">
           <div className="dsp-hero__eyebrow">
             <span className="dsp-hero__ornament" aria-hidden="true">&#9670;</span>
@@ -262,6 +271,18 @@ export default async function PublicationsPage() {
         </section>
       )}
 
+      {/* ── Photo Break ── */}
+      <section className="photo-break">
+        <Image
+          src="/images/corridor/live-oak-street-night.webp"
+          alt="Live oak canopy over a Natchez street at night"
+          width={1600}
+          height={900}
+          sizes="100vw"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+      </section>
+
       {/* ── About Deep South Press ── */}
       <section className="dsp-about">
         <div className="section-container">
@@ -305,24 +326,19 @@ export default async function PublicationsPage() {
           background: var(--bg);
           border-bottom: 1px solid var(--border);
           overflow: hidden;
+          min-height: 50vh;
+          display: flex;
+          align-items: flex-end;
         }
-        .dsp-hero__bg {
+        .dsp-hero__overlay {
           position: absolute;
           inset: 0;
-          z-index: 0;
-          background:
-            radial-gradient(ellipse 80% 60% at 30% -10%, rgba(200, 148, 62, 0.09) 0%, transparent 60%),
-            repeating-linear-gradient(
-              90deg,
-              transparent,
-              transparent 80px,
-              rgba(200, 148, 62, 0.02) 80px,
-              rgba(200, 148, 62, 0.02) 81px
-            );
+          background: linear-gradient(180deg, rgba(15, 15, 13, 0.4) 0%, rgba(15, 15, 13, 0.88) 100%);
+          z-index: 1;
         }
         .dsp-hero__content {
           position: relative;
-          z-index: 1;
+          z-index: 2;
           max-width: 1200px;
           margin: 0 auto;
           padding: var(--space-24) var(--space-6) var(--space-20);
@@ -685,6 +701,14 @@ export default async function PublicationsPage() {
           line-height: var(--leading-loose);
           max-width: 480px;
           margin: 0 auto;
+        }
+
+        /* ── Photo Break ── */
+        .photo-break {
+          width: 100%;
+          max-height: 400px;
+          overflow: hidden;
+          line-height: 0;
         }
 
         /* ── About ── */
