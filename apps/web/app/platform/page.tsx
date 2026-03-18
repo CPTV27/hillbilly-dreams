@@ -561,7 +561,7 @@ export default function PlatformSplash() {
             </div>
             <div className="platform-footer__bar">
               <span>Multi-Tenant Media Engine for Southern Hospitality &amp; Culture</span>
-              <span>BIGMUDDYMEDIA.COM</span>
+              <span>BIGMUDDYTOURING.COM</span>
             </div>
           </div>
         </footer>
