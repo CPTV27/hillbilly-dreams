@@ -222,6 +222,13 @@ export default function PlatformSplash() {
 
         {/* ── HERO ── */}
         <section className="platform-hero">
+          <img
+            src="/images/library/corridor-0501.webp"
+            alt="Pink azaleas cascading along a Natchez sidewalk in full spring bloom"
+            className="platform-hero__bg"
+            aria-hidden="true"
+          />
+          <div className="platform-hero__overlay" aria-hidden="true" />
           <div className="platform-hero__content">
             <div className="platform-hero__badge">
               <Layers size={14} />
@@ -259,6 +266,17 @@ export default function PlatformSplash() {
             ))}
           </div>
         </section>
+
+        {/* ── PHOTO STRIP ── */}
+        <div className="platform-photostrip" aria-hidden="true">
+          <div className="platform-photostrip__grid">
+            <img src="/images/library/corridor-0339.webp" alt="Brick sidewalk with bench and awnings on Natchez main street" className="platform-photostrip__img" />
+            <img src="/images/library/corridor-1087.webp" alt="Guitarist tuning up under chandelier in a Natchez parlor" className="platform-photostrip__img" />
+            <img src="/images/library/corridor-1033.webp" alt="Natchez mansion with columns and iron fence under live oaks" className="platform-photostrip__img" />
+            <img src="/images/library/corridor-1056.webp" alt="Natchez Coffee Co sidewalk cafe with flags and chalkboard menu" className="platform-photostrip__img" />
+            <img src="/images/library/corridor-0642.webp" alt="Victorian B&B with wraparound porch and gingerbread trim" className="platform-photostrip__img platform-photostrip__img--span" />
+          </div>
+        </div>
 
         {/* ── WORKFLOW ── */}
         <section className="platform-workflow" id="platform">
@@ -372,6 +390,13 @@ export default function PlatformSplash() {
           </div>
         </section>
 
+        {/* ── PHOTO BREAK: river / music / small town ── */}
+        <div className="platform-photobreak" aria-hidden="true">
+          <img src="/images/library/corridor-1007.webp" alt="Natchez bluff homes overlooking the Mississippi River with bridge in distance" className="platform-photobreak__img" />
+          <img src="/images/library/corridor-1045.webp" alt="Band performing in a chandelier-lit Natchez parlor" className="platform-photobreak__img" />
+          <img src="/images/library/corridor-1185.webp" alt="Small-town main street with a drug store and boutiques" className="platform-photobreak__img" />
+        </div>
+
         {/* ── AI & AUTOMATION ── */}
         <section className="platform-ai" id="ai">
           <div className="section-container">
@@ -411,6 +436,13 @@ export default function PlatformSplash() {
             </div>
           </div>
         </section>
+
+        {/* ── PHOTO BREAK: live oak / mural / B&B courtyard ── */}
+        <div className="platform-photobreak" aria-hidden="true">
+          <img src="/images/library/corridor-0657.webp" alt="Massive live oak canopy arching over an Ocean Springs street" className="platform-photobreak__img" />
+          <img src="/images/library/corridor-1187.webp" alt="Colorful outdoor mural painted on a vine-covered wall" className="platform-photobreak__img" />
+          <img src="/images/library/corridor-1018.webp" alt="B&B courtyard with ornate iron gazebo and brick patio" className="platform-photobreak__img" />
+        </div>
 
         {/* ── TECH STACK ── */}
         <section className="platform-stack" id="stack">
@@ -463,6 +495,16 @@ export default function PlatformSplash() {
             </div>
           </div>
         </section>
+
+        {/* ── PHOTO HERO: river bluff walkway ── */}
+        <div className="platform-photohero" aria-hidden="true">
+          <img
+            src="/images/library/corridor-1084.webp"
+            alt="Mississippi River bluff walkway with iron fence and bridge view"
+            className="platform-photohero__img"
+          />
+          <div className="platform-photohero__overlay" />
+        </div>
 
         {/* ── PRICING ── */}
         <section className="platform-pricing" id="pricing">
@@ -519,7 +561,7 @@ export default function PlatformSplash() {
             </div>
             <div className="platform-footer__bar">
               <span>Multi-Tenant Media Engine for Southern Hospitality &amp; Culture</span>
-              <span>BIGMUDDYTOURING.COM</span>
+              <span>BIGMUDDYMEDIA.COM</span>
             </div>
           </div>
         </footer>
@@ -666,11 +708,39 @@ export default function PlatformSplash() {
         /* ── Hero ── */
         .platform-hero {
           position: relative;
+          overflow: hidden;
+          min-height: 100vh;
           padding: var(--space-32) var(--space-6) var(--space-16);
           text-align: center;
           z-index: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .platform-hero__bg {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          opacity: 0.28;
+          z-index: 0;
+        }
+        .platform-hero__overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to bottom,
+            rgba(26, 24, 22, 0.55) 0%,
+            rgba(26, 24, 22, 0.35) 40%,
+            rgba(26, 24, 22, 0.75) 100%
+          );
+          z-index: 1;
         }
         .platform-hero__content {
+          position: relative;
+          z-index: 2;
           max-width: 860px;
           margin: 0 auto;
         }
@@ -1391,6 +1461,87 @@ export default function PlatformSplash() {
           width: 100%;
           text-align: center;
           justify-content: center;
+        }
+
+        /* ── Photo Strip (after Stats) ── */
+        .platform-photostrip {
+          position: relative;
+          z-index: 1;
+          line-height: 0;
+        }
+        .platform-photostrip__grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0;
+        }
+        @media (min-width: 768px) {
+          .platform-photostrip__grid {
+            grid-template-columns: repeat(5, 1fr);
+          }
+        }
+        .platform-photostrip__img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          display: block;
+          filter: brightness(0.82) saturate(0.9);
+          transition: filter 0.3s ease;
+        }
+        .platform-photostrip__img:hover {
+          filter: brightness(0.95) saturate(1.05);
+        }
+        /* On mobile the 5th photo spans both columns */
+        @media (max-width: 767px) {
+          .platform-photostrip__img--span {
+            grid-column: 1 / -1;
+          }
+        }
+
+        /* ── Photo Break (3-up, full-bleed) ── */
+        .platform-photobreak {
+          position: relative;
+          z-index: 1;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0;
+          line-height: 0;
+        }
+        .platform-photobreak__img {
+          width: 100%;
+          height: 180px;
+          object-fit: cover;
+          display: block;
+          filter: brightness(0.78) saturate(0.88);
+          transition: filter 0.3s ease;
+        }
+        .platform-photobreak__img:hover {
+          filter: brightness(0.92) saturate(1.0);
+        }
+
+        /* ── Photo Hero (single full-width with overlay) ── */
+        .platform-photohero {
+          position: relative;
+          z-index: 1;
+          line-height: 0;
+          overflow: hidden;
+        }
+        .platform-photohero__img {
+          width: 100%;
+          height: 300px;
+          object-fit: cover;
+          object-position: center 60%;
+          display: block;
+          filter: brightness(0.72) saturate(0.85);
+        }
+        .platform-photohero__overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to bottom,
+            rgba(26, 24, 22, 0.2) 0%,
+            rgba(26, 24, 22, 0.55) 100%
+          );
+          pointer-events: none;
         }
 
         /* ── Footer ── */
