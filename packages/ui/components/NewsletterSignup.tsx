@@ -1,35 +1,91 @@
 'use client';
 
 // packages/ui/components/NewsletterSignup.tsx
-// Beehiiv embed placeholder / newsletter signup component
+// Newsletter signup component — posts to /api/newsletter/subscribe
 
-import React from 'react';
+import React, { useState, useCallback, type FormEvent } from 'react';
 
 interface NewsletterSignupProps {
   variant?: 'inline' | 'section' | 'minimal';
   publicationId?: string; // Beehiiv publication ID — set via env or prop
+  brand?: string; // Brand key for per-brand lists (touring, magazine, inn, etc.)
 }
 
-export function NewsletterSignup({ variant = 'section', publicationId }: NewsletterSignupProps) {
-  // When Beehiiv is connected, swap the form below for:
-  // <iframe src={`https://embeds.beehiiv.com/...`} />
-  // or use the Beehiiv embed script.
+type SubmitState = 'idle' | 'submitting' | 'success' | 'error';
+
+export function NewsletterSignup({ variant = 'section', publicationId, brand }: NewsletterSignupProps) {
+  const [email, setEmail] = useState('');
+  const [state, setState] = useState<SubmitState>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleSubmit = useCallback(
+    async (e: FormEvent) => {
+      e.preventDefault();
+      if (!email.trim()) return;
+
+      setState('submitting');
+      setErrorMsg('');
+
+      try {
+        const res = await fetch('/api/newsletter/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email.trim(), brand }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          setState('error');
+          setErrorMsg(data.error || 'Something went wrong. Please try again.');
+          return;
+        }
+
+        setState('success');
+        setEmail('');
+      } catch {
+        setState('error');
+        setErrorMsg('Network error. Please check your connection and try again.');
+      }
+    },
+    [email, brand],
+  );
+
+  const successMessage = (
+    <p className="newsletter-success" role="status">
+      You&rsquo;re in. Welcome to the dispatch.
+    </p>
+  );
+
+  const errorDisplay = state === 'error' && errorMsg ? (
+    <p className="newsletter-error" role="alert">{errorMsg}</p>
+  ) : null;
+
+  const isDisabled = state === 'submitting';
+  const buttonLabel = state === 'submitting' ? 'Subscribing\u2026' : 'Subscribe';
 
   if (variant === 'minimal') {
     return (
       <div className="newsletter-minimal">
         <p className="newsletter-minimal__label">Get the dispatch</p>
-        <form className="newsletter-minimal__form" onSubmit={(e) => e.preventDefault()}>
-          <input
-            type="email"
-            placeholder="your@email.com"
-            className="newsletter-minimal__input"
-            aria-label="Email address"
-          />
-          <button type="submit" className="newsletter-minimal__btn">
-            Subscribe
-          </button>
-        </form>
+        {state === 'success' ? successMessage : (
+          <form className="newsletter-minimal__form" onSubmit={handleSubmit}>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@email.com"
+              className="newsletter-minimal__input"
+              aria-label="Email address"
+              disabled={isDisabled}
+              required
+            />
+            <button type="submit" className="newsletter-minimal__btn" disabled={isDisabled}>
+              {buttonLabel}
+            </button>
+          </form>
+        )}
+        {errorDisplay}
         <style>{newsletterStyles}</style>
       </div>
     );
@@ -45,17 +101,24 @@ export function NewsletterSignup({ variant = 'section', publicationId }: Newslet
             No noise. Unsubscribe anytime.
           </p>
         </div>
-        <form className="newsletter-inline__form" onSubmit={(e) => e.preventDefault()}>
-          <input
-            type="email"
-            placeholder="your@email.com"
-            className="newsletter-inline__input"
-            aria-label="Email address"
-          />
-          <button type="submit" className="newsletter-inline__btn">
-            Subscribe Free
-          </button>
-        </form>
+        {state === 'success' ? successMessage : (
+          <form className="newsletter-inline__form" onSubmit={handleSubmit}>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@email.com"
+              className="newsletter-inline__input"
+              aria-label="Email address"
+              disabled={isDisabled}
+              required
+            />
+            <button type="submit" className="newsletter-inline__btn" disabled={isDisabled}>
+              Subscribe Free
+            </button>
+          </form>
+        )}
+        {errorDisplay}
         <style>{newsletterStyles}</style>
       </div>
     );
@@ -80,24 +143,31 @@ export function NewsletterSignup({ variant = 'section', publicationId }: Newslet
           <div
             className="newsletter-section__embed"
             dangerouslySetInnerHTML={{
-              __html: `<iframe src="https://embeds.beehiiv.com/subscribe?publication_id=${publicationId}" 
+              __html: `<iframe src="https://embeds.beehiiv.com/subscribe?publication_id=${publicationId}"
                 width="100%" height="320" frameborder="0" scrolling="no"
                 style="border-radius:8px;overflow:hidden;"></iframe>`,
             }}
           />
+        ) : state === 'success' ? (
+          <div className="newsletter-section__form">{successMessage}</div>
         ) : (
-          <form className="newsletter-section__form" onSubmit={(e) => e.preventDefault()}>
+          <form className="newsletter-section__form" onSubmit={handleSubmit}>
             <div className="newsletter-section__fields">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
                 className="newsletter-section__input"
                 aria-label="Email address"
+                disabled={isDisabled}
+                required
               />
-              <button type="submit" className="newsletter-section__btn">
-                Subscribe
+              <button type="submit" className="newsletter-section__btn" disabled={isDisabled}>
+                {buttonLabel}
               </button>
             </div>
+            {errorDisplay}
             <p className="newsletter-section__footnote">
               Free forever. No spam. Unsubscribe with one click.
             </p>
@@ -110,6 +180,29 @@ export function NewsletterSignup({ variant = 'section', publicationId }: Newslet
 }
 
 const newsletterStyles = `
+  /* Success / error messages */
+  .newsletter-success {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--accent);
+    font-weight: 600;
+    margin: var(--space-2) 0 0;
+  }
+  .newsletter-error {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    color: #c0392b;
+    margin: var(--space-2) 0 0;
+  }
+
+  /* Disabled state */
+  .newsletter-section__btn:disabled,
+  .newsletter-inline__btn:disabled,
+  .newsletter-minimal__btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
   /* Section variant */
   .newsletter-section {
     background: var(--surface);

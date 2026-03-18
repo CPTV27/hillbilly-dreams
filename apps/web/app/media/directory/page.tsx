@@ -85,8 +85,8 @@ function PlaceholderCards({ city }: { city?: string }) {
             <p className="dir-card__placeholder-text">
               Coming Soon — be the first in <strong>{c}</strong>
             </p>
-            <a href="/media/get-started" className="dir-card__placeholder-cta">
-              Get Listed →
+            <a href="/media/directory/claim" className="dir-card__placeholder-cta">
+              Claim Your Business →
             </a>
           </div>
         </div>
@@ -216,8 +216,11 @@ export default async function DirectoryPage({ searchParams }: PageProps) {
             <p className="dir-bottom-cta__text">
               Own a business on the corridor?
             </p>
+            <a href="/media/directory/claim" className="btn btn--primary">
+              Claim Your Business →
+            </a>
             <a href="/media/get-started" className="btn btn--outline">
-              Get Listed in the Directory →
+              Learn More About Listing →
             </a>
           </div>
         </div>

@@ -344,8 +344,8 @@ export default async function BusinessProfilePage({ params }: Props) {
                 <p className="biz-cta-card__sub">
                   Join the Deep South Directory. Get listed, get featured, get found.
                 </p>
-                <a href="/media/get-started" className="btn btn--primary biz-cta-card__btn">
-                  Get Started →
+                <a href="/media/directory/claim" className="btn btn--primary biz-cta-card__btn">
+                  Claim Your Business →
                 </a>
                 <a href="/media/pricing" className="biz-cta-card__pricing-link">
                   Starting at $99/month
