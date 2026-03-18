@@ -3,6 +3,7 @@
 // Resource center + community hub for independent economic systems
 
 import type { Metadata } from 'next';
+import Image from 'next/image';
 const homeDescription = 'Your community is coordination-poor, not resource-poor. The math, the frameworks, and the field-tested playbook for building sovereign local economies.';
 export const metadata: Metadata = {
   title: 'Outsider Economics — A Field Manual for Independent Economic Systems',
@@ -181,6 +182,18 @@ export default function EconomicsHomepage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* ── Photo Break ── */}
+      <section className="econ-photo-break">
+        <Image
+          src="/images/ai-corridor/delta-cotton-field.webp"
+          alt="Cotton field at golden hour in the Mississippi Delta"
+          width={1600}
+          height={900}
+          sizes="100vw"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
       </section>
 
       {/* ── Current Trends ── */}
@@ -525,6 +538,14 @@ export default function EconomicsHomepage() {
         @keyframes nodePulse {
           0%, 100% { opacity: 0.3; transform: scale(1); }
           50% { opacity: 0.8; transform: scale(1.5); }
+        }
+
+        /* ── Photo Break ── */
+        .econ-photo-break {
+          width: 100%;
+          max-height: 400px;
+          overflow: hidden;
+          line-height: 0;
         }
 
         /* ── Trends ── */

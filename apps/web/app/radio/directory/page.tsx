@@ -4,6 +4,7 @@
 // Links out to deepsouthdirectory.com/directory/[slug]
 
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'On the Route — Directory Businesses',
@@ -72,6 +73,15 @@ export default async function RadioDirectoryPage() {
     <>
       {/* ── Hero ── */}
       <section className="rtdir-hero">
+        <Image
+          src="/images/ai-corridor/juke-joint-night.webp"
+          alt="Juke joint at night along the Mississippi corridor"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover', zIndex: 0 }}
+        />
+        <div className="rtdir-hero__overlay" />
         <div className="rtdir-hero__content">
           <div className="rtdir-hero__eyebrow">
             <span className="rtdir-hero__dot" aria-hidden="true" />
@@ -226,18 +236,22 @@ export default async function RadioDirectoryPage() {
           position: relative;
           overflow: hidden;
           border-bottom: 1px solid var(--border);
+          min-height: 50vh;
+          display: flex;
+          align-items: flex-end;
         }
-        .rtdir-hero::before {
-          content: '';
+        .rtdir-hero__overlay {
           position: absolute;
           inset: 0;
-          background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200, 148, 62, 0.06) 0%, transparent 60%);
-          pointer-events: none;
+          background: linear-gradient(180deg, rgba(15, 15, 13, 0.5) 0%, rgba(15, 15, 13, 0.88) 100%);
+          z-index: 1;
         }
         .rtdir-hero__content {
           position: relative;
+          z-index: 2;
           max-width: var(--container-xl);
           margin: 0 auto;
+          width: 100%;
         }
         .rtdir-hero__eyebrow {
           display: inline-flex;
