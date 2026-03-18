@@ -124,43 +124,86 @@ export default function PlatformPage() {
       </section>
 
       {/* ── 5. SIX BRANDS ── */}
-      <section className="split-section split-section--reverse" id="brands" aria-labelledby="brands-heading">
-        <div className="split-section__photo-side split-section__photo-side--right">
-          <img
-            src="/images/platform/bluff-azaleas-river.webp"
-            alt="Natchez bluff homes with azalea hedges overlooking Mississippi River and bridge"
-            className="split-section__photo"
-          />
+      <section className="brands-section" id="brands" aria-labelledby="brands-heading">
+        <div className="brands-section__header">
+          <div className="brands-section__label">Six Brands, One Platform</div>
+          <h2 id="brands-heading" className="brands-section__heading">Every corner of the corridor.</h2>
+          <p className="brands-section__sub">Each brand runs its own site, its own content pipeline, and its own audience — all from one codebase.</p>
         </div>
-        <div className="split-section__text-side">
-          <div className="split-section__label">Six Brands, One Platform</div>
-          <h2 id="brands-heading" className="split-section__heading">Every corner of the corridor.</h2>
-          <ul className="brand-list" aria-label="Platform brands">
-            <li className="brand-list__item">
-              <span className="brand-list__name">Big Muddy Touring</span>
-              <span className="brand-list__desc">Corridor travel hub</span>
-            </li>
-            <li className="brand-list__item">
-              <span className="brand-list__name">Big Muddy Magazine</span>
-              <span className="brand-list__desc">Long-form editorial</span>
-            </li>
-            <li className="brand-list__item">
-              <span className="brand-list__name">Big Muddy Radio</span>
-              <span className="brand-list__desc">Curated playlists &amp; streaming</span>
-            </li>
-            <li className="brand-list__item">
-              <span className="brand-list__name">The Big Muddy Inn</span>
-              <span className="brand-list__desc">Boutique hospitality</span>
-            </li>
-            <li className="brand-list__item">
-              <span className="brand-list__name">Deep South Directory</span>
-              <span className="brand-list__desc">Regional business directory</span>
-            </li>
-            <li className="brand-list__item">
-              <span className="brand-list__name">Big Muddy Fleet</span>
-              <span className="brand-list__desc">Transit &amp; logistics</span>
-            </li>
-          </ul>
+        <div className="brand-grid" aria-label="Platform brands">
+
+          <a href="/touring" className="brand-card">
+            <div className="brand-card__photo-wrap">
+              <img src="/images/corridor/mississippi-river-bridge.webp" alt="Mississippi River with bridge and barge at golden hour" className="brand-card__photo" />
+              <div className="brand-card__photo-overlay" />
+            </div>
+            <div className="brand-card__body">
+              <h3 className="brand-card__name">Big Muddy Touring</h3>
+              <p className="brand-card__desc">The corridor travel hub. City guides, route planning, and the full Memphis-to-New-Orleans experience for travelers doing the drive.</p>
+              <span className="brand-card__link">bigmuddytouring.com <ArrowRight size={12} /></span>
+            </div>
+          </a>
+
+          <a href="/magazine" className="brand-card">
+            <div className="brand-card__photo-wrap">
+              <img src="/images/corridor/cafe-sidewalk-natchez.webp" alt="Sidewalk cafe scene in downtown Natchez" className="brand-card__photo" />
+              <div className="brand-card__photo-overlay" />
+            </div>
+            <div className="brand-card__body">
+              <h3 className="brand-card__name">Big Muddy Magazine</h3>
+              <p className="brand-card__desc">Long-form editorial about the people, food, music, and culture of the Mississippi corridor. City guides that actually tell you where to go.</p>
+              <span className="brand-card__link">bigmuddymagazine.com <ArrowRight size={12} /></span>
+            </div>
+          </a>
+
+          <a href="/radio" className="brand-card">
+            <div className="brand-card__photo-wrap">
+              <img src="/images/corridor/street-musician-guitar.webp" alt="Street musician playing guitar up close" className="brand-card__photo" />
+              <div className="brand-card__photo-overlay" />
+            </div>
+            <div className="brand-card__body">
+              <h3 className="brand-card__name">Big Muddy Radio</h3>
+              <p className="brand-card__desc">Curated Spotify playlists, live sessions from the Blues Room in Natchez, and a podcast about the music that made the corridor famous.</p>
+              <span className="brand-card__link">bigmuddyradio.com <ArrowRight size={12} /></span>
+            </div>
+          </a>
+
+          <a href="/touring/inn" className="brand-card">
+            <div className="brand-card__photo-wrap">
+              <img src="/images/corridor/victorian-mansion-natchez.webp" alt="White Victorian mansion with columns in Natchez" className="brand-card__photo" />
+              <div className="brand-card__photo-overlay" />
+            </div>
+            <div className="brand-card__body">
+              <h3 className="brand-card__name">The Big Muddy Inn</h3>
+              <p className="brand-card__desc">A boutique inn in Natchez with a 40-seat Blues Room for live music, a writers&apos; residency, and rooms that feel like the house your cool aunt never had.</p>
+              <span className="brand-card__link">bigmuddyinn.com <ArrowRight size={12} /></span>
+            </div>
+          </a>
+
+          <a href="/radio/directory" className="brand-card">
+            <div className="brand-card__photo-wrap">
+              <img src="/images/ai-corridor/ocean-springs-gallery.webp" alt="Gallery district storefronts with warm evening light" className="brand-card__photo" />
+              <div className="brand-card__photo-overlay" />
+            </div>
+            <div className="brand-card__body">
+              <h3 className="brand-card__name">Deep South Directory</h3>
+              <p className="brand-card__desc">The regional business directory for the corridor. Restaurants, venues, shops, and services — listed, photographed, and featured in editorial content.</p>
+              <span className="brand-card__link">deepsouthdirectory.com <ArrowRight size={12} /></span>
+            </div>
+          </a>
+
+          <a href="/economics" className="brand-card">
+            <div className="brand-card__photo-wrap">
+              <img src="/images/ai-corridor/delta-cotton-field.webp" alt="Cotton field at golden hour in the Mississippi Delta" className="brand-card__photo" />
+              <div className="brand-card__photo-overlay" />
+            </div>
+            <div className="brand-card__body">
+              <h3 className="brand-card__name">Outsider Economics</h3>
+              <p className="brand-card__desc">The field manual for independent economic systems. The math nobody ran on local coordination, time banking, and building economies that don&apos;t need permission.</p>
+              <span className="brand-card__link">outsidereconomics.com <ArrowRight size={12} /></span>
+            </div>
+          </a>
+
         </div>
       </section>
 
@@ -591,30 +634,118 @@ export default function PlatformPage() {
         }
 
         /* ─── Brand List ─── */
-        .brand-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
+        /* ─── 5. Brands Section ─── */
+        .brands-section {
+          background: #0d1424;
+          padding: 100px 32px;
         }
-        .brand-list__item {
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
-          border-left: 2px solid #c8943e;
-          padding-left: 16px;
+        .brands-section__header {
+          max-width: 1280px;
+          margin: 0 auto 56px;
+          text-align: center;
         }
-        .brand-list__name {
-          font-size: 1rem;
-          font-weight: 700;
+        .brands-section__label {
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: #00d4aa;
+          margin-bottom: 14px;
+        }
+        .brands-section__heading {
+          font-size: clamp(2rem, 4vw, 3rem);
+          font-weight: 800;
+          letter-spacing: -0.03em;
           color: #f0ede8;
+          margin: 0 0 14px;
         }
-        .brand-list__desc {
-          font-size: 0.85rem;
-          color: rgba(240,237,232,0.5);
+        .brands-section__sub {
+          font-size: 1.05rem;
+          color: rgba(240,237,232,0.55);
+          margin: 0;
+          max-width: 560px;
+          margin: 0 auto;
+        }
+        .brand-grid {
+          max-width: 1280px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        @media (min-width: 640px) {
+          .brand-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+          .brand-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        .brand-card {
+          display: flex;
+          flex-direction: column;
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 16px;
+          overflow: hidden;
+          text-decoration: none;
+          color: inherit;
+          transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+        }
+        .brand-card:hover {
+          border-color: rgba(200,148,62,0.4);
+          transform: translateY(-4px);
+          box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+        .brand-card__photo-wrap {
+          position: relative;
+          aspect-ratio: 16 / 10;
+          overflow: hidden;
+        }
+        .brand-card__photo {
+          width: 100%; height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.5s ease;
+        }
+        .brand-card:hover .brand-card__photo {
+          transform: scale(1.05);
+        }
+        .brand-card__photo-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, transparent 40%, rgba(10,15,26,0.6) 100%);
+        }
+        .brand-card__body {
+          padding: 24px;
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+        }
+        .brand-card__name {
+          font-size: 1.15rem;
+          font-weight: 800;
+          letter-spacing: -0.02em;
+          color: #f0ede8;
+          margin: 0 0 10px;
+        }
+        .brand-card__desc {
+          font-size: 0.875rem;
+          color: rgba(240,237,232,0.6);
+          line-height: 1.6;
+          margin: 0 0 16px;
+          flex: 1;
+        }
+        .brand-card__link {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 0.8rem;
+          font-weight: 700;
+          color: #c8943e;
           letter-spacing: 0.02em;
+          transition: color 0.2s;
+        }
+        .brand-card:hover .brand-card__link {
+          color: #daa84e;
         }
 
         /* ─── AI List ─── */
