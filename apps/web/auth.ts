@@ -7,14 +7,25 @@ import Google from 'next-auth/providers/google';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prisma } from '@bigmuddy/database';
 
-// Only these emails can access admin
+// Domains that get full access (any user @ these domains)
+const ALLOWED_DOMAINS = [
+  'chasepierson.tv',
+];
+
+// Individual emails that get full access
 const ALLOWED_EMAILS = [
-  'me@chasepierson.tv',
   'chase@scan2plan.io',
   'chase@scantoplan.io',
   'tracy@thebigmuddyinn.com',
   'amy@thebigmuddyinn.com',
 ];
+
+function isAllowedUser(email: string | null | undefined): boolean {
+  if (!email) return false;
+  const lower = email.toLowerCase();
+  const domain = lower.split('@')[1];
+  return ALLOWED_DOMAINS.includes(domain) || ALLOWED_EMAILS.includes(lower);
+}
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   trustHost: true,
@@ -28,8 +39,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   callbacks: {
     async signIn({ user }) {
-      // Only allow whitelisted emails
-      return ALLOWED_EMAILS.includes(user.email?.toLowerCase() ?? '');
+      return isAllowedUser(user.email);
     },
     async jwt({ token, user }) {
       if (user) {

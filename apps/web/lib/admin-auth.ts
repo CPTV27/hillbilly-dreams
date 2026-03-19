@@ -5,13 +5,25 @@
 import { auth } from '@/auth';
 import { NextResponse } from 'next/server';
 
+// Domains that get full access (any user @ these domains)
+const ALLOWED_DOMAINS = [
+  'chasepierson.tv',
+];
+
+// Individual emails that get full access
 const ALLOWED_EMAILS = [
-  'me@chasepierson.tv',
   'chase@scan2plan.io',
   'chase@scantoplan.io',
   'tracy@thebigmuddyinn.com',
   'amy@thebigmuddyinn.com',
 ];
+
+function isAllowedUser(email: string | null | undefined): boolean {
+  if (!email) return false;
+  const lower = email.toLowerCase();
+  const domain = lower.split('@')[1];
+  return ALLOWED_DOMAINS.includes(domain) || ALLOWED_EMAILS.includes(lower);
+}
 
 /**
  * Verify the caller has an active admin session.
@@ -24,7 +36,7 @@ export async function requireAdmin(): Promise<NextResponse | null> {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  if (!ALLOWED_EMAILS.includes(session.user.email.toLowerCase())) {
+  if (!isAllowedUser(session.user.email)) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 
