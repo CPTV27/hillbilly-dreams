@@ -1,6 +1,13 @@
+buildConfig:
+  memoryMiB: 4096
+  env:
+    - variable: NODE_OPTIONS
+      value: "--max-old-space-size=4096"
+
 runConfig:
   runtime: nodejs20
   maxInstances: 10
+  memoryMiB: 1024
 
 env:
   - variable: NODE_ENV
