@@ -292,49 +292,45 @@ export default function RecordsPage() {
           {[
             {
               name: 'Front Porch',
-              price: '$500/mo',
+              price: '$100/mo',
               sub: 'For artists just getting started',
               featured: false,
               includes: [
                 'Digital distribution (all platforms)',
-                'Basic social media management (2 platforms)',
-                'Monthly content calendar (8 posts)',
-                'Spotify playlist placement (Big Muddy Radio)',
                 'Artist page on bigmuddyrecords.net',
+                'Spotify playlist placement (Big Muddy Radio)',
+                'Monthly content calendar (4 posts)',
                 'You keep your masters',
               ],
             },
             {
               name: 'The Route',
-              price: '$1,500/mo',
-              sub: 'For artists ready to tour and release',
-              featured: false,
+              price: '$250/mo',
+              sub: 'For artists ready to build an audience',
+              featured: true,
               includes: [
                 'Everything in Front Porch',
-                'Full social media management (4 platforms, 20 posts/mo)',
+                'Social media management (2 platforms, 12 posts/mo)',
                 'PR outreach — regional press, blogs, podcasts',
-                'Radio promotion (Big Muddy Radio features + external pitching)',
-                'Photo session with Chase Pierson',
-                'Magazine feature in Big Muddy Magazine',
+                'Radio promotion (Big Muddy Radio features)',
                 'AI-generated content (brand-voice matched)',
-                '$6K annual marketing budget included',
+                'Magazine feature in Big Muddy Magazine',
+                'Photo session with Chase Pierson (quarterly)',
               ],
             },
             {
               name: 'Blues Room',
-              price: '$4,000/mo',
+              price: '$500/mo',
               sub: 'Full ecosystem — the whole machine behind you',
-              featured: true,
+              featured: false,
               includes: [
                 'Everything in The Route',
-                'Dedicated publicist',
-                '$24K annual marketing budget',
+                'Full social media management (4 platforms, 20 posts/mo)',
                 'Recording sessions at the Blues Room (Big Muddy Inn)',
-                'Corridor Sessions — mobile recording on Highway 61',
-                'Video production (Remotion pipeline + live session footage)',
+                'Video production (session footage + promo clips)',
                 'BuyCurious Art merch channel (vinyl, prints, limited editions)',
                 'Touring infrastructure (Inn bookings, route events)',
-                'Full analytics dashboard — streams, social, press, revenue',
+                'Analytics dashboard — streams, social, press, revenue',
                 'Annual renewal — no multi-album lock-in',
               ],
             },
@@ -463,7 +459,7 @@ export default function RecordsPage() {
             marginBottom: '0.5rem',
           }}
         >
-          Blues Room: Where your $4K/month goes
+          Blues Room: Where your $500/month goes
         </h3>
         <p
           style={{
@@ -483,17 +479,17 @@ export default function RecordsPage() {
           }}
         >
           {[
-            { line: 'Publicist retainer', amount: '$1,200/mo', note: 'Dedicated PR — pitching press, blogs, podcasts, radio' },
-            { line: 'Marketing spend', amount: '$2,000/mo', note: 'Paid social, playlist pitching, targeted ads, print promotion' },
-            { line: 'Content creation', amount: '$400/mo', note: 'Social posts, graphics, video clips, email campaigns' },
-            { line: 'Distribution & admin', amount: '$200/mo', note: 'Platform distribution, royalty accounting, sync licensing admin' },
-            { line: 'Photo/video sessions', amount: '$200/mo', note: 'Amortized across quarterly shoots with Chase Pierson' },
+            { line: 'Distribution & admin', amount: '$50/mo', note: 'All-platform distribution, royalty accounting, sync licensing' },
+            { line: 'Social media & content', amount: '$150/mo', note: '20 posts/month across 4 platforms, AI-generated to your voice' },
+            { line: 'PR & radio', amount: '$100/mo', note: 'Press pitching, podcast outreach, Big Muddy Radio features' },
+            { line: 'Recording & production', amount: '$100/mo', note: 'Blues Room sessions, video clips, session footage' },
+            { line: 'Photo, merch & touring', amount: '$100/mo', note: 'Quarterly photo sessions, BuyCurious channel, Inn events' },
           ].map((item) => (
             <div
               key={item.line}
               style={{
                 display: 'grid',
-                gridTemplateColumns: '180px 120px 1fr',
+                gridTemplateColumns: '180px 100px 1fr',
                 gap: '1rem',
                 padding: '0.85rem 1.5rem',
                 borderBottom: '1px solid rgba(255,255,255,0.05)',
@@ -514,7 +510,7 @@ export default function RecordsPage() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: '180px 120px 1fr',
+              gridTemplateColumns: '180px 100px 1fr',
               gap: '1rem',
               padding: '1rem 1.5rem',
               borderTop: '1px solid var(--accent, #c8943e)',
@@ -522,9 +518,9 @@ export default function RecordsPage() {
             }}
           >
             <span style={{ fontSize: '0.9rem', color: 'var(--fg, #f5f0eb)', fontWeight: 700 }}>Total</span>
-            <span style={{ fontSize: '1.1rem', color: 'var(--accent, #c8943e)', fontWeight: 700 }}>$4,000/mo</span>
+            <span style={{ fontSize: '1.1rem', color: 'var(--accent, #c8943e)', fontWeight: 700 }}>$500/mo</span>
             <span style={{ fontSize: '0.8rem', color: 'var(--fg, #f5f0eb)', opacity: 0.5 }}>
-              $48K/year — you&apos;d pay $80K+ assembling this yourself
+              $6K/year — you&apos;d pay $15K+ assembling this yourself
             </span>
           </div>
         </div>
