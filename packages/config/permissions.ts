@@ -4,7 +4,7 @@ export const normalizeRole = (role?: string | null): AppRole => {
     if (!role) return 'viewer';
     const roleLower = role.toLowerCase();
     if (['admin', 'superadmin', 'owner'].includes(roleLower)) return 'admin';
-    if (['ops', 'manager', 'coordinator'].includes(roleLower)) return 'ops';
+    if (['ops', 'manager', 'coordinator', 'ceo'].includes(roleLower)) return 'ops';
     if (['artist', 'performer'].includes(roleLower)) return 'artist';
     return 'viewer';
 };

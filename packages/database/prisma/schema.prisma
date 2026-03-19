@@ -446,6 +446,48 @@ model TourStop {
   @@index([venue])
 }
 
+// ─── Snap & Share Photo System ───────────────────────────────
+model PhotoSession {
+  id          String   @id @default(cuid())
+  code        String   @unique // short code for QR URL e.g. "blues-room-mar-15"
+  name        String   // "Blues Room — March 15, 2026"
+  location    String   // "The Big Muddy Inn"
+  date        DateTime
+  description String?
+  coverImage  String?  // GCS URL
+  status      String   @default("active") // active | archived
+  photos      Photo[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Photo {
+  id           String       @id @default(cuid())
+  sessionId    String
+  session      PhotoSession @relation(fields: [sessionId], references: [id])
+  url          String       // GCS URL for full res
+  thumbnailUrl String?      // GCS URL for thumbnail
+  caption      String?
+  sortOrder    Int          @default(0)
+  shareCount   Int          @default(0)
+  printOrders  Int          @default(0)
+  status       String       @default("visible") // visible | hidden
+  claims       PhotoClaim[]
+  createdAt    DateTime     @default(now())
+}
+
+model PhotoClaim {
+  id         String   @id @default(cuid())
+  photoId    String
+  photo      Photo    @relation(fields: [photoId], references: [id])
+  name       String?
+  email      String?
+  instagram  String?
+  shared     Boolean  @default(false)
+  printOrder Boolean  @default(false)
+  createdAt  DateTime @default(now())
+}
+
 // ─────────────────────────────────────────────────────────────
 // PUBLICATIONS (Books, Zines, Print)
 // ─────────────────────────────────────────────────────────────
@@ -596,5 +638,60 @@ model ChatMessage {
 
   @@index([sessionId])
   @@index([userId])
+}
+
+// ─── BuyCurious Art Marketplace ──────────────────────────────
+model ArtistProfile {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  bio         String?   @db.Text
+  city        String?
+  state       String?
+  medium      String?   // painting, photography, sculpture, mixed media, textile, ceramics, printmaking
+  profileImage String?  // GCS URL
+  website     String?
+  instagram   String?
+  featured    Boolean   @default(false)
+  status      String    @default("active") // active | inactive | pending
+  artworks    Artwork[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Artwork {
+  id          String        @id @default(cuid())
+  artistId    String
+  artist      ArtistProfile @relation(fields: [artistId], references: [id])
+  title       String
+  slug        String        @unique
+  description String?       @db.Text
+  medium      String?       // oil on canvas, digital print, photograph, etc.
+  dimensions  String?       // "24x36 inches"
+  year        Int?
+  price       Int           // cents
+  salePrice   Int?          // cents, optional sale price
+  images      Json          // array of GCS URLs
+  category    String?       // original, print, photograph, sculpture, craft
+  edition     String?       // "1/50" or "open edition" or "original"
+  available   Boolean       @default(true)
+  featured    Boolean       @default(false)
+  tags        String[]      // ["blues", "mississippi", "portrait", "landscape"]
+  orderCount  Int           @default(0)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model ArtOrder {
+  id          String   @id @default(cuid())
+  artworkId   String
+  buyerName   String
+  buyerEmail  String
+  amount      Int      // cents
+  status      String   @default("pending") // pending | paid | shipped | delivered | cancelled
+  shippingAddress Json?
+  stripePaymentId String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 

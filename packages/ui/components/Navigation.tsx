@@ -79,6 +79,7 @@ export function Navigation({ brand, currentPath = '/', links, logoHref = '/' }: 
     magazine: { name: 'Big Muddy', label: 'Magazine' },
     radio: { name: 'Big Muddy', label: 'Radio' },
     economics: { name: 'Outsider', label: 'Economics' },
+    gallery: { name: 'BuyCurious', label: 'Art' },
     admin: { name: 'Big Muddy', label: 'HQ' },
   };
 

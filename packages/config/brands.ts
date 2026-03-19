@@ -1,7 +1,7 @@
 // packages/config/brands.ts
 // Brand configuration for the Big Muddy multi-tenant platform
 
-export type BrandId = 'touring' | 'magazine' | 'radio' | 'economics' | 'admin';
+export type BrandId = 'touring' | 'magazine' | 'radio' | 'economics' | 'admin' | 'gallery';
 
 export interface BrandConfig {
   id: BrandId;
@@ -100,6 +100,25 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
       ],
     },
   },
+  gallery: {
+    id: 'gallery',
+    name: 'BuyCurious Art',
+    shortName: 'Gallery',
+    tagline: 'Original art from the Mississippi corridor',
+    domain: 'buycuriousart.com',
+    localDomain: 'buycuriousart.local',
+    description:
+      'Curated art marketplace for original works from the artists, musicians, and makers who call the Deep South home.',
+    themeClass: 'theme-touring',
+    primaryColor: '#c8943e',
+    nav: {
+      links: [
+        { label: 'Gallery', href: '/gallery' },
+        { label: 'Artists', href: '/gallery/artists' },
+        { label: 'About', href: '/gallery/about' },
+      ],
+    },
+  },
   admin: {
     id: 'admin',
     name: 'Big Muddy HQ',
@@ -133,6 +152,7 @@ export function getBrandFromHostname(hostname: string): BrandId {
   if (hostname.includes('bigmuddymagazine')) return 'magazine';
   if (hostname.includes('bigmuddyradio')) return 'radio';
   if (hostname.includes('outsidereconomics')) return 'economics';
+  if (hostname.includes('buycurious')) return 'gallery';
   // admin.bigmuddy.*, localhost, and fallback
   return 'admin';
 }
