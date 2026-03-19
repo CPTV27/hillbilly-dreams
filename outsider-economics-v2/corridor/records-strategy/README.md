@@ -2,7 +2,7 @@
 
 ## The Model
 
-Big Muddy Records (originally "Monumental Taco") is a hybrid management company and label services partner. The full business plan lives in Google Drive: [Monumental Taco - How It Works](https://docs.google.com/document/d/1hdvkFmGgZfrHhEg6HXyWq7Q3n22LUTEo3ODkNqm2UAk/edit)
+Big Muddy Records is a hybrid management company and label services partner based in Natchez, Mississippi. The original business plan lives in Google Drive: [How It Works](https://docs.google.com/document/d/1hdvkFmGgZfrHhEg6HXyWq7Q3n22LUTEo3ODkNqm2UAk/edit)
 
 ### Core Principles
 
@@ -72,8 +72,8 @@ Every release gets amplified through ALL of these channels. Earned media, not ju
 
 ## Domains
 
-- **bigmuddyrecords.net** — Primary domain (registered on Cloudflare)
-- **bigmuddyrecordlabel.com** — Redirect/brand protection (registered on Cloudflare)
+- **bigmuddyrecords.net** — Primary domain (registered, DNS on Cloudflare, mapped to Cloud Run)
+- **bigmuddyrecordlabel.com** — Redirect/brand protection (registered, DNS on Cloudflare)
 - bigmuddyrecords.com is taken (St. Louis indie label since 2005)
 
 ---
@@ -96,9 +96,19 @@ Full research: [Music management and marketing technology](https://docs.google.c
 
 ## Current Roster
 
-- **Blues Room Sessions** — Live recordings from Friday nights at the Inn
-- **Amy Allen** — Soul/blues/storytelling. Song about the Rhythm Nightclub Fire.
-- **Mechanical Bull** — (Artist folder exists in Drive, details TBD)
+| Artist | Genre | Status | Links |
+|--------|-------|--------|-------|
+| **Amy Allen** | Soul / Blues / Storytelling | Active | — |
+| **Mechanical Bull** | Blues Rock / Americana | Active | [Blog](https://mechanicalbullband.blogspot.com) · [SoundCloud](https://soundcloud.com/mechanicalbull) |
+| **Kate Squire** | Folk / Americana / Singer-Songwriter | Active | [kateskwiremusic.com](https://kateskwiremusic.com) |
+| **Arrie Aslin** | Americana / Parlor Folk / Blues | Coming Soon | Artist-in-Residence at Big Muddy Inn |
+
+### Session Series
+
+- **Blues Room Sessions** — Live recordings from Friday nights at the Inn (Vol. 1 in progress)
+- **Porch Sessions** — Acoustic recordings on Natchez front porches (Spring 2026)
+- **Corridor Sessions** — Road recordings Memphis to New Orleans (Summer 2026)
+- **Church Sessions** — Gospel recordings by invitation (Planning)
 
 ---
 
@@ -109,28 +119,28 @@ Folder: `1D05aJhGsLegZzOKIyGVr3oo1-9IaL6GO`
 ```
 Big Muddy Records/
 ├── Music management and marketing technology (research doc)
-└── Monumental-Taco-Original/
-    ├── Artists/
-    │   └── Mechanical Bull/
-    ├── Business-Docs/
-    │   └── Monumental Taco - How It Works (40K-word business plan)
-    ├── Content-Releases/
-    ├── Publishing/
-    ├── Publishing-Deals/
-    ├── Releases/
-    ├── Resources/
-    └── Systems/
-        └── New airtable/
+├── Artists/
+│   └── Mechanical Bull/
+├── Business-Docs/
+│   └── How It Works (40K-word business plan)
+├── Content-Releases/
+├── Publishing/
+├── Publishing-Deals/
+├── Releases/
+├── Resources/
+└── Systems/
+    └── New airtable/
 ```
 
 ---
 
 ## Next Steps
 
-1. Port Monumental Taco model fully to Big Muddy Records branding
-2. Set up distribution accounts (DistroKid or similar)
-3. Begin Blues Room Sessions recording (Friday nights)
-4. Connect Mechanical Bull artist page
-5. Get Amy's Rhythm Nightclub Fire song recorded
-6. Set up Viberate analytics + Artist Growth for operations
-7. DNS: Point bigmuddyrecords.net to Firebase hosting
+1. Set up distribution accounts (DistroKid or similar)
+2. Begin Blues Room Sessions recording (Friday nights)
+3. Get Amy's Rhythm Nightclub Fire song recorded
+4. Set up Viberate analytics + Artist Growth for operations
+5. Onboard Kate Squire — first recordings
+6. Finalize Arrie Aslin artist-in-residence terms
+7. Firebase custom domain verification for bigmuddyrecords.net
+8. Set up redirect: bigmuddyrecordlabel.com → bigmuddyrecords.net

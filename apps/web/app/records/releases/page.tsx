@@ -119,8 +119,9 @@ export default function ReleasesPage() {
           {[
             { title: 'Blues Room Sessions Vol. 1', format: 'Vinyl LP + Digital', eta: '2026' },
             { title: 'Amy Allen — Debut EP', format: 'Digital + Limited CD', eta: 'Spring 2026' },
+            { title: 'Kate Squire — First Recordings', format: 'Digital EP', eta: '2026' },
+            { title: 'Arrie Aslin — American Parlor Songbook Sessions', format: 'Digital + Vinyl', eta: 'Late 2026' },
             { title: 'Corridor Compilation Vol. 1', format: 'Vinyl LP + Digital', eta: 'Late 2026' },
-            { title: 'Porch Sessions — Natchez', format: 'Digital EP', eta: 'Fall 2026' },
           ].map((release) => (
             <li
               key={release.title}

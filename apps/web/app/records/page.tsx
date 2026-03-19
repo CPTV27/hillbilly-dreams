@@ -3,25 +3,32 @@
 
 const ROSTER = [
   {
-    name: 'Mechanical Bull',
-    genre: 'Blues Rock / Americana',
-    description:
-      'Highway dirt and amplifier heat. Mechanical Bull plays like the corridor sounds — rough at the edges, honest in the middle, loud enough to carry across a river.',
-    status: 'Active',
-  },
-  {
     name: 'Amy Allen',
     genre: 'Soul / Blues / Storytelling',
     description:
       'Songs that carry the weight of the corridor — the Rhythm Nightclub Fire, the river towns, the people who stayed.',
-    status: 'Pre-production',
+    status: 'Active',
   },
   {
-    name: 'The Blues Room Sessions',
-    genre: 'Delta Blues / Acoustic',
+    name: 'Mechanical Bull',
+    genre: 'Alt-Country / Southern Rock',
     description:
-      'Live recordings from the Big Muddy Inn Blues Room in Natchez. No studio polish. Just the room, the instrument, and the river outside.',
-    status: 'Recording',
+      'Country, southern rock, and 70s California guitar tone out of Woodstock, NY. Chase Pierson, Avalon Peacock, Adam Widoff, Dave Malachowski, Chris Zaloom, George Quinn, J-Bird Bowman, Josh Pierson — and John Medeski on organ. Two albums deep.',
+    status: 'Active',
+  },
+  {
+    name: 'Kate Squire',
+    genre: 'Folk / Americana / Singer-Songwriter',
+    description:
+      'Quiet songs that hit hard. Kate writes like she\'s telling you something she\'s only going to say once — spare arrangements, honest vocals, stories that stick.',
+    status: 'Active',
+  },
+  {
+    name: 'Arrie Aslin',
+    genre: 'Americana / Parlor Folk / Blues',
+    description:
+      'Artist-in-Residence at the Big Muddy Inn. Arrie hosts the Blues Room sessions, curates the American Parlor Songbook, and records the kind of music that belongs in a room with good light and old wood.',
+    status: 'Coming Soon',
   },
 ];
 

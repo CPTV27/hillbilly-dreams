@@ -280,6 +280,36 @@ export default async function TouringHomepage() {
         </div>
       </section>
 
+      {/* ── The Ecosystem ── */}
+      <section className="touring-ecosystem">
+        <div className="section-container">
+          <div className="section-label">The Ecosystem</div>
+          <h2 className="section-title">One Engine. Seven Brands.</h2>
+          <p className="section-desc" style={{ maxWidth: 640, marginBottom: 'var(--space-10)' }}>
+            Big Muddy is a media-hospitality ecosystem anchored in Natchez, Mississippi.
+            Every brand feeds the others — the inn fills the room, the radio fills the
+            room with sound, the magazine tells the story, the label records it, and the
+            gallery sells what it inspires.
+          </p>
+          <div className="ecosystem-grid">
+            {[
+              { name: 'Big Muddy Touring', url: 'https://bigmuddytouring.com', desc: 'The route, the inn, the corridor. Memphis to New Orleans and 14 more cities.' },
+              { name: 'Big Muddy Magazine', url: 'https://bigmuddymagazine.com', desc: 'City guides, interviews, and photo essays from the Mississippi corridor.' },
+              { name: 'Big Muddy Radio', url: 'https://bigmuddyradio.com', desc: 'Curated playlists, live sessions, and the American Parlor Songbook.' },
+              { name: 'Big Muddy Records', url: 'https://bigmuddyrecords.net', desc: 'Independent label. Artists own their masters. Always.' },
+              { name: 'Outsider Economics', url: 'https://outsidereconomics.com', desc: 'The economic philosophy behind the ecosystem. Chase Pierson\'s field manual.' },
+              { name: 'BuyCurious Art', url: 'https://buycurious.art', desc: 'Art marketplace — photography, prints, and works from corridor artists.' },
+              { name: 'Deep South Directory', url: 'https://deepsouthdirectory.com', desc: 'Local business marketing powered by the Big Muddy network.' },
+            ].map((brand) => (
+              <a key={brand.name} href={brand.url} className="ecosystem-card">
+                <h3 className="ecosystem-card__name">{brand.name}</h3>
+                <p className="ecosystem-card__desc">{brand.desc}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Newsletter ── */}
       <NewsletterSignup variant="section" />
 
@@ -538,6 +568,43 @@ export default async function TouringHomepage() {
           max-height: 400px;
           overflow: hidden;
           line-height: 0;
+        }
+
+        /* ── Ecosystem ── */
+        .touring-ecosystem {
+          border-top: 1px solid var(--border);
+          background: var(--surface);
+        }
+        .ecosystem-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: var(--space-4);
+        }
+        .ecosystem-card {
+          display: block;
+          border: 1px solid var(--border);
+          padding: var(--space-6);
+          text-decoration: none;
+          transition: border-color 0.2s, background 0.2s;
+          border-radius: var(--radius-sm);
+        }
+        .ecosystem-card:hover {
+          border-color: var(--accent);
+          background: rgba(200, 148, 62, 0.04);
+        }
+        .ecosystem-card__name {
+          font-family: var(--font-display);
+          font-size: var(--text-base);
+          font-weight: 700;
+          color: var(--accent);
+          margin: 0 0 var(--space-2);
+        }
+        .ecosystem-card__desc {
+          font-family: var(--font-body);
+          font-size: var(--text-sm);
+          color: var(--text-muted);
+          line-height: var(--leading-relaxed);
+          margin: 0;
         }
       `}</style>
     </>

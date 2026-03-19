@@ -8,28 +8,40 @@ export const metadata: Metadata = {
 
 const ARTISTS = [
   {
-    name: 'Mechanical Bull',
-    location: 'Mississippi Corridor',
-    genre: 'Blues Rock / Americana',
-    bio: 'Highway dirt and amplifier heat. Mechanical Bull plays like the corridor sounds — rough at the edges, honest in the middle, loud enough to carry across a river. The kind of band that sounds better in a room than on a playlist, which is exactly why we wanted them in the Blues Room.',
-    upcoming: 'Blues Room Sessions — recording in progress',
-    mastersNote: 'Masters owned by the artist.',
-  },
-  {
     name: 'Amy Allen',
     location: 'Natchez, MS',
     genre: 'Soul / Blues / Storytelling',
     bio: 'Amy writes songs the way people used to write letters — with the expectation that someone on the other end needs to hear it. Her song about the Rhythm Nightclub Fire is the reason this label exists.',
     upcoming: 'Debut EP — Spring 2026',
     mastersNote: 'Masters owned by the artist.',
+    url: null,
   },
   {
-    name: 'The Blues Room Sessions',
+    name: 'Mechanical Bull',
+    location: 'Woodstock, NY',
+    genre: 'Alt-Country / Southern Rock',
+    bio: 'Country, southern rock, and the kind of 70s California guitar tone that makes you want to drive with the windows down. Chase Pierson on guitar and vocals, Avalon Peacock on vocals, Adam Widoff on everything else, Dave Malachowski and Chris Zaloom on guitars, George Quinn on bass, J-Bird Bowman on drums, Josh Pierson on banjo and sax. John Medeski sat in on organ. Two albums including A Million Yesterdays, recorded at home in the Hudson Valley.',
+    upcoming: 'Blues Room Sessions — recording in progress',
+    mastersNote: 'Masters owned by the artist.',
+    url: 'https://mechanicalbullband.blogspot.com',
+  },
+  {
+    name: 'Kate Squire',
+    location: 'Mississippi Corridor',
+    genre: 'Folk / Americana / Singer-Songwriter',
+    bio: 'Kate Squire writes quiet songs that hit hard — the kind that sit with you for days after you hear them. Spare arrangements, honest vocals, stories pulled from the corridor and delivered without decoration. The less she does, the more you feel it.',
+    upcoming: 'First recordings — 2026',
+    mastersNote: 'Masters owned by the artist.',
+    url: 'https://kateskwiremusic.com',
+  },
+  {
+    name: 'Arrie Aslin',
     location: 'Natchez, MS',
-    genre: 'Delta Blues / Acoustic',
-    bio: 'Not a band — a series. Every Friday night the Blues Room at the Big Muddy Inn opens its doors. Whoever shows up, plays. We press the tape. The room does the rest. Vol. 1 collects the best of what came through in the first season.',
-    upcoming: 'Vol. 1 recording in progress',
-    mastersNote: 'Each contributing artist retains their master.',
+    genre: 'Americana / Parlor Folk / Blues',
+    bio: 'Artist-in-Residence at the Big Muddy Inn. Arrie hosts the Friday night Blues Room sessions, curates the American Parlor Songbook radio show, and records the kind of music that belongs in a room with good light and old wood. Part musician, part curator, part keeper of the flame.',
+    upcoming: 'Coming Soon — American Parlor Songbook sessions',
+    mastersNote: 'Masters owned by the artist.',
+    url: null,
   },
 ];
 
@@ -68,37 +80,46 @@ export default function RecordsArtistsPage() {
           >
             <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
               {/* Initials avatar */}
-              <div
-                style={{
-                  width: 80,
-                  height: 80,
-                  background: 'var(--accent, #c8943e)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1.5rem',
-                  fontWeight: 700,
-                  color: '#0a0a0a',
-                  flexShrink: 0,
-                }}
+              <a
+                href={`/records/artists/${artist.name.toLowerCase().replace(/\s+/g, '-')}`}
+                style={{ textDecoration: 'none', flexShrink: 0 }}
               >
-                {artist.name
-                  .split(' ')
-                  .map((w) => w[0])
-                  .join('')
-                  .slice(0, 2)}
-              </div>
-              <div style={{ flex: 1 }}>
-                <h2
+                <div
                   style={{
+                    width: 80,
+                    height: 80,
+                    background: 'var(--accent, #c8943e)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     fontSize: '1.5rem',
                     fontWeight: 700,
-                    color: 'var(--fg, #f5f0eb)',
-                    margin: 0,
+                    color: '#0a0a0a',
                   }}
                 >
-                  {artist.name}
-                </h2>
+                  {artist.name
+                    .split(' ')
+                    .map((w) => w[0])
+                    .join('')
+                    .slice(0, 2)}
+                </div>
+              </a>
+              <div style={{ flex: 1 }}>
+                <a
+                  href={`/records/artists/${artist.name.toLowerCase().replace(/\s+/g, '-')}`}
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  <h2
+                    style={{
+                      fontSize: '1.5rem',
+                      fontWeight: 700,
+                      color: 'var(--fg, #f5f0eb)',
+                      margin: 0,
+                    }}
+                  >
+                    {artist.name}
+                  </h2>
+                </a>
                 <p
                   style={{
                     fontSize: '0.85rem',
@@ -150,6 +171,21 @@ export default function RecordsArtistsPage() {
                   >
                     {artist.mastersNote}
                   </p>
+                  {artist.url && (
+                    <a
+                      href={artist.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        fontSize: '0.8rem',
+                        color: 'var(--accent, #c8943e)',
+                        textDecoration: 'none',
+                        margin: 0,
+                      }}
+                    >
+                      {artist.url.replace('https://', '')}
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
