@@ -1,7 +1,7 @@
 // packages/config/brands.ts
 // Brand configuration for the Big Muddy multi-tenant platform
 
-export type BrandId = 'touring' | 'magazine' | 'radio' | 'economics' | 'admin' | 'gallery';
+export type BrandId = 'touring' | 'magazine' | 'radio' | 'economics' | 'admin' | 'gallery' | 'records';
 
 export interface BrandConfig {
   id: BrandId;
@@ -119,6 +119,27 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
       ],
     },
   },
+  records: {
+    id: 'records',
+    name: 'Big Muddy Records',
+    shortName: 'Records',
+    tagline: 'Music from the Mississippi corridor',
+    domain: 'bigmuddyrecords.net',
+    localDomain: 'bigmuddyrecords.local',
+    description:
+      'Independent record label capturing the sound of the Mississippi music corridor — blues, soul, gospel, and the voices that carry the river.',
+    themeClass: 'theme-records',
+    primaryColor: '#c8943e',
+    nav: {
+      links: [
+        { label: 'Artists', href: '/records/artists' },
+        { label: 'Releases', href: '/records/releases' },
+        { label: 'Sessions', href: '/records/sessions' },
+        { label: 'Radio', href: 'https://bigmuddyradio.com' },
+        { label: 'About', href: '/records/about' },
+      ],
+    },
+  },
   admin: {
     id: 'admin',
     name: 'Big Muddy HQ',
@@ -153,6 +174,7 @@ export function getBrandFromHostname(hostname: string): BrandId {
   if (hostname.includes('bigmuddyradio')) return 'radio';
   if (hostname.includes('outsidereconomics')) return 'economics';
   if (hostname.includes('buycurious')) return 'gallery';
+  if (hostname.includes('bigmuddyrecord')) return 'records';
   // admin.bigmuddy.*, localhost, and fallback
   return 'admin';
 }

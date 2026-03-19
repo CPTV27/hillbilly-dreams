@@ -80,6 +80,7 @@ export function Navigation({ brand, currentPath = '/', links, logoHref = '/' }: 
     radio: { name: 'Big Muddy', label: 'Radio' },
     economics: { name: 'Outsider', label: 'Economics' },
     gallery: { name: 'BuyCurious', label: 'Art' },
+    records: { name: 'Big Muddy', label: 'Records' },
     admin: { name: 'Big Muddy', label: 'HQ' },
   };
 
