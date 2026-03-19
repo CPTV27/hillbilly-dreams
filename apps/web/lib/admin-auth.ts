@@ -16,6 +16,9 @@ const ALLOWED_EMAILS = [
   'chase@scantoplan.io',
   'tracy@thebigmuddyinn.com',
   'amy@thebigmuddyinn.com',
+  'info@studio.c.video',
+  'miles@studio.c.video',
+  'elijah@studio.c.video',
 ];
 
 function isAllowedUser(email: string | null | undefined): boolean {
