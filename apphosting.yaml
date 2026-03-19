@@ -1,17 +1,14 @@
-buildConfig:
-  memoryMiB: 4096
-  env:
-    - variable: NODE_OPTIONS
-      value: "--max-old-space-size=4096"
-
 runConfig:
   runtime: nodejs20
   maxInstances: 10
   memoryMiB: 1024
+  cpu: 2
 
 env:
   - variable: NODE_ENV
     value: production
+  - variable: NODE_OPTIONS
+    value: "--max-old-space-size=4096"
   # All secrets via Firebase Secret Manager — never inline values here
   - variable: DATABASE_URL
     secret: DATABASE_URL
