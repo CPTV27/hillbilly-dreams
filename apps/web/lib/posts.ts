@@ -26,6 +26,10 @@ const POST_ORDER: Record<string, number> = {
   '13-the-scaling-math': 13,
   '14-the-legal-reality': 14,
   '15-technology-sovereignty': 15,
+  '16-the-fayette-experiment': 16,
+  '17-the-clarksdale-creative-pod': 17,
+  '18-the-natchez-porch-network': 18,
+  '19-the-hundred-friend-economy': 19,
 };
 
 export interface Post {
