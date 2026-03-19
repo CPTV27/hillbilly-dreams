@@ -249,84 +249,335 @@ export default function RecordsPage() {
             textTransform: 'uppercase',
             letterSpacing: '0.12em',
             color: 'var(--accent, #c8943e)',
-            marginBottom: '2rem',
+            marginBottom: '0.5rem',
           }}
         >
-          How It Works
+          Marketing Packages
         </h2>
+        <p
+          style={{
+            fontSize: '1.25rem',
+            fontWeight: 700,
+            color: 'var(--fg, #f5f0eb)',
+            marginBottom: '0.75rem',
+          }}
+        >
+          You don&apos;t have to be on the label.
+        </p>
+        <p
+          style={{
+            fontSize: '0.95rem',
+            color: 'var(--fg, #f5f0eb)',
+            opacity: 0.7,
+            lineHeight: 1.7,
+            maxWidth: 650,
+            marginBottom: '2.5rem',
+          }}
+        >
+          Any band or solo artist can use our marketing infrastructure — distribution,
+          social media, PR, photography, radio placement. If you want the full label
+          deal (recording, vinyl pressing, the whole ecosystem), that&apos;s the Blues
+          Room. But you don&apos;t need to sign anything to get started.
+        </p>
 
-        {/* The model */}
+        {/* Tiered packages */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '0',
-            border: '1px solid var(--muted, #333)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.5rem',
             marginBottom: '3rem',
           }}
         >
           {[
             {
-              label: '$4,000 / month',
-              sub: '$48K annually',
-              detail:
-                'One retainer covers your publicist, $24K in marketing budget, content creation, and full management. No line-item surprises.',
+              name: 'Front Porch',
+              price: '$500/mo',
+              sub: 'For artists just getting started',
+              featured: false,
+              includes: [
+                'Digital distribution (all platforms)',
+                'Basic social media management (2 platforms)',
+                'Monthly content calendar (8 posts)',
+                'Spotify playlist placement (Big Muddy Radio)',
+                'Artist page on bigmuddyrecords.net',
+                'You keep your masters',
+              ],
             },
             {
-              label: '20–25% of gross',
-              sub: 'Retainer recoups against it',
-              detail:
-                'If 25% of your gross exceeds $48K, the label earns the difference. If it doesn\'t, the retainer covers it. You always know exactly what the deal costs.',
+              name: 'The Route',
+              price: '$1,500/mo',
+              sub: 'For artists ready to tour and release',
+              featured: false,
+              includes: [
+                'Everything in Front Porch',
+                'Full social media management (4 platforms, 20 posts/mo)',
+                'PR outreach — regional press, blogs, podcasts',
+                'Radio promotion (Big Muddy Radio features + external pitching)',
+                'Photo session with Chase Pierson',
+                'Magazine feature in Big Muddy Magazine',
+                'AI-generated content (brand-voice matched)',
+                '$6K annual marketing budget included',
+              ],
             },
             {
-              label: 'Annual renewal',
-              sub: 'Not multi-album lock-in',
-              detail:
-                'Twelve months at a time. If we\'re not delivering, you walk. That keeps us honest.',
+              name: 'Blues Room',
+              price: '$4,000/mo',
+              sub: 'Full ecosystem — the whole machine behind you',
+              featured: true,
+              includes: [
+                'Everything in The Route',
+                'Dedicated publicist',
+                '$24K annual marketing budget',
+                'Recording sessions at the Blues Room (Big Muddy Inn)',
+                'Corridor Sessions — mobile recording on Highway 61',
+                'Video production (Remotion pipeline + live session footage)',
+                'BuyCurious Art merch channel (vinyl, prints, limited editions)',
+                'Touring infrastructure (Inn bookings, route events)',
+                'Full analytics dashboard — streams, social, press, revenue',
+                'Annual renewal — no multi-album lock-in',
+              ],
+            },
+          ].map((pkg) => (
+            <div
+              key={pkg.name}
+              style={{
+                border: pkg.featured
+                  ? '2px solid var(--accent, #c8943e)'
+                  : '1px solid var(--muted, #333)',
+                padding: '2rem',
+                position: 'relative',
+              }}
+            >
+              {pkg.featured && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '-0.75rem',
+                    left: '1.5rem',
+                    background: 'var(--accent, #c8943e)',
+                    color: '#0a0a0a',
+                    fontSize: '0.65rem',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    padding: '0.2rem 0.75rem',
+                  }}
+                >
+                  Most Popular
+                </div>
+              )}
+              <p
+                style={{
+                  fontSize: '0.75rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  color: 'var(--accent, #c8943e)',
+                  marginBottom: '0.25rem',
+                }}
+              >
+                {pkg.name}
+              </p>
+              <p
+                style={{
+                  fontSize: '2rem',
+                  fontWeight: 700,
+                  color: 'var(--fg, #f5f0eb)',
+                  margin: '0 0 0.25rem',
+                  lineHeight: 1.1,
+                }}
+              >
+                {pkg.price}
+              </p>
+              <p
+                style={{
+                  fontSize: '0.8rem',
+                  color: 'var(--fg, #f5f0eb)',
+                  opacity: 0.5,
+                  marginBottom: '1.5rem',
+                }}
+              >
+                {pkg.sub}
+              </p>
+              <ul
+                style={{
+                  listStyle: 'none',
+                  padding: 0,
+                  margin: 0,
+                }}
+              >
+                {pkg.includes.map((item) => (
+                  <li
+                    key={item}
+                    style={{
+                      fontSize: '0.85rem',
+                      color: 'var(--fg, #f5f0eb)',
+                      opacity: 0.75,
+                      lineHeight: 1.5,
+                      padding: '0.35rem 0',
+                      paddingLeft: '1.25rem',
+                      borderBottom: '1px solid rgba(255,255,255,0.05)',
+                      position: 'relative',
+                    }}
+                  >
+                    <span
+                      style={{
+                        position: 'absolute',
+                        left: 0,
+                        color: 'var(--accent, #c8943e)',
+                      }}
+                    >
+                      —
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="mailto:music@bigmuddyrecords.net"
+                style={{
+                  display: 'inline-block',
+                  marginTop: '1.5rem',
+                  padding: '0.6rem 1.5rem',
+                  background: pkg.featured ? 'var(--accent, #c8943e)' : 'transparent',
+                  color: pkg.featured ? '#0a0a0a' : 'var(--accent, #c8943e)',
+                  border: pkg.featured ? 'none' : '1px solid var(--accent, #c8943e)',
+                  textDecoration: 'none',
+                  fontWeight: 600,
+                  fontSize: '0.85rem',
+                  letterSpacing: '0.04em',
+                }}
+              >
+                Get Started
+              </a>
+            </div>
+          ))}
+        </div>
+
+        {/* Where your money goes */}
+        <h3
+          style={{
+            fontSize: '1rem',
+            fontWeight: 700,
+            color: 'var(--fg, #f5f0eb)',
+            marginBottom: '0.5rem',
+          }}
+        >
+          Blues Room: Where your $4K/month goes
+        </h3>
+        <p
+          style={{
+            fontSize: '0.85rem',
+            color: 'var(--fg, #f5f0eb)',
+            opacity: 0.6,
+            marginBottom: '1.5rem',
+            maxWidth: 600,
+          }}
+        >
+          This is the actual budget breakdown. No hidden fees. No line items you discover later.
+        </p>
+        <div
+          style={{
+            border: '1px solid var(--muted, #333)',
+            marginBottom: '2.5rem',
+          }}
+        >
+          {[
+            { line: 'Publicist retainer', amount: '$1,200/mo', note: 'Dedicated PR — pitching press, blogs, podcasts, radio' },
+            { line: 'Marketing spend', amount: '$2,000/mo', note: 'Paid social, playlist pitching, targeted ads, print promotion' },
+            { line: 'Content creation', amount: '$400/mo', note: 'Social posts, graphics, video clips, email campaigns' },
+            { line: 'Distribution & admin', amount: '$200/mo', note: 'Platform distribution, royalty accounting, sync licensing admin' },
+            { line: 'Photo/video sessions', amount: '$200/mo', note: 'Amortized across quarterly shoots with Chase Pierson' },
+          ].map((item) => (
+            <div
+              key={item.line}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '180px 120px 1fr',
+                gap: '1rem',
+                padding: '0.85rem 1.5rem',
+                borderBottom: '1px solid rgba(255,255,255,0.05)',
+                alignItems: 'center',
+              }}
+            >
+              <span style={{ fontSize: '0.85rem', color: 'var(--fg, #f5f0eb)', fontWeight: 600 }}>
+                {item.line}
+              </span>
+              <span style={{ fontSize: '0.9rem', color: 'var(--accent, #c8943e)', fontWeight: 700 }}>
+                {item.amount}
+              </span>
+              <span style={{ fontSize: '0.8rem', color: 'var(--fg, #f5f0eb)', opacity: 0.5 }}>
+                {item.note}
+              </span>
+            </div>
+          ))}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '180px 120px 1fr',
+              gap: '1rem',
+              padding: '1rem 1.5rem',
+              borderTop: '1px solid var(--accent, #c8943e)',
+              alignItems: 'center',
+            }}
+          >
+            <span style={{ fontSize: '0.9rem', color: 'var(--fg, #f5f0eb)', fontWeight: 700 }}>Total</span>
+            <span style={{ fontSize: '1.1rem', color: 'var(--accent, #c8943e)', fontWeight: 700 }}>$4,000/mo</span>
+            <span style={{ fontSize: '0.8rem', color: 'var(--fg, #f5f0eb)', opacity: 0.5 }}>
+              $48K/year — you&apos;d pay $80K+ assembling this yourself
+            </span>
+          </div>
+        </div>
+
+        {/* What's included free across all tiers */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '0',
+            border: '1px solid var(--muted, #333)',
+          }}
+        >
+          {[
+            {
+              label: 'You keep your masters',
+              detail: 'Every tier, every time. No exceptions. The music belongs to the person who made it.',
             },
             {
-              label: '2–4 artists / year',
-              sub: 'Deep attention, not volume',
-              detail:
-                'We cap the roster deliberately. Every artist gets the full ecosystem, not a slot in a release queue.',
+              label: 'No multi-album deal',
+              detail: 'Annual renewal on label tiers. Marketing-only packages are month-to-month. Walk anytime.',
+            },
+            {
+              label: 'Label optional',
+              detail: 'Front Porch and The Route work for any independent artist. No signing required.',
+            },
+            {
+              label: 'Custom builds',
+              detail: 'Need vinyl pressing without PR? Recording without social? We\'ll build exactly what you need.',
             },
           ].map((item, i) => (
             <div
               key={item.label}
               style={{
-                padding: '2rem',
-                borderRight: i % 2 === 0 ? '1px solid var(--muted, #333)' : 'none',
-                borderBottom: i < 2 ? '1px solid var(--muted, #333)' : 'none',
+                padding: '1.5rem',
+                borderRight: i < 3 ? '1px solid var(--muted, #333)' : 'none',
               }}
             >
               <p
                 style={{
-                  fontSize: '1.4rem',
+                  fontSize: '0.9rem',
                   fontWeight: 700,
                   color: 'var(--accent, #c8943e)',
-                  margin: 0,
-                  lineHeight: 1.1,
+                  margin: '0 0 0.5rem',
                 }}
               >
                 {item.label}
               </p>
               <p
                 style={{
-                  fontSize: '0.75rem',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
+                  fontSize: '0.8rem',
                   color: 'var(--fg, #f5f0eb)',
-                  opacity: 0.5,
-                  margin: '0.25rem 0 0.75rem',
-                }}
-              >
-                {item.sub}
-              </p>
-              <p
-                style={{
-                  fontSize: '0.85rem',
-                  color: 'var(--fg, #f5f0eb)',
-                  opacity: 0.7,
+                  opacity: 0.65,
                   lineHeight: 1.6,
                   margin: 0,
                 }}
