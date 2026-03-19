@@ -2,6 +2,7 @@
 // POST /api/billing/subscribe — create a Stripe checkout session for a client
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 const TIER_PRICES: Record<string, { amount: number; name: string }> = {
   'front-porch': { amount: 9900, name: 'Front Porch — $99/month' },
@@ -29,7 +30,6 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
     const client = await (prisma as any).client.findUnique({ where: { id: clientId } });
     if (!client) return NextResponse.json({ error: 'Client not found' }, { status: 404 });
 

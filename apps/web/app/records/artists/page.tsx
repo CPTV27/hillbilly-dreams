@@ -53,7 +53,7 @@ export default function RecordsArtistsPage() {
         style={{
           width: '100%',
           height: 280,
-          backgroundImage: 'url(/images/corridor/guitarist-chandelier-venue.webp)',
+          backgroundImage: 'url(/images/records/anthologist-vinyl-bokeh.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           marginBottom: '2.5rem',
@@ -93,29 +93,41 @@ export default function RecordsArtistsPage() {
             }}
           >
             <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
-              {/* Initials avatar */}
+              {/* Avatar — photo for Arrie Aslin, initials for others */}
               <a
                 href={`/records/artists/${artist.name.toLowerCase().replace(/\s+/g, '-')}`}
                 style={{ textDecoration: 'none', flexShrink: 0 }}
               >
                 <div
-                  style={{
-                    width: 80,
-                    height: 80,
-                    background: 'var(--accent, #c8943e)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '1.5rem',
-                    fontWeight: 700,
-                    color: '#0a0a0a',
-                  }}
+                  style={
+                    artist.name === 'Arrie Aslin'
+                      ? {
+                          width: 80,
+                          height: 80,
+                          backgroundImage: 'url(/images/arri-aslin/ta-c2-384-of-934.webp)',
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          borderRadius: '50%',
+                        }
+                      : {
+                          width: 80,
+                          height: 80,
+                          background: 'var(--accent, #c8943e)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '1.5rem',
+                          fontWeight: 700,
+                          color: '#0a0a0a',
+                        }
+                  }
                 >
-                  {artist.name
-                    .split(' ')
-                    .map((w) => w[0])
-                    .join('')
-                    .slice(0, 2)}
+                  {artist.name !== 'Arrie Aslin' &&
+                    artist.name
+                      .split(' ')
+                      .map((w) => w[0])
+                      .join('')
+                      .slice(0, 2)}
                 </div>
               </a>
               <div style={{ flex: 1 }}>
@@ -206,6 +218,21 @@ export default function RecordsArtistsPage() {
           </article>
         ))}
       </div>
+
+      {/* Photo break — Studio C */}
+      <div
+        style={{
+          width: '100%',
+          height: 240,
+          backgroundImage: 'url(/images/studio-c/utopiademo-day-15.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.6,
+          margin: '3rem 0',
+        }}
+        role="img"
+        aria-label="Studio C recording setup"
+      />
 
       {/* Open call */}
       <section

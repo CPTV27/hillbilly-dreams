@@ -9,6 +9,7 @@ export { PlaylistCard } from './components/PlaylistCard';
 export { EventCard } from './components/EventCard';
 export { Footer } from './components/Footer';
 export { NewsletterSignup } from './components/NewsletterSignup';
+export { VideoHero } from './components/VideoHero';
 
 // Tiny dark placeholder for blur-up image loading (matches site dark theme)
 export const BLUR_DATA_URL =

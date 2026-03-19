@@ -1,0 +1,51 @@
+{
+  "project": "big-muddy-media",
+  "created": "2026-03-19",
+  "baseline_scores": {
+    "build_time_ms": 1092,
+    "lighthouse_performance": 53,
+    "lighthouse_seo": 100,
+    "lighthouse_accessibility": 95,
+    "api_avg_latency_ms": 799,
+    "bundle_size_kb": 1538,
+    "typescript_errors": 0
+  },
+  "experiments": [
+    {
+      "id": "exp-001",
+      "name": "Prisma singleton + static imports",
+      "hypothesis": "Replacing dynamic await import('@bigmuddy/database') with static singleton eliminates cold-start overhead on every API call",
+      "changes": [
+        "Created apps/web/lib/db.ts Prisma singleton",
+        "Migrated 48 API routes from dynamic to static import",
+        "Added import { prisma } from '@/lib/db' to 43 additional routes"
+      ],
+      "status": "applied",
+      "timestamp": "2026-03-19T00:00:00Z"
+    },
+    {
+      "id": "exp-002",
+      "name": "API Cache-Control headers",
+      "hypothesis": "Adding s-maxage + stale-while-revalidate to high-traffic GET routes reduces avg API latency via edge caching",
+      "changes": [
+        "articles: public, s-maxage=60, stale-while-revalidate=300",
+        "playlists: public, s-maxage=60, stale-while-revalidate=300",
+        "events: public, s-maxage=60, stale-while-revalidate=300",
+        "metrics: private, s-maxage=10, stale-while-revalidate=30",
+        "contacts: private, s-maxage=10, stale-while-revalidate=30"
+      ],
+      "status": "applied",
+      "timestamp": "2026-03-19T00:00:00Z"
+    },
+    {
+      "id": "exp-003",
+      "name": "Static page generation timeout increase",
+      "hypothesis": "Large static pages (weddings: 1161 lines) timeout at default 60s; 120s prevents build failure",
+      "changes": [
+        "Added staticPageGenerationTimeout: 120 to next.config.mjs"
+      ],
+      "status": "applied",
+      "timestamp": "2026-03-19T00:00:00Z"
+    }
+  ]
+}

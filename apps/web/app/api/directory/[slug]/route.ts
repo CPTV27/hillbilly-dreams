@@ -7,6 +7,7 @@
 // Usage: fetch('/api/directory/blues-city-cafe')
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 interface RawClient {
   id: number;
@@ -58,7 +59,6 @@ export async function GET(_request: NextRequest, { params }: Params) {
   }
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const client = await (prisma as any).client.findFirst({
       where: { slug, status: 'active' },

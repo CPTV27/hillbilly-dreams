@@ -1,15 +1,10 @@
+'use client';
+
 // apps/web/app/gallery/page.tsx
 // BuyCurious Art — gallery storefront landing page
-// Server component. Dark, gallery-forward, Southern Gothic.
+// Dark, gallery-forward, Southern Gothic.
 
-import type { Metadata } from 'next';
 import { DEMO_ARTWORKS, DEMO_ARTISTS, formatPrice } from './demo-data';
-
-export const metadata: Metadata = {
-  title: 'BuyCurious Art | Original Art from the Mississippi Corridor',
-  description:
-    'Original art from the artists, musicians, and makers who call the Deep South home. Paintings, photography, sculpture, and more — curated from the Mississippi corridor.',
-};
 
 // Placeholder art image colors per artwork (used as background when no real image)
 const ARTWORK_COLORS: Record<string, string> = {

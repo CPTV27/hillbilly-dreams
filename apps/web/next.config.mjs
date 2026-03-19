@@ -43,6 +43,9 @@ const nextConfig = {
   transpilePackages: ['@bigmuddy/ui', '@bigmuddy/config'],
 
   // Allow larger page payloads for rich article content
+  // Increase timeout for large static pages (weddings = 1161 lines)
+  staticPageGenerationTimeout: 120,
+
   experimental: {
     outputFileTracingRoot: resolve(__dirname, '../../'),
     serverComponentsExternalPackages: ['@prisma/client', 'prisma'],

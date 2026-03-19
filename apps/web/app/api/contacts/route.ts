@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@bigmuddy/database';
+import { prisma } from '@/lib/db';
 
 // GET /api/contacts
 // Query params: ?category=artist|vendor|media|partner|guest|team&q=search&limit=20&page=1
@@ -41,6 +41,8 @@ export async function GET(request: Request) {
         limit,
         pages: Math.ceil(total / limit),
       },
+    }, {
+      headers: { 'Cache-Control': 'private, s-maxage=10, stale-while-revalidate=30' },
     });
   } catch (error) {
     console.error('[API Error] GET /api/contacts', error);

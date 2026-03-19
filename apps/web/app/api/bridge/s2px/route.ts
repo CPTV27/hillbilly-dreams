@@ -5,6 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyPayload, isTimestampValid, type SignedPayload } from '@/lib/hmac';
+import { prisma } from '@/lib/db';
 
 // ── Types matching S2PX payload shape ──
 
@@ -112,7 +113,6 @@ export async function POST(request: NextRequest) {
 
   // 7. Create draft article in database
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     // Check for duplicate — same source project already ingested
     const existing = await (prisma as any).article.findFirst({

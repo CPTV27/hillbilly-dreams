@@ -134,7 +134,7 @@ export default function PlatformPage() {
 
           <a href="/touring" className="brand-card">
             <div className="brand-card__photo-wrap">
-              <img src="/images/corridor/mississippi-river-bridge.webp" alt="Mississippi River with bridge and barge at golden hour" className="brand-card__photo" />
+              <img src="/images/corridor/mississippi-river-bridge.webp" alt="Mississippi River with bridge and barge at golden hour" className="brand-card__photo" width={800} height={533} loading="lazy" decoding="async" />
               <div className="brand-card__photo-overlay" />
             </div>
             <div className="brand-card__body">
@@ -146,7 +146,7 @@ export default function PlatformPage() {
 
           <a href="/magazine" className="brand-card">
             <div className="brand-card__photo-wrap">
-              <img src="/images/corridor/cafe-sidewalk-natchez.webp" alt="Sidewalk cafe scene in downtown Natchez" className="brand-card__photo" />
+              <img src="/images/corridor/cafe-sidewalk-natchez.webp" alt="Sidewalk cafe scene in downtown Natchez" className="brand-card__photo" width={800} height={533} loading="lazy" decoding="async" />
               <div className="brand-card__photo-overlay" />
             </div>
             <div className="brand-card__body">
@@ -158,7 +158,7 @@ export default function PlatformPage() {
 
           <a href="/radio" className="brand-card">
             <div className="brand-card__photo-wrap">
-              <img src="/images/corridor/street-musician-guitar.webp" alt="Street musician playing guitar up close" className="brand-card__photo" />
+              <img src="/images/corridor/street-musician-guitar.webp" alt="Street musician playing guitar up close" className="brand-card__photo" width={800} height={533} loading="lazy" decoding="async" />
               <div className="brand-card__photo-overlay" />
             </div>
             <div className="brand-card__body">
@@ -170,7 +170,7 @@ export default function PlatformPage() {
 
           <a href="/touring/inn" className="brand-card">
             <div className="brand-card__photo-wrap">
-              <img src="/images/corridor/victorian-mansion-natchez.webp" alt="White Victorian mansion with columns in Natchez" className="brand-card__photo" />
+              <img src="/images/corridor/victorian-mansion-natchez.webp" alt="White Victorian mansion with columns in Natchez" className="brand-card__photo" width={800} height={533} loading="lazy" decoding="async" />
               <div className="brand-card__photo-overlay" />
             </div>
             <div className="brand-card__body">
@@ -182,7 +182,7 @@ export default function PlatformPage() {
 
           <a href="/radio/directory" className="brand-card">
             <div className="brand-card__photo-wrap">
-              <img src="/images/ai-corridor/ocean-springs-gallery.webp" alt="Gallery district storefronts with warm evening light" className="brand-card__photo" />
+              <img src="/images/ai-corridor/ocean-springs-gallery.webp" alt="Gallery district storefronts with warm evening light" className="brand-card__photo" width={800} height={533} loading="lazy" decoding="async" />
               <div className="brand-card__photo-overlay" />
             </div>
             <div className="brand-card__body">
@@ -194,7 +194,7 @@ export default function PlatformPage() {
 
           <a href="/economics" className="brand-card">
             <div className="brand-card__photo-wrap">
-              <img src="/images/ai-corridor/delta-cotton-field.webp" alt="Cotton field at golden hour in the Mississippi Delta" className="brand-card__photo" />
+              <img src="/images/ai-corridor/delta-cotton-field.webp" alt="Cotton field at golden hour in the Mississippi Delta" className="brand-card__photo" width={800} height={533} loading="lazy" decoding="async" />
               <div className="brand-card__photo-overlay" />
             </div>
             <div className="brand-card__body">

@@ -3,6 +3,7 @@
 // POST /api/clients/:id/reviews — add a review (manual or from scraper)
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 type Params = { params: { id: string } };
 
@@ -15,7 +16,6 @@ export async function GET(request: NextRequest, { params }: Params) {
   const responseStatus = searchParams.get('responseStatus');
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const where: Record<string, unknown> = { clientId };
     if (platform) where.platform = platform;
@@ -59,7 +59,6 @@ export async function POST(request: NextRequest, { params }: Params) {
   const externalId = (body.externalId as string) || `manual-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const review = await (prisma as any).review.create({
       data: {

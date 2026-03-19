@@ -9,6 +9,7 @@
 //   ?slug=some-slug   (single client lookup by slug)
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 interface RawClient {
   id: number;
@@ -52,7 +53,6 @@ export async function GET(request: NextRequest) {
   const slug = searchParams.get('slug');
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     // Single lookup by slug
     if (slug) {

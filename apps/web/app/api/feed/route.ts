@@ -2,6 +2,7 @@
 // RSS 2.0 feed for Big Muddy Magazine articles
 
 import { CITY_GUIDE_ARTICLES } from '@/lib/articles';
+import { prisma } from '@/lib/db';
 
 export const revalidate = 3600; // 1 hour
 
@@ -30,7 +31,6 @@ interface FeedArticle {
 
 async function getArticles(): Promise<FeedArticle[]> {
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
     const articles = await (prisma as any).article.findMany({
       where: { status: 'published' },
       orderBy: { publishedAt: 'desc' as const },

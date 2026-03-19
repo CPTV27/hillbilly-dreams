@@ -229,6 +229,8 @@ model Client {
   stripeCustomerId String?
   logoUrl          String?
   heroImageUrl     String?
+  stripeConnectId  String?   // Stripe Connect account ID (acct_xxx)
+  connectStatus    String?   // "pending" | "active" | "restricted" | "disabled"
   contactName      String?   // Primary contact person
   contactEmail     String?
   contactPhone     String?
@@ -244,6 +246,7 @@ model Client {
   calendars        ContentCalendar[]
   reports          Report[]
   invoices         Invoice[]
+  integrations     ClientIntegration[]
 
   @@index([city])
   @@index([tier, status])
@@ -328,6 +331,33 @@ model Invoice {
 }
 
 // ─────────────────────────────────────────────────────────────
+// CLIENT INTEGRATIONS (Pluggable Services)
+// ─────────────────────────────────────────────────────────────
+
+model ClientIntegration {
+  id           Int       @id @default(autoincrement())
+  clientId     Int
+  client       Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  provider     String    // stripe | square | clover | opentable | resy | cloudbeds | mailchimp | google-analytics | meta-pixel | toast
+  status       String    @default("pending") // pending | active | error | disconnected
+  accountId    String?   // External account/merchant ID
+  accessToken  String?   @db.Text  // Encrypted OAuth token
+  refreshToken String?   @db.Text  // Encrypted OAuth refresh token
+  expiresAt    DateTime? // Token expiry
+  config       Json?     // Provider-specific config (e.g. location IDs, webhook URLs)
+  scopes       String[]  // OAuth scopes granted
+  displayName  String?   // Human-friendly name ("Anthologist Stripe", "Bobby J's Square")
+  lastSyncAt   DateTime?
+  errorMessage String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@unique([clientId, provider])
+  @@index([provider, status])
+  @@index([clientId])
+}
+
+// ─────────────────────────────────────────────────────────────
 // PUBLISHING PIPELINE
 // ─────────────────────────────────────────────────────────────
 
@@ -376,11 +406,143 @@ model Artist {
 
   showcases       ShowcaseSlot[]
   tourStops       TourStop[]
+  tracks          Track[]
+  splits          Split[]
+  proRegistrations PRORegistration[]
 
   @@index([status])
   @@index([city, state])
   @@index([source])
   @@index([genre])
+}
+
+// ── MelodyVault: Track Catalog ──
+model Track {
+  id              Int       @id @default(autoincrement())
+  title           String
+  slug            String    @unique
+  artistId        Int
+  artist          Artist    @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  albumTitle      String?
+  duration        Int?      // seconds
+  genre           String?
+  mood            String?   // uplifting | melancholic | energetic | chill | intense | warm
+  bpm             Int?
+  musicalKey      String?   // e.g. "D Major", "A Minor"
+  isrc            String?   // International Standard Recording Code
+  iswc            String?   // International Standard Musical Work Code
+  audioUrl        String?   // GCS or R2 URL to master file
+  waveformData    Json?     // pre-computed waveform for UI
+  aiAnalysis      Json?     // { genre, mood, bpm, key, syncSuggestions, trendingInsights }
+  metadata        Json?     // additional metadata (lyrics, credits, instruments)
+  releaseDate     DateTime?
+  status          String    @default("uploaded") // uploaded | analyzing | active | archived
+  splits          Split[]
+  syncSubmissions SyncSubmission[]
+  proRegistrations PRORegistration[]
+  royalties       RoyaltyPayment[]
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([artistId])
+  @@index([genre, mood])
+  @@index([status])
+}
+
+// ── MelodyVault: Splits Ledger ──
+model Split {
+  id          Int       @id @default(autoincrement())
+  trackId     Int
+  track       Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  artistId    Int?
+  artist      Artist?   @relation(fields: [artistId], references: [id])
+  name        String    // contributor name (may not be a roster artist)
+  email       String?
+  role        String    // songwriter | producer | performer | engineer | featured
+  sharePercent Float    // 0.0 to 100.0
+  paypalEmail String?   // for royalty payouts
+  status      String    @default("pending") // pending | confirmed | disputed
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([trackId, name, role])
+  @@index([trackId])
+  @@index([artistId])
+}
+
+// ── MelodyVault: Sync Marketplace ──
+model SyncOpportunity {
+  id            Int       @id @default(autoincrement())
+  title         String
+  description   String?   @db.Text
+  projectType   String    // film | tv | ad | game | podcast | documentary | social
+  genre         String?
+  mood          String?
+  budgetAmount  Int?      // dollars
+  budgetType    String?   // buyout | 1-year | 2-year | perpetual
+  deadline      DateTime?
+  contactEmail  String?
+  status        String    @default("open") // open | filled | expired | cancelled
+  submissions   SyncSubmission[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([status, genre])
+  @@index([deadline])
+}
+
+model SyncSubmission {
+  id              Int       @id @default(autoincrement())
+  trackId         Int
+  track           Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  opportunityId   Int
+  opportunity     SyncOpportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  status          String    @default("submitted") // submitted | shortlisted | selected | rejected
+  notes           String?   @db.Text
+  submittedAt     DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@unique([trackId, opportunityId])
+  @@index([opportunityId])
+}
+
+// ── MelodyVault: PRO Rights Management ──
+model PRORegistration {
+  id            Int       @id @default(autoincrement())
+  trackId       Int
+  track         Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  artistId      Int?
+  artist        Artist?   @relation(fields: [artistId], references: [id])
+  pro           String    // ASCAP | BMI | SESAC
+  workId        String?   // W123456789
+  registrationStatus String @default("pending") // pending | processing | registered | error
+  registeredAt  DateTime?
+  notes         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@unique([trackId, pro])
+  @@index([registrationStatus])
+}
+
+// ── MelodyVault: Royalty Tracking ──
+model RoyaltyPayment {
+  id          Int       @id @default(autoincrement())
+  trackId     Int
+  track       Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  source      String    // spotify | apple_music | youtube | sync | merch | direct
+  period      String    // "2026-Q1" or "2026-03"
+  grossAmount Float     // total before splits
+  netAmount   Float     // after platform fees
+  currency    String    @default("USD")
+  streams     Int?
+  downloads   Int?
+  status      String    @default("pending") // pending | distributed | paid
+  paidAt      DateTime?
+  createdAt   DateTime  @default(now())
+
+  @@index([trackId, period])
+  @@index([source])
 }
 
 model Showcase {

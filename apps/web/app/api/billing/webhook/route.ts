@@ -4,6 +4,7 @@
 //          customer.subscription.updated, customer.subscription.deleted
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 // Map Stripe unit_amount (cents) → tier name.
 // The subscribe route creates inline prices with these amounts,
@@ -62,7 +63,6 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     switch (event.type) {
       // ── Checkout completed ───────────────────────────────────

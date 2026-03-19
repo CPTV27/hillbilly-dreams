@@ -2,6 +2,7 @@
 // GET, PATCH, DELETE for a single client
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 type Params = { params: { id: string } };
 
@@ -10,7 +11,6 @@ export async function GET(_request: NextRequest, { params }: Params) {
   if (isNaN(id)) return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
     const client = await (prisma as any).client.findUnique({
       where: { id },
       include: {
@@ -52,7 +52,6 @@ export async function PATCH(request: NextRequest, { params }: Params) {
   }
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
     const client = await (prisma as any).client.update({
       where: { id },
       data,
@@ -72,7 +71,6 @@ export async function DELETE(_request: NextRequest, { params }: Params) {
   if (isNaN(id)) return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
     await (prisma as any).client.delete({ where: { id } });
     return NextResponse.json({ success: true });
   } catch (err) {

@@ -4,6 +4,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
+import { prisma } from '@/lib/db';
 
 type Params = { params: { id: string } };
 
@@ -15,7 +16,6 @@ export async function GET(_request: NextRequest, { params }: Params) {
   if (isNaN(id)) return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
     const calendars = await (prisma as any).contentCalendar.findMany({
       where: { clientId: id },
       orderBy: [{ year: 'desc' as const }, { month: 'desc' as const }],
@@ -50,7 +50,6 @@ export async function POST(request: NextRequest, { params }: Params) {
   const context = (body.context as string) ?? ''; // Additional context (events, specials, etc.)
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
     const client = await (prisma as any).client.findUnique({ where: { id: clientId } });
     if (!client) return NextResponse.json({ error: 'Client not found' }, { status: 404 });
 

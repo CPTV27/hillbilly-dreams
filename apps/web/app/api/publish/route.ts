@@ -3,6 +3,7 @@
 // POST /api/publish — create a publish job for a social post
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -10,7 +11,6 @@ export async function GET(request: NextRequest) {
   const postId = searchParams.get('postId');
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const where: Record<string, unknown> = {};
     if (status) where.status = status;
@@ -52,7 +52,6 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const job = await (prisma as any).publishJob.create({
       data: {

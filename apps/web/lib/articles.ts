@@ -875,6 +875,200 @@ Branson is the northern terminus of the Big Muddy's expanded arc — the place w
 
 Branson is the end of the line and the beginning of the line, depending on which direction you came from. The Big Muddy's extended arc reaches its northern extreme in these fog-wrapped Missouri hills, where the Ozark music tradition is old enough to have forgotten it was ever called folk and country enough to have forgotten it was ever called gospel. Head south through Arkansas, back toward the Delta and the river, and carry Branson's unabashed sincerity with you — a reminder that some places have been playing the same songs for a hundred years because the songs are worth playing.`,
   },
+  {
+    id: 19,
+    title: 'The Anthologist: Where Vinyl Meets Violets on Main Street Natchez',
+    slug: 'the-anthologist-where-vinyl-meets-violets-on-main-street-natchez',
+    category: 'feature',
+    city: 'natchez',
+    author: 'Chase Pierson',
+    status: 'published',
+    excerpt:
+      'A record store inside a flower shop inside a performance venue. The Anthologist is what happens when someone decides that the things that make a small town worth living in should all exist under one roof.',
+    heroImage: '/images/records/anthologist-vinyl-bins.webp',
+    readTime: '8 min read',
+    publishedAt: new Date('2026-03-19').toISOString(),
+    createdAt: new Date('2026-03-19').toISOString(),
+    updatedAt: new Date('2026-03-19').toISOString(),
+    body: `# The Anthologist: Where Vinyl Meets Violets on Main Street Natchez
+
+A record store inside a flower shop inside a performance venue. The Anthologist is what happens when someone decides that the things that make a small town worth living in should all exist under one roof — and then actually does it.
+
+Main Street, Natchez. The brick storefronts here have been standing since before the Civil War, and half of them have been empty since the last cotton broker closed up. The ones that aren't empty tend toward antique shops and gift stores selling porcelain figurines of plantation homes. Nothing wrong with that. But it's not exactly the future.
+
+The Anthologist is the future. Or at least a version of the future that respects the past enough to carry it forward.
+
+## The Space
+
+You walk in and the first thing you notice is the smell — not old vinyl and dust, which is what you expect from a record store, but fresh-cut stems and greenery. There's a flower cooler along one wall, the kind with glass doors and LED strips, holding roses and snapdragons and whatever's in season from local growers. The flowers aren't an afterthought or a side hustle. They're half the business.
+
+Then your eye adjusts and you see the bins. Wooden crates, hand-built, stained warm, running along the opposite wall and down a center aisle. The vinyl collection is curated — not the biggest selection in Mississippi, but one of the most intentional. You'll find Delta blues next to 90s hip-hop next to Patsy Cline next to Coltrane. The dividers are hand-lettered. The prices are fair. VG/VG+ for fifteen dollars. Promo copies marked clearly.
+
+In the back, past the bins and the bouquets, there's a vintage Realistic turntable on a wooden counter — the kind with the faux-wood panel and the brushed-metal badge that says "Realistic" like it's making a philosophical statement. It's not for sale. It's for listening. There's a small PA system. A couple of mic stands. Room for maybe thirty people if they don't mind standing close.
+
+This is a performance venue.
+
+## Three Businesses, One Room
+
+The Anthologist operates on a principle that most business consultants would call insane and most small-town operators would call obvious: if you need three things to survive, build three things.
+
+**The flower shop** serves Natchez's wedding industry, its funeral homes, its "I forgot our anniversary" emergency market, and its growing population of people who just want something alive and beautiful on their kitchen table. Cut arrangements, potted plants, seasonal wreaths. The margins on flowers are good if you know what you're doing. They know what they're doing.
+
+**The record store** serves a different customer — or sometimes the same customer on a different day. Vinyl collectors driving the Natchez Trace. Tourists who wandered off the main drag and found something real. Locals who've been buying records here since the bins went in and now treat it like a weekly ritual: flip through what's new, pull something they forgot they loved, drop fifteen dollars. Repeat.
+
+**The performance space** is where it gets interesting. The Anthologist hosts live music — acoustic sets, small bands, solo artists who can work a room without a full PA. The space is intimate by necessity and perfect by accident. Low ceilings. Warm light. The sound bounces off the brick walls in a way that no amount of acoustic engineering could replicate. You feel the music in the room the way you feel it in a church — not amplified at you, but present with you.
+
+## Why It Matters
+
+There are approximately 16,000 people in Natchez, Mississippi. The median household income is around $35,000. This is not Austin. This is not Nashville. This is not a place where a record store opens because the demographics say it should work. This is a place where a record store opens because somebody decided it mattered.
+
+That distinction — between things that pencil out on a spreadsheet and things that matter — is the entire story of small-town America right now. The spreadsheet says Natchez should have a Dollar General and a Subway and maybe a decent Mexican restaurant if it's lucky. The Anthologist says Natchez should have a place where you can buy a first pressing of Muddy Waters and a dozen roses in the same transaction, and then stick around for a live set on Friday.
+
+The spreadsheet is not wrong. But it's not interesting either.
+
+## The Recording Setup
+
+Here's where the Anthologist intersects with what we're building at Big Muddy Records.
+
+The space has a recording rig. Not a studio — nobody's pretending this is Muscle Shoals. But a clean signal chain, a decent set of microphones, and a room that sounds good without trying. When an artist plays the Anthologist, we can capture it. The live cut goes to Big Muddy Radio. The session footage goes to the Magazine. The best performances become releases.
+
+This is what we mean when we talk about the ecosystem. A flower shop on Main Street in a town of 16,000 becomes a node in a network that connects recording, radio, publishing, and touring. The artist who plays the Anthologist on Friday night gets a feature in Big Muddy Magazine by Tuesday. Their live cut is on Big Muddy Radio by the following week. Their merch is on BuyCurious Art by month's end.
+
+The infrastructure is the thing. And the Anthologist is a piece of infrastructure that smells like roses.
+
+## The Venue Network
+
+The Anthologist joins two other recording venues in the Big Muddy Records network in Natchez:
+
+**The Blues Room** at the Big Muddy Inn is the anchor — a listening room inside the Inn with capacity for about 40 people, a corner stage with good light, and an open mic every Friday night that we record stem to stem. The Blues Room is the flagship. It's where the label was born.
+
+**Bobby J's** is the juke joint — louder, looser, later. The kind of place where the music starts at 10 and nobody's checking the clock. Bobby J's gives us the raw end of the spectrum, the performances that happen when the audience is three whiskeys in and the band is feeding off the energy.
+
+**The Anthologist** fills the space between — more intimate than the Blues Room, more curated than Bobby J's. The acoustic acts. The singer-songwriters who need a quiet room. The artists whose music requires you to actually listen, which requires the audience to actually shut up, which requires a room that encourages it.
+
+Three venues. Three vibes. One label recording all of it.
+
+## What You'll Find in the Bins
+
+If you're driving the corridor and you stop at the Anthologist — and you should — here's what to look for:
+
+The blues section is strong. Mississippi artists, Delta recordings, Chicago blues that started in Mississippi and migrated north with the Great Migration. Fat Possum releases. Hill Country stuff. If it came from this soil, they probably have it.
+
+The soul section leans toward the deep cuts — not just Otis and Aretha (though they have those), but the Muscle Shoals session players, the Stax B-sides, the Hi Records catalog that most people outside of Memphis have never heard.
+
+The country section is real country. Not the truck-and-beer-and-tan-legs formula that Nashville pushes. Hank Williams. Loretta Lynn. Townes Van Zandt. The outlaw stuff. The mountain stuff. The songs that sound better on vinyl because they were recorded on vinyl.
+
+And then there's the oddball section — the records that don't fit any category and are better for it. Local artists. Private pressings. The one-of-a-kind finds that make crate-digging worth the drive.
+
+## Hours and Details
+
+The Anthologist is on Main Street in downtown Natchez, Mississippi. Walk south from the bluffs and you'll find it.
+
+The flower shop keeps regular retail hours. The record bins are open whenever the flowers are. The performance schedule runs Friday and Saturday nights, with occasional weeknight shows when someone interesting is passing through.
+
+No cover for most shows. Tips go directly to the artist.
+
+If you're planning a trip along the corridor — Memphis to New Orleans, or the reverse — put Natchez on the itinerary and put the Anthologist on the list. Buy flowers for the person you're traveling with. Buy a record for yourself. Stay for the music.
+
+And if you're a musician looking for a place to play — a real place, not a festival stage or a bar that treats live music as background noise — reach out. The Anthologist books artists who take the room seriously. The room will take you seriously back.
+
+*The Anthologist is a featured venue in the Big Muddy Records network and a Deep South Directory member. For booking inquiries, contact music@bigmuddyrecords.net.*`,
+  },
+  {
+    id: 20,
+    title: 'Save the Hall Ball: The Pilgrimage Garden Club\'s Fight for Stanton Hall',
+    slug: 'save-the-hall-ball-pilgrimage-garden-clubs-fight-for-stanton-hall',
+    category: 'feature',
+    city: 'natchez',
+    author: 'Chase Pierson',
+    status: 'published',
+    excerpt:
+      'The Pilgrimage Garden Club is throwing a fundraiser at Stanton Hall — the antebellum mansion they\'ve maintained since 1938. The building needs work. The party will be worth the drive.',
+    heroImage: null,
+    readTime: '7 min read',
+    publishedAt: new Date('2026-03-22').toISOString(),
+    createdAt: new Date('2026-03-19').toISOString(),
+    updatedAt: new Date('2026-03-19').toISOString(),
+    body: `# Save the Hall Ball: The Pilgrimage Garden Club's Fight for Stanton Hall
+
+The Pilgrimage Garden Club has been maintaining Stanton Hall since 1938. That's 88 years of keeping an antebellum mansion standing through Mississippi summers, Hurricane Katrina, economic downturns, and the slow erosion that happens when a building built in 1857 has to survive in a world that doesn't build things to last anymore.
+
+Now they need help. And they're throwing a party to get it.
+
+## The Hall
+
+Stanton Hall sits on a full city block at the corner of High and Pearl Streets in downtown Natchez. Frederick Stanton built it in 1857 with cotton money — the kind of fortune that could commission Corinthian columns shipped from Europe and a cast-iron fence forged in Philadelphia. The house cost $83,000 to build. In 1857 dollars, that's roughly "I own a small country" money.
+
+The scale of Stanton Hall is the first thing that hits you. The front gallery is 70 feet wide. The parlors have 16-foot ceilings. The chandeliers are the originals — gas-to-electric conversions that still throw light the way they did when the house was the social center of one of the wealthiest communities in pre-war America.
+
+Natchez had more millionaires per capita than any city in the country before the Civil War. The cotton economy built mansions that survive because they were built by people who assumed their grandchildren's grandchildren would still be using them. In the case of Stanton Hall, they were right — though the grandchildren turned out to be a garden club, which is probably better than what Frederick Stanton had in mind.
+
+## The Garden Club
+
+The Pilgrimage Garden Club was founded in 1932 by a group of Natchez women who understood something that took the rest of the country another 30 years to figure out: if you don't preserve historic buildings, they disappear. Period. Nobody else is going to do it. Not the state. Not the federal government. Not the market.
+
+The Club purchased Stanton Hall in 1938 and has operated it as a historic house museum and event venue ever since. They run the Natchez Spring Pilgrimage — the annual tour of antebellum homes that has been bringing tourists to Natchez since 1932 and remains one of the longest-running heritage tourism events in the American South.
+
+The Pilgrimage Garden Club is not a passive custodian. They are an economic engine. The Spring Pilgrimage alone generates significant tourism revenue for a town of 16,000 people. The events hosted at Stanton Hall — weddings, receptions, corporate retreats, the kind of Southern social occasions that require a room with 16-foot ceilings and original chandeliers — pump money directly into the local economy.
+
+But maintaining a 169-year-old mansion is not cheap. The roof. The foundation. The ironwork. The gardens. The mechanical systems that keep a pre-air-conditioning house habitable in a Mississippi summer. Every year, there's a list of things that need repair, and the list is always longer than the budget.
+
+## The Ball
+
+The Save the Hall Ball is the Pilgrimage Garden Club's answer to the gap between what Stanton Hall needs and what the annual operating budget can cover.
+
+It's a fundraiser, yes. But it's also Natchez doing what Natchez does best — throwing a party in a room that was designed for exactly this purpose. Stanton Hall's parlors were built for gatherings. The proportions are right. The light is right. The acoustics, accidentally, are right. When you fill these rooms with music and people and the particular energy that happens when a community gathers to save something it loves, you understand why the building has survived 169 years.
+
+Live music. Dancing. The kind of food that Natchez does when it's showing off — which is different from the kind of food Natchez does on a Tuesday, though both are better than what you'd get in most American cities. Formal attire encouraged but not required, because this is Natchez and the dress code has always been "make an effort."
+
+## Why It Matters
+
+Here's the thing about preservation in a small Southern town: it's not abstract. It's not a policy debate. It's a building that you drive past every day, that your grandmother had her wedding reception in, that your kids went on a field trip to in third grade. When Stanton Hall needs a new roof, the people who show up to pay for it are the people who live here. That's it. That's the whole preservation strategy.
+
+The Pilgrimage Garden Club model is one of the most successful grassroots preservation frameworks in the country, and it works because it's local. The decisions are made by people who have to look at the building every morning. The money comes from events held inside the building. The labor comes from volunteers who care about the building not because they read about it in a magazine but because it's part of the landscape of their daily lives.
+
+This is the kind of institution that Outsider Economics would call a "porch network" — a group of people who organize around a shared resource, maintain it through direct action, and fund it through community participation rather than external grants or government subsidy. The Pilgrimage Garden Club has been doing this since 1932. They didn't need a TED talk to figure it out.
+
+## The Photography
+
+Big Muddy Magazine will be on site for the Save the Hall Ball. Chase Pierson is shooting the event — the rooms, the crowd, the light falling through those 16-foot windows at the particular angle that happens in late March when the sun is low enough to be golden but high enough to fill the room.
+
+Expect a full photo essay in Big Muddy Magazine after the event. The Anthologist will have prints. Big Muddy Radio will have coverage of any live music performances.
+
+This is the ecosystem at work: a local fundraiser becomes a Magazine feature becomes a photo exhibit becomes a radio segment. The event doesn't end when the band stops playing. It amplifies.
+
+## Details
+
+**What:** Save the Hall Ball — fundraiser for Stanton Hall preservation
+**Who:** The Pilgrimage Garden Club of Natchez
+**Where:** Stanton Hall, corner of High and Pearl Streets, Natchez, MS 39120
+**When:** Spring 2026 (check local listings for exact date)
+**Dress:** Formal encouraged
+**Photography:** Chase Pierson / Big Muddy Magazine
+
+For ticket information, contact the Pilgrimage Garden Club directly or check their website. Stanton Hall is also open for regular tours during the Spring Pilgrimage season.
+
+If you're driving the corridor and you're anywhere near Natchez in late March — come. Buy a ticket. Dance in a room that's been standing since 1857. Help keep it standing for another 169 years.
+
+*Stanton Hall is a National Historic Landmark and a featured property in the Big Muddy Touring corridor guide. The Pilgrimage Garden Club is a Deep South Directory member.*`,
+  },
+  {
+    id: 21,
+    title: 'Regina\'s Biscuits: How the Biscuit Queen of Natchez Trained in Paris and Came Home',
+    slug: 'reginas-biscuits-how-the-biscuit-queen-of-natchez-trained-in-paris-and-came-home',
+    category: 'feature',
+    city: 'natchez',
+    author: 'Chase Pierson',
+    status: 'published',
+    excerpt:
+      'Regina Charboneau trained at Le Cordon Bleu, cooked in San Francisco, and came back to Natchez to make biscuits. The Biscuit Queen sold the restaurant, but the legacy \u2014 and the cooking classes \u2014 live on.',
+    heroImage: null,
+    readTime: '9 min read',
+    publishedAt: new Date('2026-03-19').toISOString(),
+    createdAt: new Date('2026-03-19').toISOString(),
+    updatedAt: new Date('2026-03-19').toISOString(),
+    body: '# Regina\'s Biscuits: How the Biscuit Queen of Natchez Trained in Paris and Came Home\n\nRegina Charboneau trained at Le Cordon Bleu. She cooked in San Francisco restaurants where the prix fixe could cover a week of groceries in Natchez. She wrote cookbooks. She appeared on the Food Network. Andrew Zimmern has her number in his phone.\n\nAnd she came back to Natchez, Mississippi \u2014 population 16,000, median household income $35,000, a town where the nearest Whole Foods is a two-hour drive \u2014 to make biscuits.\n\nNot artisanal small-batch heritage-grain biscuits with a $14 price tag and a manifesto about flour provenance. Just biscuits. The kind your grandmother made if your grandmother knew what she was doing. Except Regina also knows what Escoffier was doing, and the difference between a good biscuit and a Regina biscuit is the difference between someone who learned to cook and someone who learned to cook and then went to Paris and then came home and remembered why the biscuit was the point all along.\n\n## The Story\n\nRegina built Biscuits & Blues at 315 Main Street in downtown Natchez into a destination. People flew to Mississippi to eat her biscuits and take her cooking classes. The building was old \u2014 like everything on Main Street, standing since before most American cities existed. The space was warm without trying. Counter. Tables. A cooking school in the back.\n\nShe\'s since sold the restaurant. The Biscuit Queen has moved on to new things, including a presence in San Francisco. But the impact she left on Natchez \u2014 and on the people who ate those biscuits \u2014 is permanent. What she proved is more important than any single restaurant: that a world-class culinary talent can thrive in a town of 16,000, that people will travel to eat food made with real skill in a real place, and that Natchez doesn\'t have to apologize for competing with cities a hundred times its size.\n\nThe cooking classes she ran are the template for what we\'re building at the Big Muddy Inn \u2014 workshops as economic engines, pulling visitors who spend across the entire local economy.\n\n## The Biscuit\n\nLet\'s talk about the biscuit.\n\nA Regina Charboneau biscuit is not tall. It\'s not a skyscraper biscuit, the kind that looks impressive in a food photograph but collapses under the weight of its own ambition. It\'s about two inches high. Golden on top. Pale on the sides where it was touching its neighbor in the pan. When you pull it apart \u2014 and you pull it apart, you don\'t cut it, cutting a biscuit is violence \u2014 the interior is layered. Not flaky in the croissant sense. Layered in the geological sense. Strata of butter and flour that separated during baking and created something that is simultaneously tender and structured.\n\nThe outside has a slight crunch. Not a crust \u2014 a crunch. The difference matters. A crust is hard. A crunch yields. It gives way to the soft interior with exactly the right amount of resistance, like opening a door that was built to swing properly.\n\nThe flavor is butter and flour and salt and buttermilk, in proportions that took decades to calibrate. There is no vanilla. There is no sugar. There is no secret ingredient that you can point to and say "that\'s the trick." The trick is that there is no trick. The trick is doing simple things correctly, every time, at 5 a.m., before the tourists wake up, before Main Street comes alive, before anyone is watching. The biscuit doesn\'t care if anyone is watching.\n\n## The Paris Connection\n\nHere\'s what Paris gave Regina that Natchez didn\'t: vocabulary.\n\nNot French vocabulary \u2014 culinary vocabulary. The language of technique. The understanding that cooking is not a set of recipes but a set of principles, and that once you understand the principles, you can cook anything. Butter lamination. Maillard reaction. The behavior of gluten at different hydration levels. The way fat inhibits gluten development, which is why a biscuit made with cold butter has layers and a biscuit made with melted butter doesn\'t.\n\nRegina learned these things in Paris and brought them back to a kitchen in Natchez, where she applied them to food that her grandmother would recognize. The technique is French. The food is Mississippi. The combination is the reason people flew here.\n\nThis is the pattern we see across the corridor \u2014 the tension between leaving and returning, between learning what the wider world has to teach and bringing it back to the place that formed you. The blues musicians who went to Chicago and came back different. The writers who went to New York and came back with new eyes for the landscape they\'d always known. Regina went to Paris and came back to make biscuits. It\'s the same story.\n\n## The Cooking School Legacy\n\nThe classes were the second business. Maybe the more important business, depending on how you measure importance.\n\nRegina taught biscuit-making classes in Natchez. Hands in the flour. Cold butter, cut into cubes, worked into the dry ingredients with your fingers until it looks like coarse meal with some pea-sized pieces remaining. Buttermilk added all at once. Folded \u2014 not kneaded, never kneaded \u2014 three times. Cut with a sharp biscuit cutter pressed straight down, never twisted, because twisting seals the edges and prevents the rise.\n\nPeople came from everywhere. Food writers. Home cooks. Professional chefs who wanted to understand Southern baking from someone who speaks both languages \u2014 the language of a Paris kitchen and the language of a Mississippi kitchen. The classes sold out. They always sold out.\n\nWhat made the cooking school work is what makes all good teaching work: Regina was not performing. She was standing in a kitchen with flour on her hands, talking about what she was doing while she did it, and the students learned because the gap between them and the teacher was close enough to cross.\n\nThis is the model we\'re inheriting at the Big Muddy Inn. Our workshop program \u2014 photography, music production, songwriting, hospitality \u2014 follows the same principle: bring the expert, build the class, let the student leave with something they didn\'t have before. Regina proved that Natchez is a place people will travel to for knowledge. That proof is worth more than any recipe.\n\n## The Andrew Zimmern Call\n\nThere\'s a story that gets told around Natchez \u2014 the kind that becomes legend because it\'s too good and too specific to be invented. Chase and Tracy and Amy are in Natchez, early days, figuring out what the Big Muddy Inn is going to be. Someone says: "You need to talk to Regina." They get her number. They call.\n\nRegina picks up the phone. She\'s on a boat. With Andrew Zimmern. She says, "I can\'t talk right now, I\'m with Andrew. Let me call you back."\n\nShe calls back.\n\nThat\'s the part that matters. Not that she was with Andrew Zimmern \u2014 that\'s just a fun detail. The part that matters is that she called back. In a town of 16,000 people, when someone says "let me call you back," they mean it. This is not Los Angeles, where "let me call you back" means "I will never call you back." This is Natchez. The callback is the handshake. The callback is how business gets done, how relationships start, how a biscuit queen and a couple of newcomers end up on the same team.\n\n## The Economics of a Biscuit\n\nHere\'s what a cooking class does for Natchez that a cooking class in Brooklyn could never do:\n\nWhen someone flies to Mississippi for a class, they don\'t just take the class. They stay somewhere \u2014 hopefully at the Big Muddy Inn, but even if not, they\'re sleeping in a Natchez bed. They eat dinner somewhere \u2014 The Camp, Cotton Alley, Fat Mama\'s. They walk Main Street and stop at the Anthologist for a record. They drive out to see Windsor Ruins. They buy something from the antique shops. They take photographs from the bluffs.\n\nA $150 cooking class generates $500 to $800 in total spending in a town that needs every dollar. Regina\'s biscuits were an economic engine disguised as breakfast.\n\nThis is the model that Outsider Economics describes as "anchor attraction economics" \u2014 a single draw strong enough to pull people to a place they wouldn\'t otherwise visit, and then the entire local economy benefits. The class is the anchor. Main Street is the beneficiary.\n\nIt\'s also why the Big Muddy ecosystem works the way it does. The Inn is an anchor. The Blues Room sessions are an anchor. The Magazine features are an anchor. And Regina\'s biscuits were an anchor. Each one pulls a slightly different audience, and each audience spends money across the whole network.\n\n## The Biscuit Queen\n\nRegina Charboneau has been called the Biscuit Queen of Natchez, and she wears the title the way Natchez wears its history \u2014 with pride, without apology, and with the understanding that the thing you\'re known for should be the thing you do best.\n\nShe could have stayed in San Francisco. She could have opened a bistro in New York. She could have become a celebrity chef in the modern sense \u2014 the kind with a product line and a ghostwriter and a social media team who hasn\'t actually cooked in their own restaurant in years.\n\nInstead, she came to Natchez. She made biscuits at 5 a.m. She taught classes in the afternoon. She picked up the phone when it rang, even when she was on a boat with Andrew Zimmern. She built something that proved a town of 16,000 could punch above its weight. Then she moved on, and the proof stayed behind.\n\nThe biscuit is the metaphor. Simple. Honest. Made with technique that took decades to develop but looks effortless. Made in a place that the food media mostly ignores, which means the people who find it feel like they\'ve discovered something \u2014 and they have. Made by someone who left and came back, which is the most Mississippi story there is.\n\nDrive the corridor. Stop in Natchez. Pull a biscuit apart with your hands. Taste the layers. That\'s the whole review.\n\n*Regina Charboneau is a Deep South Directory featured chef and a key figure in the Big Muddy Touring corridor story. More at reginacharboneau.com.*',
+  },
 ];
 
 // Helper: get article by slug

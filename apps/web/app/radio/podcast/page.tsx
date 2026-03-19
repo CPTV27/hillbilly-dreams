@@ -48,7 +48,7 @@ export default async function PodcastPage() {
       {/* ── Hero Header ── */}
       <section className="podcast-hero">
         <Image
-          src="/images/corridor/night-bar-green-glow.webp"
+          src="/images/corridor/oceansprings-natchez-601-of-1183.webp"
           alt="The parlor at The Big Muddy Inn"
           fill
           priority

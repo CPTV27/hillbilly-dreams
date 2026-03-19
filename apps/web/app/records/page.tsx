@@ -102,7 +102,7 @@ export default function RecordsPage() {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundImage: 'url(/images/ai-corridor/blues-parlor-live.webp)',
+            backgroundImage: 'url(/images/records/anthologist-vinyl-bins.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: 0.12,
@@ -233,6 +233,20 @@ export default function RecordsPage() {
           </p>
         </div>
       </section>
+
+      {/* Photo break — Anthologist turntable */}
+      <div
+        style={{
+          width: '100%',
+          height: 320,
+          backgroundImage: 'url(/images/records/anthologist-turntable.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.8,
+        }}
+        role="img"
+        aria-label="Vintage turntable at the Anthologist record store in Natchez"
+      />
 
       {/* How It Works */}
       <section
@@ -667,9 +681,9 @@ export default function RecordsPage() {
             {[
               'You own your masters. Always.',
               '12 months, then renewal by choice',
-              '$4K/month, known cost, no surprises',
-              '$24K marketing budget included',
-              'Publicist included in the retainer',
+              '$100–$500/month, known cost, no surprises',
+              'Marketing included at every tier',
+              'Publicist included in The Route and up',
               'Radio, Magazine, and touring built in',
             ].map((item) => (
               <p
@@ -688,6 +702,43 @@ export default function RecordsPage() {
               </p>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Photo break — vinyl dividers */}
+      <div
+        style={{
+          width: '100%',
+          height: 240,
+          backgroundImage: 'url(/images/records/anthologist-vinyl-dividers.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.75,
+        }}
+        role="img"
+        aria-label="Vinyl record dividers at the Anthologist"
+      />
+
+      {/* The Studio */}
+      <section style={{ padding: '4rem 1.5rem', maxWidth: 900, margin: '0 auto' }}>
+        <p style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--accent, #c8943e)', marginBottom: '0.5rem' }}>
+          Studio C
+        </p>
+        <h2 style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--fg, #f5f0eb)', marginBottom: '1rem' }}>
+          Where it gets made.
+        </h2>
+        <p style={{ fontSize: '0.95rem', color: 'var(--fg, #f5f0eb)', opacity: 0.65, lineHeight: 1.7, maxWidth: 600, marginBottom: '2rem' }}>
+          Studio C is the recording and production arm of Big Muddy Records. From live session captures to full production — this is where corridor music becomes something you can hold in your hands.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+          {[
+            { src: '/images/studio-c/utopiademo-day-10.webp', alt: 'Studio C equipment' },
+            { src: '/images/studio-c/utopiademo-day-20.webp', alt: 'Studio C recording session' },
+            { src: '/images/studio-c/utopiademo-day-35.webp', alt: 'Studio C production' },
+            { src: '/images/studio-c/utopiademo-day-50.webp', alt: 'Studio C demo day' },
+          ].map((img) => (
+            <div key={img.src} style={{ height: 200, backgroundImage: `url(${img.src})`, backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.8 }} role="img" aria-label={img.alt} />
+          ))}
         </div>
       </section>
 
@@ -784,8 +835,9 @@ export default function RecordsPage() {
               margin: 0,
             }}
           >
-            Infrastructure: the Blues Room at the Big Muddy Inn for live recording
-            sessions, a Prevost touring bus for mobile production, the radio show for
+            Three recording venues: the Blues Room at the Big Muddy Inn, the Anthologist
+            (record store, flower shop, and performance space on Main Street), and Bobby
+            J&apos;s. Plus a Prevost touring bus for mobile production, the radio show for
             pre-release cross-promotion, the Magazine for earned features and interviews,
             and Chase Pierson for photography and visual content. None of it billed
             separately.

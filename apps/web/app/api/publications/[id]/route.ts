@@ -4,6 +4,7 @@
 // DELETE /api/publications/[id] — delete
 
 import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 export async function GET(
   _request: Request,
@@ -15,7 +16,6 @@ export async function GET(
       return NextResponse.json({ error: 'Invalid ID.' }, { status: 400 });
     }
 
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const publication = await (prisma as any).publication.findUnique({ where: { id } });
 
@@ -41,7 +41,6 @@ export async function PATCH(
     }
 
     const body = await request.json();
-    const { default: prisma } = await import('@bigmuddy/database');
 
     // Build a partial update — only set fields that are explicitly present in body
     const data: Record<string, unknown> = {};
@@ -92,7 +91,6 @@ export async function DELETE(
       return NextResponse.json({ error: 'Invalid ID.' }, { status: 400 });
     }
 
-    const { default: prisma } = await import('@bigmuddy/database');
 
     await (prisma as any).publication.delete({ where: { id } });
 

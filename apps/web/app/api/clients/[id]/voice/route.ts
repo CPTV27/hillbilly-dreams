@@ -3,6 +3,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
+import { prisma } from '@/lib/db';
 
 type Params = { params: { id: string } };
 
@@ -16,7 +17,6 @@ export async function POST(_request: NextRequest, { params }: Params) {
   }
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
     const client = await (prisma as any).client.findUnique({ where: { id } });
     if (!client) return NextResponse.json({ error: 'Client not found' }, { status: 404 });
 

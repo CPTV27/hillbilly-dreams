@@ -3,6 +3,7 @@
 // POST /api/social/accounts — create a social account
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -10,7 +11,6 @@ export async function GET(request: NextRequest) {
   const platform = searchParams.get('platform');
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const where: Record<string, unknown> = {};
     if (brand) where.brand = brand;
@@ -53,7 +53,6 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const account = await (prisma as any).socialAccount.create({
       data: {

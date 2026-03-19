@@ -7,6 +7,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getPublisher } from '@/lib/social-publishers';
+import { prisma } from '@/lib/db';
 
 export async function POST(request: NextRequest) {
   let body: Record<string, unknown>;
@@ -22,7 +23,6 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     // Fetch the publish job
     const job = await (prisma as any).publishJob.findUnique({

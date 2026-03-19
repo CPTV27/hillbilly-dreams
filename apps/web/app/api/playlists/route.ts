@@ -1,7 +1,7 @@
 // apps/web/app/api/playlists/route.ts
 
 import { NextResponse } from 'next/server';
-import { prisma } from '@bigmuddy/database';
+import { prisma } from '@/lib/db';
 
 export async function GET(request: Request) {
   try {
@@ -15,7 +15,9 @@ export async function GET(request: Request) {
       take: limit,
     });
 
-    return NextResponse.json(playlists);
+    return NextResponse.json(playlists, {
+      headers: { 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300' },
+    });
   } catch (error) {
     console.error('[API /playlists GET]', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

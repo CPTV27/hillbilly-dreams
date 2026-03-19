@@ -2,6 +2,7 @@
 // Field Manual index — lists all posts from outsider-economics-v2/
 
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { getAllPosts } from '../../../lib/posts';
 
 const description = 'The complete playbook for building sovereign local economies. Six frameworks, real math, no theory.';
@@ -26,6 +27,19 @@ export default function FieldManualPage() {
 
   return (
     <>
+      {/* ── Hero Image ── */}
+      <section className="fm-hero-img">
+        <Image
+          src="/images/ai-corridor/delta-cotton-field.webp"
+          alt="Cotton field at golden hour in the Mississippi Delta"
+          width={1600}
+          height={900}
+          priority
+          sizes="100vw"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+      </section>
+
       {/* ── Header ── */}
       <section className="fm-header">
         <div className="section-container">
@@ -106,6 +120,12 @@ export default function FieldManualPage() {
       </section>
 
       <style>{`
+        .fm-hero-img {
+          width: 100%;
+          max-height: 420px;
+          overflow: hidden;
+          line-height: 0;
+        }
         .fm-header {
           background: var(--bg);
           padding-top: var(--space-16);

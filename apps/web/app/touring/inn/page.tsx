@@ -490,6 +490,20 @@ export default function InnPage() {
         </div>
       </section>
 
+      {/* ── Arrie Aslin — Artist-in-Residence photo break ── */}
+      <div
+        style={{
+          width: '100%',
+          height: 280,
+          backgroundImage: 'url(/images/arri-aslin/ta-c2-510-of-920.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center top',
+          opacity: 0.65,
+        }}
+        role="img"
+        aria-label="Arrie Aslin, Artist-in-Residence at The Big Muddy Inn, Natchez"
+      />
+
       {/* ── Home Base Callout ── */}
       <section className="inn-homebase">
         <div className="section-container">

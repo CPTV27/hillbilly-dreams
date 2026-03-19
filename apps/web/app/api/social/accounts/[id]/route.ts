@@ -2,6 +2,7 @@
 // GET, PATCH, DELETE for a single social account
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 type Params = { params: { id: string } };
 
@@ -10,7 +11,6 @@ export async function GET(_request: NextRequest, { params }: Params) {
   if (isNaN(id)) return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
     const account = await (prisma as any).socialAccount.findUnique({
       where: { id },
       include: { posts: { orderBy: { createdAt: 'desc' }, take: 20 } },
@@ -41,7 +41,6 @@ export async function PATCH(request: NextRequest, { params }: Params) {
   }
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
     const account = await (prisma as any).socialAccount.update({ where: { id }, data });
     return NextResponse.json({ data: account });
   } catch (err) {
@@ -55,7 +54,6 @@ export async function DELETE(_request: NextRequest, { params }: Params) {
   if (isNaN(id)) return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
     await (prisma as any).socialAccount.delete({ where: { id } });
     return NextResponse.json({ success: true });
   } catch (err) {

@@ -17,6 +17,22 @@ const SESSIONS = [
     status: 'Ongoing',
   },
   {
+    title: 'The Anthologist Sessions',
+    frequency: 'Bi-Weekly',
+    location: 'The Anthologist, Main Street, Natchez, MS',
+    description:
+      'Part record store, part flower shop, part performance space. The Anthologist has a recording setup, a curated vinyl collection, and a stage tucked between the bouquets and the bins. Intimate shows. Real recordings. The kind of place where a florist and a guitarist share the same counter.',
+    status: 'Active',
+  },
+  {
+    title: 'Bobby J\'s Live',
+    frequency: 'Weekends',
+    location: 'Bobby J\'s, Natchez, MS',
+    description:
+      'The juke joint. Louder, looser, later than the Blues Room or the Anthologist. Bobby J\'s is where the raw stuff happens — the performances that start at 10 and don\'t stop until the energy in the room says so. We record the best sets. The ones that hit different at midnight.',
+    status: 'Active',
+  },
+  {
     title: 'Porch Sessions',
     frequency: 'Spring & Fall',
     location: 'Various front porches, Natchez, MS',
@@ -71,7 +87,7 @@ const RECORDING_PHILOSOPHY = [
   {
     principle: 'Earned media over bought',
     detail:
-      "The $24K marketing budget in every retainer is real money, but the bigger play is earned media — Magazine features, Radio airtime, and social reach built on the back of the ecosystem. You don't buy that. You build it.",
+      "The marketing built into every tier is real — but the bigger play is earned media. Magazine features, Radio airtime, and social reach built on the back of the ecosystem. You don't buy that. You build it.",
   },
 ];
 
@@ -83,7 +99,7 @@ export default function SessionsPage() {
         style={{
           width: '100%',
           height: 280,
-          backgroundImage: 'url(/images/ai-corridor/juke-joint-night.webp)',
+          backgroundImage: 'url(/images/records/anthologist-vinyl-bins.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           marginBottom: '2.5rem',
@@ -117,9 +133,24 @@ export default function SessionsPage() {
 
       {/* Session types */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', marginBottom: '4rem' }}>
-        {SESSIONS.map((session) => (
+        {SESSIONS.map((session, idx) => (
+          <div key={session.title} style={{ display: 'contents' }}>
+          {idx === 3 && (
+            <div
+              style={{
+                width: '100%',
+                height: 240,
+                backgroundImage: 'url(/images/studio-c/utopiademo-day-25.webp)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                opacity: 0.65,
+                margin: '1rem 0',
+              }}
+              role="img"
+              aria-label="Studio C recording setup"
+            />
+          )}
           <article
-            key={session.title}
             style={{
               border: '1px solid var(--muted, #333)',
               padding: '2rem',
@@ -179,8 +210,39 @@ export default function SessionsPage() {
               {session.description}
             </p>
           </article>
+          </div>
         ))}
       </div>
+
+      {/* Photo break — Studio C */}
+      <div
+        style={{
+          width: '100%',
+          height: 240,
+          backgroundImage: 'url(/images/studio-c/utopiademo-day-40.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.65,
+          margin: '0 0 2rem',
+        }}
+        role="img"
+        aria-label="Studio C production session"
+      />
+
+      {/* Photo break — Anthologist flowers */}
+      <div
+        style={{
+          width: '100%',
+          height: 240,
+          backgroundImage: 'url(/images/records/anthologist-flowers.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.75,
+          margin: '2rem 0',
+        }}
+        role="img"
+        aria-label="Flower cooler at the Anthologist — record store and florist"
+      />
 
       {/* Ecosystem callout */}
       <section

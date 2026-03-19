@@ -12,8 +12,8 @@
 
   /* ── Color: Text ── */
   --text:            #f0ebe0;   /* Primary body text — warm cream */
-  --text-muted:      #8a8074;   /* Secondary/meta text */
-  --text-disabled:   #5a524a;   /* Disabled states */
+  --text-muted:      #9d968a;   /* Secondary/meta text — WCAG AA 4.7:1 on --bg */
+  --text-disabled:   #6b635a;   /* Disabled states — decorative only, not for readable text */
 
   /* ── Color: Accent (Amber/Gold) ── */
   --accent:          #c8943e;   /* Primary interactive color */

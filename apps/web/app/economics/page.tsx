@@ -213,11 +213,11 @@ export default function EconomicsHomepage() {
         </div>
       </section>
 
-      {/* ── Photo Break ── */}
+      {/* ── Photo Break 1 ── */}
       <section className="econ-photo-break">
         <Image
-          src="/images/ai-corridor/delta-cotton-field.webp"
-          alt="Cotton field at golden hour in the Mississippi Delta"
+          src="/images/ai-corridor/river-sunset-bluffs.webp"
+          alt="Sunset over the river bluffs"
           width={1600}
           height={900}
           sizes="100vw"
@@ -242,6 +242,89 @@ export default function EconomicsHomepage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Photo Break 2 ── */}
+      <section className="econ-photo-break">
+        <Image
+          src="/images/ai-corridor/juke-joint-night.webp"
+          alt="Juke joint at night in the Mississippi Delta"
+          width={1600}
+          height={900}
+          sizes="100vw"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+      </section>
+
+      {/* ── More Videos ── */}
+      <section className="econ-video-break">
+        <div className="section-container">
+          <div className="section-label">Watch</div>
+          <h2 className="section-title">The Numbers</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-6)', maxWidth: 700, margin: '0 auto' }}>
+            <div style={{ textAlign: 'center' }}>
+              <video
+                src="/video/stat-450k.mp4"
+                controls
+                playsInline
+                preload="metadata"
+                style={{
+                  maxWidth: 320,
+                  width: '100%',
+                  borderRadius: 'var(--radius-lg)',
+                  border: '1px solid var(--border)',
+                }}
+              >
+                Video not supported.
+              </video>
+              <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: 'var(--space-2)' }}>
+                The $450,000 Secret
+              </p>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <video
+                src="/video/extraction-stat.mp4"
+                controls
+                playsInline
+                preload="metadata"
+                style={{
+                  maxWidth: 320,
+                  width: '100%',
+                  borderRadius: 'var(--radius-lg)',
+                  border: '1px solid var(--border)',
+                }}
+              >
+                Video not supported.
+              </video>
+              <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: 'var(--space-2)' }}>
+                The Extraction Rate
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Quote Video ── */}
+      <section className="econ-video-break" style={{ paddingTop: 0 }}>
+        <div className="section-container" style={{ textAlign: 'center' }}>
+          <video
+            src="/video/quote-broke.mp4"
+            controls
+            playsInline
+            preload="metadata"
+            style={{
+              maxWidth: 360,
+              width: '100%',
+              borderRadius: 'var(--radius-lg)',
+              border: '1px solid var(--border)',
+            }}
+          >
+            Video not supported.
+          </video>
+          <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: 'var(--space-3)', fontStyle: 'italic' }}>
+            &ldquo;You&apos;re not broke. You&apos;re being drained.&rdquo;
+          </p>
         </div>
       </section>
 
@@ -272,6 +355,18 @@ export default function EconomicsHomepage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* ── Photo Break 3 ── */}
+      <section className="econ-photo-break">
+        <Image
+          src="/images/ai-corridor/french-quarter-balcony.webp"
+          alt="French Quarter balcony with wrought iron railings"
+          width={1600}
+          height={900}
+          sizes="100vw"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
       </section>
 
       {/* ── Substack / Newsletter ── */}

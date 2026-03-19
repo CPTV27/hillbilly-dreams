@@ -52,8 +52,8 @@ export default async function RadioHomepage() {
       {/* ── Hero ── */}
       <section className="radio-hero">
         <Image
-          src="https://storage.googleapis.com/bmt-media-bigmuddy/radio/bmt-radio-hero-studio-mmegjx47-1772777169991.webp"
-          alt="Radio studio microphone in warm light"
+          src="/images/studio-c/utopiademo-day-25.webp"
+          alt="Studio C production station — monitors, ATEM switcher, and Steinway grand piano under magenta studio light"
           fill
           priority
           sizes="100vw"
@@ -97,8 +97,8 @@ export default async function RadioHomepage() {
           <div className="radio-details__grid">
             <div className="radio-details__item radio-details__item--wide">
               <Image
-                src="https://storage.googleapis.com/bmt-media-bigmuddy/radio/bmt-radio-detail-mixer-mmegjm02-1772777179690.webp"
-                alt="Vintage mixer with glowing VU meters"
+                src="/images/studio-c/utopiademo-day-40.webp"
+                alt="Engineer at the mixing console at Studio C, Natchez"
                 width={1600}
                 height={900}
                 sizes="(min-width: 768px) 66vw, 100vw"
@@ -109,8 +109,8 @@ export default async function RadioHomepage() {
             </div>
             <div className="radio-details__item radio-details__item--square">
               <Image
-                src="https://storage.googleapis.com/bmt-media-bigmuddy/radio/bmt-radio-detail-vinyl-mmegjsmv-1772777172990.webp"
-                alt="Vinyl records in a wooden crate"
+                src="/images/studio-c/utopiademo-day-45.webp"
+                alt="Steinway grand piano interior — strings and hammers under dramatic studio light"
                 width={800}
                 height={800}
                 sizes="(min-width: 768px) 33vw, 50vw"
@@ -121,8 +121,8 @@ export default async function RadioHomepage() {
             </div>
             <div className="radio-details__item radio-details__item--square">
               <Image
-                src="https://storage.googleapis.com/bmt-media-bigmuddy/radio/bmt-radio-detail-headphones-mmegjjfd-1772777176490.webp"
-                alt="Headphones and steaming coffee mug"
+                src="/images/studio-c/utopiademo-day-5.webp"
+                alt="ATEM production switcher with colorful LED buttons at Studio C"
                 width={800}
                 height={800}
                 sizes="(min-width: 768px) 33vw, 50vw"
@@ -133,8 +133,8 @@ export default async function RadioHomepage() {
             </div>
             <div className="radio-details__item radio-details__item--wide">
               <Image
-                src="https://storage.googleapis.com/bmt-media-bigmuddy/radio/bmt-radio-atmosphere-guitar-mmegjj4e-1772777183158.webp"
-                alt="Acoustic guitar leaning against exposed brick wall"
+                src="/images/studio-c/utopiademo-day-55.webp"
+                alt="Guitarist tracking with Audio-Technica headphones at Studio C"
                 width={1600}
                 height={900}
                 sizes="(min-width: 768px) 66vw, 100vw"
@@ -190,6 +190,20 @@ export default async function RadioHomepage() {
         </div>
       </section>
 
+      {/* ── Portrait Photo Break ── */}
+      <div
+        style={{
+          width: '100%',
+          height: 320,
+          backgroundImage: 'url(/images/portraits/klshoot3-500-of-538.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.65,
+        }}
+        role="img"
+        aria-label="Portrait — Big Muddy Radio"
+      />
+
       {/* ── What is the Blues Room ── */}
       <section className="radio-about">
         <div className="section-container">
@@ -235,6 +249,14 @@ export default async function RadioHomepage() {
           align-items: center;
           background: var(--bg);
           overflow: hidden;
+        }
+        .radio-hero__video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 0;
         }
         .radio-hero__overlay {
           position: absolute;

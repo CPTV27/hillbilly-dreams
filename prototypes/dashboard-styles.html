@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Big Muddy Media — Dashboard Style Prototypes</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: { extend: {} }
+}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Inter', sans-serif; background: #0f172a; }
+
+/* Smooth transitions between themes */
+.dashboard-preview { transition: all 0.4s ease; }
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+
+/* Mini chart bars */
+.bar { transition: height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+/* Pulse animation for live indicators */
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.pulse-dot { animation: pulse-dot 2s infinite; }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- Header / Style Selector -->
+  <div style="position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1e293b;">
+    <div style="max-width: 1400px; margin: 0 auto; padding: 16px 24px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+        <div>
+          <h1 style="font-family: 'DM Serif Display', serif; color: #f8fafc; font-size: 24px; margin: 0;">Big Muddy Media</h1>
+          <p style="color: #64748b; font-size: 13px; margin: 4px 0 0 0; font-family: 'JetBrains Mono', monospace;">Dashboard Platform — Style Prototypes</p>
+        </div>
+        <div style="color: #64748b; font-size: 12px; font-family: 'JetBrains Mono', monospace;">
+          Multi-tenant SaaS · Click a style to preview
+        </div>
+      </div>
+      <div id="style-tabs" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px;"></div>
+    </div>
+  </div>
+
+  <!-- Dashboard Preview Area -->
+  <div style="max-width: 1400px; margin: 0 auto; padding: 24px;">
+    <div id="preview" class="dashboard-preview" style="border-radius: 16px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);"></div>
+  </div>
+</div>
+
+<script>
+// ── Theme Definitions ──────────────────────────────────────────────────────────
+
+const themes = [
+  {
+    id: 'dark-executive',
+    name: 'Dark Executive',
+    tag: 'CEO / C-Suite',
+    description: 'The S2PX-proven dark theme. High contrast, blue accents, data-dense. Built for executives who want everything at a glance.',
+    sidebar: { bg: '#0f172a', fg: '#94a3b8', active: '#3b82f6', activeBg: 'rgba(59,130,246,0.15)', border: '#1e293b', logo: '#3b82f6' },
+    main: { bg: '#1e293b', cardBg: '#0f172a', fg: '#f1f5f9', muted: '#64748b', border: '#334155', accent: '#3b82f6' },
+    header: { bg: 'rgba(15,23,42,0.8)', fg: '#f1f5f9' },
+    chart: { primary: '#3b82f6', secondary: '#06b6d4', tertiary: '#8b5cf6', gradient: 'linear-gradient(135deg, #3b82f6, #06b6d4)' },
+    font: "'Inter', sans-serif",
+    monoFont: "'JetBrains Mono', monospace",
+  },
+  {
+    id: 'iron-earth',
+    name: 'Iron & Earth',
+    tag: 'Big Muddy Native',
+    description: 'Warm, analog, road-worn. Amber and copper tones over deep charcoal. The Big Muddy house style — "Zen and the Art" meets Delta Blues.',
+    sidebar: { bg: '#1c1917', fg: '#a8a29e', active: '#d97706', activeBg: 'rgba(217,119,6,0.15)', border: '#292524', logo: '#d97706' },
+    main: { bg: '#292524', cardBg: '#1c1917', fg: '#fafaf9', muted: '#78716c', border: '#44403c', accent: '#d97706' },
+    header: { bg: 'rgba(28,25,23,0.9)', fg: '#fafaf9' },
+    chart: { primary: '#d97706', secondary: '#b45309', tertiary: '#92400e', gradient: 'linear-gradient(135deg, #d97706, #b45309)' },
+    font: "'DM Serif Display', serif",
+    monoFont: "'JetBrains Mono', monospace",
+  },
+  {
+    id: 'clean-corporate',
+    name: 'Clean Corporate',
+    tag: 'Professional Services',
+    description: 'Light, crisp, trustworthy. Perfect for accounting firms, law offices, consultancies. No frills — just clear data.',
+    sidebar: { bg: '#ffffff', fg: '#64748b', active: '#0f172a', activeBg: '#f1f5f9', border: '#e2e8f0', logo: '#0f172a' },
+    main: { bg: '#f8fafc', cardBg: '#ffffff', fg: '#0f172a', muted: '#64748b', border: '#e2e8f0', accent: '#0f172a' },
+    header: { bg: 'rgba(255,255,255,0.9)', fg: '#0f172a' },
+    chart: { primary: '#0f172a', secondary: '#3b82f6', tertiary: '#64748b', gradient: 'linear-gradient(135deg, #0f172a, #334155)' },
+    font: "'Inter', sans-serif",
+    monoFont: "'JetBrains Mono', monospace",
+  },
+  {
+    id: 'creative-studio',
+    name: 'Creative Studio',
+    tag: 'Agencies / Media',
+    description: 'Bold gradients, vibrant accents, playful energy. For creative agencies, media companies, and studios that want personality.',
+    sidebar: { bg: '#18181b', fg: '#a1a1aa', active: '#e879f9', activeBg: 'rgba(232,121,249,0.12)', border: '#27272a', logo: '#e879f9' },
+    main: { bg: '#09090b', cardBg: '#18181b', fg: '#fafafa', muted: '#71717a', border: '#27272a', accent: '#e879f9' },
+    header: { bg: 'rgba(9,9,11,0.9)', fg: '#fafafa' },
+    chart: { primary: '#e879f9', secondary: '#a78bfa', tertiary: '#38bdf8', gradient: 'linear-gradient(135deg, #e879f9, #a78bfa)' },
+    font: "'Space Grotesk', sans-serif",
+    monoFont: "'JetBrains Mono', monospace",
+  },
+  {
+    id: 'trades-industrial',
+    name: 'Trades & Industrial',
+    tag: 'Construction / Manufacturing',
+    description: 'Rugged, high-visibility, no-nonsense. Safety orange and steel gray. Built for job sites, shops, and field teams.',
+    sidebar: { bg: '#1a1a2e', fg: '#8892b0', active: '#f97316', activeBg: 'rgba(249,115,22,0.15)', border: '#16213e', logo: '#f97316' },
+    main: { bg: '#0f0f1a', cardBg: '#1a1a2e', fg: '#e2e8f0', muted: '#8892b0', border: '#16213e', accent: '#f97316' },
+    header: { bg: 'rgba(15,15,26,0.9)', fg: '#e2e8f0' },
+    chart: { primary: '#f97316', secondary: '#eab308', tertiary: '#22c55e', gradient: 'linear-gradient(135deg, #f97316, #eab308)' },
+    font: "'Inter', sans-serif",
+    monoFont: "'JetBrains Mono', monospace",
+  },
+  {
+    id: 'boutique-hospitality',
+    name: 'Boutique Hospitality',
+    tag: 'Hotels / Restaurants / Events',
+    description: 'Elegant, warm, inviting. Deep greens and gold. For boutique hotels, fine dining, event spaces, and luxury experiences.',
+    sidebar: { bg: '#052e16', fg: '#86efac', active: '#fbbf24', activeBg: 'rgba(251,191,36,0.12)', border: '#14532d', logo: '#fbbf24' },
+    main: { bg: '#022c22', cardBg: '#052e16', fg: '#f0fdf4', muted: '#6ee7b7', border: '#14532d', accent: '#fbbf24' },
+    header: { bg: 'rgba(5,46,22,0.9)', fg: '#f0fdf4' },
+    chart: { primary: '#fbbf24', secondary: '#a3e635', tertiary: '#34d399', gradient: 'linear-gradient(135deg, #fbbf24, #a3e635)' },
+    font: "'Playfair Display', serif",
+    monoFont: "'JetBrains Mono', monospace",
+  },
+];
+
+// ── Fake Data ──────────────────────────────────────────────────────────────────
+
+const kpis = [
+  { label: 'Total Revenue', value: '$487,250', change: '+12.3%', up: true, icon: '💰' },
+  { label: 'Active Pipeline', value: '$1.2M', change: '+8 deals', up: true, icon: '📊' },
+  { label: 'Win Rate', value: '68%', change: '+4.2%', up: true, icon: '🎯' },
+  { label: 'Avg Cycle Time', value: '23 days', change: '-3 days', up: true, icon: '⏱' },
+];
+
+const monthlyRevenue = [
+  { month: 'Apr', value: 28 }, { month: 'May', value: 35 }, { month: 'Jun', value: 42 },
+  { month: 'Jul', value: 38 }, { month: 'Aug', value: 55 }, { month: 'Sep', value: 48 },
+  { month: 'Oct', value: 62 }, { month: 'Nov', value: 58 }, { month: 'Dec', value: 71 },
+  { month: 'Jan', value: 65 }, { month: 'Feb', value: 78 }, { month: 'Mar', value: 85 },
+];
+
+const pipelineStages = [
+  { stage: 'Qualified', value: 35, color: '#3b82f6' },
+  { stage: 'Proposal', value: 28, color: '#8b5cf6' },
+  { stage: 'Negotiation', value: 18, color: '#f59e0b' },
+  { stage: 'In Hand', value: 12, color: '#10b981' },
+  { stage: 'Lost', value: 7, color: '#ef4444' },
+];
+
+const topDeals = [
+  { name: 'Meridian Tower Phase 2', client: 'Meridian Group', value: '$185,000', status: 'Proposal' },
+  { name: 'Riverside Commons', client: 'Blackstone RE', value: '$142,500', status: 'Negotiation' },
+  { name: 'Harbor District Scan', client: 'Port Authority', value: '$98,000', status: 'Qualified' },
+  { name: 'Campus West Wing', client: 'State University', value: '$76,200', status: 'In Hand' },
+  { name: 'Downtown Mixed-Use', client: 'Urban Dev Corp', value: '$64,800', status: 'Proposal' },
+];
+
+// ── Render Functions ───────────────────────────────────────────────────────────
+
+function renderTabs() {
+  const container = document.getElementById('style-tabs');
+  container.innerHTML = themes.map(t => `
+    <button
+      onclick="selectTheme('${t.id}')"
+      id="tab-${t.id}"
+      style="
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: 1px solid #334155;
+        background: #1e293b;
+        color: #94a3b8;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.2s;
+        font-family: 'Inter', sans-serif;
+      "
+      onmouseover="this.style.borderColor='#475569'"
+      onmouseout="if(!this.classList.contains('active-tab')) this.style.borderColor='#334155'"
+    >
+      ${t.name}
+      <span style="font-size: 10px; color: #475569; margin-left: 4px;">${t.tag}</span>
+    </button>
+  `).join('');
+}
+
+function renderDashboard(theme) {
+  const t = theme;
+  const maxRev = Math.max(...monthlyRevenue.map(m => m.value));
+  const totalPipeline = pipelineStages.reduce((s, p) => s + p.value, 0);
+
+  // Map pipeline colors to theme
+  const stageColors = [t.chart.primary, t.chart.secondary, t.chart.tertiary, t.main.accent, '#ef4444'];
+
+  return `
+  <div style="display: flex; height: 720px; font-family: ${t.font};">
+    <!-- Sidebar -->
+    <div style="width: 240px; background: ${t.sidebar.bg}; border-right: 1px solid ${t.sidebar.border}; display: flex; flex-direction: column; flex-shrink: 0;">
+      <!-- Logo -->
+      <div style="padding: 20px; border-bottom: 1px solid ${t.sidebar.border}; display: flex; align-items: center; gap: 12px;">
+        <div style="width: 36px; height: 36px; border-radius: 10px; background: ${t.sidebar.logo}; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; font-family: ${t.monoFont};">BM</div>
+        <div>
+          <div style="color: ${t.main.fg}; font-weight: 700; font-size: 15px;">ClientCo</div>
+          <div style="color: ${t.sidebar.fg}; font-size: 10px; font-family: ${t.monoFont}; letter-spacing: 1.5px; text-transform: uppercase;">Operations</div>
+        </div>
+      </div>
+      <!-- Nav -->
+      <nav style="padding: 12px; flex: 1;">
+        ${['Dashboard', 'Pipeline', 'Revenue', 'Production', 'Strategy', 'Canvas', 'Settings'].map((item, i) => `
+          <div style="
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 2px;
+            color: ${i === 0 ? t.sidebar.active : t.sidebar.fg};
+            background: ${i === 0 ? t.sidebar.activeBg : 'transparent'};
+            font-size: 13px;
+            font-weight: ${i === 0 ? '600' : '400'};
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+          ">
+            <span style="width: 18px; text-align: center; font-size: 14px;">${['◻', '◈', '◆', '▣', '◎', '⬡', '⚙'][i]}</span>
+            ${item}
+          </div>
+        `).join('')}
+      </nav>
+      <!-- User -->
+      <div style="padding: 16px; border-top: 1px solid ${t.sidebar.border};">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: ${t.sidebar.logo}; opacity: 0.2;"></div>
+          <div>
+            <div style="color: ${t.main.fg}; font-size: 12px; font-weight: 500;">Owen Pierson</div>
+            <div style="color: ${t.sidebar.fg}; font-size: 10px;">CEO</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div style="flex: 1; background: ${t.main.bg}; overflow-y: auto;">
+      <!-- Header -->
+      <div style="padding: 20px 28px; background: ${t.header.bg}; backdrop-filter: blur(12px); border-bottom: 1px solid ${t.main.border}; display: flex; align-items: center; justify-content: space-between;">
+        <div>
+          <div style="font-size: 10px; font-family: ${t.monoFont}; color: ${t.main.muted}; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2px;">Executive Command Center</div>
+          <div style="font-size: 20px; font-weight: 700; color: ${t.header.fg};">Operations Dashboard</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="pulse-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e;"></div>
+          <span style="font-size: 11px; color: ${t.main.muted}; font-family: ${t.monoFont};">Live · March 2026</span>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div style="padding: 24px 28px;">
+
+        <!-- Theme Description Banner -->
+        <div style="background: ${t.main.cardBg}; border: 1px solid ${t.main.border}; border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+          <div style="width: 4px; height: 36px; border-radius: 2px; background: ${t.chart.gradient};"></div>
+          <div>
+            <div style="font-size: 14px; font-weight: 600; color: ${t.main.fg}; margin-bottom: 2px;">${t.name}</div>
+            <div style="font-size: 12px; color: ${t.main.muted}; line-height: 1.4;">${t.description}</div>
+          </div>
+        </div>
+
+        <!-- KPI Cards -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+          ${kpis.map((kpi, i) => `
+            <div style="background: ${t.main.cardBg}; border: 1px solid ${t.main.border}; border-radius: 14px; padding: 18px;">
+              <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+                <span style="font-size: 20px;">${kpi.icon}</span>
+                <span style="font-size: 11px; color: #22c55e; font-weight: 500; font-family: ${t.monoFont};">${kpi.change}</span>
+              </div>
+              <div style="font-size: 26px; font-weight: 800; color: ${t.main.fg}; margin-bottom: 4px; letter-spacing: -0.5px;">${kpi.value}</div>
+              <div style="font-size: 12px; color: ${t.main.muted};">${kpi.label}</div>
+            </div>
+          `).join('')}
+        </div>
+
+        <!-- Charts Row -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px;">
+          <!-- Revenue Chart -->
+          <div style="background: ${t.main.cardBg}; border: 1px solid ${t.main.border}; border-radius: 14px; padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h3 style="color: ${t.main.fg}; font-size: 14px; font-weight: 600; margin: 0;">Revenue Trend</h3>
+              <span style="font-size: 10px; font-family: ${t.monoFont}; color: ${t.main.muted}; background: ${t.main.bg}; padding: 3px 8px; border-radius: 4px;">12 months</span>
+            </div>
+            <div style="display: flex; align-items: flex-end; gap: 6px; height: 140px; padding-top: 8px;">
+              ${monthlyRevenue.map((m, i) => `
+                <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                  <div class="bar" style="
+                    width: 100%;
+                    height: ${(m.value / maxRev) * 120}px;
+                    background: ${t.chart.gradient};
+                    border-radius: 4px 4px 0 0;
+                    opacity: ${0.5 + (m.value / maxRev) * 0.5};
+                  "></div>
+                  <span style="font-size: 9px; color: ${t.main.muted}; font-family: ${t.monoFont};">${m.month}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Pipeline Donut (simplified as horizontal bars) -->
+          <div style="background: ${t.main.cardBg}; border: 1px solid ${t.main.border}; border-radius: 14px; padding: 20px;">
+            <h3 style="color: ${t.main.fg}; font-size: 14px; font-weight: 600; margin: 0 0 16px 0;">Pipeline Health</h3>
+            ${pipelineStages.map((s, i) => `
+              <div style="margin-bottom: 10px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                  <span style="font-size: 11px; color: ${t.main.fg}; font-weight: 500;">${s.stage}</span>
+                  <span style="font-size: 11px; color: ${t.main.muted}; font-family: ${t.monoFont};">${s.value}%</span>
+                </div>
+                <div style="height: 6px; background: ${t.main.bg}; border-radius: 3px; overflow: hidden;">
+                  <div style="height: 100%; width: ${s.value}%; background: ${stageColors[i]}; border-radius: 3px; transition: width 0.8s ease;"></div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Top Deals Table -->
+        <div style="background: ${t.main.cardBg}; border: 1px solid ${t.main.border}; border-radius: 14px; padding: 20px;">
+          <h3 style="color: ${t.main.fg}; font-size: 14px; font-weight: 600; margin: 0 0 14px 0;">Top Deals</h3>
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 1px solid ${t.main.border};">
+                ${['Project', 'Client', 'Value', 'Status'].map(h => `
+                  <th style="text-align: left; padding: 8px 12px; font-size: 10px; font-weight: 600; color: ${t.main.muted}; text-transform: uppercase; letter-spacing: 1px; font-family: ${t.monoFont};">${h}</th>
+                `).join('')}
+              </tr>
+            </thead>
+            <tbody>
+              ${topDeals.map(d => `
+                <tr style="border-bottom: 1px solid ${t.main.border}20;">
+                  <td style="padding: 10px 12px; font-size: 13px; color: ${t.main.fg}; font-weight: 500;">${d.name}</td>
+                  <td style="padding: 10px 12px; font-size: 12px; color: ${t.main.muted};">${d.client}</td>
+                  <td style="padding: 10px 12px; font-size: 13px; color: ${t.main.fg}; font-weight: 600; font-family: ${t.monoFont};">${d.value}</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="font-size: 10px; padding: 3px 8px; border-radius: 6px; background: ${t.sidebar.activeBg}; color: ${t.sidebar.active}; font-weight: 500;">${d.status}</span>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── State ──────────────────────────────────────────────────────────────────────
+
+let activeTheme = themes[0].id;
+
+function selectTheme(id) {
+  activeTheme = id;
+  const theme = themes.find(t => t.id === id);
+
+  // Update tabs
+  document.querySelectorAll('#style-tabs button').forEach(btn => {
+    const isActive = btn.id === `tab-${id}`;
+    btn.style.background = isActive ? theme.sidebar.logo : '#1e293b';
+    btn.style.color = isActive ? '#ffffff' : '#94a3b8';
+    btn.style.borderColor = isActive ? theme.sidebar.logo : '#334155';
+    btn.classList.toggle('active-tab', isActive);
+  });
+
+  // Update preview
+  document.getElementById('preview').innerHTML = renderDashboard(theme);
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────────
+renderTabs();
+selectTheme('dark-executive');
+</script>
+
+</body>
+</html>

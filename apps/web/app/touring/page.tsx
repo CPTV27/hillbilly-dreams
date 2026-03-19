@@ -324,6 +324,14 @@ export default async function TouringHomepage() {
           overflow: hidden;
           background: var(--bg);
         }
+        .touring-hero__video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 0;
+        }
         .touring-hero__bg-pattern {
           position: absolute;
           inset: 0;

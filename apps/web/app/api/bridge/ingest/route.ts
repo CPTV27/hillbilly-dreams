@@ -9,6 +9,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { verifyPayload, isTimestampValid, type SignedPayload } from '@/lib/hmac';
+import { prisma } from '@/lib/db';
 
 // ── Generic payload types ──
 
@@ -42,7 +43,6 @@ async function resolveClient(
   if (apiKey) {
     // Multi-tenant mode: look up client by API key
     try {
-      const { default: prisma } = await import('@bigmuddy/database');
       const client = await (prisma as any).bridgeClient.findUnique({
         where: { apiKey },
       });
@@ -159,7 +159,6 @@ export async function POST(request: NextRequest) {
 
   // 7. Create draft article in database
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     // Check for duplicate — same source project already ingested by this client
     const existing = await (prisma as any).article.findFirst({

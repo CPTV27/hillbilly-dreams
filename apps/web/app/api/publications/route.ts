@@ -8,6 +8,7 @@
 //   ?city=natchez
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 const DB_FALLBACK_MSGS = [
   'Cannot read properties of undefined',
@@ -30,7 +31,6 @@ export async function GET(request: NextRequest) {
   const city = searchParams.get('city');
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const where: Record<string, unknown> = {};
 
@@ -69,7 +69,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'title and slug are required.' }, { status: 400 });
     }
 
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const publication = await (prisma as any).publication.create({
       data: {

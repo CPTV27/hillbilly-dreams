@@ -14,7 +14,7 @@ export default function ReleasesPage() {
         style={{
           width: '100%',
           height: 280,
-          backgroundImage: 'url(/images/ai-corridor/vinyl-records.webp)',
+          backgroundImage: 'url(/images/records/anthologist-vinyl-closeup.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           marginBottom: '2.5rem',

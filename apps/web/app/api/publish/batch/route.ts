@@ -10,10 +10,10 @@
 
 import { NextResponse } from 'next/server';
 import { getPublisher } from '@/lib/social-publishers';
+import { prisma } from '@/lib/db';
 
 export async function POST() {
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const now = new Date();
 

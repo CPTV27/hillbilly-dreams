@@ -6,6 +6,7 @@ import { NextResponse } from 'next/server';
 import crypto from 'crypto';
 import bcrypt from 'bcryptjs';
 import { requireAdmin } from '@/lib/admin-auth';
+import { prisma } from '@/lib/db';
 
 export async function PATCH(
   request: Request,
@@ -21,7 +22,6 @@ export async function PATCH(
     }
 
     const body = await request.json();
-    const { default: prisma } = await import('@bigmuddy/database');
 
     // Build update payload
     const data: Record<string, unknown> = {};
@@ -77,7 +77,6 @@ export async function DELETE(
       return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
     }
 
-    const { default: prisma } = await import('@bigmuddy/database');
     await (prisma as any).bridgeClient.delete({ where: { id } });
 
     return NextResponse.json({ success: true });

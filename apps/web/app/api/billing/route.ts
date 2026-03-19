@@ -3,6 +3,7 @@
 // POST /api/billing — create invoice manually or sync from Stripe
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -10,7 +11,6 @@ export async function GET(request: NextRequest) {
   const status = searchParams.get('status');
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const where: Record<string, unknown> = {};
     if (clientId) where.clientId = parseInt(clientId, 10);
@@ -50,7 +50,6 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     // Look up client to get tier pricing
     const client = await (prisma as any).client.findUnique({

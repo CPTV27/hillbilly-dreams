@@ -3,6 +3,7 @@
 // Falls back to lib/articles.ts data when database is not connected
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 import { CITY_GUIDE_ARTICLES } from '@/lib/articles';
 
 // ── GET /api/articles ──────────────────────────────────────────────────────
@@ -17,8 +18,6 @@ export async function GET(request: NextRequest) {
 
   try {
     // Attempt Prisma query
-    const { default: prisma } = await import('@bigmuddy/database');
-
     const where: Record<string, unknown> = {};
     if (status) where.status = status;
     if (city) where.city = city;
@@ -30,7 +29,9 @@ export async function GET(request: NextRequest) {
       ...(take ? { take: parseInt(take, 10) } : {}),
     });
 
-    return NextResponse.json({ data: articles });
+    return NextResponse.json({ data: articles }, {
+      headers: { 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300' },
+    });
   } catch (_dbError) {
     // Database not available — serve static data
     let articles = CITY_GUIDE_ARTICLES;
@@ -52,6 +53,8 @@ export async function GET(request: NextRequest) {
       data: articles,
       _source: 'static',
       _note: 'Database not connected. Serving static article data from lib/articles.ts.',
+    }, {
+      headers: { 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300' },
     });
   }
 }
@@ -87,8 +90,6 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
-
     const article = await (prisma as any).article.create({
       data: {
         title: body.title as string,

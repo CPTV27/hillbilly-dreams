@@ -6,6 +6,7 @@
 // Also supports GET ?q=search+term for business search.
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 function slugify(name: string): string {
   return name
@@ -25,7 +26,6 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const clients = await (prisma as any).client.findMany({
       where: {
@@ -118,7 +118,6 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     let client: any;
 

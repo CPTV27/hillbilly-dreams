@@ -3,6 +3,7 @@
 // Body: { calendarId: number }
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 // Optimal posting times by platform (hour in CT, 24h)
 const OPTIMAL_TIMES: Record<string, number[]> = {
@@ -29,7 +30,6 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const calendar = await (prisma as any).contentCalendar.findUnique({
       where: { id: calendarId },

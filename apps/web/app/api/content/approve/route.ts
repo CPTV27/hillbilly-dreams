@@ -3,6 +3,7 @@
 // Handles: calendar approval, post approval, review response approval
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 type ApprovalAction = 'approve' | 'reject' | 'request-changes';
 
@@ -25,7 +26,6 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     switch (type) {
       case 'calendar': {

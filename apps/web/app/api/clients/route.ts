@@ -3,6 +3,7 @@
 // POST /api/clients — create a new client
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/db';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -11,7 +12,6 @@ export async function GET(request: NextRequest) {
   const city = searchParams.get('city');
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const where: Record<string, unknown> = {};
     if (tier) where.tier = tier;
@@ -66,7 +66,6 @@ export async function POST(request: NextRequest) {
     .replace(/^-|-$/g, '');
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const client = await (prisma as any).client.create({
       data: {

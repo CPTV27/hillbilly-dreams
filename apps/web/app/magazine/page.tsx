@@ -123,7 +123,7 @@ export default async function MagazineHomepage() {
       {/* ── Corridor Photo Strip ── */}
       <section className="mag-photostrip">
         <div className="mag-photostrip__inner">
-          <Image src="/images/library/corridor-0339.webp" alt="Brick sidewalk with awnings on Natchez main street" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="/images/corridor/oceansprings-natchez-327-of-1183.webp" alt="Along the Mississippi corridor" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover', opacity: 0.7 }} />
           <Image src="/images/library/corridor-0657.webp" alt="Live oak canopy over Ocean Springs street" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
           <Image src="/images/library/corridor-0630.webp" alt="Antebellum mansion with iron fence and carriage" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
           <Image src="/images/library/corridor-0954.webp" alt="Teal shrimp boat at Ocean Springs marina" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
@@ -183,7 +183,7 @@ export default async function MagazineHomepage() {
       <section className="mag-photostrip">
         <div className="mag-photostrip__inner">
           <Image src="/images/corridor/cafe-sidewalk-natchez.webp" alt="Cafe sidewalk scene in Natchez" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-          <Image src="/images/corridor/natchez-bluff-river-view.webp" alt="Natchez bluff overlooking the Mississippi River" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="/images/corridor/oceansprings-natchez-1058-of-1183.webp" alt="Ocean Springs to Natchez corridor" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover', opacity: 0.7 }} />
           <Image src="/images/library/corridor-0501.webp" alt="Pink azaleas cascading along Natchez sidewalk" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
           <Image src="/images/library/corridor-0339.webp" alt="Brick sidewalk with awnings on Natchez main street" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
         </div>
@@ -201,6 +201,14 @@ export default async function MagazineHomepage() {
           justify-content: center;
           overflow: hidden;
           background: var(--bg);
+        }
+        .mag-hero__video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 0;
         }
         .mag-hero__overlay {
           position: absolute;

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@bigmuddy/database';
+import { prisma } from '@/lib/db';
 
 // GET /api/metrics
 // Returns all metrics as a keyed object: { newsletter_subscribers: { value, target, label, ... }, ... }
@@ -15,7 +15,9 @@ export async function GET() {
       keyed[metric.key] = metric;
     }
 
-    return NextResponse.json(keyed);
+    return NextResponse.json(keyed, {
+      headers: { 'Cache-Control': 'private, s-maxage=10, stale-while-revalidate=30' },
+    });
   } catch (error) {
     console.error('[API Error] GET /api/metrics', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

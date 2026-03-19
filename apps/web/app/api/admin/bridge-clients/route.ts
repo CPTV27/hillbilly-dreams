@@ -6,13 +6,13 @@ import { NextResponse } from 'next/server';
 import crypto from 'crypto';
 import bcrypt from 'bcryptjs';
 import { requireAdmin } from '@/lib/admin-auth';
+import { prisma } from '@/lib/db';
 
 export async function GET() {
   const denied = await requireAdmin();
   if (denied) return denied;
 
   try {
-    const { default: prisma } = await import('@bigmuddy/database');
 
     const clients = await (prisma as any).bridgeClient.findMany({
       orderBy: { createdAt: 'desc' },
@@ -59,7 +59,6 @@ export async function POST(request: Request) {
       );
     }
 
-    const { default: prisma } = await import('@bigmuddy/database');
 
     // Check for duplicate name
     const existing = await (prisma as any).bridgeClient.findFirst({
