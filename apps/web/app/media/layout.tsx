@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   },
   description:
     'Join the directory. Get featured in the magazine, played on the radio, and listed on the touring route. AI-powered media services for local businesses along the Mississippi corridor — starting at $99/month.',
+  metadataBase: new URL('https://deepsouthdirectory.com'),
   openGraph: {
     type: 'website',
     locale: 'en_US',

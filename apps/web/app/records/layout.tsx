@@ -2,9 +2,13 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Big Muddy Records — Music from the Mississippi Corridor',
+  title: {
+    default: 'Big Muddy Records — Music from the Mississippi Corridor',
+    template: '%s | Big Muddy Records',
+  },
   description:
     'Independent record label capturing the sound of the Mississippi music corridor — blues, soul, gospel, and the voices that carry the river.',
+  metadataBase: new URL('https://bigmuddyrecords.net'),
   openGraph: {
     title: 'Big Muddy Records',
     description: 'Music from the Mississippi corridor. Memphis to New Orleans.',

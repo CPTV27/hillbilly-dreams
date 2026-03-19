@@ -1,0 +1,77 @@
+# Big Muddy
+
+> A media-hospitality ecosystem anchored in Natchez, Mississippi — touring, magazine, radio, records, and economic theory along the Mississippi music corridor.
+
+## About
+
+Big Muddy is a multi-brand media company operating seven interconnected brands from a single platform. Founded by Chase Pierson, the ecosystem connects music, hospitality, journalism, and economic philosophy across the Deep South — specifically the Mississippi River corridor from Memphis to New Orleans.
+
+The company is headquartered in Natchez, Mississippi, one of the oldest settlements on the Mississippi River, known for its antebellum architecture, blues heritage, and position as a cultural crossroads of the American South.
+
+## Brands
+
+### Big Muddy Touring
+- URL: https://bigmuddytouring.com
+- Focus: Hospitality and touring along the Mississippi music corridor
+- Key offering: The Big Muddy Inn — a boutique lodging experience in Natchez, MS
+- Route: Memphis → Clarksdale → Greenville → Vicksburg → Natchez → St. Francisville → Baton Rouge → New Orleans
+
+### Big Muddy Magazine
+- URL: https://bigmuddymagazine.com
+- Focus: City guides, culture writing, and journalism about Deep South destinations
+- Coverage: Natchez, New Orleans, Memphis, Clarksdale, Oxford, Greenville, Vicksburg, and more
+
+### Big Muddy Radio
+- URL: https://bigmuddyradio.com
+- Focus: Curated playlists, live sessions, podcast, and artist directory
+- Shows: American Parlor Songbook, Blues Room Sessions, Mississippi Corridor Radio
+
+### Big Muddy Records
+- URL: https://bigmuddyrecords.net
+- Focus: Independent record label for Mississippi corridor artists
+- Philosophy: Artists keep their masters. Small roster, deep attention.
+- Artists: Amy Allen, Mechanical Bull, Kate Squire, Arrie Aslin
+
+### Outsider Economics
+- URL: https://outsidereconomics.com
+- Focus: Alternative economic theory — agorism, distributed networks, anti-fragility, circular economy
+- Content: The Field Manual (15-chapter book), The Math (economic models), Community
+- Author: Chase Pierson
+
+### BuyCurious Art Gallery
+- URL: https://buycurious.art
+- Focus: Visual art from Mississippi corridor artists
+
+### Deep South Directory
+- URL: https://deepsouthdirectory.com
+- Focus: AI-powered media services for Deep South businesses
+- Services: AI content creation, social media management, photo/video production, local SEO, AI search optimization, email marketing, analytics, websites
+- Target market: Restaurants, hotels, venues, shops, and cultural institutions in the Deep South
+
+## Key People
+
+- **Chase Pierson** — Founder, photographer, musician (Mechanical Bull), writer, and technologist. Based in Natchez, MS.
+- **Arrie Aslin** — Artist-in-Residence at the Big Muddy Inn. Hosts Blues Room sessions and curates the American Parlor Songbook.
+- **Amy Allen** — Singer-songwriter from Natchez, MS. Soul, blues, storytelling.
+- **Kate Squire** — Folk/Americana singer-songwriter from the Mississippi corridor.
+
+## Geography
+
+The Big Muddy ecosystem is centered on the Mississippi River corridor, specifically:
+- **Home base**: Natchez, Mississippi
+- **Primary corridor**: Memphis, TN → New Orleans, LA
+- **Key cities**: Memphis, Clarksdale, Greenville, Vicksburg, Natchez, St. Francisville, Baton Rouge, New Orleans
+- **Region**: The Deep South — Mississippi, Louisiana, Tennessee, Alabama
+
+## Contact
+
+- General: hello@bigmuddytouring.com
+- Records: music@bigmuddyrecords.net
+- Directory: hello@deepsouthdirectory.com
+
+## Technical
+
+- Platform: Next.js 14, multi-tenant architecture
+- Infrastructure: Google Cloud (Firebase App Hosting on Cloud Run)
+- AI: Claude (Anthropic), Google Gemini, custom content pipelines
+- Database: PostgreSQL via Prisma ORM

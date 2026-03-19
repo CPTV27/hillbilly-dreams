@@ -10,14 +10,17 @@ import { JsonLd, getOrganizationSchema, getWebSiteSchema } from '@/lib/structure
 import { constructMetadata, themeColor } from '../metadata';
 import type { Viewport } from 'next';
 
-export const metadata: Metadata = constructMetadata({
-  title: {
-    default: 'Big Muddy Touring | Memphis to New Orleans',
-    template: '%s | Big Muddy Touring',
-  },
-  description: "Eighteen cities. Five states. A thousand years of American music. City guides, curated playlists, live events, and lodging along the Mississippi's music corridor.",
-  path: '/touring',
-});
+export const metadata: Metadata = {
+  ...constructMetadata({
+    title: {
+      default: 'Big Muddy Touring | Memphis to New Orleans',
+      template: '%s | Big Muddy Touring',
+    },
+    description: "Eighteen cities. Five states. A thousand years of American music. City guides, curated playlists, live events, and lodging along the Mississippi's music corridor.",
+    path: '/touring',
+  }),
+  metadataBase: new URL('https://bigmuddytouring.com'),
+};
 
 export const viewport: Viewport = {
   themeColor,

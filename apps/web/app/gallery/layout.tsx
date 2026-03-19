@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   },
   description:
     'Original art from the artists, musicians, and makers who call the Deep South home. Paintings, photography, sculpture, and more — curated from the Mississippi corridor.',
+  metadataBase: new URL('https://buycurious.art'),
   openGraph: {
     type: 'website',
     locale: 'en_US',

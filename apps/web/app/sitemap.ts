@@ -1,14 +1,56 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
 import { prisma } from '@bigmuddy/database';
 import { getAllPosts } from '@/lib/posts';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const bmtBase = 'https://bigmuddytouring.com';
-  const econBase = 'https://outsidereconomics.com';
+  const now = new Date();
 
-  // ── Big Muddy Touring entries ──
+  // ── Brand base URLs ──
+  const brands = {
+    touring: 'https://bigmuddytouring.com',
+    magazine: 'https://bigmuddymagazine.com',
+    radio: 'https://bigmuddyradio.com',
+    economics: 'https://outsidereconomics.com',
+    gallery: 'https://buycurious.art',
+    records: 'https://bigmuddyrecords.net',
+    media: 'https://deepsouthdirectory.com',
+    platform: 'https://superchase.app',
+  };
+
+  // ── Touring static pages ──
+  const touringEntries: MetadataRoute.Sitemap = [
+    {
+      url: brands.touring,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 1.0,
+    },
+    {
+      url: `${brands.touring}/touring/inn`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${brands.touring}/touring/route`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+  ];
+
+  // ── Magazine static pages ──
+  const magazineEntries: MetadataRoute.Sitemap = [
+    {
+      url: brands.magazine,
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 1.0,
+    },
+  ];
+
+  // ── Magazine articles from DB ──
   let articleEntries: MetadataRoute.Sitemap = [];
-
   try {
     const articles = await prisma.article.findMany({
       where: { status: 'published' },
@@ -16,7 +58,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
 
     articleEntries = articles.map((article) => ({
-      url: `${bmtBase}/magazine/articles/${article.slug}`,
+      url: `${brands.magazine}/magazine/articles/${article.slug}`,
       lastModified: article.updatedAt,
       changeFrequency: 'monthly' as const,
       priority: 0.7,
@@ -25,79 +67,81 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Prisma unavailable — static entries only
   }
 
-  const bmtEntries: MetadataRoute.Sitemap = [
+  // ── Radio static pages ──
+  const radioEntries: MetadataRoute.Sitemap = [
     {
-      url: bmtBase,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
+      url: brands.radio,
+      lastModified: now,
+      changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
-      url: `${bmtBase}/magazine`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${bmtBase}/radio`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
+      url: `${brands.radio}/radio/playlists`,
+      lastModified: now,
+      changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${bmtBase}/touring/inn`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
+      url: `${brands.radio}/radio/live`,
+      lastModified: now,
+      changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${bmtBase}/touring/route`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-  ];
-
-  // ── Outsider Economics entries ──
-  const econStaticPages: MetadataRoute.Sitemap = [
-    {
-      url: econBase,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 1.0,
+      url: `${brands.radio}/radio/directory`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
     {
-      url: `${econBase}/field-manual`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${econBase}/the-math`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${econBase}/community`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${econBase}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
+      url: `${brands.radio}/radio/podcast`,
+      lastModified: now,
+      changeFrequency: 'weekly',
       priority: 0.7,
     },
   ];
 
+  // ── Outsider Economics static pages ──
+  const econEntries: MetadataRoute.Sitemap = [
+    {
+      url: brands.economics,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 1.0,
+    },
+    {
+      url: `${brands.economics}/field-manual`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${brands.economics}/the-math`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${brands.economics}/community`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${brands.economics}/about`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+  ];
+
+  // ── Economics posts from MDX ──
   let econPostEntries: MetadataRoute.Sitemap = [];
   try {
     const posts = getAllPosts();
     econPostEntries = posts.map((post) => ({
-      url: `${econBase}/field-manual/${post.slug}`,
-      lastModified: new Date(),
+      url: `${brands.economics}/field-manual/${post.slug}`,
+      lastModified: now,
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     }));
@@ -105,5 +149,110 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Posts directory unavailable
   }
 
-  return [...bmtEntries, ...articleEntries, ...econStaticPages, ...econPostEntries];
+  // ── Gallery static pages ──
+  const galleryEntries: MetadataRoute.Sitemap = [
+    {
+      url: brands.gallery,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 1.0,
+    },
+    {
+      url: `${brands.gallery}/gallery/artists`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${brands.gallery}/gallery/work`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+  ];
+
+  // ── Records static pages ──
+  const recordsEntries: MetadataRoute.Sitemap = [
+    {
+      url: brands.records,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 1.0,
+    },
+    {
+      url: `${brands.records}/records/artists`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${brands.records}/records/releases`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${brands.records}/records/sessions`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+  ];
+
+  // ── Deep South Directory static pages ──
+  const mediaEntries: MetadataRoute.Sitemap = [
+    {
+      url: brands.media,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 1.0,
+    },
+    {
+      url: `${brands.media}/media/directory`,
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${brands.media}/media/pricing`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${brands.media}/media/services`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${brands.media}/media/get-started`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+  ];
+
+  // ── Platform static pages ──
+  const platformEntries: MetadataRoute.Sitemap = [
+    {
+      url: brands.platform,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 1.0,
+    },
+  ];
+
+  return [
+    ...touringEntries,
+    ...magazineEntries,
+    ...articleEntries,
+    ...radioEntries,
+    ...econEntries,
+    ...econPostEntries,
+    ...galleryEntries,
+    ...recordsEntries,
+    ...mediaEntries,
+    ...platformEntries,
+  ];
 }

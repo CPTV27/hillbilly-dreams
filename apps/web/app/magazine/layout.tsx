@@ -9,14 +9,17 @@ import { BRANDS } from '@bigmuddy/config';
 import { constructMetadata, themeColor } from '../metadata';
 import type { Viewport } from 'next';
 
-export const metadata: Metadata = constructMetadata({
-  title: {
-    default: 'Big Muddy Magazine | Stories from the Southern Gothic Heartland',
-    template: '%s | Big Muddy Magazine',
-  },
-  description: 'Long-form editorial, city guides, and stories from the Mississippi music corridor.',
-  path: '/magazine',
-});
+export const metadata: Metadata = {
+  ...constructMetadata({
+    title: {
+      default: 'Big Muddy Magazine | Stories from the Southern Gothic Heartland',
+      template: '%s | Big Muddy Magazine',
+    },
+    description: 'Long-form editorial, city guides, and stories from the Mississippi music corridor.',
+    path: '/magazine',
+  }),
+  metadataBase: new URL('https://bigmuddymagazine.com'),
+};
 
 export const viewport: Viewport = {
   themeColor,

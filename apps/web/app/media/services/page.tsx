@@ -96,6 +96,30 @@ const SERVICES = [
     ],
   },
   {
+    id: 'ai-optimization',
+    icon: '⬢',
+    label: 'AI Search Optimization',
+    title: 'Show Up When AI Answers the Question',
+    image: '/images/dsd/service-ai.webp',
+    desc: 'Google, ChatGPT, Perplexity, and Claude are replacing the search bar. When someone asks "best restaurants in Natchez" or "things to do in the Delta," AI pulls from structured data, authoritative content, and named entities. Most businesses aren\'t optimized for this. We fix that.',
+    tiers: [
+      { name: 'Front Porch', detail: 'AI audit + structured data basics' },
+      { name: 'The Route', detail: 'Full schema markup + entity optimization' },
+      { name: 'River Room', detail: 'AI content strategy + llms.txt + FAQ pages' },
+      { name: 'Blues Room', detail: 'Full GEO strategy + monitoring + iteration' },
+    ],
+    details: [
+      'AI Search Audit — how your business appears (or doesn\'t) in ChatGPT, Perplexity, Google AI Overviews',
+      'Schema.org structured data: LocalBusiness, Restaurant, Hotel, FAQPage, Event, Menu',
+      'Named entity density optimization — 15+ entities per page = 4.8x higher AI citation rate',
+      'First-paragraph optimization — AI pulls 44% of citations from the first 30% of your content',
+      'llms.txt and robots.txt configured for AI crawlers (GPTBot, ClaudeBot, PerplexityBot)',
+      'FAQ sections written for AI extraction — question-and-answer format that AI models prefer',
+      'Monthly AI visibility report — tracking your presence in AI-generated answers',
+      'Competitor gap analysis — what AI says about your competitors that it doesn\'t say about you',
+    ],
+  },
+  {
     id: 'email',
     icon: '▣',
     label: 'Email & Newsletter',
@@ -174,7 +198,7 @@ export default function ServicesPage() {
               <em>Nothing You Don't.</em>
             </h1>
             <p className="svc-header__sub">
-              Seven service categories. One integrated platform. Powered by the same AI stack
+              Eight service categories. One integrated platform. Powered by the same AI stack
               that runs the Big Muddy network — Magazine, Radio, and Touring.
             </p>
             <div className="svc-header__nav" role="navigation" aria-label="Service sections">
