@@ -5,9 +5,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Deep South Directory | The Local Business Network for the Mississippi Corridor',
+  title: 'Deep South Directory | The Mississippi Corridor\'s Media Network',
   description:
-    'Join the directory. Get featured in the magazine. Get played on the radio. Get found on the route. AI-powered media services for local businesses — starting at $99/month.',
+    'Magazine. Radio. Touring. AI. One subscription puts your business in front of the entire Mississippi corridor — from Memphis to New Orleans. Delta Dawn does the heavy lifting.',
 };
 
 const WHAT_YOU_GET = [
@@ -64,41 +64,98 @@ const CAPABILITIES = [
 
 const TIER_NAMES = ['Front Porch\n$99', 'The Route\n$249', 'River Room\n$499', 'Blues Room\n$999'];
 
-const BRANDS = [
+const ECOSYSTEM = [
   {
-    name: 'Big Muddy Touring',
-    url: 'https://bigmuddytouring.com',
-    desc: 'The flagship. Memphis to New Orleans music corridor. City guides, lodging, the route.',
-    stat: '18 cities',
-    image: '/images/dsd/brand-touring.webp',
+    name: 'Deep South Directory',
+    desc: 'Your home base. AI-powered listing, content, social media, reviews, and reporting. This is where it starts.',
+    stat: '$99/mo',
+    accent: true,
   },
   {
     name: 'Big Muddy Magazine',
-    url: 'https://bigmuddymagazine.com',
-    desc: 'Long-form editorial, photo essays, and city guides. Southern Gothic storytelling.',
-    stat: 'Weekly',
-    image: '/images/dsd/brand-magazine.webp',
+    desc: 'Long-form editorial, city guides, and photo essays. Directory members get featured — real stories, not ads.',
+    stat: '18 cities',
+    accent: false,
   },
   {
     name: 'Big Muddy Radio',
-    url: 'https://bigmuddyradio.com',
-    desc: 'Curated playlists and live sessions. The sound of the river.',
-    stat: 'Always on',
-    image: '/images/dsd/brand-radio.webp',
+    desc: 'Podcasts, playlists, and live sessions. Your events and your music, featured on shows that reach the whole corridor.',
+    stat: 'Broadcasting',
+    accent: false,
+  },
+  {
+    name: 'Big Muddy Touring',
+    desc: 'Memphis to New Orleans. Travelers drive the route and you\'re a stop on it — recommended by name.',
+    stat: 'The Route',
+    accent: false,
   },
   {
     name: 'The Big Muddy Inn',
-    url: 'https://bigmuddytouring.com/inn',
-    desc: 'Six-suite boutique hotel in Natchez, Mississippi. 411 N Commerce St.',
-    stat: '6 suites',
-    image: '/images/dsd/brand-inn.webp',
+    desc: 'Six blues-themed suites in Natchez. The flagship property. 50-seat Blues Room for live music.',
+    stat: '411 N Commerce',
+    accent: false,
   },
   {
     name: 'Outsider Economics',
-    url: 'https://outsidereconomics.com',
-    desc: 'Counter-narrative economics. The intellectual arm of the Big Muddy network.',
-    stat: 'Published',
-    image: '/images/dsd/brand-economics.webp',
+    desc: 'The intellectual backbone. Build local, extract nothing. Rise Up coaching for underserved communities.',
+    stat: 'Free coaching',
+    accent: false,
+  },
+  {
+    name: 'Rise Up Talent Pipeline',
+    desc: 'Discover artists → showcase at Ground Zero & B.B. King\'s → tour the corridor → promote on Radio. The full loop.',
+    stat: 'New artists',
+    accent: false,
+  },
+];
+
+const DELTA_DAWN_CAPS = [
+  {
+    title: 'Content That Sounds Like You',
+    desc: 'Delta Dawn learns your brand voice and generates social posts, email copy, and marketing materials that sound like a human wrote them — because the AI was trained on your story.',
+  },
+  {
+    title: 'Reviews Handled',
+    desc: 'New Google review? Delta Dawn drafts a response in your voice within minutes. You approve with one tap. Your reputation stays spotless.',
+  },
+  {
+    title: 'Social Media on Autopilot',
+    desc: 'Posts scheduled across Instagram, Facebook, TikTok, and Google Business Profile. AI-generated, brand-matched, published while you sleep.',
+  },
+  {
+    title: 'Show Prep & Episode Ideas',
+    desc: 'Delta Dawn scans the ecosystem — new businesses, upcoming events, artist stories — and suggests podcast topics and show lineups.',
+  },
+  {
+    title: 'Photo Enhancement',
+    desc: 'Take a photo on your phone. Delta Dawn enhances it to editorial quality using Vertex AI — warm tones, sharp details, magazine-ready.',
+  },
+  {
+    title: 'Monthly Intelligence',
+    desc: 'Every month: what happened, what worked, what\'s next. Real metrics, not vanity numbers. Delivered as a report you can actually read.',
+  },
+];
+
+const PIPELINE_STEPS = [
+  {
+    step: 'Discover',
+    desc: 'Rise Up coaches find artists in communities that don\'t have a music industry.',
+  },
+  {
+    step: 'Showcase',
+    desc: 'Regional talent shows at Ground Zero Blues Club (Clarksdale) and B.B. King\'s.',
+  },
+  {
+    step: 'Tour',
+    desc: 'Big Muddy Touring books discovered bands through the Mississippi corridor.',
+  },
+  {
+    step: 'Promote',
+    desc: 'Big Muddy Radio features them. Magazine writes their story. Directory lists their shows.',
+  },
+  {
+    step: 'Grow',
+    desc: 'Artists build careers. Communities build economies. The network gets stronger.',
   },
 ];
 
@@ -119,6 +176,10 @@ const MOAT = [
     title: 'One River. One Story.',
     desc: 'Every business in the directory is part of one story — the Mississippi corridor. Travelers don\'t visit one restaurant. They drive the route. You\'re a stop on that route.',
   },
+  {
+    title: 'Delta Dawn Never Sleeps',
+    desc: 'While agencies bill by the hour, Delta Dawn generates content, responds to reviews, schedules posts, and produces reports 24/7. That\'s why this starts at $99 instead of $3,000.',
+  },
 ];
 
 export default function MediaHomepage() {
@@ -131,20 +192,21 @@ export default function MediaHomepage() {
         <div className="media-hero__content">
           <div className="media-hero__eyebrow">
             <span className="media-hero__ornament">&#9670;</span>
-            <span>Deep South Directory · Mississippi Corridor</span>
+            <span>Deep South Directory · The Mississippi Corridor&apos;s Media Network</span>
           </div>
           <h1 className="media-hero__title">
-            Join the Directory.
+            One Network.
             <br />
-            <em>Join the Network.</em>
+            Every Brand.
+            <br />
+            <em>Your Business.</em>
           </h1>
           <p className="media-hero__sub">
-            We run a magazine, a radio show, and a touring brand along the Mississippi corridor.
-            Thousands of people read, listen, and travel the route every month.
-            The Deep South Directory puts your business in front of all of them.
+            Magazine. Radio. Touring. AI. One subscription puts your business in front of the entire
+            Mississippi corridor — from Memphis to New Orleans. Delta Dawn does the heavy lifting.
           </p>
           <div className="media-hero__free-badge">
-            3 Months Free — Then Starting at $99/month
+            3 Months Free — Then $99/month
           </div>
           <div className="media-hero__ctas">
             <a href="/media/get-started" className="btn btn--primary">
@@ -161,7 +223,7 @@ export default function MediaHomepage() {
             <span className="media-hero__proof-dot" aria-hidden="true">·</span>
             <span>Cancel anytime</span>
             <span className="media-hero__proof-dot" aria-hidden="true">·</span>
-            <span>No credit card required</span>
+            <span>AI-powered</span>
           </div>
         </div>
         <div className="media-hero__scroll-hint" aria-hidden="true">
@@ -172,6 +234,97 @@ export default function MediaHomepage() {
         </div>
       </section>
 
+      {/* ── The Ecosystem ── */}
+      <section className="media-ecosystem">
+        <div className="section-container">
+          <div className="media-ecosystem__header">
+            <div className="section-label">The Ecosystem</div>
+            <h2 className="section-title">Seven Brands. One Engine.</h2>
+            <p className="section-desc">
+              Every brand feeds the others. When you join one, you&apos;re plugged into all of them.
+            </p>
+          </div>
+          <div className="media-ecosystem__grid">
+            {ECOSYSTEM.map((item) => (
+              <div
+                key={item.name}
+                className={`media-ecosystem__card${item.accent ? ' media-ecosystem__card--accent' : ''}`}
+              >
+                <div className="media-ecosystem__stat">{item.stat}</div>
+                <h3 className="media-ecosystem__name">{item.name}</h3>
+                <p className="media-ecosystem__desc">{item.desc}</p>
+                {item.accent && (
+                  <div className="media-ecosystem__anchor-badge">Home Base</div>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="media-ecosystem__flywheel-note">
+            <span className="media-ecosystem__ornament" aria-hidden="true">&#9670;</span>
+            <span>The flywheel: Directory members feed Magazine stories. Magazine builds Radio audiences. Radio promotes Touring. Touring drives new Directory members.</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Delta Dawn ── */}
+      <section className="media-delta-dawn">
+        <div className="media-delta-dawn__tint" aria-hidden="true" />
+        <div className="section-container">
+          <div className="media-delta-dawn__header">
+            <div className="section-label">Meet Delta Dawn</div>
+            <h2 className="section-title">Your AI Media Team. Always On.</h2>
+            <p className="section-desc">
+              Named after the Tanya Tucker song. She&apos;s warm, Southern, and she never sleeps.
+            </p>
+          </div>
+          <div className="media-delta-dawn__grid">
+            {DELTA_DAWN_CAPS.map((cap) => (
+              <div key={cap.title} className="media-delta-dawn__card">
+                <div className="media-delta-dawn__card-icon" aria-hidden="true">&#9670;</div>
+                <h3 className="media-delta-dawn__card-title">{cap.title}</h3>
+                <p className="media-delta-dawn__card-desc">{cap.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Rise Up Talent Pipeline ── */}
+      <section className="media-pipeline">
+        <div className="section-container">
+          <div className="media-pipeline__header">
+            <div className="section-label">Rise Up</div>
+            <h2 className="section-title">We Don&apos;t Just Find Businesses. We Find Talent.</h2>
+            <p className="section-desc">
+              The Rise Up program discovers musical talent in underserved communities and gives them
+              a stage, a tour, and a radio show.
+            </p>
+          </div>
+          <div className="media-pipeline__track" role="list" aria-label="Rise Up talent pipeline stages">
+            {PIPELINE_STEPS.map((step, i) => (
+              <div key={step.step} className="media-pipeline__step" role="listitem">
+                <div className="media-pipeline__step-num" aria-hidden="true">0{i + 1}</div>
+                <div className="media-pipeline__step-label">{step.step}</div>
+                <p className="media-pipeline__step-desc">{step.desc}</p>
+                {i < PIPELINE_STEPS.length - 1 && (
+                  <div className="media-pipeline__arrow" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="media-pipeline__venues">
+            <span className="media-pipeline__venue-label">Featured venues:</span>
+            <span className="media-pipeline__venue">Ground Zero Blues Club · Clarksdale, MS</span>
+            <span className="media-pipeline__venue-sep" aria-hidden="true">+</span>
+            <span className="media-pipeline__venue">B.B. King&apos;s Blues Club · Memphis, TN</span>
+          </div>
+        </div>
+      </section>
+
       {/* ── What You Get ── */}
       <section className="media-problem">
         <div className="section-container">
@@ -179,8 +332,8 @@ export default function MediaHomepage() {
             <div className="section-label">What You Get</div>
             <h2 className="section-title">One Subscription. The Whole Network.</h2>
             <p className="section-desc">
-              When you join the Deep South Directory, you don't just get a listing.
-              You get plugged into a media network that's already reaching people across the corridor —
+              When you join the Deep South Directory, you don&apos;t just get a listing.
+              You get plugged into a media network that&apos;s already reaching people across the corridor —
               magazine, radio, touring, social, all of it.
             </p>
           </div>
@@ -203,7 +356,7 @@ export default function MediaHomepage() {
         </div>
       </section>
 
-      {/* ── Solution: Capabilities Table ── */}
+      {/* ── The Tiers ── */}
       <section className="media-solution">
         <div className="section-container">
           <div className="media-solution__header">
@@ -212,7 +365,7 @@ export default function MediaHomepage() {
             <p className="section-desc">
               Every tier gets you in the directory and into the network. Go up a tier and we do more —
               more posts, more platforms, more media, more features. All powered by AI at prices
-              that don't require a board meeting.
+              that don&apos;t require a board meeting.
             </p>
           </div>
           <div className="media-cap-table-wrap">
@@ -251,39 +404,7 @@ export default function MediaHomepage() {
         </div>
       </section>
 
-      {/* ── Social Proof: Built on a Proven Engine ── */}
-      <section className="media-proof">
-        <div className="section-container">
-          <div className="media-proof__header">
-            <div className="section-label">The Network</div>
-            <h2 className="section-title">The Brands Behind the Directory</h2>
-            <p className="section-desc">
-              The Deep South Directory is powered by these properties. When you join,
-              you get featured across all of them — magazine articles, radio segments,
-              touring guides. This is the network you're subscribing to.
-            </p>
-          </div>
-          <div className="media-proof__brands">
-            {BRANDS.map((brand) => (
-              <a key={brand.name} href={brand.url} className="media-proof__brand" target="_blank" rel="noopener noreferrer">
-                {brand.image && (
-                  <div
-                    className="media-proof__brand-img"
-                    style={{ backgroundImage: `url(${brand.image})` }}
-                    aria-hidden="true"
-                  />
-                )}
-                <div className="media-proof__brand-stat">{brand.stat}</div>
-                <div className="media-proof__brand-name">{brand.name}</div>
-                <p className="media-proof__brand-desc">{brand.desc}</p>
-                <span className="media-proof__brand-link">Visit →</span>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Moat ── */}
+      {/* ── The Difference ── */}
       <section className="media-moat">
         <div className="section-container">
           <div className="media-moat__header">
@@ -310,8 +431,8 @@ export default function MediaHomepage() {
             <div className="section-label">Get Started</div>
             <h2 className="media-cta-section__title">3 Months Free. Zero Risk.</h2>
             <p className="media-cta-section__sub">
-              We come to you, learn your business, build your voice, and put you in front of the whole corridor.
-              No credit card. No contracts. If it works, stay. If it doesn't, walk away. But it works.
+              We come to you, learn your business, build your voice, and plug you into the whole corridor.
+              Delta Dawn handles the rest.
             </p>
             <div className="media-cta-section__buttons">
               <a href="/media/get-started" className="btn btn--primary">Get Started</a>
@@ -448,7 +569,300 @@ export default function MediaHomepage() {
           z-index: 1;
         }
 
-        /* ── Problem ── */
+        /* ── Ecosystem ── */
+        .media-ecosystem {
+          background: var(--bg);
+          border-top: 1px solid var(--border);
+          border-bottom: 1px solid var(--border);
+        }
+        .media-ecosystem__header {
+          margin-bottom: var(--space-12);
+        }
+        .media-ecosystem__grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: var(--space-5);
+        }
+        @media (min-width: 640px) {
+          .media-ecosystem__grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        @media (min-width: 1024px) {
+          .media-ecosystem__grid {
+            grid-template-columns: repeat(4, 1fr);
+          }
+          .media-ecosystem__grid > *:first-child {
+            grid-column: span 2;
+          }
+          .media-ecosystem__grid > *:last-child {
+            grid-column: span 2;
+          }
+        }
+        .media-ecosystem__card {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-lg);
+          padding: var(--space-7);
+          position: relative;
+          transition: border-color var(--duration-fast) var(--ease-default), transform var(--duration-fast) var(--ease-default);
+        }
+        .media-ecosystem__card:hover {
+          border-color: var(--border-strong);
+          transform: translateY(-2px);
+        }
+        .media-ecosystem__card--accent {
+          background: var(--surface-2);
+          border-color: var(--accent);
+          box-shadow: 0 0 0 1px rgba(200, 148, 62, 0.15), inset 0 0 40px rgba(200, 148, 62, 0.04);
+        }
+        .media-ecosystem__card--accent:hover {
+          border-color: var(--accent);
+          box-shadow: var(--shadow-glow);
+        }
+        .media-ecosystem__stat {
+          font-family: var(--font-mono);
+          font-size: var(--text-xs);
+          font-weight: 600;
+          color: var(--accent);
+          letter-spacing: var(--tracking-wider);
+          text-transform: uppercase;
+          margin-bottom: var(--space-3);
+        }
+        .media-ecosystem__name {
+          font-family: var(--font-display);
+          font-size: var(--text-xl);
+          font-weight: 700;
+          color: var(--text);
+          letter-spacing: var(--tracking-tight);
+          margin: 0 0 var(--space-3);
+        }
+        .media-ecosystem__desc {
+          font-family: var(--font-body);
+          font-size: var(--text-sm);
+          color: var(--text-muted);
+          line-height: var(--leading-normal);
+          margin: 0;
+        }
+        .media-ecosystem__anchor-badge {
+          display: inline-block;
+          margin-top: var(--space-5);
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          font-weight: 700;
+          color: var(--bg);
+          background: var(--accent);
+          padding: var(--space-1) var(--space-4);
+          border-radius: var(--radius-full);
+          letter-spacing: var(--tracking-wide);
+          text-transform: uppercase;
+        }
+        .media-ecosystem__flywheel-note {
+          margin-top: var(--space-10);
+          display: flex;
+          align-items: flex-start;
+          gap: var(--space-4);
+          padding: var(--space-6) var(--space-8);
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-lg);
+          font-family: var(--font-body);
+          font-size: var(--text-sm);
+          color: var(--text-muted);
+          line-height: var(--leading-loose);
+        }
+        .media-ecosystem__ornament {
+          color: var(--accent);
+          font-size: 8px;
+          margin-top: 6px;
+          flex-shrink: 0;
+        }
+
+        /* ── Delta Dawn ── */
+        .media-delta-dawn {
+          position: relative;
+          background: var(--surface);
+          border-top: 1px solid var(--border);
+          border-bottom: 1px solid var(--border);
+          overflow: hidden;
+        }
+        .media-delta-dawn__tint {
+          position: absolute;
+          inset: 0;
+          background:
+            radial-gradient(ellipse 80% 50% at 50% 0%, rgba(200, 148, 62, 0.07) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 40% at 50% 100%, rgba(200, 148, 62, 0.04) 0%, transparent 55%);
+          pointer-events: none;
+        }
+        .media-delta-dawn__header {
+          position: relative;
+          margin-bottom: var(--space-12);
+        }
+        .media-delta-dawn__grid {
+          position: relative;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: var(--space-5);
+        }
+        @media (min-width: 640px) {
+          .media-delta-dawn__grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        @media (min-width: 1024px) {
+          .media-delta-dawn__grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+        .media-delta-dawn__card {
+          background: var(--bg);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-lg);
+          padding: var(--space-7);
+          transition: border-color var(--duration-fast) var(--ease-default), box-shadow var(--duration-fast) var(--ease-default);
+        }
+        .media-delta-dawn__card:hover {
+          border-color: rgba(200, 148, 62, 0.4);
+          box-shadow: 0 0 20px rgba(200, 148, 62, 0.06);
+        }
+        .media-delta-dawn__card-icon {
+          font-size: 8px;
+          color: var(--accent);
+          margin-bottom: var(--space-4);
+        }
+        .media-delta-dawn__card-title {
+          font-family: var(--font-display);
+          font-size: var(--text-xl);
+          font-weight: 700;
+          color: var(--text);
+          letter-spacing: var(--tracking-tight);
+          margin: 0 0 var(--space-3);
+        }
+        .media-delta-dawn__card-desc {
+          font-family: var(--font-body);
+          font-size: var(--text-base);
+          color: var(--text-muted);
+          line-height: var(--leading-normal);
+          margin: 0;
+        }
+
+        /* ── Talent Pipeline ── */
+        .media-pipeline {
+          background: var(--bg);
+          border-top: 1px solid var(--border);
+          border-bottom: 1px solid var(--border);
+        }
+        .media-pipeline__header {
+          margin-bottom: var(--space-12);
+        }
+        .media-pipeline__track {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-5);
+          position: relative;
+        }
+        @media (min-width: 900px) {
+          .media-pipeline__track {
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 0;
+          }
+        }
+        .media-pipeline__step {
+          position: relative;
+          flex: 1;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-lg);
+          padding: var(--space-6);
+          transition: border-color var(--duration-fast) var(--ease-default);
+        }
+        @media (min-width: 900px) {
+          .media-pipeline__step {
+            margin-right: var(--space-2);
+          }
+          .media-pipeline__step:last-child {
+            margin-right: 0;
+          }
+        }
+        .media-pipeline__step:hover {
+          border-color: var(--border-strong);
+        }
+        .media-pipeline__step-num {
+          font-family: var(--font-mono);
+          font-size: var(--text-xs);
+          font-weight: 700;
+          color: var(--accent);
+          letter-spacing: var(--tracking-wider);
+          margin-bottom: var(--space-2);
+        }
+        .media-pipeline__step-label {
+          font-family: var(--font-display);
+          font-size: var(--text-xl);
+          font-weight: 700;
+          color: var(--text);
+          letter-spacing: var(--tracking-tight);
+          margin-bottom: var(--space-3);
+          text-transform: uppercase;
+        }
+        .media-pipeline__step-desc {
+          font-family: var(--font-body);
+          font-size: var(--text-sm);
+          color: var(--text-muted);
+          line-height: var(--leading-normal);
+          margin: 0;
+        }
+        .media-pipeline__arrow {
+          display: none;
+          position: absolute;
+          right: calc(-1 * var(--space-4));
+          top: 50%;
+          transform: translateY(-50%);
+          color: var(--accent);
+          z-index: 2;
+          background: var(--bg);
+          border-radius: var(--radius-full);
+          padding: var(--space-1);
+        }
+        @media (min-width: 900px) {
+          .media-pipeline__arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+        .media-pipeline__venues {
+          margin-top: var(--space-8);
+          display: flex;
+          align-items: center;
+          gap: var(--space-4);
+          flex-wrap: wrap;
+          font-family: var(--font-body);
+          font-size: var(--text-sm);
+          color: var(--text-muted);
+          padding: var(--space-4) var(--space-6);
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-lg);
+        }
+        .media-pipeline__venue-label {
+          font-family: var(--font-mono);
+          font-size: var(--text-xs);
+          font-weight: 700;
+          color: var(--accent);
+          letter-spacing: var(--tracking-wider);
+          text-transform: uppercase;
+          flex-shrink: 0;
+        }
+        .media-pipeline__venue {
+          color: var(--text-muted);
+        }
+        .media-pipeline__venue-sep {
+          color: var(--accent);
+          font-weight: 700;
+        }
+
+        /* ── Problem / What You Get ── */
         .media-problem {
           background: var(--surface);
           border-top: 1px solid var(--border);
@@ -604,94 +1018,7 @@ export default function MediaHomepage() {
           text-align: center;
         }
 
-        /* ── Social Proof ── */
-        .media-proof {
-          background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
-          border-top: 1px solid var(--border);
-        }
-        .media-proof__header {
-          margin-bottom: var(--space-12);
-        }
-        .media-proof__brands {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: var(--space-5);
-        }
-        @media (min-width: 640px) {
-          .media-proof__brands {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-        @media (min-width: 1024px) {
-          .media-proof__brands {
-            grid-template-columns: repeat(5, 1fr);
-          }
-        }
-        .media-proof__brand {
-          display: flex;
-          flex-direction: column;
-          background: var(--surface-2);
-          border: 1px solid var(--border);
-          border-radius: var(--radius-lg);
-          padding: 0;
-          overflow: hidden;
-          text-decoration: none;
-          transition: border-color var(--duration-fast) var(--ease-default), box-shadow var(--duration-fast) var(--ease-default);
-        }
-        .media-proof__brand-img {
-          width: 100%;
-          height: 120px;
-          background-size: cover;
-          background-position: center;
-          opacity: 0.5;
-          transition: opacity var(--duration-fast) var(--ease-default);
-        }
-        .media-proof__brand:hover .media-proof__brand-img {
-          opacity: 0.75;
-        }
-        .media-proof__brand:hover {
-          border-color: var(--accent);
-          box-shadow: var(--shadow-glow);
-        }
-        .media-proof__brand-stat {
-          font-family: var(--font-mono);
-          font-size: var(--text-xs);
-          color: var(--accent);
-          letter-spacing: var(--tracking-wider);
-          text-transform: uppercase;
-          margin-bottom: var(--space-3);
-          padding: var(--space-5) var(--space-5) 0;
-        }
-        .media-proof__brand-name {
-          font-family: var(--font-display);
-          font-size: var(--text-lg);
-          font-weight: 700;
-          color: var(--text);
-          letter-spacing: var(--tracking-tight);
-          margin-bottom: var(--space-3);
-          padding: 0 var(--space-5);
-        }
-        .media-proof__brand-desc {
-          font-family: var(--font-body);
-          font-size: var(--text-sm);
-          color: var(--text-muted);
-          line-height: var(--leading-normal);
-          margin: 0 0 var(--space-5);
-          padding: 0 var(--space-5);
-          flex: 1;
-        }
-        .media-proof__brand-link {
-          font-family: var(--font-body);
-          font-size: var(--text-xs);
-          font-weight: 600;
-          color: var(--accent);
-          letter-spacing: var(--tracking-wide);
-          text-transform: uppercase;
-          margin-top: auto;
-          padding: 0 var(--space-5) var(--space-5);
-        }
-
-        /* ── Moat ── */
+        /* ── Moat / The Difference ── */
         .media-moat {
           border-top: 1px solid var(--border);
         }
@@ -764,6 +1091,7 @@ export default function MediaHomepage() {
           opacity: 0.12;
         }
         .media-cta-section__inner {
+          position: relative;
           text-align: center;
           max-width: 640px;
           margin: 0 auto;

@@ -89,6 +89,84 @@ const KPI_CONFIG = [
   },
 ];
 
+const PLATFORM_STATUS = [
+  // OTAs
+  { name: 'Google Business Profile', platform: 'google', status: 'active', action: 'Add business hours, upload 20+ photos', priority: 'high' },
+  { name: 'TripAdvisor', platform: 'tripadvisor', status: 'active', action: 'Need reviews — add QR codes to rooms', priority: 'medium' },
+  { name: 'Airbnb', platform: 'airbnb', status: 'partial', action: '3 of 6 suites listed — add British Invasion I, II, B.B. King', priority: 'high' },
+  { name: 'Booking.com', platform: 'booking', status: 'pending', action: 'Signed up — verify listing is live', priority: 'high' },
+  { name: 'Expedia', platform: 'expedia', status: 'pending', action: 'Signed up — verify listing is live', priority: 'high' },
+  { name: 'VRBO', platform: 'vrbo', status: 'pending', action: 'Signed up — verify listing is live', priority: 'high' },
+  { name: 'Yelp', platform: 'yelp', status: 'active', action: 'Respond to reviews', priority: 'low' },
+  // Social
+  { name: 'Facebook', platform: 'facebook', status: 'active', action: 'Post weekly', priority: 'low' },
+  { name: 'Instagram', platform: 'instagram', status: 'active', action: 'Post 3x/week', priority: 'medium' },
+  { name: 'TikTok', platform: 'tiktok', status: 'missing', action: 'Create account — Blues Room clips', priority: 'medium' },
+  { name: 'YouTube', platform: 'youtube', status: 'missing', action: 'Create channel — live sessions, room tours', priority: 'medium' },
+  // Directories
+  { name: 'Visit Natchez', platform: 'visitnatchez', status: 'active', action: 'Listed — keep updated', priority: 'low' },
+  { name: 'Hotels Above Par', platform: 'hotelsabovepar', status: 'active', action: 'Review published — no action needed', priority: 'low' },
+] as const;
+
+type PlatformStatus = (typeof PLATFORM_STATUS)[number]['status'];
+type TaskPriority = 'critical' | 'high' | 'medium' | 'low';
+
+const OPS_CHECKLIST = [
+  // Critical — This Week
+  { id: 'ann-bar', task: 'Remove outdated announcement bar from Squarespace (says "closed July-Aug 2025")', category: 'Website', priority: 'critical' as TaskPriority, done: false },
+  { id: 'airbnb-3', task: 'List remaining 3 suites on Airbnb (British Invasion I & II, B.B. King)', category: 'OTA', priority: 'critical' as TaskPriority, done: false },
+  { id: 'booking-verify', task: 'Verify Booking.com listing is live and indexed', category: 'OTA', priority: 'critical' as TaskPriority, done: false },
+  { id: 'expedia-verify', task: 'Verify Expedia listing is live and indexed', category: 'OTA', priority: 'critical' as TaskPriority, done: false },
+  { id: 'vrbo-verify', task: 'Verify VRBO listing is live and indexed', category: 'OTA', priority: 'critical' as TaskPriority, done: false },
+  // High — This Month
+  { id: 'alt-text', task: 'Add alt text to all images on Squarespace site', category: 'SEO', priority: 'high' as TaskPriority, done: false },
+  { id: 'biz-hours', task: 'Add business hours to Google Business Profile and Squarespace schema', category: 'SEO', priority: 'high' as TaskPriority, done: false },
+  { id: 'gbp-photos', task: 'Upload 20+ professional photos to Google Business Profile', category: 'SEO', priority: 'high' as TaskPriority, done: false },
+  { id: 'room-pages', task: 'Create individual room pages on Squarespace (one per suite)', category: 'SEO', priority: 'high' as TaskPriority, done: false },
+  { id: 'blog-launch', task: 'Launch Big Muddy Journal blog with first 3 posts', category: 'Content', priority: 'high' as TaskPriority, done: false },
+  { id: 'tiktok-create', task: 'Create TikTok account for Blues Room performance clips', category: 'Social', priority: 'high' as TaskPriority, done: false },
+  { id: 'youtube-create', task: 'Create YouTube channel for live sessions and room tours', category: 'Social', priority: 'high' as TaskPriority, done: false },
+  { id: 'liquor-license', task: 'Finalize liquor license for Blues Room bar', category: 'Operations', priority: 'high' as TaskPriority, done: false },
+  // Medium — Next 30 Days
+  { id: 'ta-reviews', task: 'Set up TripAdvisor review cards for guest rooms', category: 'OTA', priority: 'medium' as TaskPriority, done: false },
+  { id: 'schema-rooms', task: 'Add HotelRoom structured data to Squarespace', category: 'SEO', priority: 'medium' as TaskPriority, done: false },
+  { id: 'ota-cross-link', task: 'Add OTA profile links to Squarespace "Book With Us" section', category: 'Website', priority: 'medium' as TaskPriority, done: false },
+  { id: 'gbp-posts', task: 'Start weekly Google Business Profile posts', category: 'SEO', priority: 'medium' as TaskPriority, done: false },
+  { id: 'pinterest', task: 'Create Pinterest account for travel/design audience', category: 'Social', priority: 'medium' as TaskPriority, done: false },
+  { id: 'email-collect', task: 'Set up email capture on Squarespace with Beehiiv integration', category: 'Marketing', priority: 'medium' as TaskPriority, done: false },
+  // Done
+  { id: 'tripadvisor', task: 'Create TripAdvisor listing', category: 'OTA', priority: 'high' as TaskPriority, done: true },
+  { id: 'airbnb-initial', task: 'List first 3 suites on Airbnb', category: 'OTA', priority: 'high' as TaskPriority, done: true },
+  { id: 'yelp', task: 'Create and claim Yelp listing', category: 'OTA', priority: 'high' as TaskPriority, done: true },
+  { id: 'visitnatchez', task: 'Get listed on Visit Natchez directory', category: 'OTA', priority: 'medium' as TaskPriority, done: true },
+  { id: 'facebook', task: 'Create Facebook page', category: 'Social', priority: 'high' as TaskPriority, done: true },
+  { id: 'instagram', task: 'Create Instagram account', category: 'Social', priority: 'high' as TaskPriority, done: true },
+  { id: 'gbp-claim', task: 'Claim Google Business Profile', category: 'SEO', priority: 'critical' as TaskPriority, done: true },
+  { id: 'booking-signup', task: 'Sign up for Booking.com', category: 'OTA', priority: 'high' as TaskPriority, done: true },
+  { id: 'expedia-signup', task: 'Sign up for Expedia', category: 'OTA', priority: 'high' as TaskPriority, done: true },
+  { id: 'vrbo-signup', task: 'Sign up for VRBO', category: 'OTA', priority: 'high' as TaskPriority, done: true },
+];
+
+const PRIORITY_META: Record<TaskPriority, { label: string; headerClass: string }> = {
+  critical: { label: 'Critical — This Week', headerClass: 'checklist-group__header--critical' },
+  high:     { label: 'High — This Month',    headerClass: 'checklist-group__header--high'     },
+  medium:   { label: 'Medium — Next 30 Days', headerClass: 'checklist-group__header--medium'  },
+  low:      { label: 'Low',                  headerClass: 'checklist-group__header--low'      },
+};
+
+const STATUS_BADGE_CLASS: Record<PlatformStatus, string> = {
+  active:  'platform-badge--active',
+  partial: 'platform-badge--partial',
+  pending: 'platform-badge--pending',
+  missing: 'platform-badge--missing',
+};
+
+const PRIORITY_BADGE_CLASS: Record<string, string> = {
+  high:   'priority-badge--high',
+  medium: 'priority-badge--medium',
+  low:    'priority-badge--low',
+};
+
 const QUICK_ACTIONS = [
   { label: 'New Article', href: '/articles/new', icon: '+' },
   { label: 'New Playlist', href: '/playlists/new', icon: '+' },
@@ -117,6 +195,7 @@ export default function DashboardPage() {
   const [articles, setArticles] = useState<ArticleSummary[]>([]);
   const [events, setEvents] = useState<EventSummary[]>([]);
   const [loading, setLoading] = useState(true);
+  const [doneOpen, setDoneOpen] = useState(false);
 
   useEffect(() => {
     async function fetchAll() {
@@ -294,6 +373,119 @@ export default function DashboardPage() {
         </div>
       </div>
 
+      {/* ── Platform & OTA Status ── */}
+      <div className="dashboard-full-section" style={{ marginTop: 'var(--space-6)' }}>
+        <div className="dashboard-section__header">
+          <div>
+            <h2 className="dashboard-section__title">Platform & OTA Status</h2>
+            <p className="dashboard-section__sub">Big Muddy Inn — Distribution Channels</p>
+          </div>
+        </div>
+        <div className="platform-table-wrap">
+          <table className="platform-table">
+            <thead>
+              <tr>
+                <th className="platform-table__th">Platform</th>
+                <th className="platform-table__th">Status</th>
+                <th className="platform-table__th">Action Needed</th>
+                <th className="platform-table__th">Priority</th>
+              </tr>
+            </thead>
+            <tbody>
+              {PLATFORM_STATUS.map((p) => (
+                <tr key={p.platform} className="platform-table__row">
+                  <td className="platform-table__td platform-table__name">{p.name}</td>
+                  <td className="platform-table__td">
+                    <span className={`platform-badge ${STATUS_BADGE_CLASS[p.status]}`}>
+                      {p.status}
+                    </span>
+                  </td>
+                  <td className="platform-table__td platform-table__action">{p.action}</td>
+                  <td className="platform-table__td">
+                    <span className={`priority-badge ${PRIORITY_BADGE_CLASS[p.priority] ?? ''}`}>
+                      {p.priority}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* ── Operations Checklist ── */}
+      {(() => {
+        const open = OPS_CHECKLIST.filter((t) => !t.done);
+        const done = OPS_CHECKLIST.filter((t) => t.done);
+        const total = OPS_CHECKLIST.length;
+        const completedCount = done.length;
+        const pct = Math.round((completedCount / total) * 100);
+        const priorities: TaskPriority[] = ['critical', 'high', 'medium'];
+
+        return (
+          <div className="dashboard-full-section" style={{ marginTop: 'var(--space-6)' }}>
+            <div className="dashboard-section__header">
+              <div>
+                <h2 className="dashboard-section__title">Operations Checklist</h2>
+                <p className="dashboard-section__sub">Launch & Growth Tasks</p>
+              </div>
+            </div>
+
+            {/* Progress summary */}
+            <div className="checklist-progress">
+              <div className="checklist-progress__label">
+                <span className="checklist-progress__count">{completedCount} of {total} tasks complete</span>
+                <span className="checklist-progress__pct">{pct}%</span>
+              </div>
+              <div className="checklist-progress__track">
+                <div className="checklist-progress__fill" style={{ width: `${pct}%` }} />
+              </div>
+            </div>
+
+            {/* Open tasks grouped by priority */}
+            {priorities.map((p) => {
+              const group = open.filter((t) => t.priority === p);
+              if (group.length === 0) return null;
+              const meta = PRIORITY_META[p];
+              return (
+                <div key={p} className="checklist-group">
+                  <div className={`checklist-group__header ${meta.headerClass}`}>
+                    {meta.label}
+                    <span className="checklist-group__count">{group.length}</span>
+                  </div>
+                  {group.map((task) => (
+                    <div key={task.id} className="checklist-item">
+                      <span className="checklist-item__checkbox" aria-hidden="true" />
+                      <span className="checklist-item__text">{task.task}</span>
+                      <span className="checklist-item__category">{task.category}</span>
+                    </div>
+                  ))}
+                </div>
+              );
+            })}
+
+            {/* Done section — collapsible */}
+            <div className="checklist-group">
+              <button
+                className="checklist-done-toggle"
+                onClick={() => setDoneOpen((v) => !v)}
+                aria-expanded={doneOpen}
+              >
+                <span>Done ({done.length})</span>
+                <span className="checklist-done-toggle__arrow">{doneOpen ? '▲' : '▼'}</span>
+              </button>
+              {doneOpen && done.map((task) => (
+                <div key={task.id} className="checklist-item checklist-item--done">
+                  <span className="checklist-item__checkbox checklist-item__checkbox--checked" aria-hidden="true">✓</span>
+                  <span className="checklist-item__text">{task.task}</span>
+                  <span className="checklist-item__category">{task.category}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+
       <style>{`
         .dashboard-kpi-grid {
           display: grid;
@@ -451,6 +643,204 @@ export default function DashboardPage() {
           font-size: var(--text-xs);
           color: var(--text-disabled);
         }
+
+        /* ── Full-width panel ── */
+        .dashboard-full-section {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-md);
+          padding: var(--space-5);
+        }
+        .dashboard-section__sub {
+          font-size: var(--text-xs);
+          color: var(--text-disabled);
+          margin: 2px 0 0;
+        }
+
+        /* ── Platform table ── */
+        .platform-table-wrap {
+          overflow-x: auto;
+          margin-top: var(--space-4);
+        }
+        .platform-table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: var(--text-sm);
+        }
+        .platform-table__th {
+          text-align: left;
+          font-size: var(--text-xs);
+          font-weight: 600;
+          color: var(--text-muted);
+          letter-spacing: var(--tracking-wide);
+          padding: var(--space-2) var(--space-3);
+          border-bottom: 1px solid var(--border);
+        }
+        .platform-table__row:hover {
+          background: var(--bg);
+        }
+        .platform-table__td {
+          padding: var(--space-3);
+          border-bottom: 1px solid var(--border);
+          vertical-align: middle;
+        }
+        .platform-table__name {
+          font-weight: 600;
+          color: var(--text);
+          white-space: nowrap;
+        }
+        .platform-table__action {
+          color: var(--text-muted);
+          font-size: var(--text-xs);
+        }
+
+        /* Status badges */
+        .platform-badge {
+          display: inline-block;
+          font-size: var(--text-xs);
+          font-weight: 700;
+          letter-spacing: var(--tracking-wide);
+          padding: 2px 8px;
+          border-radius: 999px;
+          text-transform: uppercase;
+        }
+        .platform-badge--active  { background: #14532d22; color: #22c55e; }
+        .platform-badge--partial { background: #71350022; color: #eab308; }
+        .platform-badge--pending { background: #7c2d1222; color: #f97316; }
+        .platform-badge--missing { background: #7f1d1d22; color: #ef4444; }
+
+        /* Priority badges (table column) */
+        .priority-badge {
+          display: inline-block;
+          font-size: var(--text-xs);
+          font-weight: 700;
+          letter-spacing: var(--tracking-wide);
+          padding: 2px 8px;
+          border-radius: 999px;
+          text-transform: uppercase;
+        }
+        .priority-badge--high   { background: #7f1d1d22; color: #ef4444; }
+        .priority-badge--medium { background: #71350022; color: #eab308; }
+        .priority-badge--low    { background: #14532d22; color: #22c55e; }
+
+        /* ── Checklist ── */
+        .checklist-progress {
+          margin-top: var(--space-4);
+          margin-bottom: var(--space-5);
+        }
+        .checklist-progress__label {
+          display: flex;
+          justify-content: space-between;
+          font-size: var(--text-xs);
+          color: var(--text-muted);
+          margin-bottom: var(--space-2);
+        }
+        .checklist-progress__count { font-weight: 600; }
+        .checklist-progress__pct   { color: var(--text-disabled); }
+        .checklist-progress__track {
+          height: 6px;
+          background: var(--border);
+          border-radius: 3px;
+          overflow: hidden;
+        }
+        .checklist-progress__fill {
+          height: 100%;
+          background: var(--success, #22c55e);
+          border-radius: 3px;
+          transition: width 0.6s ease;
+        }
+
+        .checklist-group {
+          margin-top: var(--space-4);
+        }
+        .checklist-group__header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: var(--text-xs);
+          font-weight: 700;
+          letter-spacing: var(--tracking-wide);
+          text-transform: uppercase;
+          padding: var(--space-2) var(--space-3);
+          border-radius: var(--radius-sm);
+          margin-bottom: var(--space-2);
+        }
+        .checklist-group__header--critical { background: #7f1d1d22; color: #ef4444; }
+        .checklist-group__header--high     { background: #7c2d1222; color: #f97316; }
+        .checklist-group__header--medium   { background: #71350022; color: #eab308; }
+        .checklist-group__header--low      { background: #14532d22; color: #22c55e; }
+        .checklist-group__count {
+          background: rgba(255,255,255,0.12);
+          border-radius: 999px;
+          padding: 1px 7px;
+          font-size: var(--text-xs);
+        }
+
+        .checklist-item {
+          display: flex;
+          align-items: flex-start;
+          gap: var(--space-3);
+          padding: var(--space-3);
+          border-radius: var(--radius-sm);
+          transition: background var(--duration-fast) var(--ease-default);
+        }
+        .checklist-item:hover { background: var(--bg); }
+        .checklist-item--done { opacity: 0.5; }
+        .checklist-item__checkbox {
+          flex-shrink: 0;
+          width: 16px;
+          height: 16px;
+          border: 1.5px solid var(--border);
+          border-radius: 3px;
+          margin-top: 1px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 10px;
+          color: var(--success, #22c55e);
+        }
+        .checklist-item__checkbox--checked {
+          background: var(--success, #22c55e);
+          border-color: var(--success, #22c55e);
+          color: #fff;
+        }
+        .checklist-item__text {
+          font-size: var(--text-sm);
+          color: var(--text);
+          flex: 1;
+          line-height: 1.4;
+        }
+        .checklist-item__category {
+          flex-shrink: 0;
+          font-size: var(--text-xs);
+          font-weight: 600;
+          color: var(--text-disabled);
+          background: var(--bg);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-sm);
+          padding: 1px 6px;
+          white-space: nowrap;
+        }
+
+        .checklist-done-toggle {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          background: var(--bg);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-sm);
+          padding: var(--space-2) var(--space-3);
+          font-size: var(--text-xs);
+          font-weight: 600;
+          color: var(--text-muted);
+          cursor: pointer;
+          letter-spacing: var(--tracking-wide);
+          text-transform: uppercase;
+          transition: background var(--duration-fast) var(--ease-default);
+        }
+        .checklist-done-toggle:hover { background: var(--border); }
+        .checklist-done-toggle__arrow { font-size: 9px; }
       `}</style>
     </>
   );

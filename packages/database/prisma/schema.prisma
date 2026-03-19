@@ -350,6 +350,103 @@ model PublishJob {
 }
 
 // ─────────────────────────────────────────────────────────────
+// TALENT PIPELINE (Rise Up → Showcase → Tour → Promote)
+// ─────────────────────────────────────────────────────────────
+
+model Artist {
+  id              Int       @id @default(autoincrement())
+  name            String
+  slug            String    @unique
+  genre           String?   // blues | soul | gospel | rock | folk | jazz | hip-hop | country | other
+  city            String
+  state           String    @default("MS")
+  bio             String?   @db.Text
+  photoUrl        String?
+  socialLinks     Json?     // { instagram, tiktok, spotify, youtube, website, etc }
+  source          String    @default("rise-up") // rise-up | scouted | submitted | referral
+  status          String    @default("discovered") // discovered | contacted | showcasing | touring | alumni
+  contactName     String?
+  contactEmail    String?
+  contactPhone    String?
+  notes           String?   @db.Text
+  riseUpCohort    String?   // e.g. "2026-spring"
+  discoveredAt    DateTime  @default(now())
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  showcases       ShowcaseSlot[]
+  tourStops       TourStop[]
+
+  @@index([status])
+  @@index([city, state])
+  @@index([source])
+  @@index([genre])
+}
+
+model Showcase {
+  id          Int       @id @default(autoincrement())
+  name        String    // e.g. "Rise Up Showcase — Spring 2026"
+  venue       String    // "Ground Zero Blues Club" | "B.B. King's" | "Blues Room" | etc
+  venueCity   String    // "Clarksdale" | "Memphis" | "Natchez"
+  venueState  String    @default("MS")
+  date        DateTime
+  time        String?   // "7:00 PM CT"
+  description String?   @db.Text
+  capacity    Int?
+  ticketPrice String?   // "$15" | "Free" | "$10-25"
+  ticketUrl   String?
+  status      String    @default("planning") // planning | confirmed | promoted | completed | cancelled
+  eventId     Int?      // Link to Event model if also listed as an event
+  notes       String?   @db.Text
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  slots       ShowcaseSlot[]
+
+  @@index([date, status])
+  @@index([venue])
+}
+
+model ShowcaseSlot {
+  id          Int       @id @default(autoincrement())
+  showcaseId  Int
+  showcase    Showcase  @relation(fields: [showcaseId], references: [id], onDelete: Cascade)
+  artistId    Int
+  artist      Artist    @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  setOrder    Int       @default(0)  // Performance order
+  setLength   Int?      // Minutes
+  status      String    @default("confirmed") // invited | confirmed | declined | performed
+  notes       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([showcaseId, artistId])
+  @@index([artistId])
+}
+
+model TourStop {
+  id          Int       @id @default(autoincrement())
+  artistId    Int
+  artist      Artist    @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  venue       String
+  venueCity   String
+  venueState  String    @default("MS")
+  date        DateTime
+  time        String?
+  guarantee   Int?      // Artist guarantee in cents
+  doorDeal    String?   // "70/30" | "80/20" | "flat $500"
+  ticketPrice String?
+  status      String    @default("hold") // hold | confirmed | advanced | completed | cancelled
+  notes       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([artistId, date])
+  @@index([date, status])
+  @@index([venue])
+}
+
+// ─────────────────────────────────────────────────────────────
 // PUBLICATIONS (Books, Zines, Print)
 // ─────────────────────────────────────────────────────────────
 

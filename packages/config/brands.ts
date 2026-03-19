@@ -34,6 +34,7 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
       links: [
         { label: 'Lodging', href: '/inn' },
         { label: 'The Route', href: '/route' },
+        { label: 'Journal', href: '/inn/blog' },
         { label: 'Magazine', href: 'https://bigmuddymagazine.com' },
         { label: 'Radio', href: 'https://bigmuddyradio.com' },
       ],
@@ -94,6 +95,7 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
         { label: 'Field Manual', href: '/field-manual' },
         { label: 'The Math', href: '/the-math' },
         { label: 'Community', href: '/community' },
+        { label: 'Rise Up', href: '/rise-up' },
         { label: 'About', href: '/about' },
       ],
     },
