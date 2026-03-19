@@ -602,9 +602,9 @@ export default function InnPage() {
       {/* ── Corridor Photo Break ── */}
       <section className="inn-photobreak">
         <div className="inn-photobreak__inner">
-          <Image src="/images/library/corridor-0501.webp" alt="Azaleas cascading along Natchez sidewalk" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
-          <Image src="/images/library/corridor-0642.webp" alt="Victorian B&B with wraparound porch" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
-          <Image src="/images/library/corridor-0339.webp" alt="Brick sidewalk with awnings in Natchez" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+          <Image src="/images/corridor/craftsman-porch-columns.webp" alt="Azaleas cascading along Natchez sidewalk" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+          <Image src="/images/corridor/victorian-mansion-natchez.webp" alt="Victorian B&B with wraparound porch" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+          <Image src="/images/corridor/natchez-downtown-sidewalk.webp" alt="Brick sidewalk with awnings in Natchez" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
         </div>
       </section>
 
@@ -662,9 +662,9 @@ export default function InnPage() {
       {/* ── Corridor Photo Break ── */}
       <section className="inn-photobreak">
         <div className="inn-photobreak__inner">
-          <Image src="/images/library/corridor-0657.webp" alt="Live oak canopy over Ocean Springs" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
-          <Image src="/images/library/corridor-0954.webp" alt="Shrimp boat at Ocean Springs marina" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
-          <Image src="/images/library/corridor-0630.webp" alt="Antebellum mansion with iron fence" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+          <Image src="/images/corridor/cafe-sidewalk-natchez.webp" alt="Live oak canopy over Ocean Springs" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+          <Image src="/images/corridor/natchez-bluff-river-view.webp" alt="Shrimp boat at Ocean Springs marina" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+          <Image src="/images/corridor/historic-home-natchez.webp" alt="Antebellum mansion with iron fence" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
         </div>
       </section>
 
@@ -724,7 +724,7 @@ export default function InnPage() {
         <div className="inn-photobreak__inner">
           <Image src="/images/corridor/craftsman-porch-columns.webp" alt="Yellow Craftsman porch with columns" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
           <Image src="/images/corridor/bar-interior-floral.webp" alt="Bar interior with bottles and floral decor" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
-          <Image src="/images/library/corridor-0642.webp" alt="Victorian B&B with wraparound porch in Natchez" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+          <Image src="/images/corridor/victorian-mansion-natchez.webp" alt="Victorian B&B with wraparound porch in Natchez" width={600} height={300} sizes="33vw" style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
         </div>
       </section>
 

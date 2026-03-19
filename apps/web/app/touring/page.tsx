@@ -136,10 +136,10 @@ export default async function TouringHomepage() {
             </div>
             <div className="touring-lodging__photos">
               <div className="touring-lodging__photo">
-                <Image src="/images/library/corridor-0642.webp" alt="Victorian B&B with wraparound porch in Natchez" width={600} height={400} sizes="(min-width: 768px) 50vw, 100vw" style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-sm)' }} />
+                <Image src="/images/corridor/victorian-mansion-natchez.webp" alt="Victorian B&B with wraparound porch in Natchez" width={600} height={400} sizes="(min-width: 768px) 50vw, 100vw" style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-sm)' }} />
               </div>
               <div className="touring-lodging__photo">
-                <Image src="/images/library/corridor-0630.webp" alt="Antebellum mansion with iron fence and carriage" width={600} height={400} sizes="(min-width: 768px) 50vw, 100vw" style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-sm)' }} />
+                <Image src="/images/corridor/historic-home-natchez.webp" alt="Antebellum mansion with iron fence and carriage" width={600} height={400} sizes="(min-width: 768px) 50vw, 100vw" style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-sm)' }} />
               </div>
             </div>
           </div>
@@ -191,13 +191,13 @@ export default async function TouringHomepage() {
             <div className="touring-route__visual">
               <div className="touring-route__photo-stack">
                 <div className="touring-route__photo touring-route__photo--1">
-                  <Image src="/images/library/corridor-0339.webp" alt="Brick sidewalk with awnings on Natchez main street" width={500} height={375} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src="/images/corridor/natchez-downtown-sidewalk.webp" alt="Brick sidewalk with awnings on Natchez main street" width={500} height={375} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="touring-route__photo touring-route__photo--2">
-                  <Image src="/images/library/corridor-0501.webp" alt="Pink azaleas cascading along Natchez sidewalk" width={500} height={375} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src="/images/corridor/craftsman-porch-columns.webp" alt="Pink azaleas cascading along Natchez sidewalk" width={500} height={375} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="touring-route__photo touring-route__photo--3">
-                  <Image src="/images/library/corridor-0954.webp" alt="Teal shrimp boat at Ocean Springs marina" width={500} height={375} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src="/images/corridor/natchez-bluff-river-view.webp" alt="Teal shrimp boat at Ocean Springs marina" width={500} height={375} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
               </div>
             </div>
