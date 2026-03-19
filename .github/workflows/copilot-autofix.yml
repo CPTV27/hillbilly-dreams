@@ -1,0 +1,20 @@
+name: Copilot Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  copilot-review:
+    name: Copilot Review
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # GitHub Copilot automatically reviews PRs on Pro plans
+      # This workflow ensures the PR is ready for Copilot's review
+      - name: PR Ready
+        run: echo "PR ready for Copilot review"
