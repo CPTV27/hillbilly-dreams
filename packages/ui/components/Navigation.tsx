@@ -17,6 +17,8 @@ interface NavigationProps {
   currentPath?: string;
   links: NavLink[];
   logoHref?: string;
+  showLogin?: boolean;
+  loginHref?: string;
 }
 
 function BrandLogo({ brand }: { brand: BrandId }) {
@@ -71,7 +73,7 @@ function BrandLogo({ brand }: { brand: BrandId }) {
   );
 }
 
-export function Navigation({ brand, currentPath = '/', links, logoHref = '/' }: NavigationProps) {
+export function Navigation({ brand, currentPath = '/', links, logoHref = '/', showLogin = true, loginHref = '/admin/login' }: NavigationProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const brandNames: Record<BrandId, { name: string; label: string }> = {
@@ -113,6 +115,11 @@ export function Navigation({ brand, currentPath = '/', links, logoHref = '/' }: 
               </a>
             </li>
           ))}
+          {showLogin && (
+            <li>
+              <a href={loginHref} className="bm-nav__login">Sign In</a>
+            </li>
+          )}
         </ul>
 
         {/* Mobile hamburger */}
@@ -143,6 +150,13 @@ export function Navigation({ brand, currentPath = '/', links, logoHref = '/' }: 
                 </a>
               </li>
             ))}
+            {showLogin && (
+              <li>
+                <a href={loginHref} className="bm-nav__mobile-link" onClick={() => setMenuOpen(false)}>
+                  Sign In
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       )}
@@ -286,6 +300,22 @@ export function Navigation({ brand, currentPath = '/', links, logoHref = '/' }: 
         .bm-nav__mobile-link:hover,
         .bm-nav__mobile-link--active {
           color: var(--accent);
+        }
+        .bm-nav__login {
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          font-weight: 600;
+          color: var(--bg);
+          background: var(--accent);
+          padding: var(--space-2) var(--space-4);
+          border-radius: 4px;
+          text-decoration: none;
+          letter-spacing: var(--tracking-wide);
+          text-transform: uppercase;
+          transition: opacity var(--duration-fast) var(--ease-default);
+        }
+        .bm-nav__login:hover {
+          opacity: 0.85;
         }
       `}</style>
     </nav>
