@@ -78,6 +78,20 @@ const RECORDING_PHILOSOPHY = [
 export default function SessionsPage() {
   return (
     <main style={{ maxWidth: 900, margin: '0 auto', padding: '4rem 1.5rem' }}>
+      {/* Hero image */}
+      <div
+        style={{
+          width: '100%',
+          height: 280,
+          backgroundImage: 'url(/images/ai-corridor/juke-joint-night.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          marginBottom: '2.5rem',
+          opacity: 0.7,
+        }}
+        role="img"
+        aria-label="Juke joint at night along the Mississippi corridor"
+      />
       <h1
         style={{
           fontSize: '2.5rem',

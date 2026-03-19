@@ -91,8 +91,26 @@ export default function RecordsPage() {
           padding: '4rem 1.5rem',
           maxWidth: 900,
           margin: '0 auto',
+          position: 'relative',
         }}
       >
+        {/* Hero background image */}
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: 'url(/images/ai-corridor/blues-parlor-live.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.12,
+            zIndex: -1,
+            pointerEvents: 'none',
+          }}
+          aria-hidden="true"
+        />
         <p
           style={{
             color: 'var(--accent, #c8943e)',

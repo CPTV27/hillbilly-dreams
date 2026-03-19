@@ -184,6 +184,35 @@ export default function EconomicsHomepage() {
         </div>
       </section>
 
+      {/* ── Video Break ── */}
+      <section className="econ-video-break">
+        <div className="section-container" style={{ textAlign: 'center' }}>
+          <div className="section-label">Watch</div>
+          <h2 className="section-title">The Extraction Trap — In 60 Seconds</h2>
+          <p className="section-desc" style={{ maxWidth: 480, margin: '0 auto var(--space-8)' }}>
+            82 cents of every dollar you make leaves your zip code in 30 days.
+            Here&apos;s how the drain works.
+          </p>
+          <div className="econ-video-container">
+            <video
+              src="/video/extraction-trap.mp4"
+              controls
+              playsInline
+              preload="metadata"
+              poster="/images/ai-corridor/delta-cotton-field.webp"
+              style={{
+                maxWidth: 400,
+                width: '100%',
+                borderRadius: 'var(--radius-lg)',
+                border: '1px solid var(--border)',
+              }}
+            >
+              Your browser does not support the video element.
+            </video>
+          </div>
+        </div>
+      </section>
+
       {/* ── Photo Break ── */}
       <section className="econ-photo-break">
         <Image
@@ -538,6 +567,16 @@ export default function EconomicsHomepage() {
         @keyframes nodePulse {
           0%, 100% { opacity: 0.3; transform: scale(1); }
           50% { opacity: 0.8; transform: scale(1.5); }
+        }
+
+        /* ── Video Break ── */
+        .econ-video-break {
+          background: var(--bg);
+          border-top: 1px solid var(--border);
+        }
+        .econ-video-container {
+          display: flex;
+          justify-content: center;
         }
 
         /* ── Photo Break ── */

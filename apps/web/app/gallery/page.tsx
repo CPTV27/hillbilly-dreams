@@ -133,6 +133,9 @@ export default function GalleryPage() {
               gridRow: '1 / 2',
               gridColumn: '1 / 2',
               background: ARTWORK_COLORS.w1,
+              backgroundImage: 'url(/images/ai-corridor/ocean-springs-gallery.webp)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
               position: 'relative',
             }}
           >
@@ -156,11 +159,11 @@ export default function GalleryPage() {
             </div>
           </div>
           {/* Top-right */}
-          <div style={{ gridRow: '1 / 2', gridColumn: '2 / 3', background: ARTWORK_COLORS.w2 }} />
+          <div style={{ gridRow: '1 / 2', gridColumn: '2 / 3', background: ARTWORK_COLORS.w2, backgroundImage: 'url(/images/corridor/craftsman-porch-columns.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
           {/* Bottom-left */}
-          <div style={{ gridRow: '2 / 3', gridColumn: '1 / 2', background: ARTWORK_COLORS.w3 }} />
+          <div style={{ gridRow: '2 / 3', gridColumn: '1 / 2', background: ARTWORK_COLORS.w3, backgroundImage: 'url(/images/corridor/natchez-bluff-river-view.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
           {/* Bottom-right */}
-          <div style={{ gridRow: '2 / 3', gridColumn: '2 / 3', background: ARTWORK_COLORS.w7 }} />
+          <div style={{ gridRow: '2 / 3', gridColumn: '2 / 3', background: ARTWORK_COLORS.w7, backgroundImage: 'url(/images/ai-corridor/river-sunset-bluffs.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
         </div>
 
         {/* Mobile: collapse to stacked */}
