@@ -8,6 +8,9 @@ import { NextResponse } from 'next/server';
 // Domains that get full access (any user @ these domains)
 const ALLOWED_DOMAINS = [
   'chasepierson.tv',
+  'thebigmuddyinn.com',
+  'studio.c.video',
+  'studio-c.com',
 ];
 
 // Individual emails that get full access
@@ -16,9 +19,14 @@ const ALLOWED_EMAILS = [
   'chase@scantoplan.io',
   'tracy@thebigmuddyinn.com',
   'amy@thebigmuddyinn.com',
+  'amyaldersonallen@gmail.com',
   'info@studio.c.video',
   'miles@studio.c.video',
   'elijah@studio.c.video',
+  'info@studio-c.com',
+  'miles@studio-c.com',
+  'elijah@studio-c.video',
+  'team@chasepierson.tv',
 ];
 
 function isAllowedUser(email: string | null | undefined): boolean {
