@@ -4,6 +4,7 @@
 // HQ Dashboard — live KPI tiles from /api/metrics + recent articles & events
 
 import { useState, useEffect } from 'react';
+import Walkthrough from './walkthrough';
 
 interface MetricData {
   key: string;
@@ -219,6 +220,7 @@ export default function DashboardPage() {
 
   return (
     <>
+      <Walkthrough />
       <div className="admin-page-header">
         <div>
           <h1 className="admin-page-title">Dashboard</h1>

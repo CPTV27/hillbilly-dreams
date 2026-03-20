@@ -4,6 +4,7 @@
 
 import type { Metadata } from 'next';
 import { auth, signOut } from '@/auth';
+import DeltaDawnFloat from './components/DeltaDawnFloat';
 
 
 export const metadata: Metadata = {
@@ -140,6 +141,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           {children}
         </main>
       </div>
+
+      {/* Delta Dawn — always present floating assistant */}
+      <DeltaDawnFloat />
 
       <style>{`
         /* ── Admin Shell ── */
