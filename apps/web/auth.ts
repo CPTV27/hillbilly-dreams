@@ -83,7 +83,24 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   callbacks: {
     async signIn({ user }) {
-      return isAllowedUser(user.email);
+      if (!isAllowedUser(user.email)) return false;
+
+      // Log the login activity
+      try {
+        await prisma.opsActivity.create({
+          data: {
+            type: 'login',
+            message: `${user.name || user.email} signed in`,
+            userId: user.email || 'unknown',
+            userName: user.name || user.email?.split('@')[0] || 'Unknown',
+          },
+        });
+      } catch (e) {
+        // Non-fatal — don't block login if activity log fails
+        console.error('[Auth] Failed to log login activity:', e);
+      }
+
+      return true;
     },
     async jwt({ token, user }) {
       if (user) {
