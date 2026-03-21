@@ -1,17 +1,16 @@
-// Amy's custom layout — forces light theme over the global dark tokens
+// Amy's layout — dark immersive aesthetic, VR-ready design language
 export default function AmyLayout({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="min-h-screen -m-4 sm:-m-6 lg:-m-8 p-4 sm:p-6 lg:p-8"
+      className="min-h-screen -m-4 sm:-m-6 lg:-m-8 p-0"
       style={{
-        backgroundColor: '#fafaf9',
-        color: '#171717',
-        // Override CSS custom properties from tokens.css
-        ['--bg' as string]: '#fafaf9',
-        ['--text' as string]: '#171717',
-        ['--text-muted' as string]: '#737373',
-        ['--surface' as string]: '#ffffff',
-        ['--border' as string]: '#e5e5e5',
+        backgroundColor: '#0a0a0f',
+        color: '#e8e8f0',
+        ['--bg' as string]: '#0a0a0f',
+        ['--text' as string]: '#e8e8f0',
+        ['--text-muted' as string]: '#6b6b80',
+        ['--surface' as string]: 'rgba(255,255,255,0.05)',
+        ['--border' as string]: 'rgba(255,255,255,0.1)',
       }}
     >
       {children}
