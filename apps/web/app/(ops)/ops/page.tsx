@@ -67,11 +67,12 @@ export default async function OpsDashboard() {
     ).size;
 
     // Group by session
-    const sessionData = Array.from({ length: 7 }, (_, i) => {
-        const sessionTasks = tasks.filter(t => t.session === i + 1);
+    const sessionIds = Object.keys(SESSION_META).map(Number).sort((a, b) => a - b);
+    const sessionData = sessionIds.map(id => {
+        const sessionTasks = tasks.filter(t => t.session === id);
         const completed = sessionTasks.filter(t => t.status === 'done').length;
         return {
-            id: i + 1,
+            id,
             total: sessionTasks.length,
             completed,
         };
@@ -97,7 +98,7 @@ export default async function OpsDashboard() {
                         Launch Dashboard
                     </h1>
                     <p style={{ color: 'var(--theme-text-secondary)', maxWidth: '36rem', fontSize: '1.125rem', margin: 0 }}>
-                        Track our progress through all 38 tasks required to get The Big Muddy Inn &amp; Blues Room ready for opening night.
+                        Track our progress through all {tasks.length} tasks required to get The Big Muddy Inn &amp; Blues Room ready for opening night.
                     </p>
                 </div>
 
