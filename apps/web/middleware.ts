@@ -81,6 +81,10 @@ export async function middleware(request: NextRequest) {
 
   // Production domains
   if (hostname.includes('bigmuddytouring') && !hostname.includes('admin')) {
+    // /dashboard doesn't exist under /touring — redirect to /ops
+    if (pathname === '/dashboard' || pathname.startsWith('/dashboard/')) {
+      return NextResponse.redirect(new URL('/ops', request.url));
+    }
     return rewriteTo('touring', pathname);
   }
 
