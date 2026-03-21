@@ -1,7 +1,53 @@
 import Link from 'next/link';
 import { auth } from '@/auth';
 
-// Inline styles — Tailwind content scanner can't reach (ops) route group
+// Deep theme tokens — CSS custom properties consumed by child pages
+const DEEP_TOKENS = {
+  futuristic: {
+    '--theme-card-bg': 'rgba(255,255,255,0.05)',
+    '--theme-card-border': 'rgba(255,255,255,0.1)',
+    '--theme-text-primary': '#e8e8f0',
+    '--theme-text-secondary': '#94a3b8',
+    '--theme-text-muted': '#64748b',
+    '--theme-accent': '#60a5fa',
+    '--theme-accent-bg': 'rgba(59,130,246,0.15)',
+    '--theme-success': '#34d399',
+    '--theme-warning': '#fbbf24',
+    '--theme-progress-bg': 'rgba(255,255,255,0.1)',
+    '--theme-progress-fill': '#60a5fa',
+    '--theme-hover': 'rgba(255,255,255,0.08)',
+  },
+  retro: {
+    '--theme-card-bg': '#f5f0e8',
+    '--theme-card-border': '#c4b89c',
+    '--theme-text-primary': '#2c2416',
+    '--theme-text-secondary': '#6b5d4a',
+    '--theme-text-muted': '#8a7d6b',
+    '--theme-accent': '#8b4513',
+    '--theme-accent-bg': 'rgba(139,69,19,0.1)',
+    '--theme-success': '#2d6a4f',
+    '--theme-warning': '#b8860b',
+    '--theme-progress-bg': '#d4c5a0',
+    '--theme-progress-fill': '#8b4513',
+    '--theme-hover': 'rgba(0,0,0,0.04)',
+  },
+  minimal: {
+    '--theme-card-bg': '#ffffff',
+    '--theme-card-border': '#e5e5e5',
+    '--theme-text-primary': '#171717',
+    '--theme-text-secondary': '#525252',
+    '--theme-text-muted': '#a3a3a3',
+    '--theme-accent': '#b45309',
+    '--theme-accent-bg': 'rgba(180,83,9,0.08)',
+    '--theme-success': '#16a34a',
+    '--theme-warning': '#d97706',
+    '--theme-progress-bg': '#e5e5e5',
+    '--theme-progress-fill': '#f59e0b',
+    '--theme-hover': 'rgba(0,0,0,0.03)',
+  },
+};
+
+// Layout chrome styles
 const THEME_CONFIG = {
   futuristic: {
     wrapper: { backgroundColor: '#0a0a0f', color: '#e8e8f0' },
@@ -35,10 +81,18 @@ export default async function OpsLayout({ children }: { children: React.ReactNod
   const interfaceTheme = user?.interfaceTheme || 'minimal';
 
   const theme = THEME_CONFIG[interfaceTheme as keyof typeof THEME_CONFIG] || THEME_CONFIG.minimal;
+  const tokens = DEEP_TOKENS[interfaceTheme as keyof typeof DEEP_TOKENS] || DEEP_TOKENS.minimal;
 
   return (
     <div
-      style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'system-ui, sans-serif', ...theme.wrapper }}
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        fontFamily: 'system-ui, sans-serif',
+        ...theme.wrapper,
+        ...tokens,
+      } as React.CSSProperties}
     >
       <header
         style={{
@@ -72,6 +126,7 @@ export default async function OpsLayout({ children }: { children: React.ReactNod
               <Link href="/ops/content" style={{ textDecoration: 'none', ...theme.navLink }}>Content</Link>
               <Link href="/ops/chat" style={{ textDecoration: 'none', ...theme.navLink }}>Delta Dawn</Link>
               <Link href="/ops/property" style={{ textDecoration: 'none', ...theme.navLink }}>Property</Link>
+              <Link href="/ops/settings" style={{ textDecoration: 'none', ...theme.navLink }}>Settings</Link>
               <Link href="/ops/amy" style={{ textDecoration: 'none', ...theme.navActive }}>Amy</Link>
             </nav>
           </div>
