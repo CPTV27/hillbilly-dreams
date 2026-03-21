@@ -19,11 +19,19 @@ type Intent =
     | 'social_content'
     | 'show_topics'
     | 'directory_onboarding'
+    | 'booking_query'
+    | 'review_help'
     | null
 
 function detectIntent(message: string): Intent {
     const m = message.toLowerCase()
 
+    if (/\b(booking|reservation|check.?in|check.?out|occupancy|rooms?\s*available|adr|revpar|room nights|how.*booked|vacancy|cancellation)/.test(m)) {
+        return 'booking_query'
+    }
+    if (/\b(review|respond to|guest.*said|stars?|rating|google review|yelp|tripadvisor)/.test(m)) {
+        return 'review_help'
+    }
     if (/\b(poster|flyer|banner|graphic|sizzle|shot list|storyboard|video concept)\b/.test(m)) {
         return 'media_generation'
     }
@@ -39,17 +47,21 @@ function detectIntent(message: string): Intent {
     if (/\b(episode|show topic|podcast idea|what should we talk about|next episode)\b/.test(m)) {
         return 'show_topics'
     }
-    if (/\b(onboard|new client|directory client|voice profile|gbp|google business|review response)\b/.test(m)) {
+    if (/\b(onboard|new client|directory client|voice profile|gbp|google business)\b/.test(m)) {
         return 'directory_onboarding'
     }
     return null
 }
 
 const INTENT_HINTS: Record<NonNullable<Intent>, string> = {
+    booking_query:
+        '[INTENT: booking_query] The user is asking about inn bookings, occupancy, or availability. Reference the Big Muddy Inn — Live Metrics section in DATABASE CONTEXT. If occupancy is below target, suggest actionable things Tracy can do: reach out to OTA partners, post a last-minute deal on social, or update the Booking.com listing. If metrics say "sync not yet run," tell them to ask Chase to trigger the CloudBeds sync.',
+    review_help:
+        '[INTENT: review_help] The user is asking about guest reviews. Check the "Reviews Needing Response" section in DATABASE CONTEXT. If there are pending reviews, summarize them and offer to help draft responses. Remind Tracy she can go to /ops/reviews to manage them with AI-generated drafts. For negative reviews, coach her on empathetic response strategy.',
     media_generation:
         '[INTENT: media_generation] The user is asking for a visual/video asset concept. Provide a detailed creative brief — dimensions, color palette, copy lines, photography direction, and which tool to use (Canva for quick social, Adobe for print, Runway/Kling for video). Do not just describe; give them copy-paste-ready specs.',
     revenue_metrics:
-        '[INTENT: revenue_metrics] The user wants revenue or business metrics. Pull from the DATABASE CONTEXT above. Calculate MRR from active client tiers if invoice data is sparse: Front Porch=$99, Route=$299, River Room=$599, Blues Room=$1,200. Show your math.',
+        '[INTENT: revenue_metrics] The user wants revenue or business metrics. Pull from the DATABASE CONTEXT above. Calculate MRR from active client tiers if invoice data is sparse: Front Porch=$99, Route=$299, River Room=$599, Blues Room=$1,200. Show your math. Also reference Inn revenue from CloudBeds metrics if available.',
     audio_mastering:
         '[INTENT: audio_mastering] Walk the user through our exact mastering chain: HPF 80Hz → LPF 14kHz → Gate → Compressor (3:1) → EQ → Loudnorm -16 LUFS → Limiter. Recommend Adobe Podcast ESv2 for noise reduction first. Be specific about settings.',
     social_content:
@@ -78,6 +90,9 @@ async function buildDatabaseContext(): Promise<string> {
             draftArticleCount,
             recentPlaylists,
             pendingReviewCount,
+            pendingReviews,
+            innMetrics,
+            recentReservations,
         ] = await Promise.all([
             prisma.client.findMany({
                 orderBy: { createdAt: 'desc' },
@@ -108,6 +123,20 @@ async function buildDatabaseContext(): Promise<string> {
                 select: { name: true, trackCount: true, status: true },
             }),
             prisma.review.count({ where: { responseStatus: 'pending' } }),
+            // Recent pending reviews for Tracy to action
+            prisma.review.findMany({
+                where: { responseStatus: { in: ['pending', 'drafted'] } },
+                orderBy: { postedAt: 'desc' },
+                take: 5,
+                select: { author: true, rating: true, text: true, platform: true, responseStatus: true, postedAt: true, aiDraft: true },
+            }),
+            // CloudBeds metrics from the metrics store (synced by cron)
+            prisma.metric.findMany({
+                where: { key: { startsWith: 'inn_' } },
+                select: { key: true, value: true, target: true, unit: true, updatedAt: true },
+            }),
+            // Recent reservations (if model exists)
+            Promise.resolve([] as any[]),
         ])
 
         const tierSummary = clientsByTier
@@ -144,7 +173,41 @@ async function buildDatabaseContext(): Promise<string> {
             ? recentPlaylists.map(p => `  - ${p.name} (${p.trackCount} tracks, ${p.status})`).join('\n')
             : '  (none)'
 
-        return `### Directory Clients
+        // Format CloudBeds metrics
+        const metricsMap: Record<string, { value: number; target?: number | null; unit?: string | null; updatedAt?: Date | null }> = {}
+        for (const m of innMetrics) {
+            metricsMap[m.key] = m
+        }
+        const lastSync = metricsMap['inn_occupancy_rate']?.updatedAt
+            ? new Date(metricsMap['inn_occupancy_rate'].updatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })
+            : 'unknown'
+
+        const innSection = innMetrics.length > 0
+            ? `### Big Muddy Inn — Live Metrics (synced ${lastSync})
+- Occupancy Rate: ${metricsMap['inn_occupancy_rate']?.value ?? 'N/A'}% (target: ${metricsMap['inn_occupancy_rate']?.target ?? 65}%)
+- Revenue MTD: $${(metricsMap['inn_revenue_mtd']?.value ?? 0).toLocaleString()} (target: $${(metricsMap['inn_revenue_mtd']?.target ?? 11667).toLocaleString()})
+- Revenue YTD: $${(metricsMap['inn_revenue_ytd']?.value ?? 0).toLocaleString()} (target: $${(metricsMap['inn_revenue_ytd']?.target ?? 140000).toLocaleString()})
+- Average Daily Rate (ADR): $${metricsMap['inn_adr']?.value ?? 'N/A'} (target: $${metricsMap['inn_adr']?.target ?? 130})
+- RevPAR: $${metricsMap['inn_revpar']?.value ?? 'N/A'}
+- Booked Room Nights (30d): ${metricsMap['inn_booked_room_nights']?.value ?? 'N/A'}
+- Reservations (30d): ${metricsMap['inn_total_reservations']?.value ?? 'N/A'}`
+            : `### Big Muddy Inn — Metrics
+  (CloudBeds sync not yet run — remind Chase to trigger /api/cron/cloudbeds-sync)`
+
+        // Format pending reviews
+        const reviewLines = pendingReviews.length > 0
+            ? pendingReviews.map(r => {
+                const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating)
+                const posted = new Date(r.postedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+                const text = r.text ? r.text.substring(0, 120) + (r.text.length > 120 ? '...' : '') : '(no text)'
+                const status = r.aiDraft ? 'AI draft ready' : r.responseStatus
+                return `  - ${stars} by ${r.author} (${r.platform}, ${posted}) — ${status}\n    "${text}"`
+              }).join('\n')
+            : '  (no pending reviews)'
+
+        return `${innSection}
+
+### Directory Clients
 - Active clients: ${activeClientCount}
 - Clients by tier: ${tierSummary || 'none yet'}
 - 5 most recent clients:
@@ -163,8 +226,10 @@ ${articleLines}
 ### Radio Playlists
 ${playlistLines}
 
-### Reviews
-- Pending responses: ${pendingReviewCount}`
+### Reviews Needing Response
+- Total pending: ${pendingReviewCount}
+- Most recent:
+${reviewLines}`
     } catch (err: any) {
         // Non-fatal — Delta Dawn still works without live context
         console.error('[DeltaDawn] Database context build failed:', err?.message)

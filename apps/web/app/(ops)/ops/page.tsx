@@ -3,9 +3,8 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { auth } from '@/auth';
 import { SESSION_META } from '@/lib/ops';
-import { formatDate, cn, getRelativeTime } from '@/lib/utils';
+import { formatDate, getRelativeTime } from '@/lib/utils';
 import DashboardKPIs from './components/DashboardKPIs';
-import { CheckCircle, SkipForward, LogIn, MessageCircle, Eye } from 'lucide-react';
 
 export const revalidate = 0; // Dynamic data
 
@@ -79,39 +78,58 @@ export default async function OpsDashboard() {
     });
 
     return (
-        <div className="space-y-8">
-            <div className="flex flex-col md:flex-row gap-8 items-start justify-between bg-white p-6 sm:p-8 rounded-xl border border-neutral-200 shadow-sm">
-                <div className="space-y-2">
-                    <h1 className="text-3xl font-bold text-neutral-900 tracking-tight">Launch Dashboard</h1>
-                    <p className="text-neutral-500 max-w-xl text-lg">
-                        Track our progress through all 38 tasks required to get The Big Muddy Inn & Blues Room ready for opening night. Let's do this!
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            {/* Hero card */}
+            <div style={{
+                display: 'flex',
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                gap: '2rem',
+                alignItems: 'flex-start',
+                justifyContent: 'space-between',
+                backgroundColor: 'var(--theme-card-bg)',
+                padding: '1.5rem 2rem',
+                borderRadius: '0.75rem',
+                border: '1px solid var(--theme-card-border)',
+            }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    <h1 style={{ fontSize: '1.875rem', fontWeight: 700, color: 'var(--theme-text-primary)', letterSpacing: '-0.025em', margin: 0 }}>
+                        Launch Dashboard
+                    </h1>
+                    <p style={{ color: 'var(--theme-text-secondary)', maxWidth: '36rem', fontSize: '1.125rem', margin: 0 }}>
+                        Track our progress through all 38 tasks required to get The Big Muddy Inn &amp; Blues Room ready for opening night.
                     </p>
                 </div>
 
-                <div className="flex-shrink-0 flex items-center justify-center p-6 bg-amber-50 rounded-full h-32 w-32 relative group">
-                    <svg className="absolute inset-0 w-full h-full text-neutral-200" viewBox="0 0 36 36">
+                <div style={{
+                    flexShrink: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '1.5rem',
+                    backgroundColor: 'var(--theme-accent-bg)',
+                    borderRadius: '50%',
+                    height: '8rem',
+                    width: '8rem',
+                    position: 'relative',
+                }}>
+                    <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} viewBox="0 0 36 36">
                         <path
-                            className="text-amber-200"
-                            d="M18 2.0845
-                a 15.9155 15.9155 0 0 1 0 31.831
-                a 15.9155 15.9155 0 0 1 0 -31.831"
+                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                             fill="none"
-                            stroke="currentColor"
+                            stroke="var(--theme-progress-bg)"
                             strokeWidth="3"
                         />
                         <path
-                            className="text-amber-600 transition-all duration-1000 ease-out"
                             strokeDasharray={`${progressPercent}, 100`}
-                            d="M18 2.0845
-                a 15.9155 15.9155 0 0 1 0 31.831
-                a 15.9155 15.9155 0 0 1 0 -31.831"
+                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                             fill="none"
-                            stroke="currentColor"
+                            stroke="var(--theme-progress-fill)"
                             strokeWidth="3"
                         />
                     </svg>
-                    <div className="text-center z-10 font-bold text-amber-800">
-                        <span className="text-2xl">{progressPercent}%</span>
+                    <div style={{ textAlign: 'center', zIndex: 1, fontWeight: 700, color: 'var(--theme-accent)' }}>
+                        <span style={{ fontSize: '1.5rem' }}>{progressPercent}%</span>
                     </div>
                 </div>
             </div>
@@ -124,34 +142,77 @@ export default async function OpsDashboard() {
                 contentPacksUsed={contentPacksUsed}
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Session cards grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
                 {sessionData.map((s) => {
                     const meta = SESSION_META[s.id];
+                    const pct = s.total ? (s.completed / s.total) * 100 : 0;
+                    const barColor = s.completed === s.total && s.total > 0
+                        ? 'var(--theme-success)'
+                        : s.completed > 0
+                            ? 'var(--theme-progress-fill)'
+                            : 'var(--theme-text-muted)';
                     return (
                         <Link
                             key={s.id}
                             href={`/ops/sessions/${s.id}`}
-                            className="group bg-white border border-neutral-200 p-6 rounded-xl shadow-sm hover:shadow-lg hover:border-amber-300 transition-all flex flex-col justify-between space-y-4 h-full"
+                            style={{
+                                backgroundColor: 'var(--theme-card-bg)',
+                                border: '1px solid var(--theme-card-border)',
+                                padding: '1.5rem',
+                                borderRadius: '0.75rem',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'space-between',
+                                gap: '1rem',
+                                textDecoration: 'none',
+                                color: 'inherit',
+                                transition: 'border-color 0.15s',
+                            }}
                         >
-                            <div className="space-y-2">
-                                <div className="w-12 h-12 flex items-center justify-center bg-neutral-100 rounded-full text-2xl group-hover:bg-amber-100 transition-colors">
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                <div style={{
+                                    width: '3rem',
+                                    height: '3rem',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    backgroundColor: 'var(--theme-accent-bg)',
+                                    borderRadius: '50%',
+                                    fontSize: '1.5rem',
+                                }}>
                                     {meta.icon}
                                 </div>
-                                <h3 className="text-xl font-semibold text-neutral-800 group-hover:text-amber-800 transition-colors">Session {s.id}: {meta.title}</h3>
-                                <p className="text-neutral-500 text-sm font-medium line-clamp-2">{meta.subtitle}</p>
+                                <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--theme-text-primary)', margin: 0 }}>
+                                    Session {s.id}: {meta.title}
+                                </h3>
+                                <p style={{ color: 'var(--theme-text-muted)', fontSize: '0.875rem', fontWeight: 500, margin: 0 }}>
+                                    {meta.subtitle}
+                                </p>
                             </div>
-                            <div className="space-y-1">
-                                <div className="flex justify-between items-center text-sm">
-                                    <span className="text-neutral-600 font-medium">Progress</span>
-                                    <span className="text-neutral-700 font-bold bg-neutral-100 px-2 py-0.5 rounded text-xs">{s.completed} / {s.total}</span>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.875rem' }}>
+                                    <span style={{ color: 'var(--theme-text-secondary)', fontWeight: 500 }}>Progress</span>
+                                    <span style={{
+                                        color: 'var(--theme-text-primary)',
+                                        fontWeight: 700,
+                                        backgroundColor: 'var(--theme-hover)',
+                                        padding: '0.125rem 0.5rem',
+                                        borderRadius: '0.25rem',
+                                        fontSize: '0.75rem',
+                                    }}>
+                                        {s.completed} / {s.total}
+                                    </span>
                                 </div>
-                                <div className="w-full bg-neutral-100 rounded-full h-1.5 overflow-hidden">
+                                <div style={{ width: '100%', backgroundColor: 'var(--theme-progress-bg)', borderRadius: '9999px', height: '0.375rem', overflow: 'hidden' }}>
                                     <div
-                                        className={cn(
-                                            "h-1.5 rounded-full transition-all",
-                                            s.completed === s.total && s.total > 0 ? "bg-green-500" : s.completed > 0 ? "bg-amber-500" : "bg-neutral-300"
-                                        )}
-                                        style={{ width: `${s.total ? (s.completed / s.total) * 100 : 0}%` }}
+                                        style={{
+                                            height: '0.375rem',
+                                            borderRadius: '9999px',
+                                            backgroundColor: barColor,
+                                            width: `${pct}%`,
+                                            transition: 'width 0.3s',
+                                        }}
                                     />
                                 </div>
                             </div>
@@ -160,50 +221,97 @@ export default async function OpsDashboard() {
                 })}
             </div>
 
-            <div className="bg-white border text-left border-neutral-200 rounded-xl overflow-hidden shadow-sm">
-                <h3 className="px-6 py-4 font-semibold text-lg border-b border-neutral-100 bg-neutral-50 text-neutral-800">Recent Activity Feed</h3>
-                <ul className="divide-y divide-neutral-100 max-h-96 overflow-y-auto">
-                    {activities.length > 0 ? activities.map((act, idx) => {
-                        let icon = <div className="w-5 h-5" />;
-                        if (act.type === 'task_completed') icon = <CheckCircle className="w-5 h-5 text-green-600" />;
-                        else if (act.type === 'task_skipped') icon = <SkipForward className="w-5 h-5 text-neutral-400" />;
-                        else if (act.type === 'login') icon = <LogIn className="w-5 h-5 text-blue-500" />;
-                        else if (act.type === 'chat') icon = <MessageCircle className="w-5 h-5 text-amber-500" />;
-                        else if (act.type === 'content_viewed') icon = <Eye className="w-5 h-5 text-purple-500" />;
+            {/* Activity Feed */}
+            <div style={{
+                backgroundColor: 'var(--theme-card-bg)',
+                border: '1px solid var(--theme-card-border)',
+                borderRadius: '0.75rem',
+                overflow: 'hidden',
+                textAlign: 'left',
+            }}>
+                <h3 style={{
+                    padding: '1rem 1.5rem',
+                    fontWeight: 600,
+                    fontSize: '1.125rem',
+                    borderBottom: '1px solid var(--theme-card-border)',
+                    backgroundColor: 'var(--theme-hover)',
+                    color: 'var(--theme-text-primary)',
+                    margin: 0,
+                }}>
+                    Recent Activity Feed
+                </h3>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, maxHeight: '24rem', overflowY: 'auto' }}>
+                    {activities.length > 0 ? activities.map((act) => {
+                        // Icon colors per type
+                        let iconColor = 'var(--theme-text-muted)';
+                        let iconLabel = '';
+                        if (act.type === 'task_completed') { iconColor = 'var(--theme-success)'; iconLabel = '✓'; }
+                        else if (act.type === 'task_skipped') { iconColor = 'var(--theme-text-muted)'; iconLabel = '»'; }
+                        else if (act.type === 'login') { iconColor = 'var(--theme-accent)'; iconLabel = '→'; }
+                        else if (act.type === 'chat') { iconColor = 'var(--theme-warning)'; iconLabel = '💬'; }
+                        else if (act.type === 'content_viewed') { iconColor = 'var(--theme-progress-fill)'; iconLabel = '👁'; }
 
                         // Derive initial from name or email
                         let initial = '?';
                         if (act.userName) initial = act.userName.charAt(0).toUpperCase();
                         else if (act.userId) initial = act.userId.charAt(0).toUpperCase();
 
-                        // Determine circle color (very rough mapping without full strict table role tracking, assuming names loosely)
-                        let avatarColor = "bg-neutral-100 text-neutral-600";
-                        const lowerName = (act.userName || act.userId || '').toLowerCase();
-                        if (lowerName.includes('chase') || lowerName.includes('admin')) avatarColor = "bg-purple-100 text-purple-700";
-                        else if (lowerName.includes('tracy') || lowerName.includes('amy')) avatarColor = "bg-blue-100 text-blue-700";
-                        else avatarColor = "bg-amber-100 text-amber-700";
-
                         return (
                             <li
                                 key={act.id}
-                                className="px-6 py-4 flex gap-4 text-sm items-center hover:bg-neutral-50 transition-colors"
+                                style={{
+                                    padding: '1rem 1.5rem',
+                                    display: 'flex',
+                                    gap: '1rem',
+                                    fontSize: '0.875rem',
+                                    alignItems: 'center',
+                                    borderBottom: '1px solid var(--theme-card-border)',
+                                }}
                             >
-                                <div className={cn("w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 shadow-sm", avatarColor)}>
+                                <div style={{
+                                    width: '2.5rem',
+                                    height: '2.5rem',
+                                    borderRadius: '50%',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontWeight: 700,
+                                    fontSize: '1.125rem',
+                                    flexShrink: 0,
+                                    backgroundColor: 'var(--theme-accent-bg)',
+                                    color: 'var(--theme-accent)',
+                                }}>
                                     {initial}
                                 </div>
-                                <div className="flex-1 min-w-0">
-                                    <p className="text-neutral-800 font-medium truncate">{act.message}</p>
-                                    <p className="text-neutral-500 text-xs mt-0.5">{getRelativeTime(act.createdAt)}</p>
+                                <div style={{ flex: 1, minWidth: 0 }}>
+                                    <p style={{ color: 'var(--theme-text-primary)', fontWeight: 500, margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                        {act.message}
+                                    </p>
+                                    <p style={{ color: 'var(--theme-text-muted)', fontSize: '0.75rem', marginTop: '0.125rem', margin: '0.125rem 0 0' }}>
+                                        {getRelativeTime(act.createdAt)}
+                                    </p>
                                 </div>
-                                <div className="flex-shrink-0 pl-2">
-                                    {icon}
+                                <div style={{ flexShrink: 0, paddingLeft: '0.5rem', color: iconColor, fontSize: '1.25rem' }}>
+                                    {iconLabel}
                                 </div>
                             </li>
                         );
                     }) : (
-                        <div className="p-12 text-center text-neutral-500 space-y-4">
-                            <div className="w-16 h-16 bg-neutral-100 rounded-full flex items-center justify-center mx-auto text-2xl">🌱</div>
-                            <p className="font-medium">No activity yet. Complete a task to get started!</p>
+                        <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--theme-text-muted)' }}>
+                            <div style={{
+                                width: '4rem',
+                                height: '4rem',
+                                backgroundColor: 'var(--theme-hover)',
+                                borderRadius: '50%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                margin: '0 auto',
+                                fontSize: '1.5rem',
+                            }}>
+                                🌱
+                            </div>
+                            <p style={{ fontWeight: 500, marginTop: '1rem' }}>No activity yet. Complete a task to get started!</p>
                         </div>
                     )}
                 </ul>

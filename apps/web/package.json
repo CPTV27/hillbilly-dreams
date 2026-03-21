@@ -14,6 +14,7 @@
     "@auth/prisma-adapter": "^2.11.1",
     "@bigmuddy/config": "workspace:*",
     "@bigmuddy/database": "workspace:*",
+    "@bigmuddy/shared": "workspace:*",
     "@bigmuddy/ui": "workspace:*",
     "@google-cloud/aiplatform": "^6.5.0",
     "@google-cloud/storage": "^7.19.0",

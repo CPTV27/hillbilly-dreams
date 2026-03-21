@@ -126,6 +126,7 @@ export default async function OpsLayout({ children }: { children: React.ReactNod
               <Link href="/ops/content" style={{ textDecoration: 'none', ...theme.navLink }}>Content</Link>
               <Link href="/ops/chat" style={{ textDecoration: 'none', ...theme.navLink }}>Delta Dawn</Link>
               <Link href="/ops/property" style={{ textDecoration: 'none', ...theme.navLink }}>Property</Link>
+              <Link href="/ops/reviews" style={{ textDecoration: 'none', ...theme.navLink }}>Reviews</Link>
               <Link href="/ops/settings" style={{ textDecoration: 'none', ...theme.navLink }}>Settings</Link>
               <Link href="/ops/amy" style={{ textDecoration: 'none', ...theme.navActive }}>Amy</Link>
             </nav>
