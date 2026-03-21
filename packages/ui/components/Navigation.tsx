@@ -83,6 +83,7 @@ export function Navigation({ brand, currentPath = '/', links, logoHref = '/', sh
     economics: { name: 'Outsider', label: 'Economics' },
     gallery: { name: 'BuyCurious', label: 'Art' },
     records: { name: 'Big Muddy', label: 'Records' },
+    hillbilly: { name: 'Hillbilly Dreams', label: 'Inc' },
     admin: { name: 'Big Muddy', label: 'HQ' },
   };
 
