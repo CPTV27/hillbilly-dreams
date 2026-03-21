@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { RefreshCw, Users, Music, Camera, ClipboardList, Phone, Mail, Check, AlertCircle, Upload, ChevronRight, Sparkles } from 'lucide-react';
+import { RefreshCw, Users, Music, Camera, ClipboardList, Phone, Mail, Check, CheckCircle2, AlertCircle, Upload, ChevronRight, Sparkles } from 'lucide-react';
 
 // ── Types ──
 interface Arrival { id: string; guest: string; email: string; phone: string; room: string; checkIn: string; checkOut: string; balance: number; status: string; source: string; }
