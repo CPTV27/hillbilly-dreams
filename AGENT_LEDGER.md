@@ -5,15 +5,80 @@
 
 ---
 
-## [2026-03-21 — CC — WAITING_ON_AG
+## [2026-03-21 17:00] — AG — COMPLETE
 
-**Task:** hillbillydreamsinc.com — Parent brand site scaffolding + AG visual build spec
+**Task:** hillbillydreamsinc.com — Visual experience built on CC's skeleton
+
+### What AG Did
+Built the full Hillbilly Dreams landing page on CC's routing/skeleton foundation. Used the correct Big Muddy ecosystem brands (not S2PX properties — those are a separate equity structure).
+
+1. **Added `theme-hillbilly` CSS tokens** to `packages/config/tokens.css`
+   - Iron-dark blue-blacks (`--bg: #0a0f1a`, `--surface: #111827`) 
+   - Aged gold accent (`--accent: #c8943e`) — same gold, cooler backgrounds than touring
+   - Full variable set: bg, surface (3 levels), accent (4 states), border (2 levels), shadow-glow
+
+2. **Rebuilt `apps/web/app/hillbilly/page.tsx`** — Full page from CC's skeleton:
+   - **Hero** — Playfair Display hero type, "Hillbilly Dreams, Inc." with eyebrow (Natchez, Mississippi), tagline, CTA buttons (Ecosystem / Story), scroll indicator. Background pattern using radial gradients.
+   - **Brand Ecosystem Grid** — 7 cards with icons, names, taglines, descriptions, hover effects (lift + glow + arrow animation). Correct brands: Touring, Magazine, Radio, Records, BuyCurious Art, Outsider Economics, Deep South Directory.
+   - **The Story** — First-person narrative in Chase's voice. Origin story (left corporate, moved to Mississippi, built from scratch). Blockquote pull-quote. Covers the ecosystem flywheel concept.
+   - **Philosophy** — Three principle cards: Sovereignty, Locality, Durability.
+   - **Footer** — HD mark, company name, Natchez MS, email, copyright, tagline.
+
+3. **Design system** — All CSS uses existing BMT design tokens (`--font-display`, `--text-hero`, `--space-*`, `--radius-*`, etc.). BEM naming convention (`hd-hero__title`, `hd-brand-card__name`). Inline `<style>` block matching the pattern in `touring/page.tsx`.
+
+### What AG Did NOT Build (Intentional)
+- **No Team section** — Chase said corporate structure of Hillbilly Dreams Inc. hasn't been defined yet. Tracy and Amy own the Big Muddy Inn; Chase is consultant/operator. Team section should wait for structure clarity.
+- **No hero image** — The page uses CSS gradient patterns instead of photography for now. When Chase provides real Nano Banana / editorial shots, those should be added.
+- **No framer-motion animations** — Kept it as a server component (matching touring page pattern) for SEO and performance. Client-side animations can be added later.
+
+### Files Changed
+- Modified: `packages/config/tokens.css` — Added `.theme-hillbilly` theme class (15 lines)
+- Modified: `apps/web/app/hillbilly/page.tsx` — Full rewrite from 111-line skeleton to ~350-line page
+
+### S2PX Cleanup (AG also reverted wrong-codebase work)
+AG initially built in the S2PX Vite SPA (wrong repo). All changes were reverted:
+- Reverted: `S2PX/client/src/App.tsx` — Removed HillbillyDreams import + route
+- Reverted: `S2PX/client/src/pages/SSOChecker.tsx` — Removed hillbillydreamsinc.com from ALLOWED_DOMAINS
+- Deleted: `S2PX/client/src/pages/HillbillyDreams.tsx` (orphaned)
+- Deleted: `S2PX/client/src/styles/theme-hillbilly.css` (orphaned)
+- Deleted: `S2PX/public/images/hillbilly/` (orphaned)
+
+### Remaining (Chase / CC)
+- **Chase:** `firebase login:add` with `chasepierson.tv` account
+- **Chase:** Cloudflare CNAME for `hillbillydreamsinc.com` → Firebase App Hosting domain
+- **CC:** Deploy when DNS is configured
+- **Future:** Add hero photography, team section (once corporate structure defined), framer-motion animations
+
+**Status:** COMPLETE
+
+---
+
+## [2026-03-21 17:15] — CC — COMPLETE
+
+**Task:** hillbillydreamsinc.com — Routing, AG coordination, CI fix, deployment prep
 
 ### What CC Did
-1. Registered `hillbillydreamsinc.com` in Cloudflare (Chase purchased domain)
-2. Added `hillbilly` brand to `packages/config/brands.ts` (id, domain, theme, nav linking to all child brands)
-3. Added `getBrandFromHostname` match for `hillbillydreams`
-4. Added middleware routing: `hillbillydreamsinc.com` → `/hillbilly` route
+1. Added `hillbilly` brand to `packages/config/brands.ts` (id, domain, theme, nav linking to all child brands)
+2. Added `getBrandFromHostname` match for `hillbillydreams`
+3. Added middleware routing: `hillbillydreamsinc.com` → `/hillbilly` route (brandPrefixes, domain rewrite, dev brand override)
+4. Created initial skeleton page at `apps/web/app/hillbilly/page.tsx`
+5. Wrote AG spec in ledger — AG picked it up and built the visual experience (see AG entry above)
+6. Verified AG's output: file is clean, no duplicates, correct brands, uses design tokens
+7. Fixed CI: `turbo.json` and `apps/web/package.json` had `type-check` but CI called `typecheck` — added alias
+8. Committed and pushed AG's visual work + CI fix to main
+9. Identified Firebase App Hosting backend: `bmt--bigmuddy-ff651.us-east4.hosted.app`
+10. Firebase CLI switched to `me@chasepierson.tv` account for BMT project access
+
+### Deployment Status
+- Code is on main and deployed via Firebase App Hosting (auto-deploy from GitHub)
+- Page works at `https://bmt--bigmuddy-ff651.us-east4.hosted.app/hillbilly`
+- **BLOCKED on DNS:** Chase needs to add CNAME in Cloudflare: `hillbillydreamsinc.com` → `bmt--bigmuddy-ff651.us-east4.hosted.app` (DNS only, gray cloud) + add custom domain in Firebase Console → App Hosting → bmt
+
+### Also Done This Session
+- Committed AG's BuyCurious Art artist application backend (ArtistApplication Prisma model + POST /api/gallery/applications + form wiring)
+- Exported Perplexity context docs to `exports/perplexity-context/` (schema, brands, tokens, ledger, BMT-CONTEXT.md)
+
+**Status:** COMPLETE
 5. Created skeleton page at `apps/web/app/hillbilly/page.tsx` — functional but bare
 
 ### Files Changed
@@ -21,44 +86,7 @@
 - Modified: `apps/web/middleware.ts` — Added `/hillbilly` prefix, domain rewrite, dev brand entry
 - Created: `apps/web/app/hillbilly/page.tsx` — Skeleton landing page with brand grid
 
-### AG Assignment: Build the Hillbilly Dreams Visual Experience
-
-This is the **parent brand** — the holding company page. It should feel like the front door to everything. Iron & Earth aesthetic. Not corporate. Not startup. A company page that looks like it was built by people who actually make things.
-
-**What to build:**
-
-1. **Hero section** — "Hillbilly Dreams Inc." with a one-liner and Chase's photography-style hero image (use Nano Banana with the photography style guide). Deep, warm, Southern. Night shot of the Inn or the river or Natchez skyline.
-
-2. **Brand ecosystem** — Visual grid/wheel of all 7+ brands. Each card should feel alive — not just a link list. Show what each brand IS. Think magazine cover grid, not corporate subsidiary list.
-
-3. **The Story** — Short "about" section. Who we are, why Natchez, what Outsider Economics means in practice. Use Chase's voice (see `user_voice_profile.md`). 2-3 paragraphs max.
-
-4. **The Team** — Chase, Tracy, Amy/Arri. Minimal. Photos + one-liner roles. Not LinkedIn headshots — editorial portraits.
-
-5. **Contact / Footer** — Natchez, MS. Email. Maybe the tagline: "Built with independence. Powered by stubbornness." or similar.
-
-**Design constraints:**
-- Dark background (#0a0f1a or similar), warm gold accent (#c8943e)
-- Georgia/serif primary type, clean sans for UI
-- Mobile-first — this will get texted to people
-- NO stock photography. Nano Banana or Chase's real shots only.
-- Theme class: `theme-hillbilly` — needs CSS tokens in `packages/config/tokens.css`
-
-**Cloudflare DNS:**
-- Domain is registered on Cloudflare already
-- Needs CNAME or A record pointed at the Firebase App Hosting domain
-- Chase will configure DNS in Cloudflare dashboard, or AG can spec the exact records needed
-
-### Dependencies
-- AG: Needs Nano Banana for hero/brand imagery
-- AG: Needs to create `theme-hillbilly` tokens in `packages/config/tokens.css`
-- Chase: DNS records in Cloudflare dashboard pointing to Firebase App Hosting
-
-### Next
-- AG: Build the full visual experience on the skeleton at `/hillbilly/page.tsx`
-- CC: Will handle Cloudflare DNS → Firebase once AG confirms the page is ready to deploy
-
-**Status:** WAITING_ON_AG
+**Status:** COMPLETE
 
 ---
 
