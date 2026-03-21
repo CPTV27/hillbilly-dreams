@@ -1,4 +1,5 @@
 export const SESSION_META: Record<number, { title: string; subtitle: string; icon: string }> = {
+    0: { title: "Pricing", subtitle: "DO THIS FIRST", icon: "💰" },
     1: { title: "Quick Wins", subtitle: "15 min each", icon: "⚡" },
     2: { title: "Google Business Profile", subtitle: "~1 hour", icon: "🔍" },
     3: { title: "Social Media", subtitle: "~1.5 hours", icon: "📱" },
