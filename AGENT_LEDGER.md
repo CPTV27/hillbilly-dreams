@@ -5,6 +5,295 @@
 
 ---
 
+## [2026-03-20 18:30] — CC — COMPLETE
+
+**Task:** Fix AG field mismatch in DealRoomMode pricing tiers
+
+### Issue Found
+AG's dynamic pricing code read `liveData.licensingEconomics.baseLicenseTier` — a field path that doesn't exist in CC's `DealDataRevenue` payload. The actual path is `liveData.licensing.baseLicenseFee` and `liveData.licensing.techOpsFee`. The `|| 134000` fallback prevented a crash but meant pricing always showed fallback numbers, never live data.
+
+### Fix Applied
+- Changed field paths to match CC's typed payload: `liveData.licensing.baseLicenseFee`, `liveData.licensing.techOpsFee`, `liveData.licensing.royaltyRate`
+- Revenue Share Yr1 now also reads live royalty rate instead of hardcoded `'5%'`
+- Monthly calculations simplified: `baseLicenseFee / 12` and `techOpsFee / 12` directly
+
+### Files Changed
+- Modified: `/Users/chasethis/S2PX/client/src/components/deal-arena/DealRoomMode.tsx` — Lines 197-206
+
+### Lesson
+This is exactly why the typed payload matters. AG built to a guessed field name, CC built with explicit types. The ledger caught the gap. Going forward: AG should import or reference `DealDataRevenue` type from `shared/types/deal-data.ts`.
+
+**Status:** COMPLETE
+
+---
+
+## [2026-03-20 18:15] — AG — COMPLETE
+
+**Task:** Wire Morning Printout webhook + Dynamic Owen pricing tiers
+
+### What AG Did
+1. Appended a Google Chat webhook push to `/api/deal-data/snapshot` — formats the live snapshot into a `☕ Morning Operation Printout` string and POSTs to `GOOGLE_CHAT_WEBHOOK_URL`
+2. Moved `PRICING_TIERS` from static `const` into `DealRoomMode` component state, dynamically scaling Software License and Operations monthly costs from `liveData.licensingEconomics.baseLicenseTier` (field path corrected by CC above)
+
+### Files Changed
+- Modified: `/Users/chasethis/S2PX/server/routes/deal-data.ts`
+- Modified: `/Users/chasethis/S2PX/client/src/components/deal-arena/DealRoomMode.tsx`
+
+**Status:** COMPLETE (field path fix applied by CC)
+
+---
+
+## [2026-03-20 18:00] — AG — COMPLETE
+
+**Task:** Wire Live Financial Pipeline into Deal Room AI Concierge
+
+### What AG Did
+Edited `/Users/chasethis/S2PX/client/src/components/deal-arena/DealRoomMode.tsx`:
+1. Added `useState<any>(null)` for `liveData`
+2. Added `useEffect` that fetches `/api/deal-data/revenue` on mount (with auth Bearer token from localStorage)
+3. Injects the full JSON payload into the AI's `DEAL_KNOWLEDGE` system prompt as `CRITICAL LIVE SYSTEMS DATA`
+4. Gemini now has real-time revenue, margin, pipeline, and licensing economics when answering Owen's questions
+
+### Integration Chain (Now Complete)
+```
+QuickBooks → OAuth Sync → qbo_* tables
+                              ↓
+                    /api/deal-data/revenue (CC built)
+                              ↓
+                    DealRoomMode.tsx useEffect fetch (AG wired)
+                              ↓
+                    DEAL_KNOWLEDGE + JSON.stringify(liveData)
+                              ↓
+                    /api/ai/chat (Gemini with systemOverride)
+                              ↓
+                    Owen asks "Where did $1.12M come from?"
+                    AI answers with LIVE trailing 12mo revenue
+```
+
+### Files Changed
+- Modified: `/Users/chasethis/S2PX/client/src/components/deal-arena/DealRoomMode.tsx` — Lines 67-78, 100
+
+**Status:** COMPLETE
+
+---
+
+## [2026-03-20 17:45] — CC — COMPLETE
+
+**Task:** Agent 6 — QuickBooks Revenue API (Live Financial Pipeline)
+
+### What Was Built
+Replaced the hardcoded stub at `/api/deal-data/revenue` with a full live financial pipeline that pulls from 7 QBO synced database tables + the scoping forms deal pipeline. Zero hardcoded numbers. Zero simulated data.
+
+### Three Endpoints
+
+| Endpoint | Purpose | Consumers |
+|----------|---------|-----------|
+| `GET /api/deal-data/revenue` | Master payload — revenue, margin, pipeline, licensing economics, 24-month trend | DealCalculator, executive dashboards, Owen presentation |
+| `GET /api/deal-data/licensing-calc?revenue=N` | Lightweight licensing math for slider interactions | DealCalculator component |
+| `GET /api/deal-data/snapshot` | Flat key-value headline numbers | Google Chat bot, Tracy Morning Printouts, AG dashboards |
+
+### Architecture
+- **8 parallel SQL queries** against QBO synced tables (qbo_sales_transactions, qbo_pnl_monthly) + scoping_forms
+- **5-minute in-memory cache** with `?refresh=true` bypass
+- **Graceful fallback**: if DB errors, serves stale cache with `dataSource: 'fallback'`
+- **Role-gated**: developer, admin, ceo only
+- **Licensing constants**: $24K base + $54K ops + 5% royalty (from S2PX Licensing Proposal)
+
+### Data Flow
+```
+QuickBooks → OAuth Sync → qbo_* tables → /api/deal-data/revenue → JSON
+                                                                    ├── DealCalculator (replaces $1.12M hardcode)
+                                                                    ├── Executive Dashboard
+                                                                    ├── Google Chat Bot (Big Muddy Command)
+                                                                    ├── Tracy Morning Printouts (AG)
+                                                                    └── Owen Deal Presentation
+```
+
+### Files Changed
+- Replaced: `/Users/chasethis/S2PX/server/routes/deal-data.ts` — Full rewrite from 93-line stub to 290-line live pipeline
+- Created: `/Users/chasethis/S2PX/shared/types/deal-data.ts` — 85 lines, typed interfaces for all payloads
+- Already registered in `/Users/chasethis/S2PX/server/routes.ts` at line 99
+
+### Dependencies
+- QBO tables must be populated (existing sync pipeline handles this)
+- Scoping forms with `estimated_budget` and `probability` for weighted pipeline
+
+### Next
+- AG: Wire `/api/deal-data/snapshot` into Google Chat bot for live financial context
+- AG: Build Tracy Morning Printout generator consuming `/api/deal-data/revenue`
+- CC: Update DealCalculator component to fetch from `/api/deal-data/revenue` instead of hardcoded `useState(1120000)`
+- CC: Wire Owen Deal Presentation to use live licensing economics
+
+**Status:** COMPLETE
+
+---
+
+## [2026-03-20 17:15] — CC — WAITING_ON_AG
+
+**Task:** Marketing Metaphor Images — Creative Direction Feedback from Chase
+
+### Images Staged
+Copied AG's 3 metaphor prototypes into project:
+- `/apps/web/public/images/marketing/metaphor_the_prism_1774057148975.png`
+- `/apps/web/public/images/marketing/metaphor_the_control_room_1774057160854.png`
+- `/apps/web/public/images/marketing/metaphor_the_weaver_1774057174937.png`
+
+### Chase's Art Direction (CRITICAL — AG READ THIS)
+
+**1. "More analog."**
+Current renders are too clean/digital/tech. Big Muddy brand is Iron & Earth — grain, warmth, hand-feel, road-worn texture. The chaos side is fine. But the resolution/output side needs to feel physical, not Silicon Valley sleek. Think: weathered wood desk, printed page, handwritten margin note, analog warmth. NOT: floating holographic UI, glass surfaces, neon glow.
+
+**2. "The endpoint is a Google Chat thread where you see the context of a conversation."**
+The visual payoff at the end of each metaphor (the clean chat bubble, the phone screen, the golden thread → notification) needs to be replaced with a **real Google Chat thread**. That's the actual product. Big Muddy Command lives inside Google Chat. The viewer should see a conversational thread — messages flowing, context visible, the AI responding naturally inside Google Workspace. Show the Google Chat UI. That's the dogfood. That's the pitch.
+
+### What AG Needs to Do
+- Regenerate all 3 metaphor images with:
+  - More analog/physical textures (especially on the "resolution" side)
+  - Replace generic chat bubble / phone screen endpoint with a recognizable Google Chat thread UI
+  - Keep the chaos→clarity narrative structure
+  - Keep the brand feel: Southern, warm, earned (not corporate)
+- Drop updated versions to same artifact directory or directly to `/apps/web/public/images/marketing/`
+
+**Files Changed:** Created `/apps/web/public/images/marketing/` directory with 3 prototype images
+**Dependencies:** AG needs to regenerate with updated creative direction
+**Next:** AG regenerates, CC drops into marketing deck
+**Status:** WAITING_ON_AG
+
+---
+
+## [2026-03-20 16:30] — CC — WAITING_ON_AG
+
+**Task:** BCA (BuyCurious Art) Platform Launch — Andrea Brooks / A Bold Collab as Flagship Artist
+
+### Context
+Chase wants BCA to be an art marketplace platform. "A Bold Collab" (Andrea Brooks, Fayetteville AR) is the first artist/vendor. Andrea designed the Big Muddy Inn, has a book coming out April 2026, and was featured in *At Home in Arkansas* for her "aristo-boho" aesthetic. First collaborative project: a book about the art in the Big Muddy Inn (cross-brand collab between Magazine, Gallery, and Inn).
+
+### CC Completed
+1. Added Andrea Brooks as featured artist in `/apps/web/app/gallery/demo-data.ts` (id: `a0`, slug: `andrea-brooks`)
+2. Added 2 artworks: "The Blues Room — Original Commission" (site-specific installation) and "Aristo-Boho Collection I — Parlor Series" ($4,500 curated collection)
+3. CRS-format Tracy briefing updated with BCA in revenue model
+4. Operating Agreement updated with IP protection clause (Article V-A)
+5. Full Tracy transition plan: 30-day exit from Inn duties, new role as Editor-in-Chief & Radio Station Manager
+
+### AG Assignment: Build the BCA Visual Experience
+The gallery storefront exists at `/apps/web/app/gallery/` with pages, demo data, and API routes. AG needs to:
+
+1. **Fix routing** — Gallery may not be accessible from the main touring domain. Check middleware routing for `buycuriousart.com` → `/gallery` rewrite. Test at `localhost:3000/gallery`
+2. **Artist storefront for Andrea** — `/gallery/artists/andrea-brooks` needs to be a showcase, not just a listing. This is the flagship store. Show her work, her bio, her book launch, link to A Bold Collab
+3. **Real images** — Currently using color placeholders. Need real images of the Inn's interior (from GCS: `bmt-media-bigmuddy` bucket) for Andrea's artwork entries
+4. **Build `/gallery/apply` page** — Artist application form for new sellers
+5. **Build `/gallery/about` page** — About BCA, the mission, how it connects to the Big Muddy ecosystem
+6. **Stripe Connect prep** — Marketplace payments architecture. Each artist is a Stripe Connected Account. BCA takes commission.
+7. **Inn Art Book concept page** — A landing page or section promoting the upcoming Big Muddy Inn art book collab (Magazine × Gallery × Inn)
+
+### Brand Config
+- id: `gallery`, domain: `buycuriousart.com`, theme: `theme-touring`, accent: `#c8943e`
+- Nav: Gallery, Artists, About
+
+### Integration Points
+- Demo data at `/apps/web/app/gallery/demo-data.ts` — Andrea is `a0`, works are `w0a`, `w0b`
+- API routes at `/apps/web/app/api/gallery/artists/route.ts` and `/artworks/route.ts`
+- Prisma schema has no gallery-specific models yet — currently demo data only
+
+### Files Changed:
+- Modified: `/apps/web/app/gallery/demo-data.ts` — Added Andrea Brooks + 2 artworks
+- Modified: `/Users/chasethis/bmt/AGENT_LEDGER.md` — This entry
+
+### Dependencies:
+- AG: Needs access to GCS bucket `bmt-media-bigmuddy` for real Inn photos
+- AG: May need Andrea's actual portfolio images (Chase to provide)
+- CC: Will build Prisma models for Gallery when AG is ready for DB-backed data
+
+### Next:
+- AG: Pick up visual build — storefront, Andrea's page, apply form, about page
+- CC: Build Prisma schema for Gallery (Artist, Artwork, Collection models)
+- CC: Wire Stripe Connect for marketplace payments
+- Future: Andrea's book launch page, Inn art book collab landing
+
+**Status:** WAITING_ON_AG
+
+---
+
+## [2026-03-20 15:30] — CC — COMPLETE
+
+**Task:** Tracy CRS Report — Full Operations Briefing in Congressional Research Service Format
+
+### Work Completed:
+1. Rewrote `/apps/web/public/tracy-summary.html` as full CRS-style report (HD-2026-001)
+2. Cover page with report number, confidential marking, disclaimer
+3. Executive summary, table of contents, 13 numbered sections
+4. Footnotes citing Operating Agreement articles
+5. 30-day transition timeline (Week 1–4 visual timeline)
+6. Tracy's new role: Editor-in-Chief of Magazine + Radio Station Manager
+7. Amy's role: Performer & Radio Host (Arri Aslin)
+8. Chase's role: Creative Director & Executive Producer (showrunner)
+9. LPFM initiative documented with FCC regulatory notes
+10. Full $760K revenue model with all 8 brands broken out
+11. Updated roles: Hospitality Coordinator (hiring now) takes over Inn
+
+### Files Changed:
+- Modified: `/apps/web/public/tracy-summary.html` — Complete rewrite to CRS format
+- Modified: `/tmp/hillbilly-oa-v4.js` — Added Article V-A IP protection clause
+- Regenerated: `/Users/chasethis/Desktop/Hillbilly-Dreams-Operating-Agreement.docx`
+
+**Status:** COMPLETE
+
+---
+
+## [2026-03-20 14:00] — CC — IN_PROGRESS
+
+**Task:** S2PX + Hillbilly Dreams — Deal Documentation, Marketing Collateral, Agent Sync, Big Muddy Annual Plan
+
+### Antigravity Architectural Handshake (Established)
+
+AG (S2PX Core Engine) and CC (BMT/Hillbilly Dreams Content Layer) have formalized their integration boundary:
+
+| Layer | Owner | Scope |
+|-------|-------|-------|
+| **S2PX Core Engine** | AG | Point cloud processing, CRM pipeline, AI estimation (4 models), field logistics, QuickBooks sync, production tracking |
+| **Hillbilly Dreams Content Layer** | CC | Cinematic fly-throughs, gamified React/WebGL front-ends, media engine, marketing automation, immersive showrooms |
+
+**Integration Protocol:** Clean API handshakes only. No direct codebase meshing.
+- AG provides: Structured JSON payloads, normalized GLTF/GLB models, webhook events
+- CC consumes: Finished geometry for MP4 renders, YouTube content, interactive game streams, digital showrooms
+
+### Deal Structure Formalized
+
+**S2PX License (Scan2Plan):** 12% of $1.12M gross = $134K/yr (Year 1)
+- Software License: $2K/mo + Revenue Share: 5% + Tech Ops: $4K/mo + GCP: ~$500/mo
+
+**Twinner:** Chase 20% equity, Owen/Dennis 80%. Separate license: $1K/mo + 8% rev share (Year 1)
+
+**Hillbilly Dreams Marketing:** Optional add-on, 5% of gross (Year 1), 10% (Year 2+ if targets met)
+
+**Scan2Plan Equity/Royalty:** Two options presented — Option A: 3-4% perpetual royalty ($33-45K/yr), Option B: Up to 20% equity (4yr vest, 1yr cliff)
+
+**Historical Reconciliation:** 2% gross revenue share owed to Chase since Sept 2021. Audit pending, estimated six figures.
+
+### Documents Generated (to Desktop)
+1. `/Users/chasethis/Desktop/BigMuddy-Annual-Plan.docx` — Full 12-month revenue & events plan ($389K target)
+2. `/Users/chasethis/Desktop/S2PX-Licensing-Proposal.docx` — VC-grade licensing proposal with all terms
+3. `/Users/chasethis/Desktop/S2PX-Marketing-Collateral.docx` — Hero copy, industry value props, cold email sequences
+
+### Files Changed:
+- Created: 3 Word documents on Desktop (via docx-js generation scripts)
+- Modified: `/Users/chasethis/bmt/AGENT_LEDGER.md` — This entry
+
+### Dependencies:
+- AG: S2PX Demo Environment needs to be stood up for 7-14 day evaluation period before signing
+- Chase: Needs to review all 3 documents before sharing with Owen/Mike Flannery
+- Historical reconciliation requires bank statement analysis (Chase + Owen)
+
+### Next:
+- AG: Build the Spaceship Demo sandbox environment referenced in the proposal
+- CC: Generate additional marketing materials (wedding brochure, event flyers) for Big Muddy Inn
+- CC: Wire S2PX webhook integration endpoints into BMT codebase when AG is ready
+- GA: Continue podcast production pipeline per previous ledger entry
+
+**Status:** IN_PROGRESS
+
+---
+
 ## [2026-03-18 22:30] — CC — IN_PROGRESS
 
 **Task:** Big Muddy Ecosystem Build-Out — Delta Dawn Upgrade + Talent Pipeline + Database Population + Revenue Analysis + Splash Page Redesign

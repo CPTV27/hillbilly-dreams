@@ -1,6 +1,7 @@
 // apps/web/app/gallery/layout.tsx
 // BuyCurious Art — gallery route layout
-// Uses inline nav pattern (same as media/) since 'gallery' is a newer brand
+// Default theme: clean white museum (theme-gallery)
+// Funky mode toggle is handled by page.tsx which swaps the class
 
 import type { Metadata } from 'next';
 import type { Viewport } from 'next';
@@ -27,8 +28,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: '#0f0f0d' },
-    { media: '(prefers-color-scheme: light)', color: '#0f0f0d' },
+    { media: '(prefers-color-scheme: dark)', color: '#fafaf8' },
+    { media: '(prefers-color-scheme: light)', color: '#fafaf8' },
   ],
 };
 
@@ -38,7 +39,15 @@ export default function GalleryLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="theme-touring">
+    <div
+      className="theme-gallery"
+      id="gallery-theme-root"
+      style={{
+        backgroundColor: 'var(--bg)',
+        color: 'var(--text)',
+        minHeight: '100vh',
+      }}
+    >
       <GalleryNav />
       <main>{children}</main>
       <Footer brand="touring" />

@@ -40,6 +40,19 @@ export interface DemoArtwork {
 
 export const DEMO_ARTISTS: DemoArtist[] = [
   {
+    id: 'a0',
+    name: 'Andrea Brooks',
+    slug: 'andrea-brooks',
+    city: 'Fayetteville',
+    state: 'AR',
+    medium: 'Interior Design & Mixed Media',
+    bio: 'Andrea Brooks is the designer behind the Big Muddy Inn and the creative force of A Bold Collab. Based in Northwest Arkansas by way of El Dorado, she works at the intersection of interior design, fine art, and editorial storytelling. Her aesthetic — coined "aristo-boho" — marries aristocratic structure with bohemian spirit, collected objects, and fearless color. She designed every room at the Inn and is the founding artist on BCA. Her first book releases April 2026.',
+    instagram: 'aboldcollab',
+    website: 'https://aboldcollab.com',
+    featured: true,
+    workCount: 15,
+  },
+  {
     id: 'a1',
     name: 'Delphine Mouton',
     slug: 'delphine-mouton',
@@ -103,6 +116,44 @@ export const DEMO_ARTISTS: DemoArtist[] = [
 ];
 
 export const DEMO_ARTWORKS: DemoArtwork[] = [
+  {
+    id: 'w0a',
+    slug: 'blues-room-commission',
+    title: 'The Blues Room — Original Commission',
+    artistId: 'a0',
+    artistName: 'Andrea Brooks',
+    artistSlug: 'andrea-brooks',
+    medium: 'Interior design commission',
+    dimensions: 'Full room installation',
+    year: 2024,
+    price: 0,
+    category: 'commission',
+    edition: 'Site-specific installation',
+    description: 'The Blues Room at Big Muddy Inn — a 50-seat performance venue designed by Andrea Brooks as a living piece of art. Every surface, fixture, and sight line was designed to serve the music. The room is both a venue and a portfolio piece: proof that great design can make sound feel different.',
+    images: ['#2a1a14', '#1c0e08', '#3d2820'],
+    tags: ['big-muddy-inn', 'interior-design', 'venue', 'commission', 'blues-room'],
+    available: false,
+    featured: true,
+  },
+  {
+    id: 'w0b',
+    slug: 'aristo-boho-collection-i',
+    title: 'Aristo-Boho Collection I — Parlor Series',
+    artistId: 'a0',
+    artistName: 'Andrea Brooks',
+    artistSlug: 'andrea-brooks',
+    medium: 'Curated art & object collection',
+    dimensions: 'Variable',
+    year: 2025,
+    price: 450000, // $4,500
+    category: 'collection',
+    edition: 'Limited series',
+    description: 'A curated collection of original objects, textiles, and artwork assembled by Andrea Brooks for the Big Muddy Inn parlor. Aristocratic structure meets bohemian spirit — collected pieces from three continents, anchored in the Deep South. Available as a curated package or individual pieces.',
+    images: ['#3d2b22', '#5c3d28', '#8b5e40'],
+    tags: ['aristo-boho', 'collection', 'curated', 'big-muddy-inn', 'parlor'],
+    available: true,
+    featured: true,
+  },
   {
     id: 'w1',
     slug: 'bluff-at-last-light',
