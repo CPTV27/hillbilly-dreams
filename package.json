@@ -12,12 +12,14 @@
     "db:generate": "turbo run db:generate",
     "db:push": "turbo run db:push",
     "db:migrate": "turbo run db:migrate",
-    "postinstall": "pnpm --filter @bigmuddy/database exec prisma generate"
+    "postinstall": "pnpm --filter @bigmuddy/database exec prisma generate",
+    "qa:fuzz": "npx playwright install chromium && npx tsx scripts/qa-monkey.ts"
   },
   "dependencies": {
     "google-auth-library": "^10.6.2",
     "googleapis": "^171.4.0",
     "prettier": "^3.3.0",
+    "sharp": "^0.33.0",
     "turbo": "^2.0.0",
     "typescript": "^5.5.0"
   },

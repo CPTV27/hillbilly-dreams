@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRS-Style Report — Hillbilly Dreams LLC Operations Briefing</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #e8e8e8;
+    font-family: 'Libre Baskerville', 'Times New Roman', Times, serif;
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1a1a1a;
+    padding: 20px;
+  }
+
+  /* Page container */
+  .page {
+    max-width: 720px;
+    margin: 0 auto 30px;
+    background: #fff;
+    padding: 60px 72px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+    position: relative;
+  }
+
+  /* ========== COVER PAGE ========== */
+  .cover {
+    text-align: center;
+    padding: 0;
+  }
+
+  .cover-bar {
+    background: #2b3a5c;
+    height: 6px;
+    margin: 0 -72px 40px;
+  }
+
+  .cover-org {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #2b3a5c;
+    margin-bottom: 6px;
+  }
+
+  .cover-sub {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: #6b6b6b;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+  }
+
+  .cover-title {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+  }
+
+  .cover-subtitle {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 60px;
+  }
+
+  .cover-meta {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.8;
+  }
+
+  .cover-meta strong {
+    font-weight: 600;
+  }
+
+  .cover-report-num {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    color: #888;
+    margin-top: 40px;
+    letter-spacing: 0.05em;
+  }
+
+  .cover-bar-bottom {
+    background: #2b3a5c;
+    height: 3px;
+    margin: 40px -72px 0;
+  }
+
+  .cover-disclaimer {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10.5px;
+    color: #888;
+    margin-top: 20px;
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  /* ========== HEADERS ========== */
+  .page-header {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 6px;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ========== SUMMARY BOX ========== */
+  .summary-header {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #2b3a5c;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #2b3a5c;
+  }
+
+  .summary-box {
+    background: #f4f6f9;
+    border-left: 4px solid #2b3a5c;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* ========== SECTION HEADERS ========== */
+  h2 {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #2b3a5c;
+    margin: 32px 0 12px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  h3 {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    margin: 20px 0 8px;
+  }
+
+  h4 {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    font-style: italic;
+    color: #444;
+    margin: 16px 0 6px;
+  }
+
+  p { margin-bottom: 10px; }
+
+  /* ========== TABLE OF CONTENTS ========== */
+  .toc {
+    margin: 20px 0 28px;
+    font-size: 13px;
+    line-height: 2;
+  }
+
+  .toc-title {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #2b3a5c;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 4px;
+  }
+
+  .toc a {
+    color: #1a1a1a;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted #ccc;
+    padding: 2px 0;
+  }
+
+  .toc a:hover { color: #2b3a5c; }
+
+  .toc .toc-page { color: #888; font-size: 12px; }
+
+  .toc-sub {
+    padding-left: 20px;
+    font-size: 12.5px;
+  }
+
+  /* ========== TABLES ========== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 20px;
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  table caption {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 4px;
+    color: #333;
+  }
+
+  thead th {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 11.5px;
+    text-align: left;
+    padding: 6px 8px;
+    border-top: 2px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+    background: #f8f8f8;
+  }
+
+  thead th.right { text-align: right; }
+
+  tbody td {
+    padding: 5px 8px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+  }
+
+  tbody td.right { text-align: right; font-variant-numeric: tabular-nums; }
+  tbody td.indent { padding-left: 24px; color: #444; }
+
+  tbody tr.total-row td {
+    border-top: 2px solid #1a1a1a;
+    border-bottom: 2px solid #1a1a1a;
+    font-weight: 700;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  tbody tr.subtotal-row td {
+    border-top: 1px solid #999;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  tbody tr.group-header td {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-top: 10px;
+    border-bottom: none;
+    color: #2b3a5c;
+  }
+
+  /* Table source note */
+  .table-source {
+    font-size: 10.5px;
+    color: #888;
+    font-style: italic;
+    margin-top: -14px;
+    margin-bottom: 16px;
+  }
+
+  /* ========== FOOTNOTES ========== */
+  .footnotes {
+    margin-top: 28px;
+    padding-top: 12px;
+    border-top: 1px solid #ccc;
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .footnotes p {
+    margin-bottom: 4px;
+    padding-left: 16px;
+    text-indent: -16px;
+  }
+
+  sup {
+    font-size: 9px;
+    line-height: 0;
+    color: #2b3a5c;
+    font-weight: 600;
+  }
+
+  /* ========== FIGURES ========== */
+  .figure {
+    margin: 20px 0;
+    padding: 16px 0;
+  }
+
+  .figure-caption {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  /* Bar chart */
+  .bar-chart { margin: 8px 0; }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    font-size: 11.5px;
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .bar-label {
+    width: 160px;
+    flex-shrink: 0;
+    text-align: right;
+    padding-right: 10px;
+    font-size: 11px;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 16px;
+    background: #eee;
+    position: relative;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: #2b3a5c;
+  }
+
+  .bar-value {
+    width: 70px;
+    flex-shrink: 0;
+    padding-left: 8px;
+    font-weight: 600;
+    font-size: 11px;
+  }
+
+  /* Stacked bar */
+  .stacked-bar {
+    display: flex;
+    height: 24px;
+    margin: 12px 0 6px;
+    border: 1px solid #999;
+    overflow: hidden;
+  }
+
+  .stacked-seg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .stacked-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px 14px;
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10px;
+    margin-bottom: 12px;
+    color: #555;
+  }
+
+  .stacked-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .stacked-legend-swatch {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #999;
+    flex-shrink: 0;
+  }
+
+  /* ========== TIMELINE ========== */
+  .timeline {
+    margin: 16px 0;
+    border-left: 3px solid #2b3a5c;
+    padding-left: 20px;
+  }
+
+  .timeline-week {
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .timeline-week::before {
+    content: '';
+    position: absolute;
+    left: -26px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    background: #2b3a5c;
+    border-radius: 50%;
+  }
+
+  .timeline-label {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #2b3a5c;
+    margin-bottom: 4px;
+  }
+
+  .timeline-items {
+    list-style: none;
+    padding: 0;
+    font-size: 12.5px;
+  }
+
+  .timeline-items li {
+    padding: 2px 0 2px 16px;
+    position: relative;
+  }
+
+  .timeline-items li::before {
+    content: '\2022';
+    position: absolute;
+    left: 0;
+    color: #999;
+  }
+
+  /* ========== CALLOUT ========== */
+  .callout {
+    background: #f4f6f9;
+    border: 1px solid #ccc;
+    border-left: 4px solid #2b3a5c;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 12.5px;
+  }
+
+  .callout-label {
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #2b3a5c;
+    margin-bottom: 4px;
+  }
+
+  /* ========== LISTS ========== */
+  ul.report-list {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+  }
+
+  ul.report-list li {
+    padding: 2px 0 2px 18px;
+    position: relative;
+    font-size: 13px;
+  }
+
+  ul.report-list li::before {
+    content: '\2022';
+    position: absolute;
+    left: 4px;
+    color: #2b3a5c;
+    font-weight: 700;
+  }
+
+  /* Numbered procedure list */
+  ol.procedure {
+    margin: 8px 0 16px 0;
+    padding-left: 24px;
+    font-size: 12.5px;
+  }
+
+  ol.procedure li {
+    padding: 3px 0;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 600px) {
+    body { padding: 8px; }
+    .page { padding: 32px 28px; }
+    .cover-bar, .cover-bar-bottom { margin-left: -28px; margin-right: -28px; }
+    .bar-label { width: 100px; font-size: 10px; }
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; margin: 0; padding: 40px 60px; }
+    .page + .page { page-break-before: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- COVER PAGE                                   -->
+<!-- ============================================ -->
+<div class="page cover">
+  <div class="cover-bar"></div>
+
+  <div class="cover-org">Hillbilly Dreams LLC</div>
+  <div class="cover-sub">Internal Research &amp; Analysis Division</div>
+
+  <div style="margin:50px 0">
+    <div class="cover-title">Hillbilly Dreams LLC:<br>Operations Briefing &amp;<br>Organizational Plan</div>
+    <div class="cover-subtitle">A comprehensive overview of the entity structure, revenue model,<br>staffing roles, transition timeline, and strategic outlook<br>for the Big Muddy ecosystem.</div>
+  </div>
+
+  <div class="cover-meta">
+    <div><strong>Prepared by:</strong> Chase Pierson, Creative Director &amp; Executive Producer</div>
+    <div><strong>Prepared for:</strong> Tracy Allen, Amy Allen</div>
+    <div><strong>Date:</strong> March 20, 2026</div>
+  </div>
+
+  <div class="cover-report-num">HD-2026-001 &nbsp;&middot;&nbsp; CONFIDENTIAL</div>
+
+  <div class="cover-bar-bottom"></div>
+
+  <div class="cover-disclaimer">
+    <strong>Disclaimer:</strong> This report was prepared for the internal use of Hillbilly Dreams LLC members. It is not intended as legal or tax advice. Consult qualified counsel before executing any legal filings or agreements referenced herein. All revenue projections are forward-looking estimates based on current market conditions and operational assumptions.
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SUMMARY PAGE                                 -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <span>Hillbilly Dreams LLC: Operations Briefing</span>
+    <span>HD-2026-001</span>
+  </div>
+
+  <div class="summary-header">Summary</div>
+
+  <div class="summary-box">
+    <p>Hillbilly Dreams LLC is a proposed Mississippi limited liability company that will serve as the holding entity for the Big Muddy ecosystem&mdash;a network of eight interconnected brands spanning hospitality, media, music, publishing, touring, and technology licensing. The entity would be equally owned in thirds by Tracy Allen, Amy Allen, and a family trust.</p>
+    <p>The company projects annual revenue of <strong>$760,000</strong> across five revenue categories, representing a 726% increase over the prior year&rsquo;s $92,000 in revenue (which resulted in a net operating loss of $22,000). The revenue model is diversified across hospitality operations ($293,000), services and licensing ($224,000), touring and experiences ($126,000), media and content ($94,000), and miscellaneous income ($23,000).</p>
+    <p>Key organizational changes include: (1) the hiring of a professional hospitality coordinator to assume all daily Inn operations; (2) a 30-day transition plan under which Tracy Allen will exit all property management responsibilities by April 20, 2026; (3) the establishment of Tracy Allen as Editor-in-Chief of Big Muddy Magazine and General Manager of Big Muddy Radio; (4) the designation of Amy Allen as the primary on-air talent and performing artist; and (5) the designation of Chase Pierson as Creative Director and Executive Producer with responsibility for technology, content production, and strategic direction.</p>
+    <p style="margin-bottom:0">The immediate action item is the filing of the LLC with the Mississippi Secretary of State ($50 filing fee, online, approximately 15 minutes).</p>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc-title">Contents</div>
+  <div class="toc">
+    <a href="#entity"><span>Entity Structure and Ownership</span><span class="toc-page">3</span></a>
+    <a href="#roles" class="toc-sub"><span>Roles and Responsibilities</span><span class="toc-page">3</span></a>
+    <a href="#brands"><span>Brand Portfolio</span><span class="toc-page">4</span></a>
+    <a href="#revenue"><span>Revenue Model</span><span class="toc-page">5</span></a>
+    <a href="#revenue-detail" class="toc-sub"><span>Detailed Revenue Breakdown</span><span class="toc-page">5</span></a>
+    <a href="#revenue-visual" class="toc-sub"><span>Revenue Distribution Analysis</span><span class="toc-page">6</span></a>
+    <a href="#weddings"><span>Wedding Program</span><span class="toc-page">7</span></a>
+    <a href="#transition"><span>30-Day Transition Plan</span><span class="toc-page">7</span></a>
+    <a href="#tracy-role"><span>Editor-in-Chief &amp; Station Manager Role</span><span class="toc-page">8</span></a>
+    <a href="#magazine" class="toc-sub"><span>Big Muddy Magazine</span><span class="toc-page">8</span></a>
+    <a href="#radio" class="toc-sub"><span>Big Muddy Radio &amp; LPFM</span><span class="toc-page">9</span></a>
+    <a href="#communications"><span>Communications Protocol</span><span class="toc-page">9</span></a>
+    <a href="#technology"><span>Technology Infrastructure</span><span class="toc-page">10</span></a>
+    <a href="#filing"><span>Immediate Action: LLC Filing</span><span class="toc-page">10</span></a>
+    <a href="#outlook"><span>Strategic Outlook</span><span class="toc-page">11</span></a>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ENTITY STRUCTURE                             -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <span>Hillbilly Dreams LLC: Operations Briefing</span>
+    <span>HD-2026-001</span>
+  </div>
+
+  <h2 id="entity">Entity Structure and Ownership</h2>
+
+  <p>Hillbilly Dreams LLC is to be organized under the Mississippi Revised Limited Liability Company Act (&sect; 79-29-101 et seq., Mississippi Code Annotated) as a manager-managed limited liability company with its principal office at 411 N Commerce Street, Natchez, Mississippi 39120.</p>
+
+  <p>Ownership is divided equally among three members:</p>
+
+  <table>
+    <caption>Table 1. Membership Interests</caption>
+    <thead>
+      <tr><th>Member</th><th>Interest</th><th>Role</th><th>Management Authority</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Tracy Allen</td><td class="right">33&#8531;%</td><td>Editor-in-Chief &amp; Station Manager</td><td>Co-Manager (voting)</td></tr>
+      <tr><td>Amy Allen</td><td class="right">33&#8531;%</td><td>Performer &amp; Radio Host</td><td>Co-Manager (voting)</td></tr>
+      <tr><td>[Family Trust]</td><td class="right">33&#8531;%</td><td>Silent Partner</td><td>None</td></tr>
+    </tbody>
+  </table>
+  <p class="table-source">Source: Draft Operating Agreement, HD-2026-001-OA.</p>
+
+  <p>Major decisions&mdash;including the sale of substantially all assets, voluntary dissolution, admission of new members, and incurrence of debt exceeding $50,000&mdash;require unanimous consent of all three members. Day-to-day operational decisions are made by the Co-Managers.<sup>1</sup></p>
+
+  <p>Chase Pierson is not a member of the LLC. He provides technology, media production, and strategic advisory services to the company through Tuthill Design LLC, a separate entity owned by the Trust, pursuant to a Master Services Agreement.<sup>2</sup> All intellectual property&mdash;including the Big Muddy Command platform and S2PX technology&mdash;remains the exclusive property of Tuthill Design LLC. Hillbilly Dreams LLC operates strictly as a licensee of that technology.<sup>3</sup></p>
+
+  <h3 id="roles">Roles and Responsibilities</h3>
+
+  <p><strong>Chase Pierson &mdash; Creative Director &amp; Executive Producer.</strong> Functions as the showrunner of the enterprise. Responsibilities include: technology platform development and maintenance; content production across all brands (photography, video, editorial); media pipeline management; S2PX licensing negotiations; touring logistics; radio show production; strategic direction. On-site regularly.</p>
+
+  <p><strong>Tracy Allen &mdash; Editor-in-Chief &amp; Radio Station Manager.</strong> Oversees all editorial content for Big Muddy Magazine: city guides, feature stories, photo essays, artist profiles, book editing for Outsider Economics. Manages Big Muddy Radio: programming schedule, sponsorship approvals, playlist curation oversight. No daily Inn responsibilities after the 30-day transition (see &ldquo;30-Day Transition Plan&rdquo; below).</p>
+
+  <p><strong>Amy Allen &mdash; Performer &amp; Radio Host (Arri Aslin).</strong> On-air talent for Big Muddy Radio; live performer and singer with Rise Up Jazz, Gospel acts, and independent bookings; playlist curator; creator of musical experiences across the Big Muddy ecosystem.</p>
+
+  <p><strong>Hospitality Coordinator (to be hired).</strong> Professional hire responsible for all daily Inn operations: guest check-in/check-out, housekeeping coordination, booking management via Cloudbeds, vendor communications, event setup and logistics, and emergency response.</p>
+
+  <div class="footnotes">
+    <p><sup>1</sup> Operating Agreement, Article III, &sect;&sect; 3.4&ndash;3.5.</p>
+    <p><sup>2</sup> Operating Agreement, Article V, &sect;&sect; 5.1&ndash;5.5.</p>
+    <p><sup>3</sup> Operating Agreement, Article V-A, &sect;&sect; 5A.1&ndash;5A.5 (Technology Licensing &amp; Intellectual Property).</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- BRAND PORTFOLIO                              -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <span>Hillbilly Dreams LLC: Operations Briefing</span>
+    <span>HD-2026-001</span>
+  </div>
+
+  <h2 id="brands">Brand Portfolio</h2>
+
+  <p>Hillbilly Dreams LLC operates eight interconnected brands from a single technology platform. Each brand serves a distinct market function while cross-promoting the others, creating a network effect in which a musician performing at the Inn may be featured in the Magazine, played on Radio, sold through the Gallery, listed in the Directory, and promoted through Touring routes.</p>
+
+  <table>
+    <caption>Table 2. Brand Portfolio Overview</caption>
+    <thead>
+      <tr><th>Brand</th><th>Function</th><th>Primary Revenue Mechanism</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Big Muddy Inn</td><td>Hospitality &mdash; 6-room property, Blues Room venue, weddings, events</td><td>Lodging, venue rental, wedding packages</td></tr>
+      <tr><td>Big Muddy Touring</td><td>Travel &mdash; Mississippi corridor experiences, Snowbird Circuit bus tours</td><td>Tour packages, Stay &amp; Hear bundles</td></tr>
+      <tr><td>Big Muddy Magazine</td><td>Editorial &mdash; city guides, feature stories, photo essays</td><td>Sponsored content, advertising</td></tr>
+      <tr><td>Big Muddy Radio</td><td>Audio &mdash; playlists, live sessions, podcasts; hosted by Arri Aslin</td><td>Sponsorships, live session tickets</td></tr>
+      <tr><td>Big Muddy Records</td><td>Music label &mdash; blues, soul, gospel releases</td><td>Distribution, sync licensing</td></tr>
+      <tr><td>BuyCurious Art / Gallery</td><td>Marketplace &mdash; original art from corridor artists and musicians</td><td>Sales commissions</td></tr>
+      <tr><td>Deep South Directory</td><td>Business listings &mdash; regional business network</td><td>Monthly listing fees ($99/mo)</td></tr>
+      <tr><td>Outsider Economics</td><td>Publishing &mdash; Chase Pierson&rsquo;s book, newsletter, Rise Up talent program</td><td>Book sales, speaking fees, subscriptions</td></tr>
+    </tbody>
+  </table>
+  <p class="table-source">Source: Big Muddy Command platform brand configuration.</p>
+
+  <p>All eight brands are served by a single Next.js application with middleware-based brand routing, shared authentication, a common Prisma database schema, and unified media management through Google Cloud Storage.<sup>4</sup></p>
+
+  <div class="footnotes">
+    <p><sup>4</sup> The technical platform (Big Muddy Command) is owned by Tuthill Design LLC and licensed to Hillbilly Dreams LLC. See &ldquo;Technology Infrastructure&rdquo; section.</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- REVENUE MODEL                                -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <span>Hillbilly Dreams LLC: Operations Briefing</span>
+    <span>HD-2026-001</span>
+  </div>
+
+  <h2 id="revenue">Revenue Model</h2>
+
+  <p>The prior fiscal year produced $92,000 in gross revenue against approximately $114,000 in operating costs, resulting in a net operating loss of approximately $22,000. The proposed revenue model projects $760,000 in gross revenue across five categories, representing a diversified portfolio that reduces dependence on any single income stream.</p>
+
+  <h3 id="revenue-detail">Detailed Revenue Breakdown</h3>
+
+  <table>
+    <caption>Table 3. Projected Annual Revenue by Stream</caption>
+    <thead>
+      <tr><th>Revenue Stream</th><th class="right">Annual Target</th></tr>
+    </thead>
+    <tbody>
+      <tr class="group-header"><td colspan="2">Hospitality &amp; Property</td></tr>
+      <tr><td class="indent">Guest rooms (6 rooms, 65% target occupancy, ~$65 ADR)</td><td class="right">$156,000</td></tr>
+      <tr><td class="indent">Weddings (4 package tiers: $2,500&ndash;$25,000)</td><td class="right">$85,000</td></tr>
+      <tr><td class="indent">Venue rental &amp; signature events (Blues Room)</td><td class="right">$52,000</td></tr>
+      <tr class="subtotal-row"><td>Hospitality Subtotal</td><td class="right">$293,000</td></tr>
+
+      <tr class="group-header"><td colspan="2">Media, Music &amp; Content</td></tr>
+      <tr><td class="indent">Big Muddy Radio &mdash; sponsorships &amp; live sessions</td><td class="right">$24,000</td></tr>
+      <tr><td class="indent">Big Muddy Magazine &mdash; sponsored content &amp; advertising</td><td class="right">$18,000</td></tr>
+      <tr><td class="indent">Big Muddy Records &mdash; releases, sync licensing</td><td class="right">$12,000</td></tr>
+      <tr><td class="indent">BuyCurious Art / Gallery &mdash; commissions &amp; sales</td><td class="right">$10,000</td></tr>
+      <tr><td class="indent">Rise Up Jazz / Gospel &mdash; performance fees, workshops</td><td class="right">$18,000</td></tr>
+      <tr><td class="indent">Outsider Economics &mdash; newsletter, book sales, speaking</td><td class="right">$12,000</td></tr>
+      <tr class="subtotal-row"><td>Media Subtotal</td><td class="right">$94,000</td></tr>
+
+      <tr class="group-header"><td colspan="2">Touring &amp; Experiences</td></tr>
+      <tr><td class="indent">Snowbird Circuit bus tours (seasonal)</td><td class="right">$54,000</td></tr>
+      <tr><td class="indent">Stay &amp; Hear packages ($699 weekend bundles)</td><td class="right">$24,000</td></tr>
+      <tr><td class="indent">Workshops (photography, music, creative)</td><td class="right">$48,000</td></tr>
+      <tr class="subtotal-row"><td>Touring Subtotal</td><td class="right">$126,000</td></tr>
+
+      <tr class="group-header"><td colspan="2">Services &amp; Licensing</td></tr>
+      <tr><td class="indent">S2PX technology licensing (to Scan2Plan LLC)<sup>5</sup></td><td class="right">$134,000</td></tr>
+      <tr><td class="indent">Deep South Directory &mdash; business listing fees</td><td class="right">$30,000</td></tr>
+      <tr><td class="indent">Photography &amp; creative services</td><td class="right">$36,000</td></tr>
+      <tr><td class="indent">Corporate retreats &amp; private bookings</td><td class="right">$24,000</td></tr>
+      <tr class="subtotal-row"><td>Services Subtotal</td><td class="right">$224,000</td></tr>
+
+      <tr class="group-header"><td colspan="2">Miscellaneous</td></tr>
+      <tr><td class="indent">Merchandise (artist merch, branded goods)</td><td class="right">$12,000</td></tr>
+      <tr><td class="indent">Food &amp; beverage (events, shows)</td><td class="right">$11,000</td></tr>
+      <tr class="subtotal-row"><td>Misc Subtotal</td><td class="right">$23,000</td></tr>
+
+      <tr class="total-row"><td>TOTAL PROJECTED ANNUAL REVENUE</td><td class="right">$760,000</td></tr>
+    </tbody>
+  </table>
+  <p class="table-source">Source: Internal projections based on market analysis, historical occupancy data, and comparable venue benchmarks in the Natchez MSA.</p>
+
+  <h3 id="revenue-visual">Revenue Distribution Analysis</h3>
+
+  <div class="figure">
+    <div class="figure-caption">Figure 1. Projected Revenue by Category ($760,000 total)</div>
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">Hospitality</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+        <div class="bar-value">$293K</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Services &amp; Licensing</div>
+        <div class="bar-track"><div class="bar-fill" style="width:76.5%"></div></div>
+        <div class="bar-value">$224K</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Touring &amp; Experiences</div>
+        <div class="bar-track"><div class="bar-fill" style="width:43%"></div></div>
+        <div class="bar-value">$126K</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Media &amp; Content</div>
+        <div class="bar-track"><div class="bar-fill" style="width:32.1%"></div></div>
+        <div class="bar-value">$94K</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Miscellaneous</div>
+        <div class="bar-track"><div class="bar-fill" style="width:7.8%"></div></div>
+        <div class="bar-value">$23K</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="figure">
+    <div class="figure-caption">Figure 2. Revenue Share by Category</div>
+    <div class="stacked-bar">
+      <div class="stacked-seg" style="width:38.6%;background:#2b3a5c">39%</div>
+      <div class="stacked-seg" style="width:29.5%;background:#4a6a8a">29%</div>
+      <div class="stacked-seg" style="width:16.6%;background:#6a8aaa">17%</div>
+      <div class="stacked-seg" style="width:12.4%;background:#8aaaca">12%</div>
+      <div class="stacked-seg" style="width:3%;background:#aacaea"></div>
+    </div>
+    <div class="stacked-legend">
+      <div class="stacked-legend-item"><div class="stacked-legend-swatch" style="background:#2b3a5c"></div>Hospitality (39%)</div>
+      <div class="stacked-legend-item"><div class="stacked-legend-swatch" style="background:#4a6a8a"></div>Services (29%)</div>
+      <div class="stacked-legend-item"><div class="stacked-legend-swatch" style="background:#6a8aaa"></div>Touring (17%)</div>
+      <div class="stacked-legend-item"><div class="stacked-legend-swatch" style="background:#8aaaca"></div>Media (12%)</div>
+      <div class="stacked-legend-item"><div class="stacked-legend-swatch" style="background:#aacaea"></div>Misc (3%)</div>
+    </div>
+  </div>
+
+  <p>Notably, no single revenue category exceeds 39% of total projected revenue, providing structural resilience against downturns in any one segment. The largest single line item&mdash;guest room lodging at $156,000&mdash;represents only 20.5% of total revenue.</p>
+
+  <div class="footnotes">
+    <p><sup>5</sup> S2PX licensing revenue is generated by technology owned by Tuthill Design LLC and sublicensed through Hillbilly Dreams LLC to Scan2Plan LLC. The $134,000 figure is based on 12% of Scan2Plan&rsquo;s projected $1.12M gross revenue. See Operating Agreement, Article V-A.</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- WEDDINGS + TRANSITION                        -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <span>Hillbilly Dreams LLC: Operations Briefing</span>
+    <span>HD-2026-001</span>
+  </div>
+
+  <h2 id="weddings">Wedding Program</h2>
+
+  <p>The wedding program is a high-margin revenue stream differentiated by the inclusion of live music in every package&mdash;a feature no other Natchez venue currently offers. The program is structured in four tiers:</p>
+
+  <table>
+    <caption>Table 4. Wedding Package Tiers</caption>
+    <thead>
+      <tr><th>Package</th><th class="right">Price</th><th>Max Guests</th><th>Nights</th><th>Music Included</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Elopement</td><td class="right">$2,500</td><td>2</td><td>1</td><td>Acoustic solo</td></tr>
+      <tr><td>Front Porch</td><td class="right">$8,500</td><td>30</td><td>2</td><td>Duo or trio</td></tr>
+      <tr><td>Blues Room</td><td class="right">$15,000</td><td>60</td><td>Weekend</td><td>Full band</td></tr>
+      <tr><td>Full Muddy</td><td class="right">$25,000</td><td>100</td><td>3</td><td>Band + DJ</td></tr>
+    </tbody>
+  </table>
+  <p class="table-source">Source: Competitive analysis of Natchez-area wedding venues; internal pricing model.</p>
+
+  <p>Each package includes venue access, guest room accommodations, welcome setup, breakfast service, day-of coordination, and live music. Catering, professional photography, and florals are available as add-on services. The annual target of $85,000 assumes approximately 8&ndash;12 bookings across all tiers.</p>
+
+  <h2 id="transition">30-Day Transition Plan</h2>
+
+  <p>Tracy Allen has managed daily Inn operations since the property&rsquo;s opening. The following plan provides for a complete, orderly transition of all hospitality responsibilities to a professional coordinator within 30 days. Tracy and Amy Allen will relocate from the property during this period.</p>
+
+  <div class="timeline">
+    <div class="timeline-week">
+      <div class="timeline-label">Week 1: March 20&ndash;27 &mdash; Document &amp; List</div>
+      <ul class="timeline-items">
+        <li>Tracy documents all recurring Inn tasks (or dictates to Delta Dawn)</li>
+        <li>Compile vendor contacts, account credentials, and operational procedures</li>
+        <li>Chase initiates Cloudbeds system configuration for new coordinator</li>
+        <li>Post hospitality coordinator job listing</li>
+      </ul>
+    </div>
+
+    <div class="timeline-week">
+      <div class="timeline-label">Week 2: March 28&ndash;April 3 &mdash; Hire &amp; Shadow</div>
+      <ul class="timeline-items">
+        <li>Interview and select hospitality coordinator</li>
+        <li>New hire shadows Tracy for all remaining guest interactions</li>
+        <li>Chase trains coordinator on Cloudbeds, booking workflows, and daily printout system</li>
+        <li>Tracy begins handing off vendor relationships</li>
+      </ul>
+    </div>
+
+    <div class="timeline-week">
+      <div class="timeline-label">Week 3: April 4&ndash;10 &mdash; Supervised Handoff</div>
+      <ul class="timeline-items">
+        <li>Coordinator handles all guest check-ins and check-outs independently</li>
+        <li>Tracy available by phone for questions only&mdash;not required on-site</li>
+        <li>All bookings, inquiries, and vendor calls routed to coordinator</li>
+        <li>Tracy begins editorial work on Magazine content</li>
+      </ul>
+    </div>
+
+    <div class="timeline-week">
+      <div class="timeline-label">Week 4: April 11&ndash;20 &mdash; Clean Break</div>
+      <ul class="timeline-items">
+        <li>Tracy and Amy fully relocated from the property</li>
+        <li>Coordinator operating the Inn independently</li>
+        <li>Tracy&rsquo;s sole responsibilities going forward: Magazine and Radio</li>
+        <li>All Inn emergencies directed to coordinator and Chase&mdash;never to Tracy</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Commitment</div>
+    <p style="margin-bottom:0">After April 20, 2026, Tracy Allen will not be expected to answer Inn-related phone calls, handle guest complaints, coordinate housekeeping, manage bookings, or respond to property emergencies. That chapter is closed. Her professional role transitions entirely to editorial and station management.</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- TRACY'S NEW ROLE                             -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <span>Hillbilly Dreams LLC: Operations Briefing</span>
+    <span>HD-2026-001</span>
+  </div>
+
+  <h2 id="tracy-role">Editor-in-Chief &amp; Station Manager Role</h2>
+
+  <h3 id="magazine">Big Muddy Magazine</h3>
+
+  <p>Big Muddy Magazine is a digital editorial publication covering the Mississippi music corridor: city guides, feature stories, photo essays, artist profiles, food writing, and travel pieces across 18 cities in five states. Tracy Allen serves as Editor-in-Chief with final editorial authority over all published content.</p>
+
+  <p>The editorial workflow operates as follows:</p>
+  <ul class="report-list">
+    <li>Chase and the automated content engine produce drafts, photographs, and layouts</li>
+    <li>Tracy reviews, edits, and either approves for publication or returns with notes</li>
+    <li>She applies the same editorial process to Outsider Economics book chapters</li>
+    <li>She sets the publication&rsquo;s tone, standards, and voice&mdash;nothing publishes without her sign-off</li>
+    <li>All review work is conducted via printed drafts, red pen, and written memos back to Chase</li>
+  </ul>
+
+  <h3 id="radio">Big Muddy Radio &amp; LPFM Initiative</h3>
+
+  <p>Tracy Allen has expressed a lifelong interest in radio station management, informed by family experience in the broadcasting industry. In her capacity as Station Manager, she oversees all aspects of Big Muddy Radio operations:</p>
+
+  <ul class="report-list">
+    <li>Programming schedule: which shows run, when, and featuring whom</li>
+    <li>Management of Amy Allen&rsquo;s on-air schedule and guest bookings</li>
+    <li>Playlist approval and curation oversight</li>
+    <li>Sponsorship placement and advertising decisions</li>
+  </ul>
+
+  <p>Big Muddy Radio currently operates as an internet streaming station with on-demand playlists, live sessions, and podcast content. Amy Allen (performing as Arri Aslin) serves as the primary on-air talent.</p>
+
+  <div class="callout">
+    <div class="callout-label">Future Initiative: Low Power FM (LPFM) Broadcasting</div>
+    <p>The organization intends to pursue an LPFM broadcast license from the Federal Communications Commission when the next filing window opens.<sup>6</sup> An LPFM license would allow Big Muddy Radio to broadcast on the FM dial in Natchez and potentially other communities along the corridor, converting the station from an internet-only platform to a terrestrial broadcast operation.</p>
+    <p style="margin-bottom:0">In the interim, the strategy is to build programming, audience, and content archive so that when the license is secured, the station launches with an established identity and library. Tracy Allen will oversee this initiative.</p>
+  </div>
+
+  <div class="footnotes">
+    <p><sup>6</sup> The FCC opens LPFM filing windows on an irregular basis. The most recent window was in 2013. Eligible applicants include nonprofits, educational institutions, and community organizations. Hillbilly Dreams LLC may need to establish a qualifying entity or partner with an existing nonprofit for eligibility. See 47 CFR &sect;&sect; 73.801&ndash;73.881.</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- COMMUNICATIONS + TECHNOLOGY + FILING         -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <span>Hillbilly Dreams LLC: Operations Briefing</span>
+    <span>HD-2026-001</span>
+  </div>
+
+  <h2 id="communications">Communications Protocol</h2>
+
+  <p>Internal communications will follow an old-school memo and print-based system designed for simplicity and minimal technology dependence.</p>
+
+  <h4>Daily Printout</h4>
+  <p>An automated daily summary sheet will print each morning containing: current guest status, scheduled events, pending tasks, key metrics, editorial items requiring review, radio schedule, and any memos from team members. No action is required to generate the printout&mdash;it is produced automatically by the platform.</p>
+
+  <h4>Memo System</h4>
+  <p>All business communications between team members (Tracy, Amy, Chase, Rich, the hospitality coordinator) will use written memos in the format of this report or the simpler typewriter-style memo format. Memos may be drafted by dictation to Delta Dawn (the AI assistant), printed, and filed physically. Memos appear on the daily printout or as standalone documents.</p>
+
+  <h4>Device Simplification</h4>
+  <p>All personal computers and phones used for business purposes will be simplified to a minimal interface:</p>
+  <ul class="report-list">
+    <li>A small number of hotkeys for common actions (send a memo, ask Delta Dawn, view daily sheet)</li>
+    <li>Delta Dawn voice or text interface for all other inquiries</li>
+    <li>No complex dashboards, no multi-tab workflows, no passwords to manage</li>
+  </ul>
+
+  <h4>Delta Dawn (AI Assistant)</h4>
+  <p>Delta Dawn is an AI assistant integrated into the Big Muddy Command platform with comprehensive knowledge of all eight brands, policies, pricing, schedules, and operational history. It is available via voice or text at all times and can draft memos, answer operational questions, generate reports, and print summaries on request.<sup>7</sup></p>
+
+  <h2 id="technology">Technology Infrastructure</h2>
+
+  <p>The Big Muddy Command platform is a custom-built application that serves all eight brands from a single codebase. It manages websites, the booking engine, content pipeline, newsletter distribution, social media scheduling, analytics, media library, and administrative functions.</p>
+
+  <p>A separate technology platform, S2PX, powers an industrial laser scanning business (Scan2Plan LLC) in the commercial construction sector. The S2PX licensing arrangement generates $134,000 per year in revenue that flows through Hillbilly Dreams LLC.</p>
+
+  <p>Both platforms are owned exclusively by Tuthill Design LLC (a subsidiary of the Trust) and licensed to Hillbilly Dreams LLC. This structure ensures that the technology intellectual property is protected from any claims arising from the LLC&rsquo;s operations, dissolution, or membership changes.<sup>8</sup></p>
+
+  <p><em>Tracy and Amy are not expected to interact with the technology platform directly. That is Chase&rsquo;s responsibility. This section is provided for informational completeness.</em></p>
+
+  <h2 id="filing">Immediate Action: LLC Filing</h2>
+
+  <p>The following steps should be completed by Tracy Allen to register Hillbilly Dreams LLC with the Mississippi Secretary of State. Estimated time: 15 minutes. Filing fee: $50.</p>
+
+  <ol class="procedure">
+    <li>Navigate to <strong>sos.ms.gov/business-services</strong></li>
+    <li>Select &ldquo;Online Business Filing&rdquo;</li>
+    <li>Select &ldquo;Domestic Limited Liability Company&rdquo;</li>
+    <li>Company Name: <strong>Hillbilly Dreams LLC</strong></li>
+    <li>Registered Agent: <strong>Tracy Allen</strong></li>
+    <li>Principal Address: <strong>411 N Commerce Street, Natchez, MS 39120</strong></li>
+    <li>Purpose: <strong>Any and all lawful business activities</strong></li>
+    <li>Management Structure: <strong>Manager-Managed</strong></li>
+    <li>Pay the $50 filing fee</li>
+    <li>Forward the confirmation email to Chase Pierson</li>
+  </ol>
+
+  <div class="callout">
+    <div class="callout-label">Important</div>
+    <p style="margin-bottom:0">Do <strong>not</strong> list individual member names in the public filing. Member identities remain private and are documented only in the Operating Agreement.</p>
+  </div>
+
+  <div class="footnotes">
+    <p><sup>7</sup> Delta Dawn is a component of the Big Muddy Command platform. Its knowledge base is maintained by Chase Pierson and updated as policies, pricing, and operational procedures change.</p>
+    <p><sup>8</sup> See Operating Agreement, Article V-A, &sect; 5A.4: &ldquo;In the event of the dissolution of the Company&hellip;the license granted to the Company shall immediately terminate&hellip;and all rights, title, and interest in the Technology Assets shall remain solely and perpetually vested in Tuthill Design LLC.&rdquo;</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- STRATEGIC OUTLOOK                            -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <span>Hillbilly Dreams LLC: Operations Briefing</span>
+    <span>HD-2026-001</span>
+  </div>
+
+  <h2 id="outlook">Strategic Outlook</h2>
+
+  <table>
+    <caption>Table 5. Three-Year Revenue Projections</caption>
+    <thead>
+      <tr><th>Metric</th><th class="right">Year 1 (2026)</th><th class="right">Year 2 (2027)</th><th class="right">Year 3 (2028)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Gross Revenue</td><td class="right">$760,000</td><td class="right">$1,200,000</td><td class="right">$1,800,000+</td></tr>
+      <tr><td>Key Growth Drivers</td><td class="right">Platform launch</td><td class="right">Directory + Touring scale</td><td class="right">Snowbird Circuit + Records</td></tr>
+    </tbody>
+  </table>
+  <p class="table-source">Source: Internal projections. Year 2 and Year 3 estimates assume successful execution of Year 1 initiatives.</p>
+
+  <p>Year 2 growth is driven primarily by: (1) the Deep South Directory reaching critical mass in business listings; (2) the Snowbird Circuit bus touring operation scaling from pilot to regular seasonal schedule; and (3) the wedding program achieving full annual booking capacity.</p>
+
+  <p>Year 3 growth is driven by: (1) Big Muddy Records establishing a regular release cadence with sync licensing revenue; (2) the Rise Up talent program producing touring artists; (3) potential LPFM licensing expanding Big Muddy Radio&rsquo;s reach; and (4) corporate retreat and workshop programs operating at capacity.</p>
+
+  <p>All projections are built on the operational foundation already in place: the Inn is operational, the technology platform is live, all eight brand websites are published, and the content pipeline is functioning. The organization is not starting from zero&mdash;it is activating existing infrastructure.</p>
+
+  <h2>Discussion Questions for Members</h2>
+
+  <p>The following questions are presented for discussion among members at the next operational meeting:</p>
+
+  <ul class="report-list">
+    <li><strong>Tracy:</strong> What kind of magazine do you want Big Muddy Magazine to be? What would make you proud to put your name on it as Editor-in-Chief?</li>
+    <li><strong>Tracy:</strong> What do you remember about running a radio station? What did your family do in broadcasting, and what elements of that do you want to bring to Big Muddy Radio?</li>
+    <li><strong>Amy:</strong> What shows do you want to play? Who do you want to perform with?</li>
+    <li><strong>Amy:</strong> What kind of radio show do you want to host&mdash;interviews, music showcases, storytelling, or a mix?</li>
+    <li><strong>Both:</strong> Are there local businesses in the Natchez area that should be recruited for the Deep South Directory?</li>
+    <li><strong>Both:</strong> What does Rich need to make his daily life easier? How should the system support him?</li>
+    <li><strong>Both:</strong> Does anything in the 30-day transition timeline need to be adjusted for your moving schedule?</li>
+  </ul>
+
+  <div style="margin-top:40px; padding-top:16px; border-top: 2px solid #2b3a5c; text-align:center;">
+    <div style="font-family:'Source Sans 3',sans-serif; font-size:11px; color:#888; letter-spacing:0.1em; text-transform:uppercase;">End of Report</div>
+    <div style="font-family:'Source Sans 3',sans-serif; font-size:10px; color:#aaa; margin-top:4px;">Hillbilly Dreams LLC &middot; Internal Research &amp; Analysis &middot; HD-2026-001 &middot; Confidential</div>
+  </div>
+</div>
+
+</body>
+</html>

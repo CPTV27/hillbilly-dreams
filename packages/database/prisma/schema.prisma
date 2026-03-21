@@ -701,6 +701,14 @@ model User {
   emailVerified DateTime?
   image         String?
   role          String    @default("viewer")  // admin | ops | artist | viewer
+
+  // ── Onboarding & Communication Matrix ──
+  onboardingStep              String    @default("pending_survey") // pending_survey | pending_asana | completed
+  communicationChannels       String[]  // e.g. ["asana", "email", "google_chat"] 
+  communicationStyle          String?   // bulleted_brief | detailed_warm | data_heavy
+  communicationPrefsUpdatedAt DateTime?
+  asanaMemberId               String?
+
   accounts      Account[]
   sessions      Session[]
   createdAt     DateTime  @default(now())

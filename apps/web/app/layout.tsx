@@ -3,12 +3,13 @@
 // Brand routing is handled by middleware.ts; each route group has its own layout.
 
 import type { Metadata } from 'next';
-import { Playfair_Display, DM_Sans } from 'next/font/google';
+import { Playfair_Display, DM_Sans, Barlow_Condensed, Space_Grotesk, Libre_Baskerville } from 'next/font/google';
 import { Analytics } from '../components/Analytics';
 import { JsonLd, getOrganizationSchema } from '@/lib/structured-data';
 import '@bigmuddy/config/tokens.css';
 import './globals.css';
 
+// Default display + body fonts (Touring, Gallery, Admin)
 const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
   weight: ['400', '600', '700', '800'],
@@ -21,6 +22,32 @@ const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-body',
+  display: 'swap',
+});
+
+// Radio + Records: bold condensed headlines, feels like a gig poster
+const barlowCondensed = Barlow_Condensed({
+  subsets: ['latin'],
+  weight: ['400', '600', '700', '800'],
+  style: ['normal', 'italic'],
+  variable: '--font-radio',
+  display: 'swap',
+});
+
+// Studio: geometric, modern, technical
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-studio',
+  display: 'swap',
+});
+
+// Magazine: classic editorial serif for body text
+const libreBaskerville = Libre_Baskerville({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-editorial',
   display: 'swap',
 });
 
@@ -50,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfairDisplay.variable} ${dmSans.variable}`}
+      className={`${playfairDisplay.variable} ${dmSans.variable} ${barlowCondensed.variable} ${spaceGrotesk.variable} ${libreBaskerville.variable}`}
     >
       <head>
         <Analytics />

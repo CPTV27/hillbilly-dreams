@@ -193,41 +193,164 @@ img, video {
 }
 
 /* ── Brand Theme Classes ── */
+/* Each brand is a "show" on the Big Muddy network.
+   Different personality, same DNA.
+   Think Viacom: MTV ≠ Comedy Central ≠ Nickelodeon,
+   but they're all unmistakably the same family. */
 
-/* Touring: expansive, warm, editorial */
+/* Touring: THE FLAGSHIP — warm amber, open road, golden hour on the Mississippi.
+   Premium travel editorial. The brand that ties the network together. */
 .theme-touring {
+  --bg: #1a1816;
+  --surface: #231f1c;
+  --surface-2: #2d2824;
+  --surface-3: #38322c;
+  --accent: #c8943e;
+  --accent-hover: #d4a44e;
+  --accent-muted: rgba(200, 148, 62, 0.15);
+  --accent-subtle: rgba(200, 148, 62, 0.08);
+  --border: rgba(200, 148, 62, 0.12);
+  --border-strong: rgba(200, 148, 62, 0.25);
+  --shadow-glow: 0 0 20px rgba(200, 148, 62, 0.15);
   --surface-accent: rgba(200, 148, 62, 0.05);
 }
 
-/* Magazine: editorial, generous typography */
+/* Magazine: INK & PAPER — warm ivory backgrounds, deep charcoal text,
+   generous whitespace, serif-forward. Condé Nast meets Southern Living.
+   Libre Baskerville body text — classic editorial serif, reads like print. */
 .theme-magazine {
-  --surface-accent: rgba(200, 148, 62, 0.04);
+  --bg: #f6f3ed;
+  --surface: #fffef9;
+  --surface-2: #eee9df;
+  --surface-3: #e4ded4;
+  --text: #2a2520;
+  --text-muted: #7a7268;
+  --text-disabled: #b0a898;
+  --accent: #8b4513;
+  --accent-hover: #a0522d;
+  --accent-muted: rgba(139, 69, 19, 0.1);
+  --accent-subtle: rgba(139, 69, 19, 0.05);
+  --border: rgba(42, 37, 32, 0.1);
+  --border-strong: rgba(42, 37, 32, 0.2);
+  --border-subtle: rgba(42, 37, 32, 0.05);
+  --shadow-sm: 0 1px 2px rgba(42, 37, 32, 0.06);
+  --shadow-md: 0 4px 12px rgba(42, 37, 32, 0.08);
+  --shadow-lg: 0 8px 24px rgba(42, 37, 32, 0.1);
+  --shadow-xl: 0 16px 40px rgba(42, 37, 32, 0.12);
+  --shadow-glow: none;
+  --font-body: var(--font-editorial), 'Georgia', 'Times New Roman', serif;
+  --surface-accent: rgba(139, 69, 19, 0.04);
 }
 
-/* Radio: darker, music-forward, dense */
+/* Radio: JUKE JOINT AT MIDNIGHT — deep warm burgundy, copper/amber accents.
+   Dense, music-forward, analog warmth. The sound of the corridor.
+   Think tube amp glow, vinyl crackle, whiskey on the bar.
+   Barlow Condensed headlines — bold, poster-like, fits on a marquee. */
 .theme-radio {
-  --bg: #151210;
-  --surface: #1d1a17;
-  --surface-2: #252119;
-  --surface-3: #2f2a22;
+  --bg: #1a0e0e;
+  --surface: #261616;
+  --surface-2: #301e1e;
+  --surface-3: #3a2626;
+  --text: #f0e4d8;
+  --text-muted: #b89878;
+  --text-disabled: #6a5040;
+  --accent: #e08a3a;
+  --accent-hover: #eca04e;
+  --accent-muted: rgba(224, 138, 58, 0.15);
+  --accent-subtle: rgba(224, 138, 58, 0.06);
+  --border: rgba(224, 138, 58, 0.12);
+  --border-strong: rgba(224, 138, 58, 0.25);
+  --border-subtle: rgba(224, 138, 58, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 8px 24px rgba(224, 138, 58, 0.08);
+  --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 24px rgba(224, 138, 58, 0.12);
+  --font-display: var(--font-radio), 'Impact', 'Arial Narrow', sans-serif;
+  --surface-accent: rgba(224, 138, 58, 0.04);
 }
 
-/* Economics: utilitarian, high-contrast, red/black/cream (matches book cover) */
+/* Records: VINYL WARMTH — analog tones, worn paper, pressed grooves.
+   Amber and aged cream. Classic label aesthetic.
+   Barlow Condensed headlines — same family as Radio, label siblings.
+   Think Blue Note meets Fat Possum. */
+.theme-records {
+  --bg: #18140e;
+  --surface: #221c14;
+  --surface-2: #2c241a;
+  --surface-3: #362c20;
+  --text: #e8dcc8;
+  --text-muted: #a89878;
+  --text-disabled: #685840;
+  --accent: #d4882a;
+  --accent-hover: #e09838;
+  --accent-muted: rgba(212, 136, 42, 0.15);
+  --accent-subtle: rgba(212, 136, 42, 0.06);
+  --border: rgba(212, 136, 42, 0.12);
+  --border-strong: rgba(212, 136, 42, 0.25);
+  --border-subtle: rgba(232, 220, 200, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(212, 136, 42, 0.08);
+  --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 20px rgba(212, 136, 42, 0.1);
+  --font-display: var(--font-radio), 'Impact', 'Arial Narrow', sans-serif;
+  --surface-accent: rgba(212, 136, 42, 0.04);
+}
+
+/* Studio: CONTROL ROOM — industrial, modern, clean.
+   Dark steel with green/emerald accents. The production engine.
+   Space Grotesk — geometric, technical, no-nonsense.
+   Think recording console under work lights. */
+.theme-studio {
+  --bg: #111311;
+  --surface: #1a1c1a;
+  --surface-2: #222422;
+  --surface-3: #2c2e2c;
+  --text: #e0e4e0;
+  --text-muted: #808880;
+  --text-disabled: #505850;
+  --accent: #2ecc71;
+  --accent-hover: #44d888;
+  --accent-muted: rgba(46, 204, 113, 0.12);
+  --accent-subtle: rgba(46, 204, 113, 0.05);
+  --border: rgba(46, 204, 113, 0.1);
+  --border-strong: rgba(46, 204, 113, 0.22);
+  --border-subtle: rgba(224, 228, 224, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(46, 204, 113, 0.06);
+  --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 20px rgba(46, 204, 113, 0.1);
+  --font-display: var(--font-studio), 'SF Mono', 'Consolas', monospace;
+  --font-body: var(--font-studio), system-ui, -apple-system, sans-serif;
+  --surface-accent: rgba(46, 204, 113, 0.04);
+}
+
+/* Economics: OUTSIDER — utilitarian, high-contrast, red/black/cream.
+   Subversive, zine-like, the counterculture voice.
+   Matches the book cover aesthetic. */
 .theme-economics {
   --bg: #0f0e0d;
   --surface: #1a1816;
   --surface-2: #231f1c;
   --surface-3: #2d2824;
+  --text: #f0ebe0;
+  --text-muted: #a09888;
+  --text-disabled: #605848;
   --accent: #b54c4c;
   --accent-hover: #c95a5a;
   --accent-muted: rgba(181, 76, 76, 0.15);
   --accent-subtle: rgba(181, 76, 76, 0.08);
   --border: rgba(181, 76, 76, 0.12);
   --border-strong: rgba(181, 76, 76, 0.25);
+  --border-subtle: rgba(181, 76, 76, 0.05);
   --shadow-glow: 0 0 20px rgba(181, 76, 76, 0.12);
+  --surface-accent: rgba(181, 76, 76, 0.04);
 }
 
-/* Admin: operational, clean, DM Sans only */
+/* Admin: OPERATIONS — clean, functional, no personality.
+   The control panel, not the show. */
 .theme-admin {
   --font-display: var(--font-body);
   --accent: #c8943e;
