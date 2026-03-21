@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import ContentPackCard from './ContentPackCard';
 import type { ContentPack } from '@prisma/client';
-import { Search, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function ContentLibraryClient({ initialPacks }: { initialPacks: ContentPack[] }) {
@@ -14,30 +13,55 @@ export default function ContentLibraryClient({ initialPacks }: { initialPacks: C
         pack.slug.toLowerCase().includes(search.toLowerCase())
     );
 
+    const iconSearch = <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>;
+    const iconX = <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>;
+
     return (
-        <div className="space-y-6">
-            <div className="relative max-w-xl">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-neutral-400">
-                    <Search size={20} />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <div style={{ position: 'relative', maxWidth: '36rem' }}>
+                <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, paddingLeft: '1rem', display: 'flex', alignItems: 'center', pointerEvents: 'none', color: 'var(--theme-text-muted)' }}>
+                    {iconSearch}
                 </div>
                 <input
                     type="text"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search content packs by title..."
-                    className="w-full pl-11 pr-10 py-3.5 bg-white border border-neutral-200 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-shadow text-neutral-900 placeholder:text-neutral-400"
+                    style={{
+                        width: '100%',
+                        padding: '0.875rem 2.5rem 0.875rem 2.75rem',
+                        backgroundColor: 'var(--theme-card-bg)',
+                        border: '1px solid var(--theme-card-border)',
+                        borderRadius: '0.75rem',
+                        boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+                        color: 'var(--theme-text-primary)',
+                        fontFamily: 'inherit',
+                        fontSize: '1rem'
+                    }}
                 />
                 {search && (
                     <button
                         onClick={() => setSearch('')}
-                        className="absolute inset-y-0 right-0 pr-4 flex items-center text-neutral-400 hover:text-neutral-600"
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            bottom: 0,
+                            right: 0,
+                            paddingRight: '1rem',
+                            display: 'flex',
+                            alignItems: 'center',
+                            color: 'var(--theme-text-muted)',
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer'
+                        }}
                     >
-                        <X size={18} />
+                        {iconX}
                     </button>
                 )}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-max items-start">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem', alignItems: 'start' }}>
                 {filteredPacks.length > 0 ? (
                     filteredPacks.map((pack, i) => (
                         <motion.div
@@ -50,9 +74,17 @@ export default function ContentLibraryClient({ initialPacks }: { initialPacks: C
                         </motion.div>
                     ))
                 ) : (
-                    <div className="col-span-full py-12 text-center text-neutral-500 border-2 border-dashed border-neutral-200 rounded-xl bg-neutral-50/50">
-                        <div className="text-4xl mb-3">🔍</div>
-                        <h3 className="text-lg font-semibold text-neutral-700">No matches found</h3>
+                    <div style={{
+                        gridColumn: '1 / -1',
+                        padding: '3rem',
+                        textAlign: 'center',
+                        color: 'var(--theme-text-secondary)',
+                        border: '2px dashed var(--theme-card-border)',
+                        borderRadius: '0.75rem',
+                        backgroundColor: 'var(--theme-hover)'
+                    }}>
+                        <div style={{ fontSize: '2.25rem', marginBottom: '0.75rem' }}>🔍</div>
+                        <h3 style={{ fontSize: '1.125rem', fontWeight: 600, color: 'var(--theme-text-primary)' }}>No matches found</h3>
                         <p>Try adjusting your search terms.</p>
                     </div>
                 )}

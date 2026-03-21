@@ -1,11 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
 import { LaunchTask } from '@prisma/client';
-import { getStatusColor } from '@/lib/utils';
 
-interface SessionProgressProps {
+export interface SessionProgressProps {
     tasks: LaunchTask[];
     sessionName: string;
     sessionNumber: number;
@@ -22,20 +20,26 @@ export default function SessionProgress({ tasks, sessionName, sessionNumber }: S
 
     // Determine overall badge properties based on progress
     let badgeText = 'Pending';
-    let badgeColorClass = getStatusColor('pending');
+    let badgeBg = 'var(--theme-card-bg)';
+    let badgeColor = 'var(--theme-text-secondary)';
+    let badgeBorder = 'var(--theme-card-border)';
 
     if (progressPercent === 100) {
         badgeText = 'Complete';
-        badgeColorClass = getStatusColor('done');
+        badgeBg = 'var(--theme-success-bg, rgba(52,211,153,0.15))';
+        badgeColor = 'var(--theme-success)';
+        badgeBorder = 'var(--theme-success)';
     } else if (progressPercent > 0) {
         badgeText = 'In Progress';
-        badgeColorClass = 'text-amber-800 bg-amber-100 border border-amber-200'; // Specific intermediate color
+        badgeBg = 'var(--theme-warning-bg, rgba(251,191,36,0.15))';
+        badgeColor = 'var(--theme-warning)';
+        badgeBorder = 'var(--theme-warning)';
     }
 
     // Determine progress bar fill color
-    let barFillColor = 'bg-amber-500';
-    if (progressPercent === 100) barFillColor = 'bg-green-500';
-    if (progressPercent === 0) barFillColor = 'bg-neutral-300';
+    let barFillColor = 'var(--theme-progress-fill)';
+    if (progressPercent === 100) barFillColor = 'var(--theme-success)';
+    if (progressPercent === 0) barFillColor = 'var(--theme-card-border)';
 
     // Time estimate for remaining
     let totalMinutesRemaining = 0;
@@ -61,29 +65,75 @@ export default function SessionProgress({ tasks, sessionName, sessionNumber }: S
         : `${mins} mins`;
 
     return (
-        <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm mb-8 space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div>
-                    <h2 className="text-2xl font-bold text-neutral-900 tracking-tight">Session {sessionNumber}: {sessionName}</h2>
+        <div style={{
+            backgroundColor: 'var(--theme-card-bg)',
+            border: '1px solid var(--theme-card-border)',
+            borderRadius: '0.75rem',
+            padding: '1.5rem',
+            boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+            marginBottom: '2rem',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1.5rem'
+        }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--theme-text-primary)', margin: 0, letterSpacing: '-0.025em' }}>
+                        Session {sessionNumber}: {sessionName}
+                    </h2>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                        <span style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--theme-text-secondary)' }}>
+                            {completedTasks} of {totalTasks} Complete
+                        </span>
+                        <span style={{
+                            padding: '0.25rem 0.75rem',
+                            borderRadius: '9999px',
+                            fontSize: '0.75rem',
+                            fontWeight: 700,
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.05em',
+                            backgroundColor: badgeBg,
+                            color: badgeColor,
+                            border: `1px solid ${badgeBorder}`
+                        }}>
+                            {badgeText}
+                        </span>
+                    </div>
                 </div>
-                <div className="flex items-center gap-3">
-                    <span className="text-sm font-semibold text-neutral-500">{completedTasks} of {totalTasks} Complete</span>
-                    <span className={cn("px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider", badgeColorClass)}>
-                        {badgeText}
-                    </span>
-                </div>
-            </div>
 
-            <div className="space-y-2">
-                <div className="w-full bg-neutral-100 rounded-full h-4 overflow-hidden border border-neutral-200 shadow-inner">
+                <div style={{
+                    width: '100%',
+                    backgroundColor: 'var(--theme-progress-bg)',
+                    borderRadius: '9999px',
+                    height: '1rem',
+                    overflow: 'hidden',
+                    border: '1px solid var(--theme-card-border)',
+                    boxShadow: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)'
+                }}>
                     <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${progressPercent}%` }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className={cn("h-4 rounded-full transition-colors relative", barFillColor)}
+                        style={{
+                            height: '100%',
+                            borderRadius: '9999px',
+                            backgroundColor: barFillColor,
+                            position: 'relative',
+                            transition: 'background-color 0.3s'
+                        }}
                     >
                         {progressPercent >= 10 && (
-                            <span className="absolute inset-0 flex items-center justify-end pr-2 text-[10px] font-bold text-white/90">
+                            <span style={{
+                                position: 'absolute',
+                                inset: 0,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'flex-end',
+                                paddingRight: '0.5rem',
+                                fontSize: '0.625rem',
+                                fontWeight: 700,
+                                color: 'rgba(255,255,255,0.9)'
+                            }}>
                                 {progressPercent}%
                             </span>
                         )}
@@ -91,18 +141,24 @@ export default function SessionProgress({ tasks, sessionName, sessionNumber }: S
                 </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-6 text-sm text-neutral-600 font-medium">
-                <div className="flex gap-4 bg-neutral-50 px-4 py-2 rounded-lg border border-neutral-100">
-                    <span className="text-green-700 flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-green-500"></div> {completedTasks} done</span>
-                    <span className="text-neutral-300">•</span>
-                    <span className="text-amber-700 flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-amber-500"></div> {pendingTasks} pending</span>
-                    <span className="text-neutral-300">•</span>
-                    <span className="text-neutral-500 flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-neutral-400"></div> {skippedTasks} skipped</span>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1.5rem', fontSize: '0.875rem', fontWeight: 500, color: 'var(--theme-text-secondary)' }}>
+                <div style={{ display: 'flex', gap: '1rem', backgroundColor: 'var(--theme-hover)', padding: '0.5rem 1rem', borderRadius: '0.5rem', border: '1px solid var(--theme-card-border)' }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', color: 'var(--theme-success)' }}>
+                        <div style={{ width: '0.5rem', height: '0.5rem', borderRadius: '50%', backgroundColor: 'var(--theme-success)' }}></div> {completedTasks} done
+                    </span>
+                    <span style={{ color: 'var(--theme-card-border)' }}>•</span>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', color: 'var(--theme-warning)' }}>
+                        <div style={{ width: '0.5rem', height: '0.5rem', borderRadius: '50%', backgroundColor: 'var(--theme-warning)' }}></div> {pendingTasks} pending
+                    </span>
+                    <span style={{ color: 'var(--theme-card-border)' }}>•</span>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', color: 'var(--theme-text-muted)' }}>
+                        <div style={{ width: '0.5rem', height: '0.5rem', borderRadius: '50%', backgroundColor: 'var(--theme-text-muted)' }}></div> {skippedTasks} skipped
+                    </span>
                 </div>
 
                 {pendingTasks > 0 && (
-                    <div className="flex items-center gap-2 text-amber-700 bg-amber-50 px-4 py-2 rounded-lg border border-amber-100">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--theme-warning)', backgroundColor: 'var(--theme-warning-bg, rgba(251,191,36,0.15))', padding: '0.5rem 1rem', borderRadius: '0.5rem', border: '1px dashed var(--theme-warning)' }}>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '1rem', height: '1rem' }}><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                         <span>Est. Remaining: {timeRemainingString}</span>
                     </div>
                 )}

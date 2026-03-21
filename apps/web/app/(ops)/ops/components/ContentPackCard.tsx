@@ -3,8 +3,6 @@
 import { useState } from 'react';
 import type { ContentPack } from '@prisma/client';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Copy, Check, ChevronDown, ChevronUp } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { sanitizeTaskGuide } from '@/lib/sanitize';
 
 export default function ContentPackCard({ pack }: { pack: ContentPack }) {
@@ -35,24 +33,55 @@ export default function ContentPackCard({ pack }: { pack: ContentPack }) {
         setTimeout(() => setCopiedAll(false), 2000);
     };
 
+    const iconChevronDown = <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>;
+    const iconChevronUp = <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15"/></svg>;
+    const iconCopy = <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>;
+    const iconCheck = <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>;
+
     return (
         <motion.div
             layout="position"
-            className={cn(
-                "bg-white border rounded-xl overflow-hidden shadow-sm transition-all flex flex-col h-full",
-                expanded ? "border-blue-300 ring-1 ring-blue-100 col-span-1 md:col-span-2" : "border-neutral-200 hover:border-blue-200"
-            )}
+            style={{
+                backgroundColor: 'var(--theme-card-bg)',
+                border: `1px solid ${expanded ? 'var(--theme-accent)' : 'var(--theme-card-border)'}`,
+                boxShadow: expanded ? '0 0 0 1px var(--theme-accent-bg)' : '0 1px 2px rgba(0,0,0,0.05)',
+                borderRadius: '0.75rem',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+                transition: 'all 0.2s',
+                ...(expanded ? { gridColumn: '1 / -1' } : {})
+            }}
         >
             <div
-                className="p-5 flex justify-between items-center cursor-pointer hover:bg-neutral-50 transition-colors"
                 onClick={() => setExpanded(!expanded)}
+                style={{
+                    padding: '1.25rem',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    backgroundColor: expanded ? 'var(--theme-hover)' : 'transparent',
+                }}
             >
                 <div>
-                    <h3 className="text-lg font-bold text-neutral-800">{pack.title}</h3>
-                    <p className="text-sm text-neutral-500 font-medium">{sections.length} section{sections.length !== 1 ? 's' : ''}</p>
+                    <h3 style={{ fontSize: '1.125rem', fontWeight: 700, color: 'var(--theme-text-primary)', margin: 0 }}>{pack.title}</h3>
+                    <p style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--theme-text-secondary)', margin: '0.25rem 0 0 0' }}>{sections.length} section{sections.length !== 1 ? 's' : ''}</p>
                 </div>
-                <button className="text-blue-600 hover:text-blue-800 hover:bg-blue-50 transition-colors flex items-center justify-center w-10 h-10 rounded-full border border-blue-100 shadow-sm bg-white">
-                    {expanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                <button style={{
+                    color: 'var(--theme-accent)',
+                    backgroundColor: 'var(--theme-accent-bg)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '2.5rem',
+                    height: '2.5rem',
+                    borderRadius: '50%',
+                    border: '1px solid var(--theme-card-border)',
+                    cursor: 'pointer',
+                }}>
+                    {expanded ? iconChevronUp : iconChevronDown}
                 </button>
             </div>
 
@@ -62,40 +91,81 @@ export default function ContentPackCard({ pack }: { pack: ContentPack }) {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="px-5 pb-5 border-t border-neutral-100 pt-5 bg-neutral-50 flex-1 overflow-hidden"
+                        style={{
+                            padding: '1.25rem',
+                            borderTop: '1px solid var(--theme-card-border)',
+                            backgroundColor: 'var(--theme-hover)',
+                            overflow: 'hidden'
+                        }}
                     >
-                        <div className="flex justify-end mb-4">
+                        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
                             <button
                                 onClick={handleCopyAll}
-                                className={cn(
-                                    "flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-lg transition-colors border shadow-sm",
-                                    copiedAll ? "bg-green-50 text-green-700 border-green-200" : "bg-white text-blue-700 border-blue-200 hover:bg-blue-50"
-                                )}
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem',
+                                    fontSize: '0.875rem',
+                                    fontWeight: 700,
+                                    padding: '0.5rem 1rem',
+                                    borderRadius: '0.5rem',
+                                    border: `1px solid ${copiedAll ? 'var(--theme-success)' : 'var(--theme-accent)'}`,
+                                    backgroundColor: copiedAll ? 'var(--theme-success-bg, rgba(52,211,153,0.15))' : 'var(--theme-card-bg)',
+                                    color: copiedAll ? 'var(--theme-success)' : 'var(--theme-accent)',
+                                    cursor: 'pointer'
+                                }}
                             >
-                                {copiedAll ? <Check size={16} /> : <Copy size={16} />}
+                                {copiedAll ? iconCheck : iconCopy}
                                 {copiedAll ? 'Saved to Clipboard!' : 'Copy Entire Pack'}
                             </button>
                         </div>
-                        <div className="space-y-5">
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                             {sections.map((sec, idx) => (
-                                <div key={idx} className="bg-white border border-neutral-200 p-5 rounded-xl shadow-sm">
-                                    <div className="flex justify-between items-center mb-3">
-                                        <h5 className="font-bold text-neutral-900 border-l-4 border-blue-400 pl-3">{sec.label}</h5>
+                                <div key={idx} style={{
+                                    backgroundColor: 'var(--theme-card-bg)',
+                                    border: '1px solid var(--theme-card-border)',
+                                    padding: '1.25rem',
+                                    borderRadius: '0.75rem',
+                                    boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+                                }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                                        <h5 style={{
+                                            fontWeight: 700,
+                                            color: 'var(--theme-text-primary)',
+                                            margin: 0,
+                                            borderLeft: '4px solid var(--theme-accent)',
+                                            paddingLeft: '0.75rem'
+                                        }}>{sec.label}</h5>
                                         <button
                                             onClick={() => handleCopy(sec.content, idx)}
-                                            className={cn(
-                                                "text-xs font-bold px-3 py-1.5 rounded-md transition-colors border flex items-center gap-1.5 shadow-sm",
-                                                copiedIndex === idx
-                                                    ? "bg-green-50 hover:bg-green-100 text-green-700 border-green-200"
-                                                    : "bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200"
-                                            )}
+                                            style={{
+                                                fontSize: '0.75rem',
+                                                fontWeight: 700,
+                                                padding: '0.375rem 0.75rem',
+                                                borderRadius: '0.375rem',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '0.375rem',
+                                                border: `1px solid ${copiedIndex === idx ? 'var(--theme-success)' : 'var(--theme-card-border)'}`,
+                                                backgroundColor: copiedIndex === idx ? 'var(--theme-success-bg, rgba(52,211,153,0.15))' : 'var(--theme-hover)',
+                                                color: copiedIndex === idx ? 'var(--theme-success)' : 'var(--theme-text-primary)',
+                                                cursor: 'pointer'
+                                            }}
                                         >
-                                            {copiedIndex === idx ? <Check size={14} /> : <Copy size={14} />}
+                                            {copiedIndex === idx ? iconCheck : iconCopy}
                                             {copiedIndex === idx ? 'Copied!' : 'Copy'}
                                         </button>
                                     </div>
                                     <div
-                                        className="text-sm text-neutral-700 bg-neutral-50/80 p-4 rounded-lg border border-neutral-100 prose prose-blue prose-sm max-w-none prose-p:leading-relaxed"
+                                        style={{
+                                            fontSize: '0.875rem',
+                                            color: 'var(--theme-text-secondary)',
+                                            backgroundColor: 'var(--theme-hover)',
+                                            padding: '1rem',
+                                            borderRadius: '0.5rem',
+                                            border: '1px solid var(--theme-card-border)',
+                                            lineHeight: 1.6
+                                        }}
                                         dangerouslySetInnerHTML={{ __html: sanitizeTaskGuide(sec.content) || '' }}
                                     />
                                 </div>

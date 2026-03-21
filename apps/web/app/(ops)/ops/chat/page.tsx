@@ -1,16 +1,18 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { cn, formatDate } from '@/lib/utils';
 import { sanitizeChatHtml } from '@/lib/sanitize';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Music, User, AlertCircle, RefreshCw, Send } from 'lucide-react';
 
 type Message = {
     role: 'user' | 'assistant' | 'error';
     content: string;
     createdAt?: Date;
 };
+
+function formatDate(d: Date) {
+    return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
 
 export default function DeltaDawnChat() {
     const [messages, setMessages] = useState<Message[]>([]);
@@ -94,37 +96,83 @@ export default function DeltaDawnChat() {
         }
     };
 
+    const iconMusic = <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>;
+    const iconUser = <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
+    const iconAlert = <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>;
+    const iconRefresh = <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>;
+    const iconSend = <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>;
+
     return (
-        <div className="flex flex-col h-[calc(100vh-8rem)] max-h-[800px] border border-neutral-200 bg-white rounded-xl shadow-sm overflow-hidden text-sm sm:text-base relative">
-            <div className="p-4 sm:p-5 bg-gradient-to-r from-amber-50 to-amber-100/50 border-b border-amber-200 flex items-center gap-4 z-10">
-                <div className="w-12 h-12 flex items-center justify-center bg-white rounded-full text-2xl shadow-sm border border-amber-100">
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            height: 'calc(100vh - 8rem)',
+            maxHeight: '800px',
+            border: '1px solid var(--theme-card-border)',
+            backgroundColor: 'var(--theme-card-bg)',
+            borderRadius: '0.75rem',
+            overflow: 'hidden',
+            boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+            position: 'relative'
+        }}>
+            <div style={{
+                padding: '1.25rem',
+                backgroundColor: 'var(--theme-accent-bg)',
+                borderBottom: '1px solid var(--theme-card-border)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+                zIndex: 10
+            }}>
+                <div style={{
+                    width: '3rem',
+                    height: '3rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: 'var(--theme-card-bg)',
+                    borderRadius: '50%',
+                    fontSize: '1.5rem',
+                    border: '1px solid var(--theme-accent-bg)'
+                }}>
                     🌻
                 </div>
                 <div>
-                    <h2 className="font-bold text-amber-900 text-lg sm:text-xl tracking-tight">Delta Dawn</h2>
-                    <p className="text-amber-700/80 font-medium text-sm">Launch Operations Assistant</p>
+                    <h2 style={{ fontWeight: 700, color: 'var(--theme-accent)', fontSize: '1.25rem', letterSpacing: '-0.025em', margin: 0 }}>Delta Dawn</h2>
+                    <p style={{ color: 'var(--theme-text-secondary)', fontWeight: 500, fontSize: '0.875rem', margin: 0 }}>Launch Operations Assistant</p>
                 </div>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 bg-neutral-50/50">
+            <div style={{ flex: 1, overflowY: 'auto', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', backgroundColor: 'var(--theme-hover)' }}>
                 {messages.length === 0 && !isLoading && (
                     <motion.div
                         initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                        className="flex flex-col items-center justify-center h-full text-center space-y-6 mt-10"
+                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', textAlign: 'center', gap: '1.5rem', marginTop: '2.5rem' }}
                     >
-                        <div className="w-20 h-20 bg-amber-50 rounded-full flex items-center justify-center text-4xl shadow-sm border border-amber-100">
+                        <div style={{ width: '5rem', height: '5rem', backgroundColor: 'var(--theme-accent-bg)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.25rem', border: '1px solid var(--theme-card-border)' }}>
                             🌻
                         </div>
-                        <div className="max-w-md">
-                            <h3 className="text-xl font-bold text-neutral-800 mb-2">Hey there! I'm Delta Dawn.</h3>
-                            <p className="text-neutral-500">I'm your Big Muddy assistant. Ask me anything about the property, tasks, or getting set up.</p>
+                        <div style={{ maxWidth: '28rem' }}>
+                            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--theme-text-primary)', marginBottom: '0.5rem' }}>Hey there! I'm Delta Dawn.</h3>
+                            <p style={{ color: 'var(--theme-text-secondary)' }}>I'm your Big Muddy assistant. Ask me anything about the property, tasks, or getting set up.</p>
                         </div>
-                        <div className="flex flex-wrap gap-2 justify-center max-w-lg">
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center', maxWidth: '32rem' }}>
                             {["What should I work on next?", "Tell me about the suites", "Help me with Google Business"].map(chip => (
                                 <button
                                     key={chip}
                                     onClick={() => sendMessage(chip)}
-                                    className="bg-white border border-neutral-200 text-neutral-600 hover:text-amber-700 hover:border-amber-300 hover:bg-amber-50 px-4 py-2 rounded-full text-sm font-medium transition-all shadow-sm"
+                                    style={{
+                                        backgroundColor: 'var(--theme-card-bg)',
+                                        border: '1px solid var(--theme-card-border)',
+                                        color: 'var(--theme-text-secondary)',
+                                        padding: '0.5rem 1rem',
+                                        borderRadius: '9999px',
+                                        fontSize: '0.875rem',
+                                        fontWeight: 500,
+                                        cursor: 'pointer',
+                                    }}
+                                    onMouseOver={(e) => { e.currentTarget.style.borderColor = 'var(--theme-accent)'; e.currentTarget.style.color = 'var(--theme-accent)' }}
+                                    onMouseOut={(e) => { e.currentTarget.style.borderColor = 'var(--theme-card-border)'; e.currentTarget.style.color = 'var(--theme-text-secondary)' }}
                                 >
                                     {chip}
                                 </button>
@@ -139,31 +187,43 @@ export default function DeltaDawnChat() {
                             key={i}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className={cn("flex gap-3", msg.role === 'user' ? "flex-row-reverse" : "flex-row")}
+                            style={{ display: 'flex', gap: '0.75rem', flexDirection: msg.role === 'user' ? 'row-reverse' : 'row' }}
                         >
-                            <div className={cn(
-                                "flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center shadow-sm",
-                                msg.role === 'user' ? "bg-amber-600 text-white" : msg.role === 'error' ? "bg-red-100 text-red-600" : "bg-white border border-neutral-200 text-amber-700"
-                            )}>
-                                {msg.role === 'user' ? <User size={16} strokeWidth={2.5} /> : msg.role === 'error' ? <AlertCircle size={16} /> : <Music size={16} />}
+                            <div style={{
+                                flexShrink: 0,
+                                width: '2rem',
+                                height: '2rem',
+                                borderRadius: '50%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: msg.role === 'user' ? 'var(--theme-accent)' : msg.role === 'error' ? 'var(--theme-warning-bg, rgba(251,191,36,0.15))' : 'var(--theme-card-bg)',
+                                color: msg.role === 'user' ? 'var(--theme-card-bg)' : msg.role === 'error' ? 'var(--theme-warning)' : 'var(--theme-accent)',
+                                border: msg.role === 'user' || msg.role === 'error' ? 'none' : '1px solid var(--theme-card-border)'
+                            }}>
+                                {msg.role === 'user' ? iconUser : msg.role === 'error' ? iconAlert : iconMusic}
                             </div>
 
-                            <div className={cn("flex flex-col", msg.role === 'user' ? 'items-end' : 'items-start')}>
-                                <div className="flex items-center gap-2 mb-1.5 px-1">
-                                    <span className={cn("text-xs font-semibold", msg.role === 'user' ? 'text-amber-700/80' : 'text-neutral-500')}>
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: msg.role === 'user' ? 'flex-end' : 'flex-start' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.375rem', padding: '0 0.25rem' }}>
+                                    <span style={{ fontSize: '0.75rem', fontWeight: 600, color: msg.role === 'user' ? 'var(--theme-accent)' : 'var(--theme-text-muted)' }}>
                                         {msg.role === 'user' ? 'You' : msg.role === 'error' ? 'System' : 'Delta Dawn'}
                                     </span>
-                                    {msg.createdAt && <span className="text-[10px] text-neutral-400">{formatDate(msg.createdAt)}</span>}
+                                    {msg.createdAt && <span style={{ fontSize: '0.625rem', color: 'var(--theme-text-muted)', opacity: 0.7 }}>{formatDate(msg.createdAt)}</span>}
                                 </div>
                                 <div
-                                    className={cn(
-                                        "max-w-[85%] sm:max-w-[75%] px-5 py-3.5 shadow-sm whitespace-pre-wrap leading-relaxed",
-                                        msg.role === 'user'
-                                            ? 'bg-amber-600 text-white rounded-2xl rounded-tr-sm'
-                                            : msg.role === 'error'
-                                                ? 'bg-red-50 border border-red-100 text-red-800 rounded-2xl rounded-tl-sm'
-                                                : 'bg-white border text-neutral-800 border-neutral-200 rounded-2xl rounded-tl-sm prose prose-amber prose-sm max-w-none'
-                                    )}
+                                    style={{
+                                        maxWidth: '85%',
+                                        padding: '0.875rem 1.25rem',
+                                        lineHeight: 1.6,
+                                        backgroundColor: msg.role === 'user' ? 'var(--theme-accent)' : msg.role === 'error' ? 'var(--theme-warning-bg, rgba(251,191,36,0.05))' : 'var(--theme-card-bg)',
+                                        color: msg.role === 'user' ? 'var(--theme-card-bg)' : msg.role === 'error' ? 'var(--theme-warning)' : 'var(--theme-text-primary)',
+                                        border: msg.role === 'user' ? 'none' : `1px solid ${msg.role === 'error' ? 'var(--theme-warning)' : 'var(--theme-card-border)'}`,
+                                        borderRadius: '1rem',
+                                        borderTopRightRadius: msg.role === 'user' ? '0.25rem' : '1rem',
+                                        borderTopLeftRadius: msg.role !== 'user' ? '0.25rem' : '1rem',
+                                        fontSize: '0.875rem'
+                                    }}
                                     dangerouslySetInnerHTML={{ __html: sanitizeChatHtml(msg.content.replace(/\n/g, '<br/>')) || (msg.role === 'assistant' ? '' : '...') }}
                                 />
                                 {msg.role === 'error' && (
@@ -172,9 +232,22 @@ export default function DeltaDawnChat() {
                                             const lastUserMessage = [...messages].reverse().find(m => m.role === 'user');
                                             if (lastUserMessage) sendMessage(lastUserMessage.content);
                                         }}
-                                        className="mt-2 text-xs font-medium text-red-600 hover:text-red-800 flex items-center gap-1 bg-red-50 px-3 py-1.5 rounded-full border border-red-100 transition-colors"
+                                        style={{
+                                            marginTop: '0.5rem',
+                                            fontSize: '0.75rem',
+                                            fontWeight: 500,
+                                            color: 'var(--theme-warning)',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '0.25rem',
+                                            backgroundColor: 'var(--theme-warning-bg, rgba(251,191,36,0.15))',
+                                            padding: '0.375rem 0.75rem',
+                                            borderRadius: '9999px',
+                                            border: '1px solid var(--theme-warning)',
+                                            cursor: 'pointer'
+                                        }}
                                     >
-                                        <RefreshCw size={12} /> Try again
+                                        {iconRefresh} Try again
                                     </button>
                                 )}
                             </div>
@@ -183,17 +256,34 @@ export default function DeltaDawnChat() {
                 </AnimatePresence>
 
                 {isLoading && (
-                    <div className="flex gap-3">
-                        <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center shadow-sm bg-white border border-neutral-200 text-amber-700">
-                            <Music size={16} />
+                    <div style={{ display: 'flex', gap: '0.75rem' }}>
+                        <div style={{
+                            flexShrink: 0,
+                            width: '2rem',
+                            height: '2rem',
+                            borderRadius: '50%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backgroundColor: 'var(--theme-card-bg)',
+                            color: 'var(--theme-accent)',
+                            border: '1px solid var(--theme-card-border)'
+                        }}>
+                            {iconMusic}
                         </div>
-                        <div className="flex flex-col items-start">
-                            <div className="flex items-center gap-2 mb-1.5 px-1">
-                                <span className="text-xs font-semibold text-neutral-500">Delta Dawn</span>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.375rem', padding: '0 0.25rem' }}>
+                                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--theme-text-muted)' }}>Delta Dawn</span>
                             </div>
-                            <div className="bg-white border text-neutral-800 border-neutral-200 rounded-2xl rounded-tl-sm px-5 py-4 shadow-sm">
+                            <div style={{
+                                padding: '1rem 1.25rem',
+                                backgroundColor: 'var(--theme-card-bg)',
+                                border: '1px solid var(--theme-card-border)',
+                                borderRadius: '1rem',
+                                borderTopLeftRadius: '0.25rem',
+                            }}>
                                 <motion.div
-                                    className="flex space-x-1"
+                                    style={{ display: 'flex', gap: '0.25rem' }}
                                     initial="initial"
                                     animate="animate"
                                     variants={{ animate: { transition: { staggerChildren: 0.2 } } }}
@@ -201,7 +291,7 @@ export default function DeltaDawnChat() {
                                     {[0, 1, 2].map((dot) => (
                                         <motion.span
                                             key={dot}
-                                            className="w-2 h-2 rounded-full bg-amber-400"
+                                            style={{ width: '0.5rem', height: '0.5rem', borderRadius: '50%', backgroundColor: 'var(--theme-progress-fill)' }}
                                             variants={{
                                                 initial: { y: 0, opacity: 0.5 },
                                                 animate: { y: [-2, 2, -2], opacity: [0.5, 1, 0.5], transition: { repeat: Infinity, duration: 1 } }
@@ -217,24 +307,49 @@ export default function DeltaDawnChat() {
                 <div ref={messagesEndRef} />
             </div>
 
-            <div className="p-4 sm:p-5 bg-white border-t border-neutral-200">
-                <div className="relative">
+            <div style={{ padding: '1.25rem', backgroundColor: 'var(--theme-card-bg)', borderTop: '1px solid var(--theme-card-border)' }}>
+                <div style={{ position: 'relative' }}>
                     <textarea
-                        className="w-full resize-none rounded-2xl border border-neutral-300 px-5 py-3.5 pr-14 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 shadow-inner bg-neutral-50/50"
+                        style={{
+                            width: '100%',
+                            resize: 'none',
+                            borderRadius: '1rem',
+                            border: '1px solid var(--theme-card-border)',
+                            padding: '0.875rem 3.5rem 0.875rem 1.25rem',
+                            backgroundColor: 'var(--theme-hover)',
+                            color: 'var(--theme-text-primary)',
+                            fontFamily: 'inherit',
+                            fontSize: '0.875rem',
+                            minHeight: '52px',
+                            boxSizing: 'border-box'
+                        }}
                         placeholder="Ask Delta Dawn a question... (Shift+Enter for newline)"
                         value={input}
                         rows={input.split('\n').length > 1 ? Math.min(input.split('\n').length, 5) : 1}
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={handleKeyDown}
                         disabled={isLoading}
-                        style={{ minHeight: '52px' }}
                     />
                     <button
                         onClick={() => sendMessage(input)}
                         disabled={isLoading || !input.trim()}
-                        className="absolute right-2 bottom-2 bg-amber-600 hover:bg-amber-700 disabled:opacity-50 text-white p-2 rounded-xl transition-colors flex items-center justify-center shadow-sm"
+                        style={{
+                            position: 'absolute',
+                            right: '0.5rem',
+                            bottom: '0.5rem',
+                            backgroundColor: 'var(--theme-accent)',
+                            color: 'var(--theme-card-bg)',
+                            padding: '0.5rem',
+                            borderRadius: '0.75rem',
+                            border: 'none',
+                            cursor: (isLoading || !input.trim()) ? 'not-allowed' : 'pointer',
+                            opacity: (isLoading || !input.trim()) ? 0.5 : 1,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}
                     >
-                        <Send size={18} />
+                        {iconSend}
                     </button>
                 </div>
             </div>

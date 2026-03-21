@@ -2,9 +2,7 @@
 
 import { useState } from 'react';
 import { LaunchTask, ContentPack } from '@prisma/client';
-import { cn } from '@/lib/utils';
 import { sanitizeTaskGuide } from '@/lib/sanitize';
-import { motion, AnimatePresence } from 'framer-motion';
 
 export default function TaskCard({ task }: { task: LaunchTask & { contentPack: ContentPack | null } }) {
     const [status, setStatus] = useState(task.status);
@@ -23,38 +21,60 @@ export default function TaskCard({ task }: { task: LaunchTask & { contentPack: C
     };
 
     return (
-        <div className={cn(
-            "bg-white border rounded-xl overflow-hidden transition-all shadow-sm",
-            status === 'done' ? 'border-green-300 bg-green-50/10' : 'border-neutral-200'
-        )}>
-            <div className="p-4 sm:p-6 flex items-start gap-4">
-                <div className="pt-1">
+        <div style={{
+            backgroundColor: status === 'done' ? 'var(--theme-success-bg, rgba(52,211,153,0.1))' : 'var(--theme-card-bg)',
+            border: `1px solid ${status === 'done' ? 'var(--theme-success)' : 'var(--theme-card-border)'}`,
+            borderRadius: '0.75rem',
+            overflow: 'hidden',
+            transition: 'all 0.2s',
+            boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+            marginBottom: '1rem',
+        }}>
+            <div style={{ padding: '1.5rem', display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <div style={{ paddingTop: '0.25rem' }}>
                     <input
                         type="checkbox"
                         checked={status === 'done'}
                         onChange={toggleStatus}
-                        className="w-6 h-6 rounded-md border-neutral-300 text-amber-600 focus:ring-amber-500 cursor-pointer"
+                        style={{
+                            width: '1.5rem',
+                            height: '1.5rem',
+                            borderRadius: '0.375rem',
+                            cursor: 'pointer',
+                            accentColor: 'var(--theme-accent)'
+                        }}
                     />
                 </div>
 
-                <div className="flex-1 space-y-2">
-                    <div className="flex flex-wrap items-center gap-2 justify-between">
-                        <h3 className={cn(
-                            "font-semibold text-lg",
-                            status === 'done' ? 'text-neutral-500 line-through' : 'text-neutral-900'
-                        )}>
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.5rem', justifyContent: 'space-between' }}>
+                        <h3 style={{
+                            fontWeight: 600,
+                            fontSize: '1.125rem',
+                            color: status === 'done' ? 'var(--theme-text-muted)' : 'var(--theme-text-primary)',
+                            textDecoration: status === 'done' ? 'line-through' : 'none',
+                            margin: 0
+                        }}>
                             Task {task.taskNumber}: {task.title}
                         </h3>
-                        <div className="flex items-center gap-2 text-xs font-semibold">
-                            {task.platform && <span className="bg-neutral-100 text-neutral-600 px-2.5 py-1 rounded-md">{task.platform}</span>}
-                            {task.timeEstimate && <span className="bg-amber-50 text-amber-700 px-2.5 py-1 rounded-md">{task.timeEstimate}</span>}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', fontWeight: 600 }}>
+                            {task.platform && (
+                                <span style={{ backgroundColor: 'var(--theme-hover)', color: 'var(--theme-text-secondary)', padding: '0.25rem 0.625rem', borderRadius: '0.375rem' }}>
+                                    {task.platform}
+                                </span>
+                            )}
+                            {task.timeEstimate && (
+                                <span style={{ backgroundColor: 'var(--theme-accent-bg)', color: 'var(--theme-accent)', padding: '0.25rem 0.625rem', borderRadius: '0.375rem' }}>
+                                    {task.timeEstimate}
+                                </span>
+                            )}
                         </div>
                     </div>
 
-                    <div className="flex gap-3 text-sm font-medium mt-3">
+                    <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.875rem', fontWeight: 500, marginTop: '0.75rem' }}>
                         <button
                             onClick={() => setExpanded(!expanded)}
-                            className="text-amber-700 hover:text-amber-900 hover:underline flex items-center gap-1"
+                            style={{ color: 'var(--theme-accent)', background: 'none', border: 'none', cursor: 'pointer', padding: 0, font: 'inherit' }}
                         >
                             {expanded ? 'Hide Guide' : 'Read Guide'}
                         </button>
@@ -62,14 +82,14 @@ export default function TaskCard({ task }: { task: LaunchTask & { contentPack: C
                         {task.contentPack && (
                             <button
                                 onClick={() => setContentExpanded(!contentExpanded)}
-                                className="text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1"
+                                style={{ color: 'var(--theme-progress-fill)', background: 'none', border: 'none', cursor: 'pointer', padding: 0, font: 'inherit' }}
                             >
                                 {contentExpanded ? 'Hide Content' : 'View Content'}
                             </button>
                         )}
 
                         {task.link && (
-                            <a href={task.link} target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-neutral-900 hover:underline flex items-center gap-1">
+                            <a href={task.link} target="_blank" rel="noreferrer" style={{ color: 'var(--theme-text-muted)', textDecoration: 'none' }}>
                                 Open Link ↗
                             </a>
                         )}
@@ -77,54 +97,48 @@ export default function TaskCard({ task }: { task: LaunchTask & { contentPack: C
                 </div>
             </div>
 
-            <AnimatePresence>
-                {expanded && task.guide && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="overflow-hidden"
-                    >
-                        <div className="px-4 sm:px-6 py-5 bg-neutral-50 border-t border-neutral-100 text-neutral-700 prose prose-amber max-w-none text-sm leading-relaxed"
-                            dangerouslySetInnerHTML={{ __html: sanitizeTaskGuide(task.guide) }} />
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            {expanded && task.guide && (
+                <div style={{
+                    padding: '1.25rem 1.5rem',
+                    backgroundColor: 'var(--theme-hover)',
+                    borderTop: '1px solid var(--theme-card-border)',
+                    color: 'var(--theme-text-secondary)',
+                    fontSize: '0.875rem',
+                    lineHeight: 1.6
+                }}>
+                    <div dangerouslySetInnerHTML={{ __html: sanitizeTaskGuide(task.guide) }} />
+                </div>
+            )}
 
-            <AnimatePresence>
-                {contentExpanded && task.contentPack && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="overflow-hidden"
-                    >
-                        <div className="px-4 sm:px-6 py-5 bg-blue-50/30 border-t border-blue-100">
-                            <h4 className="font-bold text-blue-900 mb-4 flex items-center gap-2">
-                                📘 {task.contentPack.title}
-                            </h4>
-                            <div className="space-y-4">
-                                {(task.contentPack.sections as Array<{ label: string, content: string }>).map((sec, idx) => (
-                                    <div key={idx} className="bg-white border border-blue-100 p-4 rounded-lg shadow-sm">
-                                        <div className="flex justify-between items-center mb-2">
-                                            <h5 className="font-semibold text-neutral-800">{sec.label}</h5>
-                                            <button
-                                                onClick={() => navigator.clipboard.writeText(sec.content)}
-                                                className="text-xs bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-medium px-3 py-1.5 rounded-md transition-colors"
-                                            >
-                                                Copy
-                                            </button>
-                                        </div>
-                                        <div className="text-sm text-neutral-600 space-y-2 whitespace-pre-wrap font-mono bg-neutral-50 p-3 rounded border border-neutral-100">
-                                            {sec.content}
-                                        </div>
-                                    </div>
-                                ))}
+            {contentExpanded && task.contentPack && (
+                <div style={{
+                    padding: '1.25rem 1.5rem',
+                    backgroundColor: 'var(--theme-progress-bg)',
+                    borderTop: '1px solid var(--theme-card-border)',
+                }}>
+                    <h4 style={{ fontWeight: 700, color: 'var(--theme-text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', margin: '0 0 1rem 0' }}>
+                        📘 {task.contentPack.title}
+                    </h4>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        {(task.contentPack.sections as Array<{ label: string, content: string }>).map((sec, idx) => (
+                            <div key={idx} style={{ backgroundColor: 'var(--theme-card-bg)', border: '1px solid var(--theme-card-border)', padding: '1rem', borderRadius: '0.5rem' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                                    <h5 style={{ fontWeight: 600, color: 'var(--theme-text-primary)', margin: 0 }}>{sec.label}</h5>
+                                    <button
+                                        onClick={() => navigator.clipboard.writeText(sec.content)}
+                                        style={{ fontSize: '0.75rem', backgroundColor: 'var(--theme-hover)', color: 'var(--theme-text-secondary)', border: 'none', padding: '0.375rem 0.75rem', borderRadius: '0.375rem', cursor: 'pointer' }}
+                                    >
+                                        Copy
+                                    </button>
+                                </div>
+                                <div style={{ fontSize: '0.875rem', color: 'var(--theme-text-secondary)', whiteSpace: 'pre-wrap', fontFamily: 'monospace', backgroundColor: 'var(--theme-hover)', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid var(--theme-card-border)' }}>
+                                    {sec.content}
+                                </div>
                             </div>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
