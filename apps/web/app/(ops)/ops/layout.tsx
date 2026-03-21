@@ -20,6 +20,7 @@ export default async function OpsLayout({ children }: { children: React.ReactNod
                             <Link href="/ops/content" className="hover:text-neutral-900">Content Library</Link>
                             <Link href="/ops/chat" className="hover:text-neutral-900">Delta Dawn</Link>
                             <Link href="/ops/property" className="hover:text-neutral-900">Property Info</Link>
+                            <Link href="/ops/amy" className="hover:text-neutral-900 text-amber-700">Amy</Link>
                         </nav>
                     </div>
 
@@ -33,6 +34,7 @@ export default async function OpsLayout({ children }: { children: React.ReactNod
                             <Link href="/ops/tasks">Tasks</Link>
                             <Link href="/ops/content">Content</Link>
                             <Link href="/ops/chat">Chat</Link>
+                            <Link href="/ops/amy" className="text-amber-700 font-semibold">Amy</Link>
                         </div>
                     </div>
                 </div>
