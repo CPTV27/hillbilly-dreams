@@ -692,8 +692,6 @@ model Publication {
 
 // ─────────────────────────────────────────────────────────────
 // AUTH (NextAuth.js)
-// ─────────────────────────────────────────────────────────────
-
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -701,6 +699,15 @@ model User {
   emailVerified DateTime?
   image         String?
   role          String    @default("viewer")  // admin | ops | artist | viewer
+  
+  // ── Onboarding & Personalization Matrix ──
+  onboardingStep String   @default("pending_survey") // pending_survey | pending_asana | completed
+  communicationChannels String[] // e.g. ["asana", "email", "google_chat"]
+  communicationStyle    String?  // bulleted_brief | detailed_warm | data_heavy
+  interfaceTheme        String   @default("minimal") // futuristic | retro | minimal
+  asanaMemberId         String?
+  communicationPrefsUpdatedAt DateTime?
+
   accounts      Account[]
   sessions      Session[]
   createdAt     DateTime  @default(now())

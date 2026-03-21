@@ -217,13 +217,13 @@ function ArrivalsView({ arrivals }: { arrivals: Arrival[] }) {
             <div>
               <h4 className="text-xl font-medium text-white">{a.guest}</h4>
               <p className="text-slate-500 text-sm mt-1 flex items-center gap-2">
-                <span>{a.room}</span> • <span>{a.checkIn}</span> • <span className={a.balance > 0 ? 'text-amber-400' : 'text-emerald-400'}>{a.balance > 0 ? \`$\${a.balance.toFixed(0)} Due\` : 'Paid'}</span>
+                <span>{a.room}</span> • <span>{a.checkIn}</span> • <span className={a.balance > 0 ? 'text-amber-400' : 'text-emerald-400'}>{a.balance > 0 ? `$${a.balance.toFixed(0)} Due` : 'Paid'}</span>
               </p>
             </div>
           </div>
           <div className="flex gap-2">
-            {a.phone && <a href={\`tel:\${a.phone}\`} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-colors"><Phone className="w-4 h-4" /></a>}
-            {a.email && <a href={\`mailto:\${a.email}\`} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-colors"><Mail className="w-4 h-4" /></a>}
+            {a.phone && <a href={`tel:${a.phone}`} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-colors"><Phone className="w-4 h-4" /></a>}
+            {a.email && <a href={`mailto:${a.email}`} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-colors"><Mail className="w-4 h-4" /></a>}
             <button className="h-10 px-4 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium transition-colors ml-2">
               Manage
             </button>
@@ -256,7 +256,7 @@ function LoadsheetView({ loadsheet }: { loadsheet: ShowcaseEntry[] }) {
                   </div>
                   <div>
                     <h4 className="text-lg font-medium text-white">{artist.name}</h4>
-                    <p className="text-slate-400 text-sm">{artist.genre || 'Unknown Genre'} • {artist.setLength ? \`\${artist.setLength} min\` : 'TBD'} • <span className="uppercase text-xs font-bold text-emerald-400">{artist.status}</span></p>
+                    <p className="text-slate-400 text-sm">{artist.genre || 'Unknown Genre'} • {artist.setLength ? `${artist.setLength} min` : 'TBD'} • <span className="uppercase text-xs font-bold text-emerald-400">{artist.status}</span></p>
                   </div>
                 </div>
                 <button className="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 group-hover:text-white group-hover:bg-white/10 transition-colors">
@@ -295,13 +295,13 @@ function MediaDropView() {
             <label 
               onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
               onDragLeave={() => setDrag(false)}
-              className={\`relative cursor-pointer flex flex-col items-center justify-center p-20 rounded-3xl border-2 border-dashed transition-all \${drag ? 'border-amber-400 bg-amber-500/10' : 'border-white/20 bg-white/5 hover:border-white/40 hover:bg-white/10'}\`}
+              className={`relative cursor-pointer flex flex-col items-center justify-center p-20 rounded-3xl border-2 border-dashed transition-all ${drag ? 'border-amber-400 bg-amber-500/10' : 'border-white/20 bg-white/5 hover:border-white/40 hover:bg-white/10'}`}
             >
               <input type="file" className="hidden" multiple onChange={handleSimulate} />
               {uploading ? (
                 <RefreshCw className="w-16 h-16 text-amber-500 animate-spin mb-6" />
               ) : (
-                <Upload className={\`w-16 h-16 mb-6 transition-colors \${drag ? 'text-amber-400' : 'text-slate-600'}\`} />
+                <Upload className={`w-16 h-16 mb-6 transition-colors ${drag ? 'text-amber-400' : 'text-slate-600'}`} />
               )}
               <h4 className="text-xl font-medium text-white mb-2">
                 {uploading ? 'Processing 14 files...' : (drag ? 'Drop it right here' : 'Tap to browse or Drop files')}
@@ -357,7 +357,7 @@ function ChaseView({ tasks, chaseList, completedTasks, onComplete }: any) {
                 >
                   <div>
                     <h4 className="text-lg font-medium text-white">{t.title}</h4>
-                    <p className="text-slate-500 text-sm mt-1">{t.session} {t.timeEstimate && \`• \${t.timeEstimate} est\`}</p>
+                    <p className="text-slate-500 text-sm mt-1">{t.session} {t.timeEstimate && `• ${t.timeEstimate} est`}</p>
                   </div>
                   <button 
                     onClick={() => onComplete(t.id)}
