@@ -278,3 +278,18 @@ img, video {
   --shadow-xl: 0 16px 40px rgba(255, 140, 0, 0.1);
   --shadow-glow: 0 0 30px rgba(255, 51, 102, 0.2);
 }
+
+/* Hillbilly Dreams: iron-dark, aged gold, corporate parent of the ecosystem */
+.theme-hillbilly {
+  --bg: #0a0f1a;
+  --surface: #111827;
+  --surface-2: #1a2236;
+  --surface-3: #242d42;
+  --accent: #c8943e;
+  --accent-hover: #d4a44e;
+  --accent-muted: rgba(200, 148, 62, 0.12);
+  --accent-subtle: rgba(200, 148, 62, 0.06);
+  --border: rgba(200, 148, 62, 0.10);
+  --border-strong: rgba(200, 148, 62, 0.22);
+  --shadow-glow: 0 0 30px rgba(200, 148, 62, 0.10);
+}

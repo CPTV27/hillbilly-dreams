@@ -5,6 +5,79 @@
 
 ---
 
+## [2026-03-21 — CC — WAITING_ON_AG
+
+**Task:** hillbillydreamsinc.com — Parent brand site scaffolding + AG visual build spec
+
+### What CC Did
+1. Registered `hillbillydreamsinc.com` in Cloudflare (Chase purchased domain)
+2. Added `hillbilly` brand to `packages/config/brands.ts` (id, domain, theme, nav linking to all child brands)
+3. Added `getBrandFromHostname` match for `hillbillydreams`
+4. Added middleware routing: `hillbillydreamsinc.com` → `/hillbilly` route
+5. Created skeleton page at `apps/web/app/hillbilly/page.tsx` — functional but bare
+
+### Files Changed
+- Modified: `packages/config/brands.ts` — Added `hillbilly` BrandId + config + hostname resolver
+- Modified: `apps/web/middleware.ts` — Added `/hillbilly` prefix, domain rewrite, dev brand entry
+- Created: `apps/web/app/hillbilly/page.tsx` — Skeleton landing page with brand grid
+
+### AG Assignment: Build the Hillbilly Dreams Visual Experience
+
+This is the **parent brand** — the holding company page. It should feel like the front door to everything. Iron & Earth aesthetic. Not corporate. Not startup. A company page that looks like it was built by people who actually make things.
+
+**What to build:**
+
+1. **Hero section** — "Hillbilly Dreams Inc." with a one-liner and Chase's photography-style hero image (use Nano Banana with the photography style guide). Deep, warm, Southern. Night shot of the Inn or the river or Natchez skyline.
+
+2. **Brand ecosystem** — Visual grid/wheel of all 7+ brands. Each card should feel alive — not just a link list. Show what each brand IS. Think magazine cover grid, not corporate subsidiary list.
+
+3. **The Story** — Short "about" section. Who we are, why Natchez, what Outsider Economics means in practice. Use Chase's voice (see `user_voice_profile.md`). 2-3 paragraphs max.
+
+4. **The Team** — Chase, Tracy, Amy/Arri. Minimal. Photos + one-liner roles. Not LinkedIn headshots — editorial portraits.
+
+5. **Contact / Footer** — Natchez, MS. Email. Maybe the tagline: "Built with independence. Powered by stubbornness." or similar.
+
+**Design constraints:**
+- Dark background (#0a0f1a or similar), warm gold accent (#c8943e)
+- Georgia/serif primary type, clean sans for UI
+- Mobile-first — this will get texted to people
+- NO stock photography. Nano Banana or Chase's real shots only.
+- Theme class: `theme-hillbilly` — needs CSS tokens in `packages/config/tokens.css`
+
+**Cloudflare DNS:**
+- Domain is registered on Cloudflare already
+- Needs CNAME or A record pointed at the Firebase App Hosting domain
+- Chase will configure DNS in Cloudflare dashboard, or AG can spec the exact records needed
+
+### Dependencies
+- AG: Needs Nano Banana for hero/brand imagery
+- AG: Needs to create `theme-hillbilly` tokens in `packages/config/tokens.css`
+- Chase: DNS records in Cloudflare dashboard pointing to Firebase App Hosting
+
+### Next
+- AG: Build the full visual experience on the skeleton at `/hillbilly/page.tsx`
+- CC: Will handle Cloudflare DNS → Firebase once AG confirms the page is ready to deploy
+
+**Status:** WAITING_ON_AG
+
+---
+
+## [2026-03-21] — CC — COMPLETE
+
+**Task:** BuyCurious Art artist application backend wired to PostgreSQL
+
+### What Was Done
+Added `ArtistApplication` Prisma model and POST `/api/gallery/applications` route. The `/gallery/apply` form now saves to the database instead of `console.log`.
+
+### Files Changed
+- Modified: `packages/database/prisma/schema.prisma` — Added ArtistApplication model
+- Created: `apps/web/app/api/gallery/applications/route.ts` — POST handler with validation
+- Modified: `apps/web/app/gallery/apply/page.tsx` — Form submission wired to API
+
+**Status:** COMPLETE
+
+---
+
 ## [2026-03-20 22:20] — CC — COMPLETE
 
 **Task:** BuyCurious Art gallery rebuild — fix broken page, add wall art, deploy

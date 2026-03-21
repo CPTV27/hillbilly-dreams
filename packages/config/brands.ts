@@ -1,7 +1,7 @@
 // packages/config/brands.ts
 // Brand configuration for the Big Muddy multi-tenant platform
 
-export type BrandId = 'touring' | 'magazine' | 'radio' | 'economics' | 'admin' | 'gallery' | 'records';
+export type BrandId = 'touring' | 'magazine' | 'radio' | 'economics' | 'admin' | 'gallery' | 'records' | 'hillbilly';
 
 export interface BrandConfig {
   id: BrandId;
@@ -140,6 +140,28 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
       ],
     },
   },
+  hillbilly: {
+    id: 'hillbilly',
+    name: 'Hillbilly Dreams Inc.',
+    shortName: 'Hillbilly Dreams',
+    tagline: 'The parent company behind the Big Muddy ecosystem',
+    domain: 'hillbillydreamsinc.com',
+    localDomain: 'hillbillydreamsinc.local',
+    description:
+      'Hillbilly Dreams Inc. — the holding company and creative engine behind Big Muddy Touring, Magazine, Radio, Records, BuyCurious Art, Outsider Economics, and the Deep South Directory.',
+    themeClass: 'theme-hillbilly',
+    primaryColor: '#c8943e',
+    nav: {
+      links: [
+        { label: 'Touring', href: 'https://bigmuddytouring.com' },
+        { label: 'Magazine', href: 'https://bigmuddymagazine.com' },
+        { label: 'Radio', href: 'https://bigmuddyradio.com' },
+        { label: 'Records', href: 'https://bigmuddyrecords.net' },
+        { label: 'Gallery', href: 'https://buycuriousart.com' },
+        { label: 'Economics', href: 'https://outsidereconomics.com' },
+      ],
+    },
+  },
   admin: {
     id: 'admin',
     name: 'Big Muddy HQ',
@@ -175,6 +197,7 @@ export function getBrandFromHostname(hostname: string): BrandId {
   if (hostname.includes('outsidereconomics')) return 'economics';
   if (hostname.includes('buycurious')) return 'gallery';
   if (hostname.includes('bigmuddyrecord')) return 'records';
+  if (hostname.includes('hillbillydreams')) return 'hillbilly';
   // admin.bigmuddy.*, localhost, and fallback
   return 'admin';
 }
