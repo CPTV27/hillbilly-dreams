@@ -113,8 +113,8 @@ export default function OnboardingSurvey() {
         const data = await res.json();
         throw new Error(data.error || 'Failed to save');
       }
-      router.push('/ops');
-      router.refresh();
+      // Hard redirect so NextAuth session re-reads from DB with updated onboardingStep
+      window.location.href = '/ops';
     } catch (err: any) {
       setError(err.message);
     } finally {

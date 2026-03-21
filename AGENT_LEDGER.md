@@ -1,7 +1,72 @@
 # AGENT_LEDGER.md
 > Coordination log for the SuperChase federated agent swarm.
 > Read before acting. Write after completing.
-> Agents: CC (Claude Code) | AG (Antigravity) | GA (Google AI)
+> Agents: CC (Claude Code) | AG (Antigravity) | GA (Google AI) | PC (Perplexity Computer)
+
+---
+
+## [2026-03-21 18:00] — CC — TASK FOR AG: Amy Command Center visual audit & fix
+
+**Status:** ASSIGNED_TO_AG
+**Priority:** P1 — Chase confirmed it "looks really weird" in production
+
+**What's broken (from screenshots):**
+- `/ops/amy` renders cramped — layout not taking full viewport width/height
+- Stat bubbles (Arrivals Today, Shows Scheduled, Pending Actions, Chase Missing) appear squeezed
+- Tab navigation buttons (Arrivals, Loadsheet, Media Drop, Chase List) are tiny and broken-looking
+- The "Print Memo" button and header area look like they're not getting proper spacing
+- Dark background theme appears to be applying but the component layout is collapsing
+
+**Likely causes to investigate:**
+1. Root layout (`app/layout.tsx`) may be applying max-width or overflow constraints that clip Amy's full-screen design
+2. Tailwind classes like `min-h-screen`, `h-screen`, `flex flex-col` may be fighting with the root layout's body/html defaults
+3. The `(amy)` route group has no layout.tsx — check whether root layout is wrapping things in a container that breaks full-viewport
+4. `overflow-hidden` on the outer div (`relative`) may need `overflow-auto` or the parent needs explicit height
+
+**File:** `apps/web/app/(amy)/ops/amy/page.tsx`
+**Root layout:** `apps/web/app/layout.tsx` (check this too)
+
+**Acceptance criteria:**
+- Amy dashboard fills the full viewport, dark background edge-to-edge
+- Stat bubbles display in a clean 4-column grid with proper padding
+- Tab navigation sidebar is readable and properly sized on desktop
+- Print Memo and Refresh buttons are visible in top-right
+
+---
+
+## [2026-03-21 18:00] — CC — TASK FOR AG: Onboarding loop — PARTIAL FIX APPLIED, needs verification
+
+**Status:** CC_FIXED — AG verify in staging
+
+**What was wrong:**
+After completing the 3-step onboarding survey at `/ops/onboarding`, the page looped back to the start. Root cause: `router.push('/ops') + router.refresh()` doesn't force NextAuth session re-read from DB, so middleware/page-level redirect still sees `onboardingStep` as incomplete.
+
+**Fix applied by CC:**
+Changed `router.push('/ops'); router.refresh()` → `window.location.href = '/ops'` (hard redirect forces full session re-read from DB).
+
+**AG: Please verify:**
+1. Where is the redirect-to-onboarding logic? Check `apps/web/app/(ops)/ops/page.tsx` and `apps/web/middleware.ts` for any `onboardingStep !== 'completed'` guard
+2. If the guard is in a Server Component that reads from `auth()` session (not DB), it won't see the DB update — needs to read `onboardingStep` from DB directly or use the hard redirect approach CC applied
+3. Confirm the hard redirect actually breaks the loop in production
+
+---
+
+## [2026-03-21 18:00] — CC — TASK FOR PC: Big Muddy Inn platform signup tracker
+
+**Status:** ASSIGNED_TO_PC
+**Priority:** P2 — Revenue-critical, Spring Pilgrimage is NOW (peak season)
+
+**Context:**
+Tracy's master account is `tracy@thebigmuddyinn.com`. The Big Muddy Inn Master Plan has 121 checklist items. Multiple platform signups are blocking revenue. PC has the full checklist from the `bigmuddy-master-plan.pages.dev` session.
+
+**PC standing tasks:**
+1. **Weekly competitor pricing** — Already running (Fridays). Next check: March 27. Focus: April 4-5 weekend (Dunleith jumped to $300, properties going scarce)
+2. **OTA application status** — Booking.com and Expedia applications need to be submitted. Tracy should use `tracy@thebigmuddyinn.com`. PC: draft the property description and amenity list pre-filled for both platforms, ready to paste, so Tracy can complete in one sitting
+3. **Yelp category fix** — Current category is wrong. Tracy needs to change it to "Bed & Breakfast" + "Music Venue". PC: confirm exact Yelp category IDs and write step-by-step with screenshots
+4. **Google Business Q&A** — 10 pre-written Q&A pairs ready to paste into `tracy@thebigmuddyinn.com` Google Business account. PC has these in the content library
+5. **Balloon Festival (Oct 16-18, 2026)** — PC already recommended $275/night. Tracy needs to set date-specific rate override in CloudBeds once it's live. PC: draft the promotional email blast copy for past guests and the Google Business event post
+
+**Urgency on rates:** CloudBeds isn't live yet but Tracy should set up the rate calendar the moment it is. Spring Pilgrimage is active NOW through mid-April — rates should be at $159-175/night for weekends immediately.
 
 ---
 
