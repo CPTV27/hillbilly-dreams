@@ -8,19 +8,19 @@ const THEMES = [
     value: 'futuristic',
     label: 'Futuristic',
     description: 'Dark glassmorphism, glowing accents, VR-ready. Built for speed.',
-    preview: 'bg-gradient-to-br from-blue-900/80 to-purple-900/80 border-blue-500/30',
+    previewStyle: { background: 'linear-gradient(135deg, rgba(30,58,138,0.8), rgba(88,28,135,0.8))', border: '1px solid rgba(96,165,250,0.3)' },
   },
   {
     value: 'retro',
     label: 'Classic Office',
     description: 'Typewriter-era memos, warm paper tones, printable layouts.',
-    preview: 'bg-gradient-to-br from-amber-100 to-yellow-50 border-amber-400/50',
+    previewStyle: { background: 'linear-gradient(135deg, #fef3c7, #fffbeb)', border: '1px solid rgba(245,158,11,0.5)' },
   },
   {
     value: 'minimal',
     label: 'Clean & Minimal',
     description: 'Light, airy, no distractions. Just the facts.',
-    preview: 'bg-gradient-to-br from-neutral-50 to-white border-neutral-200',
+    previewStyle: { background: 'linear-gradient(135deg, #fafafa, #fff)', border: '1px solid #e5e5e5' },
   },
 ];
 
@@ -37,6 +37,50 @@ const CHANNELS = [
   { value: 'sms', label: 'SMS' },
   { value: 'slack', label: 'Slack' },
 ];
+
+const card: React.CSSProperties = {
+  backgroundColor: '#fff',
+  border: '1px solid #e5e5e5',
+  borderRadius: '1rem',
+  padding: '2rem',
+  boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+};
+
+const optionBase: React.CSSProperties = {
+  position: 'relative',
+  padding: '1.5rem',
+  borderRadius: '0.75rem',
+  border: '2px solid #e5e5e5',
+  textAlign: 'left',
+  cursor: 'pointer',
+  transition: 'border-color 0.15s, box-shadow 0.15s',
+  backgroundColor: 'transparent',
+  width: '100%',
+};
+
+const optionSelected: React.CSSProperties = {
+  ...optionBase,
+  borderColor: '#f59e0b',
+  boxShadow: '0 0 0 3px rgba(245,158,11,0.2)',
+};
+
+const btnPrimary: React.CSSProperties = {
+  padding: '0.75rem 2rem',
+  backgroundColor: '#f59e0b',
+  color: '#fff',
+  fontWeight: 600,
+  borderRadius: '0.75rem',
+  border: 'none',
+  cursor: 'pointer',
+  fontSize: '1rem',
+};
+
+const btnDisabled: React.CSSProperties = {
+  ...btnPrimary,
+  backgroundColor: '#e5e5e5',
+  color: '#a3a3a3',
+  cursor: 'not-allowed',
+};
 
 export default function OnboardingSurvey() {
   const router = useRouter();
@@ -81,47 +125,47 @@ export default function OnboardingSurvey() {
   const canAdvance = step === 0 ? !!theme : step === 1 ? !!commStyle : channels.length > 0;
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center">
-      <div className="w-full max-w-2xl mx-auto">
-        {/* Progress */}
-        <div className="flex gap-2 mb-8">
+    <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ width: '100%', maxWidth: '42rem', margin: '0 auto' }}>
+        {/* Progress bar */}
+        <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem' }}>
           {[0, 1, 2].map(i => (
             <div
               key={i}
-              className={`h-1.5 flex-1 rounded-full transition-colors ${
-                i <= step ? 'bg-amber-500' : 'bg-neutral-200'
-              }`}
+              style={{
+                height: '6px',
+                flex: 1,
+                borderRadius: '9999px',
+                backgroundColor: i <= step ? '#f59e0b' : '#e5e5e5',
+                transition: 'background-color 0.2s',
+              }}
             />
           ))}
         </div>
 
-        <div className="bg-white border border-neutral-200 rounded-2xl p-8 shadow-sm">
+        <div style={card}>
           {/* Step 0: Interface Theme */}
           {step === 0 && (
             <div>
-              <h2 className="text-2xl font-bold text-neutral-900 mb-2">Welcome to Big Muddy Ops</h2>
-              <p className="text-neutral-500 mb-8">First, pick the look and feel for your command center.</p>
-              <div className="grid gap-4">
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#171717', marginBottom: '0.5rem' }}>Welcome to Big Muddy Ops</h2>
+              <p style={{ color: '#737373', marginBottom: '2rem' }}>First, pick the look and feel for your command center.</p>
+              <div style={{ display: 'grid', gap: '1rem' }}>
                 {THEMES.map(t => (
                   <button
                     key={t.value}
                     onClick={() => setTheme(t.value)}
-                    className={`relative p-6 rounded-xl border-2 text-left transition-all ${
-                      theme === t.value
-                        ? 'border-amber-500 ring-2 ring-amber-200'
-                        : 'border-neutral-200 hover:border-neutral-300'
-                    }`}
+                    style={theme === t.value ? optionSelected : optionBase}
                   >
-                    <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 rounded-lg border ${t.preview}`} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                      <div style={{ width: '3rem', height: '3rem', borderRadius: '0.5rem', flexShrink: 0, ...t.previewStyle }} />
                       <div>
-                        <h3 className="font-semibold text-neutral-900">{t.label}</h3>
-                        <p className="text-sm text-neutral-500">{t.description}</p>
+                        <h3 style={{ fontWeight: 600, color: '#171717', margin: 0 }}>{t.label}</h3>
+                        <p style={{ fontSize: '0.875rem', color: '#737373', margin: '0.25rem 0 0' }}>{t.description}</p>
                       </div>
                     </div>
                     {theme === t.value && (
-                      <div className="absolute top-4 right-4 w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center">
-                        <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+                      <div style={{ position: 'absolute', top: '1rem', right: '1rem', width: '1.5rem', height: '1.5rem', backgroundColor: '#f59e0b', borderRadius: '9999px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 13l4 4L19 7" /></svg>
                       </div>
                     )}
                   </button>
@@ -133,21 +177,17 @@ export default function OnboardingSurvey() {
           {/* Step 1: Communication Style */}
           {step === 1 && (
             <div>
-              <h2 className="text-2xl font-bold text-neutral-900 mb-2">How should we talk to you?</h2>
-              <p className="text-neutral-500 mb-8">Pick the communication style that feels right.</p>
-              <div className="grid gap-4">
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#171717', marginBottom: '0.5rem' }}>How should we talk to you?</h2>
+              <p style={{ color: '#737373', marginBottom: '2rem' }}>Pick the communication style that feels right.</p>
+              <div style={{ display: 'grid', gap: '1rem' }}>
                 {COMM_STYLES.map(s => (
                   <button
                     key={s.value}
                     onClick={() => setCommStyle(s.value)}
-                    className={`p-6 rounded-xl border-2 text-left transition-all ${
-                      commStyle === s.value
-                        ? 'border-amber-500 ring-2 ring-amber-200'
-                        : 'border-neutral-200 hover:border-neutral-300'
-                    }`}
+                    style={commStyle === s.value ? optionSelected : optionBase}
                   >
-                    <h3 className="font-semibold text-neutral-900">{s.label}</h3>
-                    <p className="text-sm text-neutral-500">{s.description}</p>
+                    <h3 style={{ fontWeight: 600, color: '#171717', margin: 0 }}>{s.label}</h3>
+                    <p style={{ fontSize: '0.875rem', color: '#737373', margin: '0.25rem 0 0' }}>{s.description}</p>
                   </button>
                 ))}
               </div>
@@ -157,34 +197,42 @@ export default function OnboardingSurvey() {
           {/* Step 2: Communication Channels */}
           {step === 2 && (
             <div>
-              <h2 className="text-2xl font-bold text-neutral-900 mb-2">Where should updates land?</h2>
-              <p className="text-neutral-500 mb-8">Pick all the channels you want notifications on.</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#171717', marginBottom: '0.5rem' }}>Where should updates land?</h2>
+              <p style={{ color: '#737373', marginBottom: '2rem' }}>Pick all the channels you want notifications on.</p>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>
                 {CHANNELS.map(ch => (
                   <button
                     key={ch.value}
                     onClick={() => toggleChannel(ch.value)}
-                    className={`p-4 rounded-xl border-2 text-center transition-all ${
-                      channels.includes(ch.value)
-                        ? 'border-amber-500 bg-amber-50 ring-2 ring-amber-200'
-                        : 'border-neutral-200 hover:border-neutral-300'
-                    }`}
+                    style={{
+                      padding: '1rem',
+                      borderRadius: '0.75rem',
+                      border: channels.includes(ch.value) ? '2px solid #f59e0b' : '2px solid #e5e5e5',
+                      backgroundColor: channels.includes(ch.value) ? '#fffbeb' : 'transparent',
+                      boxShadow: channels.includes(ch.value) ? '0 0 0 3px rgba(245,158,11,0.2)' : 'none',
+                      textAlign: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s',
+                      fontWeight: 500,
+                      color: '#171717',
+                      fontSize: '0.875rem',
+                    }}
                   >
-                    <span className="font-medium text-neutral-900">{ch.label}</span>
+                    {ch.label}
                   </button>
                 ))}
               </div>
             </div>
           )}
 
-          {error && <p className="text-red-600 text-sm mt-4">{error}</p>}
+          {error && <p style={{ color: '#dc2626', fontSize: '0.875rem', marginTop: '1rem' }}>{error}</p>}
 
           {/* Navigation */}
-          <div className="flex justify-between mt-8">
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
             {step > 0 ? (
               <button
                 onClick={() => setStep(s => s - 1)}
-                className="px-6 py-3 text-neutral-600 hover:text-neutral-900 font-medium transition-colors"
+                style={{ padding: '0.75rem 1.5rem', background: 'none', border: 'none', color: '#525252', fontWeight: 500, cursor: 'pointer', fontSize: '1rem' }}
               >
                 Back
               </button>
@@ -194,7 +242,7 @@ export default function OnboardingSurvey() {
               <button
                 onClick={() => setStep(s => s + 1)}
                 disabled={!canAdvance}
-                className="px-8 py-3 bg-amber-500 hover:bg-amber-600 disabled:bg-neutral-200 disabled:text-neutral-400 text-white font-semibold rounded-xl transition-colors"
+                style={canAdvance ? btnPrimary : btnDisabled}
               >
                 Next
               </button>
@@ -202,7 +250,7 @@ export default function OnboardingSurvey() {
               <button
                 onClick={handleSubmit}
                 disabled={!canAdvance || saving}
-                className="px-8 py-3 bg-amber-500 hover:bg-amber-600 disabled:bg-neutral-200 disabled:text-neutral-400 text-white font-semibold rounded-xl transition-colors"
+                style={canAdvance && !saving ? btnPrimary : btnDisabled}
               >
                 {saving ? 'Saving...' : 'Finish Setup'}
               </button>

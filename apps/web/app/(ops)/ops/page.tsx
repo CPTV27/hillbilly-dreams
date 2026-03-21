@@ -5,7 +5,6 @@ import { auth } from '@/auth';
 import { SESSION_META } from '@/lib/ops';
 import { formatDate, cn, getRelativeTime } from '@/lib/utils';
 import DashboardKPIs from './components/DashboardKPIs';
-import { motion } from 'framer-motion';
 import { CheckCircle, SkipForward, LogIn, MessageCircle, Eye } from 'lucide-react';
 
 export const revalidate = 0; // Dynamic data
@@ -185,8 +184,7 @@ export default async function OpsDashboard() {
                         else avatarColor = "bg-amber-100 text-amber-700";
 
                         return (
-                            <motion.li
-                                initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.05 }}
+                            <li
                                 key={act.id}
                                 className="px-6 py-4 flex gap-4 text-sm items-center hover:bg-neutral-50 transition-colors"
                             >
@@ -200,7 +198,7 @@ export default async function OpsDashboard() {
                                 <div className="flex-shrink-0 pl-2">
                                     {icon}
                                 </div>
-                            </motion.li>
+                            </li>
                         );
                     }) : (
                         <div className="p-12 text-center text-neutral-500 space-y-4">
