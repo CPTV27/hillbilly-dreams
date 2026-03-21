@@ -5,6 +5,44 @@
 
 ---
 
+## [2026-03-20 22:20] — CC — COMPLETE
+
+**Task:** BuyCurious Art gallery rebuild — fix broken page, add wall art, deploy
+
+### What Was Done
+1. **Fixed gallery CSS completely broken** — `.next` cache was corrupted, serving a 500 error for CSS bundle. All styles (`.bm-nav`, `.btn`, `.theme-gallery`, `:root` tokens) were missing. Nav rendered as bullet list, buttons as plain links. Fix: cleared `.next` cache, restarted dev server.
+2. **Created dual-mode gallery theme** — `.theme-gallery` (clean white museum: `--bg: #fafaf8`, `--text: #1a1a1a`) and `.theme-gallery-funky` (aristo-boho maximalism: deep purple, neon pink/cyan/lime) in `tokens.css`
+3. **Replaced landscape/building hero images with wall art** — Generated AI art pieces matching each fictional artist's medium: oil painting, mixed media collage, B&W blues photo, ceramic vessel, textile quilt, abstract expressionist
+4. **Integrated Chase's Lightroom photos** — Converted 7 exports from `~/Downloads/lightroom photos/` to WebP. Artist portrait with paintings (hero), aristo-boho parlor shot, landscapes as fine art prints, B&W EQ at window
+5. **Deployed to production** — `git push origin main` → Firebase App Hosting build triggered
+6. **Set up production monitoring** — Scheduled task `bmt-site-monitor` checks 6 routes every 10 minutes
+
+### Files Changed
+- Modified: `packages/config/tokens.css` — Added `.theme-gallery` and `.theme-gallery-funky` class themes
+- Modified: `apps/web/app/gallery/layout.tsx` — Theme wrapper with `id="gallery-theme-root"`
+- Modified: `apps/web/app/gallery/page.tsx` — Full rewrite: dual-mode, art images, funky toggle
+- Modified: `apps/web/app/gallery/GalleryNav.tsx` — Theme-aware nav background
+- Modified: `apps/web/app/gallery/demo-data.ts` — Andrea Brooks flagship artist
+- Created: `apps/web/public/images/gallery/` — 15 art images (AI generated + Chase Lightroom exports)
+- Created: `apps/web/app/global-error.tsx` — Error boundary
+
+### Production Status
+- ✅ bigmuddytouring.com — All routes 200 (root, /touring/inn, /gallery, /admin/login)
+- ❌ buycurious.art — **525 SSL handshake failed** (Cloudflare Pages SSL config issue)
+- ⚠️ Google OAuth — Redirect URI `https://bigmuddytouring.com/api/auth/callback/google` needs to be added in Google Cloud Console by Chase
+
+### AG Pickup Items
+1. **buycurious.art SSL** — Fix Cloudflare Pages SSL config (525 error)
+2. **Gallery visual polish** — Fix hydration warning in GalleryNav.tsx `<style>` tag, mobile responsive tuning, funky mode animation refinement
+3. **Brand-unique themes** — `.theme-radio`, `.theme-magazine`, `.theme-records`, `.theme-studio` need distinct visual identities
+4. **Metaphor images** — Chase wants "more analog" aesthetic, endpoint should show Google Chat thread not generic chat bubble
+
+**Dependencies:** Chase must add OAuth redirect URI in Google Cloud Console
+**Next:** AG picks up visual polish + brand themes, CC available for backend/infra
+**Status:** COMPLETE
+
+---
+
 ## [2026-03-20 18:30] — CC — COMPLETE
 
 **Task:** Fix AG field mismatch in DealRoomMode pricing tiers
