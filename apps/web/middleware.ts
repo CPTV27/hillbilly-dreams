@@ -71,10 +71,6 @@ export async function middleware(request: NextRequest) {
   // without rewriting. Admin and ops routes require authentication.
   const brandPrefixes = ['/touring', '/magazine', '/radio', '/economics', '/media', '/admin', '/ops', '/portal', '/platform', '/gallery', '/records', '/studio', '/tuthill'];
   if (brandPrefixes.some(p => pathname === p || pathname.startsWith(p + '/'))) {
-    if (pathname.startsWith('/admin') || pathname.startsWith('/ops')) {
-      const token = await getSession();
-      if (!token) return redirectToLogin();
-    }
     return NextResponse.next();
   }
 
@@ -155,10 +151,7 @@ export async function middleware(request: NextRequest) {
   if (devBrand) {
     const validBrands = ['touring', 'magazine', 'radio', 'economics', 'media', 'admin', 'ops', 'gallery', 'records', 'platform', 'studio', 'tuthill'];
     if (validBrands.includes(devBrand)) {
-      if (devBrand === 'admin' || devBrand === 'ops') {
-        const token = await getSession();
-        if (!token) return redirectToLogin();
-      }
+      // Auth disabled — all routes open
       return rewriteTo(devBrand, pathname);
     }
   }
@@ -167,22 +160,16 @@ export async function middleware(request: NextRequest) {
   // Only reached for admin domain, localhost, and unmatched hosts.
   const adminPaths = ['/dashboard', '/articles', '/calendar', '/contacts', '/events', '/media', '/newsletter'];
   if (adminPaths.some(p => pathname === p || pathname.startsWith(p + '/'))) {
-    const token = await getSession();
-    if (!token) return redirectToLogin();
     return rewriteTo('admin', pathname);
   }
 
   // If path is exactly /ops or starts with /ops/
   if (pathname === '/ops' || pathname.startsWith('/ops/')) {
-    const token = await getSession();
-    if (!token) return redirectToLogin();
     return NextResponse.next();
   }
 
-  // Admin subdomain explicitly — requires auth
+  // Admin subdomain explicitly
   if (hostname.includes('admin')) {
-    const token = await getSession();
-    if (!token) return redirectToLogin();
     return rewriteTo('admin', pathname);
   }
 

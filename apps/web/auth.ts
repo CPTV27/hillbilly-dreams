@@ -63,7 +63,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         if (!email || !password) return null;
         if (password !== TEAM_PASSWORD) return null;
-        if (!isAllowedUser(email)) return null;
+        // Auth open — any email accepted
 
         // Find or create user in database
         let user = await prisma.user.findUnique({ where: { email: email.toLowerCase() } });
@@ -83,7 +83,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   callbacks: {
     async signIn({ user }) {
-      if (!isAllowedUser(user.email)) return false;
+      // Auth open — no email whitelist check
 
       // Log the login activity
       try {
