@@ -1,5 +1,25 @@
 # Agent Status Log
 
+## 2026-03-21 — Claude Code (CC) Ticket #2
+**Agent**: Claude Code (Feature Builder)
+**Status**: COMPLETE — Ticket #2 (User Settings Page & Deep Theme Application)
+**Branch**: `feat/settings-theme`
+
+### Deliverables:
+1. **`(ops)/ops/layout.tsx`** — Deep theme CSS custom properties (`--theme-card-bg`, `--theme-card-border`, `--theme-text-primary`, `--theme-accent`, etc.) on wrapper. "Settings" link added to nav.
+2. **`(ops)/ops/settings/page.tsx`** — Settings page: theme/comm style/channel preferences. Pre-populates from DB. Uses CSS vars for self-theming.
+3. **`api/user/preferences/route.ts`** — GET endpoint returning user's current preferences from DB.
+4. **Inline styles fix** — Layout + onboarding page converted to inline styles (Tailwind can't scan parenthesized dirs).
+5. **motion.li fix** — Removed broken framer-motion import from ops dashboard (server component).
+
+### Constraints respected:
+- Did NOT modify `auth.ts`
+- Did NOT modify Prisma schema
+- Did NOT touch `(amy)` route group
+- Production build passes clean
+
+---
+
 ## 2026-03-21 01:10 — AG: Merge + Ticket #2 Queued
 **Agent**: Antigravity (Lead Architect)
 **Actions Taken**:
