@@ -295,11 +295,8 @@ The Big Muddy ecosystem operates across three points: Natchez, Mississippi — B
 // ─────────────────────────────────────────────────────────────
 
 export async function GET(req: Request) {
+    // Auth disabled — all callers pass
     const session = await auth()
-    if (!session) return new Response('Unauthorized', { status: 401 })
-
-    const roleError = requireRoleResponse(session, 'admin', 'ops', 'artist')
-    if (roleError) return roleError
 
     const url = new URL(req.url)
     const view = url.searchParams.get('view')
@@ -342,7 +339,7 @@ export async function GET(req: Request) {
     }
 
     // Default: current user's chat history
-    const userId = session.user?.email || 'unknown'
+    const userId = session?.user?.email || 'anonymous'
     const sessionId = url.searchParams.get('sessionId') || 'default'
 
     const messages = await prisma.chatMessage.findMany({
@@ -359,17 +356,14 @@ export async function GET(req: Request) {
 // ─────────────────────────────────────────────────────────────
 
 export async function POST(req: Request) {
+    // Auth disabled — all callers pass
     const session = await auth()
-    if (!session) return new Response('Unauthorized', { status: 401 })
-
-    const roleError = requireRoleResponse(session, 'admin', 'ops', 'artist')
-    if (roleError) return roleError
 
     const { message, sessionId = 'default' } = await req.json()
     if (!message?.trim()) return new Response('Empty message', { status: 400 })
 
-    const userId = session.user?.email || 'unknown'
-    const userName = session.user?.name || 'Unknown'
+    const userId = session?.user?.email || 'anonymous'
+    const userName = session?.user?.name || 'Guest'
 
     // Run DB context fetch and user message save in parallel
     const [dbContext] = await Promise.all([

@@ -1,19 +1,9 @@
 import Link from 'next/link';
 import { auth } from '@/auth';
-import { redirect } from 'next/navigation';
-import { canAccessRoute, normalizeRole, ROLE_DEFAULT_ROUTE } from '@bigmuddy/config';
 
 export default async function OpsLayout({ children }: { children: React.ReactNode }) {
+    // Auth disabled — all visitors pass
     const session = await auth();
-
-    if (!session?.user?.email) {
-        redirect('/admin/login');
-    }
-
-    const role = normalizeRole((session.user as any)?.role as string);
-    if (!canAccessRoute(role, '/ops')) {
-        redirect(ROLE_DEFAULT_ROUTE[role] || '/');
-    }
 
     return (
         <div className="min-h-screen bg-neutral-50 flex flex-col font-sans">
@@ -35,7 +25,7 @@ export default async function OpsLayout({ children }: { children: React.ReactNod
 
                     <div className="flex items-center gap-3">
                         <div className="text-sm font-medium text-neutral-700 text-right hidden sm:block">
-                            {session.user.name || session.user.email}
+                            {session?.user?.name || session?.user?.email || 'Guest'}
                         </div>
                         {/* Mobile Menu Button - simplify for now */}
                         <div className="sm:hidden flex flex-row gap-2 overflow-x-auto text-xs whitespace-nowrap">

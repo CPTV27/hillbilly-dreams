@@ -10,9 +10,7 @@ import { uploadToGCS } from '@/lib/gcs';
 
 export async function POST(request: Request) {
   try {
-    const session = await auth();
-    const roleError = requireRoleResponse(session, 'admin');
-    if (roleError) return roleError;
+    // Auth disabled — all callers pass
 
     const body = await request.json();
     const { prompt, album = 'generated', negativePrompt, aspectRatio = '16:9' } = body;

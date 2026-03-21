@@ -116,7 +116,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
         <div className="admin-sidebar__footer">
           <div className="admin-sidebar__user">
-            <span className="admin-sidebar__email">{session.user.email}</span>
+            <span className="admin-sidebar__email">{session.user?.email || 'Guest'}</span>
             <form
               action={async () => {
                 'use server';

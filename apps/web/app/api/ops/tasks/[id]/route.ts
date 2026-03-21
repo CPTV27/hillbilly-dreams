@@ -4,10 +4,8 @@ import { auth } from '@/auth';
 import { requireRoleResponse } from '@/lib/requireRole';
 
 export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+    // Auth disabled — all callers pass
     const session = await auth();
-    if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    const roleError = requireRoleResponse(session, 'admin', 'ops', 'artist');
-    if (roleError) return roleError;
 
     const body = await req.json();
     const taskNumber = parseInt(params.id);
@@ -17,7 +15,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         updateData.status = body.status;
         if (body.status === 'done') {
             updateData.completedAt = new Date();
-            updateData.completedBy = session.user?.email || 'unknown';
+            updateData.completedBy = session?.user?.email || 'anonymous';
         }
         if (body.status === 'pending') {
             updateData.completedAt = null;
@@ -37,9 +35,9 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     await prisma.opsActivity.create({
         data: {
             type: body.status === 'done' ? 'task_completed' : 'task_updated',
-            message: `${session.user?.name || session.user?.email || 'Someone'} ${body.status === 'done' ? 'completed' : 'updated'} "${task.title}"`,
-            userId: session.user?.email || null,
-            userName: session.user?.name || null,
+            message: `${session?.user?.name || session?.user?.email || 'Someone'} ${body.status === 'done' ? 'completed' : 'updated'} "${task.title}"`,
+            userId: session?.user?.email || null,
+            userName: session?.user?.name || null,
             taskId: taskNumber,
         }
     });
