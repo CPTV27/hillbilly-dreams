@@ -42,13 +42,6 @@ export default async function OpsLayout({ children }: { children: React.ReactNod
   const interfaceTheme = user?.interfaceTheme || 'minimal';
   const onboardingStep = user?.onboardingStep || 'pending_survey';
 
-  // Redirect to onboarding survey if profile setup is incomplete
-  // (skip if already on the onboarding page to avoid infinite redirect)
-  if (user?.email && onboardingStep === 'pending_survey') {
-    // We can't check the current path in a layout easily,
-    // so the onboarding page itself will handle not re-redirecting
-  }
-
   const theme = THEME_CONFIG[interfaceTheme as keyof typeof THEME_CONFIG] || THEME_CONFIG.minimal;
 
   return (
