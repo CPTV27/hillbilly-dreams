@@ -1,5 +1,7 @@
 import { prisma } from '@bigmuddy/database';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { auth } from '@/auth';
 import { SESSION_META } from '@/lib/ops';
 import { formatDate, cn, getRelativeTime } from '@/lib/utils';
 import DashboardKPIs from './components/DashboardKPIs';
@@ -9,6 +11,12 @@ import { CheckCircle, SkipForward, LogIn, MessageCircle, Eye } from 'lucide-reac
 export const revalidate = 0; // Dynamic data
 
 export default async function OpsDashboard() {
+    // Route users who haven't completed onboarding to the survey
+    const session = await auth();
+    const user = session?.user as any;
+    if (user?.onboardingStep === 'pending_survey') {
+        redirect('/ops/onboarding');
+    }
     const [tasks, activities] = await Promise.all([
         prisma.launchTask.findMany({
             orderBy: { taskNumber: 'asc' },

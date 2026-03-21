@@ -109,6 +109,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         const dbUser = await prisma.user.findUnique({ where: { email: user.email! } });
         token.role = dbUser?.role || 'viewer';
+        token.interfaceTheme = dbUser?.interfaceTheme || 'minimal';
+        token.onboardingStep = dbUser?.onboardingStep || 'pending_survey';
       }
       return token;
     },
@@ -116,6 +118,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (session.user && token.id) {
         session.user.id = token.id as string;
         (session.user as any).role = token.role as string;
+        (session.user as any).interfaceTheme = token.interfaceTheme as string;
+        (session.user as any).onboardingStep = token.onboardingStep as string;
       }
       return session;
     },
