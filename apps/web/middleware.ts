@@ -145,6 +145,11 @@ export async function middleware(request: NextRequest) {
     );
   }
 
+  // Ops routes always pass through — never rewritten by brand or hostname
+  if (pathname === '/ops' || pathname.startsWith('/ops/')) {
+    return NextResponse.next();
+  }
+
   // Dev override: NEXT_PUBLIC_BRAND env var bypasses hostname detection.
   // e.g. NEXT_PUBLIC_BRAND=magazine in .env.local
   const devBrand = process.env.NEXT_PUBLIC_BRAND;

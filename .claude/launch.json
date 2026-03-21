@@ -1,0 +1,33 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "prototypes",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "/Users/chasethis/bmt/prototypes", "-l", "4444", "--no-clipboard"],
+      "port": 4444
+    },
+    {
+      "name": "web",
+      "cwd": "/Users/chasethis/bmt/apps/web",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["next", "dev"],
+      "port": 3000,
+      "autoPort": true,
+      "env": {
+        "NEXT_PUBLIC_BRAND": "touring"
+      }
+    },
+    {
+      "name": "ops",
+      "cwd": "/Users/chasethis/bmt/apps/web",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["next", "dev", "--port", "3001"],
+      "port": 3001,
+      "autoPort": true,
+      "env": {
+        "NEXT_PUBLIC_BRAND": "admin"
+      }
+    }
+  ]
+}
