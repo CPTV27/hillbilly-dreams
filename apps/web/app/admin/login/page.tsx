@@ -8,7 +8,7 @@ export default function LoginPage({
 }: {
   searchParams: { error?: string; callbackUrl?: string };
 }) {
-  const callbackUrl = searchParams?.callbackUrl || '/dashboard';
+  const callbackUrl = searchParams?.callbackUrl || '/ops';
 
   return (
     <div className="login-shell">

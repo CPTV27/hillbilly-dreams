@@ -1,5 +1,45 @@
 # Agent Status Log
 
+## 2026-03-21 — Claude Code (CC) Ticket #3
+**Agent**: Claude Code (Feature Builder)
+**Status**: COMPLETE — Ticket #3 (Deep Theme Page Content + BMT Dispatch Relay)
+**Branch**: `feat/deep-theme-dispatch`
+
+### Deliverables:
+1. **`(ops)/ops/page.tsx`** — Full inline styles rewrite. All Tailwind classes replaced with CSS custom properties (`var(--theme-card-bg)`, `var(--theme-accent)`, etc.). Hero card, session grid, progress bars, and activity feed all theme-aware. Removed lucide-react icon imports (replaced with inline SVG/text icons to avoid Tailwind dependency).
+2. **`(ops)/ops/components/DashboardKPIs.tsx`** — Removed framer-motion `motion.div` and Tailwind classes. All KPI cards use CSS vars for backgrounds, borders, text. Icons replaced with inline SVGs.
+3. **`packages/shared/`** — New workspace package `@bigmuddy/shared` with dispatch utility:
+   - `formatForStyle(body, style)` — 3-style message formatter (bulleted_brief, detailed_warm, data_heavy)
+   - `dispatchToChannel(channel, message)` — Routes to Google Chat webhook, email (console.log), Slack, SMS, Asana
+   - `dispatchForUser(userId, message)` — Looks up user prefs via Prisma, formats, dispatches to all configured channels
+4. **`api/dispatch/session-summary/`** — POST route (cron-secret authenticated) queries LaunchTask progress and dispatches summary to all admin/owner users
+5. **`api/dispatch/test-session-summary/`** — GET endpoint for developer testing (requires admin session)
+
+### Constraints respected:
+- Did NOT modify `auth.ts`
+- Did NOT modify Prisma schema
+- Did NOT touch `(amy)` route group
+- Used only existing CSS custom properties from layout.tsx
+- Production build compiles clean (type-check passes)
+
+---
+
+## 2026-03-21 — AG: Revenue-First Sprint
+**Agent**: Antigravity (Lead Architect)
+**Status**: COMPLETE — Priority pivot per Chase's business stack
+
+### Deliverables:
+1. **CloudBeds → Delta Dawn** — Live inn metrics (occupancy, ADR, RevPAR, revenue MTD/YTD) injected into Delta Dawn's system prompt. `booking_query` and `review_help` intent detection added.
+2. **Google Reviews Pipeline (`/ops/reviews`)** — Filter by status, stats dashboard, AI response generation (Claude, Southern-styled), edit/approve workflow. APIs: `/api/ops/reviews/draft` + `/api/ops/reviews/approve`.
+3. **Reviews nav link** — Added to ops nav for Tracy.
+4. **S2PX**: Dispatch Adapter + Command Dashboard shipped.
+5. **BCA**: About + Apply pages with real Andrea Brooks artwork.
+
+### Critical unblock needed:
+- `CLOUDBEDS_API_KEY` env var activates entire inn revenue pipeline (cron sync → metrics → Delta Dawn → Tracy answers → dynamic pricing → dashboard KPIs).
+
+---
+
 ## 2026-03-21 — Claude Code (CC) Ticket #2
 **Agent**: Claude Code (Feature Builder)
 **Status**: COMPLETE — Ticket #2 (User Settings Page & Deep Theme Application)
