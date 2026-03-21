@@ -5,6 +5,113 @@
 
 ---
 
+## [2026-03-21 17:30] — AG — COMPLETE
+
+**Task:** BuyCurious Art — Brand voice copy + GalleryNav hydration fix (Priorities 1 & 3)
+
+### Priority 1: Gallery Copy & Messaging
+
+Applied BuyCurious Art brand voice per CC/Chase business plan direction.
+
+**`/gallery` hero (page.tsx):**
+- Eyebrow changed from "Big Muddy presents" → "Art Where People Actually Live"
+- Sub-copy rewritten with "taste-led curation" and "no gatekeepers" language
+- Revenue share callout ("Artist-first. 70–80% to the maker. Always.") now visible in both gallery and funky modes — no longer hidden behind funky-only toggle
+- Removed "Handmade. Southern-made. Unrepentantly weird." funky-only tagline
+
+**`/gallery/about` (about/page.tsx):**
+- Hero rewritten: "Punk-Chic Meets Sotheby's" headline
+- Mission section: injected "cultural insurgency" energy — short, punchy, direct
+- "70–80% of every sale" highlighted in gold as a standalone line
+- "How It Works" → "Taste-Led Curation" and "Artist-First Economics" (was generic "Curated Artists" / "Direct Sales")
+- Ecosystem section → "Part of Something Bigger" with flywheel narrative paragraph added
+- CTA section → "You make it. We move it." with revenue comparison
+- Replaced Big Muddy Studio with Outsider Economics (Studio doesn't exist as a brand)
+- Removed unused `useState` import
+
+**`/gallery/apply` (apply/page.tsx):**
+- Added large, unmissable revenue share banner ABOVE the form — dark gradient card with "You keep 70–80%." in 2.5rem bold white, "Most galleries take 50%. We take 15–20%." comparison
+- Header changed "Apply to Sell" → "Sell Your Work on BCA"
+- Intro copy updated with "taste-led marketplace" and "no gatekeepers, no gallery politics"
+- Submit area: added gold-colored revenue split reminder
+
+**Brand voice rules applied:**
+- ✅ Used: "no gatekeepers," "taste-led curation," "artist-first," "where art meets life"
+- ❌ Avoided: "disruptive," "revolutionary," "traditional gallery model," corporate jargon
+
+### Priority 3: GalleryNav Hydration Fix
+
+**`GalleryNav.tsx`:**
+- Removed inline `<style>` block that caused Next.js hydration warning (server/client mismatch)
+- Replaced with equivalent `style` prop on `<nav>` element: `background` and `borderBottomColor` applied directly
+- Same visual result, no hydration warning
+
+### Files Changed
+- Modified: `apps/web/app/gallery/page.tsx` — Hero copy updated (lines 154, 192–220)
+- Modified: `apps/web/app/gallery/about/page.tsx` — Full rewrite
+- Modified: `apps/web/app/gallery/apply/page.tsx` — Revenue banner + copy updates
+- Modified: `apps/web/app/gallery/GalleryNav.tsx` — Hydration fix
+
+### Remaining from AG Pickups
+- ~~Priority 1~~ ✅ Gallery copy
+- Priority 2 — Brand themes (.theme-radio, .theme-magazine, .theme-records)
+- ~~Priority 3~~ ✅ GalleryNav hydration
+- Priority 4 — Mobile responsive (funky mode masonry below 768px)
+
+**Status:** COMPLETE
+
+---
+
+## [2026-03-21 17:10] — AG — COMPLETE
+
+**Task:** Multi-Project Identity System — auto-switch between S2PX and BMT Google ecosystems
+
+### Problem
+AG built Hillbilly Dreams in the wrong repo (S2PX instead of BMT) because there was no per-repo identity boundary. Chase works across two Google ecosystems (`chase@scan2plan.io` for S2PX, `me@chasepierson.tv` for BMT) and agents/CLI tools need to know which context they're in.
+
+### What AG Built
+
+1. **Per-repo agent context files** — `.agents/context.md` in both repos
+   - Each file states: Google account, Firebase project, GCP project, status, stack, brands
+   - Includes "What This Repo Is NOT" section to prevent cross-repo mistakes
+   - **CC: Read `/Users/chasethis/bmt/.agents/context.md` before starting any BMT work**
+
+2. **CLI Dashboard** — `/Users/chasethis/.local/bin/chase-ctx`
+   - `chase-ctx` or `ctx` — shows visual dashboard with current project, account, status
+   - `ctx switch` — interactive project picker
+   - `ctx s2px` / `ctx bmt` — direct switch
+   - `s2px` alias — cd + switch, `bmt` alias — cd + switch
+
+3. **Shell auto-switch** — `~/.zshrc` `chpwd` hook
+   - When Chase `cd`s into `~/S2PX/*`, env auto-sets to `chase@scan2plan.io` / Firebase `s2px`
+   - When Chase `cd`s into `~/bmt/*`, env auto-sets to `me@chasepierson.tv` / Firebase `bigmuddy`
+   - Also activates the matching `gcloud config configurations`
+
+4. **gcloud named configs** — `s2px` and `bmt` configurations created
+   - `s2px`: account `chase@scan2plan.io`, project `s2px-production`
+   - `bmt`: account `me@chasepierson.tv`, project `bigmuddy-ff651`
+
+5. **VS Code workspace files** — `s2px.code-workspace` and `bmt.code-workspace`
+   - Terminal env vars auto-set per workspace
+   - Window title shows project name + status (e.g., "BMT ✅ ACTIVE")
+
+### Files Created/Modified
+- Created: `/Users/chasethis/S2PX/.agents/context.md`
+- Created: `/Users/chasethis/bmt/.agents/context.md`
+- Created: `/Users/chasethis/.local/bin/chase-ctx` (executable)
+- Created: `/Users/chasethis/S2PX/s2px.code-workspace`
+- Created: `/Users/chasethis/bmt/bmt.code-workspace`
+- Modified: `/Users/chasethis/.zshrc` — Added auto-switch hook, aliases; cleaned up 7 duplicate PATH entries
+
+### CC Action Items
+- **Read `.agents/context.md`** at the start of any session to confirm you're in the right repo
+- **S2PX is PAUSED** — do not deploy. Context file makes this explicit.
+- The `AGENT_LEDGER.md` in BMT is for BMT work only. S2PX should have its own coordination if needed.
+
+**Status:** COMPLETE
+
+---
+
 ## [2026-03-21 17:00] — AG — COMPLETE
 
 **Task:** hillbillydreamsinc.com — Visual experience built on CC's skeleton

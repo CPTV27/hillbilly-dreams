@@ -152,7 +152,7 @@ export default function GalleryPage() {
               marginBottom: 'var(--space-6)',
             }}
           >
-            {funkyMode ? '✦ Big Muddy presents ✦' : 'Big Muddy presents'}
+            {funkyMode ? '✦ Art Where People Actually Live ✦' : 'Art Where People Actually Live'}
           </p>
 
           <h1
@@ -195,29 +195,30 @@ export default function GalleryPage() {
               fontSize: 'var(--text-lg)',
               lineHeight: 'var(--leading-loose)',
               color: 'var(--text-muted)',
-              marginBottom: 'var(--space-10)',
+              marginBottom: 'var(--space-4)',
               maxWidth: '440px',
             }}
           >
             {funkyMode
-              ? 'Original art from the Mississippi corridor. Wild, made-by-hand, one-of-a-kind. Curated from the artists, musicians, and makers who call the Deep South home.'
-              : 'Original art from the Mississippi corridor. Curated from the artists, musicians, and makers who call the Deep South home.'}
+              ? 'No gatekeepers. No white walls. No pretension. Just taste-led curation from the Mississippi corridor — paintings, ceramics, textiles, and photography from the people who actually make things.'
+              : 'Taste-led curation from the Mississippi corridor. Paintings, ceramics, textiles, and photography from the people who actually make things.'}
           </p>
 
-          {funkyMode && (
-            <p
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: 'var(--text-sm)',
-                color: FUNKY_COLORS[2],
-                marginBottom: 'var(--space-8)',
-                fontWeight: 600,
-                letterSpacing: 'var(--tracking-wide)',
-              }}
-            >
-              🌶 Handmade. Southern-made. Unrepentantly weird.
-            </p>
-          )}
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 'var(--text-sm)',
+              color: funkyMode ? FUNKY_COLORS[2] : 'var(--accent)',
+              marginBottom: 'var(--space-10)',
+              fontWeight: 600,
+              letterSpacing: 'var(--tracking-wide)',
+              maxWidth: '440px',
+            }}
+          >
+            {funkyMode
+              ? '🌶 Artist-first. 70–80% to the maker. Always.'
+              : 'Artist-first. 70–80% to the maker. Always.'}
+          </p>
 
           <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
             <a

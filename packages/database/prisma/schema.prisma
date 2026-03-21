@@ -823,6 +823,7 @@ model ArtistProfile {
   instagram   String?
   featured    Boolean   @default(false)
   status      String    @default("active") // active | inactive | pending
+  stripeAccountId String? // For connected Stripe Express accounts
   artworks    Artwork[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt

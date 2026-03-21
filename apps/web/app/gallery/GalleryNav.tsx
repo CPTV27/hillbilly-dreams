@@ -16,13 +16,15 @@ export default function GalleryNav() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="bm-nav" role="navigation" aria-label="Main navigation">
-      <style>{`
-        .bm-nav {
-          background: color-mix(in srgb, var(--bg) 92%, transparent) !important;
-          border-bottom-color: var(--border) !important;
-        }
-      `}</style>
+    <nav
+      className="bm-nav"
+      role="navigation"
+      aria-label="Main navigation"
+      style={{
+        background: 'color-mix(in srgb, var(--bg) 92%, transparent)',
+        borderBottomColor: 'var(--border)',
+      }}
+    >
       <div className="bm-nav__inner">
         {/* Logo */}
         <a href="/gallery" className="bm-nav__logo" aria-label="BuyCurious Art — home">

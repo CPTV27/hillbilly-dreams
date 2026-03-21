@@ -118,15 +118,61 @@ export default function GalleryApply() {
 
   return (
     <div style={{ maxWidth: '700px', margin: '0 auto', padding: '3rem 1.5rem' }}>
+      {/* Revenue Share Callout — THE hook */}
+      <div style={{
+        background: 'linear-gradient(135deg, #1a1610 0%, #2a2018 100%)',
+        border: '1px solid #c8943e',
+        borderRadius: '16px',
+        padding: '2rem 2.5rem',
+        marginBottom: '2.5rem',
+        textAlign: 'center',
+      }}>
+        <p style={{
+          fontSize: '0.75rem',
+          fontWeight: 700,
+          textTransform: 'uppercase',
+          letterSpacing: '0.2em',
+          color: '#c8943e',
+          marginBottom: '0.75rem',
+        }}>
+          Artist-First Economics
+        </p>
+        <p style={{
+          fontSize: '2.5rem',
+          fontWeight: 800,
+          color: '#fff',
+          letterSpacing: '-0.02em',
+          lineHeight: 1.1,
+          marginBottom: '0.5rem',
+        }}>
+          You keep 70–80%.
+        </p>
+        <p style={{
+          fontSize: '1.1rem',
+          color: '#e8dcc8',
+          lineHeight: 1.5,
+          marginBottom: '0.75rem',
+        }}>
+          Most galleries take 50%. We take 15–20%.
+        </p>
+        <p style={{
+          fontSize: '0.85rem',
+          color: '#8a7d6b',
+          lineHeight: 1.5,
+        }}>
+          No consignment. No inventory games. You set the price. We move the work. You get paid.
+        </p>
+      </div>
+
       {/* Header */}
       <div style={{ marginBottom: '2.5rem' }}>
         <h1 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
-          Apply to Sell on BCA
+          Sell Your Work on BCA
         </h1>
         <p style={{ color: '#6b5d4a', lineHeight: 1.7, fontSize: '1.05rem' }}>
-          BuyCurious Art is a curated marketplace. We don't accept everyone — we look for craft, 
-          story, and work that connects to the Southern landscape, literally or spiritually. 
-          Tell us about yourself and your practice.
+          BuyCurious Art is a taste-led marketplace. We don&apos;t accept everyone &mdash; we look
+          for craft, story, and the kind of work that makes people stop and feel something.
+          No gatekeepers, no gallery politics. Tell us about yourself and your practice.
         </p>
       </div>
 
@@ -257,8 +303,11 @@ export default function GalleryApply() {
           {submitting ? 'Submitting...' : 'Submit Application'}
         </button>
 
-        <p style={{ fontSize: '0.8rem', color: '#8a7d6b', textAlign: 'center', marginTop: '1rem' }}>
-          We review every application personally. You'll hear from us within two weeks.
+        <p style={{ fontSize: '0.85rem', color: '#c8943e', textAlign: 'center', marginTop: '1rem', fontWeight: 600 }}>
+          70–80% to you. 15–20% to us. No consignment. No waiting.
+        </p>
+        <p style={{ fontSize: '0.8rem', color: '#8a7d6b', textAlign: 'center', marginTop: '0.5rem' }}>
+          We review every application personally. You&apos;ll hear from us within two weeks.
         </p>
       </form>
     </div>
