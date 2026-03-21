@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { RefreshCw, Users, Music, Camera, ClipboardList, Phone, Mail, Check, CheckCircle2, AlertCircle, Upload, ChevronRight, Sparkles } from 'lucide-react';
+import { RefreshCw, Users, Music, Camera, ClipboardList, Phone, Mail, Check, CheckCircle2, AlertCircle, Upload, ChevronRight, Sparkles, Printer } from 'lucide-react';
 
 // ── Types ──
 interface Arrival { id: string; guest: string; email: string; phone: string; room: string; checkIn: string; checkOut: string; balance: number; status: string; source: string; }
@@ -100,9 +100,15 @@ export default function AmyPremiumDashboard() {
             </div>
             <h1 className="text-4xl md:text-5xl font-light tracking-tight text-white">Hey, Amy <span className="text-slate-600">✦</span></h1>
           </div>
-          <button onClick={fetchData} className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors backdrop-blur-md">
-            <RefreshCw className={`w-5 h-5 text-slate-400 ${loading ? 'animate-spin text-blue-400' : ''}`} />
-          </button>
+          <div className="flex items-center gap-3">
+            <button onClick={() => window.print()} className="h-12 px-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center gap-2 hover:bg-white/10 transition-colors backdrop-blur-md shadow-lg text-white font-medium print:hidden">
+              <Printer className="w-5 h-5 text-blue-400" />
+              <span>Print Memos</span>
+            </button>
+            <button onClick={fetchData} className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors backdrop-blur-md print:hidden">
+              <RefreshCw className={`w-5 h-5 text-slate-400 ${loading ? 'animate-spin text-blue-400' : ''}`} />
+            </button>
+          </div>
         </motion.header>
 
         {/* Dynamic Stat Bubbles */}
@@ -184,6 +190,12 @@ export default function AmyPremiumDashboard() {
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+        @media print {
+          body { background: white !important; color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          .print\\:hidden { display: none !important; }
+          .backdrop-blur-2xl, .backdrop-blur-xl, .bg-white\\/5 { background: white !important; border: 1px solid #ddd !important; box-shadow: none !important; color: black !important; }
+          .text-white, .text-slate-200, .text-slate-400 { color: black !important; }
+        }
       `}} />
     </div>
   );
