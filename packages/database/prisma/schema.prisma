@@ -864,3 +864,23 @@ model ArtOrder {
   updatedAt   DateTime @updatedAt
 }
 
+
+model ArtistApplication {
+  id           String   @id @default(cuid())
+  name         String
+  email        String
+  city         String
+  state        String
+  website      String?
+  instagram    String?
+  medium       String
+  yearsActive  String?
+  bio          String   @db.Text
+  portfolioUrl String
+  priceRange   String?
+  whyBCA       String?  @db.Text
+  status       String   @default("pending") // pending | approved | rejected
+  notes        String?  @db.Text
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

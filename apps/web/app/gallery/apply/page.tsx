@@ -40,12 +40,27 @@ export default function GalleryApply() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    // v1: Log to console. Future: POST to /api/gallery/applications
-    console.log('[BCA Application]', form);
-    setTimeout(() => {
+    
+    try {
+      const res = await fetch('/api/gallery/applications', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(form)
+      });
+      
+      if (!res.ok) {
+        throw new Error('Failed to submit application');
+      }
+      
       setSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      alert('There was a problem submitting your application. Please try again.');
+    } finally {
       setSubmitting(false);
-    }, 1500);
+    }
   };
 
   const inputStyle = {
