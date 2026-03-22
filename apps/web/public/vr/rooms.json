@@ -1,0 +1,71 @@
+[
+  {
+    "id": "corridor",
+    "name": "The Mississippi Corridor",
+    "subtitle": "Where the Journey Begins",
+    "sky": "/vr/sky-landscape.webp",
+    "color": "#14b8a6",
+    "glow": "#0d5c4f",
+    "textColor": "#ccfbf1",
+    "position": {
+      "x": 0,
+      "y": 1.8,
+      "z": -5
+    }
+  },
+  {
+    "id": "blues-room",
+    "name": "The Blues Room",
+    "subtitle": "Where the Music Lives",
+    "sky": "/vr/sky-speakeasy.webp",
+    "color": "#7c3aed",
+    "glow": "#2d1b69",
+    "textColor": "#e9d5ff",
+    "position": {
+      "x": -4,
+      "y": 1.8,
+      "z": -3
+    }
+  },
+  {
+    "id": "portal",
+    "name": "The Portal",
+    "subtitle": "Gateway to the Cosmic Corridor",
+    "sky": "/vr/sky-portal.webp",
+    "color": "#c4a35a",
+    "glow": "#6b5b3a",
+    "textColor": "#fef3c7",
+    "position": {
+      "x": 4,
+      "y": 1.8,
+      "z": -3
+    }
+  },
+  {
+    "id": "inn-tour",
+    "name": "The Big Muddy Inn",
+    "subtitle": "Step Inside",
+    "sky": "/vr/sky-inn-tour.webp",
+    "color": "#c4a35a",
+    "glow": "#6b5b3a",
+    "textColor": "#fef3c7"
+  },
+  {
+    "id": "art-gallery",
+    "name": "BuyCurious Art",
+    "subtitle": "Gallery in the Cosmos",
+    "sky": "/vr/sky-art-gallery.webp",
+    "color": "#ec4899",
+    "glow": "#831843",
+    "textColor": "#fce7f3"
+  },
+  {
+    "id": "taco-truck",
+    "name": "Monumental Taco",
+    "subtitle": "A Truck in Space",
+    "sky": "/vr/sky-taco-truck.webp",
+    "color": "#f97316",
+    "glow": "#7c390e",
+    "textColor": "#ffedd5"
+  }
+]

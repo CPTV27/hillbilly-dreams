@@ -5,7 +5,6 @@
   <title>Hillbilly Dreams — VR Experience</title>
   <meta name="description" content="A psychedelic VR journey through the Hillbilly Dreams universe">
   <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-particle-system-component@1.1.4/dist/aframe-particle-system-component.min.js"></script>
   <style>
     body { margin: 0; overflow: hidden; }
     .a-enter-vr-button { background: rgba(139, 92, 246, 0.8) !important; }
@@ -28,194 +27,148 @@
     <p class="pulse">Entering the cosmic corridor...</p>
   </div>
 
-  <a-scene
-    vr-mode-ui="enabled: true"
-    loading-screen="enabled: false"
-    renderer="antialias: true; colorManagement: true"
-  >
-    <!-- Asset Management -->
-    <a-assets timeout="30000">
-      <img id="sky-landscape" src="/vr/sky-landscape.webp" crossorigin="anonymous">
-      <img id="sky-speakeasy" src="/vr/sky-speakeasy.webp" crossorigin="anonymous">
-      <img id="sky-portal" src="/vr/sky-portal.webp" crossorigin="anonymous">
-    </a-assets>
+  <a-scene vr-mode-ui="enabled: true" loading-screen="enabled: false" renderer="antialias: true; colorManagement: true">
+    <a-assets id="assets" timeout="30000"></a-assets>
 
-    <!-- Camera with cursor for interaction -->
+    <!-- Camera -->
     <a-entity id="rig" position="0 1.6 0">
-      <a-camera look-controls="pointerLockEnabled: false" wasd-controls="enabled: true">
-        <a-cursor
-          fuse="true" fuse-timeout="2000"
-          color="#c4a35a"
-          animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-          animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
-          animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+      <a-camera look-controls wasd-controls="enabled: true">
+        <a-cursor fuse="true" fuse-timeout="2000" color="#c4a35a"
+          animation__fusing="property: scale; startEvents: fusing; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic"
+          animation__leave="property: scale; startEvents: mouseleave; dur: 300; to: 1 1 1"
           raycaster="objects: .clickable"
         ></a-cursor>
       </a-camera>
     </a-entity>
 
-    <!-- Scene 1: Cosmic Landscape (default) -->
-    <a-sky id="sky" src="#sky-landscape" rotation="0 -90 0" animation="property: material.opacity; from: 0; to: 1; dur: 2000"></a-sky>
+    <!-- Sky (dynamically swapped) -->
+    <a-sky id="sky" color="#0a0a1a"></a-sky>
 
-    <!-- Floating Title -->
+    <!-- Title -->
     <a-entity id="title-group" position="0 3.5 -5">
-      <a-text
-        value="HILLBILLY DREAMS"
-        color="#c4a35a"
-        font="kelsonsans"
-        width="12"
-        align="center"
-        opacity="0.9"
+      <a-text id="title-text" value="HILLBILLY DREAMS" color="#c4a35a" font="kelsonsans" width="12" align="center" opacity="0.9"
         animation="property: position; to: 0 0.2 0; dir: alternate; dur: 3000; easing: easeInOutSine; loop: true"
       ></a-text>
-      <a-text
-        value="A Cosmic Journey Through the Mississippi Corridor"
-        color="#8b7355"
-        font="kelsonsans"
-        width="6"
-        align="center"
-        position="0 -0.6 0"
-        opacity="0.7"
-      ></a-text>
+      <a-text id="subtitle-text" value="Choose a Room" color="#8b7355" font="kelsonsans" width="6" align="center" position="0 -0.6 0" opacity="0.7"></a-text>
     </a-entity>
 
-    <!-- Floating navigation orbs -->
-    <a-entity id="nav-orbs">
-      <!-- Blues Room Portal -->
-      <a-entity position="-3 1.8 -4" class="clickable" id="orb-speakeasy"
-        event-set__mouseenter="scale: 1.3 1.3 1.3"
-        event-set__mouseleave="scale: 1 1 1"
-        animation="property: position; to: -3 2.1 -4; dir: alternate; dur: 2500; easing: easeInOutSine; loop: true"
-      >
-        <a-sphere radius="0.3" color="#7c3aed" opacity="0.7" metalness="0.8" roughness="0.2"
-          animation__glow="property: material.emissive; from: #2d1b69; to: #7c3aed; dir: alternate; dur: 1500; loop: true"
-        ></a-sphere>
-        <a-text value="The Blues Room" color="#e9d5ff" width="3" align="center" position="0 -0.5 0"></a-text>
-        <a-ring color="#7c3aed" radius-inner="0.35" radius-outer="0.45" opacity="0.4"
-          animation="property: rotation; to: 0 360 0; dur: 8000; easing: linear; loop: true"
-        ></a-ring>
-      </a-entity>
+    <!-- Room orbs container (populated dynamically) -->
+    <a-entity id="room-orbs"></a-entity>
 
-      <!-- Portal Gateway -->
-      <a-entity position="3 1.8 -4" class="clickable" id="orb-portal"
-        event-set__mouseenter="scale: 1.3 1.3 1.3"
-        event-set__mouseleave="scale: 1 1 1"
-        animation="property: position; to: 3 2.1 -4; dir: alternate; dur: 2800; easing: easeInOutSine; loop: true"
-      >
-        <a-sphere radius="0.3" color="#c4a35a" opacity="0.7" metalness="0.8" roughness="0.2"
-          animation__glow="property: material.emissive; from: #6b5b3a; to: #c4a35a; dir: alternate; dur: 1500; loop: true"
-        ></a-sphere>
-        <a-text value="The Portal" color="#fef3c7" width="3" align="center" position="0 -0.5 0"></a-text>
-        <a-ring color="#c4a35a" radius-inner="0.35" radius-outer="0.45" opacity="0.4"
-          animation="property: rotation; to: 0 360 0; dur: 6000; easing: linear; loop: true"
-        ></a-ring>
-      </a-entity>
+    <!-- Ambient geometry -->
+    <a-torus position="-5 3 -8" color="#7c3aed" radius="0.8" radius-tubular="0.05" opacity="0.3"
+      animation="property: rotation; to: 360 360 0; dur: 20000; easing: linear; loop: true"></a-torus>
+    <a-torus position="6 4 -6" color="#c4a35a" radius="0.6" radius-tubular="0.04" opacity="0.25"
+      animation="property: rotation; to: 0 360 360; dur: 15000; easing: linear; loop: true"></a-torus>
+    <a-torus position="0 5 -10" color="#14b8a6" radius="1.2" radius-tubular="0.06" opacity="0.2"
+      animation="property: rotation; to: 360 0 360; dur: 25000; easing: linear; loop: true"></a-torus>
+    <a-icosahedron position="-4 2.5 -6" color="#c4a35a" radius="0.2" opacity="0.4" metalness="0.9"
+      animation="property: rotation; to: 360 360 360; dur: 12000; easing: linear; loop: true"
+      animation__float="property: position; to: -4 3 -6; dir: alternate; dur: 4000; easing: easeInOutSine; loop: true"></a-icosahedron>
 
-      <!-- Back to Landscape -->
-      <a-entity position="0 1.8 4" class="clickable" id="orb-landscape"
-        event-set__mouseenter="scale: 1.3 1.3 1.3"
-        event-set__mouseleave="scale: 1 1 1"
-        animation="property: position; to: 0 2.1 4; dir: alternate; dur: 3000; easing: easeInOutSine; loop: true"
-        visible="false"
-      >
-        <a-sphere radius="0.3" color="#14b8a6" opacity="0.7" metalness="0.8" roughness="0.2"
-          animation__glow="property: material.emissive; from: #0d5c4f; to: #14b8a6; dir: alternate; dur: 1500; loop: true"
-        ></a-sphere>
-        <a-text value="The Corridor" color="#ccfbf1" width="3" align="center" position="0 -0.5 0"></a-text>
-        <a-ring color="#14b8a6" radius-inner="0.35" radius-outer="0.45" opacity="0.4"
-          animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
-        ></a-ring>
-      </a-entity>
-    </a-entity>
-
-    <!-- Particle effects - cosmic dust -->
-    <a-entity
-      particle-system="preset: dust; particleCount: 500; color: #c4a35a, #7c3aed, #14b8a6; size: 0.3; maxAge: 6; blending: 2; opacity: 0.3"
-      position="0 2 0"
-    ></a-entity>
-
-    <!-- Ambient floating geometry -->
-    <a-entity id="floating-geo">
-      <a-torus position="-5 3 -8" color="#7c3aed" radius="0.8" radius-tubular="0.05" opacity="0.3"
-        animation="property: rotation; to: 360 360 0; dur: 20000; easing: linear; loop: true"
-      ></a-torus>
-      <a-torus position="6 4 -6" color="#c4a35a" radius="0.6" radius-tubular="0.04" opacity="0.25"
-        animation="property: rotation; to: 0 360 360; dur: 15000; easing: linear; loop: true"
-      ></a-torus>
-      <a-torus position="0 5 -10" color="#14b8a6" radius="1.2" radius-tubular="0.06" opacity="0.2"
-        animation="property: rotation; to: 360 0 360; dur: 25000; easing: linear; loop: true"
-      ></a-torus>
-      <a-icosahedron position="-4 2 -6" color="#c4a35a" radius="0.2" opacity="0.4" metalness="0.9"
-        animation="property: rotation; to: 360 360 360; dur: 12000; easing: linear; loop: true"
-        animation__float="property: position; to: -4 2.5 -6; dir: alternate; dur: 4000; easing: easeInOutSine; loop: true"
-      ></a-icosahedron>
-      <a-icosahedron position="4 3 -7" color="#7c3aed" radius="0.15" opacity="0.4" metalness="0.9"
-        animation="property: rotation; to: 360 360 360; dur: 10000; easing: linear; loop: true"
-        animation__float="property: position; to: 4 3.5 -7; dir: alternate; dur: 3500; easing: easeInOutSine; loop: true"
-      ></a-icosahedron>
-    </a-entity>
-
-    <!-- Ground reference plane (subtle) -->
+    <!-- Ground -->
     <a-circle position="0 0 0" rotation="-90 0 0" radius="15" color="#0a0a1a" opacity="0.3"></a-circle>
 
-    <!-- Ambient light -->
+    <!-- Lighting -->
     <a-light type="ambient" color="#443366" intensity="0.4"></a-light>
-    <a-light type="point" color="#c4a35a" intensity="0.6" position="0 4 -3" animation="property: intensity; from: 0.4; to: 0.8; dir: alternate; dur: 3000; loop: true"></a-light>
+    <a-light type="point" color="#c4a35a" intensity="0.6" position="0 4 -3"
+      animation="property: intensity; from: 0.4; to: 0.8; dir: alternate; dur: 3000; loop: true"></a-light>
     <a-light type="point" color="#7c3aed" intensity="0.3" position="-3 3 -5"></a-light>
     <a-light type="point" color="#14b8a6" intensity="0.3" position="3 3 -5"></a-light>
   </a-scene>
 
   <script>
-    // Hide loading screen when scene is ready
-    document.querySelector('a-scene').addEventListener('loaded', function () {
-      setTimeout(function() {
-        document.getElementById('loading-screen').classList.add('fade-out');
-        setTimeout(function() {
-          document.getElementById('loading-screen').style.display = 'none';
-        }, 1000);
-      }, 1500);
-    });
-
-    // Scene switching logic
-    var currentScene = 'landscape';
+    var rooms = [];
+    var currentRoom = null;
     var sky = document.getElementById('sky');
-    var orbLandscape = document.getElementById('orb-landscape');
-    var orbSpeakeasy = document.getElementById('orb-speakeasy');
-    var orbPortal = document.getElementById('orb-portal');
-    var titleGroup = document.getElementById('title-group');
+    var assets = document.getElementById('assets');
+    var orbContainer = document.getElementById('room-orbs');
+    var titleText = document.getElementById('title-text');
+    var subtitleText = document.getElementById('subtitle-text');
 
-    var scenes = {
-      landscape: { src: '#sky-landscape', title: 'HILLBILLY DREAMS', subtitle: 'A Cosmic Journey Through the Mississippi Corridor' },
-      speakeasy: { src: '#sky-speakeasy', title: 'THE BLUES ROOM', subtitle: 'Where the Music Lives' },
-      portal: { src: '#sky-portal', title: 'THE PORTAL', subtitle: 'Gateway to the Cosmic Corridor' },
-    };
+    // Load rooms from manifest
+    fetch('/vr/rooms.json?t=' + Date.now())
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        rooms = data;
+        // Pre-load all sky images
+        rooms.forEach(function(room) {
+          var img = document.createElement('img');
+          img.id = 'sky-' + room.id;
+          img.src = room.sky;
+          img.setAttribute('crossorigin', 'anonymous');
+          assets.appendChild(img);
+        });
+        // Wait for assets then build orbs
+        setTimeout(function() {
+          buildOrbs();
+          // Enter first room
+          if (rooms.length > 0) enterRoom(rooms[0].id);
+          // Hide loading
+          setTimeout(function() {
+            document.getElementById('loading-screen').classList.add('fade-out');
+            setTimeout(function() {
+              document.getElementById('loading-screen').style.display = 'none';
+            }, 1000);
+          }, 1000);
+        }, 1500);
+      });
 
-    function switchScene(name) {
-      if (currentScene === name) return;
-      currentScene = name;
-      var scene = scenes[name];
+    function buildOrbs() {
+      // Arrange orbs in a circle around the user
+      var count = rooms.length;
+      rooms.forEach(function(room, i) {
+        var angle = (i / count) * Math.PI * 2 - Math.PI / 2;
+        var radius = 5;
+        var x = Math.cos(angle) * radius;
+        var z = Math.sin(angle) * radius;
+        var floatOffset = (i * 0.3) % 1;
 
-      // Fade out
-      sky.setAttribute('animation__fade', 'property: material.opacity; from: 1; to: 0; dur: 800');
+        var orb = document.createElement('a-entity');
+        orb.id = 'orb-' + room.id;
+        orb.setAttribute('class', 'clickable');
+        orb.setAttribute('position', x + ' 1.8 ' + z);
+        orb.setAttribute('event-set__mouseenter', 'scale: 1.3 1.3 1.3');
+        orb.setAttribute('event-set__mouseleave', 'scale: 1 1 1');
+        orb.setAttribute('animation', 'property: position; to: ' + x + ' 2.2 ' + z + '; dir: alternate; dur: ' + (2500 + i * 300) + '; easing: easeInOutSine; loop: true');
 
-      setTimeout(function() {
-        sky.setAttribute('src', scene.src);
-        sky.setAttribute('animation__fade', 'property: material.opacity; from: 0; to: 1; dur: 800');
+        orb.innerHTML =
+          '<a-sphere radius="0.3" color="' + room.color + '" opacity="0.7" metalness="0.8" roughness="0.2" ' +
+            'animation__glow="property: material.emissive; from: ' + room.glow + '; to: ' + room.color + '; dir: alternate; dur: 1500; loop: true"></a-sphere>' +
+          '<a-text value="' + room.name + '" color="' + room.textColor + '" width="3" align="center" position="0 -0.5 0"></a-text>' +
+          '<a-ring color="' + room.color + '" radius-inner="0.35" radius-outer="0.45" opacity="0.4" ' +
+            'animation="property: rotation; to: 0 360 0; dur: ' + (6000 + i * 1000) + '; easing: linear; loop: true"></a-ring>';
 
-        // Update title
-        titleGroup.querySelector('a-text').setAttribute('value', scene.title);
-        titleGroup.querySelectorAll('a-text')[1].setAttribute('value', scene.subtitle);
-
-        // Toggle nav visibility
-        orbLandscape.setAttribute('visible', name !== 'landscape');
-        orbSpeakeasy.setAttribute('visible', name !== 'speakeasy');
-        orbPortal.setAttribute('visible', name !== 'portal');
-      }, 800);
+        orb.addEventListener('click', function() { enterRoom(room.id); });
+        orbContainer.appendChild(orb);
+      });
     }
 
-    orbSpeakeasy.addEventListener('click', function() { switchScene('speakeasy'); });
-    orbPortal.addEventListener('click', function() { switchScene('portal'); });
-    orbLandscape.addEventListener('click', function() { switchScene('landscape'); });
+    function enterRoom(id) {
+      if (currentRoom === id) return;
+      var room = rooms.find(function(r) { return r.id === id; });
+      if (!room) return;
+
+      // Fade out
+      sky.setAttribute('animation__fadeout', 'property: material.opacity; from: 1; to: 0; dur: 600');
+
+      setTimeout(function() {
+        currentRoom = id;
+        sky.setAttribute('src', '#sky-' + id);
+        sky.setAttribute('animation__fadein', 'property: material.opacity; from: 0; to: 1; dur: 600');
+
+        titleText.setAttribute('value', room.name.toUpperCase());
+        subtitleText.setAttribute('value', room.subtitle);
+
+        // Dim current room's orb, brighten others
+        rooms.forEach(function(r) {
+          var orb = document.getElementById('orb-' + r.id);
+          if (orb) {
+            orb.setAttribute('visible', r.id !== id);
+          }
+        });
+      }, 600);
+    }
   </script>
 </body>
 </html>
