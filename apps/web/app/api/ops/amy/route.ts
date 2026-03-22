@@ -18,20 +18,27 @@ function tomorrowString() {
   return d.toISOString().split('T')[0];
 }
 
+const withTimeout = <T>(promise: Promise<T>, ms: number, fallback: T): Promise<T> =>
+  Promise.race([promise, new Promise<T>(resolve => setTimeout(() => resolve(fallback), ms))]);
+
 export async function GET() {
   const today = todayString();
   const tomorrow = tomorrowString();
 
   // Fetch all data sources in parallel
   const [arrivals, showcases, tasks, contacts] = await Promise.all([
-    // Today's check-ins from Cloudbeds
-    getReservations({
-      checkInFrom: today,
-      checkInTo: today,
-    }).catch((err) => {
-      console.error('[amy] Cloudbeds fetch failed:', err.message);
-      return [] as Awaited<ReturnType<typeof getReservations>>;
-    }),
+    // Today's check-ins from Cloudbeds — 5s timeout guards against a hung connection
+    withTimeout(
+      getReservations({
+        checkInFrom: today,
+        checkInTo: today,
+      }).catch((err) => {
+        console.error('[amy] Cloudbeds fetch failed:', err.message);
+        return [] as Awaited<ReturnType<typeof getReservations>>;
+      }),
+      5000,
+      [] as Awaited<ReturnType<typeof getReservations>>
+    ),
 
     // Today's and tomorrow's showcases with artist slots
     prisma.showcase.findMany({
@@ -49,6 +56,9 @@ export async function GET() {
         },
       },
       orderBy: { date: 'asc' },
+    }).catch((err) => {
+      console.error('[amy] Showcase query failed:', err.message);
+      return [] as any[];
     }),
 
     // Outstanding tasks assigned to Amy or unassigned
@@ -62,6 +72,9 @@ export async function GET() {
       },
       orderBy: { taskNumber: 'asc' },
       take: 15,
+    }).catch((err) => {
+      console.error('[amy] LaunchTask query failed:', err.message);
+      return [] as any[];
     }),
 
     // Contacts missing key info (vendor invoices, W9s)
@@ -77,6 +90,9 @@ export async function GET() {
       },
       orderBy: { updatedAt: 'desc' },
       take: 10,
+    }).catch((err) => {
+      console.error('[amy] Contact query failed:', err.message);
+      return [] as any[];
     }),
   ]);
 
