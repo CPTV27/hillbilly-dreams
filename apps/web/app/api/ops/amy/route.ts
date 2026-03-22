@@ -109,7 +109,7 @@ export async function GET() {
     date: s.date,
     time: s.time,
     status: s.status,
-    artists: s.slots.map((slot) => ({
+    artists: s.slots.map((slot: { artist: { name: string; genre: string | null; contactEmail: string | null; contactPhone: string | null }; setOrder: number | null; setLength: number | null; status: string; notes: string | null }) => ({
       name: slot.artist.name,
       genre: slot.artist.genre,
       setOrder: slot.setOrder,

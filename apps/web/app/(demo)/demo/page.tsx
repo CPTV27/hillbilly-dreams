@@ -217,7 +217,7 @@ export default function DemoPage() {
                     task={t}
                     funky={funky}
                     index={i}
-                    onComplete={() => setCompletedTasks((prev) => new Set([...prev, t.id]))}
+                    onComplete={() => setCompletedTasks((prev) => { const next = new Set(prev); next.add(t.id); return next; })}
                   />
                 ))}
                 {pendingCount === 0 && (

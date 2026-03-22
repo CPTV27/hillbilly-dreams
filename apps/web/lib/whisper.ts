@@ -5,7 +5,9 @@
 
 import OpenAI from 'openai';
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+function getClient() {
+  return new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+}
 
 export type TranscriptionModel =
   | 'whisper-1'                // $0.006/min — general
@@ -36,7 +38,7 @@ export async function transcribe(
 ): Promise<TranscriptionResult> {
   const model = options?.model || 'whisper-1';
 
-  const transcription = await openai.audio.transcriptions.create({
+  const transcription = await getClient().audio.transcriptions.create({
     model,
     file,
     response_format: 'verbose_json',
