@@ -5,6 +5,19 @@
 
 ---
 
+## QC GATE PROTOCOL (Mandatory — all agents, all tasks)
+
+Before marking any task **COMPLETE**, every agent must write and evaluate this block:
+
+### QC_GATE
+- [ ] **Route Verification:** Do all new/modified paths match the current router config? No `/dashboard` bleeding into `/demo`, no BMT routes in S2PX.
+- [ ] **Domain Isolation:** Is S2PX data strictly isolated from BMT/Natchez data? No Big Muddy content on the S2PX domain or vice versa.
+- [ ] **State Boundaries:** Are global states scoped to their view? No cross-view masking (e.g., viewMode leaking out of Command Center).
+
+If any checkbox is unchecked, the task is **IN_PROGRESS**, not COMPLETE. Fix before logging.
+
+---
+
 ## [2026-03-21 19:00] — AG — COMPLETE
 
 **Task:** Brand themes (P2) + Funky mode mobile responsive (P4)
