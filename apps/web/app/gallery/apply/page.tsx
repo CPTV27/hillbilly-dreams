@@ -91,11 +91,12 @@ export default function GalleryApply() {
       <div style={{ maxWidth: '600px', margin: '0 auto', padding: '6rem 1.5rem', textAlign: 'center' }}>
         <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎨</div>
         <h1 style={{ fontSize: '1.8rem', fontWeight: 700, marginBottom: '1rem', color: '#1a1a1a' }}>
-          Application Received
+          Application Sent to BMT Ops
         </h1>
         <p style={{ color: '#6b5d4a', lineHeight: 1.7, marginBottom: '2rem' }}>
-          Thank you, {form.name}. We review every application personally — not algorithmically. 
-          You'll hear from us within two weeks. If your work is a fit, we'll schedule a call to 
+          Thank you, {form.name}. Your application has been received by the Big Muddy Touring 
+          operations team. We review every application personally — not algorithmically. 
+          You&apos;ll hear from us within two weeks. If your work is a fit, we&apos;ll schedule a call to 
           talk about how BCA works and what it means to sell with us.
         </p>
         <Link

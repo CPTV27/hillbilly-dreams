@@ -49,11 +49,11 @@ export async function POST(request: Request) {
         projectGid,
       });
       synced++;
-      results.push({ taskId: task.id, ok: true });
+      results.push({ taskId: String(task.id), ok: true });
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
       errors.push(`Task ${task.id}: ${msg}`);
-      results.push({ taskId: task.id, ok: false, error: msg });
+      results.push({ taskId: String(task.id), ok: false, error: msg });
     }
   }
 

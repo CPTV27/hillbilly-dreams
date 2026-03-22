@@ -22,8 +22,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
   try {
     // Build Prisma where clause
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const where: any = {};
+    const where: Record<string, unknown> = {};
 
     if (available !== undefined) where.available = available;
     if (featured !== undefined) where.featured = featured;

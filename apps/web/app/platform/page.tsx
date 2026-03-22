@@ -33,7 +33,7 @@ export default function PlatformPage() {
             <a href="#stack">Stack</a>
             <a href="#pricing">Pricing</a>
           </div>
-          <a href="mailto:chase@bigmuddytouring.com" className="btn btn--primary btn--sm">
+          <a href="mailto:ops@bigmuddytouring.com" className="btn btn--primary btn--sm">
             Get Started <ArrowRight size={14} />
           </a>
         </div>
@@ -56,7 +56,7 @@ export default function PlatformPage() {
           </h1>
           <p className="hero__sub">Six brands. 18 cities. One engine.</p>
           <div className="hero__actions">
-            <a href="mailto:chase@bigmuddytouring.com" className="btn btn--primary btn--lg">
+            <a href="mailto:ops@bigmuddytouring.com" className="btn btn--primary btn--lg">
               Get Started <ArrowRight size={16} />
             </a>
             <a href="#what-we-built" className="btn btn--outline btn--lg">
@@ -296,7 +296,7 @@ export default function PlatformPage() {
                 <li><Zap size={11} aria-hidden="true" />Corridor presence</li>
                 <li><Zap size={11} aria-hidden="true" />Community access</li>
               </ul>
-              <a href="mailto:chase@bigmuddytouring.com" className="btn btn--outline pricing-card__cta">
+              <a href="mailto:ops@bigmuddytouring.com" className="btn btn--outline pricing-card__cta">
                 Get Started
               </a>
             </div>
@@ -311,7 +311,7 @@ export default function PlatformPage() {
                 <li><Zap size={11} aria-hidden="true" />City guide inclusion</li>
                 <li><Zap size={11} aria-hidden="true" />Analytics dashboard</li>
               </ul>
-              <a href="mailto:chase@bigmuddytouring.com" className="btn btn--outline pricing-card__cta">
+              <a href="mailto:ops@bigmuddytouring.com" className="btn btn--outline pricing-card__cta">
                 Get Started
               </a>
             </div>
@@ -327,7 +327,7 @@ export default function PlatformPage() {
                 <li><Zap size={11} aria-hidden="true" />Auto-distribution</li>
                 <li><Zap size={11} aria-hidden="true" />Priority photo library</li>
               </ul>
-              <a href="mailto:chase@bigmuddytouring.com" className="btn btn--primary pricing-card__cta">
+              <a href="mailto:ops@bigmuddytouring.com" className="btn btn--primary pricing-card__cta">
                 Get Started
               </a>
             </div>
@@ -342,7 +342,7 @@ export default function PlatformPage() {
                 <li><Zap size={11} aria-hidden="true" />Dedicated engineering</li>
                 <li><Zap size={11} aria-hidden="true" />SLA &amp; onboarding</li>
               </ul>
-              <a href="mailto:chase@bigmuddytouring.com" className="btn btn--outline pricing-card__cta">
+              <a href="mailto:ops@bigmuddytouring.com" className="btn btn--outline pricing-card__cta">
                 Contact Us
               </a>
             </div>
@@ -361,7 +361,7 @@ export default function PlatformPage() {
             </div>
             <p className="platform-footer__copy">&copy; 2026 Big Muddy Touring LLC. All rights reserved.</p>
           </div>
-          <a href="mailto:chase@bigmuddytouring.com" className="btn btn--primary btn--lg">
+          <a href="mailto:ops@bigmuddytouring.com" className="btn btn--primary btn--lg">
             Start Your Brand <ArrowRight size={16} />
           </a>
         </div>

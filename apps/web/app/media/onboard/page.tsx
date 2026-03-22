@@ -979,8 +979,8 @@ export default function OnboardPage() {
             <p className="ob-success__body">
               Check your inbox — and your spam folder just in case. If you don't hear from us,
               email{' '}
-              <a href="mailto:media@bigmuddytouring.com" className="ob-success__email">
-                media@bigmuddytouring.com
+              <a href="mailto:ops@bigmuddytouring.com" className="ob-success__email">
+                ops@bigmuddytouring.com
               </a>
               {' '}directly.
             </p>
@@ -1064,8 +1064,8 @@ export default function OnboardPage() {
               <path d="M8 6v4M8 11.5v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
             Something went wrong. Please try again or email us at{' '}
-            <a href="mailto:media@bigmuddytouring.com" className="ob-banner-link">
-              media@bigmuddytouring.com
+            <a href="mailto:ops@bigmuddytouring.com" className="ob-banner-link">
+              ops@bigmuddytouring.com
             </a>
           </div>
         )}

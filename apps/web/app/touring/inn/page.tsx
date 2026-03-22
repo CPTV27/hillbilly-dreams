@@ -542,7 +542,7 @@ export default function InnPage() {
 
       {/* ── Regions ── */}
       {[REGIONS[0]].map((region) => (
-        <section className="inn-region">
+        <section key={region.name} className="inn-region">
           <div className="section-container">
             <div className="inn-region__header">
               <div className="section-label">
@@ -609,7 +609,7 @@ export default function InnPage() {
       </section>
 
       {[REGIONS[1]].map((region) => (
-        <section className="inn-region">
+        <section key={region.name} className="inn-region">
           <div className="section-container">
             <div className="inn-region__header">
               <div className="section-label">
@@ -669,7 +669,7 @@ export default function InnPage() {
       </section>
 
       {[REGIONS[2]].map((region) => (
-        <section className="inn-region">
+        <section key={region.name} className="inn-region">
           <div className="section-container">
             <div className="inn-region__header">
               <div className="section-label">

@@ -55,6 +55,12 @@ const NAV_SECTIONS = [
     ],
   },
   {
+    label: 'Holding Co.',
+    items: [
+      { label: 'Finance', href: '/finance', icon: '$' },
+    ],
+  },
+  {
     label: 'Sites',
     items: [
       { label: 'Touring ↗', href: 'https://bigmuddytouring.com', icon: '◻', external: true },

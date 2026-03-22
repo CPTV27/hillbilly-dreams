@@ -283,7 +283,7 @@ export default function SocialAdminPage() {
     }
   }
 
-  function useGeneratedPost(text: string) {
+  function applyGeneratedPost(text: string) {
     setTab('posts');
     startNewPost();
     setPostContent(text);
@@ -630,7 +630,7 @@ export default function SocialAdminPage() {
                     <p className="social-gen-card__text">{text}</p>
                     <div className="social-gen-card__meta">
                       <span>{text.length} chars</span>
-                      <button className="admin-btn admin-btn--primary" onClick={() => useGeneratedPost(text)}>
+                      <button className="admin-btn admin-btn--primary" onClick={() => applyGeneratedPost(text)}>
                         Use This
                       </button>
                     </div>

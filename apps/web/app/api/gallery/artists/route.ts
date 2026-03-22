@@ -18,8 +18,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   const limit = limitParam ? Math.min(parseInt(limitParam, 10), 100) : 50;
 
   try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const where: any = { status };
+    const where: Record<string, unknown> = { status };
 
     if (featured !== undefined) where.featured = featured;
     if (medium) where.medium = { contains: medium, mode: 'insensitive' };

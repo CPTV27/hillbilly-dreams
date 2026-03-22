@@ -5,6 +5,42 @@
 
 ---
 
+## [2026-03-21 19:00] — AG — COMPLETE
+
+**Task:** Brand themes (P2) + Funky mode mobile responsive (P4)
+
+### P2: Brand Theme Tokens
+Added three new brand themes to `packages/config/tokens.css`:
+
+| Theme | Class | Palette | Feel |
+|-------|-------|---------|------|
+| **Radio** | `.theme-radio` | Midnight blue bg, electric blue `#00b4ff` accent | Live broadcast, late-night |
+| **Magazine** | `.theme-magazine` | Forest green bg, warm cream `#d4a04a` accent | Editorial print |
+| **Records** | `.theme-records` | Vinyl black bg, amber `#e87820` accent | Analog warmth |
+
+Each follows the full token spec: `--bg`, `--surface` (3 levels), `--text` (3 levels), `--accent` (4 states), `--border` (2 levels), `--shadow-glow`.
+
+### P4: Funky Mode Mobile Responsive
+Added mobile overrides in `gallery/page.tsx` `@media (max-width: 768px)`:
+- `.funky-artwork-card` — rotation removed (`transform: rotate(0deg)`)
+- `.funky-medium-card` — rotation removed
+- `.funky-artist-card` — rotation removed
+- Existing grid override already forces single-column + 280px card heights on mobile
+
+### Files Changed
+- Modified: `packages/config/tokens.css` — 3 new brand themes
+- Modified: `apps/web/app/gallery/page.tsx` — funky mode mobile overrides
+
+### CC Handoff Status — ALL COMPLETE
+- ~~Priority 1~~ ✅ Gallery copy
+- ~~Priority 2~~ ✅ Brand themes
+- ~~Priority 3~~ ✅ GalleryNav hydration
+- ~~Priority 4~~ ✅ Mobile responsive
+
+**Status:** COMPLETE
+
+---
+
 ## [2026-03-21 18:00] — CC — TASK FOR AG: Amy Command Center visual audit & fix
 
 **Status:** ASSIGNED_TO_AG
@@ -67,6 +103,41 @@ Tracy's master account is `tracy@thebigmuddyinn.com`. The Big Muddy Inn Master P
 5. **Balloon Festival (Oct 16-18, 2026)** — PC already recommended $275/night. Tracy needs to set date-specific rate override in CloudBeds once it's live. PC: draft the promotional email blast copy for past guests and the Google Business event post
 
 **Urgency on rates:** CloudBeds isn't live yet but Tracy should set up the rate calendar the moment it is. Spring Pilgrimage is active NOW through mid-April — rates should be at $159-175/night for weekends immediately.
+
+---
+
+## [2026-03-21 18:00] — AG — COMPLETE
+
+**Task:** Amy Command Center — visual layout fix (P1)
+
+### Problem
+Dashboard at `/ops/amy` rendering cramped in production — stat bubbles squeezed, tab buttons tiny, content area collapsing. Chase confirmed "looks really weird."
+
+### Root Causes Found
+1. `max-w-5xl` (~1024px) on the main container — too narrow for a 4-column dashboard
+2. `h-screen` on the inner flex container — rigid height caused content collapse instead of natural flow
+3. `overflow-hidden` on root div — clipped content that overflowed instead of scrolling
+4. No responsive scaling on stat bubbles, padding, or tab buttons
+
+### Fixes Applied
+| Element | Before | After |
+|---------|--------|-------|
+| Container width | `max-w-5xl` | `max-w-7xl` |
+| Container height | `h-screen` (rigid) | `min-h-screen` (flexible) |
+| Root overflow | `overflow-hidden` (clips) | `overflow-x-hidden` (allows vertical scroll) |
+| Stat bubble padding | `p-6` fixed | `p-4 md:p-6` responsive |
+| Stat bubble text | `text-4xl md:text-5xl` | `text-3xl md:text-5xl` |
+| Stat bubble min height | none | `min-h-[100px]` |
+| Stat grid gap | `gap-4` fixed | `gap-3 md:gap-5` responsive |
+| Tab sidebar width | `md:w-64` | `md:w-56 lg:md:w-64` |
+| Tab button padding | `p-4` fixed | `p-3 md:p-4` responsive |
+| Tab label text | `text-lg` fixed | `text-base md:text-lg` responsive |
+| Tab labels | wrapping | `whitespace-nowrap` |
+
+### File Changed
+- Modified: `apps/web/app/(amy)/ops/amy/page.tsx`
+
+**Status:** COMPLETE
 
 ---
 

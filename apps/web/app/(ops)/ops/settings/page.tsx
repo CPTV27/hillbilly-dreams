@@ -73,7 +73,15 @@ const styles = {
     cursor: enabled ? 'pointer' : 'not-allowed',
     fontSize: '1rem',
     width: '100%',
+    opacity: enabled ? 1 : 0.5,
+    transition: 'opacity 0.15s',
   }),
+  saveBtnHint: {
+    fontSize: '0.8rem',
+    color: 'var(--theme-text-muted)',
+    textAlign: 'center' as const,
+    marginTop: '0.5rem',
+  } as React.CSSProperties,
   timestamp: { fontSize: '0.8rem', color: 'var(--theme-text-muted)', marginTop: '1rem', textAlign: 'center' as const } as React.CSSProperties,
   success: {
     padding: '0.75rem 1rem',
@@ -223,6 +231,12 @@ export default function SettingsPage() {
       >
         {saving ? 'Saving...' : 'Save Preferences'}
       </button>
+
+      {(!theme || !commStyle || channels.length === 0) && !saving && (
+        <p style={styles.saveBtnHint}>
+          Select a theme, communication style, and at least one channel to save.
+        </p>
+      )}
 
       {lastUpdated && (
         <p style={styles.timestamp}>

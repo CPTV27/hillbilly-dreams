@@ -87,7 +87,7 @@ export default function LoginPage({
         </form>
 
         <p className="login-footer">
-          Big Muddy operations team &middot; Need access? Email <a href="mailto:me@chasepierson.tv" className="login-link">me@chasepierson.tv</a>
+          Big Muddy operations team &middot; Need access? Email <a href="mailto:chase@chasepierson.tv" className="login-link">chase@chasepierson.tv</a>
         </p>
       </div>
 

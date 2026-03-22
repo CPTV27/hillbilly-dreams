@@ -88,6 +88,27 @@ export async function dispatchToChannel(
       console.log(`[dispatch:asana] Task: ${message.subject} | ${message.body}`);
       return true;
     }
+    case 'ntfy': {
+      const prefix = process.env.NTFY_TOPIC_PREFIX || 'hd';
+      const secret = process.env.NTFY_TOPIC_SECRET || 'dev';
+      const topic = `${prefix}-alerts-${secret}`;
+      const priorityMap: Record<string, string> = {
+        low: '2', normal: '3', high: '4', urgent: '5',
+      };
+      const res = await fetch(`https://ntfy.sh/${topic}`, {
+        method: 'POST',
+        headers: {
+          Title: message.subject,
+          Priority: priorityMap[message.priority] || '3',
+          Tags: message.priority === 'urgent' ? 'warning' : 'briefcase',
+        },
+        body: message.body,
+      });
+      if (!res.ok) {
+        console.error(`[dispatch:ntfy] ntfy.sh returned ${res.status}`);
+      }
+      return res.ok;
+    }
     default:
       console.warn(`[dispatch] Unknown channel: ${channel}`);
       return false;

@@ -293,3 +293,57 @@ img, video {
   --border-strong: rgba(200, 148, 62, 0.22);
   --shadow-glow: 0 0 30px rgba(200, 148, 62, 0.10);
 }
+
+/* Big Muddy Radio: midnight blue, electric blue accent, live broadcast energy */
+.theme-radio {
+  --bg: #060b18;
+  --surface: #0c1428;
+  --surface-2: #121e3a;
+  --surface-3: #1a2a4e;
+  --text: #e8ecf4;
+  --text-muted: #8899bb;
+  --text-disabled: #4a5a78;
+  --accent: #00b4ff;
+  --accent-hover: #33c4ff;
+  --accent-muted: rgba(0, 180, 255, 0.12);
+  --accent-subtle: rgba(0, 180, 255, 0.06);
+  --border: rgba(0, 180, 255, 0.10);
+  --border-strong: rgba(0, 180, 255, 0.22);
+  --shadow-glow: 0 0 30px rgba(0, 180, 255, 0.12);
+}
+
+/* Big Muddy Magazine: deep forest green, warm cream, editorial print aesthetic */
+.theme-magazine {
+  --bg: #0a120c;
+  --surface: #121f16;
+  --surface-2: #1a2e20;
+  --surface-3: #243d2c;
+  --text: #f0ede4;
+  --text-muted: #9aab98;
+  --text-disabled: #5a6b58;
+  --accent: #d4a04a;
+  --accent-hover: #e0b060;
+  --accent-muted: rgba(212, 160, 74, 0.12);
+  --accent-subtle: rgba(212, 160, 74, 0.06);
+  --border: rgba(212, 160, 74, 0.10);
+  --border-strong: rgba(212, 160, 74, 0.22);
+  --shadow-glow: 0 0 30px rgba(212, 160, 74, 0.10);
+}
+
+/* Big Muddy Records: vinyl black, amber/orange accent, analog warmth */
+.theme-records {
+  --bg: #0c0806;
+  --surface: #1a1210;
+  --surface-2: #281c18;
+  --surface-3: #362620;
+  --text: #f0e8e0;
+  --text-muted: #b09888;
+  --text-disabled: #6a5848;
+  --accent: #e87820;
+  --accent-hover: #f09040;
+  --accent-muted: rgba(232, 120, 32, 0.12);
+  --accent-subtle: rgba(232, 120, 32, 0.06);
+  --border: rgba(232, 120, 32, 0.10);
+  --border-strong: rgba(232, 120, 32, 0.22);
+  --shadow-glow: 0 0 30px rgba(232, 120, 32, 0.12);
+}

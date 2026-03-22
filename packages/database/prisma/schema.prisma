@@ -708,6 +708,22 @@ model User {
   asanaMemberId         String?
   communicationPrefsUpdatedAt DateTime?
 
+  // ── Identity & Email ──
+  preferredName     String?   // "Tracy" vs "Tracy Pierson"
+  personalEmail     String?   // non-work email for password resets, etc.
+  businessEmail     String?   // assigned @bigmuddytouring.com or @hillbillydreamsinc.com
+  jobTitle          String?   // "Guest Experience Coordinator"
+  brandAffiliation  String?   // S2PX | BMT | BuyCurious | Corporate
+  notifyTo          String?   // personal | business | both
+
+  // ── Signature & Branding ──
+  avatarUrl         String?
+  signatureStyle    String?   // classic | minimal | bold
+  bioBlurb          String?   // one-liner for email signature
+  phoneDisplay      String?   // phone to show in signature
+
+  onboardingCompletedAt DateTime?
+
   accounts      Account[]
   sessions      Session[]
   createdAt     DateTime  @default(now())

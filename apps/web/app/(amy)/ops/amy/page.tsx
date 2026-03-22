@@ -78,12 +78,12 @@ export default function AmyPremiumDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#000000] text-slate-200 font-sans selection:bg-blue-500/30 overflow-hidden relative">
+    <div className="min-h-screen bg-[#000000] text-slate-200 font-sans selection:bg-blue-500/30 overflow-x-hidden relative">
       {/* Dynamic Background Glows */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="max-w-5xl mx-auto p-4 md:p-8 relative z-10 flex flex-col h-screen">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 md:py-8 relative z-10 flex flex-col min-h-screen">
 
         {/* Header */}
         <header className="flex justify-between items-end mb-8 mt-4 amy-fade-in">
@@ -106,7 +106,7 @@ export default function AmyPremiumDashboard() {
         </header>
 
         {/* Stat Bubbles */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 amy-fade-in-delay">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 mb-8 amy-fade-in-delay">
           <StatBubble title="Arrivals Today" value={arrivals.length} gradient="from-blue-500/20 to-blue-600/5" border="border-blue-500/20" text="text-blue-400" />
           <StatBubble title="Shows Scheduled" value={loadsheet.length} gradient="from-purple-500/20 to-purple-600/5" border="border-purple-500/20" text="text-purple-400" />
           <StatBubble title="Pending Actions" value={pendingTasks.length} gradient="from-amber-500/20 to-amber-600/5" border="border-amber-500/20" text="text-amber-400" />
@@ -117,7 +117,7 @@ export default function AmyPremiumDashboard() {
         <div className="flex-1 flex flex-col md:flex-row gap-6 min-h-0">
 
           {/* Vertical Navigation (Desktop) / Horizontal Scroll (Mobile) */}
-          <div className="flex shrink-0 md:flex-col gap-3 overflow-x-auto pb-4 md:pb-0 hide-scrollbar md:w-64">
+          <div className="flex shrink-0 md:flex-col gap-2 md:gap-3 overflow-x-auto pb-4 md:pb-0 hide-scrollbar md:w-56 lg:md:w-64">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -125,13 +125,13 @@ export default function AmyPremiumDashboard() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`relative flex items-center justify-between p-4 rounded-2xl text-left transition-all duration-300 ${
+                  className={`relative flex items-center justify-between p-3 md:p-4 rounded-2xl text-left transition-all duration-300 whitespace-nowrap ${
                     isActive ? 'bg-white/10 border-white/20 text-white shadow-lg' : 'bg-transparent border-transparent text-slate-500 hover:text-slate-300 hover:bg-white/5'
                   } border`}
                 >
                   <div className="flex items-center gap-4">
                     <Icon className={`w-5 h-5 ${isActive ? 'text-blue-400' : ''}`} />
-                    <span className="font-medium text-lg">{tab.label}</span>
+                    <span className="font-medium text-base md:text-lg">{tab.label}</span>
                   </div>
                   {tab.count > 0 && (
                     <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${isActive ? 'bg-blue-500 text-white' : 'bg-slate-800 text-slate-400'}`}>
@@ -227,9 +227,9 @@ export default function AmyPremiumDashboard() {
 
 function StatBubble({ title, value, gradient, border, text }: any) {
   return (
-    <div className={`p-6 rounded-3xl bg-gradient-to-br ${gradient} border ${border} backdrop-blur-xl flex flex-col justify-center`}>
-      <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">{title}</span>
-      <span className={`text-4xl md:text-5xl font-light ${text}`}>{value}</span>
+    <div className={`p-4 md:p-6 rounded-2xl md:rounded-3xl bg-gradient-to-br ${gradient} border ${border} backdrop-blur-xl flex flex-col justify-center min-h-[100px]`}>
+      <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1 md:mb-2">{title}</span>
+      <span className={`text-3xl md:text-5xl font-light ${text}`}>{value}</span>
     </div>
   );
 }

@@ -366,8 +366,8 @@ export default function GetStartedPage() {
                 <h2 className="gs-sidebar__heading">Other Questions</h2>
                 <p className="gs-sidebar__contact-text">
                   Prefer email? Reach us directly at{' '}
-                  <a href="mailto:media@bigmuddytouring.com" className="gs-sidebar__email">
-                    media@bigmuddytouring.com
+                  <a href="mailto:ops@bigmuddytouring.com" className="gs-sidebar__email">
+                    ops@bigmuddytouring.com
                   </a>
                 </p>
                 <div className="gs-sidebar__links">

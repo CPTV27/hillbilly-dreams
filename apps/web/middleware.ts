@@ -48,6 +48,11 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Demo route is always public — no auth required
+  if (pathname.startsWith('/demo')) {
+    return NextResponse.next();
+  }
+
   // Helper: check if the user is authenticated (reads JWT from cookies)
   const getSession = async () => {
     try {

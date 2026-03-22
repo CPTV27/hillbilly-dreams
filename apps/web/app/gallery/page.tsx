@@ -115,6 +115,16 @@ export default function GalleryPage() {
             grid-row: auto !important;
             height: 280px !important;
           }
+          /* Funky mode: single column, no rotation, reduced height on mobile */
+          .funky-artwork-card {
+            transform: rotate(0deg) !important;
+          }
+          .funky-medium-card {
+            transform: rotate(0deg) !important;
+          }
+          .funky-artist-card {
+            transform: rotate(0deg) !important;
+          }
         }
       `}</style>
 
