@@ -188,10 +188,10 @@ export default function DemoPage() {
         </div>
 
         {/* ── SPLIT VIEW — Mac mini layout ─────────────────────────────────── */}
-        <div className="flex-1 flex flex-col lg:flex-row gap-4 min-h-0">
+        <div className="flex-1 flex gap-4 min-h-0" style={{ display: 'flex', flexDirection: 'row', alignItems: 'stretch', gap: '16px' }}>
 
           {/* LEFT PANEL — Hospitality */}
-          <div className={`lg:w-1/2 ${m.panelBg} border rounded-3xl flex flex-col overflow-hidden ${m.glow} transition-all duration-500`}>
+          <div className={`${m.panelBg} border rounded-3xl flex flex-col overflow-hidden ${m.glow} transition-all duration-500`} style={{ flex: '1 1 0', minWidth: 0 }}>
             <div className={`px-6 py-4 border-b border-white/5 flex items-center justify-between shrink-0`}>
               <div className="flex items-center gap-2.5">
                 <Users className={`w-4 h-4 ${m.accent}`} />
@@ -231,7 +231,7 @@ export default function DemoPage() {
           </div>
 
           {/* RIGHT PANEL — Venue */}
-          <div className={`lg:w-1/2 ${m.panelBg} border rounded-3xl flex flex-col overflow-hidden ${m.glow} transition-all duration-500`}>
+          <div className={`${m.panelBg} border rounded-3xl flex flex-col overflow-hidden ${m.glow} transition-all duration-500`} style={{ flex: '1 1 0', minWidth: 0 }}>
             <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2.5">
                 <Music className={`w-4 h-4 ${m.accent}`} />

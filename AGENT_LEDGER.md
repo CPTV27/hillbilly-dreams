@@ -804,6 +804,31 @@ Cut from Episode 1 transcript — best moments for social:
 
 ---
 
+## [2026-03-22 16:00] — AG — COMPLETE
+
+**Task:** Fixed S2PX sidebar viewMode leak — AI/Hybrid modes were overriding all dashboard pages globally
+**Files Changed:**
+- `S2PX/client/src/components/DashboardLayout.tsx` — Added `isOnCommandPage` guard; AI/Hybrid layout override now only activates on `/dashboard/command`
+**Dependencies:** None
+**Next:** None — deployed to sandbox, verified with screenshots
+**Status:** COMPLETE
+
+---
+
+## [2026-03-22 15:30] — CC — COMPLETE
+
+**Task:** Natchez city partnership — intelligence research, grants section CSS, vault docs, deployed
+**Files Changed:**
+- `hillbilly-dreams-site/natchez.html` — Added grants section CSS (all `.grant-card`, `.grant-tag`, `.grants-callout` classes; card accent colors; mobile responsive grid)
+- Created `HillbillyDreams-Vault/HDI/Operations/natchez-intelligence-report.md` — Full research report with real contacts (Chandler Russ/Natchez Inc., Lynsey Gilbert/Visit Natchez, Roscoe Barnes III, Hayley Smith/MDAH), specific grant amounts, ranked entry points, pitch frames
+- Updated `HillbillyDreams-Vault/HDI/Operations/natchez-executive-summary.md` — Added real contacts, corrected state $5M breakdown (5 × $1M projects), added $30M grants table with HD product mapping
+- Deployed to hillbillydreamsinc.com/natchez via `firebase deploy --only hosting`
+**Dependencies:** None
+**Next:** Chase to initiate outreach — first contact: Chandler Russ (cruss@natchezinc.com) for Forks to Freedom S2PX subcontract play; Lynsey Gilbert (lynsey@visitnatchez.org) for KioskMode Pro at Depot visitor center
+**Status:** COMPLETE
+
+---
+
 ## [2026-03-18 20:30] — CC — COMPLETE
 
 **Task:** Built Rise Up landing page for Outsider Economics + fixed DSD hero image orientation
