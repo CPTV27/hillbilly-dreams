@@ -3,20 +3,16 @@
 // apps/web/app/(demo)/demo/page.tsx
 // KioskMode Pro — Public Demo Mode
 // Big Muddy Inn & Blues Room, Natchez MS
-// No auth, no DB. Split view: Hospitality (left) | Venue (right)
+// Kiosk-locked viewport. Inline styles only — bypasses cascade failures.
 
 import { useState, useEffect } from 'react';
 import {
-  Users, Music, ClipboardList, Phone, CheckCircle2, X,
+  Users, Music, ClipboardList, CheckCircle2, X,
   Zap, Clock, Star, AlertCircle, ChevronRight, Sunset,
+  Phone, BedDouble, Mic2,
 } from 'lucide-react';
 
-// ── Demo State (AG schema) ────────────────────────────────────────────────────
-
-const SYSTEM = {
-  occupancy: '85%',
-  activeStaff: ['Tracy', 'Amy'],
-};
+// ── Demo State ────────────────────────────────────────────────────────────────
 
 const BOOKINGS = [
   {
@@ -65,7 +61,7 @@ const ARTIST_PIPELINE = [
 ];
 
 const TONIGHT_SHOW = {
-  name: "Blues on the Bayou Night",
+  name: 'Blues on the Bayou Night',
   time: '8:00 PM',
   venue: 'Blues Room',
   artists: [
@@ -80,23 +76,14 @@ const OPS_TASKS = [
   { id: 'TSK-03', area: 'Front Desk', title: 'Update Yelp category to Music Venue + B&B', assignee: 'Tracy', status: 'PENDING' as const },
 ];
 
-// ── Types ─────────────────────────────────────────────────────────────────────
+// ── Palette ───────────────────────────────────────────────────────────────────
 
-type VenueTab = 'show' | 'pipeline';
+type Mode = { bg: string; panel: string; panelBorder: string; accent: string; accentBg: string; accentBorder: string; muted: string; dim: string };
 
-// ── Funky Mode palette ────────────────────────────────────────────────────────
-// Day = warm amber/neutral; Night (Funky) = neon amber/orange, deeper darks
-
-function getModeClasses(funky: boolean) {
-  return {
-    bg: funky ? 'bg-[#08050a]' : 'bg-[#0a0907]',
-    panelBg: funky ? 'bg-black/40 border-amber-500/10' : 'bg-white/[0.025] border-white/5',
-    accent: funky ? 'text-amber-400' : 'text-amber-500',
-    accentBorder: funky ? 'border-amber-500/40' : 'border-amber-500/20',
-    accentBg: funky ? 'bg-amber-500/15' : 'bg-amber-500/10',
-    glow: funky ? 'shadow-[0_0_60px_rgba(245,158,11,0.12)]' : '',
-    headerText: funky ? 'text-amber-300' : 'text-white',
-  };
+function palette(funky: boolean): Mode {
+  return funky
+    ? { bg: '#07040a', panel: 'rgba(0,0,0,0.45)', panelBorder: 'rgba(245,158,11,0.12)', accent: '#fbbf24', accentBg: 'rgba(245,158,11,0.15)', accentBorder: 'rgba(245,158,11,0.35)', muted: '#78716c', dim: '#44403c' }
+    : { bg: '#0a0907', panel: 'rgba(255,255,255,0.025)', panelBorder: 'rgba(255,255,255,0.06)', accent: '#f59e0b', accentBg: 'rgba(245,158,11,0.1)', accentBorder: 'rgba(245,158,11,0.2)', muted: '#64748b', dim: '#334155' };
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────────
@@ -104,320 +91,249 @@ function getModeClasses(funky: boolean) {
 export default function DemoPage() {
   const [funky, setFunky] = useState(false);
   const [completedTasks, setCompletedTasks] = useState<Set<string>>(new Set());
-  const [venueTab, setVenueTab] = useState<VenueTab>('show');
+  const [venueTab, setVenueTab] = useState<'show' | 'pipeline'>('show');
   const [bannerDismissed, setBannerDismissed] = useState(false);
 
-  // Auto-flip funky mode at 7 PM
   useEffect(() => {
-    const hour = new Date().getHours();
-    if (hour >= 19) setFunky(true);
+    if (new Date().getHours() >= 19) setFunky(true);
   }, []);
 
-  const m = getModeClasses(funky);
+  const p = palette(funky);
   const pendingCount = OPS_TASKS.filter((t) => !completedTasks.has(t.id)).length;
   const today = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
 
   return (
-    <div className={`min-h-screen ${m.bg} text-slate-200 font-sans overflow-x-hidden relative transition-colors duration-700 selection:bg-amber-500/30`}>
+    <div style={{ height: '100%', width: '100%', backgroundColor: p.bg, display: 'flex', flexDirection: 'column', transition: 'background-color 0.7s ease', overflow: 'hidden' }}>
 
-      {/* Ambient glows */}
-      {funky ? (
-        <>
-          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-amber-600/12 rounded-full blur-[160px] pointer-events-none transition-all duration-700" />
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-orange-700/12 rounded-full blur-[140px] pointer-events-none transition-all duration-700" />
-        </>
-      ) : (
-        <div className="absolute top-0 left-1/4 w-[500px] h-[400px] bg-amber-700/8 rounded-full blur-[140px] pointer-events-none" />
-      )}
+      {/* Ambient glow */}
+      <div style={{ position: 'absolute', top: 0, left: '20%', width: 600, height: 400, background: funky ? 'radial-gradient(ellipse, rgba(245,158,11,0.08) 0%, transparent 70%)' : 'radial-gradient(ellipse, rgba(180,120,30,0.05) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-5 relative z-10 flex flex-col min-h-screen">
-
-        {/* Preview banner */}
+      {/* ── Header strip ────────────────────────────────────────── */}
+      <div style={{ padding: '0 28px', paddingTop: bannerDismissed ? 14 : 0, flexShrink: 0, position: 'relative', zIndex: 1 }}>
+        {/* Dismissible banner */}
         {!bannerDismissed && (
-          <div className="mb-4 flex items-center justify-between gap-4 px-4 py-2.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 demo-fade-in">
-            <p className="text-amber-400/80 text-xs md:text-sm">
-              Live preview of the <span className="font-semibold text-amber-300">Big Muddy Inn & Blues Room</span> — powered by <span className="font-semibold">KioskMode Pro</span>. No login required.
-            </p>
-            <button onClick={() => setBannerDismissed(true)} className="shrink-0 w-6 h-6 rounded-full hover:bg-amber-500/20 flex items-center justify-center text-amber-500/60 transition-colors">
-              <X className="w-3.5 h-3.5" />
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '8px 16px', marginBottom: 12, marginTop: 12, borderRadius: 14, background: p.accentBg, border: `1px solid ${p.accentBorder}` }}>
+            <span style={{ color: 'rgba(251,191,36,0.8)', fontSize: 12 }}>
+              Live preview of the <strong style={{ color: '#fbbf24' }}>Big Muddy Inn & Blues Room</strong> — powered by <strong>KioskMode Pro</strong>. No login required.
+            </span>
+            <button onClick={() => setBannerDismissed(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: p.accent, padding: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', width: 24, height: 24, flexShrink: 0 }}>
+              <X size={13} />
             </button>
           </div>
         )}
 
-        {/* Header */}
-        <header className="flex items-center justify-between mb-5 demo-fade-in">
-          <div>
-            <p className={`text-xs font-bold uppercase tracking-widest mb-0.5 ${m.accent}`}>KioskMode Pro</p>
-            <h1 className={`text-2xl md:text-3xl font-light tracking-tight ${m.headerText} transition-colors duration-500`}>
-              The Big Muddy Inn &amp; Blues Room
-            </h1>
-            <p className="text-slate-600 text-xs mt-0.5">Natchez, MS — {today}</p>
+        {/* Top bar: branding + stats + toggle */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, paddingBottom: 12, borderBottom: `1px solid ${p.panelBorder}` }}>
+          {/* Branding */}
+          <div style={{ flex: '0 0 auto' }}>
+            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', color: p.accent, marginBottom: 2 }}>KioskMode Pro</div>
+            <div style={{ fontSize: 22, fontWeight: 300, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1.1 }}>The Big Muddy Inn &amp; Blues Room</div>
+            <div style={{ fontSize: 11, color: p.dim, marginTop: 2 }}>Natchez, MS — {today}</div>
           </div>
 
-          {/* Funky mode toggle */}
+          {/* Stat pills */}
+          <div style={{ flex: 1, display: 'flex', gap: 10, alignItems: 'center', justifyContent: 'center' }}>
+            {[
+              { icon: <Users size={13} />, label: 'Occupancy', value: '85%', color: '#f59e0b' },
+              { icon: <Music size={13} />, label: "Tonight's Show", value: '1', color: '#fb923c' },
+              { icon: <ClipboardList size={13} />, label: 'Pending Tasks', value: String(pendingCount), color: '#facc15' },
+              { icon: <CheckCircle2 size={13} />, label: 'Staff Active', value: '2', color: '#34d399' },
+            ].map(({ icon, label, value, color }) => (
+              <div key={label} style={{ background: p.panel, border: `1px solid ${p.panelBorder}`, borderRadius: 16, padding: '8px 18px', display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: 80, transition: 'all 0.5s ease' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 5, color: p.muted, marginBottom: 3 }}>
+                  <span style={{ color, opacity: 0.7 }}>{icon}</span>
+                  <span style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{label}</span>
+                </div>
+                <span style={{ fontSize: 26, fontWeight: 300, color, lineHeight: 1 }}>{value}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Funky toggle */}
           <button
             onClick={() => setFunky((v) => !v)}
-            className={`flex items-center gap-2.5 px-4 py-2.5 rounded-full border font-semibold text-sm transition-all duration-300 ${
-              funky
-                ? 'bg-amber-500/20 border-amber-500/40 text-amber-300 shadow-[0_0_20px_rgba(245,158,11,0.2)]'
-                : 'bg-white/5 border-white/10 text-slate-500 hover:border-amber-500/30 hover:text-amber-400'
-            }`}
-            aria-pressed={funky}
+            style={{
+              flex: '0 0 auto', display: 'flex', alignItems: 'center', gap: 8, padding: '10px 18px', borderRadius: 999, border: `1px solid ${funky ? 'rgba(245,158,11,0.4)' : 'rgba(255,255,255,0.1)'}`,
+              background: funky ? 'rgba(245,158,11,0.2)' : 'rgba(255,255,255,0.04)', color: funky ? '#fbbf24' : '#64748b',
+              fontSize: 13, fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s ease',
+              boxShadow: funky ? '0 0 20px rgba(245,158,11,0.2)' : 'none',
+            }}
           >
-            {funky ? <Zap className="w-4 h-4" /> : <Sunset className="w-4 h-4" />}
-            <span className="hidden sm:inline">{funky ? 'Night Mode' : 'Day Mode'}</span>
+            {funky ? <Zap size={15} /> : <Sunset size={15} />}
+            {funky ? 'Night Mode' : 'Day Mode'}
           </button>
-        </header>
-
-        {/* Stat strip */}
-        <div className="grid grid-cols-4 gap-2 md:gap-3 mb-5 demo-fade-in-delay">
-          {[
-            { label: 'Occupancy', value: SYSTEM.occupancy, color: 'text-amber-400', icon: Users },
-            { label: "Tonight's Show", value: '1', color: 'text-orange-400', icon: Music },
-            { label: 'Pending Tasks', value: String(pendingCount), color: 'text-yellow-400', icon: ClipboardList },
-            { label: 'Staff Active', value: '2', color: 'text-emerald-400', icon: CheckCircle2 },
-          ].map(({ label, value, color, icon: Icon }) => (
-            <div key={label} className={`${m.panelBg} ${m.glow} border rounded-2xl p-3 md:p-4 flex flex-col justify-center min-h-[72px] transition-all duration-500`}>
-              <div className="flex items-center gap-1.5 mb-1">
-                <Icon className={`w-3.5 h-3.5 ${color} opacity-60`} />
-                <span className="text-slate-500 text-[10px] font-semibold uppercase tracking-wider">{label}</span>
-              </div>
-              <span className={`text-2xl md:text-3xl font-light ${color}`}>{value}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* ── SPLIT VIEW — Mac mini layout ─────────────────────────────────── */}
-        <div className="flex-1 flex gap-4 min-h-0" style={{ display: 'flex', flexDirection: 'row', alignItems: 'stretch', gap: '16px' }}>
-
-          {/* LEFT PANEL — Hospitality */}
-          <div className={`${m.panelBg} border rounded-3xl flex flex-col overflow-hidden ${m.glow} transition-all duration-500`} style={{ flex: '1 1 0', minWidth: 0 }}>
-            <div className={`px-6 py-4 border-b border-white/5 flex items-center justify-between shrink-0`}>
-              <div className="flex items-center gap-2.5">
-                <Users className={`w-4 h-4 ${m.accent}`} />
-                <h2 className="text-sm font-semibold text-white uppercase tracking-widest">Hospitality</h2>
-              </div>
-              <span className="text-slate-600 text-xs">Who is sleeping here?</span>
-            </div>
-
-            <div className="flex-1 overflow-y-auto p-4 md:p-5 space-y-3 custom-scrollbar">
-              {BOOKINGS.map((b, i) => (
-                <BookingCard key={b.id} booking={b} funky={funky} index={i} />
-              ))}
-
-              {/* Ops Tasks below bookings */}
-              <div className="pt-2 border-t border-white/5 mt-2">
-                <div className="flex items-center gap-2 mb-3">
-                  <ClipboardList className="w-3.5 h-3.5 text-slate-500" />
-                  <span className="text-slate-500 text-xs font-semibold uppercase tracking-wider">Action Items</span>
-                </div>
-                {OPS_TASKS.filter((t) => !completedTasks.has(t.id)).map((t, i) => (
-                  <TaskCard
-                    key={t.id}
-                    task={t}
-                    funky={funky}
-                    index={i}
-                    onComplete={() => setCompletedTasks((prev) => { const next = new Set(prev); next.add(t.id); return next; })}
-                  />
-                ))}
-                {pendingCount === 0 && (
-                  <div className="flex items-center gap-3 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm">
-                    <CheckCircle2 className="w-5 h-5 shrink-0" />
-                    All clear — board is clean.
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT PANEL — Venue */}
-          <div className={`${m.panelBg} border rounded-3xl flex flex-col overflow-hidden ${m.glow} transition-all duration-500`} style={{ flex: '1 1 0', minWidth: 0 }}>
-            <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between shrink-0">
-              <div className="flex items-center gap-2.5">
-                <Music className={`w-4 h-4 ${m.accent}`} />
-                <h2 className="text-sm font-semibold text-white uppercase tracking-widest">Venue</h2>
-              </div>
-              {/* Sub-tabs */}
-              <div className="flex gap-1">
-                {(['show', 'pipeline'] as VenueTab[]).map((t) => (
-                  <button
-                    key={t}
-                    onClick={() => setVenueTab(t)}
-                    className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
-                      venueTab === t ? `${m.accentBg} ${m.accentBorder} border ${m.accent}` : 'text-slate-600 hover:text-slate-400'
-                    }`}
-                  >
-                    {t === 'show' ? "Tonight" : "Pipeline"}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex-1 overflow-y-auto p-4 md:p-5 custom-scrollbar">
-              {venueTab === 'show' ? (
-                <ShowPanel show={TONIGHT_SHOW} funky={funky} />
-              ) : (
-                <PipelinePanel artists={ARTIST_PIPELINE} funky={funky} />
-              )}
-            </div>
-          </div>
-
         </div>
       </div>
 
-      <style dangerouslySetInnerHTML={{ __html: `
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 10px; }
+      {/* ── SPLIT VIEW ──────────────────────────────────────────── */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'row', gap: 16, padding: '12px 28px 16px', overflow: 'hidden', position: 'relative', zIndex: 1 }}>
 
-        @keyframes demoFadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes demoFadeInScale { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
-        @keyframes demoCardIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        {/* LEFT — Hospitality */}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: p.panel, border: `1px solid ${p.panelBorder}`, borderRadius: 24, overflow: 'hidden', transition: 'all 0.5s ease' }}>
+          {/* Panel header */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 24px', borderBottom: `1px solid rgba(255,255,255,0.05)`, flexShrink: 0 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div style={{ padding: 10, background: 'rgba(59,130,246,0.15)', borderRadius: 12 }}>
+                <BedDouble size={20} color="#60a5fa" />
+              </div>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#fff' }}>Hospitality</div>
+                <div style={{ fontSize: 11, color: p.muted, marginTop: 1 }}>Who is sleeping here?</div>
+              </div>
+            </div>
+          </div>
 
-        .demo-fade-in { animation: demoFadeIn 0.35s ease both; }
-        .demo-fade-in-delay { animation: demoFadeInScale 0.4s ease 0.08s both; }
-        .demo-card-in { animation: demoCardIn 0.3s ease both; }
-      ` }} />
+          {/* Scrollable content */}
+          <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {BOOKINGS.map((b, i) => <BookingCard key={b.id} booking={b} funky={funky} p={p} i={i} />)}
+
+            {/* Action items */}
+            <div style={{ borderTop: `1px solid rgba(255,255,255,0.05)`, paddingTop: 14, marginTop: 4 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
+                <ClipboardList size={13} color={p.muted} />
+                <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: p.muted }}>Action Items</span>
+              </div>
+              {OPS_TASKS.filter((t) => !completedTasks.has(t.id)).map((t, i) => (
+                <TaskCard key={t.id} task={t} funky={funky} p={p} i={i}
+                  onComplete={() => setCompletedTasks((prev) => { const next = new Set(prev); next.add(t.id); return next; })} />
+              ))}
+              {pendingCount === 0 && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 18px', borderRadius: 16, background: 'rgba(52,211,153,0.1)', border: '1px solid rgba(52,211,153,0.2)', color: '#34d399', fontSize: 14 }}>
+                  <CheckCircle2 size={18} /> All clear — board is clean.
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT — Venue */}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: p.panel, border: `1px solid ${p.panelBorder}`, borderRadius: 24, overflow: 'hidden', transition: 'all 0.5s ease' }}>
+          {/* Panel header */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 24px', borderBottom: `1px solid rgba(255,255,255,0.05)`, flexShrink: 0 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div style={{ padding: 10, background: 'rgba(16,185,129,0.15)', borderRadius: 12 }}>
+                <Mic2 size={20} color="#34d399" />
+              </div>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#fff' }}>Venue</div>
+                <div style={{ fontSize: 11, color: p.muted, marginTop: 1 }}>Tonight's lineup & pipeline</div>
+              </div>
+            </div>
+            {/* Sub-tabs */}
+            <div style={{ display: 'flex', gap: 4 }}>
+              {(['show', 'pipeline'] as const).map((tab) => (
+                <button key={tab} onClick={() => setVenueTab(tab)} style={{
+                  padding: '5px 14px', borderRadius: 999, fontSize: 12, fontWeight: 600, cursor: 'pointer', border: 'none', transition: 'all 0.2s ease',
+                  background: venueTab === tab ? p.accentBg : 'transparent',
+                  color: venueTab === tab ? p.accent : p.muted,
+                  outline: venueTab === tab ? `1px solid ${p.accentBorder}` : 'none',
+                }}>
+                  {tab === 'show' ? 'Tonight' : 'Pipeline'}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Scrollable content */}
+          <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px' }}>
+            {venueTab === 'show' ? <ShowPanel show={TONIGHT_SHOW} funky={funky} p={p} /> : <PipelinePanel artists={ARTIST_PIPELINE} p={p} />}
+          </div>
+        </div>
+
+      </div>
     </div>
   );
 }
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
-function BookingCard({ booking, funky, index }: { booking: typeof BOOKINGS[0]; funky: boolean; index: number }) {
-  const statusColor = {
-    CHECKED_IN: 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]',
-    ARRIVING_SOON: 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]',
-    TOMORROW: 'bg-slate-600',
-  }[booking.status];
-
-  const statusLabel = { CHECKED_IN: 'In-House', ARRIVING_SOON: 'Arriving Soon', TOMORROW: 'Tomorrow' }[booking.status];
-
+function BookingCard({ booking, p, i }: { booking: typeof BOOKINGS[0]; funky: boolean; p: Mode; i: number }) {
+  const statusDot: Record<string, string> = { CHECKED_IN: '#10b981', ARRIVING_SOON: '#f59e0b', TOMORROW: '#475569' };
+  const statusLabel: Record<string, string> = { CHECKED_IN: 'In-House', ARRIVING_SOON: 'Arriving Soon', TOMORROW: 'Tomorrow' };
   return (
-    <div
-      className={`demo-card-in p-4 rounded-2xl border transition-all ${
-        funky ? 'bg-black/30 border-amber-500/10 hover:border-amber-500/25' : 'bg-white/[0.03] border-white/5 hover:border-amber-500/15'
-      }`}
-      style={{ animationDelay: `${index * 50}ms` }}
-    >
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <div className={`w-2 h-2 rounded-full shrink-0 mt-1 ${statusColor}`} />
+    <div style={{ padding: '14px 18px', borderRadius: 18, border: `1px solid rgba(255,255,255,0.05)`, background: 'rgba(255,255,255,0.02)', marginBottom: 8, animationDelay: `${i * 50}ms` }}>
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+          <div style={{ width: 8, height: 8, borderRadius: '50%', background: statusDot[booking.status], marginTop: 5, flexShrink: 0, boxShadow: booking.status !== 'TOMORROW' ? `0 0 8px ${statusDot[booking.status]}80` : 'none' }} />
           <div>
-            <div className="flex items-center gap-2">
-              <h4 className="text-sm font-semibold text-white">{booking.guestName}</h4>
-              {booking.vip && <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+              <span style={{ fontSize: 15, fontWeight: 600, color: '#fff' }}>{booking.guestName}</span>
+              {booking.vip && <Star size={13} color="#fbbf24" fill="#fbbf24" />}
             </div>
-            <p className="text-slate-500 text-xs mt-0.5">{booking.room} · {statusLabel}</p>
-            <p className="text-slate-600 text-xs mt-0.5 italic">{booking.note}</p>
+            <div style={{ fontSize: 12, color: p.muted, marginTop: 2 }}>{booking.room} · {statusLabel[booking.status]}</div>
+            <div style={{ fontSize: 11, color: p.dim, marginTop: 2, fontStyle: 'italic' }}>{booking.note}</div>
           </div>
         </div>
-        <button className="shrink-0 h-7 px-3 rounded-full bg-amber-600/15 hover:bg-amber-600/30 border border-amber-500/15 text-amber-400 text-xs font-medium transition-colors">
-          View
-        </button>
+        <button style={{ padding: '4px 12px', borderRadius: 999, background: 'rgba(245,158,11,0.1)', border: '1px solid rgba(245,158,11,0.15)', color: '#f59e0b', fontSize: 12, fontWeight: 500, cursor: 'pointer', flexShrink: 0, whiteSpace: 'nowrap' }}>View</button>
       </div>
     </div>
   );
 }
 
-function TaskCard({
-  task, funky, index, onComplete,
-}: { task: typeof OPS_TASKS[0]; funky: boolean; index: number; onComplete: () => void }) {
-  const isInProgress = task.status === 'IN_PROGRESS';
+function TaskCard({ task, p, i, onComplete }: { task: typeof OPS_TASKS[0]; funky: boolean; p: Mode; i: number; onComplete: () => void }) {
   return (
-    <div
-      className={`demo-card-in mb-2 p-4 rounded-2xl border flex items-center justify-between gap-3 transition-all ${
-        funky ? 'bg-black/30 border-white/5' : 'bg-white/[0.02] border-white/5'
-      }`}
-      style={{ animationDelay: `${index * 40}ms` }}
-    >
-      <div className="min-w-0">
-        <div className="flex items-center gap-2">
-          {isInProgress && <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" />}
-          <h4 className="text-sm font-medium text-white truncate">{task.title}</h4>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '12px 16px', borderRadius: 16, border: `1px solid rgba(255,255,255,0.04)`, background: 'rgba(255,255,255,0.015)', marginBottom: 8 }}>
+      <div style={{ minWidth: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+          {task.status === 'IN_PROGRESS' && <Clock size={13} color="#f59e0b" />}
+          <span style={{ fontSize: 14, fontWeight: 500, color: '#fff', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{task.title}</span>
         </div>
-        <p className="text-slate-600 text-xs mt-0.5">{task.area} · {task.assignee}</p>
+        <div style={{ fontSize: 11, color: p.dim, marginTop: 2 }}>{task.area} · {task.assignee}</div>
       </div>
-      <button
-        onClick={onComplete}
-        className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-600/15 hover:bg-amber-600/30 border border-amber-500/15 text-amber-400 text-xs font-medium transition-all active:scale-95"
-      >
-        <ChevronRight className="w-3.5 h-3.5" />
-        Done
+      <button onClick={onComplete} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 14px', borderRadius: 999, background: 'rgba(245,158,11,0.1)', border: '1px solid rgba(245,158,11,0.15)', color: '#f59e0b', fontSize: 12, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>
+        <ChevronRight size={13} /> Done
       </button>
     </div>
   );
 }
 
-function ShowPanel({ show, funky }: { show: typeof TONIGHT_SHOW; funky: boolean }) {
+function ShowPanel({ show, funky, p }: { show: typeof TONIGHT_SHOW; funky: boolean; p: Mode }) {
   return (
-    <div className="space-y-4">
-      <div className={`p-4 rounded-2xl border ${funky ? 'bg-orange-900/20 border-orange-500/20' : 'bg-orange-500/8 border-orange-500/15'} transition-all duration-500`}>
-        <div className="flex items-center justify-between mb-1">
-          <h3 className="text-base font-semibold text-white">{show.name}</h3>
-          <span className="px-2.5 py-0.5 rounded-full bg-orange-500/20 border border-orange-500/25 text-orange-400 text-xs font-bold">Tonight</span>
+    <div>
+      <div style={{ padding: '14px 18px', borderRadius: 18, background: funky ? 'rgba(124,45,18,0.2)' : 'rgba(251,146,60,0.08)', border: `1px solid ${funky ? 'rgba(251,146,60,0.25)' : 'rgba(251,146,60,0.15)'}`, marginBottom: 16, transition: 'all 0.5s ease' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+          <span style={{ fontSize: 16, fontWeight: 600, color: '#fff' }}>{show.name}</span>
+          <span style={{ padding: '3px 10px', borderRadius: 999, background: 'rgba(251,146,60,0.2)', border: '1px solid rgba(251,146,60,0.25)', color: '#fb923c', fontSize: 11, fontWeight: 700 }}>Tonight</span>
         </div>
-        <p className="text-orange-400/70 text-xs">{show.venue} · Doors {show.time}</p>
+        <div style={{ fontSize: 12, color: 'rgba(251,146,60,0.7)' }}>{show.venue} · Doors {show.time}</div>
       </div>
 
-      <div className="space-y-2.5">
-        <p className="text-slate-600 text-xs font-semibold uppercase tracking-wider">Loadsheet</p>
-        {show.artists.map((artist, i) => (
-          <div
-            key={i}
-            className={`demo-card-in p-4 rounded-2xl border flex items-center justify-between ${
-              funky ? 'bg-black/30 border-orange-500/10' : 'bg-white/[0.03] border-white/5'
-            }`}
-            style={{ animationDelay: `${i * 60}ms` }}
-          >
-            <div>
-              <h4 className="text-sm font-semibold text-white">{artist.name}</h4>
-              <p className="text-slate-500 text-xs mt-0.5">{artist.genre} · Soundcheck {artist.soundcheck}</p>
-            </div>
-            <a href={`tel:${artist.contact}`} className="shrink-0 w-9 h-9 rounded-full bg-white/5 hover:bg-orange-500/30 border border-white/5 flex items-center justify-center text-slate-500 hover:text-orange-300 transition-colors">
-              <Phone className="w-4 h-4" />
-            </a>
+      <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: p.muted, marginBottom: 10 }}>Loadsheet</div>
+      {show.artists.map((artist, i) => (
+        <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 18px', borderRadius: 18, border: `1px solid rgba(255,255,255,0.05)`, background: 'rgba(255,255,255,0.025)', marginBottom: 10 }}>
+          <div>
+            <div style={{ fontSize: 15, fontWeight: 600, color: '#fff' }}>{artist.name}</div>
+            <div style={{ fontSize: 12, color: p.muted, marginTop: 2 }}>{artist.genre} · Soundcheck {artist.soundcheck}</div>
           </div>
-        ))}
-      </div>
+          <a href={`tel:${artist.contact}`} style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: p.muted, flexShrink: 0 }}>
+            <Phone size={16} />
+          </a>
+        </div>
+      ))}
     </div>
   );
 }
 
-function PipelinePanel({ artists, funky }: { artists: typeof ARTIST_PIPELINE; funky: boolean }) {
+function PipelinePanel({ artists, p }: { artists: typeof ARTIST_PIPELINE; p: Mode }) {
   return (
-    <div className="space-y-3">
-      <p className="text-slate-600 text-xs font-semibold uppercase tracking-wider mb-4">Artist Applications</p>
+    <div>
+      <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: p.muted, marginBottom: 14 }}>Artist Applications</div>
       {artists.map((artist, i) => {
         const isPending = artist.status === 'PENDING_REVIEW';
         return (
-          <div
-            key={artist.id}
-            className={`demo-card-in p-4 rounded-2xl border transition-all ${
-              funky ? 'bg-black/30 border-white/5' : 'bg-white/[0.03] border-white/5'
-            }`}
-            style={{ animationDelay: `${i * 60}ms` }}
-          >
-            <div className="flex items-start justify-between gap-3">
+          <div key={artist.id} style={{ padding: '16px 18px', borderRadius: 18, border: `1px solid rgba(255,255,255,0.06)`, background: 'rgba(255,255,255,0.025)', marginBottom: 12 }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
               <div>
-                <div className="flex items-center gap-2 mb-0.5">
-                  <h4 className="text-sm font-semibold text-white">{artist.bandName}</h4>
-                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${
-                    isPending
-                      ? 'bg-amber-500/15 border-amber-500/25 text-amber-400'
-                      : 'bg-emerald-500/15 border-emerald-500/25 text-emerald-400'
-                  }`}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                  <span style={{ fontSize: 15, fontWeight: 600, color: '#fff' }}>{artist.bandName}</span>
+                  <span style={{ padding: '2px 8px', borderRadius: 999, fontSize: 10, fontWeight: 700, border: '1px solid', background: isPending ? 'rgba(245,158,11,0.15)' : 'rgba(52,211,153,0.15)', borderColor: isPending ? 'rgba(245,158,11,0.25)' : 'rgba(52,211,153,0.25)', color: isPending ? '#fbbf24' : '#34d399' }}>
                     {isPending ? 'Review' : 'Approved'}
                   </span>
                 </div>
-                <p className="text-slate-500 text-xs">{artist.genre}</p>
-                <p className="text-slate-600 text-xs mt-0.5">Est. draw: {artist.draw} · {artist.requestedDate}</p>
+                <div style={{ fontSize: 12, color: p.muted }}>{artist.genre}</div>
+                <div style={{ fontSize: 11, color: p.dim, marginTop: 2 }}>Est. draw: {artist.draw} · {artist.requestedDate}</div>
               </div>
-              {isPending && (
-                <div className="flex items-center gap-1">
-                  <AlertCircle className="w-4 h-4 text-amber-500/60" />
-                </div>
-              )}
+              {isPending && <AlertCircle size={16} color="rgba(245,158,11,0.5)" style={{ flexShrink: 0 }} />}
             </div>
           </div>
         );
