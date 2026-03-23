@@ -1,9 +1,33 @@
 /* packages/config/tokens.css
    Big Muddy Platform — Design Tokens
    Southern Gothic aesthetic: warm darks, amber gold, cream text
+   Brand source: Tracy's official brand package (Big Muddy - Brand Guidelines.pdf)
    ---------------------------------------------------------------- */
 
 :root {
+  /* ── Brand Palette — Official (from Tracy's brand guidelines PDF) ── */
+  /* Two monochromatic schemes: Magenta + Sage ("Indigo") */
+  --brand-ivory:          #F1F0EC;   /* Cloud Dancer — primary light background */
+  --brand-magenta:        #994878;   /* Magenta light — primary CTA, headers */
+  --brand-magenta-dark:   #7C2855;   /* Magenta dark — hover, hero fills */
+  --brand-magenta-muted:  rgba(153, 72, 120, 0.15);
+  --brand-sage-light:     #ADC9B8;   /* Sage / "Indigo" light tone */
+  --brand-sage-mid:       #6FA088;   /* Sage mid tone */
+  --brand-sage-dark:      #235B4E;   /* Sage dark — deep accent */
+  --brand-dark:           #25282A;   /* Dark grey/black — body text */
+
+  /* ── Brand Palette — Website (live site CSS, not in official PDF) ── */
+  /* These appear on thebigmuddyinn.com but are NOT in the brand guidelines PDF */
+  --brand-burgundy:       #7B1B46;   /* Website hero/nav (site-specific) */
+  --brand-periwinkle:     #6477AD;   /* Website CTA buttons (site-specific) */
+  --brand-periwinkle-light: #7779B7; /* Website h1/h2 (site-specific) */
+  --brand-cream:          #FFFFFD;   /* Website page bg (site-specific) */
+  --brand-cream-warm:     #F7F3EE;   /* Website alternating sections (site-specific) */
+  --brand-ink:            #2A2428;   /* Website dark body text (site-specific) */
+
+  /* ── Typography: Brand Fonts ── */
+  /* Citrus Gothic (commercial) + Abril Fatface + Montserrat via Google Fonts */
+  /* Google Fonts: https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:wght@300;400;500;600&display=swap */
   /* ── Color: Backgrounds ── */
   --bg:              #1a1816;   /* Deepest background — near-black warm */
   --surface:         #231f1c;   /* Cards, panels */
@@ -210,6 +234,38 @@ img, video {
   --surface: #1d1a17;
   --surface-2: #252119;
   --surface-3: #2f2a22;
+}
+
+/* Inn: "Offbeat Opulence" — official brand palette from Tracy's guidelines PDF */
+/* Fonts: Citrus Gothic (commercial, self-hosted) / Abril Fatface / Montserrat Light */
+.theme-inn {
+  --bg:              #F1F0EC;                /* Cloud Dancer ivory */
+  --surface:         #E8E5DF;                /* Slightly warm white for cards */
+  --surface-2:       #DDD9D2;                /* Elevated surfaces */
+  --surface-3:       #D1CCC4;                /* Hover states */
+  --text:            #25282A;                /* Dark grey/black */
+  --text-muted:      #6B645C;                /* Muted text on light bg */
+  --text-disabled:   #9E9890;
+  --accent:          #994878;                /* Magenta — primary CTA */
+  --accent-hover:    #7C2855;                /* Magenta dark — hover/pressed */
+  --accent-muted:    rgba(153, 72, 120, 0.15);
+  --accent-subtle:   rgba(153, 72, 120, 0.08);
+  --slate:           #6FA088;                /* Sage mid — secondary accent */
+  --slate-muted:     rgba(111, 160, 136, 0.15);
+  --success:         #235B4E;                /* Sage dark */
+  --success-muted:   rgba(35, 91, 78, 0.15);
+  --border:          rgba(153, 72, 120, 0.12);
+  --border-strong:   rgba(153, 72, 120, 0.28);
+  --border-subtle:   rgba(37, 40, 42, 0.08);
+  --shadow-sm:       0 1px 2px rgba(37, 40, 42, 0.08);
+  --shadow-md:       0 4px 12px rgba(37, 40, 42, 0.12);
+  --shadow-lg:       0 8px 24px rgba(37, 40, 42, 0.16);
+  --shadow-xl:       0 16px 40px rgba(37, 40, 42, 0.20);
+  --shadow-glow:     0 0 20px rgba(153, 72, 120, 0.20);
+  /* Citrus Gothic is a commercial font — self-host or fall back to Abril Fatface */
+  --font-display:    'Citrus Gothic', 'Abril Fatface', Georgia, serif;
+  --font-subhead:    'Abril Fatface', Georgia, serif;
+  --font-body:       'Montserrat', 'DM Sans', system-ui, sans-serif;
 }
 
 /* Economics: utilitarian, high-contrast, red/black/cream (matches book cover) */
