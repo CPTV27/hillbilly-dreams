@@ -724,6 +724,7 @@ model User {
 
   onboardingCompletedAt DateTime?
 
+  artistApplications ArtistApplication[]
   accounts      Account[]
   sessions      Session[]
   createdAt     DateTime  @default(now())
@@ -883,21 +884,16 @@ model ArtOrder {
 
 
 model ArtistApplication {
-  id           String   @id @default(cuid())
-  name         String
-  email        String
-  city         String
-  state        String
-  website      String?
-  instagram    String?
-  medium       String
-  yearsActive  String?
-  bio          String   @db.Text
-  portfolioUrl String
-  priceRange   String?
-  whyBCA       String?  @db.Text
-  status       String   @default("pending") // pending | approved | rejected
-  notes        String?  @db.Text
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  portfolioUrl    String
+  artistStatement String   @db.Text
+  status          String   @default("PENDING") // PENDING | APPROVED | REJECTED
+  stripeAccountId String?  // nullable string for the Connect destination
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+  @@index([status])
 }

@@ -1,0 +1,4 @@
+# Coding Rules
+
+1. ALWAYS read `ARCHITECTURE.md` before generating any new code or making architectural decisions. This is non-negotiable.
+2. Respect domain isolation and state boundaries as defined in the master ledger and architecture documentation.

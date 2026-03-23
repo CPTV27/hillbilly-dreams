@@ -12,7 +12,20 @@ export default async function OpsDashboard() {
     // Route users who haven't completed onboarding to the survey
     const session = await auth();
     const user = session?.user as any;
-    if (user?.onboardingStep === 'pending_survey') {
+    let isPending = user?.onboardingStep === 'pending_survey';
+
+    if (isPending && user?.email) {
+        // Stale JWT cookie check: verify against the DB
+        const dbUser = await prisma.user.findUnique({
+            where: { email: user.email },
+            select: { onboardingStep: true }
+        });
+        if (dbUser?.onboardingStep !== 'pending_survey') {
+            isPending = false;
+        }
+    }
+
+    if (isPending) {
         redirect('/ops/onboarding');
     }
     const [tasks, activities] = await Promise.all([

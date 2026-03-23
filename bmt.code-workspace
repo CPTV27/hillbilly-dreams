@@ -1,0 +1,15 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "terminal.integrated.env.osx": {
+      "GOOGLE_CLOUD_PROJECT": "bigmuddy-ff651",
+      "FIREBASE_PROJECT": "bigmuddy",
+      "CHASE_CTX": "bmt"
+    },
+    "window.title": "BMT ✅ ACTIVE — ${activeEditorShort}"
+  }
+}
