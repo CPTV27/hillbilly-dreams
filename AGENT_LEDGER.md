@@ -18,6 +18,21 @@ If any checkbox is unchecked, the task is **IN_PROGRESS**, not COMPLETE. Fix bef
 
 ---
 
+## [2026-03-23 00:15] — CC — COMPLETE
+
+**Task:** Replace ARCHITECTURE.md with owner-verified canonical map
+
+Chase provided the definitive, owner-verified canonical architecture. ARCHITECTURE.md has been fully replaced with that exact structure. This is now the ground truth for the swarm. All prior versions superseded.
+
+### QC_GATE
+- [x] **Route Verification:** No code touched.
+- [x] **Domain Isolation:** N/A — documentation only.
+- [x] **State Boundaries:** N/A — no code changes.
+
+**Status:** COMPLETE — ledger locked. Standing down.
+
+---
+
 ## [2026-03-22 23:55] — CC — COMPLETE
 
 **Task:** Lock canonical Hillbilly Dreams architecture + document naming debt
