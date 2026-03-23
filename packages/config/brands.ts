@@ -89,7 +89,7 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     description:
       'Resource center and community hub for building sovereign local economies — coordination math, extraction analysis, and field-tested frameworks.',
     themeClass: 'theme-economics',
-    primaryColor: '#b54c4c',
+    primaryColor: '#b54c4c',   /* Red — matches --accent in theme-economics */
     nav: {
       links: [
         { label: 'Field Manual', href: '/field-manual' },
@@ -109,7 +109,7 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     localDomain: 'buycuriousart.local',
     description:
       'Curated art marketplace for original works from the artists, musicians, and makers who call the Deep South home.',
-    themeClass: 'theme-touring',
+    themeClass: 'theme-gallery',
     primaryColor: '#c8943e',
     nav: {
       links: [
@@ -129,7 +129,7 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     description:
       'Independent record label capturing the sound of the Mississippi music corridor — blues, soul, gospel, and the voices that carry the river.',
     themeClass: 'theme-records',
-    primaryColor: '#c8943e',
+    primaryColor: '#c07830',   /* Deeper amber — worn vinyl label */
     nav: {
       links: [
         { label: 'Artists', href: '/records/artists' },

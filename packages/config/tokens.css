@@ -218,22 +218,145 @@ img, video {
 
 /* ── Brand Theme Classes ── */
 
-/* Touring: expansive, warm, editorial */
+/* Touring: the primary editorial hub — warm, expansive, road-worn amber */
+/* bigmuddytouring.com — the Mississippi music corridor */
 .theme-touring {
-  --surface-accent: rgba(200, 148, 62, 0.05);
+  /* Inherits all :root defaults (dark warm bg, amber accent, Playfair Display) */
+  /* These overrides add just enough differentiation for the touring context */
+  --accent:          #c8943e;
+  --accent-hover:    #d4a44e;
+  --surface-accent:  rgba(200, 148, 62, 0.05);
+  --shadow-glow:     0 0 20px rgba(200, 148, 62, 0.12);
 }
 
-/* Magazine: editorial, generous typography */
+/* Magazine: editorial, print-forward, generous type */
+/* bigmuddymagazine.com — long-form stories, city guides */
 .theme-magazine {
-  --surface-accent: rgba(200, 148, 62, 0.04);
+  --bg:              #19160f;   /* Slightly warmer/darker than default — aged newsprint feel */
+  --surface:         #221e15;
+  --surface-2:       #2d2719;
+  --surface-3:       #39311f;
+  --accent:          #c8943e;
+  --accent-hover:    #d4a44e;
+  --surface-accent:  rgba(200, 148, 62, 0.04);
+  --font-display:    'Playfair Display', Georgia, 'Times New Roman', serif;
+  --leading-normal:  1.75;      /* More generous line height for long-form reading */
 }
 
-/* Radio: darker, music-forward, dense */
+/* Radio: darker, music-forward, dense — like a vinyl studio at night */
+/* bigmuddyradio.com */
 .theme-radio {
-  --bg: #151210;
-  --surface: #1d1a17;
-  --surface-2: #252119;
-  --surface-3: #2f2a22;
+  --bg:              #0e0c0a;   /* Deepest black — the control room */
+  --surface:         #161311;
+  --surface-2:       #1e1a16;
+  --surface-3:       #27221d;
+  --text:            #e8e0d0;
+  --text-muted:      #8a8070;
+  --accent:          #c8943e;
+  --accent-hover:    #d4a44e;
+  --accent-muted:    rgba(200, 148, 62, 0.12);
+  --border:          rgba(200, 148, 62, 0.08);
+  --shadow-glow:     0 0 30px rgba(200, 148, 62, 0.08);
+}
+
+/* Records: vinyl/studio — raw, analog, deep black */
+/* bigmuddyrecords.net */
+.theme-records {
+  --bg:              #0a0908;   /* Near-total black */
+  --surface:         #131110;
+  --surface-2:       #1c1916;
+  --surface-3:       #26221d;
+  --text:            #ddd5c0;
+  --text-muted:      #7a7060;
+  --accent:          #c07830;   /* Slightly deeper amber — worn vinyl label */
+  --accent-hover:    #d08840;
+  --accent-muted:    rgba(192, 120, 48, 0.12);
+  --border:          rgba(192, 120, 48, 0.08);
+  --shadow-glow:     0 0 24px rgba(192, 120, 48, 0.10);
+}
+
+/* Gallery: clean white museum — open, airy, art-forward */
+/* buycuriousart.com — original art from the Mississippi corridor */
+.theme-gallery {
+  --bg:              #FAFAF8;   /* Off-white — museum wall */
+  --surface:         #F3F2EE;
+  --surface-2:       #ECEAE4;
+  --surface-3:       #E3E0D8;
+  --text:            #1e1b18;   /* Near-black */
+  --text-muted:      #6a6358;
+  --text-disabled:   #9e978e;
+  --accent:          #c8943e;
+  --accent-hover:    #b07830;
+  --accent-muted:    rgba(200, 148, 62, 0.12);
+  --accent-subtle:   rgba(200, 148, 62, 0.06);
+  --slate:           #4a6274;
+  --slate-muted:     rgba(74, 98, 116, 0.15);
+  --border:          rgba(30, 27, 24, 0.10);
+  --border-strong:   rgba(30, 27, 24, 0.20);
+  --border-subtle:   rgba(30, 27, 24, 0.05);
+  --shadow-sm:       0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md:       0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg:       0 8px 24px rgba(0, 0, 0, 0.10);
+  --shadow-xl:       0 16px 40px rgba(0, 0, 0, 0.12);
+  --shadow-glow:     0 0 20px rgba(200, 148, 62, 0.10);
+}
+
+/* Economics: Outsider Economics — insurgent, gritty, anti-extraction */
+/* outsidereconomics.com */
+.theme-economics {
+  --bg:              #111318;   /* Cool dark — slightly blue-shifted vs warm default */
+  --surface:         #191c23;
+  --surface-2:       #22262f;
+  --surface-3:       #2c303b;
+  --text:            #e4e8f0;
+  --text-muted:      #8890a0;
+  --accent:          #b54c4c;   /* Red — the insurrectionary signal */
+  --accent-hover:    #c85c5c;
+  --accent-muted:    rgba(181, 76, 76, 0.15);
+  --accent-subtle:   rgba(181, 76, 76, 0.08);
+  --slate:           #4a7080;
+  --slate-muted:     rgba(74, 112, 128, 0.15);
+  --success:         #3a7040;
+  --border:          rgba(181, 76, 76, 0.10);
+  --border-strong:   rgba(181, 76, 76, 0.22);
+  --border-subtle:   rgba(228, 232, 240, 0.06);
+  --shadow-glow:     0 0 20px rgba(181, 76, 76, 0.12);
+}
+
+/* Hillbilly Dreams: the holding company — authoritative, minimal, iron & earth */
+/* hillbillydreamsinc.com */
+.theme-hillbilly {
+  --bg:              #12100e;   /* Deep earth — darker than touring */
+  --surface:         #1a1714;
+  --surface-2:       #232019;
+  --surface-3:       #2e2a22;
+  --text:            #f0ebe0;
+  --text-muted:      #9d968a;
+  --accent:          #c8943e;
+  --accent-hover:    #d4a44e;
+  --accent-muted:    rgba(200, 148, 62, 0.15);
+  --border:          rgba(200, 148, 62, 0.10);
+  --shadow-glow:     0 0 20px rgba(200, 148, 62, 0.08);
+}
+
+/* Admin: Big Muddy HQ — functional, high-contrast, utility-first */
+/* admin.bigmuddytouring.com — internal ops */
+.theme-admin {
+  --bg:              #0f1117;   /* Very dark, slightly cool — "command center" */
+  --surface:         #171a22;
+  --surface-2:       #1f2330;
+  --surface-3:       #282d3c;
+  --text:            #e2e8f0;
+  --text-muted:      #94a3b8;
+  --text-disabled:   #5a6580;
+  --accent:          #c8943e;
+  --accent-hover:    #d4a44e;
+  --accent-muted:    rgba(200, 148, 62, 0.15);
+  --slate:           #4a8090;
+  --border:          rgba(148, 163, 184, 0.10);
+  --border-strong:   rgba(148, 163, 184, 0.20);
+  --border-subtle:   rgba(148, 163, 184, 0.05);
+  --shadow-glow:     none;
 }
 
 /* Inn: "Offbeat Opulence" — official brand palette from Tracy's guidelines PDF */
