@@ -18,6 +18,83 @@ If any checkbox is unchecked, the task is **IN_PROGRESS**, not COMPLETE. Fix bef
 
 ---
 
+## [2026-03-22] — CC — BMT Brand Sweep + QC Infrastructure COMPLETE
+
+**Task:** Full brand audit + token system + QC workflow for all Hillbilly Dreams properties
+
+### What Was Done
+
+**Brand Tokens (`packages/config/tokens.css`)**
+- Corrected Inn brand: replaced live-site CSS with official PDF values (Gemini analysis of Tracy's brand guidelines PDF)
+  - Official palette: Cloud Dancer `#F1F0EC`, Magenta `#994878`/`#7C2855`, Sage `#ADC9B8`/`#6FA088`/`#235B4E`, Dark `#25282A`
+  - Official typography: Citrus Gothic (headlines) / Abril Fatface (subheads) / Montserrat (body)
+- Added `.theme-inn` with full official brand token mapping
+- Added 7 missing theme classes: `.theme-touring`, `.theme-magazine`, `.theme-radio`, `.theme-records`, `.theme-gallery`, `.theme-economics`, `.theme-hillbilly`, `.theme-admin`
+
+**Brands Config (`packages/config/brands.ts`)**
+- Fixed bug: `gallery.themeClass` was `'theme-touring'` → corrected to `'theme-gallery'`
+- Updated `records.primaryColor` to `#c07830` (matches theme accent)
+
+**Brand Memory (`memory/brand_big_muddy_inn.md`)**
+- Rewritten with confirmed official brand values (not live-site guesses)
+- Documents which colors are in the PDF vs. website-only
+
+**QC Infrastructure (`.agents/workflows/recursive-qc-sweep.md`)**
+- Mirrored AG's S2PX workflow to BMT
+- Added Phase 0: Brand Alignment (token completeness, color source verification, Tailwind/token collision)
+- Updated all grep paths for Next.js monorepo (`apps/` not `client/src/`)
+
+### Commits
+- `fbbb4d9` — fix(tokens): correct Inn brand to official PDF values
+- `c9949c5` — feat(tokens): full brand theme system, 9 classes, gallery fix
+- `987a06c` — docs(agents): add recursive QC workflow with BMT Phase 0
+
+### Phase 0 QC Results (ran today)
+- ✅ All 8 `themeClass` values in `brands.ts` → matched CSS classes in `tokens.css`
+- ✅ TSC: zero errors (`apps/web/tsconfig.json`)
+- ✅ No hardcoded counts in UI copy (`apps/`)
+- ✅ No stale text (lorem/todo/fixme/xxx)
+- ✅ No localStorage key mismatches found
+
+### QC_GATE
+- [x] **Route Verification:** Token/brand changes are CSS-only, no route changes
+- [x] **Domain Isolation:** Brand changes are BMT-only; no S2PX files touched
+- [x] **State Boundaries:** No state changes — pure CSS token additions
+
+**Status:** COMPLETE
+
+---
+
+## [2026-03-22 20:25] — AG — S2PX STATUS CHANGE
+
+**Task:** S2PX pipeline recalibration — product-led pivot + swarm infrastructure
+
+### S2PX Deal Status: AWAITING_SANDBOX_TELEMETRY
+- **Previous state:** Awaiting Proposal Review
+- **New state:** Awaiting Sandbox Telemetry — Owen receives sandbox link only, no proposal attached
+- **Rationale:** Let the architecture sell itself. Proposal deploys after Owen engages with the sandbox.
+- **Sandbox:** `s2px-sandbox.web.app` (live, functional, pulls live QuickBooks data)
+
+### Staged Artifacts (DO NOT SEND until sandbox engagement confirmed)
+- `~/Desktop/HBD_S2PX_Licensing_Proposal.pdf`
+- `~/Desktop/S2PX-Licensing-Proposal.html`
+- `~/Desktop/S2PX-Licensing-Proposal.docx`
+- `~/Desktop/S2PX-Marketing-Collateral.docx`
+
+### Swarm Infrastructure Created
+- `scripts/sync_gem.js` — Context exporter, bundles 11 repo files into timestamped Gem upload (207 KB)
+- `.agents/workflows/recursive-qc-sweep.md` — Reusable QC protocol (4 phases, turbo-all)
+- `exports/gem_context_*.txt` — Latest export ready for Knowledge Base upload
+
+### QC_GATE
+- [x] **Route Verification:** No route changes. Script and workflow are infra-only.
+- [x] **Domain Isolation:** Export maps to BMT files only. No S2PX file references in `sync_gem.js`.
+- [x] **State Boundaries:** S2PX status tracked here but no BMT→S2PX state leakage.
+
+**Status:** COMPLETE
+
+---
+
 ## [2026-03-21 19:00] — AG — COMPLETE
 
 **Task:** Brand themes (P2) + Funky mode mobile responsive (P4)
