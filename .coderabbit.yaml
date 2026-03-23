@@ -1,0 +1,72 @@
+version: "2"
+language: "en-US"
+
+reviews:
+  profile: "assertive"
+  request_changes_workflow: true
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+
+  path_filters:
+    - "!**/node_modules/**"
+    - "!**/.next/**"
+    - "!**/package-lock.json"
+    - "!**/pnpm-lock.yaml"
+
+  path_instructions:
+    - path: "packages/config/tokens.css"
+      instructions: |
+        BRAND TOKEN COMPLETENESS: Every theme class referenced in packages/config/brands.ts
+        must have a matching .theme-* class defined here. A missing class silently falls
+        back to :root — wrong brand, no error. Run a diff before approving.
+
+        COLOR SOURCE: The Big Muddy Inn official palette comes from Tracy's brand guidelines
+        PDF, NOT from thebigmuddyinn.com CSS. Official values: #F1F0EC (ivory), #994878
+        (magenta), #7C2855 (dark magenta), #ADC9B8/#235B4E (sage). Flag any deviation.
+
+    - path: "packages/config/brands.ts"
+      instructions: |
+        THEME CLASS WIRING: Every brand's themeClass value must exactly match a .theme-*
+        class in tokens.css. Flag any themeClass that doesn't have a corresponding CSS class.
+        Previous bug: gallery had themeClass: 'theme-touring' — wrong brand silently applied.
+
+    - path: "apps/web/app/**"
+      instructions: |
+        DOMAIN ISOLATION: BMT serves multiple brands (Inn, Gallery, Radio, Records, Magazine,
+        Economics, Touring, Hillbilly). Flag any component that hardcodes a specific brand's
+        color, copy, or logo instead of reading from the BRANDS config or theme tokens.
+
+        ZERO MAGIC STRINGS: Flag hardcoded business metrics (room counts, prices, occupancy
+        rates, revenue targets) in UI copy. These must be dynamic or vague enough that they
+        can't be fact-checked and found wrong.
+
+        TAILWIND + TOKEN COLLISION: If a layout component uses both Tailwind grid/flex AND
+        CSS custom properties from the token system, flag it. Tailwind display:grid can
+        compute as display:block when the token system overrides spacing. Use getComputedStyle
+        to verify, or switch to 100% inline styles for layout-critical elements.
+
+    - path: "apps/web/app/(ops)/**"
+      instructions: |
+        NEXTAUTH SESSION: Flag any redirect after a form submission that uses router.push()
+        without window.location.href as a fallback. Next.js App Router does not re-read
+        the JWT cookie on soft navigation — stale session state causes redirect loops.
+
+        ONBOARDING GUARD: The ops dashboard checks onboardingStep in both the JWT and the DB.
+        If the JWT claims pending_survey, the DB must be checked before redirecting. Flag
+        any guard that trusts the JWT alone.
+
+    - path: "e2e/**"
+      instructions: |
+        BMT SMOKE TESTS: These tests run against the live Firebase App Hosting URL
+        (https://bmt--bigmuddy-ff651.us-east4.hosted.app). Flag any test that:
+        - Requires authentication (no auth bypass exists in BMT smoke tests)
+        - Hardcodes localhost without a CHECKLY env guard
+        - Tests a route that requires database seeding to render content
+
+  auto_review:
+    enabled: true
+    drafts: false
+    base_branches:
+      - "main"
