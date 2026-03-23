@@ -73,6 +73,82 @@ const INTENT_HINTS: Record<NonNullable<Intent>, string> = {
 }
 
 // ─────────────────────────────────────────────────────────────
+// ASANA CONTEXT BUILDER
+// Fetches open tasks from the Hillbilly Dreams Inc project
+// using the Asana REST API. Gracefully degrades on failure.
+// Groups tasks by section so Delta Dawn can give targeted help.
+// ─────────────────────────────────────────────────────────────
+
+const ASANA_PROJECT_GID = '1213753731475702' // Hillbilly Dreams Inc
+
+async function buildAsanaContext(): Promise<string> {
+    const pat = process.env.ASANA_PAT
+    if (!pat) return ''
+
+    try {
+        const res = await fetch(
+            `https://app.asana.com/api/1.0/tasks?project=${ASANA_PROJECT_GID}` +
+            `&opt_fields=gid,name,completed,due_on,assignee.name,memberships.section.name` +
+            `&limit=100`,
+            {
+                headers: {
+                    Authorization: `Bearer ${pat}`,
+                    Accept: 'application/json',
+                },
+                signal: AbortSignal.timeout(6000),
+            }
+        )
+
+        if (!res.ok) {
+            console.error('[DeltaDawn] Asana fetch failed:', res.status)
+            return ''
+        }
+
+        const data = await res.json()
+        const tasks: any[] = data.data ?? []
+
+        // Separate open vs recently completed
+        const openBySection: Record<string, string[]> = {}
+        const recentlyDone: string[] = []
+
+        for (const task of tasks) {
+            const sectionName = task.memberships?.[0]?.section?.name || 'Uncategorized'
+            const due = task.due_on ? ` (due ${task.due_on})` : ''
+            const assignee = task.assignee?.name ? ` — ${task.assignee.name}` : ''
+            const line = `  - ${task.name}${due}${assignee}`
+
+            if (task.completed) {
+                recentlyDone.push(`  - ✓ ${task.name}`)
+            } else {
+                if (!openBySection[sectionName]) openBySection[sectionName] = []
+                openBySection[sectionName].push(line)
+            }
+        }
+
+        const totalOpen = Object.values(openBySection).reduce((n, arr) => n + arr.length, 0)
+        if (totalOpen === 0 && recentlyDone.length === 0) {
+            return '### Open Tasks (Asana)\n  (all clear — nothing pending)'
+        }
+
+        const openLines = Object.entries(openBySection)
+            .map(([section, taskLines]) => `**${section}** (${taskLines.length} open)\n${taskLines.join('\n')}`)
+            .join('\n\n')
+
+        const doneLines = recentlyDone.length > 0
+            ? `\n\n**Recently Completed**\n${recentlyDone.slice(0, 5).join('\n')}`
+            : ''
+
+        return `### Open Tasks (Asana — Hillbilly Dreams Inc)
+Total open: ${totalOpen}
+
+${openLines}${doneLines}`
+    } catch (err: any) {
+        console.error('[DeltaDawn] Asana context failed:', err?.message)
+        return ''
+    }
+}
+
+// ─────────────────────────────────────────────────────────────
 // DATABASE CONTEXT BUILDER
 // Runs in parallel with other setup. Gracefully degrades —
 // if any query fails the rest of the prompt still works.
@@ -238,11 +314,85 @@ ${reviewLines}`
 }
 
 // ─────────────────────────────────────────────────────────────
+// USER CONTEXT BUILDER
+// Maps the authenticated session to a persona-aware context
+// block injected at the top of every system prompt.
+// ─────────────────────────────────────────────────────────────
+
+interface SessionUser {
+    name?: string | null
+    email?: string | null
+    role?: string
+    onboardingStep?: string
+    interfaceTheme?: string
+}
+
+function buildUserContext(user: SessionUser | undefined): string {
+    if (!user?.email || user.email === 'anonymous') {
+        return `### Who You're Talking To
+Unknown guest — not logged in. Greet them warmly and ask who they are before diving into specifics.`
+    }
+
+    const email = user.email.toLowerCase()
+    const name = user.name || email.split('@')[0]
+    const role = (user as any).role || 'viewer'
+    const onboardingStep = (user as any).onboardingStep || 'complete'
+
+    // Map known identities to persona context
+    let persona = ''
+    let focus = ''
+    let salutation = name
+
+    if (email === 'tracy@thebigmuddyinn.com') {
+        persona = 'Tracy — Operations Manager, The Big Muddy Inn'
+        focus = 'Inn operations, reservations, guest experience, review management, and day-to-day logistics. Tracy is the heartbeat of the Inn floor. She is not a tech person — keep things warm, plain, and step-by-step. Celebrate her wins.'
+        salutation = 'Tracy'
+    } else if (email === 'amy@thebigmuddyinn.com' || email === 'amyaldersonallen@gmail.com') {
+        persona = 'Amy (Arri B. Aslin) — Artist-in-Residence & Creative Ops'
+        focus = 'Radio show content, parlor performances, social media, creative direction, and artist pipeline. Amy thinks in stories and songs, not spreadsheets. Lead with creative energy and connect everything to narrative and emotion.'
+        salutation = 'Amy'
+    } else if (email.endsWith('@chasepierson.tv') || email === 'chase@scan2plan.io' || email === 'chase@scantoplan.io') {
+        persona = 'Chase Pierson — Showrunner & Builder'
+        focus = 'System architecture, revenue strategy, cross-brand operations, and big-picture decisions. Chase built this entire ecosystem. Give him direct, technical answers when needed. Skip the hand-holding — he wants the real picture.'
+        salutation = 'Chase'
+    } else if (email === 'miles@studio.c.video' || email === 'miles@studio-c.com') {
+        persona = 'Miles — Studio C Production'
+        focus = 'Audio/video production, live sessions, mastering chain, Blues Room recording, and content delivery. Miles speaks the language of signal chains and timelines.'
+        salutation = 'Miles'
+    } else if (email === 'elijah@studio.c.video' || email === 'elijah@studio-c.video') {
+        persona = 'Elijah — Studio C Production'
+        focus = 'Audio/video production and live capture. Same as Miles — lead with technical specifics and production workflow.'
+        salutation = 'Elijah'
+    } else if (role === 'admin') {
+        persona = `${name} — Admin`
+        focus = 'Full ecosystem access. Treat like Chase — direct, technical, no hand-holding needed.'
+    } else {
+        persona = `${name} (${email})`
+        focus = 'General team member — warm greeting, ask what they need help with today.'
+    }
+
+    const onboardingNote = onboardingStep && onboardingStep !== 'complete' && onboardingStep !== 'pending_survey'
+        ? `\n- Onboarding status: ${onboardingStep} — they may still be getting oriented.`
+        : ''
+
+    return `### Who You're Talking To
+You are speaking directly with **${salutation}**.
+- Full identity: ${persona}
+- Their primary focus: ${focus}${onboardingNote}
+
+Address them by name (${salutation}) naturally — not every message, but enough that it feels personal. Calibrate your language, depth, and tone to who they are. Do NOT ask who they are — you already know.`
+}
+
+// ─────────────────────────────────────────────────────────────
 // SYSTEM PROMPT TEMPLATE
-// {{DATABASE_CONTEXT}} is replaced at request time.
+// {{CURRENT_USER}} and {{DATABASE_CONTEXT}} replaced at request time.
 // ─────────────────────────────────────────────────────────────
 
 const SYSTEM_PROMPT_TEMPLATE = `You are Delta Dawn, the AI brain of the Big Muddy ecosystem. You're warm, Southern-friendly, deeply knowledgeable, and always actionable. You help the entire team — Tracy (Operations), Amy/Arri B. Aslin (Artist/Performer), and Chase (Showrunner) — across every brand.
+
+## CURRENT USER
+
+{{CURRENT_USER}}
 
 ## YOUR ECOSYSTEM
 
@@ -430,16 +580,24 @@ export async function POST(req: Request) {
     const userId = session?.user?.email || 'anonymous'
     const userName = session?.user?.name || 'Guest'
 
-    // Run DB context fetch and user message save in parallel
-    const [dbContext] = await Promise.all([
+    // Run DB context, Asana context, and message save in parallel
+    const [dbContext, asanaContext] = await Promise.all([
         buildDatabaseContext(),
+        buildAsanaContext(),
         prisma.chatMessage.create({
             data: { sessionId, role: 'user', content: message, userId, userName },
         }),
     ])
 
+    const combinedContext = asanaContext
+        ? `${dbContext}\n\n${asanaContext}`
+        : dbContext
+
     // Build final system prompt with live context injected
-    const systemPrompt = SYSTEM_PROMPT_TEMPLATE.replace('{{DATABASE_CONTEXT}}', dbContext)
+    const userContext = buildUserContext(session?.user as SessionUser | undefined)
+    const systemPrompt = SYSTEM_PROMPT_TEMPLATE
+        .replace('{{CURRENT_USER}}', userContext)
+        .replace('{{DATABASE_CONTEXT}}', combinedContext)
 
     // Pull conversation history (after saving current message so it's included)
     const history = await prisma.chatMessage.findMany({

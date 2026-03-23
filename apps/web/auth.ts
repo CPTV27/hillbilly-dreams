@@ -103,7 +103,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
       return true;
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === 'update' && session) {
+        if (session.onboardingStep !== undefined) token.onboardingStep = session.onboardingStep;
+        if (session.interfaceTheme !== undefined) token.interfaceTheme = session.interfaceTheme;
+      }
       if (user) {
         token.id = user.id;
 

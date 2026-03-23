@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 const THEMES = [
   { value: 'futuristic', label: 'Futuristic', description: 'Dark glassmorphism, glowing accents, VR-ready.' },
@@ -108,6 +109,7 @@ const styles = {
 
 export default function SettingsPage() {
   const router = useRouter();
+  const { update: updateSession } = useSession();
   const [theme, setTheme] = useState('');
   const [commStyle, setCommStyle] = useState('');
   const [channels, setChannels] = useState<string[]>([]);
@@ -160,6 +162,9 @@ export default function SettingsPage() {
       }
       setSuccess('Preferences saved. Reloading...');
       setLastUpdated(new Date().toISOString());
+      // Push new interfaceTheme into the JWT so the server layout
+      // picks it up on reload without requiring a full re-login.
+      await updateSession({ interfaceTheme: theme });
       setTimeout(() => {
         router.refresh();
         window.location.reload();
