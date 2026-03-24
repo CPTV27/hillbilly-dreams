@@ -103,17 +103,6 @@ export default function MarginRecoveryEngine() {
         </div>
       </div>
 
-      {/* Pipeline insight */}
-      <div style={styles.insight}>
-        <h4 style={styles.insightTitle}>The Pipeline Multiplier</h4>
-        <p style={styles.insightText}>
-          {ACTUALS.estimates.toLocaleString()} estimates in the database. Your repeat business
-          with <strong>{ACTUALS.topClients[0].name}</strong> ({ACTUALS.topClients[0].projects} projects)
-          and <strong>{ACTUALS.topClients[1].name}</strong> ({ACTUALS.topClients[1].projects} projects) is
-          your moat. By automating quoting with iPhone video + LiDAR, your internal team reclaims the
-          capacity to handle this volume without outsourcing. Every dollar saved drops directly to net margin.
-        </p>
-      </div>
 
       {/* Revenue trajectory */}
       <div style={styles.trajectory}>

@@ -335,6 +335,5 @@ function Proposal() {
 }
 
 export default function ProposalPage() {
-  const [unlocked, setUnlocked] = useState(false);
-  return unlocked ? <Proposal /> : <PasswordGate onUnlock={() => setUnlocked(true)} />;
+  return <Proposal />;
 }
