@@ -12,6 +12,7 @@ const colors = {
   sky50: '#f0f9ff', sky100: '#e0f2fe', sky200: '#bae6fd', sky300: '#7dd3fc',
   sky400: '#38bdf8', sky500: '#0ea5e9', sky600: '#0284c7', sky700: '#0369a1', sky900: '#0c4a6e',
   orange400: '#fb923c', orange500: '#f97316', orange600: '#ea580c',
+  green400: '#4ade80',
   white: '#ffffff',
 };
 

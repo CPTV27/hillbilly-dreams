@@ -72,7 +72,7 @@ export default function CEOConsole() {
   const [chatInput, setChatInput] = useState('');
   const [chatLog, setChatLog] = useState<{ role: 'system' | 'user' | 'engine'; text: string }[]>([
     { role: 'system', text: 'Sovereign Orchestration Engine Online. Consumer AI protocols disabled.' },
-    { role: 'system', text: `JV Parameters loaded: ${JV.equitySplit} equity · $${(JV.platformFee / 1000).toFixed(0)}K platform fee · ${JV.hdxCommission}% commission` },
+    { role: 'system', text: `JV Parameters loaded: $${(JV.year1Total / 1000).toFixed(0)}K Yr1 Total · ${JV.hdxCommission}% base commission` },
   ]);
 
   // Derived metrics

@@ -36,11 +36,11 @@ export async function GET() {
     }, { status: 404 });
   }
 
-  const accessToken = googleAccount.access_token;
+  let accessToken = googleAccount.access_token;
 
   try {
     // ── 3. Fetch calendar list (capacity data) ──
-    const calendarResponse = await fetch(
+    let calendarResponse = await fetch(
       'https://www.googleapis.com/calendar/v3/users/me/calendarList',
       {
         headers: {
@@ -50,13 +50,48 @@ export async function GET() {
       }
     );
 
+    if (calendarResponse.status === 401 && googleAccount.refresh_token) {
+      const refreshBody = new URLSearchParams({
+        grant_type: 'refresh_token',
+        refresh_token: googleAccount.refresh_token,
+        client_id: process.env.GOOGLE_CLIENT_ID || '',
+        client_secret: process.env.GOOGLE_CLIENT_SECRET || ''
+      });
+      
+      const refreshRes = await fetch('https://oauth2.googleapis.com/token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: refreshBody.toString()
+      });
+
+      if (refreshRes.ok) {
+        const refreshedTokens = await refreshRes.json();
+        accessToken = refreshedTokens.access_token;
+        
+        await prisma.account.update({
+          where: { id: googleAccount.id },
+          data: {
+            access_token: refreshedTokens.access_token,
+            expires_at: Math.floor(Date.now() / 1000) + refreshedTokens.expires_in,
+          }
+        });
+
+        // Retry original request
+        calendarResponse = await fetch(
+          'https://www.googleapis.com/calendar/v3/users/me/calendarList',
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              Accept: 'application/json',
+            },
+          }
+        );
+      }
+    }
+
     if (calendarResponse.status === 401) {
-      // TODO: Implement Google token refresh flow:
-      // 1. POST to https://oauth2.googleapis.com/token
-      //    with grant_type=refresh_token, refresh_token=googleAccount.refresh_token,
-      //    client_id, client_secret
-      // 2. Update Account record with new access_token
-      // 3. Retry the original request
       return NextResponse.json({
         error: 'Google token expired — re-authentication required',
         connected: false,
@@ -112,8 +147,12 @@ export async function GET() {
       for (const event of events) {
         const start = event.start?.dateTime || event.start?.date;
         if (start) {
-          const dayName = new Date(start).toLocaleDateString('en-US', { weekday: 'long' });
-          dayCounts[dayName] = (dayCounts[dayName] || 0) + 1;
+          const dateObj = new Date(start);
+          // Smoke Test Fix: Prevent RangeError on corrupted date strings
+          if (!isNaN(dateObj.getTime())) {
+            const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
+            dayCounts[dayName] = (dayCounts[dayName] || 0) + 1;
+          }
         }
       }
       const busiestDay = Object.entries(dayCounts)

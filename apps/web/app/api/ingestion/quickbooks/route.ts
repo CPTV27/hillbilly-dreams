@@ -44,7 +44,7 @@ export async function GET() {
   // providerAccountId is Intuit's user ID (sub), NOT the company realmId.
   // We extract qboRealmId from the live session (vaulted from initial OAuth).
   const realmId = (session.user as any)?.qboRealmId;
-  const accessToken = qboAccount.access_token;
+  let accessToken = qboAccount.access_token;
 
   if (!realmId) {
     return NextResponse.json({
@@ -59,7 +59,7 @@ export async function GET() {
   try {
     const pnlUrl = `${QBO_BASE}/v3/company/${realmId}/reports/ProfitAndLoss?minorversion=70`;
 
-    const response = await fetch(pnlUrl, {
+    let response = await fetch(pnlUrl, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         Accept: 'application/json',
@@ -67,13 +67,47 @@ export async function GET() {
     });
 
     // ── 4. Handle token expiry ──
+    if (response.status === 401 && qboAccount.refresh_token) {
+      const tokenAuth = Buffer.from(`${process.env.QBO_CLIENT_ID}:${process.env.QBO_CLIENT_SECRET}`).toString('base64');
+      const refreshBody = new URLSearchParams({
+        grant_type: 'refresh_token',
+        refresh_token: qboAccount.refresh_token
+      });
+      
+      const refreshRes = await fetch('https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Basic ${tokenAuth}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Accept': 'application/json'
+        },
+        body: refreshBody.toString()
+      });
+
+      if (refreshRes.ok) {
+        const refreshedTokens = await refreshRes.json();
+        accessToken = refreshedTokens.access_token;
+        
+        await prisma.account.update({
+          where: { id: qboAccount.id },
+          data: {
+            access_token: refreshedTokens.access_token,
+            refresh_token: refreshedTokens.refresh_token || qboAccount.refresh_token,
+            expires_at: Math.floor(Date.now() / 1000) + refreshedTokens.expires_in,
+          }
+        });
+
+        // Retry original request
+        response = await fetch(pnlUrl, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            Accept: 'application/json',
+          },
+        });
+      }
+    }
+
     if (response.status === 401) {
-      // TODO: Implement token refresh flow:
-      // 1. POST to https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer
-      //    with grant_type=refresh_token, refresh_token=qboAccount.refresh_token
-      // 2. Update Account record with new access_token + refresh_token
-      // 3. Retry the original request
-      // For now, signal the frontend to re-auth:
       return NextResponse.json({
         error: 'QBO token expired — re-authentication required',
         connected: false,

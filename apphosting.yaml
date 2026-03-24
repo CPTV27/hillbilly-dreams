@@ -31,3 +31,5 @@ env:
     secret: ANTHROPIC_API_KEY
   - variable: PERPLEXITY_API_KEY
     secret: PERPLEXITY_API_KEY
+  - variable: TEAM_PASSWORD
+    secret: TEAM_PASSWORD

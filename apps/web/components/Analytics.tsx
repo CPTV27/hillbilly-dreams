@@ -12,6 +12,8 @@ export function Analytics() {
   return (
     <>
       {/* ── Google Analytics 4 ── */}
+      {/* TODO: Generate GA4 Property ID at analytics.google.com -> Admin -> Data Streams -> Web. Then add NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX to your .env or server secrets. */}
+      {/* ── Google Analytics 4 ── */}
       {gaMeasurementId && (
         <>
           <Script

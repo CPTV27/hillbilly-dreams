@@ -217,13 +217,21 @@ The S2PX equity split changed from 80/20 to 90/10 per this directive. The CEO Co
 
 ## BACKLOG
 
-- [ ] **S2PX Ingestion Pipeline (Phase 03):** HDXNode + SpatialScan models in S2PX repo, Vertex AI wrapper, HMAC-secured webhook. Target: `/Users/chasethis/S2PX`. Do NOT put in BMT schema.
-- [ ] **config/hdx-narrative.ts:** Centralized brand copy dictionary — single source of truth for all narrative strings across Golden Thread pages
+- [x] **config/hdx-narrative.ts:** COMPLETE — Measurably Better directive locked, HoldCo/Product split, all tiers
+- [x] **Ingestion pipeline scaffold (AG):** COMPLETE — Google/QBO OAuth routes, S2PX ingest webhook, Vertex AI spatial wrapper
+- [x] **measurablybetterthings.com domain:** COMPLETE — Cloudflare Worker proxy, domain routes, brand prefix, landing page
+- [ ] **S2PX Ingestion Pipeline (Phase 03):** HDXNode + SpatialScan models in S2PX repo (NOT BMT). Target: `/Users/chasethis/S2PX`
+- [ ] **Wire hdx-narrative.ts into components:** Replace hardcoded strings with HDX_NARRATIVE imports
 - [ ] **HDX Monorepo Migration (Phase 3):** Move BMT into `apps/bmt` inside `hillbilly-dreams-inc` repo
 - [ ] **S2PX on hdi-s2px:** Create Firebase backend + connect GitHub for S2PX deploy
+- [ ] **CEO Console — wire Vertex AI:** Connect chat scaffold to live Gemini 1.5 Pro
+- [ ] **Token refresh flow (QBO + Google):** Both ingestion endpoints return 401 on expired tokens. Need auto-refresh + retry logic. Files: `api/ingestion/quickbooks/route.ts`, `api/ingestion/google/route.ts`
+- [ ] **Sign in with Apple:** Add NextAuth Apple provider for zero-password auth (apps/web/auth.ts)
+- [ ] **TEAM_PASSWORD env var:** Verify set on Cloud Run. `getTeamPassword()` in `config/auth-rules.ts` throws if missing.
+- [ ] **GA4 property ID:** Replace `G-XXXXXXXXXX` in `components/Analytics.tsx` with real GA4 ID
+- [ ] **NEXTAUTH_URL secret:** Update on hdx-bmt and hillbillydreams projects to `https://measurablybetterthings.com`
 - [ ] **All BMT domain CNAMEs:** 10+ domains still need CNAME updates to Cloud Run
-- [ ] **GA4 property ID:** Replace placeholder `G-XXXXXXXXXX`
-- [ ] **NEXTAUTH_URL secret:** Update on hdx-bmt and hillbillydreams to production URL
+- [ ] **Bitwarden integration:** Centralized secrets management for agent API keys
 - [ ] **DirectoryBusiness schema migration:** `prisma db push` against production
 
 ---
