@@ -72,7 +72,52 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       allowDangerousEmailAccountLinking: true,
+      authorization: {
+        params: {
+          scope: [
+            'openid',
+            'email',
+            'profile',
+            'https://www.googleapis.com/auth/calendar.readonly',
+            'https://www.googleapis.com/auth/drive.readonly',
+            'https://www.googleapis.com/auth/gmail.readonly',
+          ].join(' '),
+          access_type: 'offline',
+          prompt: 'consent',
+        },
+      },
     }),
+    // ── QuickBooks Online (Intuit) Custom Provider ──
+    {
+      id: 'quickbooks',
+      name: 'QuickBooks Online',
+      type: 'oauth',
+      clientId: process.env.QBO_CLIENT_ID,
+      clientSecret: process.env.QBO_CLIENT_SECRET,
+      authorization: {
+        url: 'https://appcenter.intuit.com/connect/oauth2',
+        params: {
+          scope: 'com.intuit.quickbooks.accounting openid profile email',
+          response_type: 'code',
+        },
+      },
+      token: 'https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer',
+      userinfo: {
+        // Sandbox for dev; swap to accounts.platform.intuit.com for production
+        url: process.env.QBO_SANDBOX === 'true'
+          ? 'https://sandbox-accounts.platform.intuit.com/v1/openid_connect/userinfo'
+          : 'https://accounts.platform.intuit.com/v1/openid_connect/userinfo',
+      },
+      profile(profile: any) {
+        return {
+          id: profile.sub,
+          name: profile.givenName
+            ? `${profile.givenName} ${profile.familyName || ''}`.trim()
+            : profile.email,
+          email: profile.email,
+        };
+      },
+    },
     Credentials({
       name: 'Email & Password',
       credentials: {
@@ -110,10 +155,22 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       await bmtOnSignIn(user);
       return true;
     },
-    async jwt({ token, user, trigger, session }) {
+    async jwt({ token, user, account, trigger, session }) {
       if (trigger === 'update' && session) {
         if (session.onboardingStep !== undefined) token.onboardingStep = session.onboardingStep;
         if (session.interfaceTheme !== undefined) token.interfaceTheme = session.interfaceTheme;
+      }
+      // ── Token Vault: capture OAuth tokens on initial sign-in ──
+      // PrismaAdapter writes the Account record to DB (primary vault).
+      // We also pass tokens through the JWT for immediate session access.
+      if (account) {
+        token.accessToken = account.access_token;
+        token.refreshToken = account.refresh_token;
+        token.provider = account.provider;
+        // QBO-specific: capture realmId from the authorization response
+        if (account.provider === 'quickbooks' && account.realmId) {
+          token.qboRealmId = account.realmId;
+        }
       }
       if (user) {
         token.id = user.id;
@@ -137,6 +194,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         (session.user as any).role = token.role as string;
         (session.user as any).interfaceTheme = token.interfaceTheme as string;
         (session.user as any).onboardingStep = token.onboardingStep as string;
+        // ── Expose token state for dashboard connection indicators ──
+        (session.user as any).provider = token.provider as string;
+        (session.user as any).hasAccessToken = !!token.accessToken;
+        (session.user as any).qboRealmId = token.qboRealmId as string | undefined;
       }
       return session;
     },

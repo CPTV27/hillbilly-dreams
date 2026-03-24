@@ -64,6 +64,7 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
   { pattern: 'studioc.video', routeGroup: 'studio' },
   { pattern: 'tuthilldesign', routeGroup: 'tuthill' },
   { pattern: 'hillbillydreams', routeGroup: 'hillbilly' },
+  { pattern: 'measurablybetter', routeGroup: 'measurably-better' },
 ];
 
 // ── Local Development Domain Mappings ──
@@ -98,6 +99,7 @@ export const BMT_BRAND_PREFIXES = [
   '/touring', '/magazine', '/radio', '/economics', '/media',
   '/admin', '/ops', '/portal', '/platform', '/gallery',
   '/records', '/studio', '/tuthill', '/hillbilly',
+  '/measurably-better',
 ];
 
 // ── Admin path shortcuts ──
@@ -114,7 +116,7 @@ export const BMT_ADMIN_PATH_SHORTCUTS = [
 export const BMT_VALID_DEV_BRANDS = [
   'touring', 'magazine', 'radio', 'economics', 'media',
   'admin', 'ops', 'gallery', 'records', 'platform',
-  'studio', 'tuthill', 'hillbilly',
+  'studio', 'tuthill', 'hillbilly', 'measurably-better',
 ];
 
 // ── Default fallback route group ──
