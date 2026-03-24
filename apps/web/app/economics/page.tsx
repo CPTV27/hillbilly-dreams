@@ -4,7 +4,7 @@
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
-const homeDescription = 'Your community is coordination-poor, not resource-poor. The math, the frameworks, and the field-tested playbook for building sovereign local economies.';
+const homeDescription = 'Eighty cents of every dollar earned in a Deep South community leaves within 48 hours. Not because people spend recklessly — because the infrastructure was built to move money out. Here is the math, the framework, and the field-tested playbook for stopping it.';
 export const metadata: Metadata = {
   title: 'Outsider Economics — A Field Manual for Independent Economic Systems',
   description: homeDescription,
@@ -95,9 +95,11 @@ export default function EconomicsHomepage() {
             <em>Economics</em>
           </h1>
           <p className="econ-hero__sub">
-            Everybody says their town is broke. Nobody ran the numbers.
+            Eighty cents of every dollar earned here leaves within 48 hours.
             <br />
-            I did. Turns out the money was there the whole time.
+            Not bad luck. Not poverty. A machine designed to drain you.
+            <br />
+            Here&apos;s how it works — and how to stop it.
           </p>
           <div className="econ-hero__ctas">
             <a href="/field-manual" className="btn btn--primary">

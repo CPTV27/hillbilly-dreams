@@ -18,6 +18,39 @@ If any checkbox is unchecked, the task is **IN_PROGRESS**, not COMPLETE. Fix bef
 
 ---
 
+## [2026-03-24] — CC — COMPLETE
+
+**Task:** Deep South Directory MVP (DISPATCH.md) + Narrative updates
+
+### What CC Did
+
+**Deep South Directory MVP — 5 tasks complete:**
+1. `apps/web/app/directory/page.tsx` — hero sub reframed, editorial surface added (OE Brief 001 + Rise Up Spotlight cards), tiers updated (Free / $99 / $299 / $1,200+), CTA email → `listings@hillbillydreamsinc.com`, "Powered by HDX" mark, "Get Listed" → `/directory/submit`
+2. `apps/web/app/directory/submit/page.tsx` — 3-step intake form (Business → Economics survey → Contact), redirects to `/confirmed` with AI spotlight in URL params
+3. `apps/web/app/directory/submit/confirmed/page.tsx` — NEW: thank-you page with spotlight preview, "what happens next" steps, HDX upsell panel
+4. `apps/web/app/api/directory/submit/route.ts` — validates fields, generates spotlight via Anthropic claude-haiku-4-5, sends ntfy notification to ops, returns spotlight in response
+5. `apps/web/app/directory/dashboard/page.tsx` — "Powered by HDX · hillbillydreamsinc.com" mark, AI Spotlight card section, locked HDX OS panel (mailto:licensing@hillbillydreamsinc.com), email → `listings@hillbillydreamsinc.com`
+6. `packages/database/prisma/schema.prisma` — `DirectoryBusiness` model added to db-media sovereign. Fields: id, name, category, city, website, description, contactName, contactEmail, tier, spotlight, toolsOrigin, softwareSpend, hearAbout, active, timestamps. Indexes: city, category, tier, active. **No migration run.**
+
+**Narrative and copy updates:**
+- `apps/web/app/hillbilly/page.tsx` — story section updated: Big Muddy Touring / Snowbird Circuit / Prevost buses added, Rise Up elevated to full dual-role (band + regional program), $450K economic workshop stat, 20 people per community, closing updated to canonical "We are not building a startup..."
+- `HDXContextSeeding/08_HDX_Story.md` — complete rewrite with five-chapter structure: Origin → Platform → Showroom → Big Muddy Touring & Rise Up → Mission
+- `/tmp/build_proposal.js` + rebuilt `/Users/chasethis/Desktop/HDX_S2PX_Licensing_Proposal.docx` — two surgical inserts: (1) Executive Summary micromedia company in a bottle paragraph, (2) Section 4 Media Engine bridging sentence
+
+**Sovereignty maintained:**
+- All directory writes scoped to `db-media` only
+- No cross-sovereign imports
+- `packages/content-engine` is the only permitted AI integration point in the route
+
+### QC_GATE
+- [x] **Route Verification:** `/directory`, `/directory/submit`, `/directory/submit/confirmed`, `/directory/dashboard` all resolve within the media sovereign. No BMT/S2PX route bleed.
+- [x] **Domain Isolation:** `DirectoryBusiness` model is in `schema.prisma` (db-media). No S2PX or hospitality data touched.
+- [x] **State Boundaries:** Dashboard client state scoped to `useSearchParams` client token. No global state leakage.
+
+**Status:** COMPLETE — DISPATCH.md ready to clear. Awaiting QC_GATE approval for DISPATCH-DIRECTORY-DATA-001 (seed script).
+
+---
+
 ## [2026-03-23 00:15] — CC — COMPLETE
 
 **Task:** Replace ARCHITECTURE.md with owner-verified canonical map

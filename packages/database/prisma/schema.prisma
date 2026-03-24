@@ -724,6 +724,7 @@ model User {
 
   onboardingCompletedAt DateTime?
 
+  artistApplications ArtistApplication[]
   accounts      Account[]
   sessions      Session[]
   createdAt     DateTime  @default(now())
@@ -883,21 +884,42 @@ model ArtOrder {
 
 
 model ArtistApplication {
-  id           String   @id @default(cuid())
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  portfolioUrl    String
+  artistStatement String   @db.Text
+  status          String   @default("PENDING") // PENDING | APPROVED | REJECTED
+  stripeAccountId String?  // nullable string for the Connect destination
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+  @@index([status])
+}
+
+// ── Deep South Directory ──────────────────────────────────────────────────────
+
+model DirectoryBusiness {
+  id           Int      @id @default(autoincrement())
   name         String
-  email        String
+  category     String
   city         String
-  state        String
   website      String?
-  instagram    String?
-  medium       String
-  yearsActive  String?
-  bio          String   @db.Text
-  portfolioUrl String
-  priceRange   String?
-  whyBCA       String?  @db.Text
-  status       String   @default("pending") // pending | approved | rejected
-  notes        String?  @db.Text
+  description  String   @db.Text
+  contactName  String
+  contactEmail String
+  tier         String   @default("free") // free | main_street | the_route | hdx_ops
+  spotlight    String?  @db.Text         // AI-generated editorial copy
+  toolsOrigin  String?                   // Survey: where tools come from
+  softwareSpend String?                  // Survey: monthly software spend
+  hearAbout    String?                   // How they found the directory
+  active       Boolean  @default(false)  // Manually activated by admin
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+
+  @@index([city])
+  @@index([category])
+  @@index([tier])
+  @@index([active])
 }

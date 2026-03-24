@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useSession, SessionProvider } from 'next-auth/react';
 
 // ── Types ──
 type Brand = 'S2PX' | 'BMT' | 'BuyCurious' | 'Corporate';
@@ -162,7 +163,8 @@ function ChecklistItem({ label }: { label: string }) {
   );
 }
 
-export default function OnboardingSurvey() {
+function OnboardingSurveyInner() {
+  const { update } = useSession();
   const [step, setStep] = useState(0);
   const [state, setState] = useState<OnboardingState>(INITIAL);
   const [saving, setSaving] = useState(false);
@@ -205,6 +207,7 @@ export default function OnboardingSurvey() {
         const data = await res.json();
         throw new Error(data.error || 'Failed to save');
       }
+      await update({ onboardingStep: 'completed' });
       setDone(true);
     } catch (err: any) {
       setError(err.message);
@@ -519,6 +522,14 @@ export default function OnboardingSurvey() {
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap');
       `}</style>
     </div>
+  );
+}
+
+export default function OnboardingSurvey() {
+  return (
+    <SessionProvider>
+      <OnboardingSurveyInner />
+    </SessionProvider>
   );
 }
 

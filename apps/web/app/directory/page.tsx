@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Deep South Directory — Local Business Marketing',
   description:
-    'Marketing services for restaurants, venues, hotels, shops, and tour operators along the Mississippi corridor. AI content, photography, social media, SEO — all powered by the Big Muddy ecosystem.',
+    'The regional business network for the Mississippi Corridor. Find locals. Get found. Keep your money in the region. Powered by HDX.',
 };
 
 const CATEGORIES = [
@@ -90,43 +90,40 @@ const TIERS = [
   },
   {
     name: 'Main Street',
-    price: '$50/mo',
+    price: '$99/mo',
     features: [
       'Everything in Free Listing',
       'Enhanced profile with photos and description',
+      'AI-generated editorial spotlight',
       'Featured in Magazine articles when relevant',
       'Monthly performance report',
       'AI-optimized business description for search',
-      'Connect your Stripe account',
     ],
   },
   {
     name: 'The Route',
-    price: '$150/mo',
+    price: '$299/mo',
     features: [
       'Everything in Main Street',
+      'Spotlight cross-published to Big Muddy Magazine',
       'Social media management (2 platforms, 12 posts/mo)',
-      'Quarterly photo session with Chase Pierson',
       'Big Muddy Radio mentions',
       'Priority placement in directory search',
       'AI Search Optimization (structured data, llms.txt)',
       'All payment & booking integrations',
-      'Google Analytics dashboard',
     ],
   },
   {
-    name: 'Blues Room',
-    price: '$300/mo',
+    name: 'HDX Ops',
+    price: '$1,200+/mo',
     features: [
       'Everything in The Route',
-      'Full social media management (4 platforms, 20 posts/mo)',
-      'Magazine feature article',
-      'Video content production',
-      'Email marketing setup and management',
-      'Website hosting and maintenance',
-      'Analytics dashboard',
-      'All integrations included',
-      'Custom API access',
+      'Full HDX operating system deployment',
+      'Sales pipeline, billing, project management, client delivery',
+      'One platform replacing your entire software stack',
+      'Hillbilly Dreams as your embedded technology arm',
+      '24/7 uptime monitoring with SLA',
+      'QuickBooks sync included',
     ],
   },
 ];
@@ -198,10 +195,7 @@ export default function DirectoryPage() {
             marginTop: '2rem',
           }}
         >
-          Marketing services for restaurants, venues, hotels, and shops along the
-          Mississippi corridor. Powered by the Big Muddy ecosystem — Magazine features,
-          Radio placement, AI content, photography, and the only business directory
-          that&apos;s also a media company.
+          The regional business network for the Mississippi Corridor. Find locals. Get found. Keep your money in the region.
         </p>
         <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <a
@@ -248,6 +242,119 @@ export default function DirectoryPage() {
         role="img"
         aria-label="Downtown Natchez street"
       />
+
+      {/* Editorial Surface */}
+      <section
+        style={{
+          borderTop: '1px solid var(--muted, #333)',
+          padding: '3rem 1.5rem',
+          maxWidth: 900,
+          margin: '0 auto',
+        }}
+      >
+        <p
+          style={{
+            fontSize: '0.8rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            color: 'var(--accent, #c8943e)',
+            marginBottom: '0.5rem',
+          }}
+        >
+          From the Corridor
+        </p>
+        <p
+          style={{
+            fontSize: '1.15rem',
+            fontWeight: 700,
+            color: 'var(--fg, #f5f0eb)',
+            marginBottom: '2rem',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          The network is alive.
+        </p>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '1.5rem',
+          }}
+        >
+          {[
+            {
+              label: 'Outsider Economics · Brief 001',
+              title: 'The 80% Extraction Rate (And How to Stop It)',
+              desc: 'Eighty cents of every dollar earned in the Deep South leaves within 48 hours. Not bad luck. A machine designed to drain you. Here\'s how it works — and how to stop it.',
+              href: '/economics/field-manual/02-the-extraction-trap',
+            },
+            {
+              label: 'Big Muddy Spotlight · Issue 001',
+              title: 'Rise Up: The Talent Has Always Been Here.',
+              desc: 'Arrie Aslin and the Rise Up Gospel and Blues Band travel the corridor. At every stop: a live show, a regional talent search, and the economic program running underneath.',
+              href: '/touring',
+            },
+          ].map((card) => (
+            <a
+              key={card.title}
+              href={card.href}
+              style={{
+                display: 'block',
+                border: '1px solid var(--muted, #333)',
+                padding: '1.75rem',
+                textDecoration: 'none',
+                transition: 'border-color 0.2s',
+              }}
+            >
+              <p
+                style={{
+                  fontSize: '0.7rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  color: 'var(--accent, #c8943e)',
+                  marginBottom: '0.5rem',
+                  opacity: 0.8,
+                }}
+              >
+                {card.label}
+              </p>
+              <h3
+                style={{
+                  fontSize: '1rem',
+                  fontWeight: 700,
+                  color: 'var(--fg, #f5f0eb)',
+                  margin: '0 0 0.75rem',
+                  lineHeight: 1.3,
+                  letterSpacing: '-0.01em',
+                }}
+              >
+                {card.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: '0.82rem',
+                  color: 'var(--fg, #f5f0eb)',
+                  opacity: 0.55,
+                  lineHeight: 1.6,
+                  margin: '0 0 1rem',
+                }}
+              >
+                {card.desc}
+              </p>
+              <span
+                style={{
+                  fontSize: '0.75rem',
+                  color: 'var(--accent, #c8943e)',
+                  borderBottom: '1px solid var(--accent, #c8943e)',
+                  paddingBottom: '0.1rem',
+                }}
+              >
+                Read →
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
 
       {/* Categories */}
       <section
@@ -705,7 +812,7 @@ export default function DirectoryPage() {
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <a
-            href="mailto:directory@bigmuddymedia.com"
+            href="/directory/submit"
             style={{
               display: 'inline-block',
               padding: '0.75rem 2rem',
@@ -741,7 +848,19 @@ export default function DirectoryPage() {
             opacity: 0.4,
           }}
         >
-          directory@bigmuddymedia.com
+          listings@hillbillydreamsinc.com
+        </p>
+        <p
+          style={{
+            marginTop: '2rem',
+            fontSize: '0.7rem',
+            color: 'var(--fg, #f5f0eb)',
+            opacity: 0.25,
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+          }}
+        >
+          Powered by HDX · hillbillydreamsinc.com
         </p>
       </section>
     </main>
