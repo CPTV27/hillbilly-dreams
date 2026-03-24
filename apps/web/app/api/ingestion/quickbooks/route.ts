@@ -40,8 +40,20 @@ export async function GET() {
     }, { status: 404 });
   }
 
-  const realmId = qboAccount.providerAccountId;
+  // ── Smoke Test Fix: realmId extraction & missing ID safeguard ──
+  // providerAccountId is Intuit's user ID (sub), NOT the company realmId.
+  // We extract qboRealmId from the live session (vaulted from initial OAuth).
+  const realmId = (session.user as any)?.qboRealmId;
   const accessToken = qboAccount.access_token;
+
+  if (!realmId) {
+    return NextResponse.json({
+      error: 'Missing QuickBooks Company ID (realmId)',
+      connected: false,
+      requiresReauth: true,
+      action: 'Please reconnect QuickBooks to capture the company profile.',
+    }, { status: 400 });
+  }
 
   // ── 3. Fetch P&L from Intuit API ──
   try {
