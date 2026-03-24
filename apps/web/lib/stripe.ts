@@ -4,13 +4,27 @@
 
 import Stripe from 'stripe';
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  console.warn('[Stripe] STRIPE_SECRET_KEY not set — Stripe calls will fail at runtime');
+// Lazy singleton — avoids throwing at build time when STRIPE_SECRET_KEY is absent.
+let _stripe: Stripe | null = null;
+
+export function getStripeClient(): Stripe {
+  if (!_stripe) {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      throw new Error('[Stripe] STRIPE_SECRET_KEY is not configured');
+    }
+    _stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2024-06-20' as Stripe.LatestApiVersion,
+      typescript: true,
+    });
+  }
+  return _stripe;
 }
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2024-06-20' as Stripe.LatestApiVersion,
-  typescript: true,
+/** @deprecated Use getStripeClient() inside request handlers. Kept for compatibility. */
+export const stripe = new Proxy({} as Stripe, {
+  get(_target, prop) {
+    return (getStripeClient() as any)[prop];
+  },
 });
 
 // Brand classes for revenue tracking across the holding company

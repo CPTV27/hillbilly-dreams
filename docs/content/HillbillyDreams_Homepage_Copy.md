@@ -8,7 +8,7 @@
 
 **Technology Platform for the New South.**
 
-We build local. We extract nothing. We grow from within.
+We build local. The value stays local. We grow from within.
 
 ---
 
@@ -69,7 +69,7 @@ Through **Rise Up**, we are building sovereign infrastructure in the field. Arri
 
 We figured out how to stop the extraction in our own house. Now we are using the music to bring that infrastructure to the rest of the region.
 
-We build local. We extract nothing. We use the technology to protect the art, and we use the art to rebuild the Deep South.
+We build local. The value stays local. We use the technology to protect the art, and we use the art to rebuild the Deep South.
 
 ---
 
