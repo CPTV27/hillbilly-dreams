@@ -4,6 +4,38 @@
 
 ---
 
+## THE CORE MISSION (Read This First)
+
+We are not building generic SaaS or a standard web app. We are building **sovereign digital infrastructure for the New South.**
+
+Eighty cents of every dollar earned in the Deep South leaves the zip code within 48 hours. Absentee tech platforms (booking conglomerates, delivery apps, ticketing monopolies) engineer massive capital flight, treating our communities as consumer endpoints.
+
+**Our goal: Stop the bleed.** We build the engines (HDX) that allow local artists, venues, and Main Street businesses to retain 100% of their margin. We engineer a closed-loop economy where money recirculates locally (The Local Multiplier).
+
+### The Lexicon (How We Speak)
+
+Always use our specific economic and insurgent language. Avoid generic Silicon Valley jargon.
+
+- **USE:** Sovereign infrastructure, capital flight, absentee platforms, wealth drain, local multiplier, margin recovery, New South, rooted infrastructure, closed-loop economy.
+- **AVOID:** "Disruptive," "SaaS," "Synergy," "Empowering users," "Independent" (when referring to the region, use "New South").
+
+### Core Entities
+
+- **HDX Engine:** Our proprietary, Google Cloud-powered operating system.
+- **Scan2Plan (S2PX):** The physical-to-digital onboarding bridge (3D scanning spaces to ingest into HDX).
+- **Deep South Directory:** The parallel economy / localized economic network where our users cross-pollinate.
+- **Big Muddy Ecosystem:** Our owned-and-operated proof of concept in Natchez, MS (Inn, Magazine, Radio, Touring, Label).
+
+### Design Language
+
+Stark, premium, and industrial. Dark modes (slate950/slate900) mixed with intentional neon highlights (sky400, orange500). It should feel like enterprise software built in a Mississippi juke joint. **Pure inline CSS objects — zero Tailwind in BMT.**
+
+### AI Philosophy
+
+AI for margin recovery, not gimmicks. AI implementations must focus on capacity automation and direct booking — things that save businesses time and recover lost revenue.
+
+---
+
 ## 0. BEFORE YOU WRITE A SINGLE LINE OF CODE
 
 Read these files in order. Non-negotiable.
