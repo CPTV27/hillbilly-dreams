@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import { Shield, Server, Zap, LineChart, Briefcase, Database, Cloud, ChevronRight, CheckCircle2, Lock } from 'lucide-react';
+import SplitScreenDemo from '../../../../components/proposal/SplitScreenDemo';
+import MarginRecoveryEngine from '../../../../components/proposal/MarginRecoveryEngine';
 
 const PASSWORD = 'Scan2Plan2026';
 
@@ -238,7 +240,57 @@ function Proposal() {
           </div>
         </section>
 
-        {/* §5 Equity & Terms */}
+        {/* §5 AI Vision Demo */}
+        <SplitScreenDemo />
+
+        {/* §6 ROI Calculator */}
+        <MarginRecoveryEngine />
+
+        {/* §7 60-Day Onboarding */}
+        <section style={{ maxWidth: '900px', margin: '4rem auto', padding: '0 1rem' }}>
+          <h3 style={{ fontSize: '1.75rem', fontWeight: 800, color: colors.slate900, margin: '0 0 0.75rem', letterSpacing: '-0.5px' }}>60-Day Deployment Roadmap</h3>
+          <p style={{ color: colors.slate600, lineHeight: 1.6, margin: '0 0 2rem' }}>
+            Two phases. Zero disruption to your active projects.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+            <div style={{ background: colors.slate900, borderRadius: 16, padding: '2rem', border: `1px solid ${colors.slate700}` }}>
+              <div style={{ display: 'inline-block', padding: '4px 12px', borderRadius: 8, background: colors.sky600, color: colors.white, fontSize: '0.75rem', fontWeight: 700, marginBottom: 16, letterSpacing: '0.05em' }}>DAYS 1–30</div>
+              <h4 style={{ color: colors.white, fontWeight: 700, fontSize: '1.1rem', margin: '0 0 16px' }}>S2PX Platform Integration</h4>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {[
+                  'QuickBooks Online sync — live financial dashboard',
+                  'Project pipeline migration — historical data import',
+                  'Scan team onboarding — mobile field app training',
+                  'Gemini AI scoping agent — auto-quote from form data',
+                  'Client portal activation — deliverables viewer live',
+                ].map((item, i) => (
+                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, color: colors.slate300, fontSize: '0.9rem' }}>
+                    <CheckCircle2 size={16} color={colors.sky400} style={{ flexShrink: 0, marginTop: 2 }} />{item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div style={{ background: colors.slate900, borderRadius: 16, padding: '2rem', border: `1px solid ${colors.slate700}` }}>
+              <div style={{ display: 'inline-block', padding: '4px 12px', borderRadius: 8, background: colors.orange500, color: colors.white, fontSize: '0.75rem', fontWeight: 700, marginBottom: 16, letterSpacing: '0.05em' }}>DAYS 31–60</div>
+              <h4 style={{ color: colors.white, fontWeight: 700, fontSize: '1.1rem', margin: '0 0 16px' }}>Marketing Engine Rollout</h4>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {[
+                  'Automated case studies — Gemini drafts from project data',
+                  'Google Business Profile sync — fresh project photos weekly',
+                  'Local SEO content pipeline — city-specific landing pages',
+                  'Precision outreach — authenticated Gmail sequences',
+                  'Conversion attribution — HDX-tracked lead-to-close pipeline',
+                ].map((item, i) => (
+                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, color: colors.slate300, fontSize: '0.9rem' }}>
+                    <CheckCircle2 size={16} color={colors.orange400} style={{ flexShrink: 0, marginTop: 2 }} />{item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* §8 Equity & Terms */}
         <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 48, borderTop: `1px solid ${colors.slate200}`, paddingTop: 48 }}>
           <div>
             <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: colors.slate900, margin: '0 0 20px' }}>Equity &amp; Alignment</h2>
