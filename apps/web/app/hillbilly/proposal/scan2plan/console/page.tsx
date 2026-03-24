@@ -19,9 +19,12 @@ const C = {
 // JV Parameters — Model A ($134K Joint Venture)
 // ─────────────────────────────────────────────────────────────
 const JV = {
-  platformFee: 134_000,
-  equitySplit: '80/20',
-  hdxCommission: 7,
+  coreNode: 5_000,       // /mo
+  growthModule: 1_000,    // /mo
+  monthlyTotal: 6_000,    // /mo at full rate
+  year1Total: 63_000,     // $0 + $3K + ($6K × 10)
+  hdxCommission: 7,       // % on first $1M funnel-closed
+  hdxCommissionTier2: 5,  // % above $1M
   baseRevenue: 1_120_000,
   outsideServices: 358_000,
   baseNetIncome: 261_000,
@@ -120,7 +123,7 @@ export default function CEOConsole() {
           <Readout label="Margin Recovery" value={`$${marginRecovered.toLocaleString()}`} color={C.green400} />
           <Readout label="Capacity Unlocked" value={`${capacityUnlocked} jobs`} color={C.green400} />
           <Readout label="Context Bleed Rate" value="0.00%" color={C.green400} />
-          <Readout label="JV Equity" value={JV.equitySplit} color={C.sky400} />
+          <Readout label="Year 1 Total" value={`$${(JV.year1Total / 1000).toFixed(0)}K`} color={C.sky400} />
         </div>
       </div>
 
@@ -166,9 +169,10 @@ export default function CEOConsole() {
 
           <div style={{ borderTop: `1px solid ${C.slate800}`, paddingTop: 24 }}>
             <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: C.slate500, marginBottom: 16 }}>JV Financial Model</div>
-            <MetricRow label="Platform Fee" value={`$${(JV.platformFee / 1000).toFixed(0)}K/yr`} />
-            <MetricRow label="Equity Split" value={JV.equitySplit} />
-            <MetricRow label="HDX Commission" value={`${JV.hdxCommission}%`} />
+            <MetricRow label="Core Node" value={`$${(JV.coreNode).toLocaleString()}/mo`} />
+            <MetricRow label="Growth Module" value={`$${(JV.growthModule).toLocaleString()}/mo`} />
+            <MetricRow label="RevShare ≤$1M" value={`${JV.hdxCommission}%`} />
+            <MetricRow label="RevShare >$1M" value={`${JV.hdxCommissionTier2}%`} />
             <MetricRow label="Base Revenue" value={`$${(JV.baseRevenue / 1000).toFixed(0)}K`} />
             <MetricRow label="Outside Services" value={`$${(JV.outsideServices / 1000).toFixed(0)}K`} highlight />
             <MetricRow label="Avg Quote" value={`$${avgQuote.toLocaleString()}`} />
