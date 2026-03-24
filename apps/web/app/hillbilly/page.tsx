@@ -630,7 +630,7 @@ export default function HillbillyDreamsPage() {
           </p>
           <div className="hd-hero__ctas">
             <a href="/hillbilly/directory-pitch" className="hd-btn-primary">View the Deep South Directory →</a>
-            <a href="#platform" className="hd-btn-ghost">Explore the Architecture</a>
+            <a href="/hillbilly/proposal/scan2plan" className="hd-btn-ghost">Digitize Your Space (Scan2Plan) →</a>
           </div>
           <div className="hd-stats">
             {STATS.map((s) => (

@@ -273,6 +273,25 @@ function Proposal() {
             </ul>
           </div>
         </section>
+        {/* §9 Next Steps */}
+        <section style={{ background: `linear-gradient(135deg, ${colors.slate950}, ${colors.slate900})`, borderRadius: 24, padding: 'clamp(32px, 5vw, 48px)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', top: '-20%', left: '50%', transform: 'translateX(-50%)', width: 400, height: 400, backgroundColor: 'rgba(14,165,233,0.1)', borderRadius: '50%', filter: 'blur(80px)' }} />
+          <div style={{ position: 'relative', zIndex: 10 }}>
+            <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 900, color: colors.white, margin: '0 0 12px' }}>Ready to Deploy?</h2>
+            <p style={{ fontSize: '1.1rem', color: colors.slate400, maxWidth: 600, margin: '0 auto 32px', lineHeight: 1.6 }}>
+              30 days from contract to live platform. Your data stays sovereign. Your margin stays local.
+            </p>
+            <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a href="mailto:chase@hillbillydreamsinc.com?subject=S2PX%20Deployment%20—%20Let's%20Go" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', backgroundColor: colors.sky600, color: colors.white, fontWeight: 700, borderRadius: 12, textDecoration: 'none', fontSize: 16 }}>
+                Initiate HDX Deployment <ChevronRight size={18} />
+              </a>
+              <a href="/hillbilly/directory-pitch" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', backgroundColor: 'transparent', color: colors.slate300, fontWeight: 600, borderRadius: 12, textDecoration: 'none', fontSize: 16, border: `1px solid ${colors.slate700}` }}>
+                See it Live in the Directory
+              </a>
+            </div>
+          </div>
+        </section>
+
       </main>
 
       <footer style={{ borderTop: `1px solid ${colors.slate200}`, backgroundColor: colors.white, padding: '32px 24px', textAlign: 'center', fontSize: 14, color: colors.slate500 }}>
