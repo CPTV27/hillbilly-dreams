@@ -74,5 +74,12 @@
         "NEXT_PUBLIC_BRAND": "admin"
       }
     },
+    {
+      "name": "s2px-server",
+      "cwd": "/Users/chasethis/S2PX",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:server"],
+      "port": 5001
+    }
   ]
 }

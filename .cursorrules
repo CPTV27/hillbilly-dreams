@@ -1,4 +1,165 @@
-# Coding Rules
+# HDX Agent Operating Rules — BMT Monorepo
+# Applies to: AG (Antigravity / Cursor), GA (Google AI / Roo Code), CC (Claude Code)
+# Last updated: 2026-03-24
 
-1. ALWAYS read `ARCHITECTURE.md` before generating any new code or making architectural decisions. This is non-negotiable.
-2. Respect domain isolation and state boundaries as defined in the master ledger and architecture documentation.
+---
+
+## 0. BEFORE YOU WRITE A SINGLE LINE OF CODE
+
+Read these files in order. Non-negotiable.
+
+1. `ARCHITECTURE.md` — canonical map of the codebase. If it's not in here, ask before building.
+2. `AGENT_LEDGER.md` — what other agents have done. Don't duplicate or overwrite their work.
+3. `DISPATCH.md` — your active assignment. If it's empty, do not invent work.
+4. `.workflow/CONTEXT.md` — current system state and what's deployed.
+
+If any of these files are missing or stale, stop and ask Chase before proceeding.
+
+---
+
+## 1. THE EXECUTION LOOP (No Exceptions)
+
+```
+Chase gives objective
+  → CC writes plan into DISPATCH.md
+  → QC_GATE: plan reviewed before any code is written
+  → Assigned agent executes DISPATCH tasks
+  → CC documents exact changes in AGENT_LEDGER.md
+  → CC clears DISPATCH.md
+```
+
+**AG and GA:** You do not write to DISPATCH.md or AGENT_LEDGER.md. CC owns those.
+**AG and GA:** You do not make architectural decisions. If a task requires one, write your question in `.workflow/STATUS.md` and stop.
+
+---
+
+## 2. FILE OWNERSHIP
+
+| Owner | Owns |
+|-------|------|
+| **CC** (Claude Code) | `packages/`, `prisma/schema.prisma`, `app/api/`, `.github/`, `firebase.json`, `apphosting.yaml`, `AGENT_LEDGER.md`, `DISPATCH.md`, `ARCHITECTURE.md` |
+| **AG** (Antigravity / Cursor) | `app/(brand pages)/`, `app/*/page.tsx`, `app/*/layout.tsx`, UI components, inline styles, copy |
+| **GA** (Google AI / Roo) | `packages/content-engine/`, `app/api/*/generate/`, Delta Dawn system prompt, AI integrations |
+
+**If a file isn't in your scope above — don't touch it.** Write a note in `.workflow/STATUS.md` and hand off.
+
+---
+
+## 3. SOVEREIGNTY RULES (Fatal Violations)
+
+This is a multi-tenant platform. Cross-entity data leakage is a fatal error.
+
+- **Never** write a Prisma query that joins across sovereign entities without explicit architectural approval.
+- **Never** read `Client` data from a BuyCurious route or vice versa.
+- **Never** expose `User.role === 'admin'` data to a public-facing route.
+- Entity isolation is enforced at the **application layer** (no SQL RLS). You are the enforcement mechanism.
+
+Sovereign map:
+```
+/touring, /magazine, /radio → BMT entity
+/gallery                    → BuyCurious entity
+/media, /directory          → Deep South Directory entity
+/economics                  → Outsider Economics entity
+/hillbilly, /platform       → Corporate (read-only showcase)
+/admin, /ops                → Internal tooling (auth required)
+```
+
+---
+
+## 4. TECH STACK — DO NOT DEVIATE
+
+```
+Frontend:   Next.js 14 App Router · React 18 · TypeScript 5.5 · inline CSS (no Tailwind)
+Backend:    Next.js API Routes (route.ts) · REST only — no tRPC, no GraphQL
+Database:   PostgreSQL via Prisma 5.14 · @bigmuddy/database workspace package
+Auth:       next-auth v5 (JWT strategy) · Google OAuth + credentials
+AI:         Anthropic Claude (claude-sonnet-4-20250514 for heavy, haiku for fast)
+            @google-cloud/aiplatform for media generation
+Storage:    GCS (bmt-media-bigmuddy bucket) · Cloudflare R2
+Deploy:     Firebase App Hosting → Cloud Run (nodejs20, maxInstances: 10, 1024MB)
+Secrets:    Firebase Secret Manager only — no .env files in production
+```
+
+Do not introduce new dependencies without writing the rationale in `.workflow/DECISIONS.md` first.
+
+---
+
+## 5. ENVIRONMENT & DEPLOY RULES
+
+| Environment | How to deploy | Who can approve |
+|-------------|--------------|-----------------|
+| Local dev | `pnpm dev` | Anyone |
+| Preview | Firebase preview channel | AG, GA, CC |
+| Production (`main` branch) | CI/CD auto-deploys on merge | Chase only |
+
+**Never push directly to `main`.** Always use a feature branch. CI runs typecheck + lint + build — do not skip.
+
+---
+
+## 6. CODE QUALITY GATES
+
+Before marking any task complete:
+- [ ] `pnpm typecheck` passes (no TypeScript errors)
+- [ ] `pnpm lint` passes
+- [ ] `pnpm build` succeeds (no build-time errors)
+- [ ] No `export const` named exports from `page.tsx` files (Next.js 15 rejects them)
+- [ ] No hardcoded secrets or API keys
+- [ ] No `console.log` left in API routes (use structured logging)
+
+---
+
+## 7. PATTERNS TO ALWAYS USE
+
+**Auth check in API routes:**
+```ts
+const session = await auth();
+if (!session?.user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+```
+
+**Prisma error handling:**
+```ts
+try {
+  const result = await prisma.model.findMany({ ... });
+} catch (e) {
+  console.error('[route] DB error', e);
+  return NextResponse.json({ error: 'Internal error' }, { status: 500 });
+}
+```
+
+**Stripe — always use the lazy singleton:**
+```ts
+import { getStripeClient } from '@/lib/stripe';
+const stripe = getStripeClient();
+```
+
+---
+
+## 8. PATTERNS TO NEVER USE
+
+- `new Stripe(key || '', ...)` at module level — throws in CI when STRIPE_SECRET_KEY is absent
+- `export const API_ROUTES = ...` from page.tsx files — Next.js 15 rejects non-reserved named exports
+- `prisma.$queryRaw` without parameterized inputs — SQL injection risk
+- `dangerouslySetInnerHTML` without `isomorphic-dompurify` sanitization
+- Hardcoded email addresses in code (use env vars or constants file)
+
+---
+
+## 9. THE HDX THESIS (Read Before Any Copy or UI Work)
+
+We do not build foundation models. We build the rails.
+
+- **Plumbing over Pixie Dust:** AI is a deterministic tool in a workflow. "Vertex AI classifies the scan, then Cloud Function updates the CRM." Never "AI magic."
+- **Unit Economics Obsession:** $74/mo HDX node vs. $8,500/mo IT department. Every feature should reduce headcount cost, not add complexity.
+- **Sovereign Architecture:** Six entities, strict data boundaries. Delta Dawn reads across all — read-only only.
+- **Closing line (required on all brand pages):** "We build local. The value stays local. We grow from within."
+
+Tone: Unromantic. Pragmatic. CTO-to-operator. No hype words.
+
+---
+
+## 10. REPORTING
+
+When you complete a task:
+- Write a summary to `.workflow/STATUS.md` (what you did, what files you changed, any blockers)
+- Do NOT update `AGENT_LEDGER.md` — that's CC's job
+- If you hit an error you can't resolve, write it to `.workflow/STATUS.md` under "Blockers" and stop

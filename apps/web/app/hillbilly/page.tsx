@@ -593,15 +593,10 @@ export default function HillbillyDreamsPage() {
             <GoogleG size={22} />
             <span className="hd-nav__name">Hillbilly Dreams</span>
           </a>
-          <a
-            href="https://cloud.google.com"
-            target="_blank"
-            rel="noreferrer"
-            className="hd-nav__badge"
-          >
+          <span className="hd-nav__badge">
             <GoogleG size={14} />
             Built on Google Cloud
-          </a>
+          </span>
         </div>
       </nav>
 
@@ -611,7 +606,7 @@ export default function HillbillyDreamsPage() {
         <div className="hd-hero__content">
           <div className="hd-hero__eyebrow">
             <GoogleG size={12} />
-            A Google Cloud Customer Story · Natchez, Mississippi
+            Built on Google Cloud · Natchez, Mississippi
           </div>
           <h1 className="hd-hero__title">
             One Engine.
@@ -695,7 +690,7 @@ export default function HillbillyDreamsPage() {
               <p>
                 &ldquo;HDX isn&apos;t the point of the company. HDX is the armor we built to protect the music and buy back our time.&rdquo;
               </p>
-              <cite>— Chase Tuthill Pierson, Founder</cite>
+              <cite>— The Founder, Hillbilly Dreams</cite>
             </blockquote>
             <p>
               The Big Muddy ecosystem is the owned-and-operated proof of concept — a micromedia company in a bottle running on Google Cloud. The Inn, the Magazine, the Radio, the Touring circuit, and the Record label. All on one platform.
