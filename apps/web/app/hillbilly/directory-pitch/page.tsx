@@ -118,6 +118,29 @@ export default function DeepSouthPitch() {
           </div>
         </section>
 
+        {/* Section 3.5: Zero-IT Play */}
+        <section style={{ backgroundColor: colors.slate900, border: `1px solid ${colors.slate800}`, borderRadius: 24, padding: 48 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
+            <div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: colors.sky400, marginBottom: 12 }}>The Zero-IT Play</div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: colors.white, margin: '0 0 16px' }}>$74/mo replaces $8,500/mo</h3>
+              <p style={{ color: colors.slate400, lineHeight: 1.6, margin: 0 }}>
+                A traditional IT department costs a small business $8,500/mo minimum — email, POS, booking, website, social, CRM. An HDX Operator Node runs the entire stack for $74/mo on sovereign Google Cloud infrastructure. Gemini 1.5 Pro handles the intelligence. Cloud Run handles the scale. Vertex AI maps the workflows. Plumbing, not pixie dust.
+              </p>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <div style={{ backgroundColor: colors.slate950, borderRadius: 16, padding: 24, border: `1px solid ${colors.slate800}`, textAlign: 'center' as const }}>
+                <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', color: colors.slate500, marginBottom: 8 }}>Traditional IT Overhead</div>
+                <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#f87171', textDecoration: 'line-through', textDecorationColor: '#f8717180' }}>$8,500<span style={{ fontSize: '1rem', color: colors.slate500 }}>/mo</span></div>
+              </div>
+              <div style={{ backgroundColor: colors.slate950, borderRadius: 16, padding: 24, border: `1px solid ${colors.green500}`, textAlign: 'center' as const }}>
+                <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', color: colors.green400, marginBottom: 8 }}>HDX Operator Node</div>
+                <div style={{ fontSize: '2.5rem', fontWeight: 900, color: colors.green400 }}>$74<span style={{ fontSize: '1rem', color: colors.slate500 }}>/mo</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Section 4: Roadmap */}
         <section id="roadmap" style={{ scrollMarginTop: '100px', display: 'flex', flexDirection: 'column', gap: 32 }}>
           <h2 style={{ fontSize: '2rem', fontWeight: 800, color: colors.white, borderBottom: `1px solid ${colors.slate800}`, paddingBottom: 16, margin: 0 }}>IV. 12-Month Rollout &amp; Pro Forma</h2>

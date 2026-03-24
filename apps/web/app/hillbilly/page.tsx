@@ -713,7 +713,7 @@ export default function HillbillyDreamsPage() {
               Right now, eighty cents of every dollar earned in these communities leaves within forty-eight hours. We are building the alternative — on Google infrastructure.
             </p>
             <p className="hd-story-closer">
-              We build local. We extract nothing. We grow from within.
+              We build local. The value stays local. We grow from within.
             </p>
           </div>
         </div>

@@ -69,8 +69,8 @@ function Proposal() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 48 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20, color: colors.slate600, fontSize: '1.05rem', lineHeight: 1.7 }}>
-              <p style={{ margin: 0 }}><strong style={{ color: colors.slate900, fontWeight: 700 }}>Hillbilly Dreams, Inc.</strong> is the technology holding company behind HDX — a business operating system purpose-built for service companies.</p>
-              <p style={{ margin: 0 }}>HDX runs on Google Cloud production infrastructure (Firebase App Hosting, Cloud Run, and Cloud SQL) and is powered by Google&apos;s Gemini AI for real-time business intelligence.</p>
+              <p style={{ margin: 0 }}><strong style={{ color: colors.slate900, fontWeight: 700 }}>Hillbilly Dreams, Inc.</strong> is the technology holding company behind HDX — a business operating system purpose-built for service companies. We don&apos;t build models. We build the rails.</p>
+              <p style={{ margin: 0 }}>HDX runs on Google Cloud production infrastructure (Cloud Run, Vertex AI, and Cloud SQL) powered by Gemini 1.5 Pro. Independent operators lose ~23% of billable capacity to manual administrative overhead. This pipeline fixes it.</p>
             </div>
             <div style={{ backgroundColor: colors.white, border: `1px solid ${colors.slate200}`, padding: 32, borderRadius: 24, boxShadow: '0 20px 25px -5px rgba(0,0,0,.05)', position: 'relative', overflow: 'hidden' }}>
               <div style={{ position: 'absolute', top: 0, right: 0, width: 128, height: 128, backgroundColor: 'rgba(249,115,22,0.1)', borderBottomLeftRadius: '100%', filter: 'blur(24px)' }} />
@@ -198,9 +198,22 @@ function Proposal() {
         {/* §7 60-Day Onboarding */}
         <section style={{ maxWidth: '900px', margin: '4rem auto', padding: '0 1rem' }}>
           <h3 style={{ fontSize: '1.75rem', fontWeight: 800, color: colors.slate900, margin: '0 0 0.75rem', letterSpacing: '-0.5px' }}>60-Day Deployment Roadmap</h3>
-          <p style={{ color: colors.slate600, lineHeight: 1.6, margin: '0 0 2rem' }}>
-            Two phases. Zero disruption to your active projects.
+          <p style={{ color: colors.slate600, lineHeight: 1.6, margin: '0 0 1.5rem' }}>
+            Four steps. Zero disruption to your active projects.
           </p>
+          <div style={{ display: 'flex', gap: 12, marginBottom: '2rem', flexWrap: 'wrap' }}>
+            {[
+              { step: '01', label: 'Audit', desc: 'Workflow Mapping' },
+              { step: '02', label: 'Setup', desc: 'Node Deployment' },
+              { step: '03', label: 'Build', desc: 'Custom Rails (Vertex AI → your data)' },
+              { step: '04', label: 'Go-Live', desc: 'Production handoff' },
+            ].map((s, i) => (
+              <div key={i} style={{ flex: 1, minWidth: 140, padding: '16px 20px', borderRadius: 12, backgroundColor: colors.slate900, border: `1px solid ${colors.slate700}`, textAlign: 'center' }}>
+                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: colors.sky500, marginBottom: 4 }}>{s.step} / {s.label}</div>
+                <div style={{ fontSize: 13, color: colors.slate400 }}>{s.desc}</div>
+              </div>
+            ))}
+          </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
             <div style={{ background: colors.slate900, borderRadius: 16, padding: '2rem', border: `1px solid ${colors.slate700}` }}>
               <div style={{ display: 'inline-block', padding: '4px 12px', borderRadius: 8, background: colors.sky600, color: colors.white, fontSize: '0.75rem', fontWeight: 700, marginBottom: 16, letterSpacing: '0.05em' }}>DAYS 1–30</div>

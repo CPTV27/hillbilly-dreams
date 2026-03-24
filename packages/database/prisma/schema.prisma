@@ -937,3 +937,75 @@ model DirectoryBusiness {
   @@index([tier])
   @@index([active])
 }
+
+// ─────────────────────────────────────────────────────────────
+// S2PX SPATIAL INTELLIGENCE PIPELINE
+// ─────────────────────────────────────────────────────────────
+// Phase 03: Map Vertex AI to vertical data models.
+// HDXNode → SpatialScan (1:N). Processing state machine:
+//   PENDING → ANALYZING → MAPPED → ERROR
+// ─────────────────────────────────────────────────────────────
+
+model HDXNode {
+  id              String    @id @default(cuid())
+  name            String                            // Venue or business name
+  slug            String    @unique                  // URL-safe identifier
+  address         String?                            // Street address
+  city            String                             // City for geo grouping
+  state           String    @default("NY")           // State code
+  zipCode         String?                            // 5-digit ZIP for Local Multiplier
+  lat             Float?                             // Latitude (geocoded)
+  lng             Float?                             // Longitude (geocoded)
+  nodeType        String    @default("commercial")   // commercial | residential | industrial | mixed-use
+  contactName     String?                            // Primary contact
+  contactEmail    String?
+  contactPhone    String?
+  metadata        Json?                              // Extensible metadata (industry, notes, etc.)
+  status          String    @default("active")       // active | onboarding | archived
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  scans           SpatialScan[]
+
+  @@index([city, state])
+  @@index([nodeType])
+  @@index([status])
+  @@index([zipCode])
+}
+
+model SpatialScan {
+  id              String    @id @default(cuid())
+  nodeId          String
+  node            HDXNode   @relation(fields: [nodeId], references: [id], onDelete: Cascade)
+
+  // ── Raw Asset References ──
+  gcsVideoUri     String?                            // gs://bucket/path/walkthrough.mp4
+  gcsPointCloudUri String?                           // gs://bucket/path/pointcloud.las
+  gcsFloorPlanUri String?                            // gs://bucket/path/floorplan.pdf
+  gcsThumbnailUri String?                            // gs://bucket/path/thumb.webp
+
+  // ── Processing State Machine ──
+  status          String    @default("PENDING")      // PENDING | ANALYZING | MAPPED | ERROR
+  errorMessage    String?                            // Error details if status = ERROR
+  processingStartedAt DateTime?                      // When Vertex AI processing began
+  processingCompletedAt DateTime?                    // When extraction finished
+
+  // ── Extracted Metrics (Vertex AI output) ──
+  capacityMetrics Json?                              // CapacityMetrics JSON (sqft, materials, occupancy, hazards)
+  aiModelVersion  String?                            // e.g. "gemini-1.5-pro-002"
+  aiConfidence    Float?                             // Overall confidence score 0.0-1.0
+
+  // ── Quote Generation ──
+  estimatedQuote  Json?                              // Auto-generated quote breakdown
+  quoteTotalCents Int?                               // Total quote in cents
+
+  // ── Provenance ──
+  uploadedBy      String?                            // User ID or service account
+  scanDate        DateTime?                          // Date the physical scan was performed
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([nodeId])
+  @@index([status])
+  @@index([createdAt])
+}
