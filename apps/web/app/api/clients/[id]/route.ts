@@ -14,12 +14,13 @@ export async function GET(_request: NextRequest, { params }: Params) {
     const client = await (prisma as any).client.findUnique({
       where: { id },
       include: {
-        accounts: true,
         _count: { select: { reviews: true, calendars: true, reports: true, invoices: true } },
       },
     });
     if (!client) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-    return NextResponse.json({ data: client });
+    // Soft FK: fetch accounts separately (Client → SocialAccount relation removed, cross-sovereign)
+    const accounts = await (prisma as any).socialAccount.findMany({ where: { clientId: id } });
+    return NextResponse.json({ data: { ...client, accounts } });
   } catch (err) {
     console.error('[GET /api/clients/:id]', err);
     return NextResponse.json({ error: 'Failed to fetch client' }, { status: 500 });
@@ -56,7 +57,7 @@ export async function PATCH(request: NextRequest, { params }: Params) {
       where: { id },
       data,
       include: {
-        _count: { select: { accounts: true, reviews: true, reports: true } },
+        _count: { select: { reviews: true, reports: true } },
       },
     });
     return NextResponse.json({ data: client });

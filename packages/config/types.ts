@@ -1,5 +1,19 @@
 // packages/config/types.ts
-// Shared TypeScript types for the Big Muddy platform
+// BMT-specific domain types for the Big Muddy platform
+// Platform-generic types live in platform-types.ts
+
+// Re-export platform generics for backward compatibility
+export type {
+  ApiError,
+  ApiSuccess,
+  PaginatedResponse,
+  KpiTile,
+  UserRole,
+  User,
+  Nullable,
+  Optional,
+  MaybeNull,
+} from './platform-types';
 
 // ─────────────────────────────────────────────────────────────
 // CONTENT TYPES
@@ -383,36 +397,11 @@ export const CLIENT_TIERS: Record<ClientTier, {
 };
 
 // ─────────────────────────────────────────────────────────────
-// API RESPONSE TYPES
+// API / PAGINATION / USER / UTILITY TYPES
+// (Canonical source: platform-types.ts — re-exported above)
 // ─────────────────────────────────────────────────────────────
 
-export interface ApiError {
-  error: string;
-  message?: string;
-  code?: string;
-}
-
-export interface ApiSuccess<T = unknown> {
-  data: T;
-  message?: string;
-}
-
-// ─────────────────────────────────────────────────────────────
-// PAGINATION
-// ─────────────────────────────────────────────────────────────
-
-export interface PaginatedResponse<T> {
-  items: T[];
-  total: number;
-  page: number;
-  limit: number;
-  hasMore: boolean;
-}
-
-// ─────────────────────────────────────────────────────────────
-// DASHBOARD / METRICS
-// ─────────────────────────────────────────────────────────────
-
+// MetricKey uses BMT-specific KPI names
 export interface MetricKey {
   newsletter_subscribers: number;
   inn_occupancy_rate: number;
@@ -421,39 +410,3 @@ export interface MetricKey {
   upcoming_events: number;
   google_review_rating: number;
 }
-
-export interface KpiTile {
-  key: string;
-  label: string;
-  value: number | string;
-  target?: number;
-  unit?: string;
-  source?: string;
-  trend?: 'up' | 'down' | 'neutral';
-  trendValue?: string;
-}
-
-// ─────────────────────────────────────────────────────────────
-// USER / AUTH
-// ─────────────────────────────────────────────────────────────
-
-export type UserRole = 'admin' | 'ops' | 'artist' | 'viewer';
-
-export interface User {
-  id: string;
-  name?: string | null;
-  email?: string | null;
-  emailVerified?: Date | null;
-  image?: string | null;
-  role: UserRole;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-// ─────────────────────────────────────────────────────────────
-// UTILITY TYPES
-// ─────────────────────────────────────────────────────────────
-
-export type Nullable<T> = T | null;
-export type Optional<T> = T | undefined;
-export type MaybeNull<T> = T | null | undefined;

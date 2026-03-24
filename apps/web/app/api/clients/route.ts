@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     const clients = await (prisma as any).client.findMany({
       where,
       include: {
-        _count: { select: { accounts: true, reviews: true, reports: true } },
+        _count: { select: { reviews: true, reports: true } },
       },
       orderBy: { createdAt: 'desc' as const },
     });

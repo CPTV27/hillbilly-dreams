@@ -39,8 +39,8 @@ model Article {
   sourceSyncedAt  DateTime?
 
   // ── Deep South Directory Link ──
+  // SOFT FK: references db-media Client.id — no @relation constraint (cross-sovereign)
   clientId    Int?
-  client      Client?   @relation(fields: [clientId], references: [id])
 
   @@index([status, publishedAt])
   @@index([category])
@@ -144,7 +144,12 @@ model Metric {
 }
 
 // ─────────────────────────────────────────────────────────────
-// BRIDGE CLIENTS (Multi-Tenant Content-as-a-Service)
+// SOVEREIGNTY NOTE: Media/Directory models below (Client through
+// DirectoryBusiness) are pending migration to packages/db-media.
+// Article.clientId and SocialAccount.clientId are now SOFT FKs.
+// Decomposed: 2026-03-24 — Phase C (AG)
+// ─────────────────────────────────────────────────────────────
+// CLIENT MANAGEMENT (Media-as-a-Service)
 // ─────────────────────────────────────────────────────────────
 
 model BridgeClient {
@@ -173,8 +178,8 @@ model SocialAccount {
   brand       String   @default("bigmuddy") // bigmuddy | radio | magazine | touring | economics
   status      String   @default("active")   // active | paused | disconnected
   notes       String?
+  // SOFT FK: references db-media Client.id — no @relation constraint (cross-sovereign)
   clientId    Int?
-  client      Client?  @relation(fields: [clientId], references: [id])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   posts       SocialPost[]
@@ -240,8 +245,8 @@ model Client {
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
 
-  accounts         SocialAccount[]
-  articles         Article[]
+  // SOVEREIGNTY NOTE: SocialAccount[] and Article[] back-references REMOVED (2026-03-24)
+  // These models reference Client via soft FK (clientId int, no @relation).
   reviews          Review[]
   calendars        ContentCalendar[]
   reports          Report[]
@@ -379,6 +384,11 @@ model PublishJob {
   @@index([postId])
 }
 
+// ─────────────────────────────────────────────────────────────
+// SOVEREIGNTY NOTE: All Records/MelodyVault models below are pending
+// migration to packages/db-records. Showcase.eventId is already a
+// soft FK (no @relation to Event).
+// Decomposed: 2026-03-24 — Phase B (AG)
 // ─────────────────────────────────────────────────────────────
 // TALENT PIPELINE (Rise Up → Showcase → Tour → Promote)
 // ─────────────────────────────────────────────────────────────

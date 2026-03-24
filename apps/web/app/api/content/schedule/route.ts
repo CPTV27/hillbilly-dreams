@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
 
     const calendar = await (prisma as any).contentCalendar.findUnique({
       where: { id: calendarId },
-      include: { client: { include: { accounts: true } } },
+      include: { client: true },
     });
 
     if (!calendar) return NextResponse.json({ error: 'Calendar not found' }, { status: 404 });
@@ -42,7 +42,10 @@ export async function POST(request: NextRequest) {
     }
 
     const posts = Array.isArray(calendar.posts) ? calendar.posts : [];
-    const accounts = calendar.client?.accounts || [];
+    // Soft FK: fetch accounts separately (Client → SocialAccount relation removed, cross-sovereign)
+    const accounts = calendar.client
+      ? await (prisma as any).socialAccount.findMany({ where: { clientId: calendar.client.id } })
+      : [];
     const created: unknown[] = [];
 
     for (const post of posts as Array<{ day: number; platform: string; content: string; hashtags?: string[] }>) {

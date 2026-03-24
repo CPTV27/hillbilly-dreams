@@ -1,6 +1,12 @@
 // lib/stripe.ts
-// Centralized Stripe client with Connect support for Hillbilly Dreams, Inc.
-// Destination Charges model: platform collects payment, splits to connected accounts.
+// ─────────────────────────────────────────────────────────────
+// Platform-Portable Stripe Client
+// ─────────────────────────────────────────────────────────────
+// Lazy singleton Stripe client. Tenant-specific fee schedules
+// live in config/stripe-config.ts.
+//
+// SEAM: 2026-03-24 (AG)
+// ─────────────────────────────────────────────────────────────
 
 import Stripe from 'stripe';
 
@@ -27,21 +33,6 @@ export const stripe = new Proxy({} as Stripe, {
   },
 });
 
-// Brand classes for revenue tracking across the holding company
-export type BrandClass = 'S2PX' | 'BMT' | 'BuyCurious' | 'Corporate';
+// Re-export tenant fee config for backward compatibility
+export { type BrandClass, PLATFORM_FEE_PERCENT, calculateApplicationFee } from '@/config/stripe-config';
 
-// Platform fee percentages per brand
-export const PLATFORM_FEE_PERCENT: Record<BrandClass, number> = {
-  S2PX: 15,       // SaaS licensing — 15% platform cut
-  BMT: 20,        // Touring/tickets — 20% platform cut
-  BuyCurious: 25, // Art marketplace — 25% platform cut
-  Corporate: 0,   // Direct corporate revenue — no split
-};
-
-export function calculateApplicationFee(
-  amount: number,
-  brandClass: BrandClass
-): number {
-  const pct = PLATFORM_FEE_PERCENT[brandClass] ?? 20;
-  return Math.round(amount * (pct / 100));
-}

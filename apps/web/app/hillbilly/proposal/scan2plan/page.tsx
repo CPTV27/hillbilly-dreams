@@ -1,11 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Shield, Server, Zap, LineChart, Briefcase, Database, Cloud, ChevronRight, CheckCircle2, Lock } from 'lucide-react';
+import React from 'react';
+import { Shield, Server, Zap, LineChart, Briefcase, Database, Cloud, ChevronRight, CheckCircle2 } from 'lucide-react';
 import SplitScreenDemo from '../../../../components/proposal/SplitScreenDemo';
 import MarginRecoveryEngine from '../../../../components/proposal/MarginRecoveryEngine';
-
-const PASSWORD = 'Scan2Plan2026';
 
 const colors = {
   slate50: '#f8fafc', slate100: '#f1f5f9', slate200: '#e2e8f0', slate300: '#cbd5e1',
@@ -16,55 +14,6 @@ const colors = {
   orange400: '#fb923c', orange500: '#f97316', orange600: '#ea580c',
   white: '#ffffff',
 };
-
-/* ─── Password Gate ─── */
-function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
-  const [value, setValue] = useState('');
-  const [error, setError] = useState(false);
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (value === PASSWORD) { onUnlock(); }
-    else { setError(true); setValue(''); }
-  }
-
-  return (
-    <div style={{ minHeight: '100vh', background: colors.slate950, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-      <div style={{ width: '100%', maxWidth: '360px' }}>
-        {/* Icon */}
-        <div style={{ width: 56, height: 56, borderRadius: 16, background: colors.slate800, border: `1px solid ${colors.slate700}`, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
-          <Lock size={24} color={colors.slate500} />
-        </div>
-        <h1 style={{ fontSize: 24, fontWeight: 900, color: colors.white, textAlign: 'center', margin: '0 0 8px', letterSpacing: '-0.5px' }}>Client Access</h1>
-        <p style={{ fontSize: 14, color: colors.slate500, textAlign: 'center', margin: '0 0 32px' }}>Enter your access code to view this proposal.</p>
-
-        <form onSubmit={handleSubmit}>
-          <input
-            type="password"
-            value={value}
-            onChange={e => { setValue(e.target.value); setError(false); }}
-            placeholder="Client Access Code"
-            autoFocus
-            style={{
-              width: '100%', boxSizing: 'border-box', padding: '12px 16px', borderRadius: 12,
-              background: colors.slate900, border: `1px solid ${error ? '#f87171' : colors.slate700}`,
-              color: colors.white, fontSize: 14, outline: 'none',
-              boxShadow: error ? '0 0 0 3px rgba(248,113,113,.15)' : 'none',
-            }}
-          />
-          {error && <p style={{ fontSize: 12, color: '#f87171', textAlign: 'center', margin: '8px 0 0' }}>Incorrect access code. Please try again.</p>}
-          <button
-            type="submit"
-            style={{ width: '100%', marginTop: 12, padding: '12px', borderRadius: 12, background: colors.sky600, border: 'none', color: colors.white, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}
-          >
-            View Proposal
-          </button>
-        </form>
-        <p style={{ fontSize: 12, color: colors.slate700, textAlign: 'center', marginTop: 32 }}>Hillbilly Dreams, Inc. · Confidential</p>
-      </div>
-    </div>
-  );
-}
 
 /* ─── Proposal (GA's inline CSS version) ─── */
 function Proposal() {
