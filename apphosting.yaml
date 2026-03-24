@@ -1,3 +1,6 @@
+buildConfig:
+  buildMachine: N1_STANDARD_8
+
 runConfig:
   runtime: nodejs20
   maxInstances: 10
