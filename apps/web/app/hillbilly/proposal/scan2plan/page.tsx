@@ -128,7 +128,7 @@ function Proposal() {
               <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: colors.slate900, margin: '0 0 16px', position: 'relative' }}>The S2PX Deployment</h3>
               <p style={{ color: colors.slate600, margin: '0 0 24px', lineHeight: 1.6, position: 'relative' }}>S2PX is the HDX deployment purpose-built for 3D scanning and spatial intelligence. As the sole Master Licensor, Hillbilly Dreams powers Scan2Plan&apos;s entire digital workflow.</p>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: colors.sky600, fontWeight: 600, fontSize: 14, position: 'relative' }}>
-                <CheckCircle2 size={18} /> Zero internal engineering required.
+                <CheckCircle2 size={18} /> 30-day guided onboarding. Full platform access from day one.
               </div>
             </div>
           </div>
