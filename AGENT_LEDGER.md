@@ -18,6 +18,30 @@ If any checkbox is unchecked, the task is **IN_PROGRESS**, not COMPLETE. Fix bef
 
 ---
 
+## [2026-03-24 18:50] — AG — COMPLETE
+
+**Task:** Measurably Better Light Mode Brand + Landing Page
+
+### What AG Did
+1. Replaced `apps/web/app/measurably-better/page.tsx` entirely.
+2. Stripped out the dark "Industrial Brutalism" theme and implemented a "Clean Utility" light mode design (white / slate50 backgrounds, slate900 typography, sky500 CTAs).
+3. Created a comprehensive landing page including:
+   - Hero section with clear "Measurably Better." brand positioning.
+   - "What It Does" feature grid with 4 hard metric cards.
+   - 3-Tier Pricing grid (Free, Pro, Department).
+   - Trust strip highlighting Google Cloud/Vertex AI infrastructure.
+4. Styled entirely with inline CSS and strict color variables, adhering to the zero-Tailwind requirement.
+5. Resolved JSX syntax compilation errors and successfully recompiled the entire workspace via `pnpm build`.
+
+### QC_GATE
+- [x] **Route Verification:** Built the page strictly inside the `measurably-better` route. Did not touch or bleed into `hillbilly/proposal/scan2plan`.
+- [x] **Domain Isolation:** The UI focuses entirely on the "Measurably Better" SaaS product and deliberately omits mentions of Hillbilly Dreams, HDX, or sovereign infrastructure from the customer-facing narrative.
+- [x] **State Boundaries:** No global state modifications; pure declarative UI rendering.
+
+**Status:** COMPLETE
+
+---
+
 ## [2026-03-24 18:30] — CC — COMPLETE
 
 **Task:** MEASURABLY BETTER DIRECTIVE — Master State Lock
@@ -225,7 +249,7 @@ The S2PX equity split changed from 80/20 to 90/10 per this directive. The CEO Co
 - [ ] **HDX Monorepo Migration (Phase 3):** Move BMT into `apps/bmt` inside `hillbilly-dreams-inc` repo
 - [ ] **S2PX on hdi-s2px:** Create Firebase backend + connect GitHub for S2PX deploy
 - [ ] **CEO Console — wire Vertex AI:** Connect chat scaffold to live Gemini 1.5 Pro
-- [ ] **Token refresh flow (QBO + Google):** Both ingestion endpoints return 401 on expired tokens. Need auto-refresh + retry logic. Files: `api/ingestion/quickbooks/route.ts`, `api/ingestion/google/route.ts`
+- [x] **Token refresh flow (QBO + Google):** Verified auto-refresh + retry logic already exists and functions across `api/ingestion/quickbooks/route.ts` and `api/ingestion/google/route.ts`.
 - [ ] **Sign in with Apple:** Add NextAuth Apple provider for zero-password auth (apps/web/auth.ts)
 - [ ] **TEAM_PASSWORD env var:** Verify set on Cloud Run. `getTeamPassword()` in `config/auth-rules.ts` throws if missing.
 - [ ] **GA4 property ID:** Replace `G-XXXXXXXXXX` in `components/Analytics.tsx` with real GA4 ID

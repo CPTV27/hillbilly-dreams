@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
-import {
+import React, { useEffect } from 'react';
+import { signIn } from 'next-auth/react';
+import { 
   ArrowRight, 
   BarChart3, 
   Bot, 
@@ -22,7 +23,32 @@ const colors = {
   green500: '#22c55e',
 };
 
+function useReveal() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('mb-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+    const elements = document.querySelectorAll('.mb-reveal');
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+}
+
 export default function MeasurablyBetterLanding() {
+  useReveal();
+
+  const handleAuth = () => {
+    signIn('google', { callbackUrl: '/hillbilly/proposal/scan2plan/console' });
+  };
+
   return (
     <div style={{
       minHeight: '100vh',
@@ -230,6 +256,17 @@ export default function MeasurablyBetterLanding() {
           color: ${colors.slate600};
           font-size: 0.875rem;
         }
+        
+        /* Animations */
+        .mb-reveal {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .mb-revealed {
+          opacity: 1;
+          transform: translateY(0);
+        }
       `}</style>
 
       {/* Navigation */}
@@ -239,44 +276,44 @@ export default function MeasurablyBetterLanding() {
             Measurably Better.
           </div>
           <div>
-            <button className="mb-btn mb-btn-outline" style={{ padding: '0.5rem 1rem' }}>Sign In</button>
+            <button onClick={handleAuth} className="mb-btn mb-btn-outline" style={{ padding: '0.5rem 1rem' }}>Sign In</button>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
       <header style={{ textAlign: 'center', padding: '6rem 2rem 4rem', background: colors.white }}>
-        <h1 className="mb-hero-title">
+        <h1 className="mb-hero-title mb-reveal">
           Measurably Better.
         </h1>
-        <p className="mb-hero-subtitle">
+        <p className="mb-hero-subtitle mb-reveal" style={{ transitionDelay: '100ms' }}>
           Life is supposed to get easier. This is the easy you&apos;ve been looking for.
         </p>
-        <button className="mb-btn" style={{ fontSize: '1.125rem', padding: '1rem 2.5rem' }}>
+        <button onClick={handleAuth} className="mb-btn mb-reveal" style={{ fontSize: '1.125rem', padding: '1rem 2.5rem', transitionDelay: '200ms' }}>
           Start Free
           <ArrowRight size={20} />
         </button>
       </header>
 
       {/* Trust Strip */}
-      <div className="mb-trust-strip mb-section-sm">
+      <div className="mb-trust-strip mb-section-sm mb-reveal" style={{ transitionDelay: '300ms' }}>
         <p>Runs on Google Cloud. Gemini 1.5 Pro. Cloud Run. Vertex AI.</p>
       </div>
 
       {/* What It Does Section */}
       <section className="mb-section">
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '1rem' }}>
+          <h2 className="mb-reveal" style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '1rem' }}>
             For everything, we are substantially and measurably better.
           </h2>
-          <p style={{ fontSize: '1.125rem', maxWidth: 600, margin: '0 auto' }}>
+          <p className="mb-reveal" style={{ fontSize: '1.125rem', maxWidth: 600, margin: '0 auto', transitionDelay: '100ms' }}>
             A complete suite of tools that integrates seamlessly into your workflow.
           </p>
         </div>
 
         <div className="mb-grid">
           {/* Card 1 */}
-          <div className="mb-card">
+          <div className="mb-card mb-reveal" style={{ transitionDelay: '100ms' }}>
             <div className="mb-feature-icon">
               <Bot size={24} />
             </div>
@@ -291,7 +328,7 @@ export default function MeasurablyBetterLanding() {
           </div>
 
           {/* Card 2 */}
-          <div className="mb-card">
+          <div className="mb-card mb-reveal" style={{ transitionDelay: '200ms' }}>
             <div className="mb-feature-icon">
               <LineChart size={24} />
             </div>
@@ -306,7 +343,7 @@ export default function MeasurablyBetterLanding() {
           </div>
 
           {/* Card 3 */}
-          <div className="mb-card">
+          <div className="mb-card mb-reveal" style={{ transitionDelay: '300ms' }}>
             <div className="mb-feature-icon">
               <Megaphone size={24} />
             </div>
@@ -321,7 +358,7 @@ export default function MeasurablyBetterLanding() {
           </div>
 
           {/* Card 4 */}
-          <div className="mb-card">
+          <div className="mb-card mb-reveal" style={{ transitionDelay: '400ms' }}>
             <div className="mb-feature-icon">
               <BarChart3 size={24} />
             </div>
@@ -340,17 +377,17 @@ export default function MeasurablyBetterLanding() {
       {/* Pricing Section */}
       <section style={{ background: colors.white }} className="mb-section">
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '1rem' }}>
+          <h2 className="mb-reveal" style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '1rem' }}>
             Simple, predictable pricing.
           </h2>
-          <p style={{ fontSize: '1.125rem', maxWidth: 600, margin: '0 auto' }}>
+          <p className="mb-reveal" style={{ fontSize: '1.125rem', maxWidth: 600, margin: '0 auto', transitionDelay: '100ms' }}>
             Start for free, upgrade when you need more capacity.
           </p>
         </div>
 
         <div className="mb-pricing-grid">
           {/* Free Tier */}
-          <div className="mb-card mb-pricing-card">
+          <div className="mb-card mb-pricing-card mb-reveal" style={{ transitionDelay: '100ms' }}>
             <div className="mb-pricing-header">
               <h3 className="mb-pricing-tier">Free</h3>
               <div className="mb-pricing-price">
@@ -372,11 +409,11 @@ export default function MeasurablyBetterLanding() {
                 <span>Standard support</span>
               </li>
             </ul>
-            <button className="mb-btn mb-btn-outline" style={{ width: '100%' }}>Get Started</button>
+            <button onClick={handleAuth} className="mb-btn mb-btn-outline" style={{ width: '100%' }}>Get Started</button>
           </div>
 
           {/* Pro Tier */}
-          <div className="mb-card mb-pricing-card" style={{ border: `2px solid ${colors.sky500}`, position: 'relative' }}>
+          <div className="mb-card mb-pricing-card mb-reveal" style={{ border: `2px solid ${colors.sky500}`, position: 'relative', transitionDelay: '200ms' }}>
             <div style={{
               position: 'absolute',
               top: '-12px',
@@ -419,11 +456,11 @@ export default function MeasurablyBetterLanding() {
                 <span>Priority support</span>
               </li>
             </ul>
-            <button className="mb-btn" style={{ width: '100%' }}>Start Free Trial</button>
+            <button onClick={handleAuth} className="mb-btn" style={{ width: '100%' }}>Start Free Trial</button>
           </div>
 
           {/* Department Tier */}
-          <div className="mb-card mb-pricing-card">
+          <div className="mb-card mb-pricing-card mb-reveal" style={{ transitionDelay: '300ms' }}>
             <div className="mb-pricing-header">
               <h3 className="mb-pricing-tier">Department</h3>
               <div className="mb-pricing-price">
@@ -450,7 +487,7 @@ export default function MeasurablyBetterLanding() {
                 <span>Dedicated account manager</span>
               </li>
             </ul>
-            <button className="mb-btn mb-btn-outline" style={{ width: '100%' }}>Contact Sales</button>
+            <button onClick={handleAuth} className="mb-btn mb-btn-outline" style={{ width: '100%' }}>Contact Sales</button>
           </div>
         </div>
       </section>
