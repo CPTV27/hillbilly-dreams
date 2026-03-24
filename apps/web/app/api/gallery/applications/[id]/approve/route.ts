@@ -11,7 +11,6 @@ export async function POST(req: Request, { params }: { params: { id: string } })
 
         const application = await prisma.artistApplication.findUnique({
             where: { id: appId },
-            include: { user: true },
         });
 
         if (!application) {
@@ -22,8 +21,10 @@ export async function POST(req: Request, { params }: { params: { id: string } })
             return NextResponse.json({ error: 'Application already processed' }, { status: 400 });
         }
 
-        const artistEmail = application.user?.email ?? '';
-        const artistName = application.user?.name ?? 'Artist';
+        // Soft FK: look up user separately (cross-sovereign, no @relation)
+        const user = await prisma.user.findUnique({ where: { id: application.userId } });
+        const artistEmail = user?.email ?? '';
+        const artistName = user?.name ?? 'Artist';
 
         const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
             apiVersion: '2024-06-20' as any,

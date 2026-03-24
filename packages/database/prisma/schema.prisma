@@ -724,7 +724,8 @@ model User {
 
   onboardingCompletedAt DateTime?
 
-  artistApplications ArtistApplication[]
+  // SOVEREIGNTY NOTE: artistApplications relation REMOVED (2026-03-24)
+  // BCA sovereign queries by userId string — no cross-sovereign FK.
   accounts      Account[]
   sessions      Session[]
   createdAt     DateTime  @default(now())
@@ -882,11 +883,14 @@ model ArtOrder {
   updatedAt   DateTime @updatedAt
 }
 
+// SOVEREIGNTY NOTE: BCA models below are pending migration to packages/db-bca.
+// ArtistApplication.userId is now a SOFT FK (no @relation to User).
+// Decomposed: 2026-03-24 — Phase A (AG)
 
 model ArtistApplication {
   id              String   @id @default(cuid())
+  // SOFT FK: references User.id — no @relation constraint (cross-sovereign)
   userId          String
-  user            User     @relation(fields: [userId], references: [id])
   portfolioUrl    String
   artistStatement String   @db.Text
   status          String   @default("PENDING") // PENDING | APPROVED | REJECTED

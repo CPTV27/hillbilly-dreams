@@ -6,7 +6,6 @@ export const dynamic = 'force-dynamic';
 export default async function GalleryApplicationReview({ params }: { params: { id: string } }) {
     const app = await prisma.artistApplication.findUnique({
         where: { id: params.id },
-        include: { user: true },
     });
 
     if (!app) {
@@ -18,9 +17,11 @@ export default async function GalleryApplicationReview({ params }: { params: { i
         );
     }
 
+    // Soft FK: look up user separately (cross-sovereign, no @relation)
+    const user = await prisma.user.findUnique({ where: { id: app.userId } });
     const isPending = app.status === 'PENDING';
-    const displayName = app.user?.name ?? 'Unknown Artist';
-    const displayEmail = app.user?.email ?? 'No email';
+    const displayName = user?.name ?? 'Unknown Artist';
+    const displayEmail = user?.email ?? 'No email';
 
     const iconCheck = <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>;
     const iconX = <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>;
