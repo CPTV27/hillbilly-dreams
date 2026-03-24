@@ -19,50 +19,63 @@ const GOOGLE_STACK = [
 ];
 
 const STATS = [
-  { value: '472K+', label: 'Lines of Code' },
-  { value: '8', label: 'Active Brands' },
+  { value: '2M', label: 'Token Context Window' },
+  { value: '99.9%', label: 'Cloud Run Uptime SLA' },
   { value: '18', label: 'Cities in Network' },
-  { value: '20x', label: 'Staff Equivalent' },
+  { value: '96%', label: 'Gross Cloud Margins' },
 ];
 
 const PILLARS = [
   {
     icon: '⚙️',
     color: '#4285F4',
-    name: 'HDX Platform',
-    sub: 'The Business OS',
-    desc: 'One platform replacing eight to twelve disconnected tools — sales, billing, projects, client delivery, AI workflows. Built on Google Cloud. Runs any industry vertical.',
+    name: 'Gemini AI Operations',
+    sub: 'Intelligence at Every Layer',
+    desc: 'Google\'s 2-million-token context window sees your entire business history. Automated quoting, project narratives, client communications, and capacity forecasting — not a chatbot, a contextual intelligence layer.',
     bullets: [
-      'Google Cloud Run — serverless, always-on',
-      'Vertex AI — intelligent automation',
-      'Firebase — real-time data sync',
-      'Gemini — AI at every touchpoint',
+      'Gemini 2.5 Pro — full context AI',
+      'Automated quoting & estimation',
+      'AI-generated client deliverables',
+      'Smart capacity forecasting',
     ],
   },
   {
-    icon: '🎵',
+    icon: '🔒',
     color: '#0F9D58',
-    name: 'Big Muddy Ecosystem',
-    sub: 'The Proof of Concept',
-    desc: 'An owned-and-operated media company running entirely on HDX. Touring, Magazine, Radio, Records, Art — a micromedia company in a bottle.',
+    name: 'Sovereign Infrastructure',
+    sub: 'Your Data. Your Instance.',
+    desc: 'Every HDX deployment runs on its own Google Cloud SQL instance. Your financial data, client relationships, and intellectual property never share a database with anyone else. Complete isolation.',
     bullets: [
-      'Eighteen cities, five states',
-      'Snowbird Circuit on Prevost buses',
-      'Big Muddy Records — 100% masters',
-      'Rise Up regional talent program',
+      'Dedicated Cloud SQL per tenant',
+      'Firebase App Hosting on Cloud Run',
+      'Full data ownership & portability',
+      'Encrypted at rest and in transit',
     ],
   },
   {
-    icon: '📐',
+    icon: '📊',
     color: '#DB4437',
-    name: 'Outsider Economics',
-    sub: 'The Mission',
-    desc: 'Eighty cents of every dollar earned in the Deep South leaves within 48 hours. We are building the sovereign infrastructure to stop that extraction.',
+    name: 'Native Integrations',
+    sub: 'Wired, Not Bolted On',
+    desc: 'QuickBooks, Stripe Connect, Google Business Profile, Google Workspace — native integrations that feed your existing tools and feed back. No CSV exports. No middleware. Real-time sync.',
     bullets: [
-      'Deep South Directory — the front door',
-      '$450K kept per community coached',
-      'Agorist network coordination math',
-      'Field-tested extraction defense',
+      'QuickBooks Online sync',
+      'Stripe Connect payments',
+      'Google Business Profile automation',
+      'Google Workspace integration',
+    ],
+  },
+  {
+    icon: '🚀',
+    color: '#8E24AA',
+    name: 'Automated Growth',
+    sub: 'Every Job Sells the Next One',
+    desc: 'Every completed project triggers a mechanized marketing pipeline. Automated case studies, Google Business Profile updates, and localized SEO — all driven by the underlying project data.',
+    bullets: [
+      'AI-generated project narratives',
+      'Automated GBP updates',
+      'Localized SEO deployments',
+      'Client-ready deliverable packages',
     ],
   },
 ];
@@ -609,16 +622,15 @@ export default function HillbillyDreamsPage() {
             Built on Google Cloud · Natchez, Mississippi
           </div>
           <h1 className="hd-hero__title">
-            One Engine.
-            <span className="hd-hero__title-accent">The New South.</span>
+            Enterprise Infrastructure
+            <span className="hd-hero__title-accent">for the Independent.</span>
           </h1>
           <p className="hd-hero__sub">
-            Someone built an enterprise-grade technology platform in Natchez, Mississippi —
-            powered entirely by <strong>Google Cloud</strong>, <strong>Gemini</strong>, and <strong>Vertex AI</strong>.
+            We harnessed the latest from <strong>Google Cloud</strong>, <strong>Gemini AI</strong>, and <strong>Firebase</strong> and packaged it into a platform that runs businesses — from Main Street shops to enterprise construction firms. One engine. Any industry.
           </p>
           <div className="hd-hero__ctas">
-            <a href="#platform" className="hd-btn-primary">Get the Platform →</a>
-            <a href="#story" className="hd-btn-ghost">Read the Story</a>
+            <a href="/hillbilly/directory-pitch" className="hd-btn-primary">View the Deep South Directory →</a>
+            <a href="#platform" className="hd-btn-ghost">Explore the Architecture</a>
           </div>
           <div className="hd-stats">
             {STATS.map((s) => (
@@ -648,11 +660,10 @@ export default function HillbillyDreamsPage() {
 
       {/* ── Three Pillars ── */}
       <section id="platform" className="hd-section">
-        <div className="hd-label">Infrastructure</div>
-        <h2 className="hd-h2">Three Pillars. Zero Overhead.</h2>
+        <div className="hd-label">The HDX Platform</div>
+        <h2 className="hd-h2">One Platform. Every Vertical.</h2>
         <p className="hd-lead">
-          Everything a Deep South business needs to operate at enterprise scale —
-          built on Google's infrastructure, licensed at SMB price.
+          The same Google Cloud engine running a six-room inn in Natchez powers a $1M construction firm in New York. Hospitality, media, AEC, retail — HDX adapts to the business, not the other way around.
         </p>
         <div className="hd-pillars">
           {PILLARS.map((p) => (
@@ -688,9 +699,9 @@ export default function HillbillyDreamsPage() {
             </p>
             <blockquote className="hd-story-quote">
               <p>
-                &ldquo;HDX isn&apos;t the point of the company. HDX is the armor we built to protect the music and buy back our time.&rdquo;
+                &ldquo;We don&apos;t extract. We don&apos;t take a percentage. We build the tools, license them flat, and the money stays in the community.&rdquo;
               </p>
-              <cite>— The Founder, Hillbilly Dreams</cite>
+              <cite>— Chase Tuthill Pierson, Founder</cite>
             </blockquote>
             <p>
               The Big Muddy ecosystem is the owned-and-operated proof of concept — a micromedia company in a bottle running on Google Cloud. The Inn, the Magazine, the Radio, the Touring circuit, and the Record label. All on one platform.
@@ -710,14 +721,14 @@ export default function HillbillyDreamsPage() {
 
       {/* ── Principles ── */}
       <section className="hd-section">
-        <div className="hd-label">Operating Principles</div>
-        <h2 className="hd-h2" style={{ marginBottom: '3rem' }}>The Theory of the Thing</h2>
+        <div className="hd-label">Deployed Across Industries</div>
+        <h2 className="hd-h2" style={{ marginBottom: '3rem' }}>One Engine. Many Products.</h2>
         <div className="hd-principles">
           {[
-            { label: 'Agorism', text: 'The corner store, the juke joint, the regional AEC firm, the independent artist — these are the story. The parallel economy operating outside the extractive mainstream deserves tools built for it.' },
-            { label: 'Distributed Networks', text: "Memphis and Clarksdale and Natchez and New Orleans are distinct nodes — each with its own culture, economy, and history. Build for the network. Connect the nodes. Don't flatten them." },
-            { label: 'Anti-Fragility', text: "The blues didn't come from comfort. The most enduring exports from this region came from pressure. We build with and for businesses that get stronger under stress." },
-            { label: 'Circular Economy', text: "Revenue that stays in the region compounds for the region. The question after every transaction: where does the money go? If it leaves the corridor, we've extracted. If it stays, we've built." },
+            { label: 'S2PX — AEC & Construction', text: 'iPhone LiDAR to automated quoting. Built for 3D scanning firms, general contractors, and AEC operators who bleed margin to manual estimation. Sovereign Cloud SQL instance per client.' },
+            { label: 'Big Muddy — Hospitality & Media', text: 'An inn, a magazine, a radio station, a record label, and a touring circuit — all on one platform. The owned-and-operated proof of concept running eight brands from Natchez, Mississippi.' },
+            { label: 'Deep South Directory — Main Street', text: 'Sovereign digital infrastructure for local businesses. Tap-to-pay, AI concierges, direct booking, and automated marketing — replacing the extractive platforms that tax every transaction.' },
+            { label: 'Aligned Economics', text: "Our economics are tied to your margin recovery, not rent-seeking. We don't take a percentage of your revenue. Flat licensing. When HDX makes your operation more efficient, you keep the upside. Our incentive is to make you more profitable — not to tax every transaction." },
           ].map((p) => (
             <div key={p.label} className="hd-principle">
               <div className="hd-principle__label">{p.label}</div>
