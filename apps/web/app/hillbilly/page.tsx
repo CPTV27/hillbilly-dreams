@@ -618,7 +618,7 @@ export default function HillbillyDreamsPage() {
             <span className="hd-hero__title-accent">The New South.</span>
           </h1>
           <p className="hd-hero__sub">
-            Chase Pierson built an enterprise-grade technology platform in Natchez, Mississippi —
+            Someone built an enterprise-grade technology platform in Natchez, Mississippi —
             powered entirely by <strong>Google Cloud</strong>, <strong>Gemini</strong>, and <strong>Vertex AI</strong>.
           </p>
           <div className="hd-hero__ctas">
