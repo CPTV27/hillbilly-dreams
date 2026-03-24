@@ -212,6 +212,73 @@ export default async function TouringHomepage() {
         </div>
       </section>
 
+      {/* ── Rise Up ── */}
+      <section className="rise-up">
+        <div className="section-container">
+          <div className="rise-up__layout">
+            <div className="rise-up__text">
+              <div className="section-label">Rise Up</div>
+              <h2 className="section-title">
+                The Talent Has
+                <br />
+                <em>Always Been Here.</em>
+              </h2>
+              <p className="section-desc">
+                The Rise Up Gospel and Blues Band — headlined by Arrie Aslin,
+                Big Muddy&apos;s Artist-in-Residence — travels the corridor. Live shows in
+                the towns that built American music. Clarksdale. Natchez. El Dorado.
+                The juke joints and community halls that have been doing this work
+                for a hundred years without infrastructure behind them.
+              </p>
+              <p className="section-desc" style={{ marginTop: 'var(--space-4)' }}>
+                At every stop, Rise Up runs a regional talent search. We&apos;re looking for
+                musicians who could step into the band, artists who could anchor their own
+                touring act — voices the mainstream economy has never bothered to find because
+                nobody was looking in the right places. What we find goes into the Snowbird
+                Circuit, into Big Muddy Records, and onto MelodyVault — where artists keep
+                100% of their masters.
+              </p>
+              <div className="rise-up__stats">
+                <div className="rise-up__stat">
+                  <span className="rise-up__stat-num">100%</span>
+                  <span className="rise-up__stat-label">Masters retained by artists</span>
+                </div>
+                <div className="rise-up__stat">
+                  <span className="rise-up__stat-num">$450K</span>
+                  <span className="rise-up__stat-label">Local value per community per year</span>
+                </div>
+                <div className="rise-up__stat">
+                  <span className="rise-up__stat-num">80%</span>
+                  <span className="rise-up__stat-label">Extraction rate we&apos;re building against</span>
+                </div>
+              </div>
+            </div>
+            <div className="rise-up__card">
+              <div className="rise-up__card-label">The Snowbird Circuit</div>
+              <p className="rise-up__card-desc">
+                A working touring route along the Mississippi Corridor, operated on
+                Prevost buses between real venues for real audiences. Not a festival
+                circuit built for weekend visitors. A road built for working musicians
+                who want to build a career in the South without having to leave it.
+              </p>
+              <div className="rise-up__card-stops">
+                {['Memphis', 'Clarksdale', 'Vicksburg', 'Natchez', 'El Dorado', 'New Orleans'].map((city, i) => (
+                  <div key={city} className="rise-up__card-stop">
+                    <span className="rise-up__card-stop-num">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="rise-up__card-stop-city">{city}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="rise-up__card-footer">
+                <span className="rise-up__card-tag">Big Muddy Records</span>
+                <span className="rise-up__card-tag">MelodyVault</span>
+                <span className="rise-up__card-tag">Outsider Economics</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Photo Break: Mississippi River ── */}
       <section className="photo-break">
         <Image
@@ -613,6 +680,123 @@ export default async function TouringHomepage() {
           color: var(--text-muted);
           line-height: var(--leading-relaxed);
           margin: 0;
+        }
+
+        /* ── Rise Up ── */
+        .rise-up {
+          border-top: 1px solid var(--border);
+          background: var(--surface);
+        }
+        .rise-up__layout {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: var(--space-10);
+          align-items: start;
+        }
+        @media (min-width: 768px) {
+          .rise-up__layout {
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-16);
+          }
+        }
+        .rise-up__stats {
+          display: flex;
+          gap: var(--space-8);
+          margin-top: var(--space-8);
+          padding-top: var(--space-8);
+          border-top: 1px solid var(--border);
+          flex-wrap: wrap;
+        }
+        .rise-up__stat {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-1);
+        }
+        .rise-up__stat-num {
+          font-family: var(--font-display);
+          font-size: var(--text-3xl);
+          font-weight: 800;
+          color: var(--accent);
+          letter-spacing: var(--tracking-tight);
+          line-height: 1;
+        }
+        .rise-up__stat-label {
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          color: var(--text-muted);
+          letter-spacing: var(--tracking-wide);
+          text-transform: uppercase;
+          font-weight: 600;
+          max-width: 120px;
+          line-height: var(--leading-normal);
+        }
+        .rise-up__card {
+          background: var(--bg);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-md);
+          padding: var(--space-8);
+        }
+        .rise-up__card-label {
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          font-weight: 700;
+          color: var(--accent);
+          letter-spacing: var(--tracking-widest);
+          text-transform: uppercase;
+          margin-bottom: var(--space-4);
+        }
+        .rise-up__card-desc {
+          font-family: var(--font-body);
+          font-size: var(--text-sm);
+          color: var(--text-muted);
+          line-height: var(--leading-loose);
+          margin: 0 0 var(--space-6);
+        }
+        .rise-up__card-stops {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+          padding-left: var(--space-4);
+          border-left: 1px solid var(--border);
+          margin-bottom: var(--space-8);
+        }
+        .rise-up__card-stop {
+          display: flex;
+          align-items: center;
+          gap: var(--space-4);
+          padding: var(--space-2) 0;
+        }
+        .rise-up__card-stop-num {
+          font-family: var(--font-mono);
+          font-size: var(--text-xs);
+          color: var(--accent);
+          opacity: 0.6;
+          min-width: 20px;
+        }
+        .rise-up__card-stop-city {
+          font-family: var(--font-display);
+          font-size: var(--text-lg);
+          font-weight: 600;
+          color: var(--text);
+          letter-spacing: var(--tracking-tight);
+        }
+        .rise-up__card-footer {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--space-2);
+          padding-top: var(--space-6);
+          border-top: 1px solid var(--border);
+        }
+        .rise-up__card-tag {
+          font-family: var(--font-body);
+          font-size: var(--text-xs);
+          font-weight: 600;
+          color: var(--text-muted);
+          letter-spacing: var(--tracking-wider);
+          text-transform: uppercase;
+          padding: var(--space-1) var(--space-3);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-full);
         }
       `}</style>
     </>

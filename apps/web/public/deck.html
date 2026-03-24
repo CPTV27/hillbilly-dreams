@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hillbilly Dreams | Technology Holding Company</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+},
+                    colors: {
+                        google: {
+                            blue: '#4285F4',
+                            red: '#EA4335',
+                            yellow: '#FBBC05',
+                            green: '#34A853',
+},
+                        hd: {
+                            dark: '#030305',
+                            card: '#0a0f18',
+                            cardhover: '#111827',
+                            green: '#00e676',
+                            border: 'rgba(255, 255, 255, 0.08)'
+}
+}
+}
+}
+}
+</script>
+<style>
+body {
+background-color: #030305;
+color: #ffffff;
+overflow-x: hidden;
+}
+/* Subtle radial glow behind hero */
+.hero-glow {
+position: absolute;
+top: 20%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 1000px;
+height: 1000px;
+background: radial-gradient(circle, rgba(0, 230, 118, 0.03) 0%, rgba(66, 133, 244, 0.03) 40%, rgba(0, 0, 0, 0) 70%);
+pointer-events: none;
+z-index: 0;
+}
+/* Subtle starry background */
+#star-canvas {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 0;
+pointer-events: none;
+opacity: 0.4;
+}
+.content-layer {
+position: relative;
+z-index: 10;
+}
+/* Scroll reveal animations */
+.reveal {
+opacity: 0;
+transform: translateY(20px);
+transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+opacity: 1;
+transform: translateY(0);
+}
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+/* Custom text selection */
+::selection {
+background-color: #00e676;
+color: #000;
+}
+/* Card Hover Effects */
+.ai-card {
+transition: all 0.3s ease;
+}
+.ai-card:hover {
+transform: translateY(-2px);
+border-color: rgba(255, 255, 255, 0.2);
+box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+background-color: var(--tw-colors-hd-cardhover);
+}
+/* Multi-color Google G */
+.google-g {
+background: conic-gradient(from -45deg, #EA4335 0deg 90deg, #4285F4 90deg 180deg, #34A853 180deg 270deg, #FBBC05 270deg 360deg);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+font-weight: 800;
+}
+/* Stack Graphic Lines */
+.stack-line {
+width: 2px;
+background: linear-gradient(to bottom, #00e676, transparent);
+position: absolute;
+left: 50%;
+transform: translateX(-50%);
+z-index: -1;
+}
+</style>
+</head>
+<body class="antialiased selection:bg-hd-green selection:text-black">
+<canvas id="star-canvas"></canvas>
+<div class="content-layer flex flex-col min-h-screen">
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-[#030305]/80 backdrop-blur-md border-b border-white/5">
+<div class="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-2 cursor-pointer">
+<span class="google-g text-xl tracking-tighter">G</span>
+<span class="font-bold text-lg tracking-tight">Hillbilly Dreams</span>
+</div>
+<div class="hidden lg:flex items-center gap-6 text-sm text-gray-400 font-medium">
+<a href="#thesis" class="hover:text-white transition-colors">Thesis</a>
+<a href="#stack" class="hover:text-white transition-colors">The Stack</a>
+<a href="#workflows" class="hover:text-white transition-colors">Workflows</a>
+<a href="#moat" class="hover:text-white transition-colors">Moat &amp; Risks</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center justify-center px-4 py-1.5 rounded-full bg-blue-900/20 border border-blue-800/50 text-blue-400 text-xs font-semibold cursor-pointer hover:bg-blue-900/30 transition-colors">
+                        Built on Google Cloud
+</div>
+</div>
+</div>
+</nav>
+<!-- 1. Thesis / Hero Section -->
+<main id="thesis" class="flex flex-col items-center justify-center text-center px-6 pt-40 pb-20 relative">
+<div class="hero-glow"></div>
+<div class="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
+<div class="reveal px-4 py-1 rounded-full border border-hd-green/30 bg-[#0a1a10] text-hd-green text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-8">
+                    Technology Holding Company
+</div>
+<h1 class="reveal delay-100 text-5xl md:text-7xl lg:text-[90px] font-bold tracking-tight text-white leading-[1] mb-8">
+                    We don't build models.<br>
+<span class="text-hd-green text-4xl md:text-6xl lg:text-[72px]">We build the rails.</span>
+</h1>
+<p class="reveal delay-200 text-gray-300 text-lg md:text-xl font-light max-w-4xl leading-relaxed mb-12">
+                    HDX is not a model company. It is an enterprise-grade operating system that wraps best&#8209;in&#8209;class AI (Gemini, Vertex AI) into vertical armor for independent operators in the Deep South. Our advantage is not better algorithms; it's distribution, data, and live operating experience in the verticals we serve. As models improve, HDX gets strictly better without changing the economics for our partners.
+</p>
+<p class="reveal delay-300 text-gray-500 font-medium tracking-wide max-w-2xl text-sm md:text-base border-l-2 border-hd-green pl-6 text-left">
+                    "We don't compete with OpenAI or Google. We aggregate their capabilities into opinionated, vertical workflows so normal businesses can use them without changing how they work."
+</p>
+</div>
+</main>
+<!-- 2. The Wrapper Stack -->
+<section id="stack" class="py-24 px-6 relative z-10 border-y border-white/5 bg-[#05080f]/50">
+<div class="max-w-[1000px] mx-auto">
+<div class="reveal text-center mb-10">
+<h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">Where HDX Sits in the AI Stack</h2>
+<p class="text-gray-400 text-lg">We don't build models. We wrap frontier models in vertical operating systems.</p>
+</div>
+<!-- Explicit Wrapper Flow -->
+<div class="reveal delay-100 flex flex-col md:flex-row items-center justify-center gap-3 mb-16 font-mono text-[13px] tracking-wide">
+<div class="px-5 py-2.5 bg-[#111] border border-white/10 rounded-lg text-gray-400 shadow-inner">
+                        Models (Gemini)
+</div>
+<div class="text-hd-green font-bold">→</div>
+<div class="px-5 py-2.5 bg-hd-green/10 border border-hd-green/40 text-hd-green rounded-lg font-bold shadow-[0_0_10px_rgba(0,230,118,0.1)]">
+                        HDX Engine
+</div>
+<div class="text-hd-green font-bold">→</div>
+<div class="px-5 py-2.5 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-lg shadow-[0_0_10px_rgba(66,133,244,0.1)]">
+                        Vertical Deployments
+</div>
+</div>
+<div class="relative flex flex-col gap-6">
+<div class="stack-line h-full top-0"></div>
+<!-- Top Layer -->
+<div class="reveal ai-card relative z-10 bg-[#0a1120] border border-blue-500/30 rounded-2xl p-8 text-center shadow-[0_0_30px_rgba(66,133,244,0.1)]">
+<span class="text-blue-400 text-xs font-bold tracking-widest uppercase mb-2 block">Layer 3: The Deployments</span>
+<h3 class="text-2xl font-bold text-white mb-2">Vertical SaaS</h3>
+<p class="text-gray-400 text-sm mb-4">Where the revenue is generated.</p>
+<div class="flex flex-wrap justify-center gap-3">
+<span class="px-4 py-1.5 bg-hd-green/10 border border-hd-green/50 text-hd-green font-bold rounded text-sm shadow-[0_0_15px_rgba(0,230,118,0.2)]">Twinner (AEC)</span>
+<span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded text-sm">Big Muddy (Touring)</span>
+<span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded text-sm">MVX (Music)</span>
+<span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded text-sm">Deep South Directory</span>
+</div>
+</div>
+<!-- Middle Layer -->
+<div class="reveal delay-100 ai-card relative z-10 bg-hd-card border border-hd-green/40 rounded-2xl p-8 text-center shadow-[0_0_30px_rgba(0,230,118,0.05)]">
+<span class="text-hd-green text-xs font-bold tracking-widest uppercase mb-2 block">Layer 2: The Rails (Us)</span>
+<h3 class="text-2xl font-bold text-white mb-2">HDX Engine</h3>
+<p class="text-gray-400 text-sm">Opinionated workflows (AEC, hospitality, music) + data schemas + permissions + sovereign architecture.</p>
+</div>
+<!-- Bottom Layer -->
+<div class="reveal delay-200 relative z-10 bg-[#111] border border-white/10 rounded-2xl p-6 text-center opacity-70">
+<span class="text-gray-500 text-xs font-bold tracking-widest uppercase mb-2 block">Layer 1: The Models</span>
+<h3 class="text-xl font-bold text-gray-300">Foundation Models</h3>
+<p class="text-gray-500 text-sm">Gemini 1.5 Pro, Vertex AI, Google Cloud Infrastructure</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Real Workflows (Plumbing) -->
+<section id="workflows" class="py-24 px-6 max-w-[1200px] mx-auto w-full relative z-10">
+<div class="reveal mb-16 text-center">
+<h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">AI as Plumbing, Not Pixie Dust</h2>
+<p class="text-gray-400 text-lg max-w-2xl mx-auto">Opinionated, boring workflows that feel inevitable. Here is how data moves through the HDX wrapper.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Twinner Flow -->
+<div class="reveal ai-card bg-hd-card border border-hd-border rounded-2xl p-8">
+<h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+<span class="w-8 h-8 rounded bg-blue-500/20 text-blue-400 flex items-center justify-center text-sm">01</span>
+                        Twinner Architecture Flow
+</h3>
+<div class="space-y-6 relative before:absolute before:inset-0 before:ml-[15px] before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/10 before:to-transparent">
+<div class="relative flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-[#111] border border-white/20 flex-shrink-0 z-10 flex items-center justify-center text-xs">📱</div>
+<div>
+<p class="text-white text-sm font-medium">Lidar Scan hits the system</p>
+<span class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Input</span>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-hd-green/20 border border-hd-green flex-shrink-0 z-10 flex items-center justify-center text-xs">🤖</div>
+<div>
+<p class="text-white text-sm font-medium">Auto-classify &amp; Generate Estimate</p>
+<span class="text-[10px] uppercase tracking-wider text-hd-green font-bold">AI Task (Vertex)</span>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-hd-green/20 border border-hd-green flex-shrink-0 z-10 flex items-center justify-center text-xs">🤖</div>
+<div>
+<p class="text-white text-sm font-medium">Route to CRM Stage &amp; Client Portal</p>
+<span class="text-[10px] uppercase tracking-wider text-hd-green font-bold">AI Automation</span>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-blue-500/20 border border-blue-500 flex-shrink-0 z-10 flex items-center justify-center text-xs">👤</div>
+<div>
+<p class="text-white text-sm font-medium">Review pricing &amp; final media package</p>
+<span class="text-[10px] uppercase tracking-wider text-blue-400 font-bold">Human Decision</span>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-[#111] border border-white/20 flex-shrink-0 z-10 flex items-center justify-center text-xs">⚙️</div>
+<div>
+<p class="text-white text-sm font-medium">Invoice generated, QBO synced, closeout</p>
+<span class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Background Sync</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Big Muddy Flow -->
+<div class="reveal delay-100 ai-card bg-hd-card border border-hd-border rounded-2xl p-8">
+<h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+<span class="w-8 h-8 rounded bg-red-500/20 text-red-400 flex items-center justify-center text-sm">02</span>
+                        Big Muddy / Rise Up Loop
+</h3>
+<div class="space-y-6 relative before:absolute before:inset-0 before:ml-[15px] before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/10 before:to-transparent">
+<div class="relative flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-[#111] border border-white/20 flex-shrink-0 z-10 flex items-center justify-center text-xs">🎸</div>
+<div>
+<p class="text-white text-sm font-medium">Show is booked</p>
+<span class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Trigger</span>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-hd-green/20 border border-hd-green flex-shrink-0 z-10 flex items-center justify-center text-xs">🤖</div>
+<div>
+<p class="text-white text-sm font-medium">Generate Touring Tasks &amp; Inn Prep</p>
+<span class="text-[10px] uppercase tracking-wider text-hd-green font-bold">AI Automation</span>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-hd-green/20 border border-hd-green flex-shrink-0 z-10 flex items-center justify-center text-xs">🤖</div>
+<div>
+<p class="text-white text-sm font-medium">Draft Directory, Magazine &amp; Radio content</p>
+<span class="text-[10px] uppercase tracking-wider text-hd-green font-bold">AI Generation (Imagen)</span>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-blue-500/20 border border-blue-500 flex-shrink-0 z-10 flex items-center justify-center text-xs">👤</div>
+<div>
+<p class="text-white text-sm font-medium">Creative direction &amp; final polish</p>
+<span class="text-[10px] uppercase tracking-wider text-blue-400 font-bold">Human Decision</span>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-[#111] border border-white/20 flex-shrink-0 z-10 flex items-center justify-center text-xs">⚙️</div>
+<div>
+<p class="text-white text-sm font-medium">Royalties pushed to MVX</p>
+<span class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Background Execution</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- The Org Chart Section -->
+<section class="py-24 px-6 md:px-12 max-w-[1200px] mx-auto w-full relative z-10 border-t border-white/5">
+<div class="reveal mb-16">
+<h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">The Org Chart You'll Never Need</h2>
+<p class="text-gray-400 text-lg max-w-2xl">Every role below exists inside this holding company. None of them are humans. This is how we scale faster than headcount.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="reveal ai-card bg-hd-card border border-hd-border rounded-2xl p-6">
+<div class="flex items-start gap-4 mb-6">
+<div class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-xl">👨‍💻</div>
+<div>
+<h3 class="font-bold text-white text-lg">2× Senior SWEs</h3>
+<p class="text-red-500 text-sm line-through decoration-red-500/50">$320K - $500K/yr</p>
+</div>
+</div>
+<div class="bg-[#0a0f18] border border-blue-900/30 rounded-xl p-4">
+<p class="text-blue-400 text-xs font-bold tracking-wider mb-2 uppercase">Replaced By</p>
+<p class="text-gray-300 text-sm leading-relaxed">Gemini 2.5 Pro (AG + Terminal Agent) — 472K lines shipped. React, Express. 24/7. No PTO.</p>
+</div>
+</div>
+<div class="reveal delay-100 ai-card bg-hd-card border border-hd-border rounded-2xl p-6">
+<div class="flex items-start gap-4 mb-6">
+<div class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-xl">🎨</div>
+<div>
+<h3 class="font-bold text-white text-lg">UI/UX Designer</h3>
+<p class="text-red-500 text-sm line-through decoration-red-500/50">$120K - $160K/yr</p>
+</div>
+</div>
+<div class="bg-[#0a0f18] border border-blue-900/30 rounded-xl p-4">
+<p class="text-blue-400 text-xs font-bold tracking-wider mb-2 uppercase">Replaced By</p>
+<p class="text-gray-300 text-sm leading-relaxed">Gemini + Imagen — Component design, brand-consistent UIs, event imagery generated in-context.</p>
+</div>
+</div>
+<div class="reveal delay-200 ai-card bg-hd-card border border-hd-border rounded-2xl p-6">
+<div class="flex items-start gap-4 mb-6">
+<div class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-xl">⚙️</div>
+<div>
+<h3 class="font-bold text-white text-lg">DevOps / SRE</h3>
+<p class="text-red-500 text-sm line-through decoration-red-500/50">$150K - $200K/yr</p>
+</div>
+</div>
+<div class="bg-[#0a0f18] border border-blue-900/30 rounded-xl p-4">
+<p class="text-blue-400 text-xs font-bold tracking-wider mb-2 uppercase">Replaced By</p>
+<p class="text-gray-300 text-sm leading-relaxed">Cloud Run + Cloud Build — Auto-scaling, zero-downtime deploys. Maintained by Terminal Agent.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. The Moat -->
+<section id="moat" class="py-24 px-6 bg-hd-card/50 border-y border-white/5 relative z-10">
+<div class="max-w-[1200px] mx-auto">
+<div class="reveal mb-16 text-center">
+<h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">Why This Isn't Just Another AI Wrapper</h2>
+<p class="text-gray-400 text-lg">A UI on top of an API is a feature. We built a defensible business.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="reveal ai-card bg-hd-dark border border-hd-border p-8 rounded-2xl">
+<div class="text-2xl mb-4">🏪</div>
+<h3 class="text-xl font-bold text-white mb-2">Live Showroom &amp; Skin in the Game</h3>
+<p class="text-gray-400 text-sm leading-relaxed">We run a hotel, touring circuit, magazine, radio, and label on HDX. We ship features based on actual P&amp;L pain, not abstract engineering hypotheses.</p>
+</div>
+<div class="reveal delay-100 ai-card bg-hd-dark border border-hd-border p-8 rounded-2xl">
+<div class="text-2xl mb-4">🗄️</div>
+<h3 class="text-xl font-bold text-white mb-2">Vertical Depth &amp; Playbooks</h3>
+<p class="text-gray-400 text-sm leading-relaxed">We encoded end&#8209;to&#8209;end workflows in AEC and hospitality (field → estimate → pipeline → delivery → billing). Hard to fake without operating experience.</p>
+</div>
+<div class="reveal ai-card bg-hd-dark border border-hd-border p-8 rounded-2xl">
+<div class="text-2xl mb-4">🏛️</div>
+<h3 class="text-xl font-bold text-white mb-2">Sovereign Design</h3>
+<p class="text-gray-400 text-sm leading-relaxed">Six isolated entities with strict data boundaries. Delta Dawn serves as a read&#8209;only intelligence layer. Built for compliance and trust, not just speed.</p>
+</div>
+<div class="reveal delay-100 ai-card bg-hd-dark border border-hd-border p-8 rounded-2xl">
+<div class="text-2xl mb-4">🍾</div>
+<h3 class="text-xl font-bold text-white mb-2">Micromedia in a Bottle</h3>
+<p class="text-gray-400 text-sm leading-relaxed">The Deep South Directory serves as our front door. Paired with our Magazine and Radio, this micromedia flywheel drives zero&#8209;CAC distribution directly into the OS. We capture local attention and route it into our vertical platforms.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Clear-Eyed Risks -->
+<section class="py-24 px-6 max-w-[900px] mx-auto text-center relative z-10">
+<div class="reveal mb-12">
+<h2 class="text-3xl font-bold tracking-tight mb-4 text-gray-300">The Risks We Manage</h2>
+<p class="text-gray-500 text-sm uppercase tracking-widest font-bold">Clear eyes, full hearts.</p>
+</div>
+<div class="space-y-4 text-left">
+<div class="reveal ai-card p-6 border-l-4 border-red-900/50 bg-[#111] rounded-r-xl">
+<h4 class="text-white font-bold mb-1">1. Model Provider Dependence</h4>
+<p class="text-gray-400 text-sm">We rely heavily on Google (Gemini/Vertex). Mitigation: The core business logic and client workflows live in our DB/Node layer, making models hot-swappable if an API changes radically.</p>
+</div>
+<div class="reveal delay-100 ai-card p-6 border-l-4 border-yellow-900/50 bg-[#111] rounded-r-xl">
+<h4 class="text-white font-bold mb-1">2. "Wrapper Crowding"</h4>
+<p class="text-gray-400 text-sm">The B2B wrapper space is loud. Mitigation: Our hyper-regional focus (Deep South) and physical presence (Showroom) create an offline moat against pure-software competitors.</p>
+</div>
+<div class="reveal delay-200 ai-card p-6 border-l-4 border-blue-900/50 bg-[#111] rounded-r-xl">
+<h4 class="text-white font-bold mb-1">3. Execution vs. Operations</h4>
+<p class="text-gray-400 text-sm">Running a product org and operational businesses simultaneously splits focus. Mitigation: AI agents handle &gt;80% of routine dev/ops tasks, keeping the human footprint radically small.</p>
+</div>
+</div>
+</section>
+<!-- Pricing / Contact Section -->
+<section class="py-24 px-6 text-center relative z-20 mt-auto border-t border-white/5 bg-[#030305]">
+<div class="reveal max-w-md mx-auto flex flex-col items-center bg-hd-card border border-hd-border rounded-[2rem] p-10">
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-hd-green/20 text-hd-green text-xs font-bold tracking-widest uppercase mb-6">
+                    Let's Connect
+</div>
+<h2 class="text-3xl font-bold text-white mb-2">Everything. One Price.</h2>
+<p class="text-gray-400 text-sm mb-10">Targeting Twinner client breakeven in Month 2. Built for hyper-efficient scaling.</p>
+<a href="mailto:hello@hillbillydreams.com" class="w-full group relative inline-flex items-center justify-center bg-hd-green text-black px-8 py-4 rounded-xl text-lg font-bold transition-all hover:bg-[#00c968] hover:scale-[1.02] active:scale-[0.98]">
+                    hello@hillbillydreams.com
+</a>
+</div>
+</section>
+<!-- Footer -->
+<footer class="py-8 text-center text-gray-600 text-xs relative z-10">
+<p>&copy; <span id="year"></span> Hillbilly Dreams, Inc. Natchez, Mississippi.</p>
+<p class="mt-1 text-blue-900">Made possible by Google Cloud, Gemini, and Vertex AI.</p>
+</footer>
+</div>
+<script>
+// Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+// Intersection Observer for scroll animations
+const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+};
+const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+}
+});
+}, observerOptions);
+        document.querySelectorAll('.reveal').forEach((el) => {
+            observer.observe(el);
+});
+// Subtle Starfield Background
+const canvas = document.getElementById('star-canvas');
+const ctx = canvas.getContext('2d');
+let width, height;
+let stars = [];
+function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initStars();
+}
+        window.addEventListener('resize', resizeCanvas);
+class Star {
+constructor() {
+this.x = Math.random() * width;
+this.y = Math.random() * height;
+this.size = Math.random() * 1.5;
+this.speedY = (Math.random() * 0.1) + 0.02;
+this.opacity = Math.random() * 0.5 + 0.1;
+}
+            update() {
+this.y -= this.speedY;
+if (this.y < 0) {
+this.y = height;
+this.x = Math.random() * width;
+}
+}
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.fill();
+}
+}
+function initStars() {
+            stars = [];
+const starCount = Math.floor((window.innerWidth * window.innerHeight) / 15000);
+for (let i = 0; i < starCount; i++) {
+                stars.push(new Star());
+}
+}
+function animate() {
+            ctx.clearRect(0, 0, width, height);
+            stars.forEach(star => {
+                star.update();
+                star.draw();
+});
+            requestAnimationFrame(animate);
+}
+        resizeCanvas();
+        animate();
+        setTimeout(() => {
+            document.querySelectorAll('.reveal').forEach((el) => {
+const rect = el.getBoundingClientRect();
+if(rect.top < window.innerHeight) {
+                    el.classList.add('visible');
+}
+});
+}, 50);
+</script>
+</body>
+</html>

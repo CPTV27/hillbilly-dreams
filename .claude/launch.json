@@ -19,6 +19,51 @@
       }
     },
     {
+      "name": "hillbilly",
+      "cwd": "/Users/chasethis/bmt/apps/web",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["next", "dev", "--port", "3002"],
+      "port": 3002,
+      "autoPort": true,
+      "env": { "NEXT_PUBLIC_BRAND": "hillbilly" }
+    },
+    {
+      "name": "hillbilly-fresh",
+      "cwd": "/Users/chasethis/bmt/apps/web",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["next", "dev", "--port", "3006"],
+      "port": 3006,
+      "autoPort": true,
+      "env": { "NEXT_PUBLIC_BRAND": "hillbilly" }
+    },
+    {
+      "name": "platform",
+      "cwd": "/Users/chasethis/bmt/apps/web",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["next", "dev", "--port", "3003"],
+      "port": 3003,
+      "autoPort": true,
+      "env": { "NEXT_PUBLIC_BRAND": "platform" }
+    },
+    {
+      "name": "economics",
+      "cwd": "/Users/chasethis/bmt/apps/web",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["next", "dev", "--port", "3004"],
+      "port": 3004,
+      "autoPort": true,
+      "env": { "NEXT_PUBLIC_BRAND": "economics" }
+    },
+    {
+      "name": "media",
+      "cwd": "/Users/chasethis/bmt/apps/web",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["next", "dev", "--port", "3005"],
+      "port": 3005,
+      "autoPort": true,
+      "env": { "NEXT_PUBLIC_BRAND": "media" }
+    },
+    {
       "name": "ops",
       "cwd": "/Users/chasethis/bmt/apps/web",
       "runtimeExecutable": "npx",
@@ -28,6 +73,6 @@
       "env": {
         "NEXT_PUBLIC_BRAND": "admin"
       }
-    }
+    },
   ]
 }

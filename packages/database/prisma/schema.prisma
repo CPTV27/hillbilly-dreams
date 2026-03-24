@@ -897,3 +897,29 @@ model ArtistApplication {
   @@index([userId])
   @@index([status])
 }
+
+// ── Deep South Directory ──────────────────────────────────────────────────────
+
+model DirectoryBusiness {
+  id           Int      @id @default(autoincrement())
+  name         String
+  category     String
+  city         String
+  website      String?
+  description  String   @db.Text
+  contactName  String
+  contactEmail String
+  tier         String   @default("free") // free | main_street | the_route | hdx_ops
+  spotlight    String?  @db.Text         // AI-generated editorial copy
+  toolsOrigin  String?                   // Survey: where tools come from
+  softwareSpend String?                  // Survey: monthly software spend
+  hearAbout    String?                   // How they found the directory
+  active       Boolean  @default(false)  // Manually activated by admin
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([city])
+  @@index([category])
+  @@index([tier])
+  @@index([active])
+}

@@ -257,6 +257,18 @@ function DashboardContent() {
         >
           Manage your listing, connect services, and see how the corridor finds you.
         </p>
+        <p
+          style={{
+            marginTop: '1rem',
+            fontSize: '0.7rem',
+            color: 'var(--fg, #f5f0eb)',
+            opacity: 0.3,
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+          }}
+        >
+          Powered by HDX · hillbillydreamsinc.com
+        </p>
       </section>
 
       {/* Quick Stats */}
@@ -317,6 +329,104 @@ function DashboardContent() {
               </p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* AI Spotlight */}
+      <section
+        style={{
+          padding: '0 1.5rem 3rem',
+          maxWidth: 900,
+          margin: '0 auto',
+        }}
+      >
+        <div style={{ borderTop: '1px solid var(--muted, #333)', paddingTop: '2.5rem' }}>
+          <p
+            style={{
+              fontSize: '0.75rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.12em',
+              color: 'var(--accent, #c8943e)',
+              marginBottom: '0.4rem',
+            }}
+          >
+            Your Editorial Spotlight
+          </p>
+          <p
+            style={{
+              fontSize: '1rem',
+              fontWeight: 700,
+              color: 'var(--fg, #f5f0eb)',
+              marginBottom: '1.25rem',
+            }}
+          >
+            AI-generated. Yours to publish.
+          </p>
+          <div
+            style={{
+              border: '1px solid var(--muted, #333)',
+              padding: '2rem',
+              position: 'relative',
+              overflow: 'hidden',
+            }}
+          >
+            <p
+              style={{
+                fontSize: '0.85rem',
+                color: 'var(--fg, #f5f0eb)',
+                opacity: 0.45,
+                lineHeight: 1.7,
+                margin: 0,
+                filter: 'blur(4px)',
+                userSelect: 'none',
+              }}
+            >
+              When you submit your listing, we generate a 200-word editorial spotlight
+              about your business in the voice of Big Muddy Magazine. Direct, analog-warm,
+              written for the corridor. At the $99/month Main Street tier, it gets published
+              to your Directory profile. At $299/month, it cross-publishes to Big Muddy Magazine.
+            </p>
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'rgba(10, 10, 10, 0.6)',
+                backdropFilter: 'blur(2px)',
+              }}
+            >
+              <div style={{ textAlign: 'center' }}>
+                <p
+                  style={{
+                    fontSize: '0.75rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    color: 'var(--accent, #c8943e)',
+                    marginBottom: '0.5rem',
+                    fontWeight: 700,
+                  }}
+                >
+                  Available at Main Street tier ($99/mo)
+                </p>
+                <a
+                  href="/directory/submit"
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.6rem 1.5rem',
+                    background: 'var(--accent, #c8943e)',
+                    color: '#0a0a0a',
+                    textDecoration: 'none',
+                    fontWeight: 700,
+                    fontSize: '0.82rem',
+                  }}
+                >
+                  Get Listed →
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -496,7 +606,7 @@ function DashboardContent() {
               </p>
             </div>
             <a
-              href="mailto:directory@bigmuddymedia.com"
+              href="mailto:listings@hillbillydreamsinc.com"
               style={{
                 fontSize: '0.78rem',
                 color: 'var(--accent, #c8943e)',
@@ -518,8 +628,103 @@ function DashboardContent() {
               opacity: 0.35,
             }}
           >
-            To update your listing details, email directory@bigmuddymedia.com
+            To update your listing details, email listings@hillbillydreamsinc.com
           </p>
+        </div>
+      </section>
+
+      {/* HDX OS Locked Panel */}
+      <section
+        style={{
+          padding: '0 1.5rem 3rem',
+          maxWidth: 900,
+          margin: '0 auto',
+        }}
+      >
+        <div style={{ borderTop: '1px solid var(--muted, #333)', paddingTop: '2.5rem' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              marginBottom: '1.25rem',
+            }}
+          >
+            <p
+              style={{
+                fontSize: '0.75rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.12em',
+                color: 'var(--fg, #f5f0eb)',
+                opacity: 0.3,
+                margin: 0,
+                fontWeight: 700,
+              }}
+            >
+              HDX Operating System
+            </p>
+            <span
+              style={{
+                fontSize: '0.65rem',
+                padding: '0.2rem 0.6rem',
+                border: '1px solid var(--muted, #333)',
+                color: 'var(--fg, #f5f0eb)',
+                opacity: 0.35,
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+              }}
+            >
+              Locked
+            </span>
+          </div>
+          <div
+            style={{
+              border: '1px solid var(--muted, #333)',
+              padding: '2rem',
+              opacity: 0.6,
+            }}
+          >
+            <p
+              style={{
+                fontSize: '1rem',
+                fontWeight: 700,
+                color: 'var(--fg, #f5f0eb)',
+                marginBottom: '0.75rem',
+              }}
+            >
+              You&apos;re already in the network.
+            </p>
+            <p
+              style={{
+                fontSize: '0.85rem',
+                color: 'var(--fg, #f5f0eb)',
+                opacity: 0.65,
+                lineHeight: 1.7,
+                marginBottom: '1.5rem',
+                maxWidth: 560,
+              }}
+            >
+              HDX is the full operating system: sales pipeline, billing, project management,
+              client delivery — all connected. The Directory runs on it. Your business can too.
+              One monthly cost. No engineering team required. Hillbilly Dreams as your embedded
+              technology arm.
+            </p>
+            <a
+              href="mailto:licensing@hillbillydreamsinc.com"
+              style={{
+                display: 'inline-block',
+                padding: '0.6rem 1.5rem',
+                border: '1px solid var(--muted, #333)',
+                color: 'var(--fg, #f5f0eb)',
+                textDecoration: 'none',
+                fontWeight: 600,
+                fontSize: '0.82rem',
+                opacity: 0.7,
+              }}
+            >
+              Talk to us about HDX →
+            </a>
+          </div>
         </div>
       </section>
 

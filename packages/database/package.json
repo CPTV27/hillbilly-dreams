@@ -11,7 +11,8 @@
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate deploy",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "seed:directory": "npx tsx scripts/seed-directory-natchez.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.14.0",

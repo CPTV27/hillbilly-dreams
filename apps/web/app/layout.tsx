@@ -3,7 +3,7 @@
 // Brand routing is handled by middleware.ts; each route group has its own layout.
 
 import type { Metadata } from 'next';
-import { Playfair_Display, DM_Sans } from 'next/font/google';
+import { Playfair_Display, DM_Sans, Plus_Jakarta_Sans } from 'next/font/google';
 import { Analytics } from '../components/Analytics';
 import { JsonLd, getOrganizationSchema } from '@/lib/structured-data';
 import '@bigmuddy/config/tokens.css';
@@ -21,6 +21,13 @@ const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-body',
+  display: 'swap',
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-jakarta',
   display: 'swap',
 });
 
@@ -50,7 +57,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfairDisplay.variable} ${dmSans.variable}`}
+      className={`${playfairDisplay.variable} ${dmSans.variable} ${plusJakartaSans.variable}`}
     >
       <head>
         <Analytics />

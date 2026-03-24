@@ -48,6 +48,29 @@ Check `.workflow/CONTEXT.md` for exact paths.
 - Architecture decisions go in: `.workflow/DECISIONS.md` (append only)
 - You do NOT have access to the Perplexity conversation — everything you need is in the `.workflow/` files
 
+## Technology Identity — Google Infrastructure
+
+HDX is not vibe-coded software. It is an enterprise-grade operating system built on the most advanced technology stack in the world. This is a first-class identity principle — not just a stack choice.
+
+**We are operationalizing Google technology for local operators.**
+
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| Compute | Google Cloud Run | Serverless backend, auto-scaling, per-sovereign isolation |
+| Database | Cloud SQL + Firebase Firestore | Relational + real-time, per-sovereign projects |
+| AI / Intelligence | Gemini (gemini-2.5-flash, gemini-pro) | All AI generation, classification, Q&A, voice |
+| ML Pipelines | Vertex AI | Cost estimation, demand forecasting, semantic search |
+| Storage | Cloud Storage (GCS) + R2 | Media, documents, scan artifacts |
+| Messaging | Pub/Sub | Cross-sovereign event bus (read-only, scoped) |
+| Analytics | BigQuery | Usage analytics, OE extraction metrics |
+| Hardware | Apple (iPad Pro, Apple Watch, iPhone) + Android + Chrome | Meet operators on the glass they already hold |
+
+**Rules for every agent:**
+- Default all AI features to Gemini. Do not introduce OpenAI, Anthropic, or other LLM providers unless Chase explicitly instructs it.
+- Default all infrastructure to Google Cloud. Do not introduce AWS or Azure.
+- When building new features, ask: does this use a Google primitive that's already in the stack, or are we adding unnecessary vendor surface?
+- The trust signal is real: this is the same infrastructure that powers Google's own products. Every line of copy and every product decision should reinforce that.
+
 ## Project Conventions
 
 - GitHub org: CPTV27
