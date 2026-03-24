@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Shield, Server, Zap, LineChart, Briefcase, Database, Cloud, ChevronRight, CheckCircle2 } from 'lucide-react';
 import SplitScreenDemo from '../../../../components/proposal/SplitScreenDemo';
 import MarginRecoveryEngine from '../../../../components/proposal/MarginRecoveryEngine';
@@ -17,6 +17,12 @@ const colors = {
 
 /* ─── Proposal (GA's inline CSS version) ─── */
 function Proposal() {
+  const [growthFee, setGrowthFee] = useState(1000);
+  const revSharePercent = growthFee >= 10000 ? 0 : 7 - ((growthFee - 1000) / 9000) * 7;
+  const totalMonthly = 5000 + growthFee;
+  const month2 = Math.round(totalMonthly * 0.5);
+  const year1Total = 0 + month2 + (totalMonthly * 10);
+
   return (
     <div style={{ minHeight: '100vh', backgroundColor: colors.slate50, fontFamily: 'system-ui, -apple-system, sans-serif', color: colors.slate900, lineHeight: 1.5 }}>
 
@@ -135,12 +141,34 @@ function Proposal() {
                 ))}
               </ul>
             </div>
-            {/* Growth Module */}
+            {/* Growth Module — Interactive Slider */}
             <div style={{ backgroundColor: colors.white, borderRadius: 24, padding: 32, border: `1px solid ${colors.slate200}`, boxShadow: '0 20px 25px -5px rgba(0,0,0,.05)', position: 'relative' }}>
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: `linear-gradient(to right, ${colors.orange400}, ${colors.orange600})`, borderTopLeftRadius: 24, borderTopRightRadius: 24 }} />
               <h3 style={{ fontSize: '1.5rem', fontWeight: 900, color: colors.slate900, margin: '0 0 8px' }}>The Growth Module</h3>
-              <div style={{ fontSize: '2.5rem', fontWeight: 900, color: colors.orange500, margin: '0 0 8px' }}>$1,000<span style={{ fontSize: '1rem', color: colors.slate400, fontWeight: 500 }}>/mo + RevShare</span></div>
-              <p style={{ fontSize: 14, color: colors.slate500, margin: '0 0 24px', lineHeight: 1.5 }}>The offensive engine. You only pay the performance fee when you win.</p>
+              <p style={{ fontSize: 14, color: colors.slate500, margin: '0 0 24px', lineHeight: 1.5 }}>Adjust your risk profile. Increase monthly retainer to buy down your commission on closed volume.</p>
+
+              {/* Slider */}
+              <div style={{ marginBottom: 24 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 12 }}>
+                  <div style={{ fontSize: '2.5rem', fontWeight: 900, color: colors.orange500 }}>${growthFee.toLocaleString()}<span style={{ fontSize: '1rem', color: colors.slate400, fontWeight: 500 }}>/mo</span></div>
+                  <div style={{ fontSize: '1.5rem', fontWeight: 900, color: revSharePercent === 0 ? '#22c55e' : colors.sky600 }}>
+                    {revSharePercent === 0 ? '0%' : `${revSharePercent.toFixed(1)}%`}
+                    <span style={{ fontSize: 12, color: colors.slate400, fontWeight: 500, marginLeft: 4 }}>{revSharePercent === 0 ? 'Unlimited Volume' : 'RevShare'}</span>
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  min={1000} max={10000} step={500}
+                  value={growthFee}
+                  onChange={e => setGrowthFee(Number(e.target.value))}
+                  style={{ width: '100%', accentColor: colors.orange500, cursor: 'pointer' }}
+                />
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: colors.slate400, marginTop: 4 }}>
+                  <span>$1,000/mo · 7% RevShare</span>
+                  <span style={{ color: '#22c55e', fontWeight: 700 }}>$10,000/mo · 0% Commission</span>
+                </div>
+              </div>
+
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {['Inbound marketing engine + AI lead qualification', 'Automated case studies from project data', 'Google Business Profile sync + local SEO', 'Precision outreach — authenticated Gmail sequences', 'Conversion attribution — HDX-tracked pipeline'].map((item, i) => (
                   <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, fontSize: 14, color: colors.slate600 }}>
@@ -148,20 +176,23 @@ function Proposal() {
                   </li>
                 ))}
               </ul>
-              <div style={{ marginTop: 24, padding: 20, backgroundColor: colors.slate50, borderRadius: 12, border: `1px solid ${colors.slate100}` }}>
-                <div style={{ fontWeight: 700, color: colors.slate900, marginBottom: 8 }}>Performance RevShare Waterfall</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 14 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', color: colors.slate600 }}>
-                    <span>First $1M funnel-closed revenue</span>
-                    <span style={{ fontWeight: 700, color: colors.orange600 }}>7%</span>
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', color: colors.slate600 }}>
-                    <span>Revenue above $1M</span>
-                    <span style={{ fontWeight: 700, color: colors.sky600 }}>5%</span>
-                  </div>
+
+              {/* Dynamic Total */}
+              <div style={{ marginTop: 24, padding: 20, backgroundColor: colors.slate900, borderRadius: 12 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+                  <span style={{ fontSize: 14, color: colors.slate400 }}>Core Node</span>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: colors.white }}>$5,000/mo</span>
                 </div>
-                <p style={{ fontSize: 12, color: colors.slate400, margin: '12px 0 0', lineHeight: 1.4 }}>The fee decreases as your volume increases. We grow when you grow — never the other way around.</p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+                  <span style={{ fontSize: 14, color: colors.slate400 }}>Growth Module</span>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: colors.orange400 }}>${growthFee.toLocaleString()}/mo</span>
+                </div>
+                <div style={{ borderTop: `1px solid ${colors.slate700}`, paddingTop: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: colors.white }}>Total Monthly</span>
+                  <span style={{ fontSize: '1.25rem', fontWeight: 900, color: '#22c55e' }}>${totalMonthly.toLocaleString()}/mo</span>
+                </div>
               </div>
+              <p style={{ fontSize: 12, color: colors.slate400, margin: '12px 0 0', textAlign: 'center' }}>Spatial compute passed through at-cost. 0% markup.</p>
             </div>
           </div>
 
@@ -176,18 +207,18 @@ function Proposal() {
               </div>
               <div style={{ padding: 24, borderRadius: 16, backgroundColor: colors.slate800, border: `1px solid ${colors.slate700}`, textAlign: 'center' }}>
                 <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: colors.orange400, marginBottom: 8 }}>Month 2</div>
-                <div style={{ fontSize: '2rem', fontWeight: 900, color: colors.white }}>$3,000</div>
+                <div style={{ fontSize: '2rem', fontWeight: 900, color: colors.white }}>${month2.toLocaleString()}</div>
                 <div style={{ fontSize: 12, color: colors.slate400, marginTop: 8 }}>Dashboard live. AI monitoring. Half-rate ramp.</div>
               </div>
               <div style={{ padding: 24, borderRadius: 16, backgroundColor: colors.slate800, border: `1px solid ${colors.slate700}`, textAlign: 'center' }}>
                 <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: colors.slate400, marginBottom: 8 }}>Months 3–12</div>
-                <div style={{ fontSize: '2rem', fontWeight: 900, color: colors.white }}>$6,000<span style={{ fontSize: '0.875rem', color: colors.slate500 }}>/mo</span></div>
+                <div style={{ fontSize: '2rem', fontWeight: 900, color: colors.white }}>${totalMonthly.toLocaleString()}<span style={{ fontSize: '0.875rem', color: colors.slate500 }}>/mo</span></div>
                 <div style={{ fontSize: 12, color: colors.slate400, marginTop: 8 }}>Fully autonomous. ROI proven on dashboard.</div>
               </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 24, paddingTop: 20, borderTop: `1px solid ${colors.slate700}` }}>
               <div style={{ fontSize: 14, color: colors.slate400 }}>Year 1 Total Commitment</div>
-              <div style={{ fontSize: '1.5rem', fontWeight: 900, color: colors.green400 }}>$63,000</div>
+              <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#22c55e' }}>${year1Total.toLocaleString()}</div>
             </div>
           </div>
         </section>
