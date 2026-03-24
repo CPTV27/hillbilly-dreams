@@ -1,5 +1,5 @@
 buildConfig:
-  buildMachine: N1_STANDARD_8
+  buildMachine: N1_HIGHCPU_32
 
 runConfig:
   runtime: nodejs20

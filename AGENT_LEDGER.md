@@ -18,6 +18,101 @@ If any checkbox is unchecked, the task is **IN_PROGRESS**, not COMPLETE. Fix bef
 
 ---
 
+## [2026-03-24 10:00] — CC — IN_PROGRESS
+
+**Task:** HDX Infrastructure — Firebase deploy, DNS, GCS archive, secrets
+
+### What CC Did
+
+**Firebase App Hosting (bigmuddy-ff651):**
+1. Forced rollout on `bmt` backend — auto-deploy webhook was stale since Mar 21
+2. Diagnosed 5 consecutive OOM build failures (exit code 137 / SIGKILL)
+3. Root cause: 381MB of images in `public/images/` — Next.js processes all during build
+4. Fix: archived 470 unreferenced images (corridor 217→27, library 285→0, portraits 75→1)
+5. Result: 381MB → 64MB. Build retriggered with `d787ac1` commit
+
+**Firebase App Hosting (hillbillydreams):**
+1. Created `bmt` backend on `hillbillydreams` project (us-east4)
+2. Connected to `CPTV27/bmt` repo, `main` branch
+3. Granted IAM bindings for all 9 secrets (DATABASE_URL, NEXTAUTH_SECRET, etc.)
+4. Triggered rollout — build in progress
+
+**DNS (Cloudflare — hillbillydreamsinc.com):**
+1. A record for apex: proxied (orange cloud) for Cloudflare redirect interception
+2. www CNAME: `bmt--bigmuddy-ff651.us-east4.hosted.app` (DNS only)
+3. Redirect Rule: `hillbillydreamsinc.com/*` → 301 → `www.hillbillydreamsinc.com/${1}`
+4. SSL cert: pending Firebase provisioning (requires successful build first)
+
+**GCS Archive (gs://bmt-media-bigmuddy/archive/):**
+1. Uploaded corridor/ (190 files) → `gs://bmt-media-bigmuddy/archive/corridor/`
+2. Uploaded library/ (285 files) → `gs://bmt-media-bigmuddy/archive/library/`
+3. Uploaded portraits/ (74 files) → `gs://bmt-media-bigmuddy/archive/portraits/`
+4. Originals preserved — can serve via GCS URL or restore to repo later
+
+**Image Replacement:**
+- `victorian-mansion-natchez.webp`: replaced purple-sky AI artifact with natural blue-sky Victorian (generated via Z-Image on HF)
+
+**Files Changed:**
+- Deleted ~470 image files from `apps/web/public/images/`
+- Modified `apps/web/public/images/corridor/victorian-mansion-natchez.webp` (new image)
+
+**Status:** IN_PROGRESS — waiting on builds to complete
+**Next:** Verify deploy, send Owen proposal link, update NEXTAUTH_URL secret for hillbillydreams domain
+
+---
+
+## [2026-03-24 01:30] — AG — COMPLETE
+
+**Task:** Phase 2 Seam Introduction — 5 seams across 12 files
+
+### What AG Did
+
+**Wave 1 — Config Seams:**
+1. `packages/config/brand-types.ts` (NEW): `BrandConfig<T>` generic, `BrandResolver`, `createBrandResolver()` factory
+2. `packages/config/brands.ts`: declarative `BMT_BRAND_MATCHERS` replaces if-chain
+3. `packages/shared/lib/dispatch.ts`: `UserLookupFn` DI injection, `bmtUserLookup` default, `DispatchMessage` platform type
+4. `apps/web/lib/gcs.ts` + `image-loader.ts`: `GCS_BUCKET` env var injection with fallback
+
+**Wave 3 — Infrastructure Seams:**
+5. `apps/web/config/domain-routes.ts` (NEW): `DomainRoute` interface, 21 BMT domain mappings
+6. `apps/web/middleware.ts`: 17 hardcoded if-chains → single `matchDomainRoute()` call
+7. `apps/web/config/auth-rules.ts` (NEW): `TenantAuthRules` interface, `getTeamPassword()` (no Wormwood66!), `isAllowedUser()`
+8. `apps/web/auth.ts`: OpsActivity → injectable `bmtOnSignIn`, JWT enrichment → `bmtOnJwtEnrich`
+9. `apps/web/lib/admin-auth.ts`: deleted 25-line duplicate whitelist → imports from auth-rules
+
+**Build verified clean.** Zero runtime behavior change.
+
+---
+
+## [2026-03-24 01:00] — CC — COMPLETE
+
+**Task:** S2PX Proposal page + interactive components + email signatures
+
+### What CC Did
+
+1. `apps/web/app/hillbilly/proposal/scan2plan/page.tsx` — Password-gated proposal (Scan2Plan2026), GA's inline CSS design, executive summary, tech licensing, media engine, equity table, 60-day roadmap
+2. `apps/web/components/proposal/MarginRecoveryEngine.tsx` — Interactive ROI calculator with Owen's 2025 QuickBooks actuals ($1.12M revenue, $358K outside services, slider for automation %)
+3. `apps/web/components/proposal/SplitScreenDemo.tsx` — AI vision demo showing iPhone LiDAR → itemized quote pipeline
+4. `packages/shared/lib/email-signature.ts` — Email signature generator with `esc()` XSS prevention
+5. `S2PX/server/lib/emailSignature.ts` — Same utility for S2PX repo
+6. `S2PX/server/lib/emailSender.ts` — Wired HDX_SIGNATURE into proposal emails
+7. `HDX_S2PX_Licensing_Proposal_v3b.docx/.pdf` — Updated proposal doc with Google-first narrative, attribution-based commission language
+
+---
+
+## [2026-03-24 00:30] — AG — COMPLETE
+
+**Task:** Phase 1 Audit — BMT Codebase Inventory & Boundary Drawing
+
+### What AG Did
+
+Full read-only audit of 240+ files. Every module classified as Platform (24), Tenant (135+), or Tangled (28). Key findings:
+- Prisma schema: 30+ models across 5 sovereign boundaries (Auth, Hospitality, Media/Directory, BCA, Records)
+- Critical tangled files: `schema.prisma`, `auth.ts`, `middleware.ts`
+- 3 sovereignty-misplaced API groups: gallery → BCA, tracks → Records, directory → Media
+
+---
+
 ## [2026-03-24] — CC — COMPLETE
 
 **Task:** Deep South Directory MVP (DISPATCH.md) + Narrative updates
