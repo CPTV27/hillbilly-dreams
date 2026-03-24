@@ -31,6 +31,7 @@ export default function DeepSouthPitch() {
           <a href="#natchez" style={{ color: colors.slate600, textDecoration: 'none' }}>The Natchez Pitch</a>
           <a href="#economics" style={{ color: colors.slate600, textDecoration: 'none' }}>Economics</a>
           <a href="#roadmap" style={{ color: colors.slate600, textDecoration: 'none' }}>12-Month Roadmap</a>
+          <a href="/hillbilly/proposal/scan2plan" style={{ color: colors.sky500, textDecoration: 'none' }}>S2PX Engine →</a>
         </div>
       </nav>
 
@@ -181,6 +182,22 @@ export default function DeepSouthPitch() {
                 <Server size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} /> 96% Gross Cloud Margins
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Closing CTA — Complete the loop */}
+        <section style={{ background: colors.slate900, borderRadius: 24, padding: 48, textAlign: 'center' as const }}>
+          <h2 style={{ fontSize: '2rem', fontWeight: 900, color: colors.white, margin: '0 0 12px' }}>Claim Your Node</h2>
+          <p style={{ fontSize: '1.125rem', color: colors.slate400, maxWidth: 600, margin: '0 auto 32px', lineHeight: 1.6 }}>
+            Every business that joins the Directory strengthens the closed-loop economy. Stop feeding absentee platforms. Start building sovereign infrastructure.
+          </p>
+          <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' as const }}>
+            <a href="/hillbilly/proposal/scan2plan" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', backgroundColor: colors.sky500, color: colors.white, fontWeight: 700, borderRadius: 12, textDecoration: 'none', fontSize: 16 }}>
+              Digitize Your Space with S2PX <ArrowRight size={18} />
+            </a>
+            <a href="mailto:chase@hillbillydreamsinc.com?subject=Deep%20South%20Directory%20—%20Claim%20My%20Node" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', backgroundColor: 'transparent', color: colors.slate300, fontWeight: 600, borderRadius: 12, textDecoration: 'none', fontSize: 16, border: `1px solid ${colors.slate600}` }}>
+              Contact Us
+            </a>
           </div>
         </section>
 
