@@ -131,7 +131,11 @@ function Proposal() {
             <div style={{ backgroundColor: colors.white, borderRadius: 24, padding: 32, border: `1px solid ${colors.slate200}`, boxShadow: '0 20px 25px -5px rgba(0,0,0,.05)', position: 'relative' }}>
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: `linear-gradient(to right, ${colors.sky400}, ${colors.sky600})`, borderTopLeftRadius: 24, borderTopRightRadius: 24 }} />
               <h3 style={{ fontSize: '1.5rem', fontWeight: 900, color: colors.slate900, margin: '0 0 8px' }}>The Core Node</h3>
-              <div style={{ fontSize: '2.5rem', fontWeight: 900, color: colors.sky600, margin: '0 0 8px' }}>$5,000<span style={{ fontSize: '1rem', color: colors.slate400, fontWeight: 500 }}>/mo</span></div>
+              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: colors.sky600, marginBottom: 4 }}>Core Operating System: 5% of Baseline Revenue</div>
+              <div style={{ fontSize: '2.5rem', fontWeight: 900, color: colors.sky600, margin: '0 0 4px' }}>$5,000<span style={{ fontSize: '1rem', color: colors.slate400, fontWeight: 500 }}>/mo</span></div>
+              <p style={{ fontSize: 12, color: colors.slate400, margin: '0 0 20px', display: 'flex', alignItems: 'center', gap: 4 }}>
+                Pegged to $1M+ run-rate. Scales with your live QuickBooks TTM revenue.
+              </p>
               <p style={{ fontSize: 14, color: colors.slate500, margin: '0 0 24px', lineHeight: 1.5 }}>Your outsourced operating system. Replaces back-office headcount and protects existing margins.</p>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {['Bespoke CEO Console with live telemetry', 'QuickBooks Online sync — real-time P&L dashboard', 'Google Workspace capacity forecasting', 'Spatial / LiDAR compute pipeline (Vertex AI)', 'Cloud compute passed through at-cost, 0% markup'].map((item, i) => (
