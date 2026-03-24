@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 
-export const API_ROUTES = {
+const API_ROUTES = {
   GALLERY_APPLY: '/api/gallery/applications' as const
 };
 
