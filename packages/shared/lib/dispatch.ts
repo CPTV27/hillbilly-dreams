@@ -1,12 +1,62 @@
+// packages/shared/lib/dispatch.ts
+// ─────────────────────────────────────────────────────────────
+// HDX Multi-Channel Dispatch Engine
+// ─────────────────────────────────────────────────────────────
+// SEAM: This module is platform-portable. The only tenant coupling
+//       was the direct Prisma import for user lookup. That's now
+//       injected via UserLookupFn with a BMT default fallback.
+//
+// Seam introduced: 2026-03-24 — Phase 2 Config Seams (AG)
+// ─────────────────────────────────────────────────────────────
+
 import { prisma } from '@bigmuddy/database';
 
-export interface BMTDispatchMessage {
+// ── Platform-Portable Types ──
+
+export interface DispatchMessage {
   triggerId: string;
   recipientEmail: string;
   subject: string;
   body: string;
   priority: 'low' | 'normal' | 'high' | 'urgent';
 }
+
+/** @deprecated Use DispatchMessage — kept for backward compatibility */
+export type BMTDispatchMessage = DispatchMessage;
+
+/**
+ * SEAM: User lookup contract.
+ * Any HDX sovereign can provide its own implementation that reads from
+ * its own DB package. The dispatch engine never imports a DB directly.
+ */
+export interface UserDispatchProfile {
+  email: string | null;
+  communicationStyle: string | null;
+  communicationChannels: string[];
+}
+
+export type UserLookupFn = (userId: string) => Promise<UserDispatchProfile | null>;
+
+// ── BMT Default User Lookup (backward compat) ──
+
+const bmtUserLookup: UserLookupFn = async (userId) => {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: {
+      email: true,
+      communicationStyle: true,
+      communicationChannels: true,
+    },
+  });
+  if (!user) return null;
+  return {
+    email: user.email,
+    communicationStyle: user.communicationStyle,
+    communicationChannels: user.communicationChannels,
+  };
+};
+
+// ── Platform Functions (zero tenant coupling) ──
 
 /**
  * Format message body based on user's communication style preference.
@@ -23,7 +73,7 @@ export function formatForStyle(body: string, style: string): string {
     }
     case 'detailed_warm': {
       // Wrap in a friendly greeting/sign-off
-      return `Hey there —\n\n${body}\n\nLet me know if you have questions!\n— Big Muddy Ops`;
+      return `Hey there —\n\n${body}\n\nLet me know if you have questions!\n— Ops`;
     }
     case 'data_heavy': {
       // Prefix with timestamp and keep raw
@@ -40,7 +90,7 @@ export function formatForStyle(body: string, style: string): string {
  */
 export async function dispatchToChannel(
   channel: string,
-  message: BMTDispatchMessage
+  message: DispatchMessage
 ): Promise<boolean> {
   switch (channel) {
     case 'google_chat': {
@@ -117,19 +167,16 @@ export async function dispatchToChannel(
 
 /**
  * Look up a user's communication preferences and dispatch through all their channels.
+ *
+ * SEAM: Accepts an optional `userLookup` function to decouple from any specific DB.
+ * Defaults to BMT's Prisma-backed lookup for backward compatibility.
  */
 export async function dispatchForUser(
   userId: string,
-  message: Omit<BMTDispatchMessage, 'recipientEmail'>
+  message: Omit<DispatchMessage, 'recipientEmail'>,
+  userLookup: UserLookupFn = bmtUserLookup
 ): Promise<void> {
-  const user = await prisma.user.findUnique({
-    where: { id: userId },
-    select: {
-      email: true,
-      communicationStyle: true,
-      communicationChannels: true,
-    },
-  });
+  const user = await userLookup(userId);
 
   if (!user || !user.email) {
     console.warn(`[dispatch] User ${userId} not found or has no email`);
@@ -140,7 +187,7 @@ export async function dispatchForUser(
   const channels = user.communicationChannels || ['email'];
   const formattedBody = formatForStyle(message.body, style);
 
-  const fullMessage: BMTDispatchMessage = {
+  const fullMessage: DispatchMessage = {
     ...message,
     recipientEmail: user.email,
     body: formattedBody,
@@ -157,3 +204,4 @@ export async function dispatchForUser(
     }
   }
 }
+

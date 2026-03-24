@@ -1,9 +1,21 @@
 // lib/gcs.ts
+// ─────────────────────────────────────────────────────────────
 // Google Cloud Storage helper for image uploads
-// Bucket: gs://bmt-media-bigmuddy (public read via IAM, us-east4)
+// ─────────────────────────────────────────────────────────────
+// SEAM: Bucket name is injected via GCS_BUCKET env var.
+//       Platform pattern (upload/list/delete) is tenant-agnostic.
+//       Each HDX sovereign sets its own GCS_BUCKET in .env.
+//       BMT default: bmt-media-bigmuddy (public read via IAM, us-east4)
+//
+// Seam introduced: 2026-03-24 — Phase 2 Config Seams (AG)
+// ─────────────────────────────────────────────────────────────
 
 import { Storage } from '@google-cloud/storage';
 
+/**
+ * SEAM: Bucket name sourced from env. Each HDX sovereign sets its own.
+ * BMT fallback kept for backward compatibility.
+ */
 const BUCKET_NAME = process.env.GCS_BUCKET ?? 'bmt-media-bigmuddy';
 
 // On Firebase App Hosting, ADC is available automatically.

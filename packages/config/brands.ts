@@ -1,22 +1,16 @@
 // packages/config/brands.ts
 // Brand configuration for the Big Muddy multi-tenant platform
+//
+// SEAM: Platform interfaces live in brand-types.ts (HDX-portable).
+//       This file provides BMT-specific brand data and ID union.
+//       Existing exports preserved — no downstream changes needed.
+
+import { BrandConfig as BaseBrandConfig, createBrandResolver } from './brand-types';
 
 export type BrandId = 'touring' | 'magazine' | 'radio' | 'economics' | 'admin' | 'gallery' | 'records' | 'hillbilly';
 
-export interface BrandConfig {
-  id: BrandId;
-  name: string;
-  shortName: string;
-  tagline: string;
-  domain: string;
-  localDomain: string;
-  description: string;
-  themeClass: string;
-  primaryColor: string;
-  nav: {
-    links: Array<{ label: string; href: string }>;
-  };
-}
+// BrandConfig is now the BMT-specific specialization of the platform interface
+export type BrandConfig = BaseBrandConfig<BrandId>;
 
 export const BRANDS: Record<BrandId, BrandConfig> = {
   touring: {
@@ -187,19 +181,26 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
 };
 
 /**
+ * BMT hostname-to-brand matchers.
+ * SEAM: This data is tenant-specific. The resolver engine (createBrandResolver) is platform.
+ */
+const BMT_BRAND_MATCHERS: Array<{ pattern: string; brandId: BrandId }> = [
+  { pattern: 'bigmuddytouring', brandId: 'touring' },
+  { pattern: 'bigmuddymagazine', brandId: 'magazine' },
+  { pattern: 'bigmuddyradio', brandId: 'radio' },
+  { pattern: 'outsidereconomics', brandId: 'economics' },
+  { pattern: 'buycurious', brandId: 'gallery' },
+  { pattern: 'bigmuddyrecord', brandId: 'records' },
+  { pattern: 'hillbillydreams', brandId: 'hillbilly' },
+];
+
+/**
  * Resolve brand from a hostname string.
  * Used in middleware and server components.
  */
-export function getBrandFromHostname(hostname: string): BrandId {
-  if (hostname.includes('bigmuddytouring')) return 'touring';
-  if (hostname.includes('bigmuddymagazine')) return 'magazine';
-  if (hostname.includes('bigmuddyradio')) return 'radio';
-  if (hostname.includes('outsidereconomics')) return 'economics';
-  if (hostname.includes('buycurious')) return 'gallery';
-  if (hostname.includes('bigmuddyrecord')) return 'records';
-  if (hostname.includes('hillbillydreams')) return 'hillbilly';
-  // admin.bigmuddy.*, localhost, and fallback
-  return 'admin';
-}
+export const getBrandFromHostname = createBrandResolver<BrandId>(
+  BMT_BRAND_MATCHERS,
+  'admin' // fallback: admin.bigmuddy.*, localhost, and unmatched
+);
 
 export default BRANDS;
