@@ -1,6 +1,17 @@
 // apps/web/auth.ts
-// NextAuth v5 configuration — Google OAuth with email whitelist
-// Only whitelisted emails can access the admin panel.
+// ─────────────────────────────────────────────────────────────
+// HDX NextAuth v5 Configuration Engine
+// ─────────────────────────────────────────────────────────────
+// PLATFORM-PORTABLE auth engine. Tenant-specific access control
+// data and lifecycle callbacks are imported from config/auth-rules.ts.
+// Database logging (OpsActivity) is injected — the engine never
+// imports tenant DB models directly.
+//
+// TENANT DATA lives in config/auth-rules.ts (BMT-specific).
+// To adapt for another HDX sovereign, swap the import.
+//
+// Seam introduced: 2026-03-24 — Phase 2 Wave 3 (AG)
+// ─────────────────────────────────────────────────────────────
 
 import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
@@ -8,39 +19,49 @@ import Credentials from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prisma } from '@bigmuddy/database';
 
-// Domains that get full access (any user @ these domains)
-const ALLOWED_DOMAINS = [
-  'chasepierson.tv',
-  'thebigmuddyinn.com',
-  'studio.c.video',
-  'studio-c.com',
-];
+// ── Tenant Config Import ──
+import {
+  BMT_AUTH_RULES,
+  getTeamPassword,
+} from './config/auth-rules';
+import type { OnSignInCallback, OnJwtEnrichCallback } from './config/auth-rules';
 
-// Individual emails that get full access
-const ALLOWED_EMAILS = [
-  'chase@scan2plan.io',
-  'chase@scantoplan.io',
-  'tracy@thebigmuddyinn.com',
-  'amy@thebigmuddyinn.com',
-  'amyaldersonallen@gmail.com',
-  'info@studio.c.video',
-  'miles@studio.c.video',
-  'elijah@studio.c.video',
-  'info@studio-c.com',
-  'miles@studio-c.com',
-  'elijah@studio-c.video',
-  'team@chasepierson.tv',
-];
+// ── BMT Lifecycle Callbacks (injected into the engine) ──
 
-// Shared team password for email/password login
-const TEAM_PASSWORD = process.env.TEAM_PASSWORD || 'Wormwood66!';
+/**
+ * BMT sign-in callback: logs login activity to OpsActivity.
+ * The auth engine calls this but never references OpsActivity directly.
+ */
+const bmtOnSignIn: OnSignInCallback = async (user) => {
+  try {
+    await prisma.opsActivity.create({
+      data: {
+        type: 'login',
+        message: `${user.name || user.email} signed in`,
+        userId: user.email || 'unknown',
+        userName: user.name || user.email?.split('@')[0] || 'Unknown',
+      },
+    });
+  } catch (e) {
+    // Non-fatal — don't block login if activity log fails
+    console.error('[Auth] Failed to log login activity:', e);
+  }
+};
 
-function isAllowedUser(email: string | null | undefined): boolean {
-  if (!email) return false;
-  const lower = email.toLowerCase();
-  const domain = lower.split('@')[1];
-  return ALLOWED_DOMAINS.includes(domain) || ALLOWED_EMAILS.includes(lower);
-}
+/**
+ * BMT JWT enrichment: loads role, interfaceTheme, onboardingStep from User model.
+ */
+const bmtOnJwtEnrich: OnJwtEnrichCallback = async (email) => {
+  const dbUser = await prisma.user.findUnique({ where: { email } });
+  if (!dbUser) return null;
+  return {
+    role: dbUser.role || BMT_AUTH_RULES.defaultRole,
+    interfaceTheme: dbUser.interfaceTheme || 'minimal',
+    onboardingStep: dbUser.onboardingStep || 'pending_survey',
+  };
+};
+
+// ── Platform: Auth Engine ──
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   trustHost: true,
@@ -63,7 +84,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const password = credentials?.password as string;
 
         if (!email || !password) return null;
-        if (password !== TEAM_PASSWORD) return null;
+        if (password !== getTeamPassword()) return null;
         // Auth open — any email accepted
 
         // Find or create user in database
@@ -73,7 +94,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             data: {
               email: email.toLowerCase(),
               name: email.split('@')[0],
-              role: 'viewer',
+              role: BMT_AUTH_RULES.defaultRole,
             },
           });
         }
@@ -85,22 +106,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     async signIn({ user }) {
       // Auth open — no email whitelist check
-
-      // Log the login activity
-      try {
-        await prisma.opsActivity.create({
-          data: {
-            type: 'login',
-            message: `${user.name || user.email} signed in`,
-            userId: user.email || 'unknown',
-            userName: user.name || user.email?.split('@')[0] || 'Unknown',
-          },
-        });
-      } catch (e) {
-        // Non-fatal — don't block login if activity log fails
-        console.error('[Auth] Failed to log login activity:', e);
-      }
-
+      // Invoke tenant sign-in callback (OpsActivity logging, etc.)
+      await bmtOnSignIn(user);
       return true;
     },
     async jwt({ token, user, trigger, session }) {
@@ -110,11 +117,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
       if (user) {
         token.id = user.id;
-
-        const dbUser = await prisma.user.findUnique({ where: { email: user.email! } });
-        token.role = dbUser?.role || 'viewer';
-        token.interfaceTheme = dbUser?.interfaceTheme || 'minimal';
-        token.onboardingStep = dbUser?.onboardingStep || 'pending_survey';
+        // Enrich token with tenant-specific user data
+        const enrichment = await bmtOnJwtEnrich(user.email!);
+        if (enrichment) {
+          token.role = enrichment.role;
+          token.interfaceTheme = enrichment.interfaceTheme;
+          token.onboardingStep = enrichment.onboardingStep;
+        } else {
+          token.role = BMT_AUTH_RULES.defaultRole;
+          token.interfaceTheme = 'minimal';
+          token.onboardingStep = 'pending_survey';
+        }
       }
       return token;
     },
@@ -129,7 +142,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
   },
   pages: {
-    signIn: '/admin/login',
-    error: '/admin/login',
+    signIn: BMT_AUTH_RULES.signInPage,
+    error: BMT_AUTH_RULES.errorPage,
   },
 });
+

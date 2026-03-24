@@ -1,40 +1,20 @@
 // apps/web/lib/admin-auth.ts
+// ─────────────────────────────────────────────────────────────
 // Shared auth guard for /api/admin/* route handlers.
 // Middleware skips /api routes, so API-level auth must be checked here.
+// ─────────────────────────────────────────────────────────────
+// SEAM: Uses centralized auth rules from config/auth-rules.ts.
+//       No more duplicate whitelist — single source of truth.
+//
+// Seam introduced: 2026-03-24 — Phase 2 Wave 3 (AG)
+// ─────────────────────────────────────────────────────────────
 
 import { auth } from '@/auth';
 import { NextResponse } from 'next/server';
+import { isAllowedUser } from '@/config/auth-rules';
 
-// Domains that get full access (any user @ these domains)
-const ALLOWED_DOMAINS = [
-  'chasepierson.tv',
-  'thebigmuddyinn.com',
-  'studio.c.video',
-  'studio-c.com',
-];
-
-// Individual emails that get full access
-const ALLOWED_EMAILS = [
-  'chase@scan2plan.io',
-  'chase@scantoplan.io',
-  'tracy@thebigmuddyinn.com',
-  'amy@thebigmuddyinn.com',
-  'amyaldersonallen@gmail.com',
-  'info@studio.c.video',
-  'miles@studio.c.video',
-  'elijah@studio.c.video',
-  'info@studio-c.com',
-  'miles@studio-c.com',
-  'elijah@studio-c.video',
-  'team@chasepierson.tv',
-];
-
-function isAllowedUser(email: string | null | undefined): boolean {
-  if (!email) return false;
-  const lower = email.toLowerCase();
-  const domain = lower.split('@')[1];
-  return ALLOWED_DOMAINS.includes(domain) || ALLOWED_EMAILS.includes(lower);
-}
+// Re-export for any callers that import isAllowedUser from admin-auth
+export { isAllowedUser };
 
 /**
  * Verify the caller has an active admin session.
@@ -44,3 +24,4 @@ export async function requireAdmin(): Promise<NextResponse | null> {
   // Auth disabled — all users allowed
   return null;
 }
+
