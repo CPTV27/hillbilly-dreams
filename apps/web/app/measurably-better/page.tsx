@@ -374,120 +374,41 @@ export default function MeasurablyBetterLanding() {
         </div>
       </section>
 
-      {/* Pricing Section */}
+      {/* Enterprise Value Section */}
       <section style={{ background: colors.white }} className="mb-section">
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <h2 className="mb-reveal" style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '1rem' }}>
-            Simple, predictable pricing.
+            Your entire back office. One platform.
           </h2>
-          <p className="mb-reveal" style={{ fontSize: '1.125rem', maxWidth: 600, margin: '0 auto', transitionDelay: '100ms' }}>
-            Start for free, upgrade when you need more capacity.
+          <p className="mb-reveal" style={{ fontSize: '1.125rem', maxWidth: 600, margin: '0 auto', color: colors.slate600, transitionDelay: '100ms' }}>
+            Manual processes are draining $35,000–$65,000 a year from contractors your size. We fix that.
           </p>
         </div>
 
-        <div className="mb-pricing-grid">
-          {/* Free Tier */}
-          <div className="mb-card mb-pricing-card mb-reveal" style={{ transitionDelay: '100ms' }}>
-            <div className="mb-pricing-header">
-              <h3 className="mb-pricing-tier">Free</h3>
-              <div className="mb-pricing-price">
-                $0
-                <span className="mb-pricing-period">/mo</span>
-              </div>
-            </div>
-            <ul className="mb-pricing-features">
-              <li className="mb-pricing-feature">
-                <CheckCircle2 size={18} className="mb-pricing-icon" />
-                <span>1 seat</span>
-              </li>
-              <li className="mb-pricing-feature">
-                <CheckCircle2 size={18} className="mb-pricing-icon" />
-                <span>3 diagnostic runs per month</span>
-              </li>
-              <li className="mb-pricing-feature">
-                <CheckCircle2 size={18} className="mb-pricing-icon" />
-                <span>Standard support</span>
-              </li>
+        <div className="mb-reveal" style={{ maxWidth: 640, margin: '0 auto', transitionDelay: '200ms' }}>
+          <div className="mb-card" style={{ border: `2px solid ${colors.sky500}`, textAlign: 'center', padding: '3rem 2rem' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: colors.sky500, marginBottom: '1rem' }}>Enterprise Platform</div>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem' }}>Everything you need to run your operation</h3>
+            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 2rem', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {[
+                'Live QuickBooks sync — real cash position, not just P&L',
+                'AI-powered quoting — site scan to itemized estimate in minutes',
+                'Automated marketing — case studies, GBP updates, local SEO',
+                'Capacity forecasting — know your pipeline before it hits',
+                'Google Workspace integration — calendar, email, drive',
+                'Sovereign infrastructure — your data never leaves your namespace',
+                'Vertex AI spatial compute — passed through at cost, 0% markup',
+              ].map((item, i) => (
+                <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.95rem', color: colors.slate600 }}>
+                  <CheckCircle2 size={18} color={colors.sky500} style={{ flexShrink: 0, marginTop: 2 }} />
+                  {item}
+                </li>
+              ))}
             </ul>
-            <button onClick={handleAuth} className="mb-btn mb-btn-outline" style={{ width: '100%' }}>Get Started</button>
-          </div>
-
-          {/* Pro Tier */}
-          <div className="mb-card mb-pricing-card mb-reveal" style={{ border: `2px solid ${colors.sky500}`, position: 'relative', transitionDelay: '200ms' }}>
-            <div style={{
-              position: 'absolute',
-              top: '-12px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              background: colors.sky500,
-              color: colors.white,
-              padding: '4px 12px',
-              borderRadius: '12px',
-              fontSize: '0.75rem',
-              fontWeight: 600,
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase'
-            }}>
-              Most Popular
-            </div>
-            <div className="mb-pricing-header">
-              <h3 className="mb-pricing-tier">Pro</h3>
-              <div className="mb-pricing-price">
-                $99
-                <span className="mb-pricing-period">/mo</span>
-              </div>
-              <div className="mb-pricing-annual">Billed annually at $79/mo</div>
-            </div>
-            <ul className="mb-pricing-features">
-              <li className="mb-pricing-feature">
-                <CheckCircle2 size={18} className="mb-pricing-icon" />
-                <span>Unlimited diagnostics</span>
-              </li>
-              <li className="mb-pricing-feature">
-                <CheckCircle2 size={18} className="mb-pricing-icon" />
-                <span>QuickBooks Online sync</span>
-              </li>
-              <li className="mb-pricing-feature">
-                <CheckCircle2 size={18} className="mb-pricing-icon" />
-                <span>AI Automation workflows</span>
-              </li>
-              <li className="mb-pricing-feature">
-                <CheckCircle2 size={18} className="mb-pricing-icon" />
-                <span>Priority support</span>
-              </li>
-            </ul>
-            <button onClick={handleAuth} className="mb-btn" style={{ width: '100%' }}>Start Free Trial</button>
-          </div>
-
-          {/* Department Tier */}
-          <div className="mb-card mb-pricing-card mb-reveal" style={{ transitionDelay: '300ms' }}>
-            <div className="mb-pricing-header">
-              <h3 className="mb-pricing-tier">Department</h3>
-              <div className="mb-pricing-price">
-                $500
-                <span className="mb-pricing-period">/mo</span>
-              </div>
-              <div className="mb-pricing-annual">Billed annually at $400/mo</div>
-            </div>
-            <ul className="mb-pricing-features">
-              <li className="mb-pricing-feature">
-                <CheckCircle2 size={18} className="mb-pricing-icon" />
-                <span>5 included seats</span>
-              </li>
-              <li className="mb-pricing-feature">
-                <CheckCircle2 size={18} className="mb-pricing-icon" />
-                <span>Full stack access</span>
-              </li>
-              <li className="mb-pricing-feature">
-                <CheckCircle2 size={18} className="mb-pricing-icon" />
-                <span>Advanced capacity forecasting</span>
-              </li>
-              <li className="mb-pricing-feature">
-                <CheckCircle2 size={18} className="mb-pricing-icon" />
-                <span>Dedicated account manager</span>
-              </li>
-            </ul>
-            <button onClick={handleAuth} className="mb-btn mb-btn-outline" style={{ width: '100%' }}>Contact Sales</button>
+            <button onClick={handleAuth} className="mb-btn" style={{ fontSize: '1.125rem', padding: '1rem 2.5rem' }}>
+              Request Access
+              <ArrowRight size={20} />
+            </button>
           </div>
         </div>
       </section>

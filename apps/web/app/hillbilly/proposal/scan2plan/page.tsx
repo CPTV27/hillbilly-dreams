@@ -19,7 +19,7 @@ const colors = {
 /* ─── Proposal (GA's inline CSS version) ─── */
 function Proposal() {
   const [growthFee, setGrowthFee] = useState(1000);
-  const revSharePercent = growthFee >= 10000 ? 0 : 7 - ((growthFee - 1000) / 9000) * 7;
+  const revSharePercent = growthFee >= 10000 ? 0 : 10 - ((growthFee - 1000) / 9000) * 10;
   const totalMonthly = 5000 + growthFee;
   const month2 = Math.round(totalMonthly * 0.5);
   const year1Total = 0 + month2 + (totalMonthly * 10);
@@ -169,7 +169,7 @@ function Proposal() {
                   style={{ width: '100%', accentColor: colors.orange500, cursor: 'pointer' }}
                 />
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: colors.slate400, marginTop: 4 }}>
-                  <span>$1,000/mo · 7% RevShare</span>
+                  <span>$1,000/mo · 10% RevShare</span>
                   <span style={{ color: '#22c55e', fontWeight: 700 }}>$10,000/mo · 0% Commission</span>
                 </div>
               </div>
