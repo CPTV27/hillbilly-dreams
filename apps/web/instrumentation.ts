@@ -7,6 +7,9 @@ export function register() {
       tracesSampleRate: 1,
       debug: false,
     });
+    
+    // Initialize Google Cloud Trace via OpenTelemetry
+    import('./instrumentation.node');
   }
 
   if (process.env.NEXT_RUNTIME === 'edge') {

@@ -49,6 +49,7 @@ const nextConfig = {
   experimental: {
     outputFileTracingRoot: resolve(__dirname, '../../'),
     serverComponentsExternalPackages: ['@prisma/client', 'prisma'],
+    instrumentationHook: true,
   },
 
   async headers() {
