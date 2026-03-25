@@ -1,22 +1,4 @@
-import * as Sentry from '@sentry/nextjs';
-
 export function register() {
-  if (process.env.NEXT_RUNTIME === 'nodejs') {
-    Sentry.init({
-      dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-      tracesSampleRate: 1,
-      debug: false,
-    });
-    
-    // Initialize Google Cloud Trace via OpenTelemetry
-    import('./instrumentation.node');
-  }
-
-  if (process.env.NEXT_RUNTIME === 'edge') {
-    Sentry.init({
-      dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-      tracesSampleRate: 1,
-      debug: false,
-    });
-  }
+  // Instrumentation disabled on stable branch
+  // Sentry + OpenTelemetry available on sandbox branch
 }

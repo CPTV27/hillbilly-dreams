@@ -1009,3 +1009,24 @@ model SpatialScan {
   @@index([status])
   @@index([createdAt])
 }
+
+// ─────────────────────────────────────────────────────────────
+// SOVEREIGN NOTEBOOK (Swarm Knowledge Base)
+// ─────────────────────────────────────────────────────────────
+
+model NotebookDrop {
+  id              String    @id @default(cuid())
+  title           String
+  author          String    @default("Agent Swarm") // "AG", "CC", "Chase", etc.
+  content         String    @db.Text
+  tags            String[]  // e.g. ["architecture", "research", "musings"]
+  sourceSystem    String?   // e.g. "cli", "web", "webhook"
+  tokenCount      Int?      // Estimated tokens for RAG context packing logic
+  status          String    @default("active") // active | archived
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([author])
+  @@index([status])
+  @@index([createdAt])
+}

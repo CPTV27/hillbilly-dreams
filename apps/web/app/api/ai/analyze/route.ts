@@ -31,18 +31,20 @@ export async function POST(req: Request) {
         systemInstruction,
         temperature: 0.1,
         maxOutputTokens: 8192,
-        tools: [{
-          functionDeclarations: [
-            {
-              name: 'sync_quickbooks',
-              description: 'Synchronize the QuickBooks Online ledger and retrieve the latest P&L margin recovery metrics. Call this if the user asks to sync quickbooks, check the ledger, or view finances.',
-            },
-            {
-              name: 'sync_calendar',
-              description: 'Fetch the latest Google Workspace calendar to update the capacity forecast. Call this if the user asks to check schedules, availability, or calendar.',
-            }
-          ]
-        }]
+        tools: [
+          {
+            functionDeclarations: [
+              {
+                name: 'sync_quickbooks',
+                description: 'Synchronize the QuickBooks Online ledger and retrieve the latest P&L margin recovery metrics. Call this if the user asks to sync quickbooks, check the ledger, or view finances.',
+              },
+              {
+                name: 'sync_calendar',
+                description: 'Fetch the latest Google Workspace calendar to update the capacity forecast. Call this if the user asks to check schedules, availability, or calendar.',
+              }
+            ]
+          },
+        ]
       }
     });
     
