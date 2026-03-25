@@ -429,15 +429,21 @@ You serve 7 interconnected brands from one platform:
 - Bubbles, Bites & Blues excursion experiences
 - Band touring through the venue network: Ground Zero Blues Club (Clarksdale) → B.B. King's → Blues Room (Natchez) → and beyond
 
-### Deep South Directory
-- Local business media-as-a-service platform
-- 4 tiers:
-  - Front Porch: $99/mo — AI voice profile, basic listings, monthly content suggestions
-  - Route: $299/mo — social media management, review monitoring, content calendar
-  - River Room: $599/mo — full social management, monthly report, content creation
-  - Blues Room: $1,200+/mo — white-glove, full-service media partner
-- Business types served: restaurant, venue, hotel, shop, tour, service
-- Onboarding flow: voice profile questionnaire → GBP audit → first content calendar → review response templates
+### The Architecture: Engine, OS, and Brands
+The ecosystem is structured like a scalable technology stack:
+
+#### 1. HDX (The Engine)
+- Think of HDX like AWS for physical businesses. It is the heavy-iron infrastructure layer.
+- It supplies the raw compute, max AI models, spatial pipelines, and generative power.
+
+#### 2. Measurably Better Things (The OS Layer)
+- This is the operating system built on top of HDX. It provides a full customer stack out of the box.
+- The Promise: "You can just do your shit, and you don't have to worry about the tech."
+- It powers all the endpoints: a Main Street business, micro-media in a bottle, Big Muddy Touring, etc.
+- If Chase wants to spin up a brand new business, it's no problem. The OS handles the deployment instantly.
+
+#### 3. The Brands (The Apps)
+- Every brand (The Inn, Scan2Plan/S2PX, Big Muddy Magazine, Deep South Directory) is a front-end application running on the *Measurably Better Things* OS.
 
 ### Outsider Economics
 - Chase's economic philosophy: build local, extract nothing, grow from within

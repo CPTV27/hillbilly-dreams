@@ -100,6 +100,12 @@ export const BMT_BRAND_PREFIXES = [
   '/admin', '/ops', '/portal', '/platform', '/gallery',
   '/records', '/studio', '/tuthill', '/hillbilly',
   '/measurably-better',
+  '/welcome',
+  '/nexus',
+  '/mvx',
+  '/ffx',
+  '/book',
+  '/demo',
 ];
 
 // ── Admin path shortcuts ──
