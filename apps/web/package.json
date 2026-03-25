@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
+    "@auth/core": "^0.34.3",
     "@auth/prisma-adapter": "^2.11.1",
     "@bigmuddy/config": "workspace:*",
     "@bigmuddy/database": "workspace:*",
@@ -19,6 +20,7 @@
     "@bigmuddy/ui": "workspace:*",
     "@google-cloud/aiplatform": "^6.5.0",
     "@google-cloud/storage": "^7.19.0",
+    "@google-cloud/vertexai": "^1.10.3",
     "@hookform/resolvers": "^5.2.2",
     "@prisma/client": "^5.14.0",
     "@sentry/nextjs": "^10.45.0",

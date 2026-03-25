@@ -5,19 +5,19 @@
 // Deterministic extraction. Strict JSON schema output.
 // No prompt engineering voodoo — structured output mode only.
 //
-// GCP Auth: Uses Application Default Credentials (ADC).
-//   - Cloud Run: automatic via service account
-//   - Local dev: `gcloud auth application-default login`
+// GCP Auth: Uses Application Default Credentials (ADC) natively
+// via the @google-cloud/vertexai SDK.
 // ─────────────────────────────────────────────────────────────
 
+import { VertexAI, HarmCategory, HarmBlockThreshold } from '@google-cloud/vertexai';
 import type { CapacityMetrics } from './types';
 
+const VERTEX_PROJECT_ID = process.env.VERTEX_PROJECT_ID || process.env.GOOGLE_CLOUD_PROJECT || 'bigmuddy-ff651';
+const VERTEX_LOCATION = process.env.VERTEX_LOCATION || 'us-east4';
 const VERTEX_MODEL = 'gemini-1.5-pro-002';
-const VERTEX_LOCATION = 'us-east4';
 
 /**
  * The strict JSON schema sent to Gemini structured output.
- * This forces deterministic responses — no prose, no hallucination.
  */
 const CAPACITY_METRICS_SCHEMA = {
   type: 'OBJECT',
@@ -77,9 +77,6 @@ const CAPACITY_METRICS_SCHEMA = {
   ],
 };
 
-/**
- * System prompt for spatial analysis. No personality — pure extraction.
- */
 const SYSTEM_PROMPT = `You are a spatial analysis engine for the S2PX platform. You analyze walk-through videos and LiDAR point cloud data of commercial, residential, and industrial spaces.
 
 Your job is to extract deterministic capacity metrics from the provided spatial data. You must:
@@ -95,79 +92,40 @@ Be conservative in estimates. Round square footage to the nearest 10. Flag any m
 
 /**
  * Extract CapacityMetrics from a GCS-stored spatial asset using Gemini 1.5 Pro.
- *
- * @param gcsUri - Cloud Storage URI (gs://bucket/path/file)
- * @param mimeType - MIME type of the asset (video/mp4, application/las, etc.)
- * @returns Parsed CapacityMetrics or throws on failure
  */
 export async function extractCapacityMetrics(
   gcsUri: string,
   mimeType: string = 'video/mp4'
 ): Promise<{ metrics: CapacityMetrics; model: string; confidence: number }> {
-  const projectId = process.env.GCP_PROJECT_ID || process.env.GOOGLE_CLOUD_PROJECT;
-  if (!projectId) throw new Error('[vertex-spatial] GCP_PROJECT_ID is not configured');
+  const vertexAI = new VertexAI({ project: VERTEX_PROJECT_ID, location: VERTEX_LOCATION });
+  
+  const generativeModel = vertexAI.getGenerativeModel({
+    model: VERTEX_MODEL,
+    safetySettings: [{ category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH }],
+    generationConfig: {
+      responseMimeType: 'application/json',
+      responseSchema: CAPACITY_METRICS_SCHEMA as any,
+      temperature: 0.1,
+      maxOutputTokens: 4096,
+    },
+  });
 
-  const endpoint = `https://${VERTEX_LOCATION}-aiplatform.googleapis.com/v1/projects/${projectId}/locations/${VERTEX_LOCATION}/publishers/google/models/${VERTEX_MODEL}:generateContent`;
-
-  // Get ADC token
-  const tokenRes = await fetch('http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token', {
-    headers: { 'Metadata-Flavor': 'Google' },
-  }).catch(() => null);
-
-  let accessToken: string;
-  if (tokenRes?.ok) {
-    // Running on GCP (Cloud Run, GCE, etc.)
-    const tokenData = await tokenRes.json();
-    accessToken = tokenData.access_token;
-  } else {
-    // Local dev: use gcloud CLI token
-    const { execSync } = await import('child_process');
-    accessToken = execSync('gcloud auth print-access-token', { encoding: 'utf-8' }).trim();
-  }
-
-  const requestBody = {
+  const request = {
     contents: [
       {
         role: 'user',
         parts: [
-          {
-            fileData: {
-              mimeType,
-              fileUri: gcsUri,
-            },
-          },
-          {
-            text: 'Analyze this spatial scan. Extract all capacity metrics according to the schema. Be thorough and conservative in your estimates.',
-          },
+          { fileData: { mimeType, fileUri: gcsUri } },
+          { text: 'Analyze this spatial scan. Extract all capacity metrics according to the schema. Be thorough and conservative in your estimates.' },
         ],
       },
     ],
-    systemInstruction: {
-      parts: [{ text: SYSTEM_PROMPT }],
-    },
-    generationConfig: {
-      responseMimeType: 'application/json',
-      responseSchema: CAPACITY_METRICS_SCHEMA,
-      temperature: 0.1,      // Near-deterministic
-      maxOutputTokens: 4096,
-    },
+    systemInstruction: { role: 'system', parts: [{ text: SYSTEM_PROMPT }] },
   };
 
-  const response = await fetch(endpoint, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(requestBody),
-  });
+  const responseStream = await generativeModel.generateContentStream(request);
+  const result = await responseStream.response;
 
-  if (!response.ok) {
-    const errBody = await response.text();
-    throw new Error(`[vertex-spatial] Vertex AI returned ${response.status}: ${errBody}`);
-  }
-
-  const result = await response.json();
   const content = result.candidates?.[0]?.content?.parts?.[0]?.text;
   if (!content) {
     throw new Error('[vertex-spatial] No content in Vertex AI response');
@@ -175,7 +133,6 @@ export async function extractCapacityMetrics(
 
   const metrics: CapacityMetrics = JSON.parse(content);
 
-  // Calculate overall confidence as average of material confidences
   const materialConfidences = metrics.materials.map(m => m.confidence);
   const avgConfidence = materialConfidences.length > 0
     ? materialConfidences.reduce((a, b) => a + b, 0) / materialConfidences.length
