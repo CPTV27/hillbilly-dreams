@@ -10,7 +10,8 @@ runConfig:
 env:
   - variable: NODE_ENV
     value: production
-  # NODE_OPTIONS removed — let Cloud Build manage heap automatically
+  - variable: NODE_OPTIONS
+    value: "--max-old-space-size=8192"
   # All secrets via Firebase Secret Manager — never inline values here
   - variable: DATABASE_URL
     secret: DATABASE_URL
