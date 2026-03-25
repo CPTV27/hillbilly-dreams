@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { useSession, SessionProvider } from 'next-auth/react';
 
 const THEMES = [
   { value: 'futuristic', label: 'Futuristic', description: 'Dark glassmorphism, glowing accents, VR-ready.' },
@@ -108,6 +108,14 @@ const styles = {
 };
 
 export default function SettingsPage() {
+  return (
+    <SessionProvider>
+      <SettingsPageInner />
+    </SessionProvider>
+  );
+}
+
+function SettingsPageInner() {
   const router = useRouter();
   const { update: updateSession } = useSession();
   const [theme, setTheme] = useState('');
