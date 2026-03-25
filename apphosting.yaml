@@ -4,8 +4,8 @@ buildConfig:
 runConfig:
   runtime: nodejs20
   maxInstances: 10
-  memoryMiB: 1024
-  cpu: 2
+  memoryMiB: 4096
+  cpu: 4
 
 env:
   - variable: NODE_ENV
