@@ -42,7 +42,7 @@ export default function MeasurablyBetterLanding() {
           lineHeight: 1.6,
           margin: '0 0 2rem',
         }}>
-          Enterprise AI infrastructure for independent operators. Launching May 31, 2026.
+          Enterprise AI infrastructure for independent operators. Launching April 27, 2026.
         </p>
         <div style={{
           display: 'inline-flex',
