@@ -1,0 +1,81 @@
+
+> @bigmuddy/web@0.0.1 build /Users/chasethis/bmt/apps/web
+> NODE_OPTIONS='--max-old-space-size=4096' next build
+
+[@sentry/nextjs] DEPRECATION WARNING: disableLogger is deprecated and will be removed in a future version. Use webpack.treeshake.removeDebugLogging instead.
+[@sentry/nextjs] DEPRECATION WARNING: reactComponentAnnotation is deprecated and will be removed in a future version. Use webpack.reactComponentAnnotation instead.
+  ▲ Next.js 14.2.0
+  - Environments: .env.local
+  - Experiments (use with caution):
+    · instrumentationHook
+    · outputFileTracingRoot
+
+   Creating an optimized production build ...
+[@sentry/nextjs] DEPRECATION WARNING: It is recommended renaming your `sentry.client.config.ts` file, or moving its content to `instrumentation-client.ts`. When using Turbopack `sentry.client.config.ts` will no longer work. Read more about the `instrumentation-client.ts` file: https://nextjs.org/docs/app/api-reference/file-conventions/instrumentation-client
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+
+./app/admin/articles/new/page.tsx
+398:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/admin/dashboard/walkthrough.tsx
+122:6  Warning: React Hook useEffect has missing dependencies: 'goNext' and 'goPrev'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/admin/media/page.tsx
+535:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/admin/playlists/page.tsx
+132:25  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/admin/publications/page.tsx
+792:25  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+910:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/hillbilly/proposal/scan2plan/console/page.tsx
+404:6  Warning: React Hook useCallback has a missing dependency: 'interests'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/measurably-better/technology/page.tsx
+53:6  Warning: React Hook useEffect has a missing dependency: 'current'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/media/directory/[slug]/page.tsx
+237:27  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/media/directory/page.tsx
+115:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/media/publications/[slug]/page.tsx
+216:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+237:23  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+254:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/media/publications/page.tsx
+101:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/records/artists/[slug]/page.tsx
+55:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+   Collecting page data ...
+
+> Build error occurred
+Error: Cannot find module '/Users/chasethis/bmt/apps/web/.next/server/middleware-manifest.json'
+Require stack:
+- /Users/chasethis/bmt/node_modules/.pnpm/next@14.2.0_@babel+core@7.29.0_@opentelemetry+api@1.9.0_@playwright+test@1.58.2_react-dom@18._qfeeooeqsw7mew3wlekc6wwspq/node_modules/next/dist/build/index.js
+- /Users/chasethis/bmt/node_modules/.pnpm/next@14.2.0_@babel+core@7.29.0_@opentelemetry+api@1.9.0_@playwright+test@1.58.2_react-dom@18._qfeeooeqsw7mew3wlekc6wwspq/node_modules/next/dist/cli/next-build.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1447:15)
+    at /Users/chasethis/bmt/node_modules/.pnpm/next@14.2.0_@babel+core@7.29.0_@opentelemetry+api@1.9.0_@playwright+test@1.58.2_react-dom@18._qfeeooeqsw7mew3wlekc6wwspq/node_modules/next/dist/server/require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)
+    at Module._load (node:internal/modules/cjs/loader:1233:25)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.require (node:internal/modules/cjs/loader:1547:12)
+    at mod.require (/Users/chasethis/bmt/node_modules/.pnpm/next@14.2.0_@babel+core@7.29.0_@opentelemetry+api@1.9.0_@playwright+test@1.58.2_react-dom@18._qfeeooeqsw7mew3wlekc6wwspq/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/chasethis/bmt/node_modules/.pnpm/next@14.2.0_@babel+core@7.29.0_@opentelemetry+api@1.9.0_@playwright+test@1.58.2_react-dom@18._qfeeooeqsw7mew3wlekc6wwspq/node_modules/next/dist/build/index.js',
+    '/Users/chasethis/bmt/node_modules/.pnpm/next@14.2.0_@babel+core@7.29.0_@opentelemetry+api@1.9.0_@playwright+test@1.58.2_react-dom@18._qfeeooeqsw7mew3wlekc6wwspq/node_modules/next/dist/cli/next-build.js'
+  ]
+}
+ ELIFECYCLE  Command failed with exit code 1.
