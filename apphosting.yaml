@@ -11,7 +11,7 @@ env:
   - variable: NODE_ENV
     value: production
   - variable: NODE_OPTIONS
-    value: "--max-old-space-size=4096"
+    value: "--max-old-space-size=2048"
   # All secrets via Firebase Secret Manager — never inline values here
   - variable: DATABASE_URL
     secret: DATABASE_URL
