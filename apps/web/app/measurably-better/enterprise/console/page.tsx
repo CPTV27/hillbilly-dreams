@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 // ─────────────────────────────────────────────────────────────
 // Color Tokens — Industrial Brutalism Minimalist
@@ -29,12 +29,13 @@ const JV = {
 // Types
 // ─────────────────────────────────────────────────────────────
 interface ChatMessage {
-  role: 'system' | 'user' | 'engine';
+  role: 'system' | 'user' | 'engine' | 'tool';
   text: string;
   metadata?: {
     processingTimeMs: number;
     tokensPerSecond: number;
   };
+  vertexContent?: any; // Native Vertex AI Content block schema for history propagation
 }
 
 interface AIMetrics {
@@ -54,7 +55,7 @@ export default function EnterpriseConsole() {
   const [chatInput, setChatInput] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [chatLog, setChatLog] = useState<ChatMessage[]>([
-    { role: 'system', text: 'Sovereign Orchestration Engine Online. Enterprise Mode Authorized.' }
+    { role: 'system', text: 'Sovereign Orchestration Engine Online. Enterprise Mode Authorized. Native tools: QuickBooks, Calendar.' }
   ]);
 
   const [metrics, setMetrics] = useState<AIMetrics>({
@@ -82,51 +83,103 @@ export default function EnterpriseConsole() {
 
     const userMessage = chatInput;
     setChatInput('');
-    setChatLog(prev => [...prev, { role: 'user', text: userMessage }]);
+    
+    const userContentItem = { role: 'user', parts: [{ text: userMessage }] };
+    
+    setChatLog(prev => [...prev, { role: 'user', text: userMessage, vertexContent: userContentItem }]);
     setIsProcessing(true);
 
-    // Build context active payload
     const activeContext = Object.entries(datasets)
       .filter(([, active]) => active)
       .map(([key]) => key);
 
+    // Filter out UI-only messages and map down to native Vertex payload format
+    let currentVertexSequence = [...chatLog]
+      .map(m => m.vertexContent)
+      .filter(Boolean);
+      
+    currentVertexSequence.push(userContentItem);
+
     try {
-      const res = await fetch('/api/ai/analyze', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          prompt: userMessage,
-          context: {
-            activeDatasets: activeContext,
-            currentSimulation: { projects, automationLevel: automation, marginRecovered }
+      while (true) {
+        const res = await fetch('/api/ai/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: currentVertexSequence,
+            context: {
+              activeDatasets: activeContext,
+              currentSimulation: { projects, automationLevel: automation, marginRecovered }
+            }
+          }),
+        });
+
+        if (!res.ok) throw new Error('Vertex AI endpoint failed');
+
+        const data = await res.json();
+
+        if (data.type === 'function_call') {
+          // ── The AI invoked a Function Tool ──
+          const call = data.functionCalls[0];
+          const funcName = call.name;
+          
+          setChatLog(prev => [...prev, { role: 'tool', text: `[Executing native pipeline: ${funcName}]...` }]);
+          
+          // Append the model's functionCall struct to history
+          currentVertexSequence.push({
+            role: 'model',
+            parts: [{ functionCall: call }]
+          });
+
+          // ── Real API Executions securely initiated by the browser's credentials ──
+          let apiResult: any = { error: 'Unknown tool requested' };
+          try {
+             if (funcName === 'sync_quickbooks') {
+               const qb = await fetch('/api/ingestion/quickbooks', { method: 'POST' });
+               apiResult = qb.ok ? await qb.json() : { error: `Failed to sync QuickBooks: ${qb.status}` };
+             } else if (funcName === 'sync_calendar') {
+               const googleCal = await fetch('/api/ingestion/google', { method: 'POST' });
+               apiResult = googleCal.ok ? await googleCal.json() : { error: `Failed to sync Calendar: ${googleCal.status}` };
+             }
+          } catch (apiErr: any) {
+             apiResult = { error: apiErr.message };
           }
-        }),
-      });
+           
+          // Append the securely retrieved API payload back to the model as a 'functionResponse'
+          currentVertexSequence.push({
+            role: 'user', // Vertex expects 'user' role for function returns
+            parts: [{ 
+              functionResponse: { name: funcName, response: { output: apiResult } } 
+            }]
+          });
 
-      if (!res.ok) throw new Error('Vertex AI endpoint failed');
+          // Loop continues natively triggering the POST back to Vertex AI with the results...
+        } else if (data.type === 'text') {
+          // ── The AI returned a Text Response ──
+          setMetrics({
+            throughput: data.tokensPerSecond,
+            latency: data.processingTimeMs,
+            contextUsed: data.contextWindowUsed,
+            modelInfo: data.modelId,
+            cost: data.costPerQuery,
+            uptime: '99.999%',
+          });
 
-      const data = await res.json();
-
-      setMetrics({
-        throughput: data.tokensPerSecond,
-        latency: data.processingTimeMs,
-        contextUsed: data.contextWindowUsed,
-        modelInfo: data.modelId,
-        cost: data.costPerQuery,
-        uptime: '99.999%', // Constant for demo
-      });
-
-      setChatLog(prev => [
-        ...prev, 
-        { 
-          role: 'engine', 
-          text: data.response,
-          metadata: { processingTimeMs: data.processingTimeMs, tokensPerSecond: data.tokensPerSecond }
+          setChatLog(prev => [
+            ...prev, 
+            { 
+              role: 'engine', 
+              text: data.response,
+              metadata: { processingTimeMs: data.processingTimeMs, tokensPerSecond: data.tokensPerSecond },
+              vertexContent: data.vertexContent // Add the text back to history
+            }
+          ]);
+          break; // Finish the sequence
         }
-      ]);
+      }
     } catch (err) {
       console.error(err);
-      setChatLog(prev => [...prev, { role: 'system', text: 'Error connecting to Vertex AI sovereign node. Ensure Cloud credentials are valid.' }]);
+      setChatLog(prev => [...prev, { role: 'system', text: 'Exception bridging to Vertex AI.' }]);
     } finally {
       setIsProcessing(false);
     }
@@ -209,7 +262,7 @@ export default function EnterpriseConsole() {
           
           {metrics.latency > 0 && (
             <div style={{ marginTop: 'auto', padding: '16px', borderRadius: 8, backgroundColor: 'rgba(34,197,94,0.08)', border: `1px solid ${C.green500}40`, color: C.green400, fontWeight: 600, fontSize: 12, textAlign: 'center' }}>
-              ✓ That query processed in {metrics.latency}ms at {metrics.throughput} tokens/sec
+              ✓ That sequence resolved in {metrics.latency}ms at {metrics.throughput} tokens/sec
             </div>
           )}
         </div>
@@ -222,10 +275,10 @@ export default function EnterpriseConsole() {
           <div style={{ flex: 1, overflowY: 'auto', padding: '24px', display: 'flex', flexDirection: 'column', gap: 12 }}>
             {chatLog.map((msg, i) => (
               <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                <span style={{ fontWeight: 700, fontSize: 11, color: msg.role === 'system' ? C.slate500 : msg.role === 'user' ? C.white : C.sky400 }}>
-                  {msg.role === 'system' ? '[SYS]' : msg.role === 'user' ? 'YOU' : 'ENGINE'}
+                <span style={{ fontWeight: 700, fontSize: 11, color: msg.role === 'system' || msg.role === 'tool' ? C.slate500 : msg.role === 'user' ? C.white : C.sky400 }}>
+                  {msg.role === 'system' ? '[SYS]' : msg.role === 'tool' ? '[NETWORK]' : msg.role === 'user' ? 'YOU' : 'ENGINE'}
                 </span>
-                <div style={{ color: msg.role === 'system' ? C.slate500 : msg.role === 'user' ? C.slate300 : C.white, lineHeight: 1.5, backgroundColor: msg.role === 'engine' ? C.slate900 : 'transparent', padding: msg.role === 'engine' ? '12px' : '0', borderRadius: 8, border: msg.role === 'engine' ? `1px solid ${C.slate800}` : 'none' }}>
+                <div style={{ color: msg.role === 'system' || msg.role === 'tool' ? C.orange400 : msg.role === 'user' ? C.slate300 : C.white, lineHeight: 1.5, backgroundColor: msg.role === 'engine' ? C.slate900 : 'transparent', padding: msg.role === 'engine' ? '12px' : '0', borderRadius: 8, border: msg.role === 'engine' ? `1px solid ${C.slate800}` : 'none', fontFamily: msg.role === 'tool' ? 'monospace' : 'inherit' }}>
                   {msg.text}
                 </div>
               </div>
@@ -241,7 +294,7 @@ export default function EnterpriseConsole() {
               value={chatInput}
               onChange={e => setChatInput(e.target.value)}
               disabled={isProcessing}
-              placeholder="Ask the engine to plan strategy..."
+              placeholder="Ask the engine to sync systems or plan strategy..."
               style={{ flex: 1, backgroundColor: 'transparent', border: 'none', color: C.white, fontSize: 13, fontFamily: 'inherit', outline: 'none' }}
             />
           </form>

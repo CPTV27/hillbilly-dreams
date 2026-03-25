@@ -2,7 +2,7 @@
 // Root layout — handles global concerns: fonts, base CSS, analytics.
 // Brand routing is handled by middleware.ts; each route group has its own layout.
 
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Playfair_Display, DM_Sans, Plus_Jakarta_Sans } from 'next/font/google';
 import { Analytics } from '../components/Analytics';
 import { JsonLd, getOrganizationSchema } from '@/lib/structured-data';
@@ -31,6 +31,14 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   display: 'swap',
 });
 
+export const viewport: Viewport = {
+  themeColor: '#ffffff',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export const metadata: Metadata = {
   title: {
     default: 'Big Muddy',
@@ -39,6 +47,12 @@ export const metadata: Metadata = {
   description:
     'A media-hospitality ecosystem anchored in Natchez, Mississippi — touring, magazine, and radio along the Mississippi music corridor.',
   metadataBase: new URL('https://bigmuddytouring.com'),
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Measurably Better',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',

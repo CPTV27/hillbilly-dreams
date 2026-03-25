@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { VertexAI, HarmCategory, HarmBlockThreshold } from '@google-cloud/vertexai';
+import { VertexAI, HarmCategory, HarmBlockThreshold, FunctionDeclaration } from '@google-cloud/vertexai';
 
 const PROJECT_ID = process.env.VERTEX_PROJECT_ID || 'bigmuddy-ff651';
 const LOCATION = process.env.VERTEX_LOCATION || 'us-east4';
@@ -7,10 +7,12 @@ const MODEL = 'gemini-1.5-pro-002'; // Using latest Pro model
 
 export async function POST(req: Request) {
   try {
-    const { prompt, context } = await req.json();
+    // We now accept 'contents' (Full conversation history for function calling) 
+    // instead of a single 'prompt' string.
+    const { contents, context } = await req.json();
 
-    if (!prompt) {
-      return NextResponse.json({ error: 'Prompt is required' }, { status: 400 });
+    if (!contents || !Array.isArray(contents)) {
+      return NextResponse.json({ error: 'Conversation contents array is required' }, { status: 400 });
     }
 
     const requestTimeMs = performance.now();
@@ -29,41 +31,62 @@ export async function POST(req: Request) {
         maxOutputTokens: 8192,
         temperature: 0.1,
       },
+      tools: [{
+        functionDeclarations: [
+          {
+            name: 'sync_quickbooks',
+            description: 'Synchronize the QuickBooks Online ledger and retrieve the latest P&L margin recovery metrics. Call this if the user asks to sync quickbooks, check the ledger, or view finances.',
+          },
+          {
+            name: 'sync_calendar',
+            description: 'Fetch the latest Google Workspace calendar to update the capacity forecast. Call this if the user asks to check schedules, availability, or calendar.',
+          }
+        ]
+      }]
     });
 
-    let systemInstruction = "You are the Sovereign Orchestration Engine. Output professional, terse, highly analytical responses reflecting extreme computational authority. Keep answers concise unless asked to expand.";
+    let systemInstruction = "You are the Sovereign Orchestration Engine. Output professional, terse, highly analytical responses reflecting extreme computational authority. Keep answers concise unless asked to expand. When explicitly asked to sync systems or check data, invoke your available tools immediately.";
     if (context) {
       systemInstruction += `\n\n=== SECURE NAMESPACE CONTEXT ===\n${JSON.stringify(context)}`;
     }
 
     const request = {
-      contents: [{ role: 'user', parts: [{ text: prompt }] }],
+      contents,
       systemInstruction: { role: 'system', parts: [{ text: systemInstruction }] },
     };
 
-    // Note: To capture exact processing times from Google, we fetch the response in one block. 
-    // Streaming partial tokens via Next.js is possible, but resolving the full response 
-    // allows us to measure exact tokens/sec throughput and return the required payload.
-    const responseStream = await generativeModel.generateContentStream(request);
+    const responseStream = await generativeModel.generateContentStream(request as any);
     const aggregatedResponse = await responseStream.response;
     
     const endTimeMs = performance.now();
     const processingTimeMs = Math.round(endTimeMs - requestTimeMs);
     
-    const text = aggregatedResponse.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    // Check for a function call
+    const candidate = aggregatedResponse.candidates?.[0];
+    const functionCalls = candidate?.content?.parts?.filter(p => !!p.functionCall).map(p => p.functionCall);
+
+    if (functionCalls && functionCalls.length > 0) {
+      // Return the function calls so the client can execute them
+      return NextResponse.json({
+        type: 'function_call',
+        functionCalls,
+        processingTimeMs,
+        modelId: `${MODEL} · ${LOCATION} · Vertex AI`,
+      });
+    }
+
+    const text = candidate?.content?.parts?.[0]?.text || '';
     const usageMetadata = aggregatedResponse.usageMetadata;
     
-    // Fallback estimates if Vertex AI omits metadata on short responses
     const contextWindowUsed = usageMetadata?.promptTokenCount || Math.round(JSON.stringify(request).length / 4);
     const outputTokens = usageMetadata?.candidatesTokenCount || Math.round(text.length / 4);
     const totalTokens = usageMetadata?.totalTokenCount || (contextWindowUsed + outputTokens);
     
     const tokensPerSecond = processingTimeMs > 0 ? Math.round((totalTokens / processingTimeMs) * 1000) : 0;
-    
-    // Vertex AI Pricing (approximate for 1.5 Pro: $1.25/1M input, $3.75/1M output for < 128k context)
     const costPerQuery = ((contextWindowUsed / 1000000) * 1.25) + ((outputTokens / 1000000) * 3.75);
 
     return NextResponse.json({
+      type: 'text',
       processingTimeMs,
       tokensPerSecond,
       contextWindowUsed,
@@ -71,6 +94,7 @@ export async function POST(req: Request) {
       costPerQuery: costPerQuery,
       modelId: `${MODEL} · ${LOCATION} · Vertex AI`,
       response: text,
+      vertexContent: candidate?.content // Pass content back to client for history appending
     });
 
   } catch (error: any) {

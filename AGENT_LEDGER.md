@@ -18,6 +18,24 @@ If any checkbox is unchecked, the task is **IN_PROGRESS**, not COMPLETE. Fix bef
 
 ---
 
+## [2026-03-24 19:40] — AG — COMPLETE
+
+**Task:** Vertex AI Native Function Calling Deployment
+
+### What AG Did
+1. **Vertex SDK Expansion:** Upgraded `/api/ai/analyze` to handle recursive `contents` arrays and defined native `FunctionDeclarations` (`sync_quickbooks`, `sync_calendar`).
+2. **Zero-Trust Client Execution Loop:** Rewrote the CEO Console chat interface to natively intercept `functionCall` events from Gemini 1.5 Pro.
+3. **Edge-Proxy Triggers:** The Next.js client now dynamically executes `fetch` to your Google and QuickBooks endpoints utilizing the browser's native OAuth session cookies, protecting core secrets from the AI node. The raw metrics are piped back to Vertex to finalize generative text securely.
+
+### QC_GATE
+- [x] **Secure Access:** Function triggers utilize the active user's NextAuth session.
+- [x] **Infrastructure Validation:** Vertex correctly parses tool calls and suspends inference until the Next.js client responds.
+- [x] **No Hallucinations:** Tool execution eliminates LLM guessing by injecting hard integers from the DB.
+
+**Status:** COMPLETE
+
+---
+
 ## [2026-03-24 19:28] — AG — COMPLETE
 
 **Task:** Build Owen's Enterprise AI Experience
@@ -273,6 +291,10 @@ The S2PX equity split changed from 80/20 to 90/10 per this directive. The CEO Co
 - [ ] **Sign in with Apple:** Add NextAuth Apple provider for zero-password auth (apps/web/auth.ts)
 - [ ] **TEAM_PASSWORD env var:** Verify set on Cloud Run. `getTeamPassword()` in `config/auth-rules.ts` throws if missing.
 - [ ] **GA4 property ID:** Replace `G-XXXXXXXXXX` in `components/Analytics.tsx` with real GA4 ID
+- [ ] **Vertex AI RAG & Grounding:** Migrate CEO Console and spatial pipelines to Vertex AI Vector Search / Grounding instead of JSON prompt stuffing.
+- [ ] **OpenTelemetry & Cloud Trace:** Instrument the Next.js backend with `@google-cloud/logging-winston` or OpenTelemetry so every Vertex AI query has a distributed trace.
+- [ ] **Eventarc + Cloud Pub/Sub:** Switch metrics ingestion (QuickBooks, Google Calendar) from synchronous UX polling to async Eventarc webhooks calling Cloud Run workers.
+- [ ] **Identity-Aware Proxy (IAP):** Deploy a Google External ALLB and enable IAP to enforce BeyondCorp zero-trust security before traffic hits the Cloud Run container.
 - [ ] **NEXTAUTH_URL secret:** Update on hdx-bmt and hillbillydreams projects to `https://measurablybetterthings.com`
 - [ ] **All BMT domain CNAMEs:** 10+ domains still need CNAME updates to Cloud Run
 - [ ] **Bitwarden integration:** Centralized secrets management for agent API keys

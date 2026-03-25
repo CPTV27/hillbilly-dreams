@@ -1,0 +1,21 @@
+{
+  "name": "Measurably Better Enterprise Console",
+  "short_name": "better.",
+  "description": "The Sovereign Agentic AI Workflow",
+  "start_url": "/measurably-better/enterprise/console",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/icon",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
