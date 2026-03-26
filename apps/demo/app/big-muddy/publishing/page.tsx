@@ -1,6 +1,8 @@
 // Big Muddy Publishing
 // Server component. All inline CSS. No external images.
 
+import Nav from '../../components/Nav';
+
 const C = {
   bg: 'var(--bm-cream)',
   bgAlt: '#E8E2D9',
@@ -89,6 +91,8 @@ export default function PublishingPage() {
         padding: '0 0 80px',
       }}
     >
+      <Nav currentPath="/big-muddy" />
+
       {/* Top bar */}
       <div
         style={{

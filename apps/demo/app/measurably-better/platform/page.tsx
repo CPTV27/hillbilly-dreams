@@ -1,3 +1,5 @@
+import Nav from '../../components/Nav';
+
 export default function PlatformPage() {
   const features = [
     {
@@ -41,6 +43,8 @@ export default function PlatformPage() {
         color: '#202124',
       }}
     >
+      <Nav currentPath="/measurably-better" />
+
       {/* Header */}
       <div
         style={{

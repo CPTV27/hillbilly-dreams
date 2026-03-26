@@ -1,6 +1,8 @@
 // Outsider Economics: Deep South Edition — The MB Thesis
 // Server component
 
+import Nav from '../../components/Nav';
+
 const C = {
   bg: '#FAFAF8',
   bgAlt: '#F5F3EF',
@@ -84,6 +86,8 @@ export default function ThesisPage() {
         padding: '0 0 80px',
       }}
     >
+      <Nav currentPath="/measurably-better" />
+
       {/* Top bar */}
       <div
         style={{

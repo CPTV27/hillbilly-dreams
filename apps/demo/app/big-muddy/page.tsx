@@ -1,3 +1,5 @@
+import Nav from '../components/Nav';
+
 const divisions = [
   {
     title: 'Big Muddy Entertainment',
@@ -37,6 +39,8 @@ export default function NexusPage() {
         color: 'var(--bm-charcoal)',
       }}
     >
+      <Nav currentPath="/big-muddy" />
+
       {/* Header */}
       <div
         style={{

@@ -1,3 +1,5 @@
+import Nav from '../../components/Nav';
+
 const C = {
   bg: 'var(--bm-cream)',
   bgAlt: '#F0EBE1',
@@ -22,6 +24,7 @@ const brands = [
 export default function EntertainmentPage() {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: C.bg, fontFamily: 'var(--font-inter), sans-serif', padding: '0 0 80px' }}>
+      <Nav currentPath="/big-muddy" />
       <div style={{ backgroundColor: C.white, borderBottom: `1px solid ${C.border}`, padding: '0 24px', height: 56, display: 'flex', alignItems: 'center' }}>
         <span style={{ fontSize: 13, fontWeight: 600, color: C.textMuted, letterSpacing: '0.08em', textTransform: 'uppercase' as const }}>Big Muddy Entertainment</span>
       </div>

@@ -1,6 +1,8 @@
 // Hillbilly Dreams, Inc. — Holding company overview
 // Server component. All inline CSS. No external images.
 
+import Nav from '../components/Nav';
+
 const C = {
   bg: 'var(--hdi-bg)',
   bgAlt: '#EDF0F5',
@@ -97,6 +99,8 @@ export default function HillbillyDreamsPage() {
         padding: '0 0 80px',
       }}
     >
+      <Nav currentPath="/hillbilly-dreams" />
+
       {/* Top bar */}
       <div
         style={{

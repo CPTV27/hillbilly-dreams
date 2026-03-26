@@ -1,6 +1,8 @@
 // Measurably Better — main landing page
 // Server component. All inline CSS. No external images.
 
+import Nav from '../components/Nav';
+
 const C = {
   bg: 'var(--mb-bg)',
   bgAlt: 'var(--mb-bg-alt)',
@@ -73,7 +75,7 @@ const PRICING = [
   },
   {
     name: 'The Operator',
-    price: '$499',
+    price: '$1,500',
     period: '/month',
     who: 'Growing businesses',
     hook: '10 seats. Dedicated AI agent. Forecasting that actually works.',
@@ -167,6 +169,8 @@ export default function MeasurablyBetterPage() {
         padding: '0 0 80px',
       }}
     >
+      <Nav currentPath="/measurably-better" />
+
       {/* Top bar */}
       <div
         style={{

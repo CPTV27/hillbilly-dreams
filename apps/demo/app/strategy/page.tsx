@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Nav from '../components/Nav';
 
 const ALLOWED = ['tracy', 'amy', 'jp', 'chase'];
 const font = '"Courier New", Courier, monospace';
@@ -54,6 +55,7 @@ const S = {
 function Report() {
   return (
     <div style={S.page}>
+      <Nav currentPath="/strategy" />
       <div style={S.wrap}>
         <div style={{ paddingTop: 48 }} />
         <div style={S.dhr} />
@@ -119,7 +121,7 @@ function Report() {
               ['Free', '$0', 'Google Business analysis, 100 AI queries, directory listing'],
               ['Starter', '$20/mo', '7-day trial. 1 data source. Unlimited AI. Daily briefing.'],
               ['Engine', '$99/mo', 'All sources. Marketing automation. Alerts. 3 seats.'],
-              ['Operator', '$499/mo', '10 seats. Dedicated AI agent. Forecasting. Phone support.'],
+              ['Operator', '$1,500/mo', 'Full outsourced operating system. 10 seats. Dedicated AI agent. Forecasting. Phone support.'],
               ['Institutional', 'Custom', 'Cities, schools, CVBs. Grant-funded. $9,600-50K/yr.'],
             ].map((row, i) => (
               <tr key={i} style={{ borderBottom: '1px solid #ccc' }}>

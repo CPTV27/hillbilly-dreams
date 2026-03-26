@@ -1,3 +1,5 @@
+import Nav from '../../../components/Nav';
+
 export default function MVXPage() {
   return (
     <div
@@ -8,6 +10,8 @@ export default function MVXPage() {
         color: '#202124',
       }}
     >
+      <Nav currentPath="/measurably-better" />
+
       {/* Header */}
       <div
         style={{

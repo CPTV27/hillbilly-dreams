@@ -1,6 +1,8 @@
 // Regional Technology & Media Provider — Measurably Better
 // Server component — no client JS needed
 
+import Nav from '../../components/Nav';
+
 const C = {
   bg: '#FAFAF8',
   bgAlt: '#F5F3EF',
@@ -123,6 +125,8 @@ export default function RegionalPage() {
         padding: '0 0 80px',
       }}
     >
+      <Nav currentPath="/measurably-better" />
+
       {/* Top bar */}
       <div
         style={{

@@ -2,6 +2,8 @@
 // Server component. The neighborly front door.
 // Target: Main Street business owner seeing this on Chase's phone.
 
+import Nav from '../components/Nav';
+
 const C = {
   bg: '#FAFAF8',
   white: '#FFFFFF',
@@ -40,6 +42,7 @@ export default function DirectoryLanding() {
         color: C.text,
       }}
     >
+      <Nav currentPath="/directory" />
       <style>{`
         .dsd-cta-btn {
           display: inline-block;

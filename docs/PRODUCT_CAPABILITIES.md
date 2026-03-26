@@ -102,9 +102,9 @@ Each product line is the same engine configured for a specific vertical:
 | Tier | Price | Target | Hook |
 |------|-------|--------|------|
 | **Free** | $0 | Anyone curious | One dashboard, 20 AI queries/mo |
-| **Starter** | $20/mo | ChatGPT subscribers | "Same price. Except this one reads your books." |
-| **Engine** | $99/mo | SMB operators | Marketing automation, multi-source sync |
-| **Operator** | $499/mo | Growing businesses | 10 seats, dedicated AI, forecasting |
+| **Starter** | $20/mo | Any small business | "It does all the cool stuff you don't know how to do." |
+| **Engine** | $99/mo | SMB operators | Marketing automation, multi-source sync, 3 seats |
+| **Operator** | $1,500/mo | $500K+/yr businesses | Full outsourced OS. 10 seats, dedicated AI, forecasting, phone support |
 | **Institutional** | Custom | Cities, schools, CVBs | Phased deployment, grant-funded |
 
 ---

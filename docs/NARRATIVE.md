@@ -222,7 +222,7 @@ Deep South Directory is how Measurably Better reaches small businesses. A busine
 | Free | $0 | Google Business Profile analysis, competitive snapshot, 100 AI queries/mo, directory listing, intro training |
 | Replace ChatGPT | $20/mo | 7-day free trial. Connect 1 data source. Unlimited AI. Daily briefing. Review monitoring. Monthly P&L. Guided learning path. |
 | The Engine | $99/mo | Connect ALL sources. Multi-source correlation. Marketing automation. Real-time alerts. 3 seats. Weekly strategy memo. |
-| The Operator | $499/mo | 10 seats. Dedicated AI agent. Revenue forecasting. Phone support. |
+| The Operator | $1,500/mo | Full outsourced operating system. 10 seats. Dedicated AI agent. Revenue forecasting. Phone support. Replaces back-office headcount. |
 | Institutional | Custom | Cities, schools, CVBs. Tyler charges $25K-75K/yr. We start at $9,600. Grant-funded. |
 
 ---

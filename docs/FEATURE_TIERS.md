@@ -39,8 +39,8 @@ Transitions from handling chores to preventing disasters.
 18. Reputation Dispute Engine (flag and appeal fake reviews)
 19. Smart Shift Scheduling (staffing gaps from calendar/POS data)
 
-## $499/mo: The Chief of Staff (Predictive Analytics)
-For $500K+/yr businesses. Margin protection without a dashboard.
+## $1,500/mo: The Operator (Full Outsourced OS)
+For $500K+/yr businesses. Replaces back-office headcount entirely.
 
 20. AI Cash Flow & Margin Forecasting (predictive SMS alerts)
 21. Demand & Weather Prediction (foot traffic + staffing suggestions)
@@ -61,4 +61,4 @@ For $500K+/yr businesses. Margin protection without a dashboard.
 | Doesn't show ROI | Users can't find the value | Daily text TELLS them the value |
 
 ## PRICING NOTE
-Original tiers were $29/$79/$99. Adjusted to $20/$99/$499 to match our pricing architecture from NARRATIVE.md. The $20 tier is the conversion point — same as ChatGPT. The free tier is the trojan horse.
+Tiers: Free/$20/$99/$1,500/Custom. The $20 tier is the conversion point. The $1,500 tier replaces the old S2PX $5K/mo — still massive value at $18K/year vs Tyler's $25-75K. The free tier is the trojan horse.
