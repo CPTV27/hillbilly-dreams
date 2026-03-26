@@ -24,8 +24,8 @@ import { prisma } from '@bigmuddy/database';
 import {
   BMT_AUTH_RULES,
   getTeamPassword,
-} from './config/auth-rules';
-import type { OnSignInCallback, OnJwtEnrichCallback } from './config/auth-rules';
+} from '../config/auth-rules';
+import type { OnSignInCallback, OnJwtEnrichCallback } from '../config/auth-rules';
 
 // ── BMT Lifecycle Callbacks (injected into the engine) ──
 

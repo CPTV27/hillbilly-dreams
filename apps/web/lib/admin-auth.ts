@@ -9,7 +9,7 @@
 // Seam introduced: 2026-03-24 — Phase 2 Wave 3 (AG)
 // ─────────────────────────────────────────────────────────────
 
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 import { NextResponse } from 'next/server';
 import { isAllowedUser } from '@/config/auth-rules';
 

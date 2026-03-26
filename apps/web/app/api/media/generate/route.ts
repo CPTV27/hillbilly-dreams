@@ -3,7 +3,7 @@
 
 import { NextResponse } from 'next/server';
 import sharp from 'sharp';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 import { requireRoleResponse } from '@/lib/requireRole';
 import { generateImage } from '@/lib/imagen';
 import { uploadToGCS } from '@/lib/gcs';

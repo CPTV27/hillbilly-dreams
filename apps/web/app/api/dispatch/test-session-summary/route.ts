@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 import { runSessionSummary } from '../session-summary/run';
 
 export async function GET() {

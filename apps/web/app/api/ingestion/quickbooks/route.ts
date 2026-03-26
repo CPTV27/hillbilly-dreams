@@ -10,7 +10,7 @@
 // ─────────────────────────────────────────────────────────────
 
 import { NextResponse } from 'next/server';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 import { prisma } from '@bigmuddy/database';
 
 const QBO_BASE = process.env.QBO_SANDBOX === 'true'

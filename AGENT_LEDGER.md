@@ -5,6 +5,178 @@
 
 ---
 
+## [2026-03-25 22:45] — CC (Worktree Agent) — BRAND NARRATIVE LOCKED + COPY REWRITE IN PROGRESS
+
+### What Happened
+Chase did a full brand audit across all live pages and locked the definitive narrative. CC (this worktree) is rewriting copy across the demo app. The other CC (build agent) needs to know what changed and coordinate with AG for design.
+
+### DEFINITIVE BRAND HIERARCHY (March 25, 2026)
+
+**Level 1: HILLBILLY DREAMS, INC.** — Holding company. Investors/legal only. hillbillydreamsinc.com
+**Level 2: MEASURABLY BETTER** — Product brand. What we sell. measurablybetter.life / measurablybetterthings.com
+**Level 3: BIG MUDDY** — Media & hospitality. Consumer-facing proof of concept. bigmuddytouring.com
+**Level 4: OUTSIDER ECONOMICS** — Thought leadership. The book. outsidereconomics.com
+
+### KEY CORRECTIONS (things that were wrong before)
+1. **KioskMode is NOT a product** — it's a feature toggle. Any MB deployment can flip into kiosk mode.
+2. **Deep South Directory is the Main Street distribution vehicle** — DeepSouthDirectory.com. Free listing → $20 dashboard → $99 automation. This is how MB reaches small businesses.
+3. **Delta Dawn is the Big Muddy AI agent name**, not a product or policy document.
+4. **"Measurably Better Things" means the community becomes measurably better** — not a product comparison. The technology is the means. The local economy is the end.
+5. **Owen is fully out** — removed from all access lists, tours, and revenue framing.
+6. **Municipal and K-12 products are still unnamed** — don't use CivicX, CivicNode, EduNode, or MB Learn as final names.
+
+### PRICING (self-serve via Deep South Directory)
+- Free ($0): 100 AI queries/mo, Google Business Profile analysis, directory listing, intro training
+- $20/mo: 7-day free trial. 1 data source. Unlimited AI. Daily briefing. Guided learning path.
+- $99/mo: ALL data sources. Marketing automation. Alerts. 3 seats. Weekly strategy memo.
+- $499/mo: 10 seats. Dedicated AI. Forecasting. Phone support.
+- Institutional (custom): $9,600-$18K/yr cities, $25K+/yr schools. Grant-funded.
+
+### THREE GTM CHANNELS (no ad spend)
+1. Municipality sponsors businesses (ARPA/CDBG funded)
+2. Boots on the ground ("I run the hotel down the street")
+3. CVB/Chamber as distributor (directory listing bundled with membership)
+
+### PAGES UPDATED BY THIS AGENT (in apps/demo/app/)
+- `page.tsx` — Added hero line, removed Owen from gate
+- `measurably-better/page.tsx` — Hero rewrite, pricing update, GTM channels section, footer link fix (IN PROGRESS - full rewrite running)
+- `welcome/page.tsx` — Redirect changed from /welcome/owen → /measurably-better
+- `welcome/chase/page.tsx` — Removed duplicate /ecosystem stop, renumbered to 7 stops
+- `strategy/page.tsx` — Removing Owen, updating SMB segment to self-serve, fixing Delta Dawn refs (IN PROGRESS)
+
+### NEW PAGES NEEDED (for build agent)
+- `/big-muddy/publishing` — Big Muddy Publishing / Feed Farm page (currently 404)
+- `/big-muddy/hospitality` — Big Muddy Hospitality (Tracy's division)
+- `/big-muddy/entertainment` — Big Muddy Entertainment (JP's division)
+
+### FOR AG (ANTIGRAVITY) — DESIGN PASS
+Full design handoff doc at: `/docs/AG_DESIGN_HANDOFF.md`
+- Google product aesthetic: Inter font, generous whitespace, warm neutrals
+- MB pages: clean, modern, product-feel
+- Big Muddy pages: warmer, editorial, music/travel energy (burgundy #7B1B46, Abril Fatface)
+- Strategy page: keep the Senate/Courier style as-is
+- All inline CSS (no Tailwind) — lightweight demo app
+- AG should produce design tokens and component specs, NOT deploy
+- **VERIFY ALL AG CLAIMS INDEPENDENTLY** — AG has history of claiming non-existent deploys
+
+### SOURCE OF TRUTH DOCS (updated this session)
+- `/docs/NARRATIVE.md` — Complete rewrite with four-level hierarchy
+- `/docs/BRAND_NOTES.md` — Updated brand hierarchy section
+- `/docs/PRODUCT_CAPABILITIES.md` — Reference (may need updates next)
+
+### DIRECTIVE TO BUILD AGENT
+1. Read `/docs/NARRATIVE.md` — this is the source of truth for all copy
+2. Read `/docs/AG_DESIGN_HANDOFF.md` — hand this to Antigravity for design
+3. Create the three missing Big Muddy division pages (publishing, hospitality, entertainment)
+4. Fix the `/big-muddy` page — it's titled "The Nexus" but should reflect the Big Muddy brand (Level 3). Add Big Muddy Hospitality to the nexus diagram.
+5. Verify all builds before deploying — `npx next build` in apps/demo must pass clean
+
+---
+
+## [2026-03-25 17:58] — CC — S2PX DEAL STATUS CHANGE
+
+**Status: DEAD. Owen walked.**
+
+Owen declined the S2PX licensing proposal via iMessage at 5:44 PM CT.
+Key quotes: "No can do." "Sell it to someone else." "We can end the 5% arrangement this month." Threatened to invoice for 6 months of development time.
+
+### Impact
+- S2PX is no longer the first revenue target
+- The $134K/year licensing deal is off the table
+- Owen's rev share commission structure is void
+- The S2PX console and proposal remain as demo collateral for the NEXT AEC client
+
+### What Does NOT Change
+- The HDX platform is built and functional
+- Vercel Pro deploy is live (first successful production deploy)
+- The civic/edu/tourism market opportunity is unaffected
+- Big Muddy Entertainment, Publishing, and Hospitality are unaffected
+- All research (ARPA $826M, E-Rate $33M, Tyler competitive gap) still valid
+
+### Immediate Pivots
+1. Remove Owen-specific branding from /welcome/owen — make it a generic MB demo
+2. Shift first-revenue target to: civic pilot (ARPA-funded) OR next SMB client OR entertainment revenue
+3. Repackage S2PX as a general AEC product, not Owen-specific
+4. Begin aggressive low-friction pricing strategy for SMB onboarding
+5. Do NOT engage with Owen's invoice threat over text — GitHub commit history is the record
+
+### Directive to All Agents
+- Remove all Owen-specific references from customer-facing pages
+- Stop prioritizing S2PX-specific features
+- Shift focus to: generic SMB onboarding, civic pilot prep, entertainment infrastructure
+- The /welcome page should become a general product walkthrough
+
+---
+
+## [2026-03-25] — CC — VERCEL PRO DEPLOY COMPLETE
+
+First successful production deploy after full-day battle with Firebase App Hosting OOM.
+
+### What Happened
+- Firebase App Hosting: heapsize.sh hardcodes 4GB heap. App needs ~6GB. Dead end.
+- Vercel Hobby: 8GB machine, 4GB heap in package.json. OOM at static generation.
+- Vercel Pro: 16GB machine, 7GB heap. **Compiled in 78 seconds. Deployed in 3 minutes.**
+- Production URL: https://bmt-deploy.vercel.app (behind deployment protection until Chase disables it)
+
+### Configuration (NEVER CHANGE WITHOUT UPDATING DEPLOY.md)
+- Vercel project: bmt-deploy
+- Root Directory: apps/web (set in Vercel Dashboard, NOT vercel.json)
+- Install: corepack enable && pnpm install --frozen-lockfile
+- Build: pnpm turbo build --filter=@bigmuddy/web
+- package.json build script: NODE_OPTIONS='--max-old-space-size=7168' next build
+- Node: 20.x, 16GB build machine (Pro tier)
+
+### Pages Deployed (36 active, ~100 in _disabled/)
+- /welcome/owen, /measurably-better, /platform, /hillbilly, /nexus, /mvx, /ffx
+- /measurably-better/thesis, /measurably-better/regional
+- /strategy (password-gated: tracy, amy, jp, owen, chase)
+- /hillbilly/proposal/scan2plan/console
+- Full touring site (inn, route, events, weddings)
+
+### New Documentation Created
+- DEPLOY.md — deploy configuration
+- docs/ACCOUNTS.md — account map
+- docs/MONOREPO.md — repo structure
+- docs/AGENT_RULES.md — agent verification protocol
+- docs/ENV_VARS.md — environment variables
+- docs/ROUTES.md — route map (active + disabled)
+
+---
+
+## [2026-03-25] — CC — STRATEGIC PIVOT: REGIONAL TECHNOLOGY PROVIDER
+
+### Brand Restructure (per Chase directive)
+- **Hillbilly Dreams, Inc.** — Holding company, IP owner
+- **Measurably Better** — Regional technology provider (SMB, Civic, Edu, Tourism)
+- **Big Muddy Entertainment** — JP as Division Head (Records, Radio, Touring, Rise Up)
+- **Big Muddy Publishing** — Magazine, Books, Editorial (Chase interim)
+- **Big Muddy Hospitality** — Tracy as Division Head (Inn, Weddings, Events)
+- **Amy** — On-network talent, lead vocalist for Rise Up, NOT operations staff
+
+### Rise Up Model
+- Franchisable touring brand (multiple units like Yachtley Crew)
+- Amy + Arri anchor flagship, regional talent fills rotating cast
+- European touring planned after US proof of concept
+- Every tour stop doubles as a talent search
+
+### New Pages Built
+- /measurably-better/thesis — Outsider Economics: Deep South Edition
+- /measurably-better/regional — Four-tier provider model (SMB, Civic, Edu, Tourism)
+- /strategy — Full Senate-style executive report for Tracy (password-gated)
+
+### Research Stored
+- research/2026-03-25_regional_tech_landscape.md
+- research/2026-03-25_live_music_gtm.md
+- research/2026-03-25_civic_gtm_synthesis.md
+
+### PDFs Generated
+- Desktop/HDX_S2PX_Licensing_Proposal_v4.pdf (now generic collateral)
+- Desktop/MB_Executive_Summary_Tracy.pdf (Senate-style report)
+
+---
+
+---
+
 ## QC GATE PROTOCOL (Mandatory — all agents, all tasks)
 
 Before marking any task **COMPLETE**, every agent must write and evaluate this block:
