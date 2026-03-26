@@ -18,7 +18,7 @@
     "google-auth-library": "^10.6.2",
     "googleapis": "^171.4.0",
     "prettier": "^3.3.0",
-    "turbo": "^2.0.0",
+    "turbo": "^2.8.20",
     "typescript": "^5.5.0"
   },
   "workspaces": [
