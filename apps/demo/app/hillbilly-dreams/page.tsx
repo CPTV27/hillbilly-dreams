@@ -163,13 +163,18 @@ export default function HillbillyDreamsPage() {
               fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
               color: C.darkText,
               lineHeight: 1.65,
-              margin: 0,
+              margin: '0 0 28px',
               maxWidth: 560,
             }}
           >
             Technology infrastructure for the New South. Owns all IP, platform,
             and equity across five operating divisions.
           </p>
+          <img
+            src="https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp"
+            alt="The Mississippi River — Natchez, Mississippi"
+            style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 12 }}
+          />
         </div>
       </div>
 

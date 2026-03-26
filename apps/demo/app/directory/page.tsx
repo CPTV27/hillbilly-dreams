@@ -145,6 +145,12 @@ export default function DirectoryLanding() {
           media. $20/mo.
         </p>
 
+        <img
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-bluff-sunset.webp"
+          alt="Natchez bluff at sunset — the Mississippi River corridor"
+          style={{ width: '100%', height: 280, objectFit: 'cover', borderRadius: 12, marginBottom: 40 }}
+        />
+
         <a href="/directory/join" className="dsd-cta-btn">
           Join the Directory — Free
         </a>

@@ -311,6 +311,11 @@ export default function ThesisPage() {
             the language, lives in the timezone, and prices for the actual
             economy.
           </p>
+          <img
+            src="https://storage.googleapis.com/bmt-media-bigmuddy/heroes/hero-highway-sunset.webp"
+            alt="Highway at sunset — the Deep South corridor"
+            style={{ width: '100%', height: 240, objectFit: 'cover', borderRadius: 12, marginTop: 28 }}
+          />
         </div>
 
         {/* What We're Building */}

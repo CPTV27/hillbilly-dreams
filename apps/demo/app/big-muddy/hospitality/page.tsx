@@ -31,6 +31,11 @@ export default function HospitalityPage() {
           <p style={{ fontSize: 17, color: C.textSecondary, lineHeight: 1.65, margin: 0, maxWidth: 560 }}>
             The anchor. Where the story started. Six rooms in Natchez, Mississippi, on the bluffs above the river.
           </p>
+          <img
+            src="https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp"
+            alt="The Big Muddy Inn foyer — Natchez, Mississippi"
+            style={{ width: '100%', height: 300, objectFit: 'cover', borderRadius: 12, marginTop: 28 }}
+          />
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -46,11 +51,18 @@ export default function HospitalityPage() {
               A venue on the Mississippi River in a town full of antebellum architecture. Every event is a content moment for the magazine, a session for radio, and a night the touring artists remember.
             </p>
           </div>
-          <div style={{ backgroundColor: C.white, border: `1px solid ${C.border}`, borderRadius: 12, padding: '24px 20px' }}>
-            <span style={{ fontSize: 17, fontWeight: 700, color: C.text }}>The Blues Room</span>
-            <p style={{ fontSize: 14, color: C.textSecondary, margin: '8px 0 0', lineHeight: 1.5 }}>
-              The stage. Live music venue attached to the Inn. Rise Up performs here. Touring artists stop here. The room that connects Hospitality to Entertainment.
-            </p>
+          <div style={{ backgroundColor: C.white, border: `1px solid ${C.border}`, borderRadius: 12, overflow: 'hidden' }}>
+            <img
+              src="https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-show.webp"
+              alt="The Blues Room — live music at the Big Muddy Inn"
+              style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: '8px 8px 0 0', display: 'block' }}
+            />
+            <div style={{ padding: '24px 20px' }}>
+              <span style={{ fontSize: 17, fontWeight: 700, color: C.text }}>The Blues Room</span>
+              <p style={{ fontSize: 14, color: C.textSecondary, margin: '8px 0 0', lineHeight: 1.5 }}>
+                The stage. Live music venue attached to the Inn. Rise Up performs here. Touring artists stop here. The room that connects Hospitality to Entertainment.
+              </p>
+            </div>
           </div>
         </div>
 

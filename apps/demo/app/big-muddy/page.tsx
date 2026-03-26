@@ -84,6 +84,11 @@ export default function NexusPage() {
         >
           The Mississippi&apos;s music corridor. Stay. Drive. Read. Listen.
         </p>
+        <img
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/heroes/hero-mississippi-dawn.webp"
+          alt="Mississippi River at dawn"
+          style={{ width: '100%', height: 240, objectFit: 'cover', borderRadius: 12, marginTop: 32 }}
+        />
       </div>
 
       {/* Divider */}

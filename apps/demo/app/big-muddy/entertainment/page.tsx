@@ -38,6 +38,11 @@ export default function EntertainmentPage() {
           <p style={{ fontSize: 17, color: C.textSecondary, lineHeight: 1.65, margin: 0, maxWidth: 560 }}>
             Big Muddy Entertainment is the creative division of Hillbilly Dreams. JP has full authority — gear, talent, scheduling, sound, production.
           </p>
+          <img
+            src="https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp"
+            alt="Live show at the Blues Room — Big Muddy Inn, Natchez"
+            style={{ width: '100%', height: 280, objectFit: 'cover', borderRadius: 12, marginTop: 28 }}
+          />
         </div>
 
         <div style={{ backgroundColor: C.dark, borderRadius: 12, padding: '32px 28px', margin: '24px 0 40px', color: '#cbd5e1' }}>
