@@ -4,12 +4,17 @@
 import TourCard, { type StopProps } from '../../components/TourCard';
 
 const C = {
-  bg: '#ffffff',
-  bgPage: '#f8f9fa',
-  border: '#e8eaed',
-  text: '#202124',
-  textSecondary: '#5f6368',
-  textTertiary: '#9aa0a6',
+  bg: '#FAFAF8',
+  bgAlt: '#F5F3EF',
+  white: '#FFFFFF',
+  border: '#E5E5E0',
+  text: '#1A1A1A',
+  textSecondary: '#6B7280',
+  textMuted: '#9CA3AF',
+  accent: '#B45309',
+  accentBg: 'rgba(180,83,9,0.06)',
+  dark: '#1A1A1A',
+  darkText: '#E5E5E0',
 };
 
 const stops: StopProps[] = [
@@ -68,8 +73,8 @@ export default function WelcomeTracy() {
     <div
       style={{
         minHeight: '100vh',
-        backgroundColor: C.bgPage,
-        fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+        backgroundColor: C.bg,
+        fontFamily: 'var(--font-inter), sans-serif',
         padding: '0 0 80px',
       }}
     >
@@ -88,7 +93,7 @@ export default function WelcomeTracy() {
           style={{
             fontSize: 13,
             fontWeight: 600,
-            color: C.textTertiary,
+            color: C.textMuted,
             letterSpacing: '0.08em',
             textTransform: 'uppercase' as const,
           }}
@@ -109,6 +114,7 @@ export default function WelcomeTracy() {
         <div style={{ paddingTop: 64, paddingBottom: 48 }}>
           <h1
             style={{
+              fontFamily: 'var(--font-abril), serif',
               fontSize: 'clamp(2rem, 5vw, 3rem)',
               fontWeight: 700,
               color: C.text,
@@ -143,7 +149,8 @@ export default function WelcomeTracy() {
 
         {/* Action Items */}
         <div style={{ marginTop: 48 }}>
-          <h2 style={{ fontSize: 20, fontWeight: 700, color: C.text, margin: '0 0 8px' }}>Action Items</h2>
+          <h2 style={{
+              fontFamily: 'var(--font-abril), serif', fontSize: 20, fontWeight: 700, color: C.text, margin: '0 0 8px' }}>Action Items</h2>
           <p style={{ fontSize: 14, color: C.textSecondary, margin: '0 0 20px' }}>Grant opportunities &amp; business operations.</p>
 
           {[
@@ -184,7 +191,7 @@ export default function WelcomeTracy() {
                     <p style={{ fontSize: 14, fontWeight: 600, color: C.text, margin: '0 0 4px' }}>
                       {item.done ? '\u2705' : '\u2B1C'} {item.task}
                     </p>
-                    <p style={{ fontSize: 12, color: C.textTertiary, margin: 0 }}>{item.note}</p>
+                    <p style={{ fontSize: 12, color: C.textMuted, margin: 0 }}>{item.note}</p>
                   </div>
                 ))}
               </div>
@@ -216,7 +223,7 @@ export default function WelcomeTracy() {
           <p
             style={{
               fontSize: 13,
-              color: C.textTertiary,
+              color: C.textMuted,
               margin: 0,
             }}
           >

@@ -1,12 +1,17 @@
 import TourCard, { type StopProps } from '../../components/TourCard';
 
 const C = {
-  bg: '#f8f9fa',
-  border: '#e8eaed',
-  text: '#202124',
-  textSec: '#5f6368',
-  textMuted: '#9aa0a6',
-  accent: '#b45309',
+  bg: '#FAFAF8',
+  bgAlt: '#F5F3EF',
+  white: '#FFFFFF',
+  border: '#E5E5E0',
+  text: '#1A1A1A',
+  textSecondary: '#6B7280',
+  textMuted: '#9CA3AF',
+  accent: '#B45309',
+  accentBg: 'rgba(180,83,9,0.06)',
+  dark: '#1A1A1A',
+  darkText: '#E5E5E0',
 };
 
 const stops: StopProps[] = [
@@ -66,7 +71,7 @@ export default function WelcomeJP() {
       style={{
         minHeight: '100vh',
         backgroundColor: C.bg,
-        fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+        fontFamily: 'var(--font-inter), sans-serif',
         padding: '0 0 80px',
       }}
     >
@@ -97,6 +102,7 @@ export default function WelcomeJP() {
         <div style={{ paddingTop: 64, paddingBottom: 48 }}>
           <h1
             style={{
+              fontFamily: 'var(--font-abril), serif',
               fontSize: 'clamp(2rem, 5vw, 3rem)',
               fontWeight: 700,
               color: C.text,
@@ -110,7 +116,7 @@ export default function WelcomeJP() {
           <p
             style={{
               fontSize: 18,
-              color: C.textSec,
+              color: C.textSecondary,
               lineHeight: 1.65,
               margin: 0,
               maxWidth: 520,

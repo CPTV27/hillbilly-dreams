@@ -2,21 +2,17 @@
 // Server component — no client JS needed
 
 const C = {
-  bg: '#ffffff',
-  bgPage: '#f8f9fa',
-  bgCard: '#ffffff',
-  border: '#e8eaed',
-  text: '#202124',
-  textSec: '#5f6368',
-  textMuted: '#9aa0a6',
-  accent: '#b45309',
+  bg: '#FAFAF8',
+  bgAlt: '#F5F3EF',
+  white: '#FFFFFF',
+  border: '#E5E5E0',
+  text: '#1A1A1A',
+  textSecondary: '#6B7280',
+  textMuted: '#9CA3AF',
+  accent: '#B45309',
   accentBg: 'rgba(180,83,9,0.06)',
-  green: '#16a34a',
-  greenBg: 'rgba(22,163,74,0.06)',
-  blue: '#2563eb',
-  blueBg: 'rgba(37,99,235,0.06)',
-  purple: '#7c3aed',
-  purpleBg: 'rgba(124,58,237,0.06)',
+  dark: '#1A1A1A',
+  darkText: '#E5E5E0',
 };
 
 type Tier = {
@@ -51,8 +47,8 @@ const tiers: Tier[] = [
   },
   {
     label: 'TIER 2',
-    color: C.blue,
-    colorBg: C.blueBg,
+    color: C.accent,
+    colorBg: C.accentBg,
     title: 'Civic & Municipal',
     buyer: 'City managers, county administrators, planning directors',
     pitch: 'Digitize your city for less than one FTE.',
@@ -68,8 +64,8 @@ const tiers: Tier[] = [
   },
   {
     label: 'TIER 3',
-    color: C.green,
-    colorBg: C.greenBg,
+    color: C.accent,
+    colorBg: C.accentBg,
     title: 'Education',
     buyer: 'Superintendents, district IT directors',
     pitch: 'One dashboard for enrollment, facilities, and compliance \u2014 funded by dollars you already receive.',
@@ -85,8 +81,8 @@ const tiers: Tier[] = [
   },
   {
     label: 'TIER 4',
-    color: C.purple,
-    colorBg: C.purpleBg,
+    color: C.accent,
+    colorBg: C.accentBg,
     title: 'Tourism & Regional Media',
     buyer: 'CVB directors, tourism commissions, Main Street programs',
     pitch: 'Convert your marketing budget into locally-produced content that stays in the community.',
@@ -122,8 +118,8 @@ export default function RegionalPage() {
     <div
       style={{
         minHeight: '100vh',
-        backgroundColor: C.bgPage,
-        fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+        backgroundColor: C.bg,
+        fontFamily: 'var(--font-inter), sans-serif',
         padding: '0 0 80px',
       }}
     >
@@ -169,6 +165,7 @@ export default function RegionalPage() {
           </p>
           <h1
             style={{
+              fontFamily: 'var(--font-abril), serif',
               fontSize: 'clamp(2rem, 5vw, 2.75rem)',
               fontWeight: 700,
               color: C.text,
@@ -183,7 +180,7 @@ export default function RegionalPage() {
           <p
             style={{
               fontSize: 17,
-              color: C.textSec,
+              color: C.textSecondary,
               lineHeight: 1.65,
               margin: 0,
               maxWidth: 580,
@@ -224,7 +221,7 @@ export default function RegionalPage() {
             <div
               key={tier.label}
               style={{
-                backgroundColor: C.bgCard,
+                backgroundColor: C.white,
                 border: `1px solid ${C.border}`,
                 borderRadius: 12,
                 padding: '28px 24px',
@@ -248,7 +245,7 @@ export default function RegionalPage() {
               </div>
 
               <p style={{ fontSize: 13, color: C.textMuted, margin: '0 0 4px' }}>
-                <strong style={{ color: C.textSec }}>Buyer:</strong> {tier.buyer}
+                <strong style={{ color: C.textSecondary }}>Buyer:</strong> {tier.buyer}
               </p>
               <p style={{ fontSize: 15, color: C.text, margin: '0 0 16px', lineHeight: 1.5 }}>
                 {tier.pitch}
@@ -256,7 +253,7 @@ export default function RegionalPage() {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 16 }}>
                 {tier.modules.map((m) => (
-                  <p key={m} style={{ fontSize: 14, color: C.textSec, margin: 0, paddingLeft: 18 }}>
+                  <p key={m} style={{ fontSize: 14, color: C.textSecondary, margin: 0, paddingLeft: 18 }}>
                     &#x2713; {m}
                   </p>
                 ))}
@@ -276,12 +273,13 @@ export default function RegionalPage() {
 
         {/* Why Regional Beats National */}
         <div style={{ margin: '48px 0 32px' }}>
-          <h2 style={{ fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 20px' }}>
+          <h2 style={{
+              fontFamily: 'var(--font-abril), serif', fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 20px' }}>
             Why Regional Beats National
           </h2>
           <div
             style={{
-              backgroundColor: C.bgCard,
+              backgroundColor: C.white,
               border: `1px solid ${C.border}`,
               borderRadius: 12,
               overflow: 'hidden',
@@ -308,7 +306,7 @@ export default function RegionalPage() {
                   gridTemplateColumns: '1fr 1fr 1fr',
                   padding: '14px 20px',
                   gap: 16,
-                  backgroundColor: i % 2 === 0 ? C.bgCard : C.bgPage,
+                  backgroundColor: i % 2 === 0 ? C.white : C.bg,
                   borderTop: `1px solid ${C.border}`,
                 }}
               >
@@ -322,10 +320,11 @@ export default function RegionalPage() {
 
         {/* The Natchez Proof Stack */}
         <div style={{ margin: '48px 0 32px' }}>
-          <h2 style={{ fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 8px' }}>
+          <h2 style={{
+              fontFamily: 'var(--font-abril), serif', fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 8px' }}>
             The Natchez Proof Stack
           </h2>
-          <p style={{ fontSize: 15, color: C.textSec, margin: '0 0 20px', lineHeight: 1.5 }}>
+          <p style={{ fontSize: 15, color: C.textSecondary, margin: '0 0 20px', lineHeight: 1.5 }}>
             One town. All four tiers. Running on the same engine.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
@@ -333,7 +332,7 @@ export default function RegionalPage() {
               <div
                 key={p.label}
                 style={{
-                  backgroundColor: C.bgCard,
+                  backgroundColor: C.white,
                   border: `1px solid ${C.border}`,
                   borderRadius: 10,
                   padding: '20px 18px',
@@ -345,8 +344,8 @@ export default function RegionalPage() {
                     style={{
                       fontSize: 11,
                       fontWeight: 600,
-                      color: p.status === 'Live' ? C.green : C.accent,
-                      backgroundColor: p.status === 'Live' ? C.greenBg : C.accentBg,
+                      color: p.status === 'Live' ? C.accent : C.accent,
+                      backgroundColor: p.status === 'Live' ? C.accentBg : C.accentBg,
                       padding: '2px 8px',
                       borderRadius: 4,
                     }}
@@ -354,7 +353,7 @@ export default function RegionalPage() {
                     {p.status}
                   </span>
                 </div>
-                <p style={{ fontSize: 13, color: C.textSec, margin: 0 }}>{p.example}</p>
+                <p style={{ fontSize: 13, color: C.textSecondary, margin: 0 }}>{p.example}</p>
               </div>
             ))}
           </div>
@@ -400,7 +399,7 @@ export default function RegionalPage() {
           <p style={{ fontSize: 15, color: C.text, margin: 0, fontWeight: 500 }}>
             Interested? Let&apos;s talk.
           </p>
-          <p style={{ fontSize: 14, color: C.textSec, margin: 0 }}>
+          <p style={{ fontSize: 14, color: C.textSecondary, margin: 0 }}>
             chase@hillbillydreamsinc.com
           </p>
           <p style={{ fontSize: 13, color: C.textMuted, margin: '8px 0 0' }}>

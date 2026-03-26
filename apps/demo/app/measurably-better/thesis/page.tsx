@@ -2,18 +2,17 @@
 // Server component
 
 const C = {
-  bg: '#ffffff',
-  bgPage: '#f8f9fa',
-  bgCard: '#ffffff',
-  border: '#e8eaed',
-  text: '#202124',
-  textSec: '#5f6368',
-  textMuted: '#9aa0a6',
-  accent: '#b45309',
+  bg: '#FAFAF8',
+  bgAlt: '#F5F3EF',
+  white: '#FFFFFF',
+  border: '#E5E5E0',
+  text: '#1A1A1A',
+  textSecondary: '#6B7280',
+  textMuted: '#9CA3AF',
+  accent: '#B45309',
   accentBg: 'rgba(180,83,9,0.06)',
-  dark: '#1a1a2e',
-  green: '#16a34a',
-  greenBg: 'rgba(22,163,74,0.06)',
+  dark: '#1A1A1A',
+  darkText: '#E5E5E0',
 };
 
 type Principle = { number: string; title: string; body: string };
@@ -80,8 +79,8 @@ export default function ThesisPage() {
     <div
       style={{
         minHeight: '100vh',
-        backgroundColor: C.bgPage,
-        fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+        backgroundColor: C.bg,
+        fontFamily: 'var(--font-inter), sans-serif',
         padding: '0 0 80px',
       }}
     >
@@ -126,6 +125,7 @@ export default function ThesisPage() {
           </p>
           <h1
             style={{
+              fontFamily: 'var(--font-abril), serif',
               fontSize: 'clamp(2.25rem, 5vw, 3rem)',
               fontWeight: 700,
               color: C.text,
@@ -141,7 +141,7 @@ export default function ThesisPage() {
           <p
             style={{
               fontSize: 18,
-              color: C.textSec,
+              color: C.textSecondary,
               lineHeight: 1.7,
               margin: 0,
               maxWidth: 560,
@@ -181,6 +181,7 @@ export default function ThesisPage() {
         <div style={{ margin: '48px 0' }}>
           <h2
             style={{
+              fontFamily: 'var(--font-abril), serif',
               fontSize: 13,
               fontWeight: 600,
               color: C.accent,
@@ -196,7 +197,7 @@ export default function ThesisPage() {
               <div
                 key={p.number}
                 style={{
-                  backgroundColor: C.bgCard,
+                  backgroundColor: C.white,
                   border: `1px solid ${C.border}`,
                   borderRadius: 12,
                   padding: '28px 24px',
@@ -222,6 +223,7 @@ export default function ThesisPage() {
                   </span>
                   <h3
                     style={{
+              fontFamily: 'var(--font-abril), serif',
                       fontSize: 20,
                       fontWeight: 700,
                       color: C.text,
@@ -234,7 +236,7 @@ export default function ThesisPage() {
                 <p
                   style={{
                     fontSize: 15,
-                    color: C.textSec,
+                    color: C.textSecondary,
                     lineHeight: 1.7,
                     margin: 0,
                     paddingLeft: 27,
@@ -251,6 +253,7 @@ export default function ThesisPage() {
         <div style={{ margin: '48px 0' }}>
           <h2
             style={{
+              fontFamily: 'var(--font-abril), serif',
               fontSize: 24,
               fontWeight: 700,
               color: C.text,
@@ -262,7 +265,7 @@ export default function ThesisPage() {
           <p
             style={{
               fontSize: 16,
-              color: C.textSec,
+              color: C.textSecondary,
               lineHeight: 1.7,
               margin: '0 0 16px',
             }}
@@ -278,7 +281,7 @@ export default function ThesisPage() {
           <p
             style={{
               fontSize: 16,
-              color: C.textSec,
+              color: C.textSecondary,
               lineHeight: 1.7,
               margin: 0,
             }}
@@ -296,6 +299,7 @@ export default function ThesisPage() {
         <div style={{ margin: '48px 0' }}>
           <h2
             style={{
+              fontFamily: 'var(--font-abril), serif',
               fontSize: 24,
               fontWeight: 700,
               color: C.text,
@@ -307,7 +311,7 @@ export default function ThesisPage() {
           <p
             style={{
               fontSize: 15,
-              color: C.textSec,
+              color: C.textSecondary,
               lineHeight: 1.6,
               margin: '0 0 20px',
             }}
@@ -320,7 +324,7 @@ export default function ThesisPage() {
 
           <div
             style={{
-              backgroundColor: C.bgCard,
+              backgroundColor: C.white,
               border: `1px solid ${C.border}`,
               borderRadius: 12,
               overflow: 'hidden',
@@ -347,12 +351,12 @@ export default function ThesisPage() {
                   gridTemplateColumns: '1fr 1.4fr 1.4fr',
                   padding: '14px 20px',
                   gap: 16,
-                  backgroundColor: i % 2 === 0 ? C.bgCard : C.bgPage,
+                  backgroundColor: i % 2 === 0 ? C.white : C.bg,
                   borderTop: `1px solid ${C.border}`,
                 }}
               >
                 <span style={{ fontSize: 13, fontWeight: 600, color: C.text }}>{row.segment}</span>
-                <span style={{ fontSize: 13, color: C.textSec }}>{row.gets}</span>
+                <span style={{ fontSize: 13, color: C.textSecondary }}>{row.gets}</span>
                 <span style={{ fontSize: 13, color: C.text }}>{row.changes}</span>
               </div>
             ))}
@@ -363,6 +367,7 @@ export default function ThesisPage() {
         <div style={{ margin: '48px 0' }}>
           <h2
             style={{
+              fontFamily: 'var(--font-abril), serif',
               fontSize: 24,
               fontWeight: 700,
               color: C.text,
@@ -374,7 +379,7 @@ export default function ThesisPage() {
           <p
             style={{
               fontSize: 15,
-              color: C.textSec,
+              color: C.textSecondary,
               lineHeight: 1.6,
               margin: '0 0 20px',
             }}
@@ -384,7 +389,7 @@ export default function ThesisPage() {
           <p
             style={{
               fontSize: 15,
-              color: C.textSec,
+              color: C.textSecondary,
               lineHeight: 1.6,
               margin: '0 0 20px',
             }}
@@ -398,7 +403,7 @@ export default function ThesisPage() {
           <p
             style={{
               fontSize: 15,
-              color: C.textSec,
+              color: C.textSecondary,
               lineHeight: 1.6,
               margin: '0 0 24px',
             }}
@@ -419,7 +424,7 @@ export default function ThesisPage() {
                 key={i}
                 style={{
                   fontSize: 15,
-                  color: i === proofPoints.length - 1 ? C.text : C.textSec,
+                  color: i === proofPoints.length - 1 ? C.text : C.textSecondary,
                   fontWeight: i === proofPoints.length - 1 ? 600 : 400,
                   margin: i === proofPoints.length - 1 ? '12px 0 0' : '0 0 6px',
                   lineHeight: 1.5,
@@ -436,7 +441,7 @@ export default function ThesisPage() {
           <p
             style={{
               fontSize: 16,
-              color: C.textSec,
+              color: C.textSecondary,
               lineHeight: 1.7,
               margin: '0 0 16px',
             }}
@@ -448,7 +453,7 @@ export default function ThesisPage() {
           <p
             style={{
               fontSize: 16,
-              color: C.textSec,
+              color: C.textSecondary,
               lineHeight: 1.7,
               margin: 0,
             }}
@@ -505,7 +510,7 @@ export default function ThesisPage() {
             gap: 6,
           }}
         >
-          <p style={{ fontSize: 14, color: C.textSec, margin: 0 }}>
+          <p style={{ fontSize: 14, color: C.textSecondary, margin: 0 }}>
             chase@hillbillydreamsinc.com
           </p>
           <p style={{ fontSize: 13, color: C.textMuted, margin: 0 }}>

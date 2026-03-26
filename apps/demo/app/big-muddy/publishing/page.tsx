@@ -2,16 +2,17 @@
 // Server component. All inline CSS. No external images.
 
 const C = {
-  bg: '#f8f9fa',
-  white: '#ffffff',
-  border: '#e8eaed',
-  text: '#202124',
-  textSecondary: '#5f6368',
-  textMuted: '#9aa0a6',
-  accent: '#b45309',
-  accentBg: 'rgba(180,83,9,0.06)',
-  dark: '#1a1a2e',
-  darkText: '#cbd5e1',
+  bg: '#F3EFE9',
+  bgAlt: '#E8E2D9',
+  white: '#FFFFFF',
+  border: '#D9CFC1',
+  text: '#111111',
+  textSecondary: '#444444',
+  textMuted: '#777777',
+  accent: '#7B1B46',
+  accentBg: 'rgba(123,27,70,0.08)',
+  dark: '#0A0A0A',
+  darkText: '#D9CFC1',
 };
 
 const WRITER_TIERS = [
@@ -83,7 +84,7 @@ export default function FeedFarmPage() {
       style={{
         minHeight: '100vh',
         backgroundColor: C.bg,
-        fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+        fontFamily: 'var(--font-inter), sans-serif',
         color: C.text,
         padding: '0 0 80px',
       }}
@@ -134,6 +135,7 @@ export default function FeedFarmPage() {
           </p>
           <h1
             style={{
+              fontFamily: 'var(--font-abril), serif',
               fontSize: 'clamp(2rem, 5vw, 3.25rem)',
               fontWeight: 700,
               color: C.white,
@@ -198,6 +200,7 @@ export default function FeedFarmPage() {
         </p>
         <h2
           style={{
+              fontFamily: 'var(--font-abril), serif',
             fontSize: 'clamp(1.4rem, 3vw, 2rem)',
             fontWeight: 700,
             color: C.text,
@@ -320,6 +323,7 @@ export default function FeedFarmPage() {
           </p>
           <h2
             style={{
+              fontFamily: 'var(--font-abril), serif',
               fontSize: 'clamp(1.4rem, 3vw, 2rem)',
               fontWeight: 700,
               color: C.text,
@@ -372,6 +376,7 @@ export default function FeedFarmPage() {
                 </div>
                 <h3
                   style={{
+              fontFamily: 'var(--font-abril), serif',
                     fontSize: 15,
                     fontWeight: 700,
                     color: C.text,
@@ -413,6 +418,7 @@ export default function FeedFarmPage() {
         </p>
         <h2
           style={{
+              fontFamily: 'var(--font-abril), serif',
             fontSize: 'clamp(1.4rem, 3vw, 2rem)',
             fontWeight: 700,
             color: C.text,
@@ -489,6 +495,7 @@ export default function FeedFarmPage() {
         >
           <h3
             style={{
+              fontFamily: 'var(--font-abril), serif',
               fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
               fontWeight: 700,
               color: C.white,

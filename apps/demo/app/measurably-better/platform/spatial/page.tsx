@@ -4,7 +4,7 @@ export default function MVXPage() {
       style={{
         backgroundColor: '#f8f9fa',
         minHeight: '100vh',
-        fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+        fontFamily: 'var(--font-inter), sans-serif',
         color: '#202124',
       }}
     >

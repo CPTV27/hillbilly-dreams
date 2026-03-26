@@ -8,21 +8,22 @@ const USERS: Record<string, string> = {
   amy: '/welcome/amy',
   jp: '/welcome/jp',
   chase: '/welcome/chase',
+  directory: '/directory',
 };
 
 const C = {
-  bg: '#f8f9fa',
-  card: '#ffffff',
-  border: '#e8eaed',
-  text: '#202124',
-  muted: '#9aa0a6',
-  accent: '#b45309',
+  bg: '#FAFAF8',
+  text: '#1A1A1A',
+  accent: '#B45309',
+  muted: '#6B7280',
+  border: '#E5E5E0',
 };
 
 export default function Gate() {
   const router = useRouter();
   const [pw, setPw] = useState('');
   const [err, setErr] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   const handleSubmit = () => {
     const key = pw.toLowerCase().trim();
@@ -41,61 +42,73 @@ export default function Gate() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+        fontFamily: 'var(--font-inter), sans-serif',
+        animation: 'fadeIn 0.8s ease-in-out',
       }}
     >
-      <div style={{ textAlign: 'center', maxWidth: 420, padding: '0 24px' }}>
-        <p
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+      `}</style>
+      <div style={{ textAlign: 'center', maxWidth: 420, padding: '0 24px', width: '100%' }}>
+        <h1
           style={{
-            fontSize: 13,
-            fontWeight: 600,
-            color: C.accent,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase' as const,
-            margin: '0 0 24px',
+            fontFamily: 'var(--font-abril), serif',
+            fontSize: 'clamp(2rem, 5vw, 2.5rem)',
+            fontWeight: 400,
+            color: C.text,
+            margin: '0 0 16px',
+            lineHeight: 1.1,
           }}
         >
           Measurably Better
-        </p>
-        <h1
-          style={{
-            fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-            fontWeight: 700,
-            color: C.text,
-            margin: '0 0 12px',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.25,
-          }}
-        >
-          The South has the culture. We&apos;re building the infrastructure to match.
         </h1>
-        <p style={{ fontSize: 15, color: C.muted, margin: '0 0 32px' }}>
-          Enter your name to continue.
+        <p style={{ 
+          fontSize: 16, 
+          color: C.muted, 
+          margin: '0 0 8px',
+          fontWeight: 400,
+        }}>
+          The South has the culture.
         </p>
+        <p style={{ 
+          fontSize: 16, 
+          color: C.muted, 
+          margin: '0 0 48px',
+          fontWeight: 400,
+        }}>
+          We&apos;re building the infrastructure to match.
+        </p>
+        
         <input
           type="text"
-          placeholder="Your first name"
+          placeholder="Enter your name to continue"
           value={pw}
           onChange={(e) => {
             setPw(e.target.value);
             setErr(false);
           }}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           onKeyDown={(e) => {
             if (e.key === 'Enter') handleSubmit();
           }}
           autoFocus
           style={{
-            fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+            fontFamily: 'var(--font-inter), sans-serif',
             fontSize: 16,
-            padding: '14px 20px',
-            border: `1px solid ${err ? '#c00' : C.border}`,
-            borderRadius: 10,
-            backgroundColor: C.card,
+            padding: '12px 0 12px',
+            border: 'none',
+            borderBottom: `1px solid ${err ? '#c00' : (isFocused ? C.accent : C.border)}`,
+            backgroundColor: 'transparent',
             textAlign: 'center',
             width: '100%',
             outline: 'none',
             color: C.text,
             boxSizing: 'border-box' as const,
+            transition: 'border-color 0.2s ease',
           }}
         />
         {err && (
@@ -103,7 +116,7 @@ export default function Gate() {
             Name not recognized. Contact Chase for access.
           </p>
         )}
-        <p style={{ fontSize: 12, color: C.muted, marginTop: 32 }}>
+        <p style={{ fontSize: 12, color: C.muted, marginTop: 64 }}>
           Hillbilly Dreams, Inc. &middot; Natchez, Mississippi
         </p>
       </div>

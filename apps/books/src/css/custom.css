@@ -1,0 +1,130 @@
+/**
+ * Outsider Economics — Independent Press aesthetic
+ * Newsprint backgrounds, burgundy accents, literary typography
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Burgundy / Editor's Red */
+  --ifm-color-primary: #7B1B46;
+  --ifm-color-primary-dark: #6E1840;
+  --ifm-color-primary-darker: #68173C;
+  --ifm-color-primary-darkest: #561332;
+  --ifm-color-primary-light: #88214F;
+  --ifm-color-primary-lighter: #8E2353;
+  --ifm-color-primary-lightest: #A12A60;
+
+  /* Typography */
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-heading-font-family: 'Abril Fatface', serif;
+  --ifm-font-size-base: 17px;
+  --ifm-line-height-base: 1.75;
+
+  /* Colors */
+  --ifm-background-color: #F3EFE9;
+  --ifm-background-surface-color: #FFFFFF;
+  --ifm-font-color-base: #111111;
+
+  /* Layout */
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Navbar */
+  --ifm-navbar-background-color: #111111;
+  --ifm-navbar-link-color: #F3EFE9;
+  --ifm-navbar-link-hover-color: #FFFFFF;
+
+  /* Footer */
+  --ifm-footer-background-color: #111111;
+  --ifm-footer-color: #A0A09A;
+  --ifm-footer-link-color: #F3EFE9;
+  --ifm-footer-link-hover-color: #7B1B46;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #C45A82;
+  --ifm-color-primary-dark: #B94D76;
+  --ifm-color-primary-darker: #B34770;
+  --ifm-color-primary-darkest: #953B5E;
+  --ifm-color-primary-light: #CF678E;
+  --ifm-color-primary-lighter: #D56D94;
+  --ifm-color-primary-lightest: #E080A4;
+  --ifm-background-color: #1A1A1A;
+  --ifm-font-color-base: #E5E5E0;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-family: var(--ifm-heading-font-family);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: 1.75rem;
+  line-height: 1.25;
+}
+
+/* Article content — generous reading */
+article {
+  max-width: 720px;
+}
+
+.markdown {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.markdown p {
+  margin-bottom: 1.5em;
+}
+
+/* Blockquotes — editorial pull quotes */
+blockquote {
+  border-left: 4px solid var(--ifm-color-primary);
+  background: rgba(123, 27, 70, 0.04);
+  padding: 1em 1.5em;
+  font-style: italic;
+  font-size: 1.1em;
+  line-height: 1.65;
+}
+
+/* Navbar title */
+.navbar__title {
+  font-family: 'Abril Fatface', serif;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+/* Sidebar */
+.theme-doc-sidebar-container {
+  border-right: 1px solid #E5E5E0;
+}
+
+/* Table of contents */
+.table-of-contents {
+  font-size: 0.85rem;
+}
+
+/* HR styling */
+hr {
+  border: none;
+  border-top: 1px solid #D5D0C8;
+  margin: 2.5em 0;
+}
+
+/* Links */
+a {
+  color: var(--ifm-color-primary);
+}
+
+a:hover {
+  color: var(--ifm-color-primary-darkest);
+  text-decoration: underline;
+}

@@ -40,7 +40,7 @@ export default function NexusPage() {
       style={{
         backgroundColor: '#f8f9fa',
         minHeight: '100vh',
-        fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+        fontFamily: 'var(--font-inter), sans-serif',
         color: '#202124',
       }}
     >
@@ -66,6 +66,7 @@ export default function NexusPage() {
         </p>
         <h1
           style={{
+              fontFamily: 'var(--font-abril), serif',
             fontSize: 'clamp(32px, 5vw, 52px)',
             fontWeight: 700,
             lineHeight: 1.1,
@@ -138,6 +139,7 @@ export default function NexusPage() {
 
             <h2
               style={{
+              fontFamily: 'var(--font-abril), serif',
                 fontSize: 17,
                 fontWeight: 600,
                 color: '#202124',

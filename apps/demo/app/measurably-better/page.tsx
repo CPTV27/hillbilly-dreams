@@ -2,16 +2,17 @@
 // Server component. All inline CSS. No external images.
 
 const C = {
-  bg: '#f8f9fa',
-  white: '#ffffff',
-  border: '#e8eaed',
-  text: '#202124',
-  textSecondary: '#5f6368',
-  textMuted: '#9aa0a6',
-  accent: '#b45309',
+  bg: '#FAFAF8',
+  bgAlt: '#F5F3EF',
+  white: '#FFFFFF',
+  border: '#E5E5E0',
+  text: '#1A1A1A',
+  textSecondary: '#6B7280',
+  textMuted: '#9CA3AF',
+  accent: '#B45309',
   accentBg: 'rgba(180,83,9,0.06)',
-  dark: '#1a1a2e',
-  darkText: '#cbd5e1',
+  dark: '#1A1A1A',
+  darkText: '#E5E5E0',
 };
 
 const PRICING = [
@@ -159,7 +160,7 @@ export default function MeasurablyBetterPage() {
       style={{
         minHeight: '100vh',
         backgroundColor: C.bg,
-        fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+        fontFamily: 'var(--font-inter), sans-serif',
         color: C.text,
         padding: '0 0 80px',
       }}
@@ -211,6 +212,7 @@ export default function MeasurablyBetterPage() {
           </p>
           <h1
             style={{
+              fontFamily: 'var(--font-abril), serif',
               fontSize: 'clamp(2rem, 5.5vw, 3.25rem)',
               fontWeight: 700,
               color: C.white,
@@ -287,6 +289,7 @@ export default function MeasurablyBetterPage() {
         </p>
         <h2
           style={{
+              fontFamily: 'var(--font-abril), serif',
             fontSize: 'clamp(1.5rem, 3.5vw, 2.25rem)',
             fontWeight: 700,
             color: C.text,
@@ -386,6 +389,7 @@ export default function MeasurablyBetterPage() {
           </p>
           <h2
             style={{
+              fontFamily: 'var(--font-abril), serif',
               fontSize: 'clamp(1.5rem, 3.5vw, 2.25rem)',
               fontWeight: 700,
               color: C.text,
@@ -484,6 +488,7 @@ export default function MeasurablyBetterPage() {
           </p>
           <h2
             style={{
+              fontFamily: 'var(--font-abril), serif',
               fontSize: 'clamp(1.5rem, 3.5vw, 2.25rem)',
               fontWeight: 700,
               color: C.text,
@@ -515,10 +520,8 @@ export default function MeasurablyBetterPage() {
               <div
                 key={tier.name}
                 style={{
-                  backgroundColor: tier.highlight ? C.dark : C.white,
-                  border: tier.highlight
-                    ? `2px solid ${C.accent}`
-                    : `1px solid ${C.border}`,
+                  backgroundColor: C.white,
+                  border: `1px solid ${C.border}`, borderTop: tier.highlight ? `2px solid ${C.accent}` : `1px solid ${C.border}`,
                   borderRadius: 12,
                   padding: '24px 20px',
                   display: 'flex',
@@ -527,31 +530,13 @@ export default function MeasurablyBetterPage() {
                   position: 'relative' as const,
                 }}
               >
-                {tier.highlight && (
-                  <span
-                    style={{
-                      position: 'absolute' as const,
-                      top: -11,
-                      left: 20,
-                      fontSize: 11,
-                      fontWeight: 700,
-                      letterSpacing: '0.06em',
-                      textTransform: 'uppercase' as const,
-                      backgroundColor: C.accent,
-                      color: C.white,
-                      padding: '3px 10px',
-                      borderRadius: 100,
-                    }}
-                  >
-                    Most popular
-                  </span>
-                )}
+                
                 <div>
                   <p
                     style={{
                       fontSize: 12,
                       fontWeight: 600,
-                      color: tier.highlight ? C.darkText : C.textMuted,
+                      color: C.textMuted,
                       margin: '0 0 4px',
                       letterSpacing: '0.04em',
                       textTransform: 'uppercase' as const,
@@ -564,7 +549,7 @@ export default function MeasurablyBetterPage() {
                       style={{
                         fontSize: 28,
                         fontWeight: 700,
-                        color: tier.highlight ? C.white : C.text,
+                        color: C.text,
                         letterSpacing: '-0.02em',
                       }}
                     >
@@ -574,7 +559,7 @@ export default function MeasurablyBetterPage() {
                       <span
                         style={{
                           fontSize: 13,
-                          color: tier.highlight ? C.darkText : C.textSecondary,
+                          color: C.textSecondary,
                         }}
                       >
                         {tier.period}
@@ -585,7 +570,7 @@ export default function MeasurablyBetterPage() {
                 <p
                   style={{
                     fontSize: 13,
-                    color: tier.highlight ? C.darkText : C.textSecondary,
+                    color: C.textSecondary,
                     lineHeight: 1.55,
                     margin: 0,
                     fontStyle: 'italic',
@@ -609,7 +594,7 @@ export default function MeasurablyBetterPage() {
                       key={f}
                       style={{
                         fontSize: 12,
-                        color: tier.highlight ? C.darkText : C.textSecondary,
+                        color: C.textSecondary,
                         display: 'flex',
                         alignItems: 'flex-start',
                         gap: 6,
@@ -630,9 +615,9 @@ export default function MeasurablyBetterPage() {
                     fontSize: 13,
                     fontWeight: 600,
                     textDecoration: 'none',
-                    backgroundColor: tier.highlight ? C.accent : C.bg,
-                    color: tier.highlight ? C.white : C.text,
-                    border: tier.highlight ? 'none' : `1px solid ${C.border}`,
+                    backgroundColor: tier.highlight ? C.accent : 'transparent',
+                    color: C.text,
+                    border: tier.highlight ? '1px solid transparent' : `1px solid ${C.accent}`,
                     marginTop: 4,
                   }}
                 >
@@ -660,6 +645,7 @@ export default function MeasurablyBetterPage() {
         </p>
         <h2
           style={{
+              fontFamily: 'var(--font-abril), serif',
             fontSize: 'clamp(1.5rem, 3.5vw, 2.25rem)',
             fontWeight: 700,
             color: C.text,
