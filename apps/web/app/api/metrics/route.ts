@@ -68,9 +68,10 @@ async function upsertMetrics(request: Request) {
     }
 
     // Upsert each metric — create if missing, update if exists
+    // Also insert a MetricSnapshot row for time-series history
     const results = await Promise.all(
-      metricsArray.map((m) =>
-        prisma.metric.upsert({
+      metricsArray.map(async (m) => {
+        const metric = await prisma.metric.upsert({
           where: { key: m.key },
           update: {
             value: m.value,
@@ -87,8 +88,19 @@ async function upsertMetrics(request: Request) {
             unit: m.unit ?? null,
             source: m.source ?? null,
           },
-        })
-      )
+        });
+
+        // Append to time-series ledger (never overwritten)
+        await prisma.metricSnapshot.create({
+          data: {
+            metricKey: m.key,
+            value: m.value,
+            source: m.source ?? null,
+          },
+        });
+
+        return metric;
+      })
     );
 
     return NextResponse.json({

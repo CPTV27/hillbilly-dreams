@@ -314,6 +314,19 @@ const businesses = [
   },
 ] as const;
 
+// ─── Slug Generator ───────────────────────────────────────────────────────────
+
+function generateSlug(name: string, city: string): string {
+  const slugify = (str: string) =>
+    str
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+  return `${slugify(name)}-${slugify(city)}`;
+}
+
 // ─── Seed Function ────────────────────────────────────────────────────────────
 
 async function main() {
@@ -326,10 +339,11 @@ async function main() {
   let updated = 0;
 
   for (const biz of businesses) {
-    // DirectoryBusiness has no @unique on name, so we find first then upsert by id.
-    // On first run the record won't exist; on re-runs we update by the found id.
-    const existing = await prisma.directoryBusiness.findFirst({
-      where: { name: biz.name, city: biz.city },
+    const slug = generateSlug(biz.name, biz.city);
+
+    // Upsert by slug (unique constraint) for true idempotency
+    const existing = await prisma.directoryBusiness.findUnique({
+      where: { slug },
       select: { id: true },
     });
 
@@ -338,6 +352,7 @@ async function main() {
         where: { id: existing.id },
         data: {
           category: biz.category,
+          state: biz.state,
           website: biz.website,
           description: biz.description,
           tier: biz.tier,
@@ -348,14 +363,16 @@ async function main() {
           softwareSpend: biz.softwareSpend,
         },
       });
-      console.log(`  ✓ updated  ${biz.name}`);
+      console.log(`  ✓ updated  ${biz.name} (${slug})`);
       updated++;
     } else {
       await prisma.directoryBusiness.create({
         data: {
           name: biz.name,
+          slug,
           category: biz.category,
           city: biz.city,
+          state: biz.state,
           website: biz.website,
           description: biz.description,
           tier: biz.tier,
@@ -366,7 +383,7 @@ async function main() {
           softwareSpend: biz.softwareSpend,
         },
       });
-      console.log(`  ✓ created  ${biz.name}`);
+      console.log(`  ✓ created  ${biz.name} (${slug})`);
       created++;
     }
   }

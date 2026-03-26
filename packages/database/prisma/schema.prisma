@@ -1,15 +1,17 @@
 // packages/database/prisma/schema.prisma
 
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native", "debian-openssl-3.0.x"]
+  provider        = "prisma-client-js"
+  binaryTargets   = ["native", "debian-openssl-3.0.x"]
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
   // Use connection pooling URL for serverless (Next.js API routes, Firebase Functions)
-  directUrl = env("DIRECT_DATABASE_URL")
+  directUrl  = env("DIRECT_DATABASE_URL")
+  extensions = [vector]
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -141,6 +143,19 @@ model Metric {
   updatedAt DateTime @updatedAt
 
   @@index([key])
+}
+
+// Append-only time-series companion to Metric. Metric stores the latest value;
+// MetricSnapshot stores the full history for trend charts and client reports.
+model MetricSnapshot {
+  id         Int      @id @default(autoincrement())
+  metricKey  String                                // Matches Metric.key
+  value      Float
+  source     String?                               // "beehiiv" | "cloudbeds" | "census" | "bls" | "manual"
+  recordedAt DateTime @default(now())
+
+  @@index([metricKey, recordedAt])
+  @@index([recordedAt])
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -915,27 +930,52 @@ model ArtistApplication {
 // ── Deep South Directory ──────────────────────────────────────────────────────
 
 model DirectoryBusiness {
-  id           Int      @id @default(autoincrement())
-  name         String
-  category     String
-  city         String
-  website      String?
-  description  String   @db.Text
-  contactName  String
-  contactEmail String
-  tier         String   @default("free") // free | main_street | the_route | hdx_ops
-  spotlight    String?  @db.Text         // AI-generated editorial copy
-  toolsOrigin  String?                   // Survey: where tools come from
-  softwareSpend String?                  // Survey: monthly software spend
-  hearAbout    String?                   // How they found the directory
-  active       Boolean  @default(false)  // Manually activated by admin
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id                Int       @id @default(autoincrement())
+  name              String
+  slug              String    @unique              // URL-safe: slugify(name)-slugify(city)
+  category          String
+  subcategory       String?                        // e.g. "BBQ" under "Food & Drink"
+  city              String
+  state             String    @default("MS")       // 2-letter state code
+  address           String?                        // Street address
+  phone             String?                        // Primary phone (E.164 or 10-digit)
+  zip               String?                        // 5-digit ZIP
+  lat               Float?                         // Latitude (decimal degrees)
+  lng               Float?                         // Longitude (decimal degrees)
+  website           String?
+  description       String    @db.Text
+  contactName       String
+  contactEmail      String
+  tier              String    @default("free")     // free | main_street | the_route | hdx_ops
+  spotlight         String?   @db.Text             // AI-generated editorial copy
+  toolsOrigin       String?                        // Survey: where tools come from
+  softwareSpend     String?                        // Survey: monthly software spend
+  hearAbout         String?                        // How they found the directory
+  active            Boolean   @default(false)      // Manually activated by admin
 
-  @@index([city])
+  // ── External Data Sources ──
+  googlePlaceId     String?   @unique              // Google Places place_id
+  yelpBusinessId    String?   @unique              // Yelp business alias
+  googleRating      Float?                         // Cached Google rating (1-5)
+  googleReviewCount Int?                           // Cached Google review count
+  yelpRating        Float?                         // Cached Yelp rating (1-5)
+  yelpReviewCount   Int?                           // Cached Yelp review count
+  hoursJson         Json?                          // Structured hours from Google Places
+  photoUrls         String[]                       // Cached photo URLs (first 3)
+  lastEnrichedAt    DateTime?                      // Last external data sync timestamp
+
+  // ── Promotion Path ──
+  clientId          Int?      @unique              // FK to Client when free listing converts to paid
+
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([city, state])
   @@index([category])
   @@index([tier])
   @@index([active])
+  @@index([lat, lng])
+  @@index([zip])
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -1029,4 +1069,82 @@ model NotebookDrop {
   @@index([author])
   @@index([status])
   @@index([createdAt])
+}
+
+// ─────────────────────────────────────────────────────────────
+// DEEP SOUTH DATA PLATFORM
+// Phase 1: Vector search, economic data, enrichment pipeline
+// ─────────────────────────────────────────────────────────────
+
+// Polymorphic vector embeddings for semantic search.
+// Uses Vertex AI text-embedding-005 (768 dimensions).
+// Query via prisma.$queryRaw with pgvector <=> cosine distance operator.
+model Embedding {
+  id          Int       @id @default(autoincrement())
+  entityType  String                                   // "directory_business" | "article" | "client" | "transcript"
+  entityId    String                                   // Polymorphic FK (string to handle int and cuid IDs)
+  chunkIndex  Int       @default(0)                    // Which chunk of the source text (0 for single-chunk entities)
+  content     String    @db.Text                       // The raw text that was embedded
+  vector      Unsupported("vector(768)")               // Vertex AI text-embedding-005 output
+  model       String    @default("text-embedding-005") // Embedding model used
+  createdAt   DateTime  @default(now())
+
+  @@unique([entityType, entityId, chunkIndex])
+  @@index([entityType])
+}
+
+// Census Bureau ACS 5-Year + County Business Patterns data.
+// Free API, no key needed. Refresh annually.
+model CensusData {
+  id        Int       @id @default(autoincrement())
+  geoType   String                                     // "zip" | "county" | "msa" | "state"
+  geoId     String                                     // FIPS code or ZIP code
+  geoName   String                                     // "Adams County, MS" | "39120"
+  dataset   String                                     // "acs5" | "cbp" | "economic_census"
+  variable  String                                     // ACS variable code e.g. "B19013_001E" (median income)
+  value     Float?                                     // Null = data suppressed by Census (small populations)
+  year      Int
+  fetchedAt DateTime  @default(now())
+
+  @@unique([geoType, geoId, dataset, variable, year])
+  @@index([geoId])
+  @@index([variable, year])
+}
+
+// BLS LAUS, QCEW, OES + USDA ERS economic data.
+// Free APIs. Refresh monthly (LAUS/QCEW) or annually (OES/USDA).
+model EconomicIndicator {
+  id        Int       @id @default(autoincrement())
+  source    String                                     // "bls_laus" | "bls_qcew" | "bls_oes" | "usda_ers"
+  seriesId  String                                     // BLS series ID e.g. "LAUCN280010000000003"
+  geoType   String                                     // "county" | "msa" | "state"
+  geoId     String                                     // FIPS code
+  geoName   String                                     // "Adams County, MS"
+  period    String                                     // "2025-Q4" | "2025-12" | "2025"
+  indicator String                                     // "unemployment_rate" | "avg_weekly_wage" | "establishments"
+  value     Float
+  fetchedAt DateTime  @default(now())
+
+  @@unique([source, seriesId, period])
+  @@index([geoId, indicator])
+  @@index([indicator, period])
+}
+
+// Async enrichment job queue. When a DirectoryBusiness is created/updated,
+// jobs are queued for Google Places, Yelp, embedding, and spotlight generation.
+// Processed by /api/cron/process-enrichment-queue every 5 minutes.
+model EnrichmentJob {
+  id          Int       @id @default(autoincrement())
+  entityType  String                                   // "directory_business"
+  entityId    String                                   // ID of the entity to enrich
+  jobType     String                                   // "google_places" | "yelp" | "embedding" | "spotlight" | "census"
+  status      String    @default("pending")            // "pending" | "processing" | "completed" | "failed"
+  attempts    Int       @default(0)
+  maxAttempts Int       @default(3)
+  error       String?   @db.Text                       // Error message if failed
+  createdAt   DateTime  @default(now())
+  processedAt DateTime?
+
+  @@index([status, jobType])
+  @@index([entityType, entityId])
 }
