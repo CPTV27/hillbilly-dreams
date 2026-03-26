@@ -12,6 +12,11 @@
 4. **The South is not a victim.** It's underleveraged. Everything is forward motion.
 5. **Direct but warm.** Say what you mean, then stop. Concrete details over abstract claims.
 6. **Never say:** synergy, leverage, ecosystem (in marketing copy), game-changer, disruptive, excited to announce
+7. **Never attribute quotes to real people** unless Chase provided the exact quote. Describe what the platform does, not what people supposedly feel about it.
+8. **"Case studies" not "proof."** The word "proof" is deprecated. Use "case studies" everywhere.
+9. **The interaction model is text-first.** "It's just a text box. Text it a photo, a question, a video — like texting a friend who's really good at everything."
+10. **The street pitch:** "It does all the cool stuff you don't know how to do. Take a picture. Watch what happens. $20 a month."
+11. **Deprecated pitch — do NOT use:** "Same price as ChatGPT. Except this one reads your books."
 
 ---
 

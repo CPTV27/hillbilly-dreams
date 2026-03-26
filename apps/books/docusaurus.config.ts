@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Outsider Economics',
   tagline: 'What happens when the economy works for the people who actually live here.',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/cover-v1.png',
 
   future: {
     v4: true,
@@ -42,6 +42,9 @@ const config: Config = {
 
   themeConfig: {
     image: 'img/outsider-economics-social.jpg',
+    metadata: [
+      { name: 'theme-color', content: '#C4441A' },
+    ],
     colorMode: {
       defaultMode: 'light',
       respectPrefersColorScheme: false,

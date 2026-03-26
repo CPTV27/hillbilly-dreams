@@ -1,283 +1,317 @@
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 
+// Volume card data — extend here as books are added
+const VOLUMES = [
+  {
+    to: '/volume-1/intro',
+    label: 'Volume 1 \u00b7 Published',
+    title: 'A Field Manual for Independent Economic Systems',
+    blurb: 'The math. The theory. The $450,000 secret.',
+  },
+  {
+    to: '/volume-2/intro',
+    label: 'Volume 2 \u00b7 Read Free',
+    title: 'The Implementation Playbook',
+    blurb: 'Building community economic sovereignty in 90 days. 19 chapters.',
+  },
+  {
+    to: '/volume-3/intro',
+    label: 'Volume 3 \u00b7 Coming Soon',
+    title: 'What Happens Next',
+    blurb: 'The Deep South in 2028. Solarpunk meets the Mississippi corridor.',
+  },
+  {
+    to: '/corridor/intro',
+    label: 'Reference',
+    title: 'The Corridor',
+    blurb: 'Memphis to New Orleans. Town profiles from the route.',
+  },
+];
+
+const BURNT_ORANGE = '#C4441A';
+const CREAM = '#F0E6D3';
+const INK = '#1A1A1A';
+const WARM_BORDER = '#D4C8B5';
+const WARM_MUTED = '#7A6E63';
+
 export default function Home(): JSX.Element {
   return (
     <Layout
       title="Outsider Economics"
       description="What happens when the economy works for the people who actually live here."
     >
-      <div
+      {/* ── Hero ──────────────────────────────────────────────────────── */}
+      <section
         style={{
-          minHeight: 'calc(100vh - 60px)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: '#F3EFE9',
-          padding: '48px 24px',
+          backgroundColor: CREAM,
+          padding: 'clamp(40px, 6vw, 80px) clamp(24px, 5vw, 64px)',
+          borderBottom: `3px solid ${BURNT_ORANGE}`,
         }}
       >
-        <div style={{ maxWidth: 680, textAlign: 'center' }}>
-          <h1
-            style={{
-              fontFamily: "'Abril Fatface', serif",
-              fontSize: 'clamp(2.5rem, 7vw, 4.5rem)',
-              color: '#111111',
-              letterSpacing: '-0.02em',
-              lineHeight: 1.1,
-              marginBottom: 24,
-            }}
-          >
-            Outsider Economics
-          </h1>
-          <p
-            style={{
-              fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
-              color: '#555550',
-              lineHeight: 1.7,
-              marginBottom: 48,
-              maxWidth: 520,
-              marginLeft: 'auto',
-              marginRight: 'auto',
-            }}
-          >
-            What happens when the economy works for the people who actually live here.
-          </p>
-
-          <p
-            style={{
-              fontSize: 14,
-              color: '#888883',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase' as const,
-              fontWeight: 600,
-              marginBottom: 24,
-            }}
-          >
-            By Chase Tuthill Pierson
-          </p>
-
+        <div
+          style={{
+            maxWidth: 1080,
+            margin: '0 auto',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 'clamp(32px, 5vw, 72px)',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+          }}
+        >
+          {/* Cover art */}
           <div
             style={{
+              flexShrink: 0,
               display: 'flex',
-              flexDirection: 'column',
-              gap: 16,
-              maxWidth: 400,
-              margin: '0 auto 48px',
+              justifyContent: 'center',
             }}
           >
+            <img
+              src="/img/cover-v1.jpg"
+              alt="Outsider Economics cover — woodcut illustration of a flower growing through cracked earth"
+              style={{
+                width: 'clamp(200px, 28vw, 320px)',
+                height: 'auto',
+                boxShadow: '6px 8px 28px rgba(26,26,26,0.28)',
+                display: 'block',
+              }}
+            />
+          </div>
+
+          {/* Title block */}
+          <div
+            style={{
+              flex: '1 1 300px',
+              minWidth: 0,
+            }}
+          >
+            {/* Publisher slug */}
+            <p
+              style={{
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: BURNT_ORANGE,
+                marginBottom: 16,
+              }}
+            >
+              Hillbilly Dreams, Inc. &mdash; Natchez, Mississippi
+            </p>
+
+            <h1
+              style={{
+                fontFamily: "'Abril Fatface', serif",
+                fontSize: 'clamp(2.4rem, 6vw, 4rem)',
+                color: INK,
+                letterSpacing: '-0.02em',
+                lineHeight: 1.05,
+                marginBottom: 20,
+              }}
+            >
+              Outsider Economics
+            </h1>
+
+            <p
+              style={{
+                fontFamily: "'Abril Fatface', serif",
+                fontSize: 'clamp(1rem, 2vw, 1.3rem)',
+                color: WARM_MUTED,
+                lineHeight: 1.4,
+                marginBottom: 20,
+                fontStyle: 'italic',
+              }}
+            >
+              A Field Manual for Independent Economic Systems
+            </p>
+
+            <p
+              style={{
+                fontSize: 14,
+                fontWeight: 600,
+                letterSpacing: '0.07em',
+                textTransform: 'uppercase',
+                color: WARM_MUTED,
+                marginBottom: 24,
+              }}
+            >
+              By Chase Tuthill Pierson
+            </p>
+
+            {/* Tagline — woodblock-press feel */}
+            <p
+              style={{
+                fontSize: 'clamp(1rem, 2vw, 1.15rem)',
+                color: INK,
+                lineHeight: 1.7,
+                maxWidth: 460,
+                borderLeft: `3px solid ${BURNT_ORANGE}`,
+                paddingLeft: 16,
+                marginBottom: 32,
+                fontStyle: 'italic',
+              }}
+            >
+              What happens when the economy works for the people who actually live here.
+            </p>
+
+            {/* CTA */}
             <Link
               to="/volume-1/intro"
               style={{
-                display: 'block',
-                padding: '20px 24px',
-                backgroundColor: '#FFFFFF',
-                border: '1px solid #D5D0C8',
-                borderRadius: 8,
+                display: 'inline-block',
+                padding: '14px 28px',
+                backgroundColor: BURNT_ORANGE,
+                color: CREAM,
+                fontWeight: 700,
+                fontSize: 14,
+                letterSpacing: '0.05em',
+                textTransform: 'uppercase',
                 textDecoration: 'none',
-                textAlign: 'left',
+                borderRadius: 2,
               }}
             >
-              <span
-                style={{
-                  display: 'block',
-                  fontSize: 11,
-                  fontWeight: 700,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase' as const,
-                  color: '#7B1B46',
-                  marginBottom: 6,
-                }}
-              >
-                Volume 1 &middot; Published
-              </span>
-              <span
-                style={{
-                  display: 'block',
-                  fontFamily: "'Abril Fatface', serif",
-                  fontSize: 20,
-                  color: '#111111',
-                  marginBottom: 6,
-                }}
-              >
-                A Field Manual for Independent Economic Systems
-              </span>
-              <span style={{ fontSize: 14, color: '#888883' }}>
-                The math. The theory. The $450,000 secret.
-              </span>
-            </Link>
-
-            <Link
-              to="/volume-2/intro"
-              style={{
-                display: 'block',
-                padding: '20px 24px',
-                backgroundColor: '#FFFFFF',
-                border: '1px solid #D5D0C8',
-                borderRadius: 8,
-                textDecoration: 'none',
-                textAlign: 'left',
-              }}
-            >
-              <span
-                style={{
-                  display: 'block',
-                  fontSize: 11,
-                  fontWeight: 700,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase' as const,
-                  color: '#7B1B46',
-                  marginBottom: 6,
-                }}
-              >
-                Volume 2 &middot; Read Free
-              </span>
-              <span
-                style={{
-                  display: 'block',
-                  fontFamily: "'Abril Fatface', serif",
-                  fontSize: 20,
-                  color: '#111111',
-                  marginBottom: 6,
-                }}
-              >
-                The Implementation Playbook
-              </span>
-              <span style={{ fontSize: 14, color: '#888883' }}>
-                Building community economic sovereignty in 90 days. 19 chapters.
-              </span>
-            </Link>
-
-            <Link
-              to="/volume-3/intro"
-              style={{
-                display: 'block',
-                padding: '20px 24px',
-                backgroundColor: '#FFFFFF',
-                border: '1px solid #D5D0C8',
-                borderRadius: 8,
-                textDecoration: 'none',
-                textAlign: 'left',
-              }}
-            >
-              <span
-                style={{
-                  display: 'block',
-                  fontSize: 11,
-                  fontWeight: 700,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase' as const,
-                  color: '#7B1B46',
-                  marginBottom: 6,
-                }}
-              >
-                Volume 3 &middot; Coming Soon
-              </span>
-              <span
-                style={{
-                  display: 'block',
-                  fontFamily: "'Abril Fatface', serif",
-                  fontSize: 20,
-                  color: '#111111',
-                  marginBottom: 6,
-                }}
-              >
-                What Happens Next
-              </span>
-              <span style={{ fontSize: 14, color: '#888883' }}>
-                The Deep South in 2028. Solarpunk meets the Mississippi corridor.
-              </span>
-            </Link>
-
-            <Link
-              to="/corridor/intro"
-              style={{
-                display: 'block',
-                padding: '20px 24px',
-                backgroundColor: '#FFFFFF',
-                border: '1px solid #D5D0C8',
-                borderRadius: 8,
-                textDecoration: 'none',
-                textAlign: 'left',
-              }}
-            >
-              <span
-                style={{
-                  display: 'block',
-                  fontSize: 11,
-                  fontWeight: 700,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase' as const,
-                  color: '#7B1B46',
-                  marginBottom: 6,
-                }}
-              >
-                Reference
-              </span>
-              <span
-                style={{
-                  display: 'block',
-                  fontFamily: "'Abril Fatface', serif",
-                  fontSize: 20,
-                  color: '#111111',
-                  marginBottom: 6,
-                }}
-              >
-                The Corridor
-              </span>
-              <span style={{ fontSize: 14, color: '#888883' }}>
-                Memphis to New Orleans. Town profiles from the route.
-              </span>
+              Start Reading &rarr;
             </Link>
           </div>
-
-          <div style={{ borderTop: '1px solid #D5D0C8', paddingTop: 32 }}>
-            <p style={{ fontSize: 14, color: '#888883', lineHeight: 1.7, marginBottom: 16 }}>
-              This isn't theory. The hotel is real. The platform is deployed.
-              The band is forming. The directory is launching.
-            </p>
-            <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' as const }}>
-              <a
-                href="https://measurablybetter.life"
-                style={{
-                  fontSize: 13,
-                  color: '#7B1B46',
-                  textDecoration: 'none',
-                  fontWeight: 600,
-                }}
-              >
-                See the proof &rarr;
-              </a>
-              <a
-                href="https://deepsouthdirectory.com"
-                style={{
-                  fontSize: 13,
-                  color: '#7B1B46',
-                  textDecoration: 'none',
-                  fontWeight: 600,
-                }}
-              >
-                Deep South Directory &rarr;
-              </a>
-              <a
-                href="#"
-                style={{
-                  fontSize: 13,
-                  color: '#7B1B46',
-                  textDecoration: 'none',
-                  fontWeight: 600,
-                }}
-              >
-                Buy on Amazon &rarr;
-              </a>
-            </div>
-          </div>
-
-          <p style={{ fontSize: 12, color: '#B0AFA8', marginTop: 48 }}>
-            Hillbilly Dreams, Inc. &middot; Natchez, Mississippi
-          </p>
         </div>
-      </div>
+      </section>
+
+      {/* ── Volume Cards ──────────────────────────────────────────────── */}
+      <section
+        style={{
+          backgroundColor: '#EDE0CA',
+          padding: 'clamp(40px, 6vw, 64px) clamp(24px, 5vw, 64px)',
+        }}
+      >
+        <div style={{ maxWidth: 1080, margin: '0 auto' }}>
+          <h2
+            style={{
+              fontFamily: "'Abril Fatface', serif",
+              fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
+              color: INK,
+              letterSpacing: '-0.02em',
+              marginBottom: 32,
+              textAlign: 'center',
+            }}
+          >
+            The Series
+          </h2>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+              gap: 16,
+            }}
+          >
+            {VOLUMES.map((vol) => (
+              <Link
+                key={vol.to}
+                to={vol.to}
+                style={{
+                  display: 'block',
+                  padding: '24px 22px',
+                  backgroundColor: '#FAF5EC',
+                  border: `1px solid ${WARM_BORDER}`,
+                  borderRadius: 2,
+                  textDecoration: 'none',
+                  transition: 'box-shadow 0.15s ease, transform 0.15s ease',
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.boxShadow = `4px 6px 20px rgba(196,68,26,0.18)`;
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.boxShadow = 'none';
+                  (e.currentTarget as HTMLElement).style.transform = 'none';
+                }}
+              >
+                <span
+                  style={{
+                    display: 'block',
+                    fontSize: 11,
+                    fontWeight: 700,
+                    letterSpacing: '0.09em',
+                    textTransform: 'uppercase',
+                    color: BURNT_ORANGE,
+                    marginBottom: 8,
+                  }}
+                >
+                  {vol.label}
+                </span>
+                <span
+                  style={{
+                    display: 'block',
+                    fontFamily: "'Abril Fatface', serif",
+                    fontSize: 18,
+                    color: INK,
+                    lineHeight: 1.2,
+                    marginBottom: 10,
+                  }}
+                >
+                  {vol.title}
+                </span>
+                <span style={{ fontSize: 13, color: WARM_MUTED, lineHeight: 1.5 }}>
+                  {vol.blurb}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Footer strip ──────────────────────────────────────────────── */}
+      <section
+        style={{
+          backgroundColor: CREAM,
+          borderTop: `1px solid ${WARM_BORDER}`,
+          padding: 'clamp(32px, 4vw, 48px) clamp(24px, 5vw, 64px)',
+          textAlign: 'center',
+        }}
+      >
+        <p
+          style={{
+            fontSize: 15,
+            color: INK,
+            lineHeight: 1.7,
+            maxWidth: 560,
+            margin: '0 auto 24px',
+          }}
+        >
+          This isn't theory. The hotel is real. The platform is deployed.
+          The band is forming. The directory is launching.
+        </p>
+
+        <div
+          style={{
+            display: 'flex',
+            gap: 24,
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+          }}
+        >
+          <a
+            href="https://measurablybetter.life"
+            style={{ fontSize: 13, color: BURNT_ORANGE, fontWeight: 600, textDecoration: 'none' }}
+          >
+            See the proof &rarr;
+          </a>
+          <a
+            href="https://deepsouthdirectory.com"
+            style={{ fontSize: 13, color: BURNT_ORANGE, fontWeight: 600, textDecoration: 'none' }}
+          >
+            Deep South Directory &rarr;
+          </a>
+          <a
+            href="#"
+            style={{ fontSize: 13, color: BURNT_ORANGE, fontWeight: 600, textDecoration: 'none' }}
+          >
+            Buy on Amazon &rarr;
+          </a>
+        </div>
+      </section>
     </Layout>
   );
 }

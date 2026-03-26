@@ -3,111 +3,161 @@ sidebar_position: 11
 title: "Pod Types"
 ---
 
-# What Kind of Pod Are You Building?
+# Chapter 11: Pod Types
 
-Not every coordination network looks the same. I've been talking about task boards like they're all plumbers-and-bookkeepers-trading-Saturdays, and that's the simplest version. But once you get past the first few exchanges, the network starts to specialize. It finds its shape.
+## Overview
 
-The shape matters because it determines what you can do, what risks you carry, and how fast you can grow. A group of tradespeople coordinating home renovations has different needs than a group of artists sharing studio time. A food sovereignty pod operates under different rules than a logistics cooperative.
-
-Here are the three shapes I've seen work. Most networks end up being some hybrid, but understanding the archetypes helps you design for what your people actually need.
+Coordination networks take one of three structural forms: Service, Creative, or Resource. The type determines the skills required, the regulatory exposure, and the growth trajectory. Most mature networks become hybrids of all three. This chapter defines each archetype, provides selection criteria, and outlines a design process for matching pod type to community need.
 
 ---
 
-## The Service Pod
+## The Three Pod Archetypes
 
-**Focus:** Repair, maintenance, delivery, wellness, transport.
+### 1. Service Pod
 
-This is the most common starting point because it solves the most obvious problem: things break and fixing them costs money.
+**Function:** Repair, maintenance, delivery, wellness, transport.
 
-Five people with a truck, a tool collection, and complementary skills can serve fifty households. The plumber, the electrician, the handyman, the person who's good with paperwork, and the person with the trailer — that's a service company without the company.
+**Composition:** 5 members with complementary trade skills (e.g., plumber, electrician, handyman, administrator, vehicle/trailer owner) can serve 50 households.
 
-**What it looks like at month three:** A shared calendar with rotating availability. Households in the network text their needs to the group. Someone claims the task. The exchange goes on the board. The household that got their gutters cleaned watches someone's kid next weekend.
+**Performance Benchmarks:**
 
-**What it looks like at month twelve:** The pod has a reputation. People outside the network are asking to join. The five founding members are each saving $300-500/month in services they used to pay cash for. They've started doing joint bids on small renovation projects for external clients — bringing cash *into* the network instead of just circulating internally.
+| Timeframe | Output |
+|-----------|--------|
+| Month 3 | Shared calendar with rotating availability. Households submit needs via group text. Members claim tasks voluntarily. Exchanges logged on task board. |
+| Month 12 | Each founding member saves $300-$500/month in services previously paid in cash. Pod begins accepting external renovation contracts, injecting new cash into the network. |
 
-**The risk:** Service pods bump into licensing and liability faster than other types. If Gene is fixing someone's plumbing through the network and a pipe bursts, the question of who's liable gets complicated. The answer isn't "don't do it" — the answer is know your state's rules on informal labor exchange and keep your exchanges documented as mutual aid, not employment.
+**Regulatory Exposure:** Service pods encounter licensing and liability issues faster than other types. Plumbing, electrical, and HVAC work may require state or county licenses, especially when serving non-members for cash. Informal mutual aid between members is generally exempt. Liability for property damage during service exchanges requires documentation of the mutual-aid nature of exchanges.
 
-**Best for:** Towns where people have trade skills and physical infrastructure needs. Which is most towns.
-
----
-
-## The Creative Economy Pod
-
-**Focus:** Media, music, design, events, content, storytelling.
-
-This one's close to home for me. A group of musicians, designers, photographers, writers, and event planners coordinating their skills is a media company that doesn't have a CEO skimming 60% off the top.
-
-The coordination premium hits different with creative work because creative skills are more complementary than people realize. A photographer alone shoots headshots for $150. A photographer plus a stylist plus someone who can build a set plus a videographer? That's a production house. Same people, same Saturday, ten times the output value.
-
-**What it looks like at month three:** The pod is producing content for each other's side businesses — websites, social media, video reels, event flyers. The musician is scoring the videographer's client projects. The designer is branding the event planner's business. Nobody's paying cash. Hours are trading.
-
-**What it looks like at month twelve:** The pod is taking external clients as a collective. A local business needs a brand package — logo, website, photography, launch event. The pod bids it as a team. $8,000 project, split five ways, completed in two weeks. No agency overhead. No account manager making $90K to send emails.
-
-**The risk:** IP ownership. When the pod creates something together, who owns it? This needs a conversation before the first project, not after. The simplest answer: anything created for a member's individual use belongs to them. Anything created as a pod project is jointly owned. Put it in writing. One paragraph is enough.
-
-**Best for:** College towns, arts communities, anywhere with underemployed creative talent — which, in 2026, is everywhere.
+**Optimal Context:** Towns with residents who hold trade skills and have physical infrastructure needs.
 
 ---
 
-## The Resource Pod
+### 2. Creative Economy Pod
 
-**Focus:** Food production, land use, energy systems, bulk purchasing.
+**Function:** Media, music, design, events, content production, storytelling.
 
-This is the most ambitious type and the one that creates the deepest sovereignty. A resource pod doesn't just trade services — it produces the things people need to survive.
+**Composition:** Photographer, videographer, writer, designer, social media manager. These skills are highly complementary: a photographer alone shoots headshots for $150; the same photographer combined with a stylist, set builder, and videographer produces a full production shoot worth 10x the output value.
 
-A community garden. A chicken coop. A solar array. A bulk purchasing club. A seed library. These are the building blocks of a local supply chain that doesn't break when a container ship gets stuck.
+**Performance Benchmarks:**
 
-**What it looks like at month three:** Ten households are sharing a garden plot. Someone brought chickens. The group is buying rice, beans, and flour in 50-pound bags at wholesale and splitting it. Monthly grocery bills have dropped by $150-200 per household. Not because anyone's eating less — because they stopped paying retail markup and last-mile delivery costs on staple goods.
+| Timeframe | Output |
+|-----------|--------|
+| Month 3 | Members produce content for each other's businesses (websites, social media, video reels, event collateral). Hours trade 1:1. No cash changes hands. |
+| Month 12 | Pod bids external projects as a collective. Example: a local business brand package (logo, website, photography, launch event) at $8,000, split five ways, completed in two weeks. No agency overhead. |
 
-**What it looks like at month twelve:** The garden is producing enough surplus to trade with other pods. The chicken coop is supplying eggs to twenty households. Someone installed a small solar setup and is sharing the excess. The pod has a physical location — a garage, a barn, a donated lot — and it's starting to feel like infrastructure, not a hobby.
+**Regulatory Exposure:** Intellectual property ownership must be defined before the first project. Recommended default: work created for an individual member belongs to that member; work created as a pod project is jointly owned. Document this in writing.
 
-**The risk:** Zoning, food safety regulations, and environmental compliance. Growing tomatoes in your backyard is fine. Selling eggs from your chickens might require a license depending on your state. Running a shared kitchen might trigger food service regulations. None of this is insurmountable — most states have cottage food laws and agricultural exemptions that cover small-scale production. But you need to know the rules before you find out about them from a code enforcement officer.
-
-**Best for:** Rural and semi-rural communities with access to land. But don't sleep on urban resource pods — container gardens, vertical farming, rooftop solar, and bulk purchasing clubs work in cities too.
-
----
-
-## The Hybrid (What Actually Happens)
-
-In practice, most networks don't stay in one lane. The service pod starts a tool library (resource). The creative pod plans a community event and needs a crew to build the stage (service). The resource pod needs someone to design labels for their honey jars (creative).
-
-This cross-pollination is the whole point. The network doesn't get interesting until the plumber is trading hours with the graphic designer who's trading hours with the woman running the community garden. That's when the coordination premium goes exponential — because you're not just combining skills within a category, you're connecting entire economic domains.
-
-The best networks I've seen have elements of all three:
-- Service capacity to handle physical needs
-- Creative capacity to tell their story and generate external revenue
-- Resource capacity to produce food, energy, or goods that reduce dependency on the extraction pipeline
-
-You don't need all three on day one. Start with whichever type matches your founding five. The other dimensions will emerge as the network grows and new members bring new skills.
+**Optimal Context:** College towns, arts communities, areas with underemployed creative talent.
 
 ---
 
-## Designing for Your People
+### 3. Resource Pod
 
-Before you pick a pod type, answer three questions:
+**Function:** Food production, land use, energy systems, bulk purchasing.
 
-**1. What's the most expensive problem your people share?**
+**Composition:** Households contributing garden space, livestock capacity, solar equipment, and bulk purchasing coordination.
 
-If everyone's spending $400/month on home repairs, start a service pod. If everyone's paying $600/month for childcare, start a care-focused service pod. If everyone's spending $800/month on groceries, start a resource pod with bulk purchasing. Follow the money — specifically, follow the money that's leaving.
+**Performance Benchmarks:**
 
-**2. What skills are sitting idle?**
+| Timeframe | Output |
+|-----------|--------|
+| Month 3 | 10 households share a garden plot. Bulk purchasing of rice, beans, flour in 50-lb bags at wholesale. Monthly grocery bills drop $150-$200/household through eliminated retail markup and last-mile delivery costs. |
+| Month 12 | Garden produces surplus for inter-pod trading. Egg production serves 20 households. Small solar installation shares excess power. Pod acquires a physical location (garage, barn, donated lot). |
 
-Look at your founding members. If three of five are tradespeople, you're a service pod whether you planned to be or not. If half your group has creative skills they're not monetizing, you're a creative pod. The skills that are already there determine what you can coordinate. Don't design for skills you wish you had.
+**Regulatory Exposure:** Zoning laws, food safety regulations, and environmental compliance apply. Most states have cottage food laws and agricultural exemptions covering small-scale production. Egg sales may require licensing depending on state. Shared kitchen use may trigger food service regulations. Research state-specific thresholds before production begins.
 
-**3. What does your town need that nobody's providing?**
-
-This is the external opportunity question. If your town has no affordable handyman service, a service pod fills that gap and can charge external clients. If your town has no local media, a creative pod becomes the de facto storyteller. If your town has no farmers market, a resource pod creates one.
-
-The pod that fills a real gap doesn't just serve its members — it becomes essential infrastructure for the broader community. And essential infrastructure attracts members, which attracts skills, which attracts more members. The flywheel starts.
+**Optimal Context:** Rural and semi-rural communities with land access. Urban resource pods are viable through container gardens, vertical farming, rooftop solar, and bulk purchasing clubs.
 
 ---
 
-## Start This Week
+## The Hybrid Model
 
-**24 hours:** Look at your founding group and answer honestly: are you service people, creative people, or resource people? Don't overthink it. The answer is usually obvious.
+In practice, networks do not remain in a single category. Cross-pollination follows a predictable pattern:
 
-**7 days:** Talk to your founding members about which shared expense hurts the most. That pain point is your starting focus. Design your first month of exchanges around reducing that specific cost.
+- Service pods start tool libraries (resource function)
+- Creative pods plan events requiring stage construction (service function)
+- Resource pods need label design for products (creative function)
 
-**90 days:** Track which category of exchange happens most often on your board. That's your pod's natural shape. Lean into it. Then look at the NEED column for things your pod can't handle — those are the skills you recruit for next, and they'll probably push you toward a hybrid model.
+The coordination premium compounds when exchanges cross economic domains. A plumber trading hours with a graphic designer who trades hours with a community gardener connects three entire sectors of the local economy.
 
-The shape of your pod isn't a decision you make once. It's a pattern that emerges from what your people can do and what your community needs. Pay attention to it. The network will tell you what it wants to be.
+**Minimum viable hybrid:** A network with elements of all three types:
+1. Service capacity for physical needs
+2. Creative capacity for storytelling and external revenue generation
+3. Resource capacity for food, energy, or goods production that reduces dependency on external supply chains
+
+All three are not required on day one. Start with whichever type matches the founding group's existing skills. Additional dimensions emerge as the network grows and new members contribute new capabilities.
+
+---
+
+## Pod Type Selection Criteria
+
+Answer three questions before selecting a pod type:
+
+### Question 1: What is the most expensive shared problem?
+
+| If the shared cost is... | Start with... |
+|--------------------------|---------------|
+| $400/month on home repairs | Service pod |
+| $600/month on childcare | Care-focused service pod |
+| $800/month on groceries | Resource pod with bulk purchasing |
+
+Follow the money leaving the community. The largest outflow identifies the highest-impact starting point.
+
+### Question 2: What skills are available but idle?
+
+Audit the founding members. If 3 of 5 are tradespeople, the pod is a service pod regardless of other preferences. If half the group has unused creative skills, it is a creative pod. Design for existing skills, not aspirational ones.
+
+### Question 3: What gap exists in the local market?
+
+| If the town lacks... | The pod becomes... |
+|----------------------|-------------------|
+| Affordable handyman service | Service pod serving external clients |
+| Local media coverage | Creative pod as de facto storyteller |
+| Farmers market | Resource pod creating one |
+
+A pod that fills a genuine market gap becomes essential community infrastructure. Essential infrastructure attracts new members, which attracts new skills, which attracts more members. This is the flywheel effect.
+
+---
+
+## Implementation
+
+### 24 Hours
+1. Assess the founding group honestly: service people, creative people, or resource people.
+2. The answer is usually self-evident from the members' existing skills.
+
+### 7 Days
+1. Survey founding members to identify the single largest shared expense.
+2. Design the first month of exchanges around reducing that specific cost.
+3. Document the shared expense baseline for later comparison.
+
+### 90 Days
+1. Track which category of exchange occurs most frequently on the task board.
+2. That frequency reveals the pod's natural shape. Lean into it.
+3. Review the NEED column for unmet requests. Those gaps identify the skills to recruit next and the direction toward hybridization.
+
+---
+
+## Checklist
+
+- [ ] Founding group skills audited and categorized (service / creative / resource)
+- [ ] Largest shared expense identified and quantified
+- [ ] Pod type selected based on existing skills and shared cost data
+- [ ] Local market gap identified for external revenue opportunity
+- [ ] IP ownership rules documented (creative pods)
+- [ ] State licensing requirements researched (service pods)
+- [ ] Cottage food and zoning laws reviewed (resource pods)
+- [ ] First month of exchanges designed around the primary cost target
+- [ ] Exchange tracking system active on task board
+- [ ] 90-day review scheduled to assess natural pod shape
+
+---
+
+## Key Figures
+
+| Metric | Service Pod | Creative Pod | Resource Pod |
+|--------|------------|-------------|-------------|
+| Minimum members | 5 | 5 | 10 households |
+| Month-12 savings/member | $300-$500/month | Variable (project-dependent) | $150-$200/month groceries |
+| Primary risk | Licensing/liability | IP ownership | Zoning/food safety |
+| External revenue potential | Renovation contracts | Brand packages ($8K+) | Surplus sales, farmers markets |
+| Optimal community type | Trade-skill towns | College/arts towns | Rural/semi-rural with land |

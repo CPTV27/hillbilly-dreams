@@ -290,8 +290,46 @@ export default function MeasurablyBetterPage() {
         </div>
       </div>
 
-      {/* Photo demo + business coach stories */}
+      {/* How it works — text-first */}
       <div style={{ maxWidth: 960, margin: '64px auto 0', padding: '0 24px' }}>
+        <p
+          style={{
+            fontSize: 12,
+            fontWeight: 700,
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase' as const,
+            color: C.textMuted,
+            marginBottom: 8,
+          }}
+        >
+          How it works
+        </p>
+        <h2
+          style={{
+            fontFamily: 'var(--font-abril), serif',
+            fontSize: 'clamp(1.5rem, 3.5vw, 2.25rem)',
+            fontWeight: 700,
+            color: C.text,
+            letterSpacing: '-0.02em',
+            margin: '0 0 8px',
+          }}
+        >
+          It&apos;s just a text box.
+        </h2>
+        <p
+          style={{
+            fontSize: 15,
+            color: C.textSecondary,
+            margin: '0 0 40px',
+            maxWidth: 560,
+            lineHeight: 1.65,
+          }}
+        >
+          Text it a photo &mdash; it posts everywhere. Text it a question &mdash;
+          it answers with your real numbers. Text it a video &mdash; it makes a
+          short. No menus. No tabs. No app to learn. Like texting a friend
+          who&apos;s really good at everything.
+        </p>
         <div
           style={{
             display: 'grid',

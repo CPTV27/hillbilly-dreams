@@ -3,150 +3,250 @@ sidebar_position: 5
 title: "The Task Board"
 ---
 
-# The Task Board
+# Chapter 5: The Task Board
 
-The most powerful piece of economic infrastructure in your town costs $11 at Home Depot.
+## Overview
 
-It's a whiteboard.
-
-Three columns: **NEED.** **CAN DO.** **DONE.**
-
-That's it. That's the entire operating system for a coordination economy. I know it sounds stupid. It is stupid. That's why it works — there's nothing to break, nothing to learn, nothing to subscribe to, and nothing for some product manager in San Francisco to enshittify in two years when they need to hit a growth target.
-
-A whiteboard in someone's garage. A shared Google Sheet. A group text with a pinned note. I genuinely do not care what form factor you use. The technology is irrelevant. What matters is that it makes the invisible visible.
+The task board is the minimum viable infrastructure for a coordination economy. It consists of three columns — NEED, CAN DO, DONE — deployed on any medium from a physical whiteboard ($11 at a hardware store) to a shared spreadsheet. The task board solves exactly one problem: information failure. Communities do not lack skills or needs. They lack visibility into what skills exist and what needs are outstanding. The task board makes the invisible visible. That single function is sufficient to unlock the coordination premium documented in Chapters 1-3. This chapter covers three implementation tiers, governance design, maturity indicators, and common objections with data-based responses.
 
 ---
 
-## Why Visibility Is the Whole Game
+## The Information Failure Problem
 
-Every town I've spent time in has the same problem. It's not that people don't have skills. It's not that people don't have needs. It's that nobody knows what's available and nobody knows what's needed.
+The primary barrier to coordination in small communities is not skill scarcity, resource scarcity, or trust deficit. It is information failure.
 
-Your neighbor can rebuild a carburetor. You didn't know that. You paid a shop $380 to do it last month. Meanwhile, your neighbor needed help moving a piano, and he paid three guys from Craigslist $200 because he didn't know you own a truck and owed him one anyway.
+A resident who can rebuild a carburetor lives three houses from a resident who paid a shop $380 for that service last month. The carburetor owner needed help moving a piano and paid $200 to strangers from an online listing — unaware that the mechanic three doors down owns a truck and would have helped in exchange for the carburetor work.
 
-That's $580 that left your combined households for no reason other than information failure. Not skill failure. Not resource failure. *Information* failure.
+| Transaction | Cost Paid | Alternative Cost (within network) | Value Lost to Information Failure |
+|------------|-----------|----------------------------------|----------------------------------|
+| Carburetor rebuild | $380 | $0 (direct exchange) | $380 |
+| Piano move | $200 | $0 (direct exchange) | $200 |
+| **Total** | **$580** | **$0** | **$580** |
 
-A task board fixes one thing: it makes skills and needs visible to the network. That's all it does. And that one function — visibility — is enough to unlock the coordination premium.
+$580 exited two households for no reason other than the absence of a visibility mechanism. No skill was missing. No resource was missing. Information was missing.
 
-Think about what Uber actually did. It didn't invent driving. It didn't invent needing a ride. It made drivers visible to riders and riders visible to drivers. That's it. That visibility function was worth $150 billion at IPO.
+### The Uber Precedent
 
-A task board is Uber for your neighborhood, minus the 30% skim, the surge pricing, the venture capitalists, and the dystopian labor practices. You're just connecting people who need things to people who can do things. The value of that connection is enormous, and nobody's extracting it.
+Uber did not invent driving or the need for rides. Uber made drivers visible to riders and riders visible to drivers. That visibility function — connecting existing supply to existing demand — was valued at $150 billion at IPO.
 
----
-
-## How to Build One (This Is Not Complicated)
-
-I'm going to describe three versions. Pick the one that matches your people.
-
-### Version 1: The Garage Board
-
-A physical whiteboard in a location your network visits regularly. Someone's garage. A church fellowship hall. The back room of a coffee shop.
-
-Three columns:
-
-**NEED:** Post-it notes with requests. "Need someone to look at my AC — it's blowing warm." "Need help clearing a fallen tree." "Need someone who understands QuickBooks for my side business."
-
-**CAN DO:** Post-it notes with offers. "Electrician — available Saturdays." "Can haul anything that fits in a 16-foot trailer." "I'll cook a week of freezer meals for your family if you need it."
-
-**DONE:** Completed exchanges. Moved from one column to the other. This column matters more than you think — it's the proof that the system works. Every moved post-it builds trust.
-
-That's it. No app. No login. No terms of service.
-
-The garage board works for groups of 5-20 people who see each other regularly. Its limitation is physical access — you have to be in the room to see the board. Its advantage is zero friction and zero tech dependency.
-
-### Version 2: The Shared Sheet
-
-A Google Sheet or Airtable base shared with your network. Same three columns, but digital. Anyone can add a need or an offer from their phone. Sort by date, filter by category, search by skill.
-
-Add a fourth column: **WHO.** Name and phone number of the person offering or requesting. This seems obvious but it matters — accountability is built into visibility. When your name is on the board, you show up.
-
-The shared sheet works for groups of 10-50 people. It scales better than the garage board and doesn't require physical proximity. The limitation is that someone has to maintain it — clean out old entries, nudge people to update their status, keep it from becoming a junk drawer.
-
-### Version 3: The Group Channel
-
-A dedicated channel in whatever your group already uses — group text, WhatsApp, Discord, Slack. Two rules:
-
-1. Posts follow a format: **[NEED]** or **[CAN DO]** followed by the description.
-2. When an exchange completes, reply with **[DONE]** and a one-line summary.
-
-The group channel works for groups of 15-100 people. It's the lowest-friction digital option because it meets people where they already are. The limitation is signal-to-noise — if the channel fills up with chatter, the task posts get buried. Solve this by keeping the channel strictly for task posts and using a separate channel for conversation.
-
-### Which One?
-
-Start with whatever your group will actually use. If your network is five neighbors who see each other at the mailbox, the garage board is perfect. If it's a thirty-person church group scattered across two counties, use the sheet. If your people already live in a group chat, use the channel.
-
-You can always upgrade later. The format is irrelevant. The visibility is everything.
+A task board performs the identical function for a local skill network, without the 30% platform commission, surge pricing, venture capital dependency, or exploitative labor classification.
 
 ---
 
-## The Governance Question (It's Simpler Than You Think)
+## Three Implementation Tiers
 
-"But who decides what an hour of plumbing is worth versus an hour of tutoring?"
+Select the tier that matches the network's size and communication habits. The format is irrelevant. The visibility is the product.
 
-This is the question everyone asks first, and it's the wrong question.
+### Tier 1: Physical Board
 
-The task board doesn't set prices. It connects needs to skills. What two people decide an exchange is worth is between them. Gene the plumber and Linda the tutor don't need a committee to determine exchange rates — they need to talk to each other.
+**Configuration:** A whiteboard mounted in a location the network visits regularly — a garage, church fellowship hall, coffee shop back room, or community center.
 
-"I'll fix your faucet if you tutor my kid in math for a month." Is that fair? Gene and Linda think so. That's sufficient.
+**Structure:** Three columns of removable notes (Post-its or index cards).
 
-Some networks formalize this with a simple hour-for-hour system: one hour of any skill equals one hour of any other skill. The plumber's hour equals the tutor's hour equals the babysitter's hour. This feels wrong to people who've internalized market pricing — the plumber's hour is "worth more" on the open market. But inside the network, the question isn't market value. The question is: does the exchange meet both parties' needs?
+| Column | Content |
+|--------|---------|
+| NEED | Requests with descriptions. Example: "AC blowing warm — need someone to diagnose." |
+| CAN DO | Offers with availability. Example: "Electrician — available Saturdays." |
+| DONE | Completed exchanges, moved from the other columns. |
 
-If Gene needs tutoring and Linda needs plumbing, an hour-for-hour swap meets both needs regardless of what the market charges for either skill. The market rate is irrelevant because no money is changing hands. The only question that matters is: did both people get what they needed?
+**Optimal group size:** 5-20 people who interact regularly in person.
 
-Other networks use a points system — hours banked and spent, tracked on the shared sheet. You contribute ten hours this month, you can draw ten hours of other people's skills. This adds flexibility (you don't need a direct swap) and creates a lightweight internal economy without money.
+**Advantage:** Zero technical friction. Zero technology dependency. No accounts, logins, or terms of service.
 
-Both systems work. The hour-for-hour system is simpler. The points system scales better. Try one. If it doesn't fit, try the other.
+**Limitation:** Requires physical presence to view and update the board.
 
-The governance you actually need:
+### Tier 2: Shared Spreadsheet
 
-1. **How do disputes get resolved?** Answer: the two people talk to each other. If they can't work it out, they pick a third person from the network to mediate. That's it.
+**Configuration:** A Google Sheet or Airtable base shared with the network via link.
 
-2. **What about free riders?** Answer: the board is visible. If someone's always taking and never offering, everyone can see it. Social accountability in a small network is more effective than any policy you could write.
+**Structure:** Four columns.
 
-3. **What about quality?** Answer: reputation. If Gene does a bad job on your faucet, you tell the network. Gene's reputation adjusts. In a twenty-person network, one bad job has real consequences because there's nowhere to hide. This is more accountability than you get from Yelp.
+| Column | Content |
+|--------|---------|
+| NEED | Request description |
+| CAN DO | Offer description |
+| WHO | Name and contact information of the poster |
+| DONE | Completed exchanges with date |
+
+**Optimal group size:** 10-50 people.
+
+**Advantage:** Accessible from any device. Supports filtering by category, sorting by date, and keyword search. The WHO column builds accountability — when a name is attached to a commitment, follow-through rates increase.
+
+**Limitation:** Requires one person to maintain the sheet — removing stale entries, prompting status updates, preventing the sheet from becoming a junk drawer.
+
+### Tier 3: Group Channel
+
+**Configuration:** A dedicated channel in the network's existing communication platform — group text, WhatsApp, Discord, or Slack.
+
+**Structure:** Two posting conventions plus a completion protocol.
+
+| Convention | Format |
+|-----------|--------|
+| Request | `[NEED]` followed by description |
+| Offer | `[CAN DO]` followed by description |
+| Completion | Reply with `[DONE]` and a one-line summary |
+
+**Optimal group size:** 15-100 people.
+
+**Advantage:** Lowest-friction digital option. Meets participants in a tool they already use. No additional app installation or account creation.
+
+**Limitation:** Signal-to-noise degradation if the channel fills with non-task conversation. Mitigation: enforce strict separation between the task channel and a separate conversation channel.
+
+### Tier Selection Guide
+
+| Network Profile | Recommended Tier |
+|----------------|-----------------|
+| 5 neighbors who see each other at the mailbox | Tier 1 (Physical Board) |
+| 30-person church group across two counties | Tier 2 (Shared Spreadsheet) |
+| 50+ people already active in a group chat | Tier 3 (Group Channel) |
+
+Upgrade between tiers as the network grows. No migration is required — all three tiers can operate simultaneously if the network spans multiple communication contexts.
 
 ---
 
-## What a Mature Task Board Looks Like
+## Governance Design
 
-Six months in, a working task board stops feeling like a system and starts feeling like a neighborhood.
+### The Pricing Question
 
-The board gets busier. Not because people are posting more needs — because people are *seeing* more needs. Once you have the habit of checking the board, you start noticing things you wouldn't have noticed before. "Oh, Deb needs help moving that dresser — I'm driving past her place Thursday anyway." Exchanges happen without formal posting because the visibility has changed how people think about their community.
+The most common governance question: how to determine the relative value of an hour of plumbing versus an hour of tutoring.
 
-Clusters form. Gene, Terrell, and Bobby start taking renovation jobs together regularly. They don't need the board for that anymore — they're a crew. But the board is how they found each other. Linda and Deb cross-refer clients. Marcus starts a standing offer: "Any Saturday, I'll help with any project that needs an extra set of hands."
+This is the wrong question. The task board does not set prices. It connects needs to skills. The terms of any exchange are determined by the two parties involved.
 
-The DONE column gets long. And this is the part I want you to pay attention to: a long DONE column changes the psychology of the network. Every completed exchange is evidence that this works. Evidence that your neighbors are reliable. Evidence that you can get your needs met without writing a check to a stranger.
+Two pricing models are in common use:
 
-A mature task board isn't an economic system. It's a trust engine.
+**Model A: Hour-for-Hour.** One hour of any skill equals one hour of any other skill. The plumber's hour equals the tutor's hour equals the babysitter's hour.
+
+This model appears unfair when evaluated against market pricing — a plumber's market rate exceeds a babysitter's. Inside the network, however, the relevant question is not market value. The relevant question is: did both parties get what they needed? If the plumber needs tutoring and the tutor needs plumbing, an hour-for-hour exchange satisfies both needs regardless of the market rate differential.
+
+**Model B: Points/Banking System.** Hours contributed are banked as credits. Hours received are debited. A participant who contributes 10 hours in a given month can draw 10 hours of other participants' skills in any subsequent period.
+
+This model adds flexibility — direct swaps are not required — and creates a lightweight internal economy without money.
+
+| Model | Simplicity | Flexibility | Scaling |
+|-------|-----------|-------------|---------|
+| Hour-for-hour | High | Low (requires direct swap) | Limited |
+| Points/banking | Medium | High (deferred exchange) | Better |
+
+Start with hour-for-hour. Switch to points/banking if direct swaps become logistically difficult.
+
+### Dispute Resolution
+
+Two parties talk to each other. If they cannot resolve the dispute, they select a third network member to mediate. No committee. No bylaws. No formal process.
+
+### Free Rider Detection
+
+The board is visible. If a participant consistently takes without offering, the pattern is observable to all network members. Social accountability in a network of 20-100 people is more effective than any written policy. One bad actor in a twenty-person network has nowhere to hide.
+
+### Quality Control
+
+Reputation. If a participant performs substandard work, the recipient reports it to the network. In a twenty-person network, one negative report has significant consequences because the reputational audience is the entire market. This provides more accountability than consumer review platforms, which operate on anonymous feedback in networks too large for individual reputation to carry weight.
 
 ---
 
-## "This Won't Work in My Town"
+## Maturity Indicators
 
-Let me guess. Your town is different because:
+A task board progresses through three observable stages.
 
-- People here don't trust each other
-- Nobody has time
-- We already tried a community thing and it failed
-- It's too rural / too urban / too poor / too whatever
+### Stage 1: Adoption (Months 1-2)
 
-I've heard all of these. Here's what I've learned:
+The board is used deliberately. Participants post needs and offers with conscious effort. Exchanges are formal — posted, matched, completed, logged.
 
-People who "don't trust each other" start trusting each other after three successful exchanges. Trust isn't a prerequisite — it's a product.
+**Metrics:**
+- 3-5 exchanges per week
+- 5-15 active participants
+- DONE column growing slowly
 
-People who "don't have time" are currently spending time on things a network could handle more efficiently. You don't need *more* time. You need to redirect the time you're already wasting on individual overhead.
+### Stage 2: Integration (Months 3-6)
 
-The "community thing that failed" was probably trying to do too much. A task board isn't a community organization, a nonprofit, a cooperative, or a movement. It's a whiteboard. It fails when you put a committee on it. It works when you put post-its on it.
+The board becomes habitual. Participants check it as part of their routine. Exchanges begin occurring outside the formal board structure — people who met through the board now coordinate directly.
 
-And the too-rural / too-urban / too-whatever objection is just the capital assumption wearing a regional accent. "We can't do this because we don't have enough [money/people/infrastructure]." You don't need any of those things. You need visibility. A whiteboard provides visibility. End of list.
+**Metrics:**
+- 10-20 exchanges per week
+- 15-30 active participants
+- Clusters forming (recurring collaborations between specific participants)
+- Standing offers appearing ("Any Saturday — available for any project needing extra hands")
+
+### Stage 3: Infrastructure (Month 6+)
+
+The board feels less like a system and more like a neighborhood. Participants notice needs they would not have noticed before. The board has changed how participants think about their community — from a collection of individuals to an inventory of capabilities.
+
+**Metrics:**
+- 20+ exchanges per week
+- 30-100 active participants
+- Long DONE column functioning as trust evidence
+- Cross-referral networks emerging (participants connecting each other's external clients)
+- Informal sub-teams operating as crews for recurring project types
+
+The DONE column is the critical psychological mechanism. Every completed exchange is empirical evidence that the system works — evidence that neighbors are reliable, that needs can be met without writing a check to a stranger. A long DONE column converts skeptics faster than any argument.
 
 ---
 
-## Start This Week
+## Objection Responses
 
-**24 hours:** Get a whiteboard. Or open a Google Sheet. Or start a group text. Label three columns. NEED. CAN DO. DONE. Put your name on the first post in each column.
+### "People here don't trust each other."
 
-**7 days:** Share it with five people. Not twenty. Five. The five you'd call if your pipes burst at midnight. Tell them: "I'm trying something. Put up what you need and what you can do. Let's see what happens."
+Trust is not a prerequisite for a task board. Trust is a product of a task board. Three successful exchanges between two participants establish empirical evidence of reliability. Trust follows from demonstrated competence and follow-through, not from prior social affinity.
 
-**90 days:** Count the DONE column. Estimate the dollar value of exchanges completed. That number is the value your network created without money — and the value nobody extracted. When you're ready, add five more people. Then five more. The math scales. The trust compounds. The board does the rest.
+### "Nobody has time."
 
-Most towns are one whiteboard away from not being broke. Yours probably is too.
+Participants currently spend time on activities a network could handle more efficiently (Chapter 3: 40% of self-employed working time goes to non-skill overhead). The task board does not require additional time. It redirects time currently wasted on individual overhead toward higher-value coordinated activity.
+
+### "We already tried a community thing and it failed."
+
+Task boards fail when they are treated as community organizations, nonprofits, cooperatives, or movements — structures that require committees, bylaws, officers, and meetings. A task board is a whiteboard with three columns. It fails when a committee is placed on top of it. It succeeds when Post-it notes are placed on it.
+
+### "Our town is too rural / too urban / too poor / too small."
+
+This objection is the capital assumption (Chapter 1) repackaged. The claim that coordination requires money, population density, or infrastructure is empirically false. A task board requires visibility. A whiteboard provides visibility. The population density of the surrounding area is irrelevant to whether a network of 20 people can exchange skills.
+
+---
+
+## Implementation
+
+1. **Deploy the board.** Select a tier. Tier 1: purchase a whiteboard and Post-its. Tier 2: create a shared Google Sheet with four columns (NEED, CAN DO, WHO, DONE). Tier 3: create a dedicated group channel with posting conventions. Time required: under 30 minutes.
+
+2. **Seed with five participants.** Do not launch with twenty. Start with the five people who would be contacted if pipes burst at midnight. These are the highest-trust relationships. They are the founding kernel.
+
+3. **Post first.** The person who deploys the board posts the first NEED and the first CAN DO. An empty board will remain empty. A board with one post invites a second post.
+
+4. **Share with five people.** Message each of the five participants individually: "Post one thing you need and one thing you can do. See what happens."
+
+5. **Log completions.** Every completed exchange moves to DONE with a one-line description and an estimated market value. The DONE column is the system's proof of concept.
+
+6. **Expand at month three.** After 90 days of operation, add five more participants. Then five more. The math scales. The trust compounds. The board does the rest.
+
+---
+
+## Checklist
+
+- [ ] Implementation tier selected (Physical Board / Shared Sheet / Group Channel)
+- [ ] Board deployed with three columns (NEED, CAN DO, DONE)
+- [ ] Five founding participants identified and contacted
+- [ ] First NEED posted by board creator
+- [ ] First CAN DO posted by board creator
+- [ ] All five participants have posted at least one item each
+- [ ] First exchange completed and logged in DONE column
+- [ ] Market value of first exchange estimated and recorded
+- [ ] 30-day exchange count tracked
+- [ ] 90-day cumulative value calculated
+- [ ] Expansion plan in place (next five participants identified)
+- [ ] Communication separation established (task channel vs. conversation channel, if using Tier 3)
+
+---
+
+## Key Figures
+
+| Figure | Value | Source/Derivation |
+|--------|-------|-------------------|
+| Cost of physical whiteboard | $11 | Hardware store retail price |
+| Uber IPO valuation (visibility function) | $150 billion | IPO filing, 2019 |
+| Information failure example (two households) | $580 | Carburetor ($380) + piano move ($200) |
+| Tier 1 optimal group size | 5-20 | Physical proximity constraint |
+| Tier 2 optimal group size | 10-50 | Spreadsheet maintenance capacity |
+| Tier 3 optimal group size | 15-100 | Signal-to-noise threshold |
+| Stage 1 exchange rate | 3-5/week | Months 1-2 |
+| Stage 2 exchange rate | 10-20/week | Months 3-6 |
+| Stage 3 exchange rate | 20+/week | Month 6+ |
+| Deployment time | Under 30 minutes | Any tier |
+| Founding participant count | 5 | Minimum viable trust kernel |
+| Expansion increment | 5 participants | Added at 90-day intervals |

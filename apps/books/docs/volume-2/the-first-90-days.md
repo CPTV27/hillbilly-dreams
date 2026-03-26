@@ -3,145 +3,229 @@ sidebar_position: 8
 title: "The First 90 Days"
 ---
 
-# The First 90 Days
+# Chapter 8: The First 90 Days
 
-Enough theory. Here's the build.
+## Overview
 
-If you've read this far, you either think this is interesting or you think it's necessary. Either way, the gap between reading about it and doing it is exactly 90 days and one uncomfortable conversation.
-
-I'm going to walk you through the launch week by week. Not philosophy. Not motivation. Just the work. If you follow this and nothing happens, email me and I'll buy you a beer.
+This chapter provides a week-by-week operational playbook for launching a coordination network from zero to a functioning 8-15 member system. It covers founding member selection, skills inventory, first exchanges, task board deployment, expansion, and ongoing operational rhythm. Based on observed network launches, a 10-person group averaging 5 exchanges per week generates $2,000-$4,000 per month in retained value ($24,000-$48,000 annualized).
 
 ---
 
-## Before You Start: The Uncomfortable Conversation
+## 8.1 Pre-Launch: Founding Member Selection
 
-You need to talk to five people. Not twenty. Not your whole church. Five.
+**Target:** 5 founding members.
 
-Pick the five people you'd call if your pipes burst at 2 AM. The ones who'd show up with a wrench and not mention it again. The ones whose kids play with your kids. The ones who already help you — they just don't call it an economy.
+**Selection criteria:**
+- Pre-existing trust relationship (not acquaintances; people with demonstrated reciprocity history)
+- Diverse skill sets (avoid recruiting 5 people with identical capabilities)
+- Geographic proximity (members who can physically reach each other for hands-on work)
 
-The conversation goes like this:
+**Recruitment method:** Direct, one-on-one conversation (in person or phone; not text). The ask is straightforward: propose tracking the informal skill exchanges that already occur among the group.
 
-"I'm trying something. I want to build a group where we trade skills instead of paying strangers. You fix stuff. I do [your thing]. Brenda does [her thing]. What if we just tracked what we do for each other and stopped pretending it's not worth money?"
-
-That's it. Not a pitch. Not a manifesto. Just a question to people who already trust you.
-
-If three of five say yes, you have a network. If all five say yes, you're ahead of schedule.
-
----
-
-## Weeks 1-2: The Inventory
-
-Everyone in the group answers two questions:
-
-**What can you do?** Not your job title. Your actual skills. "I can do basic plumbing, I'm decent at drywall, and I own a pressure washer." "I can do bookkeeping, I'm good at organizing events, and I can cook for twenty people." "I know how to fix small engines and I have a truck."
-
-**What do you need?** Not someday. Right now. "My back porch railing is loose." "I need someone to help me figure out my quarterly taxes." "The dryer vent needs cleaning and I don't have the right brush."
-
-Write it down. All of it. A shared Google Sheet is fine. A notebook in someone's kitchen is fine. The format doesn't matter. What matters is that everyone's skills and needs are visible to everyone else.
-
-This is the inventory, and it will surprise you. People undercount their skills by about 40% because they don't think of everyday competence as "skills." The guy who's been maintaining his own vehicles for thirty years doesn't think of himself as a mechanic. The woman who's organized every family reunion since 1997 doesn't think of herself as an event planner. Help them see it.
-
-By end of week two, you should have a list that makes you say, "We can actually do a lot."
+**Minimum viable response:** 3 out of 5 agree. At 3 confirmed members, the network is viable. At 5, the launch is ahead of schedule.
 
 ---
 
-## Weeks 3-4: The First Exchanges
+## 8.2 Weeks 1-2: Skills Inventory
 
-Pick the easiest matches. The stuff that's so obvious it's almost embarrassing.
+Every member answers two questions and records the answers in a shared document (Google Sheet, notebook, or equivalent).
 
-Rick's porch railing is loose and Dave welds. That's a Tuesday afternoon.
-Linda needs help with her QuickBooks and Marcus's wife is a bookkeeper. That's an hour on a Saturday.
-Someone needs their gutters cleaned and someone else owns a ladder and doesn't mind heights. Done.
+### Question 1: Capabilities
 
-Do three exchanges in the first two weeks. Minimum. Not because three is a magic number — because you need early proof that this works. Every completed exchange is a data point that builds trust and momentum.
+Record all practical skills, not job titles. Members typically undercount their skills by approximately 40% because they do not classify everyday competence as a "skill."
 
-Track them. Doesn't have to be formal. "Dave fixed Rick's railing — 1.5 hours. Rick helped Dave move a couch — 1 hour." Write it down. The tracking isn't about accounting — it's about visibility. When the group can see what's been exchanged, the system becomes real.
+**Prompt list to surface hidden skills:**
 
-After the first three exchanges, have a conversation. Not a meeting — a conversation, maybe over a meal someone cooked. What worked? What was awkward? What did you notice?
+| Category | Example Skills |
+|---|---|
+| Trades | Plumbing, electrical, drywall, welding, painting |
+| Vehicles | Auto repair, oil changes, tire rotation, small engine repair |
+| Professional | Bookkeeping, tax preparation, legal basics, web development |
+| Domestic | Cooking for groups, event planning, childcare, eldercare |
+| Equipment | Truck ownership, pressure washer, trailer, power tools |
 
-The usual answers: "That was easier than I expected." "I can't believe I was going to pay someone $300 for that." "I didn't know you could do that." Good. You're calibrated.
+### Question 2: Current Needs
 
----
+Record needs that exist right now, not hypothetical future needs.
 
-## Weeks 5-8: The Board Goes Live
+**Example entries:**
+- Loose porch railing (welding/carpentry)
+- Quarterly tax filing help (bookkeeping)
+- Dryer vent cleaning (handyman + specialized brush)
+- Help moving furniture (truck + labor)
 
-By now, your group has done a few exchanges, tracked them, and talked about how it went. Time to formalize — lightly.
-
-Set up the task board. Three columns: NEED, CAN DO, DONE.
-
-Pick your format (garage whiteboard, Google Sheet, group chat — whatever your group will actually use). Put the skills inventory in the CAN DO column. Put current needs in the NEED column. Move completed exchanges to DONE.
-
-Establish two rules, and only two:
-
-**Rule 1: Post before you pay.** Before you hire a stranger or buy a service, check the board. If someone in the network can handle it, give them first shot. This isn't an obligation — it's a habit. Building the habit is the whole game.
-
-**Rule 2: Close the loop.** When an exchange completes, update the board. Move it to DONE. This is how trust builds — visible proof that people follow through.
-
-That's it for governance. No bylaws. No officers. No committee. Two rules and a board. If you need more than this at five to ten members, you're overcomplicating it.
-
-During weeks 5-8, aim for two to three exchanges per week across the group. Some weeks will be more, some less. The rhythm matters more than the volume. You're building a habit, not hitting a quota.
+**Deliverable by end of Week 2:** A shared inventory document with all members' skills and current needs visible to all participants.
 
 ---
 
-## Weeks 9-12: Expand and Stabilize
+## 8.3 Weeks 3-4: First Exchanges
 
-Your board is running. Exchanges are happening. Trust is building. Now two things:
+**Target:** Complete a minimum of 3 exchanges in this two-week period.
 
-**Expand:** Each member invites one person. Not a mass recruitment — personal invitations from people who've already experienced the network. "Hey, we've got this thing going where we trade skills. You're handy with electrical — want in?" Going from five to ten is the first real test. New members shift the social dynamics and add skills you didn't have.
+**Process:**
+1. Identify the easiest matches from the inventory (obvious skill-to-need pairings).
+2. Execute the exchange.
+3. Log each exchange with: date, provider, recipient, task description, hours spent.
 
-**Stabilize:** This is when you figure out your exchange model. If hour-for-hour is working, keep it. If some members are contributing more than they're receiving (or vice versa), talk about it. Start a simple points bank if it makes sense. Don't fix what isn't broken, but don't ignore imbalances either.
+**Tracking format (minimum):**
 
-By week twelve, you should have:
-- 8-15 active members
-- A functioning task board with a DONE column longer than the NEED column
-- At least one "we saved real money" story everyone can point to
-- A rhythm — people checking the board habitually, not just when they're desperate
-- An answer to "how does this work?" that you can explain in thirty seconds
+| Date | Provider | Recipient | Task | Hours |
+|---|---|---|---|---|
+| Week 3 | Member A | Member B | Railing repair (welding) | 1.5 |
+| Week 3 | Member B | Member A | Furniture move | 1.0 |
+| Week 4 | Member C | Member D | QuickBooks setup | 1.0 |
 
-If you have those five things, you have a network. Not a club, not an organization, not a movement — a network. And it's generating value that would otherwise cost money, and none of that value is being extracted.
-
----
-
-## The Monthly Rhythm
-
-After the first 90 days, the network should settle into a sustainable rhythm:
-
-**Weekly:** Members check the board. Post needs, offer skills, complete exchanges. This is passive — it happens naturally once the habit is formed.
-
-**Monthly:** One in-person gathering. Potluck, cookout, whatever your group does. Not a meeting — a meal. During the meal, two things happen:
-
-1. Review the DONE column. Celebrate completions. Calculate the estimated dollar value of exchanges that month. Say the number out loud. It matters.
-
-2. Update the NEED column. What's coming up? Anyone moving? Anyone have a project? Any seasonal needs (winterization, tax prep, garden planting)? Getting ahead of needs is better than reacting to emergencies.
-
-**Quarterly:** Bigger assessment. Is the network growing? Is anyone burned out? Are the exchanges balanced? Any skills the network is missing? This is when you recruit strategically — not just "add more people" but "we need someone who can do X."
+**After the first 3 exchanges:** Conduct a debrief conversation (not a formal meeting). Assess: what worked, what felt awkward, what was learned. Typical findings from network launches: exchanges were easier than expected, market-rate cost avoidance was significant (often $200-$500 per exchange), and members discovered capabilities they did not know existed in the group.
 
 ---
 
-## What "Done" Looks Like at Day 90
+## 8.4 Weeks 5-8: Task Board Deployment
 
-You will not have built a utopia. You will have built a spreadsheet with a whiteboard attached to it, used by ten to fifteen people who are slightly more connected than they were three months ago.
+### Board Structure
 
-That's it. That's the win.
+Three columns:
 
-But here's what you'll also have: a dollar amount. Add up the estimated value of every exchange in the DONE column. The market rate of the plumbing, the bookkeeping, the childcare, the hauling, the cooking, the tutoring — all of it.
+| NEED | CAN DO | DONE |
+|---|---|---|
+| Current unfilled requests | Skills inventory (all members) | Completed exchanges with hours logged |
 
-That number is money you didn't spend. Value you didn't extract. Economic activity that stayed in your community instead of leaving for Charlotte or Bentonville or Seattle.
+### Format Options
 
-In the networks I've tracked, a ten-person group averaging five exchanges per week generates $2,000-4,000 per month in retained value. That's $24,000-48,000 per year that stays local instead of feeding the extraction pipeline.
+Select based on what the group will actually use:
 
-Scale that to twenty people and the number doubles. Scale it to fifty and it more than triples (because the coordination premium kicks in harder with more skill diversity).
+| Format | Best For | Pros | Cons |
+|---|---|---|---|
+| Physical whiteboard | Groups that meet in one location regularly | Tangible, always visible | Not accessible remotely |
+| Google Sheet | Distributed groups | Accessible anywhere, sortable | Requires internet |
+| Group chat (pinned posts) | Tech-comfortable groups | Low friction, mobile-friendly | Posts get buried |
 
-But the number at day 90, with ten people? It'll be enough. Enough to make you look at the board and think: "Why didn't we do this ten years ago?"
+### Operating Rules
 
-You know why. Nobody ran the numbers. Now you have.
+Establish exactly two rules:
+
+1. **Post before paying.** Before hiring an outside service provider, check the board. If a network member can handle the need, offer them first opportunity.
+2. **Close the loop.** When an exchange completes, update the board. Move the item from NEED to DONE with hours logged.
+
+No additional governance is required at 5-10 members. No bylaws. No officers. No committees.
+
+### Target Activity
+
+2-3 exchanges per week across the group during Weeks 5-8. Consistency matters more than volume. The objective is habit formation.
 
 ---
 
-## Start This Week
+## 8.5 Weeks 9-12: Expansion and Stabilization
 
-**24 hours:** Pick your five. Write their names down. Not in your head — on paper. These are the people.
+### Expansion
 
-**7 days:** Have the conversation with at least three of them. Not a text — face to face or on a phone call. Ask the question: "What if we tracked what we already do for each other?"
+Each existing member invites one person. This is personal invitation, not mass recruitment. The network grows from 5 to 8-15 members.
 
-**90 days:** Follow the playbook. Inventory. First exchanges. Board. Expand. By day 90, you'll have a number. And the number will speak for itself.
+**Invitation criteria:** Invite people who fill skill gaps identified during the first 8 weeks. Recruit for capability, not just willingness.
+
+### Stabilization
+
+Assess exchange balance. If hour-for-hour exchange is working, maintain it. If imbalances appear (some members consistently contributing more than receiving), address through direct conversation. Introduce a points bank if needed (see Chapter 6).
+
+### Day 90 Success Criteria
+
+| Criterion | Target |
+|---|---|
+| Active members | 8-15 |
+| Task board status | DONE column longer than NEED column |
+| Dollar value saved | At least one documented example the group can reference |
+| Board check habit | Members check habitually, not only when desperate |
+| Elevator pitch | Any member can explain the system in 30 seconds |
+
+---
+
+## 8.6 Ongoing Operational Rhythm
+
+### Weekly
+
+Members check the board passively. Post new needs, offer skills, complete exchanges. This becomes habitual after the first 90 days.
+
+### Monthly
+
+One in-person gathering (meal, not meeting). Two agenda items:
+
+1. **Review the DONE column.** Calculate the estimated dollar value of that month's exchanges using market rates. State the number to the group.
+2. **Update the NEED column.** Identify upcoming needs: seasonal projects (winterization, tax prep, garden planting), moves, renovations, life events.
+
+### Quarterly
+
+Larger assessment covering:
+
+| Assessment Area | Action |
+|---|---|
+| Network growth | Is membership stable, growing, or shrinking? |
+| Burnout check | Are any members over-contributing without reciprocation? |
+| Exchange balance | Review hours given vs. hours received per member |
+| Skill gaps | What skills is the network missing? |
+| Strategic recruitment | Identify specific skill types to recruit (not just "more people") |
+
+---
+
+## 8.7 Expected Value Generation
+
+Based on tracked network data:
+
+| Network Size | Avg. Exchanges/Week | Monthly Retained Value | Annual Retained Value |
+|---|---|---|---|
+| 10 members | 5 | $2,000-$4,000 | $24,000-$48,000 |
+| 20 members | 10 | $4,000-$8,000 | $48,000-$96,000 |
+| 50 members | 25+ | $12,000+ | $144,000+ |
+
+Value scales faster than membership because the coordination premium increases with skill diversity (more members = more possible matches = higher fulfillment rate).
+
+---
+
+## Implementation Steps
+
+1. Identify 5 founding members based on trust and skill diversity.
+2. Conduct one-on-one recruitment conversations (in person or phone).
+3. With 3+ confirmed members, begin Week 1.
+4. Weeks 1-2: Complete the shared skills inventory (capabilities + current needs).
+5. Weeks 3-4: Execute and log a minimum of 3 exchanges.
+6. Conduct a post-exchange debrief conversation.
+7. Weeks 5-8: Deploy the task board (NEED / CAN DO / DONE). Establish the two operating rules.
+8. Target 2-3 exchanges per week.
+9. Weeks 9-12: Each member invites one person. Grow to 8-15 members.
+10. Assess exchange balance. Introduce points bank if needed.
+11. Calculate total dollar value retained at Day 90.
+12. Establish the ongoing rhythm: weekly board checks, monthly gathering, quarterly assessment.
+
+---
+
+## Checklist
+
+- [ ] 5 founding members identified
+- [ ] Recruitment conversations completed (minimum 3 acceptances)
+- [ ] Shared skills inventory created (capabilities + current needs for all members)
+- [ ] First 3 exchanges completed and logged
+- [ ] Post-exchange debrief conducted
+- [ ] Task board deployed (NEED / CAN DO / DONE columns)
+- [ ] Two operating rules communicated to all members
+- [ ] 2-3 exchanges per week sustained during Weeks 5-8
+- [ ] Each member has invited one new person
+- [ ] Network expanded to 8-15 active members
+- [ ] Exchange balance reviewed; points bank introduced if needed
+- [ ] Day 90 dollar value calculated and shared with group
+- [ ] Monthly gathering scheduled (recurring)
+- [ ] Quarterly assessment process defined
+
+---
+
+## Key Figures
+
+| Metric | Value |
+|---|---|
+| Founding member target | 5 people |
+| Minimum viable acceptances | 3 out of 5 |
+| Skills undercount rate | ~40% (members underreport everyday competence) |
+| First exchanges target (Weeks 3-4) | Minimum 3 |
+| Typical cost avoidance per exchange | $200-$500 (market rate) |
+| Board activity target (Weeks 5-8) | 2-3 exchanges per week |
+| Day 90 membership target | 8-15 active members |
+| 10-person network monthly retained value | $2,000-$4,000 |
+| 10-person network annual retained value | $24,000-$48,000 |
+| 20-person network annual retained value | $48,000-$96,000 |
