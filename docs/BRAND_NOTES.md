@@ -89,10 +89,17 @@ LEVEL 1: HILLBILLY DREAMS, INC. (holding company)
 - "Delivering the efficiencies of tomorrow, today."
 - "We're not fixing what's broken. We're building what was never built."
 
-### The Product
-- "Same price as ChatGPT. Except this one can read your books."
+### The Product (street level — what you say in the shop)
+- "It does all the cool stuff you don't know how to do."
+- "Take a picture. Watch what happens."
+- "$20 a month."
+
+### The Product (brand level — websites and decks)
 - "One engine. Every vertical."
 - "Your data stays yours. Period."
+
+### DEPRECATED — do not use
+- ~~"Same price as ChatGPT. Except this one can read your books."~~ (too clever, undersells the product, nobody says "books")
 
 ### The Proof
 - "When we walk into a city council meeting, we don't show slides. We show a hotel you can book, a magazine you can read, and a radio station you can hear."

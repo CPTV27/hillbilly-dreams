@@ -2,17 +2,19 @@
 // Server component. All inline CSS. No external images.
 
 const C = {
-  bg: '#FAFAF8',
-  bgAlt: '#F5F3EF',
-  white: '#FFFFFF',
-  border: '#E5E5E0',
-  text: '#1A1A1A',
-  textSecondary: '#6B7280',
-  textMuted: '#9CA3AF',
-  accent: '#B45309',
+  bg: 'var(--mb-bg)',
+  bgAlt: 'var(--mb-bg-alt)',
+  surface: 'var(--mb-surface)',
+  white: 'var(--mb-surface)', 
+  border: 'var(--mb-border)',
+  text: 'var(--mb-text)',
+  textSecondary: 'var(--mb-text-secondary)',
+  textMuted: 'var(--mb-text-tertiary)',
+  accent: 'var(--mb-accent)',
+  accentHover: 'var(--mb-accent-hover)',
   accentBg: 'rgba(180,83,9,0.06)',
-  dark: '#1A1A1A',
-  darkText: '#E5E5E0',
+  dark: 'var(--mb-text)', 
+  darkText: 'var(--mb-bg-alt)', 
 };
 
 const PRICING = [
@@ -33,19 +35,19 @@ const PRICING = [
     highlight: false,
   },
   {
-    name: 'Replace ChatGPT',
+    name: 'The Works',
     price: '$20',
     period: '/month',
-    who: 'ChatGPT subscribers',
-    hook: 'Same price. Except this one can read your books.',
+    who: 'Any business owner',
+    hook: 'Take a photo. It handles the rest.',
     features: [
       '7-day free trial — no credit card',
-      'Connect 1 data source (QuickBooks, Stripe, or Google)',
-      'Unlimited AI queries against YOUR data',
-      'Daily briefing — one email, one insight',
-      'Google review monitoring + draft responses',
-      'Monthly P&L summary',
-      'Guided learning path — get the most from your data',
+      'Snap a photo → auto-post to social, website, newsletter',
+      'Connect your QuickBooks — it watches your numbers',
+      'Daily briefing — one text, one insight',
+      'Review monitoring + draft responses',
+      'AI marketing that runs while you work',
+      'Talk to it — business coaching on demand',
     ],
     cta: 'Try free for a week',
     highlight: false,
@@ -221,22 +223,36 @@ export default function MeasurablyBetterPage() {
               margin: '0 0 24px',
             }}
           >
-            Same price as ChatGPT.<br />
-            Except this one reads your books.
+            It does all the cool stuff<br />
+            you don&apos;t know how to do.
           </h1>
           <p
             style={{
               fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
               color: C.darkText,
               lineHeight: 1.65,
-              margin: '0 0 32px',
+              margin: '0 0 16px',
               maxWidth: 580,
               marginLeft: 'auto',
               marginRight: 'auto',
             }}
           >
-            Your business data &mdash; QuickBooks, Stripe, Google &mdash; analyzed by AI
-            that actually knows your margins. Starting at $20/month. Free for a week.
+            Take a photo. Watch it handle your marketing, social media,
+            and website &mdash; instantly.
+          </p>
+          <p
+            style={{
+              fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
+              color: C.darkText,
+              lineHeight: 1.65,
+              margin: '0 0 32px',
+              maxWidth: 520,
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              opacity: 0.8,
+            }}
+          >
+            You just run your business. It does the rest. $20/month.
           </p>
           <a
             href="#pricing"

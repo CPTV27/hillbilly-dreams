@@ -2,14 +2,14 @@
 // Server component. All inline CSS. No external images.
 
 const C = {
-  bg: '#F7F8FA',
+  bg: 'var(--hdi-bg)',
   bgAlt: '#EDF0F5',
   white: '#FFFFFF',
   border: '#D8DEE9',
-  text: '#1B2A4A',
+  text: 'var(--hdi-navy)',
   textSecondary: '#3B4863',
   textMuted: '#6B7A99',
-  accent: '#4A5568',
+  accent: 'var(--hdi-slate)',
   accentBg: 'rgba(74,85,104,0.08)',
   dark: '#0F172A',
   darkText: '#CBD5E1',
@@ -143,7 +143,7 @@ export default function HillbillyDreamsPage() {
           </p>
           <h1
             style={{
-              fontFamily: 'var(--font-abril), serif',
+              fontFamily: 'var(--hdi-font-display)',
               fontSize: 'clamp(2rem, 5vw, 3.25rem)',
               fontWeight: 700,
               color: C.white,
@@ -185,7 +185,7 @@ export default function HillbillyDreamsPage() {
         </p>
         <h2
           style={{
-              fontFamily: 'var(--font-abril), serif',
+              fontFamily: 'var(--hdi-font-display)',
             fontSize: 'clamp(1.4rem, 3vw, 2rem)',
             fontWeight: 700,
             color: C.text,
@@ -272,7 +272,7 @@ export default function HillbillyDreamsPage() {
                   </div>
                   <h3
                     style={{
-              fontFamily: 'var(--font-abril), serif',
+              fontFamily: 'var(--hdi-font-display)',
                       fontSize: 20,
                       fontWeight: 700,
                       color: C.text,
@@ -359,7 +359,7 @@ export default function HillbillyDreamsPage() {
           </p>
           <h2
             style={{
-              fontFamily: 'var(--font-abril), serif',
+              fontFamily: 'var(--hdi-font-display)',
               fontSize: 'clamp(1.4rem, 3vw, 2rem)',
               fontWeight: 700,
               color: C.text,
@@ -443,7 +443,7 @@ export default function HillbillyDreamsPage() {
         </p>
         <h2
           style={{
-              fontFamily: 'var(--font-abril), serif',
+              fontFamily: 'var(--hdi-font-display)',
             fontSize: 'clamp(1.4rem, 3vw, 2rem)',
             fontWeight: 700,
             color: C.text,

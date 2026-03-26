@@ -12,17 +12,98 @@ Every product in the lineup is an expression of one idea: **build the infrastruc
 
 ---
 
-## THE ONE LINE
+## THE ONE LINE (brand level — for websites, decks, investors)
 "The South has the culture. We're building the infrastructure to match."
 
-## THE TAGLINE
+## THE TAGLINE (brand level)
 "Delivering the efficiencies of tomorrow, today."
 
 ## WHAT "MEASURABLY BETTER THINGS" MEANS
 Not "our product is measurably better than theirs." It means **the things in your community become measurably better** when the technology infrastructure is owned and operated by people who live there.
 
-## THE $20 PITCH
-"You're already paying $20/mo for an AI that doesn't know your business. Pay the same $20 for one that does."
+---
+
+## THE STREET PITCH (what you say in the shop)
+
+### The Hook
+**"It does all the cool stuff you don't know how to do."**
+
+### The Demo
+**"Take a picture. Watch what happens."**
+
+You snap a photo. The tool:
+1. Writes the caption
+2. Picks the hashtags
+3. Posts to Instagram, Facebook, Google Business
+4. Adds it to your website gallery
+5. Tags it for your next email newsletter
+6. Logs it as content for the tourism board
+
+One photo. Six outputs. You did one thing. The platform did the rest.
+
+### The Universal Input
+**It's just a text box. Ask it anything.**
+
+"Post this photo to all my socials."
+"How much did I make last week?"
+"Write me a lunch special for tomorrow."
+"What are my competitors charging?"
+"Make me a video from that photo I took yesterday."
+"Remind me to renew my business license in March."
+"Draft a response to that bad review."
+"What should I charge for catering a 50-person wedding?"
+
+No menus. No tabs. No navigation. No app to learn. Just text it — photos, videos, questions — like you're texting a friend who's really good at everything.
+
+You text it a photo → it posts to all your socials and texts you back the caption it used.
+You text it a video → it makes a short and texts you back the link.
+You text it a question → it answers with your real numbers.
+
+It's iMessage with your business brain on the other end.
+
+### The Close
+**"$20 a month."**
+
+### The Three-Line Version (memorize this)
+1. "It does all the cool stuff you don't know how to do."
+2. "Take a picture. Watch what happens."
+3. "$20 a month."
+
+---
+
+## WHY NOT "READS YOUR BOOKS"
+"Same price as ChatGPT, except this one reads your books" was clever but wrong:
+- Nobody under 50 calls their accounting "books"
+- It frames the product as a bookkeeping tool — it's not
+- It undersells the product — it does marketing, CRM, research, social, reputation, everything
+- Clever loses to clear when selling to busy people
+
+The product does ALL the stuff the owner doesn't know how to do:
+- Marketing? It handles that.
+- Bookkeeping? It watches your numbers.
+- Reviews? It monitors them.
+- Competition? It tracks them.
+- Social media? Take a photo, it does the rest.
+- You just run your business. It does the rest.
+
+---
+
+## THE PITCH HIERARCHY (from street to boardroom)
+
+### In someone's shop (30 seconds)
+"It does all the cool stuff you don't know how to do. Take a picture, watch what happens. $20 a month."
+
+### To a business owner sitting down (2 minutes)
+"You know all that stuff you wish you had time for? Marketing, keeping up with reviews, knowing if you're actually making money, figuring out what your competitors are doing? This does all of it. You take a picture, it posts it everywhere. You connect your QuickBooks, it watches your numbers. You ask it a question, it answers with your actual data. $20 a month. Free for a week."
+
+### To a mayor (2 minutes)
+"You're going to spend ARPA money on somebody's software by December. We're the only option built in Mississippi. We deploy in 90 days. And every business on Main Street gets a free dashboard."
+
+### To an investor (2 minutes)
+"Hillbilly Dreams owns the IP behind a regional technology platform deployed across SMB, civic, education, and media in the Deep South. Big Muddy is the proof of concept. Measurably Better is the revenue engine. The $20 self-serve tier is the distribution vehicle."
+
+### OLD LINE (deprecated — do not use)
+~~"Same price as ChatGPT. Except this one reads your books."~~
 
 ---
 

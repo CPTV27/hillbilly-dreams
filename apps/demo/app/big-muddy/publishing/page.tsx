@@ -2,14 +2,14 @@
 // Server component. All inline CSS. No external images.
 
 const C = {
-  bg: '#F3EFE9',
+  bg: 'var(--bm-cream)',
   bgAlt: '#E8E2D9',
   white: '#FFFFFF',
   border: '#D9CFC1',
-  text: '#111111',
+  text: 'var(--bm-charcoal)',
   textSecondary: '#444444',
   textMuted: '#777777',
-  accent: '#7B1B46',
+  accent: 'var(--bm-burgundy)',
   accentBg: 'rgba(123,27,70,0.08)',
   dark: '#0A0A0A',
   darkText: '#D9CFC1',

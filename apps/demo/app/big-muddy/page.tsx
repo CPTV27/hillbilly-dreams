@@ -38,10 +38,10 @@ export default function NexusPage() {
   return (
     <div
       style={{
-        backgroundColor: '#f8f9fa',
+        backgroundColor: 'var(--bm-cream)',
         minHeight: '100vh',
         fontFamily: 'var(--font-inter), sans-serif',
-        color: '#202124',
+        color: 'var(--bm-charcoal)',
       }}
     >
       {/* Header */}
@@ -58,7 +58,7 @@ export default function NexusPage() {
             fontWeight: 600,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            color: '#b45309',
+            color: 'var(--bm-burgundy)',
             marginBottom: 16,
           }}
         >
@@ -71,7 +71,7 @@ export default function NexusPage() {
             fontWeight: 700,
             lineHeight: 1.1,
             letterSpacing: '-0.02em',
-            color: '#202124',
+            color: 'var(--bm-charcoal)',
             marginBottom: 20,
           }}
         >
@@ -116,7 +116,7 @@ export default function NexusPage() {
             key={division.title}
             style={{
               backgroundColor: '#ffffff',
-              border: division.isEngine ? '1px solid #b45309' : '1px solid #e8eaed',
+              border: division.isEngine ? '1px solid var(--bm-burgundy)' : '1px solid #e8eaed',
               borderRadius: 12,
               padding: '28px 28px 24px',
               position: 'relative',
@@ -130,7 +130,7 @@ export default function NexusPage() {
                 fontWeight: 600,
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
-                color: division.isEngine ? '#b45309' : '#9aa0a6',
+                color: division.isEngine ? 'var(--bm-burgundy)' : '#9aa0a6',
                 marginBottom: 14,
               }}
             >
@@ -142,7 +142,7 @@ export default function NexusPage() {
               fontFamily: 'var(--font-abril), serif',
                 fontSize: 17,
                 fontWeight: 600,
-                color: '#202124',
+                color: 'var(--bm-charcoal)',
                 marginBottom: 10,
                 letterSpacing: '-0.01em',
               }}
@@ -189,7 +189,7 @@ export default function NexusPage() {
                   width: 6,
                   height: 6,
                   borderRadius: '50%',
-                  backgroundColor: division.isEngine ? '#b45309' : '#e8eaed',
+                  backgroundColor: division.isEngine ? 'var(--bm-burgundy)' : '#e8eaed',
                   border: division.isEngine ? 'none' : '1px solid #9aa0a6',
                 }}
               />

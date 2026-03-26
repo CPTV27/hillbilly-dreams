@@ -1,731 +1,738 @@
 'use client';
 
-// Deep South Directory — first-time dashboard
-// Reads business name from localStorage. If none, redirects to /directory/join.
-// This is the page that sells the $20 upgrade.
-
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const C = {
   bg: '#FAFAF8',
   white: '#FFFFFF',
   text: '#1A1A1A',
-  textSecondary: '#6B7280',
-  textMuted: '#9CA3AF',
+  textSec: '#6B7280',
+  muted: '#9CA3AF',
   accent: '#B45309',
   accentHover: '#92400E',
   accentBg: 'rgba(180,83,9,0.07)',
   border: '#E5E5E0',
   green: '#16A34A',
-  greenBg: '#DCFCE7',
-  yellow: '#CA8A04',
-  yellowBg: '#FEF9C3',
-  red: '#DC2626',
-  redBg: '#FEE2E2',
+  greenBg: 'rgba(22,163,74,0.06)',
+  userBubble: '#B45309',
+  aiBubble: '#FFFFFF',
 };
 
-const UPGRADE_FEATURES = [
-  'Connect your QuickBooks → see your real P&L',
-  'Daily AI briefing → know what changed overnight',
-  'Review monitoring → get alerted when someone mentions you',
-  'Marketing autopilot → AI writes your social posts',
-];
+type Tab = 'chat' | 'briefing' | 'tasks';
 
-const CHAT_SUGGESTIONS = [
-  'How do my reviews compare?',
-  'What should I post this week?',
-  'Who\'s my top competitor?',
-];
-
-const SAMPLE_RESPONSES: Record<string, string> = {
-  'How do my reviews compare?':
-    'Your Google rating is 4.2 stars across 15 reviews — solid, but your top competitor, The Natchez Trading Post, sits at 4.7 with 47 reviews. Their advantage is recency: 12 reviews in the last 90 days vs. your 2. One new review a week for two months would close that gap significantly. Want me to draft a follow-up message you can text to recent customers?',
-  'What should I post this week?':
-    'This week, lean into the corridor traffic. Memorial Day weekend travelers start booking now. Post a single photo of your storefront with the caption: "We\'re on the Deep South Touring Route — stop in if you\'re driving through Natchez." Tag @DeepSouthDirectory. That one post typically drives 3-5 new directory profile views. Want me to write the full caption?',
-  "Who's my top competitor?":
-    'In your category in Natchez, your strongest competitor is The Natchez Trading Post at 4.7 stars / 47 reviews. They rank #1 in Google Maps for your search terms. Second is Magnolia Mercantile at 4.4 / 29 reviews. You\'re currently #4. The gap is mostly review volume, not quality — your average rating is only 0.5 below the leader. This is closeable.',
+type Message = {
+  id: number;
+  from: 'ai' | 'user';
+  text?: string;
+  isPhoto?: boolean;
+  isTyping?: boolean;
 };
 
-type ScoreIndicatorProps = { score: number };
+type BriefingCard = {
+  type: 'action' | 'insight' | 'idea';
+  title: string;
+  body: string;
+  actions: { label: string; primary?: boolean }[];
+};
 
-function ScoreIndicator({ score }: ScoreIndicatorProps) {
-  const color =
-    score >= 70 ? C.green : score >= 40 ? C.yellow : C.red;
-  const bg =
-    score >= 70 ? C.greenBg : score >= 40 ? C.yellowBg : C.redBg;
+const morningBriefing: BriefingCard[] = [
+  {
+    type: 'action',
+    title: 'New Google Review',
+    body: 'Sarah M. left a 5-star review last night: "Best brisket in Natchez. The owner remembered our names." You haven\'t responded yet.',
+    actions: [
+      { label: 'Draft a Response', primary: true },
+      { label: 'I\'ll Handle It' },
+    ],
+  },
+  {
+    type: 'insight',
+    title: 'Your Week in Numbers',
+    body: 'Revenue up 12% vs last week. Your top seller was the Saturday special. Google profile views are up 23% — that photo you posted Tuesday is driving traffic.',
+    actions: [
+      { label: 'Tell Me More', primary: true },
+      { label: 'Got It' },
+    ],
+  },
+  {
+    type: 'action',
+    title: 'Your Google Profile Needs a Photo',
+    body: 'It\'s been 14 days since your last photo update. Businesses with fresh photos get 42% more direction requests. Snap a quick picture today.',
+    actions: [
+      { label: 'Open Camera', primary: true },
+      { label: 'Remind Me Tomorrow' },
+    ],
+  },
+  {
+    type: 'idea',
+    title: 'Competitor Alert',
+    body: 'The BBQ place on Main Street just started running a Tuesday lunch special. They posted about it 3 times this week. Want me to draft a counter-offer for your social?',
+    actions: [
+      { label: 'Draft Something', primary: true },
+      { label: 'Not Now' },
+    ],
+  },
+];
 
-  return (
-    <span
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: 6,
-        backgroundColor: bg,
-        color: color,
-        fontSize: 13,
-        fontWeight: 700,
-        padding: '3px 10px',
-        borderRadius: 20,
-      }}
-    >
-      <span
-        style={{
-          width: 7,
-          height: 7,
-          borderRadius: '50%',
-          backgroundColor: color,
-          display: 'inline-block',
-          flexShrink: 0,
-        }}
-      />
-      {score}/100
-    </span>
-  );
+const initialMessages: Message[] = [
+  {
+    id: 1,
+    from: 'ai',
+    text: 'Good morning, Marcus! You got a 5-star review overnight. Want me to draft a response?',
+  },
+  {
+    id: 2,
+    from: 'user',
+    text: 'Yeah do it',
+  },
+  {
+    id: 3,
+    from: 'ai',
+    text: 'Done. Here\'s what I wrote: "Thank you Sarah! We\'re so glad you loved the brisket. The secret is low and slow — come back anytime and we\'ll save you the corner table." Posted to Google. ✓',
+  },
+  {
+    id: 4,
+    from: 'ai',
+    text: 'Also — your Google profile hasn\'t had a new photo in 2 weeks. Businesses with fresh photos get 42% more direction requests. Snap a quick one today?',
+  },
+];
+
+const defaultTasks = [
+  { id: 1, label: 'Respond to 2 new Google reviews', done: false },
+  { id: 2, label: 'Post a photo to Google Business (14 days since last)', done: false },
+  { id: 3, label: 'Draft Tuesday lunch special', done: false },
+  { id: 4, label: 'Review this week\'s numbers', done: false },
+  { id: 5, label: 'Renew business license (due April 15)', done: false },
+];
+
+function getAIReply(input: string, bizName: string): string {
+  const lower = input.toLowerCase();
+  if (/photo|picture|post/.test(lower)) {
+    return `Got it! I'll post that to Instagram, Facebook, and Google Business. Here's the caption: "${bizName} — another great day on Main Street in Natchez." Want me to change anything?`;
+  }
+  if (/numbers|revenue|money|week/.test(lower)) {
+    return 'This week: Revenue up 12% vs last week. Your top seller was Saturday\'s special. 23 customers on Tuesday (your slowest day — want me to draft a Tuesday promotion?)';
+  }
+  if (/review/.test(lower)) {
+    return 'You have 2 new reviews since Monday. Both 5-star. I drafted responses for both — want to see them?';
+  }
+  return 'On it. I\'ll have that ready for you in a few minutes. Anything else?';
 }
 
-type CardProps = { children: React.ReactNode; style?: React.CSSProperties };
-
-function Card({ children, style }: CardProps) {
-  return (
-    <div
-      style={{
-        backgroundColor: C.white,
-        border: `1px solid ${C.border}`,
-        borderRadius: 12,
-        padding: '24px',
-        ...style,
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
-export default function DirectoryDashboard() {
+export default function Dashboard() {
   const router = useRouter();
-  const [bizData, setBizData] = useState<{
-    businessName: string;
-    yourName: string;
-    city: string;
-  } | null>(null);
-  const [chatInput, setChatInput] = useState('');
-  const [chatResponse, setChatResponse] = useState('');
-  const [chatLoading, setChatLoading] = useState(false);
-  const [queriesUsed, setQueriesUsed] = useState(13);
+  const [biz, setBiz] = useState<{ name: string; owner: string; city: string } | null>(null);
+  const [activeTab, setActiveTab] = useState<Tab>('chat');
+
+  // Briefing state
+  const [dismissed, setDismissed] = useState<number[]>([]);
+  const [showPhotoResult, setShowPhotoResult] = useState(false);
+
+  // Chat state
+  const [messages, setMessages] = useState<Message[]>(initialMessages);
+  const [inputText, setInputText] = useState('');
+  const [isAITyping, setIsAITyping] = useState(false);
+  const [nextId, setNextId] = useState(100);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Tasks state
+  const [tasks, setTasks] = useState(defaultTasks);
 
   useEffect(() => {
-    const raw = localStorage.getItem('dsd_business');
-    if (!raw) {
-      router.push('/directory/join');
-      return;
-    }
-    try {
-      setBizData(JSON.parse(raw));
-    } catch {
-      router.push('/directory/join');
-    }
+    const stored = localStorage.getItem('dsd_business');
+    if (!stored) { router.push('/directory/join'); return; }
+    try { setBiz(JSON.parse(stored)); } catch { router.push('/directory/join'); }
   }, [router]);
 
-  const handleSuggestion = (suggestion: string) => {
-    setChatInput(suggestion);
-    triggerResponse(suggestion);
-  };
+  useEffect(() => {
+    if (activeTab === 'chat') {
+      setTimeout(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 50);
+    }
+  }, [messages, activeTab, isAITyping]);
 
-  const triggerResponse = (question: string) => {
-    const response =
-      SAMPLE_RESPONSES[question] ||
-      'Great question. Connect your data sources to unlock detailed analysis. On the free tier, I can see your public review data and directory presence — upgrade to $20/mo to connect QuickBooks and get answers backed by your real numbers.';
+  if (!biz) return null;
 
-    setChatLoading(true);
-    setChatResponse('');
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  const visibleCards = morningBriefing.filter((_, i) => !dismissed.includes(i));
+
+  function sendMessage(text: string, isPhoto = false) {
+    const userMsg: Message = { id: nextId, from: 'user', text: isPhoto ? undefined : text, isPhoto };
+    const newNextId = nextId + 1;
+    setNextId(newNextId + 1);
+    setMessages(prev => [...prev, userMsg]);
+    setInputText('');
+    setIsAITyping(true);
+
     setTimeout(() => {
-      setChatLoading(false);
-      setChatResponse(response);
-      setQueriesUsed((prev) => prev + 1);
-    }, 900);
-  };
-
-  const handleChatSubmit = () => {
-    const q = chatInput.trim();
-    if (!q) return;
-    triggerResponse(q);
-  };
-
-  if (!bizData) {
-    return (
-      <div
-        style={{
-          minHeight: '100vh',
-          backgroundColor: C.bg,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <p style={{ color: C.textMuted, fontFamily: 'var(--font-inter), sans-serif' }}>
-          Loading...
-        </p>
-      </div>
-    );
+      const replyText = isPhoto
+        ? 'Photo analyzed: Looks like a brisket plate. Ready to post to Instagram, Facebook & Google. ✓ Approve All or ✗ Edit?'
+        : getAIReply(text, biz!.name);
+      const aiMsg: Message = { id: newNextId, from: 'ai', text: replyText };
+      setMessages(prev => [...prev, aiMsg]);
+      setIsAITyping(false);
+    }, 800);
   }
 
-  const { businessName, city } = bizData;
-  const queriesRemaining = 100 - queriesUsed;
+  function handleSend() {
+    const trimmed = inputText.trim();
+    if (!trimmed || isAITyping) return;
+    sendMessage(trimmed);
+  }
+
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === 'Enter') handleSend();
+  }
+
+  function handleCameraClick() {
+    sendMessage('', true);
+  }
+
+  function sendTaskToChat(label: string) {
+    setActiveTab('chat');
+    setTimeout(() => {
+      sendMessage(label);
+    }, 100);
+  }
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        backgroundColor: C.bg,
-        fontFamily: 'var(--font-inter), sans-serif',
-        color: C.text,
-      }}
-    >
+    <div style={{
+      minHeight: '100vh',
+      backgroundColor: C.bg,
+      fontFamily: 'var(--font-inter, "Helvetica Neue", sans-serif)',
+      display: 'flex',
+      flexDirection: 'column',
+    }}>
       {/* Top bar */}
-      <div
-        style={{
-          backgroundColor: C.white,
-          borderBottom: `1px solid ${C.border}`,
-          padding: '0 24px',
-          height: 56,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          position: 'sticky' as const,
-          top: 0,
-          zIndex: 10,
-        }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-abril), serif',
-            fontSize: 18,
-            fontWeight: 400,
-            color: C.text,
-          }}
-        >
-          Deep South Directory
-        </span>
-        <span
-          style={{
-            fontSize: 14,
-            color: C.textSecondary,
-            fontWeight: 500,
-            maxWidth: '50%',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap' as const,
-          }}
-        >
-          {businessName}
-        </span>
+      <div style={{
+        backgroundColor: C.white,
+        borderBottom: `1px solid ${C.border}`,
+        padding: '0 20px',
+        height: 56,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexShrink: 0,
+        position: 'sticky',
+        top: 0,
+        zIndex: 30,
+      }}>
+        <span style={{ fontSize: 13, fontWeight: 600, color: C.muted, letterSpacing: '0.06em' }}>DEEP SOUTH DIRECTORY</span>
+        <span style={{ fontSize: 13, color: C.text, fontWeight: 500 }}>{biz.name}</span>
       </div>
 
-      <div
-        style={{
-          maxWidth: 1040,
-          margin: '0 auto',
-          padding: '32px 20px 80px',
-        }}
-      >
-
-        {/* Section 1: Your Snapshot */}
-        <div style={{ marginBottom: 40 }}>
-          <h2
-            style={{
-              fontFamily: 'var(--font-abril), serif',
-              fontSize: 24,
-              fontWeight: 400,
-              color: C.text,
-              margin: '0 0 6px',
-            }}
-          >
-            Your Snapshot
-          </h2>
-          <p style={{ fontSize: 14, color: C.textMuted, margin: '0 0 20px' }}>
-            Free tier &mdash; public data only
-          </p>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
-              gap: 16,
-            }}
-          >
-            {/* Google Presence */}
-            <Card>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
-                <p style={{ fontSize: 13, fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.06em', color: C.textMuted, margin: 0 }}>
-                  Google Presence
-                </p>
-                <ScoreIndicator score={72} />
-              </div>
-              <p
-                style={{
-                  fontFamily: 'var(--font-abril), serif',
-                  fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-                  fontWeight: 400,
-                  color: C.text,
-                  margin: '0 0 10px',
-                  lineHeight: 1,
-                }}
-              >
-                72/100
-              </p>
-              <p style={{ fontSize: 14, color: C.textSecondary, margin: 0, lineHeight: 1.55 }}>
-                Your Google Business Profile has 15 reviews. Your top competitor has 47.
-              </p>
-            </Card>
-
-            {/* Online Visibility */}
-            <Card>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
-                <p style={{ fontSize: 13, fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.06em', color: C.textMuted, margin: 0 }}>
-                  Online Visibility
-                </p>
-                <ScoreIndicator score={45} />
-              </div>
-              <p
-                style={{
-                  fontFamily: 'var(--font-abril), serif',
-                  fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-                  fontWeight: 400,
-                  color: C.text,
-                  margin: '0 0 10px',
-                  lineHeight: 1,
-                }}
-              >
-                45/100
-              </p>
-              <p style={{ fontSize: 14, color: C.textSecondary, margin: 0, lineHeight: 1.55 }}>
-                Found on 3 of 8 major platforms. Missing: Booking.com, Expedia, TripAdvisor.
-              </p>
-            </Card>
-
-            {/* Local Ranking */}
-            <Card>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
-                <p style={{ fontSize: 13, fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.06em', color: C.textMuted, margin: 0 }}>
-                  Local Ranking
-                </p>
-                <span
-                  style={{
-                    fontSize: 13,
-                    fontWeight: 700,
-                    color: C.yellow,
-                    backgroundColor: C.yellowBg,
-                    padding: '3px 10px',
-                    borderRadius: 20,
-                  }}
-                >
-                  #4 in {city}
-                </span>
-              </div>
-              <p
-                style={{
-                  fontFamily: 'var(--font-abril), serif',
-                  fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-                  fontWeight: 400,
-                  color: C.text,
-                  margin: '0 0 10px',
-                  lineHeight: 1,
-                }}
-              >
-                #4
-              </p>
-              <p style={{ fontSize: 14, color: C.textSecondary, margin: 0, lineHeight: 1.55 }}>
-                #4 in your category in {city}. #1 has 3&times; more reviews.
-              </p>
-            </Card>
-          </div>
-        </div>
-
-        {/* Section 2: Upgrade prompt */}
-        <div style={{ marginBottom: 40 }}>
-          <Card
-            style={{
-              borderColor: C.accent,
-              borderWidth: 1,
-              borderTopWidth: 3,
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16, flexWrap: 'wrap' as const }}>
-              <div style={{ flex: '1 1 280px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-                  <span style={{ fontSize: 22 }}>🔒</span>
-                  <h2
-                    style={{
-                      fontFamily: 'var(--font-abril), serif',
-                      fontSize: 20,
-                      fontWeight: 400,
-                      color: C.text,
-                      margin: 0,
-                    }}
-                  >
-                    What $20/mo unlocks
-                  </h2>
-                </div>
-                <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                  {UPGRADE_FEATURES.map((feat) => (
-                    <li
-                      key={feat}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: 10,
-                        marginBottom: 12,
-                        fontSize: 15,
-                        color: C.text,
-                        lineHeight: 1.5,
-                      }}
-                    >
-                      <span
-                        style={{
-                          width: 18,
-                          height: 18,
-                          borderRadius: '50%',
-                          backgroundColor: C.accentBg,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0,
-                          marginTop: 1,
-                        }}
-                      >
-                        <span style={{ fontSize: 10, color: C.accent, fontWeight: 700 }}>✓</span>
-                      </span>
-                      {feat}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div
-                style={{
-                  flex: '0 0 auto',
-                  display: 'flex',
-                  flexDirection: 'column' as const,
-                  alignItems: 'flex-start',
-                  gap: 12,
-                  paddingTop: 4,
-                }}
-              >
-                <button
-                  style={{
-                    backgroundColor: C.accent,
-                    color: '#FFFFFF',
-                    fontFamily: 'var(--font-inter), sans-serif',
-                    fontWeight: 600,
-                    fontSize: 16,
-                    padding: '14px 28px',
-                    border: 'none',
-                    borderRadius: 8,
-                    cursor: 'pointer',
-                    whiteSpace: 'nowrap' as const,
-                    transition: 'background-color 0.15s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.backgroundColor = C.accentHover;
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.backgroundColor = C.accent;
-                  }}
-                >
-                  Start 7-Day Free Trial — $20/mo
-                </button>
-                <p style={{ fontSize: 13, color: C.textMuted, margin: 0 }}>
-                  Same price as ChatGPT. Except this one reads your books.
-                </p>
-              </div>
-            </div>
-          </Card>
-        </div>
-
-        {/* Section 3: Directory listing preview */}
-        <div style={{ marginBottom: 40 }}>
-          <h2
-            style={{
-              fontFamily: 'var(--font-abril), serif',
-              fontSize: 24,
-              fontWeight: 400,
-              color: C.text,
-              margin: '0 0 6px',
-            }}
-          >
-            Your Directory Listing
-          </h2>
-          <p style={{ fontSize: 14, color: C.textMuted, margin: '0 0 20px' }}>
-            Free &mdash; live right now
-          </p>
-
-          <Card>
-            <div
+      {/* Tab bar */}
+      <div style={{
+        backgroundColor: C.white,
+        borderBottom: `1px solid ${C.border}`,
+        display: 'flex',
+        flexShrink: 0,
+        position: 'sticky',
+        top: 56,
+        zIndex: 29,
+      }}>
+        {(['chat', 'briefing', 'tasks'] as Tab[]).map((tab) => {
+          const isActive = activeTab === tab;
+          const label = tab === 'chat' ? 'Chat' : tab === 'briefing' ? 'Briefing' : 'Tasks';
+          return (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
               style={{
+                flex: 1,
+                padding: '14px 0 12px',
+                border: 'none',
+                backgroundColor: 'transparent',
+                cursor: 'pointer',
+                fontSize: 14,
+                fontWeight: isActive ? 600 : 500,
+                color: isActive ? C.accent : C.textSec,
+                fontFamily: 'inherit',
+                position: 'relative',
                 display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
-                flexWrap: 'wrap' as const,
-                gap: 12,
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 6,
               }}
             >
-              <div>
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-abril), serif',
-                    fontSize: 'clamp(1.4rem, 3vw, 2rem)',
-                    fontWeight: 400,
-                    color: C.text,
-                    margin: '0 0 6px',
-                  }}
-                >
-                  {businessName}
-                </h3>
-                <p style={{ fontSize: 15, color: C.textSecondary, margin: '0 0 4px' }}>
-                  {city} &middot; Local Business
-                </p>
-                <p style={{ fontSize: 14, color: C.textMuted, margin: 0 }}>
-                  Listed on DeepSouthDirectory.com
-                </p>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column' as const, alignItems: 'flex-end', gap: 8 }}>
-                <span
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 6,
-                    backgroundColor: C.greenBg,
-                    color: C.green,
-                    fontSize: 13,
-                    fontWeight: 700,
-                    padding: '4px 12px',
-                    borderRadius: 20,
-                  }}
-                >
-                  <span style={{ fontSize: 12 }}>✓</span>
-                  Claimed
-                </span>
-                <p style={{ fontSize: 13, color: C.textMuted, margin: 0, textAlign: 'right' as const }}>
-                  Listing is live on the corridor
-                </p>
-              </div>
-            </div>
+              {label}
+              {/* New message dot for Chat */}
+              {tab === 'chat' && activeTab !== 'chat' && (
+                <span style={{
+                  width: 7,
+                  height: 7,
+                  borderRadius: '50%',
+                  backgroundColor: C.accent,
+                  display: 'inline-block',
+                  marginTop: -4,
+                }} />
+              )}
+              {/* Active underline */}
+              {isActive && (
+                <span style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: '12%',
+                  right: '12%',
+                  height: 2,
+                  backgroundColor: C.accent,
+                  borderRadius: 2,
+                }} />
+              )}
+            </button>
+          );
+        })}
+      </div>
 
-            {/* Mock listing preview bar */}
-            <div
-              style={{
-                marginTop: 20,
-                borderTop: `1px solid ${C.border}`,
-                paddingTop: 16,
-                display: 'flex',
-                gap: 24,
-                flexWrap: 'wrap' as const,
-              }}
-            >
-              {[
-                { label: 'Views this month', value: '—' },
-                { label: 'Direction requests', value: '—' },
-                { label: 'Phone clicks', value: '—' },
-              ].map((stat) => (
-                <div key={stat.label} style={{ textAlign: 'center' as const }}>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-abril), serif',
-                      fontSize: 22,
-                      fontWeight: 400,
-                      color: C.textMuted,
-                      margin: '0 0 2px',
-                    }}
-                  >
-                    {stat.value}
-                  </p>
-                  <p style={{ fontSize: 12, color: C.textMuted, margin: 0 }}>{stat.label}</p>
-                </div>
-              ))}
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <p style={{ fontSize: 12, color: C.textMuted, margin: 0, fontStyle: 'italic' as const }}>
-                  Live analytics available on $20 plan
-                </p>
-              </div>
-            </div>
-          </Card>
-        </div>
-
-        {/* Section 4: AI Chat */}
-        <div>
-          <h2
-            style={{
-              fontFamily: 'var(--font-abril), serif',
-              fontSize: 24,
-              fontWeight: 400,
-              color: C.text,
-              margin: '0 0 6px',
-            }}
-          >
-            AI Chat
-          </h2>
-          <p style={{ fontSize: 14, color: C.textMuted, margin: '0 0 20px' }}>
-            100 free queries/mo &mdash; {queriesRemaining} remaining
-          </p>
-
-          <Card>
-            {/* Suggestion chips */}
-            {!chatResponse && !chatLoading && (
+      {/* ── CHAT TAB ── */}
+      {activeTab === 'chat' && (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          // Account for top bar (56) + tab bar (~49) + input area (~72)
+          // We let the messages scroll independently
+        }}>
+          {/* Message list */}
+          <div style={{
+            flex: 1,
+            overflowY: 'auto',
+            padding: '20px 16px 16px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 10,
+            // Push content above fixed input
+            paddingBottom: 90,
+          }}>
+            {messages.map((msg) => (
               <div
+                key={msg.id}
                 style={{
                   display: 'flex',
-                  flexWrap: 'wrap' as const,
-                  gap: 8,
-                  marginBottom: 20,
+                  justifyContent: msg.from === 'user' ? 'flex-end' : 'flex-start',
                 }}
               >
-                {CHAT_SUGGESTIONS.map((s) => (
-                  <button
-                    key={s}
-                    onClick={() => handleSuggestion(s)}
-                    style={{
-                      backgroundColor: C.accentBg,
-                      color: C.accent,
-                      border: `1px solid rgba(180,83,9,0.2)`,
-                      borderRadius: 20,
-                      padding: '7px 14px',
-                      fontSize: 14,
-                      fontFamily: 'var(--font-inter), sans-serif',
-                      cursor: 'pointer',
-                      transition: 'background-color 0.15s ease',
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                        'rgba(180,83,9,0.12)';
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLButtonElement).style.backgroundColor = C.accentBg;
-                    }}
-                  >
-                    {s}
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* Chat response area */}
-            {(chatLoading || chatResponse) && (
-              <div
-                style={{
-                  backgroundColor: C.bg,
-                  border: `1px solid ${C.border}`,
-                  borderRadius: 8,
-                  padding: '16px 18px',
-                  marginBottom: 16,
-                  fontSize: 15,
-                  lineHeight: 1.65,
-                  color: C.text,
-                  minHeight: 60,
-                }}
-              >
-                {chatLoading ? (
-                  <span style={{ color: C.textMuted, fontStyle: 'italic' as const }}>
-                    Thinking...
-                  </span>
+                {msg.isPhoto ? (
+                  /* Photo bubble */
+                  <div style={{
+                    backgroundColor: C.userBubble,
+                    borderRadius: '18px 18px 4px 18px',
+                    overflow: 'hidden',
+                    maxWidth: 180,
+                  }}>
+                    <div style={{
+                      width: 180,
+                      height: 120,
+                      backgroundColor: 'rgba(255,255,255,0.15)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexDirection: 'column',
+                      gap: 4,
+                    }}>
+                      <span style={{ fontSize: 28 }}>📸</span>
+                      <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.85)', fontWeight: 500 }}>Photo</span>
+                    </div>
+                  </div>
                 ) : (
-                  <>
-                    <p style={{ fontSize: 12, fontWeight: 600, color: C.accent, textTransform: 'uppercase' as const, letterSpacing: '0.06em', margin: '0 0 8px' }}>
-                      Deep South Directory AI
-                    </p>
-                    {chatResponse}
-                  </>
+                  <div style={{
+                    maxWidth: '78%',
+                    padding: '10px 14px',
+                    borderRadius: msg.from === 'user'
+                      ? '18px 18px 4px 18px'
+                      : '18px 18px 18px 4px',
+                    backgroundColor: msg.from === 'user' ? C.userBubble : C.aiBubble,
+                    color: msg.from === 'user' ? '#FFFFFF' : C.text,
+                    fontSize: 15,
+                    lineHeight: 1.5,
+                    boxShadow: msg.from === 'ai' ? `0 1px 3px rgba(0,0,0,0.07)` : 'none',
+                    border: msg.from === 'ai' ? `1px solid ${C.border}` : 'none',
+                  }}>
+                    {msg.text}
+                  </div>
                 )}
               </div>
+            ))}
+
+            {/* Typing indicator */}
+            {isAITyping && (
+              <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <div style={{
+                  padding: '12px 16px',
+                  borderRadius: '18px 18px 18px 4px',
+                  backgroundColor: C.aiBubble,
+                  border: `1px solid ${C.border}`,
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.07)',
+                  display: 'flex',
+                  gap: 4,
+                  alignItems: 'center',
+                }}>
+                  {[0, 1, 2].map((i) => (
+                    <span
+                      key={i}
+                      style={{
+                        width: 7,
+                        height: 7,
+                        borderRadius: '50%',
+                        backgroundColor: C.muted,
+                        display: 'inline-block',
+                        animation: 'bounce 1.2s infinite',
+                        animationDelay: `${i * 0.2}s`,
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
             )}
 
-            {/* Input row */}
-            <div
-              style={{
-                display: 'flex',
-                gap: 10,
-                alignItems: 'flex-end',
-              }}
-            >
-              <input
-                type="text"
-                placeholder="Ask anything about your business..."
-                value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-                onKeyDown={(e) => { if (e.key === 'Enter') handleChatSubmit(); }}
-                style={{
-                  flex: 1,
-                  fontFamily: 'var(--font-inter), sans-serif',
-                  fontSize: 15,
-                  padding: '11px 14px',
-                  border: `1px solid ${C.border}`,
-                  borderRadius: 8,
-                  backgroundColor: C.bg,
-                  color: C.text,
-                  outline: 'none',
-                  transition: 'border-color 0.15s ease',
-                }}
-                onFocus={(e) => {
-                  (e.currentTarget as HTMLInputElement).style.borderColor = C.accent;
-                }}
-                onBlur={(e) => {
-                  (e.currentTarget as HTMLInputElement).style.borderColor = C.border;
-                }}
-              />
-              <button
-                onClick={handleChatSubmit}
-                style={{
-                  backgroundColor: C.accent,
-                  color: '#FFFFFF',
-                  border: 'none',
-                  borderRadius: 8,
-                  padding: '11px 20px',
-                  fontSize: 15,
-                  fontFamily: 'var(--font-inter), sans-serif',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  flexShrink: 0,
-                  transition: 'background-color 0.15s ease',
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.backgroundColor = C.accentHover;
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.backgroundColor = C.accent;
-                }}
-              >
-                Ask
-              </button>
-            </div>
+            <div ref={messagesEndRef} />
+          </div>
 
-            <div
+          {/* Fixed chat input */}
+          <div style={{
+            position: 'fixed',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            backgroundColor: C.white,
+            borderTop: `1px solid ${C.border}`,
+            padding: '10px 16px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            zIndex: 20,
+          }}>
+            {/* Camera button */}
+            <button
+              onClick={handleCameraClick}
+              disabled={isAITyping}
               style={{
-                marginTop: 14,
+                width: 40,
+                height: 40,
+                borderRadius: 20,
+                border: `1px solid ${C.border}`,
+                backgroundColor: C.white,
+                cursor: isAITyping ? 'not-allowed' : 'pointer',
+                fontSize: 18,
                 display: 'flex',
-                justifyContent: 'space-between',
                 alignItems: 'center',
-                flexWrap: 'wrap' as const,
-                gap: 8,
+                justifyContent: 'center',
+                flexShrink: 0,
+                opacity: isAITyping ? 0.5 : 1,
               }}
+              aria-label="Send a photo"
             >
-              <p style={{ fontSize: 13, color: C.textMuted, margin: 0 }}>
-                {queriesRemaining} free queries remaining this month
-              </p>
-              <a
-                href="#upgrade"
+              📷
+            </button>
+
+            {/* Text input */}
+            <input
+              ref={inputRef}
+              type="text"
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Message..."
+              disabled={isAITyping}
+              style={{
+                flex: 1,
+                height: 40,
+                borderRadius: 20,
+                border: `1px solid ${C.border}`,
+                padding: '0 16px',
+                fontSize: 15,
+                color: C.text,
+                backgroundColor: C.bg,
+                outline: 'none',
+                fontFamily: 'inherit',
+                opacity: isAITyping ? 0.6 : 1,
+              }}
+            />
+
+            {/* Send button */}
+            <button
+              onClick={handleSend}
+              disabled={!inputText.trim() || isAITyping}
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: 20,
+                border: 'none',
+                backgroundColor: inputText.trim() && !isAITyping ? C.accent : C.border,
+                color: '#FFFFFF',
+                cursor: inputText.trim() && !isAITyping ? 'pointer' : 'not-allowed',
+                fontSize: 16,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+                transition: 'background-color 0.15s',
+              }}
+              aria-label="Send message"
+            >
+              ↑
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ── BRIEFING TAB ── */}
+      {activeTab === 'briefing' && (
+        <div style={{ maxWidth: 520, margin: '0 auto', padding: '0 20px', width: '100%' }}>
+          {/* Greeting */}
+          <div style={{ paddingTop: 40, paddingBottom: 24 }}>
+            <h1 style={{ fontFamily: 'var(--font-abril, serif)', fontSize: 28, fontWeight: 700, color: C.text, margin: '0 0 8px' }}>
+              {greeting}, {biz.owner.split(' ')[0]}.
+            </h1>
+            <p style={{ fontSize: 15, color: C.textSec, margin: 0, lineHeight: 1.5 }}>
+              {visibleCards.length > 0
+                ? `You have ${visibleCards.length} thing${visibleCards.length > 1 ? 's' : ''} that need${visibleCards.length === 1 ? 's' : ''} you today.`
+                : 'You\'re all caught up. Nice work.'}
+            </p>
+          </div>
+
+          {/* Decision Queue */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            {visibleCards.map((card) => {
+              const realIdx = morningBriefing.indexOf(card);
+              return (
+                <div key={realIdx} style={{
+                  backgroundColor: C.white,
+                  border: `1px solid ${C.border}`,
+                  borderRadius: 12,
+                  padding: '20px',
+                  borderLeft: card.type === 'action' ? `3px solid ${C.accent}` : card.type === 'idea' ? `3px solid ${C.green}` : `3px solid ${C.border}`,
+                }}>
+                  <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', color: card.type === 'action' ? C.accent : card.type === 'idea' ? C.green : C.muted, margin: '0 0 8px', textTransform: 'uppercase' as const }}>
+                    {card.type === 'action' ? 'Needs You' : card.type === 'idea' ? 'Opportunity' : 'Insight'}
+                  </p>
+                  <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: '0 0 6px' }}>{card.title}</p>
+                  <p style={{ fontSize: 14, color: C.textSec, lineHeight: 1.6, margin: '0 0 16px' }}>{card.body}</p>
+                  <div style={{ display: 'flex', gap: 10 }}>
+                    {card.actions.map((action) => (
+                      <button
+                        key={action.label}
+                        onClick={() => {
+                          if (action.label === 'Open Camera') {
+                            setShowPhotoResult(true);
+                            setTimeout(() => setDismissed(d => [...d, realIdx]), 300);
+                          } else {
+                            setDismissed(d => [...d, realIdx]);
+                          }
+                        }}
+                        style={{
+                          padding: '10px 18px',
+                          borderRadius: 8,
+                          border: action.primary ? 'none' : `1px solid ${C.border}`,
+                          backgroundColor: action.primary ? C.accent : 'transparent',
+                          color: action.primary ? '#fff' : C.text,
+                          fontSize: 13,
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          fontFamily: 'inherit',
+                        }}
+                      >
+                        {action.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Photo Result Card */}
+          {showPhotoResult && (
+            <div style={{
+              backgroundColor: C.white, border: `1px solid ${C.green}`, borderRadius: 12,
+              padding: 20, marginTop: 14, borderLeft: `3px solid ${C.green}`,
+            }}>
+              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', color: C.green, margin: '0 0 8px', textTransform: 'uppercase' as const }}>Photo Analyzed</p>
+              <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: '0 0 6px' }}>Storefront — {biz.name}</p>
+              <p style={{ fontSize: 14, color: C.textSec, lineHeight: 1.6, margin: '0 0 12px' }}>Ready to go:</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 16 }}>
+                {[
+                  'Post to Instagram & Facebook with caption',
+                  'Update Google Business Profile photo',
+                  'Add to website gallery',
+                  'Save for Friday email newsletter',
+                ].map(item => (
+                  <p key={item} style={{ fontSize: 13, color: C.text, margin: 0, paddingLeft: 16 }}>&#x2713; {item}</p>
+                ))}
+              </div>
+              <div style={{ display: 'flex', gap: 10 }}>
+                <button onClick={() => setShowPhotoResult(false)} style={{
+                  padding: '10px 18px', borderRadius: 8, border: 'none',
+                  backgroundColor: C.green, color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit',
+                }}>
+                  Approve All &amp; Do It
+                </button>
+                <button onClick={() => setShowPhotoResult(false)} style={{
+                  padding: '10px 18px', borderRadius: 8, border: `1px solid ${C.border}`,
+                  backgroundColor: 'transparent', color: C.text, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit',
+                }}>
+                  Edit First
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* All caught up state */}
+          {visibleCards.length === 0 && !showPhotoResult && (
+            <div style={{ textAlign: 'center', padding: '48px 0' }}>
+              <p style={{ fontSize: 40, margin: '0 0 12px' }}>&#x2713;</p>
+              <p style={{ fontSize: 15, color: C.textSec, margin: 0 }}>Nothing needs you right now. Go run your business.</p>
+            </div>
+          )}
+
+          {/* Upgrade prompt */}
+          <div style={{
+            backgroundColor: C.accentBg, border: `1px solid rgba(180,83,9,0.15)`,
+            borderRadius: 12, padding: '20px', marginTop: 32, textAlign: 'center',
+          }}>
+            <p style={{ fontSize: 14, fontWeight: 600, color: C.text, margin: '0 0 4px' }}>
+              This is the free tier. You get 100 AI actions per month.
+            </p>
+            <p style={{ fontSize: 13, color: C.textSec, margin: '0 0 12px' }}>
+              Upgrade to $20/mo for unlimited actions, QuickBooks sync, and daily briefings with your real numbers.
+            </p>
+            <button style={{
+              padding: '10px 24px', borderRadius: 8, border: 'none',
+              backgroundColor: C.accent, color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit',
+            }}>
+              Start 7-Day Free Trial — $20/mo
+            </button>
+          </div>
+
+          {/* Footer */}
+          <div style={{ padding: '32px 0', textAlign: 'center' }}>
+            <p style={{ fontSize: 12, color: C.muted, margin: 0 }}>Deep South Directory — Measurably Better</p>
+          </div>
+        </div>
+      )}
+
+      {/* ── TASKS TAB ── */}
+      {activeTab === 'tasks' && (
+        <div style={{ maxWidth: 520, margin: '0 auto', padding: '0 20px', width: '100%' }}>
+          <div style={{ paddingTop: 32, paddingBottom: 12 }}>
+            <h2 style={{ fontFamily: 'var(--font-abril, serif)', fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 4px' }}>
+              Your Tasks
+            </h2>
+            <p style={{ fontSize: 14, color: C.textSec, margin: 0 }}>
+              {tasks.filter(t => !t.done).length} remaining
+            </p>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            {tasks.map((task) => (
+              <div
+                key={task.id}
                 style={{
-                  fontSize: 13,
-                  color: C.accent,
-                  textDecoration: 'none',
-                  fontWeight: 500,
+                  backgroundColor: task.done ? 'transparent' : C.white,
+                  border: `1px solid ${task.done ? 'transparent' : C.border}`,
+                  borderRadius: 10,
+                  padding: '14px 16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 12,
+                  transition: 'all 0.2s',
                 }}
               >
-                Upgrade for unlimited →
-              </a>
-            </div>
-          </Card>
-        </div>
+                {/* Checkbox */}
+                <button
+                  onClick={() => setTasks(prev => prev.map(t => t.id === task.id ? { ...t, done: !t.done } : t))}
+                  style={{
+                    width: 22,
+                    height: 22,
+                    borderRadius: 6,
+                    border: task.done ? 'none' : `2px solid ${C.border}`,
+                    backgroundColor: task.done ? C.green : 'transparent',
+                    cursor: 'pointer',
+                    flexShrink: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: 12,
+                    color: '#fff',
+                    fontWeight: 700,
+                  }}
+                  aria-label={task.done ? 'Mark incomplete' : 'Mark complete'}
+                >
+                  {task.done ? '✓' : ''}
+                </button>
 
-      </div>
+                {/* Label */}
+                <span style={{
+                  flex: 1,
+                  fontSize: 14,
+                  color: task.done ? C.muted : C.text,
+                  textDecoration: task.done ? 'line-through' : 'none',
+                  lineHeight: 1.4,
+                }}>
+                  {task.label}
+                </span>
+
+                {/* Send to Chat */}
+                {!task.done && (
+                  <button
+                    onClick={() => sendTaskToChat(task.label)}
+                    style={{
+                      padding: '5px 10px',
+                      borderRadius: 6,
+                      border: `1px solid ${C.border}`,
+                      backgroundColor: 'transparent',
+                      color: C.accent,
+                      fontSize: 12,
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      fontFamily: 'inherit',
+                      whiteSpace: 'nowrap',
+                      flexShrink: 0,
+                    }}
+                  >
+                    Chat →
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Upgrade prompt */}
+          <div style={{
+            backgroundColor: C.accentBg, border: `1px solid rgba(180,83,9,0.15)`,
+            borderRadius: 12, padding: '20px', marginTop: 32, textAlign: 'center',
+          }}>
+            <p style={{ fontSize: 14, fontWeight: 600, color: C.text, margin: '0 0 4px' }}>
+              This is the free tier. You get 100 AI actions per month.
+            </p>
+            <p style={{ fontSize: 13, color: C.textSec, margin: '0 0 12px' }}>
+              Upgrade to $20/mo for unlimited actions, QuickBooks sync, and daily briefings with your real numbers.
+            </p>
+            <button style={{
+              padding: '10px 24px', borderRadius: 8, border: 'none',
+              backgroundColor: C.accent, color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit',
+            }}>
+              Start 7-Day Free Trial — $20/mo
+            </button>
+          </div>
+
+          <div style={{ padding: '32px 0', textAlign: 'center' }}>
+            <p style={{ fontSize: 12, color: C.muted, margin: 0 }}>Deep South Directory — Measurably Better</p>
+          </div>
+        </div>
+      )}
+
+      {/* Bounce animation for typing dots */}
+      <style>{`
+        @keyframes bounce {
+          0%, 60%, 100% { transform: translateY(0); }
+          30% { transform: translateY(-5px); }
+        }
+      `}</style>
     </div>
   );
 }
