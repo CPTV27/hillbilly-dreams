@@ -5,6 +5,116 @@
 
 ---
 
+## [2026-03-26 06:30] — CC (Story/UX Agent) — FULL PRODUCT VISION LOCKED + BUILD DIRECTIVE
+
+### STATUS: Build agent is in PLAN MODE. This entry is the complete handoff.
+
+### WHAT HAPPENED OVERNIGHT (March 25-26)
+
+Chase did a marathon session locking the entire product vision — narrative, UX, design, pricing, research. Everything below is the output. The build agent should read ALL referenced docs before planning.
+
+### THE APP IS THREE MODES (swipe between them)
+
+1. **TEXT** — Conversation with your business. Voice input. Morning briefing. Business coaching. "I paid the plumber $150" → AI logs it. "Should I raise prices?" → "Got it. Brief tomorrow morning."
+2. **TASKS** — Living to-do list. AI fills it, AI works items, human handles approvals. Three states: AI handled (green), needs you (amber), in progress (blue). Items appear from conversations and data triggers. You never create tasks manually.
+3. **GALLERY** — Photos, content, media. Snap a photo → AI posts to 6 channels → appears in gallery with output overlay. Content calendar. Visual swipe-through.
+
+All three are lenses on the same workspace. Same data, different views. Horizontal swipe on mobile. No nav bar, no hamburger menu, no settings page.
+
+### THE STREET PITCH (locked — March 26)
+- "It does all the cool stuff you don't know how to do."
+- "Take a photo. Watch what happens."
+- "$20 a month."
+
+**DEPRECATED — do NOT use:** "Same price as ChatGPT. Except this one reads your books."
+
+### THE $20 TIER IS NOW CALLED "THE WORKS"
+- Photo → auto-post to social, website, newsletter
+- Connect QuickBooks — it watches your numbers
+- Daily briefing via text (98% open rate vs 20% for email)
+- Review monitoring + draft responses
+- AI marketing that runs while you work
+- Business coaching on demand ("Is the coffee cart idea stupid?" → brief tomorrow)
+
+### THE PHOTO MAGIC MOMENT (the demo that sells itself)
+User takes a photo of their brisket plate. AI processes it. Card slides up:
+- Identified: "Brisket Plate"
+- Ready to post to Instagram + Facebook
+- Ready to add to website gallery
+- Ready to save for Friday's newsletter
+- Ready to tag for tourism board content
+- [Approve All] — one tap, six outputs
+
+### DESIGN BENCHMARKS
+- **Linear** = platform pages (Measurably Better)
+- **Airbnb** = directory + hospitality pages
+- **Spotify** = entertainment division
+- **Duolingo** = daily briefing habit (streak psychology)
+- **Uber** = decision queue (three taps max)
+- **Snapchat** = camera-first open
+
+### RESEARCH COMPLETED (filed in docs/research/)
+1. `2026-03-26_future_of_apps_deep_research.md` — Confirms no-dashboard thesis. Generative UI. 80% dashboard abandonment. SMS 98% open rate.
+2. `2026-03-26_feature_demand_deep_research.md` — Top 25 features ranked. Photo-to-social is #1 demand. Compliance calendar is sleeper hit. 190 sources.
+3. `2026-03-26_design_benchmarks.md` — Best-in-class app designs mapped to our brands.
+
+### DOCS THE BUILD AGENT MUST READ (in order)
+1. `/docs/NARRATIVE.md` — The story. What we say. The street pitch. The four levels.
+2. `/docs/APP_UX_SPEC.md` — **THE MOST IMPORTANT DOC.** Three-mode interface spec. AI behavior rules. Inline suggestions. Morning briefing format. Grayed-out preview.
+3. `/docs/DESIGN_VISION.md` — Eight signature design moves. Camera-first. Decision cards. Ambient mode. The streak.
+4. `/docs/DESIGN_SYSTEM.md` — Colors, fonts, tokens by brand level.
+5. `/docs/UX_RETHINK.md` — Philosophy. Elastic. Generated. Briefing/decisions/conversation.
+6. `/docs/PAGE_COPY_AND_UX.md` — Copy for every marketing page.
+7. `/docs/DEEP_SOUTH_DIRECTORY_COPY.md` — Directory site copy and flow.
+8. `/docs/research/2026-03-26_feature_demand_deep_research.md` — Top 25 features with tier placement.
+
+### WHAT NEEDS TO BE BUILT (priority order)
+
+**Phase 1: Marketing site (what's deployable now)**
+- `/measurably-better` landing page — new hero ("It does all the cool stuff..."), photo demo section, daily briefing preview, business coach scenario, pricing with "The Works" at $20
+- `/directory` pages — the build agent already created /directory, /directory/dashboard, /directory/join
+- Apply DESIGN_SYSTEM.md tokens to all pages (AG started this — verify state)
+- The dedicated $20 conversion page (`/start` or similar)
+
+**Phase 2: The three-mode prototype**
+- Build the TEXT mode (conversation UI, morning briefing as first message, voice input button)
+- Build the TASKS mode (decision cards, three states, inline suggestions)
+- Build the GALLERY mode (photo grid, output overlays, camera button)
+- Horizontal swipe navigation between modes
+- The grayed-out preview for free tier
+
+**Phase 3: Integrations**
+- QuickBooks OAuth connect flow
+- Google Business Profile sync
+- Photo → social posting pipeline (Instagram, Facebook, Google Business)
+- SMS daily briefing delivery
+- Review monitoring + response drafting
+
+**Phase 4: Outsider Economics Docusaurus**
+- The books site is built at `apps/books/` — 58 pages, builds clean
+- Needs deployment to Vercel or Cloudflare Pages
+- All book content should be ingested into Vertex AI vector store
+
+### KIOSK MODE REMINDER
+Kiosk mode = fullscreen device lockdown. NOT a special UI. NOT a product. Just Chrome's --kiosk flag pointed at the regular three-mode interface. Same app, fullscreen, locked device.
+
+### BRAND HIERARCHY (for any new page or copy)
+- Level 1: Hillbilly Dreams Inc (hillbillydreamsinc.com) — holding company, investors only
+- Level 2: Measurably Better (measurablybetter.life) — product brand, what we sell
+- Level 3: Big Muddy (bigmuddytouring.com) — media/hospitality, consumer-facing proof
+- Level 4: Outsider Economics (outsidereconomics.com) — thought leadership, the book
+
+### AG DESIGN EXPLORATION
+Full open brief at `/docs/AG_BRAND_EXPLORATION.md` — visual identity for all 12 brands. AG should go wild. Solarpunk meets Mississippi. Each brand looks completely different from the others.
+
+### QC GATE
+Before deploying anything:
+- [ ] Does the copy match NARRATIVE.md? (especially: no "reads your books", no "kiosk" as product, no Owen references)
+- [ ] Does the design match DESIGN_SYSTEM.md tokens for the correct brand level?
+- [ ] Does the UX match APP_UX_SPEC.md? (no dashboards, no nav bars, no settings pages)
+
+---
+
 ## [2026-03-25 22:45] — CC (Worktree Agent) — BRAND NARRATIVE LOCKED + COPY REWRITE IN PROGRESS
 
 ### What Happened
