@@ -40,7 +40,7 @@ const stops: StopProps[] = [
     step: '04',
     title: 'The Company',
     href: '/hillbilly-dreams',
-    description: 'Hillbilly Dreams. Five divisions, org chart, proof stack.',
+    description: 'Hillbilly Dreams. Five divisions, the case studies, the cross-promotion engine.',
     isFinal: false,
   },
   {

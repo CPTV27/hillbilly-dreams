@@ -13,10 +13,10 @@ const C = {
 };
 
 const brands = [
-  { name: 'Big Muddy Records', desc: 'Artist services. 100% masters retained. Always. We make money when you make money.', status: 'Live' },
-  { name: 'Big Muddy Radio', desc: 'Curated playlists, live sessions, streaming. The sound of the Delta.', status: 'Live' },
-  { name: 'Big Muddy Touring', desc: 'The Snowbird Circuit. 18 cities, five states. Memphis to New Orleans and beyond.', status: 'Live' },
-  { name: 'Rise Up Gospel & Blues Band', desc: 'Franchisable touring brand. Multiple units, multiple regions. Every show is a talent search.', status: 'Live' },
+  { name: 'Big Muddy Records', desc: '100% masters retained. Always.', status: 'Live' },
+  { name: 'Big Muddy Radio', desc: 'The sound of the Delta. One show in production.', status: 'Live' },
+  { name: 'Big Muddy Touring', desc: 'Memphis to New Orleans and 14 more cities.', status: 'Live' },
+  { name: 'Rise Up', desc: 'The talent has always been here.', status: 'Live' },
 ];
 
 export default function EntertainmentPage() {
@@ -33,13 +33,13 @@ export default function EntertainmentPage() {
             Records. Radio. Touring. Rise Up.
           </h1>
           <p style={{ fontSize: 17, color: C.textSecondary, lineHeight: 1.65, margin: 0, maxWidth: 560 }}>
-            Big Muddy Entertainment is the creative engine of Hillbilly Dreams. JP has full authority over this division — gear, talent, scheduling, sound, production. If he wants to produce a TV show, Big Muddy sponsors it.
+            Big Muddy Entertainment is the creative division of Hillbilly Dreams. JP has full authority — gear, talent, scheduling, sound, production.
           </p>
         </div>
 
         <div style={{ backgroundColor: C.dark, borderRadius: 12, padding: '32px 28px', margin: '24px 0 40px', color: '#cbd5e1' }}>
           <p style={{ fontSize: 16, lineHeight: 1.65, margin: 0 }}>
-            Amy Pierson is a lead vocalist and on-network personality. Arri Aslin is the Artist-in-Residence and headliner. The Rise Up model is franchisable — multiple touring units, like Yachtley Crew, pulling talent from every tour stop. US first. Europe next.
+            Rise Up is franchisable — multiple touring units pulling talent from every stop on the corridor. The talent has always been here. JP&apos;s job is to make sure it gets heard.
           </p>
         </div>
 
@@ -56,7 +56,7 @@ export default function EntertainmentPage() {
         </div>
 
         <div style={{ marginTop: 48, paddingTop: 24, borderTop: `1px solid ${C.border}` }}>
-          <p style={{ fontSize: 13, color: C.textMuted, margin: 0 }}>Big Muddy Entertainment — Hillbilly Dreams, Inc.</p>
+          <p style={{ fontSize: 13, color: C.textMuted, margin: 0 }}>Big Muddy Entertainment — a division of Hillbilly Dreams, Inc.</p>
         </div>
       </div>
     </div>

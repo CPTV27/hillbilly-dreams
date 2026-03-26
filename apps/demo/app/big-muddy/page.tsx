@@ -1,30 +1,23 @@
 const divisions = [
   {
-    title: 'Measurably Better',
-    description: 'Regional technology provider. One engine runs the Deep South Directory, Micromedia in a Bottle, CivicX, MB Learn, and KioskMode.',
-    tag: 'Technology',
-  },
-  {
-    title: 'Deep South Directory',
-    description: 'AI-powered regional business network. Every Main Street business gets a node. CVBs and chambers of commerce are the buyers.',
-    tag: 'Directory',
-  },
-  {
     title: 'Big Muddy Entertainment',
-    description: 'Records, radio, touring, and the Rise Up talent development program.',
+    description: 'Records, radio, touring, and Rise Up. JP has full creative authority.',
     tag: 'Entertainment',
     lead: 'JP, Division Head',
-  },
-  {
-    title: 'Big Muddy Publishing',
-    description: 'Magazine, books, and editorial content rooted in the Deep South.',
-    tag: 'Publishing',
+    href: '/big-muddy/entertainment',
   },
   {
     title: 'Big Muddy Hospitality',
-    description: 'The Inn, weddings, and events in Natchez, Mississippi.',
+    description: 'The Big Muddy Inn. The anchor. Where the story started.',
     tag: 'Hospitality',
     lead: 'Tracy, Division Head',
+    href: '/big-muddy/hospitality',
+  },
+  {
+    title: 'Big Muddy Publishing',
+    description: 'Magazine, books, and editorial content from the corridor.',
+    tag: 'Publishing',
+    href: '/big-muddy/publishing',
   },
   {
     title: 'HDX Platform',
@@ -62,7 +55,7 @@ export default function NexusPage() {
             marginBottom: 16,
           }}
         >
-          Ecosystem
+          Big Muddy
         </p>
         <h1
           style={{
@@ -75,7 +68,7 @@ export default function NexusPage() {
             marginBottom: 20,
           }}
         >
-          The Nexus
+          Big Muddy
         </h1>
         <p
           style={{
@@ -85,7 +78,7 @@ export default function NexusPage() {
             maxWidth: 480,
           }}
         >
-          How it all connects.
+          The Mississippi&apos;s music corridor. Stay. Drive. Read. Listen.
         </p>
       </div>
 
@@ -112,9 +105,13 @@ export default function NexusPage() {
         }}
       >
         {divisions.map((division) => (
-          <div
+          <a
             key={division.title}
+            href={division.href || undefined}
             style={{
+              display: 'block',
+              textDecoration: 'none',
+              color: 'inherit',
               backgroundColor: '#ffffff',
               border: division.isEngine ? '1px solid var(--bm-burgundy)' : '1px solid #e8eaed',
               borderRadius: 12,
@@ -203,7 +200,7 @@ export default function NexusPage() {
                 {division.isEngine ? 'Core engine' : 'Runs on HDX'}
               </span>
             </div>
-          </div>
+          </a>
         ))}
       </div>
 
@@ -224,7 +221,7 @@ export default function NexusPage() {
             letterSpacing: '0.02em',
           }}
         >
-          One engine. Five divisions. Built in Natchez, Mississippi.
+          Big Muddy — a division of Hillbilly Dreams, Inc.
         </p>
       </div>
     </div>

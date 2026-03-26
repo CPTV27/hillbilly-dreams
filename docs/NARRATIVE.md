@@ -148,13 +148,19 @@ The product does ALL the stuff the owner doesn't know how to do:
 | Brand | What it does | One-liner | Lead |
 |-------|-------------|-----------|------|
 | Touring | The corridor experience | "Memphis to New Orleans and 14 more cities" | |
-| Magazine | Editorial content | "Stories from the corridor" | Chase (interim) |
+| Magazine | Editorial content | "Stories from the corridor" | Tracy |
 | Radio | Curated playlists & live | "The sound of the Delta" | |
 | Records | Artist services | "100% masters retained. Always." | JP |
 | The Inn | Natchez property | "The anchor. Where the story started." | Tracy |
 | Rise Up | Talent development | "The talent has always been here" | Amy (lead vocalist) |
 
-**Big Muddy Hospitality** (Tracy — Division Head)
+**Big Muddy Publishing** (Tracy Alderson-Allen — Division Head)
+- Big Muddy Magazine (city guides, interviews, photo essays from the corridor)
+- Books (Outsider Economics)
+- Contributing writers program (three tiers: community/paid/rev-share)
+- "Content compounds. Nothing is disposable."
+
+**Big Muddy Hospitality** (Tracy Alderson-Allen — Division Head)
 - The Big Muddy Inn (6 rooms, Natchez)
 - Weddings & Events
 - NOT expanding into more rooms. The Inn is the anchor, the stage, the platform.
@@ -167,10 +173,15 @@ The product does ALL the stuff the owner doesn't know how to do:
 - "If he wants to produce a TV show, Big Muddy sponsors it."
 - Needs its own interface and tools
 
-**Amy Pierson**
+**Chase Pierson** — Executive Producer
+- Oversees the entire operation
+- Technology, strategy, product, partnerships
+- Not running any single division — running all of them
+
+**Amy Allen**
 - ON-NETWORK TALENT. Not operations staff.
 - Lead vocalist for Rise Up
-- "Amy belongs on stage, not answering emails. The technology replaces the headcount so the people can do what they're actually good at."
+- The platform handles the admin work so the people can do what they're actually good at.
 
 ### Level 4: OUTSIDER ECONOMICS (Thought Leadership)
 - The philosophical foundation. The book. The why.

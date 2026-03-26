@@ -1,4 +1,4 @@
-// Feed Farm — Independent Media Protocol
+// Big Muddy Publishing
 // Server component. All inline CSS. No external images.
 
 const C = {
@@ -78,7 +78,7 @@ const PRINCIPLES = [
   },
 ];
 
-export default function FeedFarmPage() {
+export default function PublishingPage() {
   return (
     <div
       style={{
@@ -109,7 +109,7 @@ export default function FeedFarmPage() {
             textTransform: 'uppercase' as const,
           }}
         >
-          Measurably Better
+          Big Muddy Publishing
         </span>
       </div>
 
@@ -144,7 +144,7 @@ export default function FeedFarmPage() {
               margin: '0 0 20px',
             }}
           >
-            Feed Farm
+            Big Muddy Publishing
           </h1>
           <p
             style={{
@@ -155,9 +155,8 @@ export default function FeedFarmPage() {
               maxWidth: 560,
             }}
           >
-            Independent Media Protocol. A decentralized creator ad network and
-            content guild connecting regional writers, podcasters, and
-            publishers across the Deep South corridor.
+            Stories from the corridor. Magazine, books, and a contributing
+            writers program. Content compounds. Nothing is disposable.
           </p>
           <div
             style={{
@@ -177,8 +176,7 @@ export default function FeedFarmPage() {
                 fontStyle: 'italic',
               }}
             >
-              "Every dollar does triple duty: marketing output, local
-              employment, permanent asset."
+              &ldquo;Outsider Economics is the book about why this matters.&rdquo;
             </p>
           </div>
         </div>
@@ -516,9 +514,9 @@ export default function FeedFarmPage() {
             }}
           >
             Big Muddy Magazine writes the city guides that drive Inn bookings.
-            Feed Farm pays local writers to do it. Those writers become
-            distribution nodes. The CVB funding that pays them creates
-            permanent content assets — not disposable ads that expire.
+            Local writers get paid to do it. Those writers become distribution
+            nodes. CVB funding creates permanent content assets — not
+            disposable ads that expire.
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' as const }}>
             <a
@@ -554,6 +552,10 @@ export default function FeedFarmPage() {
             </a>
           </div>
         </div>
+      </div>
+
+      <div style={{ maxWidth: 960, margin: '48px auto 0', padding: '24px 24px 0', borderTop: `1px solid ${C.border}` }}>
+        <p style={{ fontSize: 13, color: C.textMuted, margin: 0 }}>Big Muddy Publishing — a division of Hillbilly Dreams, Inc.</p>
       </div>
     </div>
   );

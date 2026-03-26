@@ -140,7 +140,7 @@ export default function DirectoryJoin() {
               lineHeight: 1.6,
             }}
           >
-            Takes 30 seconds. No credit card.
+            Three minutes. No credit card. Your dashboard is waiting.
           </p>
 
           {/* Business name */}
@@ -301,7 +301,7 @@ export default function DirectoryJoin() {
               margin: '16px 0 0',
             }}
           >
-            No credit card. No commitment. Takes 30 seconds.
+            No credit card. No commitment. Three minutes.
           </p>
         </div>
       </div>

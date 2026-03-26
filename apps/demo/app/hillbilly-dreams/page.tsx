@@ -21,8 +21,8 @@ const DIVISIONS = [
     label: 'Product Brand',
     name: 'Measurably Better',
     lead: 'Chase Pierson',
-    desc: 'Regional technology and media provider for the Deep South. Four markets: SMB, Civic, Education, Tourism. The customer-facing product.',
-    details: ['Deep South Directory — regional business network', 'Micromedia in a Bottle — licensable media company package', 'CivicX — municipal front door', 'MB Learn — AI literacy curriculum', 'KioskMode — lobby kiosks, tap-to-pay'],
+    desc: 'Regional technology provider. It does all the cool stuff businesses don\'t know how to do.',
+    details: ['Deep South Directory — regional business network', 'Micromedia in a Bottle — licensable media company package', 'CivicX — municipal front door', 'MB Learn — AI literacy curriculum'],
     href: '/measurably-better',
   },
   {
@@ -30,16 +30,16 @@ const DIVISIONS = [
     label: 'Big Muddy Entertainment',
     name: 'Entertainment',
     lead: 'JP (Division Head)',
-    desc: 'Records, Radio, Touring, and Rise Up. JP has full creative authority. Amy Pierson is lead vocalist and on-network talent personality.',
-    details: ['Big Muddy Records — artist services, 100% masters retained', 'Big Muddy Radio — playlists, streaming, live sessions', 'Snowbird Circuit — 18-city touring corridor', 'Rise Up — franchisable gospel & blues touring brand', 'Amy Pierson — lead vocalist, on-network personality', 'Arri Aslin — Artist-in-Residence, headliner'],
+    desc: 'Records, radio, touring, and Rise Up. JP has full creative authority.',
+    details: ['Big Muddy Records — artist services, 100% masters retained', 'Big Muddy Radio — playlists, streaming, live sessions', 'Snowbird Circuit — 18-city touring corridor', 'Rise Up — franchisable gospel & blues touring brand'],
     href: '/nexus',
   },
   {
     slug: 'publishing',
     label: 'Big Muddy Publishing',
     name: 'Publishing',
-    lead: 'Chase Pierson (interim)',
-    desc: 'Magazine, books, and a contributing writers program. Every writer is a distribution node. Content compounds — nothing is disposable.',
+    lead: 'Tracy Alderson-Allen (Division Head)',
+    desc: 'Magazine, books, and editorial content from the corridor.',
     details: ['Big Muddy Magazine — city guides, interviews, photo essays', 'Outsider Economics — the book', 'Three-tier writers program: community, paid, rev-share', 'CVB tourism content play', 'Feed Farm — independent media protocol'],
     href: '/ffx',
   },
@@ -47,9 +47,9 @@ const DIVISIONS = [
     slug: 'hospitality',
     label: 'Big Muddy Hospitality',
     name: 'Hospitality',
-    lead: 'Tracy Pierson (Division Head)',
-    desc: "The Big Muddy Inn in Natchez. Six rooms, weddings, and events. The Inn is the anchor, the stage, the platform — not a growth vehicle.",
-    details: ['The Big Muddy Inn — 6 rooms, Natchez', 'Weddings & Events', 'Hotel operations', '"The rooms fund the ecosystem."'],
+    lead: 'Tracy Alderson-Allen (Division Head)',
+    desc: 'The Big Muddy Inn. The anchor. Where the story started.',
+    details: ['The Big Muddy Inn — 6 rooms, Natchez', 'Weddings & Events', 'Hotel operations', 'Tracy runs the profitable base.'],
     href: '/nexus',
   },
   {
@@ -57,13 +57,13 @@ const DIVISIONS = [
     label: 'HDX Platform',
     name: 'HDX Platform',
     lead: 'Chase Pierson',
-    desc: 'The base technology. HDX is the operating system every product runs on. Deep South Directory, KioskMode, CivicX, MB Learn — all HDX deployments.',
+    desc: 'The base technology. HDX is the operating system every product runs on. Deep South Directory, CivicX, MB Learn — all HDX deployments.',
     details: ['Sovereign Cloud SQL per tenant', 'Gemini Pro AI layer', 'QuickBooks, Stripe, Google Workspace integrations', 'White-label licensing for regional operators'],
     href: '/platform',
   },
 ];
 
-const PROOF_STACK = [
+const CASE_STUDIES = [
   { what: 'The Big Muddy Inn', status: 'Live', note: 'Bookable' },
   { what: 'Big Muddy Magazine', status: 'Live', note: 'Readable' },
   { what: 'Big Muddy Radio', status: 'Live', note: 'Listenable' },
@@ -83,7 +83,7 @@ const CROSS_PROMO = [
   { n: '04', event: 'Artist goes on Rise Up' },
   { n: '05', event: 'Catalog lives on Records' },
   { n: '06', event: 'Touring route adds the venue' },
-  { n: '07', event: 'KioskMode sells the ticket at the front desk' },
+  { n: '07', event: 'Kiosk mode sells the ticket at the front desk' },
 ];
 
 export default function HillbillyDreamsPage() {
@@ -427,7 +427,7 @@ export default function HillbillyDreamsPage() {
         </div>
       </div>
 
-      {/* Natchez Proof Stack */}
+      {/* Natchez Case Studies */}
       <div style={{ maxWidth: 960, margin: '64px auto 0', padding: '0 24px' }}>
         <p
           style={{
@@ -439,7 +439,7 @@ export default function HillbillyDreamsPage() {
             marginBottom: 8,
           }}
         >
-          The Natchez proof stack
+          The Natchez Case Studies
         </p>
         <h2
           style={{
@@ -451,7 +451,7 @@ export default function HillbillyDreamsPage() {
             margin: '0 0 8px',
           }}
         >
-          We don&apos;t show slides. We show proof.
+          We don&apos;t show slides. We show a hotel you can book, a magazine you can read, and a radio station you can hear.
         </h2>
         <p
           style={{
@@ -462,8 +462,7 @@ export default function HillbillyDreamsPage() {
             maxWidth: 560,
           }}
         >
-          When we walk into a city council meeting, we show a hotel you can
-          book, a magazine you can read, and a radio station you can hear.
+          When we walk into a city council meeting, these are already open in a browser tab.
         </p>
 
         <div
@@ -474,7 +473,7 @@ export default function HillbillyDreamsPage() {
             overflow: 'hidden',
           }}
         >
-          {PROOF_STACK.map((row, i) => (
+          {CASE_STUDIES.map((row, i) => (
             <div
               key={row.what}
               style={{
@@ -483,7 +482,7 @@ export default function HillbillyDreamsPage() {
                 justifyContent: 'space-between',
                 padding: '14px 20px',
                 borderBottom:
-                  i < PROOF_STACK.length - 1 ? `1px solid ${C.border}` : 'none',
+                  i < CASE_STUDIES.length - 1 ? `1px solid ${C.border}` : 'none',
                 gap: 16,
               }}
             >

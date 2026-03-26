@@ -400,7 +400,7 @@ The talent has always been here. Rise Up is a gospel and blues talent
 development program — regional talent searches, touring performances,
 and a path from the church choir to the stage.
 
-Amy Pierson — lead vocalist.
+Amy Allen — lead vocalist.
 Arri Aslin — Artist-in-Residence, headliner.
 
 [Footer]
@@ -426,7 +426,7 @@ Six rooms in Natchez, Mississippi, on the bluffs above the river.
 The Inn is where the music happens, the stories start, and the
 ecosystem comes to life.
 
-Tracy Pierson runs the profitable base. The rooms fund the ecosystem.
+Tracy Alderson-Allen runs the profitable base. The rooms fund the ecosystem.
 
 Weddings & Events:
 The Inn hosts intimate weddings and private events on one of the most

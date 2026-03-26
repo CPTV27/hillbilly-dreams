@@ -23,10 +23,10 @@ export default function HospitalityPage() {
           <p style={{ fontSize: 13, fontWeight: 600, color: C.accent, letterSpacing: '0.08em', textTransform: 'uppercase' as const, margin: '0 0 12px' }}>Tracy — Division Head</p>
           <h1 style={{
               fontFamily: 'var(--font-abril), serif', fontSize: 'clamp(2rem, 5vw, 2.75rem)', fontWeight: 700, color: C.text, letterSpacing: '-0.02em', lineHeight: 1.15, margin: '0 0 20px' }}>
-            The Anchor.
+            The Big Muddy Inn
           </h1>
           <p style={{ fontSize: 17, color: C.textSecondary, lineHeight: 1.65, margin: 0, maxWidth: 560 }}>
-            The Big Muddy Inn is not a hotel chain. It&apos;s the stage, the front door, and the profitable base that funds everything else. Six rooms, a Blues Room, and the Mississippi River two blocks south.
+            The anchor. Where the story started. Six rooms in Natchez, Mississippi, on the bluffs above the river.
           </p>
         </div>
 
@@ -34,13 +34,13 @@ export default function HospitalityPage() {
           <div style={{ backgroundColor: C.white, border: `1px solid ${C.border}`, borderRadius: 12, padding: '24px 20px' }}>
             <span style={{ fontSize: 17, fontWeight: 700, color: C.text }}>The Big Muddy Inn</span>
             <p style={{ fontSize: 14, color: C.textSecondary, margin: '8px 0 0', lineHeight: 1.5 }}>
-              Six themed suites in Natchez, Mississippi. Every room named for a blues legend. The property runs on the HDX platform — bookings, operations, guest experience, all on one engine.
+              Six rooms in Natchez, Mississippi. Every room named for a blues legend. You&apos;re not staying at a hotel. You&apos;re staying inside a living media company.
             </p>
           </div>
           <div style={{ backgroundColor: C.white, border: `1px solid ${C.border}`, borderRadius: 12, padding: '24px 20px' }}>
             <span style={{ fontSize: 17, fontWeight: 700, color: C.text }}>Weddings &amp; Events</span>
             <p style={{ fontSize: 14, color: C.textSecondary, margin: '8px 0 0', lineHeight: 1.5 }}>
-              A venue on the Mississippi River in a town full of antebellum architecture. Every wedding is a content event for the magazine, a playlist opportunity for radio, and a potential booking for touring artists.
+              A venue on the Mississippi River in a town full of antebellum architecture. Every event is a content moment for the magazine, a session for radio, and a night the touring artists remember.
             </p>
           </div>
           <div style={{ backgroundColor: C.white, border: `1px solid ${C.border}`, borderRadius: 12, padding: '24px 20px' }}>
@@ -53,12 +53,12 @@ export default function HospitalityPage() {
 
         <div style={{ backgroundColor: 'rgba(180,83,9,0.06)', border: '1px solid rgba(180,83,9,0.2)', borderRadius: 12, padding: '24px 20px', margin: '32px 0' }}>
           <p style={{ fontSize: 15, color: C.text, margin: 0, lineHeight: 1.6 }}>
-            <strong>The model:</strong> The rooms fund the ecosystem. Tracy runs the profitable base. The technology handles the operations so the people can focus on the experience. No expansion into more rooms. The Inn is the anchor, not the goal.
+            <strong>The model:</strong> Tracy runs the profitable base. The rooms fund everything else. No expansion into more rooms — the Inn is the anchor, not a growth vehicle.
           </p>
         </div>
 
         <div style={{ marginTop: 48, paddingTop: 24, borderTop: `1px solid ${C.border}` }}>
-          <p style={{ fontSize: 13, color: C.textMuted, margin: 0 }}>Big Muddy Hospitality — Hillbilly Dreams, Inc.</p>
+          <p style={{ fontSize: 13, color: C.textMuted, margin: 0 }}>Big Muddy Hospitality — a division of Hillbilly Dreams, Inc.</p>
         </div>
       </div>
     </div>

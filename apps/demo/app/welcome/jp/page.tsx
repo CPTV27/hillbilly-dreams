@@ -44,7 +44,7 @@ const stops: StopProps[] = [
     title: 'The Platform',
     href: '/measurably-better/platform',
     description:
-      'The HDX engine that runs underneath. This is the technology that makes it possible to run Records, Radio, Touring, and Rise Up on one system with a three-person team.',
+      'The engine that makes it possible to run Records, Radio, Touring, and Rise Up on one system.',
     isFinal: false,
   },
   {

@@ -1,5 +1,5 @@
 // Welcome, Amy — on-network talent and Rise Up performer
-// Server component. Imports TourCard from ../owen/TourCard.
+// Server component. Imports TourCard from ../../components/TourCard.
 // Warmer tone — she's talent, not an executive reading a memo.
 
 import TourCard, { type StopProps } from '../../components/TourCard';
@@ -32,7 +32,7 @@ const stops: StopProps[] = [
     title: 'The Mission',
     href: '/measurably-better/thesis',
     description:
-      'The mission. Why this matters. "Amy belongs on stage, not answering emails." The whole platform is built so the technology does the admin work and the people can do what they\'re actually good at.',
+      'The mission. Why this matters. The platform handles the admin work so the people can do what they\'re actually good at.',
     isFinal: false,
   },
   {
@@ -48,7 +48,7 @@ const stops: StopProps[] = [
     title: 'Measurably Better',
     href: '/measurably-better',
     description:
-      'The technology. How it supports what you do on stage. This is the platform side — the tools that handle booking, ticketing, marketing, and fan reach so you don\'t have to.',
+      'The technology behind everything. It handles marketing, booking, ticketing, and business operations — so you don\'t have to.',
     isFinal: false,
   },
   {

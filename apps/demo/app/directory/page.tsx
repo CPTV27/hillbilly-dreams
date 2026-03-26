@@ -14,19 +14,19 @@ const C = {
 
 const VALUE_PROPS = [
   {
-    icon: '🔍',
-    title: 'See your business the way Google sees it',
-    body: "Get a free competitive snapshot — your reviews, your rank, and who's beating you in your own category.",
+    icon: '📷',
+    title: 'Take a photo. It handles the rest.',
+    body: 'Snap a photo of anything — your lunch special, your storefront, an event. It posts to Instagram, Facebook, your website, your newsletter, and your Google listing. Automatically.',
   },
   {
     icon: '📊',
-    title: 'Know your numbers without opening QuickBooks',
-    body: 'Connect your books and the AI reads them for you. Your real P&L in plain English, every morning.',
+    title: 'Your number. Every morning. One text.',
+    body: "Connect QuickBooks and it watches your numbers for you. Every morning, one text: your revenue, one insight, and the one thing that needs a human decision today.",
   },
   {
     icon: '🗺️',
     title: 'Show up when travelers search your town',
-    body: 'Your listing goes live on DeepSouthDirectory.com — the corridor from Memphis to New Orleans and 14 cities in between.',
+    body: 'Your listing goes live on DeepSouthDirectory.com — the corridor from Memphis to New Orleans and 14 cities in between. Chambers and CVBs can bundle directory access with membership so every member gets a free dashboard.',
   },
 ];
 
@@ -113,19 +113,33 @@ export default function DirectoryLanding() {
             margin: '0 0 24px',
           }}
         >
-          Every business on Main Street.
+          Every business on Main Street.<br />
+          One place to find them.
         </h1>
         <p
           style={{
             fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
             color: C.textSecondary,
             lineHeight: 1.7,
-            margin: '0 auto 40px',
+            margin: '0 auto 16px',
             maxWidth: 580,
           }}
         >
-          Join the Deep South Directory. Free listing. Free dashboard. See what
-          your business looks like when AI can actually read your books.
+          Three minutes. That&apos;s it. Claim your free listing and get a
+          dashboard that does all the cool stuff you don&apos;t know how to do.
+        </p>
+        <p
+          style={{
+            fontSize: 'clamp(0.9rem, 2vw, 1.05rem)',
+            color: C.textSecondary,
+            lineHeight: 1.7,
+            margin: '0 auto 40px',
+            maxWidth: 520,
+            opacity: 0.85,
+          }}
+        >
+          Take a photo. It handles your marketing, your reviews, your social
+          media. $20/mo.
         </p>
 
         <a href="/directory/join" className="dsd-cta-btn">

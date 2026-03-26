@@ -34,15 +34,15 @@ const tiers: Tier[] = [
     colorBg: C.accentBg,
     title: 'Small & Medium Business',
     buyer: 'Owner-operators, 1\u201350 employees',
-    pitch: 'Replace your back-office headcount with an AI operating system.',
+    pitch: 'Take a photo. It handles your marketing, your reviews, your social media. $20/mo.',
     modules: [
-      'CEO Console with live financial telemetry',
+      'Free listing + business dashboard',
       'QuickBooks Online sync \u2014 real-time P&L',
-      'AI scoping, quoting, and lead qualification',
-      'Automated case studies and marketing pipeline',
+      'Daily briefing \u2014 one text, your number, one insight',
+      'Automated social posts, review responses, email',
       'Spatial / LiDAR compute for AEC operators',
     ],
-    pricing: '$5,000/mo core + growth module',
+    pricing: 'Free / $20/mo / $99/mo — self-serve tiers',
     funding: 'Operating budget',
   },
   {
@@ -98,7 +98,7 @@ const tiers: Tier[] = [
   },
 ];
 
-const proofPoints = [
+const caseStudies = [
   { label: 'SMB', example: 'Big Muddy Inn + S2PX contractors', status: 'Live' },
   { label: 'Civic', example: 'City of Natchez tourism + permitting', status: 'Pilot' },
   { label: 'Education', example: 'Natchez-Adams School District', status: 'Proposed' },
@@ -318,17 +318,17 @@ export default function RegionalPage() {
           </div>
         </div>
 
-        {/* The Natchez Proof Stack */}
+        {/* The Natchez Case Studies */}
         <div style={{ margin: '48px 0 32px' }}>
           <h2 style={{
               fontFamily: 'var(--font-abril), serif', fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 8px' }}>
-            The Natchez Proof Stack
+            The Natchez Case Studies
           </h2>
           <p style={{ fontSize: 15, color: C.textSecondary, margin: '0 0 20px', lineHeight: 1.5 }}>
             One town. All four tiers. Running on the same engine.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-            {proofPoints.map((p) => (
+            {caseStudies.map((p) => (
               <div
                 key={p.label}
                 style={{

@@ -65,8 +65,8 @@ function Report() {
         <p style={S.sub}>PROVIDER FOR THE DEEP SOUTH</p>
         <div style={{ height: 16 }} />
         <div style={{ borderTop: `1px solid #ccc`, margin: '12px 0 8px' }} />
-        <p style={S.center}>Prepared for: Tracy Pierson, Amy Pierson, JP</p>
-        <p style={S.center}>Prepared by: Chase Pierson, Managing Partner</p>
+        <p style={S.center}>Prepared for: Tracy Alderson-Allen, Amy Allen, JP</p>
+        <p style={S.center}>Prepared by: Chase Pierson, Executive Producer</p>
         <p style={S.center}>Date: March 26, 2026</p>
         <div style={{ borderTop: `1px solid #ccc`, margin: '12px 0 8px' }} />
         <p style={{ ...S.center, marginTop: 16 }}>INTERNAL -- NOT FOR DISTRIBUTION</p>
@@ -84,13 +84,13 @@ function Report() {
         <p style={S.indent}>--  Not customer-facing. Investors, partners, legal.</p>
         <p style={S.h3}>LEVEL 2: MEASURABLY BETTER (Product Brand)</p>
         <p style={S.indent}>--  What we sell. Four markets: SMB, Civic, Education, Tourism.</p>
-        <p style={S.indent}>--  Products: Deep South Directory, CivicX, MB Learn, KioskMode</p>
+        <p style={S.indent}>--  Products: Deep South Directory, Municipal Platform, District Dashboard, S2PX</p>
         <p style={S.indent}>--  Domains: measurablybetterthings.com, measurablybetter.life</p>
         <p style={S.h3}>LEVEL 3: BIG MUDDY (Media &amp; Hospitality)</p>
         <p style={S.indent}>--  Entertainment (JP, Division Head): Records, Radio, Touring, Rise Up</p>
-        <p style={S.indent}>--  Publishing (Chase, interim): Magazine, Books</p>
+        <p style={S.indent}>--  Publishing (Tracy, Division Head): Magazine, Books</p>
         <p style={S.indent}>--  Hospitality (Tracy, Division Head): The Inn, Weddings &amp; Events</p>
-        <p style={S.indent}>--  Amy Pierson: ON-NETWORK TALENT. Lead vocalist, Rise Up.</p>
+        <p style={S.indent}>--  Amy Allen: ON-NETWORK TALENT. Lead vocalist, Rise Up.</p>
         <p style={S.h3}>LEVEL 4: OUTSIDER ECONOMICS</p>
         <p style={S.indent}>--  Thought leadership. The book. The philosophy.</p>
 
@@ -178,9 +178,9 @@ function Report() {
         <p style={S.indent}>--  First revenue target shifts to: Deep South Directory, civic pilot, entertainment revenue.</p>
         <p style={S.indent}>--  The regional technology provider strategy was never dependent on a single scanning company.</p>
 
-        <p style={S.section}>VIII.  THE NATCHEZ PROOF</p>
+        <p style={S.section}>VIII.  THE NATCHEZ CASE STUDIES</p>
         <div style={S.hr} />
-        <p style={S.body}>Not theoretical. Functioning.</p>
+        <p style={S.body}>These are not theoretical case studies. Functioning.</p>
         {[
           ['The Big Muddy Inn', 'Live', 'Bookable'],
           ['Big Muddy Magazine', 'Live', 'Readable'],
@@ -239,7 +239,7 @@ function Report() {
         <div style={S.hr} />
         <p style={S.body}><strong>Before:</strong>  &quot;We sell software to contractors.&quot;</p>
         <p style={S.body}><strong>After:</strong>  &quot;We are the regional technology provider for the Deep South. Here is a business directory, a city, a school district, and a tourism bureau -- all running on the same engine.&quot;</p>
-        <p style={S.body}>The ARPA deadline creates a 9-month window where municipalities are actively looking to deploy technology dollars or lose them. We are positioned to capture that demand with a live proof of concept operating in the same town where the first civic pilot would deploy.</p>
+        <p style={S.body}>The ARPA deadline creates a 9-month window where municipalities are actively looking to deploy technology dollars or lose them. We are positioned to capture that demand with live case studies operating in the same town where the first civic pilot would deploy.</p>
         <p style={{ ...S.center, margin: '24px 0', fontWeight: 700 }}>&quot;The South has the culture. We are building the infrastructure to match.&quot;</p>
 
         <div style={{ ...S.dhr, marginTop: 48 }} />

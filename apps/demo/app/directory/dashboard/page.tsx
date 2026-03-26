@@ -109,7 +109,7 @@ const defaultTasks = [
 function getAIReply(input: string, bizName: string): string {
   const lower = input.toLowerCase();
   if (/photo|picture|post/.test(lower)) {
-    return `Got it! I'll post that to Instagram, Facebook, and Google Business. Here's the caption: "${bizName} — another great day on Main Street in Natchez." Want me to change anything?`;
+    return `Got it. Caption written. Ready to post to Instagram, Facebook, your website, your newsletter, Google Business, and the Directory tourism feed. One photo, six outputs. Approve all or edit first?`;
   }
   if (/numbers|revenue|money|week/.test(lower)) {
     return 'This week: Revenue up 12% vs last week. Your top seller was Saturday\'s special. 23 customers on Tuesday (your slowest day — want me to draft a Tuesday promotion?)';
@@ -170,7 +170,7 @@ export default function Dashboard() {
 
     setTimeout(() => {
       const replyText = isPhoto
-        ? 'Photo analyzed: Looks like a brisket plate. Ready to post to Instagram, Facebook & Google. ✓ Approve All or ✗ Edit?'
+        ? 'Photo analyzed. Caption written. Ready to post to Instagram, Facebook, your website, newsletter, Google Business, and the tourism feed. One photo, six outputs. Approve all or edit first?'
         : getAIReply(text, biz!.name);
       const aiMsg: Message = { id: newNextId, from: 'ai', text: replyText };
       setMessages(prev => [...prev, aiMsg]);
@@ -553,13 +553,15 @@ export default function Dashboard() {
             }}>
               <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', color: C.green, margin: '0 0 8px', textTransform: 'uppercase' as const }}>Photo Analyzed</p>
               <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: '0 0 6px' }}>Storefront — {biz.name}</p>
-              <p style={{ fontSize: 14, color: C.textSec, lineHeight: 1.6, margin: '0 0 12px' }}>Ready to go:</p>
+              <p style={{ fontSize: 14, color: C.textSec, lineHeight: 1.6, margin: '0 0 12px' }}>One photo. Six outputs. Ready to go:</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 16 }}>
                 {[
-                  'Post to Instagram & Facebook with caption',
+                  'Post to Instagram with caption',
+                  'Post to Facebook with caption',
+                  'Update website gallery',
+                  'Save for email newsletter',
                   'Update Google Business Profile photo',
-                  'Add to website gallery',
-                  'Save for Friday email newsletter',
+                  'Tag for Deep South Directory tourism feed',
                 ].map(item => (
                   <p key={item} style={{ fontSize: 13, color: C.text, margin: 0, paddingLeft: 16 }}>&#x2713; {item}</p>
                 ))}
@@ -598,7 +600,7 @@ export default function Dashboard() {
               This is the free tier. You get 100 AI actions per month.
             </p>
             <p style={{ fontSize: 13, color: C.textSec, margin: '0 0 12px' }}>
-              Upgrade to $20/mo for unlimited actions, QuickBooks sync, and daily briefings with your real numbers.
+              Upgrade to $20/mo and it does all the cool stuff you don&apos;t know how to do. Take a photo. Watch what happens.
             </p>
             <button style={{
               padding: '10px 24px', borderRadius: 8, border: 'none',
@@ -710,7 +712,7 @@ export default function Dashboard() {
               This is the free tier. You get 100 AI actions per month.
             </p>
             <p style={{ fontSize: 13, color: C.textSec, margin: '0 0 12px' }}>
-              Upgrade to $20/mo for unlimited actions, QuickBooks sync, and daily briefings with your real numbers.
+              Upgrade to $20/mo and it does all the cool stuff you don&apos;t know how to do. Take a photo. Watch what happens.
             </p>
             <button style={{
               padding: '10px 24px', borderRadius: 8, border: 'none',

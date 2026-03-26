@@ -59,7 +59,7 @@ export default function PlatformPage() {
             marginBottom: 16,
           }}
         >
-          Platform
+          Infrastructure
         </p>
         <h1
           style={{
@@ -72,7 +72,7 @@ export default function PlatformPage() {
             marginBottom: 20,
           }}
         >
-          The HDX Platform
+          The engine underneath.
         </h1>
         <p
           style={{
@@ -82,7 +82,10 @@ export default function PlatformPage() {
             maxWidth: 520,
           }}
         >
-          One engine. Every deployment.
+          Every product we build runs on the same foundation. The
+          Directory, the municipal platform, the media company, the
+          education tools &mdash; one codebase, one data layer, one
+          set of capabilities that compounds with every deployment.
         </p>
       </div>
 
@@ -169,7 +172,7 @@ export default function PlatformPage() {
             letterSpacing: '0.02em',
           }}
         >
-          Built on Google Cloud. Deployed in Mississippi.
+          Built on Google Cloud. Owned and operated in Mississippi.
         </p>
       </div>
     </div>

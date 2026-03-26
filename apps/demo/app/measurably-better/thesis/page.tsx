@@ -65,7 +65,7 @@ const markets: Market[] = [
   },
 ];
 
-const proofPoints = [
+const caseStudies = [
   'A hotel you can book',
   'A magazine you can read',
   'A radio station you can hear',
@@ -167,13 +167,27 @@ export default function ThesisPage() {
               fontSize: 17,
               color: '#cbd5e1',
               lineHeight: 1.75,
-              margin: 0,
+              margin: '0 0 20px',
             }}
           >
             Measurably Better is a regional technology and media provider built
             in Mississippi, for the South, by people who live here. We&apos;re
             not fixing what&apos;s broken. We&apos;re building what was never
             built &mdash; and doing it before the rest of the country catches up.
+          </p>
+          <p
+            style={{
+              fontSize: 15,
+              color: '#94a3b8',
+              lineHeight: 1.75,
+              margin: 0,
+              borderTop: '1px solid rgba(255,255,255,0.08)',
+              paddingTop: 20,
+            }}
+          >
+            &ldquo;Measurably Better&rdquo; means the things in your community
+            become measurably better when the technology infrastructure is owned
+            and operated by people who live there.
           </p>
         </div>
 
@@ -398,7 +412,7 @@ export default function ThesisPage() {
             Street running on the same platform we deploy to clients. The
             magazine, the radio station, the touring route, the record
             label &mdash; all producing content, all employing local creators,
-            all feeding the same ecosystem.
+            all running on the same engine.
           </p>
           <p
             style={{
@@ -419,18 +433,18 @@ export default function ThesisPage() {
               padding: '24px 24px',
             }}
           >
-            {proofPoints.map((point, i) => (
+            {caseStudies.map((point, i) => (
               <p
                 key={i}
                 style={{
                   fontSize: 15,
-                  color: i === proofPoints.length - 1 ? C.text : C.textSecondary,
-                  fontWeight: i === proofPoints.length - 1 ? 600 : 400,
-                  margin: i === proofPoints.length - 1 ? '12px 0 0' : '0 0 6px',
+                  color: i === caseStudies.length - 1 ? C.text : C.textSecondary,
+                  fontWeight: i === caseStudies.length - 1 ? 600 : 400,
+                  margin: i === caseStudies.length - 1 ? '12px 0 0' : '0 0 6px',
                   lineHeight: 1.5,
                 }}
               >
-                {i < proofPoints.length - 1 ? '\u2713 ' : ''}{point}
+                {i < caseStudies.length - 1 ? '\u2713 ' : ''}{point}
               </p>
             ))}
           </div>

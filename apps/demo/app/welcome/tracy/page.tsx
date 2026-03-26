@@ -1,5 +1,5 @@
 // Welcome, Tracy — Hospitality Division Head
-// Server component. Imports TourCard from ../owen/TourCard.
+// Server component. Imports TourCard from ../../components/TourCard.
 
 import TourCard, { type StopProps } from '../../components/TourCard';
 
@@ -55,7 +55,7 @@ const stops: StopProps[] = [
     title: 'The Nexus',
     href: '/big-muddy',
     description:
-      'The ecosystem. How every division feeds the others. The Inn is the anchor. Your operation is the proof that the model works.',
+      'How every division feeds the others. The Inn is the anchor. Your operation is the case study that opens every sales conversation.',
     isFinal: false,
   },
   {

@@ -59,7 +59,7 @@ const PRICING = [
     who: 'SMB operators',
     hook: 'Connect everything. Act on everything.',
     features: [
-      'Everything in Replace ChatGPT',
+      'Everything in The Works',
       'Connect ALL data sources (QuickBooks + Stripe + Google + POS)',
       'Multi-source correlation and cross-analysis',
       'Marketing automation (AI social posts, email campaigns)',
@@ -237,8 +237,9 @@ export default function MeasurablyBetterPage() {
               marginRight: 'auto',
             }}
           >
-            Take a photo. Watch it handle your marketing, social media,
-            and website &mdash; instantly.
+            Take a photo. It posts to Instagram, Facebook, your website,
+            your newsletter, your Google listing &mdash; and tags it for
+            the tourism board. One photo. Six outputs.
           </p>
           <p
             style={{
@@ -252,7 +253,7 @@ export default function MeasurablyBetterPage() {
               opacity: 0.8,
             }}
           >
-            You just run your business. It does the rest. $20/month.
+            Take a photo. Watch what happens. $20/mo.
           </p>
           <a
             href="#pricing"
@@ -286,6 +287,170 @@ export default function MeasurablyBetterPage() {
               DeepSouthDirectory.com
             </a>
           </p>
+        </div>
+      </div>
+
+      {/* Photo demo + business coach stories */}
+      <div style={{ maxWidth: 960, margin: '64px auto 0', padding: '0 24px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: 16,
+            marginBottom: 0,
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: C.white,
+              border: `1px solid ${C.border}`,
+              borderRadius: 12,
+              padding: '28px 24px',
+            }}
+          >
+            <span
+              style={{
+                display: 'inline-block',
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase' as const,
+                color: C.accent,
+                backgroundColor: C.accentBg,
+                padding: '3px 8px',
+                borderRadius: 4,
+                marginBottom: 16,
+              }}
+            >
+              Take a photo
+            </span>
+            <p
+              style={{
+                fontSize: 16,
+                fontWeight: 700,
+                color: C.text,
+                margin: '0 0 10px',
+                letterSpacing: '-0.01em',
+                lineHeight: 1.3,
+              }}
+            >
+              One photo. Six outputs. Done.
+            </p>
+            <p
+              style={{
+                fontSize: 14,
+                color: C.textSecondary,
+                lineHeight: 1.65,
+                margin: 0,
+              }}
+            >
+              Snap a photo of your lunch special, your storefront, your
+              event. It goes to Instagram, Facebook, your website, your
+              newsletter, your Google Business listing, and the tourism
+              board&apos;s feed &mdash; automatically, with captions
+              already written.
+            </p>
+          </div>
+          <div
+            style={{
+              backgroundColor: C.white,
+              border: `1px solid ${C.border}`,
+              borderRadius: 12,
+              padding: '28px 24px',
+            }}
+          >
+            <span
+              style={{
+                display: 'inline-block',
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase' as const,
+                color: C.accent,
+                backgroundColor: C.accentBg,
+                padding: '3px 8px',
+                borderRadius: 4,
+                marginBottom: 16,
+              }}
+            >
+              Have an idea
+            </span>
+            <p
+              style={{
+                fontSize: 16,
+                fontWeight: 700,
+                color: C.text,
+                margin: '0 0 10px',
+                letterSpacing: '-0.01em',
+                lineHeight: 1.3,
+              }}
+            >
+              Talk to it. Get a brief by morning.
+            </p>
+            <p
+              style={{
+                fontSize: 14,
+                color: C.textSecondary,
+                lineHeight: 1.65,
+                margin: 0,
+              }}
+            >
+              Have an idea at 10pm? Tell it. It runs the numbers overnight
+              and has a brief ready for you tomorrow morning &mdash;
+              margins, timing, what your competitors are doing, and the
+              three questions you should answer before you commit.
+            </p>
+          </div>
+          <div
+            style={{
+              backgroundColor: C.white,
+              border: `1px solid ${C.border}`,
+              borderRadius: 12,
+              padding: '28px 24px',
+            }}
+          >
+            <span
+              style={{
+                display: 'inline-block',
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase' as const,
+                color: C.accent,
+                backgroundColor: C.accentBg,
+                padding: '3px 8px',
+                borderRadius: 4,
+                marginBottom: 16,
+              }}
+            >
+              Every morning
+            </span>
+            <p
+              style={{
+                fontSize: 16,
+                fontWeight: 700,
+                color: C.text,
+                margin: '0 0 10px',
+                letterSpacing: '-0.01em',
+                lineHeight: 1.3,
+              }}
+            >
+              One text. Your number. The one thing that needs you.
+            </p>
+            <p
+              style={{
+                fontSize: 14,
+                color: C.textSecondary,
+                lineHeight: 1.65,
+                margin: 0,
+              }}
+            >
+              Every morning, one text. Your revenue number for yesterday.
+              One insight from your data. And the one thing on your plate
+              that actually requires a human decision. Everything else is
+              already handled.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -424,8 +589,10 @@ export default function MeasurablyBetterPage() {
               lineHeight: 1.65,
             }}
           >
-            Each product is the same platform configured for a specific market.
-            The technology is the means. The local economy is the end.
+            Each product is the same engine configured for a specific market.
+            Every product we build keeps money circulating locally. The
+            technology is the means. The community becoming measurably
+            better is the end.
           </p>
           <div
             style={{
@@ -769,7 +936,7 @@ export default function MeasurablyBetterPage() {
               maxWidth: 600,
             }}
           >
-            Every product we build is designed to keep money circulating locally. The Deep
+            Every product we build keeps money circulating locally. The Deep
             South Directory keeps Main Street commerce visible. Big Muddy keeps culture and
             entertainment dollars in the corridor. The municipal and education products keep
             government technology dollars in-state. The technology is the means. The
