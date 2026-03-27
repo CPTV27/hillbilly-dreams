@@ -7,25 +7,9 @@
 import { test, expect } from '@playwright/test';
 
 const publicRoutes = [
+  // ── Core / Universal ──
   '/',
-  '/touring',
-  '/touring/route',
-  '/touring/inn',
-  '/touring/inn/blog',
-  '/touring/inn/weddings',
-  '/touring/inn/weddings/brochure',
-  '/touring/inn/events/flyer',
   '/platform',
-  '/measurably-better',
-  '/measurably-better/regional',
-  '/measurably-better/thesis',
-  '/measurably-better/technology',
-  '/measurably-better/enterprise',
-  '/measurably-better/enterprise/proposal',
-  '/measurably-better/scan2plan',
-  '/hillbilly',
-  '/hillbilly/directory-pitch',
-  '/hillbilly/proposal/scan2plan',
   '/strategy',
   '/welcome/owen',
   '/amy',
@@ -34,6 +18,95 @@ const publicRoutes = [
   '/mvx',
   '/nexus',
   '/dashboard',
+  '/book',
+  '/demo',
+
+  // ── Measurably Better (MBT) ──
+  '/measurably-better',
+  '/measurably-better/regional',
+  '/measurably-better/thesis',
+  '/measurably-better/technology',
+  '/measurably-better/enterprise',
+  '/measurably-better/enterprise/proposal',
+  '/measurably-better/scan2plan',
+
+  // ── Touring / Inn ──
+  '/touring',
+  '/touring/route',
+  '/touring/inn',
+  '/touring/inn/blog',
+  '/touring/inn/weddings',
+  '/touring/inn/weddings/brochure',
+  '/touring/inn/events/flyer',
+
+  // ── Hillbilly Dreams (HoldCo) ──
+  '/hillbilly',
+  '/hillbilly/directory-pitch',
+  '/hillbilly/proposal/scan2plan',
+
+  // ── Entertainment ──
+  '/entertainment',
+
+  // ── Deep South Directory ──
+  '/directory',
+  '/directory/submit',
+  '/directory/onboard',
+
+  // ── Outsider Economics ──
+  '/economics',
+  '/economics/field-manual',
+  '/economics/the-math',
+  '/economics/about',
+  '/economics/community',
+  '/economics/rise-up',
+
+  // ── Magazine ──
+  '/magazine',
+  '/magazine/articles',
+  '/magazine/city-guides',
+
+  // ── Radio ──
+  '/radio',
+  '/radio/playlists',
+  '/radio/live',
+  '/radio/podcast',
+  '/radio/directory',
+
+  // ── Gallery ──
+  '/gallery',
+  '/gallery/artists',
+  '/gallery/about',
+  '/gallery/apply',
+
+  // ── Records ──
+  '/records',
+  '/records/artists',
+  '/records/releases',
+  '/records/sessions',
+
+  // ── Media ──
+  '/media',
+  '/media/brands',
+  '/media/directory',
+  '/media/get-started',
+  '/media/how-it-works',
+  '/media/onboard',
+  '/media/pricing',
+  '/media/publications',
+  '/media/services',
+
+  // ── Studio / Tuthill ──
+  '/studio',
+  '/tuthill',
+
+  // ── Portal ──
+  '/portal',
+  '/portal/calendar',
+  '/portal/reports',
+  '/portal/reviews',
+
+  // ── Admin (public login page) ──
+  '/admin/login',
 ];
 
 for (const route of publicRoutes) {
