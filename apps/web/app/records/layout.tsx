@@ -111,7 +111,7 @@ export default function RecordsLayout({
       >
         <p>&copy; {new Date().getFullYear()} Big Muddy Records. Natchez, Mississippi.</p>
         <p style={{ marginTop: '0.5rem' }}>
-          A Big Muddy Entertainment label. Also:{' '}
+          A Big Muddy Media label. Also:{' '}
           <a href="https://bigmuddyradio.com" style={{ color: 'var(--accent, #c8943e)' }}>Radio</a>
           {' \u00B7 '}
           <a href="https://bigmuddymagazine.com" style={{ color: 'var(--accent, #c8943e)' }}>Magazine</a>

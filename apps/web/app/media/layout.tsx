@@ -8,6 +8,7 @@ import type { Metadata } from 'next';
 import type { Viewport } from 'next';
 import { Footer } from '@bigmuddy/ui';
 import MediaNav from './MediaNav';
+import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
   title: {
@@ -40,10 +41,12 @@ export default function MediaLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="theme-touring">
-      <MediaNav />
-      <main>{children}</main>
-      <Footer brand="touring" />
-    </div>
+    <ThemeProvider defaultTheme="media">
+      <div className="theme-touring">
+        <MediaNav />
+        <main>{children}</main>
+        <Footer brand="touring" />
+      </div>
+    </ThemeProvider>
   );
 }

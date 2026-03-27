@@ -7,6 +7,7 @@ import type { Metadata } from 'next';
 import type { Viewport } from 'next';
 import { Footer } from '@bigmuddy/ui';
 import GalleryNav from './GalleryNav';
+import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
   title: {
@@ -39,18 +40,20 @@ export default function GalleryLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className="theme-gallery"
-      id="gallery-theme-root"
-      style={{
-        backgroundColor: 'var(--bg)',
-        color: 'var(--text)',
-        minHeight: '100vh',
-      }}
-    >
-      <GalleryNav />
-      <main>{children}</main>
-      <Footer brand="touring" />
-    </div>
+    <ThemeProvider defaultTheme="gallery">
+      <div
+        className="theme-gallery"
+        id="gallery-theme-root"
+        style={{
+          backgroundColor: 'var(--bg)',
+          color: 'var(--text)',
+          minHeight: '100vh',
+        }}
+      >
+        <GalleryNav />
+        <main>{children}</main>
+        <Footer brand="touring" />
+      </div>
+    </ThemeProvider>
   );
 }

@@ -6,9 +6,9 @@ import type { Metadata } from 'next';
 import { Navigation, Footer } from '@bigmuddy/ui';
 import { BRANDS } from '@bigmuddy/config';
 
-import { ThemeProvider } from '@/components/theme-provider';
 import { constructMetadata, themeColor } from '../metadata';
 import type { Viewport } from 'next';
+import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
   ...constructMetadata({

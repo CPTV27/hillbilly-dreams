@@ -1,538 +1,868 @@
 // apps/web/app/directory/page.tsx
-// Deep South Directory — Browse / Index Page
-//
-// Server Component. Fetches directly from Prisma (no API round-trip).
-// Primary model: DirectoryBusiness (active=true, ordered by tier then name)
-// Fallback: Client (status='active') if DirectoryBusiness table doesn't exist yet.
-//
-// Usage:
-//   /directory              — all active businesses
-//   /directory?type=restaurant — filtered by businessType / category
-//   /directory?city=natchez — filtered by city (case-insensitive)
-
+// Deep South Directory — Business directory landing page
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import './directory-index.css';
-
-// ── Types ────────────────────────────────────────────────────────────────────
-
-interface DirectoryBusinessRecord {
-  id: number;
-  name: string;
-  slug: string;
-  tier: string;
-  category: string;
-  subcategory?: string | null;
-  city: string;
-  state: string;
-  description?: string | null;
-  heroImageUrl?: string | null;
-  photoUrls?: string[];
-  googleRating?: number | null;
-  googleReviewCount?: number | null;
-  active: boolean;
-}
-
-interface ClientRecord {
-  id: number;
-  name: string;
-  slug: string;
-  tier: string;
-  businessType: string;
-  city: string;
-  state: string;
-  description?: string | null;
-  heroImageUrl?: string | null;
-  status: string;
-}
-
-interface BusinessCard {
-  id: number;
-  name: string;
-  slug: string;
-  tier: string;
-  category: string;
-  city: string;
-  state: string;
-  description: string | null;
-  heroImageUrl: string | null;
-  googleRating: number | null;
-  googleReviewCount: number | null;
-}
-
-// ── Metadata ─────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: 'Deep South Directory — Find the Best of Main Street',
+  title: 'Deep South Directory — Local Business Marketing',
   description:
-    'Browse local restaurants, shops, services, and hidden gems across the Deep South. Discover what makes Main Street worth a visit.',
-  openGraph: {
-    title: 'Deep South Directory',
-    description: 'Find the best of Main Street across the Deep South.',
-  },
+    'The regional business network for the Mississippi Corridor. Find locals. Get found. Keep your money in the region. Powered by HDX.',
 };
 
-// ── Data Fetching ─────────────────────────────────────────────────────────────
-
-async function fetchBusinesses(filters: {
-  type?: string;
-  city?: string;
-}): Promise<BusinessCard[]> {
-  try {
-    const { prisma } = await import('@/lib/db');
-
-    const db = prisma as unknown as {
-      directoryBusiness?: {
-        findMany: (args: object) => Promise<DirectoryBusinessRecord[]>;
-      };
-      client?: {
-        findMany: (args: object) => Promise<ClientRecord[]>;
-      };
-    };
-
-    // Build where clause
-    const where: Record<string, unknown> = { active: true };
-
-    if (filters.type) {
-      where.category = { contains: filters.type, mode: 'insensitive' };
-    }
-    if (filters.city) {
-      where.city = { contains: filters.city, mode: 'insensitive' };
-    }
-
-    // Primary: DirectoryBusiness
-    if (db.directoryBusiness) {
-      const rows = await db.directoryBusiness.findMany({
-        where,
-        orderBy: [{ tier: 'asc' }, { name: 'asc' }],
-        select: {
-          id: true,
-          name: true,
-          slug: true,
-          tier: true,
-          category: true,
-          subcategory: true,
-          city: true,
-          state: true,
-          description: true,
-          heroImageUrl: true,
-          photoUrls: true,
-          googleRating: true,
-          googleReviewCount: true,
-          active: true,
-        },
-      });
-
-      return rows.map((r) => ({
-        id: r.id,
-        name: r.name,
-        slug: r.slug,
-        tier: r.tier,
-        category: r.subcategory ? `${r.category} — ${r.subcategory}` : r.category,
-        city: r.city,
-        state: r.state,
-        description: r.description ?? null,
-        heroImageUrl: r.heroImageUrl ?? r.photoUrls?.[0] ?? null,
-        googleRating: r.googleRating ?? null,
-        googleReviewCount: r.googleReviewCount ?? null,
-      }));
-    }
-
-    // Fallback: Client
-    if (db.client) {
-      const clientWhere: Record<string, unknown> = { status: 'active' };
-      if (filters.type) {
-        clientWhere.businessType = { contains: filters.type, mode: 'insensitive' };
-      }
-      if (filters.city) {
-        clientWhere.city = { contains: filters.city, mode: 'insensitive' };
-      }
-
-      const rows = await db.client.findMany({
-        where: clientWhere,
-        orderBy: [{ tier: 'asc' }, { name: 'asc' }],
-        select: {
-          id: true,
-          name: true,
-          slug: true,
-          tier: true,
-          businessType: true,
-          city: true,
-          state: true,
-          description: true,
-          heroImageUrl: true,
-          status: true,
-        },
-      });
-
-      return rows.map((r) => ({
-        id: r.id,
-        name: r.name,
-        slug: r.slug,
-        tier: r.tier,
-        category: r.businessType,
-        city: r.city,
-        state: r.state,
-        description: r.description ?? null,
-        heroImageUrl: r.heroImageUrl ?? null,
-        googleRating: null,
-        googleReviewCount: null,
-      }));
-    }
-
-    return [];
-  } catch {
-    // No DB / missing env — graceful degradation
-    return [];
-  }
-}
-
-// ── Icon Components ───────────────────────────────────────────────────────────
-// Inline SVG — no icon library dependency
-
-function MapPinIcon({ size = 14 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
-      <circle cx="12" cy="10" r="3" />
-    </svg>
-  );
-}
-
-function ArrowRightIcon() {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <line x1="5" y1="12" x2="19" y2="12" />
-      <polyline points="12 5 19 12 12 19" />
-    </svg>
-  );
-}
-
-function StarIcon({ filled }: { filled: boolean }) {
-  return (
-    <svg
-      width="13"
-      height="13"
-      viewBox="0 0 24 24"
-      fill={filled ? 'currentColor' : 'none'}
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-    </svg>
-  );
-}
-
-function StorefrontIcon() {
-  return (
-    <svg
-      width="28"
-      height="28"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>
-  );
-}
-
-function PlusIcon() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <line x1="12" y1="5" x2="12" y2="19" />
-      <line x1="5" y1="12" x2="19" y2="12" />
-    </svg>
-  );
-}
-
-// ── Star Rating ───────────────────────────────────────────────────────────────
-
-function StarRating({ rating }: { rating: number }) {
-  const full = Math.floor(rating);
-  const hasHalf = rating - full >= 0.5;
-  const stars = Array.from({ length: 5 }, (_, i) => ({
-    filled: i < full || (i === full && hasHalf),
-  }));
-
-  return (
-    <div
-      className="dsdi-card__stars-row"
-      aria-label={`${rating.toFixed(1)} out of 5 stars`}
-    >
-      {stars.map((s, i) => (
-        <span
-          key={i}
-          className={`dsdi-card__star${s.filled ? '' : ' dsdi-card__star--empty'}`}
-        >
-          <StarIcon filled={s.filled} />
-        </span>
-      ))}
-    </div>
-  );
-}
-
-// ── Category Filter Config ─────────────────────────────────────────────────────
-
-const CATEGORY_FILTERS = [
-  { label: 'All', value: '' },
-  { label: 'Restaurants', value: 'restaurant' },
-  { label: 'Retail', value: 'retail' },
-  { label: 'Services', value: 'service' },
-  { label: 'Arts', value: 'art' },
-  { label: 'Lodging', value: 'lodging' },
-  { label: 'Food & Drink', value: 'food' },
+const CATEGORIES = [
+  {
+    name: 'Restaurants & Food',
+    image: '/images/dsd/cat-restaurant.webp',
+    count: 'Biscuits & Blues, The Camp, Cotton Alley, and more',
+    desc: 'From Regina\'s biscuits to gas station fried chicken. The corridor eats.',
+  },
+  {
+    name: 'Venues & Music',
+    image: '/images/dsd/cat-venue.webp',
+    count: 'The Anthologist, Bobby J\'s, Blues Room, and more',
+    desc: 'Juke joints, listening rooms, record stores with stages. Where the music lives.',
+  },
+  {
+    name: 'Hotels & Lodging',
+    image: '/images/dsd/cat-hotel.webp',
+    count: 'Big Muddy Inn, B&Bs, historic homes',
+    desc: 'Places to stay that have a story. Not chains — characters.',
+  },
+  {
+    name: 'Shops & Retail',
+    image: '/images/dsd/cat-shop.webp',
+    count: 'Antiques, art, vinyl, flowers',
+    desc: 'Main Street still works in these towns. Support the people who keep it open.',
+  },
+  {
+    name: 'Tours & Experiences',
+    image: '/images/dsd/cat-tour.webp',
+    count: 'Walking tours, cooking classes, river excursions',
+    desc: 'The things you came to the corridor to do. We know who does them best.',
+  },
+  {
+    name: 'Services',
+    image: '/images/dsd/cat-service.webp',
+    count: 'Photography, web, marketing, events',
+    desc: 'The behind-the-scenes people who keep small-town businesses running.',
+  },
 ];
 
-// ── Business Card Component ───────────────────────────────────────────────────
+const FEATURED_BUSINESSES = [
+  {
+    name: 'The Anthologist',
+    type: 'Record Store / Florist / Venue',
+    city: 'Natchez, MS',
+    desc: 'Vinyl, violets, and live music under one roof. A record store inside a flower shop inside a performance space.',
+    articleSlug: 'the-anthologist-where-vinyl-meets-violets-on-main-street-natchez',
+  },
+  {
+    name: 'Biscuits & Blues',
+    type: 'Restaurant / Cooking School',
+    city: 'Natchez, MS',
+    desc: 'Built by Regina Charboneau, the Biscuit Queen of Natchez. Paris-trained technique, Mississippi soul.',
+    articleSlug: 'reginas-biscuits-how-the-biscuit-queen-of-natchez-trained-in-paris-and-came-home',
+  },
+  {
+    name: 'Stanton Hall',
+    type: 'Historic Venue / Event Space',
+    city: 'Natchez, MS',
+    desc: 'Built in 1857. Maintained by the Pilgrimage Garden Club since 1938. National Historic Landmark.',
+    articleSlug: 'save-the-hall-ball-pilgrimage-garden-clubs-fight-for-stanton-hall',
+  },
+  {
+    name: 'The Big Muddy Inn',
+    type: 'Boutique Hotel / Music Venue',
+    city: 'Natchez, MS',
+    desc: '6 rooms, a Blues Room, and the headquarters of everything you\'re reading right now.',
+    articleSlug: null,
+  },
+];
 
-function BusinessCardItem({ business }: { business: BusinessCard }) {
-  const isPaid =
-    business.tier &&
-    !['free', 'front-porch'].includes(business.tier.toLowerCase());
+const TIERS = [
+  {
+    name: 'Free Listing',
+    price: 'Free',
+    features: [
+      'Business name, address, and category in the directory',
+      'Link to your website',
+      'Appear in corridor search results',
+    ],
+  },
+  {
+    name: 'Main Street',
+    price: '$99/mo',
+    features: [
+      'Everything in Free Listing',
+      'Enhanced profile with photos and description',
+      'AI-generated editorial spotlight',
+      'Featured in Magazine articles when relevant',
+      'Monthly performance report',
+      'AI-optimized business description for search',
+    ],
+  },
+  {
+    name: 'The Route',
+    price: '$299/mo',
+    features: [
+      'Everything in Main Street',
+      'Spotlight cross-published to Big Muddy Magazine',
+      'Social media management (2 platforms, 12 posts/mo)',
+      'Big Muddy Radio mentions',
+      'Priority placement in directory search',
+      'AI Search Optimization (structured data, llms.txt)',
+      'All payment & booking integrations',
+    ],
+  },
+  {
+    name: 'HDX Ops',
+    price: '$1,200+/mo',
+    features: [
+      'Everything in The Route',
+      'Full HDX operating system deployment',
+      'Sales pipeline, billing, project management, client delivery',
+      'One platform replacing your entire software stack',
+      'Hillbilly Dreams as your embedded technology arm',
+      '24/7 uptime monitoring with SLA',
+      'QuickBooks sync included',
+    ],
+  },
+];
 
+export default function DirectoryPage() {
   return (
-    <article className="dsdi-card" aria-label={business.name}>
-      {/* Hero image */}
-      <div className="dsdi-card__image-wrap">
-        {business.heroImageUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={business.heroImageUrl}
-            alt={`${business.name} — storefront`}
-            className="dsdi-card__image"
-            loading="lazy"
-            decoding="async"
-          />
-        ) : (
-          <div className="dsdi-card__image-placeholder" aria-hidden="true">
-            <span className="dsdi-card__image-placeholder-icon">
-              <StorefrontIcon />
-            </span>
-          </div>
-        )}
-
-        {/* Tier badge */}
-        {isPaid && (
-          <span className="dsdi-card__tier dsdi-card__tier--paid" aria-label={`${business.tier} tier`}>
-            {business.tier}
-          </span>
-        )}
-      </div>
-
-      {/* Body */}
-      <div className="dsdi-card__body">
-        {/* Category */}
-        <span className="dsdi-card__category">{business.category}</span>
-
-        {/* Name */}
-        <Link
-          href={`/directory/${business.slug}`}
-          className="dsdi-card__name-link"
-          aria-label={`View listing for ${business.name}`}
-        >
-          <h2 className="dsdi-card__name">{business.name}</h2>
-        </Link>
-
-        {/* Location */}
-        <p className="dsdi-card__location">
-          <MapPinIcon />
-          <span>{business.city}, {business.state}</span>
-        </p>
-
-        {/* Description */}
-        {business.description && (
-          <p className="dsdi-card__description">{business.description}</p>
-        )}
-
-        {/* Stars */}
-        {business.googleRating != null && (
-          <div className="dsdi-card__stars">
-            <StarRating rating={business.googleRating} />
-            <span className="dsdi-card__rating">{business.googleRating.toFixed(1)}</span>
-            {business.googleReviewCount != null && (
-              <span className="dsdi-card__review-count">
-                ({business.googleReviewCount.toLocaleString()})
-              </span>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Card footer CTA */}
-      <Link
-        href={`/directory/${business.slug}`}
-        className="dsdi-card__cta"
-        tabIndex={-1}
-        aria-hidden="true"
+    <main>
+      {/* Hero */}
+      <section
+        style={{
+          minHeight: '60vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          padding: '4rem 1.5rem',
+          maxWidth: 900,
+          margin: '0 auto',
+          position: 'relative',
+        }}
       >
-        <span>View listing</span>
-        <ArrowRightIcon />
-      </Link>
-    </article>
-  );
-}
-
-// ── Page ──────────────────────────────────────────────────────────────────────
-
-interface PageProps {
-  searchParams: Promise<{ type?: string; city?: string }>;
-}
-
-export default async function DirectoryIndexPage({ searchParams }: PageProps) {
-  const params = await searchParams;
-  const typeFilter = params.type ?? '';
-  const cityFilter = params.city ?? '';
-
-  const businesses = await fetchBusinesses({
-    type: typeFilter || undefined,
-    city: cityFilter || undefined,
-  });
-
-  const activeFilterLabel =
-    CATEGORY_FILTERS.find((f) => f.value === typeFilter)?.label ?? 'All';
-
-  const buildFilterUrl = (value: string) => {
-    const parts: string[] = [];
-    if (value) parts.push(`type=${encodeURIComponent(value)}`);
-    if (cityFilter) parts.push(`city=${encodeURIComponent(cityFilter)}`);
-    return `/directory${parts.length ? `?${parts.join('&')}` : ''}`;
-  };
-
-  return (
-    <div className="theme-dsd dsdi-page">
-
-      {/* ── Hero Header ── */}
-      <header className="dsdi-hero" role="banner">
-        <span className="dsdi-hero__eyebrow">Deep South Directory</span>
-        <h1 className="dsdi-hero__title">Find the Best of Main Street</h1>
-        <p className="dsdi-hero__subtitle">
-          Local restaurants, shops, services, and hidden gems across the Deep South.
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: 'url(/images/dsd/hero-mainstreet.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.1,
+            zIndex: -1,
+            pointerEvents: 'none',
+          }}
+          aria-hidden="true"
+        />
+        <p
+          style={{
+            color: 'var(--accent, #c8943e)',
+            fontSize: '0.85rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            marginBottom: '1.5rem',
+          }}
+        >
+          Deep South Directory
         </p>
-
-        {/* Category filter pills — server-rendered links, no JS needed */}
-        <nav className="dsdi-filters" aria-label="Filter by category">
-          {CATEGORY_FILTERS.map((filter) => {
-            const isActive = filter.value === typeFilter;
-            return (
-              <Link
-                key={filter.value}
-                href={buildFilterUrl(filter.value)}
-                className={`dsdi-filter-btn${isActive ? ' dsdi-filter-btn--active' : ''}`}
-                aria-current={isActive ? 'page' : undefined}
-                aria-label={`Show ${filter.label} listings`}
-              >
-                {filter.label}
-              </Link>
-            );
-          })}
-        </nav>
-      </header>
-
-      {/* ── Results bar ── */}
-      {(typeFilter || cityFilter) && (
-        <div className="dsdi-results-bar" role="status" aria-live="polite">
-          <p className="dsdi-results-count">
-            <strong>{businesses.length}</strong>{' '}
-            {businesses.length === 1 ? 'business' : 'businesses'}
-            {activeFilterLabel !== 'All' ? ` in ${activeFilterLabel}` : ''}
-            {cityFilter ? ` near ${cityFilter}` : ''}
-          </p>
-          <Link
-            href="/directory"
-            className="dsdi-results-count"
-            style={{ color: 'var(--dsd-accent)', fontWeight: 600 }}
-            aria-label="Clear all filters"
+        <h1
+          style={{
+            fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+            fontWeight: 700,
+            color: 'var(--fg, #f5f0eb)',
+            lineHeight: 1.1,
+            letterSpacing: '-0.03em',
+            margin: 0,
+          }}
+        >
+          The businesses that
+          <br />
+          <span style={{ color: 'var(--accent, #c8943e)' }}>make the corridor work.</span>
+        </h1>
+        <p
+          style={{
+            fontSize: '1.1rem',
+            color: 'var(--fg, #f5f0eb)',
+            opacity: 0.7,
+            maxWidth: 550,
+            lineHeight: 1.6,
+            marginTop: '2rem',
+          }}
+        >
+          The regional business network for the Mississippi Corridor. Find locals. Get found. Keep your money in the region.
+        </p>
+        <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <a
+            href="#listings"
+            style={{
+              display: 'inline-block',
+              padding: '0.75rem 2rem',
+              background: 'var(--accent, #c8943e)',
+              color: '#0a0a0a',
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: '0.9rem',
+            }}
           >
-            Clear filters
-          </Link>
+            Browse Directory
+          </a>
+          <a
+            href="/media/services"
+            style={{
+              display: 'inline-block',
+              padding: '0.75rem 2rem',
+              border: '1px solid var(--accent, #c8943e)',
+              color: 'var(--accent, #c8943e)',
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: '0.9rem',
+            }}
+          >
+            View Services
+          </a>
         </div>
-      )}
+      </section>
 
-      {/* ── Business Grid ── */}
-      <main id="main-content" className="dsdi-grid-wrap">
-        {businesses.length === 0 ? (
-          /* ── Empty State ── */
-          <div className="dsdi-empty" role="status">
-            <div className="dsdi-empty__icon" aria-hidden="true">
-              <StorefrontIcon />
-            </div>
-            <h2 className="dsdi-empty__title">No businesses listed yet.</h2>
-            <p className="dsdi-empty__subtitle">
-              Be the first to put your business on the map.
-            </p>
-            <Link href="/directory/onboard" className="dsdi-empty__cta">
-              <PlusIcon />
-              Get Listed Free
-            </Link>
-          </div>
-        ) : (
-          <ul
-            className="dsdi-grid"
-            style={{ listStyle: 'none', margin: 0, padding: 0 }}
-            aria-label={`${businesses.length} businesses listed`}
-          >
-            {businesses.map((business) => (
-              <li key={business.id}>
-                <BusinessCardItem business={business} />
-              </li>
-            ))}
-          </ul>
-        )}
-      </main>
+      {/* Photo break */}
+      <div
+        style={{
+          width: '100%',
+          height: 280,
+          backgroundImage: 'url(/images/dsd/bg-natchez-street.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.7,
+        }}
+        role="img"
+        aria-label="Downtown Natchez street"
+      />
 
-      {/* ── Footer CTA Banner ── */}
-      <footer className="dsdi-footer-cta">
-        <span className="dsdi-footer-cta__eyebrow">Join the directory</span>
-        <h2 className="dsdi-footer-cta__title">Own a business?<br />Get listed.</h2>
-        <p className="dsdi-footer-cta__subtitle">
-          Put your business in front of locals and visitors who are looking right now.
+      {/* Editorial Surface */}
+      <section
+        style={{
+          borderTop: '1px solid var(--muted, #333)',
+          padding: '3rem 1.5rem',
+          maxWidth: 900,
+          margin: '0 auto',
+        }}
+      >
+        <p
+          style={{
+            fontSize: '0.8rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            color: 'var(--accent, #c8943e)',
+            marginBottom: '0.5rem',
+          }}
+        >
+          From the Corridor
         </p>
-        <Link href="/directory/onboard" className="dsdi-footer-cta__btn">
-          <PlusIcon />
-          Get Listed Today
-        </Link>
-        <span className="dsdi-footer-cta__fine">Free listing available. Paid tiers from $99/mo.</span>
-      </footer>
+        <p
+          style={{
+            fontSize: '1.15rem',
+            fontWeight: 700,
+            color: 'var(--fg, #f5f0eb)',
+            marginBottom: '2rem',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          The network is alive.
+        </p>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '1.5rem',
+          }}
+        >
+          {[
+            {
+              label: 'Outsider Economics · Brief 001',
+              title: 'The 80% Extraction Rate (And How to Stop It)',
+              desc: 'Eighty cents of every dollar earned in the Deep South leaves within 48 hours. Not bad luck. A machine designed to drain you. Here\'s how it works — and how to stop it.',
+              href: '/economics/field-manual/02-the-extraction-trap',
+            },
+            {
+              label: 'Big Muddy Spotlight · Issue 001',
+              title: 'Rise Up: The Talent Has Always Been Here.',
+              desc: 'Arrie Aslin and the Rise Up Gospel and Blues Band travel the corridor. At every stop: a live show, a regional talent search, and the economic program running underneath.',
+              href: '/touring',
+            },
+          ].map((card) => (
+            <a
+              key={card.title}
+              href={card.href}
+              style={{
+                display: 'block',
+                border: '1px solid var(--muted, #333)',
+                padding: '1.75rem',
+                textDecoration: 'none',
+                transition: 'border-color 0.2s',
+              }}
+            >
+              <p
+                style={{
+                  fontSize: '0.7rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  color: 'var(--accent, #c8943e)',
+                  marginBottom: '0.5rem',
+                  opacity: 0.8,
+                }}
+              >
+                {card.label}
+              </p>
+              <h3
+                style={{
+                  fontSize: '1rem',
+                  fontWeight: 700,
+                  color: 'var(--fg, #f5f0eb)',
+                  margin: '0 0 0.75rem',
+                  lineHeight: 1.3,
+                  letterSpacing: '-0.01em',
+                }}
+              >
+                {card.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: '0.82rem',
+                  color: 'var(--fg, #f5f0eb)',
+                  opacity: 0.55,
+                  lineHeight: 1.6,
+                  margin: '0 0 1rem',
+                }}
+              >
+                {card.desc}
+              </p>
+              <span
+                style={{
+                  fontSize: '0.75rem',
+                  color: 'var(--accent, #c8943e)',
+                  borderBottom: '1px solid var(--accent, #c8943e)',
+                  paddingBottom: '0.1rem',
+                }}
+              >
+                Read →
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
 
-    </div>
+      {/* Categories */}
+      <section
+        id="listings"
+        style={{
+          padding: '4rem 1.5rem',
+          maxWidth: 1000,
+          margin: '0 auto',
+        }}
+      >
+        <h2
+          style={{
+            fontSize: '0.85rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            color: 'var(--accent, #c8943e)',
+            marginBottom: '2rem',
+          }}
+        >
+          Browse by Category
+        </h2>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.5rem',
+          }}
+        >
+          {CATEGORIES.map((cat) => (
+            <div
+              key={cat.name}
+              style={{
+                border: '1px solid var(--muted, #333)',
+                overflow: 'hidden',
+              }}
+            >
+              <div
+                style={{
+                  height: 140,
+                  backgroundImage: `url(${cat.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  opacity: 0.7,
+                }}
+              />
+              <div style={{ padding: '1.5rem' }}>
+                <h3
+                  style={{
+                    fontSize: '1.1rem',
+                    fontWeight: 700,
+                    color: 'var(--fg, #f5f0eb)',
+                    margin: '0 0 0.25rem',
+                  }}
+                >
+                  {cat.name}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '0.75rem',
+                    color: 'var(--accent, #c8943e)',
+                    marginBottom: '0.5rem',
+                  }}
+                >
+                  {cat.count}
+                </p>
+                <p
+                  style={{
+                    fontSize: '0.85rem',
+                    color: 'var(--fg, #f5f0eb)',
+                    opacity: 0.6,
+                    lineHeight: 1.5,
+                    margin: 0,
+                  }}
+                >
+                  {cat.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured Businesses */}
+      <section
+        style={{
+          borderTop: '1px solid var(--muted, #333)',
+          padding: '4rem 1.5rem',
+          maxWidth: 900,
+          margin: '0 auto',
+        }}
+      >
+        <h2
+          style={{
+            fontSize: '0.85rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            color: 'var(--accent, #c8943e)',
+            marginBottom: '0.5rem',
+          }}
+        >
+          Featured Listings
+        </h2>
+        <p
+          style={{
+            fontSize: '1rem',
+            color: 'var(--fg, #f5f0eb)',
+            opacity: 0.6,
+            marginBottom: '2.5rem',
+            maxWidth: 550,
+          }}
+        >
+          Businesses we&apos;ve written about, photographed, and know personally. The corridor
+          starts here.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {FEATURED_BUSINESSES.map((biz) => (
+            <div
+              key={biz.name}
+              style={{
+                border: '1px solid var(--muted, #333)',
+                padding: '1.5rem 2rem',
+                display: 'grid',
+                gridTemplateColumns: '1fr auto',
+                gap: '2rem',
+                alignItems: 'center',
+              }}
+            >
+              <div>
+                <h3
+                  style={{
+                    fontSize: '1.15rem',
+                    fontWeight: 700,
+                    color: 'var(--fg, #f5f0eb)',
+                    margin: '0 0 0.25rem',
+                  }}
+                >
+                  {biz.name}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '0.8rem',
+                    color: 'var(--accent, #c8943e)',
+                    margin: '0 0 0.5rem',
+                  }}
+                >
+                  {biz.type} &middot; {biz.city}
+                </p>
+                <p
+                  style={{
+                    fontSize: '0.85rem',
+                    color: 'var(--fg, #f5f0eb)',
+                    opacity: 0.65,
+                    lineHeight: 1.5,
+                    margin: 0,
+                  }}
+                >
+                  {biz.desc}
+                </p>
+              </div>
+              {biz.articleSlug && (
+                <a
+                  href={`/magazine/${biz.articleSlug}`}
+                  style={{
+                    fontSize: '0.8rem',
+                    color: 'var(--accent, #c8943e)',
+                    textDecoration: 'none',
+                    whiteSpace: 'nowrap',
+                    borderBottom: '1px solid var(--accent, #c8943e)',
+                    paddingBottom: '0.15rem',
+                  }}
+                >
+                  Read feature
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Photo break */}
+      <div
+        style={{
+          width: '100%',
+          height: 240,
+          backgroundImage: 'url(/images/dsd/mississippi-sunset.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.7,
+        }}
+        role="img"
+        aria-label="Mississippi River sunset"
+      />
+
+      {/* Pricing Tiers */}
+      <section
+        style={{
+          padding: '4rem 1.5rem',
+          maxWidth: 1000,
+          margin: '0 auto',
+        }}
+      >
+        <h2
+          style={{
+            fontSize: '0.85rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            color: 'var(--accent, #c8943e)',
+            marginBottom: '0.5rem',
+          }}
+        >
+          Directory Membership
+        </h2>
+        <p
+          style={{
+            fontSize: '1.25rem',
+            fontWeight: 700,
+            color: 'var(--fg, #f5f0eb)',
+            marginBottom: '0.5rem',
+          }}
+        >
+          More than a listing. A marketing partner.
+        </p>
+        <p
+          style={{
+            fontSize: '0.95rem',
+            color: 'var(--fg, #f5f0eb)',
+            opacity: 0.6,
+            lineHeight: 1.7,
+            maxWidth: 600,
+            marginBottom: '2.5rem',
+          }}
+        >
+          Every paid tier includes access to the Big Muddy ecosystem — Magazine features,
+          Radio mentions, AI-generated content matched to your voice, and photography by
+          Chase Pierson. This isn&apos;t a Yelp listing. This is a media company working for your business.
+        </p>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '1.5rem',
+          }}
+        >
+          {TIERS.map((tier) => (
+            <div
+              key={tier.name}
+              style={{
+                border: tier.name === 'The Route'
+                  ? '2px solid var(--accent, #c8943e)'
+                  : '1px solid var(--muted, #333)',
+                padding: '2rem',
+                position: 'relative',
+              }}
+            >
+              {tier.name === 'The Route' && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '-0.75rem',
+                    left: '1.5rem',
+                    background: 'var(--accent, #c8943e)',
+                    color: '#0a0a0a',
+                    fontSize: '0.65rem',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    padding: '0.2rem 0.75rem',
+                  }}
+                >
+                  Best Value
+                </div>
+              )}
+              <p
+                style={{
+                  fontSize: '0.75rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  color: 'var(--accent, #c8943e)',
+                  marginBottom: '0.25rem',
+                }}
+              >
+                {tier.name}
+              </p>
+              <p
+                style={{
+                  fontSize: '2rem',
+                  fontWeight: 700,
+                  color: 'var(--fg, #f5f0eb)',
+                  margin: '0 0 1.5rem',
+                  lineHeight: 1.1,
+                }}
+              >
+                {tier.price}
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                {tier.features.map((f) => (
+                  <li
+                    key={f}
+                    style={{
+                      fontSize: '0.8rem',
+                      color: 'var(--fg, #f5f0eb)',
+                      opacity: 0.7,
+                      lineHeight: 1.5,
+                      padding: '0.3rem 0',
+                      paddingLeft: '1.25rem',
+                      borderBottom: '1px solid rgba(255,255,255,0.05)',
+                      position: 'relative',
+                    }}
+                  >
+                    <span
+                      style={{
+                        position: 'absolute',
+                        left: 0,
+                        color: 'var(--accent, #c8943e)',
+                      }}
+                    >
+                      —
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Plug In Your Tools */}
+      <section
+        style={{
+          borderTop: '1px solid var(--muted, #333)',
+          padding: '4rem 1.5rem',
+          maxWidth: 1000,
+          margin: '0 auto',
+        }}
+      >
+        <h2
+          style={{
+            fontSize: '0.85rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            color: 'var(--accent, #c8943e)',
+            marginBottom: '0.5rem',
+          }}
+        >
+          Integrations
+        </h2>
+        <p
+          style={{
+            fontSize: '1.25rem',
+            fontWeight: 700,
+            color: 'var(--fg, #f5f0eb)',
+            marginBottom: '0.5rem',
+          }}
+        >
+          Plug In Your Tools
+        </p>
+        <p
+          style={{
+            fontSize: '0.95rem',
+            color: 'var(--fg, #f5f0eb)',
+            opacity: 0.6,
+            lineHeight: 1.7,
+            maxWidth: 560,
+            marginBottom: '2.5rem',
+          }}
+        >
+          Connect the services you already use. Your accounts, your data — we just make them work harder.
+        </p>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: '1rem',
+          }}
+        >
+          {[
+            { name: 'Stripe', category: 'Payments' },
+            { name: 'Square', category: 'POS' },
+            { name: 'Toast', category: 'Restaurant POS' },
+            { name: 'OpenTable', category: 'Reservations' },
+            { name: 'Cloudbeds', category: 'Property Management' },
+            { name: 'Mailchimp', category: 'Email' },
+            { name: 'Google Analytics', category: 'Traffic' },
+            { name: 'Meta Pixel', category: 'Retargeting' },
+          ].map((tool) => (
+            <div
+              key={tool.name}
+              style={{
+                border: '1px solid var(--muted, #333)',
+                padding: '1.25rem 1.5rem',
+              }}
+            >
+              <p
+                style={{
+                  fontSize: '0.85rem',
+                  fontWeight: 700,
+                  color: 'var(--fg, #f5f0eb)',
+                  margin: '0 0 0.2rem',
+                  lineHeight: 1.3,
+                }}
+              >
+                {tool.name}
+              </p>
+              <p
+                style={{
+                  fontSize: '0.7rem',
+                  color: 'var(--accent, #c8943e)',
+                  margin: 0,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.07em',
+                  opacity: 0.8,
+                }}
+              >
+                {tool.category}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section
+        style={{
+          borderTop: '1px solid var(--muted, #333)',
+          padding: '5rem 1.5rem',
+          textAlign: 'center',
+          maxWidth: 600,
+          margin: '0 auto',
+        }}
+      >
+        <h2
+          style={{
+            fontSize: '2rem',
+            fontWeight: 700,
+            color: 'var(--fg, #f5f0eb)',
+            marginBottom: '1rem',
+          }}
+        >
+          Run a business on the corridor?
+        </h2>
+        <p
+          style={{
+            fontSize: '1rem',
+            color: 'var(--fg, #f5f0eb)',
+            opacity: 0.7,
+            lineHeight: 1.6,
+            marginBottom: '2rem',
+          }}
+        >
+          Free listings are free. Paid tiers start at $50/month. No contracts — month to
+          month, cancel anytime. We&apos;ll build your profile, match your voice, and start
+          putting your business in front of people who are already coming to the corridor.
+        </p>
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a
+            href="/directory/submit"
+            style={{
+              display: 'inline-block',
+              padding: '0.75rem 2rem',
+              background: 'var(--accent, #c8943e)',
+              color: '#0a0a0a',
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: '0.9rem',
+            }}
+          >
+            Get Listed
+          </a>
+          <a
+            href="/directory/dashboard"
+            style={{
+              display: 'inline-block',
+              padding: '0.75rem 2rem',
+              border: '1px solid var(--accent, #c8943e)',
+              color: 'var(--accent, #c8943e)',
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: '0.9rem',
+            }}
+          >
+            Business Dashboard &rarr;
+          </a>
+        </div>
+        <p
+          style={{
+            marginTop: '1rem',
+            fontSize: '0.8rem',
+            color: 'var(--fg, #f5f0eb)',
+            opacity: 0.4,
+          }}
+        >
+          listings@hillbillydreamsinc.com
+        </p>
+        <p
+          style={{
+            marginTop: '2rem',
+            fontSize: '0.7rem',
+            color: 'var(--fg, #f5f0eb)',
+            opacity: 0.25,
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+          }}
+        >
+          Powered by HDX · hillbillydreamsinc.com
+        </p>
+      </section>
+    </main>
   );
 }
