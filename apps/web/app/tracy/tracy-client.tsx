@@ -97,6 +97,11 @@ export default function TracyDashboard() {
 
   return (
     <div className="senate-report">
+      <div className="senate-actions">
+        <button className="senate-print-btn" onClick={() => window.print()}>
+          PRINT / DOWNLOAD PDF
+        </button>
+      </div>
       <header className="senate-header">
         <div className="senate-header__bar" />
         <div className="senate-header__content">
@@ -539,9 +544,36 @@ const reportStyles = `
     margin: 16px 0 0;
   }
 
+  .senate-actions {
+    text-align: right;
+    margin-bottom: 16px;
+  }
+  .senate-print-btn {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 14px 28px;
+    background: #1a1a1a;
+    color: #f5f3ef;
+    border: 3px solid #1a1a1a;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .senate-print-btn:hover {
+    background: #f5f3ef;
+    color: #1a1a1a;
+  }
+
   @media print {
-    .senate-report { padding: 0; background: white; }
+    .senate-report { padding: 0; background: white; max-width: 100%; }
+    .senate-actions { display: none; }
     .senate-section { page-break-inside: avoid; }
+    .senate-header { page-break-after: avoid; }
+    .senate-toc { page-break-after: always; }
+    .senate-subsection { page-break-inside: avoid; }
+    .senate-finding { page-break-inside: avoid; }
+    .senate-footer { page-break-before: always; }
   }
 
   @media (max-width: 640px) {
