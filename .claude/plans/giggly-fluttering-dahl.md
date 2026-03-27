@@ -1,151 +1,169 @@
-# Infrastructure Consolidation: Everything Under Hillbilly Dreams Inc.
+# Agent Context Database Layer
 
 ## Context
 
-The hosting and DNS infrastructure is scattered across 3 platforms with inconsistent naming, stale services, and broken domain routing. Custom domains point to a mix of:
-- Old Cloud Run `bmt-web` service (stale code)
-- Static GCP IPs (some dead)
-- Firebase App Hosting (working but no custom domains registered)
-- Vercel (outsidereconomics.com works)
-- GoDaddy (buycurious.art)
+No single agent can hold the full business context in its context window. Currently agents read 30+ markdown files and hope it fits. The solution: use the existing Neon Postgres + pgvector infrastructure (already built by Ledger) as a shared brain. Agents query for what they need instead of reading everything.
 
-Chase has Vercel Pro under `chase-piersons-projects`. Goal: **Vercel is the canonical production host**, all custom domains point there, stale GCP services get decommissioned, everything has clean names under HDI.
+## What Already Exists (don't rebuild)
+- pgvector enabled with IVFFlat cosine index
+- `Embedding` table (768-dim Vertex AI vectors, polymorphic entityType)
+- `vector-search.ts` with `searchSimilar()` function
+- `/api/search` endpoint for semantic queries
+- `/api/embeddings/index` for ingesting content
+- `embedding-pipeline.ts` for chunking and embedding
+- `EnrichmentJob` queue for async processing
+- `MetricSnapshot` for time-series data
 
----
+## What To Build
 
-## Current State (the mess)
+### 1. New Prisma Models
 
-| Domain | Currently Points To | Status |
-|--------|-------------------|--------|
-| measurablybetterthings.com | Cloud Run `bmt-web` (old code) | **STALE** |
-| bigmuddytouring.com | GCP IP 35.219.200.206 | **UNKNOWN** |
-| deepsouthdirectory.com | GCP IP 35.219.200.201 | **UNKNOWN** |
-| hillbillydreamsinc.com | GCP IP 35.219.200.206 | **UNKNOWN** |
-| bigmuddyentertainment.com | GCP IP 35.219.200.206 | **WORKS?** |
-| outsidereconomics.com | Vercel (76.76.21.21) | **WORKING** |
-| bigmuddymagazine.com | GCP IP 35.219.200.192 | **UNKNOWN** |
-| bigmuddyradio.com | GCP IP 35.219.200.198 | **UNKNOWN** |
-| buycurious.art | GoDaddy IPs | **525 SSL ERROR** |
+**AgentContext** — structured knowledge fragments
+```prisma
+model AgentContext {
+  id          Int      @id @default(autoincrement())
+  domain      String   // "finance", "operations", "strategy", "touring", "tech"
+  topic       String   // "cap-table", "inn-occupancy", "pipeline-revenue"
+  key         String   // unique identifier like "entity.hdi.ownership"
+  content     String   // the actual knowledge (markdown)
+  source      String   // where it came from: "tax-db/ENTITY_REGISTRY.md", "agent:ledger"
+  confidence  Float    @default(1.0) // 0-1, decays over time
+  agentAuthor String?  // which agent wrote this
+  validUntil  DateTime? // TTL for time-sensitive facts
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@unique([domain, key])
+  @@index([domain, topic])
+}
+```
 
-**Vercel projects (13!):** bmt, bmt-demo, bmt-deploy, bmt-monorepo, bmt-production, outsider-economics, web, superchase, superchase-dashboard, super-chase-os-clean-start, utopia-v1, s2p_os, scan2plan_os
+**AgentAction** — replaces AGENT_LEDGER.md
+```prisma
+model AgentAction {
+  id          Int      @id @default(autoincrement())
+  agent       String   // "huck", "delta-dawn", "ledger", "chuck", "rook"
+  action      String   // "deployed", "fixed-bug", "created-report", "decision"
+  summary     String   // one-line description
+  detail      String?  // full detail (markdown)
+  domain      String   // which area of the business
+  impact      String?  // "high", "medium", "low"
+  createdAt   DateTime @default(now())
+  @@index([agent, createdAt])
+  @@index([domain, createdAt])
+}
+```
 
-**GCP stale resources:** Cloud Run `bmt-web`, Firebase App Hosting `bmt` backend, static IPs, load balancers from `deploy-iap.sh`
+**Decision** — business decisions with rationale
+```prisma
+model Decision {
+  id          Int      @id @default(autoincrement())
+  title       String   // "MBT pricing set to $99/mo"
+  rationale   String   // why this was decided
+  decidedBy   String   // "chase", "chase+tracy"
+  domain      String   // "pricing", "operations", "strategy"
+  status      String   @default("active") // "active", "superseded", "reversed"
+  supersededBy Int?    // FK to newer decision
+  createdAt   DateTime @default(now())
+  @@index([domain, status])
+}
+```
 
----
+### 2. Ingest Pipeline — Markdown to Database
 
-## Target State (clean)
+Script: `scripts/ingest-context.ts`
 
-### Single Vercel Project
-- **Project name:** `hillbilly-dreams` (rename `bmt-demo` or create fresh)
-- **Git repo:** `CPTV27/hillbilly-dreams` on `main` branch
-- **Root directory:** `apps/web`
-- **Auto-deploy:** Push to `main` → build → live
+Reads all existing markdown docs, chunks them, and writes to AgentContext + Embedding tables:
 
-### All Custom Domains on Vercel
-Every domain gets added to the single Vercel project. Vercel handles SSL automatically.
+**Sources to ingest:**
+- `~/tax-db/*.md` (16 files) — finance, entities, pipeline
+- `docs/strategy/*.md` (4 files) — strategy, roadmap
+- `docs/google-ecosystem/*.md` (8 files) — operational blueprints
+- `docs/research/*.md` (5 files) — market research
+- `docs/*.md` (30+ files) — product, brand, design, narrative
+- `.claude/agents/*.md` (15+ files) — agent handoffs, protocols
+- Memory files from `.claude/projects/*/memory/*.md` — feedback, project context
 
-| Domain | Vercel CNAME Target | Cloudflare Proxy |
-|--------|-------------------|-----------------|
-| measurablybetterthings.com | `cname.vercel-dns.com` | DNS-only (gray cloud) |
-| www.measurablybetterthings.com | `cname.vercel-dns.com` | DNS-only |
-| bigmuddytouring.com | `cname.vercel-dns.com` | DNS-only |
-| www.bigmuddytouring.com | `cname.vercel-dns.com` | DNS-only |
-| deepsouthdirectory.com | `cname.vercel-dns.com` | DNS-only |
-| www.deepsouthdirectory.com | `cname.vercel-dns.com` | DNS-only |
-| hillbillydreamsinc.com | `cname.vercel-dns.com` | DNS-only |
-| www.hillbillydreamsinc.com | `cname.vercel-dns.com` | DNS-only |
-| bigmuddyentertainment.com | `cname.vercel-dns.com` | DNS-only |
-| bigmuddymagazine.com | `cname.vercel-dns.com` | DNS-only |
-| bigmuddyradio.com | `cname.vercel-dns.com` | DNS-only |
-| outsidereconomics.com | Already done | Already working |
-| buycurious.art | `cname.vercel-dns.com` | DNS-only |
-| superchase.app | `cname.vercel-dns.com` | DNS-only |
+Each file gets:
+1. Tagged with `domain` and `topic`
+2. Chunked into semantic segments (reuse `semantic-chunker.ts`)
+3. Embedded via Vertex AI (reuse `embedding-pipeline.ts`)
+4. Written to `AgentContext` (structured) + `Embedding` (vector search)
 
-**Important:** Cloudflare proxy (orange cloud) will be OFF for all domains — Vercel handles SSL and CDN. Cloudflare in DNS-only mode (gray cloud). **Confirmed by Chase.**
+### 3. Agent Context API
 
-### Decommission GCP Hosting
-- Delete Cloud Run service `bmt-web`
-- Delete or disable Firebase App Hosting backend `bmt`
-- Release static IPs (35.219.200.xxx)
-- Delete Google-managed SSL certs
-- Delete Cloud Scheduler cron jobs (recreate as Vercel Cron or GitHub Actions)
-- Keep GCP project `bigmuddy-ff651` for: Prisma/Neon DB, Secret Manager, Cloud Storage (photos)
+**GET /api/agent/context**
 
-### Clean Up Vercel
-Delete all stale projects, keep only:
-- `hillbilly-dreams` (the main app)
-- Maybe `s2p_os` if that's a separate app
+```
+?agent=delta-dawn           — filter by agent relevance
+&topic=inn-occupancy         — filter by topic
+&q=what is our pricing       — semantic search (uses pgvector)
+&domain=finance,operations   — filter by business domain
+&limit=20                    — max results
+&fresh=true                  — exclude stale content (validUntil < now)
+```
 
-Delete: `bmt`, `bmt-deploy`, `bmt-monorepo`, `bmt-production`, `web`, `superchase`, `superchase-dashboard`, `super-chase-os-clean-start`, `utopia-v1`
+Returns ranked, deduplicated context fragments. Each agent calls this at the start of a session instead of reading 30 files.
 
-### Fix S2PX DB Health Cron
-Failing at "Fetch Secrets" — GCP secret access issue. Needs service account permissions fix.
+**POST /api/agent/action**
 
----
+Agents write what they did. Replaces appending to AGENT_LEDGER.md.
 
-## Execution Steps
+```json
+{
+  "agent": "huck",
+  "action": "deployed",
+  "summary": "Consolidated all hosting on Vercel Pro",
+  "domain": "infrastructure",
+  "impact": "high"
+}
+```
 
-### Phase 1: Set Up the Canonical Vercel Project (FRESH)
-1. Create new Vercel project `hillbilly-dreams` linked to `CPTV27/hillbilly-dreams` repo
-2. Set root directory to `apps/web`
-3. Set framework preset: Next.js
-4. Set install command: `pnpm install --frozen-lockfile`
-5. Set build command: `pnpm db:generate && pnpm turbo build --filter=@bigmuddy/web`
-6. Set all environment variables from current .env / Firebase secrets
-7. Deploy and verify at `hillbilly-dreams.vercel.app`
-8. Update `.vercel/project.json` in repo to match new project ID
+**POST /api/agent/context**
 
-### Phase 2: Add Custom Domains to Vercel
-For each domain:
-1. Add domain in Vercel dashboard
-2. Update Cloudflare DNS: CNAME → `cname.vercel-dns.com`, proxy OFF
-3. Remove old A records / stale CNAMEs
-4. Verify SSL provisioning (Vercel auto-provisions Let's Encrypt)
-5. Test the live URL
+Agents write new knowledge back.
 
-**Order:** measurablybetterthings.com first (most critical), then bigmuddytouring.com, deepsouthdirectory.com, others.
+```json
+{
+  "domain": "finance",
+  "topic": "pipeline-revenue",
+  "key": "pipeline.total.2026-q1",
+  "content": "$1.4M across 49 opportunities",
+  "source": "agent:ledger",
+  "agentAuthor": "ledger"
+}
+```
 
-### Phase 3: Cron Migration
-Move cron jobs from GCP Cloud Scheduler to Vercel Cron:
-- Add `vercel.json` cron config for QBO sync and Google sync
-- Or use GitHub Actions scheduled workflows (already have pattern from S2PX)
+### 4. Context Staleness Management
 
-### Phase 4: Decommission GCP Hosting (requires `gcloud auth`)
-1. Delete Cloud Run service: `gcloud run services delete bmt-web --region us-east4`
-2. Disable Firebase App Hosting: `firebase apphosting:backends:delete bmt`
-3. Release static IPs
-4. Delete stale load balancer resources from IAP setup
-5. Clean up Google-managed SSL certs
+Cron job: `/api/cron/decay-context` (daily)
+- Reduce `confidence` by 0.05/day for time-sensitive facts
+- Mark expired entries (validUntil < now)
+- Flag contradictions (same key, different content from different agents)
 
-### Phase 5: Clean Up Vercel Projects
-Delete all stale Vercel projects except the canonical one.
+## Files To Create/Modify
 
-### Phase 6: Fix S2PX Cron
-Investigate and fix the "Fetch Secrets" failure in the db-health-cron workflow.
+| File | Action |
+|------|--------|
+| `packages/database/prisma/schema.prisma` | Add AgentContext, AgentAction, Decision models |
+| `apps/web/app/api/agent/context/route.ts` | GET (query) + POST (write) |
+| `apps/web/app/api/agent/action/route.ts` | POST (log actions) |
+| `apps/web/app/api/cron/decay-context/route.ts` | Daily staleness decay |
+| `scripts/ingest-context.ts` | One-time markdown → database migration |
+| `apps/web/lib/agent-context.ts` | Shared functions for context queries |
 
----
+## Execution Order
 
-## What Requires Chase's Manual Action
-- **Vercel token:** Paste token so agents can use Vercel CLI (**ready to provide**)
-- **gcloud auth:** `gcloud auth login` to decommission GCP resources (Phase 4)
-- **firebase auth:** `firebase login --reauth` if needed (Phase 4)
-
-## What Agents Can Do With Token
-- Create fresh Vercel project `hillbilly-dreams`
-- Configure build settings, env vars
-- Add all 15 custom domains to Vercel
-- Update all Cloudflare DNS records via API (CF token already available)
-- Delete stale Vercel projects
-- Update codebase configs (`.vercel/project.json`, `vercel.json`)
-- Remove `apphosting.yaml` and Firebase hosting config from codebase
-- Fix S2PX cron workflow
-
----
+1. Add Prisma models, run migration
+2. Build `/api/agent/context` and `/api/agent/action` endpoints
+3. Build `scripts/ingest-context.ts` to migrate existing markdown
+4. Run ingestion against all source docs
+5. Build `/api/cron/decay-context`
+6. Test: query context as each agent and verify relevance
 
 ## Verification
-1. Every domain resolves to Vercel and shows correct content
-2. SSL works on all domains (no mixed content, no 525 errors)
-3. `measurablybetterthings.com/measurably-better` shows new "Run your business" page
-4. Admin/ops dashboards still work
-5. Cron jobs fire on schedule
-6. No orphaned GCP resources billing us
+
+- Query `/api/agent/context?agent=delta-dawn&topic=inn` returns Inn operational data
+- Query `/api/agent/context?q=cap+table` returns ownership structure via semantic search
+- POST action from huck, verify it appears in GET queries for other agents
+- Verify ingestion covered all 70+ source documents
+- Verify no duplicate embeddings from re-ingestion

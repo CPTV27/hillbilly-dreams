@@ -1148,3 +1148,60 @@ model EnrichmentJob {
   @@index([status, jobType])
   @@index([entityType, entityId])
 }
+
+// ─────────────────────────────────────────────────────────────
+// AGENT CONTEXT — Shared brain for the agent swarm
+// ─────────────────────────────────────────────────────────────
+
+/// Structured knowledge fragments — the database replaces markdown files
+/// as the single source of truth for business context.
+model AgentContext {
+  id          Int       @id @default(autoincrement())
+  domain      String    // "finance", "operations", "strategy", "touring", "tech", "product", "brand"
+  topic       String    // "cap-table", "inn-occupancy", "pipeline-revenue", "pricing"
+  key         String    // unique identifier like "entity.hdi.ownership" or "decision.mbt-pricing"
+  content     String    @db.Text // the actual knowledge (markdown)
+  source      String    // origin: "tax-db/ENTITY_REGISTRY.md", "agent:ledger", "memory:project_cap_table"
+  confidence  Float     @default(1.0) // 0-1, decays over time for time-sensitive facts
+  agentAuthor String?   // which agent wrote this: "huck", "ledger", "delta-dawn", "rook", "chuck"
+  validUntil  DateTime? // TTL for time-sensitive facts (null = permanent)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([domain, key])
+  @@index([domain, topic])
+  @@index([agentAuthor])
+  @@index([confidence])
+}
+
+/// Agent action log — replaces AGENT_LEDGER.md
+/// Every significant agent action gets recorded here.
+model AgentAction {
+  id        Int      @id @default(autoincrement())
+  agent     String   // "huck", "delta-dawn", "ledger", "chuck", "rook"
+  action    String   // "deployed", "fixed-bug", "created-report", "decision", "research"
+  summary   String   // one-line description
+  detail    String?  @db.Text // full detail (markdown)
+  domain    String   // which area of the business
+  impact    String?  // "high", "medium", "low"
+  createdAt DateTime @default(now())
+
+  @@index([agent, createdAt])
+  @@index([domain, createdAt])
+}
+
+/// Business decisions with rationale — queryable decision log
+model Decision {
+  id           Int      @id @default(autoincrement())
+  title        String   // "MBT pricing set to $99/mo"
+  rationale    String   @db.Text // why this was decided
+  decidedBy    String   // "chase", "chase+tracy", "agent:rook"
+  domain       String   // "pricing", "operations", "strategy", "hiring", "product"
+  status       String   @default("active") // "active", "superseded", "reversed"
+  supersededBy Int?     // ID of newer decision that replaces this one
+  evidence     String?  @db.Text // supporting data, links, research
+  createdAt    DateTime @default(now())
+
+  @@index([domain, status])
+  @@index([decidedBy])
+}
