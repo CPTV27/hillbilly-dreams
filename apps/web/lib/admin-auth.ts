@@ -21,7 +21,13 @@ export { isAllowedUser };
  * Returns null if authorized, or a NextResponse (401/403) to return immediately.
  */
 export async function requireAdmin(): Promise<NextResponse | null> {
-  // Auth disabled — all users allowed
+  const session = await auth();
+  if (!session?.user?.email) {
+    return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
+  }
+  if (!isAllowedUser(session.user.email)) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  }
   return null;
 }
 

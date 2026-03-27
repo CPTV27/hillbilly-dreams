@@ -5,6 +5,91 @@
 
 ---
 
+## [2026-03-26 19:00] — CC (Huck / Build Agent) — AGENT COMMS LIVE + THEME UPDATE + DATA PLATFORM HANDOFF
+
+### STATUS: Agent communication infrastructure is LIVE. Theme system updated. Data platform foundation received from Ledger.
+
+### AGENT ROSTER (LOCKED — March 26)
+
+| Name | Role | Domain | Google Chat Webhook |
+|---|---|---|---|
+| **Huck** | Chief of Staff + Build Agent | Chase's primary contact. Routes work, manages agents, builds infrastructure. | GCHAT_WEBHOOK_AGENT_DESK |
+| **Delta Dawn** | Big Muddy Ecosystem | Inn, magazine, radio, records, hospitality ops | GCHAT_WEBHOOK_DELTA_DAWN |
+| **Ledger** | Data & Metrics | Database, census, enrichment, pricing, analytics | GCHAT_WEBHOOK_LEDGER |
+| **Chuck** | Road Manager | Touring, venues, logistics, fleet, scheduling | GCHAT_WEBHOOK_CHUCK |
+| **Rook** | Strategy (Chase-only) | HDI holding company, valuations, investors | Uses AGENT_DESK webhook |
+
+### COMMUNICATION PROTOCOL
+- **All agents:** Read `.claude/agents/COMMS_PROTOCOL.md` — webhook URLs, when to message, how to talk to other agents
+- **Data routing:** Read `.claude/agents/DATA_HANDOFF_PROMPT.md` — businesses → /api/directory/submit, metrics → /api/metrics, content → /api/embeddings/index
+- **Agent instructions:** `.claude/agents/frontend-design-instructions.md`, `.claude/agents/data-scientist-instructions.md`
+- **Google Chat space:** HDI Agent Desk (one space, all agents post here, Chase monitors from phone)
+- **Bidirectional bot:** Registered in GCP at `https://hillbillydreamsinc.com/api/gchat/bot` — pending domain deployment
+
+### GOOGLE CHAT BOT (built March 26)
+- `/api/gchat/bot` — receives messages from Google Chat, routes to agents by keyword
+- `/api/gchat/pending?agent=huck` — agents poll for pending messages
+- `/api/gchat/reply` — agents respond in-thread
+- Message queue: Cloudflare D1 (`chat_messages` table in `openclaw-db`)
+- **BLOCKER:** hillbillydreamsinc.com custom domain not yet verified in Firebase App Hosting. Bot endpoint not reachable until domain is live.
+
+### THEME SYSTEM UPDATE (built March 26)
+- `.theme-mb` updated: pure white (#FFFFFF), bigger text (18px base, 56px hero), cool neutral borders, burgundy accent
+- Chase directive: "not creamy, just white, light, bright, bigger text, simpler"
+- 13 theme classes total in `tokens.css`, all using `--bg`/`--surface`/`--text`/`--accent` namespace
+- `theme-provider.tsx` supports runtime switching via localStorage
+- `theme-registry.ts` has metadata for all 12 themes
+
+### DATA PLATFORM HANDOFF FROM LEDGER (received March 26)
+- Commits `5d65329` + `9325831` on main
+- 5 new tables: MetricSnapshot, Embedding, CensusData, EconomicIndicator, EnrichmentJob
+- pgvector enabled, 19 Natchez businesses seeded
+- New endpoints: /api/search, /api/directory/enrich, /api/embeddings/index, /api/data/health, /api/cron/process-enrichment-queue, /api/cron/sync-census
+- **BLOCKERS:** GOOGLE_MAPS_API_KEY needed, cron scheduling needed, build verification needed
+- Full handoff: `.claude/agents/LEDGER_TO_HUCK_HANDOFF.md`
+
+### DEPLOYMENT PLATFORM (CORRECTED)
+- **Firebase App Hosting** — NOT Vercel. No vercel.json exists. No .vercel/ directory.
+- Backend ID: `bmt`
+- Default URL: `https://bmt--bigmuddy-ff651.us-east4.hosted.app`
+- GCP project: `bigmuddy-ff651` (owned by `me@chasepierson.tv`)
+- Config: `apphosting.yaml` + `firebase.json`
+- Deploy trigger: `git push origin main` → auto-deploy
+- **All agents: never reference Vercel. We are Google-native.**
+
+### INFRASTRUCTURE RULES (ALL AGENTS)
+- **No Hugging Face** — system-wide ban. Use Google/Vertex AI for all ML tasks.
+- **No Vercel** — we deploy on Firebase App Hosting.
+- **No outside LLM providers** — default to Gemini for AI features unless Chase says otherwise.
+- **Data goes to the database** — don't hold data in memory. Route per DATA_HANDOFF_PROMPT.md.
+
+### FILES CREATED/MODIFIED TODAY
+- `apps/web/lib/gchat.ts` — Google Chat webhook library (full named roster)
+- `apps/web/app/api/gchat/bot/route.ts` — Chat bot webhook receiver
+- `apps/web/app/api/gchat/pending/route.ts` — Agent message polling
+- `apps/web/app/api/gchat/reply/route.ts` — Agent reply endpoint
+- `.claude/agents/COMMS_PROTOCOL.md` — Agent communication protocol
+- `.claude/agents/GCHAT_BOT_SETUP.md` — GCP bot registration instructions
+- `packages/config/tokens.css` — .theme-mb updated to white/bright
+- `apps/web/app/measurably-better/technology/page.tsx` — fixed C.surface0 → C.textMuted
+- `.claude/agents/frontend-design-instructions.md` — added comms section
+- `.claude/agents/data-scientist-instructions.md` — added comms section
+
+### DEMO STATUS (all 8 properties demo-ready)
+| Property | Status |
+|---|---|
+| Touring | Ready — full content, editorial layout |
+| Magazine | Ready — dynamic hero, category filters, 18 city guides |
+| Radio | Ready — live sessions, playlists, animated waveform |
+| Records | Ready — 3 pricing tiers, artist roster, sessions grid |
+| Economics | Ready — 6 stats, network viz, community CTA |
+| Hillbilly | Ready — Google Cloud customer story, dark theme |
+| Gallery | Ready — demo data, dual visual modes |
+| Inn | Ready — full subdirectory structure |
+| Measurably Better | Ready — white theme, burgundy accents, serif headlines |
+
+---
+
 ## [2026-03-26 06:30] — CC (Story/UX Agent) — FULL PRODUCT VISION LOCKED + BUILD DIRECTIVE
 
 ### STATUS: Build agent is in PLAN MODE. This entry is the complete handoff.

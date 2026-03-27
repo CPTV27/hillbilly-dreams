@@ -246,6 +246,7 @@ export default function WeddingsPage() {
           <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
             <a
               href="#packages"
+              className="cta-hover"
               style={{
                 display: 'inline-block',
                 padding: '14px 32px',
@@ -260,8 +261,6 @@ export default function WeddingsPage() {
                 borderRadius: 'var(--radius-sm)',
                 transition: 'opacity 0.2s',
               }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = '0.85')}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = '1')}
             >
               View Packages
             </a>
@@ -1159,6 +1158,7 @@ export default function WeddingsPage() {
           </p>
         </div>
       </section>
+      <style>{`.cta-hover:hover { opacity: 0.85; }`}</style>
     </>
   );
 }

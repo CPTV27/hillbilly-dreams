@@ -1,5 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const isCheckly = !!process.env.CHECKLY;
+
 export default defineConfig({
     testDir: './e2e',
     fullyParallel: true,
@@ -11,7 +13,7 @@ export default defineConfig({
     expect: { timeout: 15_000 },
 
     use: {
-        baseURL: process.env.CHECKLY
+        baseURL: isCheckly
             ? 'https://bigmuddytouring.com'
             : 'http://localhost:3000',
         trace: 'on-first-retry',
@@ -19,15 +21,23 @@ export default defineConfig({
     },
 
     projects: [
-        // ── Checkly Synthetic Monitoring ──
-        // Runs smoke.spec.ts against the live Firebase App Hosting URL.
-        // Selected by checkly.config.ts via pwProjects: ['checkly'].
         {
             name: 'checkly',
             use: { ...devices['Desktop Chrome'] },
             testMatch: ['smoke.spec.ts'],
         },
+        {
+            name: 'local',
+            use: { ...devices['Desktop Chrome'] },
+        },
     ],
 
-    // No webServer — smoke tests always run against deployed URLs
+    ...(!isCheckly && {
+        webServer: {
+            command: 'pnpm --filter @bigmuddy/web dev',
+            port: 3000,
+            reuseExistingServer: true,
+            timeout: 60_000,
+        },
+    }),
 });

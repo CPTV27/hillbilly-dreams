@@ -10,8 +10,13 @@ import { NextResponse } from 'next/server';
  * @param roles Array of allowed role values
  */
 export function requireRole(session: Session | null | undefined, ...roles: AppRole[]) {
-    // Auth disabled — all callers pass
-    return;
+    if (!session?.user) {
+        throw new Error('Not authenticated');
+    }
+
+    if (!roles.includes(normalizeRole((session.user as any).role as string))) {
+        throw new Error('Forbidden');
+    }
 }
 
 /**
@@ -19,6 +24,13 @@ export function requireRole(session: Session | null | undefined, ...roles: AppRo
  * Ideal for API handlers handling their own return scenarios (not using throw)
  */
 export function requireRoleResponse(session: Session | null | undefined, ...roles: AppRole[]): NextResponse | null {
-    // Auth disabled — always pass
+    if (!session?.user) {
+        return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
+    }
+
+    if (!roles.includes(normalizeRole((session.user as any).role as string))) {
+        return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
+
     return null;
 }

@@ -9,6 +9,8 @@
     "lint": "turbo run lint",
     "type-check": "turbo run type-check",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "test": "npx playwright test --project=local",
+    "test:smoke": "npx playwright test e2e/smoke.spec.ts --project=local",
     "db:generate": "turbo run db:generate",
     "db:push": "turbo run db:push",
     "db:migrate": "turbo run db:migrate",
@@ -25,6 +27,11 @@
     "apps/*",
     "packages/*"
   ],
+  "pnpm": {
+    "overrides": {
+      "serialize-javascript": ">=7.0.3"
+    }
+  },
   "engines": {
     "node": ">=20.0.0",
     "pnpm": ">=9.0.0"
