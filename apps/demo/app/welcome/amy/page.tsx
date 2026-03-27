@@ -127,7 +127,7 @@ export default function WelcomeAmy() {
               maxWidth: 520,
             }}
           >
-            This is a quick look at the world you're already part of — from the
+            This is a quick look at the world you&apos;re already part of — from the
             outside in. Five stops. Start wherever makes sense to you.
           </p>
         </div>
