@@ -126,43 +126,48 @@ export default function TracyDashboard() {
       </div>
 
       <ReportSection number="1" title="CORPORATE STRUCTURE & GOVERNANCE">
-        <DataRow label="Legal Entity" value="Hillbilly Dreams Incorporated" />
-        <DataRow label="State of Incorporation" value="Mississippi" />
-        <DataRow label="Entity Type" value="— awaiting data —" />
-        <DataRow label="EIN" value="— awaiting data —" />
         <div className="senate-subsection">
-          <h3 className="senate-subsection__title">1.1 Equity Partners</h3>
-          <DataRow label="Chase Pierson, CEO" value="— % —" />
-          <DataRow label="Tracy Alderson-Allen, COO" value="— % —" />
-          <DataRow label="Amy Alderson-Allen, Guest Experience" value="— % —" />
+          <h3 className="senate-subsection__title">1.1 Active Entities</h3>
+          <DataRow label="Farley Pierson LLC" value="EIN 81-4280721 — NY LLC (single-member), Active" />
+          <DataRow label="Tuthill Design LLC" value="EIN 39-3499965 — NY LLC (partnership), Active" />
+          <DataRow label="Bearsville Media Group LLC" value="EIN 87-1868337 — NY LLC (single-member), Dormant" />
+        </div>
+        <div className="senate-subsection">
+          <h3 className="senate-subsection__title">1.2 Dissolved Entities</h3>
+          <DataRow label="Scan2Plan, Inc." value="Delaware C-Corp — Partnership dissolved 3/25/2026" />
+        </div>
+        <div className="senate-subsection">
+          <h3 className="senate-subsection__title">1.3 Entities To Be Formed</h3>
+          <DataRow label="Hillbilly Dreams, Inc." value="NOT YET FORMED — needs incorporation in Mississippi" />
+        </div>
+        <div className="senate-subsection">
+          <h3 className="senate-subsection__title">1.4 Equity Partners (HDI — pending formation)</h3>
+          <DataRow label="Chase Pierson, CEO" value="% TBD upon formation" />
+          <DataRow label="Tracy Alderson-Allen, COO" value="% TBD upon formation" />
+          <DataRow label="Amy Alderson-Allen, Guest Experience" value="% TBD upon formation" />
         </div>
       </ReportSection>
 
       <ReportSection number="2" title="PROPERTY & SUBSIDIARY STATUS">
         <div className="senate-subsection">
           <h3 className="senate-subsection__title">2.1 The Big Muddy Inn — Natchez, MS</h3>
-          <DataRow label="Revenue YTD" value="— awaiting data —" />
-          <DataRow label="Expenses YTD" value="— awaiting data —" />
-          <DataRow label="Net Income/Loss" value="— awaiting data —" />
-          <DataRow label="Occupancy Rate" value="— awaiting data —" />
-          <DataRow label="Insurance Status" value="— awaiting data —" />
+          <DataRow label="Revenue YTD (Cash App from Tracy)" value="$2,456" />
+          <DataRow label="Status" value="Operating — lodging active" />
+          <DataRow label="Insurance Status" value="— needs verification —" />
         </div>
         <div className="senate-subsection">
           <h3 className="senate-subsection__title">2.2 Big Muddy Magazine</h3>
           <DataRow label="Status" value="Pre-launch" />
           <DataRow label="Revenue" value="$0" />
-          <DataRow label="Ad Pipeline" value="— awaiting data —" />
         </div>
         <div className="senate-subsection">
           <h3 className="senate-subsection__title">2.3 Big Muddy Records</h3>
           <DataRow label="Status" value="Pre-launch" />
-          <DataRow label="Artists Signed" value="0" />
           <DataRow label="Revenue" value="$0" />
         </div>
         <div className="senate-subsection">
           <h3 className="senate-subsection__title">2.4 Big Muddy Touring</h3>
           <DataRow label="Status" value="Pre-launch" />
-          <DataRow label="Venues Scouted" value="— awaiting data —" />
           <DataRow label="Revenue" value="$0" />
         </div>
         <div className="senate-subsection">
@@ -173,8 +178,7 @@ export default function TracyDashboard() {
         <div className="senate-subsection">
           <h3 className="senate-subsection__title">2.6 Measurably Better (SaaS Platform)</h3>
           <DataRow label="Status" value="Active Development" />
-          <DataRow label="MRR" value="— awaiting data —" />
-          <DataRow label="Pipeline" value="— awaiting data —" />
+          <DataRow label="Stripe Revenue (FarleyPierson)" value="$17,456" />
         </div>
         <div className="senate-subsection">
           <h3 className="senate-subsection__title">2.7 Deep South Directory</h3>
@@ -182,40 +186,95 @@ export default function TracyDashboard() {
           <DataRow label="Businesses Listed" value="19 (seeded)" />
           <DataRow label="Revenue" value="$0" />
         </div>
+        <div className="senate-subsection">
+          <h3 className="senate-subsection__title">2.8 Consolidated 2025 Income — All Sources</h3>
+          <DataRow label="Scan2Plan LLC (direct)" value="$41,239" />
+          <DataRow label="Stripe / FarleyPierson" value="$17,456" />
+          <DataRow label="Tuthill Design (S2P pass-thru)" value="$12,660" />
+          <DataRow label="Film Production" value="$4,500" />
+          <DataRow label="Ardent Music" value="$3,000" />
+          <DataRow label="Big Muddy Inn (Cash App)" value="$2,456" />
+          <DataRow label="PayPal" value="$1,854" />
+          <DataRow label="Other (Venmo, Airbnb, TikTok, Sage)" value="$1,975" />
+          <DataRow label="TOTAL GROSS INCOME" value="$85,013" />
+        </div>
       </ReportSection>
 
       <ReportSection number="3" title="PERSONAL RECEIVABLES — CHASE PIERSON">
-        <DataRow label="Owed from Scan2Plan" value="— awaiting data —" />
-        <DataRow label="Date Incurred" value="— awaiting data —" />
-        <DataRow label="Terms" value="— awaiting data —" />
-        <DataRow label="Status" value="— awaiting data —" />
-        <DataRow label="Other Receivables" value="— awaiting data —" />
+        <div className="senate-subsection">
+          <h3 className="senate-subsection__title">3.1 Scan2Plan Revenue Share</h3>
+          <DataRow label="Arrangement" value="2% gross rev (Sep 2021) + 5% COO (Oct 2025), terminated Feb 2026" />
+          <DataRow label="Total Owed (2% + 5%, Sep 2021 – Feb 2026)" value="$103,530" />
+          <DataRow label="Total Received" value="($93,040)" />
+          <DataRow label="Net Underpayment" value="$10,490" />
+          <DataRow label="Outstanding (Dec 2025 + Jan 2026)" value="$16,009" />
+          <DataRow label="Logan Airport (uninvoiced)" value="$1,500" />
+          <DataRow label="TOTAL OWED TO CHASE PIERSON" value="$27,999" />
+        </div>
+        <div className="senate-subsection">
+          <h3 className="senate-subsection__title">3.2 Partnership Status</h3>
+          <DataRow label="Dissolution Date" value="March 25, 2026" />
+          <DataRow label="Evidence" value="Agata Roberts email ledger, QBO data, bank records" />
+          <DataRow label="Final Invoice Sent" value="$22,739.20 (March waived)" />
+        </div>
       </ReportSection>
 
       <ReportSection number="4" title="CIVIC OPPORTUNITY — STATE UTILITY PROGRAM">
-        <DataRow label="Program" value="— awaiting data —" />
         <DataRow label="Total Funding Available" value="$800,000,000" />
-        <DataRow label="HDI Eligibility" value="— awaiting data —" />
-        <DataRow label="Requirements" value="— awaiting data —" />
-        <DataRow label="Application Deadline" value="— awaiting data —" />
-        <DataRow label="Timeline to Award" value="— awaiting data —" />
+        <DataRow label="Program Details" value="— research in progress —" />
+        <DataRow label="HDI Eligibility" value="— to be determined —" />
+        <DataRow label="Requirements" value="— to be determined —" />
+        <DataRow label="Application Deadline" value="— to be determined —" />
       </ReportSection>
 
       <ReportSection number="5" title="TAX OBLIGATIONS & FILING STATUS">
-        <DataRow label="Federal Filing Status" value="— awaiting data —" />
-        <DataRow label="State Filing Status" value="— awaiting data —" />
-        <DataRow label="Estimated Taxes Paid YTD" value="— awaiting data —" />
-        <DataRow label="Outstanding Liabilities" value="— awaiting data —" />
-        <DataRow label="Next Filing Deadline" value="— awaiting data —" />
+        <div className="senate-subsection">
+          <h3 className="senate-subsection__title">5.1 Federal — IRS</h3>
+          <DataRow label="2018 IRS Balance" value="Unknown — $100/mo installment agreement ACTIVE" />
+          <DataRow label="2020 IRS Balance" value="~$20,762 (original) — status unclear, may overlap 2018 agreement" />
+          <DataRow label="2024 IRS Balance" value="$10,917 — CP504 LEVY NOTICE — Anderson Bradshaw must address" />
+          <DataRow label="IRS Monthly Payment" value="$100 by 28th — next 6 months scheduled, auto-pay" />
+        </div>
+        <div className="senate-subsection">
+          <h3 className="senate-subsection__title">5.2 State — New York</h3>
+          <DataRow label="2024 NY State" value="$1,681 — Unpaid" />
+          <DataRow label="NY State $10K Balance" value="Payment plan status unknown" />
+        </div>
+        <div className="senate-subsection">
+          <h3 className="senate-subsection__title">5.3 Estimated Payments — 2025</h3>
+          <DataRow label="Federal Estimated Owed" value="$8,248 — NONE PAID" />
+          <DataRow label="NY State Estimated Owed" value="$1,588 — NONE PAID" />
+          <DataRow label="Penalty Status" value="Underpayment penalties will apply" />
+        </div>
+        <div className="senate-subsection">
+          <h3 className="senate-subsection__title">5.4 Credit Report (March 26, 2026)</h3>
+          <DataRow label="Scores" value="685 TransUnion / 685 Equifax" />
+          <DataRow label="Collections" value="$21,717 across 5 debt buyers" />
+          <DataRow label="Bridgecrest (F-150)" value="$1,013 remaining — 96% paid, done June 2026" />
+          <DataRow label="Bank of Greene County" value="$333,280 — NOT Chase's debt (ex-wife's mortgage, needs dispute)" />
+          <DataRow label="Apple Card" value="$0 balance, clean" />
+        </div>
+        <div className="senate-subsection">
+          <h3 className="senate-subsection__title">5.5 Vehicle</h3>
+          <DataRow label="Vehicle" value="2015 Ford F-150, 151,537 miles" />
+          <DataRow label="Payment" value="$520/mo Bridgecrest — final payment June 2026" />
+          <DataRow label="Business Use (2024)" value="66.36% (14,589 of 21,985 miles)" />
+          <DataRow label="Mileage Deduction" value="$9,775 (standard rate $0.67/mile)" />
+        </div>
       </ReportSection>
 
       <ReportSection number="6" title="FINDINGS & RECOMMENDATIONS">
-        <p className="senate-note">Awaiting financial data from tax review agent. Recommendations will be populated upon receipt.</p>
-        <Finding priority="HIGH" text="Complete entity structuring and EIN registration" />
-        <Finding priority="HIGH" text="Establish formal operating agreement with equity splits" />
-        <Finding priority="MEDIUM" text="Resolve Scan2Plan receivables" />
-        <Finding priority="MEDIUM" text="File civic utility program application before deadline" />
+        <Finding priority="HIGH" text="2024 CP504 LEVY NOTICE ($10,917) — Anderson Bradshaw must fold into existing agreement or negotiate immediately" />
+        <Finding priority="HIGH" text="2025 estimated taxes ($9,836 combined) — none paid, underpayment penalties inevitable" />
+        <Finding priority="HIGH" text="Form Hillbilly Dreams, Inc. in Mississippi — entity does not yet exist" />
+        <Finding priority="HIGH" text="Dispute Bank of Greene County $333,280 mortgage on credit report — this is Elizabeth's debt, not Chase's" />
+        <Finding priority="HIGH" text="Collect $27,999 owed from Scan2Plan — final invoice sent, partnership dissolved 3/25/2026" />
+        <Finding priority="MEDIUM" text="Resolve Tuthill Design pass-through classification — need K-1 from Elijah to prevent double-counting" />
+        <Finding priority="MEDIUM" text="Obtain Scan2Plan 1099s for all years — critical for cross-reference" />
+        <Finding priority="MEDIUM" text="Download Flymax/Utopia Studios 1099-NEC from QuickBooks portal" />
+        <Finding priority="MEDIUM" text="Establish formal operating agreement with equity splits for HDI" />
         <Finding priority="LOW" text="Consolidate GCP/Firebase accounts under single Workspace domain" />
+        <Finding priority="LOW" text="Review 473 unclassified transactions ($14,627) in Found Banking business account" />
       </ReportSection>
 
       <footer className="senate-footer">
