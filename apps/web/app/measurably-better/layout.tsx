@@ -2,11 +2,11 @@ import { Metadata } from 'next';
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'Measurably Better | The easy you\'ve been looking for',
-  description: 'Automate admin overhead, synchronize QuickBooks, and gain pipeline visibility with our zero-configuration, sovereign AI engine.',
+  title: 'Measurably Better Things | Run your business, not your software',
+  description: 'One system that handles your reviews, social media, and customer outreach. For less than your electric bill. Built for Main Street.',
   openGraph: {
-    title: 'Measurably Better',
-    description: 'Automate admin overhead, synchronize QuickBooks, and gain pipeline visibility with our zero-configuration, sovereign AI engine.',
+    title: 'Measurably Better Things',
+    description: 'One system that handles your reviews, social media, and customer outreach. For less than your electric bill.',
     url: 'https://measurablybetterthings.com',
     siteName: 'Measurably Better',
     locale: 'en_US',

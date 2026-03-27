@@ -125,7 +125,7 @@ export default function DeepSouthPitch() {
               <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: colors.sky400, marginBottom: 12 }}>The Zero-IT Play</div>
               <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: colors.white, margin: '0 0 16px' }}>$74/mo replaces $8,500/mo</h3>
               <p style={{ color: colors.slate400, lineHeight: 1.6, margin: 0 }}>
-                A traditional IT department costs a small business $8,500/mo minimum — email, POS, booking, website, social, CRM. An HDX Operator Node runs the entire stack for $74/mo on sovereign Google Cloud infrastructure. Gemini 1.5 Pro handles the intelligence. Cloud Run handles the scale. Vertex AI maps the workflows. Plumbing, not pixie dust.
+                A traditional IT department costs a small business $8,500/mo minimum — email, POS, booking, website, social, CRM. An HDX Operator Node runs the entire stack for $74/mo on sovereign Google Cloud infrastructure. Gemini 2.5 Flash handles the intelligence. Cloud Run handles the scale. Vertex AI maps the workflows. Plumbing, not pixie dust.
               </p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>

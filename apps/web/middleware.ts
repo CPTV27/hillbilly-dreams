@@ -162,6 +162,11 @@ export async function middleware(request: NextRequest) {
     return rewriteTo(matched.routeGroup, pathname);
   }
 
+  // ── Directory routes always pass through — never rewritten ──
+  if (pathname === '/directory' || pathname.startsWith('/directory/')) {
+    return NextResponse.next();
+  }
+
   // ── Ops routes always pass through — never rewritten ──
   if (pathname === '/ops' || pathname.startsWith('/ops/')) {
     return NextResponse.next();

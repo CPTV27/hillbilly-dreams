@@ -107,7 +107,7 @@ export default function CEOConsole() {
     e.preventDefault();
     if (!chatInput.trim()) return;
     setChatLog(prev => [...prev, { role: 'user', text: chatInput }]);
-    // TODO: Wire to Gemini 1.5 Pro via Vertex AI with injected context
+    // TODO: Wire to Gemini 2.5 Flash via Vertex AI with injected context
     setTimeout(() => {
       setChatLog(prev => [...prev, { role: 'engine', text: `Processing: "${chatInput}" against ${Object.entries(datasets).filter(([, v]) => v).length} active namespaces. Anti-pollution ${antiPollution ? 'enforced' : 'disabled'}.` }]);
     }, 500);

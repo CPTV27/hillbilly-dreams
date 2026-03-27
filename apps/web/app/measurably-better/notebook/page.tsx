@@ -15,14 +15,14 @@ export default async function SovereignNotebookPage() {
   return (
     <div style={{
       minHeight: '100vh',
-      backgroundColor: '#f8fafc',
-      fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+      backgroundColor: 'var(--surface)',
+      fontFamily: 'var(--font-body)'
     }}>
       {/* 2. Top Navigation Bar */}
       <header style={{
         height: '64px',
-        backgroundColor: '#ffffff',
-        borderBottom: '1px solid #e2e8f0',
+        backgroundColor: 'var(--bg)',
+        borderBottom: '1px solid var(--border)',
         display: 'flex',
         alignItems: 'center',
         padding: '0 24px',
@@ -35,7 +35,7 @@ export default async function SovereignNotebookPage() {
           <div style={{
             width: '32px',
             height: '32px',
-            backgroundColor: '#0ea5e9',
+            backgroundColor: 'var(--accent)',
             borderRadius: '6px',
             display: 'flex',
             alignItems: 'center',
@@ -46,12 +46,12 @@ export default async function SovereignNotebookPage() {
           }}>
             N
           </div>
-          <h1 style={{ margin: 0, fontSize: '18px', fontWeight: '600', color: '#0f172a' }}>
+          <h1 style={{ margin: 0, fontSize: '18px', fontWeight: '600', color: 'var(--text)' }}>
             Sovereign Notebook
           </h1>
         </div>
         
-        <div style={{ fontSize: '14px', color: '#64748b', fontWeight: '500' }}>
+        <div style={{ fontSize: '14px', color: 'var(--text-muted)', fontWeight: '500' }}>
           {drops.length} Fragments Secured
         </div>
       </header>

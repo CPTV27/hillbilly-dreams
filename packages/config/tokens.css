@@ -571,6 +571,59 @@ img, video {
   --shadow-glow: none;
 }
 
+/* Deep South Directory: warm Main Street — cream background, storefront brick accent */
+/* deepsouthdirectory.com — the local business listing product Chase demos in restaurants */
+.theme-dsd {
+  --bg:              #FDF6ED;   /* Warm cream — aged paper, porch light */
+  --surface:         #FFFFFF;   /* White cards */
+  --surface-2:       #F7F0E4;   /* Slightly warm off-white — alternating sections */
+  --surface-3:       #EDE5D8;   /* Hover states, input backgrounds */
+  --text:            #2D2D2D;   /* Near-black dark text */
+  --text-muted:      #8B7355;   /* Warm brown — secondary/meta text */
+  --text-disabled:   #B8A89A;
+
+  /* Storefront brick accent — the color of a painted Mississippi facade */
+  --dsd-accent:          #C45B28;
+  --dsd-accent-hover:    #A84A1E;
+  --dsd-accent-muted:    rgba(196, 91, 40, 0.10);
+  --dsd-accent-border:   rgba(196, 91, 40, 0.25);
+  --dsd-accent-dark:     #8A3A14;
+
+  /* Mirror into standard tokens for components that use var(--accent) */
+  --accent:          #C45B28;
+  --accent-hover:    #A84A1E;
+  --accent-muted:    rgba(196, 91, 40, 0.10);
+  --accent-subtle:   rgba(196, 91, 40, 0.05);
+
+  --slate:           #8B7355;   /* Warm brown — links, tags */
+  --slate-muted:     rgba(139, 115, 85, 0.15);
+
+  /* Borders: soft, warm-tinted */
+  --dsd-border:         rgba(45, 45, 45, 0.10);
+  --dsd-border-strong:  rgba(45, 45, 45, 0.20);
+  --dsd-border-subtle:  rgba(45, 45, 45, 0.05);
+  --border:          rgba(45, 45, 45, 0.10);
+  --border-strong:   rgba(45, 45, 45, 0.20);
+  --border-subtle:   rgba(45, 45, 45, 0.05);
+
+  /* Surface mirrors for component refs */
+  --dsd-surface:        #FFFFFF;
+  --dsd-surface-2:      #F7F0E4;
+  --dsd-text:           #2D2D2D;
+  --dsd-text-muted:     #8B7355;
+
+  /* Light-mode shadows */
+  --shadow-sm:       0 1px 3px rgba(45, 25, 10, 0.06);
+  --shadow-md:       0 4px 12px rgba(45, 25, 10, 0.09);
+  --shadow-lg:       0 8px 24px rgba(45, 25, 10, 0.12);
+  --shadow-xl:       0 16px 40px rgba(45, 25, 10, 0.15);
+  --shadow-glow:     0 0 20px rgba(196, 91, 40, 0.12);
+
+  /* Typography: keep Playfair for business names, DM Sans for body */
+  --font-display:    'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body:       'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
 /* Big Muddy Records: vinyl black, amber/orange accent, analog warmth */
 .theme-records {
   --bg: #0c0806;

@@ -1,0 +1,215 @@
+/* apps/web/app/measurably-better/mbt-landing.css
+   MBT landing page — uses .theme-mb tokens from tokens.css */
+
+.mbt-page {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+/* ── Hero ── */
+.mbt-hero {
+  text-align: center;
+  padding: 5rem 1.5rem 4rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.mbt-hero__badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+.mbt-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0 0 1.5rem;
+  color: var(--text);
+}
+.mbt-hero__title em {
+  font-style: italic;
+  color: var(--accent);
+}
+.mbt-hero__subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0 0 2.5rem;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.mbt-hero__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.mbt-btn {
+  padding: 0.875rem 2rem;
+  font-size: 0.875rem;
+}
+.mbt-btn--lg {
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+}
+
+/* ── Value Props ── */
+.mbt-value {
+  padding: 4rem 1.5rem;
+  background: var(--surface);
+}
+.mbt-value__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media (min-width: 640px) {
+  .mbt-value__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.mbt-value__card {
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+.mbt-value__icon {
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.mbt-value__heading {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  color: var(--text);
+}
+.mbt-value__text {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── Comparison ── */
+.mbt-compare {
+  padding: 4rem 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.mbt-compare__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  text-align: center;
+  margin: 0 0 2.5rem;
+  color: var(--text);
+}
+.mbt-compare__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 540px) {
+  .mbt-compare__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.mbt-compare__col {
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+.mbt-compare__col--old {
+  background: var(--surface);
+}
+.mbt-compare__col--new {
+  background: var(--bg);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.mbt-compare__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+.mbt-compare__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mbt-compare__list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.875rem;
+  color: var(--text);
+}
+.mbt-compare__list li span {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.mbt-compare__total {
+  margin-top: 1.25rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+.mbt-compare__total--highlight {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ── CTA ── */
+.mbt-cta {
+  text-align: center;
+  padding: 4rem 1.5rem 5rem;
+  background: var(--surface);
+}
+.mbt-cta__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  margin: 0 0 1rem;
+  color: var(--text);
+}
+.mbt-cta__subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+  margin: 0 0 2rem;
+}
+
+/* ── Footer ── */
+.mbt-footer {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+.mbt-footer p {
+  margin: 0;
+}
+.mbt-footer__sub {
+  margin-top: 0.25rem;
+}
+.mbt-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.mbt-footer a:hover {
+  text-decoration: underline;
+}

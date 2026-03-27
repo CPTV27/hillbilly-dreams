@@ -3,7 +3,7 @@ import { GoogleGenAI } from '@google/genai';
 
 const PROJECT_ID = process.env.VERTEX_PROJECT_ID || 'bigmuddy-ff651';
 const LOCATION = process.env.VERTEX_LOCATION || 'us-east4';
-const MODEL = 'gemini-1.5-pro-002'; // Using latest Pro model
+const MODEL = 'gemini-3.1-pro'; // Reasoning tasks use Pro
 
 export async function POST(req: Request) {
   try {

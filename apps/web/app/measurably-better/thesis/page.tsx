@@ -2,18 +2,18 @@
 // Server component
 
 const C = {
-  bg: '#ffffff',
-  bgPage: '#f8f9fa',
-  bgCard: '#ffffff',
-  border: '#e8eaed',
-  text: '#202124',
-  textSec: '#5f6368',
-  textMuted: '#9aa0a6',
-  accent: '#b45309',
-  accentBg: 'rgba(180,83,9,0.06)',
-  dark: '#1a1a2e',
-  green: '#16a34a',
-  greenBg: 'rgba(22,163,74,0.06)',
+  bg: 'var(--bg)',
+  bgPage: 'var(--surface)',
+  bgCard: 'var(--bg)',
+  border: 'var(--border)',
+  text: 'var(--text)',
+  textSec: 'var(--text-muted)',
+  textMuted: 'var(--text-disabled)',
+  accent: 'var(--accent)',
+  accentBg: 'var(--accent-subtle)',
+  dark: 'var(--text)',
+  green: 'var(--success)',
+  greenBg: 'var(--success-subtle, rgba(22,163,74,0.06))',
 };
 
 type Principle = { number: string; title: string; body: string };
@@ -81,7 +81,7 @@ export default function ThesisPage() {
       style={{
         minHeight: '100vh',
         backgroundColor: C.bgPage,
-        fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+        fontFamily: 'var(--font-body)',
         padding: '0 0 80px',
       }}
     >
@@ -165,7 +165,7 @@ export default function ThesisPage() {
           <p
             style={{
               fontSize: 17,
-              color: '#cbd5e1',
+              color: 'var(--bg)',
               lineHeight: 1.75,
               margin: 0,
             }}
@@ -335,9 +335,9 @@ export default function ThesisPage() {
                 gap: 16,
               }}
             >
-              <span style={{ fontSize: 12, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.06em' }}>MARKET</span>
-              <span style={{ fontSize: 12, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.06em' }}>WHAT THEY GET</span>
-              <span style={{ fontSize: 12, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.06em' }}>WHAT CHANGES</span>
+              <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-muted)', letterSpacing: '0.06em' }}>MARKET</span>
+              <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-muted)', letterSpacing: '0.06em' }}>WHAT THEY GET</span>
+              <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-muted)', letterSpacing: '0.06em' }}>WHAT CHANGES</span>
             </div>
             {markets.map((row, i) => (
               <div
@@ -476,7 +476,7 @@ export default function ThesisPage() {
             style={{
               fontSize: 22,
               fontWeight: 700,
-              color: '#f8f9fa',
+              color: 'var(--bg)',
               lineHeight: 1.4,
               margin: '0 0 8px',
             }}
@@ -486,7 +486,7 @@ export default function ThesisPage() {
           <p
             style={{
               fontSize: 14,
-              color: '#94a3b8',
+              color: 'var(--text-muted)',
               margin: 0,
             }}
           >

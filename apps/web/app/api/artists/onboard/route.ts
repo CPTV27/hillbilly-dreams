@@ -71,7 +71,7 @@ export async function POST(request: Request) {
         { type: 'social_scan', status: 'queued', desc: 'Scan social media for existing presence' },
         { type: 'music_scan', status: 'queued', desc: 'Check Spotify, Apple Music, Bandcamp, SoundCloud' },
         { type: 'press_scan', status: 'queued', desc: 'Search for press mentions, reviews, interviews' },
-        { type: 'brand_kit', status: 'queued', desc: 'Generate brand variation from Amy Allen template' },
+        { type: 'brand_kit', status: 'queued', desc: 'Generate brand variation from Arri Aslin template' },
         { type: 'photo_session', status: 'queued', desc: 'Schedule photo session with Chase Pierson' },
         { type: 'content_calendar', status: 'queued', desc: 'Generate initial 30-day content calendar' },
       ],

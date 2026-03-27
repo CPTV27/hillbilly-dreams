@@ -6,7 +6,7 @@ import { Shield, Zap, Server, Lock, Activity, CheckCircle2, AlertTriangle, Layer
 // Color tokens now provided by .theme-mb in tokens.css via layout.tsx
 // Semantic aliases for inline styles referencing CSS variables
 const C = {
-  white: '#ffffff',
+  white: 'var(--bg)',
   bg: 'var(--bg)',
   surface: 'var(--surface)',
   surface2: 'var(--surface-2)',
@@ -71,7 +71,7 @@ export default function TechnologyPage() {
   const isHighRisk = dataSensitivity === 'Financial' || dataSensitivity === 'Proprietary';
 
   return (
-    <div style={{ backgroundColor: C.surface, minHeight: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif', color: C.text, overflowX: 'hidden' }}>
+    <div style={{ backgroundColor: C.surface, minHeight: '100vh', fontFamily: 'var(--font-body)', color: C.text, overflowX: 'hidden' }}>
       
       {/* ── Keyframes for Micro-Animations ── */}
       <style>{`

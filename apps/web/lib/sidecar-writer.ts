@@ -24,7 +24,7 @@ export interface BrandKit {
   logoSvgPath?: string;
   logoPngPath?: string;
   styleGuideDocId?: string;
-  templateSource?: string; // e.g. "Amy Allen Brand Package"
+  templateSource?: string; // e.g. "Arri Aslin Brand Package"
 }
 
 export interface ArtistSidecar {
@@ -175,5 +175,5 @@ export const BIG_MUDDY_BRAND_KIT: BrandKit = {
     '#2a2a2a': 'smoke',
     '#1a1a1a': 'dark-smoke',
   },
-  templateSource: 'Amy Allen Brand Package',
+  templateSource: 'Arri Aslin Brand Package',
 };

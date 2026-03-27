@@ -77,7 +77,7 @@ function Proposal() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 48 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20, color: colors.slate600, fontSize: '1.05rem', lineHeight: 1.7 }}>
               <p style={{ margin: 0 }}><strong style={{ color: colors.slate900, fontWeight: 700 }}>Hillbilly Dreams, Inc.</strong> is the technology holding company behind HDX — a business operating system purpose-built for service companies. We don&apos;t build models. We build the rails.</p>
-              <p style={{ margin: 0 }}>HDX runs on Google Cloud production infrastructure (Cloud Run, Vertex AI, and Cloud SQL) powered by Gemini 1.5 Pro. Independent operators lose ~23% of billable capacity to manual administrative overhead. This pipeline fixes it.</p>
+              <p style={{ margin: 0 }}>HDX runs on Google Cloud production infrastructure (Cloud Run, Vertex AI, and Cloud SQL) powered by Gemini 2.5 Flash. Independent operators lose ~23% of billable capacity to manual administrative overhead. This pipeline fixes it.</p>
             </div>
             <div style={{ backgroundColor: colors.white, border: `1px solid ${colors.slate200}`, padding: 32, borderRadius: 24, boxShadow: '0 20px 25px -5px rgba(0,0,0,.05)', position: 'relative', overflow: 'hidden' }}>
               <div style={{ position: 'absolute', top: 0, right: 0, width: 128, height: 128, backgroundColor: 'rgba(249,115,22,0.1)', borderBottomLeftRadius: '100%', filter: 'blur(24px)' }} />
