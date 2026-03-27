@@ -64,8 +64,9 @@ cefbbb1 feat: add Sentry error tracking with edge-safe config
 
 - **Vercel:** project `hillbilly-dreams`, team `chase-piersons-projects`
 - **GitHub:** `CPTV27/hillbilly-dreams`, branch `main`
-- **DB:** Neon Postgres on AWS us-east-1 (via Prisma) — NOT GCP, NOT Firebase
+- **DB:** Neon Postgres on AWS us-east-1 (via Prisma) — the ONE database. See docs/DATABASE_POLICY.md
 - **Agent Context DB:** 827 fragments — query via GET /api/agent/context
+- **Orphaned DBs to delete:** Cloud SQL micro-media-db (GCP), Cloudflare D1 openclaw-db (migrating)
 - **DNS:** Cloudflare (ChasePierson.TV account), DNS-only mode
 - **Monitoring:** Sentry (org `chasepiersontv`, project `javascript-react`)
 - **Storage:** GCS bucket `bmt-media-bigmuddy`
