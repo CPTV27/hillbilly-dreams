@@ -127,7 +127,7 @@ function QRPrintCard({ session }: { session: SnapSession }) {
       </div>
 
       <p style={{ fontSize: '0.6rem', color: '#4a3e32', margin: '8px 0 0', fontFamily: 'sans-serif', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-        Photos by Chase Pierson / Big Muddy Media
+        Photos by Chase Pierson / Big Muddy Entertainment
       </p>
     </div>
   );

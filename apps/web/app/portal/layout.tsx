@@ -5,10 +5,10 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Client Portal — Big Muddy Media',
-    template: '%s — Big Muddy Media Portal',
+    default: 'Client Portal — Big Muddy Entertainment',
+    template: '%s — Big Muddy Entertainment Portal',
   },
-  description: 'Your Big Muddy Media client dashboard',
+  description: 'Your Big Muddy Entertainment client dashboard',
 };
 
 export default function PortalLayout({ children }: { children: React.ReactNode }) {
@@ -32,7 +32,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
         {children}
       </main>
       <footer className="portal-footer">
-        <p>Big Muddy Media &mdash; Media services for the Mississippi corridor</p>
+        <p>Big Muddy Entertainment &mdash; Media services for the Mississippi corridor</p>
       </footer>
       <style>{`
         .portal-shell {

@@ -13,7 +13,7 @@ const BOOK = {
   title: 'The Big Muddy Inn',
   subtitle: 'A Photography Book by Chase Pierson',
   photographer: 'Chase Pierson',
-  publisher: 'Big Muddy Media',
+  publisher: 'Big Muddy Entertainment',
   year: 2026,
   format: '12 × 10 Landscape',
   pages: '120 pages',
@@ -394,7 +394,7 @@ export default function BookPage() {
             color: '#c8943e',
           }}
         >
-          Big Muddy Media — Book Layout Preview
+          Big Muddy Entertainment — Book Layout Preview
         </span>
         <span
           style={{

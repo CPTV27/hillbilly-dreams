@@ -1,7 +1,7 @@
 'use client';
 
 // apps/web/app/admin/clients/page.tsx
-// Client management for Big Muddy Media Engine
+// Client management for Big Muddy Entertainment Engine
 // Tabs: Clients List | New Client | Client Detail
 // Fetches from /api/clients — CRUD + AI voice/calendar/reviews/reports
 
@@ -988,7 +988,7 @@ export default function ClientsAdminPage() {
               <span className="clients-breadcrumb-current">New Client</span>
             </div>
             <h1 className="admin-page-title">New Client</h1>
-            <p className="admin-page-sub">Add a new business to the Big Muddy Media Engine.</p>
+            <p className="admin-page-sub">Add a new business to the Big Muddy Entertainment Engine.</p>
           </div>
         </div>
         {createError && <div className="admin-error-banner">{createError}</div>}

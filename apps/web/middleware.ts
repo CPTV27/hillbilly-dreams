@@ -133,6 +133,11 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // ── Partner dashboards — standalone, no rewrite ──
+  if (pathname.startsWith('/tracy') || pathname.startsWith('/amy')) {
+    return NextResponse.next();
+  }
+
   // ── If path already starts with a known brand prefix, pass through ──
   if (BMT_BRAND_PREFIXES.some(p => pathname === p || pathname.startsWith(p + '/'))) {
     return NextResponse.next();

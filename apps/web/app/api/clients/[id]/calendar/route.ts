@@ -68,7 +68,7 @@ export async function POST(request: NextRequest, { params }: Params) {
     const response = await claude.messages.create({
       model: 'claude-sonnet-4-20250514',
       max_tokens: 4096,
-      system: `You are a social media content planner for Big Muddy Media. Generate a monthly content calendar for a local business.
+      system: `You are a social media content planner for Big Muddy Entertainment. Generate a monthly content calendar for a local business.
 
 Brand voice: ${voiceProfile}
 
