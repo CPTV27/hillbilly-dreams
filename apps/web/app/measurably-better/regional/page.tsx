@@ -2,21 +2,21 @@
 // Server component — no client JS needed
 
 const C = {
-  bg: '#ffffff',
-  bgPage: '#f8f9fa',
-  bgCard: '#ffffff',
-  border: '#e8eaed',
-  text: '#202124',
-  textSec: '#5f6368',
-  textMuted: '#9aa0a6',
-  accent: '#b45309',
-  accentBg: 'rgba(180,83,9,0.06)',
-  green: '#16a34a',
-  greenBg: 'rgba(22,163,74,0.06)',
-  blue: '#2563eb',
-  blueBg: 'rgba(37,99,235,0.06)',
-  purple: '#7c3aed',
-  purpleBg: 'rgba(124,58,237,0.06)',
+  bg: 'var(--bg)',
+  bgPage: 'var(--surface)',
+  bgCard: 'var(--bg)',
+  border: 'var(--border)',
+  text: 'var(--text)',
+  textSec: 'var(--text-muted)',
+  textMuted: 'var(--text-disabled)',
+  accent: 'var(--accent)',
+  accentBg: 'var(--accent-subtle)',
+  green: 'var(--success)',
+  greenBg: 'var(--success-subtle, rgba(22,163,74,0.06))',
+  blue: 'var(--accent)',
+  blueBg: 'var(--accent-subtle)',
+  purple: 'var(--accent)',
+  purpleBg: 'var(--accent-subtle)',
 };
 
 type Tier = {
@@ -103,7 +103,7 @@ const tiers: Tier[] = [
 ];
 
 const proofPoints = [
-  { label: 'SMB', example: 'Big Muddy Inn + S2PX contractors', status: 'Live' },
+  { label: 'SMB', example: 'Big Muddy Inn + local contractors', status: 'Live' },
   { label: 'Civic', example: 'City of Natchez tourism + permitting', status: 'Pilot' },
   { label: 'Education', example: 'Natchez-Adams School District', status: 'Proposed' },
   { label: 'Media', example: 'Big Muddy Magazine, Radio, Touring', status: 'Live' },
@@ -123,7 +123,7 @@ export default function RegionalPage() {
       style={{
         minHeight: '100vh',
         backgroundColor: C.bgPage,
-        fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+        fontFamily: 'var(--font-body)',
         padding: '0 0 80px',
       }}
     >
@@ -199,17 +199,17 @@ export default function RegionalPage() {
         {/* The Problem */}
         <div
           style={{
-            backgroundColor: '#1a1a2e',
+            backgroundColor: 'var(--text)',
             borderRadius: 12,
             padding: '32px 28px',
             margin: '32px 0',
-            color: '#e8e8f0',
+            color: 'var(--bg)',
           }}
         >
           <p style={{ fontSize: 13, fontWeight: 600, letterSpacing: '0.08em', color: C.accent, margin: '0 0 12px', textTransform: 'uppercase' as const }}>
             The Problem
           </p>
-          <p style={{ fontSize: 16, lineHeight: 1.65, margin: 0, color: '#cbd5e1' }}>
+          <p style={{ fontSize: 16, lineHeight: 1.65, margin: 0, color: 'var(--bg)' }}>
             Small Southern cities run on paper, Access databases from 2004, and
             one IT person who&apos;s also the fire chief. Tourism budgets go to
             agencies in Memphis or Jackson. The content they produce is generic.
@@ -291,13 +291,13 @@ export default function RegionalPage() {
               style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr 1fr',
-                backgroundColor: '#1a1a2e',
+                backgroundColor: 'var(--text)',
                 padding: '12px 20px',
                 gap: 16,
               }}
             >
-              <span style={{ fontSize: 12, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.06em' }}></span>
-              <span style={{ fontSize: 12, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.06em' }}>NATIONAL SAAS</span>
+              <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-muted)', letterSpacing: '0.06em' }}></span>
+              <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-muted)', letterSpacing: '0.06em' }}>NATIONAL SAAS</span>
               <span style={{ fontSize: 12, fontWeight: 700, color: C.accent, letterSpacing: '0.06em' }}>MEASURABLY BETTER</span>
             </div>
             {comparison.map((row, i) => (

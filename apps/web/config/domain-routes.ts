@@ -46,7 +46,7 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
   { pattern: 'bigmuddyradio', routeGroup: 'radio' },
   {
     pattern: 'deepsouthdirectory',
-    routeGroup: 'media',
+    routeGroup: 'directory',
     excludeAdmin: true,
   },
   {
@@ -78,7 +78,7 @@ export const BMT_LOCAL_DOMAIN_ROUTES: DomainRoute[] = [
   },
   { pattern: 'bigmuddymagazine.local', routeGroup: 'magazine' },
   { pattern: 'bigmuddyradio.local', routeGroup: 'radio' },
-  { pattern: 'deepsouthdirectory.local', routeGroup: 'media' },
+  { pattern: 'deepsouthdirectory.local', routeGroup: 'directory' },
   { pattern: 'bigmuddymedia.local', routeGroup: 'media' },
   { pattern: 'outsidereconomics.local', routeGroup: 'economics' },
 ];
@@ -99,7 +99,7 @@ export const BMT_BRAND_PREFIXES = [
   '/touring', '/magazine', '/radio', '/economics', '/media',
   '/admin', '/ops', '/portal', '/platform', '/gallery',
   '/records', '/studio', '/tuthill', '/hillbilly',
-  '/measurably-better',
+  '/measurably-better', '/directory',
   '/welcome',
   '/nexus',
   '/mvx',
@@ -123,6 +123,7 @@ export const BMT_VALID_DEV_BRANDS = [
   'touring', 'magazine', 'radio', 'economics', 'media',
   'admin', 'ops', 'gallery', 'records', 'platform',
   'studio', 'tuthill', 'hillbilly', 'measurably-better',
+  'directory',
 ];
 
 // ── Default fallback route group ──

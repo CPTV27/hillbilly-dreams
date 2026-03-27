@@ -271,7 +271,7 @@ export default function NotebookClient({ initialDrops }: { initialDrops: Noteboo
                 </button>
               </form>
               <div style={{ textAlign: 'center', marginTop: '12px', fontSize: '12px', color: '#94a3b8' }}>
-                Powered by Google Gemini 1.5 Pro • 1 Million Token Context
+                Powered by Google Gemini 2.5 Flash • 1 Million Token Context
               </div>
             </div>
           </div>

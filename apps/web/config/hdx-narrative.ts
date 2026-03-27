@@ -68,7 +68,7 @@ export const HDX_NARRATIVE = {
   },
 
   // ── Tech Stack — deterministic, no pixie dust ──
-  techStack: 'Gemini 1.5 Pro, Vertex AI, and Cloud Run',
+  techStack: 'Gemini 2.5 Flash, Vertex AI, and Cloud Run',
 
   // ── 4-Step Engagement Model ──
   engagementModel: [

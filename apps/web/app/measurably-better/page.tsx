@@ -1,127 +1,124 @@
-'use client';
+// apps/web/app/measurably-better/page.tsx
+// MBT landing page — speaks to Main Street business owners, not engineers.
 
-import React from 'react';
-
-const colors = {
-  white: '#ffffff',
-  slate50: '#f8fafc',
-  slate100: '#f1f5f9',
-  slate200: '#e2e8f0',
-  slate300: '#cbd5e1',
-  slate400: '#94a3b8',
-  slate600: '#475569',
-  slate800: '#1e293b',
-  slate900: '#0f172a',
-  sky500: '#0ea5e9',
-};
+import './mbt-landing.css';
 
 export default function MeasurablyBetterLanding() {
   return (
-    <div style={{
-      minHeight: '100vh',
-      backgroundColor: colors.white,
-      color: colors.slate900,
-      fontFamily: 'system-ui, -apple-system, sans-serif',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      textAlign: 'center',
-      padding: '2rem',
-    }}>
-      <div style={{ maxWidth: 640 }}>
-
-        {/* Logo mark */}
-        <div style={{
-          width: 48, height: 48, borderRadius: 12,
-          backgroundColor: colors.slate900,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          margin: '0 auto 2rem',
-        }}>
-          <span style={{ fontWeight: 900, fontSize: 18, color: colors.sky500 }}>MB</span>
-        </div>
-
-        <h1 style={{
-          fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-          fontWeight: 800,
-          letterSpacing: '-1.5px',
-          margin: '0 0 1.5rem',
-          lineHeight: 1.1,
-        }}>
-          Measurably Better.
+    <div className="mbt-page">
+      {/* Hero */}
+      <section className="mbt-hero">
+        <span className="mbt-hero__badge">Measurably Better Things</span>
+        <h1 className="mbt-hero__title">
+          Run your business.<br />
+          <em>Not your software.</em>
         </h1>
-
-        <p style={{
-          fontSize: '1.375rem',
-          color: colors.slate600,
-          lineHeight: 1.6,
-          margin: '0 0 3rem',
-        }}>
-          150 tokens per second. 1 million token context.
-          Zero data leakage. Your infrastructure, your namespace,
-          your margins.
+        <p className="mbt-hero__subtitle">
+          One system that handles your reviews, social media, bookkeeping,
+          and customer outreach. For less than your electric bill.
         </p>
+        <div className="mbt-hero__actions">
+          <a href="/directory/onboard" className="btn btn--primary mbt-btn">
+            Get Started
+          </a>
+          <a href="/directory" className="btn btn--outline mbt-btn">
+            See the Directory
+          </a>
+        </div>
+      </section>
 
-        {/* Stats strip */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: 1,
-          backgroundColor: colors.slate200,
-          borderRadius: 16,
-          overflow: 'hidden',
-          marginBottom: '3rem',
-        }}>
-          {[
-            { value: '85ms', label: 'Edge routing latency' },
-            { value: '150 tk/s', label: 'Provisioned throughput' },
-            { value: '0 bytes', label: 'Data leaked to third parties' },
-          ].map((stat, i) => (
-            <div key={i} style={{
-              backgroundColor: colors.white,
-              padding: '24px 16px',
-            }}>
-              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: colors.slate900, marginBottom: 4 }}>{stat.value}</div>
-              <div style={{ fontSize: '0.75rem', color: colors.slate400, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{stat.label}</div>
+      {/* Value Props */}
+      <section className="mbt-value">
+        <div className="mbt-value__grid">
+          <div className="mbt-value__card">
+            <div className="mbt-value__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+              </svg>
             </div>
-          ))}
+            <h3 className="mbt-value__heading">Reviews on autopilot</h3>
+            <p className="mbt-value__text">
+              AI monitors your Google and Yelp reviews, drafts responses,
+              and alerts you the minute someone posts. You approve with a thumbs up.
+            </p>
+          </div>
+          <div className="mbt-value__card">
+            <div className="mbt-value__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+            </div>
+            <h3 className="mbt-value__heading">Social media that runs itself</h3>
+            <p className="mbt-value__text">
+              Four posts a week across Facebook, Instagram, and Google.
+              AI writes them from your photos and what is happening in town.
+              You just say yes.
+            </p>
+          </div>
+          <div className="mbt-value__card">
+            <div className="mbt-value__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+              </svg>
+            </div>
+            <h3 className="mbt-value__heading">Know your numbers</h3>
+            <p className="mbt-value__text">
+              Monthly report card: your reviews, your reach, how you compare
+              to competitors down the street. No spreadsheets. Plain English.
+            </p>
+          </div>
         </div>
+      </section>
 
-        {/* Launch date */}
-        <div style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 8,
-          fontSize: '0.875rem',
-          color: colors.slate800,
-          padding: '10px 20px',
-          borderRadius: 999,
-          backgroundColor: colors.slate50,
-          border: `1px solid ${colors.slate200}`,
-          fontWeight: 600,
-        }}>
-          <span style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: colors.sky500 }} />
-          Launching April 27, 2026
+      {/* Comparison */}
+      <section className="mbt-compare">
+        <h2 className="mbt-compare__title">What you are paying now vs. what you could be paying</h2>
+        <div className="mbt-compare__grid">
+          <div className="mbt-compare__col mbt-compare__col--old">
+            <div className="mbt-compare__label">The old way</div>
+            <ul className="mbt-compare__list">
+              <li>Social media manager <span>$500/mo</span></li>
+              <li>Yelp ads <span>$300/mo</span></li>
+              <li>Email platform <span>$50/mo</span></li>
+              <li>Review monitoring <span>$100/mo</span></li>
+              <li>Bookkeeper <span>$400/mo</span></li>
+            </ul>
+            <div className="mbt-compare__total">$1,350/mo</div>
+          </div>
+          <div className="mbt-compare__col mbt-compare__col--new">
+            <div className="mbt-compare__label">Measurably Better</div>
+            <ul className="mbt-compare__list">
+              <li>Everything above <span>Included</span></li>
+              <li>AI-powered, human-approved <span>Included</span></li>
+              <li>Monthly report card <span>Included</span></li>
+              <li>Directory listing <span>Included</span></li>
+              <li>Magazine feature (quarterly) <span>Included</span></li>
+            </ul>
+            <div className="mbt-compare__total mbt-compare__total--highlight">$99/mo</div>
+          </div>
         </div>
+      </section>
 
-        {/* Tech strip */}
-        <p style={{
-          fontSize: '0.8rem',
-          color: colors.slate300,
-          marginTop: '2rem',
-          letterSpacing: '0.03em',
-        }}>
-          Gemini 1.5 Pro · Vertex AI · Cloud Run · Cloud SQL · Sovereign VPC
+      {/* CTA */}
+      <section className="mbt-cta">
+        <h2 className="mbt-cta__title">Less than your electric bill.</h2>
+        <p className="mbt-cta__subtitle">
+          Your listing goes live within 24 hours. No contracts. Cancel anytime.
         </p>
-      </div>
+        <a href="/directory/onboard" className="btn btn--primary mbt-btn mbt-btn--lg">
+          Get Listed Today
+        </a>
+      </section>
 
-      <footer style={{
-        position: 'absolute',
-        bottom: '2rem',
-        fontSize: '0.8rem',
-        color: colors.slate300,
-      }}>
-        © 2026 Measurably Better™
+      {/* Footer */}
+      <footer className="mbt-footer">
+        <p>&copy; 2026 Measurably Better Things&trade;</p>
+        <p className="mbt-footer__sub">
+          A <a href="/">Hillbilly Dreams</a> company &middot; Natchez, Mississippi
+        </p>
       </footer>
     </div>
   );

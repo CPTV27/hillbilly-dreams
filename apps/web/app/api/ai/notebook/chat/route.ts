@@ -58,7 +58,7 @@ ${drop.content}
 
     // Generate the Response using the 1M Token Context model + Google Search Grounding
     const response = await ai.models.generateContent({
-      model: 'gemini-1.5-pro-002',
+      model: 'gemini-2.5-flash',
       contents: aiContents,
       config: {
         systemInstruction,

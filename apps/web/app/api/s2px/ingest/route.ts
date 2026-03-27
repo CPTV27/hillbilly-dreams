@@ -96,7 +96,7 @@ export async function GET() {
     service: 's2px-ingestion',
     version: '1.0.0',
     status: 'operational',
-    model: 'gemini-1.5-pro-002',
+    model: 'gemini-2.5-flash',
     location: 'us-east4',
   });
 }

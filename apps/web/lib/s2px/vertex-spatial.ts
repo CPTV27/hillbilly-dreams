@@ -1,6 +1,6 @@
 // lib/s2px/vertex-spatial.ts
 // ─────────────────────────────────────────────────────────────
-// S2PX Spatial Intelligence — Vertex AI / Gemini 1.5 Pro Wrapper
+// S2PX Spatial Intelligence — Vertex AI / Gemini 2.5 Flash Wrapper
 // ─────────────────────────────────────────────────────────────
 // Deterministic extraction. Strict JSON schema output.
 // No prompt engineering voodoo — structured output mode only.
@@ -14,7 +14,7 @@ import type { CapacityMetrics } from './types';
 
 const VERTEX_PROJECT_ID = process.env.VERTEX_PROJECT_ID || process.env.GOOGLE_CLOUD_PROJECT || 'bigmuddy-ff651';
 const VERTEX_LOCATION = process.env.VERTEX_LOCATION || 'us-east4';
-const VERTEX_MODEL = 'gemini-1.5-pro-002';
+const VERTEX_MODEL = 'gemini-3.1-pro'; // Spatial analysis requires reasoning
 
 /**
  * The strict JSON schema sent to Gemini structured output.
@@ -91,7 +91,7 @@ Your job is to extract deterministic capacity metrics from the provided spatial 
 Be conservative in estimates. Round square footage to the nearest 10. Flag any measurement you are less than 75% confident about in the notes field.`;
 
 /**
- * Extract CapacityMetrics from a GCS-stored spatial asset using Gemini 1.5 Pro.
+ * Extract CapacityMetrics from a GCS-stored spatial asset using Gemini 2.5 Flash.
  */
 export async function extractCapacityMetrics(
   gcsUri: string,
