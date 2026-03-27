@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
         price_data: {
           currency: 'usd',
           product_data: {
-            name: `Big Muddy Media — ${tierInfo.name}`,
+            name: `Big Muddy Entertainment — ${tierInfo.name}`,
             description: `Media services for ${client.name}`,
           },
           unit_amount: tierInfo.amount,

@@ -744,7 +744,7 @@ export function SnapGallery({ session }: { session: SessionData }) {
           textTransform: 'uppercase',
           margin: '0 0 24px',
         }}>
-          Big Muddy Media &middot; Natchez, Mississippi
+          Big Muddy Entertainment &middot; Natchez, Mississippi
         </p>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '18px', flexWrap: 'wrap' }}>
           {[

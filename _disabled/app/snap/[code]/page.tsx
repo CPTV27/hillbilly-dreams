@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: { params: { code: string } })
   const session: SessionData = DEMO_SESSION;
   void params; // params.code would be used in real query
 
-  const title = `${session.name} — Big Muddy Media Photos`;
+  const title = `${session.name} — Big Muddy Entertainment Photos`;
   const description = session.description
     ?? `Photos from ${session.name} at ${session.location}. Tap your photo to share or request a high-res copy.`;
 
@@ -81,7 +81,7 @@ export async function generateMetadata({ params }: { params: { code: string } })
       type: 'website',
       title,
       description,
-      siteName: 'Big Muddy Media',
+      siteName: 'Big Muddy Entertainment',
       images: session.coverImage
         ? [{ url: session.coverImage, width: 1200, height: 630, alt: session.name }]
         : [],
