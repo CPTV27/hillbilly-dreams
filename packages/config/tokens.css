@@ -339,6 +339,24 @@ img, video {
   --shadow-glow:     0 0 20px rgba(200, 148, 62, 0.08);
 }
 
+/* Entertainment: umbrella over Radio, Records, Touring, Rise Up */
+/* bigmuddyentertainment.com — dark, warm, cinematic */
+.theme-bm-entertainment {
+  --bg:              #0e0c0a;   /* Near-black — backstage feel */
+  --surface:         #181512;
+  --surface-2:       #221e1a;
+  --surface-3:       #2c2722;
+  --text:            #f0ebe0;
+  --text-muted:      #9d968a;
+  --accent:          #c8943e;
+  --accent-hover:    #d4a44e;
+  --accent-muted:    rgba(200, 148, 62, 0.15);
+  --accent-subtle:   rgba(200, 148, 62, 0.06);
+  --border:          rgba(200, 148, 62, 0.10);
+  --border-strong:   rgba(200, 148, 62, 0.22);
+  --shadow-glow:     0 0 24px rgba(200, 148, 62, 0.12);
+}
+
 /* Admin: Big Muddy HQ — functional, high-contrast, utility-first */
 /* admin.bigmuddytouring.com — internal ops */
 .theme-admin {

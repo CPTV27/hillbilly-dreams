@@ -84,6 +84,7 @@ export function Navigation({ brand, currentPath = '/', links, logoHref = '/', sh
     gallery: { name: 'BuyCurious', label: 'Art' },
     records: { name: 'Big Muddy', label: 'Records' },
     hillbilly: { name: 'Hillbilly Dreams', label: 'Inc' },
+    entertainment: { name: 'Big Muddy', label: 'Entertainment' },
     admin: { name: 'Big Muddy', label: 'HQ' },
   };
 

@@ -7,7 +7,7 @@
 
 import { BrandConfig as BaseBrandConfig, createBrandResolver } from './brand-types';
 
-export type BrandId = 'touring' | 'magazine' | 'radio' | 'economics' | 'admin' | 'gallery' | 'records' | 'hillbilly';
+export type BrandId = 'touring' | 'magazine' | 'radio' | 'economics' | 'admin' | 'gallery' | 'records' | 'hillbilly' | 'entertainment';
 
 // BrandConfig is now the BMT-specific specialization of the platform interface
 export type BrandConfig = BaseBrandConfig<BrandId>;
@@ -156,6 +156,27 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
       ],
     },
   },
+  entertainment: {
+    id: 'entertainment',
+    name: 'Big Muddy Entertainment',
+    shortName: 'Entertainment',
+    tagline: 'Four divisions. One corridor.',
+    domain: 'bigmuddyentertainment.com',
+    localDomain: 'bigmuddyentertainment.local',
+    description:
+      'The music and media arm of Hillbilly Dreams, Inc. — touring artists, recording music, broadcasting radio, and building audiences along the Mississippi corridor.',
+    themeClass: 'theme-bm-entertainment',
+    primaryColor: '#c8943e',
+    nav: {
+      links: [
+        { label: 'Touring', href: 'https://bigmuddytouring.com' },
+        { label: 'Records', href: 'https://bigmuddyrecords.net' },
+        { label: 'Radio', href: 'https://bigmuddyradio.com' },
+        { label: 'Talent Search', href: '#talent-search' },
+        { label: 'Community', href: '#community' },
+      ],
+    },
+  },
   admin: {
     id: 'admin',
     name: 'Big Muddy HQ',
@@ -191,6 +212,7 @@ const BMT_BRAND_MATCHERS: Array<{ pattern: string; brandId: BrandId }> = [
   { pattern: 'outsidereconomics', brandId: 'economics' },
   { pattern: 'buycurious', brandId: 'gallery' },
   { pattern: 'bigmuddyrecord', brandId: 'records' },
+  { pattern: 'bigmuddyentertainment', brandId: 'entertainment' },
   { pattern: 'hillbillydreams', brandId: 'hillbilly' },
 ];
 

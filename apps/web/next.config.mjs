@@ -1,3 +1,4 @@
+import { withSentryConfig } from '@sentry/nextjs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -77,7 +78,16 @@ const nextConfig = {
   },
 };
 
-// Sentry disabled temporarily — withSentryConfig injects edge-incompatible
-// code into the middleware bundle, causing MIDDLEWARE_INVOCATION_FAILED on Vercel.
-// Re-enable after configuring SENTRY_AUTH_TOKEN and testing edge compatibility.
-export default nextConfig;
+export default withSentryConfig(nextConfig, {
+  org: 'chasepiersontv',
+  project: 'javascript-react',
+  silent: !process.env.CI,
+  // Prevent Sentry from injecting into middleware (edge runtime incompatible)
+  excludeServerRoutes: ['/api/(.*)'],
+  disableLogger: true,
+  widenClientFileUpload: true,
+  // Skip source map upload in dev / when no auth token
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  hideSourceMaps: true,
+  tunnelRoute: '/monitoring',
+});

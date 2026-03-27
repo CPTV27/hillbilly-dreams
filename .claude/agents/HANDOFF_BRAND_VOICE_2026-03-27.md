@@ -24,16 +24,38 @@ Current hero (kill this):
 > "Run your business. Not your software."
 > "One system that handles your reviews, social media, bookkeeping, and customer outreach. For less than your electric bill."
 
-**New hero direction:** Lead with the problem, not the solution. Main Street businesses are drowning in fragmented tools that don't talk to each other and don't understand their town.
+**CRITICAL REFRAME — READ THIS FIRST:**
+MBT is NOT selling software. MBT is selling **membership in a media ecosystem.**
+
+The $99/mo buys:
+- Deep South Directory puts your business on the map (top of funnel, under MBT)
+- Big Muddy Magazine tells your story (editorial coverage)
+- Big Muddy Radio puts your name in someone's ear (broadcast mentions)
+- Social campaigns feature your business alongside entertainment, shows, the corridor
+- AI search optimization — we make sure your business shows up when someone asks ChatGPT, Google AI, or Perplexity "what's the best [your business] in Natchez?" This is the new SEO and almost nobody is doing it for Main Street.
+
+The AI tools (review management, social posting, report cards) are the delivery mechanism — they make ecosystem participation effortless. But the differentiator is the media network. No SaaS competitor can offer editorial coverage, radio mentions, or a regional directory because they don't own media properties.
+
+**Never pitch MBT as "cheaper Hootsuite + QuickBooks."** The comparison should be: what would it cost to get editorial coverage, radio mentions, and a managed social presence?
+
+**Page structure:** This is NOT a SaaS landing page. It's a magazine feature. Think editorial scroll, full-bleed photography, generous white space.
+
+1. **The Image** — Full-bleed photo. You feel it before you read.
+2. **The Tension** — Not "bad software" but *invisibility*. You're great at what you do, but nobody knows you're here. The chains have marketing departments. You have a Facebook page you haven't updated since October.
+3. **The Turn** — "What if the whole town was telling your story?" What if a magazine wrote about you, a radio show mentioned you, a directory surfaced you to every visitor, and your social media just ran?
+4. **The Proof** — We built it, we live it, here's Natchez. The Directory. The Magazine. The Radio.
+5. **The Vision** — What it feels like when your business is part of something bigger — a corridor, a community, a media network that works for you.
+6. **The Invitation** — Not "sign up" but "come see" or "get listed."
+
+**Pricing moves to its own route** (`/measurably-better/pricing`). It breaks the spell. The story page should NOT have a comparison table or pricing grid.
 
 **Constraints:**
-- Savings claim: $500-800/mo. NOT $1,350. NOT $2,839. Only what's demoable today.
 - No tech jargon. Customer is a barber shop owner, not a developer.
-- Three value prop cards currently: "Reviews on autopilot," "Social media that runs itself," "Know your numbers" — these are okay but could be sharper. Rewrite if you have something better.
-- Comparison section: "The old way" vs "Measurably Better" — fix the line items and totals to match honest claims.
-- CTA section: Replace "Less than your electric bill" with something value-forward.
+- No "savings claim" comparisons on the story page. Save that for the pricing page.
+- The magazine feature in the $99 tier is the competitive moat — make sure it's prominent in the ecosystem story.
+- Voice: Swiss-clean authority, but warmer than Stripe. This is about community, not infrastructure.
 
-**Deliver:** Full copy for all sections of `apps/web/app/measurably-better/page.tsx`. Include headline, subtitle, value prop cards (heading + body text), comparison line items, and CTA section.
+**Deliver:** Full copy for the editorial story page, organized by the 6 sections above. Separately, deliver copy for the pricing page (tiers, feature lists, CTAs). Two deliverables.
 
 ---
 
