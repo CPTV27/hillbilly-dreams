@@ -19,7 +19,9 @@ The entire hosting stack was consolidated today. **Read and internalize these ch
 2. **Never reference Firebase App Hosting** — it's gone
 3. **Never create Dockerfiles or apphosting.yaml** — not needed on Vercel
 4. **Environment variables live in Vercel dashboard** — not Firebase Secret Manager
-5. **GCP is still used for:** Neon DB (Prisma), Cloud Storage (photos), Cloud Scheduler (crons)
+5. **Database is Neon Postgres** (AWS us-east-1, NOT GCP) — accessed via Prisma ORM
+6. **GCP is still used for:** Cloud Storage (photos), Cloud Scheduler (crons), Vertex AI (embeddings)
+7. **Agent context database:** 827 fragments in AgentContext table — query via `GET /api/agent/context`
 
 ### All 11 Live Domains
 Every domain below is live on Vercel, serving from a single Next.js app with hostname-based routing:

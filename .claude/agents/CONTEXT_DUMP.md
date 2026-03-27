@@ -64,7 +64,8 @@ cefbbb1 feat: add Sentry error tracking with edge-safe config
 
 - **Vercel:** project `hillbilly-dreams`, team `chase-piersons-projects`
 - **GitHub:** `CPTV27/hillbilly-dreams`, branch `main`
-- **DB:** Neon Postgres (via Prisma)
+- **DB:** Neon Postgres on AWS us-east-1 (via Prisma) — NOT GCP, NOT Firebase
+- **Agent Context DB:** 827 fragments — query via GET /api/agent/context
 - **DNS:** Cloudflare (ChasePierson.TV account), DNS-only mode
 - **Monitoring:** Sentry (org `chasepiersontv`, project `javascript-react`)
 - **Storage:** GCS bucket `bmt-media-bigmuddy`
