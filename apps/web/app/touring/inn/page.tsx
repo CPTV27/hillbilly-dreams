@@ -468,13 +468,6 @@ export default function InnPage() {
         </div>
       </section>
 
-      {/* ── Fleet ── */}
-      <section className="fleet-banner">
-        <div className="fleet-banner__inner">
-          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/fleet/fleet-prevost-tour-bus.webp" alt="Big Muddy Prevost tour bus on a Southern road" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
-        </div>
-      </section>
-
       {/* ── Stats Bar ── */}
       <section className="inn-stats">
         <div className="section-container">
@@ -591,13 +584,6 @@ export default function InnPage() {
           </div>
         </section>
       ))}
-
-      {/* ── Fleet ── */}
-      <section className="fleet-banner">
-        <div className="fleet-banner__inner">
-          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/fleet/fleet-tesla-lafayette-cajun.webp" alt="Big Muddy Tesla in downtown Lafayette" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
-        </div>
-      </section>
 
       {/* ── Corridor Photo Break ── */}
       <section className="inn-photobreak">

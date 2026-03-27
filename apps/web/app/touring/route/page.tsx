@@ -393,13 +393,6 @@ export default function RoutePage() {
             </article>
           ))}
 
-          {/* ── Fleet ── */}
-          <section className="fleet-banner">
-            <div className="fleet-banner__inner">
-              <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/fleet/fleet-ford-transit.webp" alt="Big Muddy Ford Transit at a Delta cotton field" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
-            </div>
-          </section>
-
           {/* Clarksdale + Vicksburg */}
           {STOPS.slice(1, 3).map((stop, idx) => (
             <article key={stop.id} id={stop.id} className="route-stop-detail">
@@ -434,13 +427,6 @@ export default function RoutePage() {
               </div>
             </article>
           ))}
-
-          {/* ── Fleet ── */}
-          <section className="fleet-banner">
-            <div className="fleet-banner__inner">
-              <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/fleet/fleet-prevost-vicksburg-battlefield.webp" alt="Big Muddy Prevost at Vicksburg National Military Park" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
-            </div>
-          </section>
 
           {/* Natchez */}
           {[STOPS[3]].map((stop) => (
@@ -485,13 +471,6 @@ export default function RoutePage() {
               </div>
             </article>
           ))}
-
-          {/* ── Fleet ── */}
-          <section className="fleet-banner">
-            <div className="fleet-banner__inner">
-              <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/fleet/fleet-tesla-model-3.webp" alt="Big Muddy Tesla by the river with cypress trees" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
-            </div>
-          </section>
 
           {/* New Orleans */}
           {[STOPS[4]].map((stop) => (

@@ -89,13 +89,6 @@ export default async function MagazineHomepage() {
         </div>
       </section>
 
-      {/* ── Fleet ── */}
-      <section className="fleet-banner">
-        <div className="fleet-banner__inner">
-          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/fleet/fleet-tesla-natchez-bluff.webp" alt="Big Muddy Tesla at the Natchez bluff overlook" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
-        </div>
-      </section>
-
       {/* ── Category Filter + Grid ── */}
       <section className="mag-grid">
         <div className="section-container">

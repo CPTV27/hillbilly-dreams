@@ -111,13 +111,6 @@ export default async function TouringHomepage() {
         </div>
       </section>
 
-      {/* ── Fleet ── */}
-      <section className="fleet-banner">
-        <div className="fleet-banner__inner">
-          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/fleet/fleet-transit-beale-street.webp" alt="Big Muddy Transit van on Beale Street, Memphis" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
-        </div>
-      </section>
-
       {/* ── Where to Stay ── */}
       <section className="touring-lodging">
         <div className="section-container">
@@ -202,13 +195,6 @@ export default async function TouringHomepage() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* ── Fleet ── */}
-      <section className="fleet-banner">
-        <div className="fleet-banner__inner">
-          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/fleet/fleet-prevost-french-quarter.webp" alt="Big Muddy Prevost tour bus in the French Quarter, New Orleans" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
         </div>
       </section>
 

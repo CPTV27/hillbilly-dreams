@@ -165,13 +165,6 @@ export default async function RadioHomepage() {
         </div>
       </section>
 
-      {/* ── Fleet ── */}
-      <section className="fleet-banner">
-        <div className="fleet-banner__inner">
-          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/fleet/fleet-transit-clarksdale-crossroads.webp" alt="Big Muddy Transit at the Clarksdale crossroads" width={1600} height={893} sizes="100vw" placeholder="blur" blurDataURL={BLUR_DATA_URL} style={{ width: '100%', height: 'auto' }} />
-        </div>
-      </section>
-
       {/* ── Live Sessions ── */}
       <section className="radio-live">
         <div className="section-container">
