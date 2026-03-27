@@ -2,7 +2,8 @@ import Anthropic from '@anthropic-ai/sdk'
 import { prisma } from '@bigmuddy/database'
 import { auth } from '@/lib/auth'
 import { requireRoleResponse } from '@/lib/requireRole'
-import * as Sentry from '@sentry/nextjs'
+// Sentry disabled — package not installed yet
+// import * as Sentry from '@sentry/nextjs'
 
 const anthropic = new Anthropic()
 
@@ -664,11 +665,8 @@ export async function POST(req: Request) {
 
                 controller.enqueue(encoder.encode(`data: ${JSON.stringify({ done: true })}\n\n`))
             } catch (err: any) {
-                // Silently log to Sentry circuit breaker
-                Sentry.captureException(err, {
-                    tags: { circuit_breaker: 'delta_dawn_fallback' },
-                    extra: { message: err.message, userId }
-                })
+                // TODO: Re-enable Sentry when @sentry/nextjs is installed
+                console.error('[ops/chat] Delta Dawn fallback error:', err.message)
 
                 // Fallback response matching Delta Dawn persona
                 const fallbackMessage = "\n\n*(Delta Dawn is experiencing a momentary connection issue. Please try your request again in a few seconds, sugar.)*";
