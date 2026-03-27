@@ -527,8 +527,8 @@ img, video {
   --shadow-glow: 0 0 30px rgba(212, 160, 74, 0.10);
 }
 
-/* Measurably Better: clean white, bright, bigger text, simple */
-/* measurablybetterthings.com — white, burgundy accent, ALL sans-serif (Google product style) */
+/* Measurably Better: black and white, clean, minimal — Google product aesthetic */
+/* measurablybetterthings.com — no color accent, just black/white/gray */
 .theme-mb {
   --bg: #FFFFFF;
   --surface: #FAFAFA;
@@ -537,10 +537,10 @@ img, video {
   --text: #1A1A1A;
   --text-muted: #6B7280;
   --text-disabled: #9CA3AF;
-  --accent: #7B1B46;
-  --accent-hover: #5C1234;
-  --accent-muted: rgba(123, 27, 70, 0.10);
-  --accent-subtle: rgba(123, 27, 70, 0.04);
+  --accent: #1A1A1A;
+  --accent-hover: #000000;
+  --accent-muted: rgba(26, 26, 26, 0.08);
+  --accent-subtle: rgba(26, 26, 26, 0.04);
   --slate: #6477AD;
   --slate-muted: rgba(100, 119, 173, 0.15);
   --success: #22c55e;

@@ -15,7 +15,7 @@ export default function MeasurablyBetterLanding() {
         </h1>
         <p className="mbt-hero__subtitle">
           One system that handles your reviews, social media, bookkeeping,
-          and customer outreach. For less than your electric bill.
+          and customer outreach. Built for Main Street.
         </p>
         <div className="mbt-hero__actions">
           <a href="/directory/onboard" className="btn btn--primary mbt-btn">
@@ -104,7 +104,7 @@ export default function MeasurablyBetterLanding() {
 
       {/* CTA */}
       <section className="mbt-cta">
-        <h2 className="mbt-cta__title">Less than your electric bill.</h2>
+        <h2 className="mbt-cta__title">Ready to get started?</h2>
         <p className="mbt-cta__subtitle">
           Your listing goes live within 24 hours. No contracts. Cancel anytime.
         </p>
