@@ -7,6 +7,7 @@ import { Footer } from '@bigmuddy/ui';
 import { BRANDS } from '@bigmuddy/config';
 import { JsonLd, getOrganizationSchema, getWebSiteSchema } from '@/lib/structured-data';
 
+import { ThemeProvider } from '@/components/theme-provider';
 import { constructMetadata, themeColor } from '../metadata';
 
 export const metadata: Metadata = {
@@ -34,16 +35,18 @@ export default function EntertainmentLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={brand.themeClass}>
-      <JsonLd schema={getOrganizationSchema()} />
-      <JsonLd schema={getWebSiteSchema()} />
-      <Navigation
-        brand="entertainment"
-        links={brand.nav.links}
-        logoHref="/"
-      />
-      <main>{children}</main>
-      <Footer brand="entertainment" />
-    </div>
+    <ThemeProvider defaultTheme="bm-entertainment">
+      <div className={brand.themeClass}>
+        <JsonLd schema={getOrganizationSchema()} />
+        <JsonLd schema={getWebSiteSchema()} />
+        <Navigation
+          brand="entertainment"
+          links={brand.nav.links}
+          logoHref="/"
+        />
+        <main>{children}</main>
+        <Footer brand="entertainment" />
+      </div>
+    </ThemeProvider>
   );
 }

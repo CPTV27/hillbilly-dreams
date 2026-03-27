@@ -5,6 +5,7 @@ import type { Metadata, Viewport } from 'next';
 import { Navigation } from '@bigmuddy/ui';
 import { Footer } from '@bigmuddy/ui';
 import { BRANDS } from '@bigmuddy/config';
+import { ThemeProvider } from '@/components/theme-provider';
 
 
 export const metadata: Metadata = {
@@ -39,14 +40,16 @@ export default function EconomicsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={brand.themeClass}>
-      <Navigation
-        brand="economics"
-        links={brand.nav.links}
-        logoHref="/"
-      />
-      <main>{children}</main>
-      <Footer brand="economics" />
-    </div>
+    <ThemeProvider defaultTheme="economics">
+      <div className={brand.themeClass}>
+        <Navigation
+          brand="economics"
+          links={brand.nav.links}
+          logoHref="/"
+        />
+        <main>{children}</main>
+        <Footer brand="economics" />
+      </div>
+    </ThemeProvider>
   );
 }

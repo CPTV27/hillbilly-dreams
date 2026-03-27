@@ -1,5 +1,6 @@
 // apps/web/app/records/layout.tsx
 import type { Metadata } from 'next';
+import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
   title: {
@@ -22,7 +23,7 @@ export default function RecordsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <ThemeProvider defaultTheme="records">
       <nav
         style={{
           position: 'sticky',
@@ -118,6 +119,6 @@ export default function RecordsLayout({
           <a href="https://buycuriousart.com" style={{ color: 'var(--accent, #c8943e)' }}>BuyCurious Art</a>
         </p>
       </footer>
-    </>
+    </ThemeProvider>
   );
 }

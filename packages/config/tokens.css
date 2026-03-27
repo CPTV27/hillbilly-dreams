@@ -528,7 +528,7 @@ img, video {
 }
 
 /* Measurably Better: clean white, bright, bigger text, simple */
-/* measurablybetterthings.com — white, burgundy accent, serif headlines */
+/* measurablybetterthings.com — white, burgundy accent, ALL sans-serif (Google product style) */
 .theme-mb {
   --bg: #FFFFFF;
   --surface: #FAFAFA;
@@ -549,7 +549,7 @@ img, video {
   --border: #E5E7EB;
   --border-strong: #D1D5DB;
   --border-subtle: #F3F4F6;
-  --font-display: var(--font-abril), Georgia, serif;
+  --font-display: var(--font-inter), system-ui, sans-serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
   --text-base: 18px;
   --text-lg: 20px;

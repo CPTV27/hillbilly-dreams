@@ -2,6 +2,7 @@
 // Client portal layout — clean, simple, read-only dashboard for media clients
 
 import type { Metadata } from 'next';
+import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
   title: {
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 
 export default function PortalLayout({ children }: { children: React.ReactNode }) {
   return (
+    <ThemeProvider defaultTheme="admin">
     <div className="portal-shell">
       <header className="portal-header">
         <div className="portal-header__inner">
@@ -125,5 +127,6 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
         }
       `}</style>
     </div>
+    </ThemeProvider>
   );
 }

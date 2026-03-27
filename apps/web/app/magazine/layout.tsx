@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 import { Navigation, Footer } from '@bigmuddy/ui';
 import { BRANDS } from '@bigmuddy/config';
 
+import { ThemeProvider } from '@/components/theme-provider';
 import { constructMetadata, themeColor } from '../metadata';
 import type { Viewport } from 'next';
 
@@ -33,10 +34,12 @@ export default function MagazineLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={brand.themeClass}>
-      <Navigation brand="magazine" links={brand.nav.links} logoHref="/" />
-      <main>{children}</main>
-      <Footer brand="magazine" />
-    </div>
+    <ThemeProvider defaultTheme="magazine">
+      <div className={brand.themeClass}>
+        <Navigation brand="magazine" links={brand.nav.links} logoHref="/" />
+        <main>{children}</main>
+        <Footer brand="magazine" />
+      </div>
+    </ThemeProvider>
   );
 }
