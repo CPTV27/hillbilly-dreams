@@ -63,6 +63,7 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
   { pattern: 'studio-c', routeGroup: 'studio' },
   { pattern: 'studioc.video', routeGroup: 'studio' },
   { pattern: 'tuthilldesign', routeGroup: 'tuthill' },
+  { pattern: 'bigmuddyentertainment', routeGroup: 'entertainment' },
   { pattern: 'hillbillydreams', routeGroup: 'hillbilly' },
   { pattern: 'measurablybetter', routeGroup: 'measurably-better' },
 ];
@@ -99,7 +100,7 @@ export const BMT_BRAND_PREFIXES = [
   '/touring', '/magazine', '/radio', '/economics', '/media',
   '/admin', '/ops', '/portal', '/platform', '/gallery',
   '/records', '/studio', '/tuthill', '/hillbilly',
-  '/measurably-better', '/directory',
+  '/measurably-better', '/directory', '/entertainment',
   '/welcome',
   '/nexus',
   '/mvx',
@@ -123,7 +124,7 @@ export const BMT_VALID_DEV_BRANDS = [
   'touring', 'magazine', 'radio', 'economics', 'media',
   'admin', 'ops', 'gallery', 'records', 'platform',
   'studio', 'tuthill', 'hillbilly', 'measurably-better',
-  'directory',
+  'directory', 'entertainment',
 ];
 
 // ── Default fallback route group ──
