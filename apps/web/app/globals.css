@@ -150,6 +150,166 @@
   margin: 0;
 }
 
+/* ── Editorial Layout Utilities — Kinfolk / Garden & Gun ── */
+/* Use these on .theme-mb pages for the "Anti-SaaS" magazine feel */
+
+.editorial-hero {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-16) var(--space-8);
+  overflow: hidden;
+}
+.editorial-hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.editorial-hero__overlay {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-md);
+}
+.editorial-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 var(--space-4);
+}
+.editorial-hero__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+.editorial-masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-8);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav, 50);
+}
+.editorial-masthead__brand {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 400;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.editorial-masthead__links {
+  display: flex;
+  gap: var(--space-8);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.editorial-masthead__link {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.editorial-masthead__link:hover,
+.editorial-masthead__link--active {
+  color: var(--text);
+}
+
+.editorial-body {
+  max-width: var(--container-md, 740px);
+  margin: 0 auto;
+  padding: var(--space-16) var(--space-6);
+}
+.editorial-body h1,
+.editorial-body h2,
+.editorial-body h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.editorial-body h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; margin: 0 0 var(--space-6); }
+.editorial-body h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.2; margin: var(--space-12) 0 var(--space-4); }
+.editorial-body p {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  line-height: 1.8;
+  color: var(--text);
+  margin: 0 0 var(--space-6);
+}
+
+.editorial-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md, 4px);
+  padding: var(--space-8);
+  transition: border-color 0.2s;
+}
+.editorial-card:hover {
+  border-color: var(--border-strong);
+}
+
+.editorial-pullquote {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--text);
+  border-left: 3px solid var(--accent);
+  padding-left: var(--space-6);
+  margin: var(--space-12) 0;
+}
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: var(--space-16) var(--space-8);
+}
+@media (min-width: 768px) {
+  .editorial-grid { grid-template-columns: 1fr 1fr; gap: var(--space-10); }
+}
+
+.editorial-caption {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin-top: var(--space-2);
+  letter-spacing: 0.02em;
+}
+
+.editorial-attic {
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-20);
+}
+
+.editorial-fullbleed {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+.editorial-fullbleed img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* ── Shared Nav (bm-nav) ── */
 .bm-nav{position:sticky;top:0;z-index:var(--z-nav);background:rgba(26,24,22,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);box-shadow:var(--shadow-sm)}
 .bm-nav__inner{display:flex;align-items:center;justify-content:space-between;max-width:var(--container-xl);margin:0 auto;padding:var(--space-4) var(--space-6);gap:var(--space-8)}

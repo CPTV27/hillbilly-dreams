@@ -2,84 +2,12 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "prototypes",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "/Users/chasethis/bmt/prototypes", "-l", "4444", "--no-clipboard"],
-      "port": 4444
-    },
-    {
       "name": "web",
-      "cwd": "/Users/chasethis/bmt/apps/web",
+      "cwd": "apps/web",
       "runtimeExecutable": "npx",
       "runtimeArgs": ["next", "dev"],
       "port": 3000,
-      "autoPort": true,
-      "env": {
-        "NEXT_PUBLIC_BRAND": "touring"
-      }
-    },
-    {
-      "name": "hillbilly",
-      "cwd": "/Users/chasethis/bmt/apps/web",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["next", "dev", "--port", "3002"],
-      "port": 3002,
-      "autoPort": true,
-      "env": { "NEXT_PUBLIC_BRAND": "hillbilly" }
-    },
-    {
-      "name": "hillbilly-fresh",
-      "cwd": "/Users/chasethis/bmt/apps/web",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["next", "dev", "--port", "3006"],
-      "port": 3006,
-      "autoPort": true,
-      "env": { "NEXT_PUBLIC_BRAND": "hillbilly" }
-    },
-    {
-      "name": "platform",
-      "cwd": "/Users/chasethis/bmt/apps/web",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["next", "dev", "--port", "3003"],
-      "port": 3003,
-      "autoPort": true,
-      "env": { "NEXT_PUBLIC_BRAND": "platform" }
-    },
-    {
-      "name": "economics",
-      "cwd": "/Users/chasethis/bmt/apps/web",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["next", "dev", "--port", "3004"],
-      "port": 3004,
-      "autoPort": true,
-      "env": { "NEXT_PUBLIC_BRAND": "economics" }
-    },
-    {
-      "name": "media",
-      "cwd": "/Users/chasethis/bmt/apps/web",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["next", "dev", "--port", "3005"],
-      "port": 3005,
-      "autoPort": true,
-      "env": { "NEXT_PUBLIC_BRAND": "media" }
-    },
-    {
-      "name": "ops",
-      "cwd": "/Users/chasethis/bmt/apps/web",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["next", "dev", "--port", "3001"],
-      "port": 3001,
-      "autoPort": true,
-      "env": {
-        "NEXT_PUBLIC_BRAND": "admin"
-      }
-    },
-    {
-      "name": "s2px-server",
-      "cwd": "/Users/chasethis/S2PX",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev:server"],
-      "port": 5001
+      "autoPort": true
     }
   ]
 }

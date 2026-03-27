@@ -128,6 +128,11 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // ── Welcome/tour pages — always pass through ──
+  if (pathname.startsWith('/welcome')) {
+    return NextResponse.next();
+  }
+
   // ── If path already starts with a known brand prefix, pass through ──
   if (BMT_BRAND_PREFIXES.some(p => pathname === p || pathname.startsWith(p + '/'))) {
     return NextResponse.next();

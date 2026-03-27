@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
   title: 'Measurably Better | The easy you\'ve been looking for',
@@ -18,5 +19,5 @@ export default function MeasurablyBetterLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <ThemeProvider defaultTheme="mb">{children}</ThemeProvider>;
 }
