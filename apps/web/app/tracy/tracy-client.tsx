@@ -278,7 +278,7 @@ export default function TracyDashboard() {
         <Finding priority="MEDIUM" text="Obtain Scan2Plan 1099s for all years — critical for cross-reference" />
         <Finding priority="MEDIUM" text="Download Flymax/Utopia Studios 1099-NEC from QuickBooks portal" />
         <Finding priority="MEDIUM" text="Establish formal operating agreement with equity splits for HDI" />
-        <Finding priority="LOW" text="Consolidate GCP/Firebase accounts under single Workspace domain" />
+        <Finding priority="LOW" text="Consolidate cloud accounts under single domain" />
         <Finding priority="LOW" text="Review 473 unclassified transactions ($14,627) in Found Banking business account" />
       </ReportSection>
 

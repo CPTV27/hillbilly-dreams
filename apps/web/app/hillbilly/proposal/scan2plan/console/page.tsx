@@ -205,7 +205,7 @@ export default function CEOConsole() {
                 <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: C.error }}>Consumer Chatbots</span>
               </div>
               <div style={{ padding: '12px 16px', backgroundColor: 'rgba(34,197,94,0.08)', borderRadius: '0 8px 0 0', textAlign: 'center' }}>
-                <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: C.success }}>HDX Sovereign Engine</span>
+                <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: C.success }}>Measurably Better Sovereign Engine</span>
               </div>
             </div>
 

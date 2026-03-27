@@ -104,7 +104,7 @@ export default function DeepSouthPitch() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 24 }}>
             {[
               { price: 'Free', name: 'The Baseline', target: 'Small artists & shops', desc: 'Secures network density. Subsidized by the city grant.' },
-              { price: '$99/mo', name: 'The Operator', target: 'Boutiques & Restaurants', desc: 'Replaces extractive POS/Linktree with HDX Lite.' },
+              { price: '$99/mo', name: 'The Operator', target: 'Boutiques & Restaurants', desc: 'Replaces extractive POS/Linktree with Measurably Better.' },
               { price: '$500/mo', name: 'The Node', target: 'Major Venues & Hotels', desc: 'Full operational control, capacity automation, direct AI booking.' },
               { price: '$2,500/mo', name: 'Ecosystem Sponsor', target: 'Banks & Tourism Boards', desc: 'Premium brand placement and macro-data access.' }
             ].map((tier, i) => (
@@ -125,7 +125,7 @@ export default function DeepSouthPitch() {
               <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: colors.sky400, marginBottom: 12 }}>The Zero-IT Play</div>
               <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: colors.white, margin: '0 0 16px' }}>$74/mo replaces $8,500/mo</h3>
               <p style={{ color: colors.slate400, lineHeight: 1.6, margin: 0 }}>
-                A traditional IT department costs a small business $8,500/mo minimum — email, POS, booking, website, social, CRM. An HDX Operator Node runs the entire stack for $74/mo on sovereign Google Cloud infrastructure. Gemini 2.5 Flash handles the intelligence. Cloud Run handles the scale. Vertex AI maps the workflows. Plumbing, not pixie dust.
+                A traditional IT department costs a small business $8,500/mo minimum — email, POS, booking, website, social, CRM. An Measurably Better runs the entire stack for $74/mo on sovereign Google Cloud infrastructure. Gemini 2.5 Flash handles the intelligence. Vercel handles the scale. Vertex AI maps the workflows. Plumbing, not pixie dust.
               </p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -134,7 +134,7 @@ export default function DeepSouthPitch() {
                 <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#f87171', textDecoration: 'line-through', textDecorationColor: '#f8717180' }}>$8,500<span style={{ fontSize: '1rem', color: colors.slate500 }}>/mo</span></div>
               </div>
               <div style={{ backgroundColor: colors.slate950, borderRadius: 16, padding: 24, border: `1px solid ${colors.green500}`, textAlign: 'center' as const }}>
-                <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', color: colors.green400, marginBottom: 8 }}>HDX Operator Node</div>
+                <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', color: colors.green400, marginBottom: 8 }}>Measurably Better</div>
                 <div style={{ fontSize: '2.5rem', fontWeight: 900, color: colors.green400 }}>$74<span style={{ fontSize: '1rem', color: colors.slate500 }}>/mo</span></div>
               </div>
             </div>
@@ -153,7 +153,7 @@ export default function DeepSouthPitch() {
               </div>
               <div style={{ flex: 1 }}>
                 <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: colors.white, margin: '0 0 8px' }}>The Natchez Fortress (Months 1-3)</h3>
-                <p style={{ color: colors.slate400, margin: '0 0 16px' }}>Secure grant, deploy HDX engine, and manually onboard the top 100 anchor businesses.</p>
+                <p style={{ color: colors.slate400, margin: '0 0 16px' }}>Secure grant, deploy Measurably Better engine, and manually onboard the top 100 anchor businesses.</p>
                 <div style={{ display: 'flex', gap: 24, fontSize: 14, fontWeight: 700, color: colors.slate300 }}>
                   <div>Nodes: <span style={{ color: colors.sky400 }}>18</span></div>
                   <div>Projected Retained: <span style={{ color: colors.sky400 }}>$38,500</span></div>

@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Deep South Directory — Local Business Marketing',
   description:
-    'The regional business network for the Mississippi Corridor. Find locals. Get found. Keep your money in the region. Powered by HDX.',
+    'The regional business network for the Mississippi Corridor. Find locals. Get found. Keep your money in the region. Powered by Measurably Better.',
 };
 
 const CATEGORIES = [
@@ -114,11 +114,11 @@ const TIERS = [
     ],
   },
   {
-    name: 'HDX Ops',
+    name: 'MBT Ops',
     price: '$1,200+/mo',
     features: [
       'Everything in The Route',
-      'Full HDX operating system deployment',
+      'Full Measurably Better operating system deployment',
       'Sales pipeline, billing, project management, client delivery',
       'One platform replacing your entire software stack',
       'Hillbilly Dreams as your embedded technology arm',
@@ -860,7 +860,7 @@ export default function DirectoryPage() {
             textTransform: 'uppercase',
           }}
         >
-          Powered by HDX · hillbillydreamsinc.com
+          Powered by Measurably Better · hillbillydreamsinc.com
         </p>
       </section>
     </main>

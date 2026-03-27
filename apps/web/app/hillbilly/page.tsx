@@ -2,14 +2,14 @@
 
 // apps/web/app/hillbilly/page.tsx
 // Hillbilly Dreams Inc. — "Google Wrapper" positioning
-// Built on Google Cloud · Gemini · Vertex AI · Firebase
+// Built on Google Cloud · Gemini · Vertex AI · Vercel
 // Style: Google Cloud customer story / case study aesthetic
 
 import { useState, useEffect } from 'react';
 
 const GOOGLE_STACK = [
-  { name: 'Cloud Run', color: '#4285F4' },
-  { name: 'Firebase', color: '#F57C00' },
+  { name: 'Neon', color: '#3ECF8E' },
+  { name: 'Vercel', color: '#000000' },
   { name: 'Cloud SQL', color: '#0F9D58' },
   { name: 'Vertex AI', color: '#4285F4' },
   { name: 'Gemini', color: '#8E24AA' },
@@ -20,7 +20,7 @@ const GOOGLE_STACK = [
 
 const STATS = [
   { value: '2M', label: 'Token Context Window' },
-  { value: '99.9%', label: 'Cloud Run Uptime SLA' },
+  { value: '99.9%', label: 'Platform Uptime SLA' },
   { value: '18', label: 'Cities in Network' },
   { value: '96%', label: 'Gross Cloud Margins' },
 ];
@@ -44,10 +44,10 @@ const PILLARS = [
     color: '#0F9D58',
     name: 'Sovereign Infrastructure',
     sub: 'Your Data. Your Instance.',
-    desc: 'Every HDX deployment runs on its own Google Cloud SQL instance. Your financial data, client relationships, and intellectual property never share a database with anyone else. Complete isolation.',
+    desc: 'Every Measurably Better deployment runs on its own Google Cloud SQL instance. Your financial data, client relationships, and intellectual property never share a database with anyone else. Complete isolation.',
     bullets: [
       'Dedicated Cloud SQL per tenant',
-      'Firebase App Hosting on Cloud Run',
+      'Vercel with Edge Network',
       'Full data ownership & portability',
       'Encrypted at rest and in transit',
     ],
@@ -626,7 +626,7 @@ export default function HillbillyDreamsPage() {
             <span className="hd-hero__title-accent">for the Independent.</span>
           </h1>
           <p className="hd-hero__sub">
-            We harnessed the latest from <strong>Google Cloud</strong>, <strong>Gemini AI</strong>, and <strong>Firebase</strong> and packaged it into a platform that runs businesses — from Main Street shops to enterprise construction firms. One engine. Any industry.
+            We harnessed the latest from <strong>Google Cloud</strong>, <strong>Gemini AI</strong>, and <strong>Vercel</strong> and packaged it into a platform that runs businesses — from Main Street shops to enterprise construction firms. One engine. Any industry.
           </p>
           <div className="hd-hero__ctas">
             <a href="/hillbilly/directory-pitch" className="hd-btn-primary">View the Deep South Directory →</a>
@@ -660,10 +660,10 @@ export default function HillbillyDreamsPage() {
 
       {/* ── Three Pillars ── */}
       <section id="platform" className="hd-section">
-        <div className="hd-label">The HDX Platform</div>
+        <div className="hd-label">The MBT Platform</div>
         <h2 className="hd-h2">One Platform. Every Vertical.</h2>
         <p className="hd-lead">
-          The same Google Cloud engine running a six-room inn in Natchez powers a $1M construction firm in New York. Hospitality, media, AEC, retail — HDX adapts to the business, not the other way around.
+          The same Google Cloud engine running a six-room inn in Natchez powers a $1M construction firm in New York. Hospitality, media, AEC, retail — Measurably Better adapts to the business, not the other way around.
         </p>
         <div className="hd-pillars">
           {PILLARS.map((p) => (
@@ -695,7 +695,7 @@ export default function HillbillyDreamsPage() {
               The original focus was developing Amy Allen&apos;s music career — performing as <em>Arrie Aslin</em> — and creating memorable live experiences. But independent art needs a runway. We realized the Big Muddy Inn in Natchez could generate the revenue to fund the music, provided we could get it cash-flow positive.
             </p>
             <p>
-              Running a hospitality business in the Deep South usually means bleeding money to disconnected, expensive software subscriptions. We couldn&apos;t afford the extraction, so we built our own infrastructure on Google Cloud. We called it <em>HDX</em>. To fund the holding company, we deployed a version called <em>S2PX</em> for 3D scanning and AEC firms. That side of the house quietly pays the bills.
+              Running a hospitality business in the Deep South usually means bleeding money to disconnected, expensive software subscriptions. We couldn&apos;t afford the extraction, so we built our own infrastructure on Google Cloud. We called it <em>Measurably Better</em>. To fund the holding company, we deployed a version called <em>S2PX</em> for 3D scanning and AEC firms. That side of the house quietly pays the bills.
             </p>
             <blockquote className="hd-story-quote">
               <p>
@@ -728,7 +728,7 @@ export default function HillbillyDreamsPage() {
             { label: 'S2PX — AEC & Construction', text: 'iPhone LiDAR to automated quoting. Built for 3D scanning firms, general contractors, and AEC operators who bleed margin to manual estimation. Sovereign Cloud SQL instance per client.' },
             { label: 'Big Muddy — Hospitality & Media', text: 'An inn, a magazine, a radio station, a record label, and a touring circuit — all on one platform. The owned-and-operated proof of concept running eight brands from Natchez, Mississippi.' },
             { label: 'Deep South Directory — Main Street', text: 'Sovereign digital infrastructure for local businesses. Tap-to-pay, AI concierges, direct booking, and automated marketing — replacing the extractive platforms that tax every transaction.' },
-            { label: 'Aligned Economics', text: "Our economics are tied to your margin recovery, not rent-seeking. We don't take a percentage of your revenue. Flat licensing. When HDX makes your operation more efficient, you keep the upside. Our incentive is to make you more profitable — not to tax every transaction." },
+            { label: 'Aligned Economics', text: "Our economics are tied to your margin recovery, not rent-seeking. We don't take a percentage of your revenue. Flat licensing. When Measurably Better makes your operation more efficient, you keep the upside. Our incentive is to make you more profitable — not to tax every transaction." },
           ].map((p) => (
             <div key={p.label} className="hd-principle">
               <div className="hd-principle__label">{p.label}</div>
@@ -747,7 +747,7 @@ export default function HillbillyDreamsPage() {
           </div>
           <div className="hd-footer__stack">
             <GoogleG size={14} />
-            Built on Google Cloud · Gemini · Vertex AI · Firebase
+            Built on Google Cloud · Gemini · Vertex AI · Vercel
           </div>
         </div>
         <div className="hd-footer__copy">

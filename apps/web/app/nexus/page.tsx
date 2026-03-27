@@ -88,7 +88,7 @@ export default function SovereignNexus() {
             <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">Sovereign Ecosystem</span>
           </div>
           <h1 className="text-3xl md:text-5xl font-extrabold text-white tracking-tighter mb-4">
-            V. Owen Bush
+            Strategic Partner
           </h1>
           <p className="text-slate-400 max-w-lg mx-auto leading-relaxed">
             Director & Chief Executive. Mapping the intersection of experiential entertainment, spatial technology, and outsider economics.

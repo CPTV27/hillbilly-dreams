@@ -304,7 +304,7 @@ export default function EntertainmentPage() {
               </p>
               <ul className="ent-community__tier-list">
                 <li>Everything in the artist tier</li>
-                <li>QuickBooks integration</li>
+                <li>Financial tools</li>
                 <li>Review monitoring &amp; response</li>
                 <li>Deep South Directory listing</li>
                 <li>Interactive learning modules</li>

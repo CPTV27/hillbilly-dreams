@@ -60,7 +60,7 @@ function ConfirmedContent() {
           </ol>
         </section>
 
-        {/* HDX hook */}
+        {/* MBT upsell */}
         <section style={{
           background: '#111',
           border: '1px solid #222',
@@ -69,17 +69,17 @@ function ConfirmedContent() {
           marginBottom: 48,
         }}>
           <p style={{ color: 'var(--accent, #c8943e)', fontSize: 12, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 12 }}>
-            Powered by HDX
+            Powered by Measurably Better
           </p>
           <p style={{ fontSize: 15, lineHeight: 1.7, color: '#ccc', marginBottom: 16 }}>
-            The Directory runs on HDX — the same business operating system used by operators across the corridor.
+            The Directory runs on Measurably Better — the same business operating system used by operators across the corridor.
             Sales pipeline, billing, project tracking, marketing automation. One platform. One monthly cost.
           </p>
           <a
-            href={`mailto:licensing@hillbillydreamsinc.com?subject=HDX inquiry from ${encodeURIComponent(businessName)}`}
+            href={`mailto:licensing@hillbillydreamsinc.com?subject=MBT inquiry from ${encodeURIComponent(businessName)}`}
             style={{ color: 'var(--accent, #c8943e)', fontSize: 14, textDecoration: 'none' }}
           >
-            Ask us about HDX →
+            Ask us about Measurably Better →
           </a>
         </section>
 

@@ -267,7 +267,7 @@ function DashboardContent() {
             textTransform: 'uppercase',
           }}
         >
-          Powered by HDX · hillbillydreamsinc.com
+          Powered by Measurably Better · hillbillydreamsinc.com
         </p>
       </section>
 
@@ -633,7 +633,7 @@ function DashboardContent() {
         </div>
       </section>
 
-      {/* HDX OS Locked Panel */}
+      {/* Measurably Better OS Locked Panel */}
       <section
         style={{
           padding: '0 1.5rem 3rem',
@@ -661,7 +661,7 @@ function DashboardContent() {
                 fontWeight: 700,
               }}
             >
-              HDX Operating System
+              Measurably Better Operating System
             </p>
             <span
               style={{
@@ -704,7 +704,7 @@ function DashboardContent() {
                 maxWidth: 560,
               }}
             >
-              HDX is the full operating system: sales pipeline, billing, project management,
+              Measurably Better is the full operating system: sales pipeline, billing, project management,
               client delivery — all connected. The Directory runs on it. Your business can too.
               One monthly cost. No engineering team required. Hillbilly Dreams as your embedded
               technology arm.
@@ -722,7 +722,7 @@ function DashboardContent() {
                 opacity: 0.7,
               }}
             >
-              Talk to us about HDX →
+              Talk to us about Measurably Better →
             </a>
           </div>
         </div>

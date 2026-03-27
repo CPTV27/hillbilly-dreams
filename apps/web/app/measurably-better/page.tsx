@@ -14,7 +14,7 @@ export default function MeasurablyBetterLanding() {
           <em>Not your software.</em>
         </h1>
         <p className="mbt-hero__subtitle">
-          One system that handles your reviews, social media, bookkeeping,
+          One system that handles your reviews, social media, scheduling,
           and customer outreach. Built for Main Street.
         </p>
         <div className="mbt-hero__actions">

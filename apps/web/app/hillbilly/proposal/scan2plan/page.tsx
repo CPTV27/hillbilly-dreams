@@ -31,7 +31,7 @@ function Proposal() {
       <nav style={{ position: 'sticky', top: 0, zIndex: 50, backgroundColor: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', borderBottom: `1px solid ${colors.slate200}`, padding: '16px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: colors.slate900, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid ${colors.slate700}` }}>
-            <span style={{ fontWeight: 900, fontSize: 14, backgroundImage: `linear-gradient(to right, ${colors.sky400}, ${colors.orange400})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>HDX</span>
+            <span style={{ fontWeight: 900, fontSize: 14, backgroundImage: `linear-gradient(to right, ${colors.sky400}, ${colors.orange400})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>MBT</span>
           </div>
           <div>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', color: colors.slate500 }}>Hillbilly Dreams, Inc.</div>
@@ -76,13 +76,13 @@ function Proposal() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 48 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20, color: colors.slate600, fontSize: '1.05rem', lineHeight: 1.7 }}>
-              <p style={{ margin: 0 }}><strong style={{ color: colors.slate900, fontWeight: 700 }}>Hillbilly Dreams, Inc.</strong> is the technology holding company behind HDX — a business operating system purpose-built for service companies. We don&apos;t build models. We build the rails.</p>
-              <p style={{ margin: 0 }}>HDX runs on Google Cloud production infrastructure (Cloud Run, Vertex AI, and Cloud SQL) powered by Gemini 2.5 Flash. Independent operators lose ~23% of billable capacity to manual administrative overhead. This pipeline fixes it.</p>
+              <p style={{ margin: 0 }}><strong style={{ color: colors.slate900, fontWeight: 700 }}>Hillbilly Dreams, Inc.</strong> is the technology holding company behind Measurably Better — a business operating system purpose-built for service companies. We don&apos;t build models. We build the rails.</p>
+              <p style={{ margin: 0 }}>Measurably Better runs on production cloud infrastructure powered by Google AI. Independent operators lose ~23% of billable capacity to manual administrative overhead. This pipeline fixes it.</p>
             </div>
             <div style={{ backgroundColor: colors.white, border: `1px solid ${colors.slate200}`, padding: 32, borderRadius: 24, boxShadow: '0 20px 25px -5px rgba(0,0,0,.05)', position: 'relative', overflow: 'hidden' }}>
               <div style={{ position: 'absolute', top: 0, right: 0, width: 128, height: 128, backgroundColor: 'rgba(249,115,22,0.1)', borderBottomLeftRadius: '100%', filter: 'blur(24px)' }} />
               <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: colors.slate900, margin: '0 0 16px', position: 'relative' }}>The S2PX Deployment</h3>
-              <p style={{ color: colors.slate600, margin: '0 0 24px', lineHeight: 1.6, position: 'relative' }}>S2PX is the HDX deployment purpose-built for 3D scanning and spatial intelligence. As the sole Master Licensor, Hillbilly Dreams powers Scan2Plan&apos;s entire digital workflow.</p>
+              <p style={{ color: colors.slate600, margin: '0 0 24px', lineHeight: 1.6, position: 'relative' }}>S2PX is the platform deployment purpose-built for 3D scanning and spatial intelligence. As the sole Master Licensor, Hillbilly Dreams powers Scan2Plan&apos;s entire digital workflow.</p>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: colors.sky600, fontWeight: 600, fontSize: 14, position: 'relative' }}>
                 <CheckCircle2 size={18} /> 30-day guided onboarding. Full platform access from day one.
               </div>
@@ -94,7 +94,7 @@ function Proposal() {
         <section style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, borderBottom: `1px solid ${colors.slate200}`, paddingBottom: 16 }}>
             <div style={{ width: 32, height: 32, borderRadius: 8, background: `linear-gradient(135deg, ${colors.sky500}, ${colors.sky600})`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: colors.white, fontWeight: 'bold', boxShadow: '0 4px 6px -1px rgba(14,165,233,0.2)' }}>2</div>
-            <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 800, margin: 0 }}>Included in HDX License</h2>
+            <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 800, margin: 0 }}>Included in MBT License</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24 }}>
             {[
@@ -175,7 +175,7 @@ function Proposal() {
               </div>
 
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
-                {['Inbound marketing engine + AI lead qualification', 'Automated case studies from project data', 'Google Business Profile sync + local SEO', 'Precision outreach — authenticated Gmail sequences', 'Conversion attribution — HDX-tracked pipeline'].map((item, i) => (
+                {['Inbound marketing engine + AI lead qualification', 'Automated case studies from project data', 'Google Business Profile sync + local SEO', 'Precision outreach — authenticated Gmail sequences', 'Conversion attribution — MBT-tracked pipeline'].map((item, i) => (
                   <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, fontSize: 14, color: colors.slate600 }}>
                     <CheckCircle2 size={16} color={colors.orange500} style={{ flexShrink: 0, marginTop: 2 }} />{item}
                   </li>
@@ -233,7 +233,7 @@ function Proposal() {
           <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: 256, height: 256, backgroundColor: 'rgba(14,165,233,0.2)', borderRadius: '50%', filter: 'blur(64px)' }} />
           <div style={{ position: 'absolute', bottom: '-10%', left: '-5%', width: 256, height: 256, backgroundColor: 'rgba(249,115,22,0.2)', borderRadius: '50%', filter: 'blur(64px)' }} />
           <div style={{ position: 'relative', zIndex: 10 }}>
-            <h2 style={{ fontSize: '1.875rem', fontWeight: 900, margin: '0 0 8px' }}>The HDX Media Engine</h2>
+            <h2 style={{ fontSize: '1.875rem', fontWeight: 900, margin: '0 0 8px' }}>The MBT Media Engine</h2>
             <h3 style={{ fontSize: '1.25rem', color: colors.sky400, margin: '0 0 32px', fontWeight: 500 }}>Marketing Addendum: Full-Stack Creative Services</h3>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 48 }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 20, color: colors.slate300, lineHeight: 1.6 }}>
@@ -246,7 +246,7 @@ function Proposal() {
                 </div>
                 <div>
                   <h4 style={{ color: colors.white, fontWeight: 700, margin: '0 0 8px' }}>Commission Structure</h4>
-                  <p style={{ fontSize: 14, margin: 0 }}><strong style={{ color: colors.white }}>$1,000/mo base + 7% commission</strong> on HDX-attributed revenue only — not on all sales. Your existing direct sales, referrals, and repeat clients are unaffected. Attribution is clean, auditable, and available on demand.</p>
+                  <p style={{ fontSize: 14, margin: 0 }}><strong style={{ color: colors.white }}>$1,000/mo base + 7% commission</strong> on Measurably Better-attributed revenue only — not on all sales. Your existing direct sales, referrals, and repeat clients are unaffected. Attribution is clean, auditable, and available on demand.</p>
                 </div>
               </div>
               <div>
@@ -323,7 +323,7 @@ function Proposal() {
                   'Google Business Profile sync — fresh project photos weekly',
                   'Local SEO content pipeline — city-specific landing pages',
                   'Precision outreach — authenticated Gmail sequences',
-                  'Conversion attribution — HDX-tracked lead-to-close pipeline',
+                  'Conversion attribution — MBT-tracked lead-to-close pipeline',
                 ].map((item, i) => (
                   <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, color: colors.slate300, fontSize: '0.9rem' }}>
                     <CheckCircle2 size={16} color={colors.orange400} style={{ flexShrink: 0, marginTop: 2 }} />{item}
@@ -341,7 +341,7 @@ function Proposal() {
             {[
               { title: 'Contract Type', desc: 'Standard SaaS vendor agreement. 12-month term, auto-renewing with 90-day notice. No equity, no cap table complexity.' },
               { title: 'Implementation', desc: 'Month 1 is free. If the system does not map to your business, you know before you ever pay full price.' },
-              { title: 'Data Ownership', desc: 'Your data stays yours. Period. Scan2Plan/Twinner retains 100% ownership of all business data. HDX retains platform IP.' },
+              { title: 'Data Ownership', desc: 'Your data stays yours. Period. Scan2Plan/Twinner retains 100% ownership of all business data. MBT retains platform IP.' },
               { title: 'Compute Transparency', desc: 'Google Cloud and RFI storage costs passed through at wholesale. Zero markup. We make money on the software, not by taxing your data.' },
               { title: 'SLA & Uptime', desc: '99.5% uptime target. 24/7 synthetic monitoring. P1 incidents acknowledged within 2 hours.' },
               { title: 'Termination', desc: 'Upon termination, you receive a data export and a runtime license. Zero lock-in. Zero hostage data.' },
@@ -363,7 +363,7 @@ function Proposal() {
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
               <a href="mailto:chase@hillbillydreamsinc.com?subject=S2PX%20Deployment%20—%20Let's%20Go" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', backgroundColor: colors.sky600, color: colors.white, fontWeight: 700, borderRadius: 12, textDecoration: 'none', fontSize: 16 }}>
-                Initiate HDX Deployment <ChevronRight size={18} />
+                Initiate MBT Deployment <ChevronRight size={18} />
               </a>
               <a href="/hillbilly/directory-pitch" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', backgroundColor: 'transparent', color: colors.slate300, fontWeight: 600, borderRadius: 12, textDecoration: 'none', fontSize: 16, border: `1px solid ${colors.slate700}` }}>
                 See it Live in the Directory

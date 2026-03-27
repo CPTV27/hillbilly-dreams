@@ -41,7 +41,7 @@ const tiers: Tier[] = [
     pitch: 'Replace your back-office headcount with an AI operating system.',
     modules: [
       'CEO Console with live financial telemetry',
-      'QuickBooks Online sync \u2014 real-time P&L',
+      'Financial dashboard \u2014 real-time P&L',
       'AI scoping, quoting, and lead qualification',
       'Automated case studies and marketing pipeline',
       'Spatial / LiDAR compute for AEC operators',
@@ -189,7 +189,7 @@ export default function RegionalPage() {
               maxWidth: 580,
             }}
           >
-            The same HDX platform that runs a hotel, a scanning company, and a
+            The same Measurably Better platform that runs a hotel, a scanning company, and a
             record label can run a city hall, a school district, and a tourism
             bureau. Every dollar stays local. Every deployment is a case study
             that sells the next one.
@@ -404,7 +404,7 @@ export default function RegionalPage() {
             chase@hillbillydreamsinc.com
           </p>
           <p style={{ fontSize: 13, color: C.textMuted, margin: '8px 0 0' }}>
-            Built with HDX &mdash; Hillbilly Dreams, Inc.
+            Built with Measurably Better &mdash; Hillbilly Dreams, Inc.
           </p>
         </div>
       </div>

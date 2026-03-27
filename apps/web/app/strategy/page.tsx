@@ -196,7 +196,7 @@ function Report() {
           This memorandum outlines an expanded strategic direction for Measurably Better, the product brand of Hillbilly Dreams, Inc. The proposal is to reposition MB from a software company serving small businesses to a regional technology and media provider serving four distinct markets across the Deep South.
         </p>
         <p style={S.body}>
-          The core technology platform (HDX) does not change. The packaging, pricing, and sales channels expand to capture adjacent markets that use the same infrastructure.
+          The core technology platform (MBT) does not change. The packaging, pricing, and sales channels expand to capture adjacent markets that use the same infrastructure.
         </p>
         <p style={S.body}>
           The tagline for the expanded brand:
@@ -209,7 +209,7 @@ function Report() {
         <p style={S.section}>II.  THE PRODUCT ECOSYSTEM</p>
         <div style={S.hr} />
         <p style={S.body}>
-          Measurably Better operates on a single platform engine (HDX) deployed across four market segments. Each segment receives a tailored interface and pricing model, but all run on shared infrastructure managed by our team.
+          Measurably Better operates on a single platform engine (MBT) deployed across four market segments. Each segment receives a tailored interface and pricing model, but all run on shared infrastructure managed by our team.
         </p>
         {segments.map((seg) => (
           <div key={seg.label}>
@@ -324,7 +324,7 @@ function Report() {
         {/* VII. NATCHEZ PROOF */}
         <p style={S.section}>VII.  THE NATCHEZ PROOF OF CONCEPT</p>
         <div style={S.hr} />
-        <p style={S.body}>Hillbilly Dreams currently operates the following assets in Natchez, Mississippi, all running on the HDX platform:</p>
+        <p style={S.body}>Hillbilly Dreams currently operates the following assets in Natchez, Mississippi, all running on the Measurably Better platform:</p>
         {[
           'The Big Muddy Inn (6-room boutique hotel)',
           'Big Muddy Magazine (editorial content)',
@@ -351,7 +351,7 @@ function Report() {
         {/* IX. POSITIONING */}
         <p style={S.section}>IX.  STRATEGIC POSITIONING</p>
         <div style={S.hr} />
-        <p style={S.body}>The S2PX deal with Owen remains the first revenue event. That does not change. What changes is the story:</p>
+        <p style={S.body}>The S2PX deal remains the first revenue event. That does not change. What changes is the story:</p>
         <div style={{ margin: '16px 0' }}>
           <p style={S.body}><strong>Before:</strong>  &quot;We sell software to contractors.&quot;</p>
           <p style={S.body}><strong>After:</strong>   &quot;We are the regional technology provider for the Deep South. Here is a scanning company, a city, a school district, and a tourism bureau -- all running on the same engine.&quot;</p>

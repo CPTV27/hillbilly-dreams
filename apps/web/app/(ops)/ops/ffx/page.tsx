@@ -20,7 +20,7 @@ export default function FFXFeedEnginePage() {
           {[
             { tag: 'QuickBooks Sync', text: 'Anomalous marketing spend spike detected.', date: '12m ago' },
             { tag: 'LiDAR Scan', text: 'Natchez loading dock capacity recalculation.', date: '3h ago' },
-            { tag: 'Ambient', text: 'Owen discussed the 4-step margin protocol.', date: '8h ago' },
+            { tag: 'Ambient', text: 'Team discussed the 4-step margin protocol.', date: '8h ago' },
           ].map((item, i) => (
             <button key={i} className="w-full text-left p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-indigo-500/10 hover:border-indigo-500/30 transition-all group">
               <div className="flex justify-between items-center mb-2">
