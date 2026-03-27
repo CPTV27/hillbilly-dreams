@@ -1,6 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { prisma } from '@bigmuddy/database'
-import { auth } from '@/auth'
+import { auth } from '@/lib/auth'
 import { requireRoleResponse } from '@/lib/requireRole'
 import * as Sentry from '@sentry/nextjs'
 

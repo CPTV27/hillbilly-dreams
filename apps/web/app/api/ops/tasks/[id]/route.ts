@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 import { requireRoleResponse } from '@/lib/requireRole';
 
 export async function PATCH(req: Request, { params }: { params: { id: string } }) {

@@ -1,7 +1,7 @@
 import { prisma } from '@bigmuddy/database';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 import { SESSION_META } from '@/lib/ops';
 import { formatDate, getRelativeTime } from '@/lib/utils';
 import DashboardKPIs from './components/DashboardKPIs';

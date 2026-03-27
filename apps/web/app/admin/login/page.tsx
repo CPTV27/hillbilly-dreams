@@ -1,7 +1,7 @@
 // apps/web/app/admin/login/page.tsx
 // Admin login page — Google OAuth + Email/Password
 
-import { signIn } from '@/auth';
+import { signIn } from '@/lib/auth';
 
 export default function LoginPage({
   searchParams,

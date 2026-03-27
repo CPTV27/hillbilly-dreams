@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 
 // Deep theme tokens — CSS custom properties consumed by child pages
 const DEEP_TOKENS = {

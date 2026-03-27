@@ -3,7 +3,7 @@
 // Protected by Google OAuth via NextAuth — only whitelisted emails can access.
 
 import type { Metadata } from 'next';
-import { auth, signOut } from '@/auth';
+import { auth, signOut } from '@/lib/auth';
 import DeltaDawnFloat from './components/DeltaDawnFloat';
 
 

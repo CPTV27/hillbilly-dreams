@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 import { syncTaskToEcosystem } from '@/lib/task-sync';
 
 const ASSIGNEE_EMAILS: Record<string, string> = {
