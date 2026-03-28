@@ -11,7 +11,7 @@ const publicRoutes = [
   '/',
   '/platform',
   '/strategy',
-  '/welcome/owen',
+  // '/welcome/owen', // REMOVED — route deleted
   '/amy',
   '/tracy',
   '/ffx',
