@@ -120,10 +120,10 @@ export default async function TouringHomepage() {
             </div>
             <div className="touring-lodging__photos">
               <div className="touring-lodging__photo">
-                <Image src="/images/corridor/victorian-mansion-natchez.webp" alt="Victorian B&B with wraparound porch in Natchez" width={600} height={400} sizes="(min-width: 768px) 50vw, 100vw" style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-sm)' }} />
+                <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-bnb-sunset.webp" alt="Southern B&B with wraparound porch at sunset" width={600} height={900} sizes="(min-width: 768px) 50vw, 100vw" style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-sm)' }} />
               </div>
               <div className="touring-lodging__photo">
-                <Image src="/images/corridor/historic-home-natchez.webp" alt="Antebellum mansion with iron fence and carriage" width={600} height={400} sizes="(min-width: 768px) 50vw, 100vw" style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-sm)' }} />
+                <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-inn-dusk.webp" alt="Historic Southern inn at dusk with warm porch lights" width={600} height={900} sizes="(min-width: 768px) 50vw, 100vw" style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-sm)' }} />
               </div>
             </div>
           </div>
@@ -175,13 +175,13 @@ export default async function TouringHomepage() {
             <div className="touring-route__visual">
               <div className="touring-route__photo-stack">
                 <div className="touring-route__photo touring-route__photo--1">
-                  <Image src="/images/corridor/natchez-downtown-sidewalk.webp" alt="Brick sidewalk with awnings on Natchez main street" width={500} height={375} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-main-street.webp" alt="Charming Main Street at golden hour in the Deep South" width={500} height={750} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="touring-route__photo touring-route__photo--2">
-                  <Image src="/images/corridor/craftsman-porch-columns.webp" alt="Pink azaleas cascading along Natchez sidewalk" width={500} height={375} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-bnb-sunset.webp" alt="Southern porch with hanging ferns at sunset" width={500} height={750} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="touring-route__photo touring-route__photo--3">
-                  <Image src="/images/corridor/natchez-bluff-river-view.webp" alt="Teal shrimp boat at Ocean Springs marina" width={500} height={375} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-inn-dusk.webp" alt="Historic inn at dusk with warm lights" width={500} height={750} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
               </div>
             </div>
