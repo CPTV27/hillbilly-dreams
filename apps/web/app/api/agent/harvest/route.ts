@@ -78,22 +78,24 @@ Return ONLY valid JSON array (no markdown):
             slug,
             category: biz.category || 'Services',
             city: location.split(',')[0].trim(),
-            state: location.split(',')[1]?.trim() || 'MS',
-            description: biz.description,
+            state: location.split(',')[1]?.trim()?.replace(/^\s+/, '') || 'MS',
+            description: biz.description || 'Local business in ' + location,
+            contactName: 'DSD Harvest',
+            contactEmail: 'harvest@deepsouthdirectory.com',
             tier: biz.tierRecommendation === 'operator_499' ? 'the_route'
               : biz.tierRecommendation === 'engine_99' ? 'main_street'
               : 'free',
-            googleRating: biz.googleRating || null,
-            googleReviewCount: biz.reviewCount || null,
+            googleRating: biz.googleRating ? parseFloat(String(biz.googleRating)) : null,
+            googleReviewCount: biz.reviewCount ? parseInt(String(biz.reviewCount)) : null,
             website: biz.website || null,
             phone: biz.phone || null,
             address: biz.address || null,
-            active: false, // Starts inactive until verified
+            active: false,
           },
           update: {
-            description: biz.description,
-            googleRating: biz.googleRating || undefined,
-            googleReviewCount: biz.reviewCount || undefined,
+            description: biz.description || undefined,
+            googleRating: biz.googleRating ? parseFloat(String(biz.googleRating)) : undefined,
+            googleReviewCount: biz.reviewCount ? parseInt(String(biz.reviewCount)) : undefined,
           },
         });
 
