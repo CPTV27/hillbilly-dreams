@@ -151,10 +151,8 @@ export default function DirectoryPage() {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundImage: 'url(/images/dsd/hero-mainstreet.webp)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: 0.1,
+            background: 'transparent',
+            opacity: 0,
             zIndex: -1,
             pointerEvents: 'none',
           }}
@@ -229,19 +227,8 @@ export default function DirectoryPage() {
         </div>
       </section>
 
-      {/* Photo break */}
-      <div
-        style={{
-          width: '100%',
-          height: 280,
-          backgroundImage: 'url(/images/dsd/bg-natchez-street.webp)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.7,
-        }}
-        role="img"
-        aria-label="Downtown Natchez street"
-      />
+      {/* Divider */}
+      <hr style={{ border: 'none', borderTop: '1px solid var(--border, #333)', margin: '0' }} />
 
       {/* Editorial Surface */}
       <section
@@ -535,19 +522,6 @@ export default function DirectoryPage() {
       </section>
 
       {/* Photo break */}
-      <div
-        style={{
-          width: '100%',
-          height: 240,
-          backgroundImage: 'url(/images/dsd/mississippi-sunset.webp)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.7,
-        }}
-        role="img"
-        aria-label="Mississippi River sunset"
-      />
-
       {/* Pricing Tiers */}
       <section
         style={{
