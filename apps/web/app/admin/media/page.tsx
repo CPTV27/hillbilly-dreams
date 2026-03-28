@@ -37,7 +37,7 @@ export default function MediaGallery() {
     return matchSearch && matchFilter;
   });
 
-  const folders = [...new Set(assets.map(a => a.folder).filter(Boolean))].sort();
+  const folders = Array.from(new Set(assets.map(a => a.folder).filter(Boolean))).sort();
 
   const S: Record<string, React.CSSProperties> = {
     page: { minHeight: '100vh', background: '#0f0f0f', color: '#e8e4de', fontFamily: "'Inter', system-ui", padding: '1.5rem' },
