@@ -1,0 +1,33 @@
+/* Records: vinyl/studio — raw, analog, deep black */
+/* bigmuddyrecords.net */
+.theme-records {
+  --bg:              #0a0908;   /* Near-total black */
+  --surface:         #131110;
+  --surface-2:       #1c1916;
+  --surface-3:       #26221d;
+  --text:            #ddd5c0;
+  --text-muted:      #7a7060;
+  --accent:          #c07830;   /* Slightly deeper amber — worn vinyl label */
+  --accent-hover:    #d08840;
+  --accent-muted:    rgba(192, 120, 48, 0.12);
+  --border:          rgba(192, 120, 48, 0.08);
+  --shadow-glow:     0 0 24px rgba(192, 120, 48, 0.10);
+}
+
+/* Big Muddy Records: vinyl black, amber/orange accent, analog warmth */
+.theme-records {
+  --bg: #0c0806;
+  --surface: #1a1210;
+  --surface-2: #281c18;
+  --surface-3: #362620;
+  --text: #f0e8e0;
+  --text-muted: #b09888;
+  --text-disabled: #6a5848;
+  --accent: #e87820;
+  --accent-hover: #f09040;
+  --accent-muted: rgba(232, 120, 32, 0.12);
+  --accent-subtle: rgba(232, 120, 32, 0.06);
+  --border: rgba(232, 120, 32, 0.10);
+  --border-strong: rgba(232, 120, 32, 0.22);
+  --shadow-glow: 0 0 30px rgba(232, 120, 32, 0.12);
+}

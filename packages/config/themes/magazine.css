@@ -1,0 +1,31 @@
+/* Magazine: editorial, print-forward, generous type */
+/* bigmuddymagazine.com — long-form stories, city guides */
+.theme-magazine {
+  --bg:              #19160f;   /* Slightly warmer/darker than default — aged newsprint feel */
+  --surface:         #221e15;
+  --surface-2:       #2d2719;
+  --surface-3:       #39311f;
+  --accent:          #c8943e;
+  --accent-hover:    #d4a44e;
+  --surface-accent:  rgba(200, 148, 62, 0.04);
+  --font-display:    'Playfair Display', Georgia, 'Times New Roman', serif;
+  --leading-normal:  1.75;      /* More generous line height for long-form reading */
+}
+
+/* Big Muddy Magazine: deep forest green, warm cream, editorial print aesthetic */
+.theme-magazine {
+  --bg: #0a120c;
+  --surface: #121f16;
+  --surface-2: #1a2e20;
+  --surface-3: #243d2c;
+  --text: #f0ede4;
+  --text-muted: #9aab98;
+  --text-disabled: #5a6b58;
+  --accent: #d4a04a;
+  --accent-hover: #e0b060;
+  --accent-muted: rgba(212, 160, 74, 0.12);
+  --accent-subtle: rgba(212, 160, 74, 0.06);
+  --border: rgba(212, 160, 74, 0.10);
+  --border-strong: rgba(212, 160, 74, 0.22);
+  --shadow-glow: 0 0 30px rgba(212, 160, 74, 0.10);
+}

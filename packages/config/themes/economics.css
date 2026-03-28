@@ -1,0 +1,36 @@
+/* Economics: Outsider Economics — insurgent, gritty, anti-extraction */
+/* outsidereconomics.com */
+.theme-economics {
+  --bg:              #111318;   /* Cool dark — slightly blue-shifted vs warm default */
+  --surface:         #191c23;
+  --surface-2:       #22262f;
+  --surface-3:       #2c303b;
+  --text:            #e4e8f0;
+  --text-muted:      #8890a0;
+  --accent:          #b54c4c;   /* Red — the insurrectionary signal */
+  --accent-hover:    #c85c5c;
+  --accent-muted:    rgba(181, 76, 76, 0.15);
+  --accent-subtle:   rgba(181, 76, 76, 0.08);
+  --slate:           #4a7080;
+  --slate-muted:     rgba(74, 112, 128, 0.15);
+  --success:         #3a7040;
+  --border:          rgba(181, 76, 76, 0.10);
+  --border-strong:   rgba(181, 76, 76, 0.22);
+  --border-subtle:   rgba(228, 232, 240, 0.06);
+  --shadow-glow:     0 0 20px rgba(181, 76, 76, 0.12);
+}
+
+/* Economics: utilitarian, high-contrast, red/black/cream (matches book cover) */
+.theme-economics {
+  --bg: #0f0e0d;
+  --surface: #1a1816;
+  --surface-2: #231f1c;
+  --surface-3: #2d2824;
+  --accent: #b54c4c;
+  --accent-hover: #c95a5a;
+  --accent-muted: rgba(181, 76, 76, 0.15);
+  --accent-subtle: rgba(181, 76, 76, 0.08);
+  --border: rgba(181, 76, 76, 0.12);
+  --border-strong: rgba(181, 76, 76, 0.25);
+  --shadow-glow: 0 0 20px rgba(181, 76, 76, 0.12);
+}

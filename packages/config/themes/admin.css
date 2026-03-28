@@ -1,0 +1,25 @@
+/* Admin: Big Muddy HQ — functional, high-contrast, utility-first */
+/* admin.bigmuddytouring.com — internal ops */
+.theme-admin {
+  --bg:              #0f1117;   /* Very dark, slightly cool — "command center" */
+  --surface:         #171a22;
+  --surface-2:       #1f2330;
+  --surface-3:       #282d3c;
+  --text:            #e2e8f0;
+  --text-muted:      #94a3b8;
+  --text-disabled:   #5a6580;
+  --accent:          #c8943e;
+  --accent-hover:    #d4a44e;
+  --accent-muted:    rgba(200, 148, 62, 0.15);
+  --slate:           #4a8090;
+  --border:          rgba(148, 163, 184, 0.10);
+  --border-strong:   rgba(148, 163, 184, 0.20);
+  --border-subtle:   rgba(148, 163, 184, 0.05);
+  --shadow-glow:     none;
+}
+
+/* Admin: operational, clean, DM Sans only */
+.theme-admin {
+  --font-display: var(--font-body);
+  --accent: #c8943e;
+}

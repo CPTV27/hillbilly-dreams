@@ -1,0 +1,48 @@
+/* Gallery: clean white museum — open, airy, art-forward */
+/* buycuriousart.com — original art from the Mississippi corridor */
+.theme-gallery {
+  --bg:              #FAFAF8;   /* Off-white — museum wall */
+  --surface:         #F3F2EE;
+  --surface-2:       #ECEAE4;
+  --surface-3:       #E3E0D8;
+  --text:            #1e1b18;   /* Near-black */
+  --text-muted:      #6a6358;
+  --text-disabled:   #9e978e;
+  --accent:          #c8943e;
+  --accent-hover:    #b07830;
+  --accent-muted:    rgba(200, 148, 62, 0.12);
+  --accent-subtle:   rgba(200, 148, 62, 0.06);
+  --slate:           #4a6274;
+  --slate-muted:     rgba(74, 98, 116, 0.15);
+  --border:          rgba(30, 27, 24, 0.10);
+  --border-strong:   rgba(30, 27, 24, 0.20);
+  --border-subtle:   rgba(30, 27, 24, 0.05);
+  --shadow-sm:       0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md:       0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg:       0 8px 24px rgba(0, 0, 0, 0.10);
+  --shadow-xl:       0 16px 40px rgba(0, 0, 0, 0.12);
+  --shadow-glow:     0 0 20px rgba(200, 148, 62, 0.10);
+}
+
+/* Gallery: clean white museum walls, minimal, the art speaks */
+.theme-gallery {
+  --bg: #fafaf8;
+  --surface: #ffffff;
+  --surface-2: #f5f4f0;
+  --surface-3: #eeecea;
+  --text: #1a1a1a;
+  --text-muted: #6b6b6b;
+  --text-disabled: #a0a0a0;
+  --accent: #b8963e;
+  --accent-hover: #9a7d33;
+  --accent-muted: rgba(184, 150, 62, 0.1);
+  --accent-subtle: rgba(184, 150, 62, 0.05);
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.15);
+  --border-subtle: rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.12);
+  --shadow-glow: none;
+}

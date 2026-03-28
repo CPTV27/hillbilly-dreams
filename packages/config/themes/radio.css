@@ -1,0 +1,33 @@
+/* Radio: warm amber/whiskey — like a blues bar at night */
+/* bigmuddyradio.com */
+.theme-radio {
+  --bg:              #0e0c0a;   /* Deepest black — the control room */
+  --surface:         #161311;
+  --surface-2:       #1e1a16;
+  --surface-3:       #27221d;
+  --text:            #e8e0d0;
+  --text-muted:      #8a8070;
+  --accent:          #D4915E;   /* Warm amber/whiskey */
+  --accent-hover:    #B8763F;
+  --accent-muted:    rgba(212, 145, 94, 0.15);
+  --border:          rgba(212, 145, 94, 0.10);
+  --shadow-glow:     0 0 30px rgba(212, 145, 94, 0.10);
+}
+
+/* Big Muddy Radio: warm amber/whiskey accent — blues bar, not tech startup */
+.theme-radio {
+  --bg: #0e0c0a;
+  --surface: #161311;
+  --surface-2: #1e1a16;
+  --surface-3: #27221d;
+  --text: #e8e0d0;
+  --text-muted: #8a8070;
+  --text-disabled: #5a5040;
+  --accent: #D4915E;
+  --accent-hover: #B8763F;
+  --accent-muted: rgba(212, 145, 94, 0.15);
+  --accent-subtle: rgba(212, 145, 94, 0.06);
+  --border: rgba(212, 145, 94, 0.10);
+  --border-strong: rgba(212, 145, 94, 0.22);
+  --shadow-glow: 0 0 30px rgba(212, 145, 94, 0.10);
+}

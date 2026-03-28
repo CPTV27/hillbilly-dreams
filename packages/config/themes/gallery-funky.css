@@ -1,0 +1,22 @@
+/* Gallery Funky: aristo-boho maximalism, Southern chaos, Andrea energy */
+.theme-gallery-funky {
+  --bg: #0a0618;
+  --surface: #1a1030;
+  --surface-2: #241845;
+  --surface-3: #2e2058;
+  --text: #f0ebe0;
+  --text-muted: #b8a8d0;
+  --text-disabled: #6b5a8a;
+  --accent: #ff3366;
+  --accent-hover: #ff5588;
+  --accent-muted: rgba(255, 51, 102, 0.15);
+  --accent-subtle: rgba(255, 51, 102, 0.08);
+  --border: rgba(255, 51, 102, 0.15);
+  --border-strong: rgba(255, 51, 102, 0.3);
+  --border-subtle: rgba(170, 255, 0, 0.08);
+  --shadow-sm: 0 1px 3px rgba(255, 51, 102, 0.1);
+  --shadow-md: 0 4px 12px rgba(255, 51, 102, 0.15);
+  --shadow-lg: 0 8px 24px rgba(0, 212, 255, 0.1);
+  --shadow-xl: 0 16px 40px rgba(255, 140, 0, 0.1);
+  --shadow-glow: 0 0 30px rgba(255, 51, 102, 0.2);
+}

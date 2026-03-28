@@ -1,0 +1,12 @@
+/* ── Brand Theme Classes ── */
+
+/* Touring: the primary editorial hub — warm, expansive, road-worn amber */
+/* bigmuddytouring.com — the Mississippi music corridor */
+.theme-touring {
+  /* Inherits all :root defaults (dark warm bg, amber accent, Playfair Display) */
+  /* These overrides add just enough differentiation for the touring context */
+  --accent:          #c8943e;
+  --accent-hover:    #d4a44e;
+  --surface-accent:  rgba(200, 148, 62, 0.05);
+  --shadow-glow:     0 0 20px rgba(200, 148, 62, 0.12);
+}

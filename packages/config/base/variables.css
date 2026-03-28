@@ -1,0 +1,217 @@
+/* packages/config/tokens.css
+   Big Muddy Platform — Design Tokens
+   Southern Gothic aesthetic: warm darks, amber gold, cream text
+   Brand source: Tracy's official brand package (Big Muddy - Brand Guidelines.pdf)
+   ---------------------------------------------------------------- */
+
+:root {
+  /* ── Brand Palette — Official (from Tracy's brand guidelines PDF) ── */
+  /* Two monochromatic schemes: Magenta + Sage ("Indigo") */
+  --brand-ivory:          #F1F0EC;   /* Cloud Dancer — primary light background */
+  --brand-magenta:        #994878;   /* Magenta light — primary CTA, headers */
+  --brand-magenta-dark:   #7C2855;   /* Magenta dark — hover, hero fills */
+  --brand-magenta-muted:  rgba(153, 72, 120, 0.15);
+  --brand-sage-light:     #ADC9B8;   /* Sage / "Indigo" light tone */
+  --brand-sage-mid:       #6FA088;   /* Sage mid tone */
+  --brand-sage-dark:      #235B4E;   /* Sage dark — deep accent */
+  --brand-dark:           #25282A;   /* Dark grey/black — body text */
+
+  /* ── Brand Palette — Website (live site CSS, not in official PDF) ── */
+  /* These appear on thebigmuddyinn.com but are NOT in the brand guidelines PDF */
+  --brand-burgundy:       #7B1B46;   /* Website hero/nav (site-specific) */
+  --brand-periwinkle:     #6477AD;   /* Website CTA buttons (site-specific) */
+  --brand-periwinkle-light: #7779B7; /* Website h1/h2 (site-specific) */
+  --brand-cream:          #FFFFFD;   /* Website page bg (site-specific) */
+  --brand-cream-warm:     #F7F3EE;   /* Website alternating sections (site-specific) */
+  --brand-ink:            #2A2428;   /* Website dark body text (site-specific) */
+
+  /* ── Typography: Brand Fonts ── */
+  /* Citrus Gothic (commercial) + Abril Fatface + Montserrat via Google Fonts */
+  /* Google Fonts: https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:wght@300;400;500;600&display=swap */
+  /* ── Color: Backgrounds ── */
+  --bg:              #1a1816;   /* Deepest background — near-black warm */
+  --surface:         #231f1c;   /* Cards, panels */
+  --surface-2:       #2d2824;   /* Elevated surfaces, modals */
+  --surface-3:       #38322c;   /* Hover states on surfaces */
+
+  /* ── Color: Text ── */
+  --text:            #f0ebe0;   /* Primary body text — warm cream */
+  --text-muted:      #9d968a;   /* Secondary/meta text — WCAG AA 4.7:1 on --bg */
+  --text-disabled:   #6b635a;   /* Disabled states — decorative only, not for readable text */
+
+  /* ── Color: Accent (Amber/Gold) ── */
+  --accent:          #c8943e;   /* Primary interactive color */
+  --accent-hover:    #d4a44e;   /* Hover state */
+  --accent-muted:    rgba(200, 148, 62, 0.15); /* Tinted backgrounds */
+  --accent-subtle:   rgba(200, 148, 62, 0.08); /* Very subtle highlight */
+
+  /* ── Color: Semantic ── */
+  --slate:           #4a6274;   /* Secondary accent — links, tags */
+  --slate-muted:     rgba(74, 98, 116, 0.15);
+  --success:         #4a7c59;   /* Positive states */
+  --success-muted:   rgba(74, 124, 89, 0.15);
+  --warning:         #c89e3e;   /* Warning states */
+  --warning-muted:   rgba(200, 158, 62, 0.15);
+  --error:           #b54c4c;   /* Error states */
+  --error-muted:     rgba(181, 76, 76, 0.15);
+
+  /* ── Color: Borders ── */
+  --border:          rgba(200, 148, 62, 0.12);  /* Default border — gold-tinted */
+  --border-strong:   rgba(200, 148, 62, 0.25);  /* Emphasis border */
+  --border-subtle:   rgba(240, 235, 224, 0.06); /* Subtle dividers */
+
+  /* ── Typography: Font Families ── */
+  --font-display:    'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body:       'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:       'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+
+  /* ── Typography: Scale ── */
+  --text-xs:   0.75rem;                        /* 12px — labels, tags */
+  --text-sm:   0.8125rem;                      /* 13px — secondary labels */
+  --text-base: 0.875rem;                       /* 14px — UI base */
+  --text-md:   1rem;                           /* 16px — article body */
+  --text-lg:   1.125rem;                       /* 18px — article lead */
+  --text-xl:   1.25rem;                        /* 20px */
+  --text-2xl:  1.5rem;                         /* 24px */
+  --text-3xl:  1.875rem;                       /* 30px */
+  --text-4xl:  clamp(2rem, 4vw, 2.5rem);       /* Responsive heading */
+  --text-5xl:  clamp(2.5rem, 5vw, 3.5rem);     /* Large heading */
+  --text-hero: clamp(3rem, 7vw, 5rem);          /* Hero display */
+
+  /* ── Typography: Line Height ── */
+  --leading-tight:   1.2;
+  --leading-snug:    1.35;
+  --leading-normal:  1.6;
+  --leading-loose:   1.8;  /* Article body text */
+
+  /* ── Typography: Letter Spacing ── */
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-wider:  0.08em;
+  --tracking-widest: 0.15em;
+
+  /* ── Spacing ── */
+  --space-1:  0.25rem;   /* 4px */
+  --space-2:  0.5rem;    /* 8px */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.25rem;   /* 20px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+  --space-32: 8rem;      /* 128px */
+
+  /* ── Border Radius ── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-full: 9999px;
+
+  /* ── Transitions ── */
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:     cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring:  cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast:   150ms;
+  --duration-normal: 250ms;
+  --duration-slow:   400ms;
+
+  /* ── Z-Index Scale ── */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-dropdown: 50;
+  --z-overlay: 100;
+  --z-modal:   200;
+  --z-nav:     300;
+  --z-toast:   400;
+
+  /* ── Container Widths ── */
+  --container-sm:  640px;
+  --container-md:  768px;
+  --container-lg:  1024px;
+  --container-xl:  1280px;
+  --container-2xl: 1440px;
+
+  /* ── Shadows ── */
+  --shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md:  0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg:  0 8px 24px rgba(0, 0, 0, 0.6);
+  --shadow-xl:  0 16px 40px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 20px rgba(200, 148, 62, 0.15);
+}
+
+/* ── Base Resets & Global Styles ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Selection ── */
+::selection {
+  background-color: var(--accent-muted);
+  color: var(--text);
+}
+
+/* ── Focus ── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+/* ── Typography Base ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

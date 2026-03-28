@@ -1,0 +1,31 @@
+/* Inn: "Offbeat Opulence" — official brand palette from Tracy's guidelines PDF */
+/* Fonts: Citrus Gothic (commercial, self-hosted) / Abril Fatface / Montserrat Light */
+.theme-inn {
+  --bg:              #F1F0EC;                /* Cloud Dancer ivory */
+  --surface:         #E8E5DF;                /* Slightly warm white for cards */
+  --surface-2:       #DDD9D2;                /* Elevated surfaces */
+  --surface-3:       #D1CCC4;                /* Hover states */
+  --text:            #25282A;                /* Dark grey/black */
+  --text-muted:      #6B645C;                /* Muted text on light bg */
+  --text-disabled:   #9E9890;
+  --accent:          #994878;                /* Magenta — primary CTA */
+  --accent-hover:    #7C2855;                /* Magenta dark — hover/pressed */
+  --accent-muted:    rgba(153, 72, 120, 0.15);
+  --accent-subtle:   rgba(153, 72, 120, 0.08);
+  --slate:           #6FA088;                /* Sage mid — secondary accent */
+  --slate-muted:     rgba(111, 160, 136, 0.15);
+  --success:         #235B4E;                /* Sage dark */
+  --success-muted:   rgba(35, 91, 78, 0.15);
+  --border:          rgba(153, 72, 120, 0.12);
+  --border-strong:   rgba(153, 72, 120, 0.28);
+  --border-subtle:   rgba(37, 40, 42, 0.08);
+  --shadow-sm:       0 1px 2px rgba(37, 40, 42, 0.08);
+  --shadow-md:       0 4px 12px rgba(37, 40, 42, 0.12);
+  --shadow-lg:       0 8px 24px rgba(37, 40, 42, 0.16);
+  --shadow-xl:       0 16px 40px rgba(37, 40, 42, 0.20);
+  --shadow-glow:     0 0 20px rgba(153, 72, 120, 0.20);
+  /* Citrus Gothic is a commercial font — self-host or fall back to Abril Fatface */
+  --font-display:    'Citrus Gothic', 'Abril Fatface', Georgia, serif;
+  --font-subhead:    'Abril Fatface', Georgia, serif;
+  --font-body:       'Montserrat', 'DM Sans', system-ui, sans-serif;
+}
