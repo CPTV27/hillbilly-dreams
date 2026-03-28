@@ -24,7 +24,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Music',
     date: '2026-03-15',
     readTime: '5 min',
-    image: '/images/inn/blues-room-stage.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
   },
   {
     slug: 'six-suites-six-legends',
@@ -34,7 +34,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'The Inn',
     date: '2026-03-10',
     readTime: '7 min',
-    image: '/images/inn/suite-muddy-waters.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-blue-suite.webp',
   },
   {
     slug: 'bubbles-bites-and-blues',
@@ -44,7 +44,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Experience',
     date: '2026-03-05',
     readTime: '6 min',
-    image: '/images/inn/natchez-river.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp',
   },
   {
     slug: 'gas-station-fried-chicken-at-midnight',
@@ -54,7 +54,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Food',
     date: '2026-02-28',
     readTime: '4 min',
-    image: '/images/inn/natchez-food.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/eating-the-delta.webp',
   },
   {
     slug: 'the-blues-room-sessions',
@@ -64,7 +64,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Music',
     date: '2026-02-20',
     readTime: '5 min',
-    image: '/images/inn/blues-room-crowd.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-show.webp',
   },
   {
     slug: 'meet-arri-b-aslin',
@@ -74,7 +74,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'People',
     date: '2026-02-15',
     readTime: '6 min',
-    image: '/images/inn/arri-performance.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/musician-performing.webp',
   },
   {
     slug: 'what-to-do-in-natchez-beyond-the-antebellum',
@@ -84,7 +84,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Travel',
     date: '2026-02-10',
     readTime: '8 min',
-    image: '/images/inn/natchez-downtown.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-bluff-sunset.webp',
   },
   {
     slug: 'how-we-got-here',
@@ -94,7 +94,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'The Inn',
     date: '2026-02-05',
     readTime: '10 min',
-    image: '/images/inn/big-muddy-exterior.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp',
   },
 ];
 

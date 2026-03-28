@@ -30,7 +30,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Music',
     date: '2026-03-15',
     readTime: '5 min',
-    image: '/images/inn/blues-room-stage.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
   },
   {
     slug: 'six-suites-six-legends',
@@ -40,7 +40,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'The Inn',
     date: '2026-03-10',
     readTime: '7 min',
-    image: '/images/inn/suite-muddy-waters.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-blue-suite.webp',
   },
   {
     slug: 'bubbles-bites-and-blues',
@@ -50,7 +50,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Experience',
     date: '2026-03-05',
     readTime: '6 min',
-    image: '/images/inn/natchez-river.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp',
   },
   {
     slug: 'gas-station-fried-chicken-at-midnight',
@@ -60,7 +60,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Food',
     date: '2026-02-28',
     readTime: '4 min',
-    image: '/images/inn/natchez-food.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/eating-the-delta.webp',
   },
   {
     slug: 'the-blues-room-sessions',
@@ -70,7 +70,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Music',
     date: '2026-02-20',
     readTime: '5 min',
-    image: '/images/inn/blues-room-crowd.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-show.webp',
   },
   {
     slug: 'meet-arri-b-aslin',
@@ -80,7 +80,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'People',
     date: '2026-02-15',
     readTime: '6 min',
-    image: '/images/inn/arri-performance.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/musician-performing.webp',
   },
   {
     slug: 'what-to-do-in-natchez-beyond-the-antebellum',
@@ -90,7 +90,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Travel',
     date: '2026-02-10',
     readTime: '8 min',
-    image: '/images/inn/natchez-downtown.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-bluff-sunset.webp',
   },
   {
     slug: 'how-we-got-here',
@@ -100,7 +100,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'The Inn',
     date: '2026-02-05',
     readTime: '10 min',
-    image: '/images/inn/big-muddy-exterior.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp',
   },
 ];
 
@@ -116,8 +116,11 @@ function FeaturedCard({ post }: { post: BlogPost }) {
   return (
     <Link href={`/touring/inn/blog/${post.slug}`} className="journal-featured">
       <div className="journal-featured__image-wrap">
-        {/* Image placeholder — swap for next/image once real assets exist */}
-        <div className="journal-featured__image-placeholder" aria-hidden="true" />
+        <img
+          src={post.image}
+          alt={post.title}
+          className="journal-featured__img"
+        />
         <span className="journal-featured__category">{post.category}</span>
       </div>
       <div className="journal-featured__body">
@@ -139,7 +142,11 @@ function PostCard({ post }: { post: BlogPost }) {
   return (
     <Link href={`/touring/inn/blog/${post.slug}`} className="journal-card">
       <div className="journal-card__image-wrap">
-        <div className="journal-card__image-placeholder" aria-hidden="true" />
+        <img
+          src={post.image}
+          alt={post.title}
+          className="journal-card__img"
+        />
         <span className="journal-card__category">{post.category}</span>
       </div>
       <div className="journal-card__body">
@@ -382,19 +389,12 @@ export default function InnBlogIndex() {
             min-height: 400px;
           }
         }
-        .journal-featured__image-placeholder {
+        .journal-featured__img {
           position: absolute;
           inset: 0;
-          background:
-            linear-gradient(135deg, rgba(200, 148, 62, 0.08) 0%, rgba(15, 15, 13, 0.6) 100%),
-            repeating-linear-gradient(
-              45deg,
-              rgba(200, 148, 62, 0.04) 0px,
-              rgba(200, 148, 62, 0.04) 1px,
-              transparent 1px,
-              transparent 20px
-            );
-          background-color: color-mix(in srgb, var(--surface) 80%, var(--accent) 20%);
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
         .journal-featured__category {
           position: absolute;
@@ -487,19 +487,12 @@ export default function InnBlogIndex() {
           overflow: hidden;
           flex-shrink: 0;
         }
-        .journal-card__image-placeholder {
+        .journal-card__img {
           position: absolute;
           inset: 0;
-          background:
-            linear-gradient(135deg, rgba(200, 148, 62, 0.08) 0%, rgba(15, 15, 13, 0.5) 100%),
-            repeating-linear-gradient(
-              45deg,
-              rgba(200, 148, 62, 0.04) 0px,
-              rgba(200, 148, 62, 0.04) 1px,
-              transparent 1px,
-              transparent 20px
-            );
-          background-color: color-mix(in srgb, var(--surface) 80%, var(--accent) 20%);
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
         .journal-card__category {
           position: absolute;
