@@ -8,7 +8,7 @@ import { ArticleCard } from '@bigmuddy/ui';
 import { PlaylistCard } from '@bigmuddy/ui';
 import { NewsletterSignup } from '@bigmuddy/ui';
 import type { Article, Playlist } from '@bigmuddy/config';
-import { BLUR_DATA_URL } from '@bigmuddy/ui';
+// BLUR_DATA_URL removed — hero uses CSS gradient until a real photo is uploaded to GCS
 
 export const metadata: Metadata = {
   title: 'Big Muddy Touring',
@@ -68,16 +68,7 @@ export default async function TouringHomepage() {
     <>
       {/* ── Hero ── */}
       <section className="touring-hero">
-        <Image
-          src="https://storage.googleapis.com/bmt-media-bigmuddy/heroes/hero-highway-sunset.webp"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          placeholder="blur"
-          blurDataURL={BLUR_DATA_URL}
-          style={{ objectFit: 'cover', zIndex: 0 }}
-        />
+        <div className="touring-hero__gradient" aria-hidden="true" />
         <div className="touring-hero__overlay" />
         <div className="touring-hero__bg-pattern" aria-hidden="true" />
         <div className="touring-hero__content">
@@ -377,13 +368,11 @@ export default async function TouringHomepage() {
           overflow: hidden;
           background: var(--bg);
         }
-        .touring-hero__video {
+        .touring-hero__gradient {
           position: absolute;
           inset: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
           z-index: 0;
+          background: linear-gradient(180deg, #1a1a1a 0%, #2d1810 40%, #c8943e22 70%, #1a1a1a 100%);
         }
         .touring-hero__bg-pattern {
           position: absolute;
@@ -402,7 +391,7 @@ export default async function TouringHomepage() {
         .touring-hero__overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, rgba(15, 15, 13, 0.85) 0%, rgba(15, 15, 13, 0.65) 50%, rgba(15, 15, 13, 0.9) 100%);
+          background: linear-gradient(180deg, rgba(15, 15, 13, 0.5) 0%, rgba(15, 15, 13, 0.3) 50%, rgba(15, 15, 13, 0.6) 100%);
           z-index: 1;
         }
         .touring-hero__content {

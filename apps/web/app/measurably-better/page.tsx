@@ -1,6 +1,7 @@
 // apps/web/app/measurably-better/page.tsx
 // MBT landing page — speaks to Main Street business owners, not engineers.
 
+import Image from 'next/image';
 import './mbt-landing.css';
 
 export default function MeasurablyBetterLanding() {
@@ -25,6 +26,18 @@ export default function MeasurablyBetterLanding() {
             See the Directory
           </a>
         </div>
+      </section>
+
+      {/* Hero Image */}
+      <section style={{ padding: '0 1.5rem 3rem', maxWidth: '1000px', margin: '0 auto' }}>
+        <Image
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/mbt/mbt-hero-storefront.webp"
+          alt="Small business owner in front of her Main Street storefront"
+          width={1280}
+          height={720}
+          style={{ width: '100%', height: 'auto', borderRadius: '12px' }}
+          priority
+        />
       </section>
 
       {/* Value Props */}

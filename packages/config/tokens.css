@@ -243,7 +243,7 @@ img, video {
   --leading-normal:  1.75;      /* More generous line height for long-form reading */
 }
 
-/* Radio: darker, music-forward, dense — like a vinyl studio at night */
+/* Radio: warm amber/whiskey — like a blues bar at night */
 /* bigmuddyradio.com */
 .theme-radio {
   --bg:              #0e0c0a;   /* Deepest black — the control room */
@@ -252,11 +252,11 @@ img, video {
   --surface-3:       #27221d;
   --text:            #e8e0d0;
   --text-muted:      #8a8070;
-  --accent:          #c8943e;
-  --accent-hover:    #d4a44e;
-  --accent-muted:    rgba(200, 148, 62, 0.12);
-  --border:          rgba(200, 148, 62, 0.08);
-  --shadow-glow:     0 0 30px rgba(200, 148, 62, 0.08);
+  --accent:          #D4915E;   /* Warm amber/whiskey */
+  --accent-hover:    #B8763F;
+  --accent-muted:    rgba(212, 145, 94, 0.15);
+  --border:          rgba(212, 145, 94, 0.10);
+  --shadow-glow:     0 0 30px rgba(212, 145, 94, 0.10);
 }
 
 /* Records: vinyl/studio — raw, analog, deep black */
@@ -337,24 +337,6 @@ img, video {
   --accent-muted:    rgba(200, 148, 62, 0.15);
   --border:          rgba(200, 148, 62, 0.10);
   --shadow-glow:     0 0 20px rgba(200, 148, 62, 0.08);
-}
-
-/* Entertainment: umbrella over Radio, Records, Touring, Rise Up */
-/* bigmuddyentertainment.com — dark, warm, cinematic */
-.theme-bm-entertainment {
-  --bg:              #0e0c0a;   /* Near-black — backstage feel */
-  --surface:         #181512;
-  --surface-2:       #221e1a;
-  --surface-3:       #2c2722;
-  --text:            #f0ebe0;
-  --text-muted:      #9d968a;
-  --accent:          #c8943e;
-  --accent-hover:    #d4a44e;
-  --accent-muted:    rgba(200, 148, 62, 0.15);
-  --accent-subtle:   rgba(200, 148, 62, 0.06);
-  --border:          rgba(200, 148, 62, 0.10);
-  --border-strong:   rgba(200, 148, 62, 0.22);
-  --shadow-glow:     0 0 24px rgba(200, 148, 62, 0.12);
 }
 
 /* Admin: Big Muddy HQ — functional, high-contrast, utility-first */
@@ -491,22 +473,22 @@ img, video {
   --shadow-glow: 0 0 30px rgba(200, 148, 62, 0.10);
 }
 
-/* Big Muddy Radio: midnight blue, electric blue accent, live broadcast energy */
+/* Big Muddy Radio: warm amber/whiskey accent — blues bar, not tech startup */
 .theme-radio {
-  --bg: #060b18;
-  --surface: #0c1428;
-  --surface-2: #121e3a;
-  --surface-3: #1a2a4e;
-  --text: #e8ecf4;
-  --text-muted: #8899bb;
-  --text-disabled: #4a5a78;
-  --accent: #00b4ff;
-  --accent-hover: #33c4ff;
-  --accent-muted: rgba(0, 180, 255, 0.12);
-  --accent-subtle: rgba(0, 180, 255, 0.06);
-  --border: rgba(0, 180, 255, 0.10);
-  --border-strong: rgba(0, 180, 255, 0.22);
-  --shadow-glow: 0 0 30px rgba(0, 180, 255, 0.12);
+  --bg: #0e0c0a;
+  --surface: #161311;
+  --surface-2: #1e1a16;
+  --surface-3: #27221d;
+  --text: #e8e0d0;
+  --text-muted: #8a8070;
+  --text-disabled: #5a5040;
+  --accent: #D4915E;
+  --accent-hover: #B8763F;
+  --accent-muted: rgba(212, 145, 94, 0.15);
+  --accent-subtle: rgba(212, 145, 94, 0.06);
+  --border: rgba(212, 145, 94, 0.10);
+  --border-strong: rgba(212, 145, 94, 0.22);
+  --shadow-glow: 0 0 30px rgba(212, 145, 94, 0.10);
 }
 
 /* Big Muddy Magazine: deep forest green, warm cream, editorial print aesthetic */
@@ -527,8 +509,8 @@ img, video {
   --shadow-glow: 0 0 30px rgba(212, 160, 74, 0.10);
 }
 
-/* Measurably Better: black and white, clean, minimal — Google product aesthetic */
-/* measurablybetterthings.com — no color accent, just black/white/gray */
+/* Measurably Better: clean white, bright, bigger text, simple */
+/* measurablybetterthings.com — white, burgundy accent, serif headlines */
 .theme-mb {
   --bg: #FFFFFF;
   --surface: #FAFAFA;
@@ -537,10 +519,10 @@ img, video {
   --text: #1A1A1A;
   --text-muted: #6B7280;
   --text-disabled: #9CA3AF;
-  --accent: #1A1A1A;
-  --accent-hover: #000000;
-  --accent-muted: rgba(26, 26, 26, 0.08);
-  --accent-subtle: rgba(26, 26, 26, 0.04);
+  --accent: #7B1B46;
+  --accent-hover: #5C1234;
+  --accent-muted: rgba(123, 27, 70, 0.10);
+  --accent-subtle: rgba(123, 27, 70, 0.04);
   --slate: #6477AD;
   --slate-muted: rgba(100, 119, 173, 0.15);
   --success: #22c55e;
@@ -549,7 +531,7 @@ img, video {
   --border: #E5E7EB;
   --border-strong: #D1D5DB;
   --border-subtle: #F3F4F6;
-  --font-display: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-abril), Georgia, serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
   --text-base: 18px;
   --text-lg: 20px;
