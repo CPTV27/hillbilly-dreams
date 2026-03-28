@@ -27,19 +27,25 @@ export default function ContentStudio() {
   const [drafts, setDrafts] = useState<ContentDraft[]>([]);
   const [error, setError] = useState<string | null>(null);
 
+  const updateDraft = (index: number, updates: Partial<ContentDraft>) => {
+    setDrafts(prev => prev.map((d, i) => i === index ? { ...d, ...updates } : d));
+  };
+
   const generateAll = async () => {
     if (!inputValue.trim()) return;
     setGenerating(true);
     setError(null);
+
+    // Show all 4 channels as "waiting"
     setDrafts([
-      { channel: 'social', title: 'Social Posts', content: '', status: 'generating' },
-      { channel: 'magazine', title: 'Magazine Blurb', content: '', status: 'generating' },
-      { channel: 'radio', title: 'Radio Spot', content: '', status: 'generating' },
-      { channel: 'reviews', title: 'Review Responses', content: '', status: 'generating' },
+      { channel: 'social', title: '📱 Social Posts', content: '', status: 'generating' },
+      { channel: 'magazine', title: '📰 Magazine Feature', content: '', status: 'generating' },
+      { channel: 'radio', title: '🎙 Radio Spot', content: '', status: 'generating' },
+      { channel: 'reviews', title: '⭐ Review Responses', content: '', status: 'generating' },
     ]);
 
     try {
-      // 1. Scout the business first
+      // Step 1: Scout — this gets the DNA + all content in one call
       const scoutRes = await fetch('/api/marketing/scout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -47,43 +53,46 @@ export default function ContentStudio() {
       });
       const scoutData = await scoutRes.json();
       if (!scoutData.success) throw new Error(scoutData.error || 'Scout failed');
-
       const data = scoutData.data;
 
-      // Update drafts with generated content
-      setDrafts([
-        {
-          channel: 'social',
-          title: 'Social Campaign — 3 Posts',
-          content: data.socialPosts?.map((p: any, i: number) =>
-            `POST ${i + 1}:\n${p.caption}\n\nStrategy: ${p.strategy}`
-          ).join('\n\n---\n\n') || 'No social posts generated',
-          status: 'draft',
-        },
-        {
-          channel: 'magazine',
-          title: 'Magazine Feature — Hidden Gem',
-          content: `# ${data.businessName}\n\n${data.description}\n\nCategory: ${data.category}\nAesthetic: ${data.aestheticFlavor}\nVoice: ${data.brandVoice}\n\nKey Value Props:\n${data.keyValueProps?.map((p: string) => '• ' + p).join('\n') || 'None'}`,
-          status: 'draft',
-        },
-        {
-          channel: 'radio',
-          title: `Radio Spot — ${data.radioSpot?.title || 'Script'}`,
-          content: data.radioSpot?.script || 'No radio script generated',
-          status: 'draft',
-        },
-        {
-          channel: 'reviews',
-          title: 'Review Response Drafts',
-          content: data.reviewResponses?.map((r: any) =>
-            `${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)} "${r.review}"\n↳ ${r.response}`
-          ).join('\n\n') || 'No review responses generated',
-          status: 'draft',
-        },
-      ]);
+      // Stream results one at a time with short delays for visual effect
+      // Channel 1: Magazine (DNA + description)
+      updateDraft(1, {
+        title: `📰 ${data.businessName} — Magazine Feature`,
+        content: `# ${data.businessName}\n\n${data.description}\n\nCategory: ${data.category}\nAesthetic: ${data.aestheticFlavor}\nVoice: ${data.brandVoice}\n\nKey Value Props:\n${data.keyValueProps?.map((p: string) => '• ' + p).join('\n') || 'None'}`,
+        status: 'draft',
+      });
+      await new Promise(r => setTimeout(r, 400));
+
+      // Channel 2: Social
+      updateDraft(0, {
+        title: '📱 Social Campaign — 3 Posts',
+        content: data.socialPosts?.map((p: any, i: number) =>
+          `POST ${i + 1}:\n${p.caption}\n\nStrategy: ${p.strategy}`
+        ).join('\n\n---\n\n') || 'No social posts generated',
+        status: 'draft',
+      });
+      await new Promise(r => setTimeout(r, 400));
+
+      // Channel 3: Radio
+      updateDraft(2, {
+        title: `🎙 Radio Spot — ${data.radioSpot?.title || 'Script'}`,
+        content: `${data.radioSpot?.script || 'No script generated'}\n\nTagline: "${data.radioSpot?.tagline || ''}"`,
+        status: 'draft',
+      });
+      await new Promise(r => setTimeout(r, 400));
+
+      // Channel 4: Reviews
+      updateDraft(3, {
+        title: '⭐ Reputation Guardian',
+        content: data.reviewResponses?.map((r: any) =>
+          `${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)} "${r.review}"\n\n↳ ${r.response}`
+        ).join('\n\n---\n\n') || 'No review responses generated',
+        status: 'draft',
+      });
+
     } catch (err: any) {
       setError(err.message);
-      setDrafts([]);
     }
     setGenerating(false);
   };
@@ -171,12 +180,24 @@ export default function ContentStudio() {
 
       {error && <div style={S.err}>{error}</div>}
 
-      {/* Loading */}
+      {/* Progress indicator — shows which channels are done */}
       {generating && (
-        <div style={S.loading}>
-          <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>⟳</div>
-          <p>Generating content for 4 channels...</p>
-          <p style={{ fontSize: '0.75rem', color: '#6a6460' }}>Social · Magazine · Radio · Reviews</p>
+        <div style={{ ...S.card, textAlign: 'center' }}>
+          <div style={{ fontSize: '1.5rem', marginBottom: '0.75rem', animation: 'spin 1s linear infinite' }}>⟳</div>
+          <style>{`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
+          <p style={{ color: '#c8943e', fontWeight: 600, marginBottom: '1rem' }}>Generating content...</p>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+            {drafts.map((d, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8125rem' }}>
+                <span style={{ color: d.status === 'draft' ? '#22c55e' : '#333' }}>
+                  {d.status === 'draft' ? '✓' : '○'}
+                </span>
+                <span style={{ color: d.status === 'draft' ? '#e8e4de' : '#6a6460' }}>
+                  {d.channel}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
