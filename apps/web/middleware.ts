@@ -118,8 +118,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // ── Login page is always accessible without auth ──
-  if (pathname === '/admin/login') {
+  // ── Admin routes always pass through — no domain rewriting ──
+  if (pathname.startsWith('/admin')) {
     return NextResponse.next();
   }
 
