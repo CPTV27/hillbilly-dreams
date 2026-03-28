@@ -212,18 +212,6 @@ export default function TuthillPage() {
         </div>
       </section>
 
-      {/* ── Photo Break ── */}
-      <section style={{ width: '100%', maxHeight: 400, overflow: 'hidden', lineHeight: 0 }}>
-        <Image
-          src="/images/corridor/natchez-downtown-sidewalk.webp"
-          alt="Downtown Natchez sidewalk"
-          width={1600}
-          height={900}
-          sizes="100vw"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-      </section>
-
       {/* ── Clients / Ecosystem ── */}
       <section id="work" style={{
         background: 'var(--bg)',

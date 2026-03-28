@@ -183,20 +183,6 @@ export default async function RadioHomepage() {
         </div>
       </section>
 
-      {/* ── Portrait Photo Break ── */}
-      <div
-        style={{
-          width: '100%',
-          height: 320,
-          backgroundImage: 'url(/images/portraits/klshoot3-500-of-538.webp)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.65,
-        }}
-        role="img"
-        aria-label="Portrait — Big Muddy Radio"
-      />
-
       {/* ── What is the Blues Room ── */}
       <section className="radio-about">
         <div className="section-container">

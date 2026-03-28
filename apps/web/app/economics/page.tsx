@@ -215,18 +215,6 @@ export default function EconomicsHomepage() {
         </div>
       </section>
 
-      {/* ── Photo Break 1 ── */}
-      <section className="econ-photo-break">
-        <Image
-          src="/images/ai-corridor/river-sunset-bluffs.webp"
-          alt="Sunset over the river bluffs"
-          width={1600}
-          height={900}
-          sizes="100vw"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-      </section>
-
       {/* ── Current Trends ── */}
       <section className="econ-trends">
         <div className="section-container">
@@ -245,18 +233,6 @@ export default function EconomicsHomepage() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* ── Photo Break 2 ── */}
-      <section className="econ-photo-break">
-        <Image
-          src="/images/ai-corridor/juke-joint-night.webp"
-          alt="Juke joint at night in the Mississippi Delta"
-          width={1600}
-          height={900}
-          sizes="100vw"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
       </section>
 
       {/* ── More Videos ── */}
@@ -357,18 +333,6 @@ export default function EconomicsHomepage() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* ── Photo Break 3 ── */}
-      <section className="econ-photo-break">
-        <Image
-          src="/images/ai-corridor/french-quarter-balcony.webp"
-          alt="French Quarter balcony with wrought iron railings"
-          width={1600}
-          height={900}
-          sizes="100vw"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
       </section>
 
       {/* ── Substack / Newsletter ── */}
@@ -674,14 +638,6 @@ export default function EconomicsHomepage() {
         .econ-video-container {
           display: flex;
           justify-content: center;
-        }
-
-        /* ── Photo Break ── */
-        .econ-photo-break {
-          width: 100%;
-          max-height: 400px;
-          overflow: hidden;
-          line-height: 0;
         }
 
         /* ── Trends ── */

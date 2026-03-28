@@ -80,18 +80,6 @@ export default async function LivePage() {
         </div>
       </section>
 
-      {/* ── Photo Break: Street Musician ── */}
-      <section className="photo-break">
-        <Image
-          src="/images/corridor/street-musician-guitar.webp"
-          alt="Street musician playing guitar close-up"
-          width={1600}
-          height={900}
-          sizes="100vw"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-      </section>
-
       {/* ── Info Cards ── */}
       <section className="live-info">
         <div className="section-container">
@@ -207,14 +195,6 @@ export default async function LivePage() {
           color: var(--text-muted);
           line-height: var(--leading-normal);
           margin: 0;
-        }
-
-        /* ── Photo Break ── */
-        .photo-break {
-          width: 100%;
-          max-height: 400px;
-          overflow: hidden;
-          line-height: 0;
         }
 
         /* ── Shared ── */

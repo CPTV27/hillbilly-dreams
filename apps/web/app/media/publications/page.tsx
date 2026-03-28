@@ -271,18 +271,6 @@ export default async function PublicationsPage() {
         </section>
       )}
 
-      {/* ── Photo Break ── */}
-      <section className="photo-break">
-        <Image
-          src="/images/corridor/live-oak-street-night.webp"
-          alt="Live oak canopy over a Natchez street at night"
-          width={1600}
-          height={900}
-          sizes="100vw"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-      </section>
-
       {/* ── About Deep South Press ── */}
       <section className="dsp-about">
         <div className="section-container">
@@ -701,14 +689,6 @@ export default async function PublicationsPage() {
           line-height: var(--leading-loose);
           max-width: 480px;
           margin: 0 auto;
-        }
-
-        /* ── Photo Break ── */
-        .photo-break {
-          width: 100%;
-          max-height: 400px;
-          overflow: hidden;
-          line-height: 0;
         }
 
         /* ── About ── */

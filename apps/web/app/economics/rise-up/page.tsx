@@ -130,18 +130,6 @@ export default function RiseUpPage() {
         </div>
       </section>
 
-      {/* ── Photo Break ── */}
-      <section className="photo-break">
-        <Image
-          src="/images/corridor/street-musician-guitar.webp"
-          alt="Street musician playing guitar — the kind of skill that builds local economies"
-          width={1600}
-          height={900}
-          sizes="100vw"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-      </section>
-
       {/* ── How It Works ── */}
       <section className="rise-how">
         <div className="section-container">
@@ -198,18 +186,6 @@ export default function RiseUpPage() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* ── Photo Break 2 ── */}
-      <section className="photo-break">
-        <Image
-          src="/images/ai-corridor/delta-cotton-field.webp"
-          alt="Cotton field in the Mississippi Delta"
-          width={1600}
-          height={900}
-          sizes="100vw"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
       </section>
 
       {/* ── Production Partners ── */}
@@ -556,14 +532,6 @@ export default function RiseUpPage() {
         }
         .rise-apply__inner {
           text-align: center;
-        }
-
-        /* ── Photo Break ── */
-        .photo-break {
-          width: 100%;
-          max-height: 400px;
-          overflow: hidden;
-          line-height: 0;
         }
 
         /* ── Shared ── */

@@ -183,18 +183,6 @@ export default async function PodcastPage() {
         </div>
       </section>
 
-      {/* ── Photo Break ── */}
-      <section className="photo-break">
-        <Image
-          src="/images/corridor/guitarist-chandelier-venue.webp"
-          alt="Guitarist performing in an intimate venue under a chandelier"
-          width={1600}
-          height={900}
-          sizes="100vw"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-      </section>
-
       <NewsletterSignup variant="section" />
 
       <style>{`
@@ -467,14 +455,6 @@ export default async function PodcastPage() {
         }
         .podcast-link:hover {
           color: var(--text);
-        }
-
-        /* ── Photo Break ── */
-        .photo-break {
-          width: 100%;
-          max-height: 400px;
-          overflow: hidden;
-          line-height: 0;
         }
 
         /* ── Shared ── */

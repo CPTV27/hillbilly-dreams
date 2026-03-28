@@ -256,18 +256,6 @@ export default async function TouringHomepage() {
         </div>
       </section>
 
-      {/* ── Photo Break: Mississippi River ── */}
-      <section className="photo-break">
-        <Image
-          src="/images/corridor/mississippi-river-bridge.webp"
-          alt="Mississippi River with bridge and barge"
-          width={1600}
-          height={900}
-          sizes="100vw"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-      </section>
-
       {/* ── From the Magazine ── */}
       <section className="touring-magazine">
         <div className="section-container">
@@ -290,18 +278,6 @@ export default async function TouringHomepage() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* ── Photo Break: Victorian Mansion ── */}
-      <section className="photo-break">
-        <Image
-          src="/images/corridor/victorian-mansion-natchez.webp"
-          alt="White Victorian mansion in Natchez"
-          width={1600}
-          height={900}
-          sizes="100vw"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
       </section>
 
       {/* ── On the Radio ── */}
@@ -610,14 +586,6 @@ export default async function TouringHomepage() {
         }
         .touring-route__network-city:last-child::after {
           content: '';
-        }
-
-        /* ── Photo Break ── */
-        .photo-break {
-          width: 100%;
-          max-height: 400px;
-          overflow: hidden;
-          line-height: 0;
         }
 
         /* ── Ecosystem ── */
