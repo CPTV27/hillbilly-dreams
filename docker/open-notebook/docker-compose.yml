@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  open-notebook:
+    image: lfnovo/open-notebook:latest
+    ports:
+      - "5055:8000"
+    environment:
+      - DATABASE_URL=postgresql://neondb_owner:npg_7dHKF9uCPsBv@ep-little-snow-ailobi9d-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require
+      - DEFAULT_MODEL=gemini/gemini-2.5-flash
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    volumes:
+      - open-notebook-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  open-notebook-data:
