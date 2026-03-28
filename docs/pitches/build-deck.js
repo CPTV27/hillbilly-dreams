@@ -26,7 +26,7 @@ const C = {
   bgAlt:     "241F1A",  // slightly lighter
   surface:   "2C2520",  // card backgrounds
   cream:     "F5EDE0",  // primary text
-  creamMute: "B8A99A",  // muted text
+  creamMute: "D4C8BA",  // muted text (brightened for contrast)
   accent:    "C4713B",  // warm terracotta/copper
   accentLt:  "D4915F",  // lighter accent
   gold:      "D4A849",  // gold highlight
@@ -100,10 +100,25 @@ async function buildDeck() {
     color: C.creamMute, align: "left", margin: 0
   });
 
+  // Right-side decorative block (visual balance)
+  s1.addShape(pres.shapes.RECTANGLE, {
+    x: 7.5, y: 1.5, w: 2.0, h: 2.8,
+    fill: { color: C.surface }
+  });
+  s1.addShape(pres.shapes.RECTANGLE, {
+    x: 7.5, y: 1.5, w: 2.0, h: 0.06,
+    fill: { color: C.accent }
+  });
+  s1.addText("700K\nvisitors\nannually", {
+    x: 7.5, y: 1.8, w: 2.0, h: 2.2,
+    fontSize: 20, fontFace: "Georgia",
+    color: C.creamMute, align: "center", valign: "middle", margin: 0
+  });
+
   // Footer
   s1.addText("Presented by Hillbilly Dreams Inc.  \u00B7  Natchez, Mississippi", {
-    x: 0.8, y: 5.0, w: 8, h: 0.3,
-    fontSize: 10, fontFace: "Calibri",
+    x: 0.8, y: 4.9, w: 8, h: 0.3,
+    fontSize: 11, fontFace: "Calibri",
     color: C.creamMute, align: "left", margin: 0
   });
 
@@ -391,10 +406,10 @@ async function buildDeck() {
 
   // Content multiplication flow
   const flowItems = [
-    { num: "1", label: "Show", color: C.accent },
-    { num: "1", label: "Radio Episode", color: C.accentLt },
+    { num: "1", label: "Show", color: C.gold },
+    { num: "1", label: "Radio Episode", color: C.gold },
     { num: "1", label: "Magazine Feature", color: C.gold },
-    { num: "10", label: "Social Posts", color: C.accent },
+    { num: "10", label: "Social Posts", color: C.gold },
     { num: "100", label: "AI Search Touches", color: C.gold },
   ];
 
@@ -417,9 +432,9 @@ async function buildDeck() {
     });
     // Arrow between cards
     if (i < flowItems.length - 1) {
-      s6.addText("\u2192", {
-        x: fx + 1.6, y: 2.9, w: 0.25, h: 0.5,
-        fontSize: 20, color: C.creamMute, align: "center", margin: 0
+      s6.addText("\u25B6", {
+        x: fx + 1.6, y: 3.0, w: 0.25, h: 0.5,
+        fontSize: 14, color: C.accent, align: "center", margin: 0
       });
     }
   });
@@ -553,14 +568,14 @@ async function buildDeck() {
     fill: { color: C.bgAlt }
   });
   s8.addText("Chase Pierson  \u00B7  Hillbilly Dreams Inc.  \u00B7  Natchez, Mississippi", {
-    x: 0.8, y: 4.85, w: 8.4, h: 0.3,
+    x: 1.2, y: 4.85, w: 7.6, h: 0.3,
     fontSize: 14, fontFace: "Georgia",
-    color: C.cream, align: "center", margin: 0
+    color: C.cream, align: "left", margin: 0
   });
-  s8.addText("hillbillydreamsinc.com", {
-    x: 0.8, y: 5.2, w: 8.4, h: 0.3,
+  s8.addText("hillbillydreamsinc.com  \u00B7  chase@hillbillydreamsinc.com", {
+    x: 1.2, y: 5.2, w: 7.6, h: 0.3,
     fontSize: 12, fontFace: "Calibri",
-    color: C.accent, align: "center", margin: 0
+    color: C.accent, align: "left", margin: 0
   });
 
   // ── Write file ──
