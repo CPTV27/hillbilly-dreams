@@ -54,3 +54,10 @@ coverage
 # Image staging folder (originals live here, copied into apps/web/public/images/)
 bmt-public-images
 .claude/worktrees/
+
+# Sensitive financial documents — kept in ~/tax-db/ and database only
+docs/finance-report.md
+docs/tracy-report.md
+docs/business-plan/*financial*
+docs/business-plan/*FINANCE*
+docs/business-plan/*PORTFOLIO*
