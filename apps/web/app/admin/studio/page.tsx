@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 /**
  * Content Studio — the "Omnipush" Control Room
@@ -28,6 +28,38 @@ export default function ContentStudio() {
   const [brandTarget, setBrandTarget] = useState('all');
   const [generating, setGenerating] = useState(false);
   const [drafts, setDrafts] = useState<ContentDraft[]>([]);
+
+  // Brain Sidebar state
+  const [brainResults, setBrainResults] = useState<any[]>([]);
+  const [brainLens, setBrainLens] = useState('creative');
+  const [brainQuery, setBrainQuery] = useState('');
+  const [brainSearching, setBrainSearching] = useState(false);
+  const debounceRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Debounced brain search — fires 200ms after last keystroke
+  const searchBrain = useCallback((query: string) => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    if (!query.trim() || query.length < 2) { setBrainResults([]); return; }
+
+    debounceRef.current = setTimeout(async () => {
+      setBrainSearching(true);
+      try {
+        const domain = brainLens === 'creative' ? 'brand' : brainLens === 'strategy' ? 'strategy' : brainLens === 'operations' ? 'operations' : '';
+        const params = new URLSearchParams({ q: query, limit: '8' });
+        if (domain) params.set('domain', domain);
+        const res = await fetch(`/api/agent/context?${params}`);
+        const data = await res.json();
+        setBrainResults(data.results || []);
+      } catch { setBrainResults([]); }
+      setBrainSearching(false);
+    }, 200);
+  }, [brainLens]);
+
+  // Auto-search when input changes
+  useEffect(() => {
+    const query = inputType === 'show' ? showArtist : inputValue;
+    searchBrain(query);
+  }, [inputValue, showArtist, searchBrain]);
   const [error, setError] = useState<string | null>(null);
 
   const updateDraft = (index: number, updates: Partial<ContentDraft>) => {
@@ -159,7 +191,11 @@ export default function ContentStudio() {
   };
 
   return (
-    <div style={S.page}>
+    <div style={{ minHeight: '100vh', background: '#0f0f0f', color: '#e8e4de', fontFamily: "'Inter', system-ui" }}>
+      <div style={{ display: 'flex', maxWidth: '1400px', margin: '0 auto' }}>
+
+      {/* LEFT PANEL: Content Studio */}
+      <div style={{ flex: 1, padding: '1.5rem', maxWidth: '900px', overflow: 'auto' }}>
       <header style={S.header}>
         <h1 style={S.title}>Content Studio</h1>
         <p style={S.sub}>One input → four channels → approve → publish</p>
@@ -277,6 +313,55 @@ export default function ContentStudio() {
           )}
         </>
       )}
+      </div>
+
+      {/* RIGHT PANEL: Brain Sidebar */}
+      <div style={{ width: '340px', flexShrink: 0, borderLeft: '1px solid #2a2725', background: '#131210', padding: '1rem', overflow: 'auto', maxHeight: '100vh', position: 'sticky', top: 0 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+          <span style={{ fontSize: '0.65rem', fontWeight: 700, color: '#c8943e', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Brain</span>
+          {brainSearching && <span style={{ fontSize: '0.6rem', color: '#8a8074' }}>searching...</span>}
+        </div>
+
+        {/* Lens selector */}
+        <div style={{ display: 'flex', gap: '0.3rem', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
+          {[['creative', '🎨'], ['strategy', '📊'], ['operations', '⚙️'], ['research', '🔍']].map(([id, icon]) => (
+            <button key={id} onClick={() => { setBrainLens(id); searchBrain(inputType === 'show' ? showArtist : inputValue); }}
+              style={{ padding: '0.25rem 0.6rem', borderRadius: '999px', border: brainLens === id ? '1px solid #c8943e' : '1px solid #2a2725', background: brainLens === id ? '#c8943e22' : 'transparent', color: brainLens === id ? '#c8943e' : '#6a6460', cursor: 'pointer', fontSize: '0.7rem', fontWeight: 600 }}>
+              {icon} {id}
+            </button>
+          ))}
+        </div>
+
+        {/* Manual search */}
+        <input
+          style={{ width: '100%', padding: '0.5rem 0.75rem', background: '#1a1816', border: '1px solid #2a2725', borderRadius: '6px', color: '#e8e4de', fontSize: '0.8125rem', outline: 'none', marginBottom: '0.75rem', boxSizing: 'border-box' }}
+          placeholder="Search the brain..."
+          value={brainQuery}
+          onChange={e => { setBrainQuery(e.target.value); searchBrain(e.target.value); }}
+        />
+
+        {/* Results */}
+        {brainResults.length === 0 && !brainSearching && (
+          <p style={{ color: '#4a4440', fontSize: '0.75rem', textAlign: 'center', padding: '2rem 0' }}>
+            Start typing to surface context from the {brainLens} lens
+          </p>
+        )}
+
+        {brainResults.map((r: any, i: number) => (
+          <div key={i} style={{ background: '#1a1816', borderRadius: '8px', padding: '0.75rem', marginBottom: '0.5rem', border: '1px solid #2a2725', cursor: 'pointer' }}
+            onClick={() => navigator.clipboard.writeText(r.content?.substring(0, 500) || '')}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.3rem' }}>
+              <span style={{ padding: '0.1rem 0.4rem', background: '#2a2725', color: '#c8943e', borderRadius: '999px', fontSize: '0.55rem', fontWeight: 700 }}>{r.domain}</span>
+              <span style={{ fontSize: '0.6rem', color: '#4a4440' }}>click to copy</span>
+            </div>
+            <p style={{ fontSize: '0.75rem', color: '#b8b0a4', lineHeight: 1.5, margin: 0 }}>
+              {r.content?.substring(0, 200)}...
+            </p>
+          </div>
+        ))}
+      </div>
+
+      </div>
     </div>
   );
 }
