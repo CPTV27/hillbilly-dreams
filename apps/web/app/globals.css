@@ -356,8 +356,8 @@
 .ent-hero__overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 80%, rgba(200, 148, 62, 0.08) 0%, transparent 60%),
-              linear-gradient(180deg, transparent 40%, var(--bg) 100%);
+  background: linear-gradient(180deg, rgba(15, 15, 13, 0.7) 0%, rgba(15, 15, 13, 0.5) 50%, rgba(15, 15, 13, 0.85) 100%),
+              radial-gradient(ellipse at 50% 80%, rgba(200, 148, 62, 0.08) 0%, transparent 60%);
   z-index: 1;
 }
 .ent-hero__content {

@@ -67,7 +67,7 @@ export default async function TouringHomepage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="touring-hero">
+      <section className="touring-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/heroes/touring-hero.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="touring-hero__gradient" aria-hidden="true" />
         <div className="touring-hero__overlay" />
         <div className="touring-hero__bg-pattern" aria-hidden="true" />

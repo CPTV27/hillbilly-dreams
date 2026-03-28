@@ -81,7 +81,7 @@ export default function EconomicsHomepage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="econ-hero">
+      <section className="econ-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/heroes/economics-hero.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="econ-hero__bg" aria-hidden="true" />
         <div className="econ-hero__content">
           <div className="econ-hero__eyebrow">
@@ -380,7 +380,9 @@ export default function EconomicsHomepage() {
         .econ-hero__bg {
           position: absolute;
           inset: 0;
+          z-index: 1;
           background:
+            linear-gradient(180deg, rgba(15, 15, 13, 0.75) 0%, rgba(15, 15, 13, 0.55) 50%, rgba(15, 15, 13, 0.85) 100%),
             radial-gradient(ellipse 60% 40% at 50% 20%, rgba(181, 76, 76, 0.06) 0%, transparent 60%),
             repeating-linear-gradient(
               90deg,

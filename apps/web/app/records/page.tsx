@@ -102,7 +102,7 @@ export default function RecordsPage() {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundImage: 'url(/images/records/anthologist-vinyl-bins.webp)',
+            backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/heroes/records-hero.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: 0.12,

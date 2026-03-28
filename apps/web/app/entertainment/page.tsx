@@ -16,7 +16,7 @@ export default function EntertainmentPage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="ent-hero">
+      <section className="ent-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/heroes/entertainment-hero.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="ent-hero__overlay" />
         <div className="ent-hero__content">
           <p className="ent-hero__eyebrow">

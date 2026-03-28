@@ -20,6 +20,12 @@
 8. [Integrations](#8-integrations)
 9. [Known Technical Debt](#9-known-technical-debt)
 10. [Diagrams](#10-diagrams)
+11. [Marketing Engine (March 27)](#11-marketing-engine-added-march-27-2026)
+12. [Agent Context Database](#12-agent-context-database)
+13. [Design System Roadmap](#13-design-system-roadmap)
+14. [Integrations Added March 27](#14-integrations-added-march-27-2026)
+15. [Business Logic](#15-business-logic)
+16. [Updated Infrastructure](#16-updated-infrastructure-march-27-2026)
 
 ---
 
@@ -37,8 +43,10 @@ The HDI platform is a **single Next.js 14 monorepo** that serves 11 production d
 | API routes | 114 |
 | Prisma models | 54 |
 | Schema lines | 1,207 |
-| CSS theme classes | 20 |
-| Agent context fragments | 827+ |
+| CSS theme classes | 20 (consolidating to 5 presets) |
+| Agent context fragments | 4,320+ |
+| Marketing API routes | 8 |
+| Cataloged images (GCS) | 606 |
 
 **Monorepo structure (Turborepo):**
 
@@ -404,7 +412,7 @@ The schema enables the `vector` PostgreSQL extension for semantic search:
 
 ### 5.4 AgentContext Table
 
-The `AgentContext` table stores 827+ knowledge fragments that AI agents can query and update:
+The `AgentContext` table stores 4,320+ knowledge fragments that AI agents can query and update:
 
 - **Composite unique key:** `(domain, key)` -- upserting on the same domain+key overwrites the previous value
 - **Fields:** `domain`, `topic`, `key`, `content`, `source`, `agentAuthor`, `confidence` (float), `validUntil` (nullable datetime)
@@ -540,7 +548,7 @@ Merges to `main` trigger Vercel auto-deploy. There is no staging environment -- 
 
 **Google Cloud Storage** bucket `bmt-media-bigmuddy`:
 
-- 614 images (mix of real photography and AI-generated)
+- 606 cataloged images (mix of real photography and AI-generated)
 - Pre-optimized WebP/AVIF variants
 - Served via custom Next.js image loader
 - No CDN layer in front of GCS (direct `storage.googleapis.com` URLs)
@@ -728,7 +736,7 @@ Merges to `main` trigger Vercel auto-deploy. There is no staging environment -- 
                                                          |  Neon Postgres   |
                                                          |  AgentContext    |
                                                          |  table           |
-                                                         |  (827+ rows)    |
+                                                         |  (4,320+ rows)    |
                                                          +--------+---------+
                                                                   ^
                                                     prisma.agentContext.findMany()
@@ -820,9 +828,9 @@ Merges to `main` trigger Vercel auto-deploy. There is no staging environment -- 
     | Neon Postgres | | Google     | | External APIs |
     | (AWS us-e-1) | | Cloud      | |               |
     |              | | Storage    | | - Cloudbeds    |
-    | 54 models    | | (614 imgs) | | - Stripe       |
+    | 54 models    | | (606 imgs) | | - Stripe       |
     | pgvector     | |            | | - Google Places|
-    | 827 ctx frags| |            | | - Vertex AI    |
+    |4,320 ctx frag| |            | | - Vertex AI    |
     +--------------+ +------------+ | - Anthropic    |
                                     | - QuickBooks   |
                                     | - Google Chat  |
@@ -853,6 +861,541 @@ Key environment variables required for operation:
 | `NEXT_PUBLIC_BRAND` | Dev-only brand override | Local `.env.local` |
 
 All credentials are stored in **Bitwarden** as the canonical secret store, then synced to Vercel environment variables for runtime access.
+
+| `GCP_PROJECT_ID` | Vertex AI project | Vercel env vars |
+| `VERTEX_LOCATION` | Vertex AI region (us-east4) | Vercel env vars |
+
+---
+
+## 11. Marketing Engine (Added March 27, 2026)
+
+The Marketing Engine is an 8-route AI-powered API layer that generates complete marketing packages for local businesses. All routes live under `apps/web/app/api/marketing/` and use Vertex AI (Gemini 2.5 Flash) for generation. Every generated artifact is persisted to the AgentContext database for cross-agent reuse.
+
+### 11.1 Route Inventory
+
+| Route | Method | Auth | Purpose |
+|-------|--------|------|---------|
+| `/api/marketing/dna` | POST | Admin | Analyze a business URL to generate a Marketing DNA profile (colors, voice, audience, category) |
+| `/api/marketing/social` | POST | Admin | Generate a 3-post Instagram campaign from a business's DNA |
+| `/api/marketing/radio-spot` | POST | Admin | Generate a 30-second radio spot script from DNA |
+| `/api/marketing/reskin` | POST | Admin | Generate a brand-matched image via Vertex AI Imagen 3 |
+| `/api/marketing/reviews` | POST | Admin | Draft AI responses to Google reviews, voice-matched to brand DNA |
+| `/api/marketing/campaign-calendar` | POST | Admin | Generate a 30-day cross-channel marketing roadmap |
+| `/api/marketing/scout` | POST | None | All-in-one Scout: name input produces DNA + social + radio + reviews in a single call |
+| `/api/marketing/scout-photo` | POST | None | Photo-first Scout: camera capture, Gemini Vision extraction, then full scout cascade |
+
+### 11.2 Route Details
+
+**`/api/marketing/dna`** -- Brand DNA Ingestion
+- **Input:** `{ businessId?: number, websiteUrl: string, businessName: string }`
+- **Output:** `{ success: true, dna: { primaryColors, brandVoice, keyValueProps, targetAudience, aestheticFlavor, oneLiner, suggestedCategory }, contextKey }`
+- **Side effects:** Upserts to `AgentContext` (domain: `marketing`, key: `dna.business.{id}` or `dna.url.{slug}`). If `businessId` provided, updates the `DirectoryBusiness` record with category and description.
+- **AI model:** Gemini 2.5 Flash via `@google-cloud/vertexai`
+
+**`/api/marketing/social`** -- Social Campaign Generator
+- **Input:** `{ contextKey: string }` or `{ businessId: number }`
+- **Output:** Array of 3 posts, each with `caption`, `imagePrompt`, `platform`, `strategy`
+- **Dependency:** Requires DNA to exist in AgentContext (runs `/dna` first)
+- **Storage key pattern:** `campaign.business.{id}`
+
+**`/api/marketing/radio-spot`** -- Radio Spot Script Generator
+- **Input:** `{ contextKey: string }` or `{ businessId: number }`
+- **Output:** `{ title, duration, script, voiceDirection, musicBed, tagline, callToAction }`
+- **Storage domain:** `entertainment` (not `marketing` -- intentional, radio is entertainment vertical)
+- **TODO:** Cloud Text-to-Speech integration for audio rendering
+
+**`/api/marketing/reskin`** -- Brand Image Generator
+- **Input:** `{ businessName: string, aestheticFlavor: string, subject: string }`
+- **Output:** `{ success: true, aestheticFlavor, imageBase64 }`
+- **AI model:** Vertex AI Imagen 3 (`imagen-3.0-generate-001`) via direct REST API
+- **Style map:** 5 aesthetic flavors mapped to detailed Imagen prompts:
+  - The Delta Dark: Southern Gothic noir, charcoal and amber
+  - The Modern MainStreet: Clean minimal, bright natural light
+  - The Broadside: Classic editorial, warm eggshell
+  - The White Walls: Minimal gallery, soft neutral
+  - The Paper Trail: Academic muted, warm sepia
+- **TODO:** Upload generated images to GCS instead of returning base64
+
+**`/api/marketing/reviews`** -- Reputation Guardian
+- **Input:** `{ contextKey: string, businessId?: number, reviews?: array }`
+- **Output:** Array of `{ reviewAuthor, reviewRating, reviewComment, draftResponse, sentiment, urgency }`
+- **Fallback:** Uses sample reviews for demo when no real reviews provided
+- **TODO:** Google My Business API integration for fetching real reviews
+
+**`/api/marketing/campaign-calendar`** -- 30-Day Marketing Roadmap
+- **Input:** `{ contextKey: string }` or `{ businessId: number }`
+- **Output:** `{ businessName, month, weeklyThemes[], magazineFeatures[], radioSpots[], socialPosts[], reviewResponses, totalAssets }`
+- **Purpose:** Shows business owners what the $99/mo subscription delivers each month
+
+**`/api/marketing/scout`** -- All-in-One Scout (Text Input)
+- **Input:** `{ businessName: string, city?: string }`
+- **Output:** Complete scout result with DNA + socialPosts + radioSpot + reviewResponses
+- **Auth:** None (field demo tool)
+- **Storage:** `marketing` domain, key: `scout.{slugified-name}`
+- **Design:** Single Gemini call generates everything at once (faster than chaining individual routes)
+
+**`/api/marketing/scout-photo`** -- Photo-First Scout (Camera Input)
+- **Input:** `{ imageBase64: string, city?: string, lat?: number, lng?: number }`
+- **Output:** Same as `/scout` but with extracted `phone` and `address` from the photo
+- **AI model:** Gemini 2.5 Flash with multimodal input (image + text prompt)
+- **Auth:** None (field demo tool)
+- **Confidence:** 0.85 (lower than text scout due to OCR uncertainty)
+
+### 11.3 Scout & Sell Admin UI
+
+The Scout & Sell interface lives at `apps/web/app/admin/scout/page.tsx`. It is a mobile-first client component designed for field use (walking Main Street in Natchez).
+
+**Flow:**
+1. User taps camera button to photograph a business sign, card, or storefront
+2. Photo is base64-encoded and sent to `/api/marketing/scout-photo`
+3. Gemini Vision extracts business name, phone, address, website
+4. Full scout results render: DNA card, 3 social posts, radio spot, review responses
+5. Alternatively, user can type a business name and hit Scout for text-based lookup
+
+**UI:** Southern Gothic design (dark background, amber gold accents, Inter font). Inline styles, no external CSS dependencies. Designed to work on a phone screen at 480px max-width.
+
+### 11.4 Scout & Sell Flow Diagram
+
+```
+    FIELD USE (Main Street, Natchez)
+    ================================
+
+    +------------------+          +------------------+
+    |  Snap a Photo    |    OR    |  Type a Name     |
+    |  (camera/gallery)|          |  + City           |
+    +--------+---------+          +--------+---------+
+             |                             |
+             v                             v
+    /api/marketing/scout-photo    /api/marketing/scout
+             |                             |
+             |   Gemini Vision (extract    |   Gemini 2.5 Flash
+             |   name, phone, address)     |   (research + generate)
+             |                             |
+             +-------------+---------------+
+                           |
+                           v
+              +------------------------+
+              |   SCOUT RESULT         |
+              |                        |
+              |  +------------------+  |
+              |  | Brand DNA        |  |  Colors, voice, audience,
+              |  | (Marketing DNA)  |  |  aesthetic flavor, category
+              |  +------------------+  |
+              |                        |
+              |  +------------------+  |
+              |  | 3 Social Posts   |  |  Captions + image prompts
+              |  | (Instagram)      |  |  + strategy notes
+              |  +------------------+  |
+              |                        |
+              |  +------------------+  |
+              |  | Radio Spot       |  |  30-sec script + tagline
+              |  | (Big Muddy Radio)|  |  + music direction
+              |  +------------------+  |
+              |                        |
+              |  +------------------+  |
+              |  | Review Responses |  |  Draft replies to sample
+              |  | (Reputation Mgr) |  |  positive + negative reviews
+              |  +------------------+  |
+              +------------------------+
+                           |
+                           v
+              +------------------------+
+              |  AgentContext DB        |
+              |  (Neon Postgres)       |
+              |  key: scout.{name}     |
+              +------------------------+
+```
+
+### 11.5 Marketing Engine API Topology
+
+```
+    /api/marketing/
+    |
+    +-- dna .............. POST  Brand DNA ingestion (URL analysis)
+    |                              |
+    |                              | DNA stored in AgentContext
+    |                              | (domain: marketing, topic: business-dna)
+    |                              v
+    +-- social ........... POST  3-post social campaign (reads DNA)
+    |                              | stored as campaign.business.{id}
+    |
+    +-- radio-spot ....... POST  30-sec radio script (reads DNA)
+    |                              | stored in domain: entertainment
+    |
+    +-- reskin ........... POST  Brand-matched image (Imagen 3)
+    |                              | uses aestheticFlavor from DNA
+    |
+    +-- reviews .......... POST  Review response drafts (reads DNA)
+    |                              | voice-matched to brandVoice
+    |
+    +-- campaign-calendar  POST  30-day roadmap (reads DNA)
+    |                              | magazine + radio + social plan
+    |
+    +-- scout ............ POST  All-in-one (text input, NO AUTH)
+    |                              | Single Gemini call -> full package
+    |
+    +-- scout-photo ...... POST  All-in-one (photo input, NO AUTH)
+                                   | Gemini Vision -> extract -> generate
+
+    Dependency chain (individual route flow):
+    dna --> social
+        --> radio-spot
+        --> reskin
+        --> reviews
+        --> campaign-calendar
+
+    Scout routes bypass the chain — single call generates everything.
+```
+
+---
+
+## 12. Agent Context Database
+
+### 12.1 Schema Models
+
+Three Prisma models support the agent coordination system:
+
+**AgentContext** -- Shared knowledge store
+- Composite unique key: `@@unique([domain, key], name: "domain_key")`
+- Fields: `id`, `domain` (String), `topic` (String), `key` (String), `content` (String), `source` (String), `agentAuthor` (String?), `confidence` (Float, default 1.0), `validUntil` (DateTime?), `createdAt`, `updatedAt`
+- Upsert semantics on `(domain, key)` -- knowledge is updated in place, never duplicated
+
+**AgentAction** -- Coordination audit log
+- Fields: `id`, `agent` (String), `action` (String), `summary` (String), `detail` (String?), `domain` (String), `impact` (String?), `createdAt`
+- Append-only log -- no upsert, no delete
+
+**Decision** -- Business decisions record
+- Fields: `id`, `domain`, `key`, `decision`, `rationale`, `agent`, `createdAt`
+
+### 12.2 Fragment Count: 4,320+
+
+The AgentContext table contains 4,320+ knowledge fragments across these domains:
+
+| Domain | Content | Source |
+|--------|---------|--------|
+| `finance` | Tax data, pipeline, entities, revenue | ~/tax-db/*.md |
+| `strategy` | GTM plans, competitive analysis, research | docs/strategy/*.md |
+| `operations` | Agent configs, handoffs, comms protocols | .claude/agents/*.md |
+| `product` | Brand guidelines, product specs, SEO | docs/*.md |
+| `memory` | User prefs, feedback, project notes | .claude/memory/*.md |
+| `brand` | Content guidelines, narrative docs | docs/content/*.md |
+| `marketing` | DNA profiles, campaigns, scout results | Marketing Engine API |
+| `entertainment` | Radio spots, show data | Marketing Engine API |
+
+### 12.3 Ingestion Pipeline
+
+The ingestion script at `scripts/ingest-context.ts` migrates all markdown knowledge into the database:
+
+**Source mappings:**
+- `~/tax-db/*.md` --> domain: `finance`
+- `docs/strategy/*.md` --> domain: `strategy`
+- `docs/google-ecosystem/*.md` --> domain: `operations`
+- `docs/research/*.md` --> domain: `strategy`
+- `docs/*.md` --> domain: `product` (with topic auto-detection from filename)
+- `.claude/agents/*.md` --> domain: `operations`
+- `.claude/memory/*.md` --> domain: `memory`
+- `docs/content/*.md` --> domain: `brand`
+- `docs/handoffs/*.md` --> domain: `operations`
+
+**Chunking strategy:**
+- Documents are split on markdown headers (`#{1,3}`)
+- Max chunk size: 2,000 characters
+- Small documents stay as a single fragment
+- Large documents get keys like `docs.architecture.chunk-0`, `docs.architecture.chunk-1`, etc.
+
+**Usage:** `DATABASE_URL="..." npx tsx scripts/ingest-context.ts`
+
+### 12.4 Query API
+
+```
+    Agent Context Query Flow
+    ========================
+
+    +------------------+     GET /api/agent/context          +------------------+
+    |  Any Agent       |  -------------------------------->  |  API Route       |
+    |  (or Admin UI)   |     ?domain=marketing               |  Handler         |
+    |                  |     &topic=business-dna              +--------+---------+
+    +------------------+     &q=tamales                                |
+                             &fresh=true                     prisma.agentContext
+                             &limit=10                       .findMany({ where })
+                                                                      |
+                                                             ORDER BY confidence
+                                                             DESC, updatedAt DESC
+                                                                      |
+                                                                      v
+                                                             +--------+---------+
+                                                             |  Neon Postgres   |
+                                                             |  AgentContext    |
+                                                             |  4,320+ rows    |
+                                                             +------------------+
+
+    Write flow:
+
+    +------------------+     POST /api/agent/context         +------------------+
+    |  Marketing API   |  -------------------------------->  |  API Route       |
+    |  (or ingest      |     { domain, topic, key,           |  Handler         |
+    |   script)        |       content, source,              +--------+---------+
+    +------------------+       agentAuthor,                           |
+                               confidence }                 prisma.agentContext
+                                                            .upsert({ where:
+                                                              { domain_key:
+                                                                { domain, key }
+                                                              }
+                                                            })
+                                                                      |
+                                                                      v
+                                                             +------------------+
+                                                             |  Neon Postgres   |
+                                                             +------------------+
+
+    Action log:
+
+    +------------------+     POST /api/agent/action          +------------------+
+    |  Any Agent       |  -------------------------------->  |  API Route       |
+    +------------------+     { agent, action,                |  Handler         |
+                               summary, domain,              +--------+---------+
+                               impact }                               |
+                                                             prisma.agentAction
+                                                             .create({ data })
+```
+
+---
+
+## 13. Design System Roadmap
+
+### 13.1 Five Style Presets
+
+The design system consolidates 20+ theme classes into 5 visual languages. Each preset maps to specific fonts from the 5 Google Fonts already loaded:
+
+| Preset | Mood | Heading Font | Body Font | Brands |
+|--------|------|-------------|-----------|--------|
+| **The Delta Dark** | Southern Gothic / Noir | Abril Fatface | DM Sans | Inn, Radio, Entertainment, Records |
+| **The Modern MainSt** | Tech-Forward / SaaS | Plus Jakarta Sans | Inter | MBT, HDI, SuperChase |
+| **The Broadside** | Traditional Editorial | Playfair Display | DM Sans | Magazine, DSD |
+| **The White Walls** | Minimal / High-Art | Inter | Inter | BuyCurious Gallery |
+| **The Paper Trail** | Academic / Muted | Playfair Display | Inter | Outsider Economics |
+
+### 13.2 design-tokens.json
+
+A machine-readable source of truth at `packages/config/design-tokens.json` defines all spacing, radii, shadows, and typography scales:
+
+- Spacing: xs (0.25rem) through xxl (4rem)
+- Border radius: sm (0.25rem) through full (9999px)
+- Shadows: sm through xl, plus `glow` (amber gold outer glow)
+- Typography: 16px base, 1.25 scale, weights 400/500/700
+- Default colors: bg, surface, text, accent, slate, error, success
+
+**Agent workflow:** Agents edit the JSON; a build step generates `base/variables.css` from it. All brands inherit changes automatically.
+
+### 13.3 CSS Modularization Plan
+
+The migration splits the monolithic `tokens.css` (600+ lines) into isolated per-theme files:
+
+**Phase 1 (Days 1-2):** Foundation
+- Create `packages/config/design-tokens.json` as source of truth
+- Extract `:root` variables into `base/variables.css`
+- Create `base/reset.css` for global resets
+
+**Phase 2 (Days 3-5):** Tenant Isolation
+- Split each `.theme-{id}` class into `themes/{name}.css` (14 theme files)
+- Deploy hardened `ThemeProvider` with typed theme union
+- Audit all `packages/ui` components for `var()` compliance
+
+**Phase 3 (Days 6-7):** Hardening
+- Enable Vercel Preview Deployments
+- Fix Sentry source map upload
+- Delete legacy `tokens.css`
+- Update ingestion scripts and agent docs
+
+**Safety protocol:** Freeze `tokens.css` during migration, run both systems simultaneously, switch tenant-by-tenant (HDI first, then Inn, then MBT), verify each domain, maintain instant rollback capability.
+
+### 13.4 Hardened ThemeProvider
+
+The updated ThemeProvider (`apps/web/components/theme-provider.tsx`) adds:
+- **Typed themes:** Union type of all valid theme IDs (not freeform `string`)
+- **Error boundary:** `useTheme()` throws if called outside provider
+- **Updated localStorage key:** `hdi-theme-override` (was `hdx-theme`)
+- **SSR safety:** Uses `defaultTheme` before hydration, mounted state prevents flash
+
+### 13.5 Delta Dawn Style Guide
+
+The ops agent (Delta Dawn) has a brand style guide for content creation:
+- Typography toolkit: 5 approved fonts with specific use cases
+- Visual presets by content type (Delta Dark for shows, Broadside for features, Modern MainSt for product)
+- Color tokens: bg, text, accent, surface, shadow-glow
+- Rules: never hardcode hex, match preset to route, use spacing tokens, request new tokens from Huck
+
+---
+
+## 14. Integrations Added March 27, 2026
+
+### 14.1 Vertex AI Expansion
+
+**Gemini 2.5 Flash** (`gemini-2.5-flash`) via `@google-cloud/vertexai` SDK:
+- Used by all 8 marketing routes for text generation
+- Multimodal support (image + text) for scout-photo route
+- Project: `bigmuddy-ff651`, Region: `us-east4`
+- Authentication: Application Default Credentials (ADC)
+
+**Vertex AI Imagen 3** (`imagen-3.0-generate-001`) via direct REST API:
+- Used by `/api/marketing/reskin` for brand-matched image generation
+- 16:9 aspect ratio, `block_few` safety filter
+- Authentication: Google Auth Library (`google-auth-library`)
+- Endpoint: `https://us-east4-aiplatform.googleapis.com/v1/projects/{project}/locations/us-east4/publishers/google/models/imagen-3.0-generate-001:predict`
+
+### 14.2 Google APIs Enabled
+
+12 new Google APIs enabled on project `bigmuddy-ff651`:
+- Vertex AI API (Gemini + Imagen)
+- Cloud Vision API
+- Cloud Natural Language API
+- Cloud Text-to-Speech API (provisioned, not yet integrated)
+- Cloud Translation API
+- Places API (New)
+- Maps JavaScript API
+- Geocoding API
+- Directions API
+- Cloud Storage API
+- Identity and Access Management API
+- Service Usage API
+
+### 14.3 Cloudbeds API
+
+- PMS integration for the Big Muddy Inn
+- Read-only: reservations, room availability, pricing
+- Synced via cron job at `/api/cron/cloudbeds-sync`
+- Webhook at `/api/webhooks/cloudbeds` for real-time updates
+
+---
+
+## 15. Business Logic
+
+### 15.1 Pricing Tiers
+
+| Tier | Price | Target | Includes |
+|------|-------|--------|----------|
+| **Free** | $0 | Directory listing only | Basic DSD listing, business name + description |
+| **Starter** | $20/mo | Micro businesses | Directory listing + magazine mention + review monitoring |
+| **Growth** | $50/mo | Growing businesses | Starter + social posts + radio mentions |
+| **Professional** | $99/mo | Main Street SMBs | Full marketing engine: DNA + social + radio + reviews + calendar |
+| **Enterprise** | $499/mo | Regional brands | Professional + dedicated account manager + custom campaigns |
+
+### 15.2 Scout & Sell Flow
+
+The Scout & Sell playbook is the field sales tool for onboarding Deep South Directory businesses:
+
+```
+    The Scout & Sell Playbook
+    =========================
+
+    1. WALK Main Street in Natchez
+       |
+    2. SNAP a photo of a business sign/card/storefront
+       |
+       v
+    3. GEMINI VISION reads the photo
+       |  Extracts: business name, phone, address, website
+       |
+       v
+    4. BRAND DNA generated (single Gemini call)
+       |  Colors, voice, audience, aesthetic flavor, category
+       |
+       +---> 5a. 3 SOCIAL POSTS generated (Instagram-ready)
+       |
+       +---> 5b. RADIO SPOT scripted (30-sec for Big Muddy Radio)
+       |
+       +---> 5c. REVIEW RESPONSES drafted (positive + negative)
+       |
+       v
+    6. SHOW the business owner on your phone:
+       "This is what $99/month looks like for YOUR business"
+       |
+       v
+    7. CLOSE: "Want to join the Deep South Directory?"
+```
+
+### 15.3 Marketing Value > Software Value Pivot
+
+The MBT platform pivoted from selling software features to selling ecosystem access:
+- **What we sell:** Directory listing + Magazine features + Radio spots + Social campaigns + Review management
+- **What we don't sell:** SaaS dashboards or analytics tools
+- **Value proposition:** Access to the Big Muddy media ecosystem (Magazine, Radio, Gallery, Events)
+- **Proof point:** The Scout & Sell demo shows $99/mo of tangible marketing deliverables in 30 seconds
+
+### 15.4 Deep South Directory as Onboarding Funnel
+
+The DSD is the primary customer acquisition channel:
+1. Business gets a free directory listing (name + description)
+2. Listing is enriched with Google Places data (hours, photos, reviews)
+3. Scout & Sell generates a marketing preview package
+4. Business owner sees what paid tiers deliver
+5. Upsell to $20/$50/$99 based on which deliverables they want
+
+---
+
+## 16. Updated Infrastructure (March 27, 2026)
+
+### 16.1 Hosting & Deployment
+
+| Component | Provider | Plan | Cost |
+|-----------|----------|------|------|
+| **Application** | Vercel Pro | Pro | ~$20/mo |
+| **Database** | Neon Postgres | Launch | $19/mo |
+| **Media Storage** | Google Cloud Storage | Pay-as-you-go | ~$2/mo |
+| **DNS** | Cloudflare | Free | $0 |
+| **Error Tracking** | Sentry | Free tier | $0 |
+| **Analytics** | Microsoft Clarity | Free | $0 |
+| **CI/CD** | GitHub Actions | Free tier | $0 |
+
+### 16.2 Updated Numbers
+
+| Metric | Count |
+|--------|-------|
+| Production domains | 11 |
+| Total pages | 113 |
+| API routes | 114+ (8 new marketing routes) |
+| Prisma models | 54 |
+| Schema lines | 1,207 |
+| CSS theme classes | 20 (consolidating to 5 presets) |
+| Agent context fragments | 4,320+ |
+| Cataloged images in GCS | 606 |
+| Design spec documents | 5 new (style matrix, CSS plan, tokens, theme provider, Delta Dawn guide) |
+
+### 16.3 Domain Status
+
+All 11 domains are live and routing correctly:
+
+| Domain | Status | SSL |
+|--------|--------|-----|
+| measurablybetterthings.com | Live | Vercel |
+| bigmuddytouring.com | Live | Vercel |
+| deepsouthdirectory.com | Live | Vercel |
+| hillbillydreamsinc.com | Live | Vercel |
+| bigmuddyentertainment.com | Live | Vercel |
+| outsidereconomics.com | Live | Vercel |
+| bigmuddymagazine.com | Live | Vercel |
+| bigmuddyradio.com | Live | Vercel |
+| buycurious.art | Live | Vercel |
+| superchase.app | Live | Vercel |
+| measurablybetter.life | Live | Vercel |
+
+### 16.4 Sentry Configuration
+
+- Org: `chasepiersontv`, Project: `javascript-react`
+- Client, server, and edge runtime configs installed
+- Tunnel route at `/monitoring` (avoids ad-blocker interference)
+- Source map upload: configured but requires `SENTRY_AUTH_TOKEN` fix in CI
+
+### 16.5 Database Policy
+
+Codified in `docs/DATABASE_POLICY.md`:
+- **Neon Postgres** is the ONE database for all HDI production data
+- All new data goes to Neon -- no new databases, no new providers
+- Use Prisma exclusively (raw SQL only for pgvector)
+- Credentials always in Bitwarden, synced to Vercel
+- Orphaned databases identified for cleanup: Cloud SQL `micro-media-db` ($8/mo), Cloudflare D1 `openclaw-db`
+
+---
 
 ## Appendix B: Active Domains
 

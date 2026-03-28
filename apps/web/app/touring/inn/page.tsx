@@ -424,17 +424,7 @@ export default function InnPage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="inn-hero">
-        <Image
-          src="https://storage.googleapis.com/bmt-media-bigmuddy/heroes/hero-ozarks-sunrise.webp"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          placeholder="blur"
-          blurDataURL={BLUR_DATA_URL}
-          style={{ objectFit: 'cover', zIndex: 0 }}
-        />
+      <section className="inn-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/heroes/inn-hero.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="inn-hero__overlay" />
         <div className="inn-hero__content">
           <div className="inn-hero__eyebrow">

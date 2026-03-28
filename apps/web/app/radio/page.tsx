@@ -50,17 +50,7 @@ export default async function RadioHomepage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="radio-hero">
-        <Image
-          src="/images/studio-c/utopiademo-day-25.webp"
-          alt="Studio C production station — monitors, ATEM switcher, and Steinway grand piano under magenta studio light"
-          fill
-          priority
-          sizes="100vw"
-          placeholder="blur"
-          blurDataURL={BLUR_DATA_URL}
-          style={{ objectFit: 'cover', zIndex: 0 }}
-        />
+      <section className="radio-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/heroes/radio-hero.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="radio-hero__overlay" />
         <div className="radio-hero__bg" aria-hidden="true">
           <div className="radio-hero__wave radio-hero__wave--1" />
