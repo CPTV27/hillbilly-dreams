@@ -20,7 +20,10 @@ type ContentDraft = {
 };
 
 export default function ContentStudio() {
-  const [inputType, setInputType] = useState<'text' | 'business' | 'photo'>('business');
+  const [inputType, setInputType] = useState<'text' | 'business' | 'photo' | 'show'>('business');
+  const [showArtist, setShowArtist] = useState('');
+  const [showDate, setShowDate] = useState('');
+  const [showVenue, setShowVenue] = useState('The Big Muddy Inn - Blues Room');
   const [inputValue, setInputValue] = useState('');
   const [brandTarget, setBrandTarget] = useState('all');
   const [generating, setGenerating] = useState(false);
@@ -36,8 +39,14 @@ export default function ContentStudio() {
     setGenerating(true);
     setError(null);
 
-    // Show all 4 channels as "waiting"
-    setDrafts([
+    // Show channels based on input type
+    const isShow = inputType === 'show';
+    setDrafts(isShow ? [
+      { channel: 'social', title: '📱 Show Promo Posts', content: '', status: 'generating' },
+      { channel: 'magazine', title: '📰 Magazine Event Listing', content: '', status: 'generating' },
+      { channel: 'radio', title: '🎙 Radio Promo Script', content: '', status: 'generating' },
+      { channel: 'reviews', title: '🏨 Blues & Beds Package', content: '', status: 'generating' },
+    ] : [
       { channel: 'social', title: '📱 Social Posts', content: '', status: 'generating' },
       { channel: 'magazine', title: '📰 Magazine Feature', content: '', status: 'generating' },
       { channel: 'radio', title: '🎙 Radio Spot', content: '', status: 'generating' },
@@ -45,11 +54,15 @@ export default function ContentStudio() {
     ]);
 
     try {
-      // Step 1: Scout — this gets the DNA + all content in one call
+      // Step 1: Generate content — scout for businesses, custom prompt for shows
+      const scoutBody = isShow
+        ? { businessName: `${showArtist} live show at ${showVenue}${showDate ? ' on ' + new Date(showDate).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) : ''}`, city: 'Natchez, MS' }
+        : { businessName: inputValue, city: 'Natchez, MS' };
+
       const scoutRes = await fetch('/api/marketing/scout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ businessName: inputValue, city: 'Natchez, MS' }),
+        body: JSON.stringify(scoutBody),
       });
       const scoutData = await scoutRes.json();
       if (!scoutData.success) throw new Error(scoutData.error || 'Scout failed');
@@ -82,8 +95,12 @@ export default function ContentStudio() {
       });
       await new Promise(r => setTimeout(r, 400));
 
-      // Channel 4: Reviews
-      updateDraft(3, {
+      // Channel 4: Reviews or Blues & Beds
+      updateDraft(3, isShow ? {
+        title: '🏨 Blues & Beds Package',
+        content: `SHOW NIGHT PACKAGE — ${showArtist}\n\nVenue: ${showVenue}\nDate: ${showDate ? new Date(showDate).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }) : 'TBD'}\n\n• Room + Show ticket bundle\n• 10% off "Blues & Beds" rate code\n• Complimentary welcome drink at the Blues Room\n• Late checkout (noon) for show nights\n\nCloudbeds rate code: BLUES-${showArtist?.split(' ')[0]?.toUpperCase() || 'SHOW'}`,
+        status: 'draft',
+      } : {
         title: '⭐ Reputation Guardian',
         content: data.reviewResponses?.map((r: any) =>
           `${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)} "${r.review}"\n\n↳ ${r.response}`
@@ -154,22 +171,33 @@ export default function ContentStudio() {
           <span style={S.label}>What are we creating content for?</span>
 
           <div style={S.tabs}>
-            {[['business', '🏪 Business'], ['text', '✏️ Topic'], ['photo', '📷 Photo']].map(([id, label]) => (
+            {[['business', '🏪 Business'], ['show', '🎵 Show Event'], ['text', '✏️ Topic'], ['photo', '📷 Photo']].map(([id, label]) => (
               <button key={id} onClick={() => setInputType(id as any)}
                 style={{ ...S.tab, ...(inputType === id ? S.tabActive : {}) }}>{label}</button>
             ))}
           </div>
 
-          <input
-            style={S.input}
-            placeholder={inputType === 'business' ? 'Business name (e.g., Fat Mama\'s Tamales)...'
-              : inputType === 'text' ? 'Topic or headline...'
-              : 'Describe the photo...'}
-            value={inputValue}
-            onChange={e => setInputValue(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && generateAll()}
-            autoFocus
-          />
+          {inputType === 'show' ? (
+            <>
+              <input style={S.input} placeholder="Artist / Headliner (e.g., Rise Up Gospel & Blues)"
+                value={showArtist} onChange={e => { setShowArtist(e.target.value); setInputValue(e.target.value); }} autoFocus />
+              <input style={{ ...S.input, fontSize: '0.9375rem' }} placeholder="Venue"
+                value={showVenue} onChange={e => setShowVenue(e.target.value)} />
+              <input style={{ ...S.input, fontSize: '0.9375rem' }} type="datetime-local"
+                value={showDate} onChange={e => setShowDate(e.target.value)} />
+            </>
+          ) : (
+            <input
+              style={S.input}
+              placeholder={inputType === 'business' ? 'Business name (e.g., Fat Mama\'s Tamales)...'
+                : inputType === 'text' ? 'Topic or headline...'
+                : 'Describe the photo...'}
+              value={inputValue}
+              onChange={e => setInputValue(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && generateAll()}
+              autoFocus
+            />
+          )}
 
           <button style={{ ...S.btn, opacity: generating ? 0.6 : 1 }}
             onClick={generateAll} disabled={generating || !inputValue.trim()}>

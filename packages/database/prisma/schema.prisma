@@ -1190,6 +1190,35 @@ model AgentAction {
   @@index([domain, createdAt])
 }
 
+/// Show Event — first-class entity spanning all 11 domains
+/// One show entry triggers the 2:1 multiplier cascade
+model ShowEvent {
+  id              Int       @id @default(autoincrement())
+  title           String    // "Rise Up at the Blues Room"
+  artist          String    // Headliner name
+  venue           String    @default("The Big Muddy Inn - Blues Room")
+  dateTime        DateTime  // When the show happens
+  description     String?   @db.Text
+  ticketUrl       String?   // Stripe or external ticket link
+  ticketPrice     Float?    // Door price
+  posterUrl       String?   // Hero image / poster (GCS URL)
+  status          String    @default("draft") // draft | published | archived | completed
+
+  // Cross-domain cascade tracking
+  radioEpisodeId  String?   // Links to Radio live session
+  magazineBlurb   String?   @db.Text // Generated magazine content
+  dsdPartnerId    Int?      // Cross-promo partner business
+  cloudbedsCode   String?   // "Blues & Beds" discount code
+  socialCampaign  String?   @db.Text // Generated social posts JSON
+  radioScript     String?   @db.Text // Generated radio promo script
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([status, dateTime])
+  @@index([artist])
+}
+
 /// Business decisions with rationale — queryable decision log
 model Decision {
   id           Int      @id @default(autoincrement())
