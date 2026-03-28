@@ -6,6 +6,7 @@ import type { Metadata, Viewport } from 'next';
 import { Playfair_Display, DM_Sans, Plus_Jakarta_Sans, Abril_Fatface, Inter } from 'next/font/google';
 import { Analytics } from '../components/Analytics';
 import { JsonLd, getOrganizationSchema } from '@/lib/structured-data';
+import { EditToolbar } from '@/components/EditToolbar';
 import '@bigmuddy/config/tokens.css';
 import './globals.css';
 
@@ -98,6 +99,7 @@ export default function RootLayout({
       </head>
       <body>
         <JsonLd schema={getOrganizationSchema()} />
+        <EditToolbar />
         {children}
       </body>
     </html>
