@@ -292,7 +292,7 @@ async function buildDeck() {
   const media = [
     { icon: iconNews, title: "Big Muddy Magazine", desc: "A Sponsored City Guide for Natchez \u2014 not a brochure, but coffee-table quality editorial." },
     { icon: iconMic, title: "Big Muddy Radio", desc: "Native advertising and live sessions recorded in Natchez, streaming globally for year-round awareness." },
-    { icon: iconCam, title: "Photography Library", desc: "600+ high-end images of the corridor ready for your use. Professional, editorial quality." },
+    { icon: iconCam, title: "Content Strategy", desc: "We fill the void. Editorial photography, video, and written content across every channel \u2014 building the presence that makes Natchez visible." },
   ];
 
   media.forEach((m, i) => {
@@ -476,8 +476,8 @@ async function buildDeck() {
     { icon: iconGlobe, text: "Directory Accounts \u2014 for local SMBs to boost the city\u2019s digital and AI search presence" },
     { icon: iconUsers, text: "Community Enrichment \u2014 onboard qualifying businesses into free AI business tools" },
     { icon: iconNews, text: "Quarterly City Guide \u2014 \"The Natchez Compass,\" coffee-table quality, print + digital" },
-    { icon: iconCam, text: "Photography Library \u2014 600+ corridor images licensed for city/tourism use" },
-    { icon: iconSearch, text: "AI Search Optimization \u2014 ensure Natchez businesses appear in ChatGPT, Google AI, Perplexity" },
+    { icon: iconCam, text: "Content Production \u2014 editorial photography, video, and written content filling the void across every channel" },
+    { icon: iconSearch, text: "AI + SEO Equity \u2014 every piece of content builds search visibility, AI visibility, and social presence simultaneously" },
   ];
 
   deliverables.forEach((d, i) => {

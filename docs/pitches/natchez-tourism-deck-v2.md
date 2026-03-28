@@ -24,7 +24,7 @@ We don't just advertise Natchez; we **power** it through three interconnected en
 Instead of one-off ads, we provide a **continuous content stream**:
 - **Big Muddy Magazine:** A **Sponsored City Guide** for Natchez — not a brochure, but coffee-table quality editorial.
 - **Big Muddy Radio:** Native advertising and live sessions recorded in Natchez, streaming globally to build year-round brand awareness.
-- **Stock Photography:** Our library contains **600+ high-end images** of the corridor ready for your use.
+- **Content Strategy:** We fill the void. Most Main Street businesses have zero high-quality content online. We produce editorial photography, video, and written content across every channel — building the SEO equity, AI equity, and social presence that makes Natchez visible to modern travelers.
 
 ---
 
@@ -55,8 +55,8 @@ We help your local businesses stay competitive so they're ready for the 700K vis
 3. **DSD Subsidy:** Directory accounts for local SMBs (20, 50, or all — depends on scope) to improve the city's overall digital and AI search presence.
 4. **Community Enrichment:** Onboard qualifying local businesses and artists into our interactive learning program — free access to AI business tools, funded by the partnership.
 5. **Quarterly City Guide:** "The Natchez Compass" — coffee-table quality editorial publication, print + digital.
-6. **Photography Library:** 600+ high-end images of the corridor, licensed for city/tourism use.
-7. **AI Search Optimization:** Ensure Natchez businesses appear in ChatGPT, Google AI, Perplexity results for visitor queries.
+6. **Content Production:** Editorial photography, video, and written content filling the void across every channel — building the presence that makes Natchez visible to modern travelers.
+7. **AI + SEO Equity:** Every piece of content builds search visibility, AI visibility, and social presence simultaneously. When someone asks an AI about Natchez, your businesses show up.
 
 > **Note:** Don't lead with a price. Present capabilities, let them describe needs, scope the contract from there. Could be $5K/mo for a focused package or $8-10K/mo for the full engagement.
 
