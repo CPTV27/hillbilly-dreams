@@ -65,10 +65,15 @@ Then research this business and return ONLY valid JSON (no markdown):
 
 Be specific — use the actual business name from the photo, their real location, and make the content feel custom-built for them.`;
 
-    const result = await model.generateContent([
-      { inlineData: { mimeType: 'image/jpeg', data: imageBase64 } },
-      { text: prompt },
-    ]);
+    const result = await model.generateContent({
+      contents: [{
+        role: 'user',
+        parts: [
+          { inlineData: { mimeType: 'image/jpeg', data: imageBase64 } },
+          { text: prompt },
+        ],
+      }],
+    });
 
     const responseText = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
