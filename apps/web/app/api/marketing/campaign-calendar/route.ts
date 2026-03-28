@@ -1,13 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { requireAdmin } from '@/lib/admin-auth';
-import { VertexAI } from '@google-cloud/vertexai';
+import { getGeminiModel } from '@/lib/vertex-client';
 
-const vertexAI = new VertexAI({
-  project: process.env.GCP_PROJECT_ID || 'bigmuddy-ff651',
-  location: process.env.VERTEX_LOCATION || 'us-east4',
-});
-const model = vertexAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+const model = getGeminiModel();
 
 /**
  * POST /api/marketing/campaign-calendar
