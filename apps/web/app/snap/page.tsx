@@ -46,13 +46,13 @@ function haversineDistance(lat1: number, lng1: number, lat2: number, lng2: numbe
 export default function SnapPage() {
   const [position, setPosition] = useState<{ lat: number; lng: number } | null>(null);
   const [nearby, setNearby] = useState<(ShotLocation & { distance: number })[]>([]);
-  const [completed, setCompleted] = useState<Set<string>>(new Set());
+  const [completed, setCompleted] = useState<Record<string, boolean>>({});
   const [tracking, setTracking] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const checkNearby = useCallback((lat: number, lng: number) => {
     const found = SHOT_LIST
-      .filter(s => !completed.has(s.id))
+      .filter(s => !completed[s.id])
       .map(s => ({ ...s, distance: haversineDistance(lat, lng, s.lat, s.lng) }))
       .filter(s => s.distance < 2000) // show anything within 2km
       .sort((a, b) => a.distance - b.distance);
@@ -85,11 +85,11 @@ export default function SnapPage() {
   };
 
   const markComplete = (id: string) => {
-    setCompleted(prev => { const next = new Set(prev); next.add(id); return next; });
+    setCompleted(prev => ({ ...prev, [id]: true }));
   };
 
   const totalShots = SHOT_LIST.length;
-  const completedCount = completed.size;
+  const completedCount = Object.keys(completed).length;
 
   return (
     <div style={{ minHeight: '100vh', background: '#0f0f0d', color: '#e8e0d4', fontFamily: "'Inter', system-ui, sans-serif", padding: '1rem' }}>
@@ -204,24 +204,24 @@ export default function SnapPage() {
             <div
               key={shot.id}
               style={{
-                background: completed.has(shot.id) ? '#0f1a0f' : '#1a1816',
-                border: `1px solid ${completed.has(shot.id) ? '#1a3a1a' : '#333'}`,
+                background: completed[shot.id] ? '#0f1a0f' : '#1a1816',
+                border: `1px solid ${completed[shot.id] ? '#1a3a1a' : '#333'}`,
                 borderRadius: 8,
                 padding: '0.75rem 1rem',
                 marginBottom: '0.5rem',
-                opacity: completed.has(shot.id) ? 0.5 : 1,
+                opacity: completed[shot.id] ? 0.5 : 1,
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
-                  <span style={{ fontSize: '0.85rem', fontWeight: 600, color: completed.has(shot.id) ? '#5a5550' : '#e8e0d4' }}>
-                    {completed.has(shot.id) ? '✓ ' : ''}{shot.name}
+                  <span style={{ fontSize: '0.85rem', fontWeight: 600, color: completed[shot.id] ? '#5a5550' : '#e8e0d4' }}>
+                    {completed[shot.id] ? '✓ ' : ''}{shot.name}
                   </span>
                   <span style={{ fontSize: '0.65rem', color: '#5a5550', marginLeft: '0.5rem' }}>
                     {shot.category}
                   </span>
                 </div>
-                {!completed.has(shot.id) && (
+                {!completed[shot.id] && (
                   <button
                     onClick={() => markComplete(shot.id)}
                     style={{
