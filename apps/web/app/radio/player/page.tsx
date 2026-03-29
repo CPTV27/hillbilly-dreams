@@ -5,7 +5,7 @@ import { useState, useRef } from 'react';
 /* eslint-disable @next/next/no-img-element */
 
 // Icecast stream URL — Mac mini at the Inn
-const STREAM_URL = 'http://localhost:8010/stream';
+const STREAM_URL = process.env.NEXT_PUBLIC_STREAM_URL || 'http://192.168.4.37:8010/stream';
 // Fallback: public test stream for when not on local network
 const FALLBACK_URL = '';
 
