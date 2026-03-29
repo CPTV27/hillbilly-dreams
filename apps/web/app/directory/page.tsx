@@ -1,6 +1,7 @@
 // apps/web/app/directory/page.tsx
 // Deep South Directory — Business directory landing page
 import type { Metadata } from 'next';
+import { IllustrationDivider } from '@bigmuddy/ui';
 
 export const metadata: Metadata = {
   title: 'Deep South Directory — Local Business Marketing',
@@ -144,6 +145,7 @@ export default function DirectoryPage() {
           position: 'relative',
         }}
       >
+        {/* Hero background illustration — woodcut / main-street-storefront */}
         <div
           style={{
             position: 'fixed',
@@ -151,8 +153,10 @@ export default function DirectoryPage() {
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'transparent',
-            opacity: 0,
+            backgroundImage: 'linear-gradient(180deg, rgba(15,15,13,0.55) 0%, rgba(15,15,13,0.85) 100%), url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/01-woodcut/main-street-storefront.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.3,
             zIndex: -1,
             pointerEvents: 'none',
           }}
@@ -227,8 +231,7 @@ export default function DirectoryPage() {
         </div>
       </section>
 
-      {/* Divider */}
-      <hr style={{ border: 'none', borderTop: '1px solid var(--border, #333)', margin: '0' }} />
+      <IllustrationDivider variant="town" />
 
       {/* Editorial Surface */}
       <section

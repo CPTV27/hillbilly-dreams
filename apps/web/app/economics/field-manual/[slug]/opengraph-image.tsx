@@ -29,7 +29,7 @@ const POST_ORDER: Record<string, number> = {
 
 // Human-friendly titles (avoids importing fs on edge runtime)
 const POST_TITLES: Record<string, string> = {
-  'ch01-the-450000-secret': 'The $450,000 Secret',
+  'ch01-the-450000-secret': 'Community Is the Currency',
   '02-the-extraction-trap': 'The Extraction Trap',
   '03-the-coordination-premium': 'The Coordination Premium',
   '04-time-is-the-only-currency-that-cant-leave-town': 'Time Is the Only Currency That Can\'t Leave Town',

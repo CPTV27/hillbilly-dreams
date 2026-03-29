@@ -3,7 +3,7 @@
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { ArticleCard, NewsletterSignup, BLUR_DATA_URL } from '@bigmuddy/ui';
+import { ArticleCard, NewsletterSignup, IllustrationDivider, BLUR_DATA_URL } from '@bigmuddy/ui';
 import { CITY_GUIDE_ARTICLES, CORRIDOR_CITIES, LOUISIANA_CITIES, ARKANSAS_MISSOURI_CITIES } from '@/lib/articles';
 
 export const metadata: Metadata = {
@@ -60,7 +60,7 @@ export default async function MagazineHomepage() {
       {/* ── Hero ── */}
       <section className="mag-hero">
         <Image
-          src="https://storage.googleapis.com/bmt-media-bigmuddy/heroes/hero-mississippi-dawn.webp"
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/07-letterpress/dispatch-header.webp"
           alt=""
           fill
           priority
@@ -80,6 +80,8 @@ export default async function MagazineHomepage() {
           </p>
         </div>
       </section>
+
+      <IllustrationDivider variant="oak" />
 
       {/* ── Featured Article ── */}
       <section className="mag-featured">

@@ -4,7 +4,8 @@
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
-const homeDescription = 'Eighty cents of every dollar earned in a Deep South community leaves within 48 hours. Not because people spend recklessly — because the infrastructure was built to move money out. Here is the math, the framework, and the field-tested playbook for stopping it.';
+import { IllustrationDivider } from '@bigmuddy/ui';
+const homeDescription = 'Your community is the asset. Organization is the value multiplier. A field-tested playbook for keeping your money local, coordinating your skills, and building an economy that works for the people who live in it.';
 export const metadata: Metadata = {
   title: 'Outsider Economics — A Field Manual for Independent Economic Systems',
   description: homeDescription,
@@ -26,24 +27,24 @@ export const metadata: Metadata = {
 const CORE_CONCEPTS = [
   {
     num: '01',
-    title: 'The $450,000 Secret',
-    stat: '$450K/mo',
+    title: 'Community Is the Currency',
+    stat: '∞',
     href: 'https://outsidereconomics.com/philosophy/people-are-the-currency',
-    desc: 'Nobody ran the numbers. I did. Twenty people swapping twenty hours a month of real skills — plumbing, bookkeeping, carpentry, code — generates nearly half a million in value. Without a bank. Without a grant. Without asking permission.',
+    desc: 'Get your community together. Real skills — plumbing, bookkeeping, carpentry, code — traded between people who trust each other. No bank. No grant. No permission required. The value stays where the work happens.',
   },
   {
     num: '02',
     title: 'The Extraction Trap',
-    stat: '82%',
+    stat: '→',
     href: 'https://outsidereconomics.com/philosophy/the-extraction-trap',
-    desc: 'You buy coffee at the chain. That dollar hits a server in Seattle by lunch. Multiply that by everything you buy and eighty-two cents of every dollar you earn leaves your zip code in a month. You\'re not poor. You\'re being drained.',
+    desc: 'You buy coffee at the chain. That dollar hits a server in Seattle by lunch. Multiply that by everything you buy and most of what you earn leaves your zip code before the month is out. You\'re not poor. You\'re being drained.',
   },
   {
     num: '03',
     title: 'The Coordination Premium',
-    stat: '4.5x',
+    stat: '+',
     href: 'https://outsidereconomics.com/philosophy/coordination-not-scale',
-    desc: 'A plumber alone bills $80 an hour. A plumber who knows an electrician, a carpenter, and a permit expediter? That crew bills renovations. Same people, same hours — four and a half times the value. Coordination is the multiplier nobody talks about.',
+    desc: 'A plumber alone bills one rate. A plumber who knows an electrician, a carpenter, and a permit expediter bills renovations. Same people. Same hours. The value multiplies. Coordination is the lever nobody pulls.',
   },
   {
     num: '04',
@@ -55,9 +56,9 @@ const CORE_CONCEPTS = [
   {
     num: '05',
     title: 'Federation over Scale',
-    stat: '~100',
+    stat: '⚡',
     href: 'https://outsidereconomics.com/philosophy/the-federation-effect',
-    desc: 'Every org that scales past a hundred people starts acting like the thing it was built to replace. So don\'t scale. Federate. Keep each pod human-sized, wire them together, and let the network do what networks do.',
+    desc: 'Every org that outgrows trust starts acting like the thing it replaced. So don\'t scale. Federate. Keep each community human-sized. Wire them together. Let the network do what networks do.',
   },
   {
     num: '06',
@@ -74,14 +75,14 @@ const CURRENT_TRENDS = [
   { label: 'Programmable Money', desc: 'They\'re building currency with an off switch. Imagine your savings account doesn\'t work on Tuesdays, or outside city limits, or if you said the wrong thing online. That\'s CBDC.' },
   { label: 'The 30% Skim', desc: 'DoorDash, Uber, Airbnb — every platform takes a third of your labor and calls it a "service fee." A local coordination board does the same job for zero. Nobody built one yet because nobody did the math.' },
   { label: 'The Ship Got Stuck Again', desc: 'Global supply chains are a magic trick that works until it doesn\'t. The guy down the road with a welding shop and a vegetable garden? He\'s the supply chain that never breaks.' },
-  { label: 'Nobody Can Afford a House', desc: 'A developer charges $400K to frame a house that twenty coordinated people could build in two weekends. We didn\'t forget how to build — we forgot how to build together.' },
+  { label: 'Nobody Can Afford a House', desc: 'A developer charges six figures to frame a house a coordinated crew could build in two weekends. You didn\'t forget how to build. You forgot how to build together.' },
 ];
 
 export default function EconomicsHomepage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="econ-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/heroes/economics-hero.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="econ-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/01-woodcut/river-landscape.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="econ-hero__bg" aria-hidden="true" />
         <div className="econ-hero__content">
           <div className="econ-hero__eyebrow">
@@ -95,11 +96,9 @@ export default function EconomicsHomepage() {
             <em>Economics</em>
           </h1>
           <p className="econ-hero__sub">
-            Eighty cents of every dollar earned here leaves within 48 hours.
+            Your community is the asset. Organization is the value multiplier.
             <br />
-            Not bad luck. Not poverty. A machine designed to drain you.
-            <br />
-            Here&apos;s how it works — and how to stop it.
+            This book explains how.
           </p>
           <div className="econ-hero__ctas">
             <a href="https://outsidereconomics.com/philosophy/what-is-outsider-economics" className="btn btn--primary">
@@ -109,12 +108,10 @@ export default function EconomicsHomepage() {
               See the Toolkit
             </a>
           </div>
-          <p className="econ-hero__tagline">
-            &ldquo;You keep choosing convenience over freedom — that&apos;s the sign
-            you&apos;re headed toward the system timeline.&rdquo;
-          </p>
         </div>
       </section>
+
+      <IllustrationDivider variant="river" />
 
       {/* ── Core Concepts ── */}
       <section className="econ-concepts">
@@ -122,8 +119,8 @@ export default function EconomicsHomepage() {
           <div className="section-label">The Framework</div>
           <h2 className="section-title">The Math Nobody Ran</h2>
           <p className="section-desc" style={{ maxWidth: 640 }}>
-            I spent two years doing the arithmetic your city council never bothered with.
-            Six numbers. That&apos;s all it takes to see the whole rigged game — and the way out of it.
+            Two years of arithmetic your city council never ran.
+            Six ideas. That&apos;s all it takes to see the rigged game — and the exit.
           </p>
           <div className="econ-concepts__grid">
             {CORE_CONCEPTS.map((c) => (
@@ -150,13 +147,12 @@ export default function EconomicsHomepage() {
               <p className="section-desc">
                 I grew up in the Delta. Nobody was coming to fix the roads, open a grocery store,
                 or run the internet to our side of the county. So people built their own.
-                Not because they were activists — because they were practical.
-                This whole project is that same energy, with better math.
+                Not activists. Just practical. This project is that same energy — with better math.
               </p>
               <div className="econ-thesis__pillars">
                 {[
                   { name: 'Route Around', desc: 'The system isn\'t going to fix itself. Build a new one next to it and let people choose.' },
-                  { name: 'Network Math', desc: 'Five people who talk to each other are worth twenty-three times five people who don\'t. That\'s not a metaphor — it\'s Metcalfe\'s Law.' },
+                  { name: 'Network Math', desc: 'Two people trading skills have one connection. Five have ten. Ten have forty-five. The value of a network grows faster than the number of people in it. That\'s just how math works.' },
                   { name: 'Break-Proof', desc: 'One income stream is fragile. One employer is a single point of failure. Stack skills, stack streams, and the next recession is just weather.' },
                   { name: 'Keep It Local', desc: 'Every dollar that circulates inside your community three times before leaving does the work of three dollars. Stop the bleed, multiply the value.' },
                 ].map((p) => (
@@ -186,13 +182,15 @@ export default function EconomicsHomepage() {
         </div>
       </section>
 
+      <IllustrationDivider variant="cotton" />
+
       {/* ── Current Trends ── */}
       <section className="econ-trends">
         <div className="section-container">
           <div className="section-label">Why Now</div>
           <h2 className="section-title">Read the Room</h2>
           <p className="section-desc" style={{ maxWidth: 640 }}>
-            Six things happening right now that should make you very uncomfortable
+            Things happening right now that should make you very uncomfortable
             if your entire economic life depends on systems you don&apos;t control.
           </p>
           <div className="econ-trends__grid">
@@ -211,11 +209,12 @@ export default function EconomicsHomepage() {
         <div className="section-container">
           <div className="econ-community__inner">
             <div className="section-label">Connect</div>
-            <h2 className="section-title">You Already Know Your 20</h2>
+            <h2 className="section-title">You Already Know Your Community</h2>
             <p className="section-desc" style={{ maxWidth: 560 }}>
               You don&apos;t need to recruit strangers. You need the people you already
               borrow a ladder from, the ones who text you when the power goes out.
-              Twenty people. Twenty hours a month. That&apos;s not a revolution — it&apos;s a
+              Could be two neighbors. Could be fifty. Get your community together.
+              Swap some hours. That&apos;s not a revolution — it&apos;s a
               Tuesday.
             </p>
             <div className="econ-community__actions">
@@ -232,6 +231,8 @@ export default function EconomicsHomepage() {
           </div>
         </div>
       </section>
+
+      <IllustrationDivider variant="magnolia" />
 
       {/* ── Substack / Newsletter ── */}
       <section className="econ-substack">

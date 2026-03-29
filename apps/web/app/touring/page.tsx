@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { ArticleCard } from '@bigmuddy/ui';
 import { PlaylistCard } from '@bigmuddy/ui';
 import { NewsletterSignup } from '@bigmuddy/ui';
+import { IllustrationDivider } from '@bigmuddy/ui';
 import type { Article, Playlist } from '@bigmuddy/config';
 // BLUR_DATA_URL removed — hero uses CSS gradient until a real photo is uploaded to GCS
 
@@ -67,7 +68,7 @@ export default async function TouringHomepage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="touring-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/heroes/touring-hero.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="touring-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/02-travel-poster/natchez-bluff.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="touring-hero__gradient" aria-hidden="true" />
         <div className="touring-hero__overlay" />
         <div className="touring-hero__bg-pattern" aria-hidden="true" />
@@ -101,6 +102,8 @@ export default async function TouringHomepage() {
           </svg>
         </div>
       </section>
+
+      <IllustrationDivider variant="river" />
 
       {/* ── Where to Stay ── */}
       <section className="touring-lodging">
@@ -189,6 +192,8 @@ export default async function TouringHomepage() {
         </div>
       </section>
 
+      <IllustrationDivider variant="wildflowers" />
+
       {/* ── Rise Up ── */}
       <section className="rise-up">
         <div className="section-container">
@@ -221,11 +226,11 @@ export default async function TouringHomepage() {
                   <span className="rise-up__stat-label">Masters retained by artists</span>
                 </div>
                 <div className="rise-up__stat">
-                  <span className="rise-up__stat-num">$450K</span>
-                  <span className="rise-up__stat-label">Local value per community per year</span>
+                  <span className="rise-up__stat-num">Local</span>
+                  <span className="rise-up__stat-label">Value stays in the community</span>
                 </div>
                 <div className="rise-up__stat">
-                  <span className="rise-up__stat-num">80%</span>
+                  <span className="rise-up__stat-num">Most</span>
                   <span className="rise-up__stat-label">Extraction rate we&apos;re building against</span>
                 </div>
               </div>
@@ -255,6 +260,8 @@ export default async function TouringHomepage() {
           </div>
         </div>
       </section>
+
+      <IllustrationDivider variant="oak" />
 
       {/* ── From the Magazine ── */}
       <section className="touring-magazine">

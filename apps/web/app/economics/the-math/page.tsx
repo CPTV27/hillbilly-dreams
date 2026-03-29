@@ -40,23 +40,23 @@ const EQUATIONS = [
       { sym: 'V', def: 'Value connections (Metcalfe\'s Law)' },
       { sym: 'n', def: 'Number of coordinated people' },
     ],
-    example: '5 people who talk to each other = 10 connections. 20 people = 190 connections. The value doesn\'t add — it squares. A plumber alone bills $80/hr. That same plumber in a coordinated crew of five bills renovations at 4.5x the rate.',
+    example: '5 people = 10 connections. 10 people = 45. 50 people = 1,225. The value doesn\'t add — it compounds. A plumber alone bills one rate. That same plumber in a coordinated crew bills renovations. Same person, different context, different value.',
     punchline: 'Coordination is the only free multiplier. It costs nothing except knowing who does what.',
   },
   {
     id: 'fourFifty',
-    label: '$450K Formula',
-    title: 'The $450,000 Secret',
+    label: 'Community Value',
+    title: 'Community Is the Currency',
     formula: 'MV = P x H x R x M',
     variables: [
       { sym: 'MV', def: 'Monthly value generated' },
-      { sym: 'P', def: 'People in the network (20)' },
-      { sym: 'H', def: 'Hours contributed per month (20)' },
-      { sym: 'R', def: 'Average skill rate at market ($75/hr)' },
-      { sym: 'M', def: 'Coordination multiplier (15x)' },
+      { sym: 'P', def: 'People in your community' },
+      { sym: 'H', def: 'Hours contributed per month' },
+      { sym: 'R', def: 'Average skill rate at market' },
+      { sym: 'M', def: 'Coordination multiplier' },
     ],
-    example: '20 x 20 x $75 x 15 = $450,000/month. That\'s not theoretical. That\'s twenty people doing what your neighborhood already does informally — just tracked, coordinated, and multiplied.',
-    punchline: 'Your town isn\'t resource-poor. It\'s coordination-poor. The money was there the whole time.',
+    example: 'Plug in your own numbers. Count the people. Estimate the hours. Look up what those skills cost on the open market. Multiply by the coordination factor. The number will surprise you — it always does.',
+    punchline: 'Your town isn\'t resource-poor. It\'s coordination-poor. The value was there the whole time.',
   },
   {
     id: 'time',
@@ -181,7 +181,7 @@ export default function TheMathPage() {
               else&apos;s shareholders.
             </p>
             <p className="section-desc" style={{ maxWidth: 560, margin: '0 auto var(--space-10)' }}>
-              Then pick the $450K formula. Count twenty people you know with real skills.
+              Then pick the community value formula. Count the people you know with real skills.
               Plug them in. See what happens.
             </p>
             <div style={{ display: 'flex', justifyContent: 'center', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
@@ -194,7 +194,7 @@ export default function TheMathPage() {
                 Get the Full Workbook
               </a>
               <a href="/community" className="btn btn--ghost">
-                Find Your 20
+                Find Your Community
               </a>
             </div>
           </div>

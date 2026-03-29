@@ -150,6 +150,126 @@
   margin: 0;
 }
 
+/* ── Loading State — Cartographic Corridor ── */
+.loading-corridor {
+  position: relative;
+  min-height: 200px;
+  overflow: hidden;
+}
+.loading-corridor::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/12-cartographic/corridor-route.webp);
+  background-size: 200% auto;
+  background-position: 0% center;
+  opacity: 0.06;
+  pointer-events: none;
+  animation: corridor-pan 20s linear infinite;
+}
+@keyframes corridor-pan {
+  0%   { background-position: 0% center; }
+  100% { background-position: 100% center; }
+}
+
+/* ── Card Illustration Accents ── */
+/* Subtle background illustrations on cards, per style guide mapping */
+.card-accent--woodcut {
+  position: relative;
+}
+.card-accent--woodcut::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/01-woodcut/community-gathering.webp);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.06;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.card-accent--gig-poster {
+  position: relative;
+}
+.card-accent--gig-poster::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/11-gig-poster/blues-musician.webp);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.card-accent--chalkboard {
+  position: relative;
+}
+.card-accent--chalkboard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/04-chalkboard/tonights-lineup.webp);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.card-accent--letterpress {
+  position: relative;
+}
+.card-accent--letterpress::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/07-letterpress/concert-broadside.webp);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.06;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.card-accent--risograph {
+  position: relative;
+}
+.card-accent--risograph::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/03-risograph/vinyl-record.webp);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.card-accent--neon {
+  position: relative;
+}
+.card-accent--neon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/06-neon/live-music-sign.webp);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
 /* ── Editorial Layout Utilities — Kinfolk / Garden & Gun ── */
 /* Use these on .theme-mb pages for the "Anti-SaaS" magazine feel */
 
