@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
             artist,
             date: eventDate,
             time: time || null,
-            venue: showVenue,
+            description: `Venue: ${showVenue}`,
             status: 'upcoming',
           },
         });
