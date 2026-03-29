@@ -85,7 +85,7 @@ export default function SnapPage() {
   };
 
   const markComplete = (id: string) => {
-    setCompleted(prev => new Set([...prev, id]));
+    setCompleted(prev => { const next = new Set(prev); next.add(id); return next; });
   };
 
   const totalShots = SHOT_LIST.length;
