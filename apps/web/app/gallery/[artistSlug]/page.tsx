@@ -72,7 +72,7 @@ export default function ArtistStorefrontPage() {
   const allWorks = DEMO_ARTWORKS.filter((w) => w.artistSlug === artistSlug);
   const shoots = DEMO_SHOOTS?.filter((s) => s.artistSlug === artistSlug) ?? [];
   const works = filter === 'All' ? allWorks : allWorks.filter((w) => w.category === filter);
-  const categories = ['All', ...new Set(allWorks.map((w) => w.category))];
+  const categories = ['All', ...Array.from(new Set(allWorks.map((w) => w.category)))];
 
   if (!artist) {
     return (
