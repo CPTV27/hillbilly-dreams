@@ -1,7 +1,6 @@
 ---
 sidebar_position: 0
 title: "A Field Manual for Independent Economic Systems"
-slug: "intro"
 ---
 
 # Outsider Economics, Volume 1: A Field Manual for Independent Economic Systems

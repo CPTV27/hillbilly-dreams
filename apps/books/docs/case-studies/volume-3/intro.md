@@ -1,7 +1,6 @@
 ---
 sidebar_position: 0
 title: "What Happens Next"
-slug: "intro"
 ---
 
 # Outsider Economics, Volume 3: What Happens Next

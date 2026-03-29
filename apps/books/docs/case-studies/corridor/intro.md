@@ -1,7 +1,6 @@
 ---
 sidebar_position: 0
 title: "The Corridor"
-slug: "intro"
 ---
 
 # The Corridor

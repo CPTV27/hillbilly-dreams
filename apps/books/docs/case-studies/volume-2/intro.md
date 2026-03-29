@@ -1,7 +1,6 @@
 ---
 sidebar_position: 0
 title: "The Implementation Playbook"
-slug: "intro"
 ---
 
 # Outsider Economics, Volume 2: The Implementation Playbook

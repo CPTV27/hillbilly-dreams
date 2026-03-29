@@ -8,6 +8,20 @@
       "runtimeArgs": ["next", "dev"],
       "port": 3000,
       "autoPort": true
+    },
+    {
+      "name": "books",
+      "cwd": "apps/books",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["docusaurus", "serve", "--port", "3001"],
+      "port": 3001
+    },
+    {
+      "name": "manual",
+      "cwd": "apps/manual",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["docusaurus", "serve", "--port", "3002"],
+      "port": 3002
     }
   ]
 }

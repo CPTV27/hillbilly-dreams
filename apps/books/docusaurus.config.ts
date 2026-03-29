@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Outsider Economics',
-  tagline: 'What happens when the economy works for the people who actually live here.',
+  tagline: 'A toolkit for building local economies that work for the people who actually live here.',
   favicon: 'img/cover-v1.png',
 
   future: {
@@ -54,36 +54,36 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'volume1',
+          sidebarId: 'philosophy',
           position: 'left',
-          label: 'Vol. 1: Field Manual',
+          label: 'Philosophy',
         },
         {
           type: 'docSidebar',
-          sidebarId: 'volume2',
+          sidebarId: 'toolkit',
           position: 'left',
-          label: 'Vol. 2: Playbook',
+          label: 'Toolkit',
         },
         {
           type: 'docSidebar',
-          sidebarId: 'volume3',
+          sidebarId: 'caseStudies',
           position: 'left',
-          label: 'Vol. 3: What Happens Next',
+          label: 'Case Studies',
         },
         {
           type: 'docSidebar',
-          sidebarId: 'corridor',
+          sidebarId: 'resources',
           position: 'left',
-          label: 'The Corridor',
-        },
-        {
-          href: 'https://measurablybetter.life',
-          label: 'Measurably Better',
-          position: 'right',
+          label: 'Resources',
         },
         {
           href: 'https://deepsouthdirectory.com',
           label: 'Deep South Directory',
+          position: 'right',
+        },
+        {
+          href: 'https://bigmuddytouring.com',
+          label: 'Big Muddy',
           position: 'right',
         },
       ],
@@ -92,31 +92,32 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'The Books',
+          title: 'Learn',
           items: [
-            { label: 'Vol. 1: Field Manual', to: '/volume-1/intro' },
-            { label: 'Vol. 2: Playbook', to: '/volume-2/intro' },
-            { label: 'Vol. 3: What Happens Next', to: '/volume-3/intro' },
+            { label: 'What Is Outsider Economics?', to: '/philosophy/what-is-outsider-economics' },
+            { label: 'The Toolkit', to: '/toolkit/the-task-board' },
+            { label: 'Case Studies', to: '/case-studies' },
           ],
         },
         {
-          title: 'The Proof',
+          title: 'Resources',
           items: [
-            { label: 'Measurably Better', href: 'https://measurablybetter.life' },
+            { label: 'Grants & Funding', to: '/resources/grants-and-funding' },
+            { label: 'Organizations', to: '/resources/organizations' },
+            { label: 'Legal Frameworks', to: '/resources/legal-frameworks' },
+            { label: 'Technology Tools', to: '/resources/technology-tools' },
+          ],
+        },
+        {
+          title: 'See the Proof',
+          items: [
             { label: 'Deep South Directory', href: 'https://deepsouthdirectory.com' },
             { label: 'Big Muddy', href: 'https://bigmuddytouring.com' },
-          ],
-        },
-        {
-          title: 'Connect',
-          items: [
-            { label: 'Buy on Amazon', href: '#' },
-            { label: 'Substack', href: '#' },
-            { label: 'Twitter', href: '#' },
+            { label: 'Measurably Better', href: 'https://measurablybetter.life' },
           ],
         },
       ],
-      copyright: `© ${new Date().getFullYear()} Chase Tuthill Pierson · Hillbilly Dreams, Inc. · Natchez, Mississippi`,
+      copyright: `\u00a9 ${new Date().getFullYear()} Chase Tuthill Pierson \u00b7 Hillbilly Dreams, Inc. \u00b7 Natchez, Mississippi`,
     },
     prism: {
       theme: prismThemes.github,

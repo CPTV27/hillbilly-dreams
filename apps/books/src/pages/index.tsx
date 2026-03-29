@@ -1,164 +1,97 @@
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 
-// Volume card data — extend here as books are added
-const VOLUMES = [
-  {
-    to: '/volume-1/intro',
-    label: 'Volume 1 \u00b7 Published',
-    title: 'A Field Manual for Independent Economic Systems',
-    blurb: 'The math. The theory. The $450,000 secret.',
-  },
-  {
-    to: '/volume-2/intro',
-    label: 'Volume 2 \u00b7 Read Free',
-    title: 'The Implementation Playbook',
-    blurb: 'Building community economic sovereignty in 90 days. 19 chapters.',
-  },
-  {
-    to: '/volume-3/intro',
-    label: 'Volume 3 \u00b7 Coming Soon',
-    title: 'What Happens Next',
-    blurb: 'The Deep South in 2028. Solarpunk meets the Mississippi corridor.',
-  },
-  {
-    to: '/corridor/intro',
-    label: 'Reference',
-    title: 'The Corridor',
-    blurb: 'Memphis to New Orleans. Town profiles from the route.',
-  },
-];
-
 const BURNT_ORANGE = '#C4441A';
 const CREAM = '#F0E6D3';
 const INK = '#1A1A1A';
 const WARM_BORDER = '#D4C8B5';
 const WARM_MUTED = '#7A6E63';
 
+const SECTIONS = [
+  {
+    to: '/philosophy/what-is-outsider-economics',
+    label: 'Start Here',
+    title: 'The Philosophy',
+    blurb: 'What Outsider Economics is, why it works, and who it\'s for.',
+  },
+  {
+    to: '/toolkit/the-task-board',
+    label: 'Build It',
+    title: 'The Toolkit',
+    blurb: '6 tools you can deploy today. Task boards, directories, shared services, and more.',
+  },
+  {
+    to: '/case-studies',
+    label: 'See It Work',
+    title: 'Case Studies',
+    blurb: 'Real stories from the Mississippi corridor. Natchez, Clarksdale, and beyond.',
+  },
+  {
+    to: '/resources/grants-and-funding',
+    label: 'Get Help',
+    title: 'Deep South Resources',
+    blurb: 'Grants, organizations, legal frameworks, and technology — tailored to MS, LA, and TN.',
+  },
+];
+
 export default function Home(): JSX.Element {
   return (
     <Layout
       title="Outsider Economics"
-      description="What happens when the economy works for the people who actually live here."
+      description="A toolkit for building local economies that work for the people who actually live here."
     >
-      {/* ── Hero ──────────────────────────────────────────────────────── */}
+      {/* Hero */}
       <section
         style={{
           backgroundColor: CREAM,
-          padding: 'clamp(40px, 6vw, 80px) clamp(24px, 5vw, 64px)',
+          padding: 'clamp(48px, 8vw, 96px) clamp(24px, 5vw, 64px)',
           borderBottom: `3px solid ${BURNT_ORANGE}`,
         }}
       >
-        <div
-          style={{
-            maxWidth: 1080,
-            margin: '0 auto',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'clamp(32px, 5vw, 72px)',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-          }}
-        >
-          {/* Cover art */}
-          <div
+        <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
+          <p
             style={{
-              flexShrink: 0,
-              display: 'flex',
-              justifyContent: 'center',
+              fontSize: 11,
+              fontWeight: 700,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              color: BURNT_ORANGE,
+              marginBottom: 16,
             }}
           >
-            <img
-              src="/img/cover-v1.jpg"
-              alt="Outsider Economics cover — woodcut illustration of a flower growing through cracked earth"
-              style={{
-                width: 'clamp(200px, 28vw, 320px)',
-                height: 'auto',
-                boxShadow: '6px 8px 28px rgba(26,26,26,0.28)',
-                display: 'block',
-              }}
-            />
-          </div>
+            Hillbilly Dreams, Inc. &mdash; Natchez, Mississippi
+          </p>
 
-          {/* Title block */}
-          <div
+          <h1
             style={{
-              flex: '1 1 300px',
-              minWidth: 0,
+              fontFamily: "'Abril Fatface', serif",
+              fontSize: 'clamp(2.4rem, 6vw, 4rem)',
+              color: INK,
+              letterSpacing: '-0.02em',
+              lineHeight: 1.05,
+              marginBottom: 24,
             }}
           >
-            {/* Publisher slug */}
-            <p
-              style={{
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: BURNT_ORANGE,
-                marginBottom: 16,
-              }}
-            >
-              Hillbilly Dreams, Inc. &mdash; Natchez, Mississippi
-            </p>
+            Outsider Economics
+          </h1>
 
-            <h1
-              style={{
-                fontFamily: "'Abril Fatface', serif",
-                fontSize: 'clamp(2.4rem, 6vw, 4rem)',
-                color: INK,
-                letterSpacing: '-0.02em',
-                lineHeight: 1.05,
-                marginBottom: 20,
-              }}
-            >
-              Outsider Economics
-            </h1>
+          <p
+            style={{
+              fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+              color: WARM_MUTED,
+              lineHeight: 1.7,
+              maxWidth: 560,
+              margin: '0 auto 32px',
+            }}
+          >
+            A toolkit for building local economies that work for the people who
+            actually live here. Philosophy, tools, case studies, and resources —
+            all tailored to the Deep South.
+          </p>
 
-            <p
-              style={{
-                fontFamily: "'Abril Fatface', serif",
-                fontSize: 'clamp(1rem, 2vw, 1.3rem)',
-                color: WARM_MUTED,
-                lineHeight: 1.4,
-                marginBottom: 20,
-                fontStyle: 'italic',
-              }}
-            >
-              A Field Manual for Independent Economic Systems
-            </p>
-
-            <p
-              style={{
-                fontSize: 14,
-                fontWeight: 600,
-                letterSpacing: '0.07em',
-                textTransform: 'uppercase',
-                color: WARM_MUTED,
-                marginBottom: 24,
-              }}
-            >
-              By Chase Tuthill Pierson
-            </p>
-
-            {/* Tagline — woodblock-press feel */}
-            <p
-              style={{
-                fontSize: 'clamp(1rem, 2vw, 1.15rem)',
-                color: INK,
-                lineHeight: 1.7,
-                maxWidth: 460,
-                borderLeft: `3px solid ${BURNT_ORANGE}`,
-                paddingLeft: 16,
-                marginBottom: 32,
-                fontStyle: 'italic',
-              }}
-            >
-              What happens when the economy works for the people who actually live here.
-            </p>
-
-            {/* CTA */}
+          <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link
-              to="/volume-1/intro"
+              to="/philosophy/what-is-outsider-economics"
               style={{
                 display: 'inline-block',
                 padding: '14px 28px',
@@ -174,11 +107,29 @@ export default function Home(): JSX.Element {
             >
               Start Reading &rarr;
             </Link>
+            <Link
+              to="/toolkit/the-task-board"
+              style={{
+                display: 'inline-block',
+                padding: '14px 28px',
+                backgroundColor: 'transparent',
+                color: INK,
+                fontWeight: 700,
+                fontSize: 14,
+                letterSpacing: '0.05em',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                borderRadius: 2,
+                border: `2px solid ${WARM_BORDER}`,
+              }}
+            >
+              Jump to the Toolkit
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ── Volume Cards ──────────────────────────────────────────────── */}
+      {/* Section Cards */}
       <section
         style={{
           backgroundColor: '#EDE0CA',
@@ -186,19 +137,6 @@ export default function Home(): JSX.Element {
         }}
       >
         <div style={{ maxWidth: 1080, margin: '0 auto' }}>
-          <h2
-            style={{
-              fontFamily: "'Abril Fatface', serif",
-              fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
-              color: INK,
-              letterSpacing: '-0.02em',
-              marginBottom: 32,
-              textAlign: 'center',
-            }}
-          >
-            The Series
-          </h2>
-
           <div
             style={{
               display: 'grid',
@@ -206,10 +144,10 @@ export default function Home(): JSX.Element {
               gap: 16,
             }}
           >
-            {VOLUMES.map((vol) => (
+            {SECTIONS.map((sec) => (
               <Link
-                key={vol.to}
-                to={vol.to}
+                key={sec.to}
+                to={sec.to}
                 style={{
                   display: 'block',
                   padding: '24px 22px',
@@ -220,7 +158,8 @@ export default function Home(): JSX.Element {
                   transition: 'box-shadow 0.15s ease, transform 0.15s ease',
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = `4px 6px 20px rgba(196,68,26,0.18)`;
+                  (e.currentTarget as HTMLElement).style.boxShadow =
+                    '4px 6px 20px rgba(196,68,26,0.18)';
                   (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
@@ -239,7 +178,7 @@ export default function Home(): JSX.Element {
                     marginBottom: 8,
                   }}
                 >
-                  {vol.label}
+                  {sec.label}
                 </span>
                 <span
                   style={{
@@ -251,10 +190,10 @@ export default function Home(): JSX.Element {
                     marginBottom: 10,
                   }}
                 >
-                  {vol.title}
+                  {sec.title}
                 </span>
                 <span style={{ fontSize: 13, color: WARM_MUTED, lineHeight: 1.5 }}>
-                  {vol.blurb}
+                  {sec.blurb}
                 </span>
               </Link>
             ))}
@@ -262,7 +201,7 @@ export default function Home(): JSX.Element {
         </div>
       </section>
 
-      {/* ── Footer strip ──────────────────────────────────────────────── */}
+      {/* Footer strip */}
       <section
         style={{
           backgroundColor: CREAM,
@@ -280,8 +219,8 @@ export default function Home(): JSX.Element {
             margin: '0 auto 24px',
           }}
         >
-          This isn't theory. The hotel is real. The platform is deployed.
-          The band is forming. The directory is launching.
+          This isn't theory. The hotel is real. The directory is deployed.
+          The band is forming. The tools are live.
         </p>
 
         <div
@@ -293,22 +232,22 @@ export default function Home(): JSX.Element {
           }}
         >
           <a
-            href="https://measurablybetter.life"
-            style={{ fontSize: 13, color: BURNT_ORANGE, fontWeight: 600, textDecoration: 'none' }}
-          >
-            See the proof &rarr;
-          </a>
-          <a
             href="https://deepsouthdirectory.com"
             style={{ fontSize: 13, color: BURNT_ORANGE, fontWeight: 600, textDecoration: 'none' }}
           >
             Deep South Directory &rarr;
           </a>
           <a
-            href="#"
+            href="https://bigmuddytouring.com"
             style={{ fontSize: 13, color: BURNT_ORANGE, fontWeight: 600, textDecoration: 'none' }}
           >
-            Buy on Amazon &rarr;
+            Big Muddy &rarr;
+          </a>
+          <a
+            href="https://measurablybetter.life"
+            style={{ fontSize: 13, color: BURNT_ORANGE, fontWeight: 600, textDecoration: 'none' }}
+          >
+            Measurably Better &rarr;
           </a>
         </div>
       </section>
