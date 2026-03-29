@@ -21,24 +21,42 @@ const NAV_SECTIONS = [
     items: [
       { label: 'Dashboard', href: '/dashboard', icon: '◈' },
       { label: 'Calendar', href: '/calendar', icon: '◷' },
+      { label: 'Upload', href: '/upload', icon: '↑' },
     ],
   },
   {
-    label: 'Operations',
+    label: 'Create',
     items: [
-      { label: 'Ops Dashboard', href: '/ops', icon: '⚡' },
+      { label: 'Content Studio', href: '/studio', icon: '✦' },
+      { label: 'Lookbook', href: '/lookbook', icon: '◎' },
+      { label: 'Media Vault', href: '/media', icon: '◈' },
+    ],
+  },
+  {
+    label: 'Broadcast',
+    items: [
+      { label: 'Radio Control', href: '/radio', icon: '🎙' },
+      { label: 'Shows', href: 'https://bigmuddytouring.com/radio/shows', icon: '◻', external: true },
+      { label: 'Web Player', href: 'https://bigmuddytouring.com/radio/player', icon: '▶', external: true },
     ],
   },
   {
     label: 'Content',
     items: [
       { label: 'Articles', href: '/articles', icon: '◻' },
-      { label: 'Media', href: '/media', icon: '◈' },
       { label: 'Playlists', href: '/playlists', icon: '◈' },
       { label: 'Events', href: '/events', icon: '◷' },
       { label: 'Newsletter', href: '/newsletter', icon: '◻' },
       { label: 'Social', href: '/social', icon: '◈' },
       { label: 'Publications', href: '/publications', icon: '◻' },
+    ],
+  },
+  {
+    label: 'Operations',
+    items: [
+      { label: 'Delta Dawn', href: 'https://bigmuddytouring.com/ops/chat', icon: '⚡', external: true },
+      { label: 'Ops Dashboard', href: '/ops', icon: '◻' },
+      { label: 'Reviews', href: 'https://bigmuddytouring.com/ops/reviews', icon: '⭐', external: true },
     ],
   },
   {
@@ -52,11 +70,6 @@ const NAV_SECTIONS = [
     label: 'Platform',
     items: [
       { label: 'Bridge Clients', href: '/bridge', icon: '◈' },
-    ],
-  },
-  {
-    label: 'Holding Co.',
-    items: [
       { label: 'Finance', href: '/finance', icon: '$' },
     ],
   },
