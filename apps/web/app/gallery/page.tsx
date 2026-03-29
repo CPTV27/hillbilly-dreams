@@ -139,7 +139,7 @@ export default function GalleryPage() {
           gap: 0,
           background: funkyMode
             ? 'linear-gradient(135deg, var(--bg) 0%, #1a1030 50%, #0a0618 100%)'
-            : 'linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 100%), url(https://storage.googleapis.com/bmt-media-bigmuddy/heroes/gallery-hero.webp) center/cover no-repeat',
+            : 'linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 100%), url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/08-folk-art/marketplace.webp) center/cover no-repeat',
           transition: 'background 0.4s ease',
         }}
         aria-label="Gallery hero"

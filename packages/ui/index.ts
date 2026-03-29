@@ -11,6 +11,8 @@ export { Footer } from './components/Footer';
 export { NewsletterSignup } from './components/NewsletterSignup';
 export { VideoHero } from './components/VideoHero';
 export { DirectoryCTA } from './components/DirectoryCTA';
+export { IllustrationDivider } from './components/IllustrationDivider';
+export { EmptyState } from './components/EmptyState';
 
 // Tiny dark placeholder for blur-up image loading (matches site dark theme)
 export const BLUR_DATA_URL =

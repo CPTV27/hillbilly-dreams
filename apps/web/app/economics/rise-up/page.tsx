@@ -26,17 +26,17 @@ const PHASES = [
   {
     num: '01',
     title: 'Apply',
-    desc: 'Your community tells us what it needs. A town, a neighborhood, a corridor of shops that used to be something. We look for willingness, not polish. If twenty people will show up, we show up.',
+    desc: 'Your community tells us what it needs. A town, a neighborhood, a corridor of shops that used to be something. We look for willingness, not polish. If your people will show up, we show up.',
   },
   {
     num: '02',
     title: 'Train',
-    desc: 'We bring the playbook — coordination math, skill mapping, the $450K framework. Free. No strings. Our production partners run workshops on camera, mic, and storytelling basics. You learn to document what you\'re building.',
+    desc: 'We bring the playbook — coordination math, skill mapping, the whole framework. Free. No strings. Our production partners run workshops on camera, mic, and storytelling basics. You learn to document what you\'re building.',
   },
   {
     num: '03',
     title: 'Build',
-    desc: 'Your community runs the six-step process from the book: name your 20, map the skills, build the board, start trading, run the numbers, federate. We coach. You execute. The camera rolls.',
+    desc: 'Your community runs the process from the book: name your people, map the skills, build the board, start trading, run the numbers, federate. We coach. You execute. The camera rolls.',
   },
   {
     num: '04',
@@ -55,13 +55,13 @@ const PARTNERS = [
     name: 'StudioC.video',
     url: 'https://studioc.video',
     role: 'Video Production',
-    desc: 'Full-service video production for the corridor. StudioC handles the heavy lifting — training communities on camera basics, providing production frameworks, and turning raw footage into stories that move people. They make sure every Rise Up community has the tools to document their own transformation.',
+    desc: 'They teach your people how to hold a camera, frame a shot, and tell their own story. No polish required — just real footage of real work. StudioC turns that into something other communities can watch and say "we could do that."',
   },
   {
     name: 'Tuthill Design',
     url: 'https://tuthilldesign.com',
     role: 'Brand & Design',
-    desc: 'Brand strategy and visual identity for communities that never had either. Tuthill Design helps Rise Up graduates establish a visual language — logos, signage, digital presence — so the businesses and networks they\'re building look as serious as they are. Because perception is the first economy.',
+    desc: 'Logos, signage, a real web presence — so the businesses your community is building look as serious as they are. Tuthill makes sure the work you\'re doing doesn\'t get dismissed because it doesn\'t have a font.',
   },
 ];
 
@@ -102,24 +102,24 @@ export default function RiseUpPage() {
               <p className="section-desc">
                 In most underserved communities, money flows in and flows right back out.
                 Wages get spent at chains. Rent goes to out-of-state landlords. Local skills
-                go unrecognized, untapped, uncoordinated. The extraction rate in some corridor
-                towns runs north of 80%.
+                go unrecognized, untapped, uncoordinated. Most of the value leaves before
+                it can do any good.
               </p>
               <p className="section-desc">
-                Rise Up doesn&apos;t bring money in. It stops money from leaving. The math
-                is simple: twenty people coordinating their existing skills can generate
-                $450,000 in local value per year. That&apos;s not theory — that&apos;s
-                Metcalfe&apos;s Law applied to a neighborhood.
+                Rise Up doesn&apos;t bring money in. It stops money from leaving. When a
+                community coordinates its existing skills, the value generated stays local
+                and multiplies. That&apos;s not theory — that&apos;s network math applied
+                to a neighborhood.
               </p>
             </div>
             <div className="rise-problem__stats">
               <div className="rise-stat">
-                <div className="rise-stat__number">80%</div>
-                <div className="rise-stat__label">of every dollar leaves underserved communities within 48 hours</div>
+                <div className="rise-stat__number">Most</div>
+                <div className="rise-stat__label">of every dollar leaves underserved communities before it can circulate</div>
               </div>
               <div className="rise-stat">
-                <div className="rise-stat__number">$450K</div>
-                <div className="rise-stat__label">annual value unlocked by 20 coordinated people</div>
+                <div className="rise-stat__number">More</div>
+                <div className="rise-stat__label">value when a community coordinates — the math is simple, the results aren't</div>
               </div>
               <div className="rise-stat">
                 <div className="rise-stat__number">$0</div>
@@ -179,7 +179,7 @@ export default function RiseUpPage() {
               <h3>We Ask</h3>
               <ul>
                 <li>Film the process — raw, real footage of your community doing the work</li>
-                <li>Show up — twenty people, committed to at least three months of building</li>
+                <li>Show up — your community, committed to at least three months of building</li>
                 <li>Run the math — actually track the value your network generates</li>
                 <li>Stay in the network — when the next town asks &ldquo;does this work?&rdquo; you&apos;re the proof</li>
               </ul>
@@ -194,8 +194,7 @@ export default function RiseUpPage() {
           <div className="section-label">Production Partners</div>
           <h2 className="section-title">Who Makes It Happen</h2>
           <p className="section-desc" style={{ maxWidth: 640 }}>
-            Rise Up works because of the people behind it. Our production partners bring the
-            skills that turn a community workshop into a documented transformation.
+            We don&apos;t do this alone. These are the people who show up with us.
           </p>
           <div className="rise-partners__grid">
             {PARTNERS.map((p) => (
@@ -226,9 +225,9 @@ export default function RiseUpPage() {
               trained themselves.
             </p>
             <p className="section-desc" style={{ maxWidth: 560, marginTop: 'calc(-1 * var(--space-6))' }}>
-              This is how you grow without rotting. Sovereign pods, federated at the edges,
-              visible to everyone in the network. The directory is the proof that coordination
-              beats extraction — and it&apos;s searchable.
+              Sovereign communities, federated at the edges, visible to everyone in the
+              network. The directory is the proof that coordination beats extraction —
+              and it&apos;s searchable.
             </p>
             <a
               href="/community"
@@ -246,8 +245,8 @@ export default function RiseUpPage() {
           <div className="rise-apply__inner">
             <h2 className="section-title">Bring Rise Up to Your Community</h2>
             <p className="section-desc" style={{ maxWidth: 480, margin: '0 auto var(--space-6)' }}>
-              If you&apos;ve got twenty people willing to show up, we&apos;ve got the playbook.
-              No cost. No catch. Just the math, the training, and a camera.
+              If your community is willing to show up, we&apos;ve got the playbook.
+              No cost. No catch. Just the framework, the training, and a camera.
             </p>
             <div style={{ display: 'flex', justifyContent: 'center', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
               <a

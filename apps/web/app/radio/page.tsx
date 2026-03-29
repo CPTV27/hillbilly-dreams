@@ -3,7 +3,7 @@
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { PlaylistCard, EventCard, NewsletterSignup, BLUR_DATA_URL } from '@bigmuddy/ui';
+import { PlaylistCard, EventCard, NewsletterSignup, IllustrationDivider, BLUR_DATA_URL } from '@bigmuddy/ui';
 import type { Playlist, Event } from '@bigmuddy/config';
 
 export const metadata: Metadata = {
@@ -50,7 +50,7 @@ export default async function RadioHomepage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="radio-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/heroes/radio-hero.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="radio-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/radio-hero-vintage.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="radio-hero__overlay" />
         <div className="radio-hero__bg" aria-hidden="true">
           <div className="radio-hero__wave radio-hero__wave--1" />
@@ -80,6 +80,8 @@ export default async function RadioHomepage() {
           </div>
         </div>
       </section>
+
+      <IllustrationDivider variant="magnolia" />
 
       {/* ── Studio Detail Shots ── */}
       <section className="radio-details">

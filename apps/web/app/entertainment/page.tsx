@@ -5,6 +5,7 @@
 // plus talent search, community enrichment, and the credits system.
 
 import type { Metadata } from 'next';
+import { IllustrationDivider } from '@bigmuddy/ui';
 
 export const metadata: Metadata = {
   title: 'Big Muddy Entertainment — Radio, Records, Touring, Rise Up',
@@ -16,7 +17,7 @@ export default function EntertainmentPage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="ent-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/heroes/entertainment-hero.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="ent-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/11-gig-poster/big-muddy-presents.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="ent-hero__overlay" />
         <div className="ent-hero__content">
           <p className="ent-hero__eyebrow">
@@ -45,6 +46,8 @@ export default function EntertainmentPage() {
         </div>
       </section>
 
+      <IllustrationDivider variant="river" />
+
       {/* ── The Story ── */}
       <section className="ent-story">
         <div className="section-container section-container--narrow">
@@ -69,6 +72,8 @@ export default function EntertainmentPage() {
           </p>
         </div>
       </section>
+
+      <IllustrationDivider variant="wildflowers" />
 
       {/* ── The Divisions ── */}
       <section className="ent-divisions" id="divisions">

@@ -1,6 +1,8 @@
 // apps/web/app/records/page.tsx
 // Big Muddy Records — Landing page
 
+import { IllustrationDivider } from '@bigmuddy/ui';
+
 const ROSTER = [
   {
     name: 'Amy Allen',
@@ -94,7 +96,7 @@ export default function RecordsPage() {
           position: 'relative',
         }}
       >
-        {/* Hero background image */}
+        {/* Hero background illustration — gig-poster / guitar-headstock */}
         <div
           style={{
             position: 'fixed',
@@ -102,10 +104,10 @@ export default function RecordsPage() {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/heroes/records-hero.webp)',
+            backgroundImage: 'linear-gradient(180deg, rgba(15,15,13,0.55) 0%, rgba(15,15,13,0.85) 100%), url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/11-gig-poster/guitar-headstock.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            opacity: 0.12,
+            opacity: 0.35,
             zIndex: -1,
             pointerEvents: 'none',
           }}
@@ -183,6 +185,8 @@ export default function RecordsPage() {
           </a>
         </div>
       </section>
+
+      <IllustrationDivider variant="river" />
 
       {/* Why another label */}
       <section
@@ -844,6 +848,8 @@ export default function RecordsPage() {
           </p>
         </div>
       </section>
+
+      <IllustrationDivider variant="cotton" />
 
       {/* Roster */}
       <section

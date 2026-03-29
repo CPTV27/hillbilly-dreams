@@ -233,6 +233,21 @@ export default function DashboardPage() {
           max-width: 1100px;
           margin: 0 auto;
           padding: 0 var(--space-4);
+          position: relative;
+        }
+        .mc::before {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/09-blueprint/dashboard-wireframe.webp);
+          background-size: cover;
+          background-position: center;
+          opacity: 0.04;
+          pointer-events: none;
+          z-index: 0;
         }
 
         /* ── Hero ── */

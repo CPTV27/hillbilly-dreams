@@ -1,27 +1,27 @@
 // apps/web/app/economics/community/page.tsx
-// Community — find your 20, start building
+// Community — find your people, start building
 
 import type { Metadata } from 'next';
-const description = 'You already know your 20. Find them, coordinate them, and start building an economy that doesn\'t leak.';
+const description = 'You already know your community. Organize them, coordinate them, and start building an economy that doesn\'t leak.';
 export const metadata: Metadata = {
   title: 'Community',
   description,
   openGraph: {
     type: 'website',
-    title: 'Find Your 20 | Outsider Economics',
+    title: 'Find Your Community | Outsider Economics',
     description,
     url: 'https://outsidereconomics.com/community',
     siteName: 'Outsider Economics',
   },
-  twitter: { card: 'summary_large_image', title: 'Find Your 20 | Outsider Economics', description },
+  twitter: { card: 'summary_large_image', title: 'Find Your Community | Outsider Economics', description },
   alternates: { canonical: 'https://outsidereconomics.com/community' },
 };
 
 const STEPS = [
   {
     num: '01',
-    title: 'Name Your 20',
-    desc: 'You already know them. The neighbor who fixed your fence. The friend who does your taxes. The cousin with the truck. Write down twenty people you\'d call if everything went sideways. That\'s your network. You just never mapped it.',
+    title: 'Name Your Community',
+    desc: 'You already know them. The neighbor who fixed your fence. The friend who does your taxes. The cousin with the truck. Write down the people you\'d call if everything went sideways. Could be five, could be fifty. That\'s your network. You just never mapped it.',
   },
   {
     num: '02',
@@ -41,7 +41,7 @@ const STEPS = [
   {
     num: '05',
     title: 'Run the Numbers',
-    desc: 'After a month, count the hours traded. Multiply by average market rate. That\'s the value your network just generated without touching the extractive economy. Twenty people, twenty hours each, $75 average rate — you\'re looking at $30K before the coordination multiplier kicks in.',
+    desc: 'After a month, count the hours traded. Multiply by average market rate. That\'s the value your community just generated without touching the extractive economy. Plug in your own numbers — the math scales to any size. The coordination multiplier makes it bigger than you expect.',
   },
   {
     num: '06',
@@ -61,11 +61,11 @@ const FAQ = [
   },
   {
     q: 'What if I only know five people?',
-    a: 'Start with five. Metcalfe\'s Law says five coordinated people generate ten connections. That\'s not nothing. Each of those five knows five more. You\'ll hit twenty faster than you think. The hard part isn\'t finding people — it\'s making the first ask.',
+    a: 'Start with whoever you\'ve got. Two people trading skills is a network of one connection. Add a third and you have three. Add a fourth and you have six. It grows fast. The hard part isn\'t finding people — it\'s making the first ask.',
   },
   {
     q: 'How is this different from a commune?',
-    a: 'Communes share everything and collapse under free-rider problems. This is a network of sovereign individuals who choose to coordinate. You keep your job, your house, your life. You just also have twenty people who\'ll show up when you need a deck built or a business plan reviewed. It\'s a neighborhood that works on purpose instead of by accident.',
+    a: 'Communes share everything and collapse under free-rider problems. This is a network of sovereign individuals who choose to coordinate. You keep your job, your house, your life. You just also have a community that\'ll show up when you need a deck built or a business plan reviewed. It\'s a neighborhood that works on purpose instead of by accident.',
   },
 ];
 
@@ -77,12 +77,12 @@ export default function CommunityPage() {
         <div className="section-container">
           <div className="section-label">Connect</div>
           <h1 className="section-title" style={{ fontSize: 'var(--text-hero)', marginBottom: 'var(--space-6)' }}>
-            Find Your 20
+            Find Your Community
           </h1>
           <p className="section-desc" style={{ maxWidth: 640 }}>
-            The whole book comes down to this: twenty people who decide to be useful to each
-            other on purpose. You probably already have them. You just haven&apos;t organized
-            them yet.
+            The whole book comes down to this: a community of people who decide to be
+            useful to each other on purpose. You probably already have them. You just
+            haven&apos;t organized them yet.
           </p>
         </div>
       </section>
@@ -91,7 +91,7 @@ export default function CommunityPage() {
       <section className="comm-playbook">
         <div className="section-container">
           <div className="section-label">The Playbook</div>
-          <h2 className="section-title">Six Steps to a Working Network</h2>
+          <h2 className="section-title">The Playbook</h2>
           <p className="section-desc" style={{ maxWidth: 640 }}>
             This isn&apos;t a ten-year plan. It&apos;s a Saturday afternoon. Most of these
             steps take less time than arguing about them.
@@ -154,9 +154,9 @@ export default function CommunityPage() {
           <div className="comm-join__inner">
             <h2 className="section-title">Start Now</h2>
             <p className="section-desc" style={{ maxWidth: 480, margin: '0 auto var(--space-6)' }}>
-              Read the book. Run the math on your town. Then text twenty people and
-              ask them what they&apos;re good at. The economy you&apos;re building is
-              one conversation away.
+              Read the book. Run the math on your town. Then reach out to your
+              community and ask them what they&apos;re good at. The economy you&apos;re
+              building is one conversation away.
             </p>
             <div style={{ display: 'flex', justifyContent: 'center', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
               <a

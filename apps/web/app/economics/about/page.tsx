@@ -58,10 +58,9 @@ export default function AboutPage() {
                   So I built the spreadsheet.
                 </p>
                 <p>
-                  Turns out, twenty people swapping twenty hours a month of skilled labor
-                  generates nearly half a million dollars in value. Not metaphorical value.
-                  Real, market-rate, somebody-would-have-charged-you-for-this value. And
-                  none of it has to leave town.
+                  Turns out, a community swapping skills generates real value. Market-rate,
+                  somebody-would-have-charged-you-for-this value. And none of it has to
+                  leave town.
                 </p>
                 <p>
                   That&apos;s when I wrote the book. Not because I wanted to be an author —
