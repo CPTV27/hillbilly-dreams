@@ -1,10 +1,21 @@
-import Anthropic from '@anthropic-ai/sdk'
 import { prisma } from '@bigmuddy/database'
 import { auth } from '@/lib/auth'
 import { requireRoleResponse } from '@/lib/requireRole'
 import * as Sentry from '@sentry/nextjs'
+import { GoogleAuth } from 'google-auth-library'
 
-const anthropic = new Anthropic()
+const PROJECT_ID = 'bigmuddy-ff651'
+const LOCATION = 'us-central1'
+const GEMINI_MODEL = 'gemini-2.5-flash'
+
+function getGoogleAuth() {
+  const creds = process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON
+  if (!creds) throw new Error('GOOGLE_APPLICATION_CREDENTIALS_JSON not set')
+  return new GoogleAuth({
+    credentials: JSON.parse(creds),
+    scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+  })
+}
 
 // ─────────────────────────────────────────────────────────────
 // INTENT DETECTION
@@ -624,30 +635,77 @@ export async function POST(req: Request) {
         return { role: m.role as 'user' | 'assistant', content }
     })
 
-    // Stream response via SSE
+    // Stream response via SSE using Vertex AI Gemini
     const encoder = new TextEncoder()
     const stream = new ReadableStream({
         async start(controller) {
             let fullResponse = ''
             try {
-                const response = anthropic.messages.stream({
-                    model: 'claude-sonnet-4-20250514',
-                    max_tokens: 4096,
-                    system: systemPrompt,
-                    messages,
+                const auth = getGoogleAuth()
+                const client = await auth.getClient()
+                const accessToken = (await client.getAccessToken()).token
+
+                const endpoint = `https://${LOCATION}-aiplatform.googleapis.com/v1/projects/${PROJECT_ID}/locations/${LOCATION}/publishers/google/models/${GEMINI_MODEL}:streamGenerateContent?alt=sse`
+
+                // Convert messages to Gemini format
+                const geminiMessages = messages.map(m => ({
+                    role: m.role === 'assistant' ? 'model' : 'user',
+                    parts: [{ text: m.content }],
+                }))
+
+                const geminiBody = {
+                    contents: geminiMessages,
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                    generationConfig: {
+                        maxOutputTokens: 4096,
+                        temperature: 0.7,
+                    },
+                }
+
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(geminiBody),
                 })
 
-                for await (const event of response) {
-                    if (
-                        event.type === 'content_block_delta' &&
-                        event.delta.type === 'text_delta'
-                    ) {
-                        fullResponse += event.delta.text
-                        controller.enqueue(
-                            encoder.encode(
-                                `data: ${JSON.stringify({ text: event.delta.text })}\n\n`
-                            )
-                        )
+                if (!response.ok) {
+                    const errText = await response.text()
+                    throw new Error(`Gemini API error ${response.status}: ${errText}`)
+                }
+
+                const reader = response.body?.getReader()
+                const decoder = new TextDecoder()
+
+                if (reader) {
+                    let buffer = ''
+                    while (true) {
+                        const { done, value } = await reader.read()
+                        if (done) break
+
+                        buffer += decoder.decode(value, { stream: true })
+                        const lines = buffer.split('\n')
+                        buffer = lines.pop() || ''
+
+                        for (const line of lines) {
+                            if (!line.startsWith('data: ')) continue
+                            const jsonStr = line.slice(6).trim()
+                            if (!jsonStr || jsonStr === '[DONE]') continue
+                            try {
+                                const parsed = JSON.parse(jsonStr)
+                                const text = parsed.candidates?.[0]?.content?.parts?.[0]?.text
+                                if (text) {
+                                    fullResponse += text
+                                    controller.enqueue(
+                                        encoder.encode(
+                                            `data: ${JSON.stringify({ text })}\n\n`
+                                        )
+                                    )
+                                }
+                            } catch { /* skip malformed chunks */ }
+                        }
                     }
                 }
 
