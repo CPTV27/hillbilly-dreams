@@ -85,7 +85,7 @@ export default function DeepSouthPitch() {
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 24 }}>
               {[
-                { title: 'The Flagship Node', desc: 'Natchez becomes the permanent, publicized birthplace of this regional tech ecosystem.' },
+                { title: 'The Flagship Node', desc: 'Natchez becomes the permanent, publicized birthplace of this regional tech network.' },
                 { title: 'Sovereign Subsidies', desc: 'The grant fully subsidizes the digital onboarding of the first 100 Natchez businesses for life.' },
                 { title: 'Macro-Data Access', desc: 'The city gains anonymized data on how tourism dollars compound through the local multiplier.' }
               ].map((item, i) => (

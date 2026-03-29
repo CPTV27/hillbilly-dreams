@@ -81,7 +81,7 @@ const BRANDS = [
     url: 'https://bigmuddytouring.com/inn',
     tagline: '411 N Commerce St, Natchez, Mississippi',
     category: 'Hospitality',
-    desc: 'Six-suite boutique hotel in Natchez, Mississippi. The anchor property for the entire Big Muddy ecosystem — where the media company becomes the hospitality company. Every suite tells a story of the river.',
+    desc: 'Six-suite boutique hotel in Natchez, Mississippi. The anchor property — where the media company becomes the hospitality company. Every suite tells a story of the river.',
     stats: [
       { label: 'Suites', value: '6' },
       { label: 'City', value: 'Natchez' },

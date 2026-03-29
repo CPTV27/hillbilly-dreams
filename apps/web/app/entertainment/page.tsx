@@ -200,7 +200,7 @@ export default function EntertainmentPage() {
             storytellers, anyone making music that matters.
           </p>
           <p className="ent-talent__body">
-            Selected artists get free access to the full Big Muddy ecosystem:
+            Selected artists get free access to the full Big Muddy machine:
           </p>
 
           <div className="ent-talent__benefits">
@@ -234,7 +234,7 @@ export default function EntertainmentPage() {
               <h3>Mentorship</h3>
               <p>
                 Connected to the full network. Magazine features. Radio
-                interviews. Gallery shows for your artwork. The whole ecosystem
+                interviews. Gallery shows for your artwork. The whole machine
                 works for you.
               </p>
             </div>
@@ -266,7 +266,7 @@ export default function EntertainmentPage() {
           >
             We give qualifying artists, businesses, and community members free
             access to Measurably Better &mdash; the AI business platform that
-            powers the ecosystem. Sign up. Learn the tools. Earn credits. Build
+            powers everything we do. Sign up. Learn the tools. Earn credits. Build
             something real.
           </p>
 
@@ -351,7 +351,7 @@ export default function EntertainmentPage() {
             and full platform mastery. Complete modules, earn credits, unlock
             features. By the time you finish, you either become a paying
             customer or you&rsquo;re creating content and performing in the
-            ecosystem. Either way, you&rsquo;re building.
+            network. Either way, you&rsquo;re building.
           </p>
 
           <div className="ent-credits__steps">
@@ -485,7 +485,7 @@ export default function EntertainmentPage() {
             <p className="ent-cta__desc">
               Whether you&rsquo;re an artist looking for a stage, a business
               looking for better tools, or a community member looking to learn
-              &mdash; there&rsquo;s a place for you in the Big Muddy ecosystem.
+              &mdash; there&rsquo;s a place for you in Big Muddy.
             </p>
             <div className="ent-cta__buttons">
               <a href="#talent-search" className="btn btn--primary">

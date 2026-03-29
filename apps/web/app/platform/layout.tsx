@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: '%s | SuperChase',
   },
   description:
-    'SuperChase — tools, APIs, and dashboards powering the Big Muddy media ecosystem.',
+    'SuperChase — tools, APIs, and dashboards powering the Big Muddy media network.',
   metadataBase: new URL('https://superchase.app'),
   openGraph: {
     type: 'website',

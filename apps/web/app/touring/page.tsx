@@ -310,11 +310,11 @@ export default async function TouringHomepage() {
       {/* ── The Ecosystem ── */}
       <section className="touring-ecosystem">
         <div className="section-container">
-          <div className="section-label">The Ecosystem</div>
+          <div className="section-label">The Network</div>
           <h2 className="section-title">One Engine. Seven Brands.</h2>
           <p className="section-desc" style={{ maxWidth: 640, marginBottom: 'var(--space-10)' }}>
-            Big Muddy is a media-hospitality ecosystem anchored in Natchez, Mississippi.
-            Every brand feeds the others — the inn fills the room, the radio fills the
+            Big Muddy runs seven brands from Natchez, Mississippi.
+            Every one feeds the others — the inn fills the room, the radio fills the
             room with sound, the magazine tells the story, the label records it, and the
             gallery sells what it inspires.
           </p>
@@ -324,7 +324,7 @@ export default async function TouringHomepage() {
               { name: 'Big Muddy Magazine', url: 'https://bigmuddymagazine.com', desc: 'City guides, interviews, and photo essays from the Mississippi corridor.' },
               { name: 'Big Muddy Radio', url: 'https://bigmuddyradio.com', desc: 'Curated playlists, live sessions, and the American Parlor Songbook.' },
               { name: 'Big Muddy Records', url: 'https://bigmuddyrecords.net', desc: 'Independent label. Artists own their masters. Always.' },
-              { name: 'Outsider Economics', url: 'https://outsidereconomics.com', desc: 'The economic philosophy behind the ecosystem. Chase Pierson\'s field manual.' },
+              { name: 'Outsider Economics', url: 'https://outsidereconomics.com', desc: 'Why small towns aren\'t broke — they\'re just badly coordinated. The math and the playbook.' },
               { name: 'BuyCurious Art', url: 'https://buycurious.art', desc: 'Art marketplace — photography, prints, and works from corridor artists.' },
               { name: 'Deep South Directory', url: 'https://deepsouthdirectory.com', desc: 'Local business marketing powered by the Big Muddy network.' },
             ].map((brand) => (

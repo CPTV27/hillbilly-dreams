@@ -150,7 +150,7 @@ export default function RecordsPage() {
         >
           Big Muddy Records is an independent label based in Natchez, Mississippi.
           We record the music that lives along the Mississippi corridor and give artists
-          the infrastructure of a full media ecosystem — without taking their masters.
+          the infrastructure of a full media operation — without taking their masters.
         </p>
         <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <a
@@ -228,8 +228,8 @@ export default function RecordsPage() {
           </p>
           <p style={{ marginTop: '1rem' }}>
             We do it differently. Artists own their masters from day one. Marketing
-            services are included. The ecosystem — Radio, Magazine, the Inn, the touring
-            route — amplifies your release without burning your budget on ad spend.
+            services are included. Radio, Magazine, the Inn, the touring
+            route — every brand amplifies your release without burning your budget on ad spend.
             Twelve months at a time. No multi-year lock-in.
           </p>
           <p style={{ marginTop: '1rem', fontStyle: 'italic', color: 'var(--accent, #c8943e)' }}>
@@ -294,7 +294,7 @@ export default function RecordsPage() {
         >
           Any band or solo artist can use our marketing infrastructure — distribution,
           social media, PR, photography, radio placement. If you want the full label
-          deal (recording, vinyl pressing, the whole ecosystem), that&apos;s the Blues
+          deal (recording, vinyl pressing, the whole machine behind you), that&apos;s the Blues
           Room. But you don&apos;t need to sign anything to get started.
         </p>
 
@@ -339,7 +339,7 @@ export default function RecordsPage() {
             {
               name: 'Blues Room',
               price: '$500/mo',
-              sub: 'Full ecosystem — the whole machine behind you',
+              sub: 'The whole machine behind you',
               featured: false,
               includes: [
                 'Everything in The Route',

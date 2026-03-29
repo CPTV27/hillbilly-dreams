@@ -393,7 +393,7 @@ export default function ThesisPage() {
             Street running on the same platform we deploy to clients. The
             magazine, the radio station, the touring route, the record
             label &mdash; all producing content, all employing local creators,
-            all feeding the same ecosystem.
+            all feeding the same machine.
           </p>
           <p
             style={{

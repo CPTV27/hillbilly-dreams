@@ -224,7 +224,7 @@ export default async function ArtistDetailPage({ params }: Props) {
             maxWidth: 500,
           }}
         >
-          Big Muddy Records artists get the full ecosystem — Radio, Magazine, the Inn, the
+          Big Muddy Records artists get the full machine — Radio, Magazine, the Inn, the
           touring route. One retainer, no hidden fees. Artists own their masters. Always.
         </p>
       </section>

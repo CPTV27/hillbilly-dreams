@@ -124,7 +124,7 @@ const DELTA_DAWN_CAPS = [
   },
   {
     title: 'Show Prep & Episode Ideas',
-    desc: 'Delta Dawn scans the ecosystem — new businesses, upcoming events, artist stories — and suggests podcast topics and show lineups.',
+    desc: 'Delta Dawn scans the network — new businesses, upcoming events, artist stories — and suggests podcast topics and show lineups.',
   },
   {
     title: 'Photo Enhancement',
@@ -238,7 +238,7 @@ export default function MediaHomepage() {
       <section className="media-ecosystem">
         <div className="section-container">
           <div className="media-ecosystem__header">
-            <div className="section-label">The Ecosystem</div>
+            <div className="section-label">The Network</div>
             <h2 className="section-title">Seven Brands. One Engine.</h2>
             <p className="section-desc">
               Every brand feeds the others. When you join one, you&apos;re plugged into all of them.

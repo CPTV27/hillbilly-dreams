@@ -74,8 +74,8 @@ export default async function RadioDirectoryPage() {
       {/* ── Hero ── */}
       <section className="rtdir-hero">
         <Image
-          src="/images/ai-corridor/juke-joint-night.webp"
-          alt="Juke joint at night along the Mississippi corridor"
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/11-gig-poster/big-muddy-presents.webp"
+          alt="Big Muddy Presents — gig poster style illustration"
           fill
           priority
           sizes="100vw"

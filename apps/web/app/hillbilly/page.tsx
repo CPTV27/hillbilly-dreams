@@ -704,7 +704,7 @@ export default function HillbillyDreamsPage() {
               <cite>— Chase Tuthill Pierson, Founder</cite>
             </blockquote>
             <p>
-              The Big Muddy ecosystem is the owned-and-operated proof of concept — a micromedia company in a bottle running on Google Cloud. The Inn, the Magazine, the Radio, the Touring circuit, and the Record label. All on one platform.
+              Big Muddy is the proof of concept — a micromedia company in a bottle running on Google Cloud. The Inn, the Magazine, the Radio, the Touring circuit, and the Record label. All on one platform.
             </p>
             <p>
               Through <em>Big Muddy Records</em>, artists keep 100% of their masters. Through <em>Rise Up</em>, Arrie Aslin&apos;s Gospel and Blues Band travels the corridor running regional talent searches at every stop. Through <em>Outsider Economics</em>, we coach communities to keep their value local — stop the extraction, build the alternative.

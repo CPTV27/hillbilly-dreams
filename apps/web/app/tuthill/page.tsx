@@ -8,7 +8,7 @@ import { NewsletterSignup, BLUR_DATA_URL } from '@bigmuddy/ui';
 export const metadata: Metadata = {
   title: 'Tuthill Design — Branding, Web & Creative Direction',
   description:
-    'Branding, web design, photography direction, and creative strategy. Built inside the Big Muddy media ecosystem.',
+    'Branding, web design, photography direction, and creative strategy. Built inside the Big Muddy media network.',
 };
 
 const SERVICES = [
@@ -122,7 +122,7 @@ export default function TuthillPage() {
             margin: '0 0 var(--space-10)',
           }}>
             Branding, web, photography, and creative direction built inside
-            the Big Muddy media ecosystem. We design for businesses that make
+            the Big Muddy media network. We design for businesses that make
             things — not just sell them.
           </p>
           <a href="mailto:design@tuthilldesign.com" className="btn btn--primary">
@@ -252,7 +252,7 @@ export default function TuthillPage() {
                 lineHeight: 'var(--leading-loose)',
                 margin: '0 0 var(--space-6)',
               }}>
-                Tuthill Design is the creative arm of the Big Muddy media ecosystem.
+                Tuthill Design is the creative arm of Big Muddy.
                 Every brand in the network — the Inn, the label, the radio station,
                 the magazine, the directory — was designed and built here. When you
                 work with us, you get access to the same production pipeline: photography

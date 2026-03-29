@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: '%s | Tuthill Design',
   },
   description:
-    'Branding, web design, and creative direction. Part of the Big Muddy media ecosystem in Natchez, Mississippi.',
+    'Branding, web design, and creative direction. Part of the Big Muddy media network in Natchez, Mississippi.',
   metadataBase: new URL('https://tuthilldesign.com'),
   openGraph: {
     type: 'website',

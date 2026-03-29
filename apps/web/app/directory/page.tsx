@@ -89,7 +89,7 @@ const TIERS = [
       'Google review alerts',
       'Monthly report card',
       'Visible to every tourist searching the corridor',
-      'Part of the Big Muddy ecosystem',
+      'Part of the Big Muddy network',
     ],
   },
   {
@@ -577,7 +577,7 @@ export default function DirectoryPage() {
             marginBottom: '2.5rem',
           }}
         >
-          Every paid tier includes access to the Big Muddy ecosystem — Magazine features,
+          Every paid tier plugs you into the whole Big Muddy machine — Magazine features,
           Radio mentions, AI-generated content matched to your voice, and photography by
           Chase Pierson. This isn&apos;t a Yelp listing. This is a media company working for your business.
         </p>

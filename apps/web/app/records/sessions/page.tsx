@@ -45,7 +45,7 @@ const SESSIONS = [
     frequency: 'Quarterly',
     location: 'Memphis to New Orleans, various venues',
     description:
-      'We load the recording rig into the Prevost and drive Highway 61. We stop at juke joints, churches, living rooms, and front porches between Memphis and New Orleans. Every stop is a session. Every session feeds the ecosystem — Radio gets the live cuts, Magazine gets the story, the Inn gets the next booking.',
+      'We load the recording rig into the Prevost and drive Highway 61. We stop at juke joints, churches, living rooms, and front porches between Memphis and New Orleans. Every stop is a session. Every session feeds the machine — Radio gets the live cuts, Magazine gets the story, the Inn gets the next booking.',
     status: 'Summer 2026',
   },
   {
@@ -70,7 +70,7 @@ const RECORDING_PHILOSOPHY = [
       "Every artist on Big Muddy Records owns their masters from day one. We license for distribution. The music belongs to the person who made it. No exceptions, no fine print.",
   },
   {
-    principle: 'Amplify through the ecosystem',
+    principle: 'Amplify through the network',
     detail:
       "A session at the Blues Room doesn't just become a release — it becomes a Radio feature, a Magazine interview, a photo essay, a merch drop on BuyCurious. The recording is the beginning, not the end.",
   },
@@ -87,7 +87,7 @@ const RECORDING_PHILOSOPHY = [
   {
     principle: 'Earned media over bought',
     detail:
-      "The marketing built into every tier is real — but the bigger play is earned media. Magazine features, Radio airtime, and social reach built on the back of the ecosystem. You don't buy that. You build it.",
+      "The marketing built into every tier is real — but the bigger play is earned media. Magazine features, Radio airtime, and social reach built on the back of everything we run. You don't buy that. You build it.",
   },
 ];
 
@@ -128,7 +128,7 @@ export default function SessionsPage() {
         }}
       >
         We go where the music is and press record. No studio. No producer. Just the
-        sound of the place — and everything the ecosystem can do with it afterward.
+        sound of the place — and everything we can do with it afterward.
       </p>
 
       {/* Session types */}
