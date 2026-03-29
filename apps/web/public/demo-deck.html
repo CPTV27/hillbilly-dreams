@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Muddy Platform Demo</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', system-ui, sans-serif; background: #0f0f0d; color: #e8e0d4; }
+.slide { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 4rem 6rem; scroll-snap-align: start; border-bottom: 1px solid #2a2520; }
+.slide-label { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #c8943e; margin-bottom: 1.5rem; }
+.slide h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.03em; background: linear-gradient(135deg, #fff 0%, #a8a098 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.slide h2 { font-size: 1.5rem; font-weight: 700; color: #e8e0d4; margin-bottom: 0.75rem; }
+.slide p { font-size: 1.1rem; color: #8a8074; line-height: 1.6; max-width: 700px; margin-bottom: 1rem; }
+.slide .quote { font-size: 1.3rem; font-style: italic; color: #c8943e; border-left: 3px solid #c8943e; padding-left: 1.5rem; margin: 1.5rem 0; max-width: 600px; }
+.link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.link-card { display: block; padding: 1.25rem 1.5rem; background: #1a1816; border: 1px solid #2a2520; border-radius: 10px; text-decoration: none; transition: all 0.2s; }
+.link-card:hover { border-color: #c8943e40; transform: translateY(-2px); box-shadow: 0 4px 20px rgba(200,148,62,0.1); }
+.link-card .card-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #c8943e; margin-bottom: 0.25rem; display: block; }
+.link-card .card-title { font-size: 1rem; font-weight: 700; color: #e8e0d4; display: block; margin-bottom: 0.25rem; }
+.link-card .card-url { font-size: 0.7rem; color: #5a5550; display: block; }
+.stat-row { display: flex; gap: 2rem; margin: 1.5rem 0; flex-wrap: wrap; }
+.stat { text-align: center; }
+.stat-value { font-size: 2.5rem; font-weight: 800; color: #c8943e; display: block; line-height: 1; }
+.stat-label { font-size: 0.7rem; color: #6a6560; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; display: block; }
+.nav { position: fixed; bottom: 2rem; right: 2rem; display: flex; gap: 0.5rem; z-index: 100; }
+.nav a { padding: 0.5rem 1rem; background: #1a1816; border: 1px solid #2a2520; border-radius: 6px; color: #8a8074; text-decoration: none; font-size: 0.8rem; font-weight: 600; }
+.nav a:hover { border-color: #c8943e; color: #c8943e; }
+html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<section class="slide" id="s1">
+<div class="slide-label">March 29, 2026 &middot; Natchez, Mississippi</div>
+<h1>The Big Muddy<br>Platform</h1>
+<p>One codebase. Fifteen domains. The Mississippi corridor's media-hospitality ecosystem.</p>
+<div class="stat-row">
+<div class="stat"><span class="stat-value">15</span><span class="stat-label">Live Domains</span></div>
+<div class="stat"><span class="stat-value">56</span><span class="stat-label">Illustrations</span></div>
+<div class="stat"><span class="stat-value">18</span><span class="stat-label">Radio Shows</span></div>
+<div class="stat"><span class="stat-value">$20</span><span class="stat-label">Starting Price</span></div>
+</div>
+</section>
+
+<!-- Slide 2: The Hub -->
+<section class="slide" id="s2">
+<div class="slide-label">The Hub</div>
+<h1>Big Muddy Touring</h1>
+<p>The anchor. Hotel, music venue, and the starting point for everything.</p>
+<div class="link-grid">
+<a href="https://bigmuddytouring.com" target="_blank" class="link-card">
+<span class="card-label">Open Live</span>
+<span class="card-title">bigmuddytouring.com</span>
+<span class="card-url">Main site &rarr; Inn &rarr; Suite &rarr; Book on Cloudbeds</span>
+</a>
+</div>
+</section>
+
+<!-- Slide 3: The Corridor -->
+<section class="slide" id="s3">
+<div class="slide-label">The Corridor</div>
+<h1>Memphis to<br>New Orleans</h1>
+<p>Magazine. Radio. Entertainment. Four brands telling the story of the Mississippi music corridor.</p>
+<div class="link-grid">
+<a href="https://bigmuddymagazine.com" target="_blank" class="link-card">
+<span class="card-label">Magazine</span>
+<span class="card-title">bigmuddymagazine.com</span>
+<span class="card-url">How we tell their stories</span>
+</a>
+<a href="https://bigmuddyradio.com" target="_blank" class="link-card">
+<span class="card-label">Radio</span>
+<span class="card-title">bigmuddyradio.com</span>
+<span class="card-url">18 shows, 7 DJs, automated scheduling</span>
+</a>
+<a href="https://bigmuddyentertainment.com" target="_blank" class="link-card">
+<span class="card-label">Entertainment</span>
+<span class="card-title">bigmuddyentertainment.com</span>
+<span class="card-url">Records, touring, talent search</span>
+</a>
+</div>
+</section>
+
+<!-- Slide 4: The Product -->
+<section class="slide" id="s4">
+<div class="slide-label">The Product</div>
+<h1>Deep South<br>Directory</h1>
+<p>$20/month gets a Main Street business an AI-powered listing, review alerts, and a monthly report. $49 adds social. $99 adds everything.</p>
+<div class="link-grid">
+<a href="https://deepsouthdirectory.com" target="_blank" class="link-card">
+<span class="card-label">Directory</span>
+<span class="card-title">deepsouthdirectory.com</span>
+<span class="card-url">Three tiers &rarr; Get Started &rarr; Onboard</span>
+</a>
+<a href="https://measurablybetter.life" target="_blank" class="link-card">
+<span class="card-label">The Pitch</span>
+<span class="card-title">measurablybetter.life</span>
+<span class="card-url">$99 replaces $500-800/mo in tools</span>
+</a>
+</div>
+<div class="quote">"The real value isn't software — it's membership in a media ecosystem."</div>
+</section>
+
+<!-- Slide 5: Mission Control -->
+<section class="slide" id="s5">
+<div class="slide-label">The Admin</div>
+<h1>Mission Control</h1>
+<p>Every card ends with a verb. Content Studio generates four channels from one input. Media Vault indexes every photo in 2 minutes.</p>
+<div class="link-grid">
+<a href="https://bigmuddytouring.com/admin/dashboard" target="_blank" class="link-card">
+<span class="card-label">Dashboard</span>
+<span class="card-title">Mission Control</span>
+<span class="card-url">Sign in with me@chasepierson.tv</span>
+</a>
+<a href="https://bigmuddytouring.com/admin/studio" target="_blank" class="link-card">
+<span class="card-label">Create</span>
+<span class="card-title">Content Studio</span>
+<span class="card-url">One input &rarr; social, magazine, radio, reviews</span>
+</a>
+<a href="https://bigmuddytouring.com/admin/media" target="_blank" class="link-card">
+<span class="card-label">Assets</span>
+<span class="card-title">Media Vault</span>
+<span class="card-url">Every photo, searchable</span>
+</a>
+<a href="https://bigmuddytouring.com/admin/lookbook" target="_blank" class="link-card">
+<span class="card-label">Design</span>
+<span class="card-title">Illustration Lookbook</span>
+<span class="card-url">36 illustrations, 12 styles, vote + comment</span>
+</a>
+</div>
+</section>
+
+<!-- Slide 6: The Art -->
+<section class="slide" id="s6">
+<div class="slide-label">The Art</div>
+<h1>Chase Pierson<br>Photography</h1>
+<p>A storefront with real pricing, Stripe checkout, and proof galleries for event shoots. 75/25 artist/platform split.</p>
+<div class="link-grid">
+<a href="https://bigmuddytouring.com/gallery/chase-pierson" target="_blank" class="link-card">
+<span class="card-label">Storefront</span>
+<span class="card-title">Chase Pierson Photography</span>
+<span class="card-url">Portfolio &rarr; Buy Print &rarr; Stripe Checkout</span>
+</a>
+<a href="https://bigmuddytouring.com/gallery/chase-pierson/shoots/save-the-hall-2026" target="_blank" class="link-card">
+<span class="card-label">Proof Gallery</span>
+<span class="card-title">Save the Hall Ball</span>
+<span class="card-url">Private link, browse + order prints</span>
+</a>
+</div>
+</section>
+
+<!-- Slide 7: The Philosophy -->
+<section class="slide" id="s7">
+<div class="slide-label">The Framework</div>
+<h1>Outsider<br>Economics</h1>
+<p>Six core concepts. A practical toolkit. Case studies from the corridor. Deep South resources — grants, organizations, legal frameworks.</p>
+<div class="link-grid">
+<a href="https://outsidereconomics.com" target="_blank" class="link-card">
+<span class="card-label">Read</span>
+<span class="card-title">outsidereconomics.com</span>
+<span class="card-url">Philosophy &rarr; Toolkit &rarr; Field Manual</span>
+</a>
+</div>
+<div class="quote">"Nobody ran the numbers. I did."</div>
+</section>
+
+<!-- Slide 8: The Infrastructure -->
+<section class="slide" id="s8">
+<div class="slide-label">Under the Hood</div>
+<h1>One Repo.<br>One Database.<br>Everything.</h1>
+<div class="stat-row">
+<div class="stat"><span class="stat-value">1</span><span class="stat-label">Codebase</span></div>
+<div class="stat"><span class="stat-value">1</span><span class="stat-label">Database</span></div>
+<div class="stat"><span class="stat-value">15</span><span class="stat-label">Domains</span></div>
+<div class="stat"><span class="stat-value">6</span><span class="stat-label">Services</span></div>
+</div>
+<p>Mac mini runs the radio station, Plex, social publishing, and AI notebooks. MacBook Pro runs the code. Vercel Pro + Neon PostgreSQL. Total infrastructure cost: less than a bar tab.</p>
+</section>
+
+<!-- Slide 9: The Close -->
+<section class="slide" id="s9">
+<div class="slide-label">What's Next</div>
+<h1>$20 Listings<br>Start Tuesday</h1>
+<p>Five walk-ins a day. The claim ladder adds features weekly through April 21. By then, $99 replaces $500-800 in tools and nobody else in Mississippi has a media ecosystem backing their directory.</p>
+<div class="stat-row">
+<div class="stat"><span class="stat-value">$20</span><span class="stat-label">Door Price</span></div>
+<div class="stat"><span class="stat-value">5/day</span><span class="stat-label">Walk-Ins</span></div>
+<div class="stat"><span class="stat-value">Apr 21</span><span class="stat-label">Full Stack</span></div>
+<div class="stat"><span class="stat-value">$4,555</span><span class="stat-label">At 100 Customers</span></div>
+</div>
+<div class="quote">"I can do this for twenty bucks a month."</div>
+</section>
+
+<nav class="nav">
+<a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a><a href="#s5">5</a><a href="#s6">6</a><a href="#s7">7</a><a href="#s8">8</a><a href="#s9">9</a>
+</nav>
+
+</body>
+</html>
