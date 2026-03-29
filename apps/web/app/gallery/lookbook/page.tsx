@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
+/* eslint-disable @next/next/no-img-element */
 
 const GCS = 'https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook';
 
@@ -112,13 +112,11 @@ export default function LookbookPage() {
                       onMouseEnter={e => (e.currentTarget.style.borderColor = '#c8943e')}
                       onMouseLeave={e => (e.currentTarget.style.borderColor = '#2a2520')}
                     >
-                      <Image
+                      <img
                         src={url}
                         alt={`${style.name} — ${img.replace(/-/g, ' ')}`}
-                        width={400}
-                        height={250}
-                        style={{ width: '100%', height: 'auto', display: 'block' }}
-                        unoptimized
+                        loading="lazy"
+                        style={{ width: '100%', height: 'auto', display: 'block', aspectRatio: '16/10', objectFit: 'cover' }}
                       />
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.375rem' }}>
@@ -186,13 +184,10 @@ export default function LookbookPage() {
           style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)', zIndex: 10001, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
           onClick={() => setLightbox(null)}
         >
-          <Image
+          <img
             src={lightbox}
             alt="Enlarged illustration"
-            width={1200}
-            height={750}
             style={{ maxWidth: '90vw', maxHeight: '90vh', objectFit: 'contain' }}
-            unoptimized
           />
         </div>
       )}
