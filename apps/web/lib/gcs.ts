@@ -18,9 +18,12 @@ import { Storage } from '@google-cloud/storage';
  */
 const BUCKET_NAME = process.env.GCS_BUCKET ?? 'bmt-media-bigmuddy';
 
-// On Firebase App Hosting, ADC is available automatically.
-// Locally, set GOOGLE_APPLICATION_CREDENTIALS or run `gcloud auth application-default login`.
-const storage = new Storage();
+// On Vercel, credentials come from GOOGLE_APPLICATION_CREDENTIALS_JSON env var.
+// Locally, ADC or GOOGLE_APPLICATION_CREDENTIALS file works.
+const credsJson = process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON;
+const storage = credsJson
+  ? new Storage({ credentials: JSON.parse(credsJson), projectId: JSON.parse(credsJson).project_id })
+  : new Storage();
 const bucket = storage.bucket(BUCKET_NAME);
 
 export const GCS_BASE_URL = `https://storage.googleapis.com/${BUCKET_NAME}`;
