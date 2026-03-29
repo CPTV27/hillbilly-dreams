@@ -161,6 +161,30 @@ Two handoff prompts already created:
 
 ---
 
+## Part 4: Inn Blog Page — Fix Missing Images
+
+**File:** `apps/web/app/touring/inn/blog/page.tsx`
+**Live URL:** bigmuddytouring.com/inn/blog
+
+The blog page references 8 images at `/images/inn/*.webp` — a directory that doesn't exist. All 8 blog post thumbnails are broken. Fix by swapping to real GCS photos from the existing catalog.
+
+| Blog Post | Broken Path | GCS Replacement |
+|---|---|---|
+| "Why Natchez Is the Next Great Music City" | `/images/inn/blues-room-stage.webp` | `https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp` |
+| "Six Suites, Six Legends" | `/images/inn/suite-muddy-waters.webp` | `https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-blue-suite.webp` |
+| "Bubbles, Bites & Blues" | `/images/inn/natchez-river.webp` | `https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp` |
+| "Gas Station Fried Chicken" | `/images/inn/natchez-food.webp` | `https://storage.googleapis.com/bmt-media-bigmuddy/magazine/eating-the-delta.webp` |
+| "Inside the Blues Room" | `/images/inn/blues-room-crowd.webp` | `https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-show.webp` |
+| "Meet Arri B. Aslin" | `/images/inn/arri-performance.webp` | `https://storage.googleapis.com/bmt-media-bigmuddy/real/musician-performing.webp` |
+| "Beyond the Antebellum" | `/images/inn/natchez-downtown.webp` | `https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-bluff-sunset.webp` |
+| "How We Got Here" | `/images/inn/big-muddy-exterior.webp` | `https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp` |
+
+Also update the same data in `apps/web/app/touring/inn/blog/[slug]/page.tsx` which has a duplicate BLOG_POSTS array.
+
+**Note:** Using `next/image` with external GCS URLs requires the domain to be in `next.config.js` image domains. Check if `storage.googleapis.com` is already allowed — other pages already use GCS images so it likely is.
+
+---
+
 ## Verification
 
 1. Run dev server (`pnpm dev` in apps/web)
