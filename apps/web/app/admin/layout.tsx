@@ -27,7 +27,8 @@ const NAV_SECTIONS = [
   {
     label: 'Create',
     items: [
-      { label: 'Content Studio', href: '/studio', icon: '✦' },
+      { label: 'Creative Hub', href: '/creative', icon: '✦' },
+      { label: 'Content Studio', href: '/studio', icon: '◻' },
       { label: 'Lookbook', href: '/lookbook', icon: '◎' },
       { label: 'Media Vault', href: '/media', icon: '◈' },
     ],
