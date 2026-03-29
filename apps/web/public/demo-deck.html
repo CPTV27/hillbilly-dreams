@@ -7,7 +7,11 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Inter', system-ui, sans-serif; background: #0f0f0d; color: #e8e0d4; }
-.slide { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 4rem 6rem; scroll-snap-align: start; border-bottom: 1px solid #2a2520; }
+.slide { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 4rem 6rem; scroll-snap-align: start; border-bottom: 1px solid #2a2520; position: relative; overflow: hidden; }
+.slide-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.12; pointer-events: none; z-index: 0; }
+.slide > * { position: relative; z-index: 1; }
+.slide-preview { margin-top: 1.5rem; border-radius: 10px; overflow: hidden; border: 1px solid #2a2520; max-width: 800px; }
+.slide-preview iframe { width: 100%; height: 400px; border: none; }
 .slide-label { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #c8943e; margin-bottom: 1.5rem; }
 .slide h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.03em; background: linear-gradient(135deg, #fff 0%, #a8a098 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .slide h2 { font-size: 1.5rem; font-weight: 700; color: #e8e0d4; margin-bottom: 0.75rem; }
@@ -46,6 +50,7 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 
 <!-- Slide 2: The Hub -->
 <section class="slide" id="s2">
+<div class="slide-bg" style="background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/02-travel-poster/natchez-bluff.webp)"></div>
 <div class="slide-label">The Hub</div>
 <h1>Big Muddy Touring</h1>
 <p>The anchor. Hotel, music venue, and the starting point for everything.</p>
@@ -60,6 +65,7 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 
 <!-- Slide 3: The Corridor -->
 <section class="slide" id="s3">
+<div class="slide-bg" style="background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/12-cartographic/corridor-route.webp)"></div>
 <div class="slide-label">The Corridor</div>
 <h1>Memphis to<br>New Orleans</h1>
 <p>Magazine. Radio. Entertainment. Four brands telling the story of the Mississippi music corridor.</p>
@@ -84,6 +90,7 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 
 <!-- Slide 4: The Product -->
 <section class="slide" id="s4">
+<div class="slide-bg" style="background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/01-woodcut/main-street-storefront.webp)"></div>
 <div class="slide-label">The Product</div>
 <h1>Deep South<br>Directory</h1>
 <p>$20/month gets a Main Street business an AI-powered listing, review alerts, and a monthly report. $49 adds social. $99 adds everything.</p>
@@ -104,6 +111,7 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 
 <!-- Slide 5: Mission Control -->
 <section class="slide" id="s5">
+<div class="slide-bg" style="background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/09-blueprint/dashboard-wireframe.webp)"></div>
 <div class="slide-label">The Admin</div>
 <h1>Mission Control</h1>
 <p>Every card ends with a verb. Content Studio generates four channels from one input. Media Vault indexes every photo in 2 minutes.</p>
@@ -133,6 +141,7 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 
 <!-- Slide 6: The Art -->
 <section class="slide" id="s6">
+<div class="slide-bg" style="background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp)"></div>
 <div class="slide-label">The Art</div>
 <h1>Chase Pierson<br>Photography</h1>
 <p>A storefront with real pricing, Stripe checkout, and proof galleries for event shoots. 75/25 artist/platform split.</p>
@@ -152,6 +161,7 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 
 <!-- Slide 7: The Philosophy -->
 <section class="slide" id="s7">
+<div class="slide-bg" style="background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/08-folk-art/community-quilt.webp)"></div>
 <div class="slide-label">The Framework</div>
 <h1>Outsider<br>Economics</h1>
 <p>Six core concepts. A practical toolkit. Case studies from the corridor. Deep South resources — grants, organizations, legal frameworks.</p>
@@ -165,26 +175,47 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 <div class="quote">"Nobody ran the numbers. I did."</div>
 </section>
 
-<!-- Slide 8: The Infrastructure -->
+<!-- Slide 8: In-Room Entertainment -->
 <section class="slide" id="s8">
+<div class="slide-bg" style="background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/06-neon/live-music-sign.webp)"></div>
+<div class="slide-label">The Guest Experience</div>
+<h1>In-Room<br>Entertainment</h1>
+<p>Every room at the Big Muddy Inn has a smart TV with four channels: Welcome info, Big Muddy Radio, photo gallery slideshow, and live show broadcast from the Blues Room.</p>
+<div class="link-grid">
+<a href="https://bigmuddytouring.com/inn/tv" target="_blank" class="link-card">
+<span class="card-label">Demo</span>
+<span class="card-title">In-Room TV Interface</span>
+<span class="card-url">4 channels: Welcome, Radio, Gallery, Live Shows</span>
+</a>
+<a href="https://bigmuddytouring.com/radio/player" target="_blank" class="link-card">
+<span class="card-label">Listen</span>
+<span class="card-title">Web Radio Player</span>
+<span class="card-url">Stream Big Muddy Radio from any device</span>
+</a>
+</div>
+</section>
+
+<!-- Slide 9: The Infrastructure -->
+<section class="slide" id="s9">
+<div class="slide-bg" style="background-image: url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/09-blueprint/data-flow.webp)"></div>
 <div class="slide-label">Under the Hood</div>
-<h1>One Repo.<br>One Database.<br>Everything.</h1>
+<h1>One Repo.<br>Two Databases.<br>Everything.</h1>
 <div class="stat-row">
 <div class="stat"><span class="stat-value">1</span><span class="stat-label">Codebase</span></div>
-<div class="stat"><span class="stat-value">1</span><span class="stat-label">Database</span></div>
+<div class="stat"><span class="stat-value">2</span><span class="stat-label">Databases</span></div>
 <div class="stat"><span class="stat-value">15</span><span class="stat-label">Domains</span></div>
 <div class="stat"><span class="stat-value">6</span><span class="stat-label">Services</span></div>
 </div>
 <p>Mac mini runs the radio station, Plex, social publishing, and AI notebooks. MacBook Pro runs the code. Vercel Pro + Neon PostgreSQL. Total infrastructure cost: less than a bar tab.</p>
 </section>
 
-<!-- Slide 9: The Close -->
-<section class="slide" id="s9">
+<!-- Slide 10: The Close -->
+<section class="slide" id="s10">
 <div class="slide-label">What's Next</div>
-<h1>$20 Listings<br>Start Tuesday</h1>
-<p>Five walk-ins a day. The claim ladder adds features weekly through April 21. By then, $99 replaces $500-800 in tools and nobody else in Mississippi has a media ecosystem backing their directory.</p>
+<h1>Free Listings<br>Start Tuesday</h1>
+<p>Lead with free to build content and audience. $20 AI assistant replaces ChatGPT with local intelligence. $99 for the full engine. Five walk-ins a day. Nobody else in Mississippi has a media ecosystem backing their directory.</p>
 <div class="stat-row">
-<div class="stat"><span class="stat-value">$20</span><span class="stat-label">Door Price</span></div>
+<div class="stat"><span class="stat-value">Free</span><span class="stat-label">Door Price</span></div>
 <div class="stat"><span class="stat-value">5/day</span><span class="stat-label">Walk-Ins</span></div>
 <div class="stat"><span class="stat-value">Apr 21</span><span class="stat-label">Full Stack</span></div>
 <div class="stat"><span class="stat-value">$4,555</span><span class="stat-label">At 100 Customers</span></div>
@@ -193,7 +224,7 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 </section>
 
 <nav class="nav">
-<a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a><a href="#s5">5</a><a href="#s6">6</a><a href="#s7">7</a><a href="#s8">8</a><a href="#s9">9</a>
+<a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a><a href="#s5">5</a><a href="#s6">6</a><a href="#s7">7</a><a href="#s8">8</a><a href="#s9">9</a><a href="#s10">10</a>
 </nav>
 
 </body>
