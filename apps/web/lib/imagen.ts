@@ -21,22 +21,28 @@ function getClient(): PredictionServiceClient {
     // On Vercel, credentials come from GOOGLE_APPLICATION_CREDENTIALS_JSON env var
     // On local dev, ADC or GOOGLE_APPLICATION_CREDENTIALS file works
     const credsJson = process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON;
-    const clientOptions: Record<string, unknown> = {
-      apiEndpoint: `${LOCATION}-aiplatform.googleapis.com`,
-    };
     if (credsJson) {
       try {
         const creds = JSON.parse(credsJson);
-        clientOptions.credentials = {
-          client_email: creds.client_email,
-          private_key: creds.private_key,
-        };
-        clientOptions.projectId = creds.project_id;
+        client = new PredictionServiceClient({
+          apiEndpoint: `${LOCATION}-aiplatform.googleapis.com`,
+          credentials: {
+            client_email: creds.client_email,
+            private_key: creds.private_key,
+          },
+          projectId: creds.project_id,
+        } as any);
       } catch {
         console.error('[imagen] Failed to parse GOOGLE_APPLICATION_CREDENTIALS_JSON');
+        client = new PredictionServiceClient({
+          apiEndpoint: `${LOCATION}-aiplatform.googleapis.com`,
+        });
       }
+    } else {
+      client = new PredictionServiceClient({
+        apiEndpoint: `${LOCATION}-aiplatform.googleapis.com`,
+      });
     }
-    client = new PredictionServiceClient(clientOptions);
   }
   return client;
 }
