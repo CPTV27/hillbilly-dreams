@@ -217,12 +217,14 @@ model SocialPost {
   sourceType  String?                      // article | newsletter | event | economics | manual
   sourceId    String?                      // Reference to source content ID
   tags        String[]                     // hashtags, topics
+  visibility  String    @default("draft")  // draft | internal | public — controls AI assistant access
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
   @@index([accountId, status])
   @@index([status, scheduledAt])
   @@index([sourceType, sourceId])
+  @@index([visibility])
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -952,6 +954,7 @@ model DirectoryBusiness {
   softwareSpend     String?                        // Survey: monthly software spend
   hearAbout         String?                        // How they found the directory
   active            Boolean   @default(false)      // Manually activated by admin
+  visibility        String    @default("private")  // private | approved | featured — controls AI assistant access
 
   // ── External Data Sources ──
   googlePlaceId     String?   @unique              // Google Places place_id
@@ -1164,6 +1167,7 @@ model AgentContext {
   source      String    // origin: "tax-db/ENTITY_REGISTRY.md", "agent:ledger", "memory:project_cap_table"
   confidence  Float     @default(1.0) // 0-1, decays over time for time-sensitive facts
   agentAuthor String?   // which agent wrote this: "huck", "ledger", "delta-dawn", "rook", "chuck"
+  visibility  String    @default("private") // private | public — controls AI assistant access
   validUntil  DateTime? // TTL for time-sensitive facts (null = permanent)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
@@ -1172,6 +1176,7 @@ model AgentContext {
   @@index([domain, topic])
   @@index([agentAuthor])
   @@index([confidence])
+  @@index([visibility])
 }
 
 /// Agent action log — replaces AGENT_LEDGER.md
