@@ -11,12 +11,13 @@ import { useState, useEffect, useRef, useCallback } from 'react';
  * Radio script. One click to approve and distribute.
  */
 
-type Channel = 'social' | 'magazine' | 'radio' | 'reviews';
+type Channel = 'social' | 'magazine' | 'radio' | 'reviews' | 'poster';
 type ContentDraft = {
   channel: Channel;
   title: string;
   content: string;
   status: 'generating' | 'draft' | 'approved' | 'published';
+  posterData?: { backgroundUrl: string; canvaQuery: string; eventId: number | null };
 };
 
 export default function ContentStudio() {
@@ -78,6 +79,7 @@ export default function ContentStudio() {
       { channel: 'magazine', title: '📰 Magazine Event Listing', content: '', status: 'generating' },
       { channel: 'radio', title: '🎙 Radio Promo Script', content: '', status: 'generating' },
       { channel: 'reviews', title: '🏨 Blues & Beds Package', content: '', status: 'generating' },
+      { channel: 'poster', title: '🎬 Event Poster', content: 'Generating background image...', status: 'generating' },
     ] : [
       { channel: 'social', title: '📱 Social Posts', content: '', status: 'generating' },
       { channel: 'magazine', title: '📰 Magazine Feature', content: '', status: 'generating' },
@@ -140,6 +142,43 @@ export default function ContentStudio() {
         status: 'draft',
       });
 
+      // Channel 5: Poster (shows only)
+      if (isShow) {
+        try {
+          const posterRes = await fetch('/api/marketing/poster', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              eventName: `${showArtist} Live`,
+              artist: showArtist,
+              date: showDate ? new Date(showDate).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) : 'TBD',
+              time: showDate ? new Date(showDate).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) : '',
+              venue: showVenue,
+              vibe: 'dark blues',
+            }),
+          });
+          const posterData = await posterRes.json();
+          if (posterData.success) {
+            updateDraft(4, {
+              title: '🎬 Event Poster',
+              content: posterData.poster.backgroundUrl
+                ? `Background image generated.\n\nCanva prompt ready — click "Create in Canva" to generate the final poster with text.`
+                : 'Background generation failed — use Canva template directly.',
+              status: 'draft',
+              posterData: {
+                backgroundUrl: posterData.poster.backgroundUrl,
+                canvaQuery: posterData.poster.canvaQuery,
+                eventId: posterData.poster.eventId,
+              },
+            });
+          } else {
+            updateDraft(4, { content: 'Poster generation failed.', status: 'draft' });
+          }
+        } catch {
+          updateDraft(4, { content: 'Poster generation failed.', status: 'draft' });
+        }
+      }
+
     } catch (err: any) {
       setError(err.message);
     }
@@ -181,6 +220,7 @@ export default function ContentStudio() {
     magazine: '#c8943e',
     radio: '#D4915E',
     reviews: '#22c55e',
+    poster: '#8b5cf6',
   };
 
   const channelIcons: Record<string, string> = {
@@ -188,6 +228,7 @@ export default function ContentStudio() {
     magazine: '📰',
     radio: '🎙',
     reviews: '⭐',
+    poster: '🎬',
   };
 
   return (
@@ -295,6 +336,33 @@ export default function ContentStudio() {
                 )}
               </div>
               <pre style={S.text}>{draft.content}</pre>
+              {draft.channel === 'poster' && draft.posterData?.backgroundUrl && (
+                <div style={{ marginTop: '0.75rem' }}>
+                  <img
+                    src={draft.posterData.backgroundUrl}
+                    alt="Generated poster background"
+                    style={{ width: '100%', maxWidth: 300, borderRadius: 8, border: '1px solid #2a2520' }}
+                  />
+                  <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem' }}>
+                    <a
+                      href={`https://www.canva.com/design/new?width=1080&height=1920`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ padding: '6px 14px', background: '#8b5cf6', color: '#fff', borderRadius: 6, fontSize: '0.75rem', fontWeight: 700, textDecoration: 'none' }}
+                    >
+                      Create in Canva
+                    </a>
+                    <a
+                      href={draft.posterData.backgroundUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ padding: '6px 14px', background: 'transparent', color: '#8a8074', border: '1px solid #333', borderRadius: 6, fontSize: '0.75rem', fontWeight: 600, textDecoration: 'none' }}
+                    >
+                      Download Background
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
 
