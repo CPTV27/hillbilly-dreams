@@ -118,7 +118,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
                 {section.items.map((item) => (
                   <li key={item.href}>
                     <a
-                      href={item.href}
+                      href={(item as { external?: boolean }).external ? item.href : `/admin${item.href}`}
                       className="admin-nav-link"
                       target={(item as { external?: boolean }).external ? '_blank' : undefined}
                       rel={(item as { external?: boolean }).external ? 'noopener noreferrer' : undefined}
