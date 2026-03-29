@@ -1,0 +1,104 @@
+// config/tenants.ts
+// ─────────────────────────────────────────────────────────────
+// MULTI-TENANT REGISTRY
+// ─────────────────────────────────────────────────────────────
+// Single source of truth for every tenant on the platform.
+// Add a new tenant here → it gets routing, theming, and admin access.
+//
+// Rule: Features go in the shared codebase. Brand goes in the tenant config.
+
+export interface TenantConfig {
+  id: string;
+  name: string;
+  entity: string;
+  domains: string[];
+  primaryDomain: string;
+  routeGroup: string;
+  themeClass: string;
+  gcsBucket: string;
+  accentColor: string;
+  logo?: string;
+  tagline: string;
+  location: { city: string; state: string };
+  features: string[];
+}
+
+export const TENANTS: TenantConfig[] = [
+  {
+    id: 'big-muddy',
+    name: 'Big Muddy',
+    entity: 'Hillbilly Dreams Inc',
+    domains: [
+      'bigmuddytouring.com', 'bigmuddymagazine.com', 'bigmuddyradio.com',
+      'bigmuddyentertainment.com', 'deepsouthdirectory.com', 'measurablybetter.life',
+      'outsidereconomics.com', 'buycurious.art', 'bigmuddymedia.com',
+      'bigmuddyrecord.com', 'superchase.app', 'hillbillydreamsinc.com',
+    ],
+    primaryDomain: 'bigmuddytouring.com',
+    routeGroup: 'touring',
+    themeClass: 'theme-touring',
+    gcsBucket: 'bmt-media-bigmuddy',
+    accentColor: '#c8943e',
+    tagline: "The Mississippi's Music Corridor",
+    location: { city: 'Natchez', state: 'MS' },
+    features: ['directory', 'radio', 'magazine', 'gallery', 'studio', 'inn', 'entertainment', 'economics'],
+  },
+  {
+    id: 'bearsville',
+    name: 'Bearsville Media Group',
+    entity: 'Bearsville Media Group LLC',
+    domains: ['bearsvillemedia.com'],
+    primaryDomain: 'bearsvillemedia.com',
+    routeGroup: 'bearsville',
+    themeClass: 'theme-bearsville',
+    gcsBucket: 'bmt-media-bigmuddy',
+    accentColor: '#8B6914',
+    tagline: "The Hudson Valley's Creative Engine",
+    location: { city: 'Woodstock', state: 'NY' },
+    features: ['directory', 'radio', 'magazine', 'studio'],
+  },
+  {
+    id: 'studio-c',
+    name: 'Studio C',
+    entity: 'Studio C Video LLC',
+    domains: ['studiocvideo.com', 'studio-c.video', 'studio-c.com'],
+    primaryDomain: 'studio-c.video',
+    routeGroup: 'studio',
+    themeClass: 'theme-studio',
+    gcsBucket: 'bmt-media-bigmuddy',
+    accentColor: '#4A90D9',
+    tagline: 'Production. Recording. Broadcasting.',
+    location: { city: 'Woodstock', state: 'NY' },
+    features: ['gallery', 'studio', 'radio'],
+  },
+  {
+    id: 'tuthill',
+    name: 'Tuthill Design',
+    entity: 'Tuthill Design LLC',
+    domains: ['tuthilldesign.com'],
+    primaryDomain: 'tuthilldesign.com',
+    routeGroup: 'tuthill',
+    themeClass: 'theme-tuthill',
+    gcsBucket: 'bmt-media-bigmuddy',
+    accentColor: '#2D5F2D',
+    tagline: 'Photography for the Hudson Valley',
+    location: { city: 'Woodstock', state: 'NY' },
+    features: ['gallery', 'studio'],
+  },
+];
+
+/** Resolve tenant from hostname */
+export function getTenantByHostname(hostname: string): TenantConfig | undefined {
+  const h = hostname.toLowerCase().replace(/^www\./, '');
+  return TENANTS.find(t => t.domains.some(d => h.includes(d.replace('www.', ''))));
+}
+
+/** Get tenant by ID */
+export function getTenantById(id: string): TenantConfig | undefined {
+  return TENANTS.find(t => t.id === id);
+}
+
+/** Get all tenant IDs */
+export function getAllTenantIds(): string[] {
+  return TENANTS.map(t => t.id);
+}

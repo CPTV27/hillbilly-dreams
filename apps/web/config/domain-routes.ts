@@ -66,6 +66,7 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
   { pattern: 'bigmuddyentertainment', routeGroup: 'entertainment' },
   { pattern: 'hillbillydreams', routeGroup: 'hillbilly' },
   { pattern: 'measurablybetter', routeGroup: 'measurably-better' },
+  { pattern: 'bearsville', routeGroup: 'bearsville' },
 ];
 
 // ── Local Development Domain Mappings ──
