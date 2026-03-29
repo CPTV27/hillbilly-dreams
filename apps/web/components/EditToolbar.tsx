@@ -18,6 +18,28 @@ export function EditToolbar() {
     fetch('/api/draft').then(r => r.json()).then(d => {
       if (d.enabled) setEditing(true);
     }).catch(() => {});
+
+    // Load and apply any saved edits for this page
+    fetch(`/api/page-edits?path=${encodeURIComponent(window.location.pathname)}`)
+      .then(r => r.json())
+      .then(data => {
+        if (data.edits && data.edits.length > 0) {
+          // Wait a tick for DOM to be ready
+          requestAnimationFrame(() => {
+            data.edits.forEach((edit: { editId: string; editType: string; content: string }) => {
+              if (edit.editType === 'text') {
+                const el = document.querySelector(`[data-edit-id="${edit.editId}"]`) as HTMLElement;
+                if (el) el.innerText = edit.content;
+              } else if (edit.editType === 'image') {
+                const idx = parseInt(edit.editId.replace('img-', ''), 10);
+                const imgs = document.querySelectorAll('img');
+                if (imgs[idx]) (imgs[idx] as HTMLImageElement).src = edit.content;
+              }
+            });
+          });
+        }
+      })
+      .catch(() => {});
   }, []);
 
   const enableEditing = () => {
@@ -77,13 +99,33 @@ export function EditToolbar() {
     setEditing(false);
   };
 
-  const saveChanges = () => {
-    // Save changes to the console for now
-    // In production, this would POST to an API that updates the CMS
-    const changeLog: Record<string, string> = {};
-    changes.forEach((value, key) => { changeLog[key] = value; });
-    console.log('[EditToolbar] Changes:', changeLog);
-    alert(`${changes.size} changes logged. In production, these would save to the CMS.`);
+  const saveChanges = async () => {
+    const edits: Array<{ editId: string; editType: string; content: string }> = [];
+    changes.forEach((value, key) => {
+      edits.push({
+        editId: key,
+        editType: key.startsWith('img-') ? 'image' : 'text',
+        content: value,
+      });
+    });
+
+    try {
+      const res = await fetch('/api/page-edits', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ path: window.location.pathname, edits }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        alert(`Saved ${data.saved} edits to ${window.location.pathname}`);
+        setChanges(new Map());
+      } else {
+        alert(`Save failed: ${data.error || 'Unknown error'}`);
+      }
+    } catch (err) {
+      console.error('[EditToolbar] Save error:', err);
+      alert('Save failed — check console for details.');
+    }
   };
 
   if (!editing) return null;

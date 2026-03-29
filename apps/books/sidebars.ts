@@ -27,6 +27,7 @@ const sidebars: SidebarsConfig = {
         'toolkit/the-20-revolution',
         'toolkit/technology-sovereignty',
         'toolkit/shared-services',
+        'toolkit/make-money',
       ],
     },
   ],

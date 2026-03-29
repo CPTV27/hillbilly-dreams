@@ -1255,3 +1255,19 @@ model PendingDraft {
   @@index([status, channel])
   @@index([sourceType, sourceId])
 }
+
+// Page-level content overrides from Edit Mode
+model PageEdit {
+  id        Int      @id @default(autoincrement())
+  path      String   // URL path, e.g. "/touring" or "/directory/fat-mamas"
+  editId    String   // DOM element ID, e.g. "edit-5" or "img-3"
+  editType  String   // "text" or "image"
+  content   String   @db.Text // new text content or new image URL
+  editedBy  String?  // user email or "anonymous"
+  active    Boolean  @default(true) // soft-delete: false = reverted
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([path, editId])
+  @@index([path, active])
+}

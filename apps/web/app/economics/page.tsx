@@ -28,42 +28,42 @@ const CORE_CONCEPTS = [
     num: '01',
     title: 'The $450,000 Secret',
     stat: '$450K/mo',
-    href: '/field-manual/ch01-the-450000-secret',
+    href: 'https://outsidereconomics.com/philosophy/people-are-the-currency',
     desc: 'Nobody ran the numbers. I did. Twenty people swapping twenty hours a month of real skills — plumbing, bookkeeping, carpentry, code — generates nearly half a million in value. Without a bank. Without a grant. Without asking permission.',
   },
   {
     num: '02',
     title: 'The Extraction Trap',
     stat: '82%',
-    href: '/field-manual/02-the-extraction-trap',
+    href: 'https://outsidereconomics.com/philosophy/the-extraction-trap',
     desc: 'You buy coffee at the chain. That dollar hits a server in Seattle by lunch. Multiply that by everything you buy and eighty-two cents of every dollar you earn leaves your zip code in a month. You\'re not poor. You\'re being drained.',
   },
   {
     num: '03',
     title: 'The Coordination Premium',
     stat: '4.5x',
-    href: '/field-manual/03-the-coordination-premium',
+    href: 'https://outsidereconomics.com/philosophy/coordination-not-scale',
     desc: 'A plumber alone bills $80 an hour. A plumber who knows an electrician, a carpenter, and a permit expediter? That crew bills renovations. Same people, same hours — four and a half times the value. Coordination is the multiplier nobody talks about.',
   },
   {
     num: '04',
     title: 'Time as Currency',
     stat: '∞',
-    href: '/field-manual/04-time-is-the-only-currency-that-cant-leave-town',
+    href: 'https://outsidereconomics.com/toolkit/building-without-banks',
     desc: 'Here\'s what kept bugging me: money leaves. Always. But your neighbor\'s Saturday? That stays. Your hour of welding doesn\'t get wired to a hedge fund. It can\'t leave town. That\'s not a limitation — that\'s a feature.',
   },
   {
     num: '05',
     title: 'Federation over Scale',
     stat: '~100',
-    href: '/field-manual/07-federation-not-scale',
+    href: 'https://outsidereconomics.com/philosophy/the-federation-effect',
     desc: 'Every org that scales past a hundred people starts acting like the thing it was built to replace. So don\'t scale. Federate. Keep each pod human-sized, wire them together, and let the network do what networks do.',
   },
   {
     num: '06',
     title: 'The Task Board',
     stat: 'OS',
-    href: '/field-manual/05-the-task-board',
+    href: 'https://outsidereconomics.com/toolkit/the-task-board',
     desc: 'Not an app. Not a startup. Just a board — physical or digital — that shows who can do what and who needs what done. The simplest piece of infrastructure that turns a neighborhood into an economy. Most towns are one whiteboard away from not being broke.',
   },
 ];
@@ -102,11 +102,11 @@ export default function EconomicsHomepage() {
             Here&apos;s how it works — and how to stop it.
           </p>
           <div className="econ-hero__ctas">
-            <a href="/field-manual" className="btn btn--primary">
-              Read the Field Manual
+            <a href="https://outsidereconomics.com/philosophy/what-is-outsider-economics" className="btn btn--primary">
+              Read the Philosophy
             </a>
-            <a href="/the-math" className="btn btn--ghost">
-              See the Math
+            <a href="https://outsidereconomics.com/toolkit/the-task-board" className="btn btn--ghost">
+              See the Toolkit
             </a>
           </div>
           <p className="econ-hero__tagline">
@@ -186,35 +186,6 @@ export default function EconomicsHomepage() {
         </div>
       </section>
 
-      {/* ── Video Break ── */}
-      <section className="econ-video-break">
-        <div className="section-container" style={{ textAlign: 'center' }}>
-          <div className="section-label">Watch</div>
-          <h2 className="section-title">The Extraction Trap — In 60 Seconds</h2>
-          <p className="section-desc" style={{ maxWidth: 480, margin: '0 auto var(--space-8)' }}>
-            82 cents of every dollar you make leaves your zip code in 30 days.
-            Here&apos;s how the drain works.
-          </p>
-          <div className="econ-video-container">
-            <video
-              src="/video/extraction-trap.mp4"
-              controls
-              playsInline
-              preload="metadata"
-              poster="/images/ai-corridor/delta-cotton-field.webp"
-              style={{
-                maxWidth: 400,
-                width: '100%',
-                borderRadius: 'var(--radius-lg)',
-                border: '1px solid var(--border)',
-              }}
-            >
-              Your browser does not support the video element.
-            </video>
-          </div>
-        </div>
-      </section>
-
       {/* ── Current Trends ── */}
       <section className="econ-trends">
         <div className="section-container">
@@ -235,77 +206,6 @@ export default function EconomicsHomepage() {
         </div>
       </section>
 
-      {/* ── More Videos ── */}
-      <section className="econ-video-break">
-        <div className="section-container">
-          <div className="section-label">Watch</div>
-          <h2 className="section-title">The Numbers</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-6)', maxWidth: 700, margin: '0 auto' }}>
-            <div style={{ textAlign: 'center' }}>
-              <video
-                src="/video/stat-450k.mp4"
-                controls
-                playsInline
-                preload="metadata"
-                style={{
-                  maxWidth: 320,
-                  width: '100%',
-                  borderRadius: 'var(--radius-lg)',
-                  border: '1px solid var(--border)',
-                }}
-              >
-                Video not supported.
-              </video>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: 'var(--space-2)' }}>
-                The $450,000 Secret
-              </p>
-            </div>
-            <div style={{ textAlign: 'center' }}>
-              <video
-                src="/video/extraction-stat.mp4"
-                controls
-                playsInline
-                preload="metadata"
-                style={{
-                  maxWidth: 320,
-                  width: '100%',
-                  borderRadius: 'var(--radius-lg)',
-                  border: '1px solid var(--border)',
-                }}
-              >
-                Video not supported.
-              </video>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: 'var(--space-2)' }}>
-                The Extraction Rate
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Quote Video ── */}
-      <section className="econ-video-break" style={{ paddingTop: 0 }}>
-        <div className="section-container" style={{ textAlign: 'center' }}>
-          <video
-            src="/video/quote-broke.mp4"
-            controls
-            playsInline
-            preload="metadata"
-            style={{
-              maxWidth: 360,
-              width: '100%',
-              borderRadius: 'var(--radius-lg)',
-              border: '1px solid var(--border)',
-            }}
-          >
-            Video not supported.
-          </video>
-          <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: 'var(--space-3)', fontStyle: 'italic' }}>
-            &ldquo;You&apos;re not broke. You&apos;re being drained.&rdquo;
-          </p>
-        </div>
-      </section>
-
       {/* ── Community CTA ── */}
       <section className="econ-community">
         <div className="section-container">
@@ -319,16 +219,14 @@ export default function EconomicsHomepage() {
               Tuesday.
             </p>
             <div className="econ-community__actions">
-              <a href="/community" className="btn btn--primary">
-                Join the Network
+              <a href="https://outsidereconomics.com/resources/grants-and-funding" className="btn btn--primary">
+                Deep South Resources
               </a>
               <a
-                href="https://www.amazon.com/dp/B0F2HZBZFZ"
+                href="https://outsidereconomics.com/toolkit/the-directory"
                 className="btn btn--ghost"
-                target="_blank"
-                rel="noopener noreferrer"
               >
-                Get the Book
+                Build a Directory
               </a>
             </div>
           </div>
