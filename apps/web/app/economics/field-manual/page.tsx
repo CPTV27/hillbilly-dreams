@@ -27,15 +27,11 @@ export default function FieldManualPage() {
 
   return (
     <>
-      {/* ── Hero Image ── */}
+      {/* ── Hero Illustration ── */}
       <section className="fm-hero-img">
-        <Image
-          src="/images/ai-corridor/delta-cotton-field.webp"
-          alt="Cotton field at golden hour in the Mississippi Delta"
-          width={1600}
-          height={900}
-          priority
-          sizes="100vw"
+        <img
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/10-watercolor/small-town-street.webp"
+          alt="Watercolor illustration of a small-town street in the Deep South"
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
       </section>

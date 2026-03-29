@@ -70,13 +70,10 @@ export default function RiseUpPage() {
     <>
       {/* ── Hero ── */}
       <section className="rise-hero">
-        <Image
-          src="/images/corridor/cafe-sidewalk-natchez.webp"
-          alt="Sidewalk cafe in a small town — the kind of place Rise Up helps build"
-          fill
-          priority
-          sizes="100vw"
-          style={{ objectFit: 'cover', zIndex: 0 }}
+        <img
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/08-folk-art/town-dancing.webp"
+          alt="Folk art illustration of a community gathering"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}
         />
         <div className="rise-hero__overlay" />
         <div className="rise-hero__content">
