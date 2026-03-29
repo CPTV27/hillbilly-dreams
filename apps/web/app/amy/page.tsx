@@ -1,12 +1,5 @@
-import AmyDashboard from './amy-client';
-
-export const dynamic = 'force-dynamic';
-
-export const metadata = {
-  title: 'Ops Dashboard — Amy Alderson-Allen',
-  description: 'Guest Experience & Artist Operations',
-};
+import { redirect } from 'next/navigation';
 
 export default function AmyPage() {
-  return <AmyDashboard />;
+  redirect('/admin/upload');
 }
