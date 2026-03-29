@@ -7,6 +7,7 @@ import { OrgChartLens } from './OrgChartLens';
 import { RevenueLens } from './RevenueLens';
 import { TechStackLens } from './TechStackLens';
 import { FlywheelLens } from './FlywheelLens';
+import { AdvisorLens } from './AdvisorLens';
 
 const LENSES = [
   { id: 'audience', label: 'Audience', icon: 'A', desc: 'How we grow' },
@@ -15,6 +16,7 @@ const LENSES = [
   { id: 'revenue', label: 'Revenue', icon: '$', desc: 'Where money comes from' },
   { id: 'tech', label: 'Tech Stack', icon: 'T', desc: 'Infrastructure' },
   { id: 'flywheel', label: 'Flywheel', icon: 'F', desc: 'How it all connects' },
+  { id: 'advisor', label: 'AI Advisor', icon: '✦', desc: 'Get AI analysis' },
 ] as const;
 
 type LensId = typeof LENSES[number]['id'];
@@ -51,6 +53,7 @@ export default function EcosystemPage() {
           {lens === 'revenue' && <RevenueLens />}
           {lens === 'tech' && <TechStackLens />}
           {lens === 'flywheel' && <FlywheelLens />}
+          {lens === 'advisor' && <AdvisorLens />}
         </div>
       </div>
 
