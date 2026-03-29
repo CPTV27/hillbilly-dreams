@@ -82,15 +82,27 @@ const FEATURED_BUSINESSES = [
 const TIERS = [
   {
     name: 'The Listing',
-    price: '$20/mo',
+    price: 'Free',
     href: '/directory/onboard',
     features: [
       'AI business listing on the directory',
       'Google review alerts',
       'Monthly report card',
-      'AI chat that knows your business',
-      '1 social post per week (manual)',
-      'Email support',
+      'Visible to every tourist searching the corridor',
+      'Part of the Big Muddy ecosystem',
+    ],
+  },
+  {
+    name: 'The Assistant',
+    price: '$20/mo',
+    href: '/directory/onboard',
+    features: [
+      'Everything in The Listing',
+      'AI assistant trained on your business + your town',
+      'Curated local knowledge base — not generic internet',
+      'Answer customer questions 24/7',
+      'Generate content ideas on demand',
+      'Better than ChatGPT — same price, local intelligence',
     ],
   },
   {
@@ -99,7 +111,7 @@ const TIERS = [
     href: '/directory/onboard',
     badge: 'Coming April 21',
     features: [
-      'Everything in The Listing',
+      'Everything in The Assistant',
       '4 social posts per week',
       'Auto-publishing to FB, IG, Google',
       'Content calendar',
@@ -817,7 +829,7 @@ export default function DirectoryPage() {
             marginBottom: '2rem',
           }}
         >
-          Paid tiers start at $20/month. No contracts — month to
+          Listings are free. Paid tiers start at $49/month for social media management, $99/month for the full engine. No contracts — month to
           month, cancel anytime. We&apos;ll build your profile, match your voice, and start
           putting your business in front of people who are already coming to the corridor.
         </p>

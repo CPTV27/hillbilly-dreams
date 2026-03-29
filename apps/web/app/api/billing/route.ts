@@ -60,9 +60,10 @@ export async function POST(request: NextRequest) {
     }
 
     const tierPrices: Record<string, number> = {
-      'listing': 2000,      // The Listing — $20/mo
-      'works': 4900,        // The Works — $49/mo
-      'engine': 9900,       // The Engine — $99/mo
+      'listing': 0,          // The Listing — Free
+      'assistant': 2000,     // The Assistant — $20/mo (replaces ChatGPT)
+      'works': 4900,         // The Works — $49/mo
+      'engine': 9900,        // The Engine — $99/mo
       // Legacy tiers (kept for existing clients)
       'front-porch': 2000,
       'route': 4900,
