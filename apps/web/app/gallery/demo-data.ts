@@ -102,6 +102,20 @@ export const DEMO_ARTISTS: DemoArtist[] = [
     workCount: 14,
   },
   {
+    id: 'a6',
+    name: 'Chase Pierson',
+    slug: 'chase-pierson',
+    city: 'Natchez',
+    state: 'MS',
+    medium: 'Photography',
+    bio: 'Chase Pierson is a photographer, technologist, and the founder of the Big Muddy. Based in Natchez, Mississippi, he shoots the corridor — the river, the music, the towns, the people who stay. His work ranges from documentary blues photography to architectural interiors, street portraiture, and fine art landscapes along the Mississippi. Available as archival prints, licensed stock, or commissioned shoots.',
+    instagram: 'chasepierson',
+    website: 'https://bigmuddytouring.com',
+    featured: true,
+    workCount: 12,
+    profileImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/musician-performing.webp',
+  },
+  {
     id: 'a5',
     name: 'June Breckinridge',
     slug: 'june-breckinridge',
@@ -309,6 +323,98 @@ export const DEMO_ARTWORKS: DemoArtwork[] = [
   },
 ];
 
+// Chase Pierson Photography works
+const CHASE_WORKS: DemoArtwork[] = [
+  {
+    id: 'cp1', slug: 'blues-room-harmonica', title: 'Blues Room — Harmonica',
+    artistId: 'a6', artistName: 'Chase Pierson', artistSlug: 'chase-pierson',
+    medium: 'Archival pigment print', dimensions: '16 × 24 inches', year: 2026,
+    price: 25000, category: 'print', edition: 'Open edition',
+    description: 'Live blues performance in the Blues Room at the Big Muddy Inn, Natchez. The harmonica player lit by a single stage spot. Shot on Sony A7ii.',
+    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp'],
+    tags: ['blues', 'music', 'live', 'natchez', 'big-muddy-inn'], available: true, featured: true,
+  },
+  {
+    id: 'cp2', slug: 'blues-room-live-show', title: 'Friday Night at the Big Muddy',
+    artistId: 'a6', artistName: 'Chase Pierson', artistSlug: 'chase-pierson',
+    medium: 'Archival pigment print', dimensions: '20 × 30 inches', year: 2026,
+    price: 35000, category: 'print', edition: 'Limited edition of 50',
+    description: 'The full room — band, audience, bar, the energy of a Friday night in the Blues Room. This is what it looks like when the music is right and the room is full.',
+    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp'],
+    tags: ['blues', 'music', 'venue', 'natchez', 'documentary'], available: true, featured: true,
+  },
+  {
+    id: 'cp3', slug: 'mississippi-river-golden-hour', title: 'Mississippi River — Golden Hour',
+    artistId: 'a6', artistName: 'Chase Pierson', artistSlug: 'chase-pierson',
+    medium: 'Archival pigment print', dimensions: '24 × 36 inches', year: 2026,
+    price: 45000, category: 'print', edition: 'Limited edition of 25',
+    description: 'The Mississippi at sunset from the Natchez bluff. The light turns the water to copper and the sky to bruise. This is the view that made us stay.',
+    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp'],
+    tags: ['landscape', 'river', 'sunset', 'natchez', 'fine-art'], available: true, featured: true,
+  },
+  {
+    id: 'cp4', slug: 'inn-foyer', title: 'The Foyer — Big Muddy Inn',
+    artistId: 'a6', artistName: 'Chase Pierson', artistSlug: 'chase-pierson',
+    medium: 'Archival pigment print', dimensions: '16 × 20 inches', year: 2026,
+    price: 20000, category: 'print', edition: 'Open edition',
+    description: 'The entrance to the Big Muddy Inn. Andrea Brooks designed every detail — this photo tries to capture what it feels like to walk in for the first time.',
+    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp'],
+    tags: ['architecture', 'interior', 'big-muddy-inn', 'natchez'], available: true, featured: false,
+  },
+  {
+    id: 'cp5', slug: 'juke-joint-interior', title: 'Juke Joint — Interior',
+    artistId: 'a6', artistName: 'Chase Pierson', artistSlug: 'chase-pierson',
+    medium: 'Archival pigment print', dimensions: '16 × 24 inches', year: 2025,
+    price: 30000, category: 'print', edition: 'Limited edition of 50',
+    description: 'The inside of a Delta juke joint. Christmas lights, wood paneling, a bar that\'s seen fifty years of Saturday nights. The kind of place that doesn\'t have a website.',
+    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp'],
+    tags: ['blues', 'documentary', 'interior', 'delta', 'juke-joint'], available: true, featured: true,
+  },
+  {
+    id: 'cp6', slug: 'main-street-natchez', title: 'Main Street, Natchez',
+    artistId: 'a6', artistName: 'Chase Pierson', artistSlug: 'chase-pierson',
+    medium: 'Archival pigment print', dimensions: '20 × 30 inches', year: 2026,
+    price: 30000, category: 'print', edition: 'Open edition',
+    description: 'Main Street on a weekday afternoon. The light, the storefronts, the pace. This is the town we\'re building the directory for.',
+    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-main-street.webp'],
+    tags: ['street', 'natchez', 'architecture', 'documentary'], available: true, featured: false,
+  },
+  {
+    id: 'cp7', slug: 'inn-at-dusk', title: 'The Inn at Dusk',
+    artistId: 'a6', artistName: 'Chase Pierson', artistSlug: 'chase-pierson',
+    medium: 'Archival pigment print', dimensions: '24 × 36 inches', year: 2026,
+    price: 40000, category: 'print', edition: 'Limited edition of 25',
+    description: 'The Big Muddy Inn at the blue hour. Warm light from the windows, the street going quiet. 411 North Commerce at its best.',
+    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-inn-dusk.webp'],
+    tags: ['architecture', 'exterior', 'big-muddy-inn', 'natchez', 'twilight'], available: true, featured: true,
+  },
+  {
+    id: 'cp8', slug: 'record-player', title: 'Vinyl — Still Life',
+    artistId: 'a6', artistName: 'Chase Pierson', artistSlug: 'chase-pierson',
+    medium: 'Archival pigment print', dimensions: '11 × 14 inches', year: 2025,
+    price: 15000, category: 'print', edition: 'Open edition',
+    description: 'A turntable and a stack of records in the Blues Room. The analog life.',
+    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/real/record-player.webp'],
+    tags: ['still-life', 'music', 'vinyl', 'analog'], available: true, featured: false,
+  },
+];
+
+// Push Chase's works into the main array
+DEMO_ARTWORKS.push(...CHASE_WORKS);
+
+// Demo shoots
+export const DEMO_SHOOTS: DemoShoot[] = [
+  {
+    slug: 'save-the-hall-2026',
+    title: 'Save the Hall Ball — March 2026',
+    date: '2026-03-22',
+    location: 'Natchez, Mississippi',
+    artistSlug: 'chase-pierson',
+    isPublic: false,
+    photos: [], // Photos will be added once Chase edits them
+  },
+];
+
 export function formatPrice(cents: number): string {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -316,6 +422,24 @@ export function formatPrice(cents: number): string {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(cents / 100);
+}
+
+export interface DemoShoot {
+  slug: string;
+  title: string;
+  date: string;
+  location: string;
+  artistSlug: string;
+  photos: DemoArtwork[];
+  isPublic: boolean;
+}
+
+export function getShootsByArtist(artistSlug: string): DemoShoot[] {
+  return DEMO_SHOOTS.filter((s) => s.artistSlug === artistSlug);
+}
+
+export function getShootBySlug(artistSlug: string, shootSlug: string): DemoShoot | undefined {
+  return DEMO_SHOOTS.find((s) => s.artistSlug === artistSlug && s.slug === shootSlug);
 }
 
 export function getArtistById(id: string): DemoArtist | undefined {
