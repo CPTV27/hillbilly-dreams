@@ -28,42 +28,42 @@ const CORE_CONCEPTS = [
     num: '01',
     title: 'The $450,000 Secret',
     stat: '$450K/mo',
-    href: 'https://outsidereconomics.com/philosophy/people-are-the-currency',
+    href: '/field-manual/ch01-the-450000-secret',
     desc: 'Nobody ran the numbers. I did. Twenty people swapping twenty hours a month of real skills — plumbing, bookkeeping, carpentry, code — generates nearly half a million in value. Without a bank. Without a grant. Without asking permission.',
   },
   {
     num: '02',
     title: 'The Extraction Trap',
     stat: '82%',
-    href: 'https://outsidereconomics.com/philosophy/the-extraction-trap',
+    href: '/field-manual/02-the-extraction-trap',
     desc: 'You buy coffee at the chain. That dollar hits a server in Seattle by lunch. Multiply that by everything you buy and eighty-two cents of every dollar you earn leaves your zip code in a month. You\'re not poor. You\'re being drained.',
   },
   {
     num: '03',
     title: 'The Coordination Premium',
     stat: '4.5x',
-    href: 'https://outsidereconomics.com/philosophy/coordination-not-scale',
+    href: '/field-manual/03-the-coordination-premium',
     desc: 'A plumber alone bills $80 an hour. A plumber who knows an electrician, a carpenter, and a permit expediter? That crew bills renovations. Same people, same hours — four and a half times the value. Coordination is the multiplier nobody talks about.',
   },
   {
     num: '04',
     title: 'Time as Currency',
     stat: '∞',
-    href: 'https://outsidereconomics.com/toolkit/building-without-banks',
+    href: '/field-manual/04-time-is-the-only-currency-that-cant-leave-town',
     desc: 'Here\'s what kept bugging me: money leaves. Always. But your neighbor\'s Saturday? That stays. Your hour of welding doesn\'t get wired to a hedge fund. It can\'t leave town. That\'s not a limitation — that\'s a feature.',
   },
   {
     num: '05',
     title: 'Federation over Scale',
     stat: '~100',
-    href: 'https://outsidereconomics.com/philosophy/the-federation-effect',
+    href: '/field-manual/07-federation-not-scale',
     desc: 'Every org that scales past a hundred people starts acting like the thing it was built to replace. So don\'t scale. Federate. Keep each pod human-sized, wire them together, and let the network do what networks do.',
   },
   {
     num: '06',
     title: 'The Task Board',
     stat: 'OS',
-    href: 'https://outsidereconomics.com/toolkit/the-task-board',
+    href: '/field-manual/05-the-task-board',
     desc: 'Not an app. Not a startup. Just a board — physical or digital — that shows who can do what and who needs what done. The simplest piece of infrastructure that turns a neighborhood into an economy. Most towns are one whiteboard away from not being broke.',
   },
 ];
@@ -102,10 +102,10 @@ export default function EconomicsHomepage() {
             Here&apos;s how it works — and how to stop it.
           </p>
           <div className="econ-hero__ctas">
-            <a href="https://outsidereconomics.com/philosophy/what-is-outsider-economics" className="btn btn--primary">
+            <a href="/field-manual" className="btn btn--primary">
               Read the Philosophy
             </a>
-            <a href="https://outsidereconomics.com/toolkit/the-task-board" className="btn btn--ghost">
+            <a href="/the-math" className="btn btn--ghost">
               See the Toolkit
             </a>
           </div>
@@ -219,11 +219,11 @@ export default function EconomicsHomepage() {
               Tuesday.
             </p>
             <div className="econ-community__actions">
-              <a href="https://outsidereconomics.com/resources/grants-and-funding" className="btn btn--primary">
-                Deep South Resources
+              <a href="/community" className="btn btn--primary">
+                Join the Network
               </a>
               <a
-                href="https://outsidereconomics.com/toolkit/the-directory"
+                href="/field-manual"
                 className="btn btn--ghost"
               >
                 Build a Directory

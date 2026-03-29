@@ -80,50 +80,44 @@ const FEATURED_BUSINESSES = [
 
 const TIERS = [
   {
-    name: 'Free Listing',
-    price: 'Free',
+    name: 'The Listing',
+    price: '$20/mo',
+    href: '/directory/onboard',
     features: [
-      'Business name, address, and category in the directory',
-      'Link to your website',
-      'Appear in corridor search results',
+      'AI business listing on the directory',
+      'Google review alerts',
+      'Monthly report card',
+      'AI chat that knows your business',
+      '1 social post per week (manual)',
+      'Email support',
     ],
   },
   {
-    name: 'Main Street',
+    name: 'The Works',
+    price: '$49/mo',
+    href: '/directory/onboard',
+    badge: 'Coming April 21',
+    features: [
+      'Everything in The Listing',
+      '4 social posts per week',
+      'Auto-publishing to FB, IG, Google',
+      'Content calendar',
+      'Detailed monthly report',
+      'Email support',
+    ],
+  },
+  {
+    name: 'The Engine',
     price: '$99/mo',
+    href: '/directory/onboard',
     features: [
-      'Everything in Free Listing',
-      'Enhanced profile with photos and description',
-      'AI-generated editorial spotlight',
-      'Featured in Magazine articles when relevant',
-      'Monthly performance report',
-      'AI-optimized business description for search',
-    ],
-  },
-  {
-    name: 'The Route',
-    price: '$299/mo',
-    features: [
-      'Everything in Main Street',
-      'Spotlight cross-published to Big Muddy Magazine',
-      'Social media management (2 platforms, 12 posts/mo)',
-      'Big Muddy Radio mentions',
-      'Priority placement in directory search',
-      'AI Search Optimization (structured data, llms.txt)',
-      'All payment & booking integrations',
-    ],
-  },
-  {
-    name: 'MBT Ops',
-    price: '$1,200+/mo',
-    features: [
-      'Everything in The Route',
-      'Full Measurably Better operating system deployment',
-      'Sales pipeline, billing, project management, client delivery',
-      'One platform replacing your entire software stack',
-      'Hillbilly Dreams as your embedded technology arm',
-      '24/7 uptime monitoring with SLA',
-      'QuickBooks sync included',
+      'Everything in The Works',
+      'AI review response drafts',
+      'Competitor watch (3 competitors)',
+      'Custom social posts + scheduling',
+      'Quarterly Magazine feature',
+      'Full analytics dashboard',
+      'Text Chase directly',
     ],
   },
 ];
@@ -577,14 +571,16 @@ export default function DirectoryPage() {
             <div
               key={tier.name}
               style={{
-                border: tier.name === 'The Route'
+                border: tier.name === 'The Engine'
                   ? '2px solid var(--accent, #c8943e)'
                   : '1px solid var(--muted, #333)',
                 padding: '2rem',
                 position: 'relative',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
-              {tier.name === 'The Route' && (
+              {tier.name === 'The Engine' && (
                 <div
                   style={{
                     position: 'absolute',
@@ -599,7 +595,26 @@ export default function DirectoryPage() {
                     padding: '0.2rem 0.75rem',
                   }}
                 >
-                  Best Value
+                  Most Popular
+                </div>
+              )}
+              {'badge' in tier && tier.badge && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '-0.75rem',
+                    right: '1.5rem',
+                    background: 'rgba(255,255,255,0.1)',
+                    color: 'var(--accent, #c8943e)',
+                    fontSize: '0.6rem',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    padding: '0.2rem 0.75rem',
+                    border: '1px solid var(--accent, #c8943e)',
+                  }}
+                >
+                  {tier.badge}
                 </div>
               )}
               <p
@@ -624,7 +639,7 @@ export default function DirectoryPage() {
               >
                 {tier.price}
               </p>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem' }}>
                 {tier.features.map((f) => (
                   <li
                     key={f}
@@ -652,6 +667,25 @@ export default function DirectoryPage() {
                   </li>
                 ))}
               </ul>
+              <a
+                href={tier.href}
+                style={{
+                  display: 'block',
+                  textAlign: 'center',
+                  padding: '0.75rem 1.5rem',
+                  background: tier.name === 'The Engine' ? 'var(--accent, #c8943e)' : 'transparent',
+                  color: tier.name === 'The Engine' ? '#0a0a0a' : 'var(--accent, #c8943e)',
+                  border: tier.name === 'The Engine' ? 'none' : '1px solid var(--accent, #c8943e)',
+                  fontSize: '0.8rem',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  textDecoration: 'none',
+                  marginTop: 'auto',
+                }}
+              >
+                Get Started
+              </a>
             </div>
           ))}
         </div>
@@ -780,7 +814,7 @@ export default function DirectoryPage() {
             marginBottom: '2rem',
           }}
         >
-          Free listings are free. Paid tiers start at $50/month. No contracts — month to
+          Paid tiers start at $20/month. No contracts — month to
           month, cancel anytime. We&apos;ll build your profile, match your voice, and start
           putting your business in front of people who are already coming to the corridor.
         </p>

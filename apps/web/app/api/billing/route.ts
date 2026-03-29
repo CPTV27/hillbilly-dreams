@@ -60,10 +60,14 @@ export async function POST(request: NextRequest) {
     }
 
     const tierPrices: Record<string, number> = {
-      'front-porch': 9900,
-      'route': 29900,
-      'river-room': 59900,
-      'blues-room': 120000,
+      'listing': 2000,      // The Listing — $20/mo
+      'works': 4900,        // The Works — $49/mo
+      'engine': 9900,       // The Engine — $99/mo
+      // Legacy tiers (kept for existing clients)
+      'front-porch': 2000,
+      'route': 4900,
+      'river-room': 9900,
+      'blues-room': 9900,
     };
 
     const amount = (body.amount as number) ?? tierPrices[client.tier] ?? 9900;
