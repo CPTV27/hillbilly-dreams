@@ -1,10 +1,6 @@
 'use client';
 
-// apps/web/app/(admin)/dashboard/page.tsx
-// HQ Dashboard — live KPI tiles from /api/metrics + recent articles & events
-
 import { useState, useEffect } from 'react';
-import Walkthrough from './walkthrough';
 
 interface MetricData {
   key: string;
@@ -33,170 +29,47 @@ interface EventSummary {
   status: string;
 }
 
-const KPI_CONFIG = [
-  {
-    key: 'newsletter_subscribers',
-    fallbackLabel: 'Newsletter Subscribers',
-    fallbackTarget: 2500,
-    fallbackUnit: 'subscribers',
-    fallbackSource: 'Beehiiv',
-    icon: '◻',
-    color: 'var(--accent)',
-  },
-  {
-    key: 'inn_occupancy_rate',
-    fallbackLabel: 'Inn Occupancy Rate',
-    fallbackTarget: 80,
-    fallbackUnit: '%',
-    fallbackSource: 'CloudBeds',
-    icon: '◻',
-    color: 'var(--slate)',
-  },
-  {
-    key: 'spotify_followers',
-    fallbackLabel: 'Spotify Followers',
-    fallbackTarget: 5000,
-    fallbackUnit: 'followers',
-    fallbackSource: 'Spotify',
-    icon: '◈',
-    color: '#1DB954',
-  },
-  {
-    key: 'articles_published',
-    fallbackLabel: 'Articles Published (MTD)',
-    fallbackTarget: 8,
-    fallbackUnit: 'articles',
-    fallbackSource: 'Database',
-    icon: '◻',
-    color: 'var(--accent)',
-  },
-  {
-    key: 'upcoming_events',
-    fallbackLabel: 'Upcoming Events',
-    fallbackTarget: null,
-    fallbackUnit: 'events',
-    fallbackSource: 'Database',
-    icon: '◷',
-    color: 'var(--warning)',
-  },
-  {
-    key: 'google_review_rating',
-    fallbackLabel: 'Google Rating',
-    fallbackTarget: 4.8,
-    fallbackUnit: '/ 5.0',
-    fallbackSource: 'Google Business',
-    icon: '◈',
-    color: 'var(--success)',
-  },
-];
-
-const PLATFORM_STATUS = [
-  // OTAs
-  { name: 'Google Business Profile', platform: 'google', status: 'active', action: 'Add business hours, upload 20+ photos', priority: 'high' },
-  { name: 'TripAdvisor', platform: 'tripadvisor', status: 'active', action: 'Need reviews — add QR codes to rooms', priority: 'medium' },
-  { name: 'Airbnb', platform: 'airbnb', status: 'partial', action: '3 of 6 suites listed — add British Invasion I, II, B.B. King', priority: 'high' },
-  { name: 'Booking.com', platform: 'booking', status: 'pending', action: 'Signed up — verify listing is live', priority: 'high' },
-  { name: 'Expedia', platform: 'expedia', status: 'pending', action: 'Signed up — verify listing is live', priority: 'high' },
-  { name: 'VRBO', platform: 'vrbo', status: 'pending', action: 'Signed up — verify listing is live', priority: 'high' },
-  { name: 'Yelp', platform: 'yelp', status: 'active', action: 'Respond to reviews', priority: 'low' },
-  // Social
-  { name: 'Facebook', platform: 'facebook', status: 'active', action: 'Post weekly', priority: 'low' },
-  { name: 'Instagram', platform: 'instagram', status: 'active', action: 'Post 3x/week', priority: 'medium' },
-  { name: 'TikTok', platform: 'tiktok', status: 'missing', action: 'Create account — Blues Room clips', priority: 'medium' },
-  { name: 'YouTube', platform: 'youtube', status: 'missing', action: 'Create channel — live sessions, room tours', priority: 'medium' },
-  // Directories
-  { name: 'Visit Natchez', platform: 'visitnatchez', status: 'active', action: 'Listed — keep updated', priority: 'low' },
-  { name: 'Hotels Above Par', platform: 'hotelsabovepar', status: 'active', action: 'Review published — no action needed', priority: 'low' },
-] as const;
-
-type PlatformStatus = (typeof PLATFORM_STATUS)[number]['status'];
-type TaskPriority = 'critical' | 'high' | 'medium' | 'low';
-
-const OPS_CHECKLIST = [
-  // Critical — This Week
-  { id: 'ann-bar', task: 'Remove outdated announcement bar from Squarespace (says "closed July-Aug 2025")', category: 'Website', priority: 'critical' as TaskPriority, done: false },
-  { id: 'airbnb-3', task: 'List remaining 3 suites on Airbnb (British Invasion I & II, B.B. King)', category: 'OTA', priority: 'critical' as TaskPriority, done: false },
-  { id: 'booking-verify', task: 'Verify Booking.com listing is live and indexed', category: 'OTA', priority: 'critical' as TaskPriority, done: false },
-  { id: 'expedia-verify', task: 'Verify Expedia listing is live and indexed', category: 'OTA', priority: 'critical' as TaskPriority, done: false },
-  { id: 'vrbo-verify', task: 'Verify VRBO listing is live and indexed', category: 'OTA', priority: 'critical' as TaskPriority, done: false },
-  // High — This Month
-  { id: 'alt-text', task: 'Add alt text to all images on Squarespace site', category: 'SEO', priority: 'high' as TaskPriority, done: false },
-  { id: 'biz-hours', task: 'Add business hours to Google Business Profile and Squarespace schema', category: 'SEO', priority: 'high' as TaskPriority, done: false },
-  { id: 'gbp-photos', task: 'Upload 20+ professional photos to Google Business Profile', category: 'SEO', priority: 'high' as TaskPriority, done: false },
-  { id: 'room-pages', task: 'Create individual room pages on Squarespace (one per suite)', category: 'SEO', priority: 'high' as TaskPriority, done: false },
-  { id: 'blog-launch', task: 'Launch Big Muddy Journal blog with first 3 posts', category: 'Content', priority: 'high' as TaskPriority, done: false },
-  { id: 'tiktok-create', task: 'Create TikTok account for Blues Room performance clips', category: 'Social', priority: 'high' as TaskPriority, done: false },
-  { id: 'youtube-create', task: 'Create YouTube channel for live sessions and room tours', category: 'Social', priority: 'high' as TaskPriority, done: false },
-  { id: 'liquor-license', task: 'Finalize liquor license for Blues Room bar', category: 'Operations', priority: 'high' as TaskPriority, done: false },
-  // Medium — Next 30 Days
-  { id: 'ta-reviews', task: 'Set up TripAdvisor review cards for guest rooms', category: 'OTA', priority: 'medium' as TaskPriority, done: false },
-  { id: 'schema-rooms', task: 'Add HotelRoom structured data to Squarespace', category: 'SEO', priority: 'medium' as TaskPriority, done: false },
-  { id: 'ota-cross-link', task: 'Add OTA profile links to Squarespace "Book With Us" section', category: 'Website', priority: 'medium' as TaskPriority, done: false },
-  { id: 'gbp-posts', task: 'Start weekly Google Business Profile posts', category: 'SEO', priority: 'medium' as TaskPriority, done: false },
-  { id: 'pinterest', task: 'Create Pinterest account for travel/design audience', category: 'Social', priority: 'medium' as TaskPriority, done: false },
-  { id: 'email-collect', task: 'Set up email capture on Squarespace with Beehiiv integration', category: 'Marketing', priority: 'medium' as TaskPriority, done: false },
-  // Done
-  { id: 'tripadvisor', task: 'Create TripAdvisor listing', category: 'OTA', priority: 'high' as TaskPriority, done: true },
-  { id: 'airbnb-initial', task: 'List first 3 suites on Airbnb', category: 'OTA', priority: 'high' as TaskPriority, done: true },
-  { id: 'yelp', task: 'Create and claim Yelp listing', category: 'OTA', priority: 'high' as TaskPriority, done: true },
-  { id: 'visitnatchez', task: 'Get listed on Visit Natchez directory', category: 'OTA', priority: 'medium' as TaskPriority, done: true },
-  { id: 'facebook', task: 'Create Facebook page', category: 'Social', priority: 'high' as TaskPriority, done: true },
-  { id: 'instagram', task: 'Create Instagram account', category: 'Social', priority: 'high' as TaskPriority, done: true },
-  { id: 'gbp-claim', task: 'Claim Google Business Profile', category: 'SEO', priority: 'critical' as TaskPriority, done: true },
-  { id: 'booking-signup', task: 'Sign up for Booking.com', category: 'OTA', priority: 'high' as TaskPriority, done: true },
-  { id: 'expedia-signup', task: 'Sign up for Expedia', category: 'OTA', priority: 'high' as TaskPriority, done: true },
-  { id: 'vrbo-signup', task: 'Sign up for VRBO', category: 'OTA', priority: 'high' as TaskPriority, done: true },
-];
-
-const PRIORITY_META: Record<TaskPriority, { label: string; headerClass: string }> = {
-  critical: { label: 'Critical — This Week', headerClass: 'checklist-group__header--critical' },
-  high:     { label: 'High — This Month',    headerClass: 'checklist-group__header--high'     },
-  medium:   { label: 'Medium — Next 30 Days', headerClass: 'checklist-group__header--medium'  },
-  low:      { label: 'Low',                  headerClass: 'checklist-group__header--low'      },
-};
-
-const STATUS_BADGE_CLASS: Record<PlatformStatus, string> = {
-  active:  'platform-badge--active',
-  partial: 'platform-badge--partial',
-  pending: 'platform-badge--pending',
-  missing: 'platform-badge--missing',
-};
-
-const PRIORITY_BADGE_CLASS: Record<string, string> = {
-  high:   'priority-badge--high',
-  medium: 'priority-badge--medium',
-  low:    'priority-badge--low',
-};
-
-const QUICK_ACTIONS = [
-  { label: 'New Article', href: '/articles/new', icon: '+' },
-  { label: 'New Playlist', href: '/playlists/new', icon: '+' },
-  { label: 'New Event', href: '/events/new', icon: '+' },
-  { label: 'New Newsletter', href: '/newsletter/new', icon: '+' },
-];
-
-function formatDate(date: string | null | undefined): string {
-  if (!date) return '—';
-  return new Date(date).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-  });
+function timeGreeting() {
+  const h = new Date().getHours();
+  if (h < 12) return 'Good morning';
+  if (h < 17) return 'Good afternoon';
+  return 'Good evening';
 }
 
-function formatCityLabel(city: string | null | undefined): string {
-  if (!city) return '';
-  return city
-    .split('-')
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ');
+function formatRelativeDate(date: string | null): string {
+  if (!date) return '';
+  const d = new Date(date);
+  const now = new Date();
+  const diff = Math.floor((d.getTime() - now.getTime()) / 86400000);
+  if (diff === 0) return 'Today';
+  if (diff === 1) return 'Tomorrow';
+  if (diff < 7) return d.toLocaleDateString('en-US', { weekday: 'long' });
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
+
+const TOOLS = [
+  { label: 'Content Studio', href: '/admin/studio', icon: 'edit', desc: 'Generate posts, articles, radio spots' },
+  { label: 'Media Vault', href: '/admin/media', icon: 'image', desc: 'Browse and manage all photos' },
+  { label: 'Shot List', href: '/snap', icon: 'camera', desc: 'GPS-guided photo locations' },
+  { label: 'Lookbook', href: '/gallery/lookbook', icon: 'palette', desc: 'Review illustration styles' },
+  { label: 'Clients', href: '/admin/clients', icon: 'users', desc: 'DSD subscribers and leads' },
+  { label: 'Calendar', href: '/admin/calendar', icon: 'calendar', desc: 'Shows and events' },
+];
+
+const ICON_MAP: Record<string, string> = {
+  edit: 'M',
+  image: 'I',
+  camera: 'C',
+  palette: 'P',
+  users: 'U',
+  calendar: 'E',
+};
 
 export default function DashboardPage() {
   const [metrics, setMetrics] = useState<Record<string, MetricData>>({});
   const [articles, setArticles] = useState<ArticleSummary[]>([]);
   const [events, setEvents] = useState<EventSummary[]>([]);
   const [loading, setLoading] = useState(true);
-  const [doneOpen, setDoneOpen] = useState(false);
 
   useEffect(() => {
     async function fetchAll() {
@@ -218,631 +91,483 @@ export default function DashboardPage() {
     fetchAll();
   }, []);
 
+  const nextEvent = events[0];
+  const occupancy = metrics['inn_occupancy_rate'];
+  const subscribers = metrics['newsletter_subscribers'];
+  const rating = metrics['google_review_rating'];
+
   return (
     <>
-      <Walkthrough />
-      <div className="admin-page-header">
-        <div>
-          <h1 className="admin-page-title">Dashboard</h1>
-          <p className="admin-page-sub">Big Muddy HQ — Operations Overview</p>
-        </div>
-        <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
-          {QUICK_ACTIONS.map((action) => (
-            <a key={action.href} href={action.href} className="admin-btn admin-btn--ghost">
-              {action.icon} {action.label}
-            </a>
-          ))}
-        </div>
-      </div>
-
-      {/* ── KPI Tiles ── */}
-      <div className="dashboard-kpi-grid">
-        {KPI_CONFIG.map((tile) => {
-          const metric = metrics[tile.key];
-          const hasValue = metric && metric.value !== undefined && metric.value !== null;
-          const displayValue = hasValue
-            ? metric.value.toLocaleString()
-            : '—';
-          const label = metric?.label ?? tile.fallbackLabel;
-          const target = metric?.target ?? tile.fallbackTarget;
-          const unit = metric?.unit ?? tile.fallbackUnit;
-          const source = metric?.source ?? tile.fallbackSource;
-
-          return (
-            <div key={tile.key} className={`kpi-tile ${loading ? 'kpi-tile--loading' : ''}`}>
-              <div className="kpi-tile__header">
-                <span className="kpi-tile__label">{label}</span>
-                <span className="kpi-tile__source">{source}</span>
-              </div>
-              <div className="kpi-tile__value" style={{ color: hasValue ? tile.color : 'var(--text-disabled)' }}>
-                {loading ? (
-                  <div className="skeleton skeleton--value" />
-                ) : (
-                  <>
-                    {displayValue}
-                    {unit && hasValue && (
-                      <span className="kpi-tile__unit">{unit}</span>
-                    )}
-                  </>
-                )}
-              </div>
-              {target && (
-                <div className="kpi-tile__target">
-                  Target: {target.toLocaleString()} {unit}
-                </div>
-              )}
-              {!loading && !hasValue && (
-                <div className="kpi-tile__empty-note">
-                  Connect {source} to populate
-                </div>
-              )}
-              {!loading && hasValue && target && (
-                <div className="kpi-tile__progress">
-                  <div
-                    className="kpi-tile__progress-bar"
-                    style={{
-                      width: `${Math.min(100, (metric.value / target) * 100)}%`,
-                      background: tile.color,
-                    }}
-                  />
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* ── Content Overview ── */}
-      <div className="dashboard-sections">
-        <div className="dashboard-section">
-          <div className="dashboard-section__header">
-            <h2 className="dashboard-section__title">Recent Articles</h2>
-            <a href="/articles" className="dashboard-section__link">View all →</a>
+      <div className="mc">
+        {/* ── Hero Greeting ── */}
+        <section className="mc-hero">
+          <div className="mc-hero__greeting">
+            <h1 className="mc-hero__title">{timeGreeting()}, Chase</h1>
+            <p className="mc-hero__sub">
+              {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
+            </p>
           </div>
-          {loading ? (
-            <div className="dashboard-list">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="dashboard-list-item">
-                  <div className="skeleton skeleton--text" style={{ width: '70%' }} />
-                  <div className="skeleton skeleton--text" style={{ width: '30%', marginTop: '4px' }} />
-                </div>
-              ))}
-            </div>
-          ) : articles.length === 0 ? (
-            <div className="admin-empty">
-              <div className="admin-empty__icon">◻</div>
-              <p className="admin-empty__text">
-                No articles yet. <a href="/articles/new" style={{ color: 'var(--accent)' }}>Create the first one.</a>
+        </section>
+
+        {/* ── Spotlight — What's happening right now ── */}
+        <section className="mc-spotlight">
+          {nextEvent ? (
+            <div className="mc-spotlight__card mc-spotlight__card--event">
+              <div className="mc-spotlight__badge">Next Show</div>
+              <h2 className="mc-spotlight__title">{nextEvent.name}</h2>
+              <p className="mc-spotlight__detail">
+                {nextEvent.artist && <span className="mc-spotlight__artist">{nextEvent.artist}</span>}
+                <span className="mc-spotlight__date">{formatRelativeDate(nextEvent.date)}{nextEvent.time && ` at ${nextEvent.time}`}</span>
               </p>
+              <div className="mc-spotlight__actions">
+                <a href="/admin/studio" className="mc-btn mc-btn--primary">Create Promo</a>
+                <a href="/admin/calendar" className="mc-btn mc-btn--ghost">View Calendar</a>
+              </div>
             </div>
           ) : (
-            <div className="dashboard-list">
-              {articles.map((article) => (
-                <a key={article.id} href={`/articles/edit/${article.slug}`} className="dashboard-list-item dashboard-list-item--link">
-                  <div className="dashboard-list-item__main">
-                    <span className="dashboard-list-item__title">{article.title}</span>
-                    <span className="dashboard-list-item__meta">
-                      {formatCityLabel(article.city)}
-                      {article.city && ' · '}
-                      {formatDate(article.publishedAt)}
-                    </span>
-                  </div>
-                  <span className={`admin-badge admin-badge--${article.status}`}>{article.status}</span>
-                </a>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="dashboard-section">
-          <div className="dashboard-section__header">
-            <h2 className="dashboard-section__title">Upcoming Events</h2>
-            <a href="/events" className="dashboard-section__link">View all →</a>
-          </div>
-          {loading ? (
-            <div className="dashboard-list">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="dashboard-list-item">
-                  <div className="skeleton skeleton--text" style={{ width: '70%' }} />
-                  <div className="skeleton skeleton--text" style={{ width: '30%', marginTop: '4px' }} />
-                </div>
-              ))}
-            </div>
-          ) : events.length === 0 ? (
-            <div className="admin-empty">
-              <div className="admin-empty__icon">◷</div>
-              <p className="admin-empty__text">
-                No upcoming events. <a href="/events/new" style={{ color: 'var(--accent)' }}>Schedule one.</a>
+            <div className="mc-spotlight__card">
+              <div className="mc-spotlight__badge">No Shows Scheduled</div>
+              <h2 className="mc-spotlight__title">Book your next act</h2>
+              <p className="mc-spotlight__detail">
+                <span className="mc-spotlight__date">The stage is empty. Time to fill it.</span>
               </p>
-            </div>
-          ) : (
-            <div className="dashboard-list">
-              {events.map((event) => (
-                <div key={event.id} className="dashboard-list-item">
-                  <div className="dashboard-list-item__main">
-                    <span className="dashboard-list-item__title">{event.name}</span>
-                    <span className="dashboard-list-item__meta">
-                      {formatDate(event.date)}
-                      {event.time && ` · ${event.time}`}
-                      {event.artist && ` · ${event.artist}`}
-                    </span>
-                  </div>
-                  <span className={`admin-badge admin-badge--${event.status}`}>{event.status}</span>
-                </div>
-              ))}
+              <div className="mc-spotlight__actions">
+                <a href="/admin/calendar" className="mc-btn mc-btn--primary">Schedule a Show</a>
+              </div>
             </div>
           )}
-        </div>
-      </div>
 
-      {/* ── Platform & OTA Status ── */}
-      <div className="dashboard-full-section" style={{ marginTop: 'var(--space-6)' }}>
-        <div className="dashboard-section__header">
-          <div>
-            <h2 className="dashboard-section__title">Platform & OTA Status</h2>
-            <p className="dashboard-section__sub">Big Muddy Inn — Distribution Channels</p>
+          {/* Quick Stats */}
+          <div className="mc-stats">
+            <div className="mc-stat">
+              <span className="mc-stat__value">{loading ? '—' : (occupancy?.value ?? '—')}<span className="mc-stat__unit">%</span></span>
+              <span className="mc-stat__label">Occupancy</span>
+            </div>
+            <div className="mc-stat">
+              <span className="mc-stat__value">{loading ? '—' : (subscribers?.value?.toLocaleString() ?? '—')}</span>
+              <span className="mc-stat__label">Subscribers</span>
+            </div>
+            <div className="mc-stat">
+              <span className="mc-stat__value">{loading ? '—' : (rating?.value ?? '—')}<span className="mc-stat__unit">/5</span></span>
+              <span className="mc-stat__label">Google Rating</span>
+            </div>
+            <div className="mc-stat">
+              <span className="mc-stat__value">{events.length}</span>
+              <span className="mc-stat__label">Upcoming Shows</span>
+            </div>
           </div>
-        </div>
-        <div className="platform-table-wrap">
-          <table className="platform-table">
-            <thead>
-              <tr>
-                <th className="platform-table__th">Platform</th>
-                <th className="platform-table__th">Status</th>
-                <th className="platform-table__th">Action Needed</th>
-                <th className="platform-table__th">Priority</th>
-              </tr>
-            </thead>
-            <tbody>
-              {PLATFORM_STATUS.map((p) => (
-                <tr key={p.platform} className="platform-table__row">
-                  <td className="platform-table__td platform-table__name">{p.name}</td>
-                  <td className="platform-table__td">
-                    <span className={`platform-badge ${STATUS_BADGE_CLASS[p.status]}`}>
-                      {p.status}
-                    </span>
-                  </td>
-                  <td className="platform-table__td platform-table__action">{p.action}</td>
-                  <td className="platform-table__td">
-                    <span className={`priority-badge ${PRIORITY_BADGE_CLASS[p.priority] ?? ''}`}>
-                      {p.priority}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+        </section>
 
-      {/* ── Operations Checklist ── */}
-      {(() => {
-        const open = OPS_CHECKLIST.filter((t) => !t.done);
-        const done = OPS_CHECKLIST.filter((t) => t.done);
-        const total = OPS_CHECKLIST.length;
-        const completedCount = done.length;
-        const pct = Math.round((completedCount / total) * 100);
-        const priorities: TaskPriority[] = ['critical', 'high', 'medium'];
+        {/* ── Tools Grid ── */}
+        <section className="mc-tools">
+          <h2 className="mc-section-label">Your Tools</h2>
+          <div className="mc-tools__grid">
+            {TOOLS.map((tool) => (
+              <a key={tool.href} href={tool.href} className="mc-tool">
+                <div className="mc-tool__icon">{ICON_MAP[tool.icon]}</div>
+                <div className="mc-tool__text">
+                  <span className="mc-tool__name">{tool.label}</span>
+                  <span className="mc-tool__desc">{tool.desc}</span>
+                </div>
+                <span className="mc-tool__arrow">&rarr;</span>
+              </a>
+            ))}
+          </div>
+        </section>
 
-        return (
-          <div className="dashboard-full-section" style={{ marginTop: 'var(--space-6)' }}>
-            <div className="dashboard-section__header">
-              <div>
-                <h2 className="dashboard-section__title">Operations Checklist</h2>
-                <p className="dashboard-section__sub">Launch & Growth Tasks</p>
-              </div>
-            </div>
-
-            {/* Progress summary */}
-            <div className="checklist-progress">
-              <div className="checklist-progress__label">
-                <span className="checklist-progress__count">{completedCount} of {total} tasks complete</span>
-                <span className="checklist-progress__pct">{pct}%</span>
-              </div>
-              <div className="checklist-progress__track">
-                <div className="checklist-progress__fill" style={{ width: `${pct}%` }} />
-              </div>
-            </div>
-
-            {/* Open tasks grouped by priority */}
-            {priorities.map((p) => {
-              const group = open.filter((t) => t.priority === p);
-              if (group.length === 0) return null;
-              const meta = PRIORITY_META[p];
-              return (
-                <div key={p} className="checklist-group">
-                  <div className={`checklist-group__header ${meta.headerClass}`}>
-                    {meta.label}
-                    <span className="checklist-group__count">{group.length}</span>
-                  </div>
-                  {group.map((task) => (
-                    <div key={task.id} className="checklist-item">
-                      <span className="checklist-item__checkbox" aria-hidden="true" />
-                      <span className="checklist-item__text">{task.task}</span>
-                      <span className="checklist-item__category">{task.category}</span>
+        {/* ── Feed — Recent Activity ── */}
+        <section className="mc-feed">
+          <div className="mc-feed__columns">
+            {/* Upcoming Shows */}
+            <div className="mc-feed__col">
+              <h2 className="mc-section-label">Upcoming Shows</h2>
+              {events.length === 0 && !loading ? (
+                <div className="mc-empty">No shows scheduled. <a href="/admin/calendar">Add one.</a></div>
+              ) : (
+                <div className="mc-list">
+                  {events.map((event) => (
+                    <div key={event.id} className="mc-list__item">
+                      <div className="mc-list__dot" />
+                      <div className="mc-list__content">
+                        <span className="mc-list__title">{event.name}</span>
+                        <span className="mc-list__meta">
+                          {formatRelativeDate(event.date)}
+                          {event.artist && ` \u00b7 ${event.artist}`}
+                        </span>
+                      </div>
+                      <a href="/admin/studio" className="mc-list__action">Promote</a>
                     </div>
                   ))}
                 </div>
-              );
-            })}
+              )}
+            </div>
 
-            {/* Done section — collapsible */}
-            <div className="checklist-group">
-              <button
-                className="checklist-done-toggle"
-                onClick={() => setDoneOpen((v) => !v)}
-                aria-expanded={doneOpen}
-              >
-                <span>Done ({done.length})</span>
-                <span className="checklist-done-toggle__arrow">{doneOpen ? '▲' : '▼'}</span>
-              </button>
-              {doneOpen && done.map((task) => (
-                <div key={task.id} className="checklist-item checklist-item--done">
-                  <span className="checklist-item__checkbox checklist-item__checkbox--checked" aria-hidden="true">✓</span>
-                  <span className="checklist-item__text">{task.task}</span>
-                  <span className="checklist-item__category">{task.category}</span>
+            {/* Recent Content */}
+            <div className="mc-feed__col">
+              <h2 className="mc-section-label">Recent Content</h2>
+              {articles.length === 0 && !loading ? (
+                <div className="mc-empty">No articles yet. <a href="/admin/studio">Create one.</a></div>
+              ) : (
+                <div className="mc-list">
+                  {articles.map((article) => (
+                    <a key={article.id} href={`/admin/articles/edit/${article.slug}`} className="mc-list__item mc-list__item--link">
+                      <div className={`mc-list__dot mc-list__dot--${article.status}`} />
+                      <div className="mc-list__content">
+                        <span className="mc-list__title">{article.title}</span>
+                        <span className="mc-list__meta">
+                          {article.status}
+                          {article.city && ` \u00b7 ${article.city.replace(/-/g, ' ')}`}
+                        </span>
+                      </div>
+                    </a>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
           </div>
-        );
-      })()}
+        </section>
+      </div>
 
       <style>{`
-        .dashboard-kpi-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-          gap: var(--space-4);
-          margin-bottom: var(--space-10);
+        .mc {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 0 var(--space-4);
         }
-        .kpi-tile {
-          background: var(--surface);
-          border: 1px solid var(--border);
-          border-radius: var(--radius-md);
+
+        /* ── Hero ── */
+        .mc-hero {
+          padding: var(--space-8) 0 var(--space-2);
+        }
+        .mc-hero__title {
+          font-size: clamp(1.75rem, 4vw, 2.5rem);
+          font-weight: 800;
+          color: var(--text);
+          margin: 0;
+          letter-spacing: -0.03em;
+          background: linear-gradient(135deg, #fff 0%, #a8a098 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        .mc-hero__sub {
+          font-size: var(--text-sm);
+          color: var(--text-disabled);
+          margin: var(--space-1) 0 0;
+        }
+
+        /* ── Spotlight ── */
+        .mc-spotlight {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-4);
+          margin: var(--space-6) 0;
+        }
+        @media (max-width: 768px) {
+          .mc-spotlight { grid-template-columns: 1fr; }
+        }
+        .mc-spotlight__card {
+          background: linear-gradient(135deg, #1e1b18 0%, #2a2520 100%);
+          border: 1px solid #3a352f;
+          border-radius: 16px;
+          padding: var(--space-8);
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-3);
+        }
+        .mc-spotlight__card--event {
+          background: linear-gradient(135deg, #1a1510 0%, #2d2218 60%, #3a2810 100%);
+          border-color: #4a3828;
+        }
+        .mc-spotlight__badge {
+          font-size: 0.65rem;
+          font-weight: 800;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: #c8943e;
+          padding: 4px 10px;
+          background: rgba(200, 148, 62, 0.12);
+          border-radius: 999px;
+          width: fit-content;
+        }
+        .mc-spotlight__title {
+          font-size: clamp(1.25rem, 3vw, 1.75rem);
+          font-weight: 800;
+          color: #f5f0ea;
+          margin: 0;
+          letter-spacing: -0.02em;
+          line-height: 1.2;
+        }
+        .mc-spotlight__detail {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          margin: 0;
+        }
+        .mc-spotlight__artist {
+          font-size: var(--text-md);
+          color: #c8943e;
+          font-weight: 600;
+        }
+        .mc-spotlight__date {
+          font-size: var(--text-sm);
+          color: #8a8074;
+        }
+        .mc-spotlight__actions {
+          display: flex;
+          gap: var(--space-3);
+          margin-top: var(--space-2);
+        }
+
+        /* Stats */
+        .mc-stats {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-3);
+        }
+        .mc-stat {
+          background: linear-gradient(135deg, #1e1b18 0%, #252220 100%);
+          border: 1px solid #2a2520;
+          border-radius: 12px;
           padding: var(--space-5);
           display: flex;
           flex-direction: column;
-          gap: var(--space-2);
+          gap: 4px;
+          transition: border-color 0.2s, transform 0.2s;
         }
-        .kpi-tile__header {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          gap: var(--space-2);
+        .mc-stat:hover {
+          border-color: #3a352f;
+          transform: translateY(-1px);
         }
-        .kpi-tile__label {
-          font-size: var(--text-xs);
+        .mc-stat__value {
+          font-size: clamp(1.5rem, 3vw, 2rem);
+          font-weight: 800;
+          color: #f5f0ea;
+          letter-spacing: -0.03em;
+          line-height: 1;
+        }
+        .mc-stat__unit {
+          font-size: 0.5em;
+          color: #6a6560;
+          font-weight: 500;
+          margin-left: 2px;
+        }
+        .mc-stat__label {
+          font-size: 0.7rem;
           font-weight: 600;
-          color: var(--text-muted);
-          letter-spacing: var(--tracking-wide);
-          line-height: 1.3;
+          color: #6a6560;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
         }
-        .kpi-tile__source {
-          font-size: var(--text-xs);
-          color: var(--text-disabled);
-          white-space: nowrap;
+
+        /* ── Section Labels ── */
+        .mc-section-label {
+          font-size: 0.7rem;
+          font-weight: 800;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: #6a6560;
+          margin: 0 0 var(--space-4);
+        }
+
+        /* ── Tools Grid ── */
+        .mc-tools {
+          margin: var(--space-8) 0;
+        }
+        .mc-tools__grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: var(--space-3);
+        }
+        .mc-tool {
+          display: flex;
+          align-items: center;
+          gap: var(--space-4);
+          padding: var(--space-4) var(--space-5);
+          background: #1a1816;
+          border: 1px solid #2a2520;
+          border-radius: 12px;
+          text-decoration: none;
+          transition: all 0.2s;
+          cursor: pointer;
+        }
+        .mc-tool:hover {
+          background: #222018;
+          border-color: #c8943e40;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 20px rgba(200, 148, 62, 0.08);
+        }
+        .mc-tool__icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+          background: linear-gradient(135deg, #c8943e20, #c8943e10);
+          border: 1px solid #c8943e30;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.85rem;
+          font-weight: 800;
+          color: #c8943e;
           flex-shrink: 0;
         }
-        .kpi-tile__value {
-          font-size: var(--text-4xl);
-          font-weight: 700;
-          line-height: 1;
-          letter-spacing: -0.02em;
-          margin-top: var(--space-2);
+        .mc-tool__text {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          flex: 1;
+          min-width: 0;
         }
-        .kpi-tile__unit {
+        .mc-tool__name {
           font-size: var(--text-sm);
-          font-weight: 500;
-          color: var(--text-muted);
-          margin-left: var(--space-1);
+          font-weight: 700;
+          color: #e8e0d4;
         }
-        .kpi-tile__target {
-          font-size: var(--text-xs);
-          color: var(--text-disabled);
-        }
-        .kpi-tile__empty-note {
-          font-size: var(--text-xs);
-          color: var(--text-disabled);
-          font-style: italic;
-        }
-        .kpi-tile__progress {
-          height: 3px;
-          background: var(--border);
-          border-radius: 2px;
+        .mc-tool__desc {
+          font-size: 0.75rem;
+          color: #6a6560;
+          white-space: nowrap;
           overflow: hidden;
-          margin-top: var(--space-1);
+          text-overflow: ellipsis;
         }
-        .kpi-tile__progress-bar {
-          height: 100%;
-          border-radius: 2px;
-          transition: width 0.6s ease;
+        .mc-tool__arrow {
+          color: #3a352f;
+          font-size: 1.1rem;
+          transition: color 0.2s, transform 0.2s;
+          flex-shrink: 0;
         }
-
-        /* Skeleton */
-        .skeleton {
-          background: var(--surface);
-          border-radius: var(--radius-sm);
-          animation: shimmer 1.5s ease-in-out infinite;
-        }
-        .skeleton--text { height: 14px; }
-        .skeleton--value { height: 40px; width: 80px; }
-        @keyframes shimmer {
-          0%, 100% { opacity: 0.4; }
-          50% { opacity: 0.8; }
+        .mc-tool:hover .mc-tool__arrow {
+          color: #c8943e;
+          transform: translateX(3px);
         }
 
-        /* Sections */
-        .dashboard-sections {
+        /* ── Buttons ── */
+        .mc-btn {
+          display: inline-flex;
+          align-items: center;
+          padding: 10px 20px;
+          font-size: 0.8rem;
+          font-weight: 700;
+          letter-spacing: 0.03em;
+          border-radius: 8px;
+          text-decoration: none;
+          transition: all 0.2s;
+          cursor: pointer;
+          border: none;
+        }
+        .mc-btn--primary {
+          background: linear-gradient(135deg, #c8943e, #b07e30);
+          color: #0f0f0d;
+          box-shadow: 0 2px 12px rgba(200, 148, 62, 0.25);
+        }
+        .mc-btn--primary:hover {
+          box-shadow: 0 4px 20px rgba(200, 148, 62, 0.4);
+          transform: translateY(-1px);
+        }
+        .mc-btn--ghost {
+          background: transparent;
+          color: #8a8074;
+          border: 1px solid #3a352f;
+        }
+        .mc-btn--ghost:hover {
+          border-color: #c8943e60;
+          color: #c8943e;
+        }
+
+        /* ── Feed ── */
+        .mc-feed {
+          margin: var(--space-8) 0 var(--space-12);
+        }
+        .mc-feed__columns {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: var(--space-6);
         }
         @media (max-width: 768px) {
-          .dashboard-sections { grid-template-columns: 1fr; }
-        }
-        .dashboard-section {
-          background: var(--surface);
-          border: 1px solid var(--border);
-          border-radius: var(--radius-md);
-          padding: var(--space-5);
-        }
-        .dashboard-section__header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: var(--space-5);
-        }
-        .dashboard-section__title {
-          font-size: var(--text-md);
-          font-weight: 700;
-          color: var(--text);
-          margin: 0;
-        }
-        .dashboard-section__link {
-          font-size: var(--text-xs);
-          font-weight: 600;
-          color: var(--accent);
-          text-decoration: none;
+          .mc-feed__columns { grid-template-columns: 1fr; }
         }
 
-        /* List items */
-        .dashboard-list {
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-1);
-        }
-        .dashboard-list-item {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: var(--space-3);
-          padding: var(--space-3);
-          border-radius: var(--radius-sm);
-          transition: background var(--duration-fast) var(--ease-default);
-        }
-        .dashboard-list-item--link {
-          text-decoration: none;
-          cursor: pointer;
-        }
-        .dashboard-list-item--link:hover {
-          background: var(--bg);
-        }
-        .dashboard-list-item__main {
+        /* ── List ── */
+        .mc-list {
           display: flex;
           flex-direction: column;
           gap: 2px;
+        }
+        .mc-list__item {
+          display: flex;
+          align-items: center;
+          gap: var(--space-3);
+          padding: var(--space-3) var(--space-4);
+          border-radius: 10px;
+          transition: background 0.15s;
+          text-decoration: none;
+        }
+        .mc-list__item:hover {
+          background: #1a181640;
+        }
+        .mc-list__item--link {
+          cursor: pointer;
+        }
+        .mc-list__dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #c8943e;
+          flex-shrink: 0;
+          box-shadow: 0 0 8px rgba(200, 148, 62, 0.3);
+        }
+        .mc-list__dot--published { background: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, 0.3); }
+        .mc-list__dot--draft { background: #6a6560; box-shadow: none; }
+        .mc-list__content {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          flex: 1;
           min-width: 0;
         }
-        .dashboard-list-item__title {
+        .mc-list__title {
           font-size: var(--text-sm);
           font-weight: 600;
-          color: var(--text);
+          color: #e8e0d4;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
         }
-        .dashboard-list-item__meta {
-          font-size: var(--text-xs);
-          color: var(--text-disabled);
+        .mc-list__meta {
+          font-size: 0.7rem;
+          color: #5a5550;
+          text-transform: capitalize;
         }
-
-        /* ── Full-width panel ── */
-        .dashboard-full-section {
-          background: var(--surface);
-          border: 1px solid var(--border);
-          border-radius: var(--radius-md);
-          padding: var(--space-5);
-        }
-        .dashboard-section__sub {
-          font-size: var(--text-xs);
-          color: var(--text-disabled);
-          margin: 2px 0 0;
-        }
-
-        /* ── Platform table ── */
-        .platform-table-wrap {
-          overflow-x: auto;
-          margin-top: var(--space-4);
-        }
-        .platform-table {
-          width: 100%;
-          border-collapse: collapse;
-          font-size: var(--text-sm);
-        }
-        .platform-table__th {
-          text-align: left;
-          font-size: var(--text-xs);
-          font-weight: 600;
-          color: var(--text-muted);
-          letter-spacing: var(--tracking-wide);
-          padding: var(--space-2) var(--space-3);
-          border-bottom: 1px solid var(--border);
-        }
-        .platform-table__row:hover {
-          background: var(--bg);
-        }
-        .platform-table__td {
-          padding: var(--space-3);
-          border-bottom: 1px solid var(--border);
-          vertical-align: middle;
-        }
-        .platform-table__name {
-          font-weight: 600;
-          color: var(--text);
-          white-space: nowrap;
-        }
-        .platform-table__action {
-          color: var(--text-muted);
-          font-size: var(--text-xs);
-        }
-
-        /* Status badges */
-        .platform-badge {
-          display: inline-block;
-          font-size: var(--text-xs);
+        .mc-list__action {
+          font-size: 0.7rem;
           font-weight: 700;
-          letter-spacing: var(--tracking-wide);
-          padding: 2px 8px;
-          border-radius: 999px;
-          text-transform: uppercase;
-        }
-        .platform-badge--active  { background: #14532d22; color: #22c55e; }
-        .platform-badge--partial { background: #71350022; color: #eab308; }
-        .platform-badge--pending { background: #7c2d1222; color: #f97316; }
-        .platform-badge--missing { background: #7f1d1d22; color: #ef4444; }
-
-        /* Priority badges (table column) */
-        .priority-badge {
-          display: inline-block;
-          font-size: var(--text-xs);
-          font-weight: 700;
-          letter-spacing: var(--tracking-wide);
-          padding: 2px 8px;
-          border-radius: 999px;
-          text-transform: uppercase;
-        }
-        .priority-badge--high   { background: #7f1d1d22; color: #ef4444; }
-        .priority-badge--medium { background: #71350022; color: #eab308; }
-        .priority-badge--low    { background: #14532d22; color: #22c55e; }
-
-        /* ── Checklist ── */
-        .checklist-progress {
-          margin-top: var(--space-4);
-          margin-bottom: var(--space-5);
-        }
-        .checklist-progress__label {
-          display: flex;
-          justify-content: space-between;
-          font-size: var(--text-xs);
-          color: var(--text-muted);
-          margin-bottom: var(--space-2);
-        }
-        .checklist-progress__count { font-weight: 600; }
-        .checklist-progress__pct   { color: var(--text-disabled); }
-        .checklist-progress__track {
-          height: 6px;
-          background: var(--border);
-          border-radius: 3px;
-          overflow: hidden;
-        }
-        .checklist-progress__fill {
-          height: 100%;
-          background: var(--success, #22c55e);
-          border-radius: 3px;
-          transition: width 0.6s ease;
-        }
-
-        .checklist-group {
-          margin-top: var(--space-4);
-        }
-        .checklist-group__header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          font-size: var(--text-xs);
-          font-weight: 700;
-          letter-spacing: var(--tracking-wide);
-          text-transform: uppercase;
-          padding: var(--space-2) var(--space-3);
-          border-radius: var(--radius-sm);
-          margin-bottom: var(--space-2);
-        }
-        .checklist-group__header--critical { background: #7f1d1d22; color: #ef4444; }
-        .checklist-group__header--high     { background: #7c2d1222; color: #f97316; }
-        .checklist-group__header--medium   { background: #71350022; color: #eab308; }
-        .checklist-group__header--low      { background: #14532d22; color: #22c55e; }
-        .checklist-group__count {
-          background: rgba(255,255,255,0.12);
-          border-radius: 999px;
-          padding: 1px 7px;
-          font-size: var(--text-xs);
-        }
-
-        .checklist-item {
-          display: flex;
-          align-items: flex-start;
-          gap: var(--space-3);
-          padding: var(--space-3);
-          border-radius: var(--radius-sm);
-          transition: background var(--duration-fast) var(--ease-default);
-        }
-        .checklist-item:hover { background: var(--bg); }
-        .checklist-item--done { opacity: 0.5; }
-        .checklist-item__checkbox {
+          color: #c8943e;
+          text-decoration: none;
+          padding: 4px 10px;
+          border-radius: 6px;
+          background: rgba(200, 148, 62, 0.08);
+          transition: background 0.15s;
           flex-shrink: 0;
-          width: 16px;
-          height: 16px;
-          border: 1.5px solid var(--border);
-          border-radius: 3px;
-          margin-top: 1px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 10px;
-          color: var(--success, #22c55e);
         }
-        .checklist-item__checkbox--checked {
-          background: var(--success, #22c55e);
-          border-color: var(--success, #22c55e);
-          color: #fff;
-        }
-        .checklist-item__text {
-          font-size: var(--text-sm);
-          color: var(--text);
-          flex: 1;
-          line-height: 1.4;
-        }
-        .checklist-item__category {
-          flex-shrink: 0;
-          font-size: var(--text-xs);
-          font-weight: 600;
-          color: var(--text-disabled);
-          background: var(--bg);
-          border: 1px solid var(--border);
-          border-radius: var(--radius-sm);
-          padding: 1px 6px;
-          white-space: nowrap;
+        .mc-list__action:hover {
+          background: rgba(200, 148, 62, 0.18);
         }
 
-        .checklist-done-toggle {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-          background: var(--bg);
-          border: 1px solid var(--border);
-          border-radius: var(--radius-sm);
-          padding: var(--space-2) var(--space-3);
-          font-size: var(--text-xs);
-          font-weight: 600;
-          color: var(--text-muted);
-          cursor: pointer;
-          letter-spacing: var(--tracking-wide);
-          text-transform: uppercase;
-          transition: background var(--duration-fast) var(--ease-default);
+        /* ── Empty States ── */
+        .mc-empty {
+          font-size: var(--text-sm);
+          color: #5a5550;
+          padding: var(--space-6);
+          text-align: center;
+          background: #1a181620;
+          border-radius: 10px;
+          border: 1px dashed #2a2520;
         }
-        .checklist-done-toggle:hover { background: var(--border); }
-        .checklist-done-toggle__arrow { font-size: 9px; }
+        .mc-empty a {
+          color: #c8943e;
+          text-decoration: none;
+          font-weight: 600;
+        }
       `}</style>
     </>
   );
