@@ -70,6 +70,7 @@ const NAV_SECTIONS = [
   {
     label: 'Platform',
     items: [
+      { label: 'Ecosystem', href: '/ecosystem', icon: '◉' },
       { label: 'Bridge Clients', href: '/bridge', icon: '◈' },
       { label: 'Finance', href: '/finance', icon: '$' },
     ],
