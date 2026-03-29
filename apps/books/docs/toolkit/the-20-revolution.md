@@ -5,6 +5,8 @@ sidebar_position: 4
 
 # The $20 Revolution
 
+![SaaS stack at 800 dollars versus single tool at 20 dollars](https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/outsider-economics/10-saas-price-ladder.webp)
+
 The right price for a Main Street digital tool is $20/month. Not $99. Not $299. Twenty dollars.
 
 ## Why $20?

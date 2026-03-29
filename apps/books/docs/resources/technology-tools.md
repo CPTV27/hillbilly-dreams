@@ -5,6 +5,8 @@ sidebar_position: 5
 
 # Technology Tools
 
+![Recommended technology stack comparison](https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/outsider-economics/10-saas-price-ladder.webp)
+
 The recommended stack for Main Street operators. Prioritizes simplicity, cost, and local control.
 
 ## The $0-$100/Month Stack

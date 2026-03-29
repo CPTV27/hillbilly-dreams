@@ -5,6 +5,8 @@ sidebar_position: 3
 
 # The Extraction Trap
 
+![Money leaving town versus circulating locally](https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/outsider-economics/04-extraction-vs-circulation.webp)
+
 Every dollar that leaves your town for a service that could be provided locally is extraction. Most small towns don't realize how much they're losing.
 
 ## What Extraction Looks Like

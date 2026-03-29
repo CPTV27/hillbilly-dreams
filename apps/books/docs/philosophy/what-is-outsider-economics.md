@@ -5,6 +5,8 @@ sidebar_position: 1
 
 # What Is Outsider Economics?
 
+![A small town with value flowing inward through connected businesses](https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/outsider-economics/01-small-town-value-flow.webp)
+
 Outsider Economics is a way of building local economies that work for the people who actually live there.
 
 It starts with a simple observation: small towns already have most of what they need. They have skilled people, empty buildings, local knowledge, and customers who want to buy local. What they don't have is coordination.

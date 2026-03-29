@@ -5,6 +5,8 @@ sidebar_position: 2
 
 # Grants & Funding
 
+![Map of Deep South grant organizations](https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/outsider-economics/13-mississippi-grant-map.webp)
+
 Money available to small-town operators in the Deep South. Organized by source, with deadlines and typical award sizes where known.
 
 ## Federal Programs

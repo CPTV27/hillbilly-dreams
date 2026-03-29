@@ -5,6 +5,8 @@ sidebar_position: 4
 
 # Coordination, Not Scale
 
+![Connected small shops outperforming one giant factory](https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/outsider-economics/05-federation-vs-scale.webp)
+
 The dominant economic playbook says: grow. Get bigger. Scale. Outsider Economics says: coordinate. Get better at working together.
 
 ## Why Scale Doesn't Work for Small Towns

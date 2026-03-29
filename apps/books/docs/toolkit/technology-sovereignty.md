@@ -5,6 +5,8 @@ sidebar_position: 5
 
 # Technology Sovereignty
 
+![Business cutting puppet strings to cloud platforms](https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/outsider-economics/11-cut-the-strings.webp)
+
 Own your stack. If a company in San Francisco can turn off your tools tomorrow, you don't have technology — you have a dependency.
 
 ## The Problem

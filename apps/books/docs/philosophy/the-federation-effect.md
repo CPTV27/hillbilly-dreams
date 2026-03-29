@@ -5,6 +5,8 @@ sidebar_position: 5
 
 # The Federation Effect
 
+![Independent stalls sharing infrastructure in a federation](https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/outsider-economics/06-farmers-market-federation.webp)
+
 A federation is a group of independent operators who share infrastructure without surrendering independence. It's the organizational model Outsider Economics is built on.
 
 ## Not a Co-op, Not a Corporation

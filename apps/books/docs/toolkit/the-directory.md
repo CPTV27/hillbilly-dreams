@@ -5,6 +5,8 @@ sidebar_position: 3
 
 # The Directory
 
+![Phone showing local listing next to tourist on Main Street](https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/outsider-economics/09-phone-directory-tourist.webp)
+
 A directory makes local businesses discoverable to visitors and to each other. It's the simplest, highest-impact tool in the Outsider Economics toolkit.
 
 ## The Problem

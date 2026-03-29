@@ -5,6 +5,8 @@ sidebar_position: 1
 
 # The Task Board
 
+![Kanban task board with skill icons on cards](https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/outsider-economics/07-kanban-task-board.webp)
+
 A task board is how you coordinate work without hierarchy. Instead of job titles and org charts, you have tasks that need doing and people who can do them.
 
 ## The Problem It Solves

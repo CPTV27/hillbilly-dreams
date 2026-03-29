@@ -5,6 +5,8 @@ sidebar_position: 2
 
 # People Are the Currency
 
+![Network of people connected by skills and trades](https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/outsider-economics/02-people-network-skills.webp)
+
 In a small town, the most valuable resource isn't money. It's the person who shows up.
 
 ## The Insight

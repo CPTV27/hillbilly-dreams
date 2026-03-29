@@ -5,6 +5,8 @@ sidebar_position: 4
 
 # Legal Frameworks
 
+![Flowchart for choosing a business structure](https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/outsider-economics/15-entity-flowchart.webp)
+
 How to structure your operation in Mississippi and the Deep South. Not legal advice — practical frameworks from the field.
 
 :::caution

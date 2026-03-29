@@ -5,6 +5,8 @@ sidebar_position: 2
 
 # Building Without Banks
 
+![Five alternative finance building blocks](https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/outsider-economics/08-five-revenue-blocks.webp)
+
 Traditional capital doesn't flow to small towns. The good news: you don't need it.
 
 ## The Problem

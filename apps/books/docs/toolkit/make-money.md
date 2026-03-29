@@ -5,6 +5,8 @@ sidebar_position: 7
 
 # Make Money
 
+![Small exchanges flowing into a river of value](https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/outsider-economics/03-tributaries-river-value.webp)
+
 This isn't theory. Here are concrete ways to generate revenue using the Outsider Economics toolkit — whether you're a single operator or running a federation.
 
 ## For Individual Operators

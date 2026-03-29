@@ -5,6 +5,8 @@ sidebar_position: 6
 
 # Shared Services
 
+![Hub and spoke diagram of shared services](https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/outsider-economics/12-shared-services-hub.webp)
+
 Pool resources without merging. Ten businesses sharing one photographer is cheaper than ten businesses each using stock photos.
 
 ## The Concept
