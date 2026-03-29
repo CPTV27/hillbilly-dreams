@@ -12,37 +12,37 @@ export const metadata: Metadata = {
 const CATEGORIES = [
   {
     name: 'Restaurants & Food',
-    image: '/images/dsd/cat-restaurant.webp',
+    icon: 'R',
     count: 'Biscuits & Blues, The Camp, Cotton Alley, and more',
     desc: 'From Regina\'s biscuits to gas station fried chicken. The corridor eats.',
   },
   {
     name: 'Venues & Music',
-    image: '/images/dsd/cat-venue.webp',
+    icon: 'V',
     count: 'The Anthologist, Bobby J\'s, Blues Room, and more',
     desc: 'Juke joints, listening rooms, record stores with stages. Where the music lives.',
   },
   {
     name: 'Hotels & Lodging',
-    image: '/images/dsd/cat-hotel.webp',
+    icon: 'H',
     count: 'Big Muddy Inn, B&Bs, historic homes',
     desc: 'Places to stay that have a story. Not chains — characters.',
   },
   {
     name: 'Shops & Retail',
-    image: '/images/dsd/cat-shop.webp',
+    icon: 'S',
     count: 'Antiques, art, vinyl, flowers',
     desc: 'Main Street still works in these towns. Support the people who keep it open.',
   },
   {
     name: 'Tours & Experiences',
-    image: '/images/dsd/cat-tour.webp',
+    icon: 'T',
     count: 'Walking tours, cooking classes, river excursions',
     desc: 'The things you came to the corridor to do. We know who does them best.',
   },
   {
     name: 'Services',
-    image: '/images/dsd/cat-service.webp',
+    icon: 'P',
     count: 'Photography, web, marketing, events',
     desc: 'The behind-the-scenes people who keep small-town businesses running.',
   },
@@ -389,13 +389,20 @@ export default function DirectoryPage() {
             >
               <div
                 style={{
-                  height: 140,
-                  backgroundImage: `url(${cat.image})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  opacity: 0.7,
+                  height: 80,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '2rem',
+                  fontWeight: 800,
+                  color: 'var(--accent, #c8943e)',
+                  background: 'rgba(200, 148, 62, 0.06)',
+                  borderBottom: '1px solid var(--muted, #333)',
+                  letterSpacing: '0.05em',
                 }}
-              />
+              >
+                {cat.icon}
+              </div>
               <div style={{ padding: '1.5rem' }}>
                 <h3
                   style={{
