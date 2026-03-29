@@ -50,6 +50,33 @@ const sidebars: SidebarsConfig = {
       ],
     },
   ],
+  howTo: [
+    {
+      type: 'category',
+      label: 'How Do I...?',
+      collapsed: false,
+      items: [
+        'how-to/make-a-poster',
+        'how-to/write-an-article',
+        'how-to/add-photos-to-article',
+        'how-to/create-social-post',
+        'how-to/create-radio-promo',
+        'how-to/respond-to-review',
+        'how-to/check-arrivals',
+        'how-to/update-room-availability',
+        'how-to/add-business-to-directory',
+        'how-to/onboard-new-client',
+        'how-to/update-a-listing',
+        'how-to/update-the-website',
+        'how-to/upload-content',
+        'how-to/find-a-photo',
+        'how-to/schedule-a-show',
+        'how-to/promote-a-show',
+        'how-to/ask-delta-dawn',
+        'how-to/what-can-delta-dawn-do',
+      ],
+    },
+  ],
 };
 
 export default sidebars;

@@ -76,6 +76,12 @@ const config: Config = {
           label: "JP's Guide",
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'howTo',
+          position: 'left',
+          label: 'How Do I...?',
+        },
+        {
           href: 'https://bigmuddytouring.com/admin',
           label: 'Admin Dashboard',
           position: 'right',
@@ -99,6 +105,7 @@ const config: Config = {
             { label: "Amy \u2014 Inn & Bar", to: '/amy/overview' },
             { label: "Tracy \u2014 Business & Finance", to: '/tracy/overview' },
             { label: "JP \u2014 Shows & Programming", to: '/jp/overview' },
+            { label: 'How Do I...?', to: '/how-to/make-a-poster' },
           ],
         },
         {
