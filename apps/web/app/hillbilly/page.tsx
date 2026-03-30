@@ -622,11 +622,11 @@ export default function HillbillyDreamsPage() {
             Built on Google Cloud · Natchez, Mississippi
           </div>
           <h1 className="hd-hero__title">
-            Enterprise Infrastructure
-            <span className="hd-hero__title-accent">for the Independent.</span>
+            The AI That
+            <span className="hd-hero__title-accent">Runs Your Business.</span>
           </h1>
           <p className="hd-hero__sub">
-            We harnessed the latest from <strong>Google Cloud</strong>, <strong>Gemini AI</strong>, and <strong>Vercel</strong> and packaged it into a platform that runs businesses — from Main Street shops to boutique hotels to media companies. One engine. Any industry.
+            Reviews, social media, scheduling, finances, and customer outreach — handled automatically. You approve everything. The AI does the rest. Built for Main Street, powered by <strong>Google</strong>.
           </p>
           <div className="hd-hero__ctas">
             <a href="https://measurablybetterthings.com" className="hd-btn-primary">Measurably Better Things →</a>
