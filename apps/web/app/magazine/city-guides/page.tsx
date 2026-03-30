@@ -266,15 +266,30 @@ export default async function CityGuidesPage() {
           padding: var(--space-24) var(--space-6) var(--space-20);
           position: relative;
           overflow: hidden;
+          min-height: 420px;
+        }
+        .guides-hero::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image: url('https://storage.googleapis.com/bmt-media-bigmuddy/magazine/city-guides-hero.webp');
+          background-size: cover;
+          background-position: right center;
+          background-repeat: no-repeat;
+          opacity: 0.55;
+          mask-image: linear-gradient(to right, transparent 10%, rgba(0,0,0,0.3) 35%, rgba(0,0,0,1) 60%);
+          -webkit-mask-image: linear-gradient(to right, transparent 10%, rgba(0,0,0,0.3) 35%, rgba(0,0,0,1) 60%);
         }
         .guides-hero::before {
           content: '';
           position: absolute;
           inset: 0;
-          background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200, 148, 62, 0.07) 0%, transparent 60%);
+          background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200, 148, 62, 0.12) 0%, transparent 60%);
+          z-index: 1;
         }
         .guides-hero__content {
           position: relative;
+          z-index: 2;
           max-width: var(--container-xl);
           margin: 0 auto;
         }
