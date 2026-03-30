@@ -60,7 +60,7 @@ export const TENANTS: TenantConfig[] = [
   {
     id: 'studio-c',
     name: 'Studio C',
-    entity: 'Studio C Video LLC',
+    entity: 'Tuthill Design LLC d/b/a Studio C Video',
     domains: ['studiocvideo.com', 'studio-c.video', 'studio-c.com'],
     primaryDomain: 'studio-c.video',
     routeGroup: 'studio',
@@ -69,7 +69,9 @@ export const TENANTS: TenantConfig[] = [
     accentColor: '#4A90D9',
     tagline: 'Production. Recording. Broadcasting.',
     location: { city: 'Woodstock', state: 'NY' },
-    features: ['gallery', 'studio', 'radio'],
+    features: ['gallery', 'studio', 'radio', 'creative', 'content-studio', 'media-vault'],
+    // Studio C is the production arm — Chase 40% owner
+    // Clients: Big Muddy/HDI, Scan2Plan, Bearsville, real estate
   },
   {
     id: 'tuthill',
@@ -81,9 +83,11 @@ export const TENANTS: TenantConfig[] = [
     themeClass: 'theme-tuthill',
     gcsBucket: 'bmt-media-bigmuddy',
     accentColor: '#2D5F2D',
-    tagline: 'Photography for the Hudson Valley',
+    tagline: 'Design and Photography for the Hudson Valley',
     location: { city: 'Woodstock', state: 'NY' },
-    features: ['gallery', 'studio'],
+    features: ['gallery', 'studio', 'creative', 'content-studio'],
+    // Tuthill Design is Elijah's company — integrates with Studio C
+    // Shared access to Creative Hub + Google AI Studio
   },
 ];
 
