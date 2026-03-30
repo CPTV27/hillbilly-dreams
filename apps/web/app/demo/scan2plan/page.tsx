@@ -528,7 +528,7 @@ export default function Scan2PlanDeck() {
           padding: '48px 20px', backgroundColor: COLORS.dark, color: 'white', 
           textAlign: 'center', fontSize: 12, opacity: 0.8
         }}>
-          S2PX PROPRIETARY ASSET // © 2026 HILLBILLY DREAMS INC // POWERED BY GOOGLE CLOUD
+          © 2026 HILLBILLY DREAMS INC // POWERED BY GOOGLE CLOUD
         </footer>
       </main>
     </PasswordGate>
