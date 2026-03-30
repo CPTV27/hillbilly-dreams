@@ -151,23 +151,7 @@ export default function DirectoryPage() {
           position: 'relative',
         }}
       >
-        {/* Hero background illustration — woodcut / main-street-storefront */}
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundImage: 'linear-gradient(180deg, rgba(15,15,13,0.55) 0%, rgba(15,15,13,0.85) 100%), url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/01-woodcut/main-street-storefront.webp)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: 0.3,
-            zIndex: -1,
-            pointerEvents: 'none',
-          }}
-          aria-hidden="true"
-        />
+        {/* Background removed — clean dark surface */}
         <p
           style={{
             color: 'var(--accent, #c8943e)',
