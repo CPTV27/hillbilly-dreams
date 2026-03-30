@@ -82,10 +82,17 @@ export async function GET(request: Request) {
         }
 
         if (!isEventDate) {
-          // ── Weekend pricing ──
+          // ── Weekend pricing + 2-night minimum (Fri-Sat) ──
           if (dayOfWeek === 5 || dayOfWeek === 6) {
             newRate = baseRate * rules.weekendMultiplier;
             reason = `Weekend (${rules.weekendMultiplier}x)`;
+            updates.push({
+              roomTypeID: String(plan.roomTypeID),
+              ratePlanID: String(plan.ratePlanID),
+              startDate: date,
+              endDate: date,
+              minLOS: 2,
+            });
           }
 
           // ── High occupancy surge ──

@@ -355,28 +355,51 @@ export interface PricingRules {
   }>;
 }
 
+// ── Pricing Tiers ──
+// Standard rate: $200/night (base for all calculations)
+// Midweek off-season floor: $160/night
+// Weekend: $249/night (2-night minimum Fri-Sat)
+// Peak season: midweek $200, weekend $279 (2-night min)
+// Events: $299-$349 (2-night min)
+// Surge: +15% when 4+ of 6 rooms booked
+// Last-minute fill: -10% within 48hr if 3+ rooms open
+
 export const DEFAULT_PRICING_RULES: PricingRules = {
-  weekendMultiplier: 1.25,
-  highOccupancyThreshold: 0.67,     // 4 of 6 rooms
-  highOccupancyMultiplier: 1.15,
-  lastMinuteWindow: 48,
-  lastMinuteDiscount: 0.85,
-  minRate: 96,                      // breakeven ADR
-  maxRate: 350,                     // ceiling
+  weekendMultiplier: 1.245,           // $200 × 1.245 ≈ $249
+  highOccupancyThreshold: 0.67,       // 4 of 6 rooms
+  highOccupancyMultiplier: 1.15,      // +15% surge
+  lastMinuteWindow: 48,               // hours before check-in
+  lastMinuteDiscount: 0.90,           // -10% (still above floor)
+  minRate: 160,                       // midweek off-season floor
+  maxRate: 400,                       // absolute ceiling
   events: {
     'natchez-spring-pilgrimage': {
-      dates: [],                    // Fill from event calendar
-      multiplier: 1.50,
+      dates: [
+        // March 15-30, 2026 (approximate — confirm with Amy)
+        '2026-03-15','2026-03-16','2026-03-17','2026-03-18','2026-03-19',
+        '2026-03-20','2026-03-21','2026-03-22','2026-03-23','2026-03-24',
+        '2026-03-25','2026-03-26','2026-03-27','2026-03-28','2026-03-29','2026-03-30',
+      ],
+      multiplier: 1.495,              // $200 × 1.495 ≈ $299
       minLOS: 2,
     },
     'natchez-fall-pilgrimage': {
-      dates: [],
-      multiplier: 1.50,
+      dates: [
+        // October 10-25, 2026 (approximate — confirm with Amy)
+        '2026-10-10','2026-10-11','2026-10-12','2026-10-13','2026-10-14',
+        '2026-10-15','2026-10-16','2026-10-17','2026-10-18','2026-10-19',
+        '2026-10-20','2026-10-21','2026-10-22','2026-10-23','2026-10-24','2026-10-25',
+      ],
+      multiplier: 1.495,              // ≈ $299
       minLOS: 2,
     },
     'natchez-balloon-festival': {
-      dates: [],
-      multiplier: 1.35,
+      dates: [
+        // October 17-19, 2026 (approximate — confirm with Amy)
+        '2026-10-17','2026-10-18','2026-10-19',
+      ],
+      multiplier: 1.745,              // $200 × 1.745 ≈ $349
+      minLOS: 2,
     },
   },
 };
