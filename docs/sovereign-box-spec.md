@@ -180,6 +180,47 @@ Revenue share is permanent and recurring. If someone you referred pays $20/mo fo
 | Report bugs, write docs, answer forum questions | Contributor credits (never expire) |
 | Assemble and sell boxes in your region | Keep the hardware margin |
 
+### Quality Gates — You're Rewarded for Adoption, Not Names
+
+You don't earn by referring. You earn by ensuring your referral succeeds. The incentive is to HELP the people you bring in — not just collect sign-ups.
+
+**Nothing pays until the referral performs:**
+
+| Stage | What Happens | Your Payout |
+|---|---|---|
+| You refer someone | Nothing. Clock starts. | $0 |
+| They deploy their box | Still nothing. | $0 |
+| 90 days active + 5 real users on their node | Referral qualifies | $50 bonus |
+| They upgrade to paid tier | Revenue share activates | Recurring % for life |
+
+**Annual re-qualification to keep your tier:**
+
+| Status | Requirement |
+|---|---|
+| Founder (25%) | Node 80%+ uptime, 2+ qualified referrals, 1+ contribution |
+| Operator (20%) | Node 80%+ uptime, 1+ qualified referral |
+| Member (15%) | Node 60%+ uptime |
+| Inactive (drops to 10%) | Below all thresholds |
+
+Miss a year? Your tier drops but you can earn it back. You never lose what you already earned — but you can't coast.
+
+### Weekly Milestones — Constant Dopamine
+
+| Week | Milestone | Reward |
+|---|---|---|
+| 1 | Box online, profile created | Welcome badge + 10 credits |
+| 2 | 2+ users on your node | "First Community" badge + 25 credits |
+| 3 | First content published | "Creator" badge + 25 credits |
+| 4 | First referral sent | 10 credits |
+| 5 | 30-day uptime hits 95% | "Reliable" badge + 50 credits |
+| 6 | First contribution to the project | "Contributor" badge + 50 credits |
+| 7 | 5+ active users | Free cloud sync for a month |
+| 8 | First referral qualifies | Revenue share activates + 100 credits |
+
+Monthly challenges continue: Month 3 (10 users → free quarter), Month 6 (train someone → Certified Operator), Month 9 (2 qualified referrals → rate locked), Month 12 (annual review).
+
+**Credits spend on:** cloud tier, premium AI calls, hardware discounts, merch, gift to another operator who can't afford to upgrade.
+
 ### Why This Works
 
 Not an affiliate program. A network ownership model.
