@@ -26,7 +26,7 @@ export const BMT_EMAILS = {
   hello: 'hello@chasepierson.tv',
 
   // ── Sub-brands (not yet migrated — keep existing addresses) ──
-  directory: 'directory@bigmuddymedia.com',
+  directory: 'directory@hillbillydreamsinc.com',
   studio: 'studio@thebigmuddyinn.com',
   radio: 'radio@thebigmuddyinn.com',
   weddings: 'weddings@bigmuddyinn.com',

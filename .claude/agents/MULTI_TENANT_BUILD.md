@@ -57,7 +57,7 @@ export const TENANTS: TenantConfig[] = [
     id: 'big-muddy',
     name: 'Big Muddy',
     entity: 'Hillbilly Dreams Inc',
-    domains: ['bigmuddytouring.com', 'bigmuddymagazine.com', 'bigmuddyradio.com', 'bigmuddyentertainment.com', 'deepsouthdirectory.com', 'measurablybetter.life', 'outsidereconomics.com', 'buycurious.art', 'bigmuddymedia.com', 'bigmuddyrecord.com'],
+    domains: ['bigmuddytouring.com', 'bigmuddymagazine.com', 'bigmuddyradio.com', 'bigmuddyentertainment.com', 'deepsouthdirectory.com', 'measurablybetter.life', 'outsidereconomics.com', 'buycurious.art', 'bigmuddyrecord.com'],
     primaryDomain: 'bigmuddytouring.com',
     routeGroup: 'touring',
     themeClass: 'theme-touring',

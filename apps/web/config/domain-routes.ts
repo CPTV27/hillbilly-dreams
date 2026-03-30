@@ -49,14 +49,8 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
     routeGroup: 'directory',
     excludeAdmin: true,
   },
-  {
-    // NOTE: bigmuddymedia.com is owned by an unrelated Illinois company.
-    // This route only activates for local dev (bigmuddymedia.local).
-    // The /media route group is accessible via direct paths on other domains.
-    pattern: 'bigmuddymedia',
-    routeGroup: 'media',
-    excludeAdmin: true,
-  },
+  // bigmuddymedia.com removed — domain owned by unrelated Illinois company.
+  // /media routes accessible via direct paths on other domains.
   { pattern: 'outsidereconomics', routeGroup: 'economics' },
   { pattern: 'buycurious', routeGroup: 'gallery' },
   { pattern: 'buycuriousart', routeGroup: 'gallery' },
@@ -84,7 +78,7 @@ export const BMT_LOCAL_DOMAIN_ROUTES: DomainRoute[] = [
   { pattern: 'bigmuddymagazine.local', routeGroup: 'magazine' },
   { pattern: 'bigmuddyradio.local', routeGroup: 'radio' },
   { pattern: 'deepsouthdirectory.local', routeGroup: 'directory' },
-  { pattern: 'bigmuddymedia.local', routeGroup: 'media' },
+  // bigmuddymedia.local removed — domain not ours
   { pattern: 'outsidereconomics.local', routeGroup: 'economics' },
 ];
 

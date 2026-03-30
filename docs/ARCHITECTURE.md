@@ -227,7 +227,7 @@ The `BMT_DOMAIN_ROUTES` array in `config/domain-routes.ts` maps hostnames to rou
 | `bigmuddymagazine` | `magazine` | |
 | `bigmuddyradio` | `radio` | |
 | `deepsouthdirectory` | `directory` | excludeAdmin |
-| `bigmuddymedia` | `media` | excludeAdmin |
+| ~~`bigmuddymedia`~~ | ~~`media`~~ | **Removed** — domain owned by unrelated company |
 | `outsidereconomics` | `economics` | |
 | `buycurious` | `gallery` | |
 | `buycuriousart` | `gallery` | Alternate domain, same route group |

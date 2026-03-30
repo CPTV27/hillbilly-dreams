@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
       apiVersion: '2024-06-20' as unknown,
     });
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bigmuddymedia.com';
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://hillbillydreamsinc.com';
     let connectAccountId = client.stripeConnectId;
 
     // Create a new Connect account if one doesn't exist

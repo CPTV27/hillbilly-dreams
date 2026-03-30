@@ -132,7 +132,7 @@ export class TwitterPublisher implements SocialPublisher {
 // Uses the AT Protocol — no OAuth needed, just an app password
 //
 // Required env vars:
-//   BLUESKY_HANDLE       — e.g. "bigmuddymedia.bsky.social"
+//   BLUESKY_HANDLE       — e.g. "hillbillydreams.bsky.social"
 //   BLUESKY_APP_PASSWORD — App password from Settings > App Passwords
 //
 // Setup:

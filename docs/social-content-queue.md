@@ -21,7 +21,7 @@ $450,000. That's what a single cooking class instructor generated in total local
 
 The spreadsheet says it shouldn't work. The spreadsheet is not interesting.
 
-**CTA:** bigmuddymedia.com/economics
+**CTA:** outsidereconomics.com
 
 ---
 
@@ -38,7 +38,7 @@ Nobody asked a consultant. Somebody just decided it mattered.
 
 That's the whole field manual.
 
-**CTA:** bigmuddymedia.com/economics/rise-up
+**CTA:** outsidereconomics.com/rise-up
 
 ---
 
@@ -53,7 +53,7 @@ The Pilgrimage Garden Club has maintained an antebellum mansion since 1938. No g
 
 Outsider Economics calls this a porch network. The Garden Club calls it Tuesday.
 
-**CTA:** bigmuddymedia.com/economics
+**CTA:** outsidereconomics.com
 
 ---
 
@@ -70,7 +70,7 @@ Came back to Natchez, Mississippi to make biscuits.
 
 The people who leave and come back are building the next economy. The ones who never left are holding the line. Both matter. Neither needs permission.
 
-**CTA:** bigmuddymedia.com/economics/rise-up
+**CTA:** outsidereconomics.com/rise-up
 
 ---
 
@@ -87,15 +87,15 @@ Natchez built a record store with roses, a recording label, a touring corridor, 
 
 Opt out. Build the thing. Own the thing.
 
-**CTA:** bigmuddymedia.com/economics
+**CTA:** outsidereconomics.com
 
 ---
 
-## Twitter/X -- @BigMuddyMedia (5 posts)
+## Twitter/X -- @HillbillyDreams (5 posts)
 
 ---
 
-### BM-001 -- Twitter/X (@BigMuddyMedia) -- Status: DRAFT
+### BM-001 -- Twitter/X (@HillbillyDreams) -- Status: DRAFT
 
 **Source:** The Anthologist article
 **Scheduled:** 2026-03-20
@@ -108,11 +108,11 @@ Buy a first pressing of Muddy Waters and a dozen roses in the same transaction. 
 
 Now part of the Big Muddy Records venue network.
 
-**CTA:** bigmuddymedia.com/records
+**CTA:** bigmuddyrecord.com
 
 ---
 
-### BM-002 -- Twitter/X (@BigMuddyMedia) -- Status: DRAFT
+### BM-002 -- Twitter/X (@HillbillyDreams) -- Status: DRAFT
 
 **Source:** Save the Hall Ball article
 **Scheduled:** 2026-03-21
@@ -125,11 +125,11 @@ Live music. Dancing. 16-foot ceilings. 169-year-old chandeliers.
 
 We're shooting the whole thing.
 
-**CTA:** bigmuddymedia.com/magazine
+**CTA:** bigmuddymagazine.com
 
 ---
 
-### BM-003 -- Twitter/X (@BigMuddyMedia) -- Status: DRAFT
+### BM-003 -- Twitter/X (@HillbillyDreams) -- Status: DRAFT
 
 **Source:** Deep South Directory launch
 **Scheduled:** 2026-03-25
@@ -140,11 +140,11 @@ The Deep South Directory is live. Local businesses across the corridor -- Natche
 
 Not a Yelp clone. A network. Every listing is a business we've met, photographed, or worked with. No pay-to-play. No algorithmic burial.
 
-**CTA:** bigmuddymedia.com/directory
+**CTA:** deepsouthdirectory.com
 
 ---
 
-### BM-004 -- Twitter/X (@BigMuddyMedia) -- Status: DRAFT
+### BM-004 -- Twitter/X (@HillbillyDreams) -- Status: DRAFT
 
 **Source:** Regina's Biscuits article
 **Scheduled:** 2026-03-27
@@ -155,11 +155,11 @@ The Biscuit Queen of Natchez trained at Le Cordon Bleu, cooked in San Francisco,
 
 New feature in the Magazine. The story of Regina Charboneau, and what a $150 cooking class does for a town of 16,000.
 
-**CTA:** bigmuddymedia.com/magazine
+**CTA:** bigmuddymagazine.com
 
 ---
 
-### BM-005 -- Twitter/X (@BigMuddyMedia) -- Status: DRAFT
+### BM-005 -- Twitter/X (@HillbillyDreams) -- Status: DRAFT
 
 **Source:** Arri Aslin portrait session + Big Muddy Records
 **Scheduled:** 2026-03-29
@@ -170,11 +170,11 @@ New artist portraits: Arri Aslin. Inn co-owner, Big Muddy Records artist, and th
 
 Shot at the Inn last week. More on the Records page.
 
-**CTA:** bigmuddymedia.com/records/artists
+**CTA:** bigmuddyrecord.com/artists
 
 ---
 
-## Instagram -- @BigMuddyMedia (5 posts)
+## Instagram -- @HillbillyDreams (5 posts)
 
 ---
 
@@ -203,7 +203,7 @@ No cover for most shows. Tips go directly to the artist. Walk south from the blu
 
 **Hashtags:** #NatchezMS #VinylRecords #RecordStore #MainStreet #BigMuddyRecords #DeepSouth #MississippiMusic #CrateDigging #SmallTownCulture #NatchezTrace
 
-**CTA:** Link in bio -> bigmuddymedia.com/records
+**CTA:** Link in bio -> bigmuddyrecord.com
 
 ---
 
@@ -230,7 +230,7 @@ More portraits and artist features on the Records page. More live sessions from 
 
 **Hashtags:** #BigMuddyRecords #ArtistPortrait #NatchezMS #BluesRoom #LiveMusic #SingerSongwriter #PortraitPhotography #BigMuddyInn #DeepSouth #MississippiMusic
 
-**CTA:** Link in bio -> bigmuddymedia.com/records/artists
+**CTA:** Link in bio -> bigmuddyrecord.com/artists
 
 ---
 
@@ -259,7 +259,7 @@ Every live session from the Blues Room and the Anthologist runs through this set
 
 **Hashtags:** #StudioC #RecordingStudio #DemoDay #BigMuddyRecords #MusicProduction #NatchezMS #LiveRecording #BehindTheScenes #AnalogVibes #MississippiMusic
 
-**CTA:** Link in bio -> bigmuddymedia.com/records
+**CTA:** Link in bio -> bigmuddyrecord.com
 
 ---
 
@@ -289,9 +289,9 @@ The kind of place where the music starts when someone feels like playing and end
 
 Some places you photograph. This one you just sit in.
 
-**Hashtags:** #UnderTheHill #NatchezMS #MississippiBar #DeepSouth #BarCulture #NatchezNightlife #BigMuddyMedia #MississippiRiver #BluesBar #SouthernNights
+**Hashtags:** #UnderTheHill #NatchezMS #MississippiBar #DeepSouth #BarCulture #NatchezNightlife #HillbillyDreams #MississippiRiver #BluesBar #SouthernNights
 
-**CTA:** Link in bio -> bigmuddymedia.com/touring
+**CTA:** Link in bio -> bigmuddytouring.com
 
 ---
 
@@ -310,7 +310,7 @@ Some places you photograph. This one you just sit in.
 - Rhythm: slow at the start, pick up pace mid-reel, slow again for the close
 - Mix ambient audio from multiple clips to build a soundscape -- footsteps, conversation hum, distant music, a car passing on Main Street
 - Close on an empty street or long shot down Main with lights receding -- the "last call" feeling
-- Text overlay at end: "Natchez after dark. bigmuddymedia.com/touring"
+- Text overlay at end: "Natchez after dark. bigmuddytouring.com"
 
 **Caption:**
 Downtown Natchez. March 6th. A Tuesday.
@@ -321,9 +321,9 @@ Main Street lit up. People on the sidewalks. Music coming out of three different
 
 That's the part they don't tell you about small towns. The good ones aren't quiet. They're just quieter about it.
 
-**Hashtags:** #NatchezMS #DowntownNatchez #NatchezNightlife #SmallTownLife #MainStreet #DeepSouth #MississippiNights #BigMuddyMedia #SouthernCulture #NatchezAfterDark
+**Hashtags:** #NatchezMS #DowntownNatchez #NatchezNightlife #SmallTownLife #MainStreet #DeepSouth #MississippiNights #HillbillyDreams #SouthernCulture #NatchezAfterDark
 
-**CTA:** Link in bio -> bigmuddymedia.com/touring
+**CTA:** Link in bio -> bigmuddytouring.com
 
 ---
 
@@ -351,9 +351,9 @@ That's the part they don't tell you about small towns. The good ones aren't quie
 - Text: "The Anthologist. Natchez, MS."
 
 **Caption:**
-A record store inside a flower shop inside a venue. Main Street, Natchez, Mississippi. Population 16,000. #NatchezMS #VinylRecords #RecordStore #SmallTownCulture #BigMuddyMedia #TheAnthologist
+A record store inside a flower shop inside a venue. Main Street, Natchez, Mississippi. Population 16,000. #NatchezMS #VinylRecords #RecordStore #SmallTownCulture #HillbillyDreams #TheAnthologist
 
-**CTA:** Link in bio -> bigmuddymedia.com/records
+**CTA:** Link in bio -> bigmuddyrecord.com
 
 ---
 
@@ -373,7 +373,7 @@ A record store inside a flower shop inside a venue. Main Street, Natchez, Missis
 **Caption:**
 Le Cordon Bleu -> San Francisco -> Natchez, Mississippi. Population 16,000. The Biscuit Queen came home. #NatchezMS #ReginaCharboneau #BiscuitQueen #SouthernFood #OutsiderEconomics #SmallTownEconomics #Mississippi
 
-**CTA:** Link in bio -> bigmuddymedia.com/economics
+**CTA:** Link in bio -> outsidereconomics.com
 
 ---
 
@@ -393,9 +393,9 @@ Le Cordon Bleu -> San Francisco -> Natchez, Mississippi. Population 16,000. The 
 - Text: "Outsider Economics. The Field Manual."
 
 **Caption:**
-The money leaves. Unless you build the thing that keeps it. #OutsiderEconomics #SmallTownEconomics #ExtractionEconomics #BuildLocal #BigMuddyMedia #FieldManual
+The money leaves. Unless you build the thing that keeps it. #OutsiderEconomics #SmallTownEconomics #ExtractionEconomics #BuildLocal #HillbillyDreams #FieldManual
 
-**CTA:** Link in bio -> bigmuddymedia.com/economics/rise-up
+**CTA:** Link in bio -> outsidereconomics.com/rise-up
 
 ---
 
@@ -426,7 +426,7 @@ Currently live with founding members across Natchez, Clarksdale, Vicksburg, and 
 
 If you run a business between Memphis and New Orleans and you want to be part of a network that actually works for small-town operators, the link is in the comments.
 
-**CTA:** bigmuddymedia.com/directory
+**CTA:** deepsouthdirectory.com
 
 ---
 
@@ -455,7 +455,7 @@ The coffee table book comes out this year. The field manual (Outsider Economics)
 
 None of this pencils out on a spreadsheet the way a VC would want it to. All of it works in the room where it happens.
 
-**CTA:** bigmuddymedia.com
+**CTA:** hillbillydreamsinc.com
 
 ---
 
@@ -468,11 +468,11 @@ None of this pencils out on a spreadsheet the way a VC would want it to. All of 
 | OE-003 | Twitter (@OutsiderEcon) | Video + text | Stat counter / Garden Club | 2026-03-24 | DRAFT |
 | OE-004 | Twitter (@OutsiderEcon) | Video + text | Quote card / Regina story | 2026-03-26 | DRAFT |
 | OE-005 | Twitter (@OutsiderEcon) | Video + text | Extraction trap / Directory | 2026-03-28 | DRAFT |
-| BM-001 | Twitter (@BigMuddyMedia) | Image + text | Anthologist article | 2026-03-20 | DRAFT |
-| BM-002 | Twitter (@BigMuddyMedia) | Image + text | Save the Hall Ball | 2026-03-21 | DRAFT |
-| BM-003 | Twitter (@BigMuddyMedia) | Text | Directory launch | 2026-03-25 | DRAFT |
-| BM-004 | Twitter (@BigMuddyMedia) | Image + text | Regina's Biscuits | 2026-03-27 | DRAFT |
-| BM-005 | Twitter (@BigMuddyMedia) | Image + text | Arri Aslin portraits | 2026-03-29 | DRAFT |
+| BM-001 | Twitter (@HillbillyDreams) | Image + text | Anthologist article | 2026-03-20 | DRAFT |
+| BM-002 | Twitter (@HillbillyDreams) | Image + text | Save the Hall Ball | 2026-03-21 | DRAFT |
+| BM-003 | Twitter (@HillbillyDreams) | Text | Directory launch | 2026-03-25 | DRAFT |
+| BM-004 | Twitter (@HillbillyDreams) | Image + text | Regina's Biscuits | 2026-03-27 | DRAFT |
+| BM-005 | Twitter (@HillbillyDreams) | Image + text | Arri Aslin portraits | 2026-03-29 | DRAFT |
 | IG-001 | Instagram | Carousel (6) | Anthologist | 2026-03-21 | DRAFT |
 | IG-002 | Instagram | Carousel (6) | Arri Aslin | 2026-03-24 | DRAFT |
 | IG-003 | Instagram | Carousel (6) | Studio C | 2026-03-27 | DRAFT |
@@ -498,7 +498,7 @@ None of this pencils out on a spreadsheet the way a VC would want it to. All of 
 ## Notes
 
 - Twitter/X @OutsiderEcon posts follow the content engine pattern: no hashtags, no emojis, sub-280 char threads expanded to fit the voice
-- @BigMuddyMedia Twitter allows slightly more promo tone but still Chase's voice, not corporate
+- @HillbillyDreams Twitter allows slightly more promo tone but still Chase's voice, not corporate
 - Instagram captions are longer -- visual-first platform, the caption tells the story behind what you're looking at
 - TikTok hooks must land in 2 seconds or the scroll wins
 - LinkedIn is still Chase's voice but pitched to business context -- the builder explaining the system, not the brand promoting itself

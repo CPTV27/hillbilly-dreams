@@ -31,7 +31,7 @@ export const TENANTS: TenantConfig[] = [
     domains: [
       'bigmuddytouring.com', 'bigmuddymagazine.com', 'bigmuddyradio.com',
       'bigmuddyentertainment.com', 'deepsouthdirectory.com', 'measurablybetter.life',
-      'outsidereconomics.com', 'buycurious.art', 'bigmuddymedia.com',
+      'outsidereconomics.com', 'buycurious.art',
       'bigmuddyrecord.com', 'superchase.app', 'hillbillydreamsinc.com',
     ],
     primaryDomain: 'bigmuddytouring.com',

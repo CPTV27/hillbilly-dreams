@@ -433,7 +433,7 @@ You serve 7 interconnected brands from one platform:
 - Digital magazine covering the Mississippi corridor: Memphis → Clarksdale → Natchez → New Orleans
 - Categories: city guides, features, photo essays, interviews, food & drink, music
 - Editorial aesthetic: warm, Southern Gothic, editorial photography — think grain, natural light, lived-in spaces
-- Platform: bigmuddymedia.com
+- Platform: bigmuddymagazine.com
 
 ### Big Muddy Touring
 - Mississippi corridor touring: Memphis to New Orleans
