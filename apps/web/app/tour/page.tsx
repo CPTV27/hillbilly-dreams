@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useState } from 'react';
 
-type Audience = 'partner' | 'local' | 'client' | 'google' | 'default';
+type Audience = 'partner' | 'local' | 'client' | 'google' | 'aggressive' | 'default';
 
 const CONFIG = {
   partner: {
@@ -23,6 +23,15 @@ const CONFIG = {
       { label: 'Walk: The Voice', desc: 'Phase 2: Engage the community with media (Big Muddy Radio)', url: 'https://bigmuddyradio.com' },
       { label: 'Run: The Platform', desc: 'Phase 3: Upgrade owners to the OS (Measurably Better)', url: 'https://measurablybetter.life' },
       { label: 'The Math', desc: 'Unit economics and margin retention for Main Street', url: 'https://outsidereconomics.com/the-math' }
+    ]
+  },
+  aggressive: {
+    hero: 'The Big Muddy Ecosystem',
+    subtitle: 'A scalable flywheel of media, real estate, and enterprise software.',
+    links: [
+      { label: 'Ecosystem Flywheel', desc: 'Org chart, revenue, and intelligence', url: 'https://bigmuddytouring.com/admin/ecosystem' },
+      { label: 'The Math', desc: 'The unit economics of Main Street', url: 'https://outsidereconomics.com/the-math' },
+      { label: 'Demo Deck', desc: '10-slide presentation overview', url: 'https://bigmuddytouring.com/demo-deck.html' }
     ]
   },
   client: {
@@ -49,7 +58,7 @@ const CONFIG = {
     links: [
       { label: 'Partner Review', desc: 'For stakeholders and partners', url: '?audience=partner' },
       { label: 'Local Impact', desc: 'For Natchez and Main Street', url: '?audience=local' },
-      { label: 'Client Tools', desc: 'For independent business owners', url: '?audience=client' },
+      { label: 'Scalable Model', desc: 'For ecosystem scale', url: '?audience=aggressive' },
       { label: 'Technology Stack', desc: 'For engineers and Google', url: '?audience=google' }
     ]
   }
@@ -57,16 +66,30 @@ const CONFIG = {
 
 function TourInterface() {
   const [audience, setAudience] = useState<Audience>('default');
+  const [isTestMode, setIsTestMode] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window.location.search);
       const aud = urlParams.get('audience') as Audience;
+      
       if (aud && CONFIG[aud]) {
+        // If an explicit URL parameter is provided, respect it
         setAudience(aud);
+        setIsTestMode(false);
       } else {
-        // Fallback for JP explicitly if no params but he is the primary stakeholder today
-        setAudience('partner'); 
+        // INTERNAL A/B TESTING ENVIRONMENT
+        setIsTestMode(true);
+        const savedVariant = localStorage.getItem('bmt_ab_test_variant') as Audience;
+        
+        if (savedVariant && (savedVariant === 'local' || savedVariant === 'aggressive')) {
+          setAudience(savedVariant);
+        } else {
+          // 50/50 randomized split
+          const newVariant = Math.random() > 0.5 ? 'aggressive' : 'local';
+          localStorage.setItem('bmt_ab_test_variant', newVariant);
+          setAudience(newVariant);
+        }
       }
     }
   }, []);
@@ -86,6 +109,27 @@ function TourInterface() {
     }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', width: '100%' }}>
         
+        {/* A/B Testing Indicator */}
+        {isTestMode && (
+          <div style={{
+            position: 'absolute',
+            top: '1rem',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            border: '1px solid #c8943e',
+            backgroundColor: '#c8943e15',
+            color: '#c8943e',
+            padding: '0.4rem 1rem',
+            borderRadius: '100px',
+            fontSize: '0.75rem',
+            fontWeight: 600,
+            letterSpacing: '0.05em',
+            textTransform: 'uppercase'
+          }}>
+            Internal A/B Test Variant: {audience}
+          </div>
+        )}
+
         {/* Cinematic Header */}
         <div style={{ marginBottom: '4rem', textAlign: 'center' }}>
           <h1 style={{ 
