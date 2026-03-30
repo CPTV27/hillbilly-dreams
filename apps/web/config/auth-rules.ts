@@ -52,6 +52,8 @@ export type OnJwtEnrichCallback = (
 export const BMT_ALLOWED_DOMAINS: string[] = [
   'chasepierson.tv',
   'thebigmuddyinn.com',
+  'bigmuddyentertainment.com',
+  'hillbillydreamsinc.com',
   'studio.c.video',
   'studio-c.com',
 ];
