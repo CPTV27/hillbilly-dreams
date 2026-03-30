@@ -4,15 +4,17 @@ import { useState } from 'react';
 
 /* eslint-disable @next/next/no-img-element */
 
-type View = 'story' | 'flywheel' | 'tenants' | 'personnel' | 'org' | 'revenue' | 'tech' | 'architecture';
+type View = 'story' | 'flywheel' | 'tenants' | 'personnel' | 'org' | 'revenue' | 'tech' | 'architecture' | 'links' | 'scan2plan';
 
 const VIEWS: { id: View; label: string; color: string }[] = [
+  { id: 'links', label: '🔗 All Links', color: '#ffffff' },
   { id: 'story', label: 'The Story', color: '#c8943e' },
   { id: 'flywheel', label: 'Flywheel', color: '#22c55e' },
   { id: 'tenants', label: 'Tenants', color: '#3b82f6' },
   { id: 'personnel', label: 'Personnel + AI', color: '#8b5cf6' },
   { id: 'org', label: 'Org Chart', color: '#ec4899' },
   { id: 'revenue', label: 'Revenue', color: '#f97316' },
+  { id: 'scan2plan', label: 'Scan2Plan', color: '#ef4444' },
   { id: 'tech', label: 'Tech Stack', color: '#eab308' },
   { id: 'architecture', label: 'Blueprint', color: '#ef4444' },
 ];
@@ -249,7 +251,132 @@ function ArchitectureView() {
   );
 }
 
+function LinksView() {
+  const links = [
+    { label: 'Big Muddy Touring', url: 'https://bigmuddytouring.com', color: '#c8943e' },
+    { label: 'Deep South Directory', url: 'https://deepsouthdirectory.com', color: '#22c55e' },
+    { label: 'Measurably Better', url: 'https://measurablybetter.life', color: '#3b82f6' },
+    { label: 'Outsider Economics', url: 'https://outsidereconomics.com', color: '#f97316' },
+    { label: 'Big Muddy Magazine', url: 'https://bigmuddymagazine.com', color: '#8b5cf6' },
+    { label: 'Big Muddy Radio', url: 'https://bigmuddyradio.com', color: '#ec4899' },
+    { label: 'Big Muddy Entertainment', url: 'https://bigmuddyentertainment.com', color: '#eab308' },
+    { label: 'BuyCurious Art', url: 'https://buycurious.art', color: '#c8943e' },
+    { label: 'Radio Shows', url: 'https://bigmuddytouring.com/radio/shows', color: '#ec4899' },
+    { label: 'Chase Pierson Photography', url: 'https://bigmuddytouring.com/gallery/chase-pierson', color: '#c8943e' },
+    { label: 'Bearsville Media Group', url: 'https://bigmuddytouring.com/bearsville', color: '#8B6914' },
+    { label: 'Architecture Blueprint', url: 'https://bigmuddytouring.com/platform/architecture', color: '#ef4444' },
+    { label: 'Admin — Mission Control', url: 'https://bigmuddytouring.com/admin/dashboard', color: '#c8943e' },
+    { label: 'Admin — Creative Hub', url: 'https://bigmuddytouring.com/admin/creative', color: '#8b5cf6' },
+    { label: 'Admin — Ecosystem', url: 'https://bigmuddytouring.com/admin/ecosystem', color: '#22c55e' },
+    { label: 'Admin — Broadcast Control', url: 'https://bigmuddytouring.com/admin/radio', color: '#ec4899' },
+    { label: 'Admin — Lookbook', url: 'https://bigmuddytouring.com/admin/lookbook', color: '#f97316' },
+    { label: 'In-Room TV Demo', url: 'https://bigmuddytouring.com/touring/inn/tv', color: '#3b82f6' },
+    { label: 'Demo Deck', url: 'https://bigmuddytouring.com/demo-deck.html', color: '#eab308' },
+  ];
+  return (
+    <div style={{ padding: '1rem 2rem' }}>
+      <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1rem' }}>All Links</h2>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '0.75rem' }}>
+        {links.map(l => (
+          <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer" style={{
+            display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem',
+            background: '#1a1816', border: `1px solid ${l.color}40`, borderRadius: 10,
+            textDecoration: 'none', transition: 'all 0.15s',
+          }}>
+            <div style={{ width: 10, height: 10, borderRadius: '50%', background: l.color, flexShrink: 0, boxShadow: `0 0 8px ${l.color}40` }} />
+            <span style={{ fontSize: '1rem', fontWeight: 600, color: '#e8e0d4' }}>{l.label}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Scan2PlanView() {
+  return (
+    <div style={{ padding: '2rem', maxWidth: 900, margin: '0 auto' }}>
+      <h2 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '1rem' }}>Scan2Plan — Status</h2>
+
+      <div style={{ display: 'grid', gap: '1rem', marginBottom: '2rem' }}>
+        <div style={{ background: '#1a1816', border: '1px solid #ef444440', borderRadius: 12, padding: '1.5rem' }}>
+          <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#ef4444', margin: '0 0 0.75rem' }}>Outstanding Balance</h3>
+          <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#ef4444' }}>$22,739.20</div>
+          <p style={{ fontSize: '0.9rem', color: '#8a8074', marginTop: '0.5rem' }}>Revenue share (2% + 5% COO) — Sep 2021 through Feb 2026</p>
+        </div>
+
+        <div style={{ background: '#1a1816', border: '1px solid #2a2520', borderRadius: 12, padding: '1.5rem' }}>
+          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#c8943e', margin: '0 0 0.75rem' }}>Timeline</h3>
+          <div style={{ display: 'grid', gap: '0.5rem', fontSize: '0.95rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0', borderBottom: '1px solid #1a1816' }}>
+              <span style={{ color: '#8a8074' }}>Sep 2021</span><span>Partnership begins — 2% revenue share for 50% tech ownership</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0', borderBottom: '1px solid #1a1816' }}>
+              <span style={{ color: '#8a8074' }}>Oct 2025</span><span>COO role added — 5% additional (total 7%)</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0', borderBottom: '1px solid #1a1816' }}>
+              <span style={{ color: '#8a8074' }}>Feb 28, 2026</span><span>COO arrangement ended</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0', borderBottom: '1px solid #1a1816' }}>
+              <span style={{ color: '#8a8074' }}>Mar 25, 2026</span><span>Partnership dissolved entirely</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0' }}>
+              <span style={{ color: '#8a8074' }}>Mar 26, 2026</span><span>Final invoice sent</span>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ background: '#1a1816', border: '1px solid #2a2520', borderRadius: 12, padding: '1.5rem' }}>
+          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#c8943e', margin: '0 0 0.75rem' }}>Numbers</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#e8e0d4' }}>$105,490</div>
+              <div style={{ fontSize: '0.75rem', color: '#6a6560' }}>Total Owed</div>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#22c55e' }}>$84,251</div>
+              <div style={{ fontSize: '0.75rem', color: '#6a6560' }}>Total Received</div>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#ef4444' }}>$22,739</div>
+              <div style={{ fontSize: '0.75rem', color: '#6a6560' }}>Net Underpayment</div>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ background: '#1a1816', border: '1px solid #2a2520', borderRadius: 12, padding: '1.5rem' }}>
+          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#c8943e', margin: '0 0 0.75rem' }}>Key People</h3>
+          <div style={{ display: 'grid', gap: '0.5rem', fontSize: '0.95rem' }}>
+            <div><span style={{ color: '#c8943e', fontWeight: 600 }}>Owen Bush</span> — CEO, Scan2Plan Inc</div>
+            <div><span style={{ color: '#c8943e', fontWeight: 600 }}>Agata Roberts</span> — Business Administrator (has detailed payment records)</div>
+            <div><span style={{ color: '#c8943e', fontWeight: 600 }}>Bob Bedard</span> — DeFacto Global, mentor, ~1-2% Scan2Plan equity for rent</div>
+            <div><span style={{ color: '#c8943e', fontWeight: 600 }}>Dennis Shelden</span> — RPI, Twinner academic project</div>
+          </div>
+        </div>
+
+        <div style={{ background: '#1a1816', border: '1px solid #2a2520', borderRadius: 12, padding: '1.5rem' }}>
+          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#c8943e', margin: '0 0 0.75rem' }}>Requested From Owen</h3>
+          <ol style={{ fontSize: '0.95rem', color: '#e8e0d4', paddingLeft: '1.25rem', margin: 0, lineHeight: 1.8 }}>
+            <li>Written confirmation of outstanding balance</li>
+            <li>Agreement on payment schedule</li>
+            <li>1099-NEC forms for all years (2021-2026)</li>
+          </ol>
+        </div>
+
+        <div style={{ background: '#1a1816', border: '1px solid #c8943e40', borderRadius: 12, padding: '1.5rem' }}>
+          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#c8943e', margin: '0 0 0.75rem' }}>Next Steps</h3>
+          <div style={{ fontSize: '0.95rem', color: '#e8e0d4', lineHeight: 1.8 }}>
+            <div>• Call with Bob Bedard tomorrow</div>
+            <div>• Send updated communication to Owen</div>
+            <div>• Licensing proposal v4 on Desktop (March 25, 2026)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const VIEW_COMPONENTS: Record<View, () => JSX.Element> = {
+  links: LinksView,
   story: StoryView,
   flywheel: FlywheelView,
   tenants: TenantsView,
@@ -258,10 +385,11 @@ const VIEW_COMPONENTS: Record<View, () => JSX.Element> = {
   revenue: RevenueView,
   tech: TechView,
   architecture: ArchitectureView,
+  scan2plan: Scan2PlanView,
 };
 
 export default function WhiteboardPage() {
-  const [view, setView] = useState<View>('story');
+  const [view, setView] = useState<View>('links');
   const ViewComponent = VIEW_COMPONENTS[view];
 
   return (
