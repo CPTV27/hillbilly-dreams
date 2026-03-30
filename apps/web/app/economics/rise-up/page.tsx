@@ -69,12 +69,7 @@ export default function RiseUpPage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="rise-hero">
-        <img
-          src="https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/08-folk-art/town-dancing.webp"
-          alt="Folk art illustration of a community gathering"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}
-        />
+      <section className="rise-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/10-watercolor/small-town-street.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="rise-hero__overlay" />
         <div className="rise-hero__content">
           <div className="section-label">Outsider Economics</div>
@@ -279,7 +274,7 @@ export default function RiseUpPage() {
         .rise-hero__overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, rgba(15, 15, 13, 0.3) 0%, rgba(15, 15, 13, 0.88) 100%);
+          background: linear-gradient(to top right, rgba(15, 15, 13, 0.85) 0%, rgba(15, 15, 13, 0.4) 40%, rgba(15, 15, 13, 0.1) 100%);
           z-index: 1;
         }
         .rise-hero__content {

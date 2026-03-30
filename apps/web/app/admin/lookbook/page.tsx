@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 /* eslint-disable @next/next/no-img-element */
 
 const GCS = 'https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook';
@@ -21,35 +21,66 @@ const STYLES = [
 ];
 
 interface Comment {
+  id: number;
   style: string;
   image: string;
   text: string;
-  author: string;
-  time: string;
+  author: string | null;
+  resolved: boolean;
+  createdAt: string;
 }
 
 export default function LookbookPage() {
   const [comments, setComments] = useState<Comment[]>([]);
   const [activeComment, setActiveComment] = useState<{ style: string; image: string } | null>(null);
   const [commentText, setCommentText] = useState('');
-  const [authorName, setAuthorName] = useState('');
   const [votes, setVotes] = useState<Record<string, number>>({});
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  const fetchComments = useCallback(async () => {
+    try {
+      const res = await fetch('/api/lookbook/comments');
+      const data = await res.json();
+      setComments(data.data || []);
+    } catch { /* no-op */ }
+  }, []);
+
+  useEffect(() => { fetchComments(); }, [fetchComments]);
 
   const vote = (styleId: string) => {
     setVotes(prev => ({ ...prev, [styleId]: (prev[styleId] || 0) + 1 }));
   };
 
-  const addComment = () => {
+  const addComment = async () => {
     if (!activeComment || !commentText.trim()) return;
-    setComments(prev => [...prev, {
-      ...activeComment,
-      text: commentText.trim(),
-      author: authorName.trim() || 'Anonymous',
-      time: new Date().toLocaleTimeString(),
-    }]);
+    setSaving(true);
+    try {
+      await fetch('/api/lookbook/comments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          style: activeComment.style,
+          image: activeComment.image,
+          text: commentText.trim(),
+        }),
+      });
+      await fetchComments();
+    } catch { /* no-op */ }
     setCommentText('');
     setActiveComment(null);
+    setSaving(false);
+  };
+
+  const toggleResolved = async (id: number, resolved: boolean) => {
+    try {
+      await fetch('/api/lookbook/comments', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, resolved: !resolved }),
+      });
+      await fetchComments();
+    } catch { /* no-op */ }
   };
 
   return (
@@ -65,6 +96,11 @@ export default function LookbookPage() {
         <p style={{ fontSize: '0.9rem', color: '#8a8074', maxWidth: 500, margin: '0 auto 1rem' }}>
           12 styles, 36 illustrations. Vote for your favorites and leave comments. Click any image to enlarge.
         </p>
+        {comments.length > 0 && (
+          <p style={{ fontSize: '0.75rem', color: '#6a6560' }}>
+            {comments.length} comment{comments.length !== 1 ? 's' : ''} · {comments.filter(c => !c.resolved).length} unresolved
+          </p>
+        )}
       </header>
 
       {/* Styles Grid */}
@@ -128,11 +164,44 @@ export default function LookbookPage() {
                         Comment {imgComments.length > 0 ? `(${imgComments.length})` : ''}
                       </button>
                     </div>
-                    {/* Comments for this image */}
-                    {imgComments.map((c, i) => (
-                      <div key={i} style={{ fontSize: '0.7rem', color: '#8a8074', background: '#1a1816', borderRadius: 4, padding: '0.375rem 0.5rem', marginTop: '0.375rem', borderLeft: '2px solid #c8943e' }}>
-                        <strong style={{ color: '#c8943e' }}>{c.author}</strong> <span style={{ color: '#5a5550' }}>{c.time}</span>
-                        <br />{c.text}
+                    {/* Persisted comments for this image */}
+                    {imgComments.map((c) => (
+                      <div
+                        key={c.id}
+                        style={{
+                          fontSize: '0.7rem',
+                          color: c.resolved ? '#5a5550' : '#8a8074',
+                          background: '#1a1816',
+                          borderRadius: 4,
+                          padding: '0.375rem 0.5rem',
+                          marginTop: '0.375rem',
+                          borderLeft: `2px solid ${c.resolved ? '#3a3530' : '#c8943e'}`,
+                          textDecoration: c.resolved ? 'line-through' : 'none',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'flex-start',
+                          gap: '0.5rem',
+                        }}
+                      >
+                        <div>
+                          <strong style={{ color: c.resolved ? '#5a5550' : '#c8943e' }}>{c.author || 'Anonymous'}</strong>{' '}
+                          <span style={{ color: '#5a5550' }}>{new Date(c.createdAt).toLocaleDateString()}</span>
+                          <br />{c.text}
+                        </div>
+                        <button
+                          onClick={() => toggleResolved(c.id, c.resolved)}
+                          style={{
+                            fontSize: '0.6rem',
+                            color: c.resolved ? '#c8943e' : '#5a5550',
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            whiteSpace: 'nowrap',
+                            flexShrink: 0,
+                          }}
+                        >
+                          {c.resolved ? 'reopen' : 'resolve'}
+                        </button>
                       </div>
                     ))}
                   </div>
@@ -152,26 +221,24 @@ export default function LookbookPage() {
             <h3 style={{ fontSize: '1rem', fontWeight: 700, margin: '0 0 1rem', color: '#e8e0d4' }}>
               Comment on {activeComment.image.replace(/-/g, ' ')}
             </h3>
-            <input
-              type="text"
-              placeholder="Your name"
-              value={authorName}
-              onChange={e => setAuthorName(e.target.value)}
-              style={{ width: '100%', padding: '0.5rem', background: '#0f0f0d', border: '1px solid #333', borderRadius: 6, color: '#e8e0d4', fontSize: '0.85rem', marginBottom: '0.5rem', boxSizing: 'border-box' }}
-            />
             <textarea
               placeholder="What do you think?"
               value={commentText}
               onChange={e => setCommentText(e.target.value)}
               rows={3}
+              autoFocus
               style={{ width: '100%', padding: '0.5rem', background: '#0f0f0d', border: '1px solid #333', borderRadius: 6, color: '#e8e0d4', fontSize: '0.85rem', resize: 'vertical', marginBottom: '0.75rem', boxSizing: 'border-box' }}
             />
             <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
               <button onClick={() => setActiveComment(null)} style={{ padding: '0.5rem 1rem', background: 'transparent', color: '#8a8074', border: '1px solid #333', borderRadius: 6, fontSize: '0.8rem', cursor: 'pointer' }}>
                 Cancel
               </button>
-              <button onClick={addComment} style={{ padding: '0.5rem 1rem', background: '#c8943e', color: '#0f0f0d', border: 'none', borderRadius: 6, fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}>
-                Post Comment
+              <button
+                onClick={addComment}
+                disabled={saving}
+                style={{ padding: '0.5rem 1rem', background: '#c8943e', color: '#0f0f0d', border: 'none', borderRadius: 6, fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer', opacity: saving ? 0.6 : 1 }}
+              >
+                {saving ? 'Saving...' : 'Post Comment'}
               </button>
             </div>
           </div>

@@ -24,48 +24,50 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://outsidereconomics.com' },
 };
 
+const GCS_ILLUS = 'https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook';
+
 const CORE_CONCEPTS = [
   {
     num: '01',
     title: 'Community Is the Currency',
-    stat: '∞',
-    href: '/field-manual/ch01-the-450000-secret',
+    href: 'https://outsidereconomics.com/philosophy/people-are-the-currency',
     desc: 'Get your community together. Real skills — plumbing, bookkeeping, carpentry, code — traded between people who trust each other. No bank. No grant. No permission required. The value stays where the work happens.',
+    image: `${GCS_ILLUS}/08-folk-art/marketplace.webp`,
   },
   {
     num: '02',
     title: 'The Extraction Trap',
-    stat: '→',
-    href: '/field-manual/02-the-extraction-trap',
+    href: 'https://outsidereconomics.com/philosophy/the-extraction-trap',
     desc: 'You buy coffee at the chain. That dollar hits a server in Seattle by lunch. Multiply that by everything you buy and most of what you earn leaves your zip code before the month is out. You\'re not poor. You\'re being drained.',
+    image: `${GCS_ILLUS}/01-woodcut/main-street-storefront.webp`,
   },
   {
     num: '03',
     title: 'The Coordination Premium',
-    stat: '+',
-    href: '/field-manual/03-the-coordination-premium',
+    href: 'https://outsidereconomics.com/philosophy/coordination-not-scale',
     desc: 'A plumber alone bills one rate. A plumber who knows an electrician, a carpenter, and a permit expediter bills renovations. Same people. Same hours. The value multiplies. Coordination is the lever nobody pulls.',
+    image: `${GCS_ILLUS}/09-blueprint/data-flow.webp`,
   },
   {
     num: '04',
     title: 'Time as Currency',
-    stat: '∞',
-    href: '/field-manual/04-time-is-the-only-currency-that-cant-leave-town',
+    href: 'https://outsidereconomics.com/toolkit/building-without-banks',
     desc: 'Here\'s what kept bugging me: money leaves. Always. But your neighbor\'s Saturday? That stays. Your hour of welding doesn\'t get wired to a hedge fund. It can\'t leave town. That\'s not a limitation — that\'s a feature.',
+    image: `${GCS_ILLUS}/10-watercolor/cotton-field.webp`,
   },
   {
     num: '05',
     title: 'Federation over Scale',
-    stat: '⚡',
-    href: '/field-manual/07-federation-not-scale',
+    href: 'https://outsidereconomics.com/philosophy/the-federation-effect',
     desc: 'Every org that outgrows trust starts acting like the thing it replaced. So don\'t scale. Federate. Keep each community human-sized. Wire them together. Let the network do what networks do.',
+    image: `${GCS_ILLUS}/12-cartographic/touring-circuit.webp`,
   },
   {
     num: '06',
     title: 'The Task Board',
-    stat: 'OS',
-    href: '/field-manual/05-the-task-board',
+    href: 'https://outsidereconomics.com/toolkit/the-task-board',
     desc: 'Not an app. Not a startup. Just a board — physical or digital — that shows who can do what and who needs what done. The simplest piece of infrastructure that turns a neighborhood into an economy. Most towns are one whiteboard away from not being broke.',
+    image: `${GCS_ILLUS}/04-chalkboard/tonights-lineup.webp`,
   },
 ];
 
@@ -101,10 +103,10 @@ export default function EconomicsHomepage() {
             This book explains how.
           </p>
           <div className="econ-hero__ctas">
-            <a href="/field-manual" className="btn btn--primary">
+            <a href="https://outsidereconomics.com/philosophy/what-is-outsider-economics" className="btn btn--primary">
               Read the Philosophy
             </a>
-            <a href="/the-math" className="btn btn--ghost">
+            <a href="https://outsidereconomics.com/toolkit/the-task-board" className="btn btn--ghost">
               See the Toolkit
             </a>
           </div>
@@ -122,15 +124,20 @@ export default function EconomicsHomepage() {
             Two years of arithmetic your city council never ran.
             Six ideas. That&apos;s all it takes to see the rigged game — and the exit.
           </p>
-          <div className="econ-concepts__grid">
-            {CORE_CONCEPTS.map((c) => (
-              <a key={c.num} href={c.href} className="concept-card">
-                <div className="concept-card__header">
-                  <span className="concept-card__num">{c.num}</span>
-                  <span className="concept-card__stat">{c.stat}</span>
+          <div className="econ-concepts__list">
+            {CORE_CONCEPTS.map((c, i) => (
+              <a
+                key={c.num}
+                href={c.href}
+                className={`concept-row ${i % 2 === 1 ? 'concept-row--reverse' : ''}`}
+              >
+                <div className="concept-row__image" style={{ backgroundImage: `url(${c.image})` }} />
+                <div className="concept-row__text">
+                  <span className="concept-row__num">{c.num}</span>
+                  <h3 className="concept-row__title">{c.title}</h3>
+                  <p className="concept-row__desc">{c.desc}</p>
+                  <span className="concept-row__link">Read more &rarr;</span>
                 </div>
-                <h3 className="concept-card__title">{c.title}</h3>
-                <p className="concept-card__desc">{c.desc}</p>
               </a>
             ))}
           </div>
@@ -138,7 +145,7 @@ export default function EconomicsHomepage() {
       </section>
 
       {/* ── The Thesis ── */}
-      <section className="econ-thesis">
+      <section className="econ-thesis" style={{ position: 'relative', zIndex: 3, background: 'var(--bg)' }}>
         <div className="section-container">
           <div className="econ-thesis__inner">
             <div className="econ-thesis__text">
@@ -218,11 +225,11 @@ export default function EconomicsHomepage() {
               Tuesday.
             </p>
             <div className="econ-community__actions">
-              <a href="/community" className="btn btn--primary">
-                Join the Network
+              <a href="https://outsidereconomics.com/resources/grants-and-funding" className="btn btn--primary">
+                Deep South Resources
               </a>
               <a
-                href="/field-manual"
+                href="https://outsidereconomics.com/toolkit/the-directory"
                 className="btn btn--ghost"
               >
                 Build a Directory
@@ -269,6 +276,7 @@ export default function EconomicsHomepage() {
         /* ── Hero ── */
         .econ-hero {
           position: relative;
+          z-index: 1;
           min-height: 100vh;
           display: flex;
           align-items: center;
@@ -395,73 +403,95 @@ export default function EconomicsHomepage() {
           margin: 0 0 var(--space-10);
         }
 
-        /* ── Concepts Grid ── */
+        /* ── Concepts — Alternating Rows ── */
         .econ-concepts {
+          position: relative;
+          z-index: 3;
           background: var(--surface);
           border-top: 1px solid var(--border);
           border-bottom: 1px solid var(--border);
         }
-        .econ-concepts__grid {
+        .econ-concepts__list {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-1);
+        }
+        .concept-row {
           display: grid;
-          grid-template-columns: 1fr;
-          gap: var(--space-6);
-        }
-        @media (min-width: 640px) {
-          .econ-concepts__grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-        @media (min-width: 1024px) {
-          .econ-concepts__grid {
-            grid-template-columns: repeat(3, 1fr);
-          }
-        }
-        .concept-card {
-          display: block;
+          grid-template-columns: 1fr 1fr;
+          min-height: 360px;
           text-decoration: none;
           color: inherit;
+          overflow: hidden;
+          border-radius: var(--radius-lg);
           background: var(--surface-2);
           border: 1px solid var(--border);
-          border-radius: var(--radius-lg);
-          padding: var(--space-6);
-          transition: border-color var(--duration-normal) var(--ease-default),
-                      box-shadow var(--duration-normal) var(--ease-default);
+          transition: border-color 0.2s, box-shadow 0.2s;
         }
-        .concept-card:hover {
+        .concept-row:hover {
           border-color: var(--border-strong);
           box-shadow: var(--shadow-glow);
         }
-        .concept-card__header {
-          display: flex;
-          align-items: baseline;
-          justify-content: space-between;
-          margin-bottom: var(--space-4);
+        .concept-row--reverse {
+          direction: rtl;
         }
-        .concept-card__num {
+        .concept-row--reverse > * {
+          direction: ltr;
+        }
+        .concept-row__image {
+          background-size: cover;
+          background-position: center;
+          min-height: 280px;
+        }
+        .concept-row__text {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: var(--space-10) var(--space-8);
+          gap: var(--space-3);
+        }
+        .concept-row__num {
           font-family: var(--font-mono);
           font-size: var(--text-xs);
           color: var(--accent);
-          opacity: 0.6;
+          opacity: 0.5;
+          letter-spacing: 0.1em;
         }
-        .concept-card__stat {
-          font-family: var(--font-mono);
-          font-size: var(--text-2xl);
-          font-weight: 700;
-          color: var(--accent);
-          letter-spacing: var(--tracking-tight);
-        }
-        .concept-card__title {
+        .concept-row__title {
           font-family: var(--font-display);
-          font-size: var(--text-xl);
+          font-size: var(--text-3xl);
           font-weight: 700;
           color: var(--text);
-          margin: 0 0 var(--space-3);
+          margin: 0;
+          line-height: var(--leading-tight);
         }
-        .concept-card__desc {
-          font-size: var(--text-sm);
+        .concept-row__desc {
+          font-size: var(--text-md);
           color: var(--text-muted);
           line-height: var(--leading-normal);
           margin: 0;
+        }
+        .concept-row__link {
+          font-family: var(--font-body);
+          font-size: var(--text-sm);
+          font-weight: 600;
+          color: var(--accent);
+          letter-spacing: 0.03em;
+          margin-top: var(--space-2);
+        }
+        @media (max-width: 768px) {
+          .concept-row {
+            grid-template-columns: 1fr;
+          }
+          .concept-row--reverse {
+            direction: ltr;
+          }
+          .concept-row__image {
+            min-height: 200px;
+          }
+          .concept-row__text {
+            padding: var(--space-6);
+          }
         }
 
         /* ── Thesis Section ── */
@@ -543,6 +573,8 @@ export default function EconomicsHomepage() {
 
         /* ── Trends ── */
         .econ-trends {
+          position: relative;
+          z-index: 3;
           background: var(--surface);
           border-top: 1px solid var(--border);
           border-bottom: 1px solid var(--border);
@@ -584,6 +616,8 @@ export default function EconomicsHomepage() {
 
         /* ── Community CTA ── */
         .econ-community {
+          position: relative;
+          z-index: 3;
           background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
         }
         .econ-community__inner {
@@ -601,6 +635,8 @@ export default function EconomicsHomepage() {
 
         /* ── Substack ── */
         .econ-substack {
+          position: relative;
+          z-index: 3;
           background: var(--surface);
           border-top: 1px solid var(--border);
         }
