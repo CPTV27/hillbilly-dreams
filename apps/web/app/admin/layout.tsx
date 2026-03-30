@@ -20,6 +20,7 @@ const NAV_SECTIONS = [
     label: 'Main',
     items: [
       { label: 'Dashboard', href: '/dashboard', icon: '◈' },
+      { label: 'Launch', href: '/launch', icon: '◉' },
       { label: 'Calendar', href: '/calendar', icon: '◷' },
       { label: 'Upload', href: '/upload', icon: '↑' },
     ],
