@@ -1,117 +1,183 @@
 'use client';
 
-/* eslint-disable @next/next/no-img-element */
+import { Suspense, useEffect, useState } from 'react';
 
-const SECTIONS = [
-  {
-    label: 'THE SITES',
-    items: [
-      { name: 'Big Muddy Touring', desc: 'Main site — hotel, venue, corridor', url: 'https://bigmuddytouring.com' },
-      { name: 'Deep South Directory', desc: 'Business listings — the product we sell', url: 'https://deepsouthdirectory.com' },
-      { name: 'Measurably Better', desc: 'The pitch page — why $99/mo', url: 'https://measurablybetter.life' },
-      { name: 'Big Muddy Magazine', desc: 'Editorial — stories from the corridor', url: 'https://bigmuddymagazine.com' },
-      { name: 'Big Muddy Radio', desc: 'Radio station — 18 shows', url: 'https://bigmuddyradio.com' },
-      { name: 'Big Muddy Entertainment', desc: 'Records, touring, talent search', url: 'https://bigmuddyentertainment.com' },
-      { name: 'Outsider Economics', desc: 'The philosophy — how local economies work', url: 'https://outsidereconomics.com' },
-      { name: 'Bearsville Media Group', desc: 'Woodstock, NY — second town deployment', url: 'https://bigmuddytouring.com/bearsville' },
-    ],
+type Audience = 'partner' | 'investor' | 'client' | 'google' | 'default';
+
+const CONFIG = {
+  partner: {
+    hero: 'Welcome, JP',
+    subtitle: 'Everything you need to review and decide, all in one place.',
+    links: [
+      { label: 'Review Options', desc: '4 engagement tiers — pick your level', url: 'https://bigmuddytouring.com/whiteboard' },
+      { label: 'Scan2Plan Docs', desc: 'Financials and review materials', url: 'https://app.asana.com/1/1211216881488780/project/1213753731475702/task/1213862302768434' },
+      { label: 'Mission Control', desc: 'Access the main admin dashboard', url: 'https://bigmuddytouring.com/admin/dashboard' },
+      { label: 'Your Asana Board', desc: 'Tasks, to-dos, and timeline', url: 'https://app.asana.com' }
+    ]
   },
-  {
-    label: 'THE RADIO',
-    items: [
-      { name: 'All 18 Shows', desc: 'Poster art, schedule, hosts', url: 'https://bigmuddytouring.com/radio/shows' },
-      { name: 'Web Player', desc: 'Listen to Big Muddy Radio', url: 'https://bigmuddytouring.com/radio/player' },
-    ],
+  investor: {
+    hero: 'The Big Muddy Ecosystem',
+    subtitle: 'A scalable flywheel of media, real estate, and enterprise software.',
+    links: [
+      { label: 'Ecosystem Flywheel', desc: 'Org chart, revenue, and intelligence', url: 'https://bigmuddytouring.com/admin/ecosystem' },
+      { label: 'The Math', desc: 'The unit economics of Main Street', url: 'https://outsidereconomics.com/the-math' },
+      { label: 'Demo Deck', desc: '10-slide presentation overview', url: 'https://bigmuddytouring.com/demo-deck.html' }
+    ]
   },
-  {
-    label: 'THE TOOLS',
-    items: [
-      { name: 'Admin Dashboard', desc: 'Mission Control — start here', url: 'https://bigmuddytouring.com/admin/dashboard' },
-      { name: 'Content Studio', desc: 'Generate social, articles, radio, posters', url: 'https://bigmuddytouring.com/admin/studio' },
-      { name: 'Creative Hub', desc: 'AI image, video, audio, text generation', url: 'https://bigmuddytouring.com/admin/creative' },
-      { name: 'Media Vault', desc: 'All photos and assets', url: 'https://bigmuddytouring.com/admin/media' },
-      { name: 'Broadcast Control', desc: 'Radio schedule, media library, TV', url: 'https://bigmuddytouring.com/admin/radio' },
-      { name: 'Upload Content', desc: 'Drag and drop files', url: 'https://bigmuddytouring.com/admin/upload' },
-      { name: 'Illustration Lookbook', desc: '36 styles to choose from', url: 'https://bigmuddytouring.com/admin/lookbook' },
-      { name: 'Delta Dawn', desc: 'AI assistant — ask her anything', url: 'https://bigmuddytouring.com/ops/chat' },
-    ],
+  client: {
+    hero: 'Measurably Better',
+    subtitle: 'Run your business, not your software. All your tools in one place.',
+    links: [
+      { label: 'The Pitch', desc: 'See what $99/month gets you', url: 'https://measurablybetter.life' },
+      { label: 'Deep South Directory', desc: 'View local listings and networks', url: 'https://deepsouthdirectory.com' },
+      { label: 'Creative Hub', desc: 'Generate social media, articles, and art', url: 'https://bigmuddytouring.com/admin/creative' }
+    ]
   },
-  {
-    label: 'THE BIG PICTURE',
-    items: [
-      { name: 'Whiteboard', desc: 'Toggle between 11 views of the business', url: 'https://bigmuddytouring.com/whiteboard' },
-      { name: 'Ecosystem Dashboard', desc: '7 lenses — flywheel, org chart, revenue, AI', url: 'https://bigmuddytouring.com/admin/ecosystem' },
-      { name: 'Architecture Blueprint', desc: 'The original 2022 diagram → today', url: 'https://bigmuddytouring.com/platform/architecture' },
-      { name: 'Demo Deck', desc: '10-slide presentation with links', url: 'https://bigmuddytouring.com/demo-deck.html' },
-    ],
+  google: {
+    hero: 'Enterprise Grade',
+    subtitle: 'Built on Google Cloud. Powered by Vertex AI.',
+    links: [
+      { label: 'Architecture Blueprint', desc: 'How the Google Cloud infrastructure scales', url: 'https://bigmuddytouring.com/platform/architecture' },
+      { label: 'Creative Hub', desc: 'Powered by Vertex AI Imagen & Gemini', url: 'https://bigmuddytouring.com/admin/creative' },
+      { label: 'Ecosystem Dashboard', desc: 'The full stack mapped out', url: 'https://bigmuddytouring.com/admin/ecosystem' }
+    ]
   },
-  {
-    label: 'THE ART',
-    items: [
-      { name: 'Chase Pierson Photography', desc: 'Print storefront with Stripe checkout', url: 'https://bigmuddytouring.com/gallery/chase-pierson' },
-      { name: 'In-Room TV', desc: '4 channels for hotel guest rooms', url: 'https://bigmuddytouring.com/touring/inn/tv' },
-    ],
-  },
-  {
-    label: 'FOR JP',
-    items: [
-      { name: 'Your Asana Board', desc: 'Your tasks and to-dos', url: 'https://app.asana.com' },
-      { name: 'Scan2Plan Review', desc: 'Financials and documents for your review', url: 'https://app.asana.com/1/1211216881488780/project/1213753731475702/task/1213862302768434' },
-      { name: 'JP Options', desc: '4 engagement tiers — pick your level', url: 'https://bigmuddytouring.com/whiteboard' },
-    ],
-  },
-];
+  default: {
+    hero: 'The Platform',
+    subtitle: 'Select your lens to begin the tour.',
+    links: [
+      { label: 'Partner Review', desc: 'For stakeholders and partners', url: '?audience=partner' },
+      { label: 'Investor Deck', desc: 'For capital and scale', url: '?audience=investor' },
+      { label: 'Client Tools', desc: 'For Main Street business owners', url: '?audience=client' },
+      { label: 'Technology Stack', desc: 'For engineers and Google', url: '?audience=google' }
+    ]
+  }
+};
+
+function TourInterface() {
+  const [audience, setAudience] = useState<Audience>('default');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const aud = urlParams.get('audience') as Audience;
+      if (aud && CONFIG[aud]) {
+        setAudience(aud);
+      } else {
+        // Fallback for JP explicitly if no params but he is the primary stakeholder today
+        setAudience('partner'); 
+      }
+    }
+  }, []);
+
+  const content = CONFIG[audience] || CONFIG.partner;
+
+  return (
+    <div style={{
+      minHeight: '100vh',
+      backgroundColor: '#0a0a08',
+      color: '#e8e0d4',
+      fontFamily: "'Inter', sans-serif",
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      padding: '4rem 2rem'
+    }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', width: '100%' }}>
+        
+        {/* Cinematic Header */}
+        <div style={{ marginBottom: '4rem', textAlign: 'center' }}>
+          <h1 style={{ 
+            fontSize: 'clamp(3rem, 6vw, 5rem)', 
+            fontWeight: 800, 
+            lineHeight: 1.1, 
+            margin: '0 0 1rem 0',
+            letterSpacing: '-0.02em',
+            color: '#ffffff'
+          }}>
+            {content.hero}
+          </h1>
+          <p style={{ 
+            fontSize: 'clamp(1.2rem, 2vw, 1.8rem)', 
+            color: '#c8943e', // Gold accent
+            margin: 0,
+            fontWeight: 500
+          }}>
+            {content.subtitle}
+          </p>
+        </div>
+
+        {/* Massive Button Grid */}
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+          gap: '2rem' 
+        }}>
+          {content.links.map((link) => (
+            <a
+              key={link.label}
+              href={link.url}
+              style={{
+                display: 'block',
+                padding: '3rem 2rem',
+                backgroundColor: '#151412',
+                border: '1px solid #2a2520',
+                borderRadius: '16px',
+                textDecoration: 'none',
+                transition: 'all 0.2s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.borderColor = '#c8943e';
+                e.currentTarget.style.backgroundColor = '#1a1816';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'none';
+                e.currentTarget.style.borderColor = '#2a2520';
+                e.currentTarget.style.backgroundColor = '#151412';
+              }}
+            >
+              <h2 style={{ 
+                fontSize: '2rem', 
+                fontWeight: 700, 
+                color: '#ffffff', 
+                margin: '0 0 0.5rem 0' 
+              }}>
+                {link.label}
+              </h2>
+              <p style={{ 
+                fontSize: '1.25rem', 
+                color: '#8a8074', 
+                margin: 0,
+                lineHeight: 1.4
+              }}>
+                {link.desc}
+              </p>
+            </a>
+          ))}
+        </div>
+
+        {/* Google Trust Badge */}
+        <div style={{ 
+          marginTop: '6rem', 
+          textAlign: 'center', 
+          opacity: 0.5,
+          fontSize: '0.85rem',
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase'
+        }}>
+          Built on Google Cloud Environment
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function TourPage() {
   return (
-    <div style={{
-      minHeight: '100vh', background: '#0a0a08', color: '#e8e0d4',
-      fontFamily: "'Inter', system-ui, sans-serif", padding: '2rem',
-    }}>
-      <div style={{ maxWidth: 900, margin: '0 auto' }}>
-        {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <h1 style={{ fontSize: '2rem', fontWeight: 800, margin: '0 0 0.5rem' }}>Big Muddy — Everything</h1>
-          <p style={{ fontSize: '1rem', color: '#8a8074' }}>Click anything. Every button goes somewhere real.</p>
-        </div>
-
-        {/* Sections */}
-        {SECTIONS.map(section => (
-          <div key={section.label} style={{ marginBottom: '2rem' }}>
-            <h2 style={{ fontSize: '0.7rem', fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c8943e', marginBottom: '0.75rem' }}>
-              {section.label}
-            </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '0.75rem' }}>
-              {section.items.map(item => (
-                <a
-                  key={item.url}
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'block',
-                    padding: '1rem 1.25rem',
-                    background: '#1a1816',
-                    border: '1px solid #2a2520',
-                    borderRadius: 10,
-                    textDecoration: 'none',
-                    transition: 'all 0.15s',
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#c8943e40'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = '#2a2520'; e.currentTarget.style.transform = 'none'; }}
-                >
-                  <div style={{ fontSize: '1rem', fontWeight: 700, color: '#e8e0d4', marginBottom: '0.25rem' }}>
-                    {item.name}
-                  </div>
-                  <div style={{ fontSize: '0.8rem', color: '#6a6560' }}>
-                    {item.desc}
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <Suspense fallback={<div style={{ background: '#0a0a08', height: '100vh' }} />}>
+      <TourInterface />
+    </Suspense>
   );
 }
