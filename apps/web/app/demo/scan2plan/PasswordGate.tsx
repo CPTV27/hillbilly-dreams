@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 
-const PASS = 's2px2026';
+const PASS = 'scan2plan';
 
 export default function PasswordGate({ children }: { children: React.ReactNode }) {
   const [unlocked, setUnlocked] = useState(false);
