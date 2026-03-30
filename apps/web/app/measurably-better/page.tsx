@@ -1,220 +1,312 @@
-// apps/web/app/measurably-better/page.tsx
-// MBT landing page — enterprise product energy, Google Cloud backbone, Main Street audience.
+'use client';
 
+// apps/web/app/measurably-better/page.tsx
+// MBT landing — "Strip the HDX engine and put it in a work truck."
+// Speaks to Main Street business owners in headcount language, not SaaS jargon.
+
+import { useState, useEffect } from 'react';
 import './mbt-landing.css';
 
+/* ── Extractive Audit Calculator Logic ── */
+const REVENUE_OPTIONS = [
+  { label: 'Under $10K', value: 8000 },
+  { label: '$10K – $25K', value: 17500 },
+  { label: '$25K – $50K', value: 37500 },
+  { label: '$50K – $100K', value: 75000 },
+  { label: '$100K+', value: 125000 },
+];
+
+function calcWaste(revenue: number, toolCount: number, hasAdmin: boolean): number {
+  // SaaS waste: ~$120/tool/month average (Yelp ads, email platform, review tool, scheduling, etc.)
+  const saasWaste = toolCount * 120;
+  // Admin overhead: ~23% of revenue lost to manual admin (industry average from MBT thesis)
+  const adminOverhead = hasAdmin ? 3750 : Math.round(revenue * 0.04);
+  // Marketing agency cost if outsourcing
+  const marketingWaste = 500;
+  return saasWaste + adminOverhead + marketingWaste;
+}
+
 export default function MeasurablyBetterLanding() {
+  const [scrolled, setScrolled] = useState(false);
+  const [revenueIdx, setRevenueIdx] = useState(2);
+  const [toolCount, setToolCount] = useState(5);
+  const [hasAdmin, setHasAdmin] = useState(false);
+  const [showResult, setShowResult] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const monthlyWaste = calcWaste(REVENUE_OPTIONS[revenueIdx].value, toolCount, hasAdmin);
+  const yearlyWaste = monthlyWaste * 12;
+
   return (
-    <div className="mbt-page">
-      {/* Hero */}
+    <div className="mbt">
+      {/* ── Nav ── */}
+      <nav className={`mbt-nav${scrolled ? ' mbt-nav--scrolled' : ''}`}>
+        <div className="mbt-nav__inner">
+          <a href="/measurably-better" className="mbt-nav__brand">
+            <span className="mbt-nav__logo">MBT</span>
+            <span className="mbt-nav__name">Measurably Better</span>
+          </a>
+          <div className="mbt-nav__links">
+            <a href="/measurably-better/thesis" className="mbt-nav__link">How It Works</a>
+            <a href="/directory" className="mbt-nav__link">Directory</a>
+            <a href="/directory/onboard" className="mbt-nav__cta">Get Started</a>
+          </div>
+        </div>
+      </nav>
+
+      {/* ── Hero ── */}
       <section className="mbt-hero">
-        <span className="mbt-hero__badge">Measurably Better Things</span>
-        <h1 className="mbt-hero__title">
-          Your entire business.<br />
-          <em>One platform. $20 a month.</em>
-        </h1>
-        <p className="mbt-hero__subtitle">
-          Reviews, social media, directory listing, customer outreach,
-          and a monthly report card — powered by Google AI.
-          You approve everything. The system does the rest.
-        </p>
-        <div className="mbt-hero__actions">
-          <a href="/directory/onboard" className="btn btn--primary mbt-btn">
-            Start Free
-          </a>
-          <a href="/directory" className="btn btn--outline mbt-btn">
-            See It Live
-          </a>
-        </div>
-      </section>
+        <div className="mbt-hero__glow" />
+        <div className="mbt-hero__content">
+          <span className="mbt-hero__eyebrow">Measurably Better Things</span>
+          <h1 className="mbt-hero__title">
+            Fire your admin.
+            <span className="mbt-hero__accent">Keep your margin.</span>
+          </h1>
+          <p className="mbt-hero__sub">
+            One platform replaces your office manager, your marketing agency,
+            and your bookkeeper. <strong>$99/month.</strong> Built for Main Street.
+          </p>
+          <div className="mbt-hero__ctas">
+            <a href="#audit" className="mbt-btn-primary">
+              See What You&apos;re Losing →
+            </a>
+            <a href="/measurably-better/thesis" className="mbt-btn-ghost">
+              Watch It Work →
+            </a>
+          </div>
 
-      {/* Trust Bar — Built on Google */}
-      <section className="mbt-trust">
-        <p className="mbt-trust__label">Built on</p>
-        <div className="mbt-trust__logos">
-          <div className="mbt-trust__logo">
-            <svg width="74" height="24" viewBox="0 0 74 24" fill="none" aria-label="Google Cloud">
-              <text x="0" y="17" fontFamily="Inter, system-ui" fontSize="14" fontWeight="500" fill="#4285F4">Google</text>
-              <text x="46" y="17" fontFamily="Inter, system-ui" fontSize="14" fontWeight="400" fill="#5F6368">Cloud</text>
-            </svg>
-          </div>
-          <div className="mbt-trust__logo">
-            <svg width="66" height="24" viewBox="0 0 66 24" fill="none" aria-label="Vertex AI">
-              <text x="0" y="17" fontFamily="Inter, system-ui" fontSize="13" fontWeight="500" fill="#5F6368">Vertex AI</text>
-            </svg>
-          </div>
-          <div className="mbt-trust__logo">
-            <svg width="56" height="24" viewBox="0 0 56 24" fill="none" aria-label="Gemini">
-              <text x="0" y="17" fontFamily="Inter, system-ui" fontSize="13" fontWeight="500" fill="#5F6368">Gemini</text>
-            </svg>
-          </div>
-          <div className="mbt-trust__logo">
-            <svg width="86" height="24" viewBox="0 0 86 24" fill="none" aria-label="QuickBooks">
-              <text x="0" y="17" fontFamily="Inter, system-ui" fontSize="13" fontWeight="500" fill="#2CA01C">QuickBooks</text>
-            </svg>
-          </div>
-        </div>
-      </section>
-
-      {/* Social Channels */}
-      <section className="mbt-channels">
-        <h2 className="mbt-channels__title">Five channels. One dashboard.</h2>
-        <p className="mbt-channels__subtitle">
-          MBT manages your presence across every platform that matters — automatically.
-        </p>
-        <div className="mbt-channels__grid">
-          <div className="mbt-channels__item">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            <span>Facebook</span>
-          </div>
-          <div className="mbt-channels__item">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="#E4405F" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            <span>Instagram</span>
-          </div>
-          <div className="mbt-channels__item">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="#4285F4" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-            <span>Google</span>
-          </div>
-          <div className="mbt-channels__item">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" strokeWidth="1.5" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            <span>Directory</span>
-          </div>
-          <div className="mbt-channels__item">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" strokeWidth="1.5" aria-hidden="true"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
-            <span>Magazine</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Value Props */}
-      <section className="mbt-value">
-        <div className="mbt-value__grid">
-          <div className="mbt-value__card">
-            <div className="mbt-value__icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-              </svg>
+          {/* Stats Bar */}
+          <div className="mbt-stats">
+            <div className="mbt-stat">
+              <div className="mbt-stat__value mbt-stat__value--blue">30%</div>
+              <div className="mbt-stat__label">Margin Recovery</div>
             </div>
-            <h3 className="mbt-value__heading">Reviews on autopilot</h3>
-            <p className="mbt-value__text">
-              AI monitors your Google and Yelp reviews, drafts responses,
-              and alerts you the minute someone posts. You approve with a thumbs up.
-            </p>
-          </div>
-          <div className="mbt-value__card">
-            <div className="mbt-value__icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                <line x1="8" y1="21" x2="16" y2="21" />
-                <line x1="12" y1="17" x2="12" y2="21" />
-              </svg>
+            <div className="mbt-stat">
+              <div className="mbt-stat__value mbt-stat__value--green">$1,350</div>
+              <div className="mbt-stat__label">Replaced Monthly</div>
             </div>
-            <h3 className="mbt-value__heading">Social media that runs itself</h3>
-            <p className="mbt-value__text">
-              Four posts a week across Facebook, Instagram, and Google.
-              AI writes them from your photos and what is happening in town.
-              You just say yes.
-            </p>
-          </div>
-          <div className="mbt-value__card">
-            <div className="mbt-value__icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <line x1="12" y1="1" x2="12" y2="23" />
-                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
-              </svg>
+            <div className="mbt-stat">
+              <div className="mbt-stat__value mbt-stat__value--amber">24hr</div>
+              <div className="mbt-stat__label">Go-Live</div>
             </div>
-            <h3 className="mbt-value__heading">Know your numbers</h3>
-            <p className="mbt-value__text">
-              Monthly report card: your reviews, your reach, how you compare
-              to competitors down the street. No spreadsheets. Plain English.
-            </p>
+            <div className="mbt-stat">
+              <div className="mbt-stat__value mbt-stat__value--red">0</div>
+              <div className="mbt-stat__label">Contracts</div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Comparison */}
+      {/* ── Extractive Audit ── */}
+      <section className="mbt-audit" id="audit">
+        <div className="mbt-audit__inner">
+          <span className="mbt-section-label">The Extractive Audit</span>
+          <h2 className="mbt-h2">How much are you losing?</h2>
+          <p className="mbt-lead">
+            Three questions. Thirty seconds. We&apos;ll show you exactly how much
+            money is leaving your business every month.
+          </p>
+
+          <div className="mbt-audit__form">
+            <div className="mbt-audit__field">
+              <label className="mbt-audit__label">What&apos;s your monthly revenue?</label>
+              <div className="mbt-audit__select-wrap">
+                <select
+                  className="mbt-audit__select"
+                  value={revenueIdx}
+                  onChange={(e) => { setRevenueIdx(Number(e.target.value)); setShowResult(false); }}
+                >
+                  {REVENUE_OPTIONS.map((opt, i) => (
+                    <option key={i} value={i}>{opt.label}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className="mbt-audit__field">
+              <label className="mbt-audit__label">
+                How many SaaS tools do you pay for? <span className="mbt-audit__hint">{toolCount}</span>
+              </label>
+              <input
+                type="range"
+                min={1}
+                max={12}
+                value={toolCount}
+                onChange={(e) => { setToolCount(Number(e.target.value)); setShowResult(false); }}
+                className="mbt-audit__range"
+              />
+              <div className="mbt-audit__range-labels">
+                <span>1</span><span>12+</span>
+              </div>
+            </div>
+
+            <div className="mbt-audit__field">
+              <label className="mbt-audit__label">Do you have a dedicated office manager?</label>
+              <div className="mbt-audit__toggle-group">
+                <button
+                  className={`mbt-audit__toggle${!hasAdmin ? ' mbt-audit__toggle--active' : ''}`}
+                  onClick={() => { setHasAdmin(false); setShowResult(false); }}
+                >
+                  No
+                </button>
+                <button
+                  className={`mbt-audit__toggle${hasAdmin ? ' mbt-audit__toggle--active' : ''}`}
+                  onClick={() => { setHasAdmin(true); setShowResult(false); }}
+                >
+                  Yes — $3,750/mo
+                </button>
+              </div>
+            </div>
+
+            <button
+              className="mbt-btn-primary mbt-audit__submit"
+              onClick={() => setShowResult(true)}
+            >
+              Show Me the Bleed →
+            </button>
+          </div>
+
+          {showResult && (
+            <div className="mbt-audit__result">
+              <div className="mbt-audit__result-card">
+                <p className="mbt-audit__result-label">You&apos;re losing approximately</p>
+                <p className="mbt-audit__result-amount">
+                  ${monthlyWaste.toLocaleString()}<span>/month</span>
+                </p>
+                <p className="mbt-audit__result-yearly">
+                  That&apos;s <strong>${yearlyWaste.toLocaleString()}/year</strong> leaving your zip code.
+                </p>
+                <a href="/directory/onboard" className="mbt-btn-primary" style={{ marginTop: '1.5rem' }}>
+                  Get it back for $99/month →
+                </a>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ── Three Hires for $99 ── */}
+      <section className="mbt-hires">
+        <div className="mbt-hires__inner">
+          <span className="mbt-section-label">Three Hires. $99/month.</span>
+          <h2 className="mbt-h2">The team you can&apos;t afford to hire — and don&apos;t have to.</h2>
+
+          <div className="mbt-hires__grid">
+            <div className="mbt-hires__card mbt-hires__card--blue">
+              <div className="mbt-hires__role">The Autonomous Admin</div>
+              <p className="mbt-hires__replaces">Replaces: $45K/year office manager</p>
+              <p className="mbt-hires__desc">
+                Answers your reviews, manages your listings, and keeps your
+                data clean. Monitors Google and Yelp 24/7, drafts responses,
+                and alerts you the minute someone posts. You approve with
+                a thumbs up.
+              </p>
+            </div>
+
+            <div className="mbt-hires__card mbt-hires__card--green">
+              <div className="mbt-hires__role">The 24/7 Salesman</div>
+              <p className="mbt-hires__replaces">Replaces: $3,000/mo marketing agency</p>
+              <p className="mbt-hires__desc">
+                Four posts a week across Facebook, Instagram, and Google.
+                AI writes them from your photos and what&apos;s happening in
+                your town. The marketing agency that never sleeps and
+                never invoices you.
+              </p>
+            </div>
+
+            <div className="mbt-hires__card mbt-hires__card--purple">
+              <div className="mbt-hires__role">The Numbers Person</div>
+              <p className="mbt-hires__replaces">Replaces: $400/mo bookkeeper</p>
+              <p className="mbt-hires__desc">
+                Monthly report card: your reviews, your reach, how you
+                compare to the business down the street. No spreadsheets.
+                Plain English. The bookkeeper who actually speaks your language.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Comparison ── */}
       <section className="mbt-compare">
-        <h2 className="mbt-compare__title">What you are paying now vs. what you could be paying</h2>
-        <div className="mbt-compare__grid">
-          <div className="mbt-compare__col mbt-compare__col--old">
-            <div className="mbt-compare__label">The old way</div>
-            <ul className="mbt-compare__list">
-              <li>Social media manager <span>$500/mo</span></li>
-              <li>Yelp ads <span>$300/mo</span></li>
-              <li>Email platform <span>$50/mo</span></li>
-              <li>Review monitoring <span>$100/mo</span></li>
-              <li>Bookkeeper <span>$400/mo</span></li>
-            </ul>
-            <div className="mbt-compare__total">$1,350/mo</div>
+        <div className="mbt-compare__inner">
+          <h2 className="mbt-h2" style={{ textAlign: 'center' }}>
+            What you&apos;re paying now vs. what you could be paying
+          </h2>
+          <div className="mbt-compare__grid">
+            <div className="mbt-compare__col mbt-compare__col--old">
+              <div className="mbt-compare__label">The old way</div>
+              <ul className="mbt-compare__list">
+                <li>Social media manager <span>$500/mo</span></li>
+                <li>Yelp ads <span>$300/mo</span></li>
+                <li>Email platform <span>$50/mo</span></li>
+                <li>Review monitoring <span>$100/mo</span></li>
+                <li>Bookkeeper <span>$400/mo</span></li>
+              </ul>
+              <div className="mbt-compare__total">$1,350/mo</div>
+            </div>
+            <div className="mbt-compare__col mbt-compare__col--new">
+              <div className="mbt-compare__label">Measurably Better</div>
+              <ul className="mbt-compare__list">
+                <li>Everything above <span>Included</span></li>
+                <li>AI-powered, human-approved <span>Included</span></li>
+                <li>Monthly report card <span>Included</span></li>
+                <li>Directory listing <span>Included</span></li>
+                <li>Magazine feature (quarterly) <span>Included</span></li>
+              </ul>
+              <div className="mbt-compare__total mbt-compare__total--highlight">$99/mo</div>
+            </div>
           </div>
-          <div className="mbt-compare__col mbt-compare__col--new">
-            <div className="mbt-compare__label">Measurably Better</div>
-            <ul className="mbt-compare__list">
-              <li>Everything above <span>Included</span></li>
-              <li>AI-powered, human-approved <span>Included</span></li>
-              <li>Monthly report card <span>Included</span></li>
-              <li>Directory listing <span>Included</span></li>
-              <li>Magazine feature (quarterly) <span>Included</span></li>
-            </ul>
-            <div className="mbt-compare__total mbt-compare__total--highlight">$20/mo</div>
+          <p className="mbt-compare__savings">
+            That&apos;s <strong>$15,012 back in your pocket</strong> every year.
+            In your zip code. Not in San Francisco.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Proof of Life ── */}
+      <section className="mbt-proof">
+        <div className="mbt-proof__inner">
+          <p className="mbt-proof__line">
+            We don&apos;t just sell this. We run a hotel, a radio station,
+            a magazine, and a business directory on it.
+          </p>
+          <div className="mbt-proof__badges">
+            <a href="https://bigmuddytouring.com" className="mbt-proof__badge" target="_blank" rel="noopener noreferrer">bigmuddytouring.com</a>
+            <a href="https://bigmuddyradio.com" className="mbt-proof__badge" target="_blank" rel="noopener noreferrer">bigmuddyradio.com</a>
+            <a href="https://bigmuddymagazine.com" className="mbt-proof__badge" target="_blank" rel="noopener noreferrer">bigmuddymagazine.com</a>
+            <a href="https://deepsouthdirectory.com" className="mbt-proof__badge" target="_blank" rel="noopener noreferrer">deepsouthdirectory.com</a>
           </div>
         </div>
       </section>
 
-      {/* Security & Infrastructure */}
-      <section className="mbt-security">
-        <h2 className="mbt-security__title">Enterprise infrastructure. Main Street price.</h2>
-        <p className="mbt-security__subtitle">
-          Your data runs on the same Google Cloud infrastructure used by Spotify, Target, and PayPal.
-        </p>
-        <div className="mbt-security__grid">
-          <div className="mbt-security__item">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <div>
-              <strong>Encrypted &amp; secure</strong>
-              <span>Data encrypted at rest and in transit. Google Cloud security standards.</span>
-            </div>
-          </div>
-          <div className="mbt-security__item">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <div>
-              <strong>99.9% uptime</strong>
-              <span>Google Cloud Run with automated scaling. Your site never goes down.</span>
-            </div>
-          </div>
-          <div className="mbt-security__item">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-            <div>
-              <strong>Your data is yours</strong>
-              <span>We never sell your information. Cancel anytime and take your data with you.</span>
-            </div>
-          </div>
-          <div className="mbt-security__item">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5" aria-hidden="true"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-            <div>
-              <strong>Automated backups</strong>
-              <span>Daily backups with point-in-time recovery. Nothing gets lost.</span>
-            </div>
-          </div>
+      {/* ── Final CTA ── */}
+      <section className="mbt-final-cta">
+        <h2 className="mbt-h2" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+          Your listing goes live in 24 hours.
+        </h2>
+        <p className="mbt-final-cta__sub">No contracts. No setup fee. Cancel anytime.</p>
+        <div className="mbt-final-cta__actions">
+          <a href="/directory/onboard" className="mbt-btn-primary mbt-btn--lg">
+            Get Started — $99/month →
+          </a>
+          <a href="mailto:chase@hillbillydreamsinc.com" className="mbt-btn-ghost">
+            Talk to a human first →
+          </a>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="mbt-cta">
-        <h2 className="mbt-cta__title">Ready to get started?</h2>
-        <p className="mbt-cta__subtitle">
-          Your listing goes live within 24 hours. No contracts. Cancel anytime.
-        </p>
-        <a href="/directory/onboard" className="btn btn--primary mbt-btn mbt-btn--lg">
-          Get Listed Today
-        </a>
-      </section>
-
-      {/* Footer */}
+      {/* ── Footer ── */}
       <footer className="mbt-footer">
         <p>&copy; 2026 Measurably Better Things&trade;</p>
         <p className="mbt-footer__sub">
-          A <a href="/">Hillbilly Dreams</a> company &middot; Natchez, Mississippi
+          A <a href="https://hillbillydreamsinc.com">Hillbilly Dreams</a> company &middot; Natchez, Mississippi
         </p>
       </footer>
     </div>
