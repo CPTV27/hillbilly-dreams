@@ -86,7 +86,7 @@ export default function PrivacyConsentDialog({
                 marginBottom: '0.75rem',
                 fontWeight: 600,
               }}>
-                Before we get started
+                Welcome
               </div>
               <h2 style={{
                 fontSize: '1.75rem',
@@ -95,7 +95,7 @@ export default function PrivacyConsentDialog({
                 margin: '0 0 0.75rem 0',
                 lineHeight: 1.2,
               }}>
-                Are you you?
+                Hey, {userEmail.split('@')[0]}
               </h2>
               <p style={{
                 fontSize: '1rem',
@@ -103,10 +103,10 @@ export default function PrivacyConsentDialog({
                 margin: 0,
                 lineHeight: 1.6,
               }}>
-                You signed in with{' '}
+                You signed in as{' '}
                 <strong style={{ color: '#c8943e' }}>{userEmail}</strong>.
                 <br />
-                Help us give you the right experience.
+                What brings you here?
               </p>
             </div>
 
@@ -143,14 +143,14 @@ export default function PrivacyConsentDialog({
                   color: '#ffffff',
                   marginBottom: '0.25rem',
                 }}>
-                  Just exploring
+                  Looking around
                 </div>
                 <div style={{
                   fontSize: '0.9rem',
                   color: '#8a8074',
                   lineHeight: 1.4,
                 }}>
-                  Private profile. I am browsing, not representing a business.
+                  I live here, I am visiting, or I am curious about the platform.
                 </div>
               </button>
 
