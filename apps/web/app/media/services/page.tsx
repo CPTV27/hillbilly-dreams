@@ -340,7 +340,7 @@ export default function ServicesPage() {
         .svc-section__image {
           grid-column: 1 / -1;
           width: 100%;
-          height: 200px;
+          aspect-ratio: 16 / 9;
           border-radius: var(--radius-lg);
           overflow: hidden;
           margin-bottom: var(--space-2);
@@ -349,15 +349,12 @@ export default function ServicesPage() {
           width: 100%;
           height: 100%;
           background-size: cover;
-          background-position: center;
+          background-position: center top;
           opacity: 0.5;
           transition: opacity 0.4s ease;
         }
         .svc-section:hover .svc-section__image-bg {
           opacity: 0.7;
-        }
-        @media (min-width: 768px) {
-          .svc-section__image { height: 240px; }
         }
 
         /* ── Service Sections ── */
