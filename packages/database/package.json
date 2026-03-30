@@ -15,12 +15,14 @@
     "seed:directory": "npx tsx scripts/seed-directory-natchez.ts"
   },
   "dependencies": {
-    "@prisma/client": "^5.14.0",
-    "prisma": "^5.14.0",
+    "@prisma/client": "^5.22.0",
     "typescript": "^5.5.0"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "prisma": "^5.22.0"
+  }
 }

@@ -31,6 +31,7 @@ const NAV_SECTIONS = [
       { label: 'Content Studio', href: '/studio', icon: '◻' },
       { label: 'Lookbook', href: '/lookbook', icon: '◎' },
       { label: 'Media Vault', href: '/media', icon: '◈' },
+      { label: 'Productions', href: '/productions', icon: '▶' },
     ],
   },
   {

@@ -1,184 +1,157 @@
-# Session Handoff: Huck Jr — Beautiful Blackwell → Kind Wright
+# Handoff: beautiful-blackwell worktree
 
-**Date:** March 30, 2026
-**From:** Beautiful Blackwell session (AG + Huck Jr collaborative)
-**To:** Kind Wright session (Huck Jr continuing)
+**From:** Chase's session (2026-03-30)
+**To:** Huck
+**Worktree:** `.claude/worktrees/beautiful-blackwell`
+**Branch:** `claude/beautiful-blackwell`
 
 ---
 
-## 1. Completed Work (Uncommitted in worktree beautiful-blackwell)
+## What's Built (Uncommitted)
 
-### Prisma Schema — 3 New Models
-**File:** `packages/database/prisma/schema.prisma`
+### Video Production Pipeline — "Big Muddy Entertainment Publicity & Promotions Department"
 
-- **ProductionCampaign** — Top-level container for client production jobs (links to client, tracks status, budget, timeline)
-- **ProductionJob** — Individual deliverables within a campaign (video spot, radio promo, social post, etc.)
-- **ProductionArtifact** — Generated assets attached to jobs (Veo output, TTS audio, Imagen images, Lyria music)
+A complete production pipeline for managing 27 promo video scripts across 6 campaign concepts. Replaces Asana. Everything runs through `/admin/productions`.
 
-### API Routes — 8 endpoints
-**Location:** `apps/web/app/api/productions/`
+#### Database (3 new Prisma models)
 
-- `GET /api/productions` — List all campaigns with job counts
-- `POST /api/productions` — Create new campaign
-- `GET /api/productions/[id]` — Get campaign with all jobs and artifacts
-- `PUT /api/productions/[id]` — Update campaign
-- `DELETE /api/productions/[id]` — Delete campaign
-- `POST /api/productions/[id]/jobs` — Add job to campaign
-- `PUT /api/productions/[id]/jobs/[jobId]` — Update job status
-- `POST /api/productions/[id]/seed` — Seed 6 campaign concepts
+**File:** `packages/database/prisma/schema.prisma` (appended at end)
 
-### Admin Pages — 3 pages
-**Location:** `apps/web/app/admin/productions/`
+| Model | Purpose |
+|---|---|
+| `ProductionCampaign` | 6 campaign concepts (Fits In Your Hand, Twenty Dollars, The Corridor, Built on Google, Freedom, The Full Story) |
+| `ProductionJob` | One per video script. Tracks stage (script → voiceover → video → review → published), script fields, voice/video settings, async Veo operation ID, approval status |
+| `ProductionArtifact` | Every generated file — versioned, append-only, with GCS URL and metadata |
 
-- `/admin/productions` — Campaign list view (cards with status, client, job counts)
-- `/admin/productions/[id]` — Campaign detail with job board (kanban-style)
-- `/admin/productions/new` — Create new campaign form
+Prisma client is generated. **Migration has NOT been run against the live DB yet.**
 
-### Navigation
+#### API Routes (8 files)
+
+All under `apps/web/app/api/productions/`:
+
+| Route | Method | What it does |
+|---|---|---|
+| `route.ts` | GET/POST | List all jobs (filter by campaign/stage), create job |
+| `[id]/route.ts` | GET/PATCH | Get job detail with artifacts, update fields |
+| `[id]/voiceover/route.ts` | POST | Generate TTS via Google Cloud TTS → upload to GCS → create artifact → auto-advance stage |
+| `[id]/video/route.ts` | POST | Start Veo 3.1 generation → store operation ID on job |
+| `[id]/video/status/route.ts` | GET | Poll Veo operation → on complete: download video, upload to GCS, create artifact, clear operation ID, advance to review |
+| `[id]/approve/route.ts` | POST | Set approval status (approved/revision/pending) with notes. Approved → published. Revision → back to video. |
+| `campaigns/route.ts` | GET/POST | List/create campaigns |
+| `seed/route.ts` | POST | Seed the 6 campaign concepts |
+
+**Voiceover and video routes reuse the same Google Auth + TTS/Veo patterns** from `app/api/media/audio/route.ts` and `app/api/media/video/route.ts` but add Prisma artifact tracking and structured GCS paths.
+
+**GCS path convention:** `productions/{campaign-slug}/{job-slug}/{type}-v{version}-{timestamp}.{ext}`
+
+#### Admin Pages (3 files)
+
+All under `apps/web/app/admin/productions/`:
+
+| Page | What it does |
+|---|---|
+| `page.tsx` | Pipeline board — table of all jobs with stage filter pills, campaign dropdown, stage counts. Click row → detail. Seed button if no campaigns. |
+| `[id]/page.tsx` | Job detail — stage stepper, script editor, TTS generator with audio player, Veo generator with 10s polling spinner, review panel with approval controls, artifact history table |
+| `new/page.tsx` | Create job form — campaign selector, format, all script fields, voice/video settings |
+
+#### Nav Update
+
 **File:** `apps/web/app/admin/layout.tsx`
-- Added "Productions" nav item to the admin sidebar under the Create section
-
-### Prisma Client
-- `npx prisma generate` has been run
-- Migration has NOT been run against live DB yet
+- Added `{ label: 'Productions', href: '/productions', icon: '▶' }` to the **Create** nav section
 
 ---
 
-## 2. Deployment Steps
+## Deployment Steps
 
 ```bash
-# 1. Switch to the worktree
-cd /Users/chasethis/BigMuddy/hillbilly-dreams/.claude/worktrees/beautiful-blackwell
-
-# 2. Run migration against live DB
+# 1. Run migration against live DB
 npx prisma migrate dev --name add-productions
 
-# 3. Commit all changes
+# 2. Commit
 git add -A
-git commit -m "feat: Production pipeline — campaigns, jobs, artifacts
+git commit -m "feat: Video production pipeline — admin dashboard, API routes, 3 Prisma models"
 
-3 Prisma models (ProductionCampaign, ProductionJob, ProductionArtifact),
-8 API routes, 3 admin pages, nav item. Full production management
-for Studio C client jobs — replaces Asana for production tracking.
+# 3. Push and PR
+git push -u origin claude/beautiful-blackwell
+gh pr create --title "Video production pipeline" --body "..."
 
-Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>"
-
-# 4. Push and create PR
-git push origin beautiful-blackwell
-# OR merge directly to main if confident:
-git checkout main && git merge beautiful-blackwell && git push origin main
-
-# 5. After deploy, hit the seed button
-# Navigate to /admin/productions → click "Seed 6 Campaign Concepts"
+# 4. After deploy
+# Go to /admin/productions → click "Seed 6 Campaign Concepts"
 ```
 
 ---
 
-## 3. Queued Tasks (Not Started)
+## Verification
 
-### Monthly Burn Audit Page
-- **Location:** `/admin/finance/burn`
-- **Purpose:** Top-line financial overview — monthly spend, revenue, burn rate
-- **Priority:** High — Tracy needs this for financial oversight
-- **Notes:** Currently mock data, needs Stripe + QuickBooks integration
+1. Migration applies cleanly
+2. `POST /api/productions/seed` creates 6 campaigns
+3. Create a job via `/admin/productions/new`
+4. Generate voiceover — audio plays in browser, artifact appears in GCS
+5. Generate video (draft quality) — polling shows spinner, completes
+6. Approve the job — status updates to published
+7. GCS files at `productions/{campaign}/{job}/` paths
 
-### Fix Touring Homepage Images
-- **File:** `apps/web/app/touring/page.tsx` — lines 184, 187
-- **Issue:** Two too-similar porch/veranda shots making the page feel repetitive
-- **Fix:** Replace one with a different category (music, river, food, etc.)
-
-### Client Billing Hookup
-- **Purpose:** Connect Stripe backend to the finance page
-- **Status:** Finance page exists with mock data, needs real Stripe Connect integration
-- **Depends on:** Stripe Connect already configured for photography storefront (75/25 split)
+**TypeScript:** Compiles clean. No errors in production files.
+**Dev server:** All pages return 200. API routes resolve correctly (500s are expected — no DATABASE_URL in worktree).
 
 ---
 
-## 4. Context Notes
+## Queued Tasks (Not Started)
 
-### Chase Wants Off Asana
-All production management should move through the admin dashboard. The Productions page is the first step — client jobs, deliverables, status tracking, artifact management all happen inside the platform, not in Asana. Asana remains for people-facing task management (JP, Tracy, Amy boards) but operational production work lives in `/admin/productions`.
+### 1. Monthly Burn Audit Page
+- **Priority:** High — Chase wants this as a top-line item in admin finance section
+- **Location:** `/admin/finance/burn` or integrated into existing `/admin/finance` page
+- **What it needs:** Pull real costs from Stripe, Vercel, GCS, Vertex AI, Neon, etc.
+- **Existing finance page:** `apps/web/app/admin/finance/page.tsx` — 731 lines, full UI with MOCK DATA. Comment on line 366: "Mock Data Active — Awaiting Stripe backend from CC"
+- **QBO integration exists:** `app/api/cron/sync-qbo/route.ts` — fetches P&L nightly
+- **Known costs to track:** Neon (~$19/mo), orphaned Cloud SQL (~$8/mo — DELETE THIS), Vercel Pro, GCS per GB, Vertex AI per token, Stripe 2.9% + 30¢, internet, phone plans
 
-### Crossover Milestone — 5 Gates
-Chase defined a crossover point where he stops building in Claude Code and starts using the product as a user:
+### 2. Fix Touring Homepage Images
+- **File:** `apps/web/app/touring/page.tsx` lines 184, 187
+- **Problem:** Two images too similar in perspective (both Southern porch/inn shots)
+- **Images:**
+  - `touring-bnb-sunset.webp` — "Southern porch with hanging ferns at sunset"
+  - `touring-inn-dusk.webp` — "Historic inn at dusk with warm lights"
+- **Fix:** Generate a replacement with a different perspective (Main Street, river bluff, interior, aerial) and swap the GCS URL
 
-| Gate | Status (as of this handoff) |
+### 3. ElevenLabs TTS Integration
+- **Priority:** Medium — Chase has credits to burn, wants to test against Google TTS side-by-side
+- **API Key:** Chase is adding `ELEVENLABS_API_KEY` to Bitwarden + Vercel
+- **Integration point:** `apps/web/app/api/media/audio/route.ts` — add ElevenLabs as second provider
+- **Approach:** Add `provider: 'google' | 'elevenlabs'` param to the audio route. ElevenLabs voices get their own presets. Production pipeline voiceover stage gets a provider toggle.
+- **ElevenLabs advantage:** Voice cloning (clone Chase's voice for promo narration), better emotional range for storytelling
+- **Google advantage:** Cheaper (bundled), lower latency, fine for radio automation
+- **Goal:** Test both on same script, compare quality, then decide whether to keep ElevenLabs subscription
+- **Data policy:** ElevenLabs is fine for voice generation — no proprietary data concerns (just scripts)
+
+### 4. Client Billing Hookup
+- **Stripe is integrated** (v20.4.1, webhook route exists, Invoice model in Prisma)
+- **Finance page UI is ready** but loads mock data
+- **Need:** Wire Stripe API calls into finance page, connect to real Invoice data
+
+---
+
+## Context Notes
+
+- **Goal: Get off Asana.** All production management goes through the admin dashboard. No external tools.
+- **Crossover Milestone:** 5 gates before Chase stops building and starts using the product. See `memory/project_crossover_milestone.md`. Gate #3 (personalized dashboard) is the biggest gap. Gate #4 (end-to-end campaign) is what this pipeline enables.
+- **Monday 3/31:** Chase is doing Google account consolidation + user onboarding testing. All tests must pass before opening onboarding.
+- **Walmart/OE:** Editorial position updated — Walmart reframed from enemy to qualified ally. See `memory/project_oe_walmart_position.md`.
+- **Internet:** Need to check AT&T Fiber availability at 411 N Commerce. See Apple Note "Internet Plan — 411 N Commerce".
+- **Phone:** Chase keeping FirstNet ($50/mo unlimited) but comparing with Tracy's Friends & Family plan.
+
+---
+
+## Key Files
+
+| File | What |
 |---|---|
-| 1: Content Studio generates real output end-to-end | Needs verification on prod |
-| 2: Creative Hub (Imagen/Veo/TTS) works on production | Needs verification on prod |
-| 3: Personalized dashboard per user | **DONE** — persona config for Chase/JP/Tracy/Amy |
-| 4: Mechanical Bull campaign runs end-to-end through platform | Pending — agent prompt ready |
-| 5: Non-technical person (JP or Amy) completes a task without help | Pending — needs live testing |
-
-### Monday 3/31 Priorities
-- Google Workspace account consolidation (bigmuddyentertainment.com set up as secondary domain)
-- JP user onboarding testing (can he sign in, see his dashboard, use Content Studio?)
-- Verify Gates 1 and 2 on production
-
-### What Was Built in Kind Wright Session
-
-**Infrastructure:**
-- OAuth fix — JP + Tracy gmail addresses allowlisted, bigmuddyentertainment.com + hillbillydreamsinc.com added as allowed domains
-- `/jp` public welcome page (no auth required)
-- Privacy Consent Dialog (`PrivacyConsentDialog.tsx`) — "Are you you?" first-login flow
-- Consent API (`/api/onboarding/consent`) + 4 new Prisma fields on User model
-- Deploy Status dashboard (`/admin/deploys`) — production/staging/sandbox view
-- Kiosk mode (`/kiosk?mode=control|lobby|menu`) — Mac Mini + iPad displays
-- Personalized dashboard — session-aware, per-user tools and greeting
-- Tenant config updates — Studio C entity corrected, features expanded
-
-**Documentation:**
-- Sovereign Box spec (`docs/sovereign-box-spec.md`) — full product spec with network economics, Kickstarter, BOM
-- Promo video campaign prompt (`AG_PROMO_VIDEO_CAMPAIGN.md`) — 27 scripts across 6 concepts
-- Mechanical Bull marketing agent (`AG_MECHANICAL_BULL_MARKETING.md`) — Big Muddy Entertainment P&P dept
-- Memory files: `project_sovereign_box.md`, `project_studio_c_tuthill.md`
-
-**Asana:**
-- Timestamps added to all 15 people-facing tasks (JP 5, Tracy 6, Amy 4)
-- JP email onboarding task created
-- 5 real estate prospects added to Biz Dev Pipeline (Vicki Walpert HOT, TKG, Halter, Peter, Johanna)
-- 2 Studio C client jobs (MBT video campaign, BME promo series)
-- Mechanical Bull remaster/re-release task assigned to JP
-
-**Music:**
-- All 14 Suno tracks downloaded (75MB audio + 21 artwork files)
-- Blog archive captured from mechanicalbullband.blogspot.com
-- Three-album release plan: A Million Yesterdays (remaster), Songs to Get Divorced To (remaster), Artificially Inseminated (new)
-
-### Walmart/OE Editorial Note
-Chase noted something about Walmart and Outsider Economics — saved to memory. Check `memory/` for the specific file.
-
----
-
-## 5. Active Branches
-
-| Branch | Status | Contents |
-|---|---|---|
-| `main` | Deployed | All Kind Wright work merged |
-| `beautiful-blackwell` | Uncommitted | Productions pipeline (3 models, 8 APIs, 3 pages) |
-| `feature/honest-data-consent` | Merged to main | Privacy dialog + consent API |
-| `fix/oauth-jp-tracy-allowlist` | Merged to main | OAuth fixes + JP page + Sovereign Box spec |
-| `ag-tour-redesign` | Pending AG work | Tour page redesign |
-| `editorial/copy-overhaul-and-qa` | Ready for review | 16 files, all copy changes |
-
----
-
-## 6. Files Modified/Created This Session
-
-### New Files
-- `apps/web/app/jp/page.tsx`
-- `apps/web/app/kiosk/page.tsx`
-- `apps/web/app/admin/deploys/page.tsx`
-- `apps/web/app/api/admin/deploys/route.ts`
-- `apps/web/app/api/onboarding/consent/route.ts`
-- `apps/web/components/PrivacyConsentDialog.tsx`
-- `docs/sovereign-box-spec.md`
-- `.claude/agents/AG_PROMO_VIDEO_CAMPAIGN.md`
-- `.claude/agents/AG_MECHANICAL_BULL_MARKETING.md`
-
-### Modified Files
-- `apps/web/config/auth-rules.ts` — Added JP, Tracy, BME domain, HDI domain
-- `apps/web/config/domain-routes.ts` — Added /jp, /tracy, /amy, /kiosk to passthrough
-- `apps/web/config/tenants.ts` — Studio C entity fix, features expanded
-- `apps/web/app/admin/dashboard/page.tsx` — Personalized per-user dashboards
-- `packages/database/prisma/schema.prisma` — 4 consent fields on User model
+| `packages/database/prisma/schema.prisma` | 3 new models at end of file |
+| `apps/web/app/api/productions/**` | 8 API route files |
+| `apps/web/app/admin/productions/**` | 3 admin page files |
+| `apps/web/app/admin/layout.tsx` | Nav item added |
+| `apps/web/app/admin/finance/page.tsx` | Existing finance page (mock data) |
+| `apps/web/app/touring/page.tsx` | Two similar images to fix (lines 184, 187) |
+| `.claude/agents/AG_PROMO_VIDEO_CAMPAIGN.md` | 27 scripts across 6 concepts |
+| `memory/project_crossover_milestone.md` | 5-gate crossover checklist |
+| `memory/project_oe_walmart_position.md` | Walmart editorial position |

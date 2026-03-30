@@ -1282,3 +1282,82 @@ model PageEdit {
   @@unique([path, editId])
   @@index([path, active])
 }
+
+// ─────────────────────────────────────────────────────────────
+// PRODUCTIONS — Video Production Pipeline
+// ─────────────────────────────────────────────────────────────
+
+model ProductionCampaign {
+  id            Int      @id @default(autoincrement())
+  name          String                // "Fits In Your Hand"
+  slug          String   @unique      // "fits-in-your-hand"
+  conceptNumber Int                   // 1-6
+  tagline       String?               // "An entire media ecosystem in a box that fits in your hand"
+  status        String   @default("active") // active | archived
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  jobs          ProductionJob[]
+
+  @@index([status])
+}
+
+model ProductionJob {
+  id              Int      @id @default(autoincrement())
+  campaignId      Int
+  campaign        ProductionCampaign @relation(fields: [campaignId], references: [id])
+  title           String                // "The Box — :15"
+  slug            String   @unique      // "the-box-15"
+  format          String                // :15 | :30 | :60 | 3:00 | 10:00
+  stage           String   @default("script") // script | voiceover | video | review | published
+
+  // ── Script Fields ──
+  veoPrompt       String?  @db.Text     // Veo visual generation prompt
+  ttsScript       String?  @db.Text     // Voiceover script for TTS
+  musicDirection  String?  @db.Text     // Lyria / music bed direction
+  textOverlays    String?  @db.Text     // Canva text overlays (JSON array)
+  cta             String?               // Call to action URL or text
+
+  // ── Voice Settings ──
+  voicePreset     String   @default("chase")   // delta-dawn | catfish-carl | chase | etc.
+  voiceSpeed      Float    @default(1.0)
+  voicePitch      Float    @default(0)
+
+  // ── Video Settings ──
+  veoQuality      String   @default("draft")   // draft | premium
+  videoDuration   Int      @default(5)          // seconds
+
+  // ── Async Generation ──
+  veoOperationId  String?               // Veo operation ID (null when not generating)
+
+  // ── Approval ──
+  approvalStatus  String   @default("pending")  // pending | approved | revision
+  approvalNotes   String?  @db.Text
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  artifacts       ProductionArtifact[]
+
+  @@index([campaignId])
+  @@index([stage])
+  @@index([approvalStatus])
+  @@index([veoOperationId])
+}
+
+model ProductionArtifact {
+  id        Int      @id @default(autoincrement())
+  jobId     Int
+  job       ProductionJob @relation(fields: [jobId], references: [id])
+  stage     String        // script | voiceover | video | review | published
+  type      String        // voiceover | video | image | music | assembly
+  gcsUrl    String        // Full GCS public URL
+  mimeType  String        // audio/mpeg | video/mp4 | image/webp | etc.
+  fileSize  Int?          // bytes
+  version   Int    @default(1) // increments on re-generation
+  metadata  String? @db.Text   // JSON: duration, dimensions, model, etc.
+  createdAt DateTime @default(now())
+
+  @@index([jobId, stage])
+  @@index([jobId, type])
+}
