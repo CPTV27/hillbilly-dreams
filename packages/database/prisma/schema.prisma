@@ -1271,3 +1271,148 @@ model PageEdit {
   @@unique([path, editId])
   @@index([path, active])
 }
+
+// ══════════════════════════════════════════════════════════════
+// MBT Life — Community Coordination Platform
+// measurablybetter.life consumer app models
+// ══════════════════════════════════════════════════════════════
+
+model CommunityProfile {
+  id               String   @id @default(cuid())
+  userId           String?  // soft FK to User (optional — can exist without internal user)
+  email            String?  @unique
+  displayName      String
+  bio              String?  @db.Text
+  city             String
+  state            String
+  lat              Float?
+  lng              Float?
+  tier             String   @default("free") // free | life | business
+  stripeCustomerId String?
+  skills           String[] // quick-access skill tags
+  sandbox          Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([city, state])
+  @@index([tier])
+  @@index([email])
+}
+
+model SkillListing {
+  id           String   @id @default(cuid())
+  profileId    String   // soft FK to CommunityProfile
+  skill        String
+  description  String?  @db.Text
+  category     String   // trades | professional | creative | tech | domestic | other
+  availability String?  // weekends | evenings | flexible | by-appointment
+  rateNote     String?  // "trade only" | "negotiable" | etc
+  sandbox      Boolean  @default(false)
+  createdAt    DateTime @default(now())
+
+  @@index([category])
+  @@index([profileId])
+  @@index([skill])
+}
+
+model TaskPost {
+  id           String   @id @default(cuid())
+  authorId     String   // soft FK to CommunityProfile
+  title        String
+  description  String   @db.Text
+  skillsNeeded String[]
+  status       String   @default("open") // open | claimed | in-progress | done
+  claimedById  String?  // soft FK to CommunityProfile
+  valueType    String   @default("trade") // trade | cash | credit | volunteer
+  valueNote    String?
+  city         String
+  state        String
+  sandbox      Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([status, city])
+  @@index([authorId])
+}
+
+model TimeExchange {
+  id          String   @id @default(cuid())
+  providerId  String   // soft FK to CommunityProfile (who did the work)
+  receiverId  String   // soft FK to CommunityProfile (who received)
+  taskPostId  String?  // soft FK to TaskPost (optional link)
+  hours       Float
+  skill       String
+  description String?  @db.Text
+  status      String   @default("logged") // logged | confirmed | disputed
+  sandbox     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([providerId])
+  @@index([receiverId])
+}
+
+model ToolLibraryItem {
+  id           String   @id @default(cuid())
+  ownerId      String   // soft FK to CommunityProfile
+  name         String
+  description  String?
+  category     String   // power-tools | hand-tools | kitchen | garden | other
+  available    Boolean  @default(true)
+  borrowedById String?  // soft FK to CommunityProfile
+  city         String
+  state        String
+  sandbox      Boolean  @default(false)
+  createdAt    DateTime @default(now())
+
+  @@index([city, category])
+  @@index([ownerId])
+}
+
+model ContributedListing {
+  id            String   @id @default(cuid())
+  contributorId String   // soft FK to CommunityProfile
+  businessName  String
+  category      String
+  city          String
+  state         String
+  address       String?
+  phone         String?
+  website       String?
+  description   String   @db.Text
+  status        String   @default("pending") // pending | approved | rejected
+  reviewNote    String?  @db.Text // AI or human feedback
+  directoryId   Int?     // FK to DirectoryBusiness when approved
+  sandbox       Boolean  @default(false)
+  createdAt     DateTime @default(now())
+
+  @@index([status])
+  @@index([contributorId])
+}
+
+model ContributorCredit {
+  id        String   @id @default(cuid())
+  profileId String   // soft FK to CommunityProfile
+  amount    Int      @default(1)
+  reason    String   // directory_submission | article_published | skill_verified
+  sourceId  String?  // FK to the thing that earned it
+  sandbox   Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([profileId])
+}
+
+// ══════════════════════════════════════════════════════════════
+// Lookbook — Illustration review comments
+// ══════════════════════════════════════════════════════════════
+
+model LookbookComment {
+  id        Int      @id @default(autoincrement())
+  style     String   // e.g. "01-woodcut"
+  image     String   // e.g. "community-gathering"
+  text      String   @db.Text
+  author    String?  // email or name
+  resolved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([style, image])
+}

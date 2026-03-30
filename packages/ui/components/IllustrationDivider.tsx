@@ -28,6 +28,8 @@ export function IllustrationDivider({
     <div
       aria-hidden="true"
       style={{
+        position: 'relative',
+        zIndex: 3,
         width: '100%',
         height,
         backgroundImage: `url(${DIVIDER_IMAGES[variant]})`,

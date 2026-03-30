@@ -5,6 +5,26 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { getAllPosts } from '../../../lib/posts';
 
+const GCS_ILLUS = 'https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook';
+
+const CHAPTER_IMAGES: Record<number, string> = {
+  1: `${GCS_ILLUS}/08-folk-art/marketplace.webp`,
+  2: `${GCS_ILLUS}/01-woodcut/main-street-storefront.webp`,
+  3: `${GCS_ILLUS}/09-blueprint/data-flow.webp`,
+  4: `${GCS_ILLUS}/10-watercolor/cotton-field.webp`,
+  5: `${GCS_ILLUS}/04-chalkboard/tonights-lineup.webp`,
+  6: `${GCS_ILLUS}/01-woodcut/river-landscape.webp`,
+  7: `${GCS_ILLUS}/12-cartographic/touring-circuit.webp`,
+  8: `${GCS_ILLUS}/10-watercolor/small-town-street.webp`,
+  9: `${GCS_ILLUS}/06-neon/juke-joint-entrance.webp`,
+  10: `${GCS_ILLUS}/03-risograph/radio-tower.webp`,
+  11: `${GCS_ILLUS}/09-blueprint/building-floorplan.webp`,
+  12: `${GCS_ILLUS}/08-folk-art/community-quilt.webp`,
+  13: `${GCS_ILLUS}/12-cartographic/delta-region.webp`,
+  14: `${GCS_ILLUS}/07-letterpress/concert-broadside.webp`,
+  15: `${GCS_ILLUS}/09-blueprint/dashboard-wireframe.webp`,
+};
+
 const description = 'The complete playbook for building sovereign local economies. Six frameworks, real math, no theory.';
 export const metadata: Metadata = {
   title: 'Field Manual',
@@ -28,17 +48,7 @@ export default function FieldManualPage() {
   return (
     <>
       {/* ── Hero Image ── */}
-      <section className="fm-hero-img">
-        <Image
-          src="/images/ai-corridor/delta-cotton-field.webp"
-          alt="Cotton field at golden hour in the Mississippi Delta"
-          width={1600}
-          height={900}
-          priority
-          sizes="100vw"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-      </section>
+      <section className="fm-hero-img" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/10-watercolor/river-golden-hour.webp)', backgroundSize: 'cover', backgroundPosition: 'center 30%' }} />
 
       {/* ── Header ── */}
       <section className="fm-header">
@@ -79,14 +89,22 @@ export default function FieldManualPage() {
           <div className="section-label">The Posts</div>
           <h2 className="section-title">{posts.length} Dispatches</h2>
           <div className="fm-posts__list">
-            {posts.map((post) => (
-              <a key={post.slug} href={`/field-manual/${post.slug}`} className="fm-post">
-                <div className="fm-post__num">{String(post.order).padStart(2, '0')}</div>
-                <div className="fm-post__content">
-                  <h3 className="fm-post__title">{post.title}</h3>
-                  <p className="fm-post__excerpt">{post.excerpt}</p>
+            {posts.map((post, i) => (
+              <a
+                key={post.slug}
+                href={`/field-manual/${post.slug}`}
+                className={`fm-chapter ${i % 2 === 1 ? 'fm-chapter--reverse' : ''}`}
+              >
+                <div
+                  className="fm-chapter__image"
+                  style={{ backgroundImage: `url(${CHAPTER_IMAGES[post.order] || CHAPTER_IMAGES[1]})` }}
+                />
+                <div className="fm-chapter__text">
+                  <span className="fm-chapter__num">{String(post.order).padStart(2, '0')}</span>
+                  <h3 className="fm-chapter__title">{post.title}</h3>
+                  <p className="fm-chapter__excerpt">{post.excerpt}</p>
+                  <span className="fm-chapter__link">Read chapter &rarr;</span>
                 </div>
-                <div className="fm-post__arrow" aria-hidden="true">&rarr;</div>
               </a>
             ))}
           </div>
@@ -122,9 +140,11 @@ export default function FieldManualPage() {
       <style>{`
         .fm-hero-img {
           width: 100%;
-          max-height: 420px;
+          height: 50vh;
+          min-height: 360px;
+          max-height: 560px;
           overflow: hidden;
-          line-height: 0;
+          background-position: center 40%;
         }
         .fm-header {
           background: var(--bg);
@@ -144,55 +164,79 @@ export default function FieldManualPage() {
         .fm-posts__list {
           display: flex;
           flex-direction: column;
-          gap: var(--space-4);
+          gap: var(--space-1);
         }
-        .fm-post {
+        .fm-chapter {
           display: grid;
-          grid-template-columns: auto 1fr auto;
-          gap: var(--space-5);
-          align-items: center;
-          padding: var(--space-6);
-          border: 1px solid var(--border);
+          grid-template-columns: 1fr 1fr;
+          min-height: 320px;
+          text-decoration: none;
+          color: inherit;
+          overflow: hidden;
           border-radius: var(--radius-lg);
           background: var(--surface-2);
-          text-decoration: none;
-          transition: border-color var(--duration-normal) var(--ease-default),
-                      box-shadow var(--duration-normal) var(--ease-default);
+          border: 1px solid var(--border);
+          transition: border-color 0.2s, box-shadow 0.2s;
         }
-        .fm-post:hover {
-          border-color: var(--accent);
+        .fm-chapter:hover {
+          border-color: var(--border-strong);
           box-shadow: var(--shadow-glow);
         }
-        .fm-post__num {
-          font-family: var(--font-mono);
-          font-size: var(--text-3xl);
-          font-weight: 800;
-          color: var(--accent);
-          opacity: 0.3;
-          line-height: 1;
+        .fm-chapter--reverse {
+          direction: rtl;
         }
-        .fm-post__title {
+        .fm-chapter--reverse > * {
+          direction: ltr;
+        }
+        .fm-chapter__image {
+          background-size: cover;
+          background-position: center;
+          min-height: 240px;
+        }
+        .fm-chapter__text {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: var(--space-8) var(--space-6);
+          gap: var(--space-2);
+        }
+        .fm-chapter__num {
+          font-family: var(--font-mono);
+          font-size: var(--text-xs);
+          color: var(--accent);
+          opacity: 0.5;
+          letter-spacing: 0.1em;
+        }
+        .fm-chapter__title {
           font-family: var(--font-display);
-          font-size: var(--text-xl);
+          font-size: var(--text-2xl);
           font-weight: 700;
           color: var(--text);
-          margin: 0 0 var(--space-2);
+          margin: 0;
+          line-height: var(--leading-tight);
         }
-        .fm-post__excerpt {
+        .fm-chapter__excerpt {
           font-size: var(--text-sm);
           color: var(--text-muted);
           line-height: var(--leading-normal);
           margin: 0;
-          max-width: 600px;
         }
-        .fm-post__arrow {
-          font-size: var(--text-xl);
+        .fm-chapter__link {
+          font-size: var(--text-sm);
+          font-weight: 600;
           color: var(--accent);
-          opacity: 0.4;
-          transition: opacity var(--duration-normal) var(--ease-default);
+          margin-top: var(--space-2);
         }
-        .fm-post:hover .fm-post__arrow {
-          opacity: 1;
+        @media (max-width: 768px) {
+          .fm-chapter {
+            grid-template-columns: 1fr;
+          }
+          .fm-chapter--reverse {
+            direction: ltr;
+          }
+          .fm-chapter__image {
+            min-height: 180px;
+          }
         }
         .fm-cta {
           background: var(--bg);

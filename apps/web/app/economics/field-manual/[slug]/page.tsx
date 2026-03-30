@@ -6,6 +6,25 @@ import { notFound } from 'next/navigation';
 import { getPostBySlug, getAdjacentPosts } from '../../../../lib/posts';
 import { ReadingProgress } from './reading-progress';
 
+const GCS_ILLUS = 'https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook';
+const CHAPTER_IMAGES: Record<number, string> = {
+  1: `${GCS_ILLUS}/08-folk-art/marketplace.webp`,
+  2: `${GCS_ILLUS}/01-woodcut/main-street-storefront.webp`,
+  3: `${GCS_ILLUS}/09-blueprint/data-flow.webp`,
+  4: `${GCS_ILLUS}/10-watercolor/cotton-field.webp`,
+  5: `${GCS_ILLUS}/04-chalkboard/tonights-lineup.webp`,
+  6: `${GCS_ILLUS}/01-woodcut/river-landscape.webp`,
+  7: `${GCS_ILLUS}/12-cartographic/touring-circuit.webp`,
+  8: `${GCS_ILLUS}/10-watercolor/small-town-street.webp`,
+  9: `${GCS_ILLUS}/06-neon/juke-joint-entrance.webp`,
+  10: `${GCS_ILLUS}/03-risograph/radio-tower.webp`,
+  11: `${GCS_ILLUS}/09-blueprint/building-floorplan.webp`,
+  12: `${GCS_ILLUS}/08-folk-art/community-quilt.webp`,
+  13: `${GCS_ILLUS}/12-cartographic/delta-region.webp`,
+  14: `${GCS_ILLUS}/07-letterpress/concert-broadside.webp`,
+  15: `${GCS_ILLUS}/09-blueprint/dashboard-wireframe.webp`,
+};
+
 export const dynamic = 'force-dynamic';
 
 interface PageProps {
@@ -47,6 +66,21 @@ export default async function PostPage({ params }: PageProps) {
   return (
     <>
       <ReadingProgress />
+
+      {/* Chapter illustration banner */}
+      {CHAPTER_IMAGES[post.order] && (
+        <div
+          aria-hidden="true"
+          style={{
+            width: '100%',
+            height: 280,
+            backgroundImage: `url(${CHAPTER_IMAGES[post.order]})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+      )}
+
       <article className="post">
         <div className="post__container">
           <header className="post__header">
