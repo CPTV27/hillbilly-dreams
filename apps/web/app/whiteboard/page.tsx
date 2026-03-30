@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 /* eslint-disable @next/next/no-img-element */
 
-type View = 'story' | 'flywheel' | 'tenants' | 'personnel' | 'org' | 'revenue' | 'tech' | 'architecture' | 'links' | 'scan2plan';
+type View = 'story' | 'flywheel' | 'tenants' | 'personnel' | 'org' | 'revenue' | 'tech' | 'architecture' | 'links' | 'scan2plan' | 'jp';
 
 const VIEWS: { id: View; label: string; color: string }[] = [
   { id: 'links', label: '🔗 All Links', color: '#ffffff' },
@@ -14,6 +14,7 @@ const VIEWS: { id: View; label: string; color: string }[] = [
   { id: 'personnel', label: 'Personnel + AI', color: '#8b5cf6' },
   { id: 'org', label: 'Org Chart', color: '#ec4899' },
   { id: 'revenue', label: 'Revenue', color: '#f97316' },
+  { id: 'jp', label: 'JP Options', color: '#22c55e' },
   { id: 'scan2plan', label: 'Scan2Plan', color: '#ef4444' },
   { id: 'tech', label: 'Tech Stack', color: '#eab308' },
   { id: 'architecture', label: 'Blueprint', color: '#ef4444' },
@@ -375,12 +376,109 @@ function Scan2PlanView() {
   );
 }
 
+function JPOptionsView() {
+  const tiers = [
+    {
+      level: 'Advisory',
+      commitment: '2-4 hrs/week',
+      role: 'Trusted advisor. Review deals, strategy sessions, Scan2Plan counsel.',
+      compensation: 'Monthly retainer + equity option pool',
+      includes: ['Scan2Plan legal review', 'Business strategy sessions', 'Deal structuring advice', 'Access to all dashboards'],
+      color: '#3b82f6',
+    },
+    {
+      level: 'Programming Director',
+      commitment: '10-15 hrs/week',
+      role: 'Own the radio schedule. Book shows. Program the station. Your NPR show as the flagship.',
+      compensation: 'Revenue share on radio + show revenue + retainer',
+      includes: ['Everything in Advisory', 'Full radio programming control', 'Show booking authority', 'American Parlor Songbook on Big Muddy Radio', 'Content Studio access for all promos'],
+      color: '#c8943e',
+    },
+    {
+      level: 'Executive Producer',
+      commitment: '20-30 hrs/week',
+      role: 'Produce the Bourdain-of-Music travel series. Own Big Muddy Entertainment.',
+      compensation: 'Salary + revenue share + executive producer credit',
+      includes: ['Everything in Programming Director', 'Travel series production', 'EP credit on all content', 'Entertainment division leadership', 'Cross-corridor booking (Natchez + Woodstock)', 'NPR cross-promotion'],
+      color: '#22c55e',
+    },
+    {
+      level: 'Partner',
+      commitment: 'Full time',
+      role: 'Co-run the whole thing. Entertainment + Radio + Shows + Talent.',
+      compensation: 'Equity stake + salary + revenue share across all divisions',
+      includes: ['Everything in Executive Producer', 'Equity partnership', 'Board seat', 'Full division P&L ownership', 'Talent acquisition authority', 'Revenue share on all entertainment verticals'],
+      color: '#ec4899',
+    },
+  ];
+
+  return (
+    <div style={{ padding: '2rem', maxWidth: 1000, margin: '0 auto' }}>
+      <h2 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '0.5rem' }}>JP Houston — Engagement Options</h2>
+      <p style={{ fontSize: '1rem', color: '#8a8074', marginBottom: '2rem' }}>Pick your level. Every tier builds on the one below it.</p>
+
+      <div style={{ display: 'grid', gap: '1.5rem' }}>
+        {tiers.map((tier, i) => (
+          <div key={tier.level} style={{
+            background: '#1a1816',
+            border: `2px solid ${tier.color}40`,
+            borderRadius: 16,
+            padding: '1.5rem 2rem',
+            display: 'grid',
+            gridTemplateColumns: '200px 1fr',
+            gap: '2rem',
+            alignItems: 'start',
+          }}>
+            {/* Left: Level + Commitment */}
+            <div>
+              <div style={{ fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', color: tier.color, marginBottom: '0.5rem' }}>
+                Level {i + 1}
+              </div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: tier.color, margin: '0 0 0.5rem' }}>{tier.level}</h3>
+              <div style={{ fontSize: '1rem', fontWeight: 700, color: '#e8e0d4', marginBottom: '0.25rem' }}>{tier.commitment}</div>
+              <div style={{ fontSize: '0.8rem', color: '#6a6560' }}>{tier.compensation}</div>
+            </div>
+
+            {/* Right: Role + Includes */}
+            <div>
+              <p style={{ fontSize: '1rem', color: '#e8e0d4', lineHeight: 1.6, marginBottom: '1rem' }}>{tier.role}</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                {tier.includes.map(item => (
+                  <span key={item} style={{
+                    padding: '0.25rem 0.75rem',
+                    background: `${tier.color}10`,
+                    border: `1px solid ${tier.color}30`,
+                    borderRadius: 6,
+                    fontSize: '0.75rem',
+                    color: '#a8a098',
+                  }}>
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ marginTop: '2rem', padding: '1.5rem', background: '#1a1816', border: '1px solid #2a2520', borderRadius: 12, textAlign: 'center' }}>
+        <p style={{ fontSize: '1rem', color: '#c8943e', fontWeight: 600, margin: '0 0 0.5rem' }}>What JP brings to any tier:</p>
+        <p style={{ fontSize: '0.9rem', color: '#8a8074', margin: 0 }}>
+          NPR syndication (20+ stations) &middot; Opened for Leon Russell &middot; Weezer (The Relationship) &middot;
+          HBO/BBC/PBS/CBC compositions &middot; Gemini Award nomination &middot; PGA-level production network
+        </p>
+      </div>
+    </div>
+  );
+}
+
 const VIEW_COMPONENTS: Record<View, () => JSX.Element> = {
   links: LinksView,
   story: StoryView,
   flywheel: FlywheelView,
   tenants: TenantsView,
   personnel: PersonnelView,
+  jp: JPOptionsView,
   org: OrgView,
   revenue: RevenueView,
   tech: TechView,
