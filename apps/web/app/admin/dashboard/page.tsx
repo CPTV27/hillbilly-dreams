@@ -141,6 +141,50 @@ const PERSONAS: Record<string, UserPersona> = {
     ],
     statsKeys: ['inn_occupancy_rate', 'google_review_rating', 'upcoming_shows'],
   },
+  // ── Tuthill Design (Woodstock, NY) ──
+  'info@tuthilldesign.com': {
+    name: 'Elijah',
+    role: 'Founder — Tuthill Design',
+    greeting: 'Your studio is ready.',
+    tools: [
+      { label: 'Content Studio', href: '/admin/studio', icon: 'edit', desc: 'Generate posts, articles, copy' },
+      { label: 'Creative Hub', href: '/admin/creative', icon: 'palette', desc: 'Generate images, video, audio' },
+      { label: 'Clients', href: '/admin/clients', icon: 'users', desc: 'Your client list' },
+      { label: 'Social', href: '/admin/social', icon: 'camera', desc: 'Schedule and publish posts' },
+      { label: 'Media Vault', href: '/admin/media', icon: 'image', desc: 'Photos and assets' },
+      { label: 'Calendar', href: '/admin/calendar', icon: 'calendar', desc: 'Projects and deadlines' },
+    ],
+    statsKeys: [],
+  },
+  // ── Studio C Video (Woodstock, NY) ──
+  'elijah@studioc.video': {
+    name: 'Elijah',
+    role: 'Co-Founder — Studio C',
+    greeting: 'Cameras are rolling.',
+    tools: [
+      { label: 'Productions', href: '/admin/productions', icon: 'camera', desc: 'Video production pipeline' },
+      { label: 'Content Studio', href: '/admin/studio', icon: 'edit', desc: 'Generate scripts, promos, copy' },
+      { label: 'Creative Hub', href: '/admin/creative', icon: 'palette', desc: 'Generate images, video, audio' },
+      { label: 'Social', href: '/admin/social', icon: 'camera', desc: 'Schedule and publish posts' },
+      { label: 'Media Vault', href: '/admin/media', icon: 'image', desc: 'Footage and assets' },
+      { label: 'Calendar', href: '/admin/calendar', icon: 'calendar', desc: 'Shoots and deadlines' },
+    ],
+    statsKeys: [],
+  },
+  'miles@studioc.video': {
+    name: 'Miles',
+    role: 'Co-Founder — Studio C',
+    greeting: 'The studio is yours.',
+    tools: [
+      { label: 'Productions', href: '/admin/productions', icon: 'camera', desc: 'Video production pipeline' },
+      { label: 'Content Studio', href: '/admin/studio', icon: 'edit', desc: 'Generate scripts, promos, copy' },
+      { label: 'Creative Hub', href: '/admin/creative', icon: 'palette', desc: 'Generate images, video, audio' },
+      { label: 'Clients', href: '/admin/clients', icon: 'users', desc: 'Your client list' },
+      { label: 'Media Vault', href: '/admin/media', icon: 'image', desc: 'Footage and assets' },
+      { label: 'Calendar', href: '/admin/calendar', icon: 'calendar', desc: 'Shoots and deadlines' },
+    ],
+    statsKeys: [],
+  },
 };
 
 function getPersona(email: string | null): UserPersona {

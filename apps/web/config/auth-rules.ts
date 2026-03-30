@@ -56,6 +56,8 @@ export const BMT_ALLOWED_DOMAINS: string[] = [
   'hillbillydreamsinc.com',
   'studio.c.video',
   'studio-c.com',
+  'studioc.video',
+  'tuthilldesign.com',
 ];
 
 export const BMT_ALLOWED_EMAILS: string[] = [
@@ -74,7 +76,10 @@ export const BMT_ALLOWED_EMAILS: string[] = [
   'elijah@studio.c.video',
   'info@studio-c.com',
   'miles@studio-c.com',
-  'elijah@studio-c.video',
+  'miles@studioc.video',
+  'elijah@studioc.video',
+  // Tuthill Design
+  'info@tuthilldesign.com',
 ];
 
 /**
