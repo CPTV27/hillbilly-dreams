@@ -751,6 +751,12 @@ model User {
 
   onboardingCompletedAt DateTime?
 
+  // ── Data Consent (Honest Data Exchange) ──
+  profileType       String?   // 'private' | 'business'
+  dataTier          String?   // 'free' | 'paid'
+  consentVersion    String?   // version of consent form accepted
+  consentTimestamp   DateTime? // when they accepted
+
   // SOVEREIGNTY NOTE: artistApplications relation REMOVED (2026-03-24)
   // BCA sovereign queries by userId string — no cross-sovereign FK.
   accounts      Account[]
