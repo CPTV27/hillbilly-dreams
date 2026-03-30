@@ -143,6 +143,78 @@ That's Outsider Economics. That's the product.
 - Print documentation (for communities without screens)
 - Training materials (video, audio, text)
 
+## Network Economics — The Founding Thousand
+
+### The Principle
+
+Early = more. Active = more. Contributing = more. It compounds. It never expires. And you can start for free.
+
+### Entry Points
+
+| Path | Cost | What Happens |
+|---|---|---|
+| **Free (DIY)** | $0 + your own hardware | Download the image, flash a Pi, join the network. Earn from day one. |
+| **Kickstarter Kit** | $499-$599 | Pre-built, tested, shipped. Higher founding tier = higher revenue share. |
+| **Homestead Package** | $999 | Full solar setup + onboarding call. Ready to go off-grid immediately. |
+
+### Founding Tiers (Permanent, Non-Dilutable)
+
+| Cohort | Revenue Share | Extras |
+|---|---|---|
+| First 100 | 25% recurring on referral upgrades | Regional assembly rights + governance vote + Founder badge |
+| 101-500 | 20% recurring | Governance vote + Founder badge |
+| 501-1,000 | 15% recurring | Founder badge |
+| After 1,000 | 10% recurring (standard) | Affiliate status |
+
+Revenue share is permanent and recurring. If someone you referred pays $20/mo for cloud sync, you earn your percentage every month they stay active. Forever.
+
+### Earn Through Activity
+
+| Action | Reward |
+|---|---|
+| Deploy a box, people use it | Credits per active user on your node |
+| Someone in your network upgrades to paid | Recurring revenue share (see tier above) |
+| Refer a new community that buys a box | $50 one-time bonus |
+| Contribute code, templates, or content back | Credits toward your own cloud tier |
+| Train others to deploy (Certified Operator) | Higher referral rate + training fee |
+| Report bugs, write docs, answer forum questions | Contributor credits (never expire) |
+| Assemble and sell boxes in your region | Keep the hardware margin |
+
+### Why This Works
+
+Not an affiliate program. A network ownership model.
+
+Traditional platforms extract value from operators and give nothing back. The Sovereign Box network inverts this:
+
+- Your hardware. You own the box. Nobody can repo it.
+- Your data. Nothing leaves your node without your permission.
+- Your revenue. The network pays you for growing it.
+- Your governance. Founders vote on what gets built.
+
+No tokens. No blockchain. No speculation. Real hardware, real utility, real communities, real revenue flowing back to the people who built the network.
+
+The first hundred humans who believe in this own a permanent position. No dilution. No Series A that wipes them out.
+
+### Kickstarter Campaign
+
+Goal: $25,000 (first 50 units + video production + shipping)
+
+| Tier | Pledge | Reward | Limit |
+|---|---|---|---|
+| Believer | $25 | Supporter wall + Outsider Economics manifesto | Unlimited |
+| DIY Pioneer | $50 | Parts list + Pi image + build guide + forum | Unlimited |
+| Early Bird Box | $499 | Handmade, numbered, Founder status | 50 |
+| Sovereign Box | $599 | Same (post-early bird) | 200 |
+| Homestead Package | $999 | Box + solar + FM + 1hr setup call | 25 |
+| Founding Community | $2,500 | 3 boxes (mesh starter) + documentary feature | 10 |
+| Sponsor a Town | $5,000 | 10 boxes donated to chosen community | 5 |
+
+Stretch goals: $50K LoRa mesh, $75K community AI model, $100K mobile app, $150K documentary.
+
+### Pilot Run (10 Units, Natchez MS)
+
+~$410/unit, $4,100 total. Give away as promotional units. Document builds on video.
+
 ## For the Google Pitch
 
 "We built a platform on Google Cloud that runs 15 domains for a media-hospitality company in Mississippi. Then we made it run on a Raspberry Pi. The cloud version uses Gemini, Imagen, Veo, Cloud TTS, and Google Workspace. The edge version runs on solar power with no internet. Same codebase. The open source core brings users into the Google ecosystem when they're ready to scale."
