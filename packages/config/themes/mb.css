@@ -8,10 +8,10 @@
   --text: #1A1A1A;
   --text-muted: #6B7280;
   --text-disabled: #9CA3AF;
-  --accent: #1A1A1A;
-  --accent-hover: #000000;
-  --accent-muted: rgba(26, 26, 26, 0.08);
-  --accent-subtle: rgba(26, 26, 26, 0.04);
+  --accent: #4285F4;
+  --accent-hover: #3367D6;
+  --accent-muted: rgba(66, 133, 244, 0.10);
+  --accent-subtle: rgba(66, 133, 244, 0.04);
   --slate: #6477AD;
   --slate-muted: rgba(100, 119, 173, 0.15);
   --success: #22c55e;
