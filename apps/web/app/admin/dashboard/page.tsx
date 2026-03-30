@@ -120,6 +120,7 @@ const PERSONAS: Record<string, UserPersona> = {
     greeting: 'The numbers are ready.',
     tools: [
       { label: 'Financial Dashboard', href: '/tracy', icon: 'users', desc: 'Revenue, expenses, entities' },
+      { label: 'Pricing', href: '/admin/pricing', icon: 'users', desc: 'Room rates, dynamic pricing, strategy' },
       { label: 'Clients', href: '/admin/clients', icon: 'users', desc: 'DSD subscribers and leads' },
       { label: 'Calendar', href: '/admin/calendar', icon: 'calendar', desc: 'Shows and events' },
       { label: 'Content Studio', href: '/admin/studio', icon: 'edit', desc: 'Generate marketing content' },
