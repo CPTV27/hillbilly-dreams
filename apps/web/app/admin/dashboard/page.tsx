@@ -65,23 +65,121 @@ const ICON_MAP: Record<string, string> = {
   calendar: 'E',
 };
 
+// ── User Persona Config ──
+// Each team member gets their own tools, stats, and greeting
+interface UserPersona {
+  name: string;
+  role: string;
+  greeting: string;
+  tools: typeof TOOLS;
+  statsKeys: string[];
+}
+
+const PERSONAS: Record<string, UserPersona> = {
+  // Chase — sees everything
+  'me@chasepierson.tv': {
+    name: 'Chase',
+    role: 'CEO / CTO',
+    greeting: 'Command center is live.',
+    tools: TOOLS,
+    statsKeys: ['inn_occupancy_rate', 'newsletter_subscribers', 'google_review_rating', 'upcoming_shows'],
+  },
+  // JP — shows, radio, entertainment
+  'jp@bigmuddyentertainment.com': {
+    name: 'JP',
+    role: 'Head of Shows & Programming',
+    greeting: 'Your stage is set.',
+    tools: [
+      { label: 'Content Studio', href: '/admin/studio', icon: 'edit', desc: 'Generate promos for your shows' },
+      { label: 'Radio Shows', href: '/radio/shows', icon: 'calendar', desc: 'Your programming grid' },
+      { label: 'Broadcast Control', href: '/admin/radio', icon: 'camera', desc: 'Schedule, playlist, now playing' },
+      { label: 'Creative Hub', href: '/admin/creative', icon: 'palette', desc: 'Generate images, video, audio' },
+      { label: 'Calendar', href: '/admin/calendar', icon: 'calendar', desc: 'Shows and events' },
+      { label: 'Your Page', href: '/jp', icon: 'users', desc: 'Your public welcome page' },
+    ],
+    statsKeys: ['upcoming_shows', 'radio_listeners', 'google_review_rating'],
+  },
+  'jphoustonlives@gmail.com': {
+    name: 'JP',
+    role: 'Head of Shows & Programming',
+    greeting: 'Your stage is set.',
+    tools: [
+      { label: 'Content Studio', href: '/admin/studio', icon: 'edit', desc: 'Generate promos for your shows' },
+      { label: 'Radio Shows', href: '/radio/shows', icon: 'calendar', desc: 'Your programming grid' },
+      { label: 'Broadcast Control', href: '/admin/radio', icon: 'camera', desc: 'Schedule, playlist, now playing' },
+      { label: 'Creative Hub', href: '/admin/creative', icon: 'palette', desc: 'Generate images, video, audio' },
+      { label: 'Calendar', href: '/admin/calendar', icon: 'calendar', desc: 'Shows and events' },
+      { label: 'Your Page', href: '/jp', icon: 'users', desc: 'Your public welcome page' },
+    ],
+    statsKeys: ['upcoming_shows', 'radio_listeners', 'google_review_rating'],
+  },
+  // Tracy — finance, operations, lifestyle brand
+  'tracyaldersonallen@gmail.com': {
+    name: 'Tracy',
+    role: 'CFO / Lifestyle Brand CEO',
+    greeting: 'The numbers are ready.',
+    tools: [
+      { label: 'Financial Dashboard', href: '/tracy', icon: 'users', desc: 'Revenue, expenses, entities' },
+      { label: 'Clients', href: '/admin/clients', icon: 'users', desc: 'DSD subscribers and leads' },
+      { label: 'Calendar', href: '/admin/calendar', icon: 'calendar', desc: 'Shows and events' },
+      { label: 'Content Studio', href: '/admin/studio', icon: 'edit', desc: 'Generate marketing content' },
+      { label: 'Media Vault', href: '/admin/media', icon: 'image', desc: 'Browse all photos and assets' },
+    ],
+    statsKeys: ['newsletter_subscribers', 'inn_occupancy_rate', 'google_review_rating'],
+  },
+  // Amy — inn, bar, guest experience
+  'amyaldersonallen@gmail.com': {
+    name: 'Amy',
+    role: 'COO — Inn & Bar',
+    greeting: 'The Inn is yours.',
+    tools: [
+      { label: 'Calendar', href: '/admin/calendar', icon: 'calendar', desc: 'Shows and events coming up' },
+      { label: 'Clients', href: '/admin/clients', icon: 'users', desc: 'Guest info and bookings' },
+      { label: 'Content Studio', href: '/admin/studio', icon: 'edit', desc: 'Quick social posts and promos' },
+      { label: 'Media Vault', href: '/admin/media', icon: 'image', desc: 'Photos for the Inn' },
+    ],
+    statsKeys: ['inn_occupancy_rate', 'google_review_rating', 'upcoming_shows'],
+  },
+};
+
+function getPersona(email: string | null): UserPersona {
+  if (email && PERSONAS[email.toLowerCase()]) {
+    return PERSONAS[email.toLowerCase()];
+  }
+  // Default for unknown users
+  const name = email ? email.split('@')[0].split('.')[0] : 'there';
+  const capitalized = name.charAt(0).toUpperCase() + name.slice(1);
+  return {
+    name: capitalized,
+    role: 'Team Member',
+    greeting: 'Welcome to Mission Control.',
+    tools: TOOLS,
+    statsKeys: ['upcoming_shows', 'newsletter_subscribers', 'google_review_rating'],
+  };
+}
+
 export default function DashboardPage() {
   const [metrics, setMetrics] = useState<Record<string, MetricData>>({});
   const [articles, setArticles] = useState<ArticleSummary[]>([]);
   const [events, setEvents] = useState<EventSummary[]>([]);
   const [loading, setLoading] = useState(true);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchAll() {
       try {
-        const [metricsRes, articlesRes, eventsRes] = await Promise.all([
+        const [metricsRes, articlesRes, eventsRes, sessionRes] = await Promise.all([
           fetch('/api/metrics').then((r) => r.json()).catch(() => ({})),
           fetch('/api/articles?take=5').then((r) => r.json()).catch(() => ({ data: [] })),
           fetch('/api/events?status=upcoming&take=5').then((r) => r.json()).catch(() => ({ data: [] })),
+          fetch('/api/auth/session').then((r) => r.json()).catch(() => ({})),
         ]);
         setMetrics(metricsRes ?? {});
         setArticles(articlesRes?.data ?? []);
         setEvents(eventsRes?.data ?? []);
+        if (sessionRes?.user?.email) {
+          setUserEmail(sessionRes.user.email);
+        }
       } catch (err) {
         console.error('Dashboard fetch error:', err);
       } finally {
@@ -91,6 +189,7 @@ export default function DashboardPage() {
     fetchAll();
   }, []);
 
+  const persona = getPersona(userEmail);
   const nextEvent = events[0];
   const occupancy = metrics['inn_occupancy_rate'];
   const subscribers = metrics['newsletter_subscribers'];
@@ -102,10 +201,11 @@ export default function DashboardPage() {
         {/* ── Hero Greeting ── */}
         <section className="mc-hero">
           <div className="mc-hero__greeting">
-            <h1 className="mc-hero__title">{timeGreeting()}, Chase</h1>
+            <h1 className="mc-hero__title">{timeGreeting()}, {persona.name}</h1>
             <p className="mc-hero__sub">
-              {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
+              {persona.role} &middot; {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
             </p>
+            <p className="mc-hero__tagline">{persona.greeting}</p>
           </div>
         </section>
 
@@ -162,7 +262,7 @@ export default function DashboardPage() {
         <section className="mc-tools">
           <h2 className="mc-section-label">Your Tools</h2>
           <div className="mc-tools__grid">
-            {TOOLS.map((tool) => (
+            {persona.tools.map((tool) => (
               <a key={tool.href} href={tool.href} className="mc-tool">
                 <div className="mc-tool__icon">{ICON_MAP[tool.icon]}</div>
                 <div className="mc-tool__text">
@@ -269,6 +369,12 @@ export default function DashboardPage() {
           font-size: var(--text-sm);
           color: var(--text-disabled);
           margin: var(--space-1) 0 0;
+        }
+        .mc-hero__tagline {
+          font-size: var(--text-base, 1rem);
+          color: var(--accent, #c8943e);
+          margin: var(--space-2, 0.5rem) 0 0;
+          font-weight: 500;
         }
 
         /* ── Spotlight ── */
