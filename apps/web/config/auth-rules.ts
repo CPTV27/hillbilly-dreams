@@ -57,18 +57,22 @@ export const BMT_ALLOWED_DOMAINS: string[] = [
 ];
 
 export const BMT_ALLOWED_EMAILS: string[] = [
+  // Core team
   'chase@scan2plan.io',
   'chase@scantoplan.io',
   'tracy@thebigmuddyinn.com',
   'amy@thebigmuddyinn.com',
   'amyaldersonallen@gmail.com',
+  'tracyaldersonallen@gmail.com',
+  'jphoustonlives@gmail.com',
+  'team@chasepierson.tv',
+  // Studio C
   'info@studio.c.video',
   'miles@studio.c.video',
   'elijah@studio.c.video',
   'info@studio-c.com',
   'miles@studio-c.com',
   'elijah@studio-c.video',
-  'team@chasepierson.tv',
 ];
 
 /**
