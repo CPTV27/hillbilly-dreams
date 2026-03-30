@@ -118,7 +118,7 @@ export default function LaunchDashboard() {
 
   const pct = Math.round((counts.done / counts.total) * 100);
 
-  const owners = [...new Set(TASKS.map((t) => t.owner))];
+  const owners = Array.from(new Set(TASKS.map((t) => t.owner)));
 
   return (
     <>
