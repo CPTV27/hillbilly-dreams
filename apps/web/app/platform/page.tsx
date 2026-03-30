@@ -55,11 +55,7 @@ function FeatureSection({ title, subtitle, description, icon: Icon, imagePlaceho
           
           <div className="z-10 flex flex-col items-center justify-center text-center p-8">
             <Sparkles className="w-12 h-12 text-slate-600 mb-6 group-hover:text-cyan-400 transition-colors duration-500 animate-pulse" />
-            <span className="text-sm font-mono tracking-widest text-slate-500 uppercase">Awaiting Asset Synthesis</span>
-            <span className="text-xl font-bold text-slate-300 mt-2">{imagePlaceholderId}</span>
-            <span className="text-xs text-slate-600 mt-4 max-w-xs leading-relaxed">
-              Inject the corresponding Nano Banana 8K render here.
-            </span>
+            <span className="text-xl font-bold text-slate-300 mt-2">{title}</span>
           </div>
         </motion.div>
 
