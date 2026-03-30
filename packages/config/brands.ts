@@ -68,8 +68,10 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     nav: {
       links: [
         { label: 'Playlists', href: '/radio/playlists' },
+        { label: 'Shows', href: '/radio/shows' },
         { label: 'Live Sessions', href: '/radio/live' },
         { label: 'Podcast', href: '/radio/podcast' },
+        { label: 'Directory', href: '/radio/directory' },
       ],
     },
   },

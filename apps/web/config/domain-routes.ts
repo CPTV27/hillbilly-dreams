@@ -50,6 +50,9 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
     excludeAdmin: true,
   },
   {
+    // NOTE: bigmuddymedia.com is owned by an unrelated Illinois company.
+    // This route only activates for local dev (bigmuddymedia.local).
+    // The /media route group is accessible via direct paths on other domains.
     pattern: 'bigmuddymedia',
     routeGroup: 'media',
     excludeAdmin: true,
