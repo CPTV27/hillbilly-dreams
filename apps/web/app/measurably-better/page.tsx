@@ -65,16 +65,16 @@ export default function MeasurablyBetterLanding() {
         <div className="mbt-hero__content">
           <span className="mbt-hero__eyebrow">Measurably Better Things</span>
           <h1 className="mbt-hero__title">
-            Fire your admin.
-            <span className="mbt-hero__accent">Keep your margin.</span>
+            Your whole business.
+            <span className="mbt-hero__accent">One platform. $99.</span>
           </h1>
           <p className="mbt-hero__sub">
-            One platform replaces your office manager, your marketing agency,
-            and your bookkeeper. <strong>$99/month.</strong> Built for Main Street.
+            Reviews, social media, directory listing, and a monthly report card &mdash;
+            all handled for you. <strong>Built for Main Street.</strong>
           </p>
           <div className="mbt-hero__ctas">
             <a href="#audit" className="mbt-btn-primary">
-              See What You&apos;re Losing →
+              See What You Could Save →
             </a>
             <a href="/measurably-better/thesis" className="mbt-btn-ghost">
               Watch It Work →
@@ -106,11 +106,11 @@ export default function MeasurablyBetterLanding() {
       {/* ── Extractive Audit ── */}
       <section className="mbt-audit" id="audit">
         <div className="mbt-audit__inner">
-          <span className="mbt-section-label">The Extractive Audit</span>
-          <h2 className="mbt-h2">How much are you losing?</h2>
+          <span className="mbt-section-label">The Quick Math</span>
+          <h2 className="mbt-h2">See what you could save.</h2>
           <p className="mbt-lead">
-            Three questions. Thirty seconds. We&apos;ll show you exactly how much
-            money is leaving your business every month.
+            Three questions. Thirty seconds. We&apos;ll show you what an agency
+            charges for the same work MBT handles for $99.
           </p>
 
           <div className="mbt-audit__form">
@@ -168,19 +168,19 @@ export default function MeasurablyBetterLanding() {
               className="mbt-btn-primary mbt-audit__submit"
               onClick={() => setShowResult(true)}
             >
-              Show Me the Bleed →
+              Show Me the Savings →
             </button>
           </div>
 
           {showResult && (
             <div className="mbt-audit__result">
               <div className="mbt-audit__result-card">
-                <p className="mbt-audit__result-label">You&apos;re losing approximately</p>
+                <p className="mbt-audit__result-label">An agency would charge you approximately</p>
                 <p className="mbt-audit__result-amount">
                   ${monthlyWaste.toLocaleString()}<span>/month</span>
                 </p>
                 <p className="mbt-audit__result-yearly">
-                  That&apos;s <strong>${yearlyWaste.toLocaleString()}/year</strong> leaving your zip code.
+                  That&apos;s <strong>${yearlyWaste.toLocaleString()}/year</strong>. MBT does it for $1,188.
                 </p>
                 <a href="/directory/onboard" className="mbt-btn-primary" style={{ marginTop: '1.5rem' }}>
                   Get it back for $99/month →
@@ -194,13 +194,13 @@ export default function MeasurablyBetterLanding() {
       {/* ── Three Hires for $99 ── */}
       <section className="mbt-hires">
         <div className="mbt-hires__inner">
-          <span className="mbt-section-label">Three Hires. $99/month.</span>
-          <h2 className="mbt-h2">The team you can&apos;t afford to hire — and don&apos;t have to.</h2>
+          <span className="mbt-section-label">What You Get</span>
+          <h2 className="mbt-h2">Three things working for you, around the clock.</h2>
 
           <div className="mbt-hires__grid">
             <div className="mbt-hires__card mbt-hires__card--blue">
               <div className="mbt-hires__role">The Autonomous Admin</div>
-              <p className="mbt-hires__replaces">Replaces: $45K/year office manager</p>
+              <p className="mbt-hires__replaces">Worth: $45K/year in admin time saved</p>
               <p className="mbt-hires__desc">
                 Answers your reviews, manages your listings, and keeps your
                 data clean. Monitors Google and Yelp 24/7, drafts responses,
@@ -211,7 +211,7 @@ export default function MeasurablyBetterLanding() {
 
             <div className="mbt-hires__card mbt-hires__card--green">
               <div className="mbt-hires__role">The 24/7 Salesman</div>
-              <p className="mbt-hires__replaces">Replaces: $3,000/mo marketing agency</p>
+              <p className="mbt-hires__replaces">Worth: $3,000/mo in marketing agency fees</p>
               <p className="mbt-hires__desc">
                 Four posts a week across Facebook, Instagram, and Google.
                 AI writes them from your photos and what&apos;s happening in
@@ -222,7 +222,7 @@ export default function MeasurablyBetterLanding() {
 
             <div className="mbt-hires__card mbt-hires__card--purple">
               <div className="mbt-hires__role">The Numbers Person</div>
-              <p className="mbt-hires__replaces">Replaces: $400/mo bookkeeper</p>
+              <p className="mbt-hires__replaces">Worth: $400/mo in bookkeeping fees</p>
               <p className="mbt-hires__desc">
                 Monthly report card: your reviews, your reach, how you
                 compare to the business down the street. No spreadsheets.
