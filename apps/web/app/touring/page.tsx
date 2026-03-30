@@ -181,10 +181,10 @@ export default async function TouringHomepage() {
                   <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-main-street.webp" alt="Charming Main Street at golden hour in the Deep South" width={500} height={750} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="touring-route__photo touring-route__photo--2">
-                  <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-bnb-sunset.webp" alt="Southern porch with hanging ferns at sunset" width={500} height={750} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src="/images/corridor/natchez-bluff-river-view.webp" alt="Mississippi River view from Natchez bluffs at golden hour" width={500} height={750} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="touring-route__photo touring-route__photo--3">
-                  <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-inn-dusk.webp" alt="Historic inn at dusk with warm lights" width={500} height={750} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src="/images/corridor/street-musician-guitar.webp" alt="Street musician playing guitar on a Southern sidewalk" width={500} height={750} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
               </div>
             </div>

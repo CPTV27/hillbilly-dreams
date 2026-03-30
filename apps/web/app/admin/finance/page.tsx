@@ -174,8 +174,8 @@ export default function FinancePage() {
           </p>
         </div>
         <div className="fin-header-actions">
-          <span className="fin-live-dot" />
-          <span className="fin-live-label">Live from Stripe</span>
+          <span className="fin-live-dot" style={{ background: 'var(--color-warning, #f59e0b)' }} />
+          <span className="fin-live-label">Sample Data — Stripe not connected</span>
         </div>
       </motion.div>
 

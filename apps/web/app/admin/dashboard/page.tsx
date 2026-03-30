@@ -50,8 +50,8 @@ function formatRelativeDate(date: string | null): string {
 const TOOLS = [
   { label: 'Content Studio', href: '/admin/studio', icon: 'edit', desc: 'Generate posts, articles, radio spots' },
   { label: 'Media Vault', href: '/admin/media', icon: 'image', desc: 'Browse and manage all photos' },
-  { label: 'Shot List', href: '/snap', icon: 'camera', desc: 'GPS-guided photo locations' },
-  { label: 'Lookbook', href: '/gallery/lookbook', icon: 'palette', desc: 'Review illustration styles' },
+  { label: 'Shot List', href: '/admin/snap', icon: 'camera', desc: 'GPS-guided photo locations' },
+  { label: 'Lookbook', href: '/admin/lookbook', icon: 'palette', desc: 'Review illustration styles' },
   { label: 'Clients', href: '/admin/clients', icon: 'users', desc: 'DSD subscribers and leads' },
   { label: 'Calendar', href: '/admin/calendar', icon: 'calendar', desc: 'Shows and events' },
 ];
@@ -239,22 +239,30 @@ export default function DashboardPage() {
 
           {/* Quick Stats */}
           <div className="mc-stats">
-            <div className="mc-stat">
-              <span className="mc-stat__value">{loading ? '—' : (occupancy?.value ?? '—')}<span className="mc-stat__unit">%</span></span>
-              <span className="mc-stat__label">Occupancy</span>
-            </div>
-            <div className="mc-stat">
-              <span className="mc-stat__value">{loading ? '—' : (subscribers?.value?.toLocaleString() ?? '—')}</span>
-              <span className="mc-stat__label">Subscribers</span>
-            </div>
-            <div className="mc-stat">
-              <span className="mc-stat__value">{loading ? '—' : (rating?.value ?? '—')}<span className="mc-stat__unit">/5</span></span>
-              <span className="mc-stat__label">Google Rating</span>
-            </div>
-            <div className="mc-stat">
-              <span className="mc-stat__value">{events.length}</span>
-              <span className="mc-stat__label">Upcoming Shows</span>
-            </div>
+            {!loading && !occupancy && !subscribers && !rating && events.length === 0 ? (
+              <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '1rem', opacity: 0.6, fontSize: '0.85rem' }}>
+                No metrics yet. Data populates as you use the platform.
+              </div>
+            ) : (
+              <>
+                <div className="mc-stat">
+                  <span className="mc-stat__value">{loading ? '—' : (occupancy?.value ?? '—')}<span className="mc-stat__unit">%</span></span>
+                  <span className="mc-stat__label">Occupancy</span>
+                </div>
+                <div className="mc-stat">
+                  <span className="mc-stat__value">{loading ? '—' : (subscribers?.value?.toLocaleString() ?? '—')}</span>
+                  <span className="mc-stat__label">Subscribers</span>
+                </div>
+                <div className="mc-stat">
+                  <span className="mc-stat__value">{loading ? '—' : (rating?.value ?? '—')}<span className="mc-stat__unit">/5</span></span>
+                  <span className="mc-stat__label">Google Rating</span>
+                </div>
+                <div className="mc-stat">
+                  <span className="mc-stat__value">{events.length}</span>
+                  <span className="mc-stat__label">Upcoming Shows</span>
+                </div>
+              </>
+            )}
           </div>
         </section>
 
@@ -310,7 +318,7 @@ export default function DashboardPage() {
               ) : (
                 <div className="mc-list">
                   {articles.map((article) => (
-                    <a key={article.id} href={`/admin/articles/edit/${article.slug}`} className="mc-list__item mc-list__item--link">
+                    <a key={article.id} href={`/admin/articles/${article.id}/edit`} className="mc-list__item mc-list__item--link">
                       <div className={`mc-list__dot mc-list__dot--${article.status}`} />
                       <div className="mc-list__content">
                         <span className="mc-list__title">{article.title}</span>
