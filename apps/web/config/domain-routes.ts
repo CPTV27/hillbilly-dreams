@@ -103,7 +103,7 @@ export const BMT_BRAND_PREFIXES = [
   '/records', '/studio', '/tuthill', '/hillbilly',
   '/measurably-better', '/directory', '/entertainment',
   '/welcome',
-  '/whiteboard', '/whiteboard/v1-jp-meeting',
+  '/whiteboard', '/whiteboard/v1-jp-meeting', '/tour',
   '/bearsville',
   '/snap',
   '/inn',
