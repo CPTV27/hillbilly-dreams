@@ -626,11 +626,11 @@ export default function HillbillyDreamsPage() {
             <span className="hd-hero__title-accent">for the Independent.</span>
           </h1>
           <p className="hd-hero__sub">
-            We harnessed the latest from <strong>Google Cloud</strong>, <strong>Gemini AI</strong>, and <strong>Vercel</strong> and packaged it into a platform that runs businesses — from Main Street shops to enterprise construction firms. One engine. Any industry.
+            We harnessed the latest from <strong>Google Cloud</strong>, <strong>Gemini AI</strong>, and <strong>Vercel</strong> and packaged it into a platform that runs businesses — from Main Street shops to boutique hotels to media companies. One engine. Any industry.
           </p>
           <div className="hd-hero__ctas">
-            <a href="/hillbilly/directory-pitch" className="hd-btn-primary">View the Deep South Directory →</a>
-            <a href="/hillbilly/proposal/scan2plan" className="hd-btn-ghost">Digitize Your Space (Scan2Plan) →</a>
+            <a href="https://measurablybetterthings.com" className="hd-btn-primary">Measurably Better Things →</a>
+            <a href="https://deepsouthdirectory.com" className="hd-btn-ghost">Deep South Directory →</a>
           </div>
           <div className="hd-stats">
             {STATS.map((s) => (
@@ -695,7 +695,7 @@ export default function HillbillyDreamsPage() {
               The original focus was developing Amy Allen&apos;s music career — performing as <em>Arrie Aslin</em> — and creating memorable live experiences. But independent art needs a runway. We realized the Big Muddy Inn in Natchez could generate the revenue to fund the music, provided we could get it cash-flow positive.
             </p>
             <p>
-              Running a hospitality business in the Deep South usually means bleeding money to disconnected, expensive software subscriptions. We couldn&apos;t afford the extraction, so we built our own infrastructure on Google Cloud. We called it <em>Measurably Better</em>. To fund the holding company, we deployed a version called <em>S2PX</em> for 3D scanning and AEC firms. That side of the house quietly pays the bills.
+              Running a hospitality business in the Deep South usually means bleeding money to disconnected, expensive software subscriptions. We couldn&apos;t afford the extraction, so we built our own infrastructure on Google Cloud. We called it <em>Measurably Better</em> — a platform that any business can use, not just ours.
             </p>
             <blockquote className="hd-story-quote">
               <p>
@@ -725,10 +725,10 @@ export default function HillbillyDreamsPage() {
         <h2 className="hd-h2" style={{ marginBottom: '3rem' }}>One Engine. Many Products.</h2>
         <div className="hd-principles">
           {[
-            { label: 'S2PX — AEC & Construction', text: 'iPhone LiDAR to automated quoting. Built for 3D scanning firms, general contractors, and AEC operators who bleed margin to manual estimation. Sovereign Cloud SQL instance per client.' },
+            { label: 'Measurably Better Things', text: 'A multi-tenant business management platform built on Google Cloud. Reviews, social media, directory listings, customer outreach, and financial dashboards — powered by Gemini AI. One platform, any industry.' },
             { label: 'Big Muddy — Hospitality & Media', text: 'An inn, a magazine, a radio station, a record label, and a touring circuit — all on one platform. The owned-and-operated proof of concept running eight brands from Natchez, Mississippi.' },
-            { label: 'Deep South Directory — Main Street', text: 'Sovereign digital infrastructure for local businesses. Tap-to-pay, AI concierges, direct booking, and automated marketing — replacing the extractive platforms that tax every transaction.' },
-            { label: 'Aligned Economics', text: "Our economics are tied to your margin recovery, not rent-seeking. We don't take a percentage of your revenue. Flat licensing. When Measurably Better makes your operation more efficient, you keep the upside. Our incentive is to make you more profitable — not to tax every transaction." },
+            { label: 'Deep South Directory — Main Street', text: 'Every business in every town on the corridor, found. AI-managed listings, review monitoring, and local SEO — replacing the fragmented tools that cost more than they deliver.' },
+            { label: 'Aligned Economics', text: "Our economics are tied to your success, not rent-seeking. When the platform makes your operation more efficient, you keep the upside. Our incentive is to make you more profitable — not to tax every transaction." },
           ].map((p) => (
             <div key={p.label} className="hd-principle">
               <div className="hd-principle__label">{p.label}</div>
