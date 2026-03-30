@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useState } from 'react';
 
-type Audience = 'partner' | 'investor' | 'client' | 'google' | 'default';
+type Audience = 'partner' | 'local' | 'client' | 'google' | 'default';
 
 const CONFIG = {
   partner: {
@@ -15,13 +15,14 @@ const CONFIG = {
       { label: 'Your Asana Board', desc: 'Tasks, to-dos, and timeline', url: 'https://app.asana.com' }
     ]
   },
-  investor: {
-    hero: 'The Big Muddy Ecosystem',
-    subtitle: 'A scalable flywheel of media, real estate, and enterprise software.',
+  local: {
+    hero: 'Natchez First',
+    subtitle: 'A crawl, walk, run approach to rebuilding local ecosystems.',
     links: [
-      { label: 'Ecosystem Flywheel', desc: 'Org chart, revenue, and intelligence', url: 'https://bigmuddytouring.com/admin/ecosystem' },
-      { label: 'The Math', desc: 'The unit economics of Main Street', url: 'https://outsidereconomics.com/the-math' },
-      { label: 'Demo Deck', desc: '10-slide presentation overview', url: 'https://bigmuddytouring.com/demo-deck.html' }
+      { label: 'Crawl: The Directory', desc: 'Phase 1: Map and verify every business (Deep South Directory)', url: 'https://deepsouthdirectory.com' },
+      { label: 'Walk: The Voice', desc: 'Phase 2: Engage the community with media (Big Muddy Radio)', url: 'https://bigmuddyradio.com' },
+      { label: 'Run: The Platform', desc: 'Phase 3: Upgrade owners to the OS (Measurably Better)', url: 'https://measurablybetter.life' },
+      { label: 'The Math', desc: 'Unit economics and margin retention for Main Street', url: 'https://outsidereconomics.com/the-math' }
     ]
   },
   client: {
@@ -47,8 +48,8 @@ const CONFIG = {
     subtitle: 'Select your lens to begin the tour.',
     links: [
       { label: 'Partner Review', desc: 'For stakeholders and partners', url: '?audience=partner' },
-      { label: 'Investor Deck', desc: 'For capital and scale', url: '?audience=investor' },
-      { label: 'Client Tools', desc: 'For Main Street business owners', url: '?audience=client' },
+      { label: 'Local Impact', desc: 'For Natchez and Main Street', url: '?audience=local' },
+      { label: 'Client Tools', desc: 'For independent business owners', url: '?audience=client' },
       { label: 'Technology Stack', desc: 'For engineers and Google', url: '?audience=google' }
     ]
   }
