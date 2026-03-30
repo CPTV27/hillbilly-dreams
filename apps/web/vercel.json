@@ -1,4 +1,10 @@
 {
   "installCommand": "cd ../.. && corepack enable && pnpm install --frozen-lockfile",
-  "buildCommand": "cd ../.. && pnpm turbo build --filter=@bigmuddy/web"
+  "buildCommand": "cd ../.. && pnpm turbo build --filter=@bigmuddy/web",
+  "crons": [
+    {
+      "path": "/api/cron/scan-asana",
+      "schedule": "17 * * * *"
+    }
+  ]
 }
