@@ -8,12 +8,17 @@
 //
 // POSTs to /api/directory/submit on submit.
 // Success → shows confirmation. Error → inline message, form preserved.
+//
+// URL params:
+//   ?tier=free|listing|works|engine  — pre-selects intended tier, captured in payload
 
 import Link from 'next/link';
-import { useState, useRef, type FormEvent } from 'react';
+import { useState, useRef, useEffect, type FormEvent } from 'react';
 import './onboard.css';
 
 // ── Types ─────────────────────────────────────────────────────
+
+type TierIntent = 'free' | 'listing' | 'works' | 'engine' | '';
 
 interface FormState {
   name: string;
@@ -28,6 +33,7 @@ interface FormState {
   hearAbout: string;
   toolsOrigin: string;
   softwareSpend: string;
+  tierIntent: TierIntent;
 }
 
 type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
@@ -113,6 +119,14 @@ const INITIAL_STATE: FormState = {
   hearAbout: '',
   toolsOrigin: '',
   softwareSpend: '',
+  tierIntent: '',
+};
+
+const TIER_LABELS: Record<string, string> = {
+  free: 'Entry (Free)',
+  listing: 'The Listing — $20/mo',
+  works: 'The Works — $49/mo',
+  engine: 'The Engine — $99/mo',
 };
 
 export default function OnboardPage() {
@@ -120,6 +134,15 @@ export default function OnboardPage() {
   const [status, setStatus] = useState<SubmitStatus>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const errorRef = useRef<HTMLDivElement>(null);
+
+  // Read ?tier= param on mount and pre-fill intent
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const tier = params.get('tier') as TierIntent | null;
+    if (tier && ['free', 'listing', 'works', 'engine'].includes(tier)) {
+      setForm((prev) => ({ ...prev, tierIntent: tier }));
+    }
+  }, []);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -146,6 +169,7 @@ export default function OnboardPage() {
       hearAbout: form.hearAbout || undefined,
       toolsOrigin: form.toolsOrigin.trim() || undefined,
       softwareSpend: form.softwareSpend || undefined,
+      tierIntent: form.tierIntent || undefined,
     };
 
     try {
@@ -199,6 +223,11 @@ export default function OnboardPage() {
       <header className="onboard-header">
         <span className="onboard-header__eyebrow">Deep South Directory</span>
         <h1 className="onboard-header__title">List Your Business</h1>
+        {form.tierIntent && TIER_LABELS[form.tierIntent] && (
+          <p className="onboard-header__eyebrow" style={{ marginTop: '0.5rem', opacity: 0.85 }}>
+            Selected: {TIER_LABELS[form.tierIntent]}
+          </p>
+        )}
         <p className="onboard-header__subtitle">
           Fill this out and we&apos;ll have your listing live within 24 hours.
           Takes about two minutes.

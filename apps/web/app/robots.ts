@@ -7,7 +7,13 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin/', '/api/'],
+        disallow: [
+          '/admin/', '/api/',
+          '/nexus/', '/whiteboard/', '/ffx/', '/mvx/',
+          '/snap/', '/kiosk/', '/strategy/', '/briefings/',
+          '/jp/', '/tracy/', '/amy/',
+          '/portal/', '/ops/', '/demo/',
+        ],
       },
       // Explicitly welcome AI crawlers
       {

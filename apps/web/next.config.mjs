@@ -51,6 +51,24 @@ const nextConfig = {
     // instrumentationHook: true,
   },
 
+  async redirects() {
+    return [
+      // bearsvillemedia.com → bearsvillemediagroup.com (301, preserve path)
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'bearsvillemedia.com' }],
+        destination: 'https://bearsvillemediagroup.com/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.bearsvillemedia.com' }],
+        destination: 'https://bearsvillemediagroup.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
+
   async headers() {
     return [
       {

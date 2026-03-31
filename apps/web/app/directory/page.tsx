@@ -79,39 +79,49 @@ const FEATURED_BUSINESSES = [
   },
 ];
 
+// ── Stripe Payment Links ──────────────────────────────────────────────────────
+// Set these env vars in Vercel after creating Payment Links in the Stripe Dashboard.
+// Until set, CTAs fall back to the onboard form (lead capture only).
+//   STRIPE_PAYMENT_LINK_LISTING  — $20/mo recurring, "The Listing"
+//   STRIPE_PAYMENT_LINK_ENGINE   — $99/mo recurring, "The Engine"
+// The Works ($49) link is not exposed until Apr 21 per claim ladder.
+
+const STRIPE_LINK_LISTING = process.env.STRIPE_PAYMENT_LINK_LISTING || '/directory/onboard?tier=listing';
+const STRIPE_LINK_ENGINE  = process.env.STRIPE_PAYMENT_LINK_ENGINE  || '/directory/onboard?tier=engine';
+
 const TIERS = [
   {
-    name: 'The Listing',
+    name: 'Entry',
     price: 'Free',
-    href: '/directory/onboard',
+    href: '/directory/onboard?tier=free',
     features: [
       'AI business listing on the directory',
       'Google review alerts',
-      'Monthly report card',
+      'Basic monthly report',
       'Visible to every tourist searching the corridor',
       'Part of the Big Muddy network',
     ],
   },
   {
-    name: 'The Assistant',
+    name: 'The Listing',
     price: '$20/mo',
-    href: '/directory/onboard',
+    href: STRIPE_LINK_LISTING,
     features: [
-      'Everything in The Listing',
+      'Everything in Entry',
       'AI assistant trained on your business + your town',
-      'Curated local knowledge base — not generic internet',
+      'Curated local knowledge — not generic internet',
       'Answer customer questions 24/7',
       'Generate content ideas on demand',
-      'Better than ChatGPT — same price, local intelligence',
+      'Same price as ChatGPT — built for your town',
     ],
   },
   {
     name: 'The Works',
     price: '$49/mo',
-    href: '/directory/onboard',
+    href: '/directory/onboard?tier=works',
     badge: 'Coming April 21',
     features: [
-      'Everything in The Assistant',
+      'Everything in The Listing',
       '4 social posts per week',
       'Auto-publishing to FB, IG, Google',
       'Content calendar',
@@ -122,7 +132,7 @@ const TIERS = [
   {
     name: 'The Engine',
     price: '$99/mo',
-    href: '/directory/onboard',
+    href: STRIPE_LINK_ENGINE,
     features: [
       'Everything in The Works',
       'AI review response drafts',
@@ -820,13 +830,13 @@ export default function DirectoryPage() {
             marginBottom: '2rem',
           }}
         >
-          Listings are free. Paid tiers start at $49/month for social media management, $99/month for the full engine. No contracts — month to
-          month, cancel anytime. We&apos;ll build your profile, match your voice, and start
-          putting your business in front of people who are already coming to the corridor.
+          Listings are free. Paid tiers start at $20/month — same price as ChatGPT, built for your town.
+          No contracts, cancel anytime. We&apos;ll build your profile, match your voice, and start
+          putting your business in front of every tourist coming through the corridor.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <a
-            href="/directory/submit"
+            href={STRIPE_LINK_LISTING}
             style={{
               display: 'inline-block',
               padding: '0.75rem 2rem',
@@ -837,7 +847,7 @@ export default function DirectoryPage() {
               fontSize: '0.9rem',
             }}
           >
-            Get Listed
+            Get Listed — $20/mo
           </a>
           <a
             href="/directory/dashboard"

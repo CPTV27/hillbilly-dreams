@@ -11,9 +11,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     magazine: 'https://bigmuddymagazine.com',
     radio: 'https://bigmuddyradio.com',
     economics: 'https://outsidereconomics.com',
-    gallery: 'https://buycurious.art',
+    // buycurious.art removed — now an alias for measurablybetter.life (MBT storefront)
+    mbt: 'https://measurablybetter.life',
     records: 'https://bigmuddyrecords.com',
     directory: 'https://deepsouthdirectory.com',
+    bearsville: 'https://bearsvillemediagroup.com',
   };
 
   // ── Touring static pages ──
@@ -148,25 +150,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Posts directory unavailable
   }
 
-  // ── Gallery static pages ──
-  const galleryEntries: MetadataRoute.Sitemap = [
+  // ── MBT / Deep South Directory marketing pages ──
+  const mbtEntries: MetadataRoute.Sitemap = [
     {
-      url: brands.gallery,
+      url: brands.mbt,
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 1.0,
     },
+  ];
+
+  // ── Bearsville Media Group ──
+  const bearsvilleEntries: MetadataRoute.Sitemap = [
     {
-      url: `${brands.gallery}/gallery/artists`,
+      url: brands.bearsville,
       lastModified: now,
       changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${brands.gallery}/gallery/work`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.9,
     },
   ];
 
@@ -249,7 +249,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...radioEntries,
     ...econEntries,
     ...econPostEntries,
-    ...galleryEntries,
+    ...mbtEntries,
+    ...bearsvilleEntries,
     ...recordsEntries,
     ...mediaEntries,
     ...platformEntries,
