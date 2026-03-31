@@ -56,8 +56,6 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
   { pattern: 'buycurious', routeGroup: 'measurably-better' },
   { pattern: 'buycuriousart', routeGroup: 'measurably-better' },
   { pattern: 'bigmuddyrecord', routeGroup: 'records' },
-  // superchase.app → killed, redirect to admin
-  { pattern: 'superchase', routeGroup: 'admin' },
   { pattern: 'studiocvideo', routeGroup: 'studioc' },
   { pattern: 'studio-c', routeGroup: 'studioc' },
   { pattern: 'studioc.video', routeGroup: 'studioc' },

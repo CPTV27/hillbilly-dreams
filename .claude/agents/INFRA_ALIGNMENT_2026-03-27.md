@@ -39,7 +39,6 @@ Every domain below is live on Vercel, serving from a single Next.js app with hos
 | bigmuddymagazine.com | /magazine | Big Muddy Magazine |
 | bigmuddyradio.com | /radio | Big Muddy Radio |
 | buycurious.art | /gallery | Buy Curious art gallery |
-| superchase.app | /platform | SuperChase platform |
 | measurablybetter.life | /measurably-better | MBT alias |
 
 ### Code Changes You Should Know About

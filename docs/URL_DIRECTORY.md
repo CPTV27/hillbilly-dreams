@@ -86,11 +86,6 @@
 | [/gallery/about](https://buycurious.art/gallery/about) | About |
 | [/gallery/apply](https://buycurious.art/gallery/apply) | Apply to exhibit |
 
-## superchase.app (Platform)
-| URL | Description |
-|-----|-------------|
-| [/](https://superchase.app/) | SuperChase platform |
-
 ## measurablybetter.life (MBT Alias)
 | URL | Description |
 |-----|-------------|

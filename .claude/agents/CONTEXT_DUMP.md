@@ -22,7 +22,6 @@
 | bigmuddymagazine.com | 200 | /magazine |
 | bigmuddyradio.com | 200 | /radio |
 | buycurious.art | 200 | /gallery |
-| superchase.app | 200 | /platform |
 | measurablybetter.life | 200 | /measurably-better |
 
 ## What Just Happened (today)

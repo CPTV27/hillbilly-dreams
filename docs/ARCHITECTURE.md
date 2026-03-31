@@ -65,7 +65,6 @@ hillbilly-dreams/
         (records)/          # Route group: bigmuddyrecords.com
         (hillbilly)/        # Route group: hillbillydreamsinc.com
         (entertainment)/    # Route group: bigmuddyentertainment.com
-        (platform)/         # Route group: superchase.app
         (admin)/            # Internal admin UI
         (ops)/              # Operations dashboard
         (portal)/           # Partner portal
@@ -232,7 +231,6 @@ The `BMT_DOMAIN_ROUTES` array in `config/domain-routes.ts` maps hostnames to rou
 | `buycurious` | `gallery` | |
 | `buycuriousart` | `gallery` | Alternate domain, same route group |
 | `bigmuddyrecord` | `records` | |
-| `superchase` | `platform` | |
 | `studiocvideo` / `studio-c` / `studioc.video` | `studio` | Three patterns, one group |
 | `tuthilldesign` | `tuthill` | |
 | `bigmuddyentertainment` | `entertainment` | |
@@ -1170,7 +1168,7 @@ The design system consolidates 20+ theme classes into 5 visual languages. Each p
 | Preset | Mood | Heading Font | Body Font | Brands |
 |--------|------|-------------|-----------|--------|
 | **The Delta Dark** | Southern Gothic / Noir | Abril Fatface | DM Sans | Inn, Radio, Entertainment, Records |
-| **The Modern MainSt** | Tech-Forward / SaaS | Plus Jakarta Sans | Inter | MBT, HDI, SuperChase |
+| **The Modern MainSt** | Tech-Forward / SaaS | Plus Jakarta Sans | Inter | MBT, HDI |
 | **The Broadside** | Traditional Editorial | Playfair Display | DM Sans | Magazine, DSD |
 | **The White Walls** | Minimal / High-Art | Inter | Inter | BuyCurious Gallery |
 | **The Paper Trail** | Academic / Muted | Playfair Display | Inter | Outsider Economics |
@@ -1376,7 +1374,6 @@ All 11 domains are live and routing correctly:
 | bigmuddymagazine.com | Live | Vercel |
 | bigmuddyradio.com | Live | Vercel |
 | buycurious.art | Live | Vercel |
-| superchase.app | Live | Vercel |
 | measurablybetter.life | Live | Vercel |
 
 ### 16.4 Sentry Configuration
@@ -1410,5 +1407,4 @@ Codified in `docs/DATABASE_POLICY.md`:
 | bigmuddymagazine.com | magazine | Magazine |
 | bigmuddyradio.com | radio | Radio |
 | buycurious.art | gallery | Art gallery |
-| superchase.app | platform | Platform |
 | measurablybetter.life | measurably-better | MBT alias |

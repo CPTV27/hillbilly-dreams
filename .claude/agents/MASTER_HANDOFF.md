@@ -36,7 +36,7 @@ Hillbilly Dreams Inc — a media-hospitality ecosystem in Natchez, Mississippi. 
 
 ## Live Domains
 
-bigmuddytouring.com, bigmuddymagazine.com, bigmuddyradio.com, bigmuddyentertainment.com, deepsouthdirectory.com, measurablybetter.life, outsidereconomics.com, buycurious.art, superchase.app, hillbillydreamsinc.com, bigmuddyrecord.com, tuthilldesign.com, studiocvideo.com
+bigmuddytouring.com, bigmuddymagazine.com, bigmuddyradio.com, bigmuddyentertainment.com, deepsouthdirectory.com, measurablybetter.life, outsidereconomics.com, buycurious.art, hillbillydreamsinc.com, bigmuddyrecord.com, tuthilldesign.com, studiocvideo.com
 
 ## Team
 

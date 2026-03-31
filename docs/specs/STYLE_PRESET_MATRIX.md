@@ -7,7 +7,7 @@
 | Style Name | Primary Mood | Heading Font | Body Font | Best For |
 |:---|:---|:---|:---|:---|
 | **The Delta Dark** | Southern Gothic / Noir | Abril Fatface | DM Sans | Big Muddy Inn, Radio, Entertainment |
-| **The Modern MainSt** | Tech-Forward / SaaS | Plus Jakarta Sans | Inter | MBT, CivicX, Superchase |
+| **The Modern MainSt** | Tech-Forward / SaaS | Plus Jakarta Sans | Inter | MBT, CivicX |
 | **The Broadside** | Traditional Editorial | Playfair Display | DM Sans | Magazine, DSD |
 | **The White Walls** | Minimal / High-Art | Inter | Inter | BuyCurious Gallery |
 | **The Paper Trail** | Academic / Muted | Playfair Display | Inter | Outsider Economics |
@@ -27,7 +27,6 @@
 | MBT | measurablybetterthings.com | Modern MainSt | #1A1A1A (black) |
 | Gallery | buycurious.art | White Walls | #c8943e |
 | Hillbilly Dreams | hillbillydreamsinc.com | Modern MainSt | #1A1A1A |
-| SuperChase | superchase.app | Modern MainSt | #1A1A1A |
 
 ## CSS Definitions
 

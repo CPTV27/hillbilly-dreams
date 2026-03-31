@@ -36,7 +36,6 @@ export const BRAND_LAYERS: Record<BrandId, BrandLayer> = {
 /** Retired brand IDs — kept for reference, not in the union */
 export const RETIRED_BRANDS = {
   gallery: 'Retired into Storefront module on MBT (was buycurious.art)',
-  superchase: 'Killed — redirect to hillbillydreamsinc.com/admin',
 } as const;
 
 // BrandConfig is now the BMT-specific specialization of the platform interface

@@ -41,7 +41,6 @@ hillbilly-dreams/
 | @anthropic-ai/sdk | 0.78 | Claude AI integration |
 | Tailwind CSS | 3.4 | Utility-first styles |
 | Framer Motion | 12.35 | Animations |
-| Three.js / R3F | 0.183 | 3D rendering (SuperChase platform) |
 
 ### Deployment: Vercel Pro
 
@@ -118,7 +117,6 @@ The platform uses hostname-based routing via middleware. A single Next.js app se
 | 7 | **bigmuddymagazine.com** | /magazine | Magazine articles, city guides | 200 | Content pages render. No editorial workflow backend yet. |
 | 8 | **bigmuddyradio.com** | /radio | Radio playlists, live sessions, podcast, directory | 200 | Pages render. No audio hosting -- links to external streaming. |
 | 9 | **buycurious.art** | /gallery | Art gallery -- artists, about, apply | 200 | Application flow built. Gallery management in admin. |
-| 10 | **superchase.app** | /platform | SuperChase platform | 200 | Three.js/R3F experimental interface. Demo-only. |
 | 11 | **measurablybetter.life** | /measurably-better | Alias for MBT | 200 | Same route group as measurablybetterthings.com. |
 
 **Total public pages:** 113 across all domains.

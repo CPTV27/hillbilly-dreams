@@ -83,7 +83,6 @@ All domains: A record → `76.76.21.21`, www CNAME → `cname.vercel-dns.com`. D
 | bigmuddymagazine.com | /magazine | [LIVE/WORKING] | Demo data; no editorial workflow |
 | bigmuddyradio.com | /radio | [LIVE/WORKING] | No audio hosting; no episodes released yet |
 | buycurious.art | /gallery | [LIVE/WORKING] | Demo data; intake not active |
-| superchase.app | /platform | [LIVE/THIN] | Single page; three-mode app not built |
 
 **Internal/admin routes (auth-gated, accessible on any domain):** /admin/login through /admin/newsletter, /ops/*, /tracy, /amy, /portal/*, /media/*, /records/*, /studio, /tuthill, /book
 

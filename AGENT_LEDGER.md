@@ -1,5 +1,5 @@
 # AGENT_LEDGER.md
-> Coordination log for the SuperChase federated agent swarm.
+> Coordination log for the Hillbilly Dreams agent swarm.
 > Read before acting. Write after completing.
 > Agents: CC (Claude Code) | AG (Antigravity) | GA (Google AI) | PC (Perplexity Computer)
 
@@ -43,7 +43,6 @@
 | bigmuddymagazine.com | magazine | Magazine/articles |
 | bigmuddyradio.com | radio | Radio/playlists |
 | buycurious.art | gallery | Art gallery |
-| superchase.app | platform | SuperChase platform |
 | measurablybetter.life | measurably-better | Alias for MBT |
 
 ### DNS CONFIGURATION
