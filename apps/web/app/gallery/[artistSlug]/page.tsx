@@ -20,7 +20,7 @@ function BuyButton({ artwork }: { artwork: DemoArtwork }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           amount: artwork.salePrice || artwork.price,
-          brandClass: 'BuyCurious',
+          brandClass: 'Storefront',
           productName: artwork.title,
           productDescription: `${artwork.medium} — ${artwork.dimensions} — ${artwork.edition}`,
           successPath: '/gallery/checkout/success',

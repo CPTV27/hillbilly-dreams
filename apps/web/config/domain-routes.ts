@@ -52,13 +52,15 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
   // bigmuddymedia.com removed — domain owned by unrelated Illinois company.
   // /media routes accessible via direct paths on other domains.
   { pattern: 'outsidereconomics', routeGroup: 'economics' },
-  { pattern: 'buycurious', routeGroup: 'gallery' },
-  { pattern: 'buycuriousart', routeGroup: 'gallery' },
+  // buycurious.art → retired into Storefront module on MBT
+  { pattern: 'buycurious', routeGroup: 'measurably-better' },
+  { pattern: 'buycuriousart', routeGroup: 'measurably-better' },
   { pattern: 'bigmuddyrecord', routeGroup: 'records' },
-  { pattern: 'superchase', routeGroup: 'platform' },
-  { pattern: 'studiocvideo', routeGroup: 'studio' },
-  { pattern: 'studio-c', routeGroup: 'studio' },
-  { pattern: 'studioc.video', routeGroup: 'studio' },
+  // superchase.app → killed, redirect to admin
+  { pattern: 'superchase', routeGroup: 'admin' },
+  { pattern: 'studiocvideo', routeGroup: 'studioc' },
+  { pattern: 'studio-c', routeGroup: 'studioc' },
+  { pattern: 'studioc.video', routeGroup: 'studioc' },
   { pattern: 'tuthilldesign', routeGroup: 'tuthill' },
   { pattern: 'bigmuddyentertainment', routeGroup: 'entertainment' },
   { pattern: 'hillbillydreams', routeGroup: 'hillbilly' },
@@ -96,8 +98,8 @@ export const ALL_BMT_DOMAIN_ROUTES: DomainRoute[] = [
 
 export const BMT_BRAND_PREFIXES = [
   '/touring', '/magazine', '/radio', '/economics', '/media',
-  '/admin', '/ops', '/portal', '/platform', '/gallery',
-  '/records', '/studio', '/tuthill', '/hillbilly',
+  '/admin', '/ops', '/portal', '/gallery',
+  '/records', '/studioc', '/tuthill', '/hillbilly',
   '/measurably-better', '/directory', '/entertainment',
   '/welcome',
   '/whiteboard', '/whiteboard/v1-jp-meeting', '/tour',
@@ -128,8 +130,8 @@ export const BMT_ADMIN_PATH_SHORTCUTS = [
 
 export const BMT_VALID_DEV_BRANDS = [
   'touring', 'magazine', 'radio', 'economics', 'media',
-  'admin', 'ops', 'gallery', 'records', 'platform',
-  'studio', 'tuthill', 'hillbilly', 'measurably-better',
+  'admin', 'ops', 'gallery', 'records',
+  'studioc', 'tuthill', 'hillbilly', 'measurably-better',
   'directory', 'entertainment',
 ];
 

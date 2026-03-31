@@ -80,11 +80,11 @@ export function Navigation({ brand, currentPath = '/', links, logoHref = '/', sh
     touring: { name: 'Big Muddy', label: 'Touring' },
     magazine: { name: 'Big Muddy', label: 'Magazine' },
     radio: { name: 'Big Muddy', label: 'Radio' },
-    economics: { name: 'Outsider', label: 'Economics' },
-    gallery: { name: 'BuyCurious', label: 'Art' },
     records: { name: 'Big Muddy', label: 'Records' },
-    hillbilly: { name: 'Hillbilly Dreams', label: 'Inc' },
+    directory: { name: 'Deep South', label: 'Directory' },
+    economics: { name: 'Outsider', label: 'Economics' },
     entertainment: { name: 'Big Muddy', label: 'Entertainment' },
+    hillbilly: { name: 'Hillbilly Dreams', label: 'Inc' },
     admin: { name: 'Big Muddy', label: 'HQ' },
   };
 

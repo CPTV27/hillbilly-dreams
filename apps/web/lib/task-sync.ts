@@ -1,6 +1,6 @@
 // lib/task-sync.ts
 // 3-way task synchronization: BMT Dashboard → Asana → Google Calendar
-// Adapted from S2PX server/lib/task-automation-service.ts for Next.js
+// Task automation service for Next.js
 
 import { createCalendarEvent, type CalendarEventPayload } from './calendar-service';
 

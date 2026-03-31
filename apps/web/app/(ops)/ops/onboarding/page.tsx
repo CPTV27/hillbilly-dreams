@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useSession, SessionProvider } from 'next-auth/react';
 
 // ── Types ──
-type Brand = 'S2PX' | 'BMT' | 'BuyCurious' | 'Corporate';
+type Brand = 'BMT' | 'Storefront' | 'Corporate';
 type SigStyle = 'classic' | 'minimal' | 'bold';
 type CommStyle = 'bulleted_brief' | 'detailed_warm' | 'data_heavy';
 type Theme = 'futuristic' | 'retro' | 'minimal';
@@ -46,8 +46,7 @@ const INITIAL: OnboardingState = {
 
 const BRANDS: { value: Brand; label: string; description: string }[] = [
   { value: 'BMT', label: 'Big Muddy Touring', description: 'Touring, hospitality, the Inn' },
-  { value: 'S2PX', label: 'S2PX', description: 'SaaS platform & licensing' },
-  { value: 'BuyCurious', label: 'BuyCurious Art', description: 'Art marketplace' },
+  { value: 'Storefront', label: 'Storefront Art', description: 'Art marketplace' },
   { value: 'Corporate', label: 'Hillbilly Dreams HQ', description: 'Holding company operations' },
 ];
 

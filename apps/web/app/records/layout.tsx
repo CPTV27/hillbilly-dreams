@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   },
   description:
     'Independent record label capturing the sound of the Mississippi music corridor — blues, soul, gospel, and the voices that carry the river.',
-  metadataBase: new URL('https://bigmuddyrecords.net'),
+  metadataBase: new URL('https://bigmuddyrecords.com'),
   openGraph: {
     title: 'Big Muddy Records',
     description: 'Music from the Mississippi corridor. Memphis to New Orleans.',

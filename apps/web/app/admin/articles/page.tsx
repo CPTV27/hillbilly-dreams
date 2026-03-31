@@ -42,7 +42,6 @@ function StatusBadge({ status }: { status: string }) {
 }
 
 function formatSourceName(slug: string): string {
-  if (slug === 's2px') return 'S2PX';
   return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 }
 

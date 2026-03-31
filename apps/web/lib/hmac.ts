@@ -1,6 +1,5 @@
-// ── HMAC-SHA256 Verification for S2PX → BMT Bridge ──
+// ── HMAC-SHA256 Verification for Bridge Ingest ──
 // Machine-to-machine auth. Both systems share BMT_BRIDGE_SECRET.
-// Mirror of S2PX server/lib/hmac.ts — verify side only.
 
 import crypto from 'crypto';
 
@@ -12,7 +11,7 @@ export interface SignedPayload<T> {
 }
 
 /**
- * Verify an HMAC-SHA256 signed payload from S2PX.
+ * Verify an HMAC-SHA256 signed payload from a bridge client.
  * The signature covers version + timestamp + JSON-stringified data.
  * Returns true if the signature matches.
  */

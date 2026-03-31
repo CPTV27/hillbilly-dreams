@@ -1,7 +1,7 @@
 'use client';
 
 // apps/web/app/admin/articles/[id]/edit/page.tsx
-// Article editor with S2PX metadata sidebar for bridge-sourced content
+// Article editor with metadata sidebar for bridge-sourced content
 
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
@@ -33,7 +33,7 @@ interface ArticleData {
   sourceSyncedAt: string | null;
 }
 
-interface S2PXPayload {
+interface BridgePayload {
   upid: string;
   city: string;
   state: string;
@@ -61,8 +61,8 @@ function formatDate(date: string | null): string {
   return new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
-// ── S2PX Metadata Sidebar ──
-function S2pxMetadataSidebar({ payload, syncedAt }: { payload: S2PXPayload; syncedAt: string | null }) {
+// ── Bridge Metadata Sidebar ──
+function BridgeMetadataSidebar({ payload, syncedAt }: { payload: BridgePayload; syncedAt: string | null }) {
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
   const copyValue = (label: string, value: string) => {
@@ -88,28 +88,28 @@ function S2pxMetadataSidebar({ payload, syncedAt }: { payload: S2PXPayload; sync
   ];
 
   return (
-    <div className="s2px-sidebar">
-      <div className="s2px-sidebar__header">
-        <span className="s2px-sidebar__icon">&#9670;</span>
-        S2PX Technical Source
+    <div className="bridge-sidebar">
+      <div className="bridge-sidebar__header">
+        <span className="bridge-sidebar__icon">&#9670;</span>
+        Bridge Technical Source
       </div>
 
       {syncedAt && (
-        <div className="s2px-sidebar__synced">
+        <div className="bridge-sidebar__synced">
           Synced {formatDate(syncedAt)}
         </div>
       )}
 
-      <div className="s2px-sidebar__grid">
+      <div className="bridge-sidebar__grid">
         {rows.map(({ label, value, copyable }) =>
           value ? (
-            <div key={label} className="s2px-row">
-              <span className="s2px-row__label">{label}</span>
-              <span className="s2px-row__value">
+            <div key={label} className="bridge-row">
+              <span className="bridge-row__label">{label}</span>
+              <span className="bridge-row__value">
                 {value}
                 {copyable && (
                   <button
-                    className="s2px-copy-btn"
+                    className="bridge-copy-btn"
                     onClick={() => copyValue(label, value)}
                     title={`Copy ${label}`}
                   >
@@ -123,22 +123,22 @@ function S2pxMetadataSidebar({ payload, syncedAt }: { payload: S2PXPayload; sync
       </div>
 
       {payload.disciplines.length > 0 && (
-        <div className="s2px-section">
-          <span className="s2px-row__label">Disciplines</span>
-          <div className="s2px-badges">
+        <div className="bridge-section">
+          <span className="bridge-row__label">Disciplines</span>
+          <div className="bridge-badges">
             {payload.disciplines.map(d => (
-              <span key={d} className="s2px-discipline-badge">{d}</span>
+              <span key={d} className="bridge-discipline-badge">{d}</span>
             ))}
           </div>
         </div>
       )}
 
       {payload.buildingFeatures.length > 0 && (
-        <div className="s2px-section">
-          <span className="s2px-row__label">Features</span>
-          <div className="s2px-badges">
+        <div className="bridge-section">
+          <span className="bridge-row__label">Features</span>
+          <div className="bridge-badges">
             {payload.buildingFeatures.map(f => (
-              <span key={f} className="s2px-feature-badge">{f}</span>
+              <span key={f} className="bridge-feature-badge">{f}</span>
             ))}
           </div>
         </div>
@@ -173,8 +173,8 @@ export default function EditArticlePage() {
   const [readTime, setReadTime] = useState('');
   const [publishedAt, setPublishedAt] = useState('');
 
-  // Parsed S2PX payload
-  const [s2pxPayload, setS2pxPayload] = useState<S2PXPayload | null>(null);
+  // Parsed Bridge payload
+  const [bridgePayload, setBridgePayload] = useState<BridgePayload | null>(null);
 
   const fetchArticle = useCallback(async () => {
     try {
@@ -196,10 +196,10 @@ export default function EditArticlePage() {
       setReadTime(a.readTime ?? '');
       setPublishedAt(a.publishedAt ? new Date(a.publishedAt).toISOString().slice(0, 16) : '');
 
-      // Parse S2PX payload if present
+      // Parse Bridge payload if present
       if (a.sourcePayload) {
         try {
-          setS2pxPayload(JSON.parse(a.sourcePayload));
+          setBridgePayload(JSON.parse(a.sourcePayload));
         } catch {
           // Invalid JSON — ignore
         }
@@ -293,8 +293,8 @@ export default function EditArticlePage() {
         <div>
           <h1 className="admin-page-title">Edit Article</h1>
           <p className="admin-page-sub">
-            {article.sourceSystem === 's2px' && (
-              <span className="source-badge" style={{ marginRight: 'var(--space-2)' }}>S2PX</span>
+            {article.sourceSystem === 'bridge' && (
+              <span className="source-badge" style={{ marginRight: 'var(--space-2)' }}>Bridge</span>
             )}
             {article.slug}
           </p>
@@ -409,10 +409,10 @@ export default function EditArticlePage() {
           </div>
         </div>
 
-        {/* ── S2PX Sidebar (only for bridge-sourced articles) ── */}
-        {s2pxPayload && (
+        {/* ── Bridge Sidebar (only for bridge-sourced articles) ── */}
+        {bridgePayload && (
           <div className="editor-sidebar">
-            <S2pxMetadataSidebar payload={s2pxPayload} syncedAt={article.sourceSyncedAt} />
+            <BridgeMetadataSidebar payload={bridgePayload} syncedAt={article.sourceSyncedAt} />
           </div>
         )}
       </div>
@@ -460,14 +460,14 @@ export default function EditArticlePage() {
           white-space: nowrap;
         }
 
-        /* S2PX Metadata Sidebar */
-        .s2px-sidebar {
+        /* Bridge Metadata Sidebar */
+        .bridge-sidebar {
           background: #0f172a;
           border: 1px solid rgba(96, 165, 250, 0.2);
           border-radius: var(--radius-md);
           overflow: hidden;
         }
-        .s2px-sidebar__header {
+        .bridge-sidebar__header {
           padding: var(--space-3) var(--space-4);
           background: rgba(96, 165, 250, 0.08);
           border-bottom: 1px solid rgba(96, 165, 250, 0.15);
@@ -479,33 +479,33 @@ export default function EditArticlePage() {
           align-items: center;
           gap: var(--space-2);
         }
-        .s2px-sidebar__icon {
+        .bridge-sidebar__icon {
           font-size: 10px;
         }
-        .s2px-sidebar__synced {
+        .bridge-sidebar__synced {
           padding: var(--space-2) var(--space-4);
           font-size: 11px;
           color: #64748b;
           border-bottom: 1px solid rgba(96, 165, 250, 0.1);
         }
-        .s2px-sidebar__grid {
+        .bridge-sidebar__grid {
           padding: var(--space-2) 0;
         }
-        .s2px-row {
+        .bridge-row {
           display: flex;
           justify-content: space-between;
           align-items: baseline;
           padding: var(--space-1) var(--space-4);
           gap: var(--space-2);
         }
-        .s2px-row__label {
+        .bridge-row__label {
           font-size: 11px;
           color: #64748b;
           text-transform: uppercase;
           letter-spacing: 0.05em;
           flex-shrink: 0;
         }
-        .s2px-row__value {
+        .bridge-row__value {
           font-size: var(--text-sm);
           color: #e2e8f0;
           text-align: right;
@@ -515,7 +515,7 @@ export default function EditArticlePage() {
           align-items: center;
           gap: var(--space-2);
         }
-        .s2px-copy-btn {
+        .bridge-copy-btn {
           font-size: 10px;
           padding: 0 4px;
           border: 1px solid rgba(96, 165, 250, 0.3);
@@ -525,20 +525,20 @@ export default function EditArticlePage() {
           cursor: pointer;
           font-family: var(--font-mono);
         }
-        .s2px-copy-btn:hover {
+        .bridge-copy-btn:hover {
           background: rgba(96, 165, 250, 0.15);
         }
-        .s2px-section {
+        .bridge-section {
           padding: var(--space-2) var(--space-4) var(--space-3);
           border-top: 1px solid rgba(96, 165, 250, 0.1);
         }
-        .s2px-badges {
+        .bridge-badges {
           display: flex;
           flex-wrap: wrap;
           gap: 4px;
           margin-top: var(--space-1);
         }
-        .s2px-discipline-badge {
+        .bridge-discipline-badge {
           font-size: 10px;
           font-weight: 600;
           padding: 2px 6px;
@@ -548,7 +548,7 @@ export default function EditArticlePage() {
           font-family: var(--font-mono);
           letter-spacing: 0.03em;
         }
-        .s2px-feature-badge {
+        .bridge-feature-badge {
           font-size: 10px;
           padding: 2px 6px;
           background: rgba(148, 163, 184, 0.12);

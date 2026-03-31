@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Validate new fields ──
-  const validBrands = ['S2PX', 'BMT', 'BuyCurious', 'Corporate'];
+  const validBrands = ['BMT', 'Storefront', 'Corporate'];
   if (body.brandAffiliation && !validBrands.includes(body.brandAffiliation)) {
     return NextResponse.json({ error: 'Invalid brandAffiliation' }, { status: 400 });
   }

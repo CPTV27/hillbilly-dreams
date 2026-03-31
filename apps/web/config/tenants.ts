@@ -31,8 +31,8 @@ export const TENANTS: TenantConfig[] = [
     domains: [
       'bigmuddytouring.com', 'bigmuddymagazine.com', 'bigmuddyradio.com',
       'bigmuddyentertainment.com', 'deepsouthdirectory.com', 'measurablybetter.life',
-      'outsidereconomics.com', 'buycurious.art',
-      'bigmuddyrecord.com', 'superchase.app', 'hillbillydreamsinc.com',
+      'outsidereconomics.com', 'measurablybetterthings.com',
+      'bigmuddyrecords.com', 'hillbillydreamsinc.com',
     ],
     primaryDomain: 'bigmuddytouring.com',
     routeGroup: 'touring',
@@ -63,7 +63,7 @@ export const TENANTS: TenantConfig[] = [
     entity: 'Tuthill Design LLC d/b/a Studio C Video',
     domains: ['studiocvideo.com', 'studio-c.video', 'studio-c.com'],
     primaryDomain: 'studio-c.video',
-    routeGroup: 'studio',
+    routeGroup: 'studioc',
     themeClass: 'theme-studio',
     gcsBucket: 'bmt-media-bigmuddy',
     accentColor: '#4A90D9',
@@ -71,7 +71,7 @@ export const TENANTS: TenantConfig[] = [
     location: { city: 'Woodstock', state: 'NY' },
     features: ['gallery', 'studio', 'radio', 'creative', 'content-studio', 'media-vault'],
     // Studio C is the production arm — Chase 40% owner
-    // Clients: Big Muddy/HDI, Scan2Plan, Bearsville, real estate
+    // Clients: Big Muddy/HDI, Bearsville, real estate
   },
   {
     id: 'tuthill',

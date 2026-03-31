@@ -1,6 +1,6 @@
 // lib/semantic-chunker.ts
 // Semantic sliding-window chunker for transcript/content vectorization
-// Adapted from S2PX server/scripts/pull-transcripts.ts
+// Semantic sliding-window chunker for content vectorization
 // Used for: Blues Room session transcripts, artist interviews, meeting notes
 
 /**

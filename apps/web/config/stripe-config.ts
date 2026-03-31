@@ -11,13 +11,12 @@
 // ─────────────────────────────────────────────────────────────
 
 /** Revenue brand classes for Hillbilly Dreams, Inc. holding company */
-export type BrandClass = 'S2PX' | 'BMT' | 'BuyCurious' | 'Corporate';
+export type BrandClass = 'BMT' | 'Storefront' | 'Corporate';
 
 /** Platform fee percentages per brand — used for Stripe Connect destination charges */
 export const PLATFORM_FEE_PERCENT: Record<BrandClass, number> = {
-  S2PX: 15,       // SaaS licensing — 15% platform cut
   BMT: 20,        // Touring/tickets — 20% platform cut
-  BuyCurious: 25, // Art marketplace — 25% platform cut
+  Storefront: 25, // Storefront module (art, products, print fulfillment) — 25% platform cut
   Corporate: 0,   // Direct corporate revenue — no split
 };
 

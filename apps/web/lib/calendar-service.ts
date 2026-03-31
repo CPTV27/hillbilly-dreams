@@ -1,6 +1,6 @@
 // lib/calendar-service.ts
 // Google Calendar automation via Domain-Wide Delegation
-// Shared service account with S2PX (bigmuddy-ff651)
+// Shared service account (bigmuddy-ff651)
 // DWD scopes must be allowed in Google Workspace Admin for the SA
 
 import { google } from 'googleapis';

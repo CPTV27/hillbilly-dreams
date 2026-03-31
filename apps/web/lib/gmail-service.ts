@@ -1,7 +1,7 @@
 // lib/gmail-service.ts
 // Gmail thread scanning via Domain-Wide Delegation
 // Used by artist onboarding pipeline to find existing email threads
-// Same DWD pattern as calendar-service.ts and S2PX
+// Same DWD pattern as calendar-service.ts
 
 import { google } from 'googleapis';
 import { GoogleAuth } from 'google-auth-library';

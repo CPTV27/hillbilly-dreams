@@ -12,9 +12,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     radio: 'https://bigmuddyradio.com',
     economics: 'https://outsidereconomics.com',
     gallery: 'https://buycurious.art',
-    records: 'https://bigmuddyrecords.net',
-    media: 'https://deepsouthdirectory.com',
-    platform: 'https://superchase.app',
+    records: 'https://bigmuddyrecords.com',
+    directory: 'https://deepsouthdirectory.com',
   };
 
   // ── Touring static pages ──
@@ -202,31 +201,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ── Deep South Directory static pages ──
   const mediaEntries: MetadataRoute.Sitemap = [
     {
-      url: brands.media,
+      url: brands.directory,
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
-      url: `${brands.media}/media/directory`,
+      url: `${brands.directory}/media/directory`,
       lastModified: now,
       changeFrequency: 'daily',
       priority: 0.9,
     },
     {
-      url: `${brands.media}/media/pricing`,
+      url: `${brands.directory}/media/pricing`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${brands.media}/media/services`,
+      url: `${brands.directory}/media/services`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: `${brands.media}/media/get-started`,
+      url: `${brands.directory}/media/get-started`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -236,7 +235,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ── Platform static pages ──
   const platformEntries: MetadataRoute.Sitemap = [
     {
-      url: brands.platform,
+      url: "https://hillbillydreamsinc.com",
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 1.0,

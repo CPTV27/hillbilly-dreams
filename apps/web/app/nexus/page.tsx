@@ -153,16 +153,8 @@ export default function SovereignNexus() {
               delay={0.9}
             />
 
-            <OrgNode 
-              title="S2PX" 
-              subtitle="Spatial Technology" 
-              url="https://s2px.web.app" 
-              icon={Cpu}
-              delay={1.0}
-            />
-
-            <OrgNode 
-              title="Feedfarm" 
+            <OrgNode
+              title="Feedfarm"
               subtitle="Decentralized Broadcast" 
               url="#" 
               icon={Radio}
@@ -190,10 +182,10 @@ export default function SovereignNexus() {
               Active Briefings & Publications
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-              <Link href="/hillbilly/proposal" className="flex items-center justify-between p-4 rounded-xl bg-slate-900/40 border border-slate-800 hover:bg-slate-800/60 transition-colors group">
+              <Link href="/measurably-better" className="flex items-center justify-between p-4 rounded-xl bg-slate-900/40 border border-slate-800 hover:bg-slate-800/60 transition-colors group">
                 <div className="flex items-center gap-3">
                   <Briefcase className="w-4 h-4 text-slate-400 group-hover:text-cyan-400 transition-colors" />
-                  <span className="text-sm font-medium text-slate-300 group-hover:text-white">Scan2Plan Proposal</span>
+                  <span className="text-sm font-medium text-slate-300 group-hover:text-white">Measurably Better</span>
                 </div>
                 <ArrowRight className="w-4 h-4 text-slate-600 group-hover:text-cyan-400 transition-transform group-hover:translate-x-1" />
               </Link>

@@ -315,7 +315,7 @@ export default function RecordsPage() {
               featured: false,
               includes: [
                 'Digital distribution (all platforms)',
-                'Artist page on bigmuddyrecords.net',
+                'Artist page on bigmuddyrecords.com',
                 'Spotify playlist placement (Big Muddy Radio)',
                 'Monthly content calendar (4 posts)',
                 'You keep your masters',
@@ -448,7 +448,7 @@ export default function RecordsPage() {
                 ))}
               </ul>
               <a
-                href="mailto:music@bigmuddyrecords.net"
+                href="mailto:music@bigmuddyrecords.com"
                 style={{
                   display: 'inline-block',
                   marginTop: '1.5rem',
@@ -1060,7 +1060,7 @@ export default function RecordsPage() {
           fits.
         </p>
         <a
-          href="mailto:music@bigmuddyrecords.net"
+          href="mailto:music@bigmuddyrecords.com"
           style={{
             display: 'inline-block',
             padding: '0.75rem 2rem',
@@ -1082,7 +1082,7 @@ export default function RecordsPage() {
             opacity: 0.4,
           }}
         >
-          music@bigmuddyrecords.net
+          music@bigmuddyrecords.com
         </p>
       </section>
     </main>

@@ -33,7 +33,7 @@ const SECTIONS = [
     title: 'Create Local',
     desc: 'Recording, video production, and broadcasting from the Bearsville campus. Book a session or hire the crew.',
     cta: 'Book',
-    href: '/studio',
+    href: '/studioc',
   },
 ];
 

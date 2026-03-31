@@ -134,7 +134,7 @@ export default function EntertainmentPage() {
             </a>
 
             <a
-              href="https://bigmuddyrecords.net"
+              href="https://bigmuddyrecords.com"
               className="ent-division-card"
             >
               <div
@@ -154,7 +154,7 @@ export default function EntertainmentPage() {
                 className="ent-division-card__link"
                 style={{ color: '#e87820' }}
               >
-                bigmuddyrecords.net &rarr;
+                bigmuddyrecords.com &rarr;
               </span>
             </a>
 
@@ -241,7 +241,7 @@ export default function EntertainmentPage() {
           </div>
 
           <div style={{ marginTop: 'var(--space-10)' }}>
-            <a href="mailto:music@bigmuddyrecords.net" className="btn btn--primary">
+            <a href="mailto:music@bigmuddyrecords.com" className="btn btn--primary">
               Apply to the Talent Search
             </a>
           </div>

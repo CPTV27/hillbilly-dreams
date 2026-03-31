@@ -323,7 +323,7 @@ export default async function TouringHomepage() {
               { name: 'Big Muddy Touring', url: 'https://bigmuddytouring.com', desc: 'The route, the inn, the corridor. Memphis to New Orleans and 14 more cities.' },
               { name: 'Big Muddy Magazine', url: 'https://bigmuddymagazine.com', desc: 'City guides, interviews, and photo essays from the Mississippi corridor.' },
               { name: 'Big Muddy Radio', url: 'https://bigmuddyradio.com', desc: 'Curated playlists, live sessions, and the American Parlor Songbook.' },
-              { name: 'Big Muddy Records', url: 'https://bigmuddyrecords.net', desc: 'Independent label. Artists own their masters. Always.' },
+              { name: 'Big Muddy Records', url: 'https://bigmuddyrecords.com', desc: 'Independent label. Artists own their masters. Always.' },
               { name: 'Outsider Economics', url: 'https://outsidereconomics.com', desc: 'Why small towns aren\'t broke — they\'re just badly coordinated. The math and the playbook.' },
               { name: 'BuyCurious Art', url: 'https://buycurious.art', desc: 'Art marketplace — photography, prints, and works from corridor artists.' },
               { name: 'Deep South Directory', url: 'https://deepsouthdirectory.com', desc: 'Local business marketing powered by the Big Muddy network.' },

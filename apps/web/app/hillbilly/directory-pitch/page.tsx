@@ -31,7 +31,7 @@ export default function DeepSouthPitch() {
           <a href="#problem" style={{ color: colors.slate400, textDecoration: 'none' }}>The Capital Flight</a>
           <a href="#natchez" style={{ color: colors.slate400, textDecoration: 'none' }}>The Fortress Node</a>
           <a href="#economics" style={{ color: colors.slate400, textDecoration: 'none' }}>Economics</a>
-          <a href="/hillbilly/proposal/scan2plan" style={{ color: colors.sky400, textDecoration: 'none' }}>S2PX Engine →</a>
+          <a href="/measurably-better" style={{ color: colors.sky400, textDecoration: 'none' }}>MBT Platform →</a>
         </div>
       </nav>
 
@@ -216,8 +216,8 @@ export default function DeepSouthPitch() {
             Every business that joins the Directory strengthens the closed-loop economy. Stop feeding absentee platforms. Start building sovereign infrastructure.
           </p>
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' as const }}>
-            <a href="/hillbilly/proposal/scan2plan" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', backgroundColor: colors.sky600, color: colors.white, fontWeight: 700, borderRadius: 12, textDecoration: 'none', fontSize: 16, boxShadow: '0 10px 15px -3px rgba(2, 132, 199, 0.4)' }}>
-              Digitize Your Space with S2PX <ArrowRight size={18} />
+            <a href="/measurably-better" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', backgroundColor: colors.sky600, color: colors.white, fontWeight: 700, borderRadius: 12, textDecoration: 'none', fontSize: 16, boxShadow: '0 10px 15px -3px rgba(2, 132, 199, 0.4)' }}>
+              Measurably Better Things <ArrowRight size={18} />
             </a>
             <a href="mailto:chase@hillbillydreamsinc.com?subject=Deep%20South%20Directory%20—%20Claim%20My%20Node" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', backgroundColor: 'transparent', color: colors.white, fontWeight: 600, borderRadius: 12, textDecoration: 'none', fontSize: 16, border: `1px solid ${colors.slate600}` }}>
               Contact Us

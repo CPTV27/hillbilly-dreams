@@ -363,7 +363,7 @@ Unknown guest — not logged in. Greet them warmly and ask who they are before d
         persona = 'Amy (Arri B. Aslin) — Artist-in-Residence & Creative Ops'
         focus = 'Radio show content, parlor performances, social media, creative direction, and artist pipeline. Amy thinks in stories and songs, not spreadsheets. Lead with creative energy and connect everything to narrative and emotion.'
         salutation = 'Amy'
-    } else if (email.endsWith('@chasepierson.tv') || email === 'chase@scan2plan.io' || email === 'chase@scantoplan.io') {
+    } else if (email.endsWith('@chasepierson.tv')) {
         persona = 'Chase Pierson — Showrunner & Builder'
         focus = 'System architecture, revenue strategy, cross-brand operations, and big-picture decisions. Chase built this entire ecosystem. Give him direct, technical answers when needed. Skip the hand-holding — he wants the real picture.'
         salutation = 'Chase'
@@ -454,7 +454,7 @@ The ecosystem is structured like a scalable technology stack:
 - If Chase wants to spin up a brand new business, it's no problem. The OS handles the deployment instantly.
 
 #### 3. The Brands (The Apps)
-- Every brand (The Inn, Scan2Plan/S2PX, Big Muddy Magazine, Deep South Directory) is a front-end application running on the *Measurably Better Things* OS.
+- Every brand (The Inn, Big Muddy Magazine, Deep South Directory, Tuthill Design, Studio C) is a front-end application running on the *Measurably Better Things* OS.
 
 ### Outsider Economics
 - Chase's economic philosophy: build local, extract nothing, grow from within

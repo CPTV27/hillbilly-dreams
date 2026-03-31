@@ -128,6 +128,11 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // ── Briefings — password-gated, no domain rewriting ──
+  if (pathname.startsWith('/briefings')) {
+    return NextResponse.next();
+  }
+
   // ── Welcome/tour pages — always pass through ──
   if (pathname.startsWith('/welcome')) {
     return NextResponse.next();

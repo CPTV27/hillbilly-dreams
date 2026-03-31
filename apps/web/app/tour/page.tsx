@@ -10,7 +10,7 @@ const CONFIG = {
     subtitle: 'Everything you need to review and decide, all in one place.',
     links: [
       { label: 'Review Options', desc: '4 engagement tiers — pick your level', url: 'https://bigmuddytouring.com/whiteboard' },
-      { label: 'Scan2Plan Docs', desc: 'Financials and review materials', url: 'https://app.asana.com/1/1211216881488780/project/1213753731475702/task/1213862302768434' },
+      { label: 'Asana Project', desc: 'Financials and review materials', url: 'https://app.asana.com/1/1211216881488780/project/1213753731475702' },
       { label: 'Mission Control', desc: 'Access the main admin dashboard', url: 'https://bigmuddytouring.com/admin/dashboard' },
       { label: 'Your Asana Board', desc: 'Tasks, to-dos, and timeline', url: 'https://app.asana.com' }
     ]

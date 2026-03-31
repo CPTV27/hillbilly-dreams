@@ -972,7 +972,7 @@ If you're planning a trip along the corridor — Memphis to New Orleans, or the 
 
 And if you're a musician looking for a place to play — a real place, not a festival stage or a bar that treats live music as background noise — reach out. The Anthologist books artists who take the room seriously. The room will take you seriously back.
 
-*The Anthologist is a featured venue in the Big Muddy Records network and a Deep South Directory member. For booking inquiries, contact music@bigmuddyrecords.net.*`,
+*The Anthologist is a featured venue in the Big Muddy Records network and a Deep South Directory member. For booking inquiries, contact music@bigmuddyrecords.com.*`,
   },
   {
     id: 20,

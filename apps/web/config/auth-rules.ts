@@ -62,8 +62,6 @@ export const BMT_ALLOWED_DOMAINS: string[] = [
 
 export const BMT_ALLOWED_EMAILS: string[] = [
   // Core team
-  'chase@scan2plan.io',
-  'chase@scantoplan.io',
   'tracy@thebigmuddyinn.com',
   'amy@thebigmuddyinn.com',
   'amyaldersonallen@gmail.com',

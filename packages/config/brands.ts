@@ -1,5 +1,13 @@
 // packages/config/brands.ts
-// Brand configuration for the Big Muddy multi-tenant platform
+// ─────────────────────────────────────────────────────────────
+// CANONICAL BRAND REGISTRY — Single Source of Truth
+// ─────────────────────────────────────────────────────────────
+//
+// 3-Layer Architecture:
+//   Layer 1 — BRANDS:   Consumer-facing sites we own and operate
+//   Layer 2 — PRODUCTS: What we sell (MBT SaaS, MBT Life)
+//   Layer 3 — CLIENTS:  External tenants on our platform
+//   Plus:     HOLDING (Hillbilly Dreams Inc) and HUB (Entertainment portal)
 //
 // SEAM: Platform interfaces live in brand-types.ts (HDX-portable).
 //       This file provides BMT-specific brand data and ID union.
@@ -7,7 +15,29 @@
 
 import { BrandConfig as BaseBrandConfig, createBrandResolver } from './brand-types';
 
-export type BrandId = 'touring' | 'magazine' | 'radio' | 'economics' | 'admin' | 'gallery' | 'records' | 'hillbilly' | 'entertainment';
+export type BrandId = 'touring' | 'magazine' | 'radio' | 'records' | 'directory' | 'economics' | 'entertainment' | 'hillbilly' | 'admin';
+
+/** Brand layer classification */
+export type BrandLayer = 'brand' | 'product' | 'client' | 'holding' | 'hub' | 'internal';
+
+/** Which layer each brand belongs to */
+export const BRAND_LAYERS: Record<BrandId, BrandLayer> = {
+  touring: 'brand',
+  magazine: 'brand',
+  radio: 'brand',
+  records: 'brand',
+  directory: 'brand',
+  economics: 'brand',
+  entertainment: 'hub',        // Portal to Touring + Radio + Records — not its own product
+  hillbilly: 'holding',        // Hillbilly Dreams Inc — corporate, not consumer-facing
+  admin: 'internal',
+};
+
+/** Retired brand IDs — kept for reference, not in the union */
+export const RETIRED_BRANDS = {
+  gallery: 'Retired into Storefront module on MBT (was buycurious.art)',
+  superchase: 'Killed — redirect to hillbillydreamsinc.com/admin',
+} as const;
 
 // BrandConfig is now the BMT-specific specialization of the platform interface
 export type BrandConfig = BaseBrandConfig<BrandId>;
@@ -96,22 +126,23 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
       ],
     },
   },
-  gallery: {
-    id: 'gallery',
-    name: 'BuyCurious Art',
-    shortName: 'Gallery',
-    tagline: 'Original art from the Mississippi corridor',
-    domain: 'buycuriousart.com',
-    localDomain: 'buycuriousart.local',
+  directory: {
+    id: 'directory',
+    name: 'Deep South Directory',
+    shortName: 'Directory',
+    tagline: 'The local business network for the Mississippi corridor',
+    domain: 'deepsouthdirectory.com',
+    localDomain: 'deepsouthdirectory.local',
     description:
-      'Curated art marketplace for original works from the artists, musicians, and makers who call the Deep South home.',
-    themeClass: 'theme-gallery',
+      'Local business listings, review management, and media services for the Mississippi corridor — starting at $99/month.',
+    themeClass: 'theme-directory',
     primaryColor: '#c8943e',
     nav: {
       links: [
-        { label: 'Gallery', href: '/gallery' },
-        { label: 'Artists', href: '/gallery/artists' },
-        { label: 'About', href: '/gallery/about' },
+        { label: 'Browse', href: '/directory' },
+        { label: 'Join', href: '/directory/submit' },
+        { label: 'How It Works', href: '/media/how-it-works' },
+        { label: 'Pricing', href: '/media/pricing' },
       ],
     },
   },
@@ -120,7 +151,7 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     name: 'Big Muddy Records',
     shortName: 'Records',
     tagline: 'Music from the Mississippi corridor',
-    domain: 'bigmuddyrecords.net',
+    domain: 'bigmuddyrecords.com',
     localDomain: 'bigmuddyrecords.local',
     description:
       'Independent record label capturing the sound of the Mississippi music corridor — blues, soul, gospel, and the voices that carry the river.',
@@ -211,9 +242,9 @@ const BMT_BRAND_MATCHERS: Array<{ pattern: string; brandId: BrandId }> = [
   { pattern: 'bigmuddytouring', brandId: 'touring' },
   { pattern: 'bigmuddymagazine', brandId: 'magazine' },
   { pattern: 'bigmuddyradio', brandId: 'radio' },
-  { pattern: 'outsidereconomics', brandId: 'economics' },
-  { pattern: 'buycurious', brandId: 'gallery' },
   { pattern: 'bigmuddyrecord', brandId: 'records' },
+  { pattern: 'deepsouthdirectory', brandId: 'directory' },
+  { pattern: 'outsidereconomics', brandId: 'economics' },
   { pattern: 'bigmuddyentertainment', brandId: 'entertainment' },
   { pattern: 'hillbillydreams', brandId: 'hillbilly' },
 ];

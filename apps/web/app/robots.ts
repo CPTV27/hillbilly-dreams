@@ -67,9 +67,9 @@ export default function robots(): MetadataRoute.Robots {
       'https://bigmuddyradio.com/sitemap.xml',
       'https://outsidereconomics.com/sitemap.xml',
       'https://buycurious.art/sitemap.xml',
-      'https://bigmuddyrecords.net/sitemap.xml',
+      'https://bigmuddyrecords.com/sitemap.xml',
       'https://deepsouthdirectory.com/sitemap.xml',
-      'https://superchase.app/sitemap.xml',
+      'https://hillbillydreamsinc.com/sitemap.xml',
     ],
   };
 }

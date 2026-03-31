@@ -1,5 +1,5 @@
 // lib/sidecar-writer.ts
-// GCS sidecar pattern adapted from S2PX server/lib/sidecarWriter.ts
+// GCS sidecar pattern — write metadata JSON alongside media files
 // Each artist folder in GCS carries its own artist.json with brand context
 // Delta Dawn reads the sidecar to pull brand kit, colors, fonts, photos
 

@@ -9,9 +9,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 /* ── Brand Config ── */
 const BRANDS = {
-  S2PX: { label: 'S2PX', color: '#10b981', glow: 'rgba(16,185,129,0.15)' },
   BMT:  { label: 'BMT',  color: '#06b6d4', glow: 'rgba(6,182,212,0.15)' },
-  BuyCurious: { label: 'BuyCurious', color: '#f59e0b', glow: 'rgba(245,158,11,0.15)' },
+  Storefront: { label: 'Storefront', color: '#f59e0b', glow: 'rgba(245,158,11,0.15)' },
   Corporate:  { label: 'Corporate',  color: '#8b5cf6', glow: 'rgba(139,92,246,0.15)' },
 } as const;
 
@@ -49,15 +48,6 @@ const MOCK_STATS: StatCard[] = [
     icon: '◈',
   },
   {
-    id: 's2px_mrr',
-    label: 'S2PX MRR',
-    value: 18_000,
-    formatted: '$18,000',
-    change: 0,
-    brand: 'S2PX',
-    icon: '⬡',
-  },
-  {
     id: 'bmt_platform',
     label: 'BMT Platform Revenue',
     value: 24_350,
@@ -78,13 +68,11 @@ const MOCK_STATS: StatCard[] = [
 ];
 
 const MOCK_TRANSACTIONS: Transaction[] = [
-  { id: 'txn_001', date: '2026-03-21', description: 'Scan2Plan License — Twinner (March)', amount: 6000, brand: 'S2PX', status: 'paid', customer: 'Twinner / Scan2Plan' },
   { id: 'txn_002', date: '2026-03-20', description: 'Blues Room — Sat Night Sessions (Door)', amount: 2_450, brand: 'BMT', status: 'paid', customer: 'Walk-in / Door Sales' },
-  { id: 'txn_003', date: '2026-03-19', description: 'Gallery Commission — Andrea Collection', amount: 1_800, brand: 'BuyCurious', status: 'paid', customer: 'BuyCurious Art' },
+  { id: 'txn_003', date: '2026-03-19', description: 'Gallery Commission — Andrea Collection', amount: 1_800, brand: 'Storefront', status: 'paid', customer: 'Storefront Art' },
   { id: 'txn_004', date: '2026-03-18', description: 'Big Muddy Inn — Suite Booking (Airbnb)', amount: 890, brand: 'BMT', status: 'paid', customer: 'Airbnb Guest' },
-  { id: 'txn_005', date: '2026-03-18', description: 'S2PX Processing Fee — BAHA Project', amount: 12_000, brand: 'S2PX', status: 'pending', customer: 'Scan2Plan' },
   { id: 'txn_006', date: '2026-03-17', description: 'Big Muddy Inn — Suite Booking (Direct)', amount: 750, brand: 'BMT', status: 'paid', customer: 'Direct Booking' },
-  { id: 'txn_007', date: '2026-03-16', description: 'Gallery Commission — Delta Landscapes', amount: 420, brand: 'BuyCurious', status: 'paid', customer: 'BuyCurious Art' },
+  { id: 'txn_007', date: '2026-03-16', description: 'Gallery Commission — Delta Landscapes', amount: 420, brand: 'Storefront', status: 'paid', customer: 'Storefront Art' },
   { id: 'txn_008', date: '2026-03-15', description: 'Big Muddy Radio — Sponsor (March)', amount: 1_500, brand: 'BMT', status: 'pending', customer: 'Local Sponsor' },
 ];
 
@@ -247,10 +235,9 @@ export default function FinancePage() {
         </div>
         <div className="fin-breakdown__bars">
           {[
-            { brand: 'S2PX' as BrandKey, amount: 18_000, pct: 37.6 },
-            { brand: 'BMT' as BrandKey, amount: 24_350, pct: 50.9 },
-            { brand: 'BuyCurious' as BrandKey, amount: 2_220, pct: 4.6 },
-            { brand: 'Corporate' as BrandKey, amount: 3_280, pct: 6.9 },
+            { brand: 'BMT' as BrandKey, amount: 24_350, pct: 72.5 },
+            { brand: 'Storefront' as BrandKey, amount: 6_220, pct: 18.5 },
+            { brand: 'Corporate' as BrandKey, amount: 3_280, pct: 9.0 },
           ].map((item) => {
             const b = getBrandStyle(item.brand);
             return (
@@ -286,7 +273,7 @@ export default function FinancePage() {
         <div className="fin-transactions__header">
           <h2 className="fin-transactions__title">Recent Transactions</h2>
           <div className="fin-filter-bar">
-            {(['all', 'S2PX', 'BMT', 'BuyCurious'] as const).map((key) => (
+            {(['all', 'BMT', 'Storefront'] as const).map((key) => (
               <button
                 key={key}
                 className={`fin-filter-btn ${filter === key ? 'fin-filter-btn--active' : ''}`}

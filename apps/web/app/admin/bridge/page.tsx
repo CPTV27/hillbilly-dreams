@@ -313,7 +313,7 @@ export default function BridgeClientsPage() {
               <label className="admin-label admin-label--required">Client Name</label>
               <input
                 className="admin-input"
-                placeholder="e.g. Scan2Plan, Chase Pierson Photography"
+                placeholder="e.g. Tuthill Design, Chase Pierson Photography"
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleCreate()}

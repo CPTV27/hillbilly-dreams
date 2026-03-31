@@ -1,7 +1,7 @@
 // app/api/stripe/checkout/route.ts
 // POST — Create a Stripe Checkout session with Destination Charges.
 // Money flows: Customer → Hillbilly Dreams (platform) → Connected Account (minus platform fee).
-// brand_class metadata ensures revenue attribution across S2PX / BMT / BuyCurious.
+// brand_class metadata ensures revenue attribution across BMT / Storefront.
 
 import { NextRequest, NextResponse } from 'next/server';
 import {

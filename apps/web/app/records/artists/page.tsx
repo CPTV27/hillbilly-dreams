@@ -267,7 +267,7 @@ export default function RecordsArtistsPage() {
           the rest.
         </p>
         <a
-          href="mailto:music@bigmuddyrecords.net"
+          href="mailto:music@bigmuddyrecords.com"
           style={{
             fontSize: '0.9rem',
             color: 'var(--accent, #c8943e)',
@@ -275,7 +275,7 @@ export default function RecordsArtistsPage() {
             fontWeight: 600,
           }}
         >
-          music@bigmuddyrecords.net
+          music@bigmuddyrecords.com
         </a>
       </section>
     </main>

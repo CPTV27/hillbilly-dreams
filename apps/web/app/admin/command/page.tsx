@@ -61,7 +61,7 @@ export default function CommandCenter() {
     { n: 'DSD', u: 'https://deepsouthdirectory.com' }, { n: 'Magazine', u: 'https://bigmuddymagazine.com' },
     { n: 'Radio', u: 'https://bigmuddyradio.com' }, { n: 'Entertainment', u: 'https://bigmuddyentertainment.com' },
     { n: 'Economics', u: 'https://outsidereconomics.com' }, { n: 'Gallery', u: 'https://buycurious.art' },
-    { n: 'HDI', u: 'https://hillbillydreamsinc.com' }, { n: 'SuperChase', u: 'https://superchase.app' },
+    { n: 'HDI', u: 'https://hillbillydreamsinc.com' },
   ];
 
   if (loading) return <div style={{ minHeight: '100vh', background: '#0f0f0f', color: '#c8943e', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter, system-ui', fontSize: '1.25rem' }}>Loading...</div>;

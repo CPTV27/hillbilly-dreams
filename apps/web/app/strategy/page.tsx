@@ -51,7 +51,7 @@ const segments = [
       'AI operating system replacing back-office headcount',
       'Live QuickBooks sync, automated marketing, CEO console',
       'Pricing: $5,000/mo core + variable growth module',
-      'First client: Scan2Plan (S2PX deployment)',
+      'First external clients: Tuthill Design + Studio C (Woodstock, NY)',
     ],
   },
   {
@@ -351,7 +351,7 @@ function Report() {
         {/* IX. POSITIONING */}
         <p style={S.section}>IX.  STRATEGIC POSITIONING</p>
         <div style={S.hr} />
-        <p style={S.body}>The S2PX deal remains the first revenue event. That does not change. What changes is the story:</p>
+        <p style={S.body}>Tuthill and Studio C are the first external revenue events. What changes is the story:</p>
         <div style={{ margin: '16px 0' }}>
           <p style={S.body}><strong>Before:</strong>  &quot;We sell software to contractors.&quot;</p>
           <p style={S.body}><strong>After:</strong>   &quot;We are the regional technology provider for the Deep South. Here is a scanning company, a city, a school district, and a tourism bureau -- all running on the same engine.&quot;</p>

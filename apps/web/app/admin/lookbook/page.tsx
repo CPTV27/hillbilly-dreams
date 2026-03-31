@@ -14,7 +14,7 @@ const STYLES = [
   { id: '06-neon', name: 'Retro Neon', bestFor: 'Radio, Entertainment nightlife', images: ['juke-joint-entrance', 'live-music-sign', 'on-air-studio'] },
   { id: '07-letterpress', name: 'Letterpress / Broadside', bestFor: 'Magazine, Records editorial', images: ['concert-broadside', 'dispatch-header', 'poetry-broadside'] },
   { id: '08-folk-art', name: 'Folk Art / Outsider Art', bestFor: 'Economics, Gallery', images: ['community-quilt', 'marketplace', 'town-dancing'] },
-  { id: '09-blueprint', name: 'Blueprint / Technical', bestFor: 'MB Console, S2PX', images: ['building-floorplan', 'dashboard-wireframe', 'data-flow'] },
+  { id: '09-blueprint', name: 'Blueprint / Technical', bestFor: 'MBT Console, Platform', images: ['building-floorplan', 'dashboard-wireframe', 'data-flow'] },
   { id: '10-watercolor', name: 'Watercolor Landscape', bestFor: 'Touring, Magazine headers', images: ['cotton-field', 'river-golden-hour', 'small-town-street'] },
   { id: '11-gig-poster', name: 'Gig Poster / Concert Art', bestFor: 'Records, Entertainment', images: ['big-muddy-presents', 'blues-musician', 'guitar-headstock'] },
   { id: '12-cartographic', name: 'Map / Cartographic', bestFor: 'Touring, Directory', images: ['corridor-route', 'delta-region', 'touring-circuit'] },

@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 /* eslint-disable @next/next/no-img-element */
 
-type View = 'story' | 'flywheel' | 'tenants' | 'personnel' | 'org' | 'revenue' | 'tech' | 'architecture' | 'links' | 'scan2plan' | 'jp';
+type View = 'story' | 'flywheel' | 'tenants' | 'personnel' | 'org' | 'revenue' | 'tech' | 'architecture' | 'links' | 'jp';
 
 const VIEWS: { id: View; label: string; color: string }[] = [
   { id: 'links', label: '🔗 All Links', color: '#ffffff' },
@@ -15,7 +15,6 @@ const VIEWS: { id: View; label: string; color: string }[] = [
   { id: 'org', label: 'Org Chart', color: '#ec4899' },
   { id: 'revenue', label: 'Revenue', color: '#f97316' },
   { id: 'jp', label: 'JP Options', color: '#22c55e' },
-  { id: 'scan2plan', label: 'Scan2Plan', color: '#ef4444' },
   { id: 'tech', label: 'Tech Stack', color: '#eab308' },
   { id: 'architecture', label: 'Blueprint', color: '#ef4444' },
 ];
@@ -293,97 +292,14 @@ function LinksView() {
   );
 }
 
-function Scan2PlanView() {
-  return (
-    <div style={{ padding: '2rem', maxWidth: 900, margin: '0 auto' }}>
-      <h2 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '1rem' }}>Scan2Plan — Status</h2>
-
-      <div style={{ display: 'grid', gap: '1rem', marginBottom: '2rem' }}>
-        <div style={{ background: '#1a1816', border: '1px solid #ef444440', borderRadius: 12, padding: '1.5rem' }}>
-          <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#ef4444', margin: '0 0 0.75rem' }}>Outstanding Balance</h3>
-          <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#ef4444' }}>$22,739.20</div>
-          <p style={{ fontSize: '0.9rem', color: '#8a8074', marginTop: '0.5rem' }}>Revenue share (2% + 5% COO) — Sep 2021 through Feb 2026</p>
-        </div>
-
-        <div style={{ background: '#1a1816', border: '1px solid #2a2520', borderRadius: 12, padding: '1.5rem' }}>
-          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#c8943e', margin: '0 0 0.75rem' }}>Timeline</h3>
-          <div style={{ display: 'grid', gap: '0.5rem', fontSize: '0.95rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0', borderBottom: '1px solid #1a1816' }}>
-              <span style={{ color: '#8a8074' }}>Sep 2021</span><span>Partnership begins — 2% revenue share for 50% tech ownership</span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0', borderBottom: '1px solid #1a1816' }}>
-              <span style={{ color: '#8a8074' }}>Oct 2025</span><span>COO role added — 5% additional (total 7%)</span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0', borderBottom: '1px solid #1a1816' }}>
-              <span style={{ color: '#8a8074' }}>Feb 28, 2026</span><span>COO arrangement ended</span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0', borderBottom: '1px solid #1a1816' }}>
-              <span style={{ color: '#8a8074' }}>Mar 25, 2026</span><span>Partnership dissolved entirely</span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0' }}>
-              <span style={{ color: '#8a8074' }}>Mar 26, 2026</span><span>Final invoice sent</span>
-            </div>
-          </div>
-        </div>
-
-        <div style={{ background: '#1a1816', border: '1px solid #2a2520', borderRadius: 12, padding: '1.5rem' }}>
-          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#c8943e', margin: '0 0 0.75rem' }}>Numbers</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#e8e0d4' }}>$105,490</div>
-              <div style={{ fontSize: '0.75rem', color: '#6a6560' }}>Total Owed</div>
-            </div>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#22c55e' }}>$84,251</div>
-              <div style={{ fontSize: '0.75rem', color: '#6a6560' }}>Total Received</div>
-            </div>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#ef4444' }}>$22,739</div>
-              <div style={{ fontSize: '0.75rem', color: '#6a6560' }}>Net Underpayment</div>
-            </div>
-          </div>
-        </div>
-
-        <div style={{ background: '#1a1816', border: '1px solid #2a2520', borderRadius: 12, padding: '1.5rem' }}>
-          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#c8943e', margin: '0 0 0.75rem' }}>Key People</h3>
-          <div style={{ display: 'grid', gap: '0.5rem', fontSize: '0.95rem' }}>
-            <div><span style={{ color: '#c8943e', fontWeight: 600 }}>Owen Bush</span> — CEO, Scan2Plan Inc</div>
-            <div><span style={{ color: '#c8943e', fontWeight: 600 }}>Agata Roberts</span> — Business Administrator (has detailed payment records)</div>
-            <div><span style={{ color: '#c8943e', fontWeight: 600 }}>Bob Bedard</span> — DeFacto Global, mentor, ~1-2% Scan2Plan equity for rent</div>
-            <div><span style={{ color: '#c8943e', fontWeight: 600 }}>Dennis Shelden</span> — RPI, Twinner academic project</div>
-          </div>
-        </div>
-
-        <div style={{ background: '#1a1816', border: '1px solid #2a2520', borderRadius: 12, padding: '1.5rem' }}>
-          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#c8943e', margin: '0 0 0.75rem' }}>Requested From Owen</h3>
-          <ol style={{ fontSize: '0.95rem', color: '#e8e0d4', paddingLeft: '1.25rem', margin: 0, lineHeight: 1.8 }}>
-            <li>Written confirmation of outstanding balance</li>
-            <li>Agreement on payment schedule</li>
-            <li>1099-NEC forms for all years (2021-2026)</li>
-          </ol>
-        </div>
-
-        <div style={{ background: '#1a1816', border: '1px solid #c8943e40', borderRadius: 12, padding: '1.5rem' }}>
-          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#c8943e', margin: '0 0 0.75rem' }}>Next Steps</h3>
-          <div style={{ fontSize: '0.95rem', color: '#e8e0d4', lineHeight: 1.8 }}>
-            <div>• Call with Bob Bedard tomorrow</div>
-            <div>• Send updated communication to Owen</div>
-            <div>• Licensing proposal v4 on Desktop (March 25, 2026)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function JPOptionsView() {
   const tiers = [
     {
       level: 'Advisory',
       commitment: '2-4 hrs/week',
-      role: 'Trusted advisor. Review deals, strategy sessions, Scan2Plan counsel.',
+      role: 'Trusted advisor. Review deals, strategy sessions.',
       compensation: 'Monthly retainer + equity option pool',
-      includes: ['Scan2Plan legal review', 'Business strategy sessions', 'Deal structuring advice', 'Access to all dashboards'],
+      includes: ['Business strategy sessions', 'Deal structuring advice', 'Access to all dashboards'],
       color: '#3b82f6',
     },
     {
@@ -483,7 +399,6 @@ const VIEW_COMPONENTS: Record<View, () => JSX.Element> = {
   revenue: RevenueView,
   tech: TechView,
   architecture: ArchitectureView,
-  scan2plan: Scan2PlanView,
 };
 
 export default function WhiteboardPage() {
