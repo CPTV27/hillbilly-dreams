@@ -40,10 +40,9 @@ AI for margin recovery, not gimmicks. AI implementations must focus on capacity 
 
 Read these files in order. Non-negotiable.
 
-1. `ARCHITECTURE.md` — canonical map of the codebase. If it's not in here, ask before building.
+1. `docs/ARCHITECTURE.md` — canonical map of the codebase. If it's not in here, ask before building.
 2. `AGENT_LEDGER.md` — what other agents have done. Don't duplicate or overwrite their work.
-3. `DISPATCH.md` — your active assignment. If it's empty, do not invent work.
-4. `.workflow/CONTEXT.md` — current system state and what's deployed.
+3. `CLAUDE.md` — master handoff and QC rules.
 
 If any of these files are missing or stale, stop and ask Chase before proceeding.
 

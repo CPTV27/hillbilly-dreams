@@ -55,6 +55,24 @@ coverage
 bmt-public-images
 .claude/worktrees/
 
+# Archived to Google Drive 2026-03-30 — do not re-add
+BigMuddy-Dropbox/
+HillbillyDreams-Images/
+HillbillyDreams-Vault/
+HDXContextSeeding/
+hillbilly-dreams-inc/
+big-muddy-content/
+mechanical-bull/
+Media Production/
+S2PX/
+postiz-app/
+open-notebook/
+Under the hill photos*/
+
+# Partner/finance docs (local only, not committed)
+Tracy & Amy/
+tax-db/
+
 # Sensitive financial documents — kept in ~/tax-db/ and database only
 docs/finance-report.md
 docs/tracy-report.md

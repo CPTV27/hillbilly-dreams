@@ -19,24 +19,17 @@ const OUT_DIR = path.join(ROOT, 'exports');
 const FILES_TO_SYNC = [
   // Swarm coordination
   { path: 'AGENT_LEDGER.md',                      label: 'Agent Swarm Ledger' },
-  { path: 'HANDOFF.md',                           label: 'Cross-Agent Handoff' },
-  { path: '.agents/context.md',                    label: 'Repo Identity (BMT)' },
+  { path: '.claude/agents/ORIGIN_STORY.md',         label: 'Origin Story' },
 
   // Schema & config
   { path: 'packages/database/prisma/schema.prisma', label: 'Prisma Schema' },
   { path: 'packages/config/brands.ts',             label: 'Brand Registry' },
   { path: 'packages/config/tokens.css',            label: 'Design Tokens' },
 
-  // Strategy & docs
-  { path: 'docs/strategy/PLATFORM_ROADMAP.md',    label: 'Platform Roadmap' },
-  { path: 'docs/strategy/BigMuddy_Ecosystem_MasterPlan.docx.md', label: 'Ecosystem Master Plan' },
-
-  // Ops
-  { path: 'firebase.json',                        label: 'Firebase Config' },
-  { path: '.firebaserc',                           label: 'Firebase RC (project aliases)' },
-
-  // Workflow protocol
-  { path: '.agents/workflows/recursive-qc-sweep.md', label: 'QC Sweep Protocol' },
+  // Active docs
+  { path: 'docs/ARCHITECTURE.md',                 label: 'Architecture' },
+  { path: 'docs/PRODUCT_CAPABILITIES.md',         label: 'Product Capabilities' },
+  { path: 'docs/FEATURE_TIERS.md',                label: 'Feature Tiers' },
 ];
 
 function run() {

@@ -31,27 +31,7 @@ const SOURCES: SourceMapping[] = [
     topicFromFile: (f) => f.replace(/\.md$/, '').toLowerCase().replace(/_/g, '-'),
     keyPrefix: 'tax-db',
   },
-  // Strategy docs
-  {
-    glob: 'docs/strategy',
-    domain: 'strategy',
-    topicFromFile: (f) => f.replace(/\.md$/, '').toLowerCase().replace(/_/g, '-'),
-    keyPrefix: 'strategy',
-  },
-  // Google ecosystem docs
-  {
-    glob: 'docs/google-ecosystem',
-    domain: 'operations',
-    topicFromFile: (f) => f.replace(/\.md$/, '').toLowerCase().replace(/_/g, '-'),
-    keyPrefix: 'google-ecosystem',
-  },
-  // Research docs
-  {
-    glob: 'docs/research',
-    domain: 'strategy',
-    topicFromFile: (f) => f.replace(/\.md$/, '').toLowerCase().replace(/_/g, '-'),
-    keyPrefix: 'research',
-  },
+  // NOTE: docs/strategy, docs/google-ecosystem, docs/research archived to Google Drive 2026-03-30
   // Core docs
   {
     glob: 'docs',
@@ -112,13 +92,7 @@ const SOURCES: SourceMapping[] = [
     topicFromFile: (f) => 'content',
     keyPrefix: 'content',
   },
-  // Handoff docs
-  {
-    glob: 'docs/handoffs',
-    domain: 'operations',
-    topicFromFile: (f) => 'handoff',
-    keyPrefix: 'handoffs',
-  },
+  // NOTE: docs/handoffs archived to Google Drive 2026-03-30
 ];
 
 // ── Chunk a document into segments ──
