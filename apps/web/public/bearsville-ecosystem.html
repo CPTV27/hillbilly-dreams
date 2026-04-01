@@ -10,65 +10,142 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     background: #0a0a0a;
     color: #f5f0eb;
-    padding: 2rem;
-    max-width: 920px;
-    margin: 0 auto;
     line-height: 1.7;
   }
 
+  a { color: #8B6914; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
   .gold { color: #8B6914; }
 
-  .header {
-    margin-bottom: 3.5rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid #2a2520;
+  /* Full-bleed hero */
+  .hero {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
   }
-  .header .eyebrow {
+  .hero img {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5) contrast(1.1);
+  }
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, #0a0a0a 0%, transparent 60%);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 5%;
+    max-width: 700px;
+  }
+  .hero-content .eyebrow {
     font-size: 0.6rem;
     text-transform: uppercase;
     letter-spacing: 0.25em;
     color: #8B6914;
     margin-bottom: 0.75rem;
   }
-  .header h1 {
-    font-size: 2.25rem;
+  .hero-content h1 {
+    font-size: 2.5rem;
     font-weight: 300;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+    line-height: 1.15;
     margin-bottom: 1rem;
   }
-  .header .sub {
+  .hero-content p {
     font-size: 0.95rem;
-    color: #8a8074;
-    max-width: 700px;
+    color: #bbb5ae;
+    max-width: 550px;
   }
 
+  /* Content sections */
+  .content { max-width: 920px; margin: 0 auto; padding: 0 2rem; }
+
   section {
-    margin-bottom: 3rem;
-    padding-bottom: 2.5rem;
+    padding: 3rem 0;
     border-bottom: 1px solid #1a1816;
   }
   section:last-of-type { border-bottom: none; }
 
   .section-label {
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     text-transform: uppercase;
     letter-spacing: 0.2em;
     color: #8B6914;
     margin-bottom: 0.5rem;
   }
-
   h2 {
     font-size: 1.4rem;
     font-weight: 400;
-    letter-spacing: -0.01em;
     margin-bottom: 1rem;
   }
-
   p { font-size: 0.9rem; color: #ccc8c2; margin-bottom: 1rem; max-width: 700px; }
   p.note { font-size: 0.8rem; color: #6b6560; font-style: italic; }
 
-  /* Numbered list */
+  /* Photo strips */
+  .photo-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    margin: 2rem 0;
+  }
+  .photo-strip img {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    display: block;
+  }
+
+  .photo-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin: 2rem 0;
+  }
+  .photo-pair img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+  }
+
+  .photo-full {
+    margin: 2rem -2rem;
+    overflow: hidden;
+  }
+  .photo-full img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Link cards */
+  .link-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .link-card {
+    border: 1px solid #2a2520;
+    padding: 1.25rem;
+    display: block;
+    text-decoration: none;
+    color: #f5f0eb;
+    transition: border-color 0.2s;
+  }
+  .link-card:hover { border-color: #8B6914; text-decoration: none; }
+  .link-card h3 { font-size: 0.85rem; margin-bottom: 0.2rem; }
+  .link-card .url { font-size: 0.6rem; color: #8B6914; font-family: monospace; margin-bottom: 0.4rem; }
+  .link-card p { font-size: 0.7rem; color: #8a8074; margin: 0; }
+
+  /* Numbered items */
   .num-list { margin: 1.5rem 0; }
   .num-item {
     display: grid;
@@ -79,97 +156,75 @@
     font-size: 0.85rem;
   }
   .num-item:last-child { border-bottom: none; }
-  .num { color: #8B6914; font-weight: 600; font-size: 0.9rem; }
+  .num { color: #8B6914; font-weight: 600; }
   .num-item strong { color: #f5f0eb; }
   .num-item span { color: #8a8074; }
 
   /* Module table */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-  }
-  th {
-    text-align: left;
-    font-size: 0.6rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #8B6914;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #2a2520;
-  }
-  td {
-    padding: 0.6rem 0;
-    border-bottom: 1px solid #1a1816;
-    font-size: 0.8rem;
-  }
-  td:first-child { font-weight: 600; color: #f5f0eb; padding-right: 2rem; width: 140px; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+  th { text-align: left; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.15em; color: #8B6914; padding: 0.5rem 0; border-bottom: 1px solid #2a2520; }
+  td { padding: 0.6rem 0; border-bottom: 1px solid #1a1816; font-size: 0.8rem; }
+  td:first-child { font-weight: 600; width: 130px; padding-right: 1.5rem; }
   td:last-child { color: #8a8074; }
 
-  /* Pipeline steps */
-  .pipeline {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin: 1.5rem 0;
-    border: 1px solid #2a2520;
-  }
-  .pipe-step {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    border-bottom: 1px solid #1a1816;
-  }
+  /* Pipeline */
+  .pipeline { display: flex; flex-direction: column; margin: 1.5rem 0; border: 1px solid #2a2520; }
+  .pipe-step { display: grid; grid-template-columns: 90px 1fr; border-bottom: 1px solid #1a1816; }
   .pipe-step:last-child { border-bottom: none; }
-  .pipe-label {
-    padding: 1rem;
-    font-size: 0.6rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #8B6914;
-    border-right: 1px solid #1a1816;
-    display: flex;
-    align-items: center;
-  }
-  .pipe-content {
-    padding: 1rem;
-  }
+  .pipe-label { padding: 1rem; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.15em; color: #8B6914; border-right: 1px solid #1a1816; display: flex; align-items: center; }
+  .pipe-content { padding: 1rem; }
   .pipe-content strong { font-size: 0.85rem; display: block; margin-bottom: 0.15rem; }
   .pipe-content span { font-size: 0.7rem; color: #6b6560; }
 
   /* Flywheel */
-  .flywheel {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1px;
-    background: #2a2520;
-    margin: 1.5rem 0;
-  }
-  .fw-step {
-    background: #0a0a0a;
-    padding: 1.25rem;
-    text-align: center;
-  }
+  .flywheel { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #2a2520; margin: 1.5rem 0; }
+  .fw-step { background: #0a0a0a; padding: 1.25rem; text-align: center; }
   .fw-step .fw-arrow { color: #8B6914; font-size: 1.2rem; margin-bottom: 0.5rem; }
   .fw-step h4 { font-size: 0.8rem; margin-bottom: 0.25rem; }
   .fw-step p { font-size: 0.7rem; color: #6b6560; text-align: center; margin: 0 auto; }
 
-  /* Login cards */
-  .login-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin: 1.5rem 0;
-  }
-  .login-card {
+  /* Admin mockup */
+  .admin-mock {
+    margin: 2rem 0;
     border: 1px solid #2a2520;
-    padding: 1.25rem;
+    background: #111110;
+    overflow: hidden;
   }
-  .login-card h3 { font-size: 0.85rem; margin-bottom: 0.2rem; }
-  .login-card .url { font-size: 0.65rem; color: #8B6914; font-family: monospace; margin-bottom: 0.5rem; }
-  .login-card p { font-size: 0.7rem; color: #8a8074; margin: 0; }
+  .admin-mock-bar {
+    padding: 0.5rem 1rem;
+    background: #1a1918;
+    border-bottom: 1px solid #2a2520;
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+  }
+  .admin-mock-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .admin-mock-url {
+    font-size: 0.6rem;
+    color: #6b6560;
+    font-family: monospace;
+    margin-left: 1rem;
+  }
+  .admin-mock-body {
+    padding: 1.5rem;
+  }
+  .admin-mock-body h4 { font-size: 0.75rem; color: #8B6914; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .admin-tool-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  .admin-tool {
+    padding: 0.75rem;
+    border: 1px solid #2a2520;
+    text-align: center;
+    font-size: 0.7rem;
+    color: #8a8074;
+  }
+  .admin-tool strong { display: block; color: #f5f0eb; margin-bottom: 0.15rem; font-size: 0.75rem; }
 
   .footer {
-    margin-top: 3rem;
+    padding: 2rem;
     text-align: center;
     font-size: 0.55rem;
     color: #3a3633;
@@ -178,250 +233,321 @@
   }
 
   @media (max-width: 768px) {
+    .hero { height: 60vh; }
+    .link-grid { grid-template-columns: 1fr; }
     .flywheel { grid-template-columns: 1fr; }
-    .login-grid { grid-template-columns: 1fr; }
-    .pipe-step { grid-template-columns: 80px 1fr; }
+    .photo-strip { grid-template-columns: 1fr; }
+    .photo-pair { grid-template-columns: 1fr; }
+    .admin-tool-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <p class="eyebrow">Prepared for Elijah & Miles · April 2026</p>
-  <h1>Welcome to the sandbox.</h1>
-  <p class="sub">
-    This isn't a manual for a finished product — it's an invitation to help us figure out
-    how this machine should hum in the Hudson Valley. We've spent the last year in Natchez
-    building a system that turns creative work into a self-sustaining ecosystem. Now we want
-    to see which of these tools make sense for your world.
-  </p>
+<!-- HERO: FULL BLEED THEATER SHOT -->
+<div class="hero">
+  <img src="/images/processed/bearsville/theater-show-01.webp" alt="Live performance at Bearsville Theater">
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Prepared for Elijah & Miles · April 2026</p>
+    <h1>Welcome to the sandbox.</h1>
+    <p>
+      We built a system that turns creative work into a self-sustaining ecosystem.
+      Now we want to see which of these tools make sense for your world.
+    </p>
+  </div>
 </div>
 
-<!-- 1. THE HERITAGE JOURNAL -->
+<div class="content">
+
+<!-- YOUR PROPERTIES -->
 <section>
-  <p class="section-label">1. The Interface</p>
-  <h2>The Heritage Journal</h2>
+  <p class="section-label">Your Properties — All Live Right Now</p>
+  <h2>Three sites, one platform, click around</h2>
+
+  <div class="link-grid">
+    <a href="https://bearsvillemediagroup.com" target="_blank" class="link-card">
+      <h3>Bearsville Media Group</h3>
+      <div class="url">bearsvillemediagroup.com →</div>
+      <p>The hub — directory, radio, magazine, studio. This is the Big Muddy equivalent for the Hudson Valley.</p>
+    </a>
+    <a href="https://studiocvideo.com" target="_blank" class="link-card">
+      <h3>Studio C Video</h3>
+      <div class="url">studiocvideo.com →</div>
+      <p>The production arm — recording, video, broadcasting. Where the content gets made.</p>
+    </a>
+    <a href="https://tuthilldesign.com" target="_blank" class="link-card">
+      <h3>Tuthill Design</h3>
+      <div class="url">tuthilldesign.com →</div>
+      <p>Elijah's design studio — branding, web, creative direction. Now on the platform.</p>
+    </a>
+    <a href="https://bigmuddytouring.com" target="_blank" class="link-card">
+      <h3>The Southern Node</h3>
+      <div class="url">bigmuddytouring.com →</div>
+      <p>Big Muddy in Natchez — the touring circuit, the magazine, the radio, the whole ecosystem you're joining.</p>
+    </a>
+  </div>
+
+  <p class="note">
+    All four sites run on the same codebase. When we build a feature in Natchez, you get it in Bearsville automatically.
+  </p>
+</section>
+
+<!-- THE STUDIO: PHOTO STRIP -->
+<section>
+  <p class="section-label">Studio C — The Production Heart</p>
+  <h2>This is where the content gets made</h2>
+
+  <div class="photo-strip">
+    <img src="/images/studio-c/utopiademo-day-2.webp" alt="Studio C recording session">
+    <img src="/images/studio-c/utopiademo-day-14.webp" alt="Control room at Studio C">
+    <img src="/images/studio-c/utopiademo-day-18.webp" alt="Equipment at Utopia Studios">
+  </div>
 
   <p>
-    The first thing people see is the Magazine. We've designed this to feel like a
-    high-end, $25 coffee-table book rather than a standard website.
+    Every session at Studio C can feed the entire system. You record it — the platform publishes it,
+    promotes it, archives it, and tracks how it performs. You focus on the craft.
+    The machine handles the distribution.
+  </p>
+
+  <div class="photo-pair">
+    <img src="/images/processed/bearsville/balk-session-01.webp" alt="Balk recording session at Bearsville">
+    <img src="/images/processed/bearsville/balk-session-03.webp" alt="Musicians in session">
+  </div>
+</section>
+
+<!-- THE INTERFACE: HERITAGE JOURNAL -->
+<section>
+  <p class="section-label">The Interface</p>
+  <h2>The Heritage Journal — where client work gets published</h2>
+
+  <p>
+    The Magazine module isn't just a blog. It's designed to feel like a $25 coffee-table book.
+    Full-bleed photography, editorial typography, high-contrast layouts. This is where the work
+    you create for Tuthill and Studio C clients gets featured.
   </p>
 
   <div class="num-list">
     <div class="num-item">
       <div class="num">—</div>
-      <div><strong>The 100vh Hero:</strong> <span>A full-bleed, cinematic image (like those Bearsville theater shots) that stays fixed as you scroll.</span></div>
+      <div><strong>100vh photo heroes</strong> <span>— cinematic images that fill the screen.</span></div>
     </div>
     <div class="num-item">
       <div class="num">—</div>
-      <div><strong>The Slide-Under:</strong> <span>Content blocks with high-contrast typography slide over the imagery, creating a tactile, editorial feel.</span></div>
+      <div><strong>Slide-under content</strong> <span>— text slides over photos like turning pages. Tactile, not digital.</span></div>
     </div>
     <div class="num-item">
       <div class="num">—</div>
-      <div><strong>The Standard:</strong> <span>We use real photography — never stock — to ensure the interface feels as authentic as the music.</span></div>
+      <div><strong>Real photography only</strong> <span>— never stock. The interface is the frame, the photo is the art.</span></div>
     </div>
   </div>
 
-  <p class="note">
-    This is where the work you create for your clients at Tuthill and Studio C gets published.
-    The magazine becomes your portfolio and your content marketing at the same time.
+  <p>
+    See it live:
+    <a href="https://bigmuddymagazine.com" target="_blank">bigmuddymagazine.com →</a>
   </p>
 </section>
 
-<!-- 2. THE PLAYOUT SYSTEM -->
+<!-- THE PLAYOUT SYSTEM -->
 <section>
-  <p class="section-label">2. The Playout System</p>
+  <p class="section-label">The Playout System</p>
   <h2>One event. Six outputs. Mostly automatic.</h2>
 
   <p>
-    In Natchez, we found that one single event can — and should — power every channel we own.
-    A show happens at the Blues Room or Bearsville Theater. Through a mix of human craft and
-    AI assistance, that one show automatically feeds:
+    When a show happens at the Blues Room in Natchez, here's what the system does with it
+    — without anyone staying up late:
   </p>
 
   <div class="num-list">
-    <div class="num-item">
-      <div class="num">1</div>
-      <div><strong>Radio</strong> <span>— Audio enters the scheduled rotation.</span></div>
-    </div>
-    <div class="num-item">
-      <div class="num">2</div>
-      <div><strong>Social Media</strong> <span>— Video clips move through CapCut to Postiz for distribution.</span></div>
-    </div>
-    <div class="num-item">
-      <div class="num">3</div>
-      <div><strong>The Magazine</strong> <span>— Photos and stories become a featured editorial article.</span></div>
-    </div>
-    <div class="num-item">
-      <div class="num">4</div>
-      <div><strong>The Directory</strong> <span>— Venue and artist listings are automatically updated.</span></div>
-    </div>
-    <div class="num-item">
-      <div class="num">5</div>
-      <div><strong>Records</strong> <span>— Recordings are prepped for potential release.</span></div>
-    </div>
-    <div class="num-item">
-      <div class="num">6</div>
-      <div><strong>The Archive</strong> <span>— High-res assets are tagged by AI and stored for future use.</span></div>
-    </div>
+    <div class="num-item"><div class="num">1</div><div><strong>Radio</strong> <span>— audio enters the scheduled rotation. <a href="https://bigmuddyradio.com" target="_blank">bigmuddyradio.com →</a></span></div></div>
+    <div class="num-item"><div class="num">2</div><div><strong>Social</strong> <span>— video clips generated, scheduled via Postiz to Instagram / TikTok / Facebook.</span></div></div>
+    <div class="num-item"><div class="num">3</div><div><strong>Magazine</strong> <span>— article with photos published. <a href="https://bigmuddymagazine.com" target="_blank">bigmuddymagazine.com →</a></span></div></div>
+    <div class="num-item"><div class="num">4</div><div><strong>Directory</strong> <span>— venue and artist listings updated. <a href="https://deepsouthdirectory.com" target="_blank">deepsouthdirectory.com →</a></span></div></div>
+    <div class="num-item"><div class="num">5</div><div><strong>Records</strong> <span>— live recording released as a single. <a href="https://bigmuddyrecords.com" target="_blank">bigmuddyrecords.com →</a></span></div></div>
+    <div class="num-item"><div class="num">6</div><div><strong>Archive</strong> <span>— high-res assets tagged by AI, searchable in the photo library.</span></div></div>
   </div>
 
   <p class="note">
-    In Natchez, this is how we keep the lights on and the music playing while we sleep.
     Imagine what happens when the Hudson Valley's creative output hits the same engine.
+    A session at Studio C → Utopia Radio → Bearsville Magazine → the directory → the archive. Same pipeline.
   </p>
 </section>
 
-<!-- 3. THE PRODUCTION PIPELINE -->
+<!-- THE THEATER: PHOTO STRIP -->
 <section>
-  <p class="section-label">3. The Production Pipeline</p>
-  <h2>Capture to cloud — how a photo or recording moves through the system</h2>
+  <p class="section-label">The Bearsville Theater</p>
+  <h2>The performances that feed everything</h2>
+
+  <div class="photo-strip">
+    <img src="/images/processed/bearsville/theater-show-02.webp" alt="Live show at Bearsville Theater">
+    <img src="/images/processed/bearsville/theater-show-04.webp" alt="Performer on stage">
+    <img src="/images/processed/bearsville/theater-show-06.webp" alt="Concert at Bearsville">
+  </div>
+
+  <div class="photo-pair">
+    <img src="/images/processed/bearsville/hv-landscape-01.webp" alt="Hudson Valley landscape">
+    <img src="/images/processed/bearsville/hv-landscape-03.webp" alt="Catskills scenery">
+  </div>
+</section>
+
+<!-- THE PIPELINE -->
+<section>
+  <p class="section-label">The Production Pipeline</p>
+  <h2>Capture to cloud — how content moves through the system</h2>
 
   <div class="pipeline">
     <div class="pipe-step">
       <div class="pipe-label">Capture</div>
-      <div class="pipe-content">
-        <strong>Camera, iPhone, field recorder</strong>
-        <span>You shoot and edit in Lightroom as usual. Nothing changes about your creative process.</span>
-      </div>
+      <div class="pipe-content"><strong>Camera, iPhone, field recorder</strong><span>You shoot and edit in Lightroom as usual. Nothing changes about your creative process.</span></div>
     </div>
     <div class="pipe-step">
       <div class="pipe-label">Tag</div>
-      <div class="pipe-content">
-        <strong>Adobe Bridge + Google Cloud Vision AI</strong>
-        <span>Bridge for your keywords. Vision API auto-tags everything — "night scene," "performer," "landscape." Tags travel with the file.</span>
-      </div>
+      <div class="pipe-content"><strong>Adobe Bridge + Google Vision AI</strong><span>Bridge for your keywords. Vision API auto-tags everything — "performer," "landscape," "night scene." Tags travel with the file.</span></div>
     </div>
     <div class="pipe-step">
       <div class="pipe-label">Store</div>
-      <div class="pipe-content">
-        <strong>Google Cloud Storage</strong>
-        <span>Three sizes (hero, grid, thumb), named descriptively, backed up with versioning. Instantly accessible everywhere.</span>
-      </div>
+      <div class="pipe-content"><strong>Google Cloud Storage</strong><span>Three sizes, named descriptively, backed up with versioning. We're processing 18,000+ photos through this right now.</span></div>
     </div>
     <div class="pipe-step">
       <div class="pipe-label">Publish</div>
-      <div class="pipe-content">
-        <strong>The platform pulls it in automatically</strong>
-        <span>Photos show up on the website, in articles, in the directory, on social. You upload once, it appears everywhere.</span>
-      </div>
+      <div class="pipe-content"><strong>The platform pulls it in automatically</strong><span>Photos appear on the website, in articles, in the directory, on social. Upload once, appears everywhere.</span></div>
     </div>
     <div class="pipe-step">
       <div class="pipe-label">Measure</div>
-      <div class="pipe-content">
-        <strong>Engagement tracking</strong>
-        <span>Photos that perform on social get promoted to hero images on the website. The audience tells us what works.</span>
+      <div class="pipe-content"><strong>Engagement tracking</strong><span>Photos that perform on social get promoted to hero images. The audience tells us what works.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE ADMIN TOOLS -->
+<section>
+  <p class="section-label">The Admin Toolkit</p>
+  <h2>What you get when you log in</h2>
+
+  <p>
+    Go to <a href="https://bearsvillemediagroup.com/admin" target="_blank">bearsvillemediagroup.com/admin</a>
+    or <a href="https://studiocvideo.com/admin" target="_blank">studiocvideo.com/admin</a>.
+    Same tools Chase uses every day in Natchez:
+  </p>
+
+  <!-- Admin mockup -->
+  <div class="admin-mock">
+    <div class="admin-mock-bar">
+      <div class="admin-mock-dot" style="background: #ef4444;"></div>
+      <div class="admin-mock-dot" style="background: #f59e0b;"></div>
+      <div class="admin-mock-dot" style="background: #22c55e;"></div>
+      <span class="admin-mock-url">bearsvillemediagroup.com/admin</span>
+    </div>
+    <div class="admin-mock-body">
+      <h4>Your Toolkit</h4>
+      <div class="admin-tool-grid">
+        <div class="admin-tool"><strong>Events</strong>Schedule shows, set capacity and pricing</div>
+        <div class="admin-tool"><strong>Articles</strong>Write and publish Magazine features</div>
+        <div class="admin-tool"><strong>Creative Studio</strong>Generate radio promos, voiceovers, audio</div>
+        <div class="admin-tool"><strong>Media Upload</strong>Drag photos to Google Cloud Storage</div>
+        <div class="admin-tool"><strong>Playlists</strong>Curate radio playlists and rotations</div>
+        <div class="admin-tool"><strong>Newsletter</strong>Email campaigns to subscribers</div>
+        <div class="admin-tool"><strong>Clients</strong>View directory subscribers and tiers</div>
+        <div class="admin-tool"><strong>Productions</strong>Video and audio production pipeline</div>
+        <div class="admin-tool"><strong>Delta Dawn</strong>AI assistant — gold bubble, bottom right</div>
       </div>
     </div>
   </div>
 
   <p class="note">
-    We're currently processing 18,000+ photos through this pipeline. Your Bearsville and Studio C
-    photos would flow through the same system.
+    Try uploading some Studio C session photos. Draft a quick article. Create a test event. See what feels right.
   </p>
 </section>
 
-<!-- 4. THE TOOLKIT -->
+<!-- ARRIE ASLIN: THE CORRIDOR -->
 <section>
-  <p class="section-label">4. The Toolkit</p>
-  <h2>Nine modules. You decide which ones fit.</h2>
+  <p class="section-label">The Corridor Connection</p>
+  <h2>Artists flow between Natchez and the Hudson Valley</h2>
+
+  <div class="photo-strip">
+    <img src="/images/processed/artists/arri-aslan-01.webp" alt="Arrie Aslin portrait">
+    <img src="/images/processed/artists/arri-aslan-05.webp" alt="Arrie Aslin at the Inn">
+    <img src="/images/processed/artists/arri-aslan-09.webp" alt="Arrie Aslin performing">
+  </div>
 
   <p>
-    The platform is built on nine core modules. In Natchez, we use all of them. For the
-    Hudson Valley, we need to decide together which ones make sense for the mission.
+    Arrie Aslin is the first artist on the corridor. She plays the Blues Room in Natchez,
+    and the same system that promotes her there can promote your Hudson Valley artists here.
+    The Sprinter van runs both directions. A band that plays Natchez plays Bearsville the next month.
   </p>
+
+  <p>
+    See how it works:
+    <a href="https://bigmuddyentertainment.com" target="_blank">bigmuddyentertainment.com →</a>
+  </p>
+</section>
+
+<!-- THE MODULES -->
+<section>
+  <p class="section-label">The Toolkit</p>
+  <h2>Nine modules. You decide which ones fit.</h2>
 
   <table>
     <tr><th>Module</th><th>What It Does</th></tr>
-    <tr><td>Directory</td><td>AI-powered local business and artist listings.</td></tr>
-    <tr><td>Magazine</td><td>High-end editorial and photo-essay pipeline. Where you publish client work.</td></tr>
-    <tr><td>Radio</td><td>Streaming infrastructure and live session playout. Could be Utopia Radio?</td></tr>
-    <tr><td>Records</td><td>Non-exclusive distribution. Artists keep their masters.</td></tr>
-    <tr><td>Touring</td><td>Booking, ticketing, and venue management.</td></tr>
-    <tr><td>Commerce</td><td>Payments, subscriptions, and automated revenue splits.</td></tr>
-    <tr><td>Broadcasting</td><td>Live video production and multi-streaming.</td></tr>
-    <tr><td>AI Content</td><td>Automated drafting for social posts and articles.</td></tr>
-    <tr><td>Analytics</td><td>Real-time report cards on how content is performing.</td></tr>
+    <tr><td>Directory</td><td>AI-powered business listings. <a href="https://deepsouthdirectory.com" target="_blank">See it live →</a></td></tr>
+    <tr><td>Magazine</td><td>Editorial pipeline — where you publish client work. <a href="https://bigmuddymagazine.com" target="_blank">See it live →</a></td></tr>
+    <tr><td>Radio</td><td>Streaming and live sessions. Could be Utopia Radio? <a href="https://bigmuddyradio.com" target="_blank">See it live →</a></td></tr>
+    <tr><td>Records</td><td>Non-exclusive distribution. Artists keep masters. <a href="https://bigmuddyrecords.com" target="_blank">See it live →</a></td></tr>
+    <tr><td>Touring</td><td>Booking, ticketing, venue management. <a href="https://bigmuddytouring.com" target="_blank">See it live →</a></td></tr>
+    <tr><td>Commerce</td><td>Payments, subscriptions, revenue splits via Stripe.</td></tr>
+    <tr><td>Broadcasting</td><td>Live production and multi-streaming.</td></tr>
+    <tr><td>AI Content</td><td>Automated social posts, article drafts, voice profiles.</td></tr>
+    <tr><td>Analytics</td><td>Report cards on how content is performing.</td></tr>
   </table>
 </section>
 
-<!-- 5. THE FLYWHEEL -->
+<!-- THE FLYWHEEL -->
 <section>
-  <p class="section-label">5. The Growth Loop</p>
+  <p class="section-label">The Growth Loop</p>
   <h2>Each piece makes the next piece easier</h2>
 
   <div class="flywheel">
-    <div class="fw-step">
-      <div class="fw-arrow">&#9654;</div>
-      <h4>Shows</h4>
-      <p>Generate recordings and photos</p>
-    </div>
-    <div class="fw-step">
-      <div class="fw-arrow">&#9654;</div>
-      <h4>Radio + Records</h4>
-      <p>Build an audience from the content</p>
-    </div>
-    <div class="fw-step">
-      <div class="fw-arrow">&#9654;</div>
-      <h4>Audience</h4>
-      <p>Drives directory subscribers</p>
-    </div>
-    <div class="fw-step">
-      <div class="fw-arrow">&#9654;</div>
-      <h4>Directory</h4>
-      <p>Revenue from local businesses</p>
-    </div>
-    <div class="fw-step">
-      <div class="fw-arrow">&#9654;</div>
-      <h4>Partnerships</h4>
-      <p>Venues and sponsors come on board</p>
-    </div>
-    <div class="fw-step">
-      <div class="fw-arrow">&#8634;</div>
-      <h4>More Shows</h4>
-      <p>Bigger events, better artists, repeat</p>
-    </div>
+    <div class="fw-step"><div class="fw-arrow">&#9654;</div><h4>Shows</h4><p>Generate recordings and photos</p></div>
+    <div class="fw-step"><div class="fw-arrow">&#9654;</div><h4>Radio + Records</h4><p>Build an audience</p></div>
+    <div class="fw-step"><div class="fw-arrow">&#9654;</div><h4>Audience</h4><p>Drives directory subscribers</p></div>
+    <div class="fw-step"><div class="fw-arrow">&#9654;</div><h4>Directory</h4><p>Revenue from local businesses</p></div>
+    <div class="fw-step"><div class="fw-arrow">&#9654;</div><h4>Partnerships</h4><p>Venues and sponsors</p></div>
+    <div class="fw-step"><div class="fw-arrow">&#8634;</div><h4>More Shows</h4><p>Bigger, better, repeat</p></div>
   </div>
 
   <p class="note">
-    In Natchez, we've measured this at roughly 2:1 — a $1,000 show generates about $500
-    in downstream revenue across the other modules. We think it works the same way
-    in the Hudson Valley. That's one of the things we'd figure out together.
+    In Natchez, a $1,000 show generates about $500 in downstream revenue across the other modules.
+    We think it works the same way in the Hudson Valley. That's one of the things we figure out together.
   </p>
 </section>
 
-<!-- LOG IN AND PLAY -->
+<!-- HUDSON VALLEY LANDSCAPE -->
+<div class="photo-full">
+  <img src="/images/processed/bearsville/hv-landscape-05.webp" alt="Hudson Valley landscape">
+</div>
+
+<!-- CLOSING -->
 <section>
-  <p class="section-label">6. Log In and Play</p>
-  <h2>The best way to understand it is to get inside</h2>
-
-  <div class="login-grid">
-    <div class="login-card">
-      <h3>Bearsville Media Group</h3>
-      <div class="url">bearsvillemediagroup.com/admin</div>
-      <p>The hub — directory, radio, magazine, events. Browse around and see what's there.</p>
-    </div>
-    <div class="login-card">
-      <h3>Studio C Video</h3>
-      <div class="url">studiocvideo.com/admin</div>
-      <p>The production arm. Try uploading some session photos. See what the creative studio can do.</p>
-    </div>
-    <div class="login-card">
-      <h3>Delta Dawn</h3>
-      <div class="url">Gold chat bubble, bottom-right corner</div>
-      <p>Your AI assistant. Ask her about upcoming events, recent uploads, or anything about the system.</p>
-    </div>
-    <div class="login-card">
-      <h3>The Sandbox</h3>
-      <div class="url">Try: /admin/articles/new</div>
-      <p>Draft an article. Upload photos. Create an event. See what feels right and what feels clunky.</p>
-    </div>
-  </div>
-
+  <h2>This is the start. Let's see what we can build.</h2>
   <p>
-    This is the start of the Bearsville node. Let's see what we can build.
+    Log in. Click around. Upload some photos. Draft an article. Break something.
+    Tell us what feels right and what feels wrong. The platform is live and it's hungry
+    for your design eye.
   </p>
+
+  <div class="link-grid" style="margin-top: 1.5rem;">
+    <a href="https://bearsvillemediagroup.com/admin" target="_blank" class="link-card">
+      <h3>Log into Bearsville Admin</h3>
+      <div class="url">bearsvillemediagroup.com/admin →</div>
+    </a>
+    <a href="https://studiocvideo.com/admin" target="_blank" class="link-card">
+      <h3>Log into Studio C Admin</h3>
+      <div class="url">studiocvideo.com/admin →</div>
+    </a>
+  </div>
 </section>
+
+</div>
 
 <div class="footer">
   Hillbilly Dreams Inc · Powered by Measurably Better Things · April 2026
