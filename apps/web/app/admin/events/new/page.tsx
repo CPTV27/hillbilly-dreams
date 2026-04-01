@@ -36,7 +36,7 @@ export default function NewEventPage() {
         const err = await res.json().catch(() => ({}));
         throw new Error(err.error || 'Failed to create event');
       }
-      router.push('/events');
+      router.push('/admin/events');
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
     } finally {
@@ -51,7 +51,7 @@ export default function NewEventPage() {
           <h1 className="admin-page-title">New Event</h1>
           <p className="admin-page-sub">Schedule a Blues Room session or live event</p>
         </div>
-        <a href="/events" className="admin-btn admin-btn--ghost">← Back</a>
+        <a href="/admin/events" className="admin-btn admin-btn--ghost">← Back</a>
       </div>
       {error && <div className="admin-error-banner">{error}</div>}
       <div className="admin-card">
