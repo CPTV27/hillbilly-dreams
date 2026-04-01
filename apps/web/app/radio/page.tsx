@@ -50,7 +50,7 @@ export default async function RadioHomepage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="radio-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/radio-hero-vintage.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="radio-hero" style={{ backgroundImage: 'url(/images/processed/bearsville/bearsville-studio-session-01.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="radio-hero__overlay" />
         <div className="radio-hero__bg" aria-hidden="true">
           <div className="radio-hero__wave radio-hero__wave--1" />
@@ -76,6 +76,45 @@ export default async function RadioHomepage() {
             </a>
             <a href="/radio/live" className="btn btn--ghost">
               Upcoming Live Sessions
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── How to Listen ── */}
+      <section style={{
+        padding: 'var(--space-10) var(--space-6)',
+        borderBottom: '1px solid var(--border)',
+      }}>
+        <div className="section-container" style={{ maxWidth: '700px', textAlign: 'center' }}>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 400, marginBottom: 'var(--space-4)' }}>
+            How to Listen
+          </h2>
+          <p style={{ fontSize: '0.95rem', lineHeight: 1.7, color: 'var(--text-muted)', marginBottom: 'var(--space-6)' }}>
+            Big Muddy Radio streams 24/7. Tune in from anywhere in the world.
+            Live sessions from the Blues Room are broadcast as they happen — subscribe to the
+            newsletter for stream links 24 hours before each session.
+          </p>
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href="/radio/player" style={{
+              padding: '0.75rem 2rem',
+              backgroundColor: 'var(--accent)',
+              color: 'var(--bg)',
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: '0.85rem',
+            }}>
+              Open Player
+            </a>
+            <a href="/radio/shows" style={{
+              padding: '0.75rem 2rem',
+              border: '1px solid var(--accent)',
+              color: 'var(--accent)',
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: '0.85rem',
+            }}>
+              Show Schedule
             </a>
           </div>
         </div>

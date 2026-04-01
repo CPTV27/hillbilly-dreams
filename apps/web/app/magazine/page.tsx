@@ -81,6 +81,26 @@ export default async function MagazineHomepage() {
         </div>
       </section>
 
+      {/* ── Magazine Intro ── */}
+      <section className="section-container" style={{ padding: 'var(--space-12) var(--space-6)', maxWidth: '700px' }}>
+        <p style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: '1.25rem',
+          lineHeight: 1.7,
+          color: 'var(--text)',
+          textAlign: 'center',
+        }}>
+          Long-form editorial from the Mississippi corridor. City guides, artist profiles,
+          photo essays, and the stories behind the businesses, musicians, and towns that make
+          this region what it is. Published from Natchez, Mississippi.
+        </p>
+      </section>
+
+      {/* ── Newsletter (moved up) ── */}
+      <section style={{ padding: '0 var(--space-6) var(--space-8)', maxWidth: '600px', margin: '0 auto' }}>
+        <NewsletterSignup />
+      </section>
+
       <IllustrationDivider variant="oak" />
 
       {/* ── Featured Article ── */}

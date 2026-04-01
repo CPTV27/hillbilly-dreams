@@ -258,9 +258,30 @@ export default function MeasurablyBetterPlatformPage() {
         <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
           Big Muddy. 14 domains. One deployment.
         </h2>
-        <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--text-muted)', maxWidth: '600px', marginBottom: '3rem' }}>
+        <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--text-muted)', maxWidth: '600px', marginBottom: '2rem' }}>
           A music-hospitality ecosystem in Natchez, Mississippi. Hotel, touring circuit, magazine, radio station, record label, business directory — all running on one instance of this platform.
         </p>
+
+        {/* Photo proof strip */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: '2px',
+          marginBottom: '3rem',
+          opacity: 0.85,
+        }}>
+          {[
+            { src: '/images/processed/big-muddy/natchez-night-1034.webp', alt: 'Natchez at night — live oaks and street lights' },
+            { src: '/images/processed/arri-aslan-inn-portrait.webp', alt: 'Arri Aslan performing at The Big Muddy Inn' },
+            { src: '/images/processed/bearsville/theater-show-01.webp', alt: 'Live show at Bearsville Theater' },
+            { src: '/images/processed/bearsville/bearsville-studio-session-01.webp', alt: 'Recording session at Utopia Studios' },
+          ].map((img) => (
+            <div key={img.src} style={{ aspectRatio: '16/9', overflow: 'hidden', position: 'relative' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={img.src} alt={img.alt} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
+          ))}
+        </div>
 
         <div style={{
           display: 'grid',
