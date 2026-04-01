@@ -335,7 +335,7 @@ export default function EntertainmentPage() {
         </div>
       </section>
 
-      {/* ── Arri Aslan Feature ── */}
+      {/* ── Arrie Aslin Feature ── */}
       <section style={{
         position: 'relative',
         minHeight: '60vh',
@@ -346,7 +346,7 @@ export default function EntertainmentPage() {
       }}>
         <Image
           src="/images/processed/arri-aslan-inn-portrait.webp"
-          alt="Arri Aslan performing at The Big Muddy Inn"
+          alt="Arrie Aslin performing at The Big Muddy Inn"
           fill
           sizes="100vw"
           style={{ objectFit: 'cover', objectPosition: 'center top', filter: 'brightness(0.5)' }}
@@ -362,11 +362,11 @@ export default function EntertainmentPage() {
             Artist in Residence
           </p>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem', fontWeight: 400, lineHeight: 1.05, marginBottom: '1rem' }}>
-            Arri Aslan &amp; Rise Up
+            Arrie Aslin &amp; Rise Up
           </h2>
           <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--text-muted)' }}>
             Gospel, soul, and the American songbook — performed live at the Blues Room
-            and on stages across the corridor. Arri is the first artist in the Big Muddy
+            and on stages across the corridor. Arrie is the first artist in the Big Muddy
             touring roster, and the proof that the machine works.
           </p>
         </div>

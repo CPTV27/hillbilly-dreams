@@ -26,7 +26,7 @@ const GRID_IMAGES: { src: string; alt: string; bucket: 'region' | 'music' | 'pla
   { src: '/images/processed/bearsville-theater-rock-02.webp', alt: 'Live band at Bearsville Theater, moody stage lighting', bucket: 'music' },
   { src: '/images/processed/bearsville-theater-rock-03.webp', alt: 'Performer at Bearsville Theater, intimate venue shot', bucket: 'music' },
   { src: '/images/processed/bearsville-theater-rock-04.webp', alt: 'Rock show at Bearsville Theater, crowd and stage', bucket: 'music' },
-  { src: '/images/processed/arri-aslan-inn-portrait.webp', alt: 'Arri Aslan, arms wide in the Big Muddy Inn parlor', bucket: 'music' },
+  { src: '/images/processed/arri-aslan-inn-portrait.webp', alt: 'Arrie Aslin, arms wide in the Big Muddy Inn parlor', bucket: 'music' },
   { src: '/images/processed/bearsville-matt-pond-studio-01.webp', alt: 'Matt Pond recording session at Utopia Studios', bucket: 'music' },
   // — Places / business: storefronts, studios, property —
   { src: '/images/processed/bearsville-studio-session-01.webp', alt: 'Utopia Studios demo day — recording session in progress', bucket: 'places' },

@@ -101,7 +101,7 @@ Every photo gets tagged with:
 | location | string | Natchez, MS |
 | corridor | enum | south, northeast, both |
 | subject | tags[] | performer, venue, food, landscape, portrait, street, night, architecture |
-| people | tags[] | arri-aslan, tracy, amy, chase, regina |
+| people | tags[] | arrie-aslin, tracy, amy, chase, regina |
 | usable_as | tags[] | hero, article, gallery-print, social, thumbnail, background |
 | mood | tags[] | golden-hour, night, moody, bright, intimate, cinematic |
 | vision_api_labels | json | Raw labels from Vision API with confidence scores |

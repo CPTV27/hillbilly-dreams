@@ -62,7 +62,7 @@ Northeast node (Woodstock, NY). Summer 2026 activation.
 | bigmuddymagazine.com | Big Muddy Magazine | Active |
 | bigmuddyradio.com | Big Muddy Radio | Active |
 | bigmuddyentertainment.com | Big Muddy Entertainment | Active |
-| bigmuddyrecord.com | Big Muddy Records | Active |
+| bigmuddyrecords.com | Big Muddy Records | Active |
 | deepsouthdirectory.com | Deep South Directory | Active — primary revenue |
 | outsidereconomics.com | Outsider Economics | Active — editorial |
 | hillbillydreamsinc.com | HDI Corporate | Active — sparse |
@@ -159,6 +159,7 @@ API keys in Vercel: `ANTHROPIC_API_KEY`, `PERPLEXITY_API_KEY`, `GOOGLE_APPLICATI
 - **No high-tech imagery** — Main Street, not Silicon Valley
 - **AI generates art, Canva handles typography** — never let AI put text in images
 - **DSD product name is "Deep South Directory"** — not "MBT" or "Measurably Better Things" in customer-facing copy
+- **Arrie Aslin** — correct spelling. NOT "Arri Aslan," "Ari Aslan," "Ari B. Aslan." It's **Arrie Aslin.**
 - **Tracy and Amy are equity partners** — never employees
 - **Bitwarden for all secrets** — no exceptions
 - **Verify deploys** — CI passing ≠ deployed. Check live URLs.

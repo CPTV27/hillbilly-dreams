@@ -104,5 +104,5 @@ Match Chase's memo voice — compressed, signal-dense, no filler. This is operat
 | Amy Scruggs | Signed | Full catalog |
 | Kate Skwire | Offered | Hudson Valley, has album |
 | Jill Stevenson | Offered | Potential collab with Amy Allen |
-| Arri Aslan & Rise Up | Active | First touring act, artist-in-residence |
+| Arrie Aslin & Rise Up | Active | First touring act, artist-in-residence |
 | Todd Edelman | Research | Chase wants to bring him down |
