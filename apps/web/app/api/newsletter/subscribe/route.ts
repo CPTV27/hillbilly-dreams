@@ -9,7 +9,13 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { email, brand } = body as { email?: string; brand?: string };
+    const { email, brand, name, source, location } = body as {
+      email?: string;
+      brand?: string;
+      name?: string;
+      source?: string;
+      location?: string;
+    };
 
     if (!email || typeof email !== 'string') {
       return NextResponse.json(
@@ -34,6 +40,11 @@ export async function POST(request: Request) {
         { error: result.error || 'Subscription failed' },
         { status: 502 },
       );
+    }
+
+    // Log WiFi portal signups for tracking
+    if (source || location) {
+      console.log(`[Newsletter] subscribe: ${trimmed} (name: ${name || 'n/a'}, source: ${source || 'web'}, location: ${location || 'unknown'}, brand: ${brand || 'default'})`);
     }
 
     return NextResponse.json({ success: true });
