@@ -12,24 +12,32 @@ Hillbilly Dreams Inc — a media-hospitality ecosystem anchored in Natchez, Miss
 
 ---
 
+## Business Architecture (Read `docs/BUSINESS_ARCHITECTURE.md` for full detail)
+
+**Three layers:**
+- **HDI** = holding company (backstage, minimal)
+- **MBT** = technology platform (the Glass Engine — modules, infrastructure, AI)
+- **Implementations** = Big Muddy (flagship), Bearsville (summer 2026), future clients
+
+**MBT has two products — same engine, different skins:**
+- `measurablybetter.life` = Consumer AI agent (personal Southern Concierge, slider $0–$99/mo)
+- `deepsouthdirectory.com` = Business marketing (directory, social, reviews, $20/$49/$99)
+
+**"Powered by Measurably Better Things"** in footers across all properties is correct and intentional.
+
 ## Current Focus (Q2 2026)
 
-**Priority 1 — Deep South Directory (DSD)**
-Walk-in sales, 5 businesses/day, lead with $20/mo. Claim ladder starts April 1.
-Pitch as "Deep South Directory" — not MBT, not Measurably Better Things.
+**Phase: Dogfood** — Running the system on ourselves before external sales.
+Four internal clients: Big Muddy Touring, Big Muddy Magazine, Biscuits & Blues (Regina Charboneau), The Big Muddy Inn.
 
-**Priority 2 — Big Muddy Brands**
-Touring, Magazine, Radio, Entertainment, Records. These are the media proof that makes DSD credible.
-Shows generate a 2:1 ecosystem multiplier (Inn + Directory revenue).
+**Priority 1 — Big Muddy Touring**
+The entertainment engine. Book bands, provide transport (Sprinter van this week), promote shows through the media company. Shows feed every other module (2:1 multiplier).
+
+**Priority 2 — Deep South Directory (DSD)**
+Business marketing product. Dogfooding on our own properties + Regina, then external sales later this month.
 
 **Priority 3 — Bearsville Media Group**
-Northeast node (Woodstock, NY). Domain live, DNS wired. Summer 2026 activation.
-
-**B2B Only — Not Consumer-Facing**
-- `measurablybetter.life` — MBT is the B2B platform brand for operators/licensees. NOT for walk-in customers.
-- `measurablybetterthings.com` — alias for above.
-- `buycurious.art` — routes to MBT storefront, not actively promoted.
-- If a customer sees "Measurably Better" on a consumer page, that's a bug.
+Northeast node (Woodstock, NY). Summer 2026 activation.
 
 **Archived**
 - S2PX / Scan2Plan — archived to `~/S2PX-archive/`. Partnership with Owen Bush dissolved 03/25/2026.
@@ -52,8 +60,8 @@ Northeast node (Woodstock, NY). Domain live, DNS wired. Summer 2026 activation.
 | studiocvideo.com | Studio C Video | Active — partner |
 | bearsvillemediagroup.com | Bearsville Media Group | Live, summer activation |
 | bearsvillemedia.com | Bearsville (alias) | Redirects to above |
-| measurablybetter.life | MBT (B2B platform) | B2B only — not consumer |
-| buycurious.art | MBT Storefront alias | B2B only |
+| measurablybetter.life | MBT | Active — consumer AI + platform overview |
+| buycurious.art | Gallery/Storefront | Active — routes to gallery |
 
 ---
 
