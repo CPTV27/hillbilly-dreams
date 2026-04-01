@@ -49,75 +49,116 @@ export default async function RadioHomepage() {
 
   return (
     <>
-      {/* ── Hero ── */}
-      <section className="radio-hero" style={{ backgroundImage: 'url(/images/processed/bearsville/bearsville-studio-session-01.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="radio-hero__overlay" />
-        <div className="radio-hero__bg" aria-hidden="true">
-          <div className="radio-hero__wave radio-hero__wave--1" />
-          <div className="radio-hero__wave radio-hero__wave--2" />
-          <div className="radio-hero__wave radio-hero__wave--3" />
-        </div>
-        <div className="radio-hero__content">
-          <div className="radio-hero__now-playing">
-            <span className="radio-hero__live-dot" />
-            <span>Now Playing</span>
-          </div>
-          <h1 className="radio-hero__title">
-            Big Muddy<br />
-            <em>Radio</em>
+      {/* ── Hero: The Pulse of the Mud ── */}
+      <section style={{
+        height: '100vh',
+        backgroundColor: 'var(--bg)',
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+      }}>
+        <Image
+          src="/images/processed/bearsville/theater-show-01.webp"
+          alt="Live performance — singer under stage lights at Bearsville Theater"
+          fill
+          priority
+          sizes="100vw"
+          style={{
+            objectFit: 'cover',
+            opacity: 0.55,
+            filter: 'grayscale(80%) contrast(1.2)',
+          }}
+        />
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, var(--bg) 95%)',
+          zIndex: 1,
+        }} />
+        <div style={{
+          position: 'relative',
+          zIndex: 2,
+          textAlign: 'center',
+          padding: '0 10%',
+        }}>
+          <span style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: '0.65rem',
+            letterSpacing: '0.5em',
+            textTransform: 'uppercase',
+            color: 'var(--accent)',
+          }}>
+            Live from Natchez, Mississippi
+          </span>
+          <h1 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(3rem, 10vw, 7rem)',
+            color: 'var(--text)',
+            marginTop: '1rem',
+            lineHeight: 0.85,
+            fontWeight: 400,
+            letterSpacing: '-0.04em',
+          }}>
+            The Unfiltered<br />
+            <span style={{ fontStyle: 'italic', color: 'var(--accent)' }}>Frequency.</span>
           </h1>
-          <p className="radio-hero__sub">
-            Curated playlists, live sessions from the Blues Room in Natchez,
-            and the full soundtrack of the Mississippi music corridor.
+          <p style={{
+            maxWidth: '500px',
+            margin: '2rem auto 0',
+            color: 'var(--text-muted)',
+            fontSize: '1.05rem',
+            lineHeight: 1.6,
+          }}>
+            No algorithms. No playlists-by-committee. Just the corridor, broadcast live from the mud.
           </p>
-          <div className="radio-hero__ctas">
-            <a href="/radio/playlists" className="btn btn--primary">
-              Browse All Playlists
+
+          {/* Player Frame */}
+          <div style={{
+            marginTop: '3rem',
+            border: '1px solid var(--accent)',
+            padding: '1rem 2.5rem',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '2rem',
+            backgroundColor: 'rgba(0,0,0,0.4)',
+            backdropFilter: 'blur(10px)',
+          }}>
+            <a href="/radio/player" style={{
+              background: 'none',
+              border: 'none',
+              color: 'var(--accent)',
+              fontSize: '2rem',
+              textDecoration: 'none',
+              lineHeight: 1,
+            }}>
+              ▶
             </a>
-            <a href="/radio/live" className="btn btn--ghost">
-              Upcoming Live Sessions
+            <div style={{ textAlign: 'left' }}>
+              <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+                Now Streaming
+              </div>
+              <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', color: 'var(--text)' }}>
+                Big Muddy Radio — The Corridor Feed
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div style={{ marginTop: '2rem', display: 'flex', gap: '2rem', justifyContent: 'center' }}>
+            <a href="/radio/shows" style={{ fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-muted)', textDecoration: 'none' }}>
+              Show Schedule
+            </a>
+            <a href="/radio/live" style={{ fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-muted)', textDecoration: 'none' }}>
+              Live Sessions
+            </a>
+            <a href="/radio/playlists" style={{ fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-muted)', textDecoration: 'none' }}>
+              Playlists
             </a>
           </div>
         </div>
       </section>
-
-      {/* ── How to Listen ── */}
-      <section style={{
-        padding: 'var(--space-10) var(--space-6)',
-        borderBottom: '1px solid var(--border)',
-      }}>
-        <div className="section-container" style={{ maxWidth: '700px', textAlign: 'center' }}>
-          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 400, marginBottom: 'var(--space-4)' }}>
-            How to Listen
-          </h2>
-          <p style={{ fontSize: '0.95rem', lineHeight: 1.7, color: 'var(--text-muted)', marginBottom: 'var(--space-6)' }}>
-            Big Muddy Radio streams 24/7. Tune in from anywhere in the world.
-            Live sessions from the Blues Room are broadcast as they happen — subscribe to the
-            newsletter for stream links 24 hours before each session.
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="/radio/player" style={{
-              padding: '0.75rem 2rem',
-              backgroundColor: 'var(--accent)',
-              color: 'var(--bg)',
-              textDecoration: 'none',
-              fontWeight: 600,
-              fontSize: '0.85rem',
-            }}>
-              Open Player
-            </a>
-            <a href="/radio/shows" style={{
-              padding: '0.75rem 2rem',
-              border: '1px solid var(--accent)',
-              color: 'var(--accent)',
-              textDecoration: 'none',
-              fontWeight: 600,
-              fontSize: '0.85rem',
-            }}>
-              Show Schedule
-            </a>
-          </div>
-        </div>
       </section>
 
       <IllustrationDivider variant="magnolia" />

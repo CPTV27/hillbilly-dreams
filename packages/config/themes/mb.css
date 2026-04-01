@@ -1,28 +1,27 @@
-/* Measurably Better Things: The Glass Engine
-   Dark, precise, technical. The technology platform layer.
-   Per North Star Manifesto: #0a0a0a obsidian, #c8943e brass gold, #f5f0eb bone.
-   Monospace for technical data, serif display for headlines. */
+/* Measurably Better Things: The Google Lab
+   Light, bright, surgical. White canvas, gold data accents, laser-etched headers.
+   Per Vesper: "High-end laboratory. Professional-grade infrastructure, not a hobby project."
+   Font-weight 200 on massive headers = etched with a laser.
+   Gold (#c8943e) is the DNA — NOT Google Blue. Gold = value, harvest, the dream made manifest. */
 .theme-mb {
-  --bg: #0a0a0a;
-  --surface: #111110;
-  --surface-2: #1a1918;
-  --surface-3: #242220;
-  --text: #f5f0eb;
-  --text-muted: #8a8580;
-  --text-disabled: #4a4540;
+  --bg: #ffffff;
+  --surface: #fafafa;
+  --surface-2: #f5f5f5;
+  --surface-3: #eeeeee;
+  --text: #111827;
+  --text-muted: #6b7280;
+  --text-disabled: #9ca3af;
   --accent: #c8943e;
-  --accent-hover: #daa54f;
-  --accent-muted: rgba(200, 148, 62, 0.12);
-  --accent-subtle: rgba(200, 148, 62, 0.06);
-  --slate: #6b6560;
-  --slate-muted: rgba(107, 101, 96, 0.15);
+  --accent-hover: #b38435;
+  --accent-muted: rgba(200, 148, 62, 0.10);
+  --accent-subtle: rgba(200, 148, 62, 0.04);
   --success: #22c55e;
   --warning: #f59e0b;
   --error: #ef4444;
-  --border: #242220;
-  --border-strong: #3a3633;
-  --border-subtle: #1a1918;
-  --font-display: var(--font-display, 'Georgia', 'Times New Roman', serif);
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+  --border-subtle: #f3f4f6;
+  --font-display: var(--font-body, 'Inter', system-ui, sans-serif);
   --font-body: var(--font-body, 'Inter', system-ui, sans-serif);
   --font-mono: 'IBM Plex Mono', 'SF Mono', 'Fira Code', monospace;
   --text-base: 17px;
@@ -31,12 +30,12 @@
   --text-2xl: 32px;
   --text-3xl: 44px;
   --text-hero: 64px;
-  --radius-sm: 0px;
-  --radius-md: 2px;
-  --radius-lg: 4px;
-  --shadow-sm: none;
-  --shadow-md: none;
-  --shadow-lg: none;
-  --shadow-xl: none;
-  --shadow-glow: 0 0 40px rgba(200, 148, 62, 0.06);
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-glow: none;
 }

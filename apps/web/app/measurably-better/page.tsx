@@ -5,8 +5,8 @@
 // NOT to restaurant owners. DSD handles the consumer pitch.
 //
 // Voice: Swiss-clean authority. Direct. No fluff.
-// Visual: Dark obsidian, gold accents, monospace for technical data.
-// Per North Star Manifesto: photography first, technology invisible.
+// Visual: Light & bright "Google Lab" — white canvas, gold data accents, weight-200 headers.
+// Per Vesper: "Professional-grade infrastructure, not a hobby project."
 
 import type { Metadata } from 'next';
 

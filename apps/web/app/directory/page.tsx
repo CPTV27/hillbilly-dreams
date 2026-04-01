@@ -273,9 +273,9 @@ export default function DirectoryPage() {
         >
           {[
             {
-              label: 'Outsider Economics · Brief 001',
-              title: 'The 80% Extraction Rate (And How to Stop It)',
-              desc: 'Eighty cents of every dollar earned in the Deep South leaves within 48 hours. Not bad luck. A machine designed to drain you. Here\'s how it works — and how to stop it.',
+              label: 'From the Corridor',
+              title: 'Where Does the Money Go?',
+              desc: 'Most of the money spent in small Southern towns leaves before the week is out. We looked at why — and what local businesses can do about it.',
               href: '/economics/field-manual/02-the-extraction-trap',
             },
             {
