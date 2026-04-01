@@ -1,6 +1,16 @@
 # Master Agent Handoff — Read This First
 
-**Every agent on every machine reads this before doing anything.**
+## BOOT SEQUENCE — Do This Before Anything Else
+
+```
+1. git pull origin main          ← You may be in a stale worktree
+2. git branch                    ← Confirm you're on main or know which branch
+3. ls docs/BUSINESS_ARCHITECTURE.md   ← If this file doesn't exist, you're not current
+4. Read docs/BUSINESS_ARCHITECTURE.md ← Source of truth for the entire business
+5. Read .claude/agents/HANDOFF_COS_TO_PATCH.md ← Capabilities audit, gaps, priorities
+```
+
+**If step 3 fails, STOP.** Run `git pull origin main` again. Do not proceed with stale files.
 
 ---
 
