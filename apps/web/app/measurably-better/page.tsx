@@ -1,314 +1,428 @@
-'use client';
-
 // apps/web/app/measurably-better/page.tsx
-// MBT landing — "Strip the HDX engine and put it in a work truck."
-// Speaks to Main Street business owners in headcount language, not SaaS jargon.
+// MBT Platform Page — "The Glass Engine"
+//
+// This page talks to operators, investors, and potential licensees.
+// NOT to restaurant owners. DSD handles the consumer pitch.
+//
+// Voice: Swiss-clean authority. Direct. No fluff.
+// Visual: Dark obsidian, gold accents, monospace for technical data.
+// Per North Star Manifesto: photography first, technology invisible.
 
-import { useState, useEffect } from 'react';
-import './mbt-landing.css';
+import type { Metadata } from 'next';
 
-/* ── Extractive Audit Calculator Logic ── */
-const REVENUE_OPTIONS = [
-  { label: 'Under $10K', value: 8000 },
-  { label: '$10K – $25K', value: 17500 },
-  { label: '$25K – $50K', value: 37500 },
-  { label: '$50K – $100K', value: 75000 },
-  { label: '$100K+', value: 125000 },
+export const metadata: Metadata = {
+  title: 'Measurably Better Things — The platform behind independent media companies',
+};
+
+const MODULES = [
+  {
+    name: 'Directory',
+    desc: 'AI-powered business listings with review monitoring, competitor watch, and monthly report cards.',
+    status: 'Live',
+  },
+  {
+    name: 'Magazine',
+    desc: 'Editorial content pipeline. City guides, features, photo essays. AI-assisted drafts, human-edited output.',
+    status: 'Live',
+  },
+  {
+    name: 'Radio',
+    desc: 'Streaming infrastructure. Show scheduling, playlist management, live session recording and broadcast.',
+    status: 'Live',
+  },
+  {
+    name: 'Records',
+    desc: 'Artist services. Catalog management, session booking, distribution. Artists keep their masters.',
+    status: 'Live',
+  },
+  {
+    name: 'Touring & Events',
+    desc: 'Venue booking, ticketing, event management. Show-to-content pipeline built in.',
+    status: 'Live',
+  },
+  {
+    name: 'Commerce',
+    desc: 'Storefront, payments, subscriptions. Stripe Connect for multi-party revenue splits.',
+    status: 'Live',
+  },
+  {
+    name: 'Broadcasting',
+    desc: 'Live production via OBS and Icecast. Multi-stream to radio, web, and social simultaneously.',
+    status: 'Live',
+  },
+  {
+    name: 'AI Content Pipeline',
+    desc: 'Social post generation, editorial spotlights, voice profiles, search optimization. Gemini + Claude.',
+    status: 'Live',
+  },
+  {
+    name: 'Analytics',
+    desc: 'Monthly report cards, Google review alerts, competitor snapshots, audience metrics.',
+    status: 'Building',
+  },
 ];
 
-function calcWaste(revenue: number, toolCount: number, hasAdmin: boolean): number {
-  // SaaS waste: ~$120/tool/month average (Yelp ads, email platform, review tool, scheduling, etc.)
-  const saasWaste = toolCount * 120;
-  // Admin overhead: ~23% of revenue lost to manual admin (industry average from MBT thesis)
-  const adminOverhead = hasAdmin ? 3750 : Math.round(revenue * 0.04);
-  // Marketing agency cost if outsourcing
-  const marketingWaste = 500;
-  return saasWaste + adminOverhead + marketingWaste;
-}
+const PROPERTIES = [
+  { name: 'Big Muddy Touring', url: 'https://bigmuddytouring.com', desc: 'The touring circuit' },
+  { name: 'Big Muddy Magazine', url: 'https://bigmuddymagazine.com', desc: 'Editorial & city guides' },
+  { name: 'Big Muddy Radio', url: 'https://bigmuddyradio.com', desc: 'Streaming & live sessions' },
+  { name: 'Big Muddy Entertainment', url: 'https://bigmuddyentertainment.com', desc: 'The umbrella' },
+  { name: 'Big Muddy Records', url: 'https://bigmuddyrecords.com', desc: 'Artist services label' },
+  { name: 'Deep South Directory', url: 'https://deepsouthdirectory.com', desc: 'Business directory & marketing' },
+];
 
-export default function MeasurablyBetterLanding() {
-  const [scrolled, setScrolled] = useState(false);
-  const [revenueIdx, setRevenueIdx] = useState(2);
-  const [toolCount, setToolCount] = useState(5);
-  const [hasAdmin, setHasAdmin] = useState(false);
-  const [showResult, setShowResult] = useState(false);
+const CORRIDORS = [
+  {
+    name: 'Music & Hospitality',
+    example: 'Big Muddy — Natchez, MS',
+    status: 'Running',
+    modules: 'All 9 modules active',
+  },
+  {
+    name: 'Northeast Media',
+    example: 'Bearsville Media Group — Hudson Valley, NY',
+    status: 'Summer 2026',
+    modules: 'Directory, Radio, Magazine, Studio',
+  },
+  {
+    name: 'AEC & Geospatial',
+    example: 'Scan2Plan — National',
+    status: 'Potential',
+    modules: 'Directory, Commerce, Analytics, Content Pipeline',
+  },
+];
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  const monthlyWaste = calcWaste(REVENUE_OPTIONS[revenueIdx].value, toolCount, hasAdmin);
-  const yearlyWaste = monthlyWaste * 12;
-
+export default function MeasurablyBetterPlatformPage() {
   return (
-    <div className="mbt">
+    <main style={{ backgroundColor: 'var(--bg)', color: 'var(--text)', minHeight: '100vh' }}>
+
       {/* ── Nav ── */}
-      <nav className={`mbt-nav${scrolled ? ' mbt-nav--scrolled' : ''}`}>
-        <div className="mbt-nav__inner">
-          <a href="/measurably-better" className="mbt-nav__brand">
-            <span className="mbt-nav__logo">MBT</span>
-            <span className="mbt-nav__name">Measurably Better</span>
+      <nav style={{
+        padding: '1.5rem 5%',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderBottom: '1px solid var(--border)',
+      }}>
+        <span style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: '0.8rem',
+          letterSpacing: '0.15em',
+          textTransform: 'uppercase',
+          color: 'var(--accent)',
+        }}>
+          MBT
+        </span>
+        <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+          <a href="/measurably-better/technology" style={{ color: 'var(--text-muted)', textDecoration: 'none', fontFamily: 'var(--font-mono)', fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+            Technology
           </a>
-          <div className="mbt-nav__links">
-            <a href="/measurably-better/thesis" className="mbt-nav__link">How It Works</a>
-            <a href="/directory" className="mbt-nav__link">Directory</a>
-            <a href="/directory/onboard" className="mbt-nav__cta">Get Started</a>
-          </div>
+          <a href="/measurably-better/thesis" style={{ color: 'var(--text-muted)', textDecoration: 'none', fontFamily: 'var(--font-mono)', fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+            Thesis
+          </a>
+          <a href="https://bigmuddytouring.com" style={{ color: 'var(--accent)', textDecoration: 'none', fontFamily: 'var(--font-mono)', fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+            See It Live →
+          </a>
         </div>
       </nav>
 
       {/* ── Hero ── */}
-      <section className="mbt-hero">
-        <div className="mbt-hero__glow" />
-        <div className="mbt-hero__content">
-          <span className="mbt-hero__eyebrow">Measurably Better Things</span>
-          <h1 className="mbt-hero__title">
-            Your whole business.
-            <span className="mbt-hero__accent">One platform. $99.</span>
-          </h1>
-          <p className="mbt-hero__sub">
-            Reviews, social media, directory listing, and a monthly report card &mdash;
-            all handled for you. <strong>Built for Main Street.</strong>
-          </p>
-          <div className="mbt-hero__ctas">
-            <a href="#audit" className="mbt-btn-primary">
-              See What You Could Save →
-            </a>
-            <a href="/measurably-better/thesis" className="mbt-btn-ghost">
-              Watch It Work →
-            </a>
-          </div>
-
-          {/* Stats Bar */}
-          <div className="mbt-stats">
-            <div className="mbt-stat">
-              <div className="mbt-stat__value mbt-stat__value--blue">30%</div>
-              <div className="mbt-stat__label">Margin Recovery</div>
-            </div>
-            <div className="mbt-stat">
-              <div className="mbt-stat__value mbt-stat__value--green">$1,350</div>
-              <div className="mbt-stat__label">Replaced Monthly</div>
-            </div>
-            <div className="mbt-stat">
-              <div className="mbt-stat__value mbt-stat__value--amber">24hr</div>
-              <div className="mbt-stat__label">Go-Live</div>
-            </div>
-            <div className="mbt-stat">
-              <div className="mbt-stat__value mbt-stat__value--red">0</div>
-              <div className="mbt-stat__label">Contracts</div>
-            </div>
-          </div>
+      <section style={{
+        padding: '8rem 5% 6rem',
+        maxWidth: '900px',
+      }}>
+        <p style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: '0.7rem',
+          letterSpacing: '0.25em',
+          textTransform: 'uppercase',
+          color: 'var(--accent)',
+          marginBottom: '2rem',
+        }}>
+          Measurably Better Things
+        </p>
+        <h1 style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+          fontWeight: 400,
+          lineHeight: 1.05,
+          letterSpacing: '-0.03em',
+          marginBottom: '2.5rem',
+        }}>
+          The infrastructure behind
+          <br />
+          independent media companies.
+        </h1>
+        <p style={{
+          fontSize: '1.15rem',
+          lineHeight: 1.7,
+          color: 'var(--text-muted)',
+          maxWidth: '600px',
+          marginBottom: '3rem',
+        }}>
+          A complete media-hospitality platform — directory, magazine, radio, events, commerce — deployable to any corridor, any industry, any town. One codebase. Unlimited brands.
+        </p>
+        <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+          <a href="https://bigmuddytouring.com" style={{
+            display: 'inline-block',
+            padding: '0.75rem 2rem',
+            backgroundColor: 'var(--accent)',
+            color: 'var(--bg)',
+            textDecoration: 'none',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.75rem',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            fontWeight: 600,
+          }}>
+            See it running
+          </a>
+          <a href="mailto:chase@hillbillydreamsinc.com" style={{
+            display: 'inline-block',
+            padding: '0.75rem 2rem',
+            border: '1px solid var(--border-strong)',
+            color: 'var(--text-muted)',
+            textDecoration: 'none',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.75rem',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+          }}>
+            Contact
+          </a>
         </div>
       </section>
 
-      {/* ── Extractive Audit ── */}
-      <section className="mbt-audit" id="audit">
-        <div className="mbt-audit__inner">
-          <span className="mbt-section-label">The Quick Math</span>
-          <h2 className="mbt-h2">See what you could save.</h2>
-          <p className="mbt-lead">
-            Three questions. Thirty seconds. We&apos;ll show you what an agency
-            charges for the same work MBT handles for $99.
-          </p>
-
-          <div className="mbt-audit__form">
-            <div className="mbt-audit__field">
-              <label className="mbt-audit__label">What&apos;s your monthly revenue?</label>
-              <div className="mbt-audit__select-wrap">
-                <select
-                  className="mbt-audit__select"
-                  value={revenueIdx}
-                  onChange={(e) => { setRevenueIdx(Number(e.target.value)); setShowResult(false); }}
-                >
-                  {REVENUE_OPTIONS.map((opt, i) => (
-                    <option key={i} value={i}>{opt.label}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="mbt-audit__field">
-              <label className="mbt-audit__label">
-                How many SaaS tools do you pay for? <span className="mbt-audit__hint">{toolCount}</span>
-              </label>
-              <input
-                type="range"
-                min={1}
-                max={12}
-                value={toolCount}
-                onChange={(e) => { setToolCount(Number(e.target.value)); setShowResult(false); }}
-                className="mbt-audit__range"
-              />
-              <div className="mbt-audit__range-labels">
-                <span>1</span><span>12+</span>
-              </div>
-            </div>
-
-            <div className="mbt-audit__field">
-              <label className="mbt-audit__label">Do you have a dedicated office manager?</label>
-              <div className="mbt-audit__toggle-group">
-                <button
-                  className={`mbt-audit__toggle${!hasAdmin ? ' mbt-audit__toggle--active' : ''}`}
-                  onClick={() => { setHasAdmin(false); setShowResult(false); }}
-                >
-                  No
-                </button>
-                <button
-                  className={`mbt-audit__toggle${hasAdmin ? ' mbt-audit__toggle--active' : ''}`}
-                  onClick={() => { setHasAdmin(true); setShowResult(false); }}
-                >
-                  Yes — $3,750/mo
-                </button>
-              </div>
-            </div>
-
-            <button
-              className="mbt-btn-primary mbt-audit__submit"
-              onClick={() => setShowResult(true)}
-            >
-              Show Me the Savings →
-            </button>
+      {/* ── The Stack ── */}
+      <section style={{
+        padding: '5rem 5%',
+        borderTop: '1px solid var(--border)',
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '3rem', flexWrap: 'wrap', gap: '1rem' }}>
+          <div>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
+              Modules
+            </p>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 400, letterSpacing: '-0.02em' }}>
+              Nine skills. One platform.
+            </h2>
           </div>
-
-          {showResult && (
-            <div className="mbt-audit__result">
-              <div className="mbt-audit__result-card">
-                <p className="mbt-audit__result-label">An agency would charge you approximately</p>
-                <p className="mbt-audit__result-amount">
-                  ${monthlyWaste.toLocaleString()}<span>/month</span>
-                </p>
-                <p className="mbt-audit__result-yearly">
-                  That&apos;s <strong>${yearlyWaste.toLocaleString()}/year</strong>. MBT does it for $1,188.
-                </p>
-                <a href="/directory/onboard" className="mbt-btn-primary" style={{ marginTop: '1.5rem' }}>
-                  Get it back for $99/month →
-                </a>
-              </div>
-            </div>
-          )}
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-disabled)', maxWidth: '300px', lineHeight: 1.6 }}>
+            Each module works independently or together. Clients activate what they need.
+          </p>
         </div>
-      </section>
 
-      {/* ── Three Hires for $99 ── */}
-      <section className="mbt-hires">
-        <div className="mbt-hires__inner">
-          <span className="mbt-section-label">What You Get</span>
-          <h2 className="mbt-h2">Three things working for you, around the clock.</h2>
-
-          <div className="mbt-hires__grid">
-            <div className="mbt-hires__card mbt-hires__card--blue">
-              <div className="mbt-hires__role">The Autonomous Admin</div>
-              <p className="mbt-hires__replaces">Worth: $45K/year in admin time saved</p>
-              <p className="mbt-hires__desc">
-                Answers your reviews, manages your listings, and keeps your
-                data clean. Monitors Google and Yelp 24/7, drafts responses,
-                and alerts you the minute someone posts. You approve with
-                a thumbs up.
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+          gap: '1px',
+          backgroundColor: 'var(--border)',
+        }}>
+          {MODULES.map((mod) => (
+            <div key={mod.name} style={{
+              padding: '2rem',
+              backgroundColor: 'var(--bg)',
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                <h3 style={{ fontFamily: 'var(--font-body)', fontSize: '1rem', fontWeight: 600 }}>
+                  {mod.name}
+                </h3>
+                <span style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.55rem',
+                  letterSpacing: '0.15em',
+                  textTransform: 'uppercase',
+                  color: mod.status === 'Live' ? 'var(--accent)' : 'var(--text-disabled)',
+                  padding: '0.2rem 0.5rem',
+                  border: `1px solid ${mod.status === 'Live' ? 'var(--accent)' : 'var(--border-strong)'}`,
+                }}>
+                  {mod.status}
+                </span>
+              </div>
+              <p style={{ fontSize: '0.85rem', lineHeight: 1.6, color: 'var(--text-muted)' }}>
+                {mod.desc}
               </p>
             </div>
-
-            <div className="mbt-hires__card mbt-hires__card--green">
-              <div className="mbt-hires__role">The 24/7 Salesman</div>
-              <p className="mbt-hires__replaces">Worth: $3,000/mo in marketing agency fees</p>
-              <p className="mbt-hires__desc">
-                Four posts a week across Facebook, Instagram, and Google.
-                AI writes them from your photos and what&apos;s happening in
-                your town. The marketing agency that never sleeps and
-                never invoices you.
-              </p>
-            </div>
-
-            <div className="mbt-hires__card mbt-hires__card--purple">
-              <div className="mbt-hires__role">The Numbers Person</div>
-              <p className="mbt-hires__replaces">Worth: $400/mo in bookkeeping fees</p>
-              <p className="mbt-hires__desc">
-                Monthly report card: your reviews, your reach, how you
-                compare to the business down the street. No spreadsheets.
-                Plain English. The bookkeeper who actually speaks your language.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* ── Comparison ── */}
-      <section className="mbt-compare">
-        <div className="mbt-compare__inner">
-          <h2 className="mbt-h2" style={{ textAlign: 'center' }}>
-            What you&apos;re paying now vs. what you could be paying
-          </h2>
-          <div className="mbt-compare__grid">
-            <div className="mbt-compare__col mbt-compare__col--old">
-              <div className="mbt-compare__label">The old way</div>
-              <ul className="mbt-compare__list">
-                <li>Social media manager <span>$500/mo</span></li>
-                <li>Yelp ads <span>$300/mo</span></li>
-                <li>Email platform <span>$50/mo</span></li>
-                <li>Review monitoring <span>$100/mo</span></li>
-                <li>Bookkeeper <span>$400/mo</span></li>
-              </ul>
-              <div className="mbt-compare__total">$1,350/mo</div>
-            </div>
-            <div className="mbt-compare__col mbt-compare__col--new">
-              <div className="mbt-compare__label">Measurably Better</div>
-              <ul className="mbt-compare__list">
-                <li>Everything above <span>Included</span></li>
-                <li>AI-powered, human-approved <span>Included</span></li>
-                <li>Monthly report card <span>Included</span></li>
-                <li>Directory listing <span>Included</span></li>
-                <li>Magazine feature (quarterly) <span>Included</span></li>
-              </ul>
-              <div className="mbt-compare__total mbt-compare__total--highlight">$99/mo</div>
-            </div>
-          </div>
-          <p className="mbt-compare__savings">
-            That&apos;s <strong>$15,012 back in your pocket</strong> every year.
-            In your zip code. Not in San Francisco.
-          </p>
-        </div>
-      </section>
-
-      {/* ── Proof of Life ── */}
-      <section className="mbt-proof">
-        <div className="mbt-proof__inner">
-          <p className="mbt-proof__line">
-            We don&apos;t just sell this. We run a hotel, a radio station,
-            a magazine, and a business directory on it.
-          </p>
-          <div className="mbt-proof__badges">
-            <a href="https://bigmuddytouring.com" className="mbt-proof__badge" target="_blank" rel="noopener noreferrer">bigmuddytouring.com</a>
-            <a href="https://bigmuddyradio.com" className="mbt-proof__badge" target="_blank" rel="noopener noreferrer">bigmuddyradio.com</a>
-            <a href="https://bigmuddymagazine.com" className="mbt-proof__badge" target="_blank" rel="noopener noreferrer">bigmuddymagazine.com</a>
-            <a href="https://deepsouthdirectory.com" className="mbt-proof__badge" target="_blank" rel="noopener noreferrer">deepsouthdirectory.com</a>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Final CTA ── */}
-      <section className="mbt-final-cta">
-        <h2 className="mbt-h2" style={{ textAlign: 'center', marginBottom: '1rem' }}>
-          Your listing goes live in 24 hours.
+      {/* ── Proof: Big Muddy ── */}
+      <section style={{
+        padding: '5rem 5%',
+        borderTop: '1px solid var(--border)',
+      }}>
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
+          Running Implementation
+        </p>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
+          Big Muddy. 15 domains. One deployment.
         </h2>
-        <p className="mbt-final-cta__sub">No contracts. No setup fee. Cancel anytime.</p>
-        <div className="mbt-final-cta__actions">
-          <a href="/directory/onboard" className="mbt-btn-primary mbt-btn--lg">
-            Get Started — $99/month →
-          </a>
-          <a href="mailto:chase@hillbillydreamsinc.com" className="mbt-btn-ghost">
-            Talk to a human first →
-          </a>
+        <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--text-muted)', maxWidth: '600px', marginBottom: '3rem' }}>
+          A music-hospitality ecosystem in Natchez, Mississippi. Hotel, touring circuit, magazine, radio station, record label, business directory — all running on one instance of this platform.
+        </p>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+          gap: '1rem',
+        }}>
+          {PROPERTIES.map((prop) => (
+            <a key={prop.name} href={prop.url} target="_blank" rel="noopener noreferrer" style={{
+              display: 'block',
+              padding: '1.5rem',
+              border: '1px solid var(--border)',
+              textDecoration: 'none',
+              color: 'var(--text)',
+              transition: 'border-color 0.2s',
+            }}>
+              <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.25rem' }}>
+                {prop.name}
+              </h3>
+              <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.75rem' }}>
+                {prop.desc}
+              </p>
+              <span style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.65rem',
+                color: 'var(--accent)',
+                letterSpacing: '0.05em',
+              }}>
+                {prop.url.replace('https://', '')} →
+              </span>
+            </a>
+          ))}
         </div>
+
+        <p style={{
+          marginTop: '2rem',
+          fontFamily: 'var(--font-mono)',
+          fontSize: '0.75rem',
+          color: 'var(--text-disabled)',
+          fontStyle: 'italic',
+        }}>
+          This is one instance. Yours could look completely different.
+        </p>
+      </section>
+
+      {/* ── The Model ── */}
+      <section style={{
+        padding: '5rem 5%',
+        borderTop: '1px solid var(--border)',
+      }}>
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
+          Deployable
+        </p>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '3rem' }}>
+          Same platform. Different industry. Different geography.
+        </h2>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+          {CORRIDORS.map((c, i) => (
+            <div key={c.name} style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr 120px',
+              gap: '2rem',
+              padding: '1.5rem 0',
+              borderBottom: i < CORRIDORS.length - 1 ? '1px solid var(--border)' : 'none',
+              alignItems: 'center',
+            }}>
+              <div>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.25rem' }}>{c.name}</h3>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{c.example}</p>
+              </div>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-disabled)' }}>
+                {c.modules}
+              </p>
+              <span style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.6rem',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                textAlign: 'right',
+                color: c.status === 'Running' ? 'var(--accent)' : 'var(--text-disabled)',
+              }}>
+                {c.status}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── The Economics ── */}
+      <section style={{
+        padding: '5rem 5%',
+        borderTop: '1px solid var(--border)',
+      }}>
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
+          Economics
+        </p>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '3rem' }}>
+          Why this works.
+        </h2>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gap: '2rem',
+          marginBottom: '2rem',
+        }}>
+          {[
+            { number: '93%', label: 'Gross margins at scale' },
+            { number: '$99', label: 'Entry point for businesses' },
+            { number: '1', label: 'Deployment serves unlimited brands' },
+            { number: '15', label: 'Live domains from one codebase' },
+          ].map((stat) => (
+            <div key={stat.label} style={{ padding: '1.5rem', backgroundColor: 'var(--surface)', border: '1px solid var(--border)' }}>
+              <p style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem', fontWeight: 400, color: 'var(--accent)', marginBottom: '0.5rem', lineHeight: 1 }}>
+                {stat.number}
+              </p>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <a href="/measurably-better/thesis" style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: '0.75rem',
+          color: 'var(--accent)',
+          textDecoration: 'none',
+          letterSpacing: '0.05em',
+        }}>
+          Read the full thesis →
+        </a>
       </section>
 
       {/* ── Footer ── */}
-      <footer className="mbt-footer">
-        <p>&copy; 2026 Measurably Better Things&trade;</p>
-        <p className="mbt-footer__sub">
-          A <a href="https://hillbillydreamsinc.com">Hillbilly Dreams</a> company &middot; Natchez, Mississippi
-        </p>
+      <footer style={{
+        padding: '3rem 5%',
+        borderTop: '1px solid var(--border)',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '1rem',
+      }}>
+        <div>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--text-disabled)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+            Built by Hillbilly Dreams Inc · Natchez, Mississippi
+          </p>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--text-disabled)', marginTop: '0.25rem' }}>
+            Runs on Google Cloud · Vertex AI · Next.js
+          </p>
+        </div>
+        <a href="mailto:chase@hillbillydreamsinc.com" style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: '0.7rem',
+          color: 'var(--accent)',
+          textDecoration: 'none',
+          letterSpacing: '0.05em',
+        }}>
+          chase@hillbillydreamsinc.com
+        </a>
       </footer>
-    </div>
+    </main>
   );
 }

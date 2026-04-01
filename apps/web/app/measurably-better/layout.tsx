@@ -2,13 +2,13 @@ import { Metadata } from 'next';
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'Measurably Better Things | Run your business, not your software',
-  description: 'One system that handles your reviews, social media, and customer outreach. Built for Main Street.',
+  title: 'Measurably Better Things — The platform behind independent media companies',
+  description: 'A complete media-hospitality platform. Directory, magazine, radio, events, commerce. One codebase, any industry, any town.',
   openGraph: {
     title: 'Measurably Better Things',
-    description: 'One system that handles your reviews, social media, and customer outreach. Built for Main Street.',
-    url: 'https://measurablybetterthings.com',
-    siteName: 'Measurably Better',
+    description: 'A complete media-hospitality platform. Directory, magazine, radio, events, commerce. One codebase, any industry, any town.',
+    url: 'https://measurablybetter.life',
+    siteName: 'Measurably Better Things',
     locale: 'en_US',
     type: 'website',
   },
