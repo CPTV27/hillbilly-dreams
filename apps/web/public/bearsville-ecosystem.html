@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bearsville Media Group — How It Works</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #0a0a0a;
+    color: #f5f0eb;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .gold { color: #8B6914; }
+  .muted { color: #8a8074; }
+
+  .header {
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #2a2520;
+  }
+  .header .eyebrow {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #8B6914;
+    margin-bottom: 0.5rem;
+  }
+  .header h1 {
+    font-size: 2.25rem;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .header h1 em { color: #8B6914; font-style: normal; }
+  .header .sub {
+    font-size: 0.9rem;
+    color: #8a8074;
+    margin-top: 0.75rem;
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  .section-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #8B6914;
+    margin-bottom: 0.5rem;
+  }
+
+  section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #1a1816;
+  }
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Relationship diagram */
+  .relationship {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1.5rem;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  .rel-node {
+    border: 1px solid #2a2520;
+    padding: 1.25rem;
+    text-align: center;
+  }
+  .rel-node.primary { border-color: #8B6914; border-width: 2px; }
+  .rel-node .name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .rel-node .detail { font-size: 0.7rem; color: #8a8074; }
+  .rel-arrow {
+    font-size: 1.5rem;
+    color: #3a3633;
+    text-align: center;
+  }
+
+  /* Properties grid */
+  .properties {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .prop {
+    border: 1px solid #2a2520;
+    padding: 1.25rem;
+  }
+  .prop h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .prop .domain {
+    font-size: 0.65rem;
+    color: #8B6914;
+    font-family: monospace;
+    margin-bottom: 0.5rem;
+  }
+  .prop p {
+    font-size: 0.75rem;
+    color: #8a8074;
+    line-height: 1.5;
+  }
+
+  /* People */
+  .people-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+  .person {
+    border: 1px solid #2a2520;
+    padding: 1.25rem;
+  }
+  .person .pname { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .person .prole { font-size: 0.7rem; color: #8B6914; margin-bottom: 0.5rem; }
+  .person .pdesc { font-size: 0.7rem; color: #8a8074; line-height: 1.5; }
+
+  /* What you get */
+  .benefits {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #2a2520;
+  }
+  .benefit {
+    background: #0a0a0a;
+    padding: 1.25rem;
+  }
+  .benefit h4 { font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem; }
+  .benefit p { font-size: 0.7rem; color: #8a8074; line-height: 1.5; }
+
+  /* How it connects */
+  .flow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .flow-step {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #1a1816;
+    align-items: start;
+  }
+  .flow-step:last-child { border-bottom: none; }
+  .flow-num {
+    font-size: 1.5rem;
+    font-weight: 200;
+    color: #8B6914;
+    text-align: center;
+  }
+  .flow-text h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .flow-text p { font-size: 0.7rem; color: #8a8074; line-height: 1.5; }
+
+  /* Bottom line */
+  .bottom-line {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #8B6914;
+    text-align: center;
+  }
+  .bottom-line p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  .bottom-line .small {
+    font-size: 0.65rem;
+    color: #8a8074;
+    margin-top: 0.75rem;
+  }
+
+  .footer {
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 0.55rem;
+    color: #3a3633;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .properties { grid-template-columns: 1fr; }
+    .people-grid { grid-template-columns: 1fr; }
+    .benefits { grid-template-columns: 1fr; }
+    .relationship { grid-template-columns: 1fr; gap: 0.5rem; }
+    .rel-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <p class="eyebrow">Bearsville Media Group</p>
+  <h1>The <em>Hudson Valley</em> Node</h1>
+  <p class="sub">
+    Bearsville Media Group is the northeast version of what Big Muddy is in Natchez, Mississippi.
+    Same platform. Same modules. Different geography, different culture, same machine underneath.
+  </p>
+</div>
+
+<!-- HOW IT RELATES -->
+<section>
+  <p class="section-label">The Relationship</p>
+  <h2>Where Bearsville fits</h2>
+
+  <div class="relationship">
+    <div class="rel-node">
+      <div class="name">Hillbilly Dreams Inc</div>
+      <div class="detail">Holding company — owns everything</div>
+    </div>
+    <div class="rel-arrow">→</div>
+    <div class="rel-node primary">
+      <div class="name">Bearsville Media Group</div>
+      <div class="detail">Northeast media imprint — Hudson Valley / Catskills</div>
+    </div>
+  </div>
+
+  <div class="relationship">
+    <div class="rel-node">
+      <div class="name">Measurably Better Things</div>
+      <div class="detail">The technology platform — powers all brands</div>
+    </div>
+    <div class="rel-arrow">→</div>
+    <div class="rel-node primary">
+      <div class="name">Bearsville uses MBT</div>
+      <div class="detail">Same codebase, same AI, same modules as Big Muddy</div>
+    </div>
+  </div>
+
+  <div class="relationship">
+    <div class="rel-node">
+      <div class="name">Big Muddy (Natchez)</div>
+      <div class="detail">The southern flagship — music, hospitality, media</div>
+    </div>
+    <div class="rel-arrow">↔</div>
+    <div class="rel-node primary">
+      <div class="name">Bearsville (Hudson Valley)</div>
+      <div class="detail">The corridor runs both ways — artists and audiences flow between nodes</div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PROPERTIES -->
+<section>
+  <p class="section-label">Your Properties</p>
+  <h2>Three brands, one team</h2>
+
+  <div class="properties">
+    <div class="prop">
+      <h3>Bearsville Media Group</h3>
+      <div class="domain">bearsvillemediagroup.com</div>
+      <p>
+        The hub. Directory of Hudson Valley businesses, radio streaming, magazine editorial,
+        and the entry point for everything Bearsville. This is your Big Muddy equivalent.
+      </p>
+    </div>
+    <div class="prop">
+      <h3>Studio C Video</h3>
+      <div class="domain">studiocvideo.com</div>
+      <p>
+        The production arm. Recording, video, broadcasting from the Bearsville campus.
+        Where the content gets made. Shared between Bearsville and external clients.
+      </p>
+    </div>
+    <div class="prop">
+      <h3>Tuthill Design</h3>
+      <div class="domain">tuthilldesign.com</div>
+      <p>
+        Elijah's design studio. Branding, web, creative direction.
+        Integrated with Studio C — same building, different brand.
+      </p>
+    </div>
+    <div class="prop">
+      <h3>The Corridor Connection</h3>
+      <div class="domain">bigmuddytouring.com ↔ bearsvillemediagroup.com</div>
+      <p>
+        Artists tour between Natchez and the Hudson Valley. The Sprinter van runs both directions.
+        A band that plays the Blues Room in Natchez plays Bearsville the next month. One circuit.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- THE PEOPLE -->
+<section>
+  <p class="section-label">The Team</p>
+  <h2>Who does what</h2>
+
+  <div class="people-grid">
+    <div class="person">
+      <div class="pname">Chase Pierson</div>
+      <div class="prole">CEO / Platform / Strategy</div>
+      <div class="pdesc">Owns the technology, the photography, and the corridor vision. Based in Natchez. Visits Bearsville seasonally.</div>
+    </div>
+    <div class="person">
+      <div class="pname">Elijah Tuttle</div>
+      <div class="prole">Studio C + Tuthill Design</div>
+      <div class="pdesc">Production and design. Runs the Bearsville campus day-to-day. Recording sessions, video production, design clients.</div>
+    </div>
+    <div class="person">
+      <div class="pname">Miles</div>
+      <div class="prole">Production (Joining)</div>
+      <div class="pdesc">Joining the production team. Recording, video, content creation for the Hudson Valley properties.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET FROM THE PLATFORM -->
+<section>
+  <p class="section-label">What the Platform Gives You</p>
+  <h2>Everything Big Muddy has, you have</h2>
+
+  <div class="benefits">
+    <div class="benefit">
+      <h4>Directory Module</h4>
+      <p>AI-powered listings for Hudson Valley businesses. Restaurants, studios, shops, venues. Same system that powers Deep South Directory.</p>
+    </div>
+    <div class="benefit">
+      <h4>Radio Module</h4>
+      <p>Bearsville Radio — streaming, playlists, live sessions. Same infrastructure as Big Muddy Radio. Your own programming, your own identity.</p>
+    </div>
+    <div class="benefit">
+      <h4>Magazine Module</h4>
+      <p>Long-form editorial about the Hudson Valley creative scene. Same article system, same editorial tools. Your writers, your stories.</p>
+    </div>
+    <div class="benefit">
+      <h4>Studio Module</h4>
+      <p>Recording session management, production pipeline, video workflow. Integrated with the content system — record it, publish it, promote it.</p>
+    </div>
+    <div class="benefit">
+      <h4>AI Content Pipeline</h4>
+      <p>Social post generation, editorial spotlights, voice profiles. Gemini + Claude. Same AI that writes for Big Muddy, tuned to your brand.</p>
+    </div>
+    <div class="benefit">
+      <h4>Analytics</h4>
+      <p>Monthly report cards, review monitoring, audience metrics. Track how the Hudson Valley node is growing.</p>
+    </div>
+    <div class="benefit">
+      <h4>Admin Tools</h4>
+      <p>Events, articles, creative studio, media upload, playlists, newsletter — all at bearsvillemediagroup.com/admin. Same tools Chase uses in Natchez.</p>
+    </div>
+    <div class="benefit">
+      <h4>Photo Library</h4>
+      <p>77,000+ photos being tagged by AI and organized in GCS. Your Hudson Valley shots go into the same system. Searchable by mood, subject, location.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE SNOWBIRD CIRCUIT -->
+<section>
+  <p class="section-label">The Snowbird Circuit</p>
+  <h2>How the corridor works</h2>
+
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div class="flow-text">
+        <h4>Artist signs with Big Muddy Touring</h4>
+        <p>Non-exclusive. They keep their masters. We book, transport, promote, record, release.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <div class="flow-text">
+        <h4>Southern leg: Natchez → Clarksdale → Memphis</h4>
+        <p>The Sprinter van carries them through the Mississippi corridor. Shows at the Blues Room, corridor venues, festivals.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <div class="flow-text">
+        <h4>Northern leg: Hudson Valley → Woodstock → Beacon</h4>
+        <p>Same artist, same Sprinter, different corridor. Bearsville venues, Studio C recording sessions, Hudson Valley audience.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">4</div>
+      <div class="flow-text">
+        <h4>Content flows everywhere</h4>
+        <p>The show gets recorded → released on Big Muddy Records. Written about in the Magazine (both editions). Played on Radio (both stations). Listed in both directories.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">5</div>
+      <div class="flow-text">
+        <h4>European connection</h4>
+        <p>European blues and roots artists come to Natchez for "Destination Sessions" — fly in, play with the house band, record, release. Then they play Bearsville on the way back. The corridor is international.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S LIVE NOW -->
+<section>
+  <p class="section-label">Current Status</p>
+  <h2>What's live, what's coming</h2>
+
+  <div class="properties">
+    <div class="prop">
+      <h3>Live Now</h3>
+      <div class="domain">Deployed and working</div>
+      <p>
+        bearsvillemediagroup.com — branded, 12 real photos, 4 service cards<br>
+        studiocvideo.com — production page with session info<br>
+        tuthilldesign.com — design studio with portfolio<br>
+        Admin tools at /admin — events, articles, creative studio<br>
+        All three domains routing correctly through the multi-tenant system
+      </p>
+    </div>
+    <div class="prop">
+      <h3>Summer 2026</h3>
+      <div class="domain">Full activation</div>
+      <p>
+        Hudson Valley directory launched with local businesses<br>
+        Bearsville Radio streaming<br>
+        First Bearsville Magazine editorial<br>
+        First corridor tour: artist from Natchez plays Bearsville<br>
+        First recording session at Studio C for the platform
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW YOU MAKE MONEY -->
+<section>
+  <p class="section-label">Revenue Model</p>
+  <h2>How the Bearsville node makes money</h2>
+
+  <div class="benefits">
+    <div class="benefit">
+      <h4>Studio Sessions</h4>
+      <p>Recording, mixing, video production at Studio C. Charge per session or per day. External clients pay full rate. Corridor artists get ecosystem pricing.</p>
+    </div>
+    <div class="benefit">
+      <h4>Design Clients</h4>
+      <p>Tuthill Design serves branding, web, and creative clients. Existing revenue stream — now amplified by the platform tools and the Bearsville brand.</p>
+    </div>
+    <div class="benefit">
+      <h4>Directory Subscriptions</h4>
+      <p>Hudson Valley businesses pay $20-$99/mo to be listed in the Bearsville Directory. Same DSD model. You sell it, platform delivers it.</p>
+    </div>
+    <div class="benefit">
+      <h4>Show Revenue</h4>
+      <p>Door splits, bar revenue, merch from shows at Hudson Valley venues. Every show feeds the 2:1 ecosystem multiplier — a $1K show generates $500+ downstream.</p>
+    </div>
+    <div class="benefit">
+      <h4>Destination Sessions</h4>
+      <p>Artists pay $25K all-inclusive for a week: studio time, recording, release on Big Muddy Records, Magazine feature, Radio airplay, video crew. Premium product.</p>
+    </div>
+    <div class="benefit">
+      <h4>Content & Media</h4>
+      <p>Bearsville Magazine advertising, sponsored content, event promotions. As the audience grows, the ad revenue follows.</p>
+    </div>
+    <div class="benefit">
+      <h4>Platform Revenue Share</h4>
+      <p>When Bearsville signs directory clients or records artists, revenue flows through the ecosystem. HDI provides the platform, Bearsville provides the relationships.</p>
+    </div>
+    <div class="benefit">
+      <h4>The Corridor Multiplier</h4>
+      <p>Artists who play Bearsville also play Natchez. Tourists who find Bearsville businesses also visit the South. The two nodes feed each other — your growth is Big Muddy's growth and vice versa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO DO FIRST -->
+<section>
+  <p class="section-label">Your First 30 Days</p>
+  <h2>What to do right now</h2>
+
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div class="flow-text">
+        <h4>Log into the admin tools</h4>
+        <p>Go to bearsvillemediagroup.com/admin. Click around. Create a test event. Upload a photo. Ask Delta Dawn a question.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <div class="flow-text">
+        <h4>List 10 Hudson Valley businesses in the directory</h4>
+        <p>Restaurants, studios, shops, venues you actually know and respect. Use /directory/onboard. These become your first directory clients when you start selling.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <div class="flow-text">
+        <h4>Book one session at Studio C through the platform</h4>
+        <p>Create the event in /admin/events. Record it. Upload the photos. Write a short Magazine piece. This is the dogfood — prove the pipeline works end to end.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">4</div>
+      <div class="flow-text">
+        <h4>Identify 3 local bands for the corridor</h4>
+        <p>Who in the Hudson Valley would play Natchez? Who would travel the Snowbird Circuit? These are your first touring roster candidates.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">5</div>
+      <div class="flow-text">
+        <h4>Start selling the directory</h4>
+        <p>Walk into businesses you already know. Show them the listing on your phone. $20/mo to start. Same pitch that works in Natchez works in Woodstock.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM LINE -->
+<div class="bottom-line">
+  <p>
+    You're not starting from scratch. You're plugging into a machine that's already running in Natchez.
+    Everything Chase builds for Big Muddy, you get in Bearsville. Same platform. Different room. Same house.
+  </p>
+  <p class="small">
+    Powered by Measurably Better Things · Hillbilly Dreams Inc · bearsvillemediagroup.com
+  </p>
+</div>
+
+<div class="footer">
+  Hillbilly Dreams Inc · April 2026
+</div>
+
+</body>
+</html>
