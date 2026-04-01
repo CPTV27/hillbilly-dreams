@@ -35,7 +35,7 @@ export const MODELS: Record<string, ModelConfig> = {
 
 // ── Role-Based Routing ──
 
-export type AIRole = 'reasoning' | 'generation' | 'editorial' | 'search' | 'chat';
+export type AIRole = 'reasoning' | 'generation' | 'editorial' | 'search' | 'chat' | 'voice';
 
 /** Primary model for each role, plus fallback chain */
 const ROUTING: Record<AIRole, string[]> = {
@@ -44,6 +44,7 @@ const ROUTING: Record<AIRole, string[]> = {
   editorial:  ['claude-sonnet', 'gemini-pro', 'gemini-flash'],
   search:     ['perplexity', 'gemini-flash'],
   chat:       ['gemini-flash', 'claude-sonnet', 'perplexity'],
+  voice:      ['gemini-flash', 'gemini-pro'],  // Low latency first, reasoning fallback
 };
 
 // Legacy API compatibility

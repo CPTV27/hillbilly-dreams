@@ -1,7 +1,8 @@
 // apps/web/app/measurably-better/life/layout.tsx
-// MBT Life — mobile-first layout with bottom navigation
+// MBT Life — mobile-first layout with bottom navigation + voice AI
 
 import type { Metadata } from 'next';
+import { VoiceButton } from '@/components/voice/VoiceButton';
 
 export const metadata: Metadata = {
   title: 'Measurably Better Life',
@@ -38,6 +39,9 @@ export default function LifeLayout({ children }: { children: React.ReactNode }) 
         <main className="life-main">
           {children}
         </main>
+
+        {/* Voice AI — floating mic button */}
+        <VoiceButton />
 
         {/* Bottom nav */}
         <nav className="life-nav" aria-label="Main navigation">
