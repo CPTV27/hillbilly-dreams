@@ -361,7 +361,7 @@ Unknown guest — not logged in. Greet them warmly and ask who they are before d
         focus = 'Inn operations, reservations, guest experience, review management, and day-to-day logistics. Tracy is the heartbeat of the Inn floor. She is not a tech person — keep things warm, plain, and step-by-step. Celebrate her wins.'
         salutation = 'Tracy'
     } else if (email === 'amy@thebigmuddyinn.com' || email === 'amyaldersonallen@gmail.com') {
-        persona = 'Amy (Arri B. Aslin) — Artist-in-Residence & Creative Ops'
+        persona = 'Amy (Arrie B. Aslin) — Artist-in-Residence & Creative Ops'
         focus = 'Radio show content, parlor performances, social media, creative direction, and artist pipeline. Amy thinks in stories and songs, not spreadsheets. Lead with creative energy and connect everything to narrative and emotion.'
         salutation = 'Amy'
     } else if (email.endsWith('@chasepierson.tv')) {
@@ -401,7 +401,7 @@ Address them by name (${salutation}) naturally — not every message, but enough
 // {{CURRENT_USER}} and {{DATABASE_CONTEXT}} replaced at request time.
 // ─────────────────────────────────────────────────────────────
 
-const SYSTEM_PROMPT_TEMPLATE = `You are Delta Dawn, the AI brain of the Big Muddy ecosystem. You're warm, Southern-friendly, deeply knowledgeable, and always actionable. You help the entire team — Tracy (Operations), Amy/Arri B. Aslin (Artist/Performer), and Chase (Showrunner) — across every brand.
+const SYSTEM_PROMPT_TEMPLATE = `You are Delta Dawn, the AI brain of the Big Muddy ecosystem. You're warm, Southern-friendly, deeply knowledgeable, and always actionable. You help the entire team — Tracy (Operations), Amy/Arrie B. Aslin (Artist/Performer), and Chase (Showrunner) — across every brand.
 
 ## CURRENT USER
 

@@ -72,12 +72,12 @@ const RECORDING_PHILOSOPHY = [
   {
     principle: 'Amplify through the network',
     detail:
-      "A session at the Blues Room doesn't just become a release — it becomes a Radio feature, a Magazine interview, a photo essay, a merch drop on BuyCurious. The recording is the beginning, not the end.",
+      "A session at the Blues Room doesn't just become a release — it becomes a Radio feature, a Magazine interview, a photo essay, a merch drop on Venture Gallery. The recording is the beginning, not the end.",
   },
   {
     principle: 'Press it',
     detail:
-      "Vinyl is not a novelty. It's the format. We press limited runs and sell them through the Inn, BuyCurious Art, and local record shops along the corridor. The revenue goes directly to the artist.",
+      "Vinyl is not a novelty. It's the format. We press limited runs and sell them through the Inn, Venture Gallery, and local record shops along the corridor. The revenue goes directly to the artist.",
   },
   {
     principle: 'Keep it in the corridor',
@@ -275,7 +275,7 @@ export default function SessionsPage() {
             { channel: 'Big Muddy Radio', output: 'Live cut, pre-release airplay, interview' },
             { channel: 'Big Muddy Magazine', output: 'Feature story, photo essay, interview' },
             { channel: 'Big Muddy Touring', output: 'Next booking at the Inn, route exposure' },
-            { channel: 'BuyCurious Art', output: 'Merch drop, limited vinyl, prints' },
+            { channel: 'Venture Gallery', output: 'Merch drop, limited vinyl, prints' },
           ].map((item, i) => (
             <div
               key={item.channel}

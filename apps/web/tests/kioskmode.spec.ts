@@ -27,7 +27,7 @@ test.describe('BMT Demo Parity & Critical Printables Verification', () => {
     expect(response?.ok()).toBeTruthy();
 
     await expect(page.locator('text=Live in the Blues Room').first()).toBeVisible();
-    await expect(page.locator('text=Arri Aslin').first()).toBeVisible();
+    await expect(page.locator('text=Arrie Aslin').first()).toBeVisible();
   });
 
 });

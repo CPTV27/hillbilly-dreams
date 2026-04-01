@@ -28,7 +28,7 @@ export default function EventFlyerPage() {
 
           <div style={{ border: '2px solid #333', padding: '30px', marginBottom: '40px' }}>
             <h3 style={{ fontSize: '1.5rem', margin: '0 0 10px', color: '#c8943e' }}>Featuring Resident Artist</h3>
-            <div style={{ fontSize: '2.5rem', fontWeight: 800, textTransform: 'uppercase' }}>Arri Aslin</div>
+            <div style={{ fontSize: '2.5rem', fontWeight: 800, textTransform: 'uppercase' }}>Arrie Aslin</div>
             <p style={{ color: '#888', marginTop: '10px' }}>& Special Guests from Big Muddy Records</p>
           </div>
 

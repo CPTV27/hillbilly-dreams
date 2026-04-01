@@ -1,7 +1,7 @@
 'use client';
 
 // apps/web/app/gallery/GalleryNav.tsx
-// Inline navigation for the BuyCurious Art gallery.
+// Inline navigation for the Venture Gallery gallery.
 
 import React, { useState } from 'react';
 
@@ -27,10 +27,10 @@ export default function GalleryNav() {
     >
       <div className="bm-nav__inner">
         {/* Logo */}
-        <a href="/gallery" className="bm-nav__logo" aria-label="BuyCurious Art — home">
+        <a href="/gallery" className="bm-nav__logo" aria-label="Venture Gallery — home">
           <span className="bm-nav__logo-text">
             <span className="bm-nav__logo-name" style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic' }}>
-              BuyCurious
+              Venture Gallery
             </span>
             <span className="bm-nav__logo-brand" style={{ color: 'var(--accent)', letterSpacing: 'var(--tracking-widest)' }}>
               ART

@@ -16,7 +16,7 @@ const LIVE_SITES = [
   { name: 'Big Muddy Entertainment', url: 'https://bigmuddyentertainment.com', desc: 'Shows and talent search', status: 'live' },
   { name: 'Deep South Directory', url: 'https://deepsouthdirectory.com', desc: 'Local business directory', status: 'live' },
   { name: 'Outsider Economics', url: 'https://outsidereconomics.com', desc: 'Economic philosophy', status: 'live' },
-  { name: 'BuyCurious Art', url: 'https://buycurious.art', desc: 'Gallery and marketplace', status: 'live' },
+  { name: 'Venture Gallery', url: 'https://venturegallery.art', desc: 'Gallery and marketplace', status: 'live' },
   { name: 'Measurably Better Things', url: 'https://measurablybetterthings.com', desc: 'AI business platform', status: 'live' },
   { name: 'Hillbilly Dreams Inc', url: 'https://hillbillydreamsinc.com', desc: 'Holding company', status: 'needs-work' },
   { name: 'Admin Dashboard', url: '/admin/dashboard', desc: 'Operations center', status: 'live' },

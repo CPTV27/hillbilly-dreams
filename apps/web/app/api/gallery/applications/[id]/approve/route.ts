@@ -40,7 +40,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
             business_type: 'individual',
             business_profile: {
                 url: application.portfolioUrl || undefined,
-                product_description: 'Artist on BuyCurious Art Marketplace.',
+                product_description: 'Artist on Venture Gallery.',
             },
         });
 
@@ -73,7 +73,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
             await dispatchToChannel('email', {
                 triggerId: 'gallery_artist_approved',
                 recipientEmail: artistEmail,
-                subject: 'Welcome to BuyCurious Art! Complete your profile setup.',
+                subject: 'Welcome to Venture Gallery! Complete your profile setup.',
                 body: `🎨 *New Artist Approved:* ${artistName}!\n\nStripe Onboarding Link:\n${accountLink.url}`,
                 priority: 'high',
             });

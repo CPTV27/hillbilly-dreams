@@ -1,5 +1,5 @@
 // apps/web/app/gallery/artists/[slug]/page.tsx
-// BuyCurious Art — Individual Artist Profile Page
+// Venture Gallery — Individual Artist Profile Page
 // Server component.
 
 import type { Metadata } from 'next';
@@ -24,13 +24,13 @@ function getArtistWorks(artistId: string) {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const artist = getArtist(params.slug);
-  if (!artist) return { title: 'Artist Not Found | BuyCurious Art' };
+  if (!artist) return { title: 'Artist Not Found | Venture Gallery' };
 
   return {
-    title: `${artist.name} | BuyCurious Art`,
+    title: `${artist.name} | Venture Gallery`,
     description: `${artist.name} — ${artist.medium} artist from ${artist.city}, ${artist.state}. ${artist.bio.slice(0, 150)}...`,
     openGraph: {
-      title: `${artist.name} | BuyCurious Art`,
+      title: `${artist.name} | Venture Gallery`,
       description: `${artist.medium} from ${artist.city}, ${artist.state}.`,
       type: 'profile',
     },

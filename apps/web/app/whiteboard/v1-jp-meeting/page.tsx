@@ -146,7 +146,7 @@ function OrgView() {
     { name: 'Big Muddy Entertainment', sub: 'Rise Up, Talent Search', color: '#ec4899' },
     { name: 'Deep South Directory', sub: 'Free / $20 / $49 / $99', color: '#22c55e' },
     { name: 'Outsider Economics', sub: 'Philosophy, Toolkit, Resources', color: '#f97316' },
-    { name: 'BuyCurious Art', sub: 'Photography, Marketplace', color: '#eab308' },
+    { name: 'Venture Gallery', sub: 'Photography, Marketplace', color: '#eab308' },
   ];
   return (
     <div style={{ padding: '2rem', textAlign: 'center' }}>

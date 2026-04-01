@@ -153,7 +153,7 @@ const ONBOARDING_DESCRIPTIONS: Record<OnboardingTask, string> = {
   social_scan: 'Scan Spotify, Instagram, TikTok, YouTube for presence and follower counts',
   music_scan: 'Catalog all released tracks, albums, streaming links, ISRC codes',
   press_scan: 'Search for press coverage, reviews, interviews, features',
-  brand_kit: 'Generate brand variation from Arri Aslin template — logo, colors, fonts',
+  brand_kit: 'Generate brand variation from Arrie Aslin template — logo, colors, fonts',
   photo_session: 'Schedule portrait session at Studio C or on-location',
   content_calendar: 'Build 90-day content calendar — social posts, newsletter features, playlist adds',
 };

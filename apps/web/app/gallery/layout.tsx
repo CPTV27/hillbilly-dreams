@@ -1,5 +1,5 @@
 // apps/web/app/gallery/layout.tsx
-// BuyCurious Art — gallery route layout
+// Venture Gallery — gallery route layout
 // Default theme: clean white museum (theme-gallery)
 // Funky mode toggle is handled by page.tsx which swaps the class
 
@@ -11,16 +11,16 @@ import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
   title: {
-    default: 'BuyCurious Art | Original Art from the Mississippi Corridor',
-    template: '%s | BuyCurious Art',
+    default: 'Venture Gallery | Original Art from the Mississippi Corridor',
+    template: '%s | Venture Gallery',
   },
   description:
     'Original art from the artists, musicians, and makers who call the Deep South home. Paintings, photography, sculpture, and more — curated from the Mississippi corridor.',
-  metadataBase: new URL('https://buycurious.art'),
+  metadataBase: new URL('https://venturegallery.art'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'BuyCurious Art',
+    siteName: 'Venture Gallery',
   },
   twitter: {
     card: 'summary_large_image',

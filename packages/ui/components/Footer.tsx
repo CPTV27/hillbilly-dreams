@@ -61,6 +61,11 @@ export function Footer({ brand }: FooterProps) {
         <div className="bm-footer__bottom">
           <p className="bm-footer__copy">
             &copy; {currentYear} Chase Tuthill Pierson. Creative Commons license.
+            {' '}&middot;{' '}
+            Powered by{' '}
+            <a href="https://measurablybetter.life" className="bm-footer__mbt-link">
+              Measurably Better Things
+            </a>
           </p>
           <div className="bm-footer__legal">
             <a href="/privacy">Privacy</a>
@@ -137,6 +142,11 @@ export function Footer({ brand }: FooterProps) {
       <div className="bm-footer__bottom">
         <p className="bm-footer__copy">
           &copy; {currentYear} Big Muddy Touring. All rights reserved.
+          {' '}&middot;{' '}
+          Powered by{' '}
+          <a href="https://measurablybetter.life" className="bm-footer__mbt-link">
+            Measurably Better Things
+          </a>
         </p>
         <div className="bm-footer__legal">
           <a href="/privacy">Privacy</a>
@@ -260,6 +270,14 @@ const footerStyles = `
     transition: color var(--duration-fast) var(--ease-default);
   }
   .bm-footer__legal a:hover {
+    color: var(--text-muted);
+  }
+  .bm-footer__mbt-link {
+    color: var(--accent, #c8943e);
+    text-decoration: none;
+    transition: color var(--duration-fast, 150ms) var(--ease-default, ease);
+  }
+  .bm-footer__mbt-link:hover {
     color: var(--text-muted);
   }
   /* Admin footer */

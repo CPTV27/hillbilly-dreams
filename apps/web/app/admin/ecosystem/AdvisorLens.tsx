@@ -20,7 +20,7 @@ DIVISIONS:
 - Big Muddy Entertainment (Rise Up talent pipeline, shows)
 - Deep South Directory (Free/$20/$49/$99 tiers for Main Street businesses)
 - Outsider Economics (Economic philosophy, field manual)
-- BuyCurious Art (Photography storefront, Stripe Connect marketplace)
+- Venture Gallery (Photography storefront, Stripe Connect marketplace)
 
 TEAM: Chase (CEO/CTO), Tracy (Business/Finance), Amy (Inn/Bar Ops), JP (Shows/Programming)
 AI STACK: Gemini 2.5 Flash/3.1 Pro, Claude Sonnet/Haiku, Perplexity, Imagen 3, Veo 3.1, Cloud TTS

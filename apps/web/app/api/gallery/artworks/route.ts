@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic';
 // apps/web/app/api/gallery/artworks/route.ts
-// BuyCurious Art — Artworks API (Prisma-backed)
+// Venture Gallery — Artworks API (Prisma-backed)
 // GET /api/gallery/artworks
 // Query params: medium, artist (slug), category, featured, available, limit
 

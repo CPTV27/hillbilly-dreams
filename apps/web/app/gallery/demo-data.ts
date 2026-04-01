@@ -1,5 +1,5 @@
 // apps/web/app/gallery/demo-data.ts
-// Demo data for BuyCurious Art marketplace.
+// Demo data for Venture Gallery marketplace.
 // Replace with Prisma queries once schema is migrated.
 
 export interface DemoArtist {

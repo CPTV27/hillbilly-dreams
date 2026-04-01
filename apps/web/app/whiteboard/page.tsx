@@ -148,7 +148,7 @@ function OrgView() {
     { name: 'Big Muddy Entertainment', sub: 'Rise Up, Talent Search', color: '#ec4899' },
     { name: 'Deep South Directory', sub: 'Free / $20 / $49 / $99', color: '#22c55e' },
     { name: 'Outsider Economics', sub: 'Philosophy, Toolkit, Resources', color: '#f97316' },
-    { name: 'BuyCurious Art', sub: 'Photography, Marketplace', color: '#eab308' },
+    { name: 'Venture Gallery', sub: 'Photography, Marketplace', color: '#eab308' },
   ];
   return (
     <div style={{ padding: '2rem', textAlign: 'center' }}>
@@ -260,7 +260,7 @@ function LinksView() {
     { label: 'Big Muddy Magazine', url: 'https://bigmuddymagazine.com', color: '#8b5cf6' },
     { label: 'Big Muddy Radio', url: 'https://bigmuddyradio.com', color: '#ec4899' },
     { label: 'Big Muddy Entertainment', url: 'https://bigmuddyentertainment.com', color: '#eab308' },
-    { label: 'BuyCurious Art', url: 'https://buycurious.art', color: '#c8943e' },
+    { label: 'Venture Gallery', url: 'https://venturegallery.art', color: '#c8943e' },
     { label: 'Radio Shows', url: 'https://bigmuddytouring.com/radio/shows', color: '#ec4899' },
     { label: 'Chase Pierson Photography', url: 'https://bigmuddytouring.com/gallery/chase-pierson', color: '#c8943e' },
     { label: 'Bearsville Media Group', url: 'https://bigmuddytouring.com/bearsville', color: '#8B6914' },

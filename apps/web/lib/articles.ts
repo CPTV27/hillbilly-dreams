@@ -932,7 +932,7 @@ Here's where the Anthologist intersects with what we're building at Big Muddy Re
 
 The space has a recording rig. Not a studio — nobody's pretending this is Muscle Shoals. But a clean signal chain, a decent set of microphones, and a room that sounds good without trying. When an artist plays the Anthologist, we can capture it. The live cut goes to Big Muddy Radio. The session footage goes to the Magazine. The best performances become releases.
 
-This is what we mean when we talk about the ecosystem. A flower shop on Main Street in a town of 16,000 becomes a node in a network that connects recording, radio, publishing, and touring. The artist who plays the Anthologist on Friday night gets a feature in Big Muddy Magazine by Tuesday. Their live cut is on Big Muddy Radio by the following week. Their merch is on BuyCurious Art by month's end.
+This is what we mean when we talk about the ecosystem. A flower shop on Main Street in a town of 16,000 becomes a node in a network that connects recording, radio, publishing, and touring. The artist who plays the Anthologist on Friday night gets a feature in Big Muddy Magazine by Tuesday. Their live cut is on Big Muddy Radio by the following week. Their merch is on Venture Gallery by month's end.
 
 The infrastructure is the thing. And the Anthologist is a piece of infrastructure that smells like roses.
 

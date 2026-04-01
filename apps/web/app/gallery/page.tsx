@@ -1,7 +1,7 @@
 'use client';
 
 // apps/web/app/gallery/page.tsx
-// BuyCurious Art — gallery storefront landing page
+// Venture Gallery — gallery storefront landing page
 // Two visual modes: Gallery (clean white museum) and Funky (aristo-boho maximalism)
 
 import { useState, useEffect } from 'react';
@@ -1178,7 +1178,7 @@ export default function GalleryPage() {
               }),
             }}
           >
-            Sell your work on BuyCurious.
+            Sell your work on Venture Gallery.
           </h2>
           <p
             style={{

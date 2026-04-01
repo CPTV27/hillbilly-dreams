@@ -50,7 +50,7 @@ const CLIENTS = [
   'Big Muddy Radio',
   'Big Muddy Magazine',
   'Studio C Video',
-  'BuyCurious Art',
+  'Venture Gallery',
   'Deep South Directory',
   'Big Muddy Touring',
 ];

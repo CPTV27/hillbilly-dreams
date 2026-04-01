@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       template: '%s | Big Muddy Entertainment',
     },
     description:
-      'Four divisions. One corridor. Big Muddy Entertainment is the music and media arm of Hillbilly Dreams, Inc.',
+      'Booking, promotion, transport, and production for bands and venues along the Mississippi corridor. Big Muddy Entertainment is the music and media arm of Hillbilly Dreams, Inc.',
     path: '/entertainment',
   }),
   metadataBase: new URL('https://bigmuddyentertainment.com'),

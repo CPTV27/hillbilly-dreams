@@ -62,7 +62,7 @@ const WALKTHROUGH_STEPS: WalkthroughStep[] = [
   },
   {
     title: 'The Seven Brands',
-    content: `Everything connects. One piece of content can feed multiple brands:\n\n1. Big Muddy Touring — The corridor experience\n2. The Big Muddy Inn — Home base in Natchez\n3. Big Muddy Magazine — Stories from the corridor\n4. Big Muddy Radio — The sound of the river\n5. Big Muddy Records — Artist-owned recordings\n6. BuyCurious Art — Gallery & art marketplace\n7. Deep South Directory — Business listings\n\nOne Blues Room session → 15+ pieces of content across all seven.`,
+    content: `Everything connects. One piece of content can feed multiple brands:\n\n1. Big Muddy Touring — The corridor experience\n2. The Big Muddy Inn — Home base in Natchez\n3. Big Muddy Magazine — Stories from the corridor\n4. Big Muddy Radio — The sound of the river\n5. Big Muddy Records — Artist-owned recordings\n6. Venture Gallery — Gallery & art marketplace\n7. Deep South Directory — Business listings\n\nOne Blues Room session → 15+ pieces of content across all seven.`,
     position: 'center',
   },
   {

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { formatDate } from '@/lib/utils'; // Try to use the shared format. If not available we'll just format manually
 
 export const metadata = {
-    title: 'Gallery Operations | BuyCurious Art',
+    title: 'Gallery Operations | Venture Gallery',
 };
 
 // Force dynamic due to DB query
@@ -59,7 +59,7 @@ export default async function GalleryOpsDashboard() {
             }}>
                 <div style={{ padding: '1.5rem', borderBottom: '1px solid var(--theme-card-border)', backgroundColor: 'var(--theme-accent-bg)' }}>
                     <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--theme-accent)', margin: 0 }}>Artist Applications</h2>
-                    <p style={{ fontSize: '0.875rem', color: 'var(--theme-text-secondary)', margin: '0.25rem 0 0 0' }}>Review and approve candidates for BuyCurious Art</p>
+                    <p style={{ fontSize: '0.875rem', color: 'var(--theme-text-secondary)', margin: '0.25rem 0 0 0' }}>Review and approve candidates for Venture Gallery</p>
                 </div>
 
                 {applications.length === 0 ? (

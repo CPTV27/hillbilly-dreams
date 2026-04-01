@@ -107,7 +107,7 @@ export default function HillbillyDreamsPage() {
         .hd-page {
           background: #0d1117;
           color: #e6edf3;
-          font-family: var(--font-jakarta, 'Plus Jakarta Sans', system-ui, sans-serif);
+          font-family: var(--font-body);
           min-height: 100vh;
           -webkit-font-smoothing: antialiased;
         }

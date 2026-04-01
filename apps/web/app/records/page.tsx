@@ -74,8 +74,8 @@ const ECOSYSTEM = [
     role: 'The Inn, the route, the audience already in the room when you arrive.',
   },
   {
-    name: 'BuyCurious Art',
-    url: 'https://buycuriousart.com',
+    name: 'Venture Gallery',
+    url: 'https://venturegallery.art',
     role: 'Art marketplace — merch, prints, limited vinyl. A second revenue channel.',
   },
 ];
@@ -346,7 +346,7 @@ export default function RecordsPage() {
                 'Full social media management (4 platforms, 20 posts/mo)',
                 'Recording sessions at the Blues Room (Big Muddy Inn)',
                 'Video production (session footage + promo clips)',
-                'BuyCurious Art merch channel (vinyl, prints, limited editions)',
+                'Venture Gallery merch channel (vinyl, prints, limited editions)',
                 'Touring infrastructure (Inn bookings, route events)',
                 'Analytics dashboard — streams, social, press, revenue',
                 'Annual renewal — no multi-album lock-in',
@@ -501,7 +501,7 @@ export default function RecordsPage() {
             { line: 'Social media & content', amount: '$150/mo', note: '20 posts/month across 4 platforms, AI-generated to your voice' },
             { line: 'PR & radio', amount: '$100/mo', note: 'Press pitching, podcast outreach, Big Muddy Radio features' },
             { line: 'Recording & production', amount: '$100/mo', note: 'Blues Room sessions, video clips, session footage' },
-            { line: 'Photo, merch & touring', amount: '$100/mo', note: 'Quarterly photo sessions, BuyCurious channel, Inn events' },
+            { line: 'Photo, merch & touring', amount: '$100/mo', note: 'Quarterly photo sessions, Venture Gallery channel, Inn events' },
           ].map((item) => (
             <div
               key={item.line}

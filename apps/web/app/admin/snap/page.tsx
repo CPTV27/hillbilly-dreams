@@ -32,7 +32,7 @@ const DEMO_SESSIONS: SnapSession[] = [
     name: 'Blues Room — March 15, 2026',
     location: 'The Big Muddy Inn',
     date: '2026-03-15',
-    description: 'Arri B. Aslin Friday night session.',
+    description: 'Arrie B. Aslin Friday night session.',
     status: 'active',
     photoCount: 8,
     totalShares: 47,

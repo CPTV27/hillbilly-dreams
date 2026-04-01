@@ -116,7 +116,11 @@ export default function RecordsLayout({
           {' \u00B7 '}
           <a href="https://bigmuddymagazine.com" style={{ color: 'var(--accent, #c8943e)' }}>Magazine</a>
           {' \u00B7 '}
-          <a href="https://buycuriousart.com" style={{ color: 'var(--accent, #c8943e)' }}>BuyCurious Art</a>
+          <a href="https://venturegallery.art" style={{ color: 'var(--accent, #c8943e)' }}>Venture Gallery</a>
+        </p>
+        <p style={{ marginTop: '0.5rem', fontSize: '0.7rem' }}>
+          Powered by{' '}
+          <a href="https://measurablybetter.life" style={{ color: 'var(--accent, #c8943e)' }}>Measurably Better Things</a>
         </p>
       </footer>
     </ThemeProvider>

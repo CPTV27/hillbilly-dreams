@@ -1,14 +1,14 @@
 // apps/web/app/gallery/artists/page.tsx
-// BuyCurious Art — Artist Directory
+// Venture Gallery — Artist Directory
 // Server component with client filter pills.
 
 import type { Metadata } from 'next';
 import ArtistDirectory from './ArtistDirectory';
 
 export const metadata: Metadata = {
-  title: 'Artists | BuyCurious Art',
+  title: 'Artists | Venture Gallery',
   description:
-    'Browse the artists behind BuyCurious Art — painters, photographers, sculptors, and makers from Natchez, Clarksdale, New Orleans, Memphis, and the full Mississippi corridor.',
+    'Browse the artists behind Venture Gallery — painters, photographers, sculptors, and makers from Natchez, Clarksdale, New Orleans, Memphis, and the full Mississippi corridor.',
 };
 
 export default function ArtistsPage() {
@@ -34,7 +34,7 @@ export default function ArtistsPage() {
               marginBottom: 'var(--space-3)',
             }}
           >
-            BuyCurious Art
+            Venture Gallery
           </p>
           <h1
             style={{

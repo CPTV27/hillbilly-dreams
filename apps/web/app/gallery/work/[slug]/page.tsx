@@ -1,5 +1,5 @@
 // apps/web/app/gallery/work/[slug]/page.tsx
-// BuyCurious Art — Individual Artwork Detail Page
+// Venture Gallery — Individual Artwork Detail Page
 // The most important page. Art-forward, minimal chrome, design-system consistent.
 
 import type { Metadata } from 'next';
@@ -15,10 +15,10 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const artwork = DEMO_ARTWORKS.find((w) => w.slug === slug);
-  if (!artwork) return { title: 'Artwork Not Found | BuyCurious Art' };
+  if (!artwork) return { title: 'Artwork Not Found | Venture Gallery' };
 
   return {
-    title: `${artwork.title} — ${artwork.artistName} | BuyCurious Art`,
+    title: `${artwork.title} — ${artwork.artistName} | Venture Gallery`,
     description: `${artwork.title} by ${artwork.artistName}. ${artwork.medium}, ${artwork.dimensions}. ${artwork.edition}. ${formatPrice(artwork.salePrice ?? artwork.price)}. ${artwork.description.slice(0, 120)}...`,
     openGraph: {
       title: `${artwork.title} by ${artwork.artistName}`,
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: {
       card: 'summary_large_image',
       title: `${artwork.title} by ${artwork.artistName}`,
-      description: `${artwork.medium} · ${formatPrice(artwork.salePrice ?? artwork.price)} · BuyCurious Art`,
+      description: `${artwork.medium} · ${formatPrice(artwork.salePrice ?? artwork.price)} · Venture Gallery`,
     },
   };
 }
@@ -61,7 +61,7 @@ export default async function ArtworkDetailPage({ params }: Props) {
   const contactEmail = 'gallery@bigmuddytouring.com';
   const inquirySubject = encodeURIComponent(`Inquiry: ${artwork.title} by ${artwork.artistName}`);
   const inquiryBody = encodeURIComponent(
-    `Hi,\n\nI'm interested in "${artwork.title}" by ${artwork.artistName}.\n\nLink: https://buycuriousart.com/gallery/work/${artwork.slug}\n\nPlease let me know about availability and next steps.\n\nThank you.`
+    `Hi,\n\nI'm interested in "${artwork.title}" by ${artwork.artistName}.\n\nLink: https://venturegallery.art/gallery/work/${artwork.slug}\n\nPlease let me know about availability and next steps.\n\nThank you.`
   );
 
   return (
@@ -365,7 +365,7 @@ export default async function ArtworkDetailPage({ params }: Props) {
               </p>
               <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
                 <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`"${artwork.title}" by ${artwork.artistName} — ${formatPrice(artwork.salePrice ?? artwork.price)}`)}&url=${encodeURIComponent(`https://buycuriousart.com/gallery/work/${artwork.slug}`)}`}
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`"${artwork.title}" by ${artwork.artistName} — ${formatPrice(artwork.salePrice ?? artwork.price)}`)}&url=${encodeURIComponent(`https://venturegallery.art/gallery/work/${artwork.slug}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn--ghost"
@@ -374,7 +374,7 @@ export default async function ArtworkDetailPage({ params }: Props) {
                   Share on X
                 </a>
                 <a
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://buycuriousart.com/gallery/work/${artwork.slug}`)}`}
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://venturegallery.art/gallery/work/${artwork.slug}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn--ghost"

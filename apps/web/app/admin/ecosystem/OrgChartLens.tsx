@@ -63,7 +63,7 @@ const ORG: OrgNode = {
       ],
     },
     {
-      name: 'BuyCurious Art',
+      name: 'Venture Gallery',
       role: 'Marketplace',
       color: '#eab308',
       children: [

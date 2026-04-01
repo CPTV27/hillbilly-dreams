@@ -68,9 +68,9 @@ const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: 'meet-arri-b-aslin',
-    title: 'Meet Arri B. Aslin: Our Artist-in-Residence',
+    title: 'Meet Arrie B. Aslin: Our Artist-in-Residence',
     excerpt:
-      "Amy Allen transforms into Arri B. Aslin when the lights go down. Meet the soul behind the Blues Room's signature sound.",
+      "Amy Allen transforms into Arrie B. Aslin when the lights go down. Meet the soul behind the Blues Room's signature sound.",
     category: 'People',
     date: '2026-02-15',
     readTime: '6 min',

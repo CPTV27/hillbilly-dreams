@@ -50,7 +50,7 @@ const PACKAGES: WeddingPackage[] = [
       { text: 'Full inn buyout (6 rooms, 2 nights)' },
       { text: 'Blues Room ceremony or reception' },
       { text: 'Front porch cocktail hour' },
-      { text: 'Live acoustic music by Arri Aslin' },
+      { text: 'Live acoustic music by Arrie Aslin' },
       { text: 'Photography by Chase Pierson (4 hours)' },
       { text: 'Wedding coordination' },
       { text: 'Welcome basket for each room' },
@@ -412,7 +412,7 @@ export default function WeddingsPage() {
         </div>
       </section>
 
-      {/* ── Arri Aslin photo break ── */}
+      {/* ── Arrie Aslin photo break ── */}
       <div
         style={{
           width: '100%',
@@ -425,7 +425,7 @@ export default function WeddingsPage() {
           borderBottom: '1px solid var(--muted, #333)',
         }}
         role="img"
-        aria-label="Arri Aslin, resident musician at The Big Muddy Inn"
+        aria-label="Arrie Aslin, resident musician at The Big Muddy Inn"
       />
 
       {/* ── Packages ── */}

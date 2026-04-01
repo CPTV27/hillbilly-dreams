@@ -52,9 +52,10 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
   // bigmuddymedia.com removed — domain owned by unrelated Illinois company.
   // /media routes accessible via direct paths on other domains.
   { pattern: 'outsidereconomics', routeGroup: 'economics' },
-  // buycurious.art → retired into Storefront module on MBT
-  { pattern: 'buycurious', routeGroup: 'measurably-better' },
-  { pattern: 'buycuriousart', routeGroup: 'measurably-better' },
+  // Venture Gallery (formerly BuyCurious Art) — gallery/storefront module
+  { pattern: 'buycurious', routeGroup: 'gallery' },
+  { pattern: 'buycuriousart', routeGroup: 'gallery' },
+  { pattern: 'venturegallery', routeGroup: 'gallery' },
   { pattern: 'bigmuddyrecord', routeGroup: 'records' },
   { pattern: 'studiocvideo', routeGroup: 'studioc' },
   { pattern: 'studio-c', routeGroup: 'studioc' },

@@ -455,8 +455,8 @@ export default function BearsvillePage() {
             Big Muddy corridor
           </a>
           {' '}— powered by{' '}
-          <a href="https://hillbillydreamsinc.com" style={{ color: textDim, textDecoration: 'none' }}>
-            Hillbilly Dreams Inc
+          <a href="https://measurablybetter.life" style={{ color: accent, textDecoration: 'none' }}>
+            Measurably Better Things
           </a>
         </p>
       </footer>

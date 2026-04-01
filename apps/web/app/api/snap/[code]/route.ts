@@ -29,11 +29,11 @@ const DEMO_SESSIONS: Record<string, object> = {
     name: 'Blues Room — March 15, 2026',
     location: 'The Big Muddy Inn · Natchez, Mississippi',
     date: '2026-03-15T20:00:00',
-    description: 'A Friday night in the Blues Room. Arri B. Aslin, 50 seats, zero pretense.',
+    description: 'A Friday night in the Blues Room. Arrie B. Aslin, 50 seats, zero pretense.',
     status: 'active',
     totalShares: 47,
     photos: [
-      { id: 'p1', url: '/images/inn/blues-room-stage.webp',   thumbnailUrl: '/images/inn/blues-room-stage.webp',   caption: 'Arri B. Aslin takes the stage',            sortOrder: 0, shareCount: 12, status: 'visible' },
+      { id: 'p1', url: '/images/inn/blues-room-stage.webp',   thumbnailUrl: '/images/inn/blues-room-stage.webp',   caption: 'Arrie B. Aslin takes the stage',            sortOrder: 0, shareCount: 12, status: 'visible' },
       { id: 'p2', url: '/images/inn/blues-room-crowd.webp',   thumbnailUrl: '/images/inn/blues-room-crowd.webp',   caption: 'Friday night crowd',                       sortOrder: 1, shareCount: 8,  status: 'visible' },
       { id: 'p3', url: '/images/inn/arri-performance.webp',   thumbnailUrl: '/images/inn/arri-performance.webp',   caption: 'Deep in the second set',                   sortOrder: 2, shareCount: 15, status: 'visible' },
       { id: 'p4', url: '/images/inn/natchez-river.webp',      thumbnailUrl: '/images/inn/natchez-river.webp',      caption: 'The Mississippi at dusk',                  sortOrder: 3, shareCount: 6,  status: 'visible' },

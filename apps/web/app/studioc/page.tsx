@@ -472,7 +472,7 @@ export default function StudioPage() {
         </div>
       </section>
 
-      {/* ── Arri Aslin Feature ── */}
+      {/* ── Arrie Aslin Feature ── */}
       <section style={{
         background: 'var(--bg)',
         borderTop: '1px solid var(--border)',
@@ -486,7 +486,7 @@ export default function StudioPage() {
             <div style={{ overflow: 'hidden', borderRadius: 'var(--radius-lg, 8px)' }}>
               <Image
                 src="/images/studio-c/utopiademo-day-55.webp"
-                alt="Arri Aslin tracking guitar at Studio C"
+                alt="Arrie Aslin tracking guitar at Studio C"
                 width={600}
                 height={600}
                 sizes="40vw"
@@ -513,7 +513,7 @@ export default function StudioPage() {
                 letterSpacing: 'var(--tracking-tight)',
                 margin: '0 0 var(--space-4)',
               }}>
-                Arri Aslin
+                Arrie Aslin
               </h2>
               <p style={{
                 fontFamily: 'var(--font-body)',

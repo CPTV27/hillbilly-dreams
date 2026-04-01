@@ -37,7 +37,7 @@ export default function WeddingBrochurePage() {
                 <li>Full inn buyout (6 rooms, 2 nights)</li>
                 <li>Blues Room ceremony or reception</li>
                 <li>Front porch cocktail hour</li>
-                <li>Live acoustic music by Arri Aslin</li>
+                <li>Live acoustic music by Arrie Aslin</li>
                 <li>Photography by Chase Pierson (4 hours)</li>
               </ul>
             </div>

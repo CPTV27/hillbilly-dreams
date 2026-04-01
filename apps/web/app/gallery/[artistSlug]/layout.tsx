@@ -53,7 +53,7 @@ export default function ArtistStorefrontLayout({
       }}>
         <p style={{ margin: 0 }}>
           &copy; {new Date().getFullYear()} {displayName} &middot; Powered by{' '}
-          <Link href="/gallery" style={{ color: '#b8963e', textDecoration: 'none' }}>BuyCurious Art</Link>
+          <Link href="/gallery" style={{ color: '#b8963e', textDecoration: 'none' }}>Venture Gallery</Link>
         </p>
       </footer>
     </div>

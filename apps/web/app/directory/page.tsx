@@ -133,6 +133,7 @@ const TIERS = [
     name: 'The Engine',
     price: '$99/mo',
     href: STRIPE_LINK_ENGINE,
+    badge: 'Coming April 14',
     features: [
       'Everything in The Works',
       'AI review response drafts',

@@ -153,7 +153,7 @@ export default function GalleryAbout() {
               { name: 'Big Muddy Touring', role: 'Hospitality · The Inn · Live Events', icon: '🏨' },
               { name: 'Big Muddy Radio', role: 'Broadcast · Podcasting · Music', icon: '📻' },
               { name: 'Big Muddy Magazine', role: 'Editorial · Photography · Story', icon: '📰' },
-              { name: 'BuyCurious Art', role: 'Gallery · Marketplace · Curation', icon: '🎨' },
+              { name: 'Venture Gallery', role: 'Gallery · Marketplace · Curation', icon: '🎨' },
               { name: 'Big Muddy Records', role: 'Label · Recording · Distribution', icon: '🎵' },
               { name: 'Outsider Economics', role: 'The Math Behind the Movement', icon: '📐' },
             ].map((brand) => (

@@ -102,7 +102,7 @@ export default function GalleryApply() {
           Authentication Required
         </h1>
         <p style={{ color: '#6b5d4a', lineHeight: 1.7, marginBottom: '2rem' }}>
-          You must be logged in to apply for the BuyCurious Art Marketplace.
+          You must be logged in to apply for the Venture Gallery.
         </p>
         <Link
           href="/admin/login?callbackUrl=/gallery/apply"
@@ -130,7 +130,7 @@ export default function GalleryApply() {
           Application Received
         </h1>
         <p style={{ color: '#6b5d4a', lineHeight: 1.7, marginBottom: '2rem' }}>
-          Thank you for applying to the BuyCurious Art Marketplace. Our curatorial team will review your 
+          Thank you for applying to the Venture Gallery. Our curatorial team will review your 
           portfolio and artist statement shortly. We review every application personally — not algorithmically.
         </p>
         <Link
@@ -203,7 +203,7 @@ export default function GalleryApply() {
           Apply to Sell on BCA
         </h1>
         <p style={{ color: '#6b5d4a', lineHeight: 1.7, fontSize: '1.05rem' }}>
-          BuyCurious Art is a taste-led marketplace. Tell us about yourself and your practice.
+          Venture Gallery is a taste-led marketplace. Tell us about yourself and your practice.
           Provide a link to your best work and an artist statement describing your perspective.
         </p>
       </div>
