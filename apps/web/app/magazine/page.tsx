@@ -60,8 +60,8 @@ export default async function MagazineHomepage() {
       {/* ── Hero ── */}
       <section className="mag-hero">
         <Image
-          src="https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/07-letterpress/dispatch-header.webp"
-          alt=""
+          src="/images/processed/natchez-golden-hour-family.webp"
+          alt="Family on a Natchez street at golden hour — long shadows, live oaks, antebellum homes"
           fill
           priority
           sizes="100vw"

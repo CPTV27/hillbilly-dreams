@@ -11,29 +11,29 @@ export const metadata: Metadata = {
 // To update: replace the `src` values with public GCS URLs for your 19 picks.
 // Suggested split: 1 hero · 6 region · 6 music/community · 6 places/business
 
-const HERO_IMAGE = ''; // e.g. 'https://storage.googleapis.com/bmt-media-bigmuddy/bearsville/hero.jpg'
+const HERO_IMAGE = '/images/processed/hudson-valley-landscape-hero.webp';
 
 const GRID_IMAGES: { src: string; alt: string; bucket: 'region' | 'music' | 'places' }[] = [
-  // — Region: landscapes, roads, mountains, barns, small towns —
-  { src: '', alt: 'Catskills ridge at dusk', bucket: 'region' },
+  // — Region: landscapes, roads, mountains —
+  { src: '/images/processed/hudson-valley-landscape-hero.webp', alt: 'A-frame cabin nestled in Catskills forest canopy', bucket: 'region' },
   { src: '', alt: 'Route 212 heading into Woodstock', bucket: 'region' },
   { src: '', alt: 'Hudson Valley farmland in November', bucket: 'region' },
   { src: '', alt: 'Bearsville hamlet from the hill', bucket: 'region' },
   { src: '', alt: 'Reservoir in early morning fog', bucket: 'region' },
   { src: '', alt: 'Stone wall along a back road', bucket: 'region' },
   // — Music / community: concerts, artists, crowds, backstage —
-  { src: '', alt: 'Live show at a Woodstock venue', bucket: 'music' },
-  { src: '', alt: 'Artist in the recording booth', bucket: 'music' },
-  { src: '', alt: 'Crowd at an outdoor summer show', bucket: 'music' },
-  { src: '', alt: 'Band loading in at dusk', bucket: 'music' },
-  { src: '', alt: 'Open mic at a local bar', bucket: 'music' },
-  { src: '', alt: 'Backstage portrait, Hudson Valley', bucket: 'music' },
-  // — Places / business: storefronts, studios, property, texture —
-  { src: '', alt: 'Main Street storefront, Woodstock', bucket: 'places' },
-  { src: '', alt: 'Recording studio control room', bucket: 'places' },
-  { src: '', alt: 'Independent bookshop interior', bucket: 'places' },
-  { src: '', alt: 'Catskill Center gallery space', bucket: 'places' },
-  { src: '', alt: 'Local restaurant, weekend service', bucket: 'places' },
+  { src: '/images/processed/bearsville-theater-rock-01.webp', alt: 'Singer performing at Bearsville Theater with floral dress and stage lights', bucket: 'music' },
+  { src: '/images/processed/bearsville-theater-rock-02.webp', alt: 'Live band at Bearsville Theater, moody stage lighting', bucket: 'music' },
+  { src: '/images/processed/bearsville-theater-rock-03.webp', alt: 'Performer at Bearsville Theater, intimate venue shot', bucket: 'music' },
+  { src: '/images/processed/bearsville-theater-rock-04.webp', alt: 'Rock show at Bearsville Theater, crowd and stage', bucket: 'music' },
+  { src: '/images/processed/arri-aslan-inn-portrait.webp', alt: 'Arri Aslan, arms wide in the Big Muddy Inn parlor', bucket: 'music' },
+  { src: '/images/processed/bearsville-matt-pond-studio-01.webp', alt: 'Matt Pond recording session at Utopia Studios', bucket: 'music' },
+  // — Places / business: storefronts, studios, property —
+  { src: '/images/processed/bearsville-studio-session-01.webp', alt: 'Utopia Studios demo day — recording session in progress', bucket: 'places' },
+  { src: '/images/processed/bearsville-studio-session-02.webp', alt: 'Utopia Studios control room during session', bucket: 'places' },
+  { src: '/images/processed/bearsville-studio-session-03.webp', alt: 'Studio C equipment and tracking room', bucket: 'places' },
+  { src: '/images/processed/bearsville-studio-session-04.webp', alt: 'Recording session at Utopia Studios, Bearsville', bucket: 'places' },
+  { src: '/images/processed/bearsville-matt-pond-studio-02.webp', alt: 'Matt Pond at the console, Studio C', bucket: 'places' },
   { src: '', alt: 'Production van outside a venue', bucket: 'places' },
 ];
 

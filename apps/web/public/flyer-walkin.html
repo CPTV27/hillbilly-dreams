@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep South Directory — Walk-In Flyer</title>
+<style>
+  @page { size: letter; margin: 0.5in; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #0a0a0a;
+    color: #f5f0eb;
+    max-width: 7.5in;
+    margin: 0 auto;
+    padding: 0.5in;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .header {
+    text-align: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #c8943e;
+    margin-bottom: 1.5rem;
+  }
+  .header .eyebrow {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #c8943e;
+    margin-bottom: 0.5rem;
+  }
+  .header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .header h1 span { color: #c8943e; }
+  .header .subtitle {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    max-width: 28rem;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .col-card {
+    border: 1px solid #333;
+    padding: 1.25rem;
+  }
+  .col-card h2 {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #c8943e;
+    margin-bottom: 0.75rem;
+  }
+  .col-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .col-card li {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    padding-left: 1rem;
+    position: relative;
+    opacity: 0.85;
+  }
+  .col-card li::before {
+    content: '\2014';
+    position: absolute;
+    left: 0;
+    color: #c8943e;
+  }
+
+  .pricing {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tier {
+    border: 1px solid #333;
+    padding: 1.25rem;
+    position: relative;
+  }
+  .tier--featured {
+    border: 2px solid #c8943e;
+  }
+  .tier .badge {
+    position: absolute;
+    top: -0.6rem;
+    left: 1rem;
+    background: #c8943e;
+    color: #0a0a0a;
+    font-size: 0.55rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.6rem;
+  }
+  .tier h3 {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #c8943e;
+    margin-bottom: 0.25rem;
+  }
+  .tier .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+  }
+  .tier ul {
+    list-style: none;
+    padding: 0;
+  }
+  .tier li {
+    font-size: 0.7rem;
+    line-height: 1.5;
+    padding-left: 0.85rem;
+    position: relative;
+    opacity: 0.8;
+  }
+  .tier li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: #c8943e;
+    font-size: 0.65rem;
+  }
+
+  .bottom {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    border-top: 2px solid #c8943e;
+    padding-top: 1.25rem;
+  }
+  .bottom-left h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+  .bottom-left p {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    line-height: 1.5;
+  }
+  .bottom-left .url {
+    font-size: 0.85rem;
+    color: #c8943e;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  .qr-placeholder {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #c8943e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.55rem;
+    color: #c8943e;
+    opacity: 0.7;
+    line-height: 1.3;
+  }
+
+  .footer-note {
+    text-align: center;
+    margin-top: 1.25rem;
+    font-size: 0.6rem;
+    opacity: 0.3;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  @media print {
+    body { padding: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <p class="eyebrow">Deep South Directory</p>
+  <h1>Your business.<br><span>Our audience.</span></h1>
+  <p class="subtitle">
+    The regional business network for the Mississippi Corridor.
+    Every tourist, local, and AI search — we put you where they're looking.
+  </p>
+</div>
+
+<div class="columns">
+  <div class="col-card">
+    <h2>What You Get</h2>
+    <ul>
+      <li>AI-powered business listing on the directory</li>
+      <li>Google review alerts — know the moment someone reviews you</li>
+      <li>Magazine coverage through Big Muddy Magazine</li>
+      <li>Radio mentions on Big Muddy Radio</li>
+      <li>Social media content generated in your voice</li>
+      <li>Monthly report card on your online presence</li>
+    </ul>
+  </div>
+  <div class="col-card">
+    <h2>Why It Matters</h2>
+    <ul>
+      <li>Tourists search before they arrive — you need to be found</li>
+      <li>AI search (ChatGPT, Google AI) is replacing Google — we optimize for both</li>
+      <li>No contracts, cancel anytime</li>
+      <li>Same price as ChatGPT. Built for your town.</li>
+      <li>Run by someone who lives here and owns a business here</li>
+      <li>Not a tech company — a media company working for you</li>
+    </ul>
+  </div>
+</div>
+
+<div class="pricing">
+  <div class="tier">
+    <h3>The Listing</h3>
+    <p class="price">$20/mo</p>
+    <ul>
+      <li>AI business listing on the directory</li>
+      <li>Google review alerts</li>
+      <li>AI assistant trained on your business</li>
+      <li>Monthly report card</li>
+      <li>Part of the Big Muddy network</li>
+      <li>Same price as ChatGPT</li>
+    </ul>
+  </div>
+  <div class="tier tier--featured">
+    <div class="badge">Full Package</div>
+    <h3>The Engine</h3>
+    <p class="price">$99/mo</p>
+    <ul>
+      <li>Everything in The Listing</li>
+      <li>AI review response drafts</li>
+      <li>4 social posts per week</li>
+      <li>Competitor watch (3 competitors)</li>
+      <li>Quarterly Magazine feature</li>
+      <li>Text Chase directly for anything</li>
+    </ul>
+  </div>
+</div>
+
+<div class="bottom">
+  <div class="bottom-left">
+    <h3>Ready? Takes 2 minutes.</h3>
+    <p>
+      Scan the code or visit the site. Fill out the short form.
+      Your listing goes live within 24 hours.
+      Questions? Text Chase directly.
+    </p>
+    <span class="url">deepsouthdirectory.com</span>
+  </div>
+  <div class="qr-placeholder">
+    QR code<br>goes here<br><small>(print from phone)</small>
+  </div>
+</div>
+
+<p class="footer-note">Hillbilly Dreams Inc &middot; Natchez, Mississippi &middot; Powered by Measurably Better</p>
+
+</body>
+</html>
