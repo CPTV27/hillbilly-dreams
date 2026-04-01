@@ -155,25 +155,53 @@ API keys in Vercel: `ANTHROPIC_API_KEY`, `PERPLEXITY_API_KEY`, `GOOGLE_APPLICATI
 
 ---
 
-## Key Files
+## Key Files (all in repo — `git pull` to get them)
 
+### Start Here
 | File | What |
 |------|------|
-| `docs/HDI_BRAND_HIERARCHY_ANALYSIS.md` | Full org chart, legal entities, cap table, revenue model |
+| `docs/BUSINESS_ARCHITECTURE.md` | **Source of truth.** Three layers, two products, nine modules, the flywheel. Read this first. |
+| `docs/COPY_RESET_PLAN.md` | Page-by-page audit + rewrite priorities |
+| `.claude/agents/HANDOFF_COS_TO_PATCH.md` | Full capabilities audit — what works, what's broken, priority tasks |
+
+### Strategy & Brand
+| File | What |
+|------|------|
+| `docs/HDI_BRAND_HIERARCHY_ANALYSIS.md` | Org chart, legal entities, cap table, revenue model |
 | `docs/BIG_MUDDY_MEDIA_PLAYBOOK.md` | Radio/Magazine/Directory/Touring cadences and promises |
+| `.claude/agents/ORIGIN_STORY.md` | The narrative — DeFacto Codec to Big Muddy |
+| `.claude/agents/BRAND_NARRATIVE_OVERHAUL.md` | Value props, voice, copy rules |
+| `.claude/agents/NORTH_STAR_MANIFESTO.md` | Visual direction — photography first, Glass Engine aesthetic |
+
+### QA & Standards
+| File | What |
+|------|------|
+| `.claude/agents/QA_CHASE.md` | Full QC checklist — brand voice, code, honesty gate, the works |
+| `.claude/agents/CHIEF_OF_STAFF.md` | Big picture context, priority stack, decision memory |
+| `.claude/agents/COS_EXAM.md` | 25-scenario certification test for QA |
+
+### Technical
+| File | What |
+|------|------|
 | `apps/web/config/domain-routes.ts` | Hostname → route group mapping |
 | `apps/web/config/tenants.ts` | Multi-tenant registry (big-muddy, bearsville, studio-c, tuthill) |
 | `apps/web/middleware.ts` | Routing engine — reads domain-routes.ts |
-| `.claude/agents/ORIGIN_STORY.md` | The narrative — DeFacto Codec to Big Muddy |
-| `.claude/agents/BRAND_NARRATIVE_OVERHAUL.md` | Value props, voice, copy rules |
-| `.claude/agents/BROADCASTING_CAPABILITIES.md` | Radio/broadcasting stack |
-| `memory/feedback_chase_voice.md` | Chase's writing voice (living doc) |
-| `memory/feedback_qc_policy.md` | Full QC rules |
-| `memory/feedback_ai_model_routing.md` | AI model routing with failover |
-| `memory/project_mbt_pricing_tiers.md` | DSD tier pricing ($20/$49/$99) |
-| `memory/project_operator_split.md` | Chase/Tracy/Amy/JP day-night operator split |
-| `lib/ai-models.ts` | Multi-provider AI routing code |
+| `apps/web/lib/ai-models.ts` | Multi-provider AI routing code |
 | `outsider-economics-v2/` | Live field manual content — DO NOT DELETE |
+
+### Agents
+| File | What |
+|------|------|
+| `.claude/agents/PATCH.md` | Technical Director — build, deploy, infrastructure |
+| `.claude/agents/VESPER_OMNI_AGENT_BLUEPRINT.md` | Future vision — Omni-Agent architecture (backlog) |
+
+### Operations
+| File | What |
+|------|------|
+| `docs/ADMIN_ONBOARDING_GUIDE.md` | Tracy & Amy admin tools walkthrough |
+| `docs/VAN_WRAP_SPEC.md` | Sprinter van wrap design for the shop |
+
+**Note:** Memory files (`memory/*.md`) are machine-local project memory, not in the repo. The critical info from memory is duplicated in `docs/BUSINESS_ARCHITECTURE.md` and the agent files above. If you need memory context, ask the Chief of Staff or read the docs.
 
 ---
 
