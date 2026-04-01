@@ -224,7 +224,7 @@ export default function EntertainmentPage() {
               <div className="ent-talent__benefit-icon">&#x1F4F1;</div>
               <h3>Business Tools</h3>
               <p>
-                Free Measurably Better access &mdash; marketing, social media,
+                Free access to the Big Muddy business tools &mdash; marketing, social media,
                 booking management, and financial tools. Built for artists who
                 are also small businesses.
               </p>
@@ -265,7 +265,7 @@ export default function EntertainmentPage() {
             style={{ textAlign: 'center', maxWidth: '540px', margin: '0 auto var(--space-12)' }}
           >
             We give qualifying artists, businesses, and community members free
-            access to Measurably Better &mdash; the AI business platform that
+            access to the Big Muddy business tools &mdash; the same platform that
             powers everything we do. Sign up. Learn the tools. Earn credits. Build
             something real.
           </p>
@@ -280,7 +280,7 @@ export default function EntertainmentPage() {
                 </p>
               </div>
               <p className="ent-community__tier-desc">
-                Selected through the talent search. Get the full MBT toolkit
+                Selected through the talent search. Get the full toolkit
                 &mdash; social posting, booking management, fan engagement, and
                 financial tracking. Built for artists who are also running a
                 business.
@@ -302,7 +302,7 @@ export default function EntertainmentPage() {
                 </p>
               </div>
               <p className="ent-community__tier-desc">
-                Qualifying small businesses in the corridor get free MBT access.
+                Qualifying small businesses in the corridor get free access.
                 Restaurants, shops, venues, B&amp;Bs &mdash; the businesses that
                 make the corridor work. Learn the tools through interactive
                 modules, graduate to paying customers or stay subsidized.
@@ -437,10 +437,10 @@ export default function EntertainmentPage() {
             <div className="ent-flywheel__step">
               <div className="ent-flywheel__step-num">04</div>
               <p>
-                Audience drives Measurably Better subscriptions
+                Audience drives Deep South Directory subscriptions
               </p>
               <span className="ent-flywheel__step-brand" style={{ color: 'var(--division-riseup, #7B1B46)' }}>
-                Measurably Better
+                Directory
               </span>
             </div>
             <div className="ent-flywheel__step">

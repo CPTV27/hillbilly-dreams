@@ -267,7 +267,7 @@ function DashboardContent() {
             textTransform: 'uppercase',
           }}
         >
-          Powered by Measurably Better · hillbillydreamsinc.com
+          Part of the Big Muddy ecosystem · hillbillydreamsinc.com
         </p>
       </section>
 

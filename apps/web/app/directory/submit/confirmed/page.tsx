@@ -60,7 +60,7 @@ function ConfirmedContent() {
           </ol>
         </section>
 
-        {/* MBT upsell */}
+        {/* Ecosystem upsell */}
         <section style={{
           background: '#111',
           border: '1px solid #222',
@@ -69,17 +69,17 @@ function ConfirmedContent() {
           marginBottom: 48,
         }}>
           <p style={{ color: 'var(--accent, #c8943e)', fontSize: 12, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 12 }}>
-            Powered by Measurably Better
+            Part of the Big Muddy Ecosystem
           </p>
           <p style={{ fontSize: 15, lineHeight: 1.7, color: '#ccc', marginBottom: 16 }}>
-            The Directory runs on Measurably Better — the same business operating system used by operators across the corridor.
-            Sales pipeline, billing, project tracking, marketing automation. One platform. One monthly cost.
+            The Directory plugs you into the full Big Muddy machine — Magazine features, Radio mentions,
+            event tie-ins, and a real audience of travelers and locals already coming to the corridor.
           </p>
           <a
-            href={`mailto:licensing@hillbillydreamsinc.com?subject=MBT inquiry from ${encodeURIComponent(businessName)}`}
+            href={`mailto:listings@hillbillydreamsinc.com?subject=Upgrade inquiry from ${encodeURIComponent(businessName)}`}
             style={{ color: 'var(--accent, #c8943e)', fontSize: 14, textDecoration: 'none' }}
           >
-            Ask us about Measurably Better →
+            Ask about the full ecosystem →
           </a>
         </section>
 

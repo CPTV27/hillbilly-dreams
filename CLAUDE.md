@@ -25,10 +25,13 @@ Shows generate a 2:1 ecosystem multiplier (Inn + Directory revenue).
 **Priority 3 — Bearsville Media Group**
 Northeast node (Woodstock, NY). Domain live, DNS wired. Summer 2026 activation.
 
-**On Ice — Do Not Build or Pitch**
-- `measurablybetter.life` — MBT brand paused. Infrastructure stays, brand dormant.
-- `measurablybetterthings.com` — same, on ice.
+**B2B Only — Not Consumer-Facing**
+- `measurablybetter.life` — MBT is the B2B platform brand for operators/licensees. NOT for walk-in customers.
+- `measurablybetterthings.com` — alias for above.
 - `buycurious.art` — routes to MBT storefront, not actively promoted.
+- If a customer sees "Measurably Better" on a consumer page, that's a bug.
+
+**Archived**
 - S2PX / Scan2Plan — archived to `~/S2PX-archive/`. Partnership with Owen Bush dissolved 03/25/2026.
 
 ---
@@ -49,8 +52,8 @@ Northeast node (Woodstock, NY). Domain live, DNS wired. Summer 2026 activation.
 | studiocvideo.com | Studio C Video | Active — partner |
 | bearsvillemediagroup.com | Bearsville Media Group | Live, summer activation |
 | bearsvillemedia.com | Bearsville (alias) | Redirects to above |
-| measurablybetter.life | MBT | **On ice** |
-| buycurious.art | MBT Storefront alias | **On ice** |
+| measurablybetter.life | MBT (B2B platform) | B2B only — not consumer |
+| buycurious.art | MBT Storefront alias | B2B only |
 
 ---
 

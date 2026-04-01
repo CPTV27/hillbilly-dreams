@@ -16,11 +16,11 @@ const HERO_IMAGE = '/images/processed/hudson-valley-landscape-hero.webp';
 const GRID_IMAGES: { src: string; alt: string; bucket: 'region' | 'music' | 'places' }[] = [
   // — Region: landscapes, roads, mountains —
   { src: '/images/processed/hudson-valley-landscape-hero.webp', alt: 'A-frame cabin nestled in Catskills forest canopy', bucket: 'region' },
-  { src: '', alt: 'Route 212 heading into Woodstock', bucket: 'region' },
-  { src: '', alt: 'Hudson Valley farmland in November', bucket: 'region' },
-  { src: '', alt: 'Bearsville hamlet from the hill', bucket: 'region' },
-  { src: '', alt: 'Reservoir in early morning fog', bucket: 'region' },
-  { src: '', alt: 'Stone wall along a back road', bucket: 'region' },
+  { src: '/images/processed/catskills-road-autumn.webp', alt: 'Winding road through the Catskills in autumn', bucket: 'region' },
+  { src: '/images/processed/hudson-valley-farmland.webp', alt: 'Hudson Valley farmland with Catskill Mountains beyond', bucket: 'region' },
+  { src: '/images/processed/bearsville-hamlet-morning.webp', alt: 'Bearsville hamlet in the morning fog', bucket: 'region' },
+  { src: '/images/processed/catskills-reservoir-dawn.webp', alt: 'Catskills reservoir at dawn, fog on still water', bucket: 'region' },
+  { src: '/images/processed/hudson-valley-stone-wall.webp', alt: 'Moss-covered stone wall along a country road', bucket: 'region' },
   // — Music / community: concerts, artists, crowds, backstage —
   { src: '/images/processed/bearsville-theater-rock-01.webp', alt: 'Singer performing at Bearsville Theater with floral dress and stage lights', bucket: 'music' },
   { src: '/images/processed/bearsville-theater-rock-02.webp', alt: 'Live band at Bearsville Theater, moody stage lighting', bucket: 'music' },
@@ -34,7 +34,7 @@ const GRID_IMAGES: { src: string; alt: string; bucket: 'region' | 'music' | 'pla
   { src: '/images/processed/bearsville-studio-session-03.webp', alt: 'Studio C equipment and tracking room', bucket: 'places' },
   { src: '/images/processed/bearsville-studio-session-04.webp', alt: 'Recording session at Utopia Studios, Bearsville', bucket: 'places' },
   { src: '/images/processed/bearsville-matt-pond-studio-02.webp', alt: 'Matt Pond at the console, Studio C', bucket: 'places' },
-  { src: '', alt: 'Production van outside a venue', bucket: 'places' },
+  { src: '/images/processed/bearsville-venue-night.webp', alt: 'Touring van outside a venue at night, string lights', bucket: 'places' },
 ];
 
 // ─── Corridor nodes ───────────────────────────────────────────────────────────
