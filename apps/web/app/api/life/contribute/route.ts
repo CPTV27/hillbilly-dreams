@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/life/contribute/route.ts
 // GET  /api/life/contribute — list current user's contributed listings
 // POST /api/life/contribute — submit a new business listing for review

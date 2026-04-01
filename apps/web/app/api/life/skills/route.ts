@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/life/skills/route.ts
 // GET  /api/life/skills — search skill listings (query: q, category, city, sandbox)
 // POST /api/life/skills — add a skill listing (requires auth)

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // /api/ops/amy — Amy's dashboard data
 // Fetches today's arrivals (Cloudbeds), artist loadsheet (Showcases),
 // and outstanding tasks (LaunchTask) in a single call.
@@ -6,7 +7,6 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { getReservations } from '@/lib/cloudbeds';
 
-export const dynamic = 'force-dynamic';
 
 function todayString() {
   return new Date().toISOString().split('T')[0];

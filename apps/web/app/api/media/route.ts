@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/media/route.ts
 // GET /api/media — list all images grouped by album
 

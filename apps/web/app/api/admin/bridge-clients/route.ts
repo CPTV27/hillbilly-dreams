@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/admin/bridge-clients/route.ts
 // GET  — list all bridge clients with article counts
 // POST — create a new bridge client (generates apiKey + apiSecret, stores bcrypt hash)

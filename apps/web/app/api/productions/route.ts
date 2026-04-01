@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // GET /api/productions — list all production jobs (filterable by campaign, stage)
 // POST /api/productions — create a new production job
 

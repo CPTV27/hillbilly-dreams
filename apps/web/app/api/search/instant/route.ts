@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { searchContext, searchBusinesses } from '@/lib/meilisearch-client';
 

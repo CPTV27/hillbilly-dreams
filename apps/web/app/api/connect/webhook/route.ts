@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/connect/webhook/route.ts
 // POST /api/connect/webhook — Stripe Connect webhook handler
 // Handles: account.updated, payment_intent.succeeded (on behalf of connected accounts)

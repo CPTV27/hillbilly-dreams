@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/directory/route.ts
 // GET /api/directory — public directory API, no auth required
 // Returns only active clients with public-safe fields.

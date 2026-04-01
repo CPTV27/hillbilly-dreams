@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/directory/submit/route.ts
 // POST /api/directory/submit
 // Handles Deep South Directory listing submissions.

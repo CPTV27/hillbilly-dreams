@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/events/route.ts
 
 import { NextResponse } from 'next/server';

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/media/upload/route.ts
 // POST /api/media/upload — multipart image upload with sharp webp conversion
 // Accepts: multipart/form-data with fields: file (required), album (optional, default "uploads")

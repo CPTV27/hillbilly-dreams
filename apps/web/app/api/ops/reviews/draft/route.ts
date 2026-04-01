@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Anthropic from '@anthropic-ai/sdk';
 import { prisma } from '@bigmuddy/database';
 import { NextResponse } from 'next/server';

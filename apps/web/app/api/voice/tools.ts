@@ -15,8 +15,7 @@ import { prisma } from '@bigmuddy/database';
 
 // Tool declarations use raw objects — the @google/genai SDK accepts
 // plain objects matching the FunctionDeclaration interface.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const VOICE_TOOL_DECLARATIONS: any[] = [
+export const VOICE_TOOL_DECLARATIONS: Record<string, unknown>[] = [
   {
     name: 'search_directory',
     description:

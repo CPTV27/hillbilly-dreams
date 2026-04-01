@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // app/api/cron/cloudbeds-sync/route.ts
 // Daily cron job — syncs Cloudbeds occupancy & revenue metrics to the dashboard
 // Also serves as the API key health check (keeps key alive, expires after 30 days unused)

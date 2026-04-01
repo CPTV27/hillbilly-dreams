@@ -1,8 +1,10 @@
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { getGeminiModel } from '@/lib/vertex-client';
 
-const model = getGeminiModel();
+let _model: ReturnType<typeof getGeminiModel> | null = null;
+function model() { if (!_model) _model = getGeminiModel(); return _model; }
 
 export async function POST(req: NextRequest) {
   const { sourceType, sourceId } = await req.json();
@@ -30,7 +32,7 @@ export async function POST(req: NextRequest) {
 
     const draftIds: number[] = [];
     for (const channel of channels) {
-      const result = await model.generateContent(prompts[channel]);
+      const result = await model().generateContent(prompts[channel]);
       const text = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '';
 
       const draft = await (prisma as any).pendingDraft.create({

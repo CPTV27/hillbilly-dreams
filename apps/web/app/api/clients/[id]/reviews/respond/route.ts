@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/clients/[id]/reviews/respond/route.ts
 // POST /api/clients/:id/reviews/respond — AI-generate responses for pending reviews
 

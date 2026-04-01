@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { prisma } from '@bigmuddy/database'
 import { auth } from '@/lib/auth'
 import { requireRoleResponse } from '@/lib/requireRole'

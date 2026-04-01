@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/billing/webhook/route.ts
 // POST /api/billing/webhook — Stripe webhook handler
 // Handles: checkout.session.completed, invoice.paid, invoice.payment_failed,

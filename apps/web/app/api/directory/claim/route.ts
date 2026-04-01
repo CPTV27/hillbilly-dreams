@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/directory/claim/route.ts
 // POST /api/directory/claim — create or claim a Client record in the directory.
 // If a paid tier is selected, creates a Stripe checkout session and returns the URL.

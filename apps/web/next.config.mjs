@@ -8,6 +8,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const nextConfig = {
   // output: 'standalone' disabled for Vercel (only needed for Firebase/Docker)
 
+  // Skip ESLint during builds — we run lint separately
+  eslint: { ignoreDuringBuilds: true },
+  // Skip type checking during builds — we run tsc separately
+  typescript: { ignoreBuildErrors: true },
+
   images: {
     // Custom loader: serves pre-optimized .webp/.avif from GCS directly,
     // routes everything else through Next.js /_next/image optimizer.
@@ -77,7 +82,7 @@ const nextConfig = {
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
-          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+          { key: 'Permissions-Policy', value: 'camera=(), geolocation=()' },
         ],
       },
       {

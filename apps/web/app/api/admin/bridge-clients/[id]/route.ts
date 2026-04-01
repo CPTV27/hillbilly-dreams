@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/admin/bridge-clients/[id]/route.ts
 // PATCH  — update client (name, status, allowedCategories, rotate secret)
 // DELETE — remove a client

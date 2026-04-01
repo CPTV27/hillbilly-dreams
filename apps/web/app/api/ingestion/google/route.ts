@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/ingestion/google/route.ts
 // ─────────────────────────────────────────────────────────────
 // Google Workspace Ingestion Endpoint — Sovereign Node Data Pipeline

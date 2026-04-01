@@ -1,8 +1,14 @@
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { getGeminiModel } from '@/lib/vertex-client';
 
-const model = getGeminiModel();
+// Lazy-init: don't call getGeminiModel() at module load (crashes during build)
+let _model: ReturnType<typeof getGeminiModel> | null = null;
+function model() {
+  if (!_model) _model = getGeminiModel();
+  return _model;
+}
 
 /**
  * POST /api/agent/orchestrate
@@ -64,7 +70,7 @@ Return ONLY valid JSON:
   "memoryUsed": true/false — did existing memory answer the question?
 }`;
 
-    const result = await model.generateContent(routingPrompt);
+    const result = await model().generateContent(routingPrompt);
     const responseText = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     const routing = JSON.parse(cleaned);

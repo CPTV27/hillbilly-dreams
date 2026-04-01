@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // POST /api/productions/[id]/video — start Veo video generation
 // Stores operationId on the job for polling
 

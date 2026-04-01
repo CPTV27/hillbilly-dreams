@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // POST /api/media/video — generate video via Vertex AI Veo 3.1
 // Returns a GCS URL to the generated video
 

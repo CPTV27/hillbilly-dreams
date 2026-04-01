@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/clients/[id]/calendar/route.ts
 // GET /api/clients/:id/calendar — list calendars
 // POST /api/clients/:id/calendar — generate a content calendar for a month

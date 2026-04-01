@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // app/api/webhooks/cloudbeds/route.ts
 // Receives webhook events from Cloudbeds PMS
 // Events: reservation/created, reservation/status_changed, reservation/dates_changed,

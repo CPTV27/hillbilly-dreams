@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/billing/subscribe/route.ts
 // POST /api/billing/subscribe — create a Stripe checkout session for a client
 

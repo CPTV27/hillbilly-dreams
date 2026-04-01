@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/social/generate/route.ts
 // POST /api/social/generate — AI-powered social post content generation
 // Takes a prompt or source content and generates platform-appropriate copy

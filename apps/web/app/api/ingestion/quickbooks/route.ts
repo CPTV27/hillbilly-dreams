@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/ingestion/quickbooks/route.ts
 // ─────────────────────────────────────────────────────────────
 // QBO Ingestion Endpoint — Sovereign Node Data Pipeline

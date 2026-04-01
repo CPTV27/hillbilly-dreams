@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/media/generate/route.ts
 // POST /api/media/generate — generate image via Vertex AI Imagen, save to GCS
 

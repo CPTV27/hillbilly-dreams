@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/sync/route.ts
 // Sync Marketplace API — browse and create sync licensing opportunities
 

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // GET /api/productions/[id] — get job detail with artifacts
 // PATCH /api/productions/[id] — update job fields (stage, script, settings)
 

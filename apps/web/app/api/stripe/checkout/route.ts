@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // app/api/stripe/checkout/route.ts
 // POST — Create a Stripe Checkout session with Destination Charges.
 // Money flows: Customer → Hillbilly Dreams (platform) → Connected Account (minus platform fee).

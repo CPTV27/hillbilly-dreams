@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/data/health/route.ts
 // GET /api/data/health
 // Data platform health monitor — completeness and freshness stats.

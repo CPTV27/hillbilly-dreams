@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/publish/batch/route.ts
 // POST /api/publish/batch — process all pending publish jobs whose scheduledAt <= now
 //

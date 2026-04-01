@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/life/board/route.ts
 // GET  /api/life/board — list open TaskPosts for a city (query: city, sandbox)
 // POST /api/life/board — create new TaskPost (requires auth + life tier)

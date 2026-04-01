@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/connect/onboard/route.ts
 // POST /api/connect/onboard — Start Stripe Connect onboarding for a directory client
 

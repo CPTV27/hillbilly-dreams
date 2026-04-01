@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // ── Multi-Tenant Bridge Ingest Endpoint ──
 // Receives HMAC-signed payloads from any registered bridge client.
 // Auth flow:

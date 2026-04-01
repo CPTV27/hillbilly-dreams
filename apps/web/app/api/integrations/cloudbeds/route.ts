@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // app/api/integrations/cloudbeds/route.ts
 // Cloudbeds integration management — connect, status, availability, reservations
 // Wraps the lib/cloudbeds.ts client for Next.js API consumption

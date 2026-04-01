@@ -1,9 +1,11 @@
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { requireAdmin } from '@/lib/admin-auth';
 import { getGeminiModel } from '@/lib/vertex-client';
 
-const model = getGeminiModel();
+let _model: ReturnType<typeof getGeminiModel> | null = null;
+function model() { if (!_model) _model = getGeminiModel(); return _model; }
 
 /**
  * POST /api/marketing/social
@@ -63,7 +65,7 @@ Return ONLY a valid JSON array (no markdown, no backticks):
   }
 ]`;
 
-    const result = await model.generateContent(prompt);
+    const result = await model().generateContent(prompt);
     const responseText = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '[]';
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     const campaign = JSON.parse(cleaned);

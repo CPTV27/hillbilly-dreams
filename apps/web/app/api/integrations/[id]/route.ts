@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/integrations/[id]/route.ts
 // GET, PATCH, DELETE for a single client integration
 

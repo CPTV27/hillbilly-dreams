@@ -20,11 +20,18 @@ const BUCKET_NAME = process.env.GCS_BUCKET ?? 'bmt-media-bigmuddy';
 
 // On Vercel, credentials come from GOOGLE_APPLICATION_CREDENTIALS_JSON env var.
 // Locally, ADC or GOOGLE_APPLICATION_CREDENTIALS file works.
-const credsJson = process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON;
-const storage = credsJson
-  ? new Storage({ credentials: JSON.parse(credsJson), projectId: JSON.parse(credsJson).project_id })
-  : new Storage();
-const bucket = storage.bucket(BUCKET_NAME);
+// Lazy-init: don't parse credentials at module load (breaks Next.js build).
+let _storage: InstanceType<typeof Storage> | null = null;
+function getStorage() {
+  if (!_storage) {
+    const credsJson = process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON;
+    _storage = credsJson
+      ? new Storage({ credentials: JSON.parse(credsJson), projectId: JSON.parse(credsJson).project_id })
+      : new Storage();
+  }
+  return _storage;
+}
+function getBucket() { return getStorage().bucket(BUCKET_NAME); }
 
 export const GCS_BASE_URL = `https://storage.googleapis.com/${BUCKET_NAME}`;
 
@@ -39,7 +46,7 @@ export async function uploadToGCS(
   path: string,
   contentType: string
 ): Promise<string> {
-  const file = bucket.file(path);
+  const file = getBucket().file(path);
 
   await file.save(buffer, {
     metadata: {
@@ -59,7 +66,7 @@ export async function uploadToGCS(
 export async function listImages(): Promise<
   Record<string, Array<{ name: string; url: string; size: number; updated: string }>>
 > {
-  const [files] = await bucket.getFiles();
+  const [files] = await getBucket().getFiles();
 
   const grouped: Record<
     string,
@@ -97,6 +104,6 @@ export async function listImages(): Promise<
  * @param path - full path inside the bucket (e.g. "heroes/my-image.webp")
  */
 export async function deleteFromGCS(path: string): Promise<void> {
-  const file = bucket.file(path);
+  const file = getBucket().file(path);
   await file.delete();
 }

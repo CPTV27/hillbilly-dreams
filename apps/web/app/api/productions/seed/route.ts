@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // POST /api/productions/seed — seed the 6 campaign concepts from AG_PROMO_VIDEO_CAMPAIGN.md
 
 import { NextResponse } from 'next/server';

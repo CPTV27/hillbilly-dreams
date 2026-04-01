@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // app/api/stripe/webhook/route.ts
 // POST — Stripe Connect webhook handler for Hillbilly Dreams platform.
 // Listens for: checkout.session.completed, account.updated, transfer.created

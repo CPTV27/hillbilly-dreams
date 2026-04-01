@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/social/posts/route.ts
 // GET /api/social/posts — list posts (filterable by account, status, source)
 // POST /api/social/posts — create a new social post

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/cron/sync-census/route.ts
 // POST /api/cron/sync-census
 // Syncs Census ACS 5-Year data for all corridor counties.

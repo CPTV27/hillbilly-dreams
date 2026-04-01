@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // GET /api/cron/scan-asana — Scan all Asana projects for new comments
 // Runs hourly via Vercel Cron. Creates follow-up tasks from team feedback.
 

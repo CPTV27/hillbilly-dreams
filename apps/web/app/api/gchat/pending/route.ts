@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // GET /api/gchat/pending?agent=huck — Poll for pending messages
 // Agents call this to check if Chase or team members have sent them messages.
 // Returns pending messages and marks them as 'read'.

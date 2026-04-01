@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/publications/route.ts
 // GET  /api/publications  — list, filterable by status, category, city
 // POST /api/publications  — create

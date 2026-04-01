@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/integrations/route.ts
 // GET /api/integrations?clientId=X — List all integrations for a client
 // POST /api/integrations — Create a new integration

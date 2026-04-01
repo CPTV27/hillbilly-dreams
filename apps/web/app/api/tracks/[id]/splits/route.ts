@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/tracks/[id]/splits/route.ts
 // Splits Ledger API — manage contributor splits per track
 

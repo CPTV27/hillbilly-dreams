@@ -1,8 +1,10 @@
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { getGeminiModel } from '@/lib/vertex-client';
 
-const model = getGeminiModel();
+let _model: ReturnType<typeof getGeminiModel> | null = null;
+function model() { if (!_model) _model = getGeminiModel(); return _model; }
 
 /**
  * POST /api/marketing/scout
@@ -59,7 +61,7 @@ Return ONLY valid JSON (no markdown):
 
 Make everything specific to this actual business. If you know real details about them, use them. If not, create plausible content based on their category and location.`;
 
-    const result = await model.generateContent(researchPrompt);
+    const result = await model().generateContent(researchPrompt);
     const responseText = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     const scoutData = JSON.parse(cleaned);

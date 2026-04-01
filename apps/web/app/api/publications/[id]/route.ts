@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/publications/[id]/route.ts
 // GET    /api/publications/[id] — fetch single by id
 // PATCH  /api/publications/[id] — partial update

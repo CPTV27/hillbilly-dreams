@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // app/api/cron/dynamic-pricing/route.ts
 // Daily pricing engine — adjusts Big Muddy Inn rates based on occupancy & events
 // Runs after cloudbeds-sync so metrics are fresh

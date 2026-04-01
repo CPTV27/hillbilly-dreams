@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/atom/route.ts
 // Atom 1.0 feed for Big Muddy Magazine articles
 

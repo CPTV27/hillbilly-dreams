@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // POST /api/productions/[id]/approve — set approval status + notes
 
 import { NextRequest, NextResponse } from 'next/server';

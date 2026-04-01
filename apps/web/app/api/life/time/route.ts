@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/life/time/route.ts
 // GET  /api/life/time — list exchanges for current user (as provider or receiver)
 // POST /api/life/time — log a new time exchange

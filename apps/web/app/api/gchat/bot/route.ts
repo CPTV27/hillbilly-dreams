@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // POST /api/gchat/bot — Google Chat Bot webhook receiver
 // Google Chat sends events here when someone messages the bot or @mentions it.
 // Messages are stored in Cloudflare D1 for agents to poll.

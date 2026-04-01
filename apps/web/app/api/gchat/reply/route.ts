@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // POST /api/gchat/reply — Agent replies to a Google Chat message
 // Agents call this to respond to a message in the original thread.
 // Uses the Google Chat API (service account) to post back into the space.

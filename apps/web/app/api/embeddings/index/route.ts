@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/embeddings/index/route.ts
 // POST /api/embeddings/index
 // Index entities into the vector search system.

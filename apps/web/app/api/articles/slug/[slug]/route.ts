@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/articles/slug/[slug]/route.ts
 // GET /api/articles/slug/[slug] — get article by slug (for public article pages)
 

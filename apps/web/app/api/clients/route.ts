@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/clients/route.ts
 // GET /api/clients — list clients (filterable by tier, status, city)
 // POST /api/clients — create a new client

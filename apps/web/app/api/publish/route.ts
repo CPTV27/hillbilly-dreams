@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/publish/route.ts
 // GET /api/publish — list publish jobs (filterable by status)
 // POST /api/publish — create a publish job for a social post

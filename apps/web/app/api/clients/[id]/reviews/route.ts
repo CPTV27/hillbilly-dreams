@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/clients/[id]/reviews/route.ts
 // GET /api/clients/:id/reviews — list reviews
 // POST /api/clients/:id/reviews — add a review (manual or from scraper)

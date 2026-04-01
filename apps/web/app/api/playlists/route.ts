@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/playlists/route.ts
 
 import { NextResponse } from 'next/server';

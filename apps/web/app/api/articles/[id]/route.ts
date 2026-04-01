@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/articles/[id]/route.ts
 // GET /api/articles/[id] — get by id
 // PUT /api/articles/[id] — update

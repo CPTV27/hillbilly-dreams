@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/gallery/artists/route.ts
 // BuyCurious Art — Artists API (Prisma-backed)
 // GET /api/gallery/artists

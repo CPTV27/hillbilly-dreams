@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/billing/route.ts
 // GET /api/billing — list invoices (filterable by clientId, status)
 // POST /api/billing — create invoice manually or sync from Stripe

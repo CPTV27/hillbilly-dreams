@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/snap/[code]/route.ts
 // GET /api/snap/:code — returns session data with photos.
 //

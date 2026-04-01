@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // POST /api/productions/[id]/voiceover — generate TTS for a production job
 // Reuses the same Google Cloud TTS logic as /api/media/audio
 

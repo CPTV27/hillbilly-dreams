@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/feed/route.ts
 // RSS 2.0 feed for Big Muddy Magazine articles
 

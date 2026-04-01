@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/social/accounts/[id]/route.ts
 // GET, PATCH, DELETE for a single social account
 

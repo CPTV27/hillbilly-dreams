@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/media/enhance/route.ts
 // POST /api/media/enhance — enhance a photo with Sharp presets + optional AI enhancement
 // Accepts: multipart/form-data with fields:

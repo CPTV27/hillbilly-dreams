@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/clients/[id]/report/route.ts
 // GET /api/clients/:id/report — list reports
 // POST /api/clients/:id/report — generate a monthly report

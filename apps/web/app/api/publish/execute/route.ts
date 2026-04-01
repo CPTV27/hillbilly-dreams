@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/publish/execute/route.ts
 // POST /api/publish/execute — execute a single publish job
 //

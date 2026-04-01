@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // GET /api/productions/campaigns — list all campaigns
 // POST /api/productions/campaigns — create a campaign
 

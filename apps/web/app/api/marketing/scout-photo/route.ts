@@ -1,8 +1,10 @@
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { getGeminiModel } from '@/lib/vertex-client';
 
-const model = getGeminiModel();
+let _model: ReturnType<typeof getGeminiModel> | null = null;
+function model() { if (!_model) _model = getGeminiModel(); return _model; }
 
 /**
  * POST /api/marketing/scout-photo
@@ -61,7 +63,7 @@ Then research this business and return ONLY valid JSON (no markdown):
 
 Be specific — use the actual business name from the photo, their real location, and make the content feel custom-built for them.`;
 
-    const result = await model.generateContent({
+    const result = await model().generateContent({
       contents: [{
         role: 'user',
         parts: [

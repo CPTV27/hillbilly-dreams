@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/voice/stream/route.ts
 // ─────────────────────────────────────────────────────────────
 // Voice AI Endpoint — "Southern Concierge"

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/tracks/route.ts
 // Track catalog API — list and create tracks
 

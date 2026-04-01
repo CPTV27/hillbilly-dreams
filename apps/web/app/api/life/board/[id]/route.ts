@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/life/board/[id]/route.ts
 // GET    /api/life/board/[id] — single task detail
 // PUT    /api/life/board/[id] — claim task or update status

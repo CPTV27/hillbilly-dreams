@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/content/approve/route.ts
 // POST /api/content/approve — approve or reject content in the pipeline
 // Handles: calendar approval, post approval, review response approval

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/directory/[slug]/route.ts
 // GET /api/directory/[slug] — public profile for a single directory client
 //

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/articles/route.ts
 // Articles API — GET (list) and POST (create)
 // Falls back to lib/articles.ts data when database is not connected

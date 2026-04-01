@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // app/api/stripe/onboard/route.ts
 // POST — Generate a Stripe Connect onboarding link for an artist/venue.
 // The connected account enters their own bank info via Stripe's hosted form.

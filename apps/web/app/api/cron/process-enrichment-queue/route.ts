@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/cron/process-enrichment-queue/route.ts
 // POST /api/cron/process-enrichment-queue
 // Processes pending enrichment jobs. Designed to run every 5 minutes via Vercel Cron.

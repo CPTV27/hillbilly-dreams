@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/lookbook/comments/route.ts
 // CRUD for lookbook illustration comments
 

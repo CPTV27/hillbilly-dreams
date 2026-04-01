@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/clients/[id]/voice/route.ts
 // POST /api/clients/:id/voice — Generate AI brand voice profile for a client
 

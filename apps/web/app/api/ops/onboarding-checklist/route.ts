@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // app/api/ops/onboarding-checklist/route.ts
 // POST — Generate and dispatch the ops setup checklist after team member onboarding.
 // Sends to Chase via email + creates Asana task.

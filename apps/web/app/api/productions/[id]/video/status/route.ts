@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // GET /api/productions/[id]/video/status — poll Veo operation
 // On completion: download video, upload to GCS, create artifact, clear operationId
 

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/life/time/[id]/route.ts
 // PUT /api/life/time/[id] — confirm or dispute a time exchange
 

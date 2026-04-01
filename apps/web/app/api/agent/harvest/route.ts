@@ -1,8 +1,10 @@
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { getGeminiModel } from '@/lib/vertex-client';
 
-const model = getGeminiModel();
+let _model: ReturnType<typeof getGeminiModel> | null = null;
+function model() { if (!_model) _model = getGeminiModel(); return _model; }
 
 /**
  * POST /api/agent/harvest
@@ -53,7 +55,7 @@ Prioritize: high-rated businesses with low online presence (the "Invisible Gems"
 Return ONLY valid JSON array (no markdown):
 [{ "name": "...", ... }]`;
 
-    const result = await model.generateContent(researchPrompt);
+    const result = await model().generateContent(researchPrompt);
     const responseText = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '[]';
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     const businesses = JSON.parse(cleaned);

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/life/tools/route.ts
 // GET  /api/life/tools — browse tool library (query: city, category, sandbox)
 // POST /api/life/tools — list a tool (requires auth)

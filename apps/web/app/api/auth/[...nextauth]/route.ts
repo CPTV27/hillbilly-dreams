@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/auth/[...nextauth]/route.ts
 // NextAuth v5 API route handler
 

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/media/ingest/route.ts
 // POST /api/media/ingest — Smart photo ingest pipeline
 // 1. Accepts photo upload (multipart/form-data)

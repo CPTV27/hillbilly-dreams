@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/connect/status/route.ts
 // GET /api/connect/status?clientId=X — Check Stripe Connect account status
 

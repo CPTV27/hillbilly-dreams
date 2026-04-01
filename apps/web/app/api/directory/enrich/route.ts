@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/directory/enrich/route.ts
 // POST /api/directory/enrich
 // Enriches a DirectoryBusiness with Google Places data.

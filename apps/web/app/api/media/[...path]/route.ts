@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/media/[...path]/route.ts
 // DELETE /api/media/:album/:filename — delete an image by its path
 

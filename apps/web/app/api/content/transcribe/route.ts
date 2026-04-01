@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/content/transcribe/route.ts
 // POST /api/content/transcribe
 // Accepts audio file upload, returns transcription via Whisper API.

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/life/profile/route.ts
 // GET  /api/life/profile — return current user's CommunityProfile
 // POST /api/life/profile — create profile from session

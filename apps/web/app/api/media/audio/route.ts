@@ -1,5 +1,7 @@
+export const dynamic = 'force-dynamic';
 // POST /api/media/audio — generate voice/speech via Google Cloud TTS
 // Returns audio buffer as base64 or uploads to GCS
+
 
 import { NextRequest, NextResponse } from 'next/server';
 import { GoogleAuth } from 'google-auth-library';

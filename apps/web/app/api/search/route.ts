@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/search/route.ts
 // GET /api/search?q=live+blues+near+the+river&type=directory_business&limit=5
 // Semantic vector search across all embedded content.

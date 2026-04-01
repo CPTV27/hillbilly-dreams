@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/content/schedule/route.ts
 // POST /api/content/schedule — convert an approved calendar into scheduled social posts
 // Body: { calendarId: number }

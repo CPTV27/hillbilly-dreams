@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/snap/claim/route.ts
 // POST /api/snap/claim — records a photo claim from a gallery visitor.
 //

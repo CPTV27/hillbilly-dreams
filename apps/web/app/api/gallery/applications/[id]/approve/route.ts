@@ -1,9 +1,9 @@
+export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import Stripe from 'stripe';
 import { dispatchToChannel } from '@bigmuddy/shared';
 
-export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request, { params }: { params: { id: string } }) {
     try {

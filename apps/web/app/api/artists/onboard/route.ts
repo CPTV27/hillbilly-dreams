@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/artists/onboard/route.ts
 // Band onboarding endpoint — takes a band name, auto-researches, creates artist profile
 // Used by the band sign-up template and admin dashboard
