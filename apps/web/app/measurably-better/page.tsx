@@ -85,10 +85,10 @@ const CORRIDORS = [
     modules: 'Directory, Radio, Magazine, Studio',
   },
   {
-    name: 'AEC & Geospatial',
-    example: 'Scan2Plan — National',
-    status: 'Potential',
-    modules: 'Directory, Commerce, Analytics, Content Pipeline',
+    name: 'Your Corridor',
+    example: 'Austin, Asheville, Savannah — any town with a story',
+    status: 'Open',
+    modules: 'Choose your modules. We deploy.',
   },
 ];
 
@@ -256,7 +256,7 @@ export default function MeasurablyBetterPlatformPage() {
           Running Implementation
         </p>
         <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
-          Big Muddy. 15 domains. One deployment.
+          Big Muddy. 14 domains. One deployment.
         </h2>
         <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--text-muted)', maxWidth: '600px', marginBottom: '3rem' }}>
           A music-hospitality ecosystem in Natchez, Mississippi. Hotel, touring circuit, magazine, radio station, record label, business directory — all running on one instance of this platform.
@@ -371,7 +371,7 @@ export default function MeasurablyBetterPlatformPage() {
             { number: '93%', label: 'Gross margins at scale' },
             { number: '$99', label: 'Entry point for businesses' },
             { number: '1', label: 'Deployment serves unlimited brands' },
-            { number: '15', label: 'Live domains from one codebase' },
+            { number: '14', label: 'Live domains from one codebase' },
           ].map((stat) => (
             <div key={stat.label} style={{ padding: '1.5rem', backgroundColor: 'var(--surface)', border: '1px solid var(--border)' }}>
               <p style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem', fontWeight: 400, color: 'var(--accent)', marginBottom: '0.5rem', lineHeight: 1 }}>

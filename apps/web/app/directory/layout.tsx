@@ -85,7 +85,7 @@ export default function DirectoryLayout({
           color: 'var(--text-muted)',
           margin: '0 0 0.4rem',
         }}>
-          Part of the Big Muddy ecosystem &middot;{' '}
+          Powered by Measurably Better Things &middot;{' '}
           <a href="https://hillbillydreamsinc.com" style={{ color: 'var(--accent)', textDecoration: 'none' }}>
             Hillbilly Dreams Inc
           </a>
