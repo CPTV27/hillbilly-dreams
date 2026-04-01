@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HDI — Org Chart</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #0a0a0a;
+    color: #f5f0eb;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .gold { color: #c8943e; }
+  .muted { color: #6b6560; }
+  .dim { color: #3a3633; }
+
+  .header {
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #242220;
+  }
+  .header .eyebrow {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #c8943e;
+    margin-bottom: 0.5rem;
+  }
+  .header h1 {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+  }
+  .header .sub {
+    font-size: 0.85rem;
+    color: #6b6560;
+    margin-top: 0.5rem;
+  }
+
+  /* Top Level */
+  .top-node {
+    text-align: center;
+    padding: 2rem;
+    border: 2px solid #c8943e;
+    margin: 0 auto 1.5rem;
+    max-width: 500px;
+  }
+  .top-node h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .top-node .people {
+    font-size: 0.75rem;
+    color: #6b6560;
+    line-height: 1.6;
+  }
+
+  /* Connector */
+  .connector {
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+  .connector .line {
+    width: 1px;
+    height: 30px;
+    background: #3a3633;
+    margin: 0 auto;
+  }
+
+  /* Three columns */
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .column {
+    border: 1px solid #242220;
+    padding: 1.5rem;
+  }
+  .column h3 {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #c8943e;
+    margin-bottom: 0.25rem;
+  }
+  .column .lead {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .column .role {
+    font-size: 0.75rem;
+    color: #6b6560;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #1a1918;
+  }
+
+  .brand-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #1a1918;
+    font-size: 0.8rem;
+  }
+  .brand-item:last-child { border-bottom: none; }
+  .brand-item .name { font-weight: 500; }
+  .brand-item .tag {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid #3a3633;
+    color: #6b6560;
+  }
+  .brand-item .tag.active {
+    border-color: #c8943e;
+    color: #c8943e;
+  }
+
+  /* Sales Verticals */
+  .section-header {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #c8943e;
+    margin: 3rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #242220;
+  }
+
+  .verticals {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: #242220;
+  }
+  .vertical {
+    background: #0a0a0a;
+    padding: 1.25rem;
+  }
+  .vertical h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .vertical .voice {
+    font-size: 0.7rem;
+    font-style: italic;
+    color: #c8943e;
+    margin-bottom: 0.5rem;
+  }
+  .vertical .detail {
+    font-size: 0.7rem;
+    color: #6b6560;
+    line-height: 1.5;
+  }
+
+  /* Human vs AI */
+  .hva {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  .hva-col h4 {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #242220;
+  }
+  .hva-col ul {
+    list-style: none;
+    padding: 0;
+  }
+  .hva-col li {
+    font-size: 0.75rem;
+    padding: 0.35rem 0;
+    padding-left: 1rem;
+    position: relative;
+    color: #8a8580;
+    border-bottom: 1px solid #111110;
+  }
+  .hva-col li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #3a3633;
+  }
+
+  /* Northeast */
+  .ne-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .ne-card {
+    border: 1px solid #242220;
+    padding: 1rem;
+  }
+  .ne-card .name { font-weight: 600; font-size: 0.85rem; }
+  .ne-card .person { font-size: 0.75rem; color: #c8943e; margin-top: 0.25rem; }
+  .ne-card .status { font-size: 0.65rem; color: #6b6560; margin-top: 0.25rem; }
+
+  /* AI Agents */
+  .agents {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1px;
+    background: #242220;
+    margin-top: 1rem;
+  }
+  .agent {
+    background: #0a0a0a;
+    padding: 1rem;
+  }
+  .agent .aname { font-weight: 600; font-size: 0.8rem; }
+  .agent .arole { font-size: 0.65rem; color: #6b6560; margin-top: 0.2rem; }
+  .agent .aplatform { font-size: 0.55rem; color: #3a3633; margin-top: 0.2rem; font-family: monospace; }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid #242220;
+    text-align: center;
+    font-size: 0.6rem;
+    color: #3a3633;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .columns { grid-template-columns: 1fr; }
+    .hva { grid-template-columns: 1fr; }
+    .ne-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <p class="eyebrow">Hillbilly Dreams Inc</p>
+  <h1>Organization Chart</h1>
+  <p class="sub">Humans + AI + Sales Verticals · Updated April 2026</p>
+</div>
+
+<!-- TOP NODE -->
+<div class="top-node">
+  <h2>Hillbilly Dreams Inc</h2>
+  <div class="people">
+    <strong>Chase Pierson</strong> — CEO / CTO / Showrunner<br>
+    <strong>Tracy Alderson-Allen</strong> — CFO / Gallery (equity partner)<br>
+    <strong>Amy Alderson-Allen</strong> — COO / Entertainment (equity partner)
+  </div>
+</div>
+
+<div class="connector"><div class="line"></div></div>
+
+<!-- THREE COLUMNS -->
+<div class="columns">
+  <!-- Tracy's Side -->
+  <div class="column">
+    <h3>Tracy's Side</h3>
+    <div class="lead">Hospitality & Publishing</div>
+    <div class="role">Gallery · Magazine · Inn · Finance</div>
+
+    <div class="brand-item">
+      <span class="name">Gallery</span>
+      <span class="tag active">Tracy curates</span>
+    </div>
+    <div class="brand-item">
+      <span class="name">Big Muddy Magazine</span>
+      <span class="tag active">Editorial</span>
+    </div>
+    <div class="brand-item">
+      <span class="name">The Big Muddy Inn</span>
+      <span class="tag active">Operations</span>
+    </div>
+    <div class="brand-item">
+      <span class="name">Finance & Compliance</span>
+      <span class="tag">Ongoing</span>
+    </div>
+  </div>
+
+  <!-- Chase's Side -->
+  <div class="column">
+    <h3>Chase's Side</h3>
+    <div class="lead">Platform & Technology</div>
+    <div class="role">MBT · DSD · Radio · Photography · Strategy</div>
+
+    <div class="brand-item">
+      <span class="name">Measurably Better Things</span>
+      <span class="tag active">Platform</span>
+    </div>
+    <div class="brand-item">
+      <span class="name">Deep South Directory</span>
+      <span class="tag active">Product</span>
+    </div>
+    <div class="brand-item">
+      <span class="name">Big Muddy Radio</span>
+      <span class="tag active">Streaming</span>
+    </div>
+    <div class="brand-item">
+      <span class="name">Chase Pierson Photography</span>
+      <span class="tag active">Gallery</span>
+    </div>
+    <div class="brand-item">
+      <span class="name">Outsider Economics</span>
+      <span class="tag">Publishing</span>
+    </div>
+  </div>
+
+  <!-- Amy's Side -->
+  <div class="column">
+    <h3>Amy's Side</h3>
+    <div class="lead">Entertainment & Live Music</div>
+    <div class="role">Touring · Records · Shows · Bands</div>
+
+    <div class="brand-item">
+      <span class="name">Big Muddy Touring</span>
+      <span class="tag active">Booking</span>
+    </div>
+    <div class="brand-item">
+      <span class="name">Big Muddy Records</span>
+      <span class="tag active">Label</span>
+    </div>
+    <div class="brand-item">
+      <span class="name">Big Muddy Entertainment</span>
+      <span class="tag active">Umbrella</span>
+    </div>
+    <div class="brand-item">
+      <span class="name">House Band</span>
+      <span class="tag">Building</span>
+    </div>
+    <div class="brand-item">
+      <span class="name">Venue Relationships</span>
+      <span class="tag">Scouting</span>
+    </div>
+  </div>
+</div>
+
+<!-- SALES VERTICALS -->
+<h3 class="section-header">Sales Verticals — Each Has Its Own Voice</h3>
+<div class="verticals">
+  <div class="vertical">
+    <h4>Deep South Directory</h4>
+    <div class="voice">"Neighborly, practical"</div>
+    <div class="detail">Seller: Local relationship builder<br>Product: $20/$49/$99 business marketing</div>
+  </div>
+  <div class="vertical">
+    <h4>Measurably Better Things</h4>
+    <div class="voice">"Technical authority"</div>
+    <div class="detail">Seller: Tech sales / enterprise<br>Product: Platform licensing, consumer AI</div>
+  </div>
+  <div class="vertical">
+    <h4>Big Muddy Magazine</h4>
+    <div class="voice">"Editorial, sophisticated"</div>
+    <div class="detail">Seller: Media sales person<br>Product: Advertising, features, sponsorships</div>
+  </div>
+  <div class="vertical">
+    <h4>Gallery</h4>
+    <div class="voice">"Clean, refined"</div>
+    <div class="detail">Seller: Art world connection<br>Product: Prints, exhibitions, commissions</div>
+  </div>
+  <div class="vertical">
+    <h4>Big Muddy Touring</h4>
+    <div class="voice">"Rock and roll insider"</div>
+    <div class="detail">Seller: Music industry person<br>Product: Booking, transport, production</div>
+  </div>
+  <div class="vertical">
+    <h4>Big Muddy Records</h4>
+    <div class="voice">"Analog warmth"</div>
+    <div class="detail">Seller: Music industry person<br>Product: Non-exclusive deals, distribution</div>
+  </div>
+</div>
+
+<!-- HUMAN vs AI -->
+<h3 class="section-header">What Needs a Human vs What AI Handles</h3>
+<div class="hva">
+  <div class="hva-col">
+    <h4 class="gold">Must Be Human</h4>
+    <ul>
+      <li>Relationship building (venue visits, band meetings)</li>
+      <li>Final creative approval (Chase's eye)</li>
+      <li>Deal negotiation (guarantees, splits, contracts)</li>
+      <li>Gallery curation decisions (Tracy's taste)</li>
+      <li>Live show operations (Amy's stage management)</li>
+      <li>Sales conversations (handshakes, not emails)</li>
+    </ul>
+  </div>
+  <div class="hva-col">
+    <h4 class="gold">AI Handles</h4>
+    <ul>
+      <li>Content generation (social, articles, promos)</li>
+      <li>Photo processing and tagging (Vision API)</li>
+      <li>Campaign automation (release schedules, posting)</li>
+      <li>Data enrichment (Google Places, embeddings)</li>
+      <li>Financial modeling (scenarios, projections)</li>
+      <li>Voice AI (Southern Concierge)</li>
+      <li>Report generation (monthly report cards)</li>
+      <li>Tour routing and scheduling</li>
+    </ul>
+  </div>
+</div>
+
+<!-- NORTHEAST -->
+<h3 class="section-header">Northeast Node — Bearsville</h3>
+<div class="ne-grid">
+  <div class="ne-card">
+    <div class="name">Studio C Video</div>
+    <div class="person">Elijah Tuttle</div>
+    <div class="status">Active — production arm</div>
+  </div>
+  <div class="ne-card">
+    <div class="name">Tuthill Design</div>
+    <div class="person">Elijah Tuttle</div>
+    <div class="status">Active — design studio</div>
+  </div>
+  <div class="ne-card">
+    <div class="name">Bearsville Media Group</div>
+    <div class="person">TBD + Miles joining</div>
+    <div class="status">Summer 2026 activation</div>
+  </div>
+</div>
+
+<!-- AI AGENTS -->
+<h3 class="section-header">AI Agent Registry</h3>
+<div class="agents">
+  <div class="agent">
+    <div class="aname">Chief of Staff</div>
+    <div class="arole">Coordination, QA, priorities</div>
+    <div class="aplatform">CLAUDE_CODE // ACTIVE</div>
+  </div>
+  <div class="agent">
+    <div class="aname">Patch</div>
+    <div class="arole">Technical Director — build, deploy</div>
+    <div class="aplatform">CLAUDE_CODE // REMOTE</div>
+  </div>
+  <div class="agent">
+    <div class="aname">Vesper</div>
+    <div class="arole">Creative Director — design, UX</div>
+    <div class="aplatform">GEMINI // ACTIVE</div>
+  </div>
+  <div class="agent">
+    <div class="aname">R&D Touring</div>
+    <div class="arole">Research, talent, economics</div>
+    <div class="aplatform">CLAUDE_CODE // BACKGROUND</div>
+  </div>
+  <div class="agent">
+    <div class="aname">Mac Mini Lab</div>
+    <div class="arole">Photo processing, tagging, GCS</div>
+    <div class="aplatform">MAC_MINI // PROCESSING</div>
+  </div>
+  <div class="agent">
+    <div class="aname">Delta Dawn</div>
+    <div class="arole">Customer-facing AI assistant</div>
+    <div class="aplatform">IN_APP // LIVE</div>
+  </div>
+  <div class="agent">
+    <div class="aname">Southern Concierge</div>
+    <div class="arole">Voice AI — tap to talk</div>
+    <div class="aplatform">MBT_LIFE // LIVE</div>
+  </div>
+  <div class="agent">
+    <div class="aname">Finance Director</div>
+    <div class="arole">Revenue modeling, scenarios</div>
+    <div class="aplatform">CLAUDE_CODE // ON_CALL</div>
+  </div>
+</div>
+
+<div class="footer">
+  Hillbilly Dreams Inc · Natchez, Mississippi · Powered by Measurably Better Things · April 2026
+</div>
+
+</body>
+</html>
