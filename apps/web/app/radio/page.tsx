@@ -159,7 +159,6 @@ export default async function RadioHomepage() {
           </div>
         </div>
       </section>
-      </section>
 
       <IllustrationDivider variant="magnolia" />
 
