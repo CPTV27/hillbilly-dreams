@@ -1,2 +1,19 @@
-/* Tuthill: Tuthill Place theme */
-/* No theme tokens defined yet — inherits :root defaults */
+/* Tuthill: Tuthill Design — photography, design, natural/refined */
+/* tuthilldesign.com */
+/* Dark forest-tinted base, natural green accent */
+.theme-tuthill {
+  --bg:              #0a0f0a;
+  --surface:         #141f14;
+  --surface-2:       #1e2e1e;
+  --surface-3:       #283d28;
+  --text:            #e8f0e8;
+  --text-muted:      #8aa08a;
+  --text-disabled:   #5a705a;
+  --accent:          #2D5F2D;
+  --accent-hover:    #1e4a1e;
+  --accent-muted:    rgba(45, 95, 45, 0.15);
+  --accent-subtle:   rgba(45, 95, 45, 0.06);
+  --border:          rgba(45, 95, 45, 0.10);
+  --border-strong:   rgba(45, 95, 45, 0.22);
+  --shadow-glow:     0 0 30px rgba(45, 95, 45, 0.10);
+}

@@ -95,25 +95,27 @@ function ImageSlot({ src, alt, style }: { src: string; alt: string; style?: Reac
   return (
     <div style={{
       width: '100%', height: '100%',
-      background: '#1a1816',
-      border: '1px dashed #2a2520',
+      background: 'var(--surface)',
+      border: '1px dashed var(--border)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       ...style,
     }}>
-      <span style={{ fontSize: '0.65rem', color: '#3a3530', textAlign: 'center', padding: '0.5rem', lineHeight: 1.4 }}>{alt}</span>
+      <span style={{ fontSize: '0.65rem', color: 'var(--text-disabled, #3a3530)', textAlign: 'center', padding: '0.5rem', lineHeight: 1.4 }}>{alt}</span>
     </div>
   );
 }
 
 export default function BearsvillePage() {
-  const accent = '#8B6914';
-  const accentLight = 'rgba(139,105,20,0.12)';
-  const bg = '#0f0f0d';
-  const surface = '#1a1816';
-  const border = '#2a2520';
-  const textPrimary = '#f5f0ea';
-  const textMuted = '#8a8074';
-  const textDim = '#5a5550';
+  // All colors now come from theme-bearsville CSS variables via the layout.
+  // These aliases exist only so the JSX references are short and readable.
+  const accent = 'var(--accent)';
+  const accentLight = 'var(--accent-muted)';
+  const bg = 'var(--bg)';
+  const surface = 'var(--surface)';
+  const border = 'var(--border)';
+  const textPrimary = 'var(--text)';
+  const textMuted = 'var(--text-muted)';
+  const textDim = 'var(--text-disabled, #5a5550)';
 
   return (
     <>

@@ -109,7 +109,7 @@ export default function GalleryAbout() {
                 fontWeight: 700,
                 color: '#c8943e',
                 marginBottom: '0.5rem',
-                fontFamily: 'Georgia, serif',
+                fontFamily: 'var(--font-display)',
               }}>
                 {item.step}
               </div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function WeddingBrochurePage() {
   return (
-    <div style={{ background: '#f5f0eb', minHeight: '100vh', color: '#0a0a0a', fontFamily: 'serif', padding: '40px' }}>
+    <div style={{ background: '#f5f0eb', minHeight: '100vh', color: '#0a0a0a', fontFamily: 'var(--font-display)', padding: '40px' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto', background: 'white', padding: '60px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', border: '1px solid #e5e0db' }}>
         
         {/* Header */}

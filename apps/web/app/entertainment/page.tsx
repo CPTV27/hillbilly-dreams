@@ -114,7 +114,7 @@ export default function EntertainmentPage() {
             <a href="https://bigmuddyradio.com" className="ent-division-card">
               <div
                 className="ent-division-card__accent"
-                style={{ background: '#00b4ff' }}
+                style={{ background: 'var(--division-radio, #00b4ff)' }}
               />
               <h3 className="ent-division-card__name">Big Muddy Radio</h3>
               <p className="ent-division-card__tagline">
@@ -127,7 +127,7 @@ export default function EntertainmentPage() {
               </p>
               <span
                 className="ent-division-card__link"
-                style={{ color: '#00b4ff' }}
+                style={{ color: 'var(--division-radio, #00b4ff)' }}
               >
                 bigmuddyradio.com &rarr;
               </span>
@@ -139,7 +139,7 @@ export default function EntertainmentPage() {
             >
               <div
                 className="ent-division-card__accent"
-                style={{ background: '#e87820' }}
+                style={{ background: 'var(--division-touring, #e87820)' }}
               />
               <h3 className="ent-division-card__name">Big Muddy Records</h3>
               <p className="ent-division-card__tagline">
@@ -152,7 +152,7 @@ export default function EntertainmentPage() {
               </p>
               <span
                 className="ent-division-card__link"
-                style={{ color: '#e87820' }}
+                style={{ color: 'var(--division-touring, #e87820)' }}
               >
                 bigmuddyrecords.com &rarr;
               </span>
@@ -161,7 +161,7 @@ export default function EntertainmentPage() {
             <div className="ent-division-card ent-division-card--riseup">
               <div
                 className="ent-division-card__accent"
-                style={{ background: '#c0392b' }}
+                style={{ background: 'var(--division-records, #c0392b)' }}
               />
               <h3 className="ent-division-card__name">
                 Rise Up Entertainment
@@ -176,7 +176,7 @@ export default function EntertainmentPage() {
               </p>
               <span
                 className="ent-division-card__link"
-                style={{ color: '#c0392b' }}
+                style={{ color: 'var(--division-records, #c0392b)' }}
               >
                 Coming soon &rarr;
               </span>
@@ -416,14 +416,14 @@ export default function EntertainmentPage() {
             <div className="ent-flywheel__step">
               <div className="ent-flywheel__step-num">01</div>
               <p>Artists perform at the Blues Room and on the circuit</p>
-              <span className="ent-flywheel__step-brand" style={{ color: '#c0392b' }}>
+              <span className="ent-flywheel__step-brand" style={{ color: 'var(--division-records, #c0392b)' }}>
                 Rise Up + Touring
               </span>
             </div>
             <div className="ent-flywheel__step">
               <div className="ent-flywheel__step-num">02</div>
               <p>Shows are recorded and broadcast</p>
-              <span className="ent-flywheel__step-brand" style={{ color: '#00b4ff' }}>
+              <span className="ent-flywheel__step-brand" style={{ color: 'var(--division-radio, #00b4ff)' }}>
                 Radio + Records
               </span>
             </div>
@@ -439,7 +439,7 @@ export default function EntertainmentPage() {
               <p>
                 Audience drives Measurably Better subscriptions
               </p>
-              <span className="ent-flywheel__step-brand" style={{ color: '#7B1B46' }}>
+              <span className="ent-flywheel__step-brand" style={{ color: 'var(--division-riseup, #7B1B46)' }}>
                 Measurably Better
               </span>
             </div>
@@ -448,14 +448,14 @@ export default function EntertainmentPage() {
               <p>
                 Subscription revenue funds community enrichment programs
               </p>
-              <span className="ent-flywheel__step-brand" style={{ color: '#4a7c59' }}>
+              <span className="ent-flywheel__step-brand" style={{ color: 'var(--division-riseup, #4a7c59)' }}>
                 Community
               </span>
             </div>
             <div className="ent-flywheel__step">
               <div className="ent-flywheel__step-num">06</div>
               <p>Community programs produce more artists and businesses</p>
-              <span className="ent-flywheel__step-brand" style={{ color: '#c0392b' }}>
+              <span className="ent-flywheel__step-brand" style={{ color: 'var(--division-records, #c0392b)' }}>
                 Back to Rise Up
               </span>
             </div>

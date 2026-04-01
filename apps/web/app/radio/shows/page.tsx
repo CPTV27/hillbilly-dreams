@@ -33,7 +33,7 @@ export default function RadioShowsPage() {
   const filtered = filter === 'All' ? SHOWS : SHOWS.filter(s => s.day.includes(filter) || s.day === 'Daily');
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0f0f0d', color: '#e8e0d4', fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <div style={{ minHeight: '100vh', background: '#0f0f0d', color: '#e8e0d4', fontFamily: 'var(--font-body)' }}>
       {/* Header */}
       <header style={{ padding: '2rem 1.5rem 1rem', maxWidth: 1200, margin: '0 auto', textAlign: 'center' }}>
         <p style={{ fontSize: '0.65rem', fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c8943e', marginBottom: '0.5rem' }}>

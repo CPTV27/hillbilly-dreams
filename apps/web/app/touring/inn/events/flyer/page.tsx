@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function EventFlyerPage() {
   return (
-    <div style={{ background: '#0a0a0a', minHeight: '100vh', color: '#f5f0eb', fontFamily: 'sans-serif', padding: '40px', display: 'flex', justifyContent: 'center' }}>
+    <div style={{ background: '#0a0a0a', minHeight: '100vh', color: '#f5f0eb', fontFamily: 'var(--font-body)', padding: '40px', display: 'flex', justifyContent: 'center' }}>
       
       {/* Flyer Container (Aspect ratio resembles an 11x17 poster) */}
       <div style={{ width: '100%', maxWidth: '600px', background: '#111', border: '1px solid #333', padding: '40px', position: 'relative', overflow: 'hidden' }}>

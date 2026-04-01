@@ -1,2 +1,19 @@
-/* Studio: production/recording studio theme */
-/* No theme tokens defined yet — inherits :root defaults */
+/* Studio: Studio C Video — production, recording, broadcasting */
+/* studiocvideo.com */
+/* Dark blue-tinted base, technical blue accent */
+.theme-studio {
+  --bg:              #0a0f1a;
+  --surface:         #121a2a;
+  --surface-2:       #1a2438;
+  --surface-3:       #222e46;
+  --text:            #e8edf5;
+  --text-muted:      #8a95a8;
+  --text-disabled:   #5a657a;
+  --accent:          #4A90D9;
+  --accent-hover:    #3a7bc0;
+  --accent-muted:    rgba(74, 144, 217, 0.15);
+  --accent-subtle:   rgba(74, 144, 217, 0.06);
+  --border:          rgba(74, 144, 217, 0.10);
+  --border-strong:   rgba(74, 144, 217, 0.22);
+  --shadow-glow:     0 0 30px rgba(74, 144, 217, 0.10);
+}

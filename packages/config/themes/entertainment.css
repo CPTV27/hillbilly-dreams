@@ -1,3 +1,25 @@
-/* Entertainment: Big Muddy Entertainment — talent search, community credits */
+/* Entertainment: Big Muddy Entertainment — shows, talent, Rise Up */
 /* bigmuddyentertainment.com */
-/* No theme tokens defined yet — inherits :root defaults */
+/* Dark base, energetic orange accent — the community organizer brand */
+.theme-bm-entertainment {
+  --bg:              #0a0a0a;
+  --surface:         #141414;
+  --surface-2:       #1e1e1e;
+  --surface-3:       #282828;
+  --text:            #f5f0eb;
+  --text-muted:      #9a9590;
+  --text-disabled:   #5a5550;
+  --accent:          #e87820;
+  --accent-hover:    #d06818;
+  --accent-muted:    rgba(232, 120, 32, 0.15);
+  --accent-subtle:   rgba(232, 120, 32, 0.06);
+  --border:          rgba(232, 120, 32, 0.10);
+  --border-strong:   rgba(232, 120, 32, 0.22);
+  --shadow-glow:     0 0 30px rgba(232, 120, 32, 0.10);
+
+  /* Division accent colors for the 4-division cards */
+  --division-touring:  #e87820;
+  --division-radio:    #00b4ff;
+  --division-records:  #c0392b;
+  --division-riseup:   #7B1B46;
+}
