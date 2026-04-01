@@ -180,6 +180,65 @@ export default function EntertainmentPage() {
         </div>
       </section>
 
+      {/* ── The House Band: Modern Muscle Shoals ── */}
+      <section style={{
+        padding: '5rem 5%',
+        borderTop: '1px solid var(--border)',
+      }}>
+        <div style={{ maxWidth: '800px' }}>
+          <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
+            The House Band
+          </p>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem', fontWeight: 400, letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: '2rem' }}>
+            You bring the songs.<br />
+            We bring the band.
+          </h2>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
+            Natchez is building a world-class rhythm section — bass, drums, keys, guitar —
+            that visiting artists perform with. Fly in or ride down in the Sprinter.
+            Walk into the Blues Room. Play with musicians who already know the pocket.
+          </p>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--text-muted)', marginBottom: '2rem' }}>
+            Think Muscle Shoals. The Swampers backed everyone from Aretha to the Stones
+            because the house band was that good. We&apos;re building the same thing on the
+            Mississippi — a rhythm section so locked in that artists come from Europe to play with them.
+          </p>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '1.5rem',
+            marginBottom: '2rem',
+          }}>
+            {[
+              {
+                title: 'Solo Artists',
+                desc: 'Bring your songs, sing with the house band. We handle the rest — sound, recording, promotion.',
+              },
+              {
+                title: 'Touring Acts',
+                desc: 'Already have a band? Play the circuit. Or sit in with the house band for a special session.',
+              },
+              {
+                title: 'Recording Sessions',
+                desc: 'Every performance can be a live album. Board mix at minimum, multitrack when the room is right. Released on Big Muddy Records.',
+              },
+            ].map((item) => (
+              <div key={item.title} style={{ padding: '1.5rem', border: '1px solid var(--border)' }}>
+                <h3 style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.5rem' }}>{item.title}</h3>
+                <p style={{ fontSize: '0.85rem', lineHeight: 1.6, color: 'var(--text-muted)' }}>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <p style={{ fontSize: '0.95rem', lineHeight: 1.7, color: 'var(--text-muted)', fontStyle: 'italic' }}>
+            The record label makes it real. Non-exclusive deal — you keep your masters,
+            we promote you through the magazine, the radio, the store, and the touring circuit.
+            Every tool you need to succeed, under one roof.
+          </p>
+        </div>
+      </section>
+
       {/* ── For Bands ── */}
       <section style={{
         padding: '5rem 5%',
