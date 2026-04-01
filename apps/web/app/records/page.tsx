@@ -5,13 +5,6 @@ import { IllustrationDivider } from '@bigmuddy/ui';
 
 const ROSTER = [
   {
-    name: 'Amy Allen',
-    genre: 'Soul / Blues / Storytelling',
-    description:
-      'Songs that carry the weight of the corridor — the Rhythm Nightclub Fire, the river towns, the people who stayed.',
-    status: 'Active',
-  },
-  {
     name: 'Mechanical Bull',
     genre: 'Alt-Country / Southern Rock',
     description:
@@ -19,18 +12,39 @@ const ROSTER = [
     status: 'Active',
   },
   {
-    name: 'Kate Squire',
+    name: 'Amy Allen',
+    genre: 'Soul / Blues / Storytelling',
+    description:
+      'Songs that carry the weight of the corridor — the Rhythm Nightclub Fire, the river towns, the people who stayed.',
+    status: 'Active',
+  },
+  {
+    name: 'Amy Scruggs',
+    genre: 'Blues / Soul / Roots',
+    description:
+      'Mississippi-born, corridor-raised. Amy Scruggs sings the kind of blues that doesn\'t ask permission — raw, lived-in, the real thing.',
+    status: 'Active',
+  },
+  {
+    name: 'Kate Skwire',
     genre: 'Folk / Americana / Singer-Songwriter',
     description:
       'Quiet songs that hit hard. Kate writes like she\'s telling you something she\'s only going to say once — spare arrangements, honest vocals, stories that stick.',
     status: 'Active',
   },
   {
-    name: 'Arrie Aslin',
+    name: 'Jill Stevenson',
+    genre: 'Americana / Folk / Roots',
+    description:
+      'Songs built from the ground up — field recordings, old hymns, and the kind of writing that makes you pull over on Highway 61 to listen.',
+    status: 'Active',
+  },
+  {
+    name: 'Arrie Aslin & Rise Up',
     genre: 'Americana / Parlor Folk / Blues',
     description:
-      'Artist-in-Residence at the Big Muddy Inn. Arrie hosts the Blues Room sessions, curates the American Parlor Songbook, and records the kind of music that belongs in a room with good light and old wood.',
-    status: 'Coming Soon',
+      'Artist-in-Residence at the Big Muddy Inn. Arrie hosts the Blues Room sessions, curates the American Parlor Songbook, and fronts Rise Up — the house band that turns a Tuesday night into something people drive two hours for.',
+    status: 'Active',
   },
 ];
 
@@ -270,7 +284,7 @@ export default function RecordsPage() {
             marginBottom: '0.5rem',
           }}
         >
-          Marketing Packages
+          How It Works
         </h2>
         <p
           style={{
@@ -280,7 +294,7 @@ export default function RecordsPage() {
             marginBottom: '0.75rem',
           }}
         >
-          You don&apos;t have to be on the label.
+          The whole machine behind you.
         </p>
         <p
           style={{
@@ -292,258 +306,11 @@ export default function RecordsPage() {
             marginBottom: '2.5rem',
           }}
         >
-          Any band or solo artist can use our marketing infrastructure — distribution,
-          social media, PR, photography, radio placement. If you want the full label
-          deal (recording, vinyl pressing, the whole machine behind you), that&apos;s the Blues
-          Room. But you don&apos;t need to sign anything to get started.
+          Artists own their masters from day one. Marketing is built in — Radio, Magazine,
+          Touring, the Inn. Every brand in the ecosystem amplifies your release without
+          burning your budget on ad spend. Twelve months at a time. No multi-year lock-in.
         </p>
 
-        {/* Tiered packages */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '1.5rem',
-            marginBottom: '3rem',
-          }}
-        >
-          {[
-            {
-              name: 'Front Porch',
-              price: '$100/mo',
-              sub: 'For artists just getting started',
-              featured: false,
-              includes: [
-                'Digital distribution (all platforms)',
-                'Artist page on bigmuddyrecords.com',
-                'Spotify playlist placement (Big Muddy Radio)',
-                'Monthly content calendar (4 posts)',
-                'You keep your masters',
-              ],
-            },
-            {
-              name: 'The Route',
-              price: '$250/mo',
-              sub: 'For artists ready to build an audience',
-              featured: true,
-              includes: [
-                'Everything in Front Porch',
-                'Social media management (2 platforms, 12 posts/mo)',
-                'PR outreach — regional press, blogs, podcasts',
-                'Radio promotion (Big Muddy Radio features)',
-                'AI-generated content (brand-voice matched)',
-                'Magazine feature in Big Muddy Magazine',
-                'Photo session with Chase Pierson (quarterly)',
-              ],
-            },
-            {
-              name: 'Blues Room',
-              price: '$500/mo',
-              sub: 'The whole machine behind you',
-              featured: false,
-              includes: [
-                'Everything in The Route',
-                'Full social media management (4 platforms, 20 posts/mo)',
-                'Recording sessions at the Blues Room (Big Muddy Inn)',
-                'Video production (session footage + promo clips)',
-                'Venture Gallery merch channel (vinyl, prints, limited editions)',
-                'Touring infrastructure (Inn bookings, route events)',
-                'Analytics dashboard — streams, social, press, revenue',
-                'Annual renewal — no multi-album lock-in',
-              ],
-            },
-          ].map((pkg) => (
-            <div
-              key={pkg.name}
-              style={{
-                border: pkg.featured
-                  ? '2px solid var(--accent, #c8943e)'
-                  : '1px solid var(--muted, #333)',
-                padding: '2rem',
-                position: 'relative',
-              }}
-            >
-              {pkg.featured && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '-0.75rem',
-                    left: '1.5rem',
-                    background: 'var(--accent, #c8943e)',
-                    color: '#0a0a0a',
-                    fontSize: '0.65rem',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                    padding: '0.2rem 0.75rem',
-                  }}
-                >
-                  Most Popular
-                </div>
-              )}
-              <p
-                style={{
-                  fontSize: '0.75rem',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  color: 'var(--accent, #c8943e)',
-                  marginBottom: '0.25rem',
-                }}
-              >
-                {pkg.name}
-              </p>
-              <p
-                style={{
-                  fontSize: '2rem',
-                  fontWeight: 700,
-                  color: 'var(--fg, #f5f0eb)',
-                  margin: '0 0 0.25rem',
-                  lineHeight: 1.1,
-                }}
-              >
-                {pkg.price}
-              </p>
-              <p
-                style={{
-                  fontSize: '0.8rem',
-                  color: 'var(--fg, #f5f0eb)',
-                  opacity: 0.5,
-                  marginBottom: '1.5rem',
-                }}
-              >
-                {pkg.sub}
-              </p>
-              <ul
-                style={{
-                  listStyle: 'none',
-                  padding: 0,
-                  margin: 0,
-                }}
-              >
-                {pkg.includes.map((item) => (
-                  <li
-                    key={item}
-                    style={{
-                      fontSize: '0.85rem',
-                      color: 'var(--fg, #f5f0eb)',
-                      opacity: 0.75,
-                      lineHeight: 1.5,
-                      padding: '0.35rem 0',
-                      paddingLeft: '1.25rem',
-                      borderBottom: '1px solid rgba(255,255,255,0.05)',
-                      position: 'relative',
-                    }}
-                  >
-                    <span
-                      style={{
-                        position: 'absolute',
-                        left: 0,
-                        color: 'var(--accent, #c8943e)',
-                      }}
-                    >
-                      —
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="mailto:music@bigmuddyrecords.com"
-                style={{
-                  display: 'inline-block',
-                  marginTop: '1.5rem',
-                  padding: '0.6rem 1.5rem',
-                  background: pkg.featured ? 'var(--accent, #c8943e)' : 'transparent',
-                  color: pkg.featured ? '#0a0a0a' : 'var(--accent, #c8943e)',
-                  border: pkg.featured ? 'none' : '1px solid var(--accent, #c8943e)',
-                  textDecoration: 'none',
-                  fontWeight: 600,
-                  fontSize: '0.85rem',
-                  letterSpacing: '0.04em',
-                }}
-              >
-                Get Started
-              </a>
-            </div>
-          ))}
-        </div>
-
-        {/* Where your money goes */}
-        <h3
-          style={{
-            fontSize: '1rem',
-            fontWeight: 700,
-            color: 'var(--fg, #f5f0eb)',
-            marginBottom: '0.5rem',
-          }}
-        >
-          Blues Room: Where your $500/month goes
-        </h3>
-        <p
-          style={{
-            fontSize: '0.85rem',
-            color: 'var(--fg, #f5f0eb)',
-            opacity: 0.6,
-            marginBottom: '1.5rem',
-            maxWidth: 600,
-          }}
-        >
-          This is the actual budget breakdown. No hidden fees. No line items you discover later.
-        </p>
-        <div
-          style={{
-            border: '1px solid var(--muted, #333)',
-            marginBottom: '2.5rem',
-          }}
-        >
-          {[
-            { line: 'Distribution & admin', amount: '$50/mo', note: 'All-platform distribution, royalty accounting, sync licensing' },
-            { line: 'Social media & content', amount: '$150/mo', note: '20 posts/month across 4 platforms, AI-generated to your voice' },
-            { line: 'PR & radio', amount: '$100/mo', note: 'Press pitching, podcast outreach, Big Muddy Radio features' },
-            { line: 'Recording & production', amount: '$100/mo', note: 'Blues Room sessions, video clips, session footage' },
-            { line: 'Photo, merch & touring', amount: '$100/mo', note: 'Quarterly photo sessions, Venture Gallery channel, Inn events' },
-          ].map((item) => (
-            <div
-              key={item.line}
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '180px 100px 1fr',
-                gap: '1rem',
-                padding: '0.85rem 1.5rem',
-                borderBottom: '1px solid rgba(255,255,255,0.05)',
-                alignItems: 'center',
-              }}
-            >
-              <span style={{ fontSize: '0.85rem', color: 'var(--fg, #f5f0eb)', fontWeight: 600 }}>
-                {item.line}
-              </span>
-              <span style={{ fontSize: '0.9rem', color: 'var(--accent, #c8943e)', fontWeight: 700 }}>
-                {item.amount}
-              </span>
-              <span style={{ fontSize: '0.8rem', color: 'var(--fg, #f5f0eb)', opacity: 0.5 }}>
-                {item.note}
-              </span>
-            </div>
-          ))}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '180px 100px 1fr',
-              gap: '1rem',
-              padding: '1rem 1.5rem',
-              borderTop: '1px solid var(--accent, #c8943e)',
-              alignItems: 'center',
-            }}
-          >
-            <span style={{ fontSize: '0.9rem', color: 'var(--fg, #f5f0eb)', fontWeight: 700 }}>Total</span>
-            <span style={{ fontSize: '1.1rem', color: 'var(--accent, #c8943e)', fontWeight: 700 }}>$500/mo</span>
-            <span style={{ fontSize: '0.8rem', color: 'var(--fg, #f5f0eb)', opacity: 0.5 }}>
-              $6K/year — you&apos;d pay $15K+ assembling this yourself
-            </span>
-          </div>
-        </div>
-
-        {/* What's included free across all tiers */}
         <div
           style={{
             display: 'grid',
@@ -555,19 +322,19 @@ export default function RecordsPage() {
           {[
             {
               label: 'You keep your masters',
-              detail: 'Every tier, every time. No exceptions. The music belongs to the person who made it.',
+              detail: 'Every time. No exceptions. The music belongs to the person who made it.',
             },
             {
               label: 'No multi-album deal',
-              detail: 'Annual renewal on label tiers. Marketing-only packages are month-to-month. Walk anytime.',
+              detail: 'Annual renewal. Walk anytime. We earn your next year.',
             },
             {
-              label: 'Label optional',
-              detail: 'Front Porch and The Route work for any independent artist. No signing required.',
+              label: 'Marketing included',
+              detail: 'Radio, Magazine, photography, social — all part of the deal, not a separate invoice.',
             },
             {
-              label: 'Custom builds',
-              detail: 'Need vinyl pressing without PR? Recording without social? We\'ll build exactly what you need.',
+              label: 'The ecosystem works for you',
+              detail: 'Shows at the Inn, features in the Magazine, airplay on Radio, merch through Venture Gallery.',
             },
           ].map((item, i) => (
             <div
@@ -600,112 +367,6 @@ export default function RecordsPage() {
               </p>
             </div>
           ))}
-        </div>
-
-        {/* Traditional vs Big Muddy comparison */}
-        <h3
-          style={{
-            fontSize: '1rem',
-            fontWeight: 700,
-            color: 'var(--fg, #f5f0eb)',
-            marginBottom: '1.25rem',
-          }}
-        >
-          The math, compared
-        </h3>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '1rem',
-          }}
-        >
-          {/* Traditional */}
-          <div
-            style={{
-              border: '1px solid var(--muted, #333)',
-              padding: '1.75rem',
-            }}
-          >
-            <p
-              style={{
-                fontSize: '0.75rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                color: 'var(--fg, #f5f0eb)',
-                opacity: 0.4,
-                marginBottom: '1.25rem',
-              }}
-            >
-              Traditional Label
-            </p>
-            {[
-              'Label owns your masters',
-              '3–5 album obligation',
-              'Recoup before you see a dollar',
-              'Marketing billed back to you',
-              'Publicist: separate vendor, separate invoice',
-              'Radio: pay-to-play or pray',
-            ].map((item) => (
-              <p
-                key={item}
-                style={{
-                  fontSize: '0.85rem',
-                  color: 'var(--fg, #f5f0eb)',
-                  opacity: 0.5,
-                  lineHeight: 1.5,
-                  margin: '0 0 0.4rem',
-                  paddingLeft: '1rem',
-                  borderLeft: '2px solid #333',
-                }}
-              >
-                {item}
-              </p>
-            ))}
-          </div>
-
-          {/* Big Muddy */}
-          <div
-            style={{
-              border: '1px solid var(--accent, #c8943e)',
-              padding: '1.75rem',
-            }}
-          >
-            <p
-              style={{
-                fontSize: '0.75rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                color: 'var(--accent, #c8943e)',
-                marginBottom: '1.25rem',
-              }}
-            >
-              Big Muddy Records
-            </p>
-            {[
-              'You own your masters. Always.',
-              '12 months, then renewal by choice',
-              '$100–$500/month, known cost, no surprises',
-              'Marketing included at every tier',
-              'Publicist included in The Route and up',
-              'Radio, Magazine, and touring built in',
-            ].map((item) => (
-              <p
-                key={item}
-                style={{
-                  fontSize: '0.85rem',
-                  color: 'var(--fg, #f5f0eb)',
-                  opacity: 0.85,
-                  lineHeight: 1.5,
-                  margin: '0 0 0.4rem',
-                  paddingLeft: '1rem',
-                  borderLeft: '2px solid var(--accent, #c8943e)',
-                }}
-              >
-                {item}
-              </p>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -841,7 +502,7 @@ export default function RecordsPage() {
           >
             Three recording venues: the Blues Room at the Big Muddy Inn, the Anthologist
             (record store, flower shop, and performance space on Main Street), and Bobby
-            J&apos;s. Plus a Prevost touring bus for mobile production, the radio show for
+            J&apos;s. Plus a Sprinter van for corridor tours, the radio show for
             pre-release cross-promotion, the Magazine for earned features and interviews,
             and Chase Pierson for photography and visual content. None of it billed
             separately.

@@ -272,7 +272,7 @@ export default function MeasurablyBetterPlatformPage() {
         }}>
           {[
             { src: '/images/processed/big-muddy/natchez-night-1034.webp', alt: 'Natchez at night — live oaks and street lights' },
-            { src: '/images/processed/arri-aslan-inn-portrait.webp', alt: 'Arrie Aslin performing at The Big Muddy Inn' },
+            { src: '/images/processed/arrie-aslin-inn-portrait.webp', alt: 'Arrie Aslin performing at The Big Muddy Inn' },
             { src: '/images/processed/bearsville/theater-show-01.webp', alt: 'Live show at Bearsville Theater' },
             { src: '/images/processed/bearsville/bearsville-studio-session-01.webp', alt: 'Recording session at Utopia Studios' },
           ].map((img) => (

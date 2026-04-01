@@ -345,7 +345,7 @@ export default function EntertainmentPage() {
         overflow: 'hidden',
       }}>
         <Image
-          src="/images/processed/arri-aslan-inn-portrait.webp"
+          src="/images/processed/arrie-aslin-inn-portrait.webp"
           alt="Arrie Aslin performing at The Big Muddy Inn"
           fill
           sizes="100vw"

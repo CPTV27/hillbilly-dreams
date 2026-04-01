@@ -14,7 +14,7 @@ import type { Article, Playlist } from '@bigmuddy/config';
 export const metadata: Metadata = {
   title: 'Big Muddy Touring',
   description:
-    'Eighteen cities across five states. The Mississippi music corridor and expanded Big Muddy network — from Memphis to New Orleans and beyond.',
+    'Thirteen cities. One Sprinter van. A house band that turns Tuesday nights into something people drive two hours for. The Mississippi music corridor — from New Orleans to Memphis.',
 };
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
@@ -47,20 +47,7 @@ async function getPlaylists(): Promise<Playlist[]> {
   }
 }
 
-const NETWORK_BY_STATE = [
-  {
-    state: 'Louisiana',
-    cities: ['St. Francisville', 'Baton Rouge', 'Lafayette', 'Alexandria', 'Monroe', 'Ruston', 'Natchitoches', 'Shreveport'],
-  },
-  {
-    state: 'Arkansas',
-    cities: ['El Dorado', 'Little Rock', 'Fayetteville', 'Bentonville'],
-  },
-  {
-    state: 'Missouri',
-    cities: ['Branson'],
-  },
-];
+// Corridor cities are now defined inline in the route stops section (13-city Delta Run)
 
 export default async function TouringHomepage() {
   const [articles, playlists] = await Promise.all([getArticles(), getPlaylists()]);
@@ -75,23 +62,25 @@ export default async function TouringHomepage() {
         <div className="touring-hero__content">
           <div className="touring-hero__eyebrow">
             <span className="touring-hero__ornament">&#9670;</span>
-            <span>Memphis · Clarksdale · Natchez · New Orleans · and 14 more</span>
+            <span>New Orleans · Natchez · Clarksdale · Memphis</span>
           </div>
           <h1 className="touring-hero__title">
-            The Mississippi's
+            A house band.
             <br />
-            <em>Music Corridor</em>
+            <em>A Sprinter van. The corridor.</em>
           </h1>
           <p className="touring-hero__sub">
-            Eighteen cities. Five states. A thousand years of American music.
-            Stay at the inn. Drive the route. Read the magazine. Hear the radio.
+            Thirteen cities between New Orleans and Memphis. One house band that
+            travels the route. Real shows in the juke joints, community halls, and
+            front porches that built American music. Arrie Aslin and Rise Up lead
+            the way — and we find new voices at every stop.
           </p>
           <div className="touring-hero__ctas">
-            <a href="/route" className="btn btn--primary">
-              Plan the Route
+            <a href="/touring/route" className="btn btn--primary">
+              See the Route
             </a>
-            <a href="/inn" className="btn btn--ghost">
-              Where to Stay
+            <a href="/touring/inn" className="btn btn--ghost">
+              The Big Muddy Inn
             </a>
           </div>
         </div>
@@ -138,15 +127,15 @@ export default async function TouringHomepage() {
         <div className="section-container">
           <div className="touring-route__layout">
             <div className="touring-route__text">
-              <div className="section-label">The Route</div>
-              <h2 className="section-title">Memphis to New Orleans</h2>
+              <div className="section-label">The Delta Run</div>
+              <h2 className="section-title">New Orleans to Memphis</h2>
               <p className="section-desc">
-                Highway 61 south. The Blues Highway. The route that carried a 
-                generation of musicians north and brought the whole world south 
-                to find where the music came from.
+                Highway 61 north. The Blues Highway. Thirteen cities between the
+                Gulf and the Bluff. The route that carried a generation of musicians
+                north and brought the whole world south to find where the music came from.
               </p>
               <div className="touring-route__stops">
-                {['Memphis', 'Clarksdale', 'Vicksburg', 'Natchez', 'New Orleans'].map((city, i) => (
+                {['New Orleans', 'Baton Rouge', 'St. Francisville', 'Natchez', 'Vicksburg', 'Yazoo City', 'Greenville', 'Indianola', 'Greenwood', 'Clarksdale', 'Tunica', 'Oxford', 'Memphis'].map((city, i) => (
                   <div key={city} className="route-stop">
                     <span className="route-stop__num">{String(i + 1).padStart(2, '0')}</span>
                     <span className="route-stop__city">{city}</span>
@@ -154,24 +143,7 @@ export default async function TouringHomepage() {
                 ))}
               </div>
 
-              {/* ── Expanded Network ── */}
-              <div className="touring-route__network">
-                <div className="touring-route__network-label">The Expanded Network</div>
-                <div className="touring-route__network-grid">
-                  {NETWORK_BY_STATE.map((group) => (
-                    <div key={group.state} className="touring-route__network-group">
-                      <span className="touring-route__network-state">{group.state}</span>
-                      <div className="touring-route__network-cities">
-                        {group.cities.map((city) => (
-                          <span key={city} className="touring-route__network-city">{city}</span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <a href="/route" className="btn btn--primary" style={{ marginTop: 'var(--space-8)' }}>
+              <a href="/touring/route" className="btn btn--primary" style={{ marginTop: 'var(--space-8)' }}>
                 View Full Route
               </a>
             </div>
@@ -216,8 +188,8 @@ export default async function TouringHomepage() {
                 At every stop, Rise Up runs a regional talent search. We&apos;re looking for
                 musicians who could step into the band, artists who could anchor their own
                 touring act — voices the mainstream economy has never bothered to find because
-                nobody was looking in the right places. What we find goes into the Snowbird
-                Circuit, into Big Muddy Records, and onto MelodyVault — where artists keep
+                nobody was looking in the right places. What we find goes into the corridor
+                circuit, into Big Muddy Records, and onto the label — where artists keep
                 100% of their masters.
               </p>
               <div className="rise-up__stats">
@@ -236,10 +208,10 @@ export default async function TouringHomepage() {
               </div>
             </div>
             <div className="rise-up__card">
-              <div className="rise-up__card-label">The Snowbird Circuit</div>
+              <div className="rise-up__card-label">The Delta Run</div>
               <p className="rise-up__card-desc">
-                A working touring route along the Mississippi Corridor, operated on
-                Prevost buses between real venues for real audiences. Not a festival
+                A working touring route along the Mississippi Corridor — one Sprinter
+                van, thirteen cities, real venues, real audiences. Not a festival
                 circuit built for weekend visitors. A road built for working musicians
                 who want to build a career in the South without having to leave it.
               </p>
@@ -253,8 +225,8 @@ export default async function TouringHomepage() {
               </div>
               <div className="rise-up__card-footer">
                 <span className="rise-up__card-tag">Big Muddy Records</span>
-                <span className="rise-up__card-tag">MelodyVault</span>
-                <span className="rise-up__card-tag">Outsider Economics</span>
+                <span className="rise-up__card-tag">Big Muddy Radio</span>
+                <span className="rise-up__card-tag">Venture Gallery</span>
               </div>
             </div>
           </div>
@@ -310,13 +282,12 @@ export default async function TouringHomepage() {
       {/* ── The Ecosystem ── */}
       <section className="touring-ecosystem">
         <div className="section-container">
-          <div className="section-label">The Network</div>
-          <h2 className="section-title">One Engine. Seven Brands.</h2>
+          <div className="section-label">The Ecosystem</div>
+          <h2 className="section-title">Every brand feeds every other.</h2>
           <p className="section-desc" style={{ maxWidth: 640, marginBottom: 'var(--space-10)' }}>
-            Big Muddy runs seven brands from Natchez, Mississippi.
-            Every one feeds the others — the inn fills the room, the radio fills the
-            room with sound, the magazine tells the story, the label records it, and the
-            gallery sells what it inspires.
+            Shows fill the Inn. The Inn fills the room. Radio fills the room with sound.
+            The Magazine tells the story. Records captures it. The Gallery sells what it
+            inspires. Touring connects all of it to thirteen cities along the corridor.
           </p>
           <div className="ecosystem-grid">
             {[

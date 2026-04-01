@@ -104,7 +104,7 @@ export default function RecordsArtistsPage() {
                       ? {
                           width: 80,
                           height: 80,
-                          backgroundImage: 'url(/images/arri-aslin/ta-c2-384-of-934.webp)',
+                          backgroundImage: 'url(/images/arrie-aslin/ta-c2-384-of-934.webp)',
                           backgroundSize: 'cover',
                           backgroundPosition: 'center',
                           borderRadius: '50%',
