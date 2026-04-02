@@ -1,711 +1,390 @@
 // apps/web/app/touring/page.tsx
-// Touring homepage — bigmuddytouring.com
-// Server component. Uses static placeholder content until DATABASE_URL is connected.
+// Big Muddy Touring — bigmuddytouring.com
+//
+// Now shows the Entertainment company content. The touring page was absorbed
+// into entertainment because Entertainment covers everything touring did, better.
+// Inn sub-pages (/touring/inn/*) are unaffected.
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { ArticleCard } from '@bigmuddy/ui';
-import { PlaylistCard } from '@bigmuddy/ui';
-import { NewsletterSignup } from '@bigmuddy/ui';
-import { IllustrationDivider } from '@bigmuddy/ui';
-import type { Article, Playlist } from '@bigmuddy/config';
-// BLUR_DATA_URL removed — hero uses CSS gradient until a real photo is uploaded to GCS
 
 export const metadata: Metadata = {
-  title: 'Big Muddy Touring',
+  title: 'Big Muddy — We Bring the Party',
   description:
-    'Thirteen cities. One Sprinter van. A house band that turns Tuesday nights into something people drive two hours for. The Mississippi music corridor — from New Orleans to Memphis.',
+    'Booking, promotion, and production for the Mississippi corridor. We bring the bands, the van, the PA, and the audience. One call, one show, one hell of a night.',
 };
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
-
-async function getArticles(): Promise<Article[]> {
-  try {
-    const res = await fetch(`${baseUrl}/api/articles?status=published`, {
-      next: { revalidate: 300 },
-    });
-    if (!res.ok) return [];
-    const data = await res.json();
-    const all: Article[] = Array.isArray(data) ? data : data.data ?? [];
-    return all.slice(0, 3);
-  } catch {
-    return [];
-  }
-}
-
-async function getPlaylists(): Promise<Playlist[]> {
-  try {
-    const res = await fetch(`${baseUrl}/api/playlists`, {
-      next: { revalidate: 300 },
-    });
-    if (!res.ok) return [];
-    const data = await res.json();
-    const all: Playlist[] = Array.isArray(data) ? data : data.data ?? [];
-    return all.filter((p) => p.status === 'active').slice(0, 3);
-  } catch {
-    return [];
-  }
-}
-
-// Corridor cities are now defined inline in the route stops section (13-city Delta Run)
-
-export default async function TouringHomepage() {
-  const [articles, playlists] = await Promise.all([getArticles(), getPlaylists()]);
-
+export default function TouringHomepage() {
   return (
-    <>
-      {/* ── Hero ── */}
-      <section className="touring-hero" style={{ backgroundImage: 'url(/images/processed/big-muddy/natchez-brick-street-live-oaks.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="touring-hero__gradient" aria-hidden="true" />
-        <div className="touring-hero__overlay" />
-        <div className="touring-hero__bg-pattern" aria-hidden="true" />
-        <div className="touring-hero__content">
-          <div className="touring-hero__eyebrow">
-            <span className="touring-hero__ornament">&#9670;</span>
-            <span>New Orleans · Natchez · Clarksdale · Memphis</span>
-          </div>
-          <h1 className="touring-hero__title">
-            A house band.
-            <br />
-            <em>A Sprinter van. The corridor.</em>
+    <main style={{ backgroundColor: 'var(--bg)', color: 'var(--text)', minHeight: '100vh' }}>
+
+      {/* ── Hero: The Van ── */}
+      <section style={{
+        position: 'relative',
+        minHeight: '85vh',
+        display: 'flex',
+        alignItems: 'flex-end',
+        padding: '4rem 5%',
+        overflow: 'hidden',
+      }}>
+        <Image
+          src="/images/processed/big-muddy/sprinter-van-concept.webp"
+          alt="Big Muddy Touring Sprinter van on a Southern road at golden hour"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.6) contrast(1.1)' }}
+        />
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to top, var(--bg) 0%, transparent 60%)',
+          zIndex: 1,
+        }} />
+        <div style={{ position: 'relative', zIndex: 2, maxWidth: '700px' }}>
+          <p style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: '0.7rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: 'var(--accent)',
+            marginBottom: '1rem',
+          }}>
+            Big Muddy Entertainment
+          </p>
+          <h1 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+            fontWeight: 400,
+            lineHeight: 0.95,
+            letterSpacing: '-0.03em',
+            marginBottom: '1.5rem',
+          }}>
+            We bring the party.
           </h1>
-          <p className="touring-hero__sub">
-            Thirteen cities between New Orleans and Memphis. One house band that
-            travels the route. Real shows in the juke joints, community halls, and
-            front porches that built American music. Arrie Aslin and Rise Up lead
-            the way — and we find new voices at every stop.
+          <p style={{
+            fontSize: '1.15rem',
+            lineHeight: 1.7,
+            color: 'var(--text-muted)',
+            maxWidth: '500px',
+          }}>
+            Booking, promotion, transport, and production for bands and venues
+            along the Mississippi corridor. One call. One show. We handle everything.
           </p>
-          <div className="touring-hero__ctas">
-            <a href="/touring/route" className="btn btn--primary">
-              See the Route
+        </div>
+      </section>
+
+      {/* ── What We Do ── */}
+      <section style={{
+        padding: '5rem 5%',
+        borderTop: '1px solid var(--border)',
+      }}>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
+          The Entertainment Company
+        </p>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '3rem', maxWidth: '600px' }}>
+          We book the bands. We drive the van. We run the sound. We promote the show. We fill the room.
+        </h2>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+          gap: '1px',
+          backgroundColor: 'var(--border)',
+        }}>
+          {[
+            {
+              title: 'Booking',
+              desc: 'We match bands to venues along the corridor. Natchez to Memphis, Clarksdale to New Orleans. We know the rooms, the audiences, and the deals.',
+            },
+            {
+              title: 'Transport',
+              desc: 'Black Sprinter van with a PA system in the back. We drive, you play. Sleeper bus coming for longer runs. Travel in style.',
+            },
+            {
+              title: 'Production',
+              desc: 'Sound, lights, stage management. We bring what the venue needs. From a 40-seat Blues Room to a 500-seat theater.',
+            },
+            {
+              title: 'Promotion',
+              desc: 'Every show gets the full media company behind it. Big Muddy Magazine writes the preview. Radio plays the music. Social posts go out. The audience shows up.',
+            },
+            {
+              title: 'Recording',
+              desc: 'Every show can be a live recording. Board mix at minimum, multitrack when the room is right. Released through Big Muddy Records.',
+            },
+            {
+              title: 'The Whole Network',
+              desc: 'Venues end up in the Deep South Directory. Bands end up on the radio. Shows become Magazine features. One booking feeds the entire ecosystem.',
+            },
+          ].map((item) => (
+            <div key={item.title} style={{
+              padding: '2rem',
+              backgroundColor: 'var(--bg)',
+            }}>
+              <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.5rem' }}>
+                {item.title}
+              </h3>
+              <p style={{ fontSize: '0.85rem', lineHeight: 1.6, color: 'var(--text-muted)' }}>
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── The Brands ── */}
+      <section style={{
+        padding: '5rem 5%',
+        borderTop: '1px solid var(--border)',
+      }}>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
+          The Family
+        </p>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '3rem' }}>
+          Every division feeds the others.
+        </h2>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+          gap: '1.5rem',
+        }}>
+          {[
+            { name: 'Big Muddy Touring', tag: 'The Circuit', url: 'https://bigmuddytouring.com', desc: '18 cities. Real venues. Real audiences. We book the shows and drive the bands.' },
+            { name: 'Big Muddy Radio', tag: 'The Sound', url: 'https://bigmuddyradio.com', desc: 'Streaming worldwide. Live sessions from the Blues Room. No algorithms, just music.' },
+            { name: 'Big Muddy Records', tag: 'The Label', url: 'https://bigmuddyrecords.com', desc: 'Non-exclusive. You keep your masters. We distribute, promote, and sell your music.' },
+            { name: 'Big Muddy Magazine', tag: 'The Story', url: 'https://bigmuddymagazine.com', desc: 'Long-form editorial about the corridor. Every show gets a feature. Every artist gets a profile.' },
+          ].map((brand) => (
+            <a key={brand.name} href={brand.url} target="_blank" rel="noopener noreferrer" style={{
+              display: 'block',
+              padding: '2rem',
+              border: '1px solid var(--border)',
+              textDecoration: 'none',
+              color: 'var(--text)',
+            }}>
+              <p style={{ fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
+                {brand.tag}
+              </p>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.5rem' }}>
+                {brand.name}
+              </h3>
+              <p style={{ fontSize: '0.85rem', lineHeight: 1.6, color: 'var(--text-muted)', marginBottom: '1rem' }}>
+                {brand.desc}
+              </p>
+              <span style={{ fontSize: '0.7rem', color: 'var(--accent)' }}>
+                {brand.url.replace('https://', '')} →
+              </span>
             </a>
-            <a href="/touring/inn" className="btn btn--ghost">
-              The Big Muddy Inn
-            </a>
-          </div>
-        </div>
-        <div className="touring-hero__scroll-hint" aria-hidden="true">
-          <span>Scroll</span>
-          <svg width="1" height="40" viewBox="0 0 1 40">
-            <line x1="0.5" y1="0" x2="0.5" y2="40" stroke="currentColor" strokeWidth="1" />
-          </svg>
+          ))}
         </div>
       </section>
 
-      <IllustrationDivider variant="river" />
-
-      {/* ── Where to Stay ── */}
-      <section className="touring-lodging">
-        <div className="section-container">
-          <div className="touring-lodging__layout">
-            <div className="touring-lodging__inner">
-              <div className="section-label">Where to Stay</div>
-              <h2 className="section-title">Lodging Across the Corridor</h2>
-              <p className="section-desc">
-                Curated lodging in every city on the route — from the Big Muddy Inn
-                in Natchez to boutique hotels, historic B&Bs, and downtown stays
-                across five states. Forty-plus properties, hand-picked for the journey.
-              </p>
-              <a href="/inn" className="btn btn--outline" style={{ marginTop: 'var(--space-8)' }}>
-                Browse Lodging
-              </a>
-            </div>
-            <div className="touring-lodging__photos">
-              <div className="touring-lodging__photo">
-                <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-bnb-sunset.webp" alt="Southern B&B with wraparound porch at sunset" width={600} height={900} sizes="(min-width: 768px) 50vw, 100vw" style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-sm)' }} />
-              </div>
-              <div className="touring-lodging__photo">
-                <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-inn-dusk.webp" alt="Historic Southern inn at dusk with warm porch lights" width={600} height={900} sizes="(min-width: 768px) 50vw, 100vw" style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-sm)' }} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── The Route ── */}
-      <section className="touring-route">
-        <div className="section-container">
-          <div className="touring-route__layout">
-            <div className="touring-route__text">
-              <div className="section-label">The Delta Run</div>
-              <h2 className="section-title">New Orleans to Memphis</h2>
-              <p className="section-desc">
-                Highway 61 north. The Blues Highway. Thirteen cities between the
-                Gulf and the Bluff. The route that carried a generation of musicians
-                north and brought the whole world south to find where the music came from.
-              </p>
-              <div className="touring-route__stops">
-                {['New Orleans', 'Baton Rouge', 'St. Francisville', 'Natchez', 'Vicksburg', 'Yazoo City', 'Greenville', 'Indianola', 'Greenwood', 'Clarksdale', 'Tunica', 'Oxford', 'Memphis'].map((city, i) => (
-                  <div key={city} className="route-stop">
-                    <span className="route-stop__num">{String(i + 1).padStart(2, '0')}</span>
-                    <span className="route-stop__city">{city}</span>
-                  </div>
-                ))}
-              </div>
-
-              <a href="/touring/route" className="btn btn--primary" style={{ marginTop: 'var(--space-8)' }}>
-                View Full Route
-              </a>
-            </div>
-            <div className="touring-route__visual">
-              <div className="touring-route__photo-stack">
-                <div className="touring-route__photo touring-route__photo--1">
-                  <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-main-street.webp" alt="Charming Main Street at golden hour in the Deep South" width={500} height={750} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
-                </div>
-                <div className="touring-route__photo touring-route__photo--2">
-                  <Image src="/images/corridor/natchez-bluff-river-view.webp" alt="Mississippi River view from Natchez bluffs at golden hour" width={500} height={750} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
-                </div>
-                <div className="touring-route__photo touring-route__photo--3">
-                  <Image src="/images/corridor/street-musician-guitar.webp" alt="Street musician playing guitar on a Southern sidewalk" width={500} height={750} sizes="(min-width: 768px) 40vw, 90vw" style={{ width: '100%', height: 'auto' }} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <IllustrationDivider variant="wildflowers" />
-
-      {/* ── Rise Up ── */}
-      <section className="rise-up">
-        <div className="section-container">
-          <div className="rise-up__layout">
-            <div className="rise-up__text">
-              <div className="section-label">Rise Up</div>
-              <h2 className="section-title">
-                The Talent Has
-                <br />
-                <em>Always Been Here.</em>
-              </h2>
-              <p className="section-desc">
-                The Rise Up Gospel and Blues Band — headlined by Arrie Aslin,
-                Big Muddy&apos;s Artist-in-Residence — travels the corridor. Live shows in
-                the towns that built American music. Clarksdale. Natchez. El Dorado.
-                The juke joints and community halls that have been doing this work
-                for a hundred years without infrastructure behind them.
-              </p>
-              <p className="section-desc" style={{ marginTop: 'var(--space-4)' }}>
-                At every stop, Rise Up runs a regional talent search. We&apos;re looking for
-                musicians who could step into the band, artists who could anchor their own
-                touring act — voices the mainstream economy has never bothered to find because
-                nobody was looking in the right places. What we find goes into the corridor
-                circuit, into Big Muddy Records, and onto the label — where artists keep
-                100% of their masters.
-              </p>
-              <div className="rise-up__stats">
-                <div className="rise-up__stat">
-                  <span className="rise-up__stat-num">100%</span>
-                  <span className="rise-up__stat-label">Masters retained by artists</span>
-                </div>
-                <div className="rise-up__stat">
-                  <span className="rise-up__stat-num">Local</span>
-                  <span className="rise-up__stat-label">Value stays in the community</span>
-                </div>
-                <div className="rise-up__stat">
-                  <span className="rise-up__stat-num">Most</span>
-                  <span className="rise-up__stat-label">Extraction rate we&apos;re building against</span>
-                </div>
-              </div>
-            </div>
-            <div className="rise-up__card">
-              <div className="rise-up__card-label">The Delta Run</div>
-              <p className="rise-up__card-desc">
-                A working touring route along the Mississippi Corridor — one Sprinter
-                van, thirteen cities, real venues, real audiences. Not a festival
-                circuit built for weekend visitors. A road built for working musicians
-                who want to build a career in the South without having to leave it.
-              </p>
-              <div className="rise-up__card-stops">
-                {['Memphis', 'Clarksdale', 'Vicksburg', 'Natchez', 'El Dorado', 'New Orleans'].map((city, i) => (
-                  <div key={city} className="rise-up__card-stop">
-                    <span className="rise-up__card-stop-num">{String(i + 1).padStart(2, '0')}</span>
-                    <span className="rise-up__card-stop-city">{city}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="rise-up__card-footer">
-                <span className="rise-up__card-tag">Big Muddy Records</span>
-                <span className="rise-up__card-tag">Big Muddy Radio</span>
-                <span className="rise-up__card-tag">Venture Gallery</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <IllustrationDivider variant="oak" />
-
-      {/* ── From the Magazine ── */}
-      <section className="touring-magazine">
-        <div className="section-container">
-          <div className="section-header">
-            <div>
-              <div className="section-label">From the Magazine</div>
-              <h2 className="section-title-sm">Stories from the Corridor</h2>
-            </div>
-            <a href="https://bigmuddymagazine.com" className="section-link">
-              All Stories →
-            </a>
-          </div>
-          <div className="article-grid-3">
-            {articles.map((article) => (
-              <ArticleCard
-                key={article.id}
-                article={article}
-                href={`https://bigmuddymagazine.com/articles/${article.slug}`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── On the Radio ── */}
-      <section className="touring-radio">
-        <div className="section-container">
-          <div className="section-header">
-            <div>
-              <div className="section-label">On the Radio</div>
-              <h2 className="section-title-sm">Curated Playlists</h2>
-            </div>
-            <a href="https://bigmuddyradio.com" className="section-link">
-              All Playlists →
-            </a>
-          </div>
-          <div className="playlist-grid-3">
-            {playlists.map((playlist) => (
-              <PlaylistCard key={playlist.id} playlist={playlist} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── The Ecosystem ── */}
-      <section className="touring-ecosystem">
-        <div className="section-container">
-          <div className="section-label">The Ecosystem</div>
-          <h2 className="section-title">Every brand feeds every other.</h2>
-          <p className="section-desc" style={{ maxWidth: 640, marginBottom: 'var(--space-10)' }}>
-            Shows fill the Inn. The Inn fills the room. Radio fills the room with sound.
-            The Magazine tells the story. Records captures it. The Gallery sells what it
-            inspires. Touring connects all of it to thirteen cities along the corridor.
+      {/* ── The House Band: Modern Muscle Shoals ── */}
+      <section style={{
+        padding: '5rem 5%',
+        borderTop: '1px solid var(--border)',
+      }}>
+        <div style={{ maxWidth: '800px' }}>
+          <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
+            The House Band
           </p>
-          <div className="ecosystem-grid">
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem', fontWeight: 400, letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: '2rem' }}>
+            You bring the songs.<br />
+            We bring the band.
+          </h2>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
+            Natchez is building a world-class rhythm section — bass, drums, keys, guitar —
+            that visiting artists perform with. Fly in or ride down in the Sprinter.
+            Walk into the Blues Room. Play with musicians who already know the pocket.
+          </p>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--text-muted)', marginBottom: '2rem' }}>
+            Think Muscle Shoals. The Swampers backed everyone from Aretha to the Stones
+            because the house band was that good. We&apos;re building the same thing on the
+            Mississippi — a rhythm section so locked in that artists come from Europe to play with them.
+          </p>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '1.5rem',
+            marginBottom: '2rem',
+          }}>
             {[
-              { name: 'Big Muddy Touring', url: 'https://bigmuddytouring.com', desc: 'The route, the inn, the corridor. Memphis to New Orleans and 14 more cities.' },
-              { name: 'Big Muddy Magazine', url: 'https://bigmuddymagazine.com', desc: 'City guides, interviews, and photo essays from the Mississippi corridor.' },
-              { name: 'Big Muddy Radio', url: 'https://bigmuddyradio.com', desc: 'Curated playlists, live sessions, and the American Parlor Songbook.' },
-              { name: 'Big Muddy Records', url: 'https://bigmuddyrecords.com', desc: 'Independent label. Artists own their masters. Always.' },
-              { name: 'Outsider Economics', url: 'https://outsidereconomics.com', desc: 'Why small towns aren\'t broke — they\'re just badly coordinated. The math and the playbook.' },
-              { name: 'Venture Gallery', url: 'https://venturegallery.art', desc: 'Art marketplace — photography, prints, and works from corridor artists.' },
-              { name: 'Deep South Directory', url: 'https://deepsouthdirectory.com', desc: 'Local business marketing powered by the Big Muddy network.' },
-            ].map((brand) => (
-              <a key={brand.name} href={brand.url} className="ecosystem-card">
-                <h3 className="ecosystem-card__name">{brand.name}</h3>
-                <p className="ecosystem-card__desc">{brand.desc}</p>
-              </a>
+              {
+                title: 'Solo Artists',
+                desc: 'Bring your songs, sing with the house band. We handle the rest — sound, recording, promotion.',
+              },
+              {
+                title: 'Touring Acts',
+                desc: 'Already have a band? Play the circuit. Or sit in with the house band for a special session.',
+              },
+              {
+                title: 'Recording Sessions',
+                desc: 'Every performance can be a live album. Board mix at minimum, multitrack when the room is right. Released on Big Muddy Records.',
+              },
+            ].map((item) => (
+              <div key={item.title} style={{ padding: '1.5rem', border: '1px solid var(--border)' }}>
+                <h3 style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.5rem' }}>{item.title}</h3>
+                <p style={{ fontSize: '0.85rem', lineHeight: 1.6, color: 'var(--text-muted)' }}>{item.desc}</p>
+              </div>
             ))}
+          </div>
+
+          <p style={{ fontSize: '0.95rem', lineHeight: 1.7, color: 'var(--text-muted)', fontStyle: 'italic' }}>
+            The record label makes it real. Non-exclusive deal — you keep your masters,
+            we promote you through the magazine, the radio, the store, and the touring circuit.
+            Every tool you need to succeed, under one roof.
+          </p>
+        </div>
+      </section>
+
+      {/* ── For Bands ── */}
+      <section style={{
+        padding: '5rem 5%',
+        borderTop: '1px solid var(--border)',
+      }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', maxWidth: '1000px' }}>
+          <div>
+            <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
+              For Bands
+            </p>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.75rem', fontWeight: 400, marginBottom: '1.5rem' }}>
+              Sign with us and the whole machine works for you.
+            </h2>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
+              {[
+                'Booked shows along the corridor',
+                'Transportation — we drive, you play',
+                'Radio airplay on Big Muddy Radio',
+                'Magazine feature in Big Muddy Magazine',
+                'Non-exclusive record deal — you keep your masters',
+                'Your music in the Big Muddy catalog and store',
+                'Social media promotion for every show',
+              ].map((item) => (
+                <li key={item} style={{
+                  padding: '0.6rem 0',
+                  borderBottom: '1px solid var(--border)',
+                  fontSize: '0.9rem',
+                  color: 'var(--text-muted)',
+                  paddingLeft: '1.25rem',
+                  position: 'relative',
+                }}>
+                  <span style={{ position: 'absolute', left: 0, color: 'var(--accent)' }}>—</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <a href="mailto:music@bigmuddyrecords.com" style={{
+              display: 'inline-block',
+              marginTop: '2rem',
+              padding: '0.75rem 2rem',
+              backgroundColor: 'var(--accent)',
+              color: 'var(--bg)',
+              textDecoration: 'none',
+              fontSize: '0.8rem',
+              fontWeight: 600,
+              letterSpacing: '0.05em',
+            }}>
+              Get in Touch
+            </a>
+          </div>
+          <div>
+            <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
+              For Venues
+            </p>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.75rem', fontWeight: 400, marginBottom: '1.5rem' }}>
+              We bring the talent, the crowd, and the story.
+            </h2>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
+              {[
+                'Curated talent from the Big Muddy roster',
+                'Full production — PA, sound, stage management',
+                'Promotion through our media company',
+                'Your venue in the Deep South Directory',
+                'Magazine and radio coverage of every show',
+                'Show recaps and photo sets for your marketing',
+              ].map((item) => (
+                <li key={item} style={{
+                  padding: '0.6rem 0',
+                  borderBottom: '1px solid var(--border)',
+                  fontSize: '0.9rem',
+                  color: 'var(--text-muted)',
+                  paddingLeft: '1.25rem',
+                  position: 'relative',
+                }}>
+                  <span style={{ position: 'absolute', left: 0, color: 'var(--accent)' }}>—</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <a href="mailto:chase@hillbillydreamsinc.com" style={{
+              display: 'inline-block',
+              marginTop: '2rem',
+              padding: '0.75rem 2rem',
+              border: '1px solid var(--accent)',
+              color: 'var(--accent)',
+              textDecoration: 'none',
+              fontSize: '0.8rem',
+              fontWeight: 600,
+              letterSpacing: '0.05em',
+            }}>
+              Book a Show
+            </a>
           </div>
         </div>
       </section>
 
-      {/* ── Newsletter ── */}
-      <NewsletterSignup variant="section" />
+      {/* ── Arrie Aslin Feature ── */}
+      <section style={{
+        position: 'relative',
+        minHeight: '60vh',
+        display: 'flex',
+        alignItems: 'flex-end',
+        padding: '4rem 5%',
+        overflow: 'hidden',
+      }}>
+        <Image
+          src="/images/processed/arrie-aslin-inn-portrait.webp"
+          alt="Arrie Aslin performing at The Big Muddy Inn"
+          fill
+          sizes="100vw"
+          style={{ objectFit: 'cover', objectPosition: 'center top', filter: 'brightness(0.5)' }}
+        />
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to top, var(--bg) 0%, transparent 50%)',
+          zIndex: 1,
+        }} />
+        <div style={{ position: 'relative', zIndex: 2, maxWidth: '600px' }}>
+          <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.75rem' }}>
+            Artist in Residence
+          </p>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem', fontWeight: 400, lineHeight: 1.05, marginBottom: '1rem' }}>
+            Arrie Aslin &amp; Rise Up
+          </h2>
+          <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--text-muted)' }}>
+            Gospel, soul, and the American songbook — performed live at the Blues Room
+            and on stages across the corridor. Arrie is the first artist in the Big Muddy
+            touring roster, and the proof that the machine works.
+          </p>
+        </div>
+      </section>
 
-      <style>{`
-        /* ── Hero ── */
-        .touring-hero {
-          position: relative;
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          background: var(--bg);
-        }
-        .touring-hero__gradient {
-          position: absolute;
-          inset: 0;
-          z-index: 0;
-          background: linear-gradient(to bottom, transparent 0%, rgba(10,10,10,0.7) 85%);
-        }
-        .touring-hero__bg-pattern {
-          display: none;
-        }
-        .touring-hero__overlay {
-          display: none;
-        }
-        .touring-hero__content {
-          position: relative;
-          z-index: 2;
-          max-width: 800px;
-          padding: var(--space-24) var(--space-6);
-          text-align: center;
-        }
-        .touring-hero__eyebrow {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: var(--space-3);
-          font-family: var(--font-body);
-          font-size: var(--text-xs);
-          font-weight: 600;
-          color: var(--accent);
-          letter-spacing: var(--tracking-widest);
-          text-transform: uppercase;
-          margin-bottom: var(--space-8);
-        }
-        .touring-hero__ornament {
-          font-size: 8px;
-        }
-        .touring-hero__title {
-          font-family: var(--font-display);
-          font-size: var(--text-hero);
-          font-weight: 800;
-          color: var(--text);
-          line-height: var(--leading-tight);
-          letter-spacing: var(--tracking-tight);
-          margin: 0 0 var(--space-6);
-          text-shadow: 0 2px 40px rgba(0,0,0,0.5);
-        }
-        .touring-hero__title em {
-          font-style: italic;
-          color: var(--accent);
-        }
-        .touring-hero__sub {
-          font-family: var(--font-body);
-          font-size: var(--text-lg);
-          color: var(--text-muted);
-          line-height: var(--leading-loose);
-          max-width: 600px;
-          margin: 0 auto var(--space-10);
-        }
-        .touring-hero__ctas {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: var(--space-4);
-          flex-wrap: wrap;
-        }
-        .touring-hero__scroll-hint {
-          position: absolute;
-          bottom: var(--space-8);
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: var(--space-2);
-          font-family: var(--font-body);
-          font-size: var(--text-xs);
-          color: var(--text-disabled);
-          letter-spacing: var(--tracking-widest);
-          text-transform: uppercase;
-          z-index: 2;
-        }
-
-        /* ── Lodging Teaser ── */
-        .touring-lodging {
-          background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
-          border-top: 1px solid var(--border);
-          border-bottom: 1px solid var(--border);
-        }
-        .touring-lodging__layout {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: var(--space-10);
-          align-items: center;
-        }
-        @media (min-width: 768px) {
-          .touring-lodging__layout {
-            grid-template-columns: 1fr 1fr;
-          }
-        }
-        .touring-lodging__inner {
-          max-width: 640px;
-        }
-        .touring-lodging__photos {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: var(--space-4);
-        }
-        .touring-lodging__photo {
-          overflow: hidden;
-          border-radius: var(--radius-sm);
-          box-shadow: var(--shadow-lg);
-        }
-
-        /* ── Route Section ── */
-        .touring-route__layout {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: var(--space-12);
-          align-items: center;
-        }
-        @media (min-width: 768px) {
-          .touring-route__layout {
-            grid-template-columns: 1fr 1fr;
-          }
-        }
-        .touring-route__stops {
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-1);
-          margin-top: var(--space-8);
-          padding-left: var(--space-4);
-          border-left: 1px solid var(--border);
-        }
-        .route-stop {
-          display: flex;
-          align-items: center;
-          gap: var(--space-4);
-          padding: var(--space-3) 0;
-        }
-        .route-stop__num {
-          font-family: var(--font-mono);
-          font-size: var(--text-xs);
-          color: var(--accent);
-          opacity: 0.7;
-          min-width: 24px;
-        }
-        .route-stop__city {
-          font-family: var(--font-display);
-          font-size: var(--text-xl);
-          font-weight: 600;
-          color: var(--text);
-          letter-spacing: var(--tracking-tight);
-        }
-        .touring-route__photo-stack {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-template-rows: auto auto;
-          gap: var(--space-4);
-        }
-        .touring-route__photo {
-          overflow: hidden;
-          border-radius: var(--radius-sm);
-          box-shadow: var(--shadow-lg);
-        }
-        .touring-route__photo--1 {
-          grid-column: 1 / 2;
-          grid-row: 1 / 2;
-        }
-        .touring-route__photo--2 {
-          grid-column: 2 / 3;
-          grid-row: 1 / 3;
-        }
-        .touring-route__photo--3 {
-          grid-column: 1 / 2;
-          grid-row: 2 / 3;
-        }
-
-        /* ── Expanded Network ── */
-        .touring-route__network {
-          margin-top: var(--space-10);
-          padding-top: var(--space-8);
-          border-top: 1px solid var(--border);
-        }
-        .touring-route__network-label {
-          font-family: var(--font-body);
-          font-size: var(--text-xs);
-          font-weight: 700;
-          color: var(--text-muted);
-          letter-spacing: var(--tracking-widest);
-          text-transform: uppercase;
-          margin-bottom: var(--space-5);
-        }
-        .touring-route__network-grid {
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-4);
-        }
-        .touring-route__network-group {
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-2);
-        }
-        .touring-route__network-state {
-          font-family: var(--font-mono);
-          font-size: var(--text-xs);
-          color: var(--accent);
-          opacity: 0.7;
-          letter-spacing: var(--tracking-wider);
-          text-transform: uppercase;
-        }
-        .touring-route__network-cities {
-          display: flex;
-          flex-wrap: wrap;
-          gap: var(--space-1) var(--space-3);
-        }
-        .touring-route__network-city {
-          font-family: var(--font-body);
-          font-size: var(--text-sm);
-          font-weight: 500;
-          color: var(--text-muted);
-          letter-spacing: var(--tracking-tight);
-        }
-        .touring-route__network-city::after {
-          content: '·';
-          margin-left: var(--space-3);
-          color: var(--border-strong);
-        }
-        .touring-route__network-city:last-child::after {
-          content: '';
-        }
-
-        /* ── Ecosystem ── */
-        .touring-ecosystem {
-          border-top: 1px solid var(--border);
-          background: var(--surface);
-        }
-        .ecosystem-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: var(--space-4);
-        }
-        .ecosystem-card {
-          display: block;
-          border: 1px solid var(--border);
-          padding: var(--space-6);
-          text-decoration: none;
-          transition: border-color 0.2s, background 0.2s;
-          border-radius: var(--radius-sm);
-        }
-        .ecosystem-card:hover {
-          border-color: var(--accent);
-          background: rgba(200, 148, 62, 0.04);
-        }
-        .ecosystem-card__name {
-          font-family: var(--font-display);
-          font-size: var(--text-base);
-          font-weight: 700;
-          color: var(--accent);
-          margin: 0 0 var(--space-2);
-        }
-        .ecosystem-card__desc {
-          font-family: var(--font-body);
-          font-size: var(--text-sm);
-          color: var(--text-muted);
-          line-height: var(--leading-relaxed);
-          margin: 0;
-        }
-
-        /* ── Rise Up ── */
-        .rise-up {
-          border-top: 1px solid var(--border);
-          background: var(--surface);
-        }
-        .rise-up__layout {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: var(--space-10);
-          align-items: start;
-        }
-        @media (min-width: 768px) {
-          .rise-up__layout {
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-16);
-          }
-        }
-        .rise-up__stats {
-          display: flex;
-          gap: var(--space-8);
-          margin-top: var(--space-8);
-          padding-top: var(--space-8);
-          border-top: 1px solid var(--border);
-          flex-wrap: wrap;
-        }
-        .rise-up__stat {
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-1);
-        }
-        .rise-up__stat-num {
-          font-family: var(--font-display);
-          font-size: var(--text-3xl);
-          font-weight: 800;
-          color: var(--accent);
-          letter-spacing: var(--tracking-tight);
-          line-height: 1;
-        }
-        .rise-up__stat-label {
-          font-family: var(--font-body);
-          font-size: var(--text-xs);
-          color: var(--text-muted);
-          letter-spacing: var(--tracking-wide);
-          text-transform: uppercase;
-          font-weight: 600;
-          max-width: 120px;
-          line-height: var(--leading-normal);
-        }
-        .rise-up__card {
-          background: var(--bg);
-          border: 1px solid var(--border);
-          border-radius: var(--radius-md);
-          padding: var(--space-8);
-        }
-        .rise-up__card-label {
-          font-family: var(--font-body);
-          font-size: var(--text-xs);
-          font-weight: 700;
-          color: var(--accent);
-          letter-spacing: var(--tracking-widest);
-          text-transform: uppercase;
-          margin-bottom: var(--space-4);
-        }
-        .rise-up__card-desc {
-          font-family: var(--font-body);
-          font-size: var(--text-sm);
-          color: var(--text-muted);
-          line-height: var(--leading-loose);
-          margin: 0 0 var(--space-6);
-        }
-        .rise-up__card-stops {
-          display: flex;
-          flex-direction: column;
-          gap: 0;
-          padding-left: var(--space-4);
-          border-left: 1px solid var(--border);
-          margin-bottom: var(--space-8);
-        }
-        .rise-up__card-stop {
-          display: flex;
-          align-items: center;
-          gap: var(--space-4);
-          padding: var(--space-2) 0;
-        }
-        .rise-up__card-stop-num {
-          font-family: var(--font-mono);
-          font-size: var(--text-xs);
-          color: var(--accent);
-          opacity: 0.6;
-          min-width: 20px;
-        }
-        .rise-up__card-stop-city {
-          font-family: var(--font-display);
-          font-size: var(--text-lg);
-          font-weight: 600;
-          color: var(--text);
-          letter-spacing: var(--tracking-tight);
-        }
-        .rise-up__card-footer {
-          display: flex;
-          flex-wrap: wrap;
-          gap: var(--space-2);
-          padding-top: var(--space-6);
-          border-top: 1px solid var(--border);
-        }
-        .rise-up__card-tag {
-          font-family: var(--font-body);
-          font-size: var(--text-xs);
-          font-weight: 600;
-          color: var(--text-muted);
-          letter-spacing: var(--tracking-wider);
-          text-transform: uppercase;
-          padding: var(--space-1) var(--space-3);
-          border: 1px solid var(--border);
-          border-radius: var(--radius-full);
-        }
-      `}</style>
-    </>
+      {/* ── Footer ── */}
+      <footer style={{
+        padding: '3rem 5%',
+        borderTop: '1px solid var(--border)',
+        textAlign: 'center',
+      }}>
+        <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
+          Natchez, Mississippi. The corridor starts here.
+        </p>
+        <p style={{ fontSize: '0.7rem', color: 'var(--text-disabled)' }}>
+          Powered by Measurably Better Things · Hillbilly Dreams Inc
+        </p>
+      </footer>
+    </main>
   );
 }
