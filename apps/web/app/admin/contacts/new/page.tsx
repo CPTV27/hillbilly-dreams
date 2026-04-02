@@ -5,7 +5,14 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-const CATEGORIES = ['artist', 'vendor', 'media', 'partner', 'guest', 'team'];
+const CATEGORIES = [
+  { value: 'artist', label: 'Artist / Musician' },
+  { value: 'vendor', label: 'Vendor' },
+  { value: 'media', label: 'Media / Press' },
+  { value: 'partner', label: 'Partner' },
+  { value: 'guest', label: 'Guest' },
+  { value: 'team', label: 'Team Member' },
+];
 
 export default function NewContactPage() {
   const router = useRouter();
@@ -37,7 +44,7 @@ export default function NewContactPage() {
         const err = await res.json().catch(() => ({}));
         throw new Error(err.error || 'Failed to create contact');
       }
-      router.push('/contacts');
+      router.push('/admin/contacts');
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
     } finally {
@@ -52,7 +59,7 @@ export default function NewContactPage() {
           <h1 className="admin-page-title">New Contact</h1>
           <p className="admin-page-sub">Add a contact to the CRM</p>
         </div>
-        <a href="/contacts" className="admin-btn admin-btn--ghost">← Back</a>
+        <a href="/admin/contacts" className="admin-btn admin-btn--ghost">← Back</a>
       </div>
       {error && <div className="admin-error-banner">{error}</div>}
       <div className="admin-card">
@@ -63,11 +70,11 @@ export default function NewContactPage() {
               <input type="text" name="name" className="admin-input" placeholder="Full name" required />
             </div>
             <div className="admin-form-group">
-              <label className="admin-label">Category</label>
+              <label className="admin-label">Type of Contact</label>
               <select name="category" className="admin-select">
-                <option value="">Select category</option>
+                <option value="">Select type</option>
                 {CATEGORIES.map((c) => (
-                  <option key={c} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>
+                  <option key={c.value} value={c.value}>{c.label}</option>
                 ))}
               </select>
             </div>
@@ -104,7 +111,7 @@ export default function NewContactPage() {
             <button type="submit" className="admin-btn admin-btn--primary" disabled={saving}>
               {saving ? 'Saving…' : 'Add Contact'}
             </button>
-            <a href="/contacts" className="admin-btn admin-btn--ghost">Cancel</a>
+            <a href="/admin/contacts" className="admin-btn admin-btn--ghost">Cancel</a>
           </div>
         </form>
       </div>

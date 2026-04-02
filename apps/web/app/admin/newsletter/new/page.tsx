@@ -40,7 +40,7 @@ export default function NewNewsletterPage() {
         const err = await res.json().catch(() => ({}));
         throw new Error(err.error || 'Failed to create issue');
       }
-      router.push('/newsletter');
+      router.push('/admin/newsletter');
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
     } finally {
@@ -55,7 +55,7 @@ export default function NewNewsletterPage() {
           <h1 className="admin-page-title">New Issue</h1>
           <p className="admin-page-sub">Draft a Big Muddy Dispatch issue</p>
         </div>
-        <a href="/newsletter" className="admin-btn admin-btn--ghost">← Back</a>
+        <a href="/admin/newsletter" className="admin-btn admin-btn--ghost">← Back</a>
       </div>
       {error && <div className="admin-error-banner">{error}</div>}
       <div className="admin-card">
@@ -84,30 +84,31 @@ export default function NewNewsletterPage() {
           </div>
           <div className="admin-form-group">
             <label className="admin-label">Story Body</label>
-            <textarea name="storyBody" className="admin-textarea" rows={8} placeholder="The main story content for this issue. HTML allowed." />
+            <textarea name="storyBody" className="admin-textarea" rows={8} placeholder="Write the main story for this issue. Just type normally — formatting is handled automatically." />
           </div>
           <div className="admin-form-group">
-            <label className="admin-label">Playlist (Name or Spotify URL)</label>
-            <input type="text" name="playlist" className="admin-input" placeholder="Playlist name or Spotify URL" />
+            <label className="admin-label">Featured Playlist</label>
+            <input type="text" name="playlist" className="admin-input" placeholder="e.g. 'Blues Classics' or https://open.spotify.com/playlist/..." />
           </div>
           <div className="admin-form-group">
-            <label className="admin-label">Why You Should Go</label>
-            <textarea name="reason" className="admin-textarea" rows={4} placeholder="The 'Why You Should Go' section — a specific recommendation or call to action." />
+            <label className="admin-label">This Week&apos;s Pick</label>
+            <textarea name="reason" className="admin-textarea" rows={4} placeholder="One thing readers should do this week — a show, a restaurant, a road trip. Be specific." />
           </div>
           <div className="admin-form-group">
             <label className="admin-label">Quick Hits</label>
             <textarea name="quickHits" className="admin-textarea" rows={4} placeholder="One item per line. Will be rendered as a bullet list." />
-            <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)' }}>One quick hit per line. Stored as JSON array.</span>
+            <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)' }}>One item per line. These become the bullet-point roundup at the bottom.</span>
           </div>
           <div className="admin-form-group">
             <label className="admin-label">Scheduled Send Date</label>
             <input type="datetime-local" name="sendDate" className="admin-input" />
+            <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)' }}>Leave blank to save as draft. Times are Central Time.</span>
           </div>
           <div className="admin-form-actions">
             <button type="submit" className="admin-btn admin-btn--primary" disabled={saving}>
               {saving ? 'Saving…' : 'Save Issue'}
             </button>
-            <a href="/newsletter" className="admin-btn admin-btn--ghost">Cancel</a>
+            <a href="/admin/newsletter" className="admin-btn admin-btn--ghost">Cancel</a>
           </div>
         </form>
       </div>

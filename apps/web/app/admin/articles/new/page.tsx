@@ -157,7 +157,7 @@ export default function NewArticlePage() {
           <h2 className="new-article-success__title">Article saved successfully</h2>
           <p className="new-article-success__slug">/{slug}</p>
           <div className="new-article-success__actions">
-            <a href="/articles" className="admin-btn admin-btn--primary">
+            <a href="/admin/articles" className="admin-btn admin-btn--primary">
               Back to Articles
             </a>
             <button
@@ -223,7 +223,7 @@ export default function NewArticlePage() {
           <h1 className="admin-page-title">New Article</h1>
           <p className="admin-page-sub">Create a new article for Big Muddy Magazine</p>
         </div>
-        <a href="/articles" className="admin-btn admin-btn--ghost">
+        <a href="/admin/articles" className="admin-btn admin-btn--ghost">
           ← Back to Articles
         </a>
       </div>
@@ -265,7 +265,7 @@ export default function NewArticlePage() {
           {/* Slug */}
           <div className="admin-form-group">
             <label htmlFor="slug" className="admin-label">
-              Slug
+              URL Path <span style={{ fontWeight: 400, opacity: 0.5 }}>(auto-generated from title)</span>
             </label>
             <input
               id="title-slug"
@@ -374,7 +374,7 @@ export default function NewArticlePage() {
           <div className="admin-form-group">
             <label htmlFor="body" className="admin-label">
               Body
-              <span className="admin-label-hint"> (Markdown)</span>
+              <span className="admin-label-hint"> (use # for headings, **bold** for bold)</span>
             </label>
             <textarea
               id="body"
@@ -502,7 +502,7 @@ export default function NewArticlePage() {
             >
               {submitting ? 'Saving…' : 'Save Article'}
             </button>
-            <a href="/articles" className="admin-btn admin-btn--ghost">
+            <a href="/admin/articles" className="admin-btn admin-btn--ghost">
               Cancel
             </a>
           </div>
