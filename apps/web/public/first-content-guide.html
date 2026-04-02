@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your First Content — Big Muddy Admin Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #0a0a0a;
+    color: #f5f0eb;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .gold { color: #c8943e; }
+
+  .header {
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #242220;
+  }
+  .header .eyebrow {
+    font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.25em;
+    color: #c8943e; margin-bottom: 0.5rem;
+  }
+  .header h1 { font-size: 2rem; font-weight: 300; margin-bottom: 0.5rem; }
+  .header p { font-size: 0.9rem; color: #8a8074; }
+
+  .task {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #1a1816;
+  }
+  .task:last-of-type { border-bottom: none; }
+
+  .task-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .task-num {
+    width: 36px; height: 36px;
+    background: #c8943e; color: #0a0a0a;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .task h2 { font-size: 1.1rem; font-weight: 600; }
+  .task .time { font-size: 0.7rem; color: #6b6560; margin-left: auto; }
+
+  .task p { font-size: 0.85rem; color: #ccc8c2; margin-bottom: 0.75rem; }
+
+  .steps { margin: 1rem 0; }
+  .step {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #1a1816;
+    font-size: 0.85rem;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num { color: #c8943e; font-weight: 600; text-align: center; }
+  .step a { color: #c8943e; }
+
+  .tip {
+    background: #111110;
+    border-left: 2px solid #c8943e;
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    font-size: 0.8rem;
+    color: #8a8074;
+  }
+
+  .cta {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    background: #c8943e;
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
+
+  .footer {
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 0.55rem;
+    color: #3a3633;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <p class="eyebrow">For Tracy, Amy & Chase</p>
+  <h1>Your First Content</h1>
+  <p>Five things to do in the admin panel. Takes about 30 minutes total. By the end, you'll have created a real event, written a real article, uploaded a real photo, and sent a real newsletter.</p>
+</div>
+
+<!-- TASK 1 -->
+<div class="task">
+  <div class="task-header">
+    <div class="task-num">1</div>
+    <h2>Log In and Look Around</h2>
+    <span class="time">5 min</span>
+  </div>
+  <p>Open the admin panel. Click around. Get familiar with the layout.</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">→</div><div>Go to <a href="https://bigmuddytouring.com/admin" target="_blank">bigmuddytouring.com/admin</a></div></div>
+    <div class="step"><div class="step-num">→</div><div>Sign in with your Google account</div></div>
+    <div class="step"><div class="step-num">→</div><div>You'll see the dashboard — stats, recent content, quick links</div></div>
+    <div class="step"><div class="step-num">→</div><div>Look for the <strong>gold chat bubble</strong> in the bottom right — that's Delta Dawn, your AI assistant</div></div>
+    <div class="step"><div class="step-num">→</div><div>Try asking Delta Dawn: "What events are coming up?"</div></div>
+  </div>
+  <div class="tip">If you can't log in, text Chase. He may need to add your Google account to the system.</div>
+</div>
+
+<!-- TASK 2 -->
+<div class="task">
+  <div class="task-header">
+    <div class="task-num">2</div>
+    <h2>Create a Show</h2>
+    <span class="time">5 min</span>
+  </div>
+  <p>Schedule a real event at the Inn. Even if it's a test, this is how every show gets into the system.</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">→</div><div>Click <a href="https://bigmuddytouring.com/admin/events/new" target="_blank">Events → New Event</a></div></div>
+    <div class="step"><div class="step-num">→</div><div>Fill in: <strong>Name</strong> (e.g., "Friday Night Open Mic"), <strong>Date</strong>, <strong>Time</strong></div></div>
+    <div class="step"><div class="step-num">→</div><div>Set <strong>Artist</strong> (e.g., "Arrie Aslin & Rise Up")</div></div>
+    <div class="step"><div class="step-num">→</div><div>Set <strong>Price</strong> and <strong>Capacity</strong> (e.g., $10, 40 seats)</div></div>
+    <div class="step"><div class="step-num">→</div><div>Check "Stream" if it'll be on the radio</div></div>
+    <div class="step"><div class="step-num">→</div><div>Save — the show now appears on the Radio live sessions page</div></div>
+  </div>
+  <div class="tip"><strong>Amy:</strong> This is your primary tool. Every show at the Inn or any venue gets created here. The system handles the promotion.</div>
+</div>
+
+<!-- TASK 3 -->
+<div class="task">
+  <div class="task-header">
+    <div class="task-num">3</div>
+    <h2>Write a Short Article</h2>
+    <span class="time">10 min</span>
+  </div>
+  <p>Write something real for the Magazine. Even 3-4 paragraphs counts. This is how stories get published.</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">→</div><div>Click <a href="https://bigmuddytouring.com/admin/articles/new" target="_blank">Articles → New Article</a></div></div>
+    <div class="step"><div class="step-num">→</div><div>Enter a <strong>Title</strong> — something real. Examples:
+      <br>Tracy: "What Running a Boutique Inn in Natchez Actually Looks Like"
+      <br>Amy: "The Bar After the Show: Why 1am is the Best Hour at the Inn"
+      <br>Chase: "Why We Started a Radio Station in a Hotel"</div></div>
+    <div class="step"><div class="step-num">→</div><div>Write the body. Don't overthink it — first draft is fine</div></div>
+    <div class="step"><div class="step-num">→</div><div>Set <strong>Status</strong> to "Draft" (not Published — Chase reviews first)</div></div>
+    <div class="step"><div class="step-num">→</div><div>Save</div></div>
+  </div>
+  <div class="tip"><strong>Tracy:</strong> The Magazine is where you publish the story of the Inn, the business, the town. Your perspective is the one readers can't get anywhere else.</div>
+</div>
+
+<!-- TASK 4 -->
+<div class="task">
+  <div class="task-header">
+    <div class="task-num">4</div>
+    <h2>Upload a Photo</h2>
+    <span class="time">5 min</span>
+  </div>
+  <p>Get a real photo into the system. Take one with your phone right now if you want.</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">→</div><div>Click <a href="https://bigmuddytouring.com/admin/upload" target="_blank">Media Upload</a></div></div>
+    <div class="step"><div class="step-num">→</div><div>Drag a photo from your computer or phone into the upload area</div></div>
+    <div class="step"><div class="step-num">→</div><div>It uploads to Google Cloud Storage automatically</div></div>
+    <div class="step"><div class="step-num">→</div><div>The photo is now available for articles, the gallery, and social posts</div></div>
+  </div>
+  <div class="tip">The best photos of the Inn, the bar, the food, the shows — those are content. Every photo you take is potential Magazine or social material.</div>
+</div>
+
+<!-- TASK 5 -->
+<div class="task">
+  <div class="task-header">
+    <div class="task-num">5</div>
+    <h2>Draft a Newsletter</h2>
+    <span class="time">5 min</span>
+  </div>
+  <p>Start a newsletter draft. Don't send it — just see how the tool works.</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">→</div><div>Click <a href="https://bigmuddytouring.com/admin/newsletter/new" target="_blank">Newsletter → New</a></div></div>
+    <div class="step"><div class="step-num">→</div><div>Enter a subject line: "This Week at The Big Muddy Inn"</div></div>
+    <div class="step"><div class="step-num">→</div><div>Write 2-3 paragraphs about what's happening this week — shows, food, the town</div></div>
+    <div class="step"><div class="step-num">→</div><div>Save as draft — DO NOT hit send yet</div></div>
+  </div>
+  <div class="tip">Once the WiFi portal starts collecting guest emails, this newsletter becomes your direct line to every person who's stayed at the Inn.</div>
+</div>
+
+<!-- BONUS -->
+<div class="task">
+  <div class="task-header">
+    <div class="task-num">+</div>
+    <h2>Try the Creative Studio</h2>
+    <span class="time">5 min</span>
+  </div>
+  <p>Generate a radio promo. The AI creates a voiceover from your script.</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">→</div><div>Click <a href="https://bigmuddytouring.com/admin/creative" target="_blank">Creative Studio</a></div></div>
+    <div class="step"><div class="step-num">→</div><div>Click the <strong>Audio</strong> tab</div></div>
+    <div class="step"><div class="step-num">→</div><div>Pick a voice — Delta Dawn, Catfish Carl, or Chase</div></div>
+    <div class="step"><div class="step-num">→</div><div>Write a short script: "You're listening to Big Muddy Radio, live from Natchez, Mississippi."</div></div>
+    <div class="step"><div class="step-num">→</div><div>Hit Generate — listen to the result</div></div>
+  </div>
+  <div class="tip">This is how we create all the radio promos, station IDs, and voiceovers. Seven different AI voices available.</div>
+</div>
+
+<div style="text-align: center; margin-top: 2rem;">
+  <p style="font-size: 0.9rem; color: #ccc8c2; margin-bottom: 1rem;">That's it. You just created content in the system. Questions? Ask Delta Dawn or text Chase.</p>
+  <a href="https://bigmuddytouring.com/admin" target="_blank" class="cta">Open the Admin Panel</a>
+</div>
+
+<div class="footer">
+  Hillbilly Dreams Inc · Powered by Measurably Better Things · April 2026
+</div>
+
+</body>
+</html>
