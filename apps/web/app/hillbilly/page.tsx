@@ -1,763 +1,327 @@
-'use client';
-
 // apps/web/app/hillbilly/page.tsx
-// Hillbilly Dreams Inc. — "Google Wrapper" positioning
-// Built on Google Cloud · Gemini · Vertex AI · Vercel
-// Style: Google Cloud customer story / case study aesthetic
+// Hillbilly Dreams Inc. — the holding company page
+// hillbillydreamsinc.com
+// Tone: honest, direct, a little weird. The real story.
 
-import { useState, useEffect } from 'react';
+import type { Metadata } from 'next';
 
-const GOOGLE_STACK = [
-  { name: 'Neon', color: '#3ECF8E' },
-  { name: 'Vercel', color: '#000000' },
-  { name: 'Cloud SQL', color: '#0F9D58' },
-  { name: 'Vertex AI', color: '#4285F4' },
-  { name: 'Gemini', color: '#8E24AA' },
-  { name: 'Cloud Storage', color: '#0F9D58' },
-  { name: 'BigQuery', color: '#4285F4' },
-  { name: 'Pub/Sub', color: '#DB4437' },
+export const metadata: Metadata = {
+  title: 'Hillbilly Dreams Inc.',
+  description: 'A media-hospitality company anchored in Natchez, Mississippi. We run the shows, the inn, the magazine, the radio, the records, and the directory. All of it feeds all of it.',
+};
+
+const BRANDS = [
+  { name: 'Big Muddy Touring', url: 'https://bigmuddytouring.com', what: 'The route, the inn, the shows. Thirteen cities between New Orleans and Memphis.' },
+  { name: 'Big Muddy Magazine', url: 'https://bigmuddymagazine.com', what: 'City guides, interviews, photo essays from the corridor.' },
+  { name: 'Big Muddy Radio', url: 'https://bigmuddyradio.com', what: 'Curated playlists, live sessions, the American Parlor Songbook.' },
+  { name: 'Big Muddy Records', url: 'https://bigmuddyrecords.com', what: 'Independent label. Artists own their masters.' },
+  { name: 'Big Muddy Entertainment', url: 'https://bigmuddyentertainment.com', what: 'Booking, production, talent search along the corridor.' },
+  { name: 'Deep South Directory', url: 'https://deepsouthdirectory.com', what: 'Local business marketing. The engine that pays for everything else.' },
+  { name: 'Outsider Economics', url: 'https://outsidereconomics.com', what: 'The field manual. Why small towns work and how to prove it.' },
+  { name: 'Venture Gallery', url: 'https://venturegallery.art', what: 'Art from corridor artists. Photography, prints, limited editions.' },
 ];
 
-const STATS = [
-  { value: '2M', label: 'Token Context Window' },
-  { value: '99.9%', label: 'Platform Uptime SLA' },
-  { value: '18', label: 'Cities in Network' },
-  { value: '96%', label: 'Gross Cloud Margins' },
+const TEAM = [
+  { name: 'Chase Pierson', role: 'Everything Else', note: 'CEO, CTO, photographer, and the person who answers the phone.' },
+  { name: 'Tracy Alderson-Allen', role: 'Finance & Inn Operations', note: 'Equity partner. Runs the numbers and the Inn.' },
+  { name: 'Amy Allen', role: 'Inn & Bar Operations', note: 'Equity partner. Runs the bar and keeps the Blues Room alive.' },
 ];
-
-const PILLARS = [
-  {
-    icon: '⚙️',
-    color: '#4285F4',
-    name: 'Gemini AI Operations',
-    sub: 'Intelligence at Every Layer',
-    desc: 'Google\'s 2-million-token context window sees your entire business history. Automated quoting, project narratives, client communications, and capacity forecasting — not a chatbot, a contextual intelligence layer.',
-    bullets: [
-      'Gemini 2.5 Pro — full context AI',
-      'Automated quoting & estimation',
-      'AI-generated client deliverables',
-      'Smart capacity forecasting',
-    ],
-  },
-  {
-    icon: '🔒',
-    color: '#0F9D58',
-    name: 'Sovereign Infrastructure',
-    sub: 'Your Data. Your Instance.',
-    desc: 'Every Measurably Better deployment runs on its own Google Cloud SQL instance. Your financial data, client relationships, and intellectual property never share a database with anyone else. Complete isolation.',
-    bullets: [
-      'Dedicated Cloud SQL per tenant',
-      'Vercel with Edge Network',
-      'Full data ownership & portability',
-      'Encrypted at rest and in transit',
-    ],
-  },
-  {
-    icon: '📊',
-    color: '#DB4437',
-    name: 'Native Integrations',
-    sub: 'Wired, Not Bolted On',
-    desc: 'QuickBooks, Stripe Connect, Google Business Profile, Google Workspace — native integrations that feed your existing tools and feed back. No CSV exports. No middleware. Real-time sync.',
-    bullets: [
-      'QuickBooks Online sync',
-      'Stripe Connect payments',
-      'Google Business Profile automation',
-      'Google Workspace integration',
-    ],
-  },
-  {
-    icon: '🚀',
-    color: '#8E24AA',
-    name: 'Automated Growth',
-    sub: 'Every Job Sells the Next One',
-    desc: 'Every completed project triggers a mechanized marketing pipeline. Automated case studies, Google Business Profile updates, and localized SEO — all driven by the underlying project data.',
-    bullets: [
-      'AI-generated project narratives',
-      'Automated GBP updates',
-      'Localized SEO deployments',
-      'Client-ready deliverable packages',
-    ],
-  },
-];
-
-// Google G logo SVG (official colors)
-function GoogleG({ size = 20 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" aria-label="Google">
-      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-    </svg>
-  );
-}
 
 export default function HillbillyDreamsPage() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
   return (
-    <div className="hd-page">
-      <style>{`
-        .hd-page {
-          background: #0d1117;
-          color: #e6edf3;
-          font-family: var(--font-body);
-          min-height: 100vh;
-          -webkit-font-smoothing: antialiased;
-        }
-        .hd-page *, .hd-page *::before, .hd-page *::after {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-        }
-
-        /* ── Nav ── */
-        .hd-nav {
-          position: fixed;
-          top: 0; left: 0; right: 0;
-          z-index: 100;
-          height: 56px;
-          display: flex;
-          align-items: center;
-          padding: 0 1.5rem;
-          border-bottom: 1px solid transparent;
-          transition: background 200ms ease, border-color 200ms ease;
-        }
-        .hd-nav--scrolled {
-          background: rgba(13, 17, 23, 0.92);
-          backdrop-filter: blur(12px);
-          border-color: rgba(255,255,255,0.06);
-        }
-        .hd-nav__inner {
-          max-width: 1200px;
-          width: 100%;
-          margin: 0 auto;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-        .hd-nav__brand {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          text-decoration: none;
-        }
-        .hd-nav__name {
-          font-size: 0.9rem;
-          font-weight: 700;
-          color: #e6edf3;
-          letter-spacing: -0.01em;
-        }
-        .hd-nav__badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          padding: 0.3rem 0.75rem;
-          background: rgba(66, 133, 244, 0.12);
-          border: 1px solid rgba(66, 133, 244, 0.3);
-          border-radius: 20px;
-          font-size: 0.7rem;
-          font-weight: 700;
-          color: #4285F4;
-          text-decoration: none;
-          letter-spacing: 0.02em;
-          transition: background 150ms ease;
-        }
-        .hd-nav__badge:hover { background: rgba(66, 133, 244, 0.2); }
-
-        /* ── Hero ── */
-        .hd-hero {
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 6rem 1.5rem 4rem;
-          position: relative;
-          overflow: hidden;
-          text-align: center;
-        }
-        .hd-hero__glow {
-          position: absolute;
-          inset: 0;
-          background:
-            radial-gradient(ellipse 80% 60% at 50% -10%, rgba(66,133,244,0.12) 0%, transparent 60%),
-            radial-gradient(ellipse 40% 30% at 10% 80%, rgba(15,157,88,0.05) 0%, transparent 50%),
-            radial-gradient(ellipse 40% 30% at 90% 70%, rgba(142,36,170,0.05) 0%, transparent 50%);
-        }
-        .hd-hero__content {
-          position: relative;
-          z-index: 1;
-          max-width: 900px;
-        }
-        .hd-hero__eyebrow {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.35rem 0.9rem;
-          background: rgba(66,133,244,0.08);
-          border: 1px solid rgba(66,133,244,0.2);
-          border-radius: 20px;
-          font-size: 0.65rem;
-          font-weight: 700;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: rgba(66,133,244,0.9);
-          margin-bottom: 2rem;
-        }
-        .hd-hero__title {
-          font-size: clamp(3rem, 9vw, 7rem);
-          font-weight: 800;
-          line-height: 1;
-          letter-spacing: -0.03em;
-          color: #e6edf3;
-          margin-bottom: 0.2rem;
-        }
-        .hd-hero__title-accent {
-          display: block;
-          background: linear-gradient(135deg, #4285F4 0%, #34A853 40%, #06b6d4 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-        .hd-hero__sub {
-          font-size: clamp(1rem, 2vw, 1.15rem);
-          color: rgba(230,237,243,0.55);
-          line-height: 1.7;
-          max-width: 600px;
-          margin: 1.75rem auto 2.5rem;
-        }
-        .hd-hero__sub strong {
-          color: rgba(230,237,243,0.85);
-          font-weight: 600;
-        }
-        .hd-hero__ctas {
-          display: flex;
-          gap: 0.75rem;
-          justify-content: center;
-          flex-wrap: wrap;
-          margin-bottom: 4rem;
-        }
-        .hd-btn-primary {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          padding: 0.75rem 1.75rem;
-          background: #4285F4;
-          color: #fff;
-          font-family: inherit;
-          font-size: 0.8rem;
-          font-weight: 700;
-          letter-spacing: 0.04em;
-          text-decoration: none;
-          border-radius: 6px;
-          transition: background 150ms ease, transform 150ms ease;
-        }
-        .hd-btn-primary:hover { background: #3578e5; transform: translateY(-1px); }
-        .hd-btn-ghost {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          padding: 0.75rem 1.75rem;
-          background: transparent;
-          color: rgba(230,237,243,0.6);
-          font-family: inherit;
-          font-size: 0.8rem;
-          font-weight: 600;
-          text-decoration: none;
-          border: 1px solid rgba(255,255,255,0.1);
-          border-radius: 6px;
-          transition: color 150ms ease, border-color 150ms ease;
-        }
-        .hd-btn-ghost:hover { color: #e6edf3; border-color: rgba(255,255,255,0.2); }
-
-        /* ── Stats ── */
-        .hd-stats {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1px;
-          background: rgba(255,255,255,0.06);
-          border: 1px solid rgba(255,255,255,0.06);
-          border-radius: 8px;
-          overflow: hidden;
-          max-width: 700px;
-          margin: 0 auto;
-        }
-        .hd-stat {
-          padding: 1.5rem 1rem;
-          background: #161b22;
-          text-align: center;
-        }
-        .hd-stat__value {
-          font-size: 1.75rem;
-          font-weight: 800;
-          letter-spacing: -0.03em;
-          color: #e6edf3;
-          line-height: 1;
-          margin-bottom: 0.4rem;
-        }
-        .hd-stat__label {
-          font-size: 0.6rem;
-          font-weight: 700;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: rgba(230,237,243,0.3);
-        }
-        .hd-stat:nth-child(1) .hd-stat__value { color: #4285F4; }
-        .hd-stat:nth-child(2) .hd-stat__value { color: #34A853; }
-        .hd-stat:nth-child(3) .hd-stat__value { color: #FBBC05; }
-        .hd-stat:nth-child(4) .hd-stat__value { color: #EA4335; }
-
-        /* ── Section ── */
-        .hd-section {
-          padding: 5rem 1.5rem;
-          max-width: 1200px;
-          margin: 0 auto;
-        }
-        .hd-label {
-          font-size: 0.65rem;
-          font-weight: 700;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: #4285F4;
-          margin-bottom: 0.75rem;
-        }
-        .hd-h2 {
-          font-size: clamp(1.75rem, 4vw, 3rem);
-          font-weight: 800;
-          letter-spacing: -0.03em;
-          line-height: 1.05;
-          color: #e6edf3;
-          margin-bottom: 1rem;
-        }
-        .hd-lead {
-          font-size: 1rem;
-          color: rgba(230,237,243,0.5);
-          line-height: 1.75;
-          max-width: 560px;
-          margin-bottom: 3rem;
-        }
-
-        /* ── Google Stack ── */
-        .hd-stack-wrap {
-          padding: 3rem 1.5rem;
-          background: #161b22;
-          border-top: 1px solid rgba(255,255,255,0.05);
-          border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .hd-stack-inner {
-          max-width: 1200px;
-          margin: 0 auto;
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: 1.5rem;
-        }
-        .hd-stack-label {
-          font-size: 0.65rem;
-          font-weight: 700;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: rgba(230,237,243,0.3);
-          white-space: nowrap;
-          flex-shrink: 0;
-        }
-        .hd-stack-pills {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-        }
-        .hd-stack-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.35rem;
-          padding: 0.3rem 0.75rem;
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.08);
-          border-radius: 20px;
-          font-size: 0.72rem;
-          font-weight: 600;
-          color: rgba(230,237,243,0.7);
-        }
-        .hd-stack-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          flex-shrink: 0;
-        }
-
-        /* ── Pillars ── */
-        .hd-pillars {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 1px;
-          background: rgba(255,255,255,0.05);
-          border: 1px solid rgba(255,255,255,0.05);
-          border-radius: 8px;
-          overflow: hidden;
-        }
-        .hd-pillar {
-          padding: 2rem;
-          background: #161b22;
-          position: relative;
-        }
-        .hd-pillar::before {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 2px;
-        }
-        .hd-pillar:nth-child(1)::before { background: #4285F4; }
-        .hd-pillar:nth-child(2)::before { background: #0F9D58; }
-        .hd-pillar:nth-child(3)::before { background: #DB4437; }
-        .hd-pillar__icon {
-          font-size: 1.5rem;
-          margin-bottom: 1rem;
-        }
-        .hd-pillar__name {
-          font-size: 1.1rem;
-          font-weight: 800;
-          letter-spacing: -0.02em;
-          color: #e6edf3;
-          margin-bottom: 0.2rem;
-        }
-        .hd-pillar__sub {
-          font-size: 0.7rem;
-          font-weight: 700;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: rgba(230,237,243,0.3);
-          margin-bottom: 1rem;
-        }
-        .hd-pillar__desc {
-          font-size: 0.875rem;
-          color: rgba(230,237,243,0.55);
-          line-height: 1.7;
-          margin-bottom: 1.25rem;
-        }
-        .hd-pillar__bullets {
-          list-style: none;
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-        .hd-pillar__bullets li {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          font-size: 0.8rem;
-          color: rgba(230,237,243,0.5);
-        }
-        .hd-pillar__bullets li::before {
-          content: '→';
-          font-size: 0.7rem;
-          color: rgba(230,237,243,0.25);
-          flex-shrink: 0;
-        }
-
-        /* ── Story ── */
-        .hd-story-wrap {
-          background: #161b22;
-          padding: 5rem 1.5rem;
-          border-top: 1px solid rgba(255,255,255,0.05);
-          border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .hd-story-inner {
-          max-width: 680px;
-          margin: 0 auto;
-        }
-        .hd-story-body {
-          font-size: 1rem;
-          color: rgba(230,237,243,0.6);
-          line-height: 1.85;
-        }
-        .hd-story-body p { margin-bottom: 1.4rem; }
-        .hd-story-body em { color: #e6edf3; font-style: italic; }
-        .hd-story-quote {
-          margin: 2.5rem 0;
-          padding: 1.75rem 1.75rem 1.75rem 1.5rem;
-          border-left: 3px solid #4285F4;
-          background: rgba(66,133,244,0.05);
-          border-radius: 0 6px 6px 0;
-        }
-        .hd-story-quote p {
-          font-size: 1.2rem;
-          font-weight: 600;
-          font-style: italic;
-          letter-spacing: -0.01em;
-          color: #e6edf3;
-          line-height: 1.5;
-          margin-bottom: 0.75rem;
-        }
-        .hd-story-quote cite {
-          font-size: 0.72rem;
-          font-weight: 700;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: #4285F4;
-          font-style: normal;
-        }
-        .hd-story-closer {
-          font-size: 1.2rem;
-          font-weight: 700;
-          letter-spacing: -0.02em;
-          color: #e6edf3 !important;
-          line-height: 1.4;
-        }
-
-        /* ── Principles ── */
-        .hd-principles {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-          gap: 1px;
-          background: rgba(255,255,255,0.05);
-          border: 1px solid rgba(255,255,255,0.05);
-          border-radius: 8px;
-          overflow: hidden;
-        }
-        .hd-principle {
-          padding: 1.75rem;
-          background: #161b22;
-        }
-        .hd-principle__label {
-          font-size: 0.65rem;
-          font-weight: 800;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: #4285F4;
-          margin-bottom: 0.75rem;
-        }
-        .hd-principle__text {
-          font-size: 0.85rem;
-          color: rgba(230,237,243,0.5);
-          line-height: 1.75;
-        }
-
-        /* ── Footer ── */
-        .hd-footer {
-          padding: 3rem 1.5rem;
-          border-top: 1px solid rgba(255,255,255,0.06);
-        }
-        .hd-footer__inner {
-          max-width: 1200px;
-          margin: 0 auto;
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1.5rem;
-          padding-bottom: 2rem;
-          margin-bottom: 2rem;
-          border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .hd-footer__brand {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          font-size: 0.9rem;
-          font-weight: 700;
-          color: #e6edf3;
-        }
-        .hd-footer__stack {
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
-          font-size: 0.7rem;
-          font-weight: 600;
-          color: rgba(230,237,243,0.3);
-        }
-        .hd-footer__copy {
-          max-width: 1200px;
-          margin: 0 auto;
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          gap: 1rem;
-          font-size: 0.65rem;
-          font-weight: 600;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: rgba(230,237,243,0.2);
-        }
-        .hd-footer__email {
-          color: #4285F4;
-          text-decoration: none;
-          font-size: 0.75rem;
-          font-weight: 600;
-          text-transform: none;
-          letter-spacing: 0;
-        }
-        .hd-footer__email:hover { color: #8ab4f8; }
-
-        @media (max-width: 640px) {
-          .hd-stats { grid-template-columns: repeat(2, 1fr); }
-        }
-      `}</style>
-
-      {/* ── Nav ── */}
-      <nav className={`hd-nav${scrolled ? ' hd-nav--scrolled' : ''}`}>
-        <div className="hd-nav__inner">
-          <a href="/" className="hd-nav__brand">
-            <GoogleG size={22} />
-            <span className="hd-nav__name">Hillbilly Dreams</span>
-          </a>
-          <span className="hd-nav__badge">
-            <GoogleG size={14} />
-            Built on Google Cloud
-          </span>
-        </div>
-      </nav>
-
-      {/* ── Hero ── */}
-      <section className="hd-hero">
-        <div className="hd-hero__glow" aria-hidden="true" />
-        <div className="hd-hero__content">
-          <div className="hd-hero__eyebrow">
-            <GoogleG size={12} />
-            Built on Google Cloud · Natchez, Mississippi
-          </div>
-          <h1 className="hd-hero__title">
-            The AI That
-            <span className="hd-hero__title-accent">Runs Your Business.</span>
-          </h1>
-          <p className="hd-hero__sub">
-            Reviews, social media, scheduling, finances, and customer outreach — handled automatically. You approve everything. The AI does the rest. Built for Main Street, powered by <strong>Google</strong>.
-          </p>
-          <div className="hd-hero__ctas">
-            <a href="https://measurablybetterthings.com" className="hd-btn-primary">Measurably Better Things →</a>
-            <a href="https://deepsouthdirectory.com" className="hd-btn-ghost">Deep South Directory →</a>
-          </div>
-          <div className="hd-stats">
-            {STATS.map((s) => (
-              <div key={s.label} className="hd-stat">
-                <div className="hd-stat__value">{s.value}</div>
-                <div className="hd-stat__label">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Google Stack ── */}
-      <div className="hd-stack-wrap">
-        <div className="hd-stack-inner">
-          <span className="hd-stack-label">Powered by Google</span>
-          <div className="hd-stack-pills">
-            {GOOGLE_STACK.map((tech) => (
-              <span key={tech.name} className="hd-stack-pill">
-                <span className="hd-stack-dot" style={{ background: tech.color }} />
-                {tech.name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ── Three Pillars ── */}
-      <section id="platform" className="hd-section">
-        <div className="hd-label">The MBT Platform</div>
-        <h2 className="hd-h2">One Platform. Every Vertical.</h2>
-        <p className="hd-lead">
-          The same Google Cloud engine running a six-room inn in Natchez powers a $1M construction firm in New York. Hospitality, media, AEC, retail — Measurably Better adapts to the business, not the other way around.
+    <main style={{
+      background: 'var(--bg, #0f0f0d)',
+      color: 'var(--fg, #f5f0eb)',
+      fontFamily: 'var(--font-body, system-ui, sans-serif)',
+      minHeight: '100vh',
+    }}>
+      {/* Hero */}
+      <section style={{
+        minHeight: '70vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: '6rem 1.5rem 4rem',
+        maxWidth: 800,
+        margin: '0 auto',
+      }}>
+        <p style={{
+          fontSize: '0.75rem',
+          textTransform: 'uppercase',
+          letterSpacing: '0.15em',
+          color: 'var(--accent, #c8943e)',
+          marginBottom: '1.5rem',
+          fontWeight: 600,
+        }}>
+          Natchez, Mississippi
         </p>
-        <div className="hd-pillars">
-          {PILLARS.map((p) => (
-            <div key={p.name} className="hd-pillar">
-              <div className="hd-pillar__icon">{p.icon}</div>
-              <div className="hd-pillar__name">{p.name}</div>
-              <div className="hd-pillar__sub">{p.sub}</div>
-              <p className="hd-pillar__desc">{p.desc}</p>
-              <ul className="hd-pillar__bullets">
-                {p.bullets.map((b) => <li key={b}>{b}</li>)}
-              </ul>
-            </div>
-          ))}
+        <h1 style={{
+          fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+          fontWeight: 700,
+          fontFamily: 'var(--font-display, Georgia, serif)',
+          lineHeight: 1.1,
+          letterSpacing: '-0.03em',
+          margin: '0 0 2rem',
+        }}>
+          We built a media company<br />
+          in a town of 14,000 people.
+        </h1>
+        <p style={{
+          fontSize: '1.15rem',
+          lineHeight: 1.7,
+          opacity: 0.7,
+          maxWidth: 640,
+        }}>
+          Hillbilly Dreams Inc. is a holding company that runs eight brands
+          from one building in Natchez, Mississippi. An inn, a record label,
+          a magazine, a radio station, a touring operation, a gallery, a
+          directory, and an economics publication. All of it feeds all of it.
+          The gap isn&apos;t technology — it&apos;s organization.
+        </p>
+      </section>
+
+      {/* The Thesis */}
+      <section style={{
+        borderTop: '1px solid var(--border, rgba(255,255,255,0.08))',
+        padding: '4rem 1.5rem',
+        maxWidth: 700,
+        margin: '0 auto',
+      }}>
+        <h2 style={{
+          fontSize: '0.85rem',
+          textTransform: 'uppercase',
+          letterSpacing: '0.12em',
+          color: 'var(--accent, #c8943e)',
+          marginBottom: '1.5rem',
+        }}>
+          The Thesis
+        </h2>
+        <div style={{ lineHeight: 1.8, opacity: 0.75, fontSize: '1rem' }}>
+          <p>
+            The Mississippi corridor between Memphis and New Orleans produced
+            more American music per mile than anywhere on earth. The same towns
+            that gave us blues, jazz, gospel, and rock and roll are still there.
+            The talent is still there. The culture is still there.
+          </p>
+          <p style={{ marginTop: '1.25rem' }}>
+            What&apos;s missing is coordination. A photographer, a radio station,
+            a venue, a magazine, a record label, and a touring route — if they&apos;re
+            all in the same building, they stop being separate businesses and
+            start being an ecosystem. Every show feeds the magazine. Every
+            magazine feature feeds the radio. Every radio play feeds the record
+            label. Every record feeds the next show.
+          </p>
+          <p style={{ marginTop: '1.25rem' }}>
+            That&apos;s not a theory. That&apos;s what we&apos;re running right now.
+          </p>
         </div>
       </section>
 
-      {/* ── Story ── */}
-      <section id="story" className="hd-story-wrap">
-        <div className="hd-story-inner">
-          <div className="hd-label">The Story</div>
-          <h2 className="hd-h2" style={{ marginBottom: '2rem' }}>
-            Music, Muddy Water,<br />and Infrastructure.
-          </h2>
-          <div className="hd-story-body">
-            <p>
-              It didn&apos;t start as a technology company. It started with a voice, a record, and a live room.
-            </p>
-            <p>
-              The original focus was developing Amy Allen&apos;s music career — performing as <em>Arrie Aslin</em> — and creating memorable live experiences. But independent art needs a runway. We realized the Big Muddy Inn in Natchez could generate the revenue to fund the music, provided we could get it cash-flow positive.
-            </p>
-            <p>
-              Running a hospitality business in the Deep South usually means bleeding money to disconnected, expensive software subscriptions. We couldn&apos;t afford the extraction, so we built our own infrastructure on Google Cloud. We called it <em>Measurably Better</em> — a platform that any business can use, not just ours.
-            </p>
-            <blockquote className="hd-story-quote">
-              <p>
-                &ldquo;We don&apos;t extract. We don&apos;t take a percentage. We build the tools, license them flat, and the money stays in the community.&rdquo;
+      {/* Photo break */}
+      <div style={{
+        width: '100%',
+        height: 300,
+        backgroundImage: 'url(/images/corridor/inn-hallway-gathering.webp)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        opacity: 0.75,
+      }} role="img" aria-label="Guests gathering at The Big Muddy Inn" />
+
+      {/* The Brands */}
+      <section style={{
+        borderTop: '1px solid var(--border, rgba(255,255,255,0.08))',
+        padding: '4rem 1.5rem',
+        maxWidth: 900,
+        margin: '0 auto',
+      }}>
+        <h2 style={{
+          fontSize: '0.85rem',
+          textTransform: 'uppercase',
+          letterSpacing: '0.12em',
+          color: 'var(--accent, #c8943e)',
+          marginBottom: '2rem',
+        }}>
+          Eight Brands. One Building.
+        </h2>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gap: '1px',
+          border: '1px solid var(--border, rgba(255,255,255,0.08))',
+        }}>
+          {BRANDS.map((brand) => (
+            <a
+              key={brand.name}
+              href={brand.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'block',
+                padding: '1.5rem',
+                textDecoration: 'none',
+                background: 'var(--bg, #0f0f0d)',
+                borderBottom: '1px solid var(--border, rgba(255,255,255,0.08))',
+              }}
+            >
+              <p style={{
+                fontSize: '0.95rem',
+                fontWeight: 700,
+                color: 'var(--accent, #c8943e)',
+                margin: '0 0 0.35rem',
+              }}>
+                {brand.name}
               </p>
-              <cite>— Chase Tuthill Pierson, Founder</cite>
-            </blockquote>
-            <p>
-              Big Muddy is the proof of concept — a micromedia company in a bottle running on Google Cloud. The Inn, the Magazine, the Radio, the Touring circuit, and the Record label. All on one platform.
-            </p>
-            <p>
-              Through <em>Big Muddy Records</em>, artists keep 100% of their masters. Through <em>Rise Up</em>, Arrie Aslin&apos;s Gospel and Blues Band travels the corridor running regional talent searches at every stop. Through <em>Outsider Economics</em>, we coach communities to keep their value local — stop the extraction, build the alternative.
-            </p>
-            <p>
-              Right now, most of the money earned in these communities leaves before it can do any good. We are building the alternative — on Google infrastructure.
-            </p>
-            <p className="hd-story-closer">
-              We build local. The value stays local. We grow from within.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Principles ── */}
-      <section className="hd-section">
-        <div className="hd-label">Deployed Across Industries</div>
-        <h2 className="hd-h2" style={{ marginBottom: '3rem' }}>One Engine. Many Products.</h2>
-        <div className="hd-principles">
-          {[
-            { label: 'Measurably Better Things', text: 'A multi-tenant business management platform built on Google Cloud. Reviews, social media, directory listings, customer outreach, and financial dashboards — powered by Gemini AI. One platform, any industry.' },
-            { label: 'Big Muddy — Hospitality & Media', text: 'An inn, a magazine, a radio station, a record label, and a touring circuit — all on one platform. The owned-and-operated proof of concept running eight brands from Natchez, Mississippi.' },
-            { label: 'Deep South Directory — Main Street', text: 'Every business in every town on the corridor, found. AI-managed listings, review monitoring, and local SEO — replacing the fragmented tools that cost more than they deliver.' },
-            { label: 'Aligned Economics', text: "Our economics are tied to your success, not rent-seeking. When the platform makes your operation more efficient, you keep the upside. Our incentive is to make you more profitable — not to tax every transaction." },
-          ].map((p) => (
-            <div key={p.label} className="hd-principle">
-              <div className="hd-principle__label">{p.label}</div>
-              <p className="hd-principle__text">{p.text}</p>
-            </div>
+              <p style={{
+                fontSize: '0.85rem',
+                color: 'var(--fg, #f5f0eb)',
+                opacity: 0.55,
+                lineHeight: 1.5,
+                margin: 0,
+              }}>
+                {brand.what}
+              </p>
+            </a>
           ))}
         </div>
       </section>
 
-      {/* ── Footer ── */}
-      <footer className="hd-footer">
-        <div className="hd-footer__inner">
-          <div className="hd-footer__brand">
-            <GoogleG size={20} />
-            Hillbilly Dreams, Inc.
+      {/* The People */}
+      <section style={{
+        borderTop: '1px solid var(--border, rgba(255,255,255,0.08))',
+        padding: '4rem 1.5rem',
+        maxWidth: 700,
+        margin: '0 auto',
+      }}>
+        <h2 style={{
+          fontSize: '0.85rem',
+          textTransform: 'uppercase',
+          letterSpacing: '0.12em',
+          color: 'var(--accent, #c8943e)',
+          marginBottom: '2rem',
+        }}>
+          The People
+        </h2>
+        {TEAM.map((person, i) => (
+          <div key={person.name} style={{
+            padding: '1.25rem 0',
+            borderBottom: i < TEAM.length - 1 ? '1px solid var(--border, rgba(255,255,255,0.08))' : 'none',
+          }}>
+            <p style={{
+              fontSize: '1.1rem',
+              fontWeight: 700,
+              margin: '0 0 0.15rem',
+            }}>
+              {person.name}
+            </p>
+            <p style={{
+              fontSize: '0.85rem',
+              color: 'var(--accent, #c8943e)',
+              margin: '0 0 0.35rem',
+            }}>
+              {person.role}
+            </p>
+            <p style={{
+              fontSize: '0.85rem',
+              opacity: 0.5,
+              margin: 0,
+              lineHeight: 1.5,
+            }}>
+              {person.note}
+            </p>
           </div>
-          <div className="hd-footer__stack">
-            <GoogleG size={14} />
-            Built on Google Cloud · Gemini · Vertex AI · Vercel
-          </div>
+        ))}
+      </section>
+
+      {/* Origin */}
+      <section style={{
+        borderTop: '1px solid var(--border, rgba(255,255,255,0.08))',
+        padding: '4rem 1.5rem',
+        maxWidth: 700,
+        margin: '0 auto',
+      }}>
+        <h2 style={{
+          fontSize: '0.85rem',
+          textTransform: 'uppercase',
+          letterSpacing: '0.12em',
+          color: 'var(--accent, #c8943e)',
+          marginBottom: '1.5rem',
+        }}>
+          The Origin
+        </h2>
+        <div style={{ lineHeight: 1.8, opacity: 0.7, fontSize: '0.95rem' }}>
+          <p>
+            In 2022, Chase Pierson designed a complete media production-to-distribution
+            pipeline — broadcast, production, analytics, distribution — built on open
+            source tools. It was architecture for running a media company at any scale.
+          </p>
+          <p style={{ marginTop: '1.25rem' }}>
+            He realized the same system that runs a Viacom can run a small-town
+            media economy. Big Muddy is that architecture, applied to Main Street,
+            powered by AI, anchored in the Mississippi corridor.
+          </p>
+          <p style={{ marginTop: '1.25rem', fontStyle: 'italic', color: 'var(--accent, #c8943e)' }}>
+            The gap isn&apos;t technology — it&apos;s organization. That&apos;s what we sell.
+          </p>
         </div>
-        <div className="hd-footer__copy">
-          <span>© 2026 Hillbilly Dreams, Inc. · Natchez, Mississippi</span>
-          <a href="mailto:hello@hillbillydreamsinc.com" className="hd-footer__email">
-            hello@hillbillydreamsinc.com
-          </a>
-          <span>Built with independence. Powered by stubbornness.</span>
-        </div>
+      </section>
+
+      {/* CTA */}
+      <section style={{
+        borderTop: '1px solid var(--border, rgba(255,255,255,0.08))',
+        padding: '5rem 1.5rem',
+        textAlign: 'center',
+        maxWidth: 600,
+        margin: '0 auto',
+      }}>
+        <h2 style={{
+          fontSize: '1.75rem',
+          fontWeight: 700,
+          fontFamily: 'var(--font-display, Georgia, serif)',
+          marginBottom: '1rem',
+        }}>
+          Want to talk?
+        </h2>
+        <p style={{
+          fontSize: '1rem',
+          opacity: 0.6,
+          lineHeight: 1.6,
+          marginBottom: '2rem',
+        }}>
+          We&apos;re always looking for musicians, businesses, and people who want
+          to build something real in the corridor.
+        </p>
+        <a
+          href="mailto:me@chasepierson.tv"
+          style={{
+            display: 'inline-block',
+            padding: '0.85rem 2.5rem',
+            background: 'var(--accent, #c8943e)',
+            color: '#0a0a0a',
+            textDecoration: 'none',
+            fontWeight: 700,
+            fontSize: '0.9rem',
+            letterSpacing: '0.03em',
+          }}
+        >
+          me@chasepierson.tv
+        </a>
+      </section>
+
+      {/* Footer */}
+      <footer style={{
+        borderTop: '1px solid var(--border, rgba(255,255,255,0.08))',
+        padding: '2rem 1.5rem',
+        textAlign: 'center',
+      }}>
+        <p style={{
+          fontSize: '0.65rem',
+          opacity: 0.25,
+          textTransform: 'uppercase',
+          letterSpacing: '0.1em',
+        }}>
+          Powered by Measurably Better Things
+        </p>
       </footer>
-    </div>
+    </main>
   );
 }
