@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Briefing for Bob Bedard — April 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #0a0a0a;
+    color: #f5f0eb;
+    line-height: 1.7;
+  }
+
+  .gold { color: #c8943e; }
+
+  .hero {
+    position: relative;
+    height: 50vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    border-bottom: 2px solid #c8943e;
+  }
+  .hero img {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; filter: brightness(0.4) contrast(1.1);
+  }
+  .hero-gradient {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, #0a0a0a 0%, transparent 60%);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative; z-index: 2; padding: 3rem 5%; max-width: 700px;
+  }
+  .hero-content .eyebrow {
+    font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.25em;
+    color: #c8943e; margin-bottom: 0.5rem;
+  }
+  .hero-content h1 {
+    font-size: 2.25rem; font-weight: 300; line-height: 1.15;
+  }
+  .hero-content h1 em { color: #c8943e; font-style: normal; }
+
+  .content { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+
+  section { padding: 3rem 0; border-bottom: 1px solid #1a1816; }
+  section:last-of-type { border-bottom: none; }
+
+  .sl { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.2em; color: #c8943e; margin-bottom: 0.5rem; }
+  h2 { font-size: 1.4rem; font-weight: 400; margin-bottom: 1rem; }
+  p { font-size: 0.9rem; color: #ccc8c2; margin-bottom: 1rem; max-width: 700px; }
+  p.punch { font-size: 1.05rem; color: #f5f0eb; font-weight: 500; }
+  p.note { font-size: 0.8rem; color: #6b6560; font-style: italic; }
+
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: #242220; margin: 2rem 0;
+  }
+  .stat {
+    background: #0a0a0a; padding: 1.5rem; text-align: center;
+  }
+  .stat .number { font-size: 2rem; font-weight: 300; color: #c8943e; }
+  .stat .label { font-size: 0.65rem; color: #6b6560; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  .link-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.5rem 0;
+  }
+  .link-card {
+    border: 1px solid #242220; padding: 1rem; display: block;
+    text-decoration: none; color: #f5f0eb; transition: border-color 0.2s;
+  }
+  .link-card:hover { border-color: #c8943e; }
+  .link-card h3 { font-size: 0.8rem; margin-bottom: 0.15rem; }
+  .link-card .url { font-size: 0.55rem; color: #c8943e; font-family: monospace; }
+
+  .timeline { margin: 1.5rem 0; }
+  .tl-item {
+    display: grid; grid-template-columns: 80px 1fr; gap: 1rem;
+    padding: 0.75rem 0; border-bottom: 1px solid #1a1816;
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-date { font-size: 0.7rem; color: #c8943e; font-weight: 600; }
+  .tl-text { font-size: 0.85rem; color: #ccc8c2; }
+  .tl-text strong { color: #f5f0eb; }
+
+  .ask-box {
+    border: 2px solid #c8943e; padding: 2rem; margin: 2rem 0; text-align: center;
+  }
+  .ask-box h3 { font-size: 1.1rem; margin-bottom: 1rem; }
+  .ask-box p { text-align: center; margin: 0 auto; }
+
+  .photo-strip {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 3px; margin: 2rem 0;
+  }
+  .photo-strip img {
+    width: 100%; aspect-ratio: 16/10; object-fit: cover;
+  }
+
+  .footer {
+    padding: 2rem; text-align: center; font-size: 0.5rem;
+    color: #3a3633; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .stat-grid { grid-template-columns: 1fr; }
+    .link-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <img src="/images/processed/big-muddy/natchez-night-1034.webp" alt="Natchez at night">
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Confidential · April 2026 · Prepared for Bob Bedard</p>
+    <h1>The same architecture that runs a Viacom<br>can run a <em>small-town media economy.</em></h1>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- THE THESIS -->
+<section>
+  <p class="sl">The Thesis</p>
+  <h2>Broadcast infrastructure, miniaturized for Main Street</h2>
+
+  <p class="punch">
+    I designed a complete media production-to-distribution pipeline in 2022. It was
+    global infrastructure — broadcast, production, analytics, distribution — built on
+    open source tools. I realized the same architecture that runs a network can run a
+    small-town media economy. Big Muddy is that architecture, applied to Main Street,
+    powered by AI, anchored in the Mississippi corridor.
+  </p>
+
+  <p>
+    The gap isn't technology — it's organization. Every small town has talent, venues,
+    stories, and businesses worth knowing about. What they don't have is the infrastructure
+    to capture, produce, distribute, and monetize that content. That's what we sell.
+  </p>
+</section>
+
+<!-- WHAT IT IS -->
+<section>
+  <p class="sl">What It Is</p>
+  <h2>A media company in a bottle. Deployable to any town.</h2>
+
+  <p>
+    One Next.js codebase. Nine modules. Fourteen live domains. Four legal entities.
+    One Vercel deployment serving everything from a hotel website to a record label
+    to a business directory to a live radio station.
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat"><div class="number">14</div><div class="label">Live Domains</div></div>
+    <div class="stat"><div class="number">9</div><div class="label">Platform Modules</div></div>
+    <div class="stat"><div class="number">2</div><div class="label">Geographic Nodes</div></div>
+  </div>
+
+  <div class="link-grid">
+    <a href="https://bigmuddytouring.com" target="_blank" class="link-card">
+      <h3>Big Muddy Touring</h3><div class="url">bigmuddytouring.com →</div>
+    </a>
+    <a href="https://bigmuddymagazine.com" target="_blank" class="link-card">
+      <h3>Big Muddy Magazine</h3><div class="url">bigmuddymagazine.com →</div>
+    </a>
+    <a href="https://bigmuddyradio.com" target="_blank" class="link-card">
+      <h3>Big Muddy Radio</h3><div class="url">bigmuddyradio.com →</div>
+    </a>
+    <a href="https://bigmuddyentertainment.com" target="_blank" class="link-card">
+      <h3>Big Muddy Entertainment</h3><div class="url">bigmuddyentertainment.com →</div>
+    </a>
+    <a href="https://deepsouthdirectory.com" target="_blank" class="link-card">
+      <h3>Deep South Directory</h3><div class="url">deepsouthdirectory.com →</div>
+    </a>
+    <a href="https://bigmuddyrecords.com" target="_blank" class="link-card">
+      <h3>Big Muddy Records</h3><div class="url">bigmuddyrecords.com →</div>
+    </a>
+    <a href="https://measurablybetter.life" target="_blank" class="link-card">
+      <h3>Measurably Better Things</h3><div class="url">measurablybetter.life →</div>
+    </a>
+    <a href="https://bearsvillemediagroup.com" target="_blank" class="link-card">
+      <h3>Bearsville Media Group</h3><div class="url">bearsvillemediagroup.com →</div>
+    </a>
+  </div>
+</section>
+
+<!-- THE MULTIPLIER -->
+<section>
+  <p class="sl">The Multiplier</p>
+  <h2>One show feeds everything. The math is uncheateable.</h2>
+
+  <p class="punch">
+    A $1,000 show generates $500+ in downstream revenue — Inn bookings, bar revenue,
+    radio content, Magazine features, directory impressions, record sales, social media engagement.
+    We've measured this at a 2:1 ecosystem multiplier. No other venue, label, or touring company
+    can claim that, because none of them own the full stack.
+  </p>
+
+  <p>
+    We book the band. We drive them in the Sprinter van. We run the sound. We record the show.
+    We release the recording on our label. We write about it in our magazine. We play it on our
+    radio station. We list the venue in our directory. We promote it through our social channels.
+    One booking, six revenue events.
+  </p>
+</section>
+
+<!-- THE BROADCAST PLAY -->
+<section>
+  <p class="sl">The Broadcast Play</p>
+  <h2>This is where my 25 years come in</h2>
+
+  <p>
+    I built the CyberCar — a 15-camera mobile satellite studio with Jon Alpert at DCTV.
+    I launched Democracy Now on television. I launched Hollywood Today Live on FOX.
+    I ran Microsoft's esports broadcast studio in Manhattan.
+  </p>
+
+  <p class="punch">
+    Now I'm taking the same broadcast infrastructure and packaging it as a product.
+    A restaurant in Natchez gets the same quality linear TV channel that a network affiliate gets —
+    scheduled programming, live event cutaways, branded graphics, 24/7 playout.
+    Delivered via Plex to any smart TV. $49-$499/month.
+  </p>
+
+  <p>
+    The playout system is built on OpenBroadcaster (open source, broadcast-grade). The streaming
+    infrastructure is Icecast. The content pipeline is AI-powered — Google Cloud Vision tags every
+    photo, Gemini generates social content, the editorial pipeline turns one show into six outputs
+    automatically. The broadcast architecture is the same. The cost structure is Mississippi, not Manhattan.
+  </p>
+</section>
+
+<div class="photo-strip">
+  <img src="/images/studio-c/utopiademo-day-2.webp" alt="Studio C session">
+  <img src="/images/processed/bearsville/theater-show-01.webp" alt="Bearsville Theater">
+  <img src="/images/processed/big-muddy/sprinter-van-concept.webp" alt="Sprinter van">
+</div>
+
+<!-- THE NUMBERS -->
+<section>
+  <p class="sl">The Numbers</p>
+  <h2>Three-year scenario modeling</h2>
+
+  <div class="stat-grid">
+    <div class="stat"><div class="number">93%</div><div class="label">Gross Margins at Scale</div></div>
+    <div class="stat"><div class="number">$99</div><div class="label">Entry Point for Businesses</div></div>
+    <div class="stat"><div class="number">2:1</div><div class="label">Ecosystem Multiplier</div></div>
+  </div>
+
+  <p>Revenue streams:</p>
+
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-date">DSD</div><div class="tl-text"><strong>$500K-$2M/year</strong> — Directory subscriptions at $20-$99/mo. License the platform to other corridors.</div></div>
+    <div class="tl-item"><div class="tl-date">Sessions</div><div class="tl-text"><strong>$250K-$500K/year</strong> — Destination Sessions at $25K/week. European artists fly in, record with the house band.</div></div>
+    <div class="tl-item"><div class="tl-date">Inn + Shows</div><div class="tl-text"><strong>$300K-$500K/year</strong> — The 2:1 multiplier. Shows drive bookings, bar revenue, content.</div></div>
+    <div class="tl-item"><div class="tl-date">Broadcast</div><div class="tl-text"><strong>$100K-$300K/year</strong> — Linear TV channels for businesses. $49-$499/mo per client.</div></div>
+    <div class="tl-item"><div class="tl-date">Records</div><div class="tl-text"><strong>$50K-$150K/year</strong> — Non-exclusive deals. Distribution + ecosystem promotion.</div></div>
+  </div>
+
+  <p class="note">
+    Full financial model with low/mid/high scenarios available at docs/TOURING_FINANCIAL_MODEL.md
+  </p>
+</section>
+
+<!-- THE TEAM -->
+<section>
+  <p class="sl">The Team</p>
+  <h2>Four people. One platform.</h2>
+
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-date">Chase</div><div class="tl-text"><strong>CEO / CTO / Showrunner</strong> — 25 years broadcast. PGA member. Designed the architecture, built the platform, drives the van, takes the photos.</div></div>
+    <div class="tl-item"><div class="tl-date">Tracy</div><div class="tl-text"><strong>CFO / Gallery</strong> (equity partner) — Finance, Inn operations, gallery curation. The business backbone.</div></div>
+    <div class="tl-item"><div class="tl-date">Amy</div><div class="tl-text"><strong>COO / Entertainment</strong> (equity partner) — Bar operations, show management, band relationships. The nightlife engine.</div></div>
+    <div class="tl-item"><div class="tl-date">JP</div><div class="tl-text"><strong>Shows & Programming</strong> — Event programming and talent pipeline.</div></div>
+  </div>
+
+  <p>
+    Plus a fleet of AI agents handling content generation, photo tagging, social scheduling,
+    data enrichment, and voice interaction. The technology team is the platform itself.
+  </p>
+</section>
+
+<!-- THE MOAT -->
+<section>
+  <p class="sl">The Moat</p>
+  <h2>What compounds and can't be copied</h2>
+
+  <p>
+    Every show, every booking conversation, every corridor run adds proprietary intelligence —
+    venue guarantees, band fee ranges, load-in logistics, late-night restaurant intel, seasonal
+    patterns, audience data — that no API returns and no competitor can scrape.
+    The longer we run, the deeper the moat gets.
+  </p>
+
+  <p>
+    The commodity data (Google Places, Census, Spotify) makes the product useful.
+    The proprietary data makes it defensible. The broadcast infrastructure makes it
+    irreplaceable. Nobody else offers a restaurant owner a TV channel, a magazine feature,
+    radio airplay, and an AI-managed online presence — for $99/month.
+  </p>
+</section>
+
+<!-- THE ASK -->
+<div class="ask-box">
+  <h3>What I'm Asking</h3>
+  <p>
+    Your read on this. Your network. Your advice on which door to walk through first —
+    the directory subscriptions, the destination sessions, or the broadcast product.
+    I've built the machine. Now I need to know which switch to flip.
+  </p>
+</div>
+
+<section>
+  <p class="sl">Live Right Now</p>
+  <h2>Click anything. It all works.</h2>
+
+  <div class="link-grid">
+    <a href="https://bigmuddytouring.com/welcome" target="_blank" class="link-card">
+      <h3>Command Center</h3><div class="url">All 14 domains in one view →</div>
+    </a>
+    <a href="https://bigmuddytouring.com/org-chart.html" target="_blank" class="link-card">
+      <h3>Org Chart</h3><div class="url">Humans + AI + Sales Verticals →</div>
+    </a>
+    <a href="https://bigmuddytouring.com/bearsville-ecosystem.html" target="_blank" class="link-card">
+      <h3>Bearsville Node</h3><div class="url">The Hudson Valley studio ecosystem →</div>
+    </a>
+    <a href="https://measurablybetter.life/life" target="_blank" class="link-card">
+      <h3>Voice AI</h3><div class="url">Tap the mic. Ask it anything about the corridor. →</div>
+    </a>
+  </div>
+</section>
+
+</div>
+
+<div class="footer">
+  Confidential · Hillbilly Dreams Inc · Natchez, Mississippi · April 2026
+</div>
+
+</body>
+</html>
