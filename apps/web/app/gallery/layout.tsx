@@ -11,16 +11,16 @@ import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Venture Gallery | Original Art from the Mississippi Corridor',
+    default: 'Chase Pierson Photography | Venture Gallery',
     template: '%s | Venture Gallery',
   },
   description:
-    'Original art from the artists, musicians, and makers who call the Deep South home. Paintings, photography, sculpture, and more — curated from the Mississippi corridor.',
+    'Fine art photography by Chase Pierson. Landscapes, aerial panoramas, infrared, and night exposures from the Hudson Valley to the Mississippi corridor. Archival prints available.',
   metadataBase: new URL('https://venturegallery.art'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'Venture Gallery',
+    siteName: 'Chase Pierson Photography',
   },
   twitter: {
     card: 'summary_large_image',

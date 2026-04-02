@@ -7,9 +7,9 @@ import React, { useState } from 'react';
 
 const NAV_LINKS = [
   { label: 'Gallery', href: '/gallery' },
-  { label: 'Artists', href: '/gallery/artists' },
+  { label: 'Prints', href: '/gallery#prints' },
   { label: 'About', href: '/gallery/about' },
-  { label: 'Sell Your Work', href: '/gallery/apply', cta: true },
+  { label: 'Inquire', href: 'mailto:chase@hillbillydreamsinc.com?subject=Gallery Inquiry', cta: true },
 ];
 
 export default function GalleryNav() {
@@ -30,10 +30,10 @@ export default function GalleryNav() {
         <a href="/gallery" className="bm-nav__logo" aria-label="Venture Gallery — home">
           <span className="bm-nav__logo-text">
             <span className="bm-nav__logo-name" style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic' }}>
-              Venture Gallery
+              Chase Pierson
             </span>
             <span className="bm-nav__logo-brand" style={{ color: 'var(--accent)', letterSpacing: 'var(--tracking-widest)' }}>
-              ART
+              PHOTOGRAPHY
             </span>
           </span>
         </a>

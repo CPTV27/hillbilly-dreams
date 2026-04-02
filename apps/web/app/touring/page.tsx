@@ -355,27 +355,13 @@ export default async function TouringHomepage() {
           position: absolute;
           inset: 0;
           z-index: 0;
-          background: linear-gradient(180deg, #1a1a1a 0%, #2d1810 40%, #c8943e22 70%, #1a1a1a 100%);
+          background: linear-gradient(to bottom, transparent 0%, rgba(10,10,10,0.7) 85%);
         }
         .touring-hero__bg-pattern {
-          position: absolute;
-          inset: 0;
-          z-index: 1;
-          background:
-            radial-gradient(ellipse 80% 50% at 50% -10%, rgba(200, 148, 62, 0.08) 0%, transparent 60%),
-            repeating-linear-gradient(
-              0deg,
-              transparent,
-              transparent 80px,
-              rgba(200, 148, 62, 0.03) 80px,
-              rgba(200, 148, 62, 0.03) 81px
-            );
+          display: none;
         }
         .touring-hero__overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(180deg, rgba(15, 15, 13, 0.5) 0%, rgba(15, 15, 13, 0.3) 50%, rgba(15, 15, 13, 0.6) 100%);
-          z-index: 1;
+          display: none;
         }
         .touring-hero__content {
           position: relative;
