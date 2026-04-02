@@ -60,7 +60,7 @@ export default function TouringHomepage() {
             letterSpacing: '-0.03em',
             marginBottom: '1.5rem',
           }}>
-            We bring the party.
+            Gateway to the heart<br />of soul music.
           </h1>
           <p style={{
             fontSize: '1.15rem',
