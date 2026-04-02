@@ -35,6 +35,12 @@ interface DirectoryBusinessRecord {
   hoursJson?: unknown;
   photoUrls?: string[];
   active: boolean;
+  // Musician fields
+  genre?: string | null;
+  streamingLinks?: Record<string, string> | null;
+  availability?: string | null;
+  feeRange?: string | null;
+  contactEmail?: string | null;
 }
 
 interface ClientRecord {
@@ -76,6 +82,13 @@ interface ListingData {
   googleReviewCount: number | null;
   hoursJson: unknown;
   photoUrls: string[];
+  // Musician fields
+  genre: string | null;
+  streamingLinks: Record<string, string> | null;
+  availability: string | null;
+  feeRange: string | null;
+  contactEmail: string | null;
+  isMusician: boolean;
 }
 
 type HoursMap = Record<string, { open: string; close: string } | null>;
@@ -100,11 +113,12 @@ async function fetchListing(slug: string): Promise<ListingData | null> {
     });
 
     if (dbd) {
+      const isMusician = dbd.category === 'musician';
       return {
         id: dbd.id,
         name: dbd.name,
         slug: dbd.slug,
-        category: dbd.subcategory ? `${dbd.category} — ${dbd.subcategory}` : dbd.category,
+        category: isMusician ? (dbd.genre || 'Musician') : (dbd.subcategory ? `${dbd.category} — ${dbd.subcategory}` : dbd.category),
         tier: dbd.tier,
         city: dbd.city,
         state: dbd.state,
@@ -120,6 +134,12 @@ async function fetchListing(slug: string): Promise<ListingData | null> {
         googleReviewCount: dbd.googleReviewCount ?? null,
         hoursJson: dbd.hoursJson ?? null,
         photoUrls: dbd.photoUrls ?? [],
+        genre: dbd.genre ?? null,
+        streamingLinks: (dbd.streamingLinks as Record<string, string>) ?? null,
+        availability: dbd.availability ?? null,
+        feeRange: dbd.feeRange ?? null,
+        contactEmail: dbd.contactEmail ?? null,
+        isMusician,
       };
     }
 
@@ -149,6 +169,12 @@ async function fetchListing(slug: string): Promise<ListingData | null> {
         googleReviewCount: null,
         hoursJson: null,
         photoUrls: [],
+        genre: null,
+        streamingLinks: null,
+        availability: null,
+        feeRange: null,
+        contactEmail: null,
+        isMusician: false,
       };
     }
 
@@ -517,42 +543,107 @@ export default async function DirectoryListingPage(
       </header>
 
       {/* ── Quick Info Bar ── */}
-      <nav className="dsd-info-bar" aria-label="Quick contact actions">
-        {phoneHref && (
+      {listing.isMusician ? (
+        <nav className="dsd-info-bar" aria-label="Quick actions">
+          {listing.streamingLinks?.spotify && (
+            <a href={listing.streamingLinks.spotify} target="_blank" rel="noopener noreferrer" className="dsd-info-btn" aria-label="Listen on Spotify">
+              <GlobeIcon />
+              <span className="dsd-info-btn__label">Spotify</span>
+            </a>
+          )}
+          {listing.streamingLinks?.appleMusic && (
+            <a href={listing.streamingLinks.appleMusic} target="_blank" rel="noopener noreferrer" className="dsd-info-btn" aria-label="Listen on Apple Music">
+              <GlobeIcon />
+              <span className="dsd-info-btn__label">Apple Music</span>
+            </a>
+          )}
+          {listing.streamingLinks?.youtube && (
+            <a href={listing.streamingLinks.youtube} target="_blank" rel="noopener noreferrer" className="dsd-info-btn" aria-label="Watch on YouTube">
+              <GlobeIcon />
+              <span className="dsd-info-btn__label">YouTube</span>
+            </a>
+          )}
           <a
-            href={phoneHref}
+            href={`mailto:${listing.contactEmail || 'booking@bigmuddyentertainment.com'}?subject=Booking Inquiry: ${encodeURIComponent(name)}`}
             className="dsd-info-btn"
-            aria-label={`Call ${name}: ${phoneDisplay}`}
+            aria-label={`Book ${name}`}
+            style={{ background: 'var(--accent, #c8943e)', color: '#0a0a0a' }}
           >
             <PhoneIcon />
-            <span className="dsd-info-btn__label">Call</span>
+            <span className="dsd-info-btn__label">Book This Artist</span>
           </a>
-        )}
-        {website && (
-          <a
-            href={website}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="dsd-info-btn"
-            aria-label={`Visit ${name} website (opens in new tab)`}
-          >
-            <GlobeIcon />
-            <span className="dsd-info-btn__label">Website</span>
-          </a>
-        )}
-        {address && (
-          <a
-            href={mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="dsd-info-btn"
-            aria-label={`Get directions to ${name} (opens in Google Maps)`}
-          >
-            <MapPinIcon />
-            <span className="dsd-info-btn__label">Directions</span>
-          </a>
-        )}
-      </nav>
+        </nav>
+      ) : (
+        <nav className="dsd-info-bar" aria-label="Quick contact actions">
+          {phoneHref && (
+            <a
+              href={phoneHref}
+              className="dsd-info-btn"
+              aria-label={`Call ${name}: ${phoneDisplay}`}
+            >
+              <PhoneIcon />
+              <span className="dsd-info-btn__label">Call</span>
+            </a>
+          )}
+          {website && (
+            <a
+              href={website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="dsd-info-btn"
+              aria-label={`Visit ${name} website (opens in new tab)`}
+            >
+              <GlobeIcon />
+              <span className="dsd-info-btn__label">Website</span>
+            </a>
+          )}
+          {address && (
+            <a
+              href={mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="dsd-info-btn"
+              aria-label={`Get directions to ${name} (opens in Google Maps)`}
+            >
+              <MapPinIcon />
+              <span className="dsd-info-btn__label">Directions</span>
+            </a>
+          )}
+        </nav>
+      )}
+
+      {/* ── Musician Details ── */}
+      {listing.isMusician && (listing.genre || listing.availability) && (
+        <div className="dsd-card" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
+          {listing.genre && (
+            <span style={{
+              padding: '0.35rem 0.85rem',
+              border: '1px solid var(--accent, #c8943e)',
+              color: 'var(--accent, #c8943e)',
+              fontSize: '0.75rem',
+              fontWeight: 600,
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
+              borderRadius: '4px',
+            }}>
+              {listing.genre}
+            </span>
+          )}
+          {listing.availability && (
+            <span style={{
+              padding: '0.35rem 0.85rem',
+              border: '1px solid var(--border, rgba(255,255,255,0.1))',
+              color: listing.availability === 'available' ? '#4ade80' : listing.availability === 'selective' ? 'var(--accent, #c8943e)' : 'var(--text-muted)',
+              fontSize: '0.75rem',
+              fontWeight: 600,
+              letterSpacing: '0.05em',
+              borderRadius: '4px',
+            }}>
+              {listing.availability === 'available' ? 'Booking Now' : listing.availability === 'selective' ? 'Selective' : 'Not Touring'}
+            </span>
+          )}
+        </div>
+      )}
 
       {/* ── Body ── */}
       <main className="dsd-body" id="main-content">
