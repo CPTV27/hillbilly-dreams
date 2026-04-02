@@ -60,8 +60,8 @@ export default async function MagazineHomepage() {
       {/* ── Hero ── */}
       <section className="mag-hero">
         <Image
-          src="/images/processed/natchez-golden-hour-family.webp"
-          alt="Family on a Natchez street at golden hour — long shadows, live oaks, antebellum homes"
+          src="/images/processed/big-muddy/natchez-brick-street-live-oaks.webp"
+          alt="Brick street under live oak canopy in Natchez — azaleas, historic homes, dappled afternoon light"
           fill
           priority
           sizes="100vw"
