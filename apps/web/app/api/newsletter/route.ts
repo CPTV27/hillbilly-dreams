@@ -70,7 +70,7 @@ export async function POST(request: Request) {
         storyBody: body.storyBody || null,
         playlist: body.playlist || null,
         reason: body.reason || null,
-        quickHits: body.quickHits || null,
+        quickHits: Array.isArray(body.quickHits) ? JSON.stringify(body.quickHits) : (body.quickHits || null),
         status: body.status || 'draft',
         sendDate: body.sendDate ? new Date(body.sendDate) : null,
       },

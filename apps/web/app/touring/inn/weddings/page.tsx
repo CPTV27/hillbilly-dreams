@@ -417,7 +417,7 @@ export default function WeddingsPage() {
         style={{
           width: '100%',
           height: 'clamp(200px, 30vw, 380px)',
-          backgroundImage: 'url(/images/arri-aslin/ta-c2-228-of-955.webp)',
+          backgroundImage: 'url(/images/arrie-aslin/ta-c2-228-of-955.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center 20%',
           opacity: 0.7,
