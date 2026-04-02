@@ -478,7 +478,7 @@ export default function InnPage() {
         style={{
           width: '100%',
           height: 280,
-          backgroundImage: 'url(/images/arri-aslin/ta-c2-510-of-920.webp)',
+          backgroundImage: 'url(/images/arrie-aslin/ta-c2-510-of-920.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center top',
           opacity: 0.65,

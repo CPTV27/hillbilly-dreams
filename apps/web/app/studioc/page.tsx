@@ -538,7 +538,7 @@ export default function StudioPage() {
                 a place to make records without leaving home.
               </p>
               <div style={{ display: 'flex', gap: 'var(--space-4)' }}>
-                <a href="/records/artists/arri-aslin" className="btn btn--outline">
+                <a href="/records/artists/arrie-aslin" className="btn btn--outline">
                   Artist Profile →
                 </a>
                 <a href="/radio/podcast" className="btn btn--ghost">
