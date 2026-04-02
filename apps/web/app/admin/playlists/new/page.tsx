@@ -33,7 +33,7 @@ export default function NewPlaylistPage() {
         const err = await res.json().catch(() => ({}));
         throw new Error(err.error || 'Failed to create playlist');
       }
-      router.push('/playlists');
+      router.push('/admin/playlists');
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
     } finally {
@@ -48,18 +48,18 @@ export default function NewPlaylistPage() {
           <h1 className="admin-page-title">New Playlist</h1>
           <p className="admin-page-sub">Add a radio playlist</p>
         </div>
-        <a href="/playlists" className="admin-btn admin-btn--ghost">← Back</a>
+        <a href="/admin/playlists" className="admin-btn admin-btn--ghost">← Back</a>
       </div>
       {error && <div className="admin-error-banner">{error}</div>}
       <div className="admin-card">
         <form onSubmit={handleSubmit}>
           <div className="admin-form-group">
             <label className="admin-label admin-label--required">Name</label>
-            <input type="text" name="name" className="admin-input" placeholder="Playlist name" required />
+            <input type="text" name="name" className="admin-input" placeholder="e.g. Delta Blues Essentials" required />
           </div>
           <div className="admin-form-group">
             <label className="admin-label">Description</label>
-            <textarea name="description" className="admin-textarea" rows={3} placeholder="What defines this playlist?" />
+            <textarea name="description" className="admin-textarea" rows={3} placeholder="What's this playlist about? e.g. 'Friday night at the Blues Room — the songs we play before the band goes on.'" />
           </div>
           <div className="admin-form-row">
             <div className="admin-form-group">
@@ -75,18 +75,18 @@ export default function NewPlaylistPage() {
             </div>
           </div>
           <div className="admin-form-group">
-            <label className="admin-label">Spotify URL</label>
-            <input type="url" name="spotifyUrl" className="admin-input" placeholder="https://open.spotify.com/playlist/..." />
+            <label className="admin-label">Spotify Link</label>
+            <input type="url" name="spotifyUrl" className="admin-input" placeholder="Open Spotify → Share → Copy link → paste here" />
           </div>
           <div className="admin-form-group">
-            <label className="admin-label">Cover Image URL</label>
-            <input type="url" name="coverImage" className="admin-input" placeholder="https://cdn.bigmuddytouring.com/..." />
+            <label className="admin-label">Cover Image</label>
+            <input type="url" name="coverImage" className="admin-input" placeholder="Paste image URL (optional — we'll use the Spotify cover if blank)" />
           </div>
           <div className="admin-form-actions">
             <button type="submit" className="admin-btn admin-btn--primary" disabled={saving}>
               {saving ? 'Creating…' : 'Create Playlist'}
             </button>
-            <a href="/playlists" className="admin-btn admin-btn--ghost">Cancel</a>
+            <a href="/admin/playlists" className="admin-btn admin-btn--ghost">Cancel</a>
           </div>
         </form>
       </div>

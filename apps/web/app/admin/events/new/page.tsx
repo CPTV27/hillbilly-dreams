@@ -73,16 +73,16 @@ export default function NewEventPage() {
           <div className="admin-form-row">
             <div className="admin-form-group">
               <label className="admin-label">Artist / Performer</label>
-              <input type="text" name="artist" className="admin-input" placeholder="Artist name" />
+              <input type="text" name="artist" className="admin-input" placeholder="e.g. Arrie Aslin & Rise Up" />
             </div>
             <div className="admin-form-group">
               <label className="admin-label">Price</label>
-              <input type="text" name="price" className="admin-input" placeholder="e.g. $25 or Free" />
+              <input type="text" name="price" className="admin-input" placeholder="e.g. $15, Free, or Donations" />
             </div>
           </div>
           <div className="admin-form-group">
             <label className="admin-label">Description</label>
-            <textarea name="description" className="admin-textarea" rows={4} placeholder="Event description" />
+            <textarea name="description" className="admin-textarea" rows={4} placeholder="What's the show? e.g. 'Open mic night at the Blues Room. Drop in, plug in, play. All levels welcome.'" />
           </div>
           <div className="admin-form-row">
             <div className="admin-form-group">
@@ -109,7 +109,7 @@ export default function NewEventPage() {
             <button type="submit" className="admin-btn admin-btn--primary" disabled={saving}>
               {saving ? 'Creating…' : 'Create Event'}
             </button>
-            <a href="/events" className="admin-btn admin-btn--ghost">Cancel</a>
+            <a href="/admin/events" className="admin-btn admin-btn--ghost">Cancel</a>
           </div>
         </form>
       </div>
