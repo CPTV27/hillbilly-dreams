@@ -981,6 +981,12 @@ model DirectoryBusiness {
   photoUrls         String[]                       // Cached photo URLs (first 3)
   lastEnrichedAt    DateTime?                      // Last external data sync timestamp
 
+  // ── Musician Fields (category="musician") ──
+  genre             String?                        // Primary genre (Blues, Soul, Gospel, etc.)
+  streamingLinks    Json?                          // { spotify?: string, appleMusic?: string, youtube?: string, bandcamp?: string }
+  feeRange          String?                        // under_500 | 500_1000 | 1000_2500 | 2500_5000 | 5000_plus | negotiable
+  availability      String?                        // available | selective | not_touring
+
   // ── Promotion Path ──
   clientId          Int?      @unique              // FK to Client when free listing converts to paid
 

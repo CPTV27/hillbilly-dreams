@@ -30,7 +30,13 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       softwareSpend,
       contactName,
       contactEmail,
+      contactPhone,
       hearAbout,
+      // Musician-specific fields
+      genre,
+      streamingLinks,
+      availability,
+      feeRange,
     } = body;
 
     if (!name || !category || !city || !description || !contactName || !contactEmail) {
@@ -58,7 +64,24 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         messages: [
           {
             role: 'user',
-            content: `Write a 200-word editorial spotlight for a business listing in the Deep South Directory.
+            content: category === 'musician'
+              ? `Write a 200-word editorial spotlight for a musician listing in the Big Muddy Touring Directory.
+
+Artist details:
+- Name: ${name}
+- Genre: ${genre || 'not specified'}
+- Based in: ${city}, ${state}
+- Bio: ${description}
+
+Voice guidelines:
+- Direct, warm, music-lover to music-lover
+- Sound like someone who has seen them play, not a press release
+- No industry jargon, no hyperbole
+- Focus on what they sound like and why people should hear them
+- End with one sentence connecting them to the corridor music scene
+
+Write only the spotlight text, no headers or labels.`
+              : `Write a 200-word editorial spotlight for a business listing in the Deep South Directory.
 
 Business details:
 - Name: ${name}
@@ -98,12 +121,18 @@ Write only the spotlight text, no headers or labels.`,
         description,
         contactName,
         contactEmail,
+        phone: contactPhone || null,
         toolsOrigin: toolsOrigin || null,
         softwareSpend: softwareSpend || null,
         hearAbout: hearAbout || null,
         spotlight: spotlight || null,
         tier: 'free',
         active: false, // Admin activates after review
+        // Musician-specific fields
+        ...(genre && { genre }),
+        ...(streamingLinks && { streamingLinks }),
+        ...(availability && { availability }),
+        ...(feeRange && { feeRange }),
       },
     });
 
@@ -120,7 +149,9 @@ Write only the spotlight text, no headers or labels.`,
     // Send ntfy notification to ops channel
     await notify({
       title: `New Directory Submission: ${name}`,
-      message: `${category} · ${city}, ${state}\nContact: ${contactName} <${contactEmail}>\nSpend: ${softwareSpend || 'not provided'}\nTools: ${toolsOrigin || 'not provided'}\nID: ${business.id} | Slug: ${slug}`,
+      message: category === 'musician'
+        ? `Musician · ${genre || 'genre TBD'} · ${city}, ${state}\nContact: ${contactName} <${contactEmail}>\nAvailability: ${availability || 'not set'}\nID: ${business.id} | Slug: ${slug}`
+        : `${category} · ${city}, ${state}\nContact: ${contactName} <${contactEmail}>\nSpend: ${softwareSpend || 'not provided'}\nTools: ${toolsOrigin || 'not provided'}\nID: ${business.id} | Slug: ${slug}`,
       topic: 'ops',
       priority: 3,
       tags: ['directory', 'new-listing'],
