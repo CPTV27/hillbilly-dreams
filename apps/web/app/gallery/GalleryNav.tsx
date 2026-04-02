@@ -6,9 +6,9 @@
 import React, { useState } from 'react';
 
 const NAV_LINKS = [
-  { label: 'Gallery', href: '/gallery' },
+  { label: 'Photography', href: '/gallery' },
   { label: 'Prints', href: '/gallery#prints' },
-  { label: 'About', href: '/gallery/about' },
+  { label: 'Guest Artists', href: '/gallery#tracy-alderson-gallery' },
   { label: 'Inquire', href: 'mailto:chase@hillbillydreamsinc.com?subject=Gallery Inquiry', cta: true },
 ];
 
