@@ -62,7 +62,7 @@ Northeast node (Woodstock, NY). Summer 2026 activation.
 | bigmuddymagazine.com | Big Muddy Magazine | Active |
 | bigmuddyradio.com | Big Muddy Radio | Active |
 | bigmuddyentertainment.com | Big Muddy Entertainment | Active |
-| bigmuddyrecords.com | Big Muddy Records | Active |
+| bigmuddyrecordlabel.com | Big Muddy Records | Active — we own this one |
 | deepsouthdirectory.com | Deep South Directory | Active — primary revenue |
 | outsidereconomics.com | Outsider Economics | Active — editorial |
 | hillbillydreamsinc.com | HDI Corporate | Active — sparse |

@@ -56,6 +56,7 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
   { pattern: 'buycurious', routeGroup: 'gallery' },
   { pattern: 'buycuriousart', routeGroup: 'gallery' },
   { pattern: 'venturegallery', routeGroup: 'gallery' },
+  // We own bigmuddyrecordlabel.com — NOT bigmuddyrecords.com or .net
   { pattern: 'bigmuddyrecord', routeGroup: 'records' },
   { pattern: 'studiocvideo', routeGroup: 'studioc' },
   { pattern: 'studio-c', routeGroup: 'studioc' },
