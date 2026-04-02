@@ -101,7 +101,8 @@ export default async function MagazineHomepage() {
         <NewsletterSignup />
       </section>
 
-      <IllustrationDivider variant="oak" />
+      {/* ── Parallax Bridge ── */}
+      <div className="mag-parallax-bridge" style={{ backgroundImage: 'url(/images/corridor/natchez-night-lounge.webp)' }} role="img" aria-label="Natchez lounge at night" />
 
       {/* ── Featured Article ── */}
       <section className="mag-featured">
@@ -217,6 +218,14 @@ export default async function MagazineHomepage() {
           overflow: hidden;
           background: var(--bg);
         }
+        .mag-hero img {
+          position: fixed !important;
+        }
+        @media (max-width: 768px) {
+          .mag-hero img {
+            position: absolute !important;
+          }
+        }
         .mag-hero__video {
           position: absolute;
           inset: 0;
@@ -266,14 +275,52 @@ export default async function MagazineHomepage() {
           margin: 0;
         }
 
+        /* ── Parallax Bridge ── */
+        .mag-parallax-bridge {
+          height: 50vh;
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed;
+          position: relative;
+        }
+        .mag-parallax-bridge::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, var(--bg) 0%, transparent 15%, transparent 85%, var(--bg) 100%);
+        }
+        @media (max-width: 768px) {
+          .mag-parallax-bridge {
+            height: 35vh;
+            background-attachment: scroll;
+          }
+        }
+
+        /* ── Signature Hook (photo credits) ── */
+        .mag-signature {
+          font-family: var(--font-body);
+          font-size: 10px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: var(--text-disabled);
+          padding: var(--space-2) var(--space-6);
+          text-align: right;
+        }
+
         /* ── Featured ── */
         .mag-featured {
           border-bottom: 1px solid var(--border);
+          position: relative;
+          z-index: 1;
+          background: var(--bg);
         }
 
         /* ── Grid ── */
         .mag-grid {
           border-bottom: 1px solid var(--border);
+          position: relative;
+          z-index: 1;
+          background: var(--bg);
         }
         .mag-grid__header {
           margin-bottom: var(--space-10);
