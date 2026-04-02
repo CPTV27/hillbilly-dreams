@@ -74,8 +74,8 @@ export default async function RadioDirectoryPage() {
       {/* ── Hero ── */}
       <section className="rtdir-hero">
         <Image
-          src="https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/11-gig-poster/big-muddy-presents.webp"
-          alt="Big Muddy Presents — gig poster style illustration"
+          src="/images/processed/bearsville/theater-show-04.webp"
+          alt="Live performance — stage lights and performer at Bearsville Theater"
           fill
           priority
           sizes="100vw"

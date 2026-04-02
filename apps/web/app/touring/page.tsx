@@ -68,7 +68,7 @@ export default async function TouringHomepage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="touring-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/02-travel-poster/natchez-bluff.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="touring-hero" style={{ backgroundImage: 'url(/images/processed/big-muddy/natchez-brick-street-live-oaks.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="touring-hero__gradient" aria-hidden="true" />
         <div className="touring-hero__overlay" />
         <div className="touring-hero__bg-pattern" aria-hidden="true" />

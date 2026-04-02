@@ -104,7 +104,7 @@ export default function RecordsPage() {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundImage: 'linear-gradient(180deg, rgba(15,15,13,0.55) 0%, rgba(15,15,13,0.85) 100%), url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/11-gig-poster/guitar-headstock.webp)',
+            backgroundImage: 'linear-gradient(180deg, rgba(15,15,13,0.55) 0%, rgba(15,15,13,0.85) 100%), url(/images/records/anthologist-turntable.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: 0.35,

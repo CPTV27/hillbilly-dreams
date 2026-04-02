@@ -84,7 +84,7 @@ export default function EconomicsHomepage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="econ-hero" style={{ backgroundImage: 'url(https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/01-woodcut/river-landscape.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="econ-hero" style={{ backgroundImage: 'url(/images/processed/big-muddy/natchez-night-1034.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="econ-hero__bg" aria-hidden="true" />
         <div className="econ-hero__content">
           <div className="econ-hero__eyebrow">
