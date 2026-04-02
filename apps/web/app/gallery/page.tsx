@@ -257,6 +257,7 @@ export default function GalleryPage() {
 
       {/* ── Print Information ── */}
       <section
+        id="prints"
         style={{
           padding: '5rem 2rem',
           maxWidth: '680px',
@@ -353,52 +354,250 @@ export default function GalleryPage() {
 
       {/* ── Tracy Alderson Gallery ── */}
       <section
+        id="tracy-alderson-gallery"
         style={{
-          padding: '5rem 2rem',
-          maxWidth: '800px',
-          margin: '0 auto',
-          textAlign: 'center',
           borderTop: '1px solid var(--border, #e5e5e0)',
+          backgroundColor: '#1a1a1a',
+          color: '#f5f0eb',
+          marginTop: '2rem',
         }}
       >
-        <h2
+        {/* Warm jewel-tone header band */}
+        <div
           style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
-            fontWeight: 400,
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-            marginBottom: '1rem',
-            color: 'var(--text)',
+            background: 'linear-gradient(135deg, #2d1b2e 0%, #1a1a2e 50%, #1a2420 100%)',
+            padding: '5rem 2rem 4rem',
+            textAlign: 'center',
           }}
         >
-          Guest Artists
-        </h2>
-        <p
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.7rem',
+              letterSpacing: '0.3em',
+              textTransform: 'uppercase',
+              color: '#c4956a',
+              marginBottom: '1.5rem',
+            }}
+          >
+            Venture Gallery
+          </p>
+          <h2
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(1.8rem, 4vw, 3rem)',
+              fontWeight: 300,
+              letterSpacing: '0.1em',
+              margin: 0,
+              color: '#f5f0eb',
+            }}
+          >
+            Tracy Alderson Gallery
+          </h2>
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.8rem',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              color: 'rgba(245, 240, 235, 0.5)',
+              marginTop: '1rem',
+            }}
+          >
+            Guest Artists &middot; Original Work &middot; Curated Collection
+          </p>
+        </div>
+
+        {/* Curatorial statement */}
+        <div
           style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '0.85rem',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            color: 'var(--text-muted, #999)',
-            marginBottom: '2rem',
-          }}
-        >
-          Curated by Tracy Alderson
-        </p>
-        <p
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '1rem',
-            lineHeight: 1.7,
-            color: 'var(--text-muted, #666)',
-            maxWidth: '500px',
+            maxWidth: '720px',
             margin: '0 auto',
+            padding: '4rem 2rem',
+            textAlign: 'center',
           }}
         >
-          The Venture Gallery guest program opens Summer 2026, featuring
-          artists and makers from the Mississippi corridor and Hudson Valley.
-        </p>
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 'clamp(1rem, 1.5vw, 1.1rem)',
+              lineHeight: 1.9,
+              color: 'rgba(245, 240, 235, 0.75)',
+            }}
+          >
+            Original art from the artists, musicians, and makers who call the
+            Mississippi corridor home. Paintings, mixed media, ceramics, textiles,
+            and sculpture — collected the way you&apos;d find it in the rooms of the
+            Big Muddy Inn. Layered, personal, and meant to live with.
+          </p>
+          <p
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '0.95rem',
+              fontStyle: 'italic',
+              color: '#c4956a',
+              marginTop: '2rem',
+            }}
+          >
+            Interior style with an original spin.
+          </p>
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.75rem',
+              color: 'rgba(245, 240, 235, 0.4)',
+              marginTop: '0.5rem',
+              letterSpacing: '0.05em',
+            }}
+          >
+            Design direction by Andrea Brooks Interiors
+          </p>
+        </div>
+
+        {/* What we carry */}
+        <div
+          style={{
+            maxWidth: '900px',
+            margin: '0 auto',
+            padding: '0 2rem 4rem',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))',
+            gap: '2rem',
+            textAlign: 'center',
+          }}
+        >
+          {[
+            { medium: 'Painting', note: 'Oil, acrylic, watercolor' },
+            { medium: 'Mixed Media', note: 'Collage, assemblage, found objects' },
+            { medium: 'Ceramics', note: 'Functional and sculptural' },
+            { medium: 'Textile', note: 'Quilts, fiber, woven work' },
+            { medium: 'Sculpture', note: 'Wood, metal, clay' },
+            { medium: 'Photography', note: 'Regional documentary' },
+          ].map((item) => (
+            <div key={item.medium}>
+              <div
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '1rem',
+                  fontWeight: 400,
+                  color: '#f5f0eb',
+                  marginBottom: '0.25rem',
+                }}
+              >
+                {item.medium}
+              </div>
+              <div
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.7rem',
+                  color: 'rgba(245, 240, 235, 0.4)',
+                  letterSpacing: '0.05em',
+                }}
+              >
+                {item.note}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* For Artists — apply CTA */}
+        <div
+          style={{
+            borderTop: '1px solid rgba(245, 240, 235, 0.1)',
+            padding: '4rem 2rem',
+            textAlign: 'center',
+          }}
+        >
+          <h3
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '1.2rem',
+              fontWeight: 400,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: '#f5f0eb',
+              marginBottom: '1rem',
+            }}
+          >
+            For Artists
+          </h3>
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.9rem',
+              lineHeight: 1.7,
+              color: 'rgba(245, 240, 235, 0.6)',
+              maxWidth: '500px',
+              margin: '0 auto 2rem',
+            }}
+          >
+            We carry original work on consignment with artist-first terms.
+            70&ndash;80% to the maker, always. If you create work that belongs
+            on someone&apos;s wall, we&apos;d like to see it.
+          </p>
+          <a
+            href="mailto:tracyaldersonallen@gmail.com?subject=Gallery Submission&body=Hi Tracy, I'd like to submit my work for consideration at the Venture Gallery. Here's a link to my portfolio:"
+            style={{
+              display: 'inline-block',
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.8rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              padding: '1rem 3rem',
+              border: '1px solid #c4956a',
+              color: '#c4956a',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease',
+            }}
+          >
+            Submit Your Work
+          </a>
+        </div>
+
+        {/* Visiting info */}
+        <div
+          style={{
+            borderTop: '1px solid rgba(245, 240, 235, 0.1)',
+            padding: '3rem 2rem',
+            textAlign: 'center',
+          }}
+        >
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.75rem',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: 'rgba(245, 240, 235, 0.4)',
+              marginBottom: '0.75rem',
+            }}
+          >
+            Visit the Gallery
+          </p>
+          <p
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '1rem',
+              color: '#f5f0eb',
+              lineHeight: 1.6,
+            }}
+          >
+            The Big Muddy Inn<br />
+            411 N Commerce St<br />
+            Natchez, Mississippi
+          </p>
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.75rem',
+              color: 'rgba(245, 240, 235, 0.4)',
+              marginTop: '1rem',
+              letterSpacing: '0.05em',
+            }}
+          >
+            Open daily to guests and visitors
+          </p>
+        </div>
       </section>
     </>
   );
