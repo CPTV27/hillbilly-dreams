@@ -1,17 +1,17 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Bearsville Media Group — Hudson Valley / Catskills',
+  title: 'Bearsville Media Group — Recording Studios of the Hudson Valley',
   description:
-    'The Northeast media imprint documenting music, land, and independent culture in the Hudson Valley — and connecting it south through the Big Muddy corridor.',
+    'The studio node of the Big Muddy corridor. We document recording studios, sessions, engineers, and the rooms where the sound lives — from Woodstock to the Catskills.',
 };
 
-// ─── Image archive — swap GCS paths after curation ───────────────────────────
+// ─── Image archive — Studio C / Utopia photos ─────────────────────────────────
+// Primary: /images/studio-c/ (59 Utopia demo day photos)
+// Secondary: /images/processed/bearsville/ (Balk sessions, Matt Pond, theater)
 // Bucket: gs://bmt-media-bigmuddy/
-// To update: replace the `src` values with public GCS URLs for your 19 picks.
-// Suggested split: 1 hero · 6 region · 6 music/community · 6 places/business
 
-const HERO_IMAGE = '/images/processed/hudson-valley-landscape-hero.webp';
+const HERO_IMAGE = '/images/studio-c/utopiademo-day-18.webp';
 
 const GRID_IMAGES: { src: string; alt: string; bucket: 'region' | 'music' | 'places' }[] = [
   // — Region: landscapes, roads, mountains —
@@ -37,56 +37,54 @@ const GRID_IMAGES: { src: string; alt: string; bucket: 'region' | 'music' | 'pla
   { src: '/images/processed/bearsville-venue-night.webp', alt: 'Touring van outside a venue at night, string lights', bucket: 'places' },
 ];
 
-// ─── Corridor nodes ───────────────────────────────────────────────────────────
-const CORRIDOR_NODES = [
-  { city: 'Woodstock, NY', label: 'Northeast Origin', accent: true },
-  { city: 'Hudson Valley corridor', label: 'Route 9 / I-87', accent: false },
-  { city: 'Appalachian spine', label: 'Connecting seam', accent: false },
-  { city: 'Nashville, TN', label: 'Music node', accent: false },
-  { city: 'Natchez, MS', label: 'Deep South anchor', accent: true },
-];
-
-// ─── Services ─────────────────────────────────────────────────────────────────
+// ─── Services — reframed for studio professionals ────────────────────────────
 const SERVICES = [
   {
-    label: 'Directory',
-    title: 'Find Local',
-    desc: 'AI-powered listings for Woodstock-area restaurants, studios, shops, venues, and services. Review alerts and monthly reports included.',
-    cta: 'Get Listed',
-    href: '/directory/onboard',
+    label: 'Magazine',
+    title: 'The Story',
+    desc: 'When a client hires Studio C, we write the feature. Studio deep-dives, session logs, engineer profiles, gear breakdowns. Your work, published and shareable.',
+    cta: 'Read the Magazine',
+    href: '/magazine',
   },
   {
     label: 'Radio',
-    title: 'Listen Local',
-    desc: 'Bearsville Radio — streaming worldwide and broadcasting across the campus. Local music, local voices, local stories.',
+    title: 'The Broadcast',
+    desc: 'Rough mixes, producer interviews, session recordings. Your session becomes a radio feature on Bearsville Radio — not just a file on a hard drive.',
     cta: 'Listen',
     href: '/radio/player',
   },
   {
-    label: 'Magazine',
-    title: 'Read Local',
-    desc: 'Long-form editorial on the Hudson Valley creative scene — studios, makers, restaurants, and the people keeping Woodstock alive.',
-    cta: 'Read',
-    href: '/magazine',
+    label: 'Directory',
+    title: 'The Network',
+    desc: 'Every studio, session player, luthier, and mastering room in the Hudson Valley. Documented, profiled, and searchable. Your studio on the map.',
+    cta: 'Get Listed',
+    href: '/directory/onboard',
   },
   {
-    label: 'Studio',
-    title: 'Create Local',
-    desc: 'Recording, video production, and broadcasting from the Bearsville campus. Book a session or hire the crew.',
-    cta: 'Book a Session',
-    href: '/studioc',
+    label: 'Gallery',
+    title: 'The Archive',
+    desc: 'Professional studio photography — consoles, live rooms, gear, sessions. We photograph the work, and the photos become the proof.',
+    cta: 'View Gallery',
+    href: '/gallery',
   },
 ];
 
-// ─── Intake CTAs ──────────────────────────────────────────────────────────────
-const INTAKE_ACTIONS = [
-  { label: 'Book coverage', desc: 'Event, portrait, or editorial shoot', href: 'mailto:hello@bearsvillemediagroup.com?subject=Coverage+Request' },
-  { label: 'Join the directory', desc: 'List your business in the Hudson Valley network', href: '/directory/onboard' },
-  { label: 'Bring your band south', desc: 'Play the Big Muddy corridor in Natchez, MS', href: 'mailto:hello@bearsvillemediagroup.com?subject=Corridor+Booking' },
-  { label: 'Submit your venue', desc: 'Get on the touring map and editorial radar', href: 'mailto:hello@bearsvillemediagroup.com?subject=Venue+Submission' },
+// ─── Featured Studios ────────────────────────────────────────────────────────
+const FEATURED_STUDIOS = [
+  { name: 'Studio C at Utopia', location: 'Bearsville, NY', note: 'Todd Rundgren\'s compound. Live room, control room, vintage signal chain.' },
+  { name: 'Dreamland Recording', location: 'Hurley, NY', note: 'A church turned studio. Massive drum sounds.' },
+  { name: 'Levon Helm Studios', location: 'Woodstock, NY', note: 'The Barn. Midnight Ramble sessions. History in every plank.' },
 ];
 
-// ─── Placeholder component ────────────────────────────────────────────────────
+// ─── Intake CTAs ─────────────────────────────────────────────────────────────
+const INTAKE_ACTIONS = [
+  { label: 'Get featured', desc: 'We write the story about your session, your studio, your work', href: 'mailto:hello@bearsvillemediagroup.com?subject=Get+Featured' },
+  { label: 'List your studio', desc: 'Join the Hudson Valley studio directory', href: '/directory/onboard' },
+  { label: 'Submit your work', desc: 'Have something we should publish? Send it over', href: 'mailto:hello@bearsvillemediagroup.com?subject=Submission' },
+  { label: 'Hire Studio C', desc: 'Need the recording first? Our production arm handles that', href: 'https://studiocvideo.com' },
+];
+
+// ─── Placeholder component ──────────────────────────────────────────────────
 function ImageSlot({ src, alt, style }: { src: string; alt: string; style?: React.CSSProperties }) {
   if (src) {
     // eslint-disable-next-line @next/next/no-img-element
@@ -106,8 +104,6 @@ function ImageSlot({ src, alt, style }: { src: string; alt: string; style?: Reac
 }
 
 export default function BearsvillePage() {
-  // All colors now come from theme-bearsville CSS variables via the layout.
-  // These aliases exist only so the JSX references are short and readable.
   const accent = 'var(--accent)';
   const accentLight = 'var(--accent-muted)';
   const bg = 'var(--bg)';
@@ -132,13 +128,10 @@ export default function BearsvillePage() {
         overflow: 'hidden',
         background: bg,
       }}>
-        {/* Hero background image */}
         {HERO_IMAGE && (
-          <div style={{
-            position: 'absolute', inset: 0, zIndex: 0,
-          }}>
+          <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={HERO_IMAGE} alt="Hudson Valley" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35 }} />
+            <img src={HERO_IMAGE} alt="Utopia Studios tracking room" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.55 }} />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(15,15,13,0.4) 0%, rgba(15,15,13,0.85) 100%)' }} />
           </div>
         )}
@@ -148,7 +141,7 @@ export default function BearsvillePage() {
             fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.25em',
             textTransform: 'uppercase', color: accent, marginBottom: '1.5rem',
           }}>
-            Woodstock &middot; Bearsville &middot; Hudson Valley &middot; Catskills
+            Utopia Studios &middot; Bearsville &middot; Woodstock &middot; Hudson Valley
           </p>
 
           <h1 style={{
@@ -157,30 +150,30 @@ export default function BearsvillePage() {
             letterSpacing: '-0.04em', lineHeight: 1.05,
             margin: '0 0 1.25rem',
           }}>
-            The Northeast&apos;s<br />Creative Imprint
+            The Visual Side<br />of Sound
           </h1>
 
           <p style={{
             fontSize: 'clamp(1rem, 2vw, 1.2rem)',
-            color: textMuted, maxWidth: 520, lineHeight: 1.65,
+            color: textMuted, maxWidth: 540, lineHeight: 1.65,
             margin: '0 auto 2.5rem',
           }}>
-            Bearsville Media Group documents music, land, and independent culture in the Hudson Valley — and connects it south through the Big Muddy corridor.
+            When you hire a studio, you get a recording. When you hire us, you get the story. Bearsville Media Group publishes the sessions, the studios, and the people behind the glass.
           </p>
 
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <a href="/directory/onboard" style={{
+            <a href="/magazine" style={{
               padding: '13px 32px', background: accent, color: bg,
               borderRadius: 8, fontWeight: 700, fontSize: '0.85rem', textDecoration: 'none',
             }}>
-              Join the Directory
+              Read the Magazine
             </a>
-            <a href="mailto:hello@bearsvillemediagroup.com?subject=Corridor+Inquiry" style={{
+            <a href="mailto:hello@bearsvillemediagroup.com?subject=Get+Featured" style={{
               padding: '13px 32px', background: 'transparent', color: accent,
               border: `1px solid ${accent}`, borderRadius: 8,
               fontWeight: 700, fontSize: '0.85rem', textDecoration: 'none',
             }}>
-              Work With Us
+              Get Featured
             </a>
           </div>
         </div>
@@ -197,7 +190,7 @@ export default function BearsvillePage() {
           display: 'flex', gap: '2.5rem', justifyContent: 'center',
           flexWrap: 'wrap', alignItems: 'center',
         }}>
-          {['Editorial', 'Radio', 'Directory', 'Studio', 'Touring corridor', 'Concert coverage', 'Landscape archive'].map(item => (
+          {['Studio Sessions', 'Console Close-ups', 'Gear Reviews', 'Engineer Profiles', 'Session Logs', 'Live Room Acoustics', 'Producer Interviews'].map(item => (
             <span key={item} style={{
               fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.15em',
               textTransform: 'uppercase', color: textDim, whiteSpace: 'nowrap',
@@ -222,10 +215,9 @@ export default function BearsvillePage() {
             color: textPrimary, textAlign: 'center', letterSpacing: '-0.03em',
             margin: '0 0 2.5rem',
           }}>
-            We know this place.
+            Inside the Room
           </h2>
 
-          {/* Masonry-style grid: 3 columns desktop, 2 tablet, 1 mobile */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
@@ -247,7 +239,7 @@ export default function BearsvillePage() {
             textAlign: 'center', fontSize: '0.75rem', color: textDim,
             marginTop: '1.5rem', lineHeight: 1.6,
           }}>
-            Concerts, landscapes, storefronts, studios — a decade of the Hudson Valley and Catskills.
+            Consoles, tracking rooms, microphones, sessions — the studios of the Hudson Valley and Catskills.
           </p>
         </div>
       </section>
@@ -306,10 +298,70 @@ export default function BearsvillePage() {
         </div>
       </section>
 
-      {/* ── CORRIDOR ── */}
+      {/* ── FEATURED STUDIOS ── */}
       <section style={{
         padding: 'clamp(3rem, 6vw, 5rem) 2rem',
         background: bg,
+        borderTop: `1px solid ${border}`,
+      }}>
+        <div style={{ maxWidth: 900, margin: '0 auto' }}>
+          <p style={{
+            fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.2em',
+            textTransform: 'uppercase', color: accent, marginBottom: '0.75rem',
+          }}>
+            Featured Studios
+          </p>
+          <h2 style={{
+            fontSize: 'clamp(1.5rem, 3.5vw, 2rem)', fontWeight: 800,
+            color: textPrimary, letterSpacing: '-0.03em', lineHeight: 1.15,
+            margin: '0 0 2rem',
+          }}>
+            The rooms that built<br />the Hudson Valley sound.
+          </h2>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            {FEATURED_STUDIOS.map((studio, i) => (
+              <div key={i} style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr auto',
+                gap: '1rem',
+                padding: '1.25rem 1.5rem',
+                background: surface,
+                border: `1px solid ${border}`,
+                borderRadius: 10,
+                alignItems: 'center',
+              }}>
+                <div>
+                  <div style={{ fontSize: '1rem', fontWeight: 700, color: textPrimary, marginBottom: '0.25rem' }}>
+                    {studio.name}
+                  </div>
+                  <div style={{ fontSize: '0.8rem', color: textDim, lineHeight: 1.5 }}>
+                    {studio.note}
+                  </div>
+                </div>
+                <div style={{
+                  fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.1em',
+                  textTransform: 'uppercase', color: accent, whiteSpace: 'nowrap',
+                }}>
+                  {studio.location}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p style={{
+            fontSize: '0.8rem', color: textMuted, lineHeight: 1.65,
+            marginTop: '2rem', maxWidth: 600,
+          }}>
+            Chase Pierson photographs recording studios professionally. These are our clients, our neighbors, and the rooms where the magazine starts.
+          </p>
+        </div>
+      </section>
+
+      {/* ── CORRIDOR ── */}
+      <section style={{
+        padding: 'clamp(3rem, 6vw, 5rem) 2rem',
+        background: surface,
         borderTop: `1px solid ${border}`,
       }}>
         <div style={{ maxWidth: 900, margin: '0 auto' }}>
@@ -319,7 +371,6 @@ export default function BearsvillePage() {
             gap: 'clamp(2rem, 5vw, 5rem)',
             alignItems: 'center',
           }}>
-            {/* Left: manifesto */}
             <div>
               <p style={{
                 fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.2em',
@@ -332,13 +383,10 @@ export default function BearsvillePage() {
                 color: textPrimary, letterSpacing: '-0.03em', lineHeight: 1.15,
                 margin: '0 0 1.25rem',
               }}>
-                The Hudson Valley<br />connects south.
+                Woodstock connects<br />to Natchez.
               </h2>
               <p style={{ fontSize: '0.9rem', color: textMuted, lineHeight: 1.7, margin: '0 0 1rem' }}>
-                Bearsville Media Group is the Northeast node of the Big Muddy corridor — an independent media and touring network running from Woodstock, NY down to Natchez, MS.
-              </p>
-              <p style={{ fontSize: '0.9rem', color: textMuted, lineHeight: 1.7, margin: '0 0 1.5rem' }}>
-                We share editorial, radio programming, touring dates, and directory infrastructure with Big Muddy in Natchez. Bands move south. Stories move north. The money stays local on both ends.
+                Bearsville is the studio node of the Big Muddy corridor. Bands record here and tour south. Engineers swap sessions between Woodstock and Natchez. The infrastructure is shared — the rooms are different.
               </p>
               <a href="https://bigmuddytouring.com" style={{
                 fontSize: '0.8rem', fontWeight: 700, color: accent,
@@ -348,23 +396,28 @@ export default function BearsvillePage() {
               </a>
             </div>
 
-            {/* Right: corridor map */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {CORRIDOR_NODES.map((node, i) => (
+              {[
+                { city: 'Woodstock, NY', label: 'Studio node — Utopia / Studio C', isAccent: true },
+                { city: 'Hudson Valley', label: 'Dreamland, Levon Helm, The Barn', isAccent: false },
+                { city: 'Appalachian spine', label: 'Connecting corridor', isAccent: false },
+                { city: 'Nashville, TN', label: 'Music city crossover', isAccent: false },
+                { city: 'Natchez, MS', label: 'Big Muddy anchor', isAccent: true },
+              ].map((node, i) => (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: '1rem',
                   padding: '0.85rem 1rem',
-                  background: node.accent ? accentLight : surface,
-                  border: `1px solid ${node.accent ? accent : border}`,
+                  background: node.isAccent ? accentLight : bg,
+                  border: `1px solid ${node.isAccent ? accent : border}`,
                   borderRadius: 8,
                 }}>
                   <div style={{
                     width: 8, height: 8, borderRadius: '50%',
-                    background: node.accent ? accent : border,
+                    background: node.isAccent ? accent : border,
                     flexShrink: 0,
                   }} />
                   <div>
-                    <div style={{ fontSize: '0.85rem', fontWeight: 700, color: node.accent ? textPrimary : textMuted }}>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 700, color: node.isAccent ? textPrimary : textMuted }}>
                       {node.city}
                     </div>
                     <div style={{ fontSize: '0.65rem', color: textDim, marginTop: 2 }}>
@@ -373,7 +426,6 @@ export default function BearsvillePage() {
                   </div>
                 </div>
               ))}
-              {/* Vertical connector line visual */}
             </div>
           </div>
         </div>
@@ -382,7 +434,7 @@ export default function BearsvillePage() {
       {/* ── INTAKE / CONTACT ── */}
       <section style={{
         padding: 'clamp(3rem, 6vw, 5rem) 2rem',
-        background: surface,
+        background: bg,
         borderTop: `1px solid ${border}`,
       }}>
         <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
@@ -397,13 +449,13 @@ export default function BearsvillePage() {
             color: textPrimary, letterSpacing: '-0.03em',
             margin: '0 0 0.75rem',
           }}>
-            Raise your hand.
+            The room is open.
           </h2>
           <p style={{
             fontSize: '0.95rem', color: textMuted, lineHeight: 1.65,
             maxWidth: 500, margin: '0 auto 2.5rem',
           }}>
-            Whether you&apos;re a venue, a band, a business, or a photographer — there&apos;s a seat in the corridor.
+            Whether you&apos;re a studio, an engineer, a session player, or a band looking for the right room — there&apos;s a seat at the console.
           </p>
 
           <div style={{
@@ -415,7 +467,7 @@ export default function BearsvillePage() {
               <a key={action.label} href={action.href} style={{
                 display: 'flex', flexDirection: 'column', gap: '0.35rem',
                 padding: '1.25rem',
-                background: bg, border: `1px solid ${border}`,
+                background: surface, border: `1px solid ${border}`,
                 borderRadius: 10, textDecoration: 'none',
               }}>
                 <span style={{ fontSize: '0.9rem', fontWeight: 700, color: textPrimary }}>
@@ -454,7 +506,7 @@ export default function BearsvillePage() {
           <a href="https://bigmuddytouring.com" style={{ color: accent, textDecoration: 'none' }}>
             Big Muddy corridor
           </a>
-          {' '}— powered by{' '}
+          {' '}&mdash; powered by{' '}
           <a href="https://measurablybetter.life" style={{ color: accent, textDecoration: 'none' }}>
             Measurably Better Things
           </a>
