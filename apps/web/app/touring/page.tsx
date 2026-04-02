@@ -9,9 +9,9 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'Big Muddy — We Bring the Party',
+  title: 'Big Muddy — Gateway to the Heart of Soul Music',
   description:
-    'Booking, promotion, and production for the Mississippi corridor. We bring the bands, the van, the PA, and the audience. One call, one show, one hell of a night.',
+    'Booking, promotion, and production. We bring the bands, the van, the PA, and the audience. Gateway to the heart of soul music.',
 };
 
 export default function TouringHomepage() {
