@@ -1,68 +1,91 @@
-# Overnight / next-session queue
+# Outstanding work queue (master list)
 
-**Purpose:** Runnable checks and follow-ups while Chase is away. Pick up in order; tick boxes in a PR or next agent run.
+**Last updated:** 2026-04-04. **Purpose:** Single checklist for Cursor / agents / Chase. Tick items in GitHub PRs or here as you go.
 
----
-
-## A. Already queued (branch)
-
-- [ ] **Merge PR** for branch `chore/docs-alignment-and-api-guards-2026-04-04` (or whatever name lands on GitHub) after review.
-- [ ] **Smoke authenticated flows** after deploy: sign in → `/admin` → confirm **Deploys** and **Amy** dashboard still load (we added `requireAdmin()` to their API routes).
+**Cursor setup:** see [`.cursor/CURSOR_SETUP.md`](../.cursor/CURSOR_SETUP.md).
 
 ---
 
-## B. Run tonight (machine can stay on)
+## Done (archive — do not reopen)
 
-These are **safe to run unattended** (no deploy). From repo root:
+- [x] Docs alignment PR (`chore/docs-alignment-and-api-guards`) merged to `main`.
+- [x] Auth audit batch 2 (agent/publish/media/ops admin view, etc.) on `main`.
+- [x] Playwright smoke: `GET /api/admin/deploys` → **401** without session ([`e2e/smoke.spec.ts`](../e2e/smoke.spec.ts)).
+
+---
+
+## A. Ship feature branch: `integrate/elegant-volhard-2026-04-04`
+
+**Status:** Branch exists on `origin`; **not** merged to `main` (admin reviews + monthly PDF + cron).
+
+- [ ] Open PR **integrate/elegant-volhard-2026-04-04 → main** and code review.
+- [ ] Confirm **Vercel** env: **`CRON_SECRET`**, cron schedule for `/api/cron/monthly-reports` if desired.
+- [ ] Merge after `pnpm type-check`, `pnpm lint`, `pnpm build`, `pnpm test:smoke`.
+- [ ] Post-merge smoke: signed-in **Admin → Deploys**, **Amy**, any new **admin/reviews** UI.
+
+---
+
+## B. Heuristic worktree — product catalog (Prisma)
+
+- [ ] Copy **schema + seed** from `.claude/worktrees/heuristic-volhard` onto a **new branch from `main`** (no wholesale merge of dirty worktree).
+- [ ] **CC:** migration / `db:generate` policy; no prod `db push` without approval.
+- [ ] Align tiers with **Free / Core / Growth / Partner** and `docs/DSD_MARKETING_COPY.md`.
+- [ ] Delete/ignore `.playwright-mcp` junk in worktree; remove worktrees when done.
+
+---
+
+## C. Observability
+
+- [ ] **Sentry source maps:** GitHub Action secret **`SENTRY_AUTH_TOKEN`** + upload step, **or** Vercel Sentry integration ([`.workflow/STATUS.md`](STATUS.md) note).
+- [ ] Follow Sentry Next.js guidance: **instrumentation** file vs legacy `sentry.server.config.ts` warnings in build logs.
+
+---
+
+## D. Security / API (remaining)
+
+- [ ] **Auth audit batch 3:** grep `apps/web/app/api` for routes missing `requireAdmin` / `auth` / `CRON_SECRET` / webhook HMAC.
+- [ ] **Product:** `marketing/scout-photo` — keep public demo vs add token/auth.
+- [ ] **Product:** `ops/chat` **POST** — keep anonymous vs require session/admin (Vertex cost).
+- [ ] **Ops:** Any caller of **`POST /api/publish/batch`** must send **`Authorization: Bearer ${CRON_SECRET}`** in production.
+- [ ] Replace **`console.log`** in API routes with structured logging (webhooks/cron first).
+
+---
+
+## E. Dependabot / supply chain
+
+- [ ] GitHub **Security → Dependabot** — triage **critical/high** in small PRs with CI.
+- [ ] Document deferred risks in `.workflow/DECISIONS.md` if you add that pattern.
+
+---
+
+## F. Database & architecture debt
+
+- [ ] **Prisma:** baseline **`prisma migrate`** (CC-owned process); see `docs/ARCHITECTURE.md` §5.6.
+- [ ] **`$transaction`** on multi-write routes.
+- [ ] **N+1** on hot list endpoints.
+- [ ] **`tokens.css`** modularization (phased, heavy QA).
+
+---
+
+## G. Product / copy
+
+- [ ] Reconcile tier + pricing language across `BUSINESS_ARCHITECTURE`, directory, `DSD_MARKETING_COPY`, `CLAUDE.md`.
+- [ ] Decide **legacy billing / claim routes** vs current tier model (or mark internal-only).
+
+---
+
+## H. Testing (optional)
+
+- [ ] Playwright **authenticated** path: **200** on `/api/admin/deploys` with session (needs test user or preview env).
+
+---
+
+## Quick commands (local)
 
 ```bash
-# 1) Clean Next generated types if tsc ever complains about missing .next paths
 rm -rf apps/web/.next
-
-# 2) Full gate (same as CI)
 pnpm type-check && pnpm lint && pnpm build
-```
-
-**Playwright smoke** (starts `next dev` on port **3334** automatically):
-
-```bash
 pnpm test:smoke
 ```
 
-If port 3334 is busy, either stop the other process or `PLAYWRIGHT_PORT=3335 pnpm test:smoke`.
-
-**Optional (informational only):**
-
-```bash
-pnpm audit --audit-level=high
-```
-
-Do **not** auto-apply major version bumps without review (Dependabot list is separate).
-
----
-
-## C. Next agent — high value (not automated)
-
-| Priority | Task | Notes |
-|----------|------|--------|
-| P1 | **Sentry source maps in CI** | Add `SENTRY_AUTH_TOKEN` (or Vercel integration) — see `.workflow/STATUS.md` 2026-04-04. |
-| P1 | **Auth audit batch 2** | Grep `app/api` for routes without `auth()` / `requireAdmin` / cron secret pattern; especially `/api/ops/*` not yet reviewed (`chat` is complex — read before changing). |
-| P2 | **Prisma migrate baseline** | CC decision: move from `db push` to `migrate` with a baseline migration. |
-| P2 | **Replace `console.log` in API routes** | Webhooks/cron — swap for structured logging pattern used elsewhere. |
-| P3 | **E2E: admin session** | Add Playwright test that hits `/api/admin/deploys` with/without cookie (expect 401 unauthenticated) — needs auth fixture or mock. |
-
----
-
-## D. What *not* to run blindly overnight
-
-- **`db push` / `migrate`** against production without Chase.
-- **Load tests** against production URLs without a plan.
-- **Deleting `.claude/worktrees`** until heuristic WIP is triaged (see `AGENT_HANDOFF_TASKS.md` on integrate branch if present).
-
----
-
-## E. If smoke fails
-
-1. Read `test-results/` and Playwright trace.
-2. Check whether failure is **auth redirect** (new `requireAdmin` on APIs) vs **real regression**.
-3. Log finding in `.workflow/STATUS.md` under **Blockers**.
+**Do not** run `db push` / `migrate` against **production** without Chase.
