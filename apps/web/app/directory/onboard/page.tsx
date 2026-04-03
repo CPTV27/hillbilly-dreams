@@ -10,7 +10,7 @@
 // Success → shows confirmation. Error → inline message, form preserved.
 //
 // URL params:
-//   ?tier=free|listing|works|engine  — pre-selects intended tier, captured in payload
+//   ?tier=free|core|growth|partner — pre-selects intent (legacy: listing|works|engine maps to core|growth|partner)
 
 import Link from 'next/link';
 import { useState, useRef, useEffect, type FormEvent } from 'react';
@@ -18,7 +18,7 @@ import './onboard.css';
 
 // ── Types ─────────────────────────────────────────────────────
 
-type TierIntent = 'free' | 'listing' | 'works' | 'engine' | '';
+type TierIntent = 'free' | 'core' | 'growth' | 'partner' | '';
 
 interface FormState {
   name: string;
@@ -123,10 +123,16 @@ const INITIAL_STATE: FormState = {
 };
 
 const TIER_LABELS: Record<string, string> = {
-  free: 'Entry (Free)',
-  listing: 'The Listing — $20/mo',
-  works: 'The Works — $49/mo',
-  engine: 'The Engine — $99/mo',
+  free: 'Free',
+  core: 'Core (pricing TBD)',
+  growth: 'Growth (pricing TBD)',
+  partner: 'Partner (pricing TBD)',
+};
+
+const LEGACY_TIER_MAP: Record<string, TierIntent> = {
+  listing: 'core',
+  works: 'growth',
+  engine: 'partner',
 };
 
 export default function OnboardPage() {
@@ -138,9 +144,10 @@ export default function OnboardPage() {
   // Read ?tier= param on mount and pre-fill intent
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const tier = params.get('tier') as TierIntent | null;
-    if (tier && ['free', 'listing', 'works', 'engine'].includes(tier)) {
-      setForm((prev) => ({ ...prev, tierIntent: tier }));
+    const raw = params.get('tier')?.toLowerCase() ?? '';
+    const mapped = LEGACY_TIER_MAP[raw] ?? (raw as TierIntent);
+    if (mapped && ['free', 'core', 'growth', 'partner'].includes(mapped)) {
+      setForm((prev) => ({ ...prev, tierIntent: mapped }));
     }
   }, []);
 

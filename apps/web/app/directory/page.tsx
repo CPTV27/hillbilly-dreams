@@ -79,69 +79,64 @@ const FEATURED_BUSINESSES = [
   },
 ];
 
-// ── Stripe Payment Links ──────────────────────────────────────────────────────
-// Set these env vars in Vercel after creating Payment Links in the Stripe Dashboard.
-// Until set, CTAs fall back to the onboard form (lead capture only).
-//   STRIPE_PAYMENT_LINK_LISTING  — $20/mo recurring, "The Listing"
-//   STRIPE_PAYMENT_LINK_ENGINE   — $99/mo recurring, "The Engine"
-// The Works ($49) link is not exposed until Apr 21 per claim ladder.
-
-const STRIPE_LINK_LISTING = process.env.STRIPE_PAYMENT_LINK_LISTING || '/directory/onboard?tier=listing';
-const STRIPE_LINK_ENGINE  = process.env.STRIPE_PAYMENT_LINK_ENGINE  || '/directory/onboard?tier=engine';
+// Tier names and benefits are canonical; dollar amounts stay off the site until pricing is set.
+// Onboard captures intent via ?tier=free|core|growth|partner
 
 const TIERS = [
   {
-    name: 'Entry',
-    price: 'Free',
+    name: 'Free',
+    priceLabel: 'Free',
     href: '/directory/onboard?tier=free',
+    highlight: false,
     features: [
-      'AI business listing on the directory',
+      'Business listing on the directory',
       'Google review alerts',
       'Basic monthly report',
-      'Visible to every tourist searching the corridor',
+      'Visible to visitors searching the corridor',
       'Part of the Big Muddy network',
     ],
   },
   {
-    name: 'The Listing',
-    price: '$20/mo',
-    href: STRIPE_LINK_LISTING,
+    name: 'Core',
+    priceLabel: 'Pricing TBD',
+    href: '/directory/onboard?tier=core',
+    highlight: false,
     features: [
-      'Everything in Entry',
-      'AI assistant trained on your business + your town',
-      'Curated local knowledge — not generic internet',
-      'Answer customer questions 24/7',
-      'Generate content ideas on demand',
-      'Same price as ChatGPT — built for your town',
+      'Everything in Free',
+      'AI assistant trained on your business and your town',
+      'Local context — not generic internet answers',
+      'Help visitors with common questions',
+      'Content ideas on demand',
     ],
   },
   {
-    name: 'The Works',
-    price: '$49/mo',
-    href: '/directory/onboard?tier=works',
-    badge: 'Coming April 21',
+    name: 'Growth',
+    priceLabel: 'Pricing TBD',
+    href: '/directory/onboard?tier=growth',
+    highlight: false,
     features: [
-      'Everything in The Listing',
-      '4 social posts per week',
-      'Auto-publishing to FB, IG, Google',
+      'Everything in Core',
+      'Social posting cadence (e.g. several posts per week)',
+      'Publishing to Facebook, Instagram, and Google surfaces',
       'Content calendar',
       'Detailed monthly report',
       'Email support',
     ],
   },
   {
-    name: 'The Engine',
-    price: '$99/mo',
-    href: STRIPE_LINK_ENGINE,
-    badge: 'Coming April 14',
+    name: 'Partner',
+    priceLabel: 'Pricing TBD',
+    href: '/directory/onboard?tier=partner',
+    highlight: true,
     features: [
-      'Everything in The Works',
-      'AI review response drafts',
-      'Competitor watch (3 competitors)',
-      'Custom social posts + scheduling',
-      'Quarterly Magazine feature',
+      'Everything in Growth',
+      'AI-assisted review response drafts',
+      'Competitor watch (limited set)',
+      'Custom social posts and scheduling',
+      'Magazine and radio exposure when our production calendar allows',
+      'On-site photography for your business when schedule allows',
       'Full analytics dashboard',
-      'Text Chase directly',
+      'Direct line to our team',
     ],
   },
 ];
@@ -572,9 +567,10 @@ export default function DirectoryPage() {
             marginBottom: '2.5rem',
           }}
         >
-          Every paid tier plugs you into the whole Big Muddy machine — Magazine features,
-          Radio mentions, AI-generated content matched to your voice, and photography by
-          Chase Pierson. This isn&apos;t a Yelp listing. This is a media company working for your business.
+          Higher tiers plug you into the Big Muddy network — magazine, radio, studio-produced
+          audio and video as we ramp, and editorial photography on a real-world schedule
+          (we&apos;re a small team; we don&apos;t promise what we can&apos;t shoot). This isn&apos;t a Yelp listing.
+          It&apos;s a regional media shop in your corner.
         </p>
 
         <div
@@ -588,7 +584,7 @@ export default function DirectoryPage() {
             <div
               key={tier.name}
               style={{
-                border: tier.name === 'The Engine'
+                border: tier.highlight
                   ? '2px solid var(--accent, #c8943e)'
                   : '1px solid var(--muted, #333)',
                 padding: '2rem',
@@ -597,7 +593,7 @@ export default function DirectoryPage() {
                 flexDirection: 'column',
               }}
             >
-              {tier.name === 'The Engine' && (
+              {tier.highlight && (
                 <div
                   style={{
                     position: 'absolute',
@@ -612,26 +608,7 @@ export default function DirectoryPage() {
                     padding: '0.2rem 0.75rem',
                   }}
                 >
-                  Most Popular
-                </div>
-              )}
-              {'badge' in tier && tier.badge && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '-0.75rem',
-                    right: '1.5rem',
-                    background: 'rgba(255,255,255,0.1)',
-                    color: 'var(--accent, #c8943e)',
-                    fontSize: '0.6rem',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                    padding: '0.2rem 0.75rem',
-                    border: '1px solid var(--accent, #c8943e)',
-                  }}
-                >
-                  {tier.badge}
+                  Full network
                 </div>
               )}
               <p
@@ -654,7 +631,7 @@ export default function DirectoryPage() {
                   lineHeight: 1.1,
                 }}
               >
-                {tier.price}
+                {tier.priceLabel}
               </p>
               <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem' }}>
                 {tier.features.map((f) => (
@@ -690,9 +667,9 @@ export default function DirectoryPage() {
                   display: 'block',
                   textAlign: 'center',
                   padding: '0.75rem 1.5rem',
-                  background: tier.name === 'The Engine' ? 'var(--accent, #c8943e)' : 'transparent',
-                  color: tier.name === 'The Engine' ? '#0a0a0a' : 'var(--accent, #c8943e)',
-                  border: tier.name === 'The Engine' ? 'none' : '1px solid var(--accent, #c8943e)',
+                  background: tier.highlight ? 'var(--accent, #c8943e)' : 'transparent',
+                  color: tier.highlight ? '#0a0a0a' : 'var(--accent, #c8943e)',
+                  border: tier.highlight ? 'none' : '1px solid var(--accent, #c8943e)',
                   fontSize: '0.8rem',
                   fontWeight: 700,
                   textTransform: 'uppercase',
@@ -831,13 +808,14 @@ export default function DirectoryPage() {
             marginBottom: '2rem',
           }}
         >
-          Listings are free. Paid tiers start at $20/month — same price as ChatGPT, built for your town.
-          No contracts, cancel anytime. We&apos;ll build your profile, match your voice, and start
-          putting your business in front of every tourist coming through the corridor.
+          Listings are free to start. Paid tiers and rates are set when we talk — we&apos;re keeping
+          pricing flexible while we onboard the first corridor businesses. No long contracts.
+          We&apos;ll build your profile, match your voice, and put you in front of people already
+          planning trips and nights out here.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <a
-            href={STRIPE_LINK_LISTING}
+            href="/directory/onboard"
             style={{
               display: 'inline-block',
               padding: '0.75rem 2rem',
@@ -848,7 +826,7 @@ export default function DirectoryPage() {
               fontSize: '0.9rem',
             }}
           >
-            Get Listed — $20/mo
+            Get started
           </a>
           <a
             href="/directory/dashboard"

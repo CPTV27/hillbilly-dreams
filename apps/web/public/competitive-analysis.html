@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DSD Competitive Analysis — Full Report</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, sans-serif; background: #0a0a0a; color: #f5f0eb; padding: 2rem; max-width: 1400px; margin: 0 auto; line-height: 1.6; }
+.gold { color: #c8943e; }
+h1 { font-size: 2rem; font-weight: 300; margin-bottom: 0.5rem; }
+h2 { font-size: 1.3rem; font-weight: 400; color: #c8943e; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #242220; }
+h3 { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+p { font-size: 0.85rem; color: #bbb5ae; margin-bottom: 1rem; max-width: 800px; }
+.sub { font-size: 0.8rem; color: #6b6560; margin-bottom: 2rem; }
+
+/* Big number cards */
+.big-numbers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1.5rem 0; }
+.big-num { text-align: center; padding: 1.5rem; border: 1px solid #242220; }
+.big-num .num { font-size: 2.5rem; font-weight: 300; color: #c8943e; }
+.big-num .label { font-size: 0.65rem; color: #6b6560; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.75rem; }
+th { text-align: left; padding: 0.5rem; color: #c8943e; border-bottom: 2px solid #242220; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; }
+td { padding: 0.5rem; border-bottom: 1px solid #1a1816; }
+tr:hover { background: #111110; }
+.yes { color: #22c55e; }
+.no { color: #ef4444; }
+.partial { color: #f59e0b; }
+.price { color: #c8943e; font-weight: 600; }
+.dsd-col { background: rgba(200,148,62,0.05); }
+
+/* Bar chart */
+.bar-chart { margin: 1.5rem 0; }
+.bar-row { display: grid; grid-template-columns: 140px 1fr 80px; gap: 0.5rem; align-items: center; margin-bottom: 0.3rem; }
+.bar-label { font-size: 0.7rem; text-align: right; color: #8a8580; }
+.bar-track { height: 20px; background: #1a1816; position: relative; }
+.bar-fill { height: 100%; background: #c8943e; position: relative; }
+.bar-fill.dsd { background: #22c55e; }
+.bar-value { font-size: 0.65rem; color: #6b6560; }
+
+/* Category grid */
+.cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1.5rem 0; }
+.cat-card { border: 1px solid #242220; padding: 1rem; }
+.cat-card h4 { font-size: 0.75rem; font-weight: 600; margin-bottom: 0.25rem; }
+.cat-card .cat-price { font-size: 1.2rem; color: #c8943e; font-weight: 300; }
+.cat-card .cat-comp { font-size: 0.6rem; color: #6b6560; margin-top: 0.25rem; }
+.cat-card .cat-dsd { font-size: 0.6rem; color: #22c55e; margin-top: 0.25rem; }
+
+/* Moat section */
+.moat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1rem 0; }
+.moat-card { border: 2px solid #c8943e; padding: 1.25rem; text-align: center; }
+.moat-card h4 { font-size: 0.85rem; margin-bottom: 0.25rem; }
+.moat-card .moat-price { font-size: 0.7rem; color: #6b6560; }
+.moat-card .moat-none { font-size: 0.6rem; color: #ef4444; margin-top: 0.5rem; font-style: italic; }
+
+/* Pitch box */
+.pitch { border: 2px solid #c8943e; padding: 2rem; margin: 2rem 0; text-align: center; }
+.pitch .big { font-size: 1.5rem; font-weight: 300; margin-bottom: 1rem; max-width: none; }
+.pitch .small { font-size: 0.85rem; color: #8a8580; max-width: none; }
+
+.footer { margin-top: 3rem; text-align: center; font-size: 0.5rem; color: #3a3633; text-transform: uppercase; letter-spacing: 0.1em; }
+
+@media (max-width: 768px) {
+  .big-numbers { grid-template-columns: repeat(2, 1fr); }
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .moat-grid { grid-template-columns: 1fr; }
+  .bar-row { grid-template-columns: 100px 1fr 60px; }
+}
+</style>
+</head>
+<body>
+
+<h1>Deep South Directory</h1>
+<p class="sub">Competitive Analysis · April 2026 · 30+ competitors · 20 software categories · Verified pricing</p>
+
+<!-- BIG NUMBERS -->
+<div class="big-numbers">
+  <div class="big-num"><div class="num">$497</div><div class="label">Standalone stack cost/mo</div></div>
+  <div class="big-num"><div class="num">$99</div><div class="label">DSD Engine tier/mo</div></div>
+  <div class="big-num"><div class="num">$4,776</div><div class="label">Annual savings per client</div></div>
+  <div class="big-num"><div class="num">20</div><div class="label">Software categories replaced</div></div>
+</div>
+
+<!-- PRICING BAR CHART -->
+<h2>Monthly Price Comparison — Entry Tier</h2>
+<p>What each competitor charges for their cheapest plan vs DSD.</p>
+
+<div class="bar-chart">
+  <div class="bar-row"><div class="bar-label">Scorpion</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-value">$1,500/mo</div></div>
+  <div class="bar-row"><div class="bar-label">Thryv</div><div class="bar-track"><div class="bar-fill" style="width:43%"></div></div><div class="bar-value">$646/mo</div></div>
+  <div class="bar-row"><div class="bar-label">SOCi</div><div class="bar-track"><div class="bar-fill" style="width:33%"></div></div><div class="bar-value">$500/mo</div></div>
+  <div class="bar-row"><div class="bar-label">Townsquare</div><div class="bar-track"><div class="bar-fill" style="width:33%"></div></div><div class="bar-value">$499/mo</div></div>
+  <div class="bar-row"><div class="bar-label">Podium</div><div class="bar-track"><div class="bar-fill" style="width:27%"></div></div><div class="bar-value">$399/mo</div></div>
+  <div class="bar-row"><div class="bar-label">Birdeye</div><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><div class="bar-value">$299/mo</div></div>
+  <div class="bar-row"><div class="bar-label">Yext</div><div class="bar-track"><div class="bar-fill" style="width:13%"></div></div><div class="bar-value">$199/mo</div></div>
+  <div class="bar-row"><div class="bar-label">Hootsuite</div><div class="bar-track"><div class="bar-fill" style="width:7%"></div></div><div class="bar-value">$99/mo</div></div>
+  <div class="bar-row"><div class="bar-label">GoHighLevel</div><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><div class="bar-value">$97/mo</div></div>
+  <div class="bar-row"><div class="bar-label">Locable</div><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><div class="bar-value">$99/mo</div></div>
+  <div class="bar-row"><div class="bar-label"><strong>DSD Engine</strong></div><div class="bar-track"><div class="bar-fill dsd" style="width:6%"></div></div><div class="bar-value"><strong>$99/mo</strong></div></div>
+  <div class="bar-row"><div class="bar-label"><strong>DSD Works</strong></div><div class="bar-track"><div class="bar-fill dsd" style="width:3%"></div></div><div class="bar-value"><strong>$49/mo</strong></div></div>
+  <div class="bar-row"><div class="bar-label"><strong>DSD Listing</strong></div><div class="bar-track"><div class="bar-fill dsd" style="width:1.3%"></div></div><div class="bar-value"><strong>$20/mo</strong></div></div>
+</div>
+
+<!-- FEATURE MATRIX -->
+<h2>Feature Matrix — DSD vs Top 15 Competitors</h2>
+
+<div style="overflow-x: auto;">
+<table>
+<tr>
+  <th>Feature</th>
+  <th>Yext<br><span style="font-weight:normal">$199</span></th>
+  <th>Birdeye<br><span style="font-weight:normal">$299</span></th>
+  <th>Podium<br><span style="font-weight:normal">$399</span></th>
+  <th>Thryv<br><span style="font-weight:normal">$646</span></th>
+  <th>Townsquare<br><span style="font-weight:normal">$499</span></th>
+  <th>GoHighLevel<br><span style="font-weight:normal">$97</span></th>
+  <th>Hootsuite<br><span style="font-weight:normal">$99</span></th>
+  <th>Mailchimp<br><span style="font-weight:normal">$13</span></th>
+  <th>HubSpot<br><span style="font-weight:normal">$20</span></th>
+  <th class="dsd-col"><strong>DSD</strong><br><span style="font-weight:normal"><strong>$99</strong></span></th>
+</tr>
+<tr><td>AI Business Listing</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+<tr><td>Review Monitoring</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+<tr><td>AI Review Responses</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+<tr><td>Social Media Posting</td><td class="no">✗</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="partial">◐</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+<tr><td>Content Calendar</td><td class="no">✗</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="partial">◐</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+<tr><td>Monthly Report</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+<tr><td>Competitor Watch</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+<tr><td>Email Marketing</td><td class="no">✗</td><td class="yes">✓</td><td class="no">✗</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="yes">✓</td><td class="yes">✓</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+<tr><td>CRM</td><td class="no">✗</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="yes">✓</td><td class="yes">✓</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+<tr><td>AI Content Generation</td><td class="no">✗</td><td class="yes">✓</td><td class="partial">◐</td><td class="partial">◐</td><td class="partial">◐</td><td class="yes">✓</td><td class="no">✗</td><td class="partial">◐</td><td class="partial">◐</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+<tr><td>Voice AI / Chatbot</td><td class="no">✗</td><td class="partial">◐</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="yes">✓</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+<tr style="background: rgba(200,148,62,0.08);"><td><strong>Magazine Coverage</strong></td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="partial">◐</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+<tr style="background: rgba(200,148,62,0.08);"><td><strong>Radio Airplay</strong></td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="partial">◐</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+<tr style="background: rgba(200,148,62,0.08);"><td><strong>Photography</strong></td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+<tr style="background: rgba(200,148,62,0.08);"><td><strong>WiFi Portal</strong></td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+<tr style="background: rgba(200,148,62,0.08);"><td><strong>TV Channel / Signage</strong></td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="dsd-col yes"><strong>✓</strong></td></tr>
+</table>
+</div>
+
+<!-- 20 CATEGORIES -->
+<h2>The 20 Software Categories DSD Replaces</h2>
+
+<div class="cat-grid">
+  <div class="cat-card"><h4>1. Listings</h4><div class="cat-price">$39/mo</div><div class="cat-comp">Yext, BrightLocal, Moz</div><div class="cat-dsd">DSD: all tiers</div></div>
+  <div class="cat-card"><h4>2. Social Media</h4><div class="cat-price">$15/mo</div><div class="cat-comp">Buffer, Hootsuite, Sprout</div><div class="cat-dsd">DSD: all tiers</div></div>
+  <div class="cat-card"><h4>3. Reputation</h4><div class="cat-price">$49/mo</div><div class="cat-comp">ReviewTrackers, Grade.us, Podium</div><div class="cat-dsd">DSD: all tiers</div></div>
+  <div class="cat-card"><h4>4. Email</h4><div class="cat-price">$9/mo</div><div class="cat-comp">Brevo, Mailchimp, Constant Contact</div><div class="cat-dsd">DSD: $49/$99</div></div>
+  <div class="cat-card"><h4>5. CRM</h4><div class="cat-price">$14/mo</div><div class="cat-comp">Pipedrive, Zoho, Salesforce</div><div class="cat-dsd">DSD: $49/$99</div></div>
+  <div class="cat-card"><h4>6. Website/CMS</h4><div class="cat-price">$18/mo</div><div class="cat-comp">Ghost, Webflow, Squarespace</div><div class="cat-dsd">DSD: $49/$99</div></div>
+  <div class="cat-card"><h4>7. Radio</h4><div class="cat-price">$10/mo</div><div class="cat-comp">Live365, Airtime Pro, Radio.co</div><div class="cat-dsd">DSD: $99</div></div>
+  <div class="cat-card"><h4>8. Photo Library</h4><div class="cat-price">$60/mo</div><div class="cat-comp">Adobe CC, Brandfolder</div><div class="cat-dsd">DSD: $49/$99</div></div>
+  <div class="cat-card"><h4>9. AI Content</h4><div class="cat-price">$19/mo</div><div class="cat-comp">Simplified, ChatGPT, Jasper</div><div class="cat-dsd">DSD: all tiers</div></div>
+  <div class="cat-card"><h4>10. Project Mgmt</h4><div class="cat-price">$9/mo</div><div class="cat-comp">Monday, Asana, Basecamp</div><div class="cat-dsd">DSD: $49/$99</div></div>
+  <div class="cat-card"><h4>11. Events</h4><div class="cat-price">$39/mo</div><div class="cat-comp">RSVPify, EventCreate, Splash</div><div class="cat-dsd">DSD: $99</div></div>
+  <div class="cat-card"><h4>12. Music Distro</h4><div class="cat-price">$1/mo</div><div class="cat-comp">TuneCore, DistroKid, Amuse</div><div class="cat-dsd">DSD: $99</div></div>
+  <div class="cat-card"><h4>13. Video</h4><div class="cat-price">$16/mo</div><div class="cat-comp">Restream, StreamYard, Vimeo</div><div class="cat-dsd">DSD: $99</div></div>
+  <div class="cat-card"><h4>14. Analytics</h4><div class="cat-price">$12/mo</div><div class="cat-comp">AgencyAnalytics, Databox</div><div class="cat-dsd">DSD: $49/$99</div></div>
+  <div class="cat-card"><h4>15. WiFi Marketing</h4><div class="cat-price">$2/mo</div><div class="cat-comp">Tanaza, Purple, Aislelabs</div><div class="cat-dsd">DSD: $99</div></div>
+  <div class="cat-card"><h4>16. Digital Signage</h4><div class="cat-price">$8/mo</div><div class="cat-comp">Yodeck, TelemetryTV</div><div class="cat-dsd">DSD: $99</div></div>
+  <div class="cat-card"><h4>17. Voice AI</h4><div class="cat-price">$25/mo</div><div class="cat-comp">Crisp, Tidio, Intercom</div><div class="cat-dsd">DSD: $49/$99</div></div>
+  <div class="cat-card"><h4>18. Photo Delivery</h4><div class="cat-price">$10/mo</div><div class="cat-comp">ShootProof, Pixieset, Pic-Time</div><div class="cat-dsd">DSD: $99</div></div>
+  <div class="cat-card"><h4>19. Gallery/Print</h4><div class="cat-price">$13/mo</div><div class="cat-comp">SmugMug, Shopify</div><div class="cat-dsd">DSD: $99</div></div>
+  <div class="cat-card"><h4>20. Booking</h4><div class="cat-price">$129/mo</div><div class="cat-comp">Eat App, Resy, Yelp</div><div class="cat-dsd">DSD: $99</div></div>
+</div>
+
+<!-- THE MOAT -->
+<h2>The Moat — What No Competitor Can Offer</h2>
+
+<div class="moat-grid">
+  <div class="moat-card">
+    <h4>Magazine Feature</h4>
+    <div class="moat-price">If purchased separately: $2,000-5,000</div>
+    <div class="moat-none">0 of 30 competitors offer this</div>
+  </div>
+  <div class="moat-card">
+    <h4>Radio Airplay</h4>
+    <div class="moat-price">If purchased separately: $500-2,000/mo</div>
+    <div class="moat-none">1 of 30 competitors (Townsquare, at 5x the price)</div>
+  </div>
+  <div class="moat-card">
+    <h4>Professional Photography</h4>
+    <div class="moat-price">If purchased separately: $200-500/shoot</div>
+    <div class="moat-none">0 of 30 competitors offer this</div>
+  </div>
+  <div class="moat-card">
+    <h4>WiFi Captive Portal</h4>
+    <div class="moat-price">If purchased separately: $200+/mo</div>
+    <div class="moat-none">0 of 30 competitors bundle this</div>
+  </div>
+  <div class="moat-card">
+    <h4>TV Channel / Signage</h4>
+    <div class="moat-price">If purchased separately: $100+/mo</div>
+    <div class="moat-none">0 of 30 competitors offer this</div>
+  </div>
+  <div class="moat-card">
+    <h4>Touring Circuit</h4>
+    <div class="moat-price">If purchased separately: $1,000+/event</div>
+    <div class="moat-none">0 of 30 competitors offer this</div>
+  </div>
+</div>
+
+<!-- BIGGEST OPPORTUNITIES -->
+<h2>Biggest Market Opportunities</h2>
+
+<div class="bar-chart">
+  <h3>Where businesses overpay the most (standalone cost)</h3>
+  <div class="bar-row"><div class="bar-label">Booking</div><div class="bar-track"><div class="bar-fill" style="width:86%"></div></div><div class="bar-value">$129-249/mo</div></div>
+  <div class="bar-row"><div class="bar-label">Reputation</div><div class="bar-track"><div class="bar-fill" style="width:66%"></div></div><div class="bar-value">$49-299/mo</div></div>
+  <div class="bar-row"><div class="bar-label">Photo Library</div><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><div class="bar-value">$60-500/mo</div></div>
+  <div class="bar-row"><div class="bar-label">Events</div><div class="bar-track"><div class="bar-fill" style="width:26%"></div></div><div class="bar-value">$39-500/mo</div></div>
+  <div class="bar-row"><div class="bar-label">Listings</div><div class="bar-track"><div class="bar-fill" style="width:26%"></div></div><div class="bar-value">$39-499/mo</div></div>
+  <div class="bar-row"><div class="bar-label">Voice AI</div><div class="bar-track"><div class="bar-fill" style="width:17%"></div></div><div class="bar-value">$25-50/mo</div></div>
+  <div class="bar-row"><div class="bar-label">AI Content</div><div class="bar-track"><div class="bar-fill" style="width:13%"></div></div><div class="bar-value">$19-59/mo</div></div>
+</div>
+
+<!-- THE PITCH -->
+<div class="pitch">
+  <p class="big">"The average Main Street business spends <span class="gold">$497/month</span> across 20 different tools that don't talk to each other.</p>
+  <p class="big">Deep South Directory replaces <span class="gold">all of them</span> for <span class="gold">$99/month</span>.</p>
+  <p class="big">Oh, and we also put you on the radio and in our magazine — something a software company in San Francisco literally can't do."</p>
+</div>
+
+<!-- WHAT WE SAY THAT NO ONE ELSE CAN -->
+<h2>What We Say That No Competitor Can</h2>
+
+<table>
+<tr><th>We Say</th><th>Competitors Say</th></tr>
+<tr><td>"We're from here."</td><td>Generic "trusted by X businesses"</td></tr>
+<tr><td>A specific town name (Natchez, Vicksburg, Port Gibson)</td><td>No geographic specificity</td></tr>
+<tr><td>Transparent tier benefits (retail dollars TBD on site until locked)</td><td>"Get a demo" / "Contact sales" (10 of 15 hide pricing)</td></tr>
+<tr><td>"We own the magazine that'll feature you"</td><td>Nothing comparable</td></tr>
+<tr><td>"We own the radio station that'll mention you"</td><td>Only Townsquare (at $499+)</td></tr>
+<tr><td>"We'll send a photographer to your front door"</td><td>Nothing comparable</td></tr>
+</table>
+
+<!-- AGENT RECOMMENDATIONS -->
+<h2>Agent Recommendations — What to Build Next</h2>
+
+<table>
+<tr><th>Priority</th><th>Feature</th><th>Why</th><th>Status</th></tr>
+<tr><td class="price">NOW</td><td>Google Business Profile sync</td><td>Table stakes — every competitor has it</td><td>Built, needs activation</td></tr>
+<tr><td class="price">NOW</td><td>AI review response drafts</td><td>Table stakes — Birdeye/Podium core feature</td><td>Built, opens Apr 14</td></tr>
+<tr><td class="price">NOW</td><td>Monthly analytics PDF</td><td>Table stakes — every competitor has it</td><td>Built, opens Apr 21</td></tr>
+<tr><td class="price">NOW</td><td>Social auto-publishing</td><td>Opens $49 tier — Buffer/Hootsuite core feature</td><td>Built, opens Apr 21</td></tr>
+<tr><td class="gold">SOON</td><td>One photoshoot/year at $99</td><td>Hero bundle — no competitor offers this</td><td>Planned</td></tr>
+<tr><td class="gold">SOON</td><td>Adaptive onboarding (Delta Dawn)</td><td>Differentiator — no competitor teaches you</td><td>Designed</td></tr>
+<tr><td class="gold">SOON</td><td>WiFi captive portal deployment</td><td>Unique — email capture at the door</td><td>Built, needs hardware</td></tr>
+<tr><td style="color:#6b6560">SKIP</td><td>Complex CRM depth</td><td>Commoditized — HubSpot owns this, not our lane</td><td>Basic CRM sufficient</td></tr>
+<tr><td style="color:#6b6560">SKIP</td><td>Live chat widgets</td><td>Over-engineered for restaurant owners</td><td>Voice AI is better</td></tr>
+<tr><td style="color:#6b6560">SKIP</td><td>Website builder depth</td><td>Squarespace/Wix own this, not our lane</td><td>Basic pages sufficient</td></tr>
+</table>
+
+<div class="footer">
+  Deep South Directory · Hillbilly Dreams Inc · April 2026 · Sources: Perplexity, Gemini, Grok · 200+ verified citations
+</div>
+
+</body>
+</html>

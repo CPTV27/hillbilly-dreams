@@ -45,11 +45,18 @@ firebase-debug.log
 # Test coverage
 coverage
 
+# Playwright local output
+test-results/
+playwright-report/
+
 # Lockfiles committed to enable reproducible builds
 # pnpm-lock.yaml — keep this
 
 # Cache
 .cache
+
+# Large slideshow batch exports (local staging; force-add if a release needs them)
+apps/web/public/images/processed/slideshow/
 
 # Image staging folder (originals live here, copied into apps/web/public/images/)
 bmt-public-images

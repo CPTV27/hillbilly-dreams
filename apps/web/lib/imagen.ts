@@ -153,3 +153,76 @@ export async function editImage(
 
   return buffers;
 }
+
+// ── AI Object Removal (wire removal, cleanup) ──
+
+export interface RemoveFromImageOptions {
+  prompt: string;
+  mask?: Buffer;
+  sampleCount?: number;
+}
+
+/**
+ * Remove objects from a photo using Vertex AI Imagen inpainting-remove.
+ * Prompt describes what to remove (e.g. "telephone wires and power lines").
+ * Optional mask highlights the area to clean.
+ */
+export async function removeFromImage(
+  sourceImage: Buffer,
+  options: RemoveFromImageOptions
+): Promise<Buffer[]> {
+  const { prompt, mask, sampleCount = 2 } = options;
+
+  const auth = getAuth();
+  const client = await auth.getClient();
+  const token = (await client.getAccessToken()).token;
+
+  const EDIT_MODEL = 'imagen-3.0-capability-001';
+  const endpoint = `https://${LOCATION}-aiplatform.googleapis.com/v1/projects/${PROJECT_ID}/locations/${LOCATION}/publishers/google/models/${EDIT_MODEL}:predict`;
+
+  const instance: Record<string, unknown> = {
+    prompt,
+    image: { bytesBase64Encoded: sourceImage.toString('base64') },
+  };
+
+  if (mask) {
+    instance.mask = { image: { bytesBase64Encoded: mask.toString('base64') } };
+  }
+
+  const res = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      instances: [instance],
+      parameters: {
+        sampleCount,
+        editConfig: { editMode: 'inpainting-remove' },
+      },
+    }),
+    signal: AbortSignal.timeout(90000),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text();
+    throw new Error(`Imagen remove API error ${res.status}: ${errText}`);
+  }
+
+  const data = await res.json();
+  const buffers: Buffer[] = [];
+
+  if (data.predictions) {
+    for (const prediction of data.predictions) {
+      const b64 = prediction.bytesBase64Encoded;
+      if (b64) buffers.push(Buffer.from(b64, 'base64'));
+    }
+  }
+
+  if (buffers.length === 0) {
+    throw new Error('No cleaned images returned — the image may have been blocked by safety filters');
+  }
+
+  return buffers;
+}

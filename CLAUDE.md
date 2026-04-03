@@ -120,17 +120,13 @@ Northeast node (Woodstock, NY). Summer 2026 activation.
 
 ---
 
-## DSD Pricing (Canonical — Do Not Change)
+## DSD tiers & pricing (retail TBD)
 
-| Tier | Price | Opens |
-|------|-------|-------|
-| Entry | Free | Live |
-| The Listing | $20/mo | Apr 1 |
-| The Works | $49/mo | Apr 21 |
-| The Engine | $99/mo | Apr 14 |
+Public-facing names: **Free · Core · Growth · Partner** — **no dollar amounts on the customer site** until pricing is locked. Historical reference tiers ($20 / $49 / $99) may still appear in old docs; reconcile before sales.
 
-Walk-in pitch: lead with $20. Never claim features not yet shipped.
-Env vars for payment: `STRIPE_PAYMENT_LINK_LISTING`, `STRIPE_PAYMENT_LINK_ENGINE`
+Walk-in: lead with value and corridor fit; never claim features not yet shipped.
+
+When checkout is live: Stripe payment links in Vercel — `STRIPE_PAYMENT_LINK_LISTING`, `STRIPE_PAYMENT_LINK_ENGINE` (confirm env names match the tier you wire).
 
 ---
 

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    :root {
+      --bg: #2b2b2b;
+      --surface: #383838;
+      --text: #e0e0e0;
+      --text-muted: #999;
+      --accent: #c4956a;
+      --accent-hover: #d4a57a;
+      --danger: #e25555;
+      --success: #5a9e6f;
+      --border: #4a4a4a;
+      --radius: 4px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      padding: 12px;
+      overflow-y: auto;
+    }
+
+    h2 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tool-section {
+      margin-bottom: 20px;
+      padding: 12px;
+      background: var(--surface);
+      border-radius: var(--radius);
+    }
+
+    .tool-section h3 {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .tool-section p {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .prompt-input {
+      width: 100%;
+      padding: 8px 10px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-size: 11px;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 60px;
+      margin-bottom: 8px;
+    }
+
+    .prompt-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #1a1a1a;
+    }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-primary:disabled {
+      background: var(--border);
+      color: var(--text-muted);
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .status {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      min-height: 16px;
+    }
+    .status.error { color: var(--danger); }
+    .status.success { color: var(--success); }
+    .status.working { color: var(--accent); }
+
+    .presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .preset-btn {
+      padding: 4px 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-muted);
+      font-size: 10px;
+      cursor: pointer;
+    }
+    .preset-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 16px 0;
+    }
+
+    .settings {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+    .settings label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      padding: 4px 6px;
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Big Muddy AI</h2>
+
+  <!-- Tool 1: Object Removal -->
+  <div class="tool-section">
+    <h3>Remove Objects</h3>
+    <p>Select an area or describe what to remove. Uses your current selection as mask.</p>
+    <div class="presets">
+      <button class="preset-btn" onclick="setPrompt('remove', 'telephone wires, power lines, utility cables')">Wires</button>
+      <button class="preset-btn" onclick="setPrompt('remove', 'telephone pole, utility pole')">Poles</button>
+      <button class="preset-btn" onclick="setPrompt('remove', 'parked cars, vehicles')">Cars</button>
+      <button class="preset-btn" onclick="setPrompt('remove', 'trash, debris, litter')">Trash</button>
+      <button class="preset-btn" onclick="setPrompt('remove', 'people in background')">People (bg)</button>
+    </div>
+    <textarea id="remove-prompt" class="prompt-input" placeholder="Describe what to remove...">telephone wires, power lines, utility cables, electrical lines</textarea>
+    <button class="btn btn-primary" id="remove-btn" onclick="runRemoval()">Remove from Selection</button>
+    <button class="btn btn-secondary" onclick="runRemoval(true)">Remove (Auto-detect)</button>
+    <div class="status" id="remove-status"></div>
+  </div>
+
+  <!-- Tool 2: Sky Replacement -->
+  <div class="tool-section">
+    <h3>Sky Replacement</h3>
+    <p>Replace or enhance the sky. Auto-detects sky region.</p>
+    <div class="presets">
+      <button class="preset-btn" onclick="setPrompt('sky', 'dramatic golden hour sunset sky with warm clouds')">Golden Hour</button>
+      <button class="preset-btn" onclick="setPrompt('sky', 'clear blue sky with soft white clouds')">Blue Sky</button>
+      <button class="preset-btn" onclick="setPrompt('sky', 'dramatic stormy sky with dark clouds')">Stormy</button>
+      <button class="preset-btn" onclick="setPrompt('sky', 'twilight sky with deep blue and purple tones')">Twilight</button>
+      <button class="preset-btn" onclick="setPrompt('sky', 'soft overcast sky with even lighting')">Overcast</button>
+    </div>
+    <textarea id="sky-prompt" class="prompt-input" placeholder="Describe the sky you want...">dramatic golden hour sunset sky with warm clouds</textarea>
+    <button class="btn btn-primary" id="sky-btn" onclick="runSkyReplace()">Replace Sky</button>
+    <div class="status" id="sky-status"></div>
+  </div>
+
+  <!-- Tool 3: Property Cleanup -->
+  <div class="tool-section">
+    <h3>Property Cleanup</h3>
+    <p>One-click exterior polish: lawn, bushes, remove cars, clean sidewalks.</p>
+    <textarea id="cleanup-prompt" class="prompt-input" placeholder="Describe the cleanup...">Perfect manicured lawn, neatly trimmed hedges and bushes, clean sidewalks, no parked cars, no trash or debris. Keep all buildings, people, and architecture exactly as they are.</textarea>
+    <button class="btn btn-primary" id="cleanup-btn" onclick="runPropertyCleanup()">Clean Up Property</button>
+    <div class="status" id="cleanup-status"></div>
+  </div>
+
+  <!-- Tool 4: Editorial Enhancement -->
+  <div class="tool-section">
+    <h3>Editorial Enhancement</h3>
+    <p>Magazine-quality polish: lighting, color, contrast, clarity.</p>
+    <div class="presets">
+      <button class="preset-btn" onclick="setPrompt('enhance', 'Warm editorial tone, rich shadows, natural contrast. High-end travel magazine quality.')">Magazine</button>
+      <button class="preset-btn" onclick="setPrompt('enhance', 'Moody, cinematic grading with deep shadows and lifted blacks. Film-like quality.')">Cinematic</button>
+      <button class="preset-btn" onclick="setPrompt('enhance', 'Clean, bright, airy. Even exposure, soft shadows, natural skin tones.')">Clean &amp; Bright</button>
+      <button class="preset-btn" onclick="setPrompt('enhance', 'Rich black and white conversion with full tonal range.')">B&amp;W</button>
+    </div>
+    <textarea id="enhance-prompt" class="prompt-input" placeholder="Describe the look...">Warm editorial tone, rich shadows, natural contrast. High-end travel magazine quality.</textarea>
+    <button class="btn btn-primary" id="enhance-btn" onclick="runEnhance()">Enhance Photo</button>
+    <div class="status" id="enhance-status"></div>
+  </div>
+
+  <!-- Settings -->
+  <div class="divider"></div>
+  <div class="settings">
+    <label>
+      Variants:
+      <select id="sample-count">
+        <option value="1">1</option>
+        <option value="2" selected>2</option>
+        <option value="4">4</option>
+      </select>
+    </label>
+    <label>
+      Quality:
+      <select id="quality-steps">
+        <option value="12">Fast (12 steps)</option>
+        <option value="35">Standard (35 steps)</option>
+        <option value="50" selected>High (50 steps)</option>
+        <option value="75">Maximum (75 steps)</option>
+      </select>
+    </label>
+    <p style="margin-top: 8px; color: var(--text-muted);">
+      Results appear as new layers. Originals are never modified.
+    </p>
+  </div>
+
+  <script src="plugin.js"></script>
+</body>
+</html>
