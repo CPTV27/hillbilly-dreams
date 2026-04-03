@@ -1,5 +1,12 @@
 # Agent status
 
+## 2026-04-04 — Cursor onboarding + queue
+
+- **New to Cursor?** Read [`.cursor/CURSOR_SETUP.md`](../.cursor/CURSOR_SETUP.md) (vs Claude Code, rules, git, quality gate).
+- **Master backlog:** [`.workflow/OVERNIGHT_TASKS.md`](OVERNIGHT_TASKS.md) (sections A–H).
+
+---
+
 ## 2026-04-04 — Auth audit batch 2
 
 ### What changed

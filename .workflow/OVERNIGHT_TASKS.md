@@ -16,9 +16,10 @@
 
 ## A. Ship feature branch: `integrate/elegant-volhard-2026-04-04`
 
-**Status:** Branch exists on `origin`; **not** merged to `main` (admin reviews + monthly PDF + cron).
+**Status:** Branch exists on `origin`; **not** merged to `main` (admin reviews + monthly PDF + cron). Latest `main` has been **merged into** this branch (conflict in `ops/reviews/draft` resolved: **`requireAdmin` + `callAI`**).
 
-- [ ] Open PR **integrate/elegant-volhard-2026-04-04 → main** and code review.
+- [x] Keep branch current with `main` (merged & pushed 2026-04-04).
+- [ ] Open PR **integrate/elegant-volhard-2026-04-04 → main** and code review (or merge if PR already exists).
 - [ ] Confirm **Vercel** env: **`CRON_SECRET`**, cron schedule for `/api/cron/monthly-reports` if desired.
 - [ ] Merge after `pnpm type-check`, `pnpm lint`, `pnpm build`, `pnpm test:smoke`.
 - [ ] Post-merge smoke: signed-in **Admin → Deploys**, **Amy**, any new **admin/reviews** UI.
