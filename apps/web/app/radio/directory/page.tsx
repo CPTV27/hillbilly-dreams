@@ -5,15 +5,13 @@
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { prisma } from '@/lib/db';
 
 export const metadata: Metadata = {
   title: 'On the Route — Directory Businesses',
   description:
     'Local businesses featured on Big Muddy Radio across the Mississippi corridor.',
 };
-
-const baseUrl =
-  process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
 
 interface DirectoryClient {
   id: number;
@@ -30,12 +28,23 @@ interface DirectoryClient {
 
 async function getDirectoryClients(): Promise<DirectoryClient[]> {
   try {
-    const res = await fetch(`${baseUrl}/api/directory`, {
-      next: { revalidate: 300 },
+    const rows = await prisma.client.findMany({
+      where: { status: 'active' },
+      orderBy: [{ city: 'asc' }, { name: 'asc' }],
+      select: {
+        id: true,
+        name: true,
+        slug: true,
+        businessType: true,
+        city: true,
+        state: true,
+        website: true,
+        description: true,
+        logoUrl: true,
+        tier: true,
+      },
     });
-    if (!res.ok) return [];
-    const data = await res.json();
-    return data.data ?? [];
+    return rows;
   } catch {
     return [];
   }
@@ -571,7 +580,8 @@ export default async function RadioDirectoryPage() {
         .rtdir-empty__text {
           font-family: var(--font-body);
           font-size: var(--text-lg);
-          color: var(--text-muted);
+          color: var(--text);
+          opacity: 0.88;
           margin: 0 0 var(--space-8);
         }
         .rtdir-cta-link {

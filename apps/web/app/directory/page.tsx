@@ -2,6 +2,10 @@
 // Deep South Directory — Business directory landing page
 import type { Metadata } from 'next';
 import { IllustrationDivider } from '@bigmuddy/ui';
+import {
+  getCorridorArtistsPublic,
+  recordsArtistProfileUrl,
+} from '@/lib/corridor-artists-public';
 
 export const metadata: Metadata = {
   title: 'Deep South Directory — Local Business Marketing',
@@ -141,7 +145,16 @@ const TIERS = [
   },
 ];
 
-export default function DirectoryPage() {
+function truncateBio(text: string | null, max = 140): string | null {
+  if (!text?.trim()) return null;
+  const t = text.trim();
+  if (t.length <= max) return t;
+  return `${t.slice(0, max - 1)}…`;
+}
+
+export default async function DirectoryPage() {
+  const corridorArtists = await getCorridorArtistsPublic(36);
+
   return (
     <main>
       {/* Hero */}
@@ -173,7 +186,7 @@ export default function DirectoryPage() {
           style={{
             fontSize: 'clamp(2.5rem, 6vw, 4rem)',
             fontWeight: 700,
-            color: 'var(--fg, #f5f0eb)',
+            color: 'var(--text)',
             lineHeight: 1.1,
             letterSpacing: '-0.03em',
             margin: 0,
@@ -186,7 +199,7 @@ export default function DirectoryPage() {
         <p
           style={{
             fontSize: '1.1rem',
-            color: 'var(--fg, #f5f0eb)',
+            color: 'var(--text)',
             opacity: 0.7,
             maxWidth: 550,
             lineHeight: 1.6,
@@ -211,6 +224,20 @@ export default function DirectoryPage() {
             Browse Directory
           </a>
           <a
+            href="#musicians"
+            style={{
+              display: 'inline-block',
+              padding: '0.75rem 2rem',
+              border: '1px solid var(--accent, #c8943e)',
+              color: 'var(--accent, #c8943e)',
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: '0.9rem',
+            }}
+          >
+            Corridor musicians
+          </a>
+          <a
             href="/media/services"
             style={{
               display: 'inline-block',
@@ -229,10 +256,167 @@ export default function DirectoryPage() {
 
       <IllustrationDivider variant="town" />
 
+      {/* Corridor musicians — Prisma-backed roster (public statuses only) */}
+      <section
+        id="musicians"
+        style={{
+          borderTop: '1px solid var(--border)',
+          padding: '3rem 1.5rem',
+          maxWidth: 1000,
+          margin: '0 auto',
+        }}
+      >
+        <p
+          style={{
+            fontSize: '0.8rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            color: 'var(--accent, #c8943e)',
+            marginBottom: '0.5rem',
+          }}
+        >
+          Corridor musicians
+        </p>
+        <h2
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(1.35rem, 3vw, 1.75rem)',
+            fontWeight: 700,
+            color: 'var(--text)',
+            margin: '0 0 0.75rem',
+            lineHeight: 1.2,
+            letterSpacing: '-0.02em',
+          }}
+        >
+          Talent on the route — tied into radio, rooms, and records.
+        </h2>
+        <p
+          style={{
+            fontSize: '0.95rem',
+            color: 'var(--text-muted)',
+            lineHeight: 1.65,
+            maxWidth: 640,
+            margin: '0 0 2rem',
+          }}
+        >
+          These are artists already moving through the Big Muddy network — showcases, touring, and
+          the label pipeline. The directory isn&apos;t only storefronts; it&apos;s the whole corridor
+          stack working together.
+        </p>
+        {corridorArtists.length === 0 ? (
+          <p
+            style={{
+              fontSize: '0.9rem',
+              color: 'var(--text-muted)',
+              lineHeight: 1.6,
+              margin: 0,
+              maxWidth: 560,
+            }}
+          >
+            Public roster entries appear here as artists graduate into showcases and routed work.
+            Musicians can{' '}
+            <a href="/directory/onboard/musician" style={{ color: 'var(--accent)', fontWeight: 600 }}>
+              get on the list
+            </a>
+            ; talent and booking also run through{' '}
+            <a
+              href="https://bigmuddytouring.com"
+              style={{ color: 'var(--accent)', fontWeight: 600 }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Big Muddy Touring
+            </a>
+            .
+          </p>
+        ) : (
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+              gap: '1.25rem',
+            }}
+          >
+            {corridorArtists.map((a) => (
+              <a
+                key={a.id}
+                href={recordsArtistProfileUrl(a.slug)}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'block',
+                  border: '1px solid var(--border)',
+                  borderRadius: 10,
+                  padding: '1.25rem 1.35rem',
+                  textDecoration: 'none',
+                  color: 'inherit',
+                  background: 'var(--surface)',
+                  boxShadow: 'var(--shadow-sm)',
+                  transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: '0.65rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.12em',
+                    color: 'var(--accent)',
+                    margin: '0 0 0.35rem',
+                    fontWeight: 700,
+                  }}
+                >
+                  {a.genre?.replace(/-/g, ' ') ?? 'Corridor artist'}
+                </p>
+                <h3
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.05rem',
+                    fontWeight: 700,
+                    color: 'var(--text)',
+                    margin: '0 0 0.35rem',
+                    lineHeight: 1.25,
+                  }}
+                >
+                  {a.name}
+                </h3>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', margin: '0 0 0.6rem' }}>
+                  {a.city}, {a.state}
+                </p>
+                {truncateBio(a.bio) && (
+                  <p
+                    style={{
+                      fontSize: '0.82rem',
+                      color: 'var(--text-muted)',
+                      lineHeight: 1.55,
+                      margin: 0,
+                    }}
+                  >
+                    {truncateBio(a.bio)}
+                  </p>
+                )}
+                <span
+                  style={{
+                    display: 'inline-block',
+                    marginTop: '0.85rem',
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    color: 'var(--accent)',
+                    borderBottom: '1px solid var(--accent)',
+                    paddingBottom: 2,
+                  }}
+                >
+                  Artist profile ↗
+                </span>
+              </a>
+            ))}
+          </div>
+        )}
+      </section>
+
       {/* Editorial Surface */}
       <section
         style={{
-          borderTop: '1px solid var(--muted, #333)',
+          borderTop: '1px solid var(--border)',
           padding: '3rem 1.5rem',
           maxWidth: 900,
           margin: '0 auto',
@@ -253,7 +437,7 @@ export default function DirectoryPage() {
           style={{
             fontSize: '1.15rem',
             fontWeight: 700,
-            color: 'var(--fg, #f5f0eb)',
+            color: 'var(--text)',
             marginBottom: '2rem',
             letterSpacing: '-0.02em',
           }}
@@ -286,7 +470,7 @@ export default function DirectoryPage() {
               href={card.href}
               style={{
                 display: 'block',
-                border: '1px solid var(--muted, #333)',
+                border: '1px solid var(--border)',
                 padding: '1.75rem',
                 textDecoration: 'none',
                 transition: 'border-color 0.2s',
@@ -308,7 +492,7 @@ export default function DirectoryPage() {
                 style={{
                   fontSize: '1rem',
                   fontWeight: 700,
-                  color: 'var(--fg, #f5f0eb)',
+                  color: 'var(--text)',
                   margin: '0 0 0.75rem',
                   lineHeight: 1.3,
                   letterSpacing: '-0.01em',
@@ -319,7 +503,7 @@ export default function DirectoryPage() {
               <p
                 style={{
                   fontSize: '0.82rem',
-                  color: 'var(--fg, #f5f0eb)',
+                  color: 'var(--text)',
                   opacity: 0.55,
                   lineHeight: 1.6,
                   margin: '0 0 1rem',
@@ -373,7 +557,7 @@ export default function DirectoryPage() {
             <div
               key={cat.name}
               style={{
-                border: '1px solid var(--muted, #333)',
+                border: '1px solid var(--border)',
                 overflow: 'hidden',
               }}
             >
@@ -387,7 +571,7 @@ export default function DirectoryPage() {
                   fontWeight: 800,
                   color: 'var(--accent, #c8943e)',
                   background: 'rgba(200, 148, 62, 0.06)',
-                  borderBottom: '1px solid var(--muted, #333)',
+                  borderBottom: '1px solid var(--border)',
                   letterSpacing: '0.05em',
                 }}
               >
@@ -398,7 +582,7 @@ export default function DirectoryPage() {
                   style={{
                     fontSize: '1.1rem',
                     fontWeight: 700,
-                    color: 'var(--fg, #f5f0eb)',
+                    color: 'var(--text)',
                     margin: '0 0 0.25rem',
                   }}
                 >
@@ -416,7 +600,7 @@ export default function DirectoryPage() {
                 <p
                   style={{
                     fontSize: '0.85rem',
-                    color: 'var(--fg, #f5f0eb)',
+                    color: 'var(--text)',
                     opacity: 0.6,
                     lineHeight: 1.5,
                     margin: 0,
@@ -433,7 +617,7 @@ export default function DirectoryPage() {
       {/* Featured Businesses */}
       <section
         style={{
-          borderTop: '1px solid var(--muted, #333)',
+          borderTop: '1px solid var(--border)',
           padding: '4rem 1.5rem',
           maxWidth: 900,
           margin: '0 auto',
@@ -453,7 +637,7 @@ export default function DirectoryPage() {
         <p
           style={{
             fontSize: '1rem',
-            color: 'var(--fg, #f5f0eb)',
+            color: 'var(--text)',
             opacity: 0.6,
             marginBottom: '2.5rem',
             maxWidth: 550,
@@ -467,7 +651,7 @@ export default function DirectoryPage() {
             <div
               key={biz.name}
               style={{
-                border: '1px solid var(--muted, #333)',
+                border: '1px solid var(--border)',
                 padding: '1.5rem 2rem',
                 display: 'grid',
                 gridTemplateColumns: '1fr auto',
@@ -480,7 +664,7 @@ export default function DirectoryPage() {
                   style={{
                     fontSize: '1.15rem',
                     fontWeight: 700,
-                    color: 'var(--fg, #f5f0eb)',
+                    color: 'var(--text)',
                     margin: '0 0 0.25rem',
                   }}
                 >
@@ -498,7 +682,7 @@ export default function DirectoryPage() {
                 <p
                   style={{
                     fontSize: '0.85rem',
-                    color: 'var(--fg, #f5f0eb)',
+                    color: 'var(--text)',
                     opacity: 0.65,
                     lineHeight: 1.5,
                     margin: 0,
@@ -551,7 +735,7 @@ export default function DirectoryPage() {
           style={{
             fontSize: '1.25rem',
             fontWeight: 700,
-            color: 'var(--fg, #f5f0eb)',
+            color: 'var(--text)',
             marginBottom: '0.5rem',
           }}
         >
@@ -560,7 +744,7 @@ export default function DirectoryPage() {
         <p
           style={{
             fontSize: '0.95rem',
-            color: 'var(--fg, #f5f0eb)',
+            color: 'var(--text)',
             opacity: 0.6,
             lineHeight: 1.7,
             maxWidth: 600,
@@ -586,7 +770,7 @@ export default function DirectoryPage() {
               style={{
                 border: tier.highlight
                   ? '2px solid var(--accent, #c8943e)'
-                  : '1px solid var(--muted, #333)',
+                  : '1px solid var(--border)',
                 padding: '2rem',
                 position: 'relative',
                 display: 'flex',
@@ -626,7 +810,7 @@ export default function DirectoryPage() {
                 style={{
                   fontSize: '2rem',
                   fontWeight: 700,
-                  color: 'var(--fg, #f5f0eb)',
+                  color: 'var(--text)',
                   margin: '0 0 1.5rem',
                   lineHeight: 1.1,
                 }}
@@ -639,12 +823,12 @@ export default function DirectoryPage() {
                     key={f}
                     style={{
                       fontSize: '0.8rem',
-                      color: 'var(--fg, #f5f0eb)',
+                      color: 'var(--text)',
                       opacity: 0.7,
                       lineHeight: 1.5,
                       padding: '0.3rem 0',
                       paddingLeft: '1.25rem',
-                      borderBottom: '1px solid rgba(255,255,255,0.05)',
+                      borderBottom: '1px solid var(--border-subtle)',
                       position: 'relative',
                     }}
                   >
@@ -688,7 +872,7 @@ export default function DirectoryPage() {
       {/* Plug In Your Tools */}
       <section
         style={{
-          borderTop: '1px solid var(--muted, #333)',
+          borderTop: '1px solid var(--border)',
           padding: '4rem 1.5rem',
           maxWidth: 1000,
           margin: '0 auto',
@@ -709,7 +893,7 @@ export default function DirectoryPage() {
           style={{
             fontSize: '1.25rem',
             fontWeight: 700,
-            color: 'var(--fg, #f5f0eb)',
+            color: 'var(--text)',
             marginBottom: '0.5rem',
           }}
         >
@@ -718,7 +902,7 @@ export default function DirectoryPage() {
         <p
           style={{
             fontSize: '0.95rem',
-            color: 'var(--fg, #f5f0eb)',
+            color: 'var(--text)',
             opacity: 0.6,
             lineHeight: 1.7,
             maxWidth: 560,
@@ -747,7 +931,7 @@ export default function DirectoryPage() {
             <div
               key={tool.name}
               style={{
-                border: '1px solid var(--muted, #333)',
+                border: '1px solid var(--border)',
                 padding: '1.25rem 1.5rem',
               }}
             >
@@ -755,7 +939,7 @@ export default function DirectoryPage() {
                 style={{
                   fontSize: '0.85rem',
                   fontWeight: 700,
-                  color: 'var(--fg, #f5f0eb)',
+                  color: 'var(--text)',
                   margin: '0 0 0.2rem',
                   lineHeight: 1.3,
                 }}
@@ -782,7 +966,7 @@ export default function DirectoryPage() {
       {/* CTA */}
       <section
         style={{
-          borderTop: '1px solid var(--muted, #333)',
+          borderTop: '1px solid var(--border)',
           padding: '5rem 1.5rem',
           textAlign: 'center',
           maxWidth: 600,
@@ -793,7 +977,7 @@ export default function DirectoryPage() {
           style={{
             fontSize: '2rem',
             fontWeight: 700,
-            color: 'var(--fg, #f5f0eb)',
+            color: 'var(--text)',
             marginBottom: '1rem',
           }}
         >
@@ -802,7 +986,7 @@ export default function DirectoryPage() {
         <p
           style={{
             fontSize: '1rem',
-            color: 'var(--fg, #f5f0eb)',
+            color: 'var(--text)',
             opacity: 0.7,
             lineHeight: 1.6,
             marginBottom: '2rem',
@@ -847,7 +1031,7 @@ export default function DirectoryPage() {
           style={{
             marginTop: '1rem',
             fontSize: '0.8rem',
-            color: 'var(--fg, #f5f0eb)',
+            color: 'var(--text)',
             opacity: 0.4,
           }}
         >
@@ -857,7 +1041,7 @@ export default function DirectoryPage() {
           style={{
             marginTop: '2rem',
             fontSize: '0.7rem',
-            color: 'var(--fg, #f5f0eb)',
+            color: 'var(--text)',
             opacity: 0.25,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
