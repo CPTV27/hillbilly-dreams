@@ -1,5 +1,33 @@
 # Agent status
 
+## 2026-04-03 — QA complete, branch pushed, PR open
+
+### CI / deploy
+
+- **Branch:** `release/internal-ready-2026-04-04` (pushed to `origin`)
+- **PR:** https://github.com/CPTV27/hillbilly-dreams/pull/25 → merge to `main` for **Vercel production deploy** (per your workflow)
+- **GitHub** reported Dependabot vulnerabilities on the repo — separate from this release; triage in Security tab when you can.
+
+### Automated QA (this branch)
+
+| Step | Result |
+|------|--------|
+| `pnpm type-check` | Pass |
+| `pnpm lint` | Pass (warnings only: img hooks) |
+| `pnpm build` | Pass |
+| `pnpm test:smoke` | **5/5** — Touring, `/`, static roadmap, `/hillbilly/roadmap` redirect, `/directory` |
+
+Playwright now uses **port 3334** by default so smoke tests do not attach to another app on **:3000**.
+
+### Post-merge smoke (production)
+
+1. `https://<prod>/sandbox/roadmap.html`
+2. `https://hillbillydreamsinc.com/roadmap` (308 → static)
+3. `https://deepsouthdirectory.com/directory` (or your DSD host)
+4. `/admin/roadmap` after Google sign-in
+
+---
+
 ## 2026-04-03 — Pre–internal-users pass (roadmap asset + canonical copy + QA)
 
 ### What changed
