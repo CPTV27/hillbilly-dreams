@@ -1,5 +1,22 @@
 # Agent status
 
+## 2026-04-04 — Auth audit batch 2
+
+### What changed
+
+- **`/api/ops/chat`:** `GET ?view=admin` requires **`requireAdmin()`** (cross-user chat/activity no longer public).
+- **`/api/agent/context`**, **`/api/agent/action`:** **`requireAdmin()`** on GET and POST.
+- **`/api/ops/content`:** **`requireAdmin()`** on GET.
+- **`/api/publish`** (GET/POST), **`/api/publish/execute`:** **`requireAdmin()`**.
+- **`/api/publish/batch`:** **`CRON_SECRET`** bearer (prod) **or** **`requireAdmin()`** (matches other cron routes).
+- **`/api/media/generate`:** **`requireAdmin()`**; **`/api/marketing/poster`** uses in-process **`generateImage`** + GCS upload (no self-HTTP to media/generate).
+
+### Quality gate
+
+`pnpm type-check` · `pnpm lint` · `pnpm build` · `pnpm test:smoke`
+
+---
+
 ## 2026-04-04 — Docs alignment + ops/admin API guards
 
 ### What changed

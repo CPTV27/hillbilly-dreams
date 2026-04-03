@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { prisma } from '@bigmuddy/database';
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 
 // GET /api/agent/context — query context fragments
 // ?agent=delta-dawn  — filter by agent relevance (returns all if omitted)
@@ -11,6 +12,9 @@ import { NextRequest, NextResponse } from 'next/server';
 // &limit=20          — max results
 // &fresh=true        — exclude expired content
 export async function GET(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   const { searchParams } = req.nextUrl;
   const topic = searchParams.get('topic');
   const domain = searchParams.get('domain');
@@ -60,6 +64,9 @@ export async function GET(req: NextRequest) {
 
 // POST /api/agent/context — write a context fragment
 export async function POST(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   const body = await req.json();
   const { domain, topic, key, content, source, agentAuthor, validUntil, confidence } = body;
 

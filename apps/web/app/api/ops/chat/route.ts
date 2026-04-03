@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { prisma } from '@bigmuddy/database'
 import { auth } from '@/lib/auth'
-import { requireRoleResponse } from '@/lib/requireRole'
+import { requireAdmin } from '@/lib/admin-auth'
 import * as Sentry from '@sentry/nextjs'
 import { GoogleAuth } from 'google-auth-library'
 
@@ -529,14 +529,15 @@ The Big Muddy ecosystem operates across three points: Natchez, Mississippi — B
 // ─────────────────────────────────────────────────────────────
 
 export async function GET(req: Request) {
-    // Auth disabled — all callers pass
     const session = await auth()
 
     const url = new URL(req.url)
     const view = url.searchParams.get('view')
 
-    // Admin view: all chat activity across all users
+    // Admin view: all chat activity across all users (allowlisted admins only)
     if (view === 'admin') {
+        const denied = await requireAdmin()
+        if (denied) return denied
         const [recentChats, recentLogins, chatStats] = await Promise.all([
             prisma.chatMessage.findMany({
                 orderBy: { createdAt: 'desc' },

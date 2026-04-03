@@ -1,12 +1,11 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
-import { auth } from '@/lib/auth';
-import { requireRoleResponse } from '@/lib/requireRole';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function GET(req: Request) {
-    // Auth disabled — all callers pass
-    const session = await auth();
+    const denied = await requireAdmin();
+    if (denied) return denied;
 
     const { searchParams } = new URL(req.url);
     const slug = searchParams.get('slug');

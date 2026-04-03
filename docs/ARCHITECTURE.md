@@ -312,6 +312,7 @@ Note: API routes are excluded from the matcher but also have an early-return che
 - `requireAdmin()` -- checks for admin role before allowing access
 - `requireRole(role)` -- checks for specific role membership
 - Both were temporarily bypassed during a debugging period and have been re-enabled as of March 27, 2026
+- **`/api/agent/context`**, **`/api/agent/action`**, **`/api/publish`** (list/create/execute), **`/api/media/generate`**, and related marketing media routes are **admin-session** gated unless a route documents an alternate (e.g. **`CRON_SECRET`** on **`/api/publish/batch`** for schedulers).
 
 **Middleware auth flow:**
 - `getToken()` from `next-auth/jwt` (not `auth()` wrapper in some paths — legacy compatibility with earlier hosting; **production is Vercel**)

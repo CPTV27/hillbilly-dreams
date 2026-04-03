@@ -4,14 +4,14 @@ export const dynamic = 'force-dynamic';
 
 import { NextResponse } from 'next/server';
 import sharp from 'sharp';
-import { auth } from '@/lib/auth';
-import { requireRoleResponse } from '@/lib/requireRole';
 import { generateImage } from '@/lib/imagen';
 import { uploadToGCS } from '@/lib/gcs';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function POST(request: Request) {
   try {
-    // Auth disabled — all callers pass
+    const denied = await requireAdmin();
+    if (denied) return denied;
 
     const body = await request.json();
     const { prompt, album = 'generated', negativePrompt, aspectRatio = '16:9' } = body;
