@@ -24,21 +24,21 @@ test('Root — homepage loads without crash', async ({ page }) => {
   await expect(page.getByText('Application error')).not.toBeVisible();
 });
 
-test('Static roadmap — sandbox HTML serves', async ({ page }) => {
+test('Static roadmap stub — sandbox HTML serves', async ({ page }) => {
   const res = await page.goto('/sandbox/roadmap.html');
   expect(res?.ok()).toBeTruthy();
 
-  await expect(page.getByText(/Product roadmap|Internal only/i).first()).toBeVisible({
+  await expect(page.getByText(/Master roadmap|Internal only/i).first()).toBeVisible({
     timeout: 10_000,
   });
 });
 
-test('Hillbilly roadmap route — redirects to static file', async ({ page }) => {
+test('Hillbilly roadmap route — redirects to admin roadmap', async ({ page }) => {
   const res = await page.goto('/hillbilly/roadmap', { waitUntil: 'commit' });
-  expect(res?.status(), '308/307 to static').toBeLessThan(400);
+  expect(res?.status(), '308/307 to admin').toBeLessThan(400);
 
-  await page.waitForURL(/\/sandbox\/roadmap\.html/, { timeout: 15_000 });
-  await expect(page.getByText(/Product roadmap|Internal only/i).first()).toBeVisible();
+  await page.waitForURL(/\/admin\/roadmap/, { timeout: 15_000 });
+  await expect(page.getByText(/Sign in|Email|Google|Continue/i).first()).toBeVisible({ timeout: 15_000 });
 });
 
 test('Deep South Directory — splash loads', async ({ page }) => {
