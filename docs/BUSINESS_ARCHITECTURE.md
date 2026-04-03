@@ -83,7 +83,7 @@ Clients activate the modules they need. A music corridor needs all 9. A food cor
 ### Big Muddy (ACTIVE — flagship)
 
 **What:** Music-hospitality ecosystem, Natchez, Mississippi.
-**Domains:** bigmuddytouring.com, bigmuddymagazine.com, bigmuddyradio.com, bigmuddyentertainment.com, bigmuddyrecords.com
+**Domains:** bigmuddytouring.com, bigmuddymagazine.com, bigmuddyradio.com, bigmuddyentertainment.com, bigmuddyrecordlabel.com
 **Modules used:** All 9.
 **The business:** Booker and promoter of bands and venues in the Deep South.
 
@@ -206,7 +206,7 @@ HDI is becoming the data supply for the corridors it covers. That's the long-ter
 | bigmuddymagazine.com | Big Muddy | Readers, tourists | Editorial content |
 | bigmuddyradio.com | Big Muddy | Listeners | Streaming radio |
 | bigmuddyentertainment.com | Big Muddy | Industry, talent | Entertainment umbrella |
-| bigmuddyrecords.com | Big Muddy | Artists, music buyers | Record label + store |
+| bigmuddyrecordlabel.com | Big Muddy | Artists, music buyers | Record label + store |
 | bearsvillemediagroup.com | Bearsville | Hudson Valley audience | Northeast media imprint |
 | outsidereconomics.com | OE | Readers, thinkers | Economic philosophy publishing |
 | tuthilldesign.com | Tuthill | Design clients | Partner design studio |

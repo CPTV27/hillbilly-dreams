@@ -12,7 +12,7 @@
 | `/entertainment` | bigmuddyentertainment.com | NEEDS WORK | THIS WEEK | BuyCurious in ecosystem, "four divisions" meta, sleeper bus claim |
 | `/magazine` | bigmuddymagazine.com | PASS | BACKLOG | Missing MBT footer only |
 | `/radio` | bigmuddyradio.com | PASS | BACKLOG | Missing MBT footer only |
-| `/records` | bigmuddyrecords.com | REWRITE | NOW | Package pricing (Copy Reset flags), BuyCurious, missing footer, hardcoded hex |
+| `/records` | bigmuddyrecordlabel.com | REWRITE | NOW | Package pricing (Copy Reset flags), BuyCurious, missing footer, hardcoded hex |
 | `/directory` | deepsouthdirectory.com | NEEDS WORK | NOW | Claim ladder violations ($49/$99 not gated), SaaS jargon |
 | `/bearsville` | bearsvillemediagroup.com | PASS | BACKLOG | Footer says HDI instead of MBT |
 | `/measurably-better` | measurablybetter.life | NEEDS WORK | THIS WEEK | Missing MBT footer |
@@ -98,7 +98,7 @@ Uses `'Plus Jakarta Sans', system-ui` inline. QC rule: use `var(--font-body)` or
 **Voice:** Good. Fun, inviting.
 **Issue:** Missing MBT footer.
 
-### /records (bigmuddyrecords.com) — REWRITE
+### /records (bigmuddyrecordlabel.com) — REWRITE
 
 **Voice:** Good indie label tone.
 **Issues:**

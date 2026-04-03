@@ -62,7 +62,7 @@ hillbilly-dreams/
         (measurably-better)/ # Route group: measurablybetterthings.com
         (economics)/        # Route group: outsidereconomics.com
         (gallery)/          # Route group: buycurious.art
-        (records)/          # Route group: bigmuddyrecords.com
+        (records)/          # Route group: bigmuddyrecordlabel.com
         (hillbilly)/        # Route group: hillbillydreamsinc.com
         (entertainment)/    # Route group: bigmuddyentertainment.com
         (admin)/            # Internal admin UI
@@ -231,7 +231,7 @@ The `BMT_DOMAIN_ROUTES` array in `config/domain-routes.ts` maps hostnames to rou
 | `outsidereconomics` | `economics` | |
 | `buycurious` | `gallery` | |
 | `buycuriousart` | `gallery` | Alternate domain, same route group |
-| `bigmuddyrecord` | `records` | |
+| `bigmuddyrecordlabel` | `records` | |
 | `studiocvideo` / `studio-c` / `studioc.video` | `studio` | Three patterns, one group |
 | `tuthilldesign` | `tuthill` | |
 | `bigmuddyentertainment` | `entertainment` | |

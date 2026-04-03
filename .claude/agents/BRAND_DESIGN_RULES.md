@@ -105,7 +105,7 @@
 ### 4. Big Muddy Records
 
 **Theme class:** `.theme-records`
-**Domain:** bigmuddyrecords.net
+**Domain:** bigmuddyrecordlabel.com
 
 | Element | Rule |
 |---|---|

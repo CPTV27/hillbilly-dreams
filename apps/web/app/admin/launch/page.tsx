@@ -12,7 +12,7 @@ const LIVE_SITES = [
   { name: 'Big Muddy Touring', url: 'https://bigmuddytouring.com', desc: 'Main site — lodging, route, shows', status: 'live' },
   { name: 'Big Muddy Magazine', url: 'https://bigmuddymagazine.com', desc: 'City guides and features', status: 'live' },
   { name: 'Big Muddy Radio', url: 'https://bigmuddyradio.com', desc: '18 shows, web player, stream', status: 'live' },
-  { name: 'Big Muddy Records', url: 'https://bigmuddyrecords.com', desc: 'Record label', status: 'live' },
+  { name: 'Big Muddy Records', url: 'https://bigmuddyrecordlabel.com', desc: 'Record label', status: 'live' },
   { name: 'Big Muddy Entertainment', url: 'https://bigmuddyentertainment.com', desc: 'Shows and talent search', status: 'live' },
   { name: 'Deep South Directory', url: 'https://deepsouthdirectory.com', desc: 'Local business directory', status: 'live' },
   { name: 'Outsider Economics', url: 'https://outsidereconomics.com', desc: 'Economic philosophy', status: 'live' },

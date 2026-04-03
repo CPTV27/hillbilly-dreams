@@ -125,7 +125,7 @@ const PRODUCT_BRAND_MAP: Array<{
   },
   {
     brand: 'Big Muddy Records',
-    domain: 'bigmuddyrecords.com',
+    domain: 'bigmuddyrecordlabel.com',
     role: 'Label + artist roster (MelodyVault / talent DB)',
     dsdProduct: 'Corridor musicians roster surfaces on DSD; artist profiles',
     mediaStack: 'Releases feed radio + magazine + touring',

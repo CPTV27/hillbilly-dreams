@@ -17,7 +17,7 @@ export function getOrganizationSchema() {
             'https://bigmuddyradio.com',
             'https://outsidereconomics.com',
             'https://buycurious.art',
-            'https://bigmuddyrecords.com',
+            'https://bigmuddyrecordlabel.com',
             'https://deepsouthdirectory.com',
             'https://hillbillydreamsinc.com',
             'https://instagram.com/bigmuddytouring',
@@ -262,7 +262,7 @@ export function getMusicGroupSchema({
         recordLabel: {
             '@type': 'Organization',
             name: 'Big Muddy Records',
-            url: 'https://bigmuddyrecords.com',
+            url: 'https://bigmuddyrecordlabel.com',
         },
     };
 }

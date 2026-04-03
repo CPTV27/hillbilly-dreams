@@ -56,8 +56,8 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
   { pattern: 'buycurious', routeGroup: 'gallery' },
   { pattern: 'buycuriousart', routeGroup: 'gallery' },
   { pattern: 'venturegallery', routeGroup: 'gallery' },
-  // We own bigmuddyrecordlabel.com — NOT bigmuddyrecords.com or .net
-  { pattern: 'bigmuddyrecord', routeGroup: 'records' },
+  // Canonical records host: bigmuddyrecordlabel.com (we do not own bigmuddyrecords.com / bigmuddyrecord.com)
+  { pattern: 'bigmuddyrecordlabel', routeGroup: 'records' },
   { pattern: 'studiocvideo', routeGroup: 'studioc' },
   { pattern: 'studio-c', routeGroup: 'studioc' },
   { pattern: 'studioc.video', routeGroup: 'studioc' },
@@ -79,6 +79,7 @@ export const BMT_LOCAL_DOMAIN_ROUTES: DomainRoute[] = [
   },
   { pattern: 'bigmuddymagazine.local', routeGroup: 'magazine' },
   { pattern: 'bigmuddyradio.local', routeGroup: 'radio' },
+  { pattern: 'bigmuddyrecordlabel.local', routeGroup: 'records' },
   { pattern: 'deepsouthdirectory.local', routeGroup: 'directory' },
   // bigmuddymedia.local removed — domain not ours
   { pattern: 'outsidereconomics.local', routeGroup: 'economics' },

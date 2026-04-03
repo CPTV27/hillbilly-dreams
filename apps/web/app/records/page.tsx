@@ -721,7 +721,7 @@ export default function RecordsPage() {
           fits.
         </p>
         <a
-          href="mailto:music@bigmuddyrecords.com"
+          href="mailto:music@bigmuddyrecordlabel.com"
           style={{
             display: 'inline-block',
             padding: '0.75rem 2rem',
@@ -743,7 +743,7 @@ export default function RecordsPage() {
             opacity: 0.4,
           }}
         >
-          music@bigmuddyrecords.com
+          music@bigmuddyrecordlabel.com
         </p>
       </section>
     </main>

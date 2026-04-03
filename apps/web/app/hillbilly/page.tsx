@@ -50,7 +50,7 @@ const BRANDS = [
   },
   {
     name: 'Big Muddy Records',
-    url: 'https://bigmuddyrecords.com',
+    url: 'https://bigmuddyrecordlabel.com',
     what: 'Independent label. Artists own their masters.',
     image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
     imageAlt: 'Blues Room live session at The Big Muddy Inn',
