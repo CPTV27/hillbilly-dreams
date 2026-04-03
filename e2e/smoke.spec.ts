@@ -55,3 +55,17 @@ test('Admin deploys API — unauthenticated returns 401', async ({ request }) =>
   const body = await res.json().catch(() => ({}));
   expect(body).toMatchObject({ error: 'Not authenticated' });
 });
+
+// Optional: set E2E_SESSION_COOKIE to a valid `next-auth` session cookie from a manual login
+// (e.g. copy from browser DevTools → Application → Cookies). Skipped when unset.
+test('Admin deploys API — authenticated returns 200 when E2E_SESSION_COOKIE set', async ({
+  request,
+}) => {
+  const cookie = process.env.E2E_SESSION_COOKIE;
+  test.skip(!cookie, 'Set E2E_SESSION_COOKIE to a valid session cookie to run this check');
+
+  const res = await request.get('/api/admin/deploys', {
+    headers: { Cookie: cookie! },
+  });
+  expect(res.status()).toBe(200);
+});

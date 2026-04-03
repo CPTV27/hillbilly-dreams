@@ -1,5 +1,21 @@
 # Agent status
 
+## 2026-04-05 — Overnight queue sweep (security, logging, CI, docs)
+
+- **`lib/cron-or-admin.ts`:** shared with **`publish/batch`** and **`/api/metrics`** mutating methods.
+- **`/api/metrics`:** GET = **admin**; POST/PUT = **cron bearer or admin**; bulk upsert wrapped in **`$transaction`**.
+- **`/api/metrics/[key]`:** GET = **admin**; PUT = **cron or admin**.
+- **`lib/api-logger.ts`:** JSON-line logs; **`billing/webhook`**, **`webhooks/cloudbeds`**, **`directory`** error path migrated.
+- **CI:** **`SENTRY_AUTH_TOKEN`** available in **build** job (set repo secret for uploads).
+- **Docs:** [`.workflow/DECISIONS.md`](DECISIONS.md), refreshed [`.workflow/OVERNIGHT_TASKS.md`](OVERNIGHT_TASKS.md).
+- **E2E:** optional authenticated deploys test via **`E2E_SESSION_COOKIE`** ([`e2e/smoke.spec.ts`](../e2e/smoke.spec.ts)).
+
+### Quality gate
+
+`pnpm turbo typecheck lint --filter=@bigmuddy/web` · `pnpm test:smoke` (6 passed, 1 skipped)
+
+---
+
 ## 2026-04-04 — Cursor onboarding + queue
 
 - **New to Cursor?** Read [`.cursor/CURSOR_SETUP.md`](../.cursor/CURSOR_SETUP.md) (vs Claude Code, rules, git, quality gate).

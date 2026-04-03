@@ -50,6 +50,8 @@ jobs:
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       NEXT_PUBLIC_BRAND: touring
+      # Upload source maps to Sentry during `next build` (withSentryConfig in apps/web/next.config.mjs)
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 

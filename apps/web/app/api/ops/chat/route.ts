@@ -591,7 +591,7 @@ export async function GET(req: Request) {
 // ─────────────────────────────────────────────────────────────
 
 export async function POST(req: Request) {
-    // Auth disabled — all callers pass
+    // Session optional (anonymous allowed). See `.workflow/DECISIONS.md`.
     const session = await auth()
 
     const { message, sessionId = 'default' } = await req.json()

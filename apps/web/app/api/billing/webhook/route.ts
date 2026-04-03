@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { apiLog } from '@/lib/api-logger';
 
 // Map Stripe unit_amount (cents) → tier name.
 // The subscribe route creates inline prices with these amounts,
@@ -32,7 +33,7 @@ function tierFromSubscription(sub: {
 export async function POST(request: NextRequest) {
   const stripeSecret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!stripeSecret) {
-    console.warn('[Stripe Webhook] STRIPE_WEBHOOK_SECRET not configured');
+    apiLog.warn('stripe/billing-webhook', 'STRIPE_WEBHOOK_SECRET not configured');
     return NextResponse.json({ error: 'Webhook not configured' }, { status: 503 });
   }
 
@@ -59,7 +60,7 @@ export async function POST(request: NextRequest) {
     event = stripe.webhooks.constructEvent(body, signature, stripeSecret) as typeof event;
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    console.error('[Stripe Webhook] Signature verification failed:', message);
+    apiLog.error('stripe/billing-webhook', 'signature verification failed', err, { message });
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
   }
 
@@ -81,7 +82,7 @@ export async function POST(request: NextRequest) {
           : null;
 
         if (!clientId) {
-          console.warn('[Stripe Webhook] checkout.session.completed missing clientId metadata');
+          apiLog.warn('stripe/billing-webhook', 'checkout.session.completed missing clientId metadata');
           break;
         }
 
@@ -131,7 +132,7 @@ export async function POST(request: NextRequest) {
           },
         });
 
-        console.log(`[Stripe Webhook] checkout.session.completed — client ${clientId} → tier "${tier}"`);
+        apiLog.info('stripe/billing-webhook', 'checkout.session.completed', { clientId, tier });
         break;
       }
 
@@ -186,7 +187,7 @@ export async function POST(request: NextRequest) {
           }
         }
 
-        console.log(`[Stripe Webhook] invoice.paid — ${invoice.id}`);
+        apiLog.info('stripe/billing-webhook', 'invoice.paid', { invoiceId: invoice.id });
         break;
       }
 
@@ -209,13 +210,15 @@ export async function POST(request: NextRequest) {
             where: { stripeCustomerId: invoice.customer },
             data: { status: 'paused' },
           });
-          console.warn(
-            `[Stripe Webhook] invoice.payment_failed — ${invoice.id} (attempt ${invoice.attempt_count}, client paused)`
-          );
+          apiLog.warn('stripe/billing-webhook', 'invoice.payment_failed — client paused', {
+            invoiceId: invoice.id,
+            attempt: invoice.attempt_count,
+          });
         } else {
-          console.warn(
-            `[Stripe Webhook] invoice.payment_failed — ${invoice.id} (attempt ${invoice.attempt_count ?? 1})`
-          );
+          apiLog.warn('stripe/billing-webhook', 'invoice.payment_failed', {
+            invoiceId: invoice.id,
+            attempt: invoice.attempt_count ?? 1,
+          });
         }
         break;
       }
@@ -236,17 +239,18 @@ export async function POST(request: NextRequest) {
             where: { stripeCustomerId: sub.customer },
             data: { tier: newTier, status: 'active' },
           });
-          console.log(
-            `[Stripe Webhook] customer.subscription.updated — customer ${sub.customer} → tier "${newTier}"`
-          );
+          apiLog.info('stripe/billing-webhook', 'customer.subscription.updated', {
+            customer: sub.customer,
+            tier: newTier,
+          });
         } else if (sub.status === 'past_due') {
           await (prisma as any).client.updateMany({
             where: { stripeCustomerId: sub.customer },
             data: { status: 'paused' },
           });
-          console.warn(
-            `[Stripe Webhook] customer.subscription.updated — customer ${sub.customer} past_due, paused`
-          );
+          apiLog.warn('stripe/billing-webhook', 'customer.subscription.updated past_due', {
+            customer: sub.customer,
+          });
         }
         break;
       }
@@ -260,19 +264,19 @@ export async function POST(request: NextRequest) {
           data: { tier: 'front-porch', status: 'churned' },
         });
 
-        console.log(
-          `[Stripe Webhook] customer.subscription.deleted — customer ${sub.customer} → churned / front-porch`
-        );
+        apiLog.info('stripe/billing-webhook', 'customer.subscription.deleted', {
+          customer: sub.customer,
+        });
         break;
       }
 
       default:
-        console.log(`[Stripe Webhook] Unhandled event type: ${event.type}`);
+        apiLog.info('stripe/billing-webhook', 'unhandled event', { type: event.type });
     }
 
     return NextResponse.json({ received: true });
   } catch (err) {
-    console.error('[Stripe Webhook] Processing error:', err);
+    apiLog.error('stripe/billing-webhook', 'processing error', err);
     return NextResponse.json({ error: 'Webhook processing failed' }, { status: 500 });
   }
 }

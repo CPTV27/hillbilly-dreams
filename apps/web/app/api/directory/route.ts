@@ -11,6 +11,7 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { apiLog } from '@/lib/api-logger';
 
 interface RawClient {
   id: number;
@@ -88,7 +89,7 @@ export async function GET(request: NextRequest) {
     ) {
       return NextResponse.json({ data: [], _source: 'no-db' });
     }
-    console.error('[GET /api/directory]', e);
+    apiLog.error('GET /api/directory', 'query failed', e);
     return NextResponse.json({ error: 'Failed to load directory.' }, { status: 500 });
   }
 }

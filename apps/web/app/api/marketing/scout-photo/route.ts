@@ -14,7 +14,8 @@ function model() { if (!_model) _model = getGeminiModel(); return _model; }
  *
  * Body: { imageBase64: string, city?: string, lat?: number, lng?: number }
  *
- * No auth required — demo tool for field use.
+ * No auth required — demo tool for field use. Product decision: see `.workflow/DECISIONS.md`
+ * (optional rate limit / token later if Vertex cost spikes).
  */
 export async function POST(req: NextRequest) {
   const { imageBase64, city, lat, lng } = await req.json();

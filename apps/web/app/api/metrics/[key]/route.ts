@@ -1,15 +1,18 @@
 export const dynamic = 'force-dynamic';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
+import { requireAdmin } from '@/lib/admin-auth';
+import { requireCronOrAdmin } from '@/lib/cron-or-admin';
+import { apiLog } from '@/lib/api-logger';
 
-// PUT /api/metrics/[key]
-// Update or create a single metric by its key string (e.g., "newsletter_subscribers").
-// This is the primary endpoint for manual updates from the HQ dashboard.
-// Body: { value, target?, label?, unit?, source? }
+// PUT /api/metrics/[key] — admin or cron bearer (same policy as bulk POST).
 export async function PUT(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { key: string } }
 ) {
+  const denied = await requireCronOrAdmin(request);
+  if (denied) return denied;
+
   try {
     const { key } = params;
     if (!key) {
@@ -48,17 +51,19 @@ export async function PUT(
 
     return NextResponse.json(metric);
   } catch (error) {
-    console.error('[API Error] PUT /api/metrics/[key]', error);
+    apiLog.error('PUT /api/metrics/[key]', 'handler failed', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
-// GET /api/metrics/[key]
-// Fetch a single metric by key.
+// GET /api/metrics/[key] — admin only
 export async function GET(
-  _request: Request,
+  _request: NextRequest,
   { params }: { params: { key: string } }
 ) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     const { key } = params;
     if (!key) {
@@ -75,7 +80,7 @@ export async function GET(
 
     return NextResponse.json(metric);
   } catch (error) {
-    console.error('[API Error] GET /api/metrics/[key]', error);
+    apiLog.error('GET /api/metrics/[key]', 'handler failed', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

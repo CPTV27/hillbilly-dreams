@@ -8,6 +8,7 @@ export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
 import { prisma } from '@/lib/db';
+import { apiLog } from '@/lib/api-logger';
 
 // ── Webhook Event Types ──
 
@@ -55,7 +56,7 @@ export async function POST(request: Request) {
       || request.headers.get('x-webhook-signature');
 
     if (!verifyWebhookSignature(rawBody, signature, secret)) {
-      console.warn('[webhook/cloudbeds] Invalid signature');
+      apiLog.warn('webhook/cloudbeds', 'invalid signature');
       return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
     }
   }
@@ -68,7 +69,7 @@ export async function POST(request: Request) {
   }
 
   const { event, reservationID } = payload;
-  console.log(`[webhook/cloudbeds] ${event} — reservation: ${reservationID || 'n/a'}`);
+  apiLog.info('webhook/cloudbeds', 'event received', { event, reservationId: reservationID ?? 'n/a' });
 
   try {
 
@@ -82,7 +83,7 @@ export async function POST(request: Request) {
             message: `New reservation ${reservationID} — Cloudbeds booking received`,
           },
         }).catch(() => {
-          console.log(`[webhook/cloudbeds] opsActivity write skipped`);
+          apiLog.info('webhook/cloudbeds', 'opsActivity write skipped');
         });
 
         // 2. Queue occupancy metric recalculation
@@ -91,7 +92,7 @@ export async function POST(request: Request) {
         // 3. TODO: Trigger welcome email sequence via gmail-service
         // 4. TODO: Check occupancy threshold for dynamic pricing trigger
 
-        console.log(`[webhook/cloudbeds] New booking processed: ${reservationID}`);
+        apiLog.info('webhook/cloudbeds', 'new booking processed', { reservationId: reservationID });
         break;
       }
 
@@ -105,7 +106,7 @@ export async function POST(request: Request) {
             message: `Reservation ${reservationID} → ${newStatus}`,
           },
         }).catch(() => {
-          console.log(`[webhook/cloudbeds] opsActivity write skipped`);
+          apiLog.info('webhook/cloudbeds', 'opsActivity write skipped');
         });
 
         // Cancellations and check-outs may open rooms → recalc pricing
@@ -113,37 +114,37 @@ export async function POST(request: Request) {
           await upsertMetricFlag(prisma, 'inn_metrics_stale', 1);
         }
 
-        console.log(`[webhook/cloudbeds] Status change: ${reservationID} → ${newStatus}`);
+        apiLog.info('webhook/cloudbeds', 'status change', { reservationId: reservationID, newStatus });
         break;
       }
 
       // ── Date Change ──
       case 'reservation/dates_changed': {
         await upsertMetricFlag(prisma, 'inn_metrics_stale', 1);
-        console.log(`[webhook/cloudbeds] Dates changed: ${reservationID}`);
+        apiLog.info('webhook/cloudbeds', 'dates changed', { reservationId: reservationID });
         break;
       }
 
       // ── Room Reassignment ──
       case 'reservation/accommodation_changed': {
-        console.log(`[webhook/cloudbeds] Room reassignment: ${reservationID}`);
+        apiLog.info('webhook/cloudbeds', 'room reassignment', { reservationId: reservationID });
         break;
       }
 
       // ── Deletion ──
       case 'reservation/deleted': {
         await upsertMetricFlag(prisma, 'inn_metrics_stale', 1);
-        console.log(`[webhook/cloudbeds] Reservation deleted: ${reservationID}`);
+        apiLog.info('webhook/cloudbeds', 'reservation deleted', { reservationId: reservationID });
         break;
       }
 
       default:
-        console.log(`[webhook/cloudbeds] Unhandled event: ${event}`);
+        apiLog.info('webhook/cloudbeds', 'unhandled event', { event });
     }
 
     return NextResponse.json({ received: true, event });
   } catch (error) {
-    console.error('[webhook/cloudbeds] Processing error:', error);
+    apiLog.error('webhook/cloudbeds', 'processing error', error);
     // Always return 200 to prevent Cloudbeds from retrying
     return NextResponse.json({ received: true, error: 'Processing failed' });
   }
@@ -159,6 +160,6 @@ async function upsertMetricFlag(prisma: any, key: string, value: number) {
       create: { key, value, source: 'cloudbeds', label: key },
     });
   } catch {
-    console.log(`[webhook/cloudbeds] Could not upsert metric: ${key}`);
+    apiLog.info('webhook/cloudbeds', 'could not upsert metric', { key });
   }
 }

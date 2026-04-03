@@ -1,16 +1,21 @@
 export const dynamic = 'force-dynamic';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { requireAdmin } from '@/lib/admin-auth';
+import { requireCronOrAdmin } from '@/lib/cron-or-admin';
+import { apiLog } from '@/lib/api-logger';
 
 // GET /api/metrics
-// Returns all metrics as a keyed object: { newsletter_subscribers: { value, target, label, ... }, ... }
+// Returns all metrics as a keyed object — admin session only (HQ dashboard).
 export async function GET() {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     const metrics = await prisma.metric.findMany({
       orderBy: { key: 'asc' },
     });
 
-    // Transform array to a keyed object for easy dashboard consumption
     const keyed: Record<string, (typeof metrics)[number]> = {};
     for (const metric of metrics) {
       keyed[metric.key] = metric;
@@ -20,28 +25,29 @@ export async function GET() {
       headers: { 'Cache-Control': 'private, s-maxage=10, stale-while-revalidate=30' },
     });
   } catch (error) {
-    console.error('[API Error] GET /api/metrics', error);
+    apiLog.error('GET /api/metrics', 'handler failed', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 // POST /api/metrics (also aliased as PUT for compatibility)
-// Bulk upsert metrics — used by integration sync jobs (Beehiiv, CloudBeds, Spotify).
-// Body: Array of metric objects or keyed object.
-// Example: [{ key: "newsletter_subscribers", value: 1234, source: "beehiiv" }, ...]
-export async function POST(request: Request) {
+// Bulk upsert — schedulers may use Bearer CRON_SECRET; otherwise admin session.
+export async function POST(request: NextRequest) {
+  const denied = await requireCronOrAdmin(request);
+  if (denied) return denied;
   return upsertMetrics(request);
 }
 
-export async function PUT(request: Request) {
+export async function PUT(request: NextRequest) {
+  const denied = await requireCronOrAdmin(request);
+  if (denied) return denied;
   return upsertMetrics(request);
 }
 
-async function upsertMetrics(request: Request) {
+async function upsertMetrics(request: NextRequest) {
   try {
     const body = await request.json();
 
-    // Accept either an array or a keyed object
     const metricsArray: Array<{
       key: string;
       value: number;
@@ -58,7 +64,6 @@ async function upsertMetrics(request: Request) {
       );
     }
 
-    // Validate all entries have key and value
     for (const m of metricsArray) {
       if (!m.key || m.value === undefined || m.value === null) {
         return NextResponse.json(
@@ -68,11 +73,10 @@ async function upsertMetrics(request: Request) {
       }
     }
 
-    // Upsert each metric — create if missing, update if exists
-    // Also insert a MetricSnapshot row for time-series history
-    const results = await Promise.all(
-      metricsArray.map(async (m) => {
-        const metric = await prisma.metric.upsert({
+    const results = await prisma.$transaction(async (tx) => {
+      const out: Awaited<ReturnType<typeof prisma.metric.upsert>>[] = [];
+      for (const m of metricsArray) {
+        const metric = await tx.metric.upsert({
           where: { key: m.key },
           update: {
             value: m.value,
@@ -90,19 +94,17 @@ async function upsertMetrics(request: Request) {
             source: m.source ?? null,
           },
         });
-
-        // Append to time-series ledger (never overwritten)
-        await prisma.metricSnapshot.create({
+        await tx.metricSnapshot.create({
           data: {
             metricKey: m.key,
             value: m.value,
             source: m.source ?? null,
           },
         });
-
-        return metric;
-      })
-    );
+        out.push(metric);
+      }
+      return out;
+    });
 
     return NextResponse.json({
       success: true,
@@ -110,7 +112,7 @@ async function upsertMetrics(request: Request) {
       metrics: results,
     });
   } catch (error) {
-    console.error('[API Error] PUT /api/metrics', error);
+    apiLog.error('POST/PUT /api/metrics', 'upsert failed', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

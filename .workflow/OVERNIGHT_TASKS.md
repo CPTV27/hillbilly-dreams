@@ -1,6 +1,6 @@
 # Outstanding work queue (master list)
 
-**Last updated:** 2026-04-04. **Purpose:** Single checklist for Cursor / agents / Chase. Tick items in GitHub PRs or here as you go.
+**Last updated:** 2026-04-05. **Purpose:** Single checklist for Cursor / agents / Chase.
 
 **Cursor setup:** see [`.cursor/CURSOR_SETUP.md`](../.cursor/CURSOR_SETUP.md).
 
@@ -11,73 +11,70 @@
 - [x] Docs alignment PR (`chore/docs-alignment-and-api-guards`) merged to `main`.
 - [x] Auth audit batch 2 (agent/publish/media/ops admin view, etc.) on `main`.
 - [x] Playwright smoke: `GET /api/admin/deploys` → **401** without session ([`e2e/smoke.spec.ts`](../e2e/smoke.spec.ts)).
+- [x] **A.** Feature branch **`integrate/elegant-volhard-2026-04-04`** merged to **`main`** (PR #26).
+- [x] **Auth batch 3 (partial):** `/api/metrics` **GET** requires **admin**; **POST/PUT** and **`/api/metrics/[key]` PUT** require **`requireCronOrAdmin`**. **`publish/batch`** uses shared **`lib/cron-or-admin.ts`**.
+- [x] **Structured logging:** `lib/api-logger.ts`; **billing** + **Cloudbeds** webhooks migrated off raw `console.*` (pattern for remaining routes).
+- [x] **Metrics bulk upsert:** **`$transaction`** for metric + snapshot writes.
+- [x] **CI:** **`SENTRY_AUTH_TOKEN`** passed into **build** job env (set secret in GitHub for uploads).
+- [x] **`.gitignore`:** `.playwright-mcp/`.
+- [x] **Decisions / tier reconciliation:** [`.workflow/DECISIONS.md`](DECISIONS.md).
 
 ---
 
-## A. Ship feature branch: `integrate/elegant-volhard-2026-04-04`
+## A. Post-merge ops (Chase / Vercel)
 
-**Status:** Branch exists on `origin`; **not** merged to `main` (admin reviews + monthly PDF + cron). Latest `main` has been **merged into** this branch (conflict in `ops/reviews/draft` resolved: **`requireAdmin` + `callAI`**).
-
-- [x] Keep branch current with `main` (merged & pushed 2026-04-04).
-- [ ] Open PR **integrate/elegant-volhard-2026-04-04 → main** and code review (or merge if PR already exists).
 - [ ] Confirm **Vercel** env: **`CRON_SECRET`**, cron schedule for `/api/cron/monthly-reports` if desired.
-- [ ] Merge after `pnpm type-check`, `pnpm lint`, `pnpm build`, `pnpm test:smoke`.
-- [ ] Post-merge smoke: signed-in **Admin → Deploys**, **Amy**, any new **admin/reviews** UI.
+- [ ] Production smoke: signed-in **Admin → Deploys**, **Amy**, **admin/reviews** as needed.
 
 ---
 
 ## B. Heuristic worktree — product catalog (Prisma)
 
-- [ ] Copy **schema + seed** from `.claude/worktrees/heuristic-volhard` onto a **new branch from `main`** (no wholesale merge of dirty worktree).
-- [ ] **CC:** migration / `db:generate` policy; no prod `db push` without approval.
-- [ ] Align tiers with **Free / Core / Growth / Partner** and `docs/DSD_MARKETING_COPY.md`.
-- [ ] Delete/ignore `.playwright-mcp` junk in worktree; remove worktrees when done.
+- [ ] Copy **schema + seed** from `.claude/worktrees/heuristic-volhard` onto a **new branch from `main`** when that worktree exists on a dev machine (not shipped in this repo).
+- [ ] **Migration / `db:generate`:** CC/Chase process; no prod `db push` without approval.
 
 ---
 
-## C. Observability
+## C. Observability (remaining)
 
-- [ ] **Sentry source maps:** GitHub Action secret **`SENTRY_AUTH_TOKEN`** + upload step, **or** Vercel Sentry integration ([`.workflow/STATUS.md`](STATUS.md) note).
-- [ ] Follow Sentry Next.js guidance: **instrumentation** file vs legacy `sentry.server.config.ts` warnings in build logs.
+- [ ] Add **`SENTRY_AUTH_TOKEN`** in **GitHub → Settings → Secrets** (if not already) so CI uploads succeed.
+- [ ] Verify Sentry shows symbolicated frames for a thrown error after deploy.
 
 ---
 
 ## D. Security / API (remaining)
 
-- [ ] **Auth audit batch 3:** grep `apps/web/app/api` for routes missing `requireAdmin` / `auth` / `CRON_SECRET` / webhook HMAC.
-- [ ] **Product:** `marketing/scout-photo` — keep public demo vs add token/auth.
-- [ ] **Product:** `ops/chat` **POST** — keep anonymous vs require session/admin (Vertex cost).
-- [ ] **Ops:** Any caller of **`POST /api/publish/batch`** must send **`Authorization: Bearer ${CRON_SECRET}`** in production.
-- [ ] Replace **`console.log`** in API routes with structured logging (webhooks/cron first).
+- [ ] Extend **`apiLog`** to remaining API routes (grep `console.` under `app/api`).
+- [ ] **`marketing/scout-photo`:** Optional rate limit / auth if Vertex spend spikes (see DECISIONS).
+- [ ] **`ops/chat` POST:** Optional auth gate (see DECISIONS).
 
 ---
 
 ## E. Dependabot / supply chain
 
 - [ ] GitHub **Security → Dependabot** — triage **critical/high** in small PRs with CI.
-- [ ] Document deferred risks in `.workflow/DECISIONS.md` if you add that pattern.
+- [ ] Record **deferred** CVEs in [`.workflow/DECISIONS.md`](DECISIONS.md) when skipping.
 
 ---
 
 ## F. Database & architecture debt
 
-- [ ] **Prisma:** baseline **`prisma migrate`** (CC-owned process); see `docs/ARCHITECTURE.md` §5.6.
-- [ ] **`$transaction`** on multi-write routes.
-- [ ] **N+1** on hot list endpoints.
+- [ ] **Prisma:** baseline **`prisma migrate`** (Chase/CC); see `docs/ARCHITECTURE.md` §5.6.
+- [ ] **`$transaction`** on other multi-write routes (search `Promise.all` + multiple `prisma.` writes).
+- [ ] **N+1** on hot list endpoints (profile with Prisma query logging in staging).
 - [ ] **`tokens.css`** modularization (phased, heavy QA).
 
 ---
 
 ## G. Product / copy
 
-- [ ] Reconcile tier + pricing language across `BUSINESS_ARCHITECTURE`, directory, `DSD_MARKETING_COPY`, `CLAUDE.md`.
-- [ ] Decide **legacy billing / claim routes** vs current tier model (or mark internal-only).
+- [ ] **Legacy billing / `directory/claim`:** Mark internal-only or align with current tier model when retail checkout is live.
 
 ---
 
 ## H. Testing (optional)
 
-- [ ] Playwright **authenticated** path: **200** on `/api/admin/deploys` with session (needs test user or preview env).
+- [ ] Run Playwright **authenticated** test: set **`E2E_SESSION_COOKIE`** and run `pnpm test:smoke` (see `e2e/smoke.spec.ts`).
 
 ---
 
