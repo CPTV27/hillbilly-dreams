@@ -1,24 +1,88 @@
 // apps/web/app/hillbilly/page.tsx
-// Hillbilly Dreams Inc. — the holding company page
+// Hillbilly Dreams Inc. — holding company portfolio
 // hillbillydreamsinc.com
-// Tone: honest, direct, a little weird. The real story.
+// Light, editorial portfolio — distinct from consumer brand dark themes.
 
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Hillbilly Dreams Inc.',
-  description: 'A media-hospitality company anchored in Natchez, Mississippi. We run the shows, the inn, the magazine, the radio, the records, and the directory. All of it feeds all of it.',
+  description:
+    'A media-hospitality company anchored in Natchez, Mississippi. We run the shows, the inn, the magazine, the radio, the records, and the directory. All of it feeds all of it.',
+};
+
+/** Portfolio palette — scoped to this page (not global theme tokens). */
+const c = {
+  paper: '#faf7f2',
+  paperWarm: '#f3ece4',
+  surface: '#ffffff',
+  ink: '#1a1814',
+  inkMuted: '#5c5348',
+  inkSoft: '#8a8174',
+  border: 'rgba(26, 24, 20, 0.1)',
+  accent: '#8b6914',
+  accentHover: '#6d5210',
+  shadow: '0 1px 2px rgba(26, 24, 20, 0.06), 0 8px 24px rgba(26, 24, 20, 0.06)',
 };
 
 const BRANDS = [
-  { name: 'Big Muddy Touring', url: 'https://bigmuddytouring.com', what: 'The route, the inn, the shows. Thirteen cities between New Orleans and Memphis.' },
-  { name: 'Big Muddy Magazine', url: 'https://bigmuddymagazine.com', what: 'City guides, interviews, photo essays from the corridor.' },
-  { name: 'Big Muddy Radio', url: 'https://bigmuddyradio.com', what: 'Curated playlists, live sessions, the American Parlor Songbook.' },
-  { name: 'Big Muddy Records', url: 'https://bigmuddyrecords.com', what: 'Independent label. Artists own their masters.' },
-  { name: 'Big Muddy Entertainment', url: 'https://bigmuddyentertainment.com', what: 'Booking, production, talent search along the corridor.' },
-  { name: 'Deep South Directory', url: 'https://deepsouthdirectory.com', what: 'Local business marketing. The engine that pays for everything else.' },
-  { name: 'Outsider Economics', url: 'https://outsidereconomics.com', what: 'The field manual. Why small towns work and how to prove it.' },
-  { name: 'Venture Gallery', url: 'https://venturegallery.art', what: 'Art from corridor artists. Photography, prints, limited editions.' },
+  {
+    name: 'Big Muddy Touring',
+    url: 'https://bigmuddytouring.com',
+    what: 'The route, the inn, the shows. Thirteen cities between New Orleans and Memphis.',
+    image: '/images/processed/big-muddy/sprinter-van-concept.webp',
+    imageAlt: 'Tour corridor — Sprinter on the road',
+  },
+  {
+    name: 'Big Muddy Magazine',
+    url: 'https://bigmuddymagazine.com',
+    what: 'City guides, interviews, photo essays from the corridor.',
+    image: '/images/processed/big-muddy/natchez-brick-street-live-oaks.webp',
+    imageAlt: 'Natchez brick street and live oaks',
+  },
+  {
+    name: 'Big Muddy Radio',
+    url: 'https://bigmuddyradio.com',
+    what: 'Curated playlists, live sessions, the American Parlor Songbook.',
+    image: '/images/processed/bearsville/theater-show-01.webp',
+    imageAlt: 'Live performance under stage lights',
+  },
+  {
+    name: 'Big Muddy Records',
+    url: 'https://bigmuddyrecords.com',
+    what: 'Independent label. Artists own their masters.',
+    image: '/images/inn/blues-room-stage.webp',
+    imageAlt: 'Blues Room stage at The Big Muddy Inn',
+  },
+  {
+    name: 'Big Muddy Entertainment',
+    url: 'https://bigmuddyentertainment.com',
+    what: 'Booking, production, talent search along the corridor.',
+    image: '/images/processed/arrie-aslin-inn-portrait.webp',
+    imageAlt: 'Performance in the Inn parlor',
+  },
+  {
+    name: 'Deep South Directory',
+    url: 'https://deepsouthdirectory.com',
+    what: 'Local business marketing. The engine that pays for everything else.',
+    image: '/images/corridor/natchez-downtown-sidewalk.webp',
+    imageAlt: 'Main Street — Natchez sidewalk and storefronts',
+  },
+  {
+    name: 'Outsider Economics',
+    url: 'https://outsidereconomics.com',
+    what: 'The field manual. Why small towns work and how to prove it.',
+    image: '/images/corridor/cafe-sidewalk-natchez.webp',
+    imageAlt: 'Small-town street — cafe and sidewalk',
+  },
+  {
+    name: 'Venture Gallery',
+    url: 'https://venturegallery.art',
+    what: 'Art from corridor artists. Photography, prints, limited editions.',
+    image: '/images/gallery/clients/brittany/for03355.webp',
+    imageAlt: 'Corridor photography — gallery print',
+  },
 ];
 
 const TEAM = [
@@ -29,126 +93,147 @@ const TEAM = [
 
 export default function HillbillyDreamsPage() {
   return (
-    <main style={{
-      background: 'var(--bg, #0f0f0d)',
-      color: 'var(--fg, #f5f0eb)',
-      fontFamily: 'var(--font-body, system-ui, sans-serif)',
-      minHeight: '100vh',
-    }}>
+    <main
+      style={{
+        background: c.paper,
+        color: c.ink,
+        fontFamily: 'var(--font-body, system-ui, sans-serif)',
+        minHeight: '100vh',
+      }}
+    >
+      {/* Top rule — portfolio letterhead feel */}
+      <div
+        style={{
+          height: 3,
+          background: `linear-gradient(90deg, ${c.accent} 0%, ${c.accent} 120px, ${c.border} 120px, ${c.border} 100%)`,
+        }}
+      />
+
       {/* Hero */}
-      <section style={{
-        minHeight: '70vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        padding: '6rem 1.5rem 4rem',
-        maxWidth: 800,
-        margin: '0 auto',
-      }}>
-        <p style={{
-          fontSize: '0.75rem',
-          textTransform: 'uppercase',
-          letterSpacing: '0.15em',
-          color: 'var(--accent, #c8943e)',
-          marginBottom: '1.5rem',
-          fontWeight: 600,
-        }}>
-          Natchez, Mississippi
+      <section
+        style={{
+          padding: 'clamp(3rem, 8vw, 5.5rem) 1.5rem 3rem',
+          maxWidth: 820,
+          margin: '0 auto',
+        }}
+      >
+        <p
+          style={{
+            fontSize: '0.7rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.2em',
+            color: c.accent,
+            marginBottom: '1.25rem',
+            fontWeight: 600,
+          }}
+        >
+          Holding company · Natchez, Mississippi
         </p>
-        <h1 style={{
-          fontSize: 'clamp(2.5rem, 6vw, 4rem)',
-          fontWeight: 700,
-          fontFamily: 'var(--font-display, Georgia, serif)',
-          lineHeight: 1.1,
-          letterSpacing: '-0.03em',
-          margin: '0 0 2rem',
-        }}>
-          We built a media company<br />
+        <h1
+          style={{
+            fontSize: 'clamp(2.25rem, 5.5vw, 3.35rem)',
+            fontWeight: 700,
+            fontFamily: 'var(--font-display, Georgia, serif)',
+            lineHeight: 1.12,
+            letterSpacing: '-0.02em',
+            margin: '0 0 1.5rem',
+            color: c.ink,
+          }}
+        >
+          We built a media company
+          <br />
           in a town of 14,000 people.
         </h1>
-        <p style={{
-          fontSize: '1.15rem',
-          lineHeight: 1.7,
-          opacity: 0.7,
-          maxWidth: 640,
-        }}>
-          Hillbilly Dreams Inc. is a holding company that runs eight brands
-          from one building in Natchez, Mississippi. An inn, a record label,
-          a magazine, a radio station, a touring operation, a gallery, a
-          directory, and an economics publication. All of it feeds all of it.
-          The gap isn&apos;t technology — it&apos;s organization.
+        <p
+          style={{
+            fontSize: '1.125rem',
+            lineHeight: 1.75,
+            color: c.inkMuted,
+            maxWidth: 640,
+            margin: 0,
+          }}
+        >
+          Hillbilly Dreams Inc. runs eight brands from one building in Natchez — an inn, a record label,
+          a magazine, a radio station, a touring operation, a gallery, a directory, and an economics
+          publication. All of it feeds all of it. The gap isn&apos;t technology — it&apos;s organization.
         </p>
       </section>
 
-      {/* The Thesis */}
-      <section style={{
-        borderTop: '1px solid var(--border, rgba(255,255,255,0.08))',
-        padding: '4rem 1.5rem',
-        maxWidth: 700,
-        margin: '0 auto',
-      }}>
-        <h2 style={{
-          fontSize: '0.85rem',
-          textTransform: 'uppercase',
-          letterSpacing: '0.12em',
-          color: 'var(--accent, #c8943e)',
-          marginBottom: '1.5rem',
-        }}>
-          The Thesis
-        </h2>
-        <div style={{ lineHeight: 1.8, opacity: 0.75, fontSize: '1rem' }}>
-          <p>
-            The Mississippi corridor between Memphis and New Orleans produced
-            more American music per mile than anywhere on earth. The same towns
-            that gave us blues, jazz, gospel, and rock and roll are still there.
-            The talent is still there. The culture is still there.
-          </p>
-          <p style={{ marginTop: '1.25rem' }}>
-            What&apos;s missing is coordination. A photographer, a radio station,
-            a venue, a magazine, a record label, and a touring route — if they&apos;re
-            all in the same building, they stop being separate businesses and
-            start being an ecosystem. Every show feeds the magazine. Every
-            magazine feature feeds the radio. Every radio play feeds the record
-            label. Every record feeds the next show.
-          </p>
-          <p style={{ marginTop: '1.25rem' }}>
-            That&apos;s not a theory. That&apos;s what we&apos;re running right now.
-          </p>
+      {/* Thesis — band on warm paper */}
+      <section
+        style={{
+          background: c.paperWarm,
+          borderTop: `1px solid ${c.border}`,
+          borderBottom: `1px solid ${c.border}`,
+          padding: 'clamp(3rem, 6vw, 4.5rem) 1.5rem',
+        }}
+      >
+        <div style={{ maxWidth: 700, margin: '0 auto' }}>
+          <h2
+            style={{
+              fontSize: '0.7rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.18em',
+              color: c.accent,
+              marginBottom: '1.5rem',
+              fontWeight: 600,
+            }}
+          >
+            The thesis
+          </h2>
+          <div style={{ lineHeight: 1.85, fontSize: '1.02rem', color: c.inkMuted }}>
+            <p style={{ margin: 0 }}>
+              The Mississippi corridor between Memphis and New Orleans produced more American music per
+              mile than anywhere on earth. The same towns that gave us blues, jazz, gospel, and rock and
+              roll are still there. The talent is still there. The culture is still there.
+            </p>
+            <p style={{ margin: '1.35rem 0 0' }}>
+              What&apos;s missing is coordination. A photographer, a radio station, a venue, a magazine, a
+              record label, and a touring route — if they&apos;re all in the same building, they stop
+              being separate businesses and start being an ecosystem. Every show feeds the magazine. Every
+              magazine feature feeds the radio. Every radio play feeds the record label. Every record feeds
+              the next show.
+            </p>
+            <p style={{ margin: '1.35rem 0 0', color: c.ink, fontWeight: 500 }}>
+              That&apos;s not a theory. That&apos;s what we&apos;re running right now.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Photo break */}
-      <div style={{
-        width: '100%',
-        height: 300,
-        backgroundImage: 'url(/images/corridor/inn-hallway-gathering.webp)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        opacity: 0.75,
-      }} role="img" aria-label="Guests gathering at The Big Muddy Inn" />
-
-      {/* The Brands */}
-      <section style={{
-        borderTop: '1px solid var(--border, rgba(255,255,255,0.08))',
-        padding: '4rem 1.5rem',
-        maxWidth: 900,
-        margin: '0 auto',
-      }}>
-        <h2 style={{
-          fontSize: '0.85rem',
-          textTransform: 'uppercase',
-          letterSpacing: '0.12em',
-          color: 'var(--accent, #c8943e)',
-          marginBottom: '2rem',
-        }}>
-          Eight Brands. One Building.
+      {/* Brands — card grid */}
+      <section style={{ padding: 'clamp(3rem, 6vw, 5rem) 1.5rem', maxWidth: 1120, margin: '0 auto' }}>
+        <h2
+          style={{
+            fontSize: '0.7rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.18em',
+            color: c.accent,
+            marginBottom: '0.35rem',
+            fontWeight: 600,
+          }}
+        >
+          Portfolio
         </h2>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-          gap: '1px',
-          border: '1px solid var(--border, rgba(255,255,255,0.08))',
-        }}>
+        <p
+          style={{
+            fontFamily: 'var(--font-display, Georgia, serif)',
+            fontSize: 'clamp(1.5rem, 3vw, 1.85rem)',
+            fontWeight: 600,
+            color: c.ink,
+            margin: '0 0 2rem',
+            lineHeight: 1.3,
+          }}
+        >
+          Eight brands. One building.
+        </p>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gap: '1.25rem',
+          }}
+        >
           {BRANDS.map((brand) => (
             <a
               key={brand.name}
@@ -157,171 +242,215 @@ export default function HillbillyDreamsPage() {
               rel="noopener noreferrer"
               style={{
                 display: 'block',
-                padding: '1.5rem',
                 textDecoration: 'none',
-                background: 'var(--bg, #0f0f0d)',
-                borderBottom: '1px solid var(--border, rgba(255,255,255,0.08))',
+                color: 'inherit',
+                background: c.surface,
+                borderRadius: 12,
+                overflow: 'hidden',
+                border: `1px solid ${c.border}`,
+                boxShadow: c.shadow,
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
               }}
+              className="hdi-brand-card"
             >
-              <p style={{
-                fontSize: '0.95rem',
-                fontWeight: 700,
-                color: 'var(--accent, #c8943e)',
-                margin: '0 0 0.35rem',
-              }}>
-                {brand.name}
-              </p>
-              <p style={{
-                fontSize: '0.85rem',
-                color: 'var(--fg, #f5f0eb)',
-                opacity: 0.55,
-                lineHeight: 1.5,
-                margin: 0,
-              }}>
-                {brand.what}
-              </p>
+              <div style={{ position: 'relative', aspectRatio: '16 / 10', width: '100%' }}>
+                <Image
+                  src={brand.image}
+                  alt={brand.imageAlt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
+              <div style={{ padding: '1.25rem 1.35rem 1.4rem' }}>
+                <p
+                  style={{
+                    fontSize: '1rem',
+                    fontWeight: 700,
+                    color: c.accent,
+                    margin: '0 0 0.4rem',
+                    letterSpacing: '-0.01em',
+                  }}
+                >
+                  {brand.name}
+                  <span style={{ fontWeight: 400, color: c.inkSoft, fontSize: '0.85rem' }}> ↗</span>
+                </p>
+                <p
+                  style={{
+                    fontSize: '0.875rem',
+                    color: c.inkMuted,
+                    lineHeight: 1.55,
+                    margin: 0,
+                  }}
+                >
+                  {brand.what}
+                </p>
+              </div>
             </a>
           ))}
         </div>
       </section>
 
-      {/* The People */}
-      <section style={{
-        borderTop: '1px solid var(--border, rgba(255,255,255,0.08))',
-        padding: '4rem 1.5rem',
-        maxWidth: 700,
-        margin: '0 auto',
-      }}>
-        <h2 style={{
-          fontSize: '0.85rem',
-          textTransform: 'uppercase',
-          letterSpacing: '0.12em',
-          color: 'var(--accent, #c8943e)',
-          marginBottom: '2rem',
-        }}>
-          The People
-        </h2>
-        {TEAM.map((person, i) => (
-          <div key={person.name} style={{
-            padding: '1.25rem 0',
-            borderBottom: i < TEAM.length - 1 ? '1px solid var(--border, rgba(255,255,255,0.08))' : 'none',
-          }}>
-            <p style={{
-              fontSize: '1.1rem',
-              fontWeight: 700,
-              margin: '0 0 0.15rem',
-            }}>
-              {person.name}
-            </p>
-            <p style={{
-              fontSize: '0.85rem',
-              color: 'var(--accent, #c8943e)',
-              margin: '0 0 0.35rem',
-            }}>
-              {person.role}
-            </p>
-            <p style={{
-              fontSize: '0.85rem',
-              opacity: 0.5,
-              margin: 0,
-              lineHeight: 1.5,
-            }}>
-              {person.note}
-            </p>
-          </div>
-        ))}
+      {/* People */}
+      <section
+        style={{
+          background: c.paperWarm,
+          borderTop: `1px solid ${c.border}`,
+          padding: 'clamp(3rem, 6vw, 4.5rem) 1.5rem',
+        }}
+      >
+        <div style={{ maxWidth: 700, margin: '0 auto' }}>
+          <h2
+            style={{
+              fontSize: '0.7rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.18em',
+              color: c.accent,
+              marginBottom: '2rem',
+              fontWeight: 600,
+            }}
+          >
+            Leadership
+          </h2>
+          {TEAM.map((person, i) => (
+            <div
+              key={person.name}
+              style={{
+                padding: '1.25rem 0',
+                borderBottom: i < TEAM.length - 1 ? `1px solid ${c.border}` : 'none',
+              }}
+            >
+              <p style={{ fontSize: '1.05rem', fontWeight: 700, margin: '0 0 0.15rem', color: c.ink }}>
+                {person.name}
+              </p>
+              <p style={{ fontSize: '0.8rem', color: c.accent, margin: '0 0 0.35rem', fontWeight: 600 }}>
+                {person.role}
+              </p>
+              <p style={{ fontSize: '0.875rem', color: c.inkMuted, margin: 0, lineHeight: 1.55 }}>
+                {person.note}
+              </p>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* Origin */}
-      <section style={{
-        borderTop: '1px solid var(--border, rgba(255,255,255,0.08))',
-        padding: '4rem 1.5rem',
-        maxWidth: 700,
-        margin: '0 auto',
-      }}>
-        <h2 style={{
-          fontSize: '0.85rem',
-          textTransform: 'uppercase',
-          letterSpacing: '0.12em',
-          color: 'var(--accent, #c8943e)',
-          marginBottom: '1.5rem',
-        }}>
-          The Origin
+      <section style={{ padding: 'clamp(3rem, 6vw, 4.5rem) 1.5rem', maxWidth: 700, margin: '0 auto' }}>
+        <h2
+          style={{
+            fontSize: '0.7rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.18em',
+            color: c.accent,
+            marginBottom: '1.5rem',
+            fontWeight: 600,
+          }}
+        >
+          Origin
         </h2>
-        <div style={{ lineHeight: 1.8, opacity: 0.7, fontSize: '0.95rem' }}>
-          <p>
-            In 2022, Chase Pierson designed a complete media production-to-distribution
-            pipeline — broadcast, production, analytics, distribution — built on open
-            source tools. It was architecture for running a media company at any scale.
+        <div style={{ lineHeight: 1.85, fontSize: '0.98rem', color: c.inkMuted }}>
+          <p style={{ margin: 0 }}>
+            In 2022, Chase Pierson designed a complete media production-to-distribution pipeline —
+            broadcast, production, analytics, distribution — built on open source tools. It was
+            architecture for running a media company at any scale.
           </p>
-          <p style={{ marginTop: '1.25rem' }}>
-            He realized the same system that runs a Viacom can run a small-town
-            media economy. Big Muddy is that architecture, applied to Main Street,
-            powered by AI, anchored in the Mississippi corridor.
+          <p style={{ margin: '1.25rem 0 0' }}>
+            He realized the same system that runs a Viacom can run a small-town media economy. Big Muddy
+            is that architecture, applied to Main Street, anchored in the Mississippi corridor.
           </p>
-          <p style={{ marginTop: '1.25rem', fontStyle: 'italic', color: 'var(--accent, #c8943e)' }}>
+          <p
+            style={{
+              margin: '1.5rem 0 0',
+              fontStyle: 'italic',
+              color: c.accent,
+              fontFamily: 'var(--font-display, Georgia, serif)',
+              fontSize: '1.05rem',
+            }}
+          >
             The gap isn&apos;t technology — it&apos;s organization. That&apos;s what we sell.
           </p>
         </div>
       </section>
 
       {/* CTA */}
-      <section style={{
-        borderTop: '1px solid var(--border, rgba(255,255,255,0.08))',
-        padding: '5rem 1.5rem',
-        textAlign: 'center',
-        maxWidth: 600,
-        margin: '0 auto',
-      }}>
-        <h2 style={{
-          fontSize: '1.75rem',
-          fontWeight: 700,
-          fontFamily: 'var(--font-display, Georgia, serif)',
-          marginBottom: '1rem',
-        }}>
-          Want to talk?
-        </h2>
-        <p style={{
-          fontSize: '1rem',
-          opacity: 0.6,
-          lineHeight: 1.6,
-          marginBottom: '2rem',
-        }}>
-          We&apos;re always looking for musicians, businesses, and people who want
-          to build something real in the corridor.
-        </p>
-        <a
-          href="mailto:me@chasepierson.tv"
-          style={{
-            display: 'inline-block',
-            padding: '0.85rem 2.5rem',
-            background: 'var(--accent, #c8943e)',
-            color: '#0a0a0a',
-            textDecoration: 'none',
-            fontWeight: 700,
-            fontSize: '0.9rem',
-            letterSpacing: '0.03em',
-          }}
-        >
-          me@chasepierson.tv
-        </a>
+      <section
+        style={{
+          background: c.ink,
+          color: c.paper,
+          padding: 'clamp(3.5rem, 8vw, 5rem) 1.5rem',
+          textAlign: 'center',
+        }}
+      >
+        <div style={{ maxWidth: 520, margin: '0 auto' }}>
+          <h2
+            style={{
+              fontSize: 'clamp(1.5rem, 3vw, 1.85rem)',
+              fontWeight: 700,
+              fontFamily: 'var(--font-display, Georgia, serif)',
+              marginBottom: '0.75rem',
+              color: c.paper,
+            }}
+          >
+            Want to talk?
+          </h2>
+          <p
+            style={{
+              fontSize: '1rem',
+              lineHeight: 1.65,
+              marginBottom: '1.75rem',
+              color: 'rgba(250, 247, 242, 0.75)',
+            }}
+          >
+            We&apos;re always looking for musicians, businesses, and people who want to build something real
+            in the corridor.
+          </p>
+          <a
+            href="mailto:info@hillbillydreamsinc.com"
+            style={{
+              display: 'inline-block',
+              padding: '0.9rem 2.25rem',
+              background: c.paper,
+              color: c.ink,
+              textDecoration: 'none',
+              fontWeight: 700,
+              fontSize: '0.9rem',
+              letterSpacing: '0.02em',
+              borderRadius: 6,
+            }}
+          >
+            info@hillbillydreamsinc.com
+          </a>
+        </div>
       </section>
 
       {/* Footer */}
-      <footer style={{
-        borderTop: '1px solid var(--border, rgba(255,255,255,0.08))',
-        padding: '2rem 1.5rem',
-        textAlign: 'center',
-      }}>
-        <p style={{
-          fontSize: '0.65rem',
-          opacity: 0.25,
-          textTransform: 'uppercase',
-          letterSpacing: '0.1em',
-        }}>
+      <footer
+        style={{
+          borderTop: `1px solid ${c.border}`,
+          padding: '1.75rem 1.5rem',
+          textAlign: 'center',
+          background: c.paper,
+        }}
+      >
+        <p
+          style={{
+            fontSize: '0.65rem',
+            color: c.inkSoft,
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            margin: 0,
+          }}
+        >
           Powered by Measurably Better Things
         </p>
       </footer>
+
+      <style>{`
+        .hdi-brand-card:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 28px rgba(26, 24, 20, 0.12);
+        }
+      `}</style>
     </main>
   );
 }

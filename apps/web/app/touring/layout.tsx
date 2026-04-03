@@ -8,7 +8,7 @@ import { BRANDS } from '@bigmuddy/config';
 import { JsonLd, getOrganizationSchema, getWebSiteSchema } from '@/lib/structured-data';
 
 import { ThemeProvider } from '@/components/theme-provider';
-import { constructMetadata, themeColor } from '../metadata';
+import { constructMetadata, sprinterVanOgImage, themeColor } from '../metadata';
 import type { Viewport } from 'next';
 
 export const metadata: Metadata = {
@@ -18,7 +18,13 @@ export const metadata: Metadata = {
       template: '%s | Big Muddy Touring',
     },
     description: "Eighteen cities. Five states. A thousand years of American music. City guides, curated playlists, live events, and lodging along the Mississippi's music corridor.",
-    path: '/touring',
+    openGraphUrl: 'https://bigmuddytouring.com/',
+    ogImage: {
+      url: sprinterVanOgImage,
+      width: 1200,
+      height: 630,
+      alt: 'Big Muddy Touring Sprinter van — Memphis to New Orleans corridor',
+    },
   }),
   metadataBase: new URL('https://bigmuddytouring.com'),
 };

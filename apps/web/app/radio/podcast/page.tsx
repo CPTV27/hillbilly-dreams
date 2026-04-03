@@ -48,14 +48,14 @@ export default async function PodcastPage() {
       {/* ── Hero Header ── */}
       <section className="podcast-hero">
         <Image
-          src="/images/corridor/oceansprings-natchez-601-of-1183.webp"
-          alt="The parlor at The Big Muddy Inn"
+          src="/images/radio/podcast-hero-studio-placeholder.webp"
+          alt="Radio broadcast studio — console, microphone, and warm studio light (placeholder until the Natchez studio photo is ready)"
           fill
           priority
           sizes="100vw"
           placeholder="blur"
           blurDataURL={BLUR_DATA_URL}
-          style={{ objectFit: 'cover', zIndex: 0 }}
+          style={{ objectFit: 'cover', objectPosition: 'center 45%', zIndex: 0 }}
         />
         <div className="podcast-hero__overlay" />
         <div className="podcast-hero__content">

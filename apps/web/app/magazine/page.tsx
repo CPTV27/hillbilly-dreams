@@ -82,7 +82,16 @@ export default async function MagazineHomepage() {
       </section>
 
       {/* ── Magazine Intro ── */}
-      <section className="section-container" style={{ padding: 'var(--space-12) var(--space-6)', maxWidth: '700px' }}>
+      <section
+        className="section-container"
+        style={{
+          padding: 'var(--space-12) var(--space-6)',
+          maxWidth: '700px',
+          position: 'relative',
+          zIndex: 1,
+          background: 'var(--bg)',
+        }}
+      >
         <p style={{
           fontFamily: 'var(--font-display)',
           fontSize: '1.25rem',
@@ -97,12 +106,30 @@ export default async function MagazineHomepage() {
       </section>
 
       {/* ── Newsletter (moved up) ── */}
-      <section style={{ padding: '0 var(--space-6) var(--space-8)', maxWidth: '600px', margin: '0 auto' }}>
+      <section
+        style={{
+          padding: '0 var(--space-6) var(--space-8)',
+          maxWidth: '600px',
+          margin: '0 auto',
+          position: 'relative',
+          zIndex: 1,
+          background: 'var(--bg)',
+        }}
+      >
         <NewsletterSignup />
       </section>
 
-      {/* ── Parallax Bridge ── */}
-      <div className="mag-parallax-bridge" style={{ backgroundImage: 'url(/images/corridor/natchez-night-lounge.webp)' }} role="img" aria-label="Natchez lounge at night" />
+      {/* ── Visual break (scroll — no fixed/parallax; avoids hero bleed-through) ── */}
+      <div className="mag-visual-break" role="img" aria-label="Natchez lounge at night">
+        <Image
+          src="/images/corridor/natchez-night-lounge.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          style={{ objectFit: 'cover' }}
+          aria-hidden
+        />
+      </div>
 
       {/* ── Featured Article ── */}
       <section className="mag-featured">
@@ -211,6 +238,7 @@ export default async function MagazineHomepage() {
         /* ── Hero ── */
         .mag-hero {
           position: relative;
+          isolation: isolate;
           min-height: 100vh;
           display: flex;
           align-items: center;
@@ -218,13 +246,10 @@ export default async function MagazineHomepage() {
           overflow: hidden;
           background: var(--bg);
         }
+        /* Do NOT use position:fixed on the hero image — it stays pinned to the viewport
+           and every image below (featured story, strips) stacks on top, which reads as broken. */
         .mag-hero img {
-          position: fixed !important;
-        }
-        @media (max-width: 768px) {
-          .mag-hero img {
-            position: absolute !important;
-          }
+          position: absolute !important;
         }
         .mag-hero__video {
           position: absolute;
@@ -275,24 +300,26 @@ export default async function MagazineHomepage() {
           margin: 0;
         }
 
-        /* ── Parallax Bridge ── */
-        .mag-parallax-bridge {
-          height: 50vh;
-          background-size: cover;
-          background-position: center;
-          background-attachment: fixed;
+        /* ── Visual break between intro and featured (scrolls with page; no fixed attachment) ── */
+        .mag-visual-break {
           position: relative;
+          z-index: 1;
+          height: min(42vh, 420px);
+          min-height: 200px;
+          overflow: hidden;
+          background: var(--bg);
         }
-        .mag-parallax-bridge::after {
+        .mag-visual-break::after {
           content: '';
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, var(--bg) 0%, transparent 15%, transparent 85%, var(--bg) 100%);
+          z-index: 1;
+          pointer-events: none;
+          background: linear-gradient(180deg, var(--bg) 0%, transparent 18%, transparent 82%, var(--bg) 100%);
         }
         @media (max-width: 768px) {
-          .mag-parallax-bridge {
-            height: 35vh;
-            background-attachment: scroll;
+          .mag-visual-break {
+            height: min(32vh, 280px);
           }
         }
 
@@ -313,6 +340,12 @@ export default async function MagazineHomepage() {
           position: relative;
           z-index: 1;
           background: var(--bg);
+        }
+        .mag-featured .article-card--featured {
+          background: var(--surface);
+          border-radius: var(--radius-md);
+          border: 1px solid var(--border);
+          overflow: hidden;
         }
 
         /* ── Grid ── */
@@ -370,6 +403,9 @@ export default async function MagazineHomepage() {
 
         /* ── Photo Strip ── */
         .mag-photostrip {
+          position: relative;
+          z-index: 1;
+          background: var(--bg);
           border-top: 1px solid var(--border);
           border-bottom: 1px solid var(--border);
           overflow: hidden;

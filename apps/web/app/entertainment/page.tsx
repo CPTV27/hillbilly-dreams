@@ -9,9 +9,9 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'Big Muddy Entertainment — We Bring the Party',
+  title: 'Big Muddy Entertainment — Your All-Access Pass to the Deep South',
   description:
-    'Booking, promotion, and production for the Mississippi corridor. We bring the bands, the van, the PA, and the audience. One call, one show, one hell of a night.',
+    'Booking, promotion, and production for the Mississippi corridor. The bands, the van, the PA, and the audience. One call, one show, one hell of a night.',
 };
 
 export default function EntertainmentPage() {
@@ -60,7 +60,7 @@ export default function EntertainmentPage() {
             letterSpacing: '-0.03em',
             marginBottom: '1.5rem',
           }}>
-            We bring the party.
+            Your all-access pass<br />to the Deep South.
           </h1>
           <p style={{
             fontSize: '1.15rem',

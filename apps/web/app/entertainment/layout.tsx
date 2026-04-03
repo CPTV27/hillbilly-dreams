@@ -8,17 +8,23 @@ import { BRANDS } from '@bigmuddy/config';
 import { JsonLd, getOrganizationSchema, getWebSiteSchema } from '@/lib/structured-data';
 
 import { ThemeProvider } from '@/components/theme-provider';
-import { constructMetadata, themeColor } from '../metadata';
+import { constructMetadata, sprinterVanOgImage, themeColor } from '../metadata';
 
 export const metadata: Metadata = {
   ...constructMetadata({
     title: {
-      default: 'Big Muddy Entertainment — Radio, Records, Touring, Rise Up',
+      default: 'Big Muddy Entertainment — Your All-Access Pass to the Deep South',
       template: '%s | Big Muddy Entertainment',
     },
     description:
       'Booking, promotion, transport, and production for bands and venues along the Mississippi corridor. Big Muddy Entertainment is the music and media arm of Hillbilly Dreams, Inc.',
-    path: '/entertainment',
+    openGraphUrl: 'https://bigmuddyentertainment.com/',
+    ogImage: {
+      url: sprinterVanOgImage,
+      width: 1200,
+      height: 630,
+      alt: 'Big Muddy Touring Sprinter van — corridor transport and production',
+    },
   }),
   metadataBase: new URL('https://bigmuddyentertainment.com'),
 };
