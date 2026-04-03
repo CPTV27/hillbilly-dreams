@@ -1,8 +1,8 @@
 import { permanentRedirect } from 'next/navigation';
 
-// Serves hillbillydreamsinc.com/roadmap (middleware rewrites to /hillbilly/roadmap).
-// Canonical roadmap markup lives in public/sandbox/roadmap.html — one file to edit, no JSX port.
+// hillbillydreamsinc.com/roadmap → single canonical roadmap (admin auth).
+// Public static stub: /sandbox/roadmap.html (sign-in CTA only).
 
 export default function HillbillyRoadmapPage() {
-  permanentRedirect('/sandbox/roadmap.html');
+  permanentRedirect('/admin/roadmap');
 }
