@@ -31,13 +31,13 @@
 
 ## 1. System Overview
 
-The HDI platform is a **single Next.js 14 monorepo** that serves 11 production domains from one codebase. Multi-tenancy is achieved at the routing layer: Next.js middleware inspects the incoming hostname, resolves it against a domain routing table, and rewrites the request to the appropriate route group. Each route group has its own layout, theme, and content, but all share a common API layer, database, and authentication system.
+The HDI platform is a **single Next.js 14 monorepo** that serves **multiple production hostnames** from one codebase (`BMT_DOMAIN_ROUTES` in `apps/web/config/domain-routes.ts` lists **18 production hostname patterns**, including aliases such as multiple gallery domains; `CLAUDE.md` lists **14** product/marketing domains — use the routing table for engineering counts). Multi-tenancy is achieved at the routing layer: Next.js middleware inspects the incoming hostname, resolves it against a domain routing table, and rewrites the request to the appropriate route group. Each route group has its own layout, theme, and content, but all share a common API layer, database, and authentication system.
 
 **Key numbers:**
 
 | Metric | Count |
 |--------|-------|
-| Production domains | 11 |
+| Production hostname patterns (`BMT_DOMAIN_ROUTES`) | 18 |
 | Next.js route groups | 16+ |
 | Total pages | 113 |
 | API routes | 114 |
@@ -95,6 +95,7 @@ hillbilly-dreams/
 ### 2.1 Framework
 
 - **Next.js 14** with App Router (not Pages Router)
+- **Pinned version:** `apps/web/package.json` → `next` (e.g. `14.2.x`) — treat that file as source of truth when docs disagree with other markdown.
 - Server Components by default; Client Components opt-in via `'use client'`
 - Route groups (`(groupName)/`) for multi-tenant page isolation
 - Sentry integration via `@sentry/nextjs` (client, server, and edge configs)
@@ -236,6 +237,8 @@ The `BMT_DOMAIN_ROUTES` array in `config/domain-routes.ts` maps hostnames to rou
 | `bigmuddyentertainment` | `entertainment` | |
 | `hillbillydreams` | `hillbilly` | |
 | `measurablybetter` | `measurably-better` | |
+| `venturegallery` | `gallery` | Alternate hostname, same group as BuyCurious |
+| `bearsville` | `bearsville` | Northeast node |
 
 **Local development** uses `.local` TLD variants (e.g., `bigmuddytouring.local`) that resolve via `/etc/hosts`. Local routes are checked first because their patterns are more specific.
 
@@ -311,7 +314,7 @@ Note: API routes are excluded from the matcher but also have an early-return che
 - Both were temporarily bypassed during a debugging period and have been re-enabled as of March 27, 2026
 
 **Middleware auth flow:**
-- `getToken()` from `next-auth/jwt` (not `auth()` wrapper, because `NextResponse.rewrite()` inside `auth()` causes 401 errors on Cloud Run envoy proxy -- historical artifact preserved for compatibility)
+- `getToken()` from `next-auth/jwt` (not `auth()` wrapper in some paths — legacy compatibility with earlier hosting; **production is Vercel**)
 - `/admin/login` is always accessible without auth
 - Partner dashboards (`/tracy`, `/amy`) pass through without auth check at middleware level
 
@@ -1349,7 +1352,7 @@ The DSD is the primary customer acquisition channel:
 
 | Metric | Count |
 |--------|-------|
-| Production domains | 11 |
+| Production hostname patterns (`domain-routes.ts`) | 18 |
 | Total pages | 113 |
 | API routes | 114+ (8 new marketing routes) |
 | Prisma models | 54 |
@@ -1361,7 +1364,7 @@ The DSD is the primary customer acquisition channel:
 
 ### 16.3 Domain Status
 
-All 11 domains are live and routing correctly:
+Primary marketing domains (subset — engineering routing uses **hostname patterns** in `domain-routes.ts`, including aliases):
 
 | Domain | Status | SSL |
 |--------|--------|-----|

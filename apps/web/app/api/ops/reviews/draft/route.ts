@@ -2,10 +2,14 @@ export const dynamic = 'force-dynamic';
 import Anthropic from '@anthropic-ai/sdk';
 import { prisma } from '@bigmuddy/database';
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 
 const anthropic = new Anthropic();
 
 export async function POST(req: Request) {
+    const denied = await requireAdmin();
+    if (denied) return denied;
+
     const { reviewId } = await req.json();
     if (!reviewId) return NextResponse.json({ error: 'reviewId required' }, { status: 400 });
 
