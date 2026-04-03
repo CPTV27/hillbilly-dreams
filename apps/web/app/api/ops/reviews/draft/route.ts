@@ -1,9 +1,7 @@
 export const dynamic = 'force-dynamic';
-import Anthropic from '@anthropic-ai/sdk';
 import { prisma } from '@bigmuddy/database';
 import { NextResponse } from 'next/server';
-
-const anthropic = new Anthropic();
+import { callAI } from '@/lib/ai-models';
 
 export async function POST(req: Request) {
     const { reviewId } = await req.json();
@@ -16,11 +14,7 @@ export async function POST(req: Request) {
 
     if (!review) return NextResponse.json({ error: 'Review not found' }, { status: 404 });
 
-    const prompt = `You are Delta Dawn, responding to a guest review on behalf of ${review.client.name} (a ${review.client.businessType || 'business'} in ${review.client.city || 'the area'}, ${review.client.state || 'MS'}).
-
-The review is ${review.rating} stars on ${review.platform}:
-"${review.text || '(rating only, no text)'}"
-— ${review.author}
+    const systemPrompt = `You are Delta Dawn, responding to a guest review on behalf of ${review.client.name} (a ${review.client.businessType || 'business'} in ${review.client.city || 'the area'}, ${review.client.state || 'MS'}).
 
 Write a warm, professional response. Guidelines:
 - Thank them by first name
@@ -34,18 +28,35 @@ Write a warm, professional response. Guidelines:
 
 Write ONLY the response text, no quotes, no "Dear", no explanation.`;
 
-    const message = await anthropic.messages.create({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 300,
-        messages: [{ role: 'user', content: prompt }],
+    const userMessage = `The review is ${review.rating} stars on ${review.platform}:
+"${review.text || '(rating only, no text)'}"
+— ${review.author}`;
+
+    const result = await callAI({
+        role: 'generation',
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userMessage }],
+        maxTokens: 300,
     });
 
-    const draft = (message.content[0] as any).text || '';
+    const draft = result.text;
 
     await prisma.review.update({
         where: { id: reviewId },
         data: { aiDraft: draft, responseStatus: 'drafted' },
     });
+
+    // Log the draft generation
+    try {
+        await prisma.opsActivity.create({
+            data: {
+                type: 'review_draft',
+                message: `AI draft generated for ${review.author}'s ${review.rating}-star ${review.platform} review (${review.client.name})`,
+            },
+        });
+    } catch {
+        // opsActivity may not exist — non-fatal
+    }
 
     return NextResponse.json({ draft, reviewId });
 }
