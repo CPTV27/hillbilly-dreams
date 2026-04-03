@@ -59,7 +59,7 @@ const NAV_SECTIONS = [
     items: [
       { label: 'Delta Dawn', href: 'https://bigmuddytouring.com/ops/chat', icon: '⚡', external: true },
       { label: 'Ops Dashboard', href: '/ops', icon: '◻' },
-      { label: 'Reviews', href: 'https://bigmuddytouring.com/ops/reviews', icon: '⭐', external: true },
+      { label: 'Reviews', href: '/reviews', icon: '⭐' },
     ],
   },
   {
