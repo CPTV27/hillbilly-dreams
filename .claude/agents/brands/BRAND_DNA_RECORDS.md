@@ -2,7 +2,7 @@
 
 ## Identity
 - **Entity:** Hillbilly Dreams Inc
-- **Domains:** bigmuddyrecord.com
+- **Domains:** bigmuddyrecordlabel.com (canonical; we do not own bigmuddyrecords.com or bigmuddyrecord.com)
 - **Theme class:** `.theme-records`
 - **Tagline:** "Artists Own Their Masters. Always."
 

@@ -5,7 +5,7 @@ import { prisma } from '@/lib/db';
 
 /** Canonical records domain for artist profile links from non-records hosts. */
 export const RECORDS_ARTIST_PROFILE_BASE =
-  process.env.NEXT_PUBLIC_RECORDS_ORIGIN ?? 'https://bigmuddyrecord.com';
+  process.env.NEXT_PUBLIC_RECORDS_ORIGIN ?? 'https://bigmuddyrecordlabel.com';
 
 export type CorridorArtistCard = {
   id: number;

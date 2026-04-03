@@ -16,7 +16,7 @@ const PROPERTIES = [
       { name: 'Magazine', url: 'https://bigmuddymagazine.com', desc: 'Editorial', status: 'live' },
       { name: 'Radio', url: 'https://bigmuddyradio.com', desc: 'Streaming', status: 'live' },
       { name: 'Entertainment', url: 'https://bigmuddyentertainment.com', desc: 'The company', status: 'updated' },
-      { name: 'Records', url: 'https://bigmuddyrecords.com', desc: 'The label', status: 'live' },
+      { name: 'Records', url: 'https://bigmuddyrecordlabel.com', desc: 'The label', status: 'live' },
       { name: 'Directory (DSD)', url: 'https://deepsouthdirectory.com', desc: 'Business listings', status: 'updated' },
     ],
   },

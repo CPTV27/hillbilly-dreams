@@ -32,7 +32,7 @@ export const TENANTS: TenantConfig[] = [
       'bigmuddytouring.com', 'bigmuddymagazine.com', 'bigmuddyradio.com',
       'bigmuddyentertainment.com', 'deepsouthdirectory.com', 'measurablybetter.life',
       'outsidereconomics.com', 'measurablybetterthings.com',
-      'bigmuddyrecords.com', 'hillbillydreamsinc.com',
+      'bigmuddyrecordlabel.com', 'hillbillydreamsinc.com',
     ],
     primaryDomain: 'bigmuddytouring.com',
     routeGroup: 'touring',

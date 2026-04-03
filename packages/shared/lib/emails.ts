@@ -30,7 +30,7 @@ export const BMT_EMAILS = {
   studio: 'studio@thebigmuddyinn.com',
   radio: 'radio@thebigmuddyinn.com',
   weddings: 'weddings@bigmuddyinn.com',
-  records: 'music@bigmuddyrecords.net',
+  records: 'music@bigmuddyrecordlabel.com',
   riseup: 'riseup@outsidereconomics.com',
   design: 'design@tuthilldesign.com',
 } as const;

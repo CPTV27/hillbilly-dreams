@@ -20,7 +20,7 @@
 | The Inn | bigmuddytouring.com/inn | Delta Dark | #c8943e |
 | Radio | bigmuddyradio.com | Delta Dark | #D4915E (warm amber) |
 | Entertainment | bigmuddyentertainment.com | Delta Dark | #c8943e |
-| Records | bigmuddyrecords.net | Delta Dark | #c8943e |
+| Records | bigmuddyrecordlabel.com | Delta Dark | #c8943e |
 | Magazine | bigmuddymagazine.com | Broadside | #c8943e |
 | Deep South Directory | deepsouthdirectory.com | Broadside | #C45B28 (brick) |
 | Outsider Economics | outsidereconomics.com | Paper Trail | #e87461 (rose) |

@@ -153,7 +153,7 @@ export default function TouringHomepage() {
           {[
             { name: 'Big Muddy Touring', tag: 'The Circuit', url: 'https://bigmuddytouring.com', desc: '18 cities. Real venues. Real audiences. We book the shows and drive the bands.' },
             { name: 'Big Muddy Radio', tag: 'The Sound', url: 'https://bigmuddyradio.com', desc: 'Streaming worldwide. Live sessions from the Blues Room. No algorithms, just music.' },
-            { name: 'Big Muddy Records', tag: 'The Label', url: 'https://bigmuddyrecords.com', desc: 'Non-exclusive. You keep your masters. We distribute, promote, and sell your music.' },
+            { name: 'Big Muddy Records', tag: 'The Label', url: 'https://bigmuddyrecordlabel.com', desc: 'Non-exclusive. You keep your masters. We distribute, promote, and sell your music.' },
             { name: 'Big Muddy Magazine', tag: 'The Story', url: 'https://bigmuddymagazine.com', desc: 'Long-form editorial about the corridor. Every show gets a feature. Every artist gets a profile.' },
           ].map((brand) => (
             <a key={brand.name} href={brand.url} target="_blank" rel="noopener noreferrer" style={{
@@ -275,7 +275,7 @@ export default function TouringHomepage() {
                 </li>
               ))}
             </ul>
-            <a href="mailto:music@bigmuddyrecords.com" style={{
+            <a href="mailto:music@bigmuddyrecordlabel.com" style={{
               display: 'inline-block',
               marginTop: '2rem',
               padding: '0.75rem 2rem',

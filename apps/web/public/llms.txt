@@ -27,7 +27,7 @@ The company is headquartered in Natchez, Mississippi, one of the oldest settleme
 - Shows: American Parlor Songbook, Blues Room Sessions, Mississippi Corridor Radio
 
 ### Big Muddy Records
-- URL: https://bigmuddyrecords.net
+- URL: https://bigmuddyrecordlabel.com
 - Focus: Independent record label for Mississippi corridor artists
 - Philosophy: Artists keep their masters. Small roster, deep attention.
 - Artists: Arrie Aslin (Amy Allen), Mechanical Bull, Kate Squire
@@ -65,7 +65,7 @@ The Big Muddy ecosystem is centered on the Mississippi River corridor, specifica
 ## Contact
 
 - General: hello@bigmuddytouring.com
-- Records: music@bigmuddyrecords.net
+- Records: music@bigmuddyrecordlabel.com
 - Directory: hello@deepsouthdirectory.com
 
 ## Technical

@@ -67,7 +67,7 @@ const PROPERTIES = [
   { name: 'Big Muddy Magazine', url: 'https://bigmuddymagazine.com', desc: 'Editorial & city guides' },
   { name: 'Big Muddy Radio', url: 'https://bigmuddyradio.com', desc: 'Streaming & live sessions' },
   { name: 'Big Muddy Entertainment', url: 'https://bigmuddyentertainment.com', desc: 'The umbrella' },
-  { name: 'Big Muddy Records', url: 'https://bigmuddyrecords.com', desc: 'Artist services label' },
+  { name: 'Big Muddy Records', url: 'https://bigmuddyrecordlabel.com', desc: 'Artist services label' },
   { name: 'Deep South Directory', url: 'https://deepsouthdirectory.com', desc: 'Business directory & marketing' },
 ];
 

@@ -150,8 +150,8 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     name: 'Big Muddy Records',
     shortName: 'Records',
     tagline: 'Music from the Mississippi corridor',
-    domain: 'bigmuddyrecords.com',
-    localDomain: 'bigmuddyrecords.local',
+    domain: 'bigmuddyrecordlabel.com',
+    localDomain: 'bigmuddyrecordlabel.local',
     description:
       'Independent record label capturing the sound of the Mississippi music corridor — blues, soul, gospel, and the voices that carry the river.',
     themeClass: 'theme-records',
@@ -182,7 +182,7 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
         { label: 'Touring', href: 'https://bigmuddytouring.com' },
         { label: 'Magazine', href: 'https://bigmuddymagazine.com' },
         { label: 'Radio', href: 'https://bigmuddyradio.com' },
-        { label: 'Records', href: 'https://bigmuddyrecords.net' },
+        { label: 'Records', href: 'https://bigmuddyrecordlabel.com' },
         { label: 'Gallery', href: 'https://buycuriousart.com' },
         { label: 'Economics', href: 'https://outsidereconomics.com' },
       ],
@@ -202,7 +202,7 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     nav: {
       links: [
         { label: 'Touring', href: 'https://bigmuddytouring.com' },
-        { label: 'Records', href: 'https://bigmuddyrecords.net' },
+        { label: 'Records', href: 'https://bigmuddyrecordlabel.com' },
         { label: 'Radio', href: 'https://bigmuddyradio.com' },
         { label: 'Talent Search', href: '#talent-search' },
         { label: 'Community', href: '#community' },
@@ -241,7 +241,7 @@ const BMT_BRAND_MATCHERS: Array<{ pattern: string; brandId: BrandId }> = [
   { pattern: 'bigmuddytouring', brandId: 'touring' },
   { pattern: 'bigmuddymagazine', brandId: 'magazine' },
   { pattern: 'bigmuddyradio', brandId: 'radio' },
-  { pattern: 'bigmuddyrecord', brandId: 'records' },
+  { pattern: 'bigmuddyrecordlabel', brandId: 'records' },
   { pattern: 'deepsouthdirectory', brandId: 'directory' },
   { pattern: 'outsidereconomics', brandId: 'economics' },
   { pattern: 'bigmuddyentertainment', brandId: 'entertainment' },

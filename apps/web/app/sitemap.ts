@@ -13,7 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     economics: 'https://outsidereconomics.com',
     // buycurious.art removed — now an alias for measurablybetter.life (MBT storefront)
     mbt: 'https://measurablybetter.life',
-    records: 'https://bigmuddyrecords.com',
+    records: 'https://bigmuddyrecordlabel.com',
     directory: 'https://deepsouthdirectory.com',
     bearsville: 'https://bearsvillemediagroup.com',
   };

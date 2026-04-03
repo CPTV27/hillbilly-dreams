@@ -81,7 +81,7 @@ Design a unified visual UX concept across ALL sites — consumer, platform, admi
 - `/entertainment` — Homepage: "We bring the party," services grid, house band, brands, Arrie Aslin feature
 
 ### Big Muddy Records
-**Domain:** bigmuddyrecords.com
+**Domain:** bigmuddyrecordlabel.com
 **Aesthetic:** Indie label with taste, analog warmth
 **Pages:**
 - `/records` — Homepage: artist roster, packages, sessions, store

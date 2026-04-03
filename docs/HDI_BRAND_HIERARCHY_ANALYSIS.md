@@ -20,7 +20,7 @@ HILLBILLY DREAMS INC (HDI)
 │   ├── Big Muddy Touring        bigmuddytouring.com         Hospitality + corridor travel
 │   ├── Big Muddy Magazine       bigmuddymagazine.com        Long-form editorial
 │   ├── Big Muddy Radio          bigmuddyradio.com           Curated playlists + live shows
-│   ├── Big Muddy Records        bigmuddyrecord.com          Independent label
+│   ├── Big Muddy Records        bigmuddyrecordlabel.com     Independent label
 │   ├── Big Muddy Entertainment  bigmuddyentertainment.com   Hub: shows, talent, Rise Up
 │   └── BuyCurious Art           buycurious.art              Gallery / artist marketplace
 │
@@ -67,7 +67,7 @@ HILLBILLY DREAMS INC (HDI)
 | 1 | bigmuddytouring.com | touring | Brand | Inn, lodging, corridor travel, events | Live |
 | 2 | bigmuddymagazine.com | magazine | Brand | Editorial, articles, photo essays | Live |
 | 3 | bigmuddyradio.com | radio | Brand | Playlists, shows, live sessions | Live |
-| 4 | bigmuddyrecord.com | records | Brand | Label, artists, releases | Live |
+| 4 | bigmuddyrecordlabel.com | records | Brand | Label, artists, releases | Live |
 | 5 | bigmuddyentertainment.com | entertainment | Hub | Shows, talent search, Rise Up | Live |
 | 6 | deepsouthdirectory.com | directory | Product | Business listings, SaaS | Live |
 | 7 | outsidereconomics.com | economics | Content | Field manual, theory | Live |

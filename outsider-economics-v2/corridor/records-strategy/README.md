@@ -72,9 +72,9 @@ Every release gets amplified through ALL of these channels. Earned media, not ju
 
 ## Domains
 
-- **bigmuddyrecords.net** — Primary domain (registered, DNS on Cloudflare, mapped to Cloud Run)
-- **bigmuddyrecordlabel.com** — Redirect/brand protection (registered, DNS on Cloudflare)
-- bigmuddyrecords.com is taken (St. Louis indie label since 2005)
+- **bigmuddyrecordlabel.com** — Canonical public domain for the label (HDI-owned; Vercel)
+- **bigmuddyrecords.com** / **bigmuddyrecord.com** — Not ours (do not link)
+- Historical **bigmuddyrecords.net** — verify in Bitwarden whether still used for email/redirects; do not treat as canonical web URL in product code
 
 ---
 
@@ -142,5 +142,5 @@ Big Muddy Records/
 4. Set up Viberate analytics + Artist Growth for operations
 5. Onboard Kate Squire — first recordings
 6. Finalize Arrie Aslin artist-in-residence terms
-7. Firebase custom domain verification for bigmuddyrecords.net
-8. Set up redirect: bigmuddyrecordlabel.com → bigmuddyrecords.net
+7. Confirm Cloudflare / Vercel: apex **bigmuddyrecordlabel.com** + www → production
+8. If **bigmuddyrecords.net** remains for legacy mail or redirects, document in Bitwarden — code and marketing use **bigmuddyrecordlabel.com**

@@ -2,7 +2,7 @@
 // MusicBrainz API client for artist enrichment.
 // No auth required — rate limited to 1 req/sec with User-Agent header.
 
-const USER_AGENT = 'BigMuddyRecords/1.0 (music@bigmuddyrecords.com)';
+const USER_AGENT = 'BigMuddyRecords/1.0 (music@bigmuddyrecordlabel.com)';
 const BASE_URL = 'https://musicbrainz.org/ws/2';
 
 interface MusicBrainzArtist {
