@@ -2,6 +2,10 @@ import { defineConfig, devices } from '@playwright/test';
 
 const isCheckly = !!process.env.CHECKLY;
 
+// Dedicated port so smoke tests never attach to another app on :3000.
+const localPort = Number(process.env.PLAYWRIGHT_PORT || 3334);
+const localBase = `http://localhost:${localPort}`;
+
 export default defineConfig({
     testDir: './e2e',
     fullyParallel: true,
@@ -13,9 +17,7 @@ export default defineConfig({
     expect: { timeout: 15_000 },
 
     use: {
-        baseURL: isCheckly
-            ? 'https://bigmuddytouring.com'
-            : 'http://localhost:3000',
+        baseURL: isCheckly ? 'https://bigmuddytouring.com' : localBase,
         trace: 'on-first-retry',
         screenshot: 'only-on-failure',
     },
@@ -34,10 +36,10 @@ export default defineConfig({
 
     ...(!isCheckly && {
         webServer: {
-            command: 'pnpm --filter @bigmuddy/web dev',
-            port: 3000,
-            reuseExistingServer: true,
-            timeout: 60_000,
+            command: `pnpm --filter @bigmuddy/web exec next dev -p ${localPort}`,
+            url: localBase,
+            reuseExistingServer: !process.env.CI,
+            timeout: 120_000,
         },
     }),
 });

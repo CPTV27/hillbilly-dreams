@@ -1,32 +1,50 @@
 // ── BMT Synthetic Smoke Test ──
-// Targets the public Deep South Directory splash page (/media).
-// No auth required. Verifies the Next.js SSR pipeline is alive
-// and the brand is rendering correctly.
+// Verifies Next.js + static assets. Uses dedicated port from playwright.config (default 3334).
 //
-// Selected for Checkly because:
-//   1. Public route — no Firebase auth
-//   2. Server-rendered — tests the full Cloud Run → Next.js chain
-//   3. Contains identifiable brand text — confirms correct deploy is live
+// Run: pnpm test:smoke
 
 import { test, expect } from '@playwright/test';
 
 test('Touring — page loads and brand is visible', async ({ page }) => {
-    await page.goto('/touring');
+  await page.goto('/touring');
 
-    // Title confirms correct deploy
-    await expect(page).toHaveTitle(/Big Muddy|Touring/i);
+  await expect(page).toHaveTitle(/Big Muddy/i);
 
-    // Brand content rendered
-    await expect(page.getByText(/Mississippi/i).first()).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByText(/Mississippi|soul music|Gateway/i).first()).toBeVisible({
+    timeout: 20_000,
+  });
 });
 
 test('Root — homepage loads without crash', async ({ page }) => {
-    await page.goto('/');
+  await page.goto('/');
 
-    // App shell rendered — not a blank page or error screen
-    await expect(page.locator('body')).not.toBeEmpty();
+  await expect(page.locator('body')).not.toBeEmpty();
 
-    // No React error boundary fallback visible
-    await expect(page.getByText('Something went wrong')).not.toBeVisible();
-    await expect(page.getByText('Application error')).not.toBeVisible();
+  await expect(page.getByText('Something went wrong')).not.toBeVisible();
+  await expect(page.getByText('Application error')).not.toBeVisible();
+});
+
+test('Static roadmap — sandbox HTML serves', async ({ page }) => {
+  const res = await page.goto('/sandbox/roadmap.html');
+  expect(res?.ok()).toBeTruthy();
+
+  await expect(page.getByText(/Product roadmap|Internal only/i).first()).toBeVisible({
+    timeout: 10_000,
+  });
+});
+
+test('Hillbilly roadmap route — redirects to static file', async ({ page }) => {
+  const res = await page.goto('/hillbilly/roadmap', { waitUntil: 'commit' });
+  expect(res?.status(), '308/307 to static').toBeLessThan(400);
+
+  await page.waitForURL(/\/sandbox\/roadmap\.html/, { timeout: 15_000 });
+  await expect(page.getByText(/Product roadmap|Internal only/i).first()).toBeVisible();
+});
+
+test('Deep South Directory — splash loads', async ({ page }) => {
+  await page.goto('/directory');
+
+  await expect(page.getByText(/Deep South Directory|corridor/i).first()).toBeVisible({
+    timeout: 20_000,
+  });
 });

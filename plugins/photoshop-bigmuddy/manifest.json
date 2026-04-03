@@ -1,0 +1,39 @@
+{
+  "id": "com.bigmuddy.photoshop.ai-tools",
+  "name": "Big Muddy AI Tools",
+  "version": "1.0.0",
+  "main": "index.html",
+  "host": [
+    {
+      "app": "PS",
+      "minVersion": "24.0.0"
+    }
+  ],
+  "manifestVersion": 5,
+  "entrypoints": [
+    {
+      "type": "panel",
+      "id": "bigmuddy-ai-panel",
+      "label": "Big Muddy AI",
+      "minimumSize": { "width": 280, "height": 400 },
+      "maximumSize": { "width": 400, "height": 1200 },
+      "preferredDockedSize": { "width": 300, "height": 600 },
+      "preferredFloatingSize": { "width": 300, "height": 600 },
+      "icons": [
+        { "width": 24, "height": 24, "path": "icons/icon-24.png", "scale": [1, 2], "theme": ["all"] }
+      ]
+    }
+  ],
+  "requiredPermissions": {
+    "localFileSystem": "fullAccess",
+    "network": {
+      "domains": [
+        "https://us-central1-aiplatform.googleapis.com",
+        "https://oauth2.googleapis.com",
+        "https://bigmuddytouring.com"
+      ]
+    },
+    "clipboard": "readAndWrite",
+    "allowCodeGenerationFromStrings": true
+  }
+}

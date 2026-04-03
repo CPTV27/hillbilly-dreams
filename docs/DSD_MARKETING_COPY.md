@@ -2,6 +2,8 @@
 
 *April 2026. Written in Chase's voice. Ready for the website.*
 
+**Note (2026-04):** Retail **Deep South Directory** tier **prices are TBD** until you set them; the **public directory** uses **Free / Core / Growth / Partner** with no dollar amounts. **Competitor** pricing below stays as **market context** for pitches and matrix work — verify before legal claims.
+
 ---
 
 ## The Headline
@@ -21,10 +23,10 @@
 1. **Main Street marketing for Main Street money.**
 2. **Stop paying $300 a month to a company that's never been to Mississippi.**
 3. **The only marketing subscription that puts your business in the magazine.**
-4. **Everything those $300/month apps do — plus a magazine feature, radio mention, and professional photos. $99.**
+4. **Everything those $300/month apps do — plus a magazine feature, radio mention, and professional photos.** (Tier and pricing TBD — say only what you can fulfill.)
 5. **Your restaurant deserves to be famous. Not just findable.**
 6. **We're not a tech company from San Francisco. We're from here.**
-7. **Get found. Get covered. Get more customers. For $49 a month.**
+7. **Get found. Get covered. Get more customers.** (Add a price only when retail is fixed.)
 8. **Natchez. Vicksburg. Opelousas. Your town is on the map. So is your business.**
 9. **Be the first name people think of when they think of your town.**
 10. **The Deep South's marketing platform. Built by locals, for locals.**
@@ -33,22 +35,22 @@
 
 ## 5 Value Propositions
 
-1. "Deep South Directory puts your business on Google, in our magazine, and on the radio — for less than $100 a month. No long contracts. No jargon. Just more customers walking through your door."
+1. "Deep South Directory puts your business on Google, in our magazine, and on the radio — for **a rate we set when we talk**. No long contracts. No jargon. Just more customers walking through your door."
 
 2. "Every other marketing platform was built for a mall in Dallas. DSD was built for a restaurant in Natchez. We manage your listings, reviews, and social media — and we throw in something no app can sell: a real media company in your corner."
 
-3. "For $49 a month, DSD handles your Google listings, monitors your reviews, posts your social content, and features your business in our regional magazine. The next tier gets you on the radio. No setup fees. No surprises."
+3. "DSD handles your Google listings, monitors your reviews, posts your social content, and can feature your business in our regional magazine. Higher tiers add radio and on-the-ground media — **details and pricing when we onboard you**. No setup gimmicks."
 
-4. "We're a directory, a marketing platform, and a media company all in one. We sync your listings across the internet, draft your review responses, post your social content, and send a photographer to your front door. Nobody else does that."
+4. "We're a directory, a marketing platform, and a media company all in one. We sync your listings across the internet, draft your review responses, post your social content, and schedule **editorial photography when our production calendar allows**. Nobody else does that combination."
 
-5. "The companies charging $300 a month have never set foot in Port Gibson. We have. Deep South Directory is local marketing made by people who actually live here — and we're cheaper than every tool you're already not using."
+5. "The companies charging $300 a month have never set foot in Port Gibson. We have. Deep South Directory is local marketing made by people who actually live here — **priced to beat the stack you're already not using** (we'll show you the math on a call)."
 
 ---
 
 ## CTA Button Options
 
-1. **"Claim Your Listing — It's $20"** (names the price — no competitor does this)
-2. **"See What $49 Gets You"** (curiosity + price transparency)
+1. **"Claim Your Listing"** (add price in the button only when retail is fixed)
+2. **"See What You Get"** (tier details without naming a dollar until ready)
 3. **"Get Listed Today"**
 4. **"Put Your Business on the Map"**
 5. **"Start Free — No Card Required"**
@@ -67,9 +69,9 @@
 
 - **We're from here.** DSD is run by people who live, eat, and work in the same small towns our clients do. We're not a platform built in California for businesses in California.
 
-- **We cost less than a single Yelp ad.** Our Pro plan is $49/month. Birdeye starts at $299. Thryv starts at $644. You get more from DSD for less — and no sales call to find out the price.
+- **We cost less than a single Yelp ad** *as typically priced in the market.* Birdeye starts at $299. Thryv starts at $644. You get corridor-native execution — and **our retail rate is set when we talk**, not hidden behind a sales maze.
 
-- **We give you media, not just software.** Your $49 plan includes magazine editorial coverage. Your $99 plan adds a radio mention and a professional photo shoot. That's not a feature. That's a full-time PR agency at 1/10th the cost.
+- **We give you media, not just software.** Higher tiers include magazine editorial coverage where the pipeline allows; radio and photography **on a real schedule**, not an unlimited promise.
 
 - **One subscription. Everything handled.** Listings synced across Google, Yelp, Facebook, and 50+ directories. Reviews monitored and responded to. Social content written and posted. Monthly report in your inbox. You focus on running your business. We handle the rest.
 
@@ -85,38 +87,34 @@
 
 - "All-in-one" (overused — every single competitor says this)
 - "AI-powered" (11 of 15 competitors use this — it's noise now)
-- "Get a demo" (we show the price, not a sales funnel)
+- "Get a demo" as the only path (we prefer **clear tiers + conversation**; add public price when you're ready)
 - Vague pain points ("complexity," "missed leads," "disconnected tools")
 
 ## What We Say That NO Competitor Can Say
 
 - A specific town name (Natchez, Vicksburg, Opelousas, Port Gibson)
 - "We're from here"
-- A price on the homepage ($20, $49, $99 — transparent)
+- **Transparent tier names and benefits** (add dollar amounts on the site when pricing is fixed)
 - "We own the magazine that'll feature you"
 - "We own the radio station that'll mention you"
-- "We'll send a photographer to your front door"
+- "We'll put a photographer on your business **when the schedule allows**" (solo/small-team reality)
 
 ---
 
-## The Stack Replacement Number
+## The Stack Replacement Number (illustrative — competitor stack)
 
-$497/mo standalone → $99/mo DSD = $4,776/year saved
+**~$497/mo** if you buy the cheapest tool in each of ~20 categories (see `docs/COMPETITIVE_ANALYSIS_2026.md`). **Our bundled retail price is TBD** — use the stack number to frame savings **after** you publish real DSD prices.
 
-"The average Main Street business spends $497 a month across 20 different tools that don't talk to each other. Deep South Directory replaces all of them for $99."
+*"The average Main Street business spends $497 a month across 20 different tools that don't talk to each other. Deep South Directory is built to replace that sprawl — **one relationship, one invoice, pricing when we quote you.**"*
 
 ---
 
 ## Pricing Notes
 
-Current tiers ($20/$49/$99) are correctly positioned as the low-cost wedge. Pricing is NOT set in stone — the competitive analysis informs future tier adjustments. Consider:
-
-- $20 is Netflix money. No-brainer entry.
-- $49 adds magazine coverage. Still cheaper than any competitor's entry tier.
-- $99 adds radio + photography. Still 70% cheaper than Birdeye's cheapest plan.
-- Potential future: $149-199 "Anchor" tier with dedicated account manager + quarterly photoshoot
-
-The price transparency (showing it on the homepage, in the CTA button) is a competitive advantage. 10 of 15 competitors hide their price behind "Get a demo." We don't.
+- **Public site:** **Free / Core / Growth / Partner** — **no dollar amounts** until you lock pricing.
+- **Internal / pitch:** Historical reference tiers of **$20 / $49 / $99** may still appear in older docs — reconcile before any sale.
+- **Competitor** prices (Birdeye, Thryv, etc.) — refresh from vendor sites before citing in outbound.
+- **Potential future:** higher "Anchor" style tier with account manager + quarterly photos — only when capacity matches.
 
 ---
 
