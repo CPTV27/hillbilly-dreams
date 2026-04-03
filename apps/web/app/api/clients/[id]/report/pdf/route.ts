@@ -70,8 +70,9 @@ export async function GET(request: NextRequest, { params }: Params) {
       });
     }
 
-    // Return PDF as download
-    return new NextResponse(pdfBuffer, {
+    // Return PDF as download — copy into a plain Uint8Array (Node Buffer is not accepted as BodyInit here).
+    const body = new Uint8Array(pdfBuffer);
+    return new NextResponse(body, {
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `inline; filename="${client.name.replace(/[^a-zA-Z0-9]/g, '-')}-${MONTH_NAMES[month]}-${year}.pdf"`,
