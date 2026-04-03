@@ -33,7 +33,7 @@ export default function TouringHomepage() {
           fill
           priority
           sizes="100vw"
-          style={{ objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.6) contrast(1.1)' }}
+          style={{ objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.8)' }}
         />
         <div style={{
           position: 'absolute',
