@@ -48,3 +48,10 @@ test('Deep South Directory — splash loads', async ({ page }) => {
     timeout: 20_000,
   });
 });
+
+test('Admin deploys API — unauthenticated returns 401', async ({ request }) => {
+  const res = await request.get('/api/admin/deploys');
+  expect(res.status(), 'requireAdmin() should reject callers without a session').toBe(401);
+  const body = await res.json().catch(() => ({}));
+  expect(body).toMatchObject({ error: 'Not authenticated' });
+});
