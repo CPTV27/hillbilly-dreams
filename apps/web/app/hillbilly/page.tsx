@@ -45,15 +45,15 @@ const BRANDS = [
     name: 'Big Muddy Radio',
     url: 'https://bigmuddyradio.com',
     what: 'Curated playlists, live sessions, the American Parlor Songbook.',
-    image: '/images/processed/bearsville/theater-show-01.webp',
-    imageAlt: 'Live performance under stage lights',
+    image: '/images/radio/podcast-hero-studio-placeholder.webp',
+    imageAlt: 'Radio studio — microphones and mixing console',
   },
   {
     name: 'Big Muddy Records',
     url: 'https://bigmuddyrecords.com',
     what: 'Independent label. Artists own their masters.',
-    image: '/images/inn/blues-room-stage.webp',
-    imageAlt: 'Blues Room stage at The Big Muddy Inn',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
+    imageAlt: 'Blues Room live session at The Big Muddy Inn',
   },
   {
     name: 'Big Muddy Entertainment',
@@ -73,15 +73,16 @@ const BRANDS = [
     name: 'Outsider Economics',
     url: 'https://outsidereconomics.com',
     what: 'The field manual. Why small towns work and how to prove it.',
-    image: '/images/corridor/cafe-sidewalk-natchez.webp',
-    imageAlt: 'Small-town street — cafe and sidewalk',
+    image:
+      'https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/01-woodcut/main-street-storefront.webp',
+    imageAlt: 'Woodcut illustration — Main Street storefronts and local commerce',
   },
   {
     name: 'Venture Gallery',
     url: 'https://venturegallery.art',
     what: 'Art from corridor artists. Photography, prints, limited editions.',
-    image: '/images/gallery/clients/brittany/for03355.webp',
-    imageAlt: 'Corridor photography — gallery print',
+    image: '/images/gallery/prints/glass-house-blue-hour.webp',
+    imageAlt: 'Fine art photograph — Glass House, Blue Hour',
   },
 ];
 
