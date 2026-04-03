@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { getReservations } from '@/lib/cloudbeds';
+import { requireAdmin } from '@/lib/admin-auth';
 
 
 function todayString() {
@@ -22,6 +23,9 @@ const withTimeout = <T>(promise: Promise<T>, ms: number, fallback: T): Promise<T
   Promise.race([promise, new Promise<T>(resolve => setTimeout(() => resolve(fallback), ms))]);
 
 export async function GET() {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   const today = todayString();
   const tomorrow = tomorrowString();
 

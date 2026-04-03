@@ -214,7 +214,7 @@ API keys in Vercel: `ANTHROPIC_API_KEY`, `PERPLEXITY_API_KEY`, `GOOGLE_APPLICATI
 
 ## Architecture Notes
 
-- **Stack:** Next.js 15 App Router · TypeScript · Inline CSS (no Tailwind) · Prisma/PostgreSQL · next-auth v5
+- **Stack:** Next.js 14.2 App Router (see `apps/web/package.json` for exact `next` version) · TypeScript · Inline CSS (no Tailwind) · Prisma/PostgreSQL · next-auth v5
 - **Deploy:** Vercel (sole platform — not Firebase)
 - **Storage:** GCS bucket `bmt-media-bigmuddy` · Cloudflare R2
 - **DNS:** All domains in Cloudflare (ChasePierson.TV account) · Gray cloud · A → 76.76.21.21 · www CNAME → cname.vercel-dns.com

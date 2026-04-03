@@ -1,5 +1,6 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 
 // Vercel API integration for deployment status
 // Uses VERCEL_TOKEN env var for authentication
@@ -93,6 +94,9 @@ function extractFeatures(message: string): string[] {
 }
 
 export async function GET() {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   const vercelDeploys = await fetchVercelDeployments();
 
   if (vercelDeploys.length === 0) {

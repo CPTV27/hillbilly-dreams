@@ -9,11 +9,28 @@ export const dynamic = 'force-dynamic';
 //
 // Returns: { processed, succeeded, failed, results[] }
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getPublisher } from '@/lib/social-publishers';
 import { prisma } from '@/lib/db';
+import { requireAdmin } from '@/lib/admin-auth';
 
-export async function POST() {
+/** Vercel Cron / scheduler may call with `Authorization: Bearer ${CRON_SECRET}`; otherwise admin session. */
+async function requireCronOrAdmin(request: NextRequest): Promise<NextResponse | null> {
+  const authHeader = request.headers.get('authorization');
+  if (
+    process.env.NODE_ENV !== 'development' &&
+    process.env.CRON_SECRET &&
+    authHeader === `Bearer ${process.env.CRON_SECRET}`
+  ) {
+    return null;
+  }
+  return requireAdmin();
+}
+
+export async function POST(request: NextRequest) {
+  const denied = await requireCronOrAdmin(request);
+  if (denied) return denied;
+
   try {
 
     const now = new Date();

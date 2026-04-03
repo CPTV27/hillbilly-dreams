@@ -1,6 +1,10 @@
 export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
+import sharp from 'sharp';
 import { prisma } from '@/lib/db';
+import { requireAdmin } from '@/lib/admin-auth';
+import { generateImage } from '@/lib/imagen';
+import { uploadToGCS } from '@/lib/gcs';
 
 // Vibe-to-prompt mapping — no text in any prompt
 const VIBE_PROMPTS: Record<string, string> = {
@@ -15,6 +19,9 @@ const VIBE_PROMPTS: Record<string, string> = {
 const DEFAULT_VIBE = 'Editorial woodcut illustration of a music venue stage at night, warm golden light, atmospheric, burnt orange and cream palette — no text no words no letters';
 
 export async function POST(req: NextRequest) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   try {
     const body = await req.json();
     const { eventName, artist, date, time, venue, vibe } = body as {
@@ -34,25 +41,24 @@ export async function POST(req: NextRequest) {
     const showVenue = venue || 'Big Muddy Inn — Blues Room';
     const vibePrompt = VIBE_PROMPTS[vibe?.toLowerCase() || ''] || DEFAULT_VIBE;
 
-    // Step 1: Generate background image via Vertex AI Imagen
+    // Step 1: Generate background image via Vertex AI Imagen (same pipeline as /api/media/generate; in-process — no HTTP self-call)
     let backgroundUrl = '';
     try {
-      const baseUrl = process.env.NEXTAUTH_URL || 'https://bigmuddytouring.com';
-      const imgRes = await fetch(`${baseUrl}/api/media/generate`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          prompt: vibePrompt,
-          album: 'posters',
-          negativePrompt: 'text, words, letters, typography, watermark, signature, photorealistic, 3d render',
-          aspectRatio: '9:16',
-        }),
+      const [pngBuffer] = await generateImage(vibePrompt, {
+        negativePrompt: 'text, words, letters, typography, watermark, signature, photorealistic, 3d render',
+        aspectRatio: '9:16',
+        sampleCount: 1,
       });
-
-      if (imgRes.ok) {
-        const imgData = await imgRes.json();
-        backgroundUrl = imgData.url || '';
-      }
+      const webpBuffer = await sharp(pngBuffer).webp({ quality: 85 }).toBuffer();
+      const slug = vibePrompt
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/[\s_]+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .slice(0, 60);
+      const path = `posters/${slug}-${Date.now()}.webp`;
+      backgroundUrl = await uploadToGCS(webpBuffer, path, 'image/webp');
     } catch (err) {
       console.error('[poster] Image generation failed:', err);
       // Continue without background — Canva will use a template

@@ -5,8 +5,12 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { dispatchToChannel, BMT_EMAILS } from '@bigmuddy/shared';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function POST(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   let body: {
     preferredName: string;
     businessEmail: string;
@@ -67,8 +71,6 @@ export async function POST(req: NextRequest) {
       body: checklist,
       priority: 'high',
     });
-
-    console.log(`[Onboarding] Checklist dispatched for ${body.preferredName}`);
   } catch (err) {
     console.error('[Onboarding] Dispatch failed (non-blocking):', err);
   }

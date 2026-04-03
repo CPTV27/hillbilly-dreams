@@ -68,7 +68,7 @@ Chase gives objective
 
 | Owner | Owns |
 |-------|------|
-| **CC** (Claude Code) | `packages/`, `prisma/schema.prisma`, `app/api/`, `.github/`, `firebase.json`, `apphosting.yaml`, `AGENT_LEDGER.md`, `DISPATCH.md`, `ARCHITECTURE.md` |
+| **CC** (Claude Code) | `packages/`, `prisma/schema.prisma`, `app/api/`, `.github/`, `AGENT_LEDGER.md`, `DISPATCH.md`, `ARCHITECTURE.md` |
 | **AG** (Antigravity / Cursor) | `app/(brand pages)/`, `app/*/page.tsx`, `app/*/layout.tsx`, UI components, inline styles, copy |
 | **GA** (Google AI / Roo) | `packages/content-engine/`, `app/api/*/generate/`, Delta Dawn system prompt, AI integrations |
 
@@ -107,8 +107,8 @@ Auth:       next-auth v5 (JWT strategy) · Google OAuth + credentials
 AI:         Anthropic Claude (claude-sonnet-4-20250514 for heavy, haiku for fast)
             @google-cloud/aiplatform for media generation
 Storage:    GCS (bmt-media-bigmuddy bucket) · Cloudflare R2
-Deploy:     Firebase App Hosting → Cloud Run (nodejs20, maxInstances: 10, 1024MB)
-Secrets:    Firebase Secret Manager only — no .env files in production
+Deploy:     Vercel (production from `main`; preview deployments on PRs)
+Secrets:    Vercel env + Bitwarden as source of truth — no secrets committed; no `.env` in production builds
 ```
 
 Do not introduce new dependencies without writing the rationale in `.workflow/DECISIONS.md` first.
@@ -120,7 +120,7 @@ Do not introduce new dependencies without writing the rationale in `.workflow/DE
 | Environment | How to deploy | Who can approve |
 |-------------|--------------|-----------------|
 | Local dev | `pnpm dev` | Anyone |
-| Preview | Firebase preview channel | AG, GA, CC |
+| Preview | Vercel preview (PR branches) | AG, GA, CC |
 | Production (`main` branch) | CI/CD auto-deploys on merge | Chase only |
 
 **Never push directly to `main`.** Always use a feature branch. CI runs typecheck + lint + build — do not skip.
@@ -133,7 +133,7 @@ Before marking any task complete:
 - [ ] `pnpm typecheck` passes (no TypeScript errors)
 - [ ] `pnpm lint` passes
 - [ ] `pnpm build` succeeds (no build-time errors)
-- [ ] No `export const` named exports from `page.tsx` files (Next.js 15 rejects them)
+- [ ] No stray named exports from `page.tsx` beyond what the App Router allows (reserved exports only)
 - [ ] No hardcoded secrets or API keys
 - [ ] No `console.log` left in API routes (use structured logging)
 
@@ -168,7 +168,7 @@ const stripe = getStripeClient();
 ## 8. PATTERNS TO NEVER USE
 
 - `new Stripe(key || '', ...)` at module level — throws in CI when STRIPE_SECRET_KEY is absent
-- `export const API_ROUTES = ...` from page.tsx files — Next.js 15 rejects non-reserved named exports
+- `export const API_ROUTES = ...` from page.tsx files — App Router rejects non-reserved named exports
 - `prisma.$queryRaw` without parameterized inputs — SQL injection risk
 - `dangerouslySetInnerHTML` without `isomorphic-dompurify` sanitization
 - Hardcoded email addresses in code (use env vars or constants file)

@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { prisma } from '@bigmuddy/database';
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 
 // GET /api/agent/action — query action log
 // ?agent=huck         — filter by agent
@@ -8,6 +9,9 @@ import { NextRequest, NextResponse } from 'next/server';
 // &since=2026-03-27   — only actions after this date
 // &limit=20           — max results
 export async function GET(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   const { searchParams } = req.nextUrl;
   const agent = searchParams.get('agent');
   const domain = searchParams.get('domain');
@@ -31,6 +35,9 @@ export async function GET(req: NextRequest) {
 
 // POST /api/agent/action — log an agent action
 export async function POST(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   const body = await req.json();
   const { agent, action, summary, detail, domain, impact } = body;
 
