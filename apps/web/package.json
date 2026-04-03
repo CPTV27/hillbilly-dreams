@@ -29,6 +29,7 @@
     "@opentelemetry/sdk-trace-base": "^2.6.0",
     "@opentelemetry/sdk-trace-node": "^2.6.0",
     "@prisma/client": "^5.14.0",
+    "@react-pdf/renderer": "^4.3.2",
     "@react-three/drei": "^9.118.0",
     "@react-three/fiber": "^8.17.10",
     "@sentry/nextjs": "^10.46.0",

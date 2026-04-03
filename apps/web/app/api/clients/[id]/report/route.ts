@@ -4,8 +4,8 @@ export const dynamic = 'force-dynamic';
 // POST /api/clients/:id/report — generate a monthly report
 
 import { NextRequest, NextResponse } from 'next/server';
-import Anthropic from '@anthropic-ai/sdk';
 import { prisma } from '@/lib/db';
+import { callAI } from '@/lib/ai-models';
 
 type Params = { params: { id: string } };
 
@@ -111,30 +111,23 @@ export async function POST(request: NextRequest, { params }: Params) {
 
     // Generate AI summary
     let summary: string | null = null;
-    const apiKey = process.env.ANTHROPIC_API_KEY;
-    if (apiKey) {
-      try {
-        const claude = new Anthropic({ apiKey });
-        const response = await claude.messages.create({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 512,
-          system: 'You are writing a brief monthly performance summary for a local business client. Be encouraging but honest. 2-3 short paragraphs. Mention specific numbers. Suggest 1-2 actionable next steps.',
-          messages: [{
-            role: 'user',
-            content: `Write a monthly report summary for ${client.name} (${client.businessType} in ${client.city}) for ${MONTH_NAMES[adjustedMonth]} ${year}:
+    try {
+      const result = await callAI({
+        role: 'generation',
+        system: 'You are writing a brief monthly performance summary for a local business client. Be encouraging but honest. 2-3 short paragraphs. Mention specific numbers. Suggest 1-2 actionable next steps.',
+        messages: [{
+          role: 'user',
+          content: `Write a monthly report summary for ${client.name} (${client.businessType} in ${client.city}) for ${MONTH_NAMES[adjustedMonth]} ${year}:
 - Posts published: ${postsPublished}
 - New reviews: ${reviewCount}
 - Average review rating: ${avgRating || 'N/A'}
 - Reviews responded to: ${reviewsResponded}
 - Tier: ${client.tier}`,
-          }],
-        });
-        summary = response.content
-          .filter((block): block is Anthropic.TextBlock => block.type === 'text')
-          .map((block) => block.text)
-          .join('');
-      } catch { /* summary is nice-to-have */ }
-    }
+        }],
+        maxTokens: 512,
+      });
+      summary = result.text;
+    } catch { /* summary is nice-to-have */ }
 
     const report = await (prisma as any).report.upsert({
       where: {
