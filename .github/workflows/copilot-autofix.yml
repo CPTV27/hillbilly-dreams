@@ -13,7 +13,7 @@ jobs:
     name: Copilot Review
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       # GitHub Copilot automatically reviews PRs on Pro plans
       # This workflow ensures the PR is ready for Copilot's review
       - name: PR Ready
