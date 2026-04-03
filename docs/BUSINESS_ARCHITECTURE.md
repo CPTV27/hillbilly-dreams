@@ -245,3 +245,26 @@ No external sales until we've eaten our own dog food and know exactly what to se
 ---
 
 *This document is the source of truth. If any other doc, page, or agent contradicts this, this document wins.*
+
+---
+
+## Shipped April 1-2, 2026
+
+### New Modules & Features
+- **WiFi Captive Portal** (`/welcome/wifi`) — Email capture for Inn guests. Branded splash page, shows tonight's events, links to Radio. Future: deploy at any ecosystem business.
+- **Musician Directory** (`/directory/onboard/musician`) — Same tier model as DSD ($0/$20/$49/$99) but for bands. Genre, streaming links, availability, fee range. Listing page detects musicians and shows "Book This Artist" CTA.
+- **Client Photo Delivery** (`/gallery/clients/[name]`) — Masonry grid with lightbox, heart favorites, print ordering ($25-$350), tip jar (Stripe), share buttons, download requests. Template for all future client deliveries.
+- **Voice AI** (`/measurably-better/life`) — Southern Concierge. Tap-to-talk mic button, Whisper STT, Gemini Flash reasoning with real database queries.
+
+### Database
+- **Touring DB** — 6 new Prisma models: TouringVenue, TouringHotel, TourRoute, TourRouteStop, TouringRestaurant, CorridorCity
+- **Corridor seeded** — 13 cities (New Orleans → Memphis), 31 artists, 26 venues, 20 hotels, 15 restaurants, 1 complete route (Delta Run)
+- **Touring-to-Directory bridge** — `lib/touring-to-directory.ts` auto-creates DirectoryBusiness records for touring entities
+- **Spotify + MusicBrainz API clients** — Built, waiting on API keys to activate enrichment
+- **16,936 photos tagged** — Google Cloud Vision API (labels, landmarks, objects), XMP metadata written, indexed in repo
+
+### Infrastructure
+- **Records domain** — `bigmuddyrecordlabel.com` DNS pointing to Vercel (we don't own bigmuddyrecords.com)
+- **Delta Dawn** — Group created in Google Workspace (`deltadawn@hillbillydreamsinc.com`), Google Chat bot routes already built
+- **FM Radio** — Part 15 transmitter ordered for property-only broadcast, LPFM license research underway (potential Delta Blues Museum partnership)
+- **Photo pipeline** — Adobe Bridge + Google Vision API dual tagging, Lightroom catalog integration, auto-inference for mood/brand/subject

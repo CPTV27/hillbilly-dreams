@@ -191,3 +191,47 @@ Functional community dashboard. Hardcoded hex (backlog).
 8. /records full rewrite (remove package pricing)
 9. /hillbilly voice overhaul
 10. DSD jargon softening
+
+---
+
+## Fixed April 2, 2026
+
+*Items from the original audit that have been resolved.*
+
+### HARD FAILS Fixed
+- ✅ "Arrie Aslin" spelling corrected across 25+ files (was "Arri Aslan" / "Ari Aslan")
+- ✅ "BuyCurious Art" → "Venture Gallery" in 21 consumer-facing files
+- ✅ Hardcoded font in `/hillbilly` (Plus Jakarta Sans → `var(--font-body)`)
+- ✅ Claim ladder badge — The Engine ($99) shows "Coming April 14", The Works ($49) shows "Coming April 21"
+- ✅ "Powered by MBT" footer added to shared Footer component (propagates to touring, magazine, radio, economics, studioc, tuthill), Bearsville, and records
+
+### SOFT FAILS Fixed
+- ✅ Entertainment layout meta: removed "Four divisions" language
+- ✅ Bearsville footer: changed from "Hillbilly Dreams Inc" to "Measurably Better Things"
+- ✅ Domain routes: buycurious now routes to `/gallery` (not `/measurably-better`)
+- ✅ Admin form labels improved: "Slug" → "URL Path", "Markdown" → formatting hint, "JSON array" → plain English
+- ✅ Admin form redirects: all 5 forms now redirect to `/admin/*` (were going to public pages)
+- ✅ 11 API routes with hardcoded model names → `pickModel()`
+
+### New Features Shipped (not in original audit)
+- ✅ Musician directory onboarding at `/directory/onboard/musician` (PR #21)
+- ✅ WiFi captive portal at `/welcome/wifi` (PR #19)
+- ✅ Gallery redesign — Chase Pierson Photography, 45 prints (PR #18)
+- ✅ Touring absorbed into Entertainment (bigmuddytouring.com shows Entertainment content)
+- ✅ Touring headline: "Gateway to the heart of soul music"
+- ✅ Records page rewrite with real artist roster
+- ✅ Hillbilly Inc page rewrite
+- ✅ Magazine Heritage Journal parallax redesign
+- ✅ Bearsville studio pivot — "The Visual Side of Sound"
+- ✅ Voice AI — Southern Concierge at measurablybetter.life/life
+- ✅ Client photo delivery gallery (Brittany) with tip jar + print ordering
+- ✅ Tracy Alderson Gallery infrastructure
+- ✅ Regina Charboneau DSD listing + Magazine feature article
+- ✅ 16,936 photos tagged via Vision API and indexed
+
+### Still Open (Backlog)
+- 41 "BuyCurious" references remaining in non-consumer code
+- 416 hardcoded hex colors across pages
+- `/records` pricing model needs alignment with new non-exclusive deal structure
+- `/hillbilly` voice still reads corporate (should be Duncan Trussell energy)
+- Enrichment pipeline waiting on API keys (SPOTIFY_CLIENT_ID, GOOGLE_PLACES_API_KEY)
