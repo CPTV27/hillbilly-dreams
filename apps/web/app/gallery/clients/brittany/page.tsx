@@ -34,9 +34,20 @@ const PRINT_PRICES = [
 
 const DIGITAL_DOWNLOAD = { label: 'Full Resolution Digital', price: 35 };
 
+const GALLERY_URL = 'https://bigmuddytouring.com/gallery/clients/brittany';
+const SHARE_TEXT = 'Check out our family photos from The Big Muddy Inn in Natchez!';
+
 export default function BrittanyGalleryPage() {
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
+  const [copied, setCopied] = useState(false);
+
+  const copyLink = () => {
+    navigator.clipboard.writeText(GALLERY_URL).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
 
   const toggleFavorite = (id: string) => {
     setFavorites((prev) => {
@@ -279,6 +290,158 @@ export default function BrittanyGalleryPage() {
           </div>
         </section>
       )}
+
+      {/* ── Download & Share ── */}
+      <section
+        style={{
+          padding: '3rem 2rem',
+          maxWidth: '680px',
+          margin: '0 auto',
+          textAlign: 'center',
+          borderTop: '1px solid var(--border, #e5e5e0)',
+          backgroundColor: 'var(--surface, #fafaf8)',
+        }}
+      >
+        <h2
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: '1.2rem',
+            fontWeight: 400,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            marginBottom: '1rem',
+            color: 'var(--text)',
+          }}
+        >
+          Download Your Photos
+        </h2>
+        <p
+          style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: '0.85rem',
+            lineHeight: 1.7,
+            color: 'var(--text-muted, #666)',
+            marginBottom: '1.5rem',
+            maxWidth: '450px',
+            margin: '0 auto 1.5rem',
+          }}
+        >
+          Digital downloads of your full gallery are complimentary for
+          Big Muddy Inn guests. If you love them, a tip is always appreciated.
+        </p>
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a
+            href="mailto:chase@hillbillydreamsinc.com?subject=Download Request — Brittany Session&body=Hi Chase,%0A%0APlease send me the full-resolution downloads of my gallery. Thank you!"
+            style={{
+              display: 'inline-block',
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.8rem',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              padding: '1rem 2.5rem',
+              backgroundColor: 'var(--text, #1a1a1a)',
+              color: 'var(--bg, #fff)',
+              textDecoration: 'none',
+            }}
+          >
+            Request Downloads
+          </a>
+          <a
+            href="mailto:chase@hillbillydreamsinc.com?subject=Tip — Brittany Session&body=Hi Chase,%0A%0AHere's a tip for the beautiful photos! [Stripe link coming soon]"
+            style={{
+              display: 'inline-block',
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.8rem',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              padding: '1rem 2.5rem',
+              border: '1px solid var(--text)',
+              color: 'var(--text)',
+              textDecoration: 'none',
+            }}
+          >
+            Leave a Tip
+          </a>
+        </div>
+
+        {/* Share buttons */}
+        <div style={{ marginTop: '2.5rem' }}>
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.7rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: 'var(--text-muted, #bbb)',
+              marginBottom: '0.75rem',
+            }}
+          >
+            Share This Gallery
+          </p>
+          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button
+              onClick={copyLink}
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.75rem',
+                letterSpacing: '0.1em',
+                padding: '0.5rem 1.25rem',
+                border: '1px solid var(--border, #e5e5e0)',
+                backgroundColor: copied ? 'var(--text, #1a1a1a)' : 'transparent',
+                color: copied ? 'var(--bg, #fff)' : 'var(--text-muted, #999)',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+              }}
+            >
+              {copied ? 'Copied!' : 'Copy Link'}
+            </button>
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(GALLERY_URL)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.75rem',
+                letterSpacing: '0.1em',
+                padding: '0.5rem 1.25rem',
+                border: '1px solid var(--border, #e5e5e0)',
+                color: 'var(--text-muted, #999)',
+                textDecoration: 'none',
+              }}
+            >
+              Facebook
+            </a>
+            <a
+              href={`sms:?body=${encodeURIComponent(SHARE_TEXT + ' ' + GALLERY_URL)}`}
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.75rem',
+                letterSpacing: '0.1em',
+                padding: '0.5rem 1.25rem',
+                border: '1px solid var(--border, #e5e5e0)',
+                color: 'var(--text-muted, #999)',
+                textDecoration: 'none',
+              }}
+            >
+              Text
+            </a>
+            <a
+              href={`mailto:?subject=${encodeURIComponent('Our Big Muddy Inn Photos')}&body=${encodeURIComponent(SHARE_TEXT + '\n\n' + GALLERY_URL)}`}
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.75rem',
+                letterSpacing: '0.1em',
+                padding: '0.5rem 1.25rem',
+                border: '1px solid var(--border, #e5e5e0)',
+                color: 'var(--text-muted, #999)',
+                textDecoration: 'none',
+              }}
+            >
+              Email
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* ── Print Pricing ── */}
       <section
