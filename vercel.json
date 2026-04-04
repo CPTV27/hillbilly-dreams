@@ -11,6 +11,18 @@
     {
       "path": "/api/cron/social-publish",
       "schedule": "*/15 * * * *"
+    },
+    {
+      "path": "/api/cron/scan-asana",
+      "schedule": "17 * * * *"
+    },
+    {
+      "path": "/api/cron/process-enrichment-queue",
+      "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/cron/sync-google",
+      "schedule": "23 3 * * *"
     }
   ]
 }
