@@ -32,9 +32,8 @@ export async function GET(request: Request) {
     });
 
     const results = [];
-    const baseUrl = process.env.NEXTAUTH_URL || process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : 'http://localhost:3000';
+    const baseUrl = process.env.NEXTAUTH_URL?.replace(/\/$/, '')
+      ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
 
     for (const client of clients) {
       try {

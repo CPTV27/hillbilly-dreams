@@ -2,5 +2,11 @@
   "framework": "nextjs",
   "installCommand": "corepack enable && pnpm install --frozen-lockfile",
   "buildCommand": "pnpm turbo build --filter=@bigmuddy/web",
-  "outputDirectory": "apps/web/.next"
+  "outputDirectory": "apps/web/.next",
+  "crons": [
+    {
+      "path": "/api/cron/monthly-reports",
+      "schedule": "0 8 1 * *"
+    }
+  ]
 }
