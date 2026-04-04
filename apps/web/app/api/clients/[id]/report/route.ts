@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { callAI } from '@/lib/ai-models';
+import { requireCronOrAdmin } from '@/lib/cron-or-admin';
 
 type Params = { params: { id: string } };
 
@@ -29,6 +30,9 @@ export async function GET(_request: NextRequest, { params }: Params) {
 }
 
 export async function POST(request: NextRequest, { params }: Params) {
+  const denied = await requireCronOrAdmin(request);
+  if (denied) return denied;
+
   const clientId = parseInt(params.id, 10);
   if (isNaN(clientId)) return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
 

@@ -7,6 +7,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { renderToBuffer } from '@react-pdf/renderer';
 import { uploadToGCS } from '@/lib/gcs';
+import { requireCronOrAdmin } from '@/lib/cron-or-admin';
 import { MonthlyReportDocument } from './template';
 
 type Params = { params: { id: string } };
@@ -15,6 +16,8 @@ const MONTH_NAMES = ['', 'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'];
 
 export async function GET(request: NextRequest, { params }: Params) {
+  const denied = await requireCronOrAdmin(request);
+  if (denied) return denied;
   const clientId = parseInt(params.id, 10);
   if (isNaN(clientId)) return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
 
