@@ -356,7 +356,7 @@ function MusicianOnboardInner() {
 
       <footer style={{ padding: '2rem', textAlign: 'center' }}>
         <p style={{ fontSize: '0.65rem', opacity: 0.25, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-          Powered by Measurably Better Things
+          Powered by Deep South Directory
         </p>
       </footer>
     </div>
