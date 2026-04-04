@@ -229,13 +229,18 @@ model BridgeClient {
 
 model SocialAccount {
   id          Int      @id @default(autoincrement())
-  platform    String   // twitter | tiktok | instagram | threads | bluesky | linkedin
+  platform    String   // facebook | instagram | google_business | twitter | tiktok | threads | bluesky | linkedin
   handle      String   // @outsiderecon, @bigmuddymedia, etc.
   brand       String   @default("bigmuddy") // bigmuddy | radio | magazine | touring | economics
   status      String   @default("active")   // active | paused | disconnected
   notes       String?
   // SOFT FK: references db-media Client.id — no @relation constraint (cross-sovereign)
   clientId    Int?
+  // ── OAuth / Publishing Tokens ──
+  platformId    String?  // Platform-specific page/account ID (e.g. FB Page ID, GBP location ID)
+  accessToken   String?  @db.Text  // OAuth access token (encrypted at rest via GCP)
+  refreshToken  String?  @db.Text  // OAuth refresh token
+  tokenExpiry   DateTime?          // When the access token expires
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   posts       SocialPost[]
