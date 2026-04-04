@@ -6,9 +6,9 @@ import Image from 'next/image';
 import { NewsletterSignup, BLUR_DATA_URL } from '@bigmuddy/ui';
 
 export const metadata: Metadata = {
-  title: 'Studio C Video — Live Production & Content from Natchez',
+  title: 'Studio C Video — Live Production & Content from Woodstock, NY',
   description:
-    'Multi-camera live production, streaming, music video, and podcast recording at Studio C inside The Big Muddy Inn, Natchez, Mississippi.',
+    'Multi-camera live production, streaming, music video, and podcast recording at Studio C inside The Big Muddy Inn, Woodstock, NY.',
 };
 
 const CAPABILITIES = [
