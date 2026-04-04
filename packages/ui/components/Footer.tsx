@@ -62,9 +62,8 @@ export function Footer({ brand }: FooterProps) {
           <p className="bm-footer__copy">
             &copy; {currentYear} Chase Tuthill Pierson. Creative Commons license.
             {' '}&middot;{' '}
-            Powered by{' '}
-            <a href="https://measurablybetter.life" className="bm-footer__mbt-link">
-              Measurably Better Things
+            <a href="https://hillbillydreamsinc.com" className="bm-footer__mbt-link">
+              Hillbilly Dreams Inc
             </a>
           </p>
           <div className="bm-footer__legal">
@@ -143,9 +142,8 @@ export function Footer({ brand }: FooterProps) {
         <p className="bm-footer__copy">
           &copy; {currentYear} Big Muddy Touring. All rights reserved.
           {' '}&middot;{' '}
-          Powered by{' '}
-          <a href="https://measurablybetter.life" className="bm-footer__mbt-link">
-            Measurably Better Things
+          <a href="https://hillbillydreamsinc.com" className="bm-footer__mbt-link">
+            Hillbilly Dreams Inc
           </a>
         </p>
         <div className="bm-footer__legal">
