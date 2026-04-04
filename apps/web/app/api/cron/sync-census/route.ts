@@ -6,8 +6,12 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { syncAllCorridorCensus } from '@/lib/census-api';
+import { requireCronOrAdmin } from '@/lib/cron-or-admin';
 
 export async function POST(request: NextRequest) {
+  const denied = await requireCronOrAdmin(request);
+  if (denied) return denied;
+
   try {
     const body = await request.json().catch(() => ({}));
     const year = (body as { year?: number }).year || 2023;

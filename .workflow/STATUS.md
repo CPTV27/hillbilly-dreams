@@ -1,5 +1,85 @@
 # Agent status
 
+## 2026-04-06 — Phase 1: `rook.harvest` contract-coded (registry vanguard)
+
+- **Handler:** [`apps/web/lib/agent/handlers/harvest.ts`](../apps/web/lib/agent/handlers/harvest.ts) — `HarvestInputSchema` (strict Zod: `city`, `category`, `radius`, `limit`; no `url`/`depth`/`maxPages`/`proxyRegion` until the pipeline uses them), `executeHarvest()` → `HarvestResult`.
+- **Registry:** [`apps/web/lib/agent/toolRegistry.ts`](../apps/web/lib/agent/toolRegistry.ts) — `TOOL_REGISTRY` allowlist; first tool **`rook.harvest`**, **`authClass: ToolAuthClass.ADMIN`**, **`name: 'Directory Harvest'`**.
+- **Route:** [`apps/web/app/api/agent/harvest/route.ts`](../apps/web/app/api/agent/harvest/route.ts) — thin wrapper: **`requireAdmin()`** → **`toolRegistry.get('rook.harvest').execute(body)`** (in-process; no self-`fetch`).
+- **`radius`** is in the contract for forward compatibility; Places/geo wiring is still future work.
+
+### Quality gate
+
+`pnpm exec tsc --noEmit -p apps/web` (pass)
+
+---
+
+## 2026-04-06 — Phase 1.1: `rook.orchestrate` + registry dispatch
+
+- **Handler:** [`apps/web/lib/agent/handlers/orchestrate.ts`](../apps/web/lib/agent/handlers/orchestrate.ts) — `executeOrchestrate()`; **`/api/agent/*` tools resolved via `normalizeAgentToolPath` → `toolRegistry.get(id).execute(params)`** (no internal HTTP for harvest/context/action). **`/api/marketing/*`** still uses server `fetch` until those tools are promoted.
+- **Registry:** [`rook.orchestrate`](../apps/web/lib/agent/toolRegistry.ts) with **`OrchestrateInputSchema`**; **`agent.context` / `agent.action`** wired to **`ContextPostInputSchema` / `ActionPostInputSchema`** + **`executePostContext` / `executePostAction`**. **`system.context.*` / `system.action.*`** keep explicit **`execute`** fns for the universal **`POST /api/agent`** contract.
+- **Routes:** [`api/agent/orchestrate/route.ts`](../apps/web/app/api/agent/orchestrate/route.ts) thin wrapper; [`api/agent/route.ts`](../apps/web/app/api/agent/route.ts) uses **`toolRegistry.get(toolId)`** (fixes tools without inline `execute`, e.g. **`rook.orchestrate`**). **`api/agent/harvest/route.ts`** restored for admin UI compatibility.
+- **Live feed:** orchestration writes **`orchestrate_memory`**, **`orchestrate_route`**, **`orchestrate_tool`**, **`orchestrate`** (and **`orchestrate_failed`**) rows to **`agentAction`**.
+- **Removed:** duplicate **`contextWrite` / `actionLog`** handlers (consolidated on **`handlers/context.ts`** + **`handlers/action.ts`**).
+
+### Quality gate
+
+`pnpm exec tsc --noEmit -p apps/web` (pass)
+
+---
+
+## 2026-04-06 — Phase 0.7 Stealth ops lockdown (mutators)
+
+- **`/api/ops/tasks/[id]`:** `PATCH` → **`requireAdmin()`** (replaces non-enforced `auth()` stub).
+- **`/api/ops/tasks/sync-asana`:** `POST` → **`requireAdmin()`** (replaces session-only check).
+- **`/api/integrations`:** `POST` → **`requireAdmin()`**.
+- **`/api/integrations/[id]`:** `PATCH`, `DELETE` → **`requireAdmin()`**.
+- **`/api/integrations/cloudbeds`:** `POST` → **`requireAdmin()`** (GET unchanged this pass).
+- **`/api/admin/*`:** Already gated; no change.
+- **Excluded by design:** `POST /api/ops/chat` stays **session-optional** per existing product/DECISIONS (not bulk-wrapped).
+
+### Quality gate
+
+`pnpm exec tsc --noEmit -p apps/web` (pass)
+
+---
+
+## 2026-04-06 — Phase 0.6 B2B perimeter + rejection gate + cron
+
+- **`/api/gallery/applications/[id]/reject`:** **`requireAdmin()`** on POST (mirror approve).
+- **`/api/clients/[id]/*` mutators:** shared **`requireAdminOrClientContact(clientId)`** in [`lib/client-api-auth.ts`](../apps/web/lib/client-api-auth.ts) — admin **or** session email matches `Client.contactEmail` / `Client.email` (PATCH/DELETE on `route.ts`; POST on calendar, report, reviews, reviews/respond, voice).
+- **Cron:** **`requireCronOrAdmin(request)`** on **`process-enrichment-queue`**, **`sync-census`**, **`sync-touring`** (POST + GET delegates to POST).
+
+### Quality gate
+
+`pnpm exec tsc --noEmit -p apps/web` (pass)
+
+---
+
+## 2026-04-06 — PII mutator auth batch
+
+- **`/api/gallery/applications/[id]/approve`:** **`requireAdmin()`** on POST (Stripe Connect + user PII).
+- **`/api/productions/[id]/voiceover`:** **`requireAdmin()`** on POST (TTS/GCS + `ProductionArtifact`).
+- **`/api/gallery/applications`:** **`auth()`** on POST; user resolved from **session email** only; optional `body.email` must match session (spoofing closed).
+- **Docs:** [`docs/audit/security_pulse_audit_deeper.md`](../docs/audit/security_pulse_audit_deeper.md) (Antigravity export + snapshot note).
+
+### Quality gate
+
+`pnpm exec tsc --noEmit -p apps/web` (pass)
+
+---
+
+## 2026-04-06 — Phase 0 Iron Gates (API auth)
+
+- **`/api/productions/[id]/approve`:** **`requireAdmin()`** on POST (production job / artifact approval).
+- **`/api/agent/orchestrate`:** **`requireAdmin()`** on POST (internal dispatcher; blocks unauthenticated `fetch` to arbitrary paths).
+- **`/api/content/approve`:** **`requireAdmin()`** on POST (calendar / post / review pipeline approvals).
+
+### Quality gate
+
+`pnpm exec tsc --noEmit -p apps/web` (pass)
+
+---
+
 ## 2026-04-05 — Overnight queue sweep (security, logging, CI, docs)
 
 - **`lib/cron-or-admin.ts`:** shared with **`publish/batch`** and **`/api/metrics`** mutating methods.

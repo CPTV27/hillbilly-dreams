@@ -3,14 +3,18 @@ export const dynamic = 'force-dynamic';
 // POST /api/cron/process-enrichment-queue
 // Processes pending enrichment jobs. Designed to run every 5 minutes via Vercel Cron.
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { requireCronOrAdmin } from '@/lib/cron-or-admin';
 import { enrichBusinessFromPlaces } from '@/lib/google-places';
 import { embedDirectoryBusiness } from '@/lib/embedding-pipeline';
 
 const BATCH_SIZE = 50;
 
-export async function POST() {
+export async function POST(request: NextRequest) {
+  const denied = await requireCronOrAdmin(request);
+  if (denied) return denied;
+
   try {
     // Grab pending jobs, oldest first
     const jobs = await prisma.enrichmentJob.findMany({

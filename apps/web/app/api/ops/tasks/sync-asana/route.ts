@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
-import { auth } from '@/lib/auth';
+import { requireAdmin } from '@/lib/admin-auth';
 import { syncTaskToEcosystem } from '@/lib/task-sync';
 
 const ASSIGNEE_EMAILS: Record<string, string> = {
@@ -24,10 +24,8 @@ function dueDate(session: number | null | undefined): Date {
 }
 
 export async function POST(request: Request) {
-  const session = await auth();
-  if (!session) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  const denied = await requireAdmin();
+  if (denied) return denied;
 
   const body = await request.json().catch(() => ({}));
   const projectGid: string | undefined = body.projectGid;

@@ -52,8 +52,8 @@ const nextConfig = {
   experimental: {
     outputFileTracingRoot: resolve(__dirname, '../../'),
     serverComponentsExternalPackages: ['@prisma/client', 'prisma'],
-    // instrumentationHook disabled — OpenTelemetry Node SDK crashes Vercel edge runtime
-    // instrumentationHook: true,
+    // Sentry uses register() in instrumentation.ts (server + edge). Do not load Node OTEL here — edge runtime.
+    instrumentationHook: true,
   },
 
   async redirects() {

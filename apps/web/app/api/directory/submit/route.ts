@@ -9,12 +9,11 @@ export const dynamic = 'force-dynamic';
 // 5. Sends ntfy notification to ops channel
 
 import { NextRequest, NextResponse } from 'next/server';
-import Anthropic from '@anthropic-ai/sdk';
+import { ModelTier } from '@/lib/ai/modelTier';
+import { generateTextWithTierOrVertex } from '@/lib/ai/openRouter';
 import { prisma } from '@/lib/db';
 import { notify } from '@/lib/notify';
 import { generateSlug } from '@/lib/google-places';
-
-const client = new Anthropic();
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
@@ -58,14 +57,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // Generate AI editorial spotlight
     let spotlight = '';
     try {
-      const message = await client.messages.create({
-        model: 'claude-haiku-4-5-20251001',
-        max_tokens: 512,
-        messages: [
-          {
-            role: 'user',
-            content: category === 'musician'
-              ? `Write a 200-word editorial spotlight for a musician listing in the Big Muddy Touring Directory.
+      const prompt = category === 'musician'
+        ? `Write a 200-word editorial spotlight for a musician listing in the Big Muddy Touring Directory.
 
 Artist details:
 - Name: ${name}
@@ -81,7 +74,7 @@ Voice guidelines:
 - End with one sentence connecting them to the corridor music scene
 
 Write only the spotlight text, no headers or labels.`
-              : `Write a 200-word editorial spotlight for a business listing in the Deep South Directory.
+        : `Write a 200-word editorial spotlight for a business listing in the Deep South Directory.
 
 Business details:
 - Name: ${name}
@@ -97,14 +90,16 @@ Voice guidelines:
 - Focus on what makes this place real and worth visiting
 - End with one sentence that connects this business to the corridor
 
-Write only the spotlight text, no headers or labels.`,
-          },
-        ],
+Write only the spotlight text, no headers or labels.`;
+
+      const result = await generateTextWithTierOrVertex(ModelTier.CARPENTER, prompt, {
+        maxOutputTokens: 512,
+        telemetry: {
+          toolId: 'directory.submit.spotlight',
+          modelTier: ModelTier.CARPENTER,
+        },
       });
-      spotlight = message.content
-        .filter((block): block is Anthropic.TextBlock => block.type === 'text')
-        .map((block) => block.text)
-        .join('');
+      spotlight = result.text;
     } catch (err) {
       console.error('[directory/submit] Spotlight generation failed:', err);
     }

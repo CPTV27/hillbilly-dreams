@@ -4,6 +4,8 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { requireAdmin } from '@/lib/admin-auth';
+import { requireAdminOrClientContact } from '@/lib/client-api-auth';
 
 type Params = { params: { id: string } };
 
@@ -29,8 +31,14 @@ export async function GET(_request: NextRequest, { params }: Params) {
 }
 
 export async function PATCH(request: NextRequest, { params }: Params) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   const id = parseInt(params.id, 10);
   if (isNaN(id)) return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+
+  const gate = await requireAdminOrClientContact(id);
+  if (gate) return gate;
 
   let body: Record<string, unknown>;
   try {
@@ -69,8 +77,14 @@ export async function PATCH(request: NextRequest, { params }: Params) {
 }
 
 export async function DELETE(_request: NextRequest, { params }: Params) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   const id = parseInt(params.id, 10);
   if (isNaN(id)) return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+
+  const gate = await requireAdminOrClientContact(id);
+  if (gate) return gate;
 
   try {
     await (prisma as any).client.delete({ where: { id } });

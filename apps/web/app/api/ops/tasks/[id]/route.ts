@@ -2,10 +2,12 @@ export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { auth } from '@/lib/auth';
-import { requireRoleResponse } from '@/lib/requireRole';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function PATCH(req: Request, { params }: { params: { id: string } }) {
-    // Auth disabled — all callers pass
+    const denied = await requireAdmin();
+    if (denied) return denied;
+
     const session = await auth();
 
     const body = await req.json();
