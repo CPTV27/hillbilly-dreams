@@ -119,8 +119,9 @@ export default function RecordsLayout({
           <a href="https://venturegallery.art" style={{ color: 'var(--accent, #c8943e)' }}>Venture Gallery</a>
         </p>
         <p style={{ marginTop: '0.5rem', fontSize: '0.7rem' }}>
-          Powered by{' '}
-          <a href="https://measurablybetter.life" style={{ color: 'var(--accent, #c8943e)' }}>Measurably Better Things</a>
+          <a href="https://hillbillydreamsinc.com" style={{ color: 'var(--accent, #c8943e)' }}>
+            Hillbilly Dreams Inc
+          </a>
         </p>
       </footer>
     </ThemeProvider>
