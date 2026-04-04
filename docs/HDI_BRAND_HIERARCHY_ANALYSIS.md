@@ -51,8 +51,8 @@ HILLBILLY DREAMS INC (HDI)
     │   Entity: Tuthill Design LLC (EIN 39-3499965)
     │   Co-owned by Elijah Fitzgerald-Tuttle. Design/photography.
     │
-    └── Bearsville Media Group            bearsvillemedia.com (not yet live)
-        Entity: Bearsville Media Group LLC (EIN 87-1868337)
+    └── Bearsville Creative            bearsvillemedia.com (not yet live)
+        Entity: Bearsville Creative LLC (EIN 87-1868337)
         Dormant. Hudson Valley operation. Same stack, different region.
 ```
 
@@ -115,7 +115,7 @@ Request → Extract hostname
 |--------|-----|------|-------|--------|-------|
 | FarleyPierson LLC | 81-4280721 | Single-member LLC | NY | Active (since 2016) | Chase Pierson |
 | Tuthill Design LLC | 39-3499965 | Multi-member LLC | NY | Active (since Jul 2025) | Chase + Elijah |
-| Bearsville Media Group LLC | 87-1868337 | Single-member LLC | NY | Dormant | Chase Pierson |
+| Bearsville Creative LLC | 87-1868337 | Single-member LLC | NY | Dormant | Chase Pierson |
 | Hillbilly Dreams Inc | — | Not yet formed | — | Needs attorney | — |
 | Scan2Plan Inc | — | Delaware C-Corp | DE | Partnership dissolved 03/25/2026 | V. Owen Bush (CEO) |
 
@@ -123,7 +123,7 @@ Request → Extract hostname
 
 - **FarleyPierson LLC:** Files Schedule C on Chase's 1040
 - **Tuthill Design LLC:** Form 1065 **PAST DUE** (was due 03/15/2026). Accumulating $220/mo late penalties.
-- **Bearsville Media Group LLC:** No income, no bank accounts, dormant
+- **Bearsville Creative LLC:** No income, no bank accounts, dormant
 - **Chase Personal:** IRS installment agreement: $100/mo by the 28th (2020 taxes)
 
 ---
@@ -245,7 +245,7 @@ The codebase supports 4 tenants from a single deployment:
 | Tenant ID | Entity | Domains | Location | Features |
 |-----------|--------|---------|----------|----------|
 | big-muddy | Hillbilly Dreams Inc | 10 domains | Natchez, MS | Full ecosystem |
-| bearsville | Bearsville Media Group LLC | 1 (dormant) | Woodstock, NY | directory, radio, magazine, studio |
+| bearsville | Bearsville Creative LLC | 1 (dormant) | Woodstock, NY | directory, radio, magazine, studio |
 | studio-c | Tuthill Design LLC d/b/a Studio C | 3 domains | Woodstock, NY | gallery, studio, creative |
 | tuthill | Tuthill Design LLC | 1 domain | Woodstock, NY | gallery, studio, creative |
 

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Bearsville Media Group — Recording Studios of the Hudson Valley',
+  title: 'Bearsville Creative — Recording Studios of the Hudson Valley',
   description:
     'The studio node of the Big Muddy corridor. We document recording studios, sessions, engineers, and the rooms where the sound lives — from Woodstock to the Catskills.',
 };
@@ -158,7 +158,7 @@ export default function BearsvillePage() {
             color: textMuted, maxWidth: 540, lineHeight: 1.65,
             margin: '0 auto 2.5rem',
           }}>
-            When you hire a studio, you get a recording. When you hire us, you get the story. Bearsville Media Group publishes the sessions, the studios, and the people behind the glass.
+            When you hire a studio, you get a recording. When you hire us, you get the story. Bearsville Creative publishes the sessions, the studios, and the people behind the glass.
           </p>
 
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -499,7 +499,7 @@ export default function BearsvillePage() {
         background: bg,
       }}>
         <p style={{ margin: '0 0 0.4rem' }}>
-          Bearsville Media Group LLC &middot; Woodstock, NY
+          Bearsville Creative LLC &middot; Woodstock, NY
         </p>
         <p style={{ margin: 0 }}>
           Part of the{' '}

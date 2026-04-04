@@ -1,19 +1,19 @@
-/* Bearsville: Bearsville Media Group — Hudson Valley / Catskills */
+/* Bearsville: Bearsville Creative — Hudson Valley / Catskills */
 /* bearsvillemediagroup.com */
-/* Control Room aesthetic — cool dark base, electric green accent like a console LED */
+/* Warm studio aesthetic — dark base, gold accent matching the HDI family */
 .theme-bearsville {
-  --bg:              #0a0c0a;
-  --surface:         #121614;
-  --surface-2:       #1a1f1c;
-  --surface-3:       #222824;
-  --text:            #eaf0ec;
-  --text-muted:      #7a8a7e;
-  --text-disabled:   #4a5a4e;
-  --accent:          #00CC88;
-  --accent-hover:    #00E699;
-  --accent-muted:    rgba(0, 204, 136, 0.15);
-  --accent-subtle:   rgba(0, 204, 136, 0.06);
-  --border:          rgba(0, 204, 136, 0.12);
-  --border-strong:   rgba(0, 204, 136, 0.25);
-  --shadow-glow:     0 0 30px rgba(0, 204, 136, 0.12);
+  --bg:              #1a1816;
+  --surface:         #231f1c;
+  --surface-2:       #2d2824;
+  --surface-3:       #38322c;
+  --text:            #f0ebe0;
+  --text-muted:      #9d968a;
+  --text-disabled:   #6b635a;
+  --accent:          #c8943e;
+  --accent-hover:    #d4a44e;
+  --accent-muted:    rgba(200, 148, 62, 0.15);
+  --accent-subtle:   rgba(200, 148, 62, 0.06);
+  --border:          rgba(200, 148, 62, 0.12);
+  --border-strong:   rgba(200, 148, 62, 0.25);
+  --shadow-glow:     0 0 30px rgba(200, 148, 62, 0.12);
 }

@@ -104,7 +104,7 @@ Design a unified visual UX concept across ALL sites — consumer, platform, admi
 
 ---
 
-## Level 3: Bearsville Media Group (Northeast Node)
+## Level 3: Bearsville Creative (Northeast Node)
 
 **Domain:** bearsvillemediagroup.com
 **Aesthetic:** Hudson Valley creative, earthy — warm, natural

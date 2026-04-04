@@ -46,7 +46,7 @@ The entertainment engine. Book bands, provide transport (Sprinter van this week)
 **Priority 2 — Deep South Directory (DSD)**
 Business marketing product. Dogfooding on our own properties + Regina, then external sales later this month.
 
-**Priority 3 — Bearsville Media Group**
+**Priority 3 — Bearsville Creative**
 Northeast node (Woodstock, NY). Summer 2026 activation.
 
 **Archived**
@@ -68,7 +68,7 @@ Northeast node (Woodstock, NY). Summer 2026 activation.
 | hillbillydreamsinc.com | HDI Corporate | Active — sparse |
 | tuthilldesign.com | Tuthill Design | Active — partner |
 | studiocvideo.com | Studio C Video | Active — partner |
-| bearsvillemediagroup.com | Bearsville Media Group | Live, summer activation |
+| bearsvillemediagroup.com | Bearsville Creative | Live, summer activation |
 | bearsvillemedia.com | Bearsville (alias) | Redirects to above |
 | measurablybetter.life | MBT | Active — consumer AI + platform overview |
 | buycurious.art | Gallery/Storefront | Active — routes to gallery |

@@ -106,7 +106,7 @@ async function seedTouring() {
       socialLinks: { website: 'https://toddadelman.com', instagram: 'https://instagram.com/todd.adelman', spotify: 'https://open.spotify.com/artist/4muaVLBY1iY6NgXw28O4Mg' },
       source: 'scouted',
       status: 'discovered',
-      notes: 'Bearsville-to-Natchez pipeline candidate. Self-managed. Analog recording philosophy aligns with Big Muddy aesthetic. First Bearsville Media Group artist relationship.',
+      notes: 'Bearsville-to-Natchez pipeline candidate. Self-managed. Analog recording philosophy aligns with Big Muddy aesthetic. First Bearsville Creative artist relationship.',
     },
     {
       name: 'Amy Allen',

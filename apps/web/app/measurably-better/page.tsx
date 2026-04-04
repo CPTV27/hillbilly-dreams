@@ -80,7 +80,7 @@ const CORRIDORS = [
   },
   {
     name: 'Northeast Media',
-    example: 'Bearsville Media Group — Hudson Valley, NY',
+    example: 'Bearsville Creative — Hudson Valley, NY',
     status: 'Summer 2026',
     modules: 'Directory, Radio, Magazine, Studio',
   },

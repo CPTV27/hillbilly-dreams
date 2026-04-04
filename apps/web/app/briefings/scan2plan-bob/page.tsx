@@ -251,7 +251,7 @@ export default function BobBriefingPage() {
             <a href="https://deepsouthdirectory.com" target="_blank" rel="noopener" style={S.link}>Deep South Directory</a> &mdash; the SaaS product, walk-in sales launching now
           </li>
           <li style={S.li}>
-            <a href="https://bearsvillemediagroup.com" target="_blank" rel="noopener" style={S.link}>Bearsville Media Group</a> &mdash; same model, Woodstock/Hudson Valley (summer 2026)
+            <a href="https://bearsvillemediagroup.com" target="_blank" rel="noopener" style={S.link}>Bearsville Creative</a> &mdash; same model, Woodstock/Hudson Valley (summer 2026)
           </li>
         </ul>
 

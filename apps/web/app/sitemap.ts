@@ -160,7 +160,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // ── Bearsville Media Group ──
+  // ── Bearsville Creative ──
   const bearsvilleEntries: MetadataRoute.Sitemap = [
     {
       url: brands.bearsville,
