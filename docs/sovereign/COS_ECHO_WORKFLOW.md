@@ -42,6 +42,20 @@ Reply here. COS will reconcile all responses.
 | PR ↔ issue | Match GitHub PR state to issue numbers (`gh pr view <n>`). |
 | Blockers | **#33** `POSTIZ_API_KEY`, **#58** Spotify/Places keys, **#36/#56** Docker on Mac mini, **#59** Cloud SQL URL, **#64** Sentry CI token. |
 
+### 2.1 Canonical merge order (`main` vs `sandbox-protocol-natchez`)
+
+**AG correction:** **`86f1143`** is on **`sandbox-protocol-natchez`**, not on **`main`**. Rook’s PR **#66** / **#67** target **`main`** from base **`0bea3d8`** (and its descendants on `main`). Rook’s work does **not** “merge into” AG’s sandbox commit; sandbox promotes **separately**, later.
+
+**Required order (do not reverse):**
+
+1. Merge **PR #66** (report PDF auth) → **`main`**.
+2. Merge **PR #67** (Bearsville rename) → **`main`**.
+3. **Then** merge **`sandbox-protocol-natchez`** → **`main`** — this step is where **schema reconciliation** happens (e.g. product catalog + GMB/Etsy tails in `schema.prisma`).
+
+Reversing the order or treating sandbox as already on **`main`** produces a messy merge and bad mental models.
+
+**Status note:** As of the COS automation pass, steps **1–2** were completed on GitHub; step **3** is pending when you promote sandbox.
+
 ## 3. Collected replies (append only — do not delete history)
 
 ### 3.1 Cursor Composer (hillbilly-dreams, reconciliation run)
