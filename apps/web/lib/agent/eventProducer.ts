@@ -18,6 +18,23 @@ export type SovereignEvent =
   | { type: 'message.delta'; payload: { text: string } }
   | { type: 'message.final'; payload: { text: string } };
 
+/** Hub-wide pulse for kiosks, signage, and Smart TVs (`sovereign_pulse`). */
+export type SovereignPulse =
+  | {
+      kind: 'credit';
+      userId: string;
+      change: number;
+      balanceAfter: number;
+      reason: string;
+    }
+  | {
+      kind: 'submission';
+      submissionId: string;
+      contestId: string;
+      userId: string;
+      status: string;
+    };
+
 const LEGACY_ROOM = 'next-kiosk';
 
 /**
@@ -54,6 +71,21 @@ export class EventProducer {
     io.to(this.targetRoom()).emit('sovereign_event', event);
     if (process.env.SOVEREIGN_LOG_EVENTS === '1') {
       console.log('[EventProducer]', event.type, event.type === 'message.final' ? '' : event.payload);
+    }
+  }
+
+  /** Broadcast to every connected client (kiosks + `display-{slug}` rooms all receive). */
+  static broadcastPulse(pulse: SovereignPulse): void {
+    const io = this.io;
+    if (!io) {
+      if (process.env.SOVEREIGN_DEBUG_EMIT === '1') {
+        console.warn('[EventProducer] No Socket.io server — pulse dropped', pulse.kind);
+      }
+      return;
+    }
+    io.emit('sovereign_pulse', pulse);
+    if (process.env.SOVEREIGN_LOG_EVENTS === '1') {
+      console.log('[EventProducer] sovereign_pulse', pulse);
     }
   }
 

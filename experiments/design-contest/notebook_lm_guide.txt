@@ -1,0 +1,20 @@
+Notebook LM — Sovereign Podcast (prep guide)
+========================================
+
+1. Sources to upload (from repo / DeepLore):
+   - DeepLore/Inbox PDFs and markdown already ingested to vector memory (optional: export plain text).
+   - docs/SOVEREIGN_GLASS_KIOSK_SPEC.md
+   - CLAUDE_HANDOFF.md (strip IP addresses if sharing outside trusted circle)
+   - experiments/design-contest/*/PROMPT_BRIEF.md once filled
+
+2. In Notebook LM:
+   - Create a notebook "Sovereign Engine / Natchez Protocol"
+   - Add the above as Sources; wait for indexing
+   - Generate Audio Overview → treat as draft "Sovereign Podcast" episode 0
+
+3. Ops:
+   - Do not upload .env, credentials, or customer PII exports
+   - Regenerate after major manifesto or tier-pricing changes
+
+4. Anti-Gravity follow-up:
+   - Export transcript + key quotes back into DeepLore as vetted markdown for ambient-watcher / Chroma namespaces

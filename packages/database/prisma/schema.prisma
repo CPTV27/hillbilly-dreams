@@ -15,7 +15,11 @@ datasource db {
 }
 
 // ─────────────────────────────────────────────────────────────
-// SOVEREIGN — Natchez Protocol (membership + economy + intelligence graph)
+// NATCHEZ PROTOCOL — canonical intelligence + economy (Sovereign Engine)
+// Core models: User (sovereignTier, credits, isVetted, guild graph), CreditLedger,
+// LoreEntry (namespace, sourceUrl, confidenceScore), Entity (power map), Venue,
+// Performance (+ MediaAsset). Legacy BMT/DSD tables remain for production routes;
+// new work should prefer these primitives on fresh DBs (e.g. hillbilly_sovereign).
 // ─────────────────────────────────────────────────────────────
 
 enum SovereignMembershipTier {
@@ -821,13 +825,22 @@ model User {
   lores         Lore[]
   loreEntries   LoreEntry[]
 
-  /// Natchez Protocol — DSD ladder (orthogonal to NextAuth `role`)
+  /// Product ladder tier (DSD Free → Intel). Alias in docs: "tier".
   sovereignTier SovereignMembershipTier @default(FREE)
   isVetted      Boolean  @default(false)
+  /// City / ARPA-subsidized $20 utility tier — KYC path; off when user opts for full privacy off-grid
+  isGovernmentSubsidized Boolean @default(false)
+  /// Last completed mini-task that unlocked or renewed subsidy eligibility (proof-of-life)
+  lastVerificationTaskDate DateTime?
+  sponsoredAds  AdCampaign[] @relation("AdSponsor")
   referredById  String?
   referredBy    User?    @relation("GuildReferrals", fields: [referredById], references: [id], onDelete: SetNull)
   referrals     User[]   @relation("GuildReferrals")
   entities      Entity[]
+  organizedContests Contest[] @relation("ContestOrganizer")
+  submissions   Submission[]
+  groups        GroupMember[]
+  apiKeys       ApiKey[]
 
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
@@ -2037,7 +2050,7 @@ model CreditLedger {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   /// Signed delta: positive = earn, negative = burn
   change       Int
-  reason       String   // signing_bonus | daily_burn | lore_submit | admin_adjust | purchase_bypass | barter
+  reason       String   // signing_bonus | daily_burn | lore_submit | admin_adjust | purchase_bypass | barter | contest_entry
   balanceAfter Int?
   metadata     Json?
   createdAt    DateTime @default(now())
@@ -2057,6 +2070,10 @@ model Entity {
   notes         String?  @db.Text
   userId        String?
   user          User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  version        Int      @default(1)
+  supersededById String?
+  supersededBy   Entity?  @relation("EntityVersion", fields: [supersededById], references: [id], onDelete: SetNull)
+  superseded     Entity[] @relation("EntityVersion")
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
@@ -2079,13 +2096,21 @@ model LoreEntry {
   embedding        Embedding? @relation(fields: [embeddingId], references: [id], onDelete: SetNull)
   submitterId      String?
   submitter        User?     @relation(fields: [submitterId], references: [id], onDelete: SetNull)
+  /// When true, exclude PII from city-facing aggregates; still usable for RAG with redacted provenance
+  isAnonymized     Boolean   @default(false)
   verifiedAt       DateTime?
+  version        Int      @default(1)
+  supersededById String?
+  supersededBy   LoreEntry? @relation("LoreVersion", fields: [supersededById], references: [id], onDelete: SetNull)
+  superseded     LoreEntry[] @relation("LoreVersion")
+
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
 
   @@index([namespace])
   @@index([confidenceScore])
   @@index([submitterId])
+  @@index([isAnonymized])
 }
 
 /// Scout / orchestration job record for autonomous agents (Vertex-backed tasks).
@@ -2102,6 +2127,8 @@ model AgentTask {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
+  traces      ReasoningTrace[]
+
   @@index([status, missionType])
   @@index([createdAt])
 }
@@ -2112,12 +2139,192 @@ model Lore {
   type        String   // manuals | journals | sops
   rawText     String   @db.Text
   verified    Boolean  @default(false) // Vetting Flag
+  isAnonymized Boolean @default(false) // Privacy filter for Government Subsidized heat maps
   submitterId String?
   submitter   User?    @relation(fields: [submitterId], references: [id], onDelete: SetNull)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   @@index([verified])
+  @@index([isAnonymized])
   @@index([type])
   @@index([submitterId])
+}
+
+// ─────────────────────────────────────────────────────────────
+// SOVEREIGN CONTESTS (Community flywheel)
+// ─────────────────────────────────────────────────────────────
+
+model Contest {
+  id                String       @id @default(cuid())
+  title             String
+  description       String?      @db.Text
+  rules             Json         @default("{}")
+  startDate         DateTime
+  endDate           DateTime
+  prizePool         Json         @default("{}")
+  entryFeeCredits   Int          @default(0)
+  /// image | audio | video | lore
+  submissionType    String       @default("image")
+  /// draft | published | closed
+  status            String       @default("draft")
+  organizerId       String?
+  organizer         User?        @relation("ContestOrganizer", fields: [organizerId], references: [id], onDelete: SetNull)
+  submissions       Submission[]
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  @@index([status])
+  @@index([organizerId])
+  @@index([endDate])
+}
+
+model Submission {
+  id         String   @id @default(cuid())
+  contestId  String
+  contest    Contest  @relation(fields: [contestId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contentUrl String
+  votes      Int      @default(0)
+  /// PENDING | APPROVED | REJECTED
+  status     String   @default("PENDING")
+  metadata   Json?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([contestId])
+  @@index([userId])
+  @@index([status])
+}
+
+// ─────────────────────────────────────────────────────────────
+// SIGNAGE — YouTube + Sovereign ticker (display routes)
+// ─────────────────────────────────────────────────────────────
+
+model DisplayChannel {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  name             String
+  youtubeChannelId String?
+  youtubeVideoId   String?
+  /// Passed to ad auctioneer as venue key for weighting
+  venueKey         String?
+  config           Json?    @default("{}")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([slug])
+}
+
+// ─────────────────────────────────────────────────────────────
+// SOVEREIGN MARKET (Ad Exchange)
+// ─────────────────────────────────────────────────────────────
+
+model AdCampaign {
+  id           String   @id @default(cuid())
+  title        String
+  sponsorId    String
+  sponsor      User     @relation("AdSponsor", fields: [sponsorId], references: [id])
+  budget       Int      // Credits authorized for campaign
+  bidAmount    Int      @default(10) // Credits per impression
+  status       String   @default("ACTIVE") // ACTIVE | PAUSED | DEPLETED
+  targetVenues Json?    // Array of venue/business IDs or categories
+  assetUrl     String?  // Reference to VisualAsset
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  impressions  ImpressionLog[]
+
+  @@index([status])
+  @@index([sponsorId])
+}
+
+model ImpressionLog {
+  id           String     @id @default(cuid())
+  campaignId   String
+  campaign     AdCampaign @relation(fields: [campaignId], references: [id])
+  venueHostId  String     // $500 tier Host User ID
+  payoutAmount Int        // Credits shared from impression
+  displayedAt  DateTime   @default(now())
+
+  @@index([campaignId])
+  @@index([venueHostId])
+}
+
+// ─────────────────────────────────────────────────────────────
+// PLATFORM PRIMITIVES (RBAC, Traces, Nodes, Webhooks)
+// ─────────────────────────────────────────────────────────────
+
+model ReasoningTrace {
+  id          String    @id @default(cuid())
+  taskId      String
+  task        AgentTask @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  prompt      String    @db.Text
+  contextUsed Json?
+  rawOutput   String    @db.Text
+  createdAt   DateTime  @default(now())
+
+  @@index([taskId])
+}
+
+model Group {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  members     GroupMember[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model GroupMember {
+  id        String   @id @default(cuid())
+  groupId   String
+  group     Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      String   @default("MEMBER") // ADMIN | MEMBER | VIEWER
+  createdAt DateTime @default(now())
+
+  @@unique([groupId, userId])
+}
+
+model ApiKey {
+  id         String   @id @default(cuid())
+  keyHash    String   @unique
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  label      String?
+  lastUsedAt DateTime?
+  createdAt  DateTime @default(now())
+  expiresAt  DateTime?
+
+  @@index([userId])
+}
+
+model PhysicalNode {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  type      String   // SERVER | KIOSK | TV
+  status    String   @default("PENDING") // ONLINE | OFFLINE | PENDING
+  ipAddress String?
+  lastSeen  DateTime?
+  metadata  Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([type])
+}
+
+model WebhookSubscription {
+  id        String   @id @default(cuid())
+  url       String
+  event     String   // e.g. "lore.created", "ad.depleted"
+  secret    String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([event, isActive])
 }

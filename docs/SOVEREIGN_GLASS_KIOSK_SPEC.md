@@ -1,7 +1,7 @@
 # Sovereign Glass Kiosk — Magic Window UX Spec (Master Log)
 
 **Status:** Locked for implementation handoff (Phase 2.3+).  
-**Phase 2.4 implementation:** [`apps/web/app/(admin)/admin/kiosk/`](../apps/web/app/(admin)/admin/kiosk/) — `KioskGlassClient.tsx` + [`glassReducer.ts`](../apps/web/lib/sovereign/glassReducer.ts). Resolved state uses a **25% left** Provenance rail (mandate update vs. earlier right-rail sketch). Thinking uses a **65vw** hero overlay (enterprise) on the right over a dimmed answer preview.
+**Phase 2.4 route:** [`apps/web/app/admin/kiosk/`](../apps/web/app/admin/kiosk/) — skeleton UI (credit strip, cognitive trace, provenance rail). Socket stream wiring: reuse [`glassReducer.ts`](../apps/web/lib/sovereign/glassReducer.ts) + `socket.io-client` when CC reattaches the full Glass client.
 
 **Stack constraint:** This repo uses **inline CSS + CSS custom properties** — **do not use Tailwind** on this surface. Use `var(--font-body)`, `var(--font-display)`, and existing token patterns (see Studio / Editorial Bureau). Optional: **`framer-motion`** (already in `apps/web`) for layout transitions.
 
@@ -191,7 +191,7 @@ All cards share: `source` (filename), `snippet` (truncate ~240 chars, expand), `
 ## 6. Implementation pointer (Claude Code)
 
 - **Page:** e.g. `apps/web/app/(kiosk)/glass/page.tsx` or `public` static host — product decision; prefer App Router page with **no auth** or kiosk PIN later.
-- **Component:** `KioskGlassClient.tsx` — `'use client'`, socket.io-client, reducer, Framer Motion layout.
+- **Component:** `app/admin/kiosk/page.tsx` (skeleton); full client TBD — `'use client'`, socket.io-client, reducer, Framer Motion layout.
 - **Do not** implement LLM streaming inside the kiosk bundle; consume **`sovereign_event`** only. Hub owns **`EventProducer`** + stream tap.
 
 ---

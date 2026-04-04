@@ -128,6 +128,11 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // ── Sovereign signage (4K displays, venue TVs) — public, no hostname rewrite ──
+  if (pathname.startsWith('/display')) {
+    return NextResponse.next();
+  }
+
   // ── Briefings — password-gated, no domain rewriting ──
   if (pathname.startsWith('/briefings')) {
     return NextResponse.next();
