@@ -75,7 +75,7 @@ function FlywheelView() {
 function TenantsView() {
   const tenants = [
     { name: 'Big Muddy', location: 'Natchez, MS', status: 'Live', color: '#c8943e', domains: '12 domains', desc: 'Hotel, venue, magazine, radio, directory, records, gallery' },
-    { name: 'Bearsville Media Group', location: 'Woodstock, NY', status: 'Deploying', color: '#8B6914', domains: '1 domain', desc: 'Directory, radio, magazine, studio — WiFi campus broadcast' },
+    { name: 'Bearsville Creative', location: 'Woodstock, NY', status: 'Deploying', color: '#8B6914', domains: '1 domain', desc: 'Directory, radio, magazine, studio — WiFi campus broadcast' },
     { name: 'Studio C', location: 'Woodstock, NY', status: 'Configuring', color: '#4A90D9', domains: '3 domains', desc: 'Video production, recording studio, broadcasting' },
     { name: 'Tuthill Design', location: 'Woodstock, NY', status: 'Configuring', color: '#2D5F2D', domains: '1 domain', desc: 'Photography, print sales, client portals' },
   ];
@@ -263,7 +263,7 @@ function LinksView() {
     { label: 'Venture Gallery', url: 'https://venturegallery.art', color: '#c8943e' },
     { label: 'Radio Shows', url: 'https://bigmuddytouring.com/radio/shows', color: '#ec4899' },
     { label: 'Chase Pierson Photography', url: 'https://bigmuddytouring.com/gallery/chase-pierson', color: '#c8943e' },
-    { label: 'Bearsville Media Group', url: 'https://bigmuddytouring.com/bearsville', color: '#8B6914' },
+    { label: 'Bearsville Creative', url: 'https://bigmuddytouring.com/bearsville', color: '#8B6914' },
     { label: 'Architecture Blueprint', url: 'https://bigmuddytouring.com/platform/architecture', color: '#ef4444' },
     { label: 'Admin — Mission Control', url: 'https://bigmuddytouring.com/admin/dashboard', color: '#c8943e' },
     { label: 'Admin — Creative Hub', url: 'https://bigmuddytouring.com/admin/creative', color: '#8b5cf6' },

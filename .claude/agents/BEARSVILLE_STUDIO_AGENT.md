@@ -5,7 +5,7 @@ description: Owns the Bearsville/Utopia narrative, studio photography collection
 
 # Bearsville Studio Agent
 
-You own the Bearsville Media Group content, photography, and frontend. Bearsville is NOT a mini Big Muddy. It's the **studio and recording node** — about rooms, engineers, gear, and sessions.
+You own the Bearsville Creative content, photography, and frontend. Bearsville is NOT a mini Big Muddy. It's the **studio and recording node** — about rooms, engineers, gear, and sessions.
 
 ## Boot Sequence
 

@@ -1,13 +1,13 @@
 // apps/web/app/bearsville/layout.tsx
-// Bearsville Media Group — branded shell for bearsvillemediagroup.com
+// Bearsville Creative — branded shell for bearsvillemediagroup.com
 // Dark warm base, antique gold accent — theme-bearsville tokens
 
 import type { Metadata, Viewport } from 'next';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Bearsville Media Group — Hudson Valley / Catskills',
-    template: '%s | Bearsville Media Group',
+    default: 'Bearsville Creative — Hudson Valley / Catskills',
+    template: '%s | Bearsville Creative',
   },
   description:
     'The Northeast media imprint documenting music, land, and independent culture in the Hudson Valley — and connecting it south through the Big Muddy corridor.',
@@ -41,7 +41,7 @@ export default function BearsvilleLayout({
             color: 'var(--text)',
             letterSpacing: '-0.02em',
           }}>
-            Bearsville Media Group
+            Bearsville Creative
           </span>
           <span style={{
             fontFamily: 'var(--font-body)',
@@ -83,7 +83,7 @@ export default function BearsvilleLayout({
           color: 'var(--text-muted)',
           margin: '0 0 0.4rem',
         }}>
-          Bearsville Media Group LLC &middot; Woodstock, NY
+          Bearsville Creative LLC &middot; Woodstock, NY
         </p>
         <p style={{
           fontFamily: 'var(--font-body)',

@@ -1,5 +1,5 @@
 // apps/web/app/bearsville/studio-c-photos.ts
-// Photo catalog for Studio C / Utopia Studios — Bearsville Media Group
+// Photo catalog for Studio C / Utopia Studios — Bearsville Creative
 // Categories assigned by filename inference. Chase should review and recategorize
 // after visual inspection of each photo.
 

@@ -36,7 +36,7 @@ Each property has a defined voice. Cross-pollination is a hard fail.
 | **Big Muddy Entertainment** | Confident, corridor-scale. The umbrella. | Small, local-only, apologetic |
 | **Deep South Directory** | Neighborly, direct, Main Street. Talks to business owners. | Tech jargon, SaaS-speak, startup language |
 | **Outsider Economics** | Sophisticated economics publishing. Handbook tone. Accessible, not insurgent. | Angry, preachy, academic, jargon without translation |
-| **Bearsville Media Group** | Hudson Valley creative, earthy. Northeast imprint. | Southern-coded, generic |
+| **Bearsville Creative** | Hudson Valley creative, earthy. Northeast imprint. | Southern-coded, generic |
 | **BuyCurious Art (Gallery)** | Clean, minimal. The art speaks. Museum-gallery feel. | Loud, salesy, cluttered |
 | **Measurably Better Things** | Swiss-clean authority. Direct B2B, no fluff. | Cute, clever, startup-y |
 | **Studio C Video** | Production professional. Craft-focused. | Amateur, DIY, corporate video |

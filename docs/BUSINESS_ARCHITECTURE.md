@@ -116,7 +116,7 @@ Big Muddy Touring is the engine:
 
 DSD is the mainstream entry point. Any business doing under $200K/year can afford it.
 
-### Bearsville Media Group (ACTIVE — summer 2026)
+### Bearsville Creative (ACTIVE — summer 2026)
 
 **What:** Northeast media imprint, Hudson Valley / Catskills.
 **Domains:** bearsvillemediagroup.com, bearsvillemedia.com

@@ -2,7 +2,7 @@
 
 ## Email 1: Elijah Tuttle
 
-**Subject:** Bearsville Media Group + Studio C + Tuthill Design — Here's the full picture
+**Subject:** Bearsville Creative + Studio C + Tuthill Design — Here's the full picture
 
 ---
 
@@ -16,7 +16,7 @@ Quick tour of where everything stands and what you're walking into.
 
 2. **Tuthill Design** (tuthilldesign.com) — Your design studio. Integrated with Studio C. Same building, different brand. Design clients come through here.
 
-3. **Bearsville Media Group** (bearsvillemediagroup.com) — The northeast media imprint. Hudson Valley's version of what Big Muddy is in Natchez. Directory, radio, magazine, studio — all powered by the same platform. Activating this summer.
+3. **Bearsville Creative** (bearsvillemediagroup.com) — The northeast media imprint. Hudson Valley's version of what Big Muddy is in Natchez. Directory, radio, magazine, studio — all powered by the same platform. Activating this summer.
 
 **What's already built:**
 - All three sites are live on the platform (one codebase, Vercel deployment)
@@ -50,10 +50,10 @@ Miles,
 Welcome aboard. Here's the quick version.
 
 **What we are:**
-Hillbilly Dreams Inc runs a media-hospitality ecosystem. In Natchez, Mississippi, it's called Big Muddy — a touring circuit, magazine, radio station, record label, business directory, and a hotel. In the Hudson Valley, it's Bearsville Media Group — the northeast version.
+Hillbilly Dreams Inc runs a media-hospitality ecosystem. In Natchez, Mississippi, it's called Big Muddy — a touring circuit, magazine, radio station, record label, business directory, and a hotel. In the Hudson Valley, it's Bearsville Creative — the northeast version.
 
 **What you're joining:**
-The production side. Studio C Video and Bearsville Media Group. You'll be working with Elijah on recording, video production, and content creation for the Hudson Valley properties.
+The production side. Studio C Video and Bearsville Creative. You'll be working with Elijah on recording, video production, and content creation for the Hudson Valley properties.
 
 **What's live:**
 - bearsvillemediagroup.com — the Bearsville hub

@@ -19,7 +19,7 @@ Before answering any question or giving any direction, you know:
 
 - **The survival sprint:** 6 weeks of runway. DSD walk-in sales starting Apr 1. $20 leads, $99 upsell at Apr 14. The Works ($49) opens Apr 21.
 - **The claim ladder:** What's shipped, what's not, what we can honestly say today.
-- **The brand map:** HDI (holding) → Big Muddy Entertainment (South) + Bearsville Media Group (North) → DSD/MBT (product spine).
+- **The brand map:** HDI (holding) → Big Muddy Entertainment (South) + Bearsville Creative (North) → DSD/MBT (product spine).
 - **The team:** Chase (CEO/CTO), Tracy (finance, equity partner), Amy (Inn/bar ops, equity partner), JP (shows/programming). Four people, not a company of 50.
 - **The pipeline:** $1.35M identified, 93% gross margins at scale, but right now it's $0 MRR from DSD. Customer #1 is the only milestone that matters.
 - **The tech:** 15 live domains, one Next.js codebase on Vercel, Prisma + Cloud SQL, GCS for media, multi-tenant routing via middleware. All working.

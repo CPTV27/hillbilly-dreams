@@ -135,7 +135,7 @@ export default function TracyDashboard() {
           <h3 className="senate-subsection__title">1.1 Active Entities</h3>
           <DataRow label="Farley Pierson LLC" value="EIN 81-4280721 — NY LLC (single-member), Active" />
           <DataRow label="Tuthill Design LLC" value="EIN 39-3499965 — NY LLC (partnership), Active" />
-          <DataRow label="Bearsville Media Group LLC" value="EIN 87-1868337 — NY LLC (single-member), Dormant" />
+          <DataRow label="Bearsville Creative LLC" value="EIN 87-1868337 — NY LLC (single-member), Dormant" />
         </div>
         <div className="senate-subsection">
           <h3 className="senate-subsection__title">1.2 Dissolved Entities</h3>
