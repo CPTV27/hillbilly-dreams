@@ -1,5 +1,14 @@
 # Agent status
 
+## 2026-04-05 — COS echo reconciliation (implemented)
+
+- **Workflow + replies:** [docs/sovereign/COS_ECHO_WORKFLOW.md](../docs/sovereign/COS_ECHO_WORKFLOW.md) — echo template, Composer + Anti-Gravity notes, `git` verification steps.
+- **PRs merged:** **#66** (report PDF / #32), **#67** (Bearsville rename / #38) → **`main`** @ **`bac84eb`** (verify with `git pull origin main`).
+- **Postiz (#33):** [apps/web/.env.example](../apps/web/.env.example) documents **`POSTIZ_API_KEY`** + **`POSTIZ_URL`**; set in **Vercel** + **Bitwarden** (no secrets in repo).
+- **Schema flag:** GMB/Etsy expansion commit **`86f1143`** was on **`sandbox-protocol-natchez`** only in this clone — merge to **`main`** via PR when ready.
+
+---
+
 ## 2026-04-05 — Overnight queue sweep (security, logging, CI, docs)
 
 - **`lib/cron-or-admin.ts`:** shared with **`publish/batch`** and **`/api/metrics`** mutating methods.
