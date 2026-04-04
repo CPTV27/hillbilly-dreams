@@ -8,9 +8,9 @@ import {
 } from '@/lib/corridor-artists-public';
 
 export const metadata: Metadata = {
-  title: 'Deep South Directory — Local Business Marketing',
+  title: 'Deep South Directory — Main Street Marketing for Main Street Money',
   description:
-    'The regional business network for the Mississippi Corridor. Find locals. Get found. Keep your money in the region. Powered by Measurably Better.',
+    'The only marketing platform with a magazine, radio station, and photography studio built in. Local marketing made by people who actually live here.',
 };
 
 const CATEGORIES = [
@@ -192,9 +192,9 @@ export default async function DirectoryPage() {
             margin: 0,
           }}
         >
-          The businesses that
+          Main Street marketing
           <br />
-          <span style={{ color: 'var(--accent, #c8943e)' }}>make the corridor work.</span>
+          <span style={{ color: 'var(--accent, #c8943e)' }}>for Main Street money.</span>
         </h1>
         <p
           style={{
@@ -206,11 +206,11 @@ export default async function DirectoryPage() {
             marginTop: '2rem',
           }}
         >
-          The regional business network for the Mississippi Corridor. Find locals. Get found. Keep your money in the region.
+          Right now, someone in your town is searching for a restaurant, a hotel, or a shop like yours on Google. If your listing has wrong hours, no photos, or zero reviews — they&apos;re picking your competitor. We fix that.
         </p>
         <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <a
-            href="#listings"
+            href="/directory/onboard"
             style={{
               display: 'inline-block',
               padding: '0.75rem 2rem',
@@ -221,10 +221,10 @@ export default async function DirectoryPage() {
               fontSize: '0.9rem',
             }}
           >
-            Browse Directory
+            Claim Your Listing
           </a>
           <a
-            href="#musicians"
+            href="#why-dsd"
             style={{
               display: 'inline-block',
               padding: '0.75rem 2rem',
@@ -235,26 +235,115 @@ export default async function DirectoryPage() {
               fontSize: '0.9rem',
             }}
           >
-            Corridor musicians
-          </a>
-          <a
-            href="/media/services"
-            style={{
-              display: 'inline-block',
-              padding: '0.75rem 2rem',
-              border: '1px solid var(--accent, #c8943e)',
-              color: 'var(--accent, #c8943e)',
-              textDecoration: 'none',
-              fontWeight: 600,
-              fontSize: '0.9rem',
-            }}
-          >
-            View Services
+            Why DSD
           </a>
         </div>
       </section>
 
       <IllustrationDivider variant="town" />
+
+      {/* Why DSD */}
+      <section
+        id="why-dsd"
+        style={{
+          padding: '4rem 1.5rem',
+          maxWidth: 900,
+          margin: '0 auto',
+        }}
+      >
+        <p
+          style={{
+            fontSize: '0.8rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            color: 'var(--accent, #c8943e)',
+            marginBottom: '0.5rem',
+          }}
+        >
+          Why Deep South Directory
+        </p>
+        <h2
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(1.5rem, 3.5vw, 2rem)',
+            fontWeight: 700,
+            color: 'var(--text)',
+            margin: '0 0 1rem',
+            lineHeight: 1.2,
+            letterSpacing: '-0.02em',
+          }}
+        >
+          We&apos;re not a software company. We&apos;re a media company that sells software at software prices.
+        </h2>
+        <p
+          style={{
+            fontSize: '1rem',
+            color: 'var(--text)',
+            opacity: 0.65,
+            lineHeight: 1.7,
+            maxWidth: 640,
+            margin: '0 0 2.5rem',
+          }}
+        >
+          Every other marketing tool manages what people find when they search for you. We also create the content that makes you worth finding. We own a magazine. A radio station. A photography studio. And a touring circuit that brings audiences through your door.
+        </p>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.5rem',
+          }}
+        >
+          {[
+            {
+              title: "We're from here.",
+              desc: "DSD is run by people who live, eat, and work in the same small towns our clients do. We probably ate at your restaurant last week.",
+            },
+            {
+              title: 'We cost less than a single Yelp ad.',
+              desc: "Birdeye starts at $299. Thryv starts at $244. You get more from DSD for less — and no sales call to find out the price.",
+            },
+            {
+              title: 'We give you media, not just software.',
+              desc: "Magazine editorial coverage. Radio mentions. Professional photography. That's not a feature. That's a full-time PR agency at 1/10th the cost.",
+            },
+            {
+              title: 'One subscription. Everything handled.',
+              desc: 'Listings synced across Google, Yelp, Facebook, and 50+ directories. Reviews monitored. Social content posted. Monthly report in your inbox.',
+            },
+          ].map((bullet) => (
+            <div
+              key={bullet.title}
+              style={{
+                borderLeft: '3px solid var(--accent, #c8943e)',
+                paddingLeft: '1.25rem',
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: '1rem',
+                  fontWeight: 700,
+                  color: 'var(--text)',
+                  margin: '0 0 0.5rem',
+                }}
+              >
+                {bullet.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: '0.85rem',
+                  color: 'var(--text)',
+                  opacity: 0.6,
+                  lineHeight: 1.6,
+                  margin: 0,
+                }}
+              >
+                {bullet.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Corridor musicians — Prisma-backed roster (public statuses only) */}
       <section
@@ -751,10 +840,7 @@ export default async function DirectoryPage() {
             marginBottom: '2.5rem',
           }}
         >
-          Higher tiers plug you into the Big Muddy network — magazine, radio, studio-produced
-          audio and video as we ramp, and editorial photography on a real-world schedule
-          (we&apos;re a small team; we don&apos;t promise what we can&apos;t shoot). This isn&apos;t a Yelp listing.
-          It&apos;s a regional media shop in your corner.
+          The companies charging $300 a month have never set foot in Port Gibson. We have. Higher tiers plug you into magazine coverage, radio mentions, and professional photography — real media, not another dashboard. We&apos;re a small team and we don&apos;t promise what we can&apos;t deliver.
         </p>
 
         <div
@@ -981,7 +1067,7 @@ export default async function DirectoryPage() {
             marginBottom: '1rem',
           }}
         >
-          Run a business on the corridor?
+          Your business deserves to be famous. Not just findable.
         </h2>
         <p
           style={{
@@ -992,10 +1078,7 @@ export default async function DirectoryPage() {
             marginBottom: '2rem',
           }}
         >
-          Listings are free to start. Paid tiers and rates are set when we talk — we&apos;re keeping
-          pricing flexible while we onboard the first corridor businesses. No long contracts.
-          We&apos;ll build your profile, match your voice, and put you in front of people already
-          planning trips and nights out here.
+          Free to list. No long contracts. No setup fees. We&apos;ll build your profile, manage your listings, and put you in front of people already planning trips and nights out on the corridor. Pricing is flexible while we onboard founding members.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <a
@@ -1047,7 +1130,7 @@ export default async function DirectoryPage() {
             textTransform: 'uppercase',
           }}
         >
-          Powered by Measurably Better · hillbillydreamsinc.com
+          Deep South Directory · Natchez, Mississippi
         </p>
       </section>
     </main>
