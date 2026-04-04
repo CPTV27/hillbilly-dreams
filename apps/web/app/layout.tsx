@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'Measurably Better',
+    title: 'Big Muddy',
   },
   openGraph: {
     type: 'website',
