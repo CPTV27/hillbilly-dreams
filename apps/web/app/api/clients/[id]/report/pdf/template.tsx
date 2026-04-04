@@ -154,9 +154,9 @@ interface ReportProps {
 
 const TIER_LABELS: Record<string, string> = {
   'front-porch': 'Front Porch (Free)',
-  'route': 'The Listing ($20/mo)',
-  'river-room': 'The Works ($49/mo)',
-  'blues-room': 'The Engine ($99/mo)',
+  'route': 'The Listing',
+  'river-room': 'The Works',
+  'blues-room': 'The Engine',
 };
 
 const TIER_DESCRIPTIONS: Record<string, string> = {
