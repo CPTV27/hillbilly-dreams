@@ -72,7 +72,8 @@ const NAV_SECTIONS = [
   {
     label: 'Platform',
     items: [
-      { label: 'Roadmap', href: '/admin/roadmap', icon: '◇' },
+      { label: 'Agents', href: '/agents', icon: '⚙' },
+      { label: 'Roadmap', href: '/roadmap', icon: '◇' },
       { label: 'Ecosystem', href: '/ecosystem', icon: '◉' },
       { label: 'Bridge Clients', href: '/bridge', icon: '◈' },
       { label: 'Finance', href: '/finance', icon: '$' },
