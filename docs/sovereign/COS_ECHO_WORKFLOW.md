@@ -56,6 +56,45 @@ Reply here. COS will reconcile all responses.
 - **Verification (local clone, post-`git fetch`):** `86f1143` exists; **`git branch -a --contains 86f1143`** listed **`sandbox-protocol-natchez`** only — **not** on `origin/main` at time of check (main was **`0bea3d8`** before PR merges).
 - **COS flag:** If expansion landed only on **`sandbox-protocol-natchez`**, merge to **`main`** via PR after review; do not assume “on main” without `origin/main` containing the commit.
 
+### 3.3 Rook / Patch v3 (submitted 2026-04-04)
+
+**Identity**
+
+- Agent: Rook / Patch v3 — Technical Director.
+- Branch: `patch/38-bearsville-rename` (branched for #38); also `patch/32-report-pdf-fixes` for #32.
+- Worktree: main repo `hillbilly-dreams` (direct checkout); session notes mention `elegant-volhard` worktree retired.
+
+**1. Tasks completed (as reported)**
+
+| Task | PR | Commit | Rook’s status at send time |
+|------|----|--------|----------------------------|
+| #32 Monthly Report PDF — auth + TBD pricing | #66 | `3e39d37` | PR open, ready to merge |
+| #38 Bearsville rename | #67 | `890b495` | PR open, ready to merge |
+| #68 Stripe webhook | — | — | Filed from `tasks/PENDING_ISSUES_QUEUE.md` |
+| #69 Prisma EPERM CI | — | — | Filed from same queue |
+| #33 blocker | — | — | Comment with unblock steps |
+
+**2. Currently working on:** Standby for #33 (`POSTIZ_API_KEY`).
+
+**3. Blocked:** #33 — key not in Vercel (per Rook).
+
+**4. State of `main` (Rook’s belief at send time):** `main` @ **`0bea3d8`** (Records domain fix); both patch branches fork from there; PRs clean vs `main`.
+
+**5. Uncommitted changes:** None on named branches.
+
+**6. `schema.prisma`:** No modifications (Review, Report, Client, OpsActivity only).
+
+**7. Conflicts:** `elegant-volhard` commits `e29cbc0`, `63b21fe` overlap main — retire worktree; possible trivial `CLAUDE.md` conflict if others edit same lines during #67.
+
+**8. Assumptions flagged:** Pricing removed from PDF (TBD per CLAUDE.md); “Bearsville Creative” naming per #38; domains unchanged; auth via `requireCronOrAdmin()` on report routes.
+
+**COS reconciliation (post-merge)**
+
+- **#66** and **#67** are **MERGED** (GitHub) after Rook’s echo; treat “PR open” above as **historical**.
+- **`origin/main`** (2026-04-05 check): **`8c0189e`** — includes merge commits for #66/#67 (via **`bac84eb`**) plus COS doc commit.
+- Rook’s fork point **`0bea3d8`** remains accurate as the **pre-#66/#67** base; descendants on `main` are merge commits + Bearsville/report patches.
+- **`3e39d37` / `890b495`:** Present on `main` through those PRs (`git merge-base` / `git log main` to confirm locally).
+
 ## 4. Verified git state (last automation pass)
 
 Run again before trusting this section:
@@ -69,7 +108,7 @@ git branch -a --contains 86f1143
 **Recorded results (COS reconciliation run):**
 
 - **PR #66** and **#67** were **OPEN** and **MERGEABLE**; merged with `gh pr merge` (**merge** commits).
-- **`origin/main`** advanced to **`bac84eb`** (includes both merge commits).
+- **`origin/main`** advanced to **`bac84eb`** (includes both merge commits), then **`8c0189e`** (COS echo doc + `.env.example` + STATUS).
 - **`origin/main` `schema.prisma`:** ~1722 lines before merges; expansion models (**`BusinessProfile`**, etc.) **not** on `main` until a branch that contains **`86f1143`** (or equivalent) is merged.
 
 ## 5. Post-reconciliation actions for operators
