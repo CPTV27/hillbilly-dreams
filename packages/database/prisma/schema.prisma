@@ -2080,6 +2080,7 @@ model Entity {
   @@index([industry])
   @@index([powerRating])
   @@index([userId])
+  @@index([supersededById])
 }
 
 /// First-class lore unit for RAG + provenance (parallel to legacy `Lore` contributor table).
@@ -2111,6 +2112,7 @@ model LoreEntry {
   @@index([confidenceScore])
   @@index([submitterId])
   @@index([isAnonymized])
+  @@index([supersededById])
 }
 
 /// Scout / orchestration job record for autonomous agents (Vertex-backed tasks).
@@ -2321,10 +2323,190 @@ model WebhookSubscription {
   id        String   @id @default(cuid())
   url       String
   event     String   // e.g. "lore.created", "ad.depleted"
+  /// stripe | asana | internal | custom
+  provider  String?
   secret    String?
   isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([event, isActive])
+  @@index([provider])
+}
+
+// ══════════════════════════════════════════════════════════════
+// PRODUCT CATALOG — Features, Tiers, Bundles
+// The marketplace layer. Lore → Intelligence → Economy → Bureau.
+// ══════════════════════════════════════════════════════════════
+
+model ProductFeature {
+  id              Int      @id @default(autoincrement())
+  slug            String   @unique                          // e.g. "business-listing", "magazine-feature"
+  name            String                                     // e.g. "Business Listing Sync"
+  category        String                                     // software | media | creative | operations
+  description     String?  @db.Text                          // what it does for the client
+  competitor      String?                                    // who we replace (e.g. "Yext")
+  competitorPrice Int?                                       // their monthly cost in cents
+  isUnique        Boolean  @default(false)                   // true = moat feature (magazine, radio, photo)
+  status          String   @default("planned")               // planned | building | shipped | deprecated
+  shippedAt       DateTime?
+  sortOrder       Int      @default(0)
+  tags            String[] @default([])                      // ["core", "media", "moat", "saas-replacement"]
+  metadata        Json?                                      // parity verdict, honest claim, gap analysis
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  bundles         BundleFeature[]
+
+  @@index([category])
+  @@index([status])
+}
+
+model ProductBundle {
+  id           Int      @id @default(autoincrement())
+  slug         String   @unique                              // e.g. "starter", "media", "restaurant"
+  name         String
+  description  String?  @db.Text
+  market       String   @default("general")                  // general | restaurant | hotel | musician | venue
+  priceMonthly Int?                                          // cents (null = TBD)
+  priceAnnual  Int?                                          // cents (null = TBD)
+  isActive     Boolean  @default(false)
+  sortOrder    Int      @default(0)
+  metadata     Json?                                         // stripe price ID, launch date, notes
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  features     BundleFeature[]
+
+  @@index([market])
+  @@index([isActive])
+}
+
+model BundleFeature {
+  id        Int      @id @default(autoincrement())
+  bundleId  Int
+  featureId Int
+  limit     String?  // "4/week", "1/year", "3 competitors", null = unlimited
+  notes     String?  // tier-specific notes
+
+  bundle    ProductBundle  @relation(fields: [bundleId], references: [id], onDelete: Cascade)
+  feature   ProductFeature @relation(fields: [featureId], references: [id], onDelete: Cascade)
+
+  @@unique([bundleId, featureId])
+  @@index([bundleId])
+  @@index([featureId])
+}
+
+// ══════════════════════════════════════════════════════════════
+// PROTOCOL EXPANSION — GMB, Etsy, Hootsuite
+// Multi-Tenant Sovereign E-Commerce & Broadcast Hub
+// ══════════════════════════════════════════════════════════════
+
+model BusinessProfile {
+  id          String   @id @default(cuid())
+  namespace   String   // e.g. BEARSVILLE_CREATIVE, DEEP_SOUTH_DIRECTORY
+  name        String
+  address     String?
+  city        String?
+  state       String?
+  zip         String?
+  lat         Float?
+  lng         Float?
+  hoursJson   Json?
+  mapData     Json?
+  ownerId     String?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  store       MarketplaceStore?
+  
+  @@index([namespace])
+  @@index([ownerId])
+}
+
+model Vendor {
+  id          String    @id @default(cuid())
+  namespace   String
+  name        String
+  bio         String?   @db.Text
+  userId      String?   // System user ID mapped to this vendor
+  payoutInfo  Json?
+  stores      MarketplaceStore[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([namespace])
+}
+
+model MarketplaceStore {
+  id                String          @id @default(cuid())
+  namespace         String
+  name              String
+  vendorId          String
+  vendor            Vendor          @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  businessProfileId String?         @unique
+  businessProfile   BusinessProfile? @relation(fields: [businessProfileId], references: [id], onDelete: SetNull)
+  description       String?         @db.Text
+  supplies          ApprovedSupply[]
+  affiliate         AffiliateProgram?
+  createdAt         DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@index([namespace])
+  @@index([vendorId])
+}
+
+model ApprovedSupply {
+  id          String   @id @default(cuid())
+  storeId     String
+  store       MarketplaceStore @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  sku         String   @unique
+  name        String
+  priceCents  Int
+  inventory   Int      @default(0)
+  autoReorder Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([storeId])
+}
+
+model AffiliateProgram {
+  id              String   @id @default(cuid())
+  storeId         String   @unique
+  store           MarketplaceStore @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  commissionRate  Float    // e.g. 0.15 for 15%
+  terms           String?  @db.Text
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model SocialCampaign {
+  id          String   @id @default(cuid())
+  namespace   String
+  title       String
+  objective   String?
+  /// Hootsuite / Editorial Bureau campaign posts (distinct from legacy `SocialPost` tied to `SocialAccount`).
+  posts       CampaignPost[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([namespace])
+}
+
+model CampaignPost {
+  id           String         @id @default(cuid())
+  campaignId   String
+  campaign     SocialCampaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  content      String         @db.Text
+  platforms    Json // e.g. ["instagram", "twitter"]
+  scheduledFor DateTime?
+  status       String         @default("DRAFT") // DRAFT | SCHEDULED | PUBLISHED | FAILED
+  mediaUrls    Json?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  @@index([campaignId])
+  @@index([status])
 }

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Library — HDI Design Patterns</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f0f0d;
+            --bg-card: #1a1916;
+            --border: #2a2822;
+            --gold: #c8943e;
+            --text: #e8e0d4;
+            --text-muted: #6a6560;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; padding: 40px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 8px; }
+        .subtitle { color: var(--text-muted); font-size: 15px; margin-bottom: 40px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 24px; }
+        .card { border: 1px solid var(--border); background: var(--bg-card); overflow: hidden; transition: border-color 0.2s; }
+        .card:hover { border-color: var(--gold); }
+        .card-preview { width: 100%; height: 220px; border: none; pointer-events: none; }
+        .card-info { padding: 16px 20px; border-top: 1px solid var(--border); }
+        .card-name { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+        .card-source { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+        .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+        .tag { font-size: 11px; padding: 3px 10px; border: 1px solid var(--border); color: var(--text-muted); letter-spacing: 0.5px; }
+        .tag.gold { border-color: var(--gold); color: var(--gold); }
+        .card-actions { display: flex; gap: 8px; }
+        .btn { font-size: 12px; font-weight: 500; padding: 6px 14px; border: 1px solid var(--border); background: transparent; color: var(--text); cursor: pointer; text-decoration: none; transition: all 0.2s; }
+        .btn:hover { border-color: var(--gold); color: var(--gold); }
+        .btn.primary { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+        .btn.primary:hover { opacity: 0.85; }
+        .empty { text-align: center; padding: 80px 20px; color: var(--text-muted); }
+        .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin: 40px 0 16px; display: block; }
+        @media (max-width: 500px) { .grid { grid-template-columns: 1fr; } body { padding: 20px; } }
+    </style>
+</head>
+<body>
+    <h1>Style Library</h1>
+    <p class="subtitle">Saved CSS patterns from Grok, Gemini, Claude, and Chase. Click "Open" to view full-size, "Source" to see the code.</p>
+
+    <span class="section-label">Banners & Heroes</span>
+    <div class="grid" id="banners">
+        <div class="card">
+            <iframe class="card-preview" src="grok-touring-banner.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+            <div class="card-info">
+                <div class="card-name">Touring Banner — Dark Gradient + Gold Badge</div>
+                <div class="card-source">Source: Grok &middot; April 2026</div>
+                <div class="card-tags">
+                    <span class="tag gold">banner</span>
+                    <span class="tag">dark</span>
+                    <span class="tag">gradient-overlay</span>
+                    <span class="tag">playfair</span>
+                    <span class="tag">glow-badge</span>
+                </div>
+                <div class="card-actions">
+                    <a href="grok-touring-banner.html" target="_blank" class="btn primary">Open</a>
+                    <a href="view-source:grok-touring-banner.html" class="btn">Source</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <span class="section-label">Landing Pages</span>
+    <div class="grid" id="landing-pages">
+        <div class="card">
+            <iframe class="card-preview" src="../page-1-calculator.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+            <div class="card-info">
+                <div class="card-name">Calculator — SaaS Tax Cost Comparison</div>
+                <div class="card-source">Source: Gemini + Claude &middot; April 2026</div>
+                <div class="card-tags">
+                    <span class="tag gold">landing</span>
+                    <span class="tag">light</span>
+                    <span class="tag">comparison-table</span>
+                    <span class="tag">cta-button</span>
+                </div>
+                <div class="card-actions">
+                    <a href="../page-1-calculator.html" target="_blank" class="btn primary">Open</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <iframe class="card-preview" src="../page-2-local.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+            <div class="card-info">
+                <div class="card-name">Local — "We're From Here" Emotional</div>
+                <div class="card-source">Source: Gemini + Claude &middot; April 2026</div>
+                <div class="card-tags">
+                    <span class="tag gold">landing</span>
+                    <span class="tag">light</span>
+                    <span class="tag">two-column</span>
+                    <span class="tag">place-based</span>
+                </div>
+                <div class="card-actions">
+                    <a href="../page-2-local.html" target="_blank" class="btn primary">Open</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <iframe class="card-preview" src="../page-3-media.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+            <div class="card-info">
+                <div class="card-name">Media Company — Moat Cards Grid</div>
+                <div class="card-source">Source: Gemini + Claude &middot; April 2026</div>
+                <div class="card-tags">
+                    <span class="tag gold">landing</span>
+                    <span class="tag">light</span>
+                    <span class="tag">card-grid</span>
+                    <span class="tag">media-moat</span>
+                </div>
+                <div class="card-actions">
+                    <a href="../page-3-media.html" target="_blank" class="btn primary">Open</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <iframe class="card-preview" src="../page-4-painpoint.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+            <div class="card-info">
+                <div class="card-name">Pain Point — Urgency + 3-Step Fix</div>
+                <div class="card-source">Source: Gemini + Claude &middot; April 2026</div>
+                <div class="card-tags">
+                    <span class="tag gold">landing</span>
+                    <span class="tag">light</span>
+                    <span class="tag">urgency</span>
+                    <span class="tag">numbered-steps</span>
+                </div>
+                <div class="card-actions">
+                    <a href="../page-4-painpoint.html" target="_blank" class="btn primary">Open</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <span class="section-label">Internal Dashboards</span>
+    <div class="grid" id="dashboards">
+        <div class="card">
+            <iframe class="card-preview" src="../roadmap.html" loading="lazy" sandbox="allow-same-origin" style="transform: scale(0.35); transform-origin: top left; width: 286%; height: 629%;"></iframe>
+            <div class="card-info">
+                <div class="card-name">Full Stack Roadmap — Mission Control</div>
+                <div class="card-source">Source: Claude &middot; April 2026</div>
+                <div class="card-tags">
+                    <span class="tag gold">dashboard</span>
+                    <span class="tag">dark</span>
+                    <span class="tag">svg-charts</span>
+                    <span class="tag">fixed-toc</span>
+                    <span class="tag">photo-cards</span>
+                </div>
+                <div class="card-actions">
+                    <a href="../roadmap.html" target="_blank" class="btn primary">Open</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <iframe class="card-preview" src="../competitive-analysis.html" loading="lazy" sandbox="allow-same-origin" style="transform: scale(0.35); transform-origin: top left; width: 286%; height: 629%;"></iframe>
+            <div class="card-info">
+                <div class="card-name">Competitive Analysis — Charts + Matrix</div>
+                <div class="card-source">Source: Claude &middot; April 2026</div>
+                <div class="card-tags">
+                    <span class="tag gold">dashboard</span>
+                    <span class="tag">dark</span>
+                    <span class="tag">bar-charts</span>
+                    <span class="tag">feature-matrix</span>
+                </div>
+                <div class="card-actions">
+                    <a href="../competitive-analysis.html" target="_blank" class="btn primary">Open</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <span class="section-label">How to Add New Styles</span>
+    <p style="color: var(--text-muted); font-size: 14px; max-width: 600px; line-height: 1.7; margin-top: 8px;">
+        Drop any HTML file into <code style="color: var(--gold);">apps/web/public/sandbox/styles/</code> and add a card to this index.
+        Name files by source and pattern: <code style="color: var(--gold);">grok-touring-banner.html</code>, <code style="color: var(--gold);">gemini-restaurant-hero.html</code>, etc.
+        Tag with the CSS patterns used so you can recall them later.
+    </p>
+</body>
+</html>

@@ -1,3 +1,4 @@
+import type { Prisma } from '@prisma/client';
 import { prisma } from '@bigmuddy/database';
 import { EventProducer } from '@/lib/agent/eventProducer';
 
@@ -26,7 +27,7 @@ export async function applyCreditDelta(opts: {
         change,
         balanceAfter: next,
         reason,
-        metadata: metadata ?? undefined,
+        metadata: metadata as Prisma.InputJsonValue | undefined,
       },
     });
   });

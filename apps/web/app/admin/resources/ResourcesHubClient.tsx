@@ -15,12 +15,20 @@ const C = {
   card: 'rgba(15, 23, 42, 0.85)',
 };
 
+type ResourceTask = {
+  id: string;
+  label: string;
+  credits: number;
+  /** Maps to `LoreEntry.namespace` when you submit / verify. */
+  loreNamespace?: string;
+};
+
 type Resource = {
   id: string;
   title: string;
   chapter: string;
   summary: string;
-  tasks: { id: string; label: string; credits: number }[];
+  tasks: ResourceTask[];
 };
 
 const RESOURCES: Resource[] = [
@@ -31,8 +39,18 @@ const RESOURCES: Resource[] = [
     summary:
       'Why dollars leave the zip code in 48 hours—and how a verified directory changes the physics of who gets seen.',
     tasks: [
-      { id: 't1', label: 'Verify 3 directory fields for one Natchez business', credits: 30 },
-      { id: 't2', label: 'Lore quiz: local multiplier (4/5 to pass)', credits: 20 },
+      {
+        id: 't1',
+        label: 'Verify 3 directory fields for one Natchez business',
+        credits: 30,
+        loreNamespace: 'vetted',
+      },
+      {
+        id: 't2',
+        label: 'Lore quiz: local multiplier (4/5 to pass)',
+        credits: 20,
+        loreNamespace: 'vetted',
+      },
     ],
   },
   {
@@ -42,7 +60,12 @@ const RESOURCES: Resource[] = [
     summary:
       'From reading a chapter to proving you can read a parcel card: the lab opens only after the manual does its job.',
     tasks: [
-      { id: 't3', label: 'Scout task: parcel / ownership signal (pilot rubric)', credits: 50 },
+      {
+        id: 't3',
+        label: 'Scout task: parcel / ownership signal (pilot rubric)',
+        credits: 50,
+        loreNamespace: 'scout',
+      },
     ],
   },
   {
@@ -51,15 +74,21 @@ const RESOURCES: Resource[] = [
     chapter: 'DeepLore + Outsider Economics corpus',
     summary:
       'The AI Librarian below is scoped to approved book chapters and local DeepLore—Vertex hook lands here next.',
-    tasks: [{ id: 't4', label: 'Submit one vetted LoreEntry (namespace: vetted)', credits: 40 }],
+    tasks: [
+      {
+        id: 't4',
+        label: 'Submit one vetted LoreEntry (namespace: vetted)',
+        credits: 40,
+        loreNamespace: 'vetted',
+      },
+    ],
   },
 ];
 
 type ChatMsg = { role: 'user' | 'librarian'; text: string };
 
-export function ResourcesHubClient() {
+export function ResourcesHubClient({ initialCredits }: { initialCredits: number }) {
   const [activeId, setActiveId] = useState(RESOURCES[0]!.id);
-  const [creditPlaceholder] = useState('—');
   const [input, setInput] = useState('');
   const [chat, setChat] = useState<ChatMsg[]>([
     {
@@ -115,6 +144,23 @@ export function ResourcesHubClient() {
           </h1>
           <p style={{ margin: 0, color: C.muted, fontSize: '1.05rem', lineHeight: 1.55 }}>
             Manual (book) → Library (this archive) → Laboratory (DSD tasks + credits). Learning that earns back the subscription.
+          </p>
+          <p style={{ margin: '1rem 0 0 0' }}>
+            <a
+              href="/economics/field-manual"
+              style={{
+                display: 'inline-block',
+                padding: '0.55rem 1rem',
+                borderRadius: '6px',
+                background: C.accent,
+                color: '#020617',
+                fontWeight: 700,
+                fontSize: '0.88rem',
+                textDecoration: 'none',
+              }}
+            >
+              Start with the Outsider Economics field manual
+            </a>
           </p>
         </header>
 
@@ -234,11 +280,11 @@ export function ResourcesHubClient() {
             Credit balance
           </div>
           <div style={{ fontSize: '2rem', fontWeight: 700, color: C.accent, marginTop: '0.25rem' }}>
-            {creditPlaceholder}
+            {initialCredits}
             <span style={{ fontSize: '0.85rem', fontWeight: 500, color: C.muted, marginLeft: '0.35rem' }}>credits</span>
           </div>
           <p style={{ fontSize: '0.75rem', color: C.muted, margin: '0.5rem 0 0 0' }}>
-            Wire to <code style={{ color: C.accent }}>User.credits</code> + session after auth.
+            Completing a task should mint via <code style={{ color: C.accent }}>CreditLedger</code> (CC: wire lore verify API).
           </p>
         </div>
 
@@ -259,6 +305,11 @@ export function ResourcesHubClient() {
               >
                 <span style={{ color: C.ink }}>{t.label}</span>
                 <div style={{ color: C.accent, fontSize: '0.75rem', marginTop: '0.25rem' }}>+{t.credits} credits</div>
+                {t.loreNamespace && (
+                  <div style={{ color: C.muted, fontSize: '0.72rem', marginTop: '0.35rem' }}>
+                    LoreEntry namespace: <code style={{ color: C.accent }}>{t.loreNamespace}</code>
+                  </div>
+                )}
               </li>
             ))}
           </ul>

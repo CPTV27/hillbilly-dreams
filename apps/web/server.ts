@@ -100,23 +100,31 @@ app.prepare().then(async () => {
       void socket.leave(`display-${slug.trim()}`);
     });
 
-    socket.on('node_heartbeat', async (payload: { nodeId: string, ipAddress?: string }) => {
-      if (!payload || typeof payload.nodeId !== 'string') return;
+    /** Updates `PhysicalNode` by unique `name` (use `nodeId` or `name` in payload). */
+    socket.on('node_heartbeat', async (payload: { nodeId?: string; name?: string; ipAddress?: string }) => {
+      if (!payload || typeof payload !== 'object') return;
+      const nodeName =
+        typeof payload.nodeId === 'string' && payload.nodeId.trim()
+          ? payload.nodeId.trim()
+          : typeof payload.name === 'string' && payload.name.trim()
+            ? payload.name.trim()
+            : '';
+      if (!nodeName) return;
       try {
         const { prisma } = await import('@bigmuddy/database');
         await prisma.physicalNode.update({
-          where: { name: payload.nodeId }, // Using name as the identifier based on handoff text
-          data: { 
+          where: { name: nodeName },
+          data: {
             lastSeen: new Date(),
             status: 'ONLINE',
-            ...(payload.ipAddress && { ipAddress: payload.ipAddress })
-          }
+            ...(payload.ipAddress && { ipAddress: payload.ipAddress }),
+          },
         });
-        console.log(`[Sovereign] Pulse received from PhysicalNode: ${payload.nodeId}`);
-      } catch (err: any) {
-        // Node might not exist yet if seed script hasn't run
-        if (err.code !== 'P2025') {
-          console.error(`[Sovereign] Failed to update node heartbeat for ${payload.nodeId}`, err);
+        console.log(`[Sovereign] Heartbeat OK — PhysicalNode: ${nodeName}`);
+      } catch (err: unknown) {
+        const code = err && typeof err === 'object' && 'code' in err ? (err as { code?: string }).code : undefined;
+        if (code !== 'P2025') {
+          console.error(`[Sovereign] Failed to update node heartbeat for ${nodeName}`, err);
         }
       }
     });

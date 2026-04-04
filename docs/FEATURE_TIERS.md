@@ -1,6 +1,8 @@
 # Feature Tiers — Product Roadmap
-## Last Updated: March 26, 2026
-## Source: Perplexity Deep Research + Internal Strategy
+## Last Updated: April 2, 2026
+## Source: Perplexity Deep Research + Internal Strategy + 15-Competitor Homepage Scrape
+
+> **PRICING STATUS (April 2026):** Tiers are NOT FINALIZED. Chase is leaning toward Free / $99 / $250 (dropping $49). The tiers below reflect the feature roadmap, not locked pricing. Use "starting at" language in all customer-facing copy. See `docs/DSD_MARKETING_COPY.md` for approved copy and `docs/COMPETITIVE_ANALYSIS_2026.md` for competitor matrix.
 
 ---
 
@@ -60,5 +62,22 @@ For $500K+/yr businesses. Replaces back-office headcount entirely.
 | Too complex | Dashboard fatigue | No dashboard. Text + camera + voice |
 | Doesn't show ROI | Users can't find the value | Daily text TELLS them the value |
 
-## PRICING NOTE
-Tiers: Free/$20/$99/$1,500/Custom. The $20 tier is the conversion point. The $1,500 tier replaces the old S2PX $5K/mo — still massive value at $18K/year vs Tyler's $25-75K. The free tier is the trojan horse.
+## PRICING NOTE (Updated April 2026)
+**Previous tiers (Free/$20/$49/$99) are being reconsidered.** Chase is leaning toward Free / $99 / $250.
+
+Staged rollout plan:
+1. Internal dogfood (now)
+2. Fix + adjust pricing
+3. First 10 customers (special founding deal)
+4. Revise
+5. Next 100 customers
+6. Revise and scale
+
+Hero Bundle (one professional photoshoot/year) confirmed as a concept, not yet tier-assigned.
+
+## DSD POSITIONING (Locked April 2026)
+- **Headline:** "Main Street marketing for Main Street money."
+- **Statement:** "We're not a software company. We're a media company that sells software at software prices."
+- **Differentiator:** The Ecosystem Multiplier — owned magazine, radio, photography, records, touring
+- **Pain point:** The Ghost Town Effect — invisible to people searching right now
+- **Support:** "We probably ate at your restaurant last week."

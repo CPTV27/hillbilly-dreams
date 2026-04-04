@@ -8,8 +8,14 @@
 
 ### Sandbox Context (Natchez Protocol)
 * **Branch:** `sandbox-protocol-natchez`
-* **Local DB:** `postgresql://chasethis:postgres@localhost:5432/hillbilly_sovereign`
+* **Local DB:** `postgresql://chasethis@localhost:5432/hillbilly_sovereign` (or `postgresql://chasethis:postgres@localhost:5432/hillbilly_sovereign` if auth requires a password). After schema changes: `pnpm db:generate` from repo root, then `pnpm --filter @bigmuddy/database exec prisma db push` with `DATABASE_URL` set.
 * **Signing Bonus Logic:** Default 1,000 credits allocated to initialized sovereign-guild accounts. Admin (chase@hillbillydreamsinc.com) seeded with 10k credits.
+
+### Hybrid cloud / edge (handoff baseline)
+* **Cloud (GCP):** Production brain and durable state — **Cloud SQL** (Postgres; same Prisma schema as local `hillbilly_sovereign` baseline), **Vertex AI**, **GCS**, **Secret Manager**. API routes and SSR use the DB the deployment is configured for (`DATABASE_URL` / connector).
+* **Edge (Sovereign Hub):** Real-time plane — `apps/web/server.ts` loads **Socket.io** on the LAN mainframe / hub host (`pnpm dev` at repo root or `@bigmuddy/web` hub script). **Not** available on serverless-only deploys; kiosks/displays set **`NEXT_PUBLIC_SOVEREIGN_HUB_URL`** when the browser is not same-origin as the hub.
+* **Socket contract:** `join_session` / `sovereign_event` (Glass cognitive stream); **`sovereign_pulse`** (hub-wide `io.emit`, from `EventProducer.broadcastPulse` on credit/submission paths); **`node_heartbeat`** (updates `PhysicalNode` `lastSeen` / `ONLINE` by unique `name`, payload `nodeId` or `name`).
+* **Glass routes:** `/admin/kiosk` (`KioskLiveClient` → session room + pulses); `/display/[slug]` (`DisplaySignageClient` → `join_display` + ticker + pulses).
 
 We are building toward a **subsidized public utility** model: **Deep South Directory** at **$20/mo** funded by municipal or economic-development programs, with **verified registration**, **task-based proof-of-activity** (mini-lore / vetting tasks) to unlock subsidy, optional **anonymity off subsidy**, and **aggregated utility reporting** for the city. Schema hooks: `User.isGovernmentSubsidized`, `User.lastVerificationTaskDate`, `LoreEntry.isAnonymized` for safe heat-map style ROI without leaking individuals.
 
@@ -19,7 +25,7 @@ We are building toward a **subsidized public utility** model: **Deep South Direc
 - **Versioning:** Entity and LoreEntry records now support native graph versioning (`version`, `supersededBy`).
 - **Hardware Tracking:** The `PhysicalNode` model and `node_heartbeat` socket events continuously track system health of kiosks and TVs.
 - **Webhook Hub:** Enabled outbound system orchestration via `WebhookSubscription`.
-- **Infrastructure Status:** 
-  - Socket.io is active on `:3000`.
-  - ChromaDB is confirmed listening on `:8000`.
-  - Note: Prisma cache `EPERM` issues are active; `prisma db push` could not run natively, so Postgres updates require `sudo` or Docker CLI handling.
+- **Infrastructure status**
+  - **Socket.io (hub):** bind on hub host port **3000** (or `PORT`) when using `server.ts`.
+  - **ChromaDB:** vector store expected on **`:8000`** for local RAG / lore tooling.
+  - **Prisma:** If `db push` / `generate` hits local permission errors, fix workspace `node_modules` ownership or run the same commands in CI / a clean shell with `DATABASE_URL` pointed at the target instance (local or Cloud SQL).

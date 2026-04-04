@@ -1,5 +1,20 @@
 # Agent status
 
+## 2026-04-03 — Natchez Protocol “Master Key” wiring (schema + hub pulse + routes)
+
+- **Prisma:** Restored `User.creditLedgers`; added `Contest`, `Submission`, `DisplayChannel`. Run `pnpm db:generate` (done) and `pnpm db:push` (or migrate) with `DATABASE_URL=postgresql://chasethis@localhost:5432/hillbilly_sovereign` before using new tables.
+- **Pulse:** `EventProducer.broadcastPulse` → `io.emit('sovereign_pulse', …)`; `applyCreditDelta` in [`apps/web/lib/sovereign/wallet.ts`](../apps/web/lib/sovereign/wallet.ts) writes `CreditLedger` + emits credit pulse. Contest enter API emits submission pulse.
+- **Hub:** [`apps/web/server.ts`](../apps/web/server.ts) — `join_display` / `leave_display` rooms `display-{slug}`.
+- **Routes:** [`/admin/kiosk`](../apps/web/app/admin/kiosk/page.tsx) + [`KioskLiveClient`](../apps/web/app/admin/kiosk/KioskLiveClient.tsx); [`/display/[slug]`](../apps/web/app/display/[slug]/page.tsx) (YouTube embed + ticker + top `AdCampaign` via [`pickTopCampaign`](../apps/web/lib/ads/pickTopCampaign.ts)); [`/admin/contests`](../apps/web/app/admin/contests/page.tsx); [`POST /api/sovereign/contests/[id]/enter`](../apps/web/app/api/sovereign/contests/[id]/enter/route.ts). Resources hub shows live credits + OE field manual CTA + `LoreEntry` namespaces on tasks.
+- **Script:** [`scripts/economy/ad-auctioneer.ts`](../scripts/economy/ad-auctioneer.ts) reuses `pickTopAdCampaign`.
+- **Env:** Optional `NEXT_PUBLIC_SOVEREIGN_HUB_URL` when the browser does not share origin with the Socket.io hub.
+
+### Quality gate
+
+`pnpm exec tsc --noEmit` in `apps/web` (pass)
+
+---
+
 ## 2026-04-04 — Phase 2.5 Synology indexer skeleton
 
 - **Script:** [`scripts/media/synology-indexer.ts`](../scripts/media/synology-indexer.ts) — XMP/RDF parse (`xmp:Rating`, `xmp:Label`, `dc:subject` / `rdf:Bag`), `chokidar` watch, `--file=` one-shot, `SYNOLOGY_MEDIA_PATH`, `SYNOLOGY_INDEXER_WRITE` (Prisma stub until `VisualAsset` gains metadata).

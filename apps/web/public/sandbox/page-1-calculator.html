@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Main Street Math | Deep South Directory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --cream: #fdfcf8; --dark: #1a1a1a; --gold: #c8943e; --gray: #e5e5e5; }
+        body { background-color: var(--cream); color: var(--dark); font-family: 'Inter', sans-serif; margin: 0; line-height: 1.6; }
+        h1, h2 { font-family: 'Playfair Display', serif; margin-bottom: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        header { text-align: center; border-bottom: 1px solid var(--gray); padding: 20px 0; }
+        .hero { text-align: center; padding: 60px 0; }
+        .hero h1 { font-size: 3rem; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 40px 0; background: white; border: 1px solid var(--gray); }
+        .comparison-table th, .comparison-table td { padding: 20px; text-align: left; border-bottom: 1px solid var(--gray); }
+        .comparison-table th { background: var(--dark); color: white; }
+        .total-row { background: #f9f9f9; font-weight: bold; }
+        .dsd-row { background: #fffdf5; border: 2px solid var(--gold); }
+        .dsd-row td { color: var(--gold); font-size: 1.2rem; font-weight: 600; }
+        .btn { background-color: var(--gold); color: white; padding: 18px 36px; text-decoration: none; display: inline-block; font-weight: 600; font-size: 1.1rem; transition: opacity 0.2s; }
+        .why-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 60px; }
+        .bullet { border-left: 3px solid var(--gold); padding-left: 20px; }
+        footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--gray); font-size: 0.9rem; margin-top: 60px; }
+        @media print { .btn { display: none; } body { background: white; } }
+        @media (max-width: 600px) { .hero h1 { font-size: 2rem; } .comparison-table { font-size: 0.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container" style="padding:0;"><strong>DEEP SOUTH DIRECTORY</strong></div>
+    </header>
+    <div class="container">
+        <section class="hero">
+            <h1>Stop Paying the "SaaS Tax"</h1>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">You are likely overpaying for software tools that don't talk to each other. We did the math for the average Main Street business.</p>
+        </section>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Marketing Service</th>
+                    <th>Industry Standalone Tool</th>
+                    <th>Monthly Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Listings Management</td>
+                    <td>Yext</td>
+                    <td>$199</td>
+                </tr>
+                <tr>
+                    <td>Review Management</td>
+                    <td>Birdeye</td>
+                    <td>$299</td>
+                </tr>
+                <tr>
+                    <td>Social Media Scheduling</td>
+                    <td>Hootsuite</td>
+                    <td>$99</td>
+                </tr>
+                <tr>
+                    <td>Professional Photography</td>
+                    <td>Freelancer (avg)</td>
+                    <td>$500</td>
+                </tr>
+                <tr class="total-row">
+                    <td>Traditional Total</td>
+                    <td>Multiple Subscriptions</td>
+                    <td>$1,097/mo</td>
+                </tr>
+                <tr class="dsd-row">
+                    <td>Deep South Directory</td>
+                    <td>The Complete Bundle</td>
+                    <td>Starting at $99/mo</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="text-align: center;">
+            <a href="#" class="btn">See What You'd Save</a>
+        </div>
+
+        <div class="why-section">
+            <div class="bullet">
+                <h3>One Bill</h3>
+                <p>Consolidate your logins and your payments. We replace the tools that clutter your bank statement.</p>
+            </div>
+            <div class="bullet">
+                <h3>Local Context</h3>
+                <p>We don't just give you a dashboard. We give you local reach through our magazine and radio station.</p>
+            </div>
+            <div class="bullet">
+                <h3>Human Support</h3>
+                <p>No support tickets. No overseas call centers. If you have a problem, you call a neighbor in Natchez.</p>
+            </div>
+        </div>
+    </div>
+    <footer>Deep South Directory — Natchez, Mississippi</footer>
+</body>
+</html>

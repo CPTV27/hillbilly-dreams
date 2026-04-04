@@ -75,10 +75,13 @@ const NAV_SECTIONS = [
     label: 'Platform',
     items: [
       { label: 'Agents', href: '/agents', icon: '⚙' },
+      { label: 'Glass kiosk', href: '/kiosk', icon: '◇' },
+      { label: 'Contests', href: '/contests', icon: '◆' },
       { label: 'Design contest', href: '/contest', icon: '◎' },
       { label: 'Roadmap', href: '/roadmap', icon: '◇' },
       { label: 'Ecosystem', href: '/ecosystem', icon: '◉' },
       { label: 'Bridge Clients', href: '/bridge', icon: '◈' },
+      { label: 'Business (GMB+Shop)', href: '/business', icon: '◆' },
       { label: 'Finance', href: '/finance', icon: '$' },
     ],
   },
