@@ -53,9 +53,9 @@ export const TENANTS: TenantConfig[] = [
     themeClass: 'theme-bearsville',
     gcsBucket: 'bmt-media-bigmuddy',
     accentColor: '#c8943e',
-    tagline: "Where the Sound Lives",
+    tagline: 'The Creative Corridor',
     location: { city: 'Woodstock', state: 'NY' },
-    features: ['directory', 'radio', 'magazine', 'studio'],
+    features: ['directory', 'radio', 'magazine', 'studio', 'gallery', 'creative', 'booking', 'realtor-pulse'],
   },
   {
     id: 'studio-c',

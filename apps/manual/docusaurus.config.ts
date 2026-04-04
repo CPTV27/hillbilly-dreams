@@ -82,6 +82,12 @@ const config: Config = {
           label: 'How Do I...?',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'referenceTools',
+          position: 'left',
+          label: 'Reference',
+        },
+        {
           href: 'https://bigmuddytouring.com/admin',
           label: 'Admin Dashboard',
           position: 'right',

@@ -1,35 +1,2908 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>Roadmap — Sign in · Hillbilly Dreams Inc</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #0a0a0a; color: #f5f0eb; padding: 2rem; max-width: 640px; margin: 0 auto; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
-.gold { color: #c8943e; }
-h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
-p { font-size: 0.9rem; color: #bbb5ae; margin-bottom: 1rem; }
-.badge { display: inline-block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: #ef4444; border: 1px solid #5c2d2d; padding: 0.25rem 0.6rem; margin-bottom: 1rem; }
-a { color: #c8943e; font-weight: 600; text-decoration: none; }
-a:hover { text-decoration: underline; }
-.footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #242220; font-size: 0.7rem; color: #6b6560; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Full Stack — HDI Internal Roadmap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ─── RESET & TOKENS ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0f0f0d;
+      --bg-raised:    #151512;
+      --bg-card:      #1a1916;
+      --bg-moat:      #141310;
+      --border:       #2a2822;
+      --border-light: #333028;
+      --gold:         #c8943e;
+      --gold-dim:     #8a6228;
+      --gold-faint:   rgba(200,148,62,0.08);
+      --text:         #e8e0d4;
+      --text-muted:   #6a6560;
+      --text-mid:     #9a9288;
+      --blue:         #4a9eff;
+      --purple:       #9b59b6;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --toc-width:    220px;
+      --content-max:  1100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── TYPOGRAPHY ─────────────────────────────────────────────────────── */
+    h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.2; }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    /* ─── LAYOUT ─────────────────────────────────────────────────────────── */
+    .page-wrapper {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ─── TABLE OF CONTENTS (fixed left sidebar) ─────────────────────────── */
+    .toc {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--toc-width);
+      height: 100vh;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      padding: 28px 0;
+      z-index: 100;
+      background: var(--bg-raised);
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .toc-logo {
+      padding: 0 20px 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .toc-logo-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .toc-logo-name {
+      font-family: var(--font-display);
+      font-size: 15px;
+      color: var(--gold);
+    }
+
+    .toc-nav { list-style: none; }
+
+    .toc-nav li { padding: 0; }
+
+    .toc-nav a {
+      display: block;
+      padding: 6px 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      line-height: 1.4;
+    }
+
+    .toc-nav a:hover {
+      color: var(--text);
+      border-left-color: var(--border-light);
+    }
+
+    .toc-nav a.active {
+      color: var(--gold);
+      border-left-color: var(--gold);
+    }
+
+    .toc-section-group {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px solid var(--border);
+    }
+
+    .toc-section-group:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    /* ─── MAIN CONTENT ───────────────────────────────────────────────────── */
+    .main {
+      margin-left: var(--toc-width);
+      flex: 1;
+      min-width: 0;
+    }
+
+    .container {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    .section-header {
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      color: var(--text);
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────────────────── */
+    #hero {
+      padding: 80px 0 60px;
+      background: linear-gradient(180deg, #131210 0%, var(--bg) 100%);
+    }
+
+    #hero .container {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      color: var(--text);
+      line-height: 1.05;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-mid);
+      max-width: 620px;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .stats-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      align-self: flex-start;
+    }
+
+    .stat-item {
+      padding: 20px 32px;
+      border-right: 1px solid var(--border);
+      min-width: 150px;
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── ORIGIN ─────────────────────────────────────────────────────────── */
+    #origin .origin-text {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--text-mid);
+      max-width: 780px;
+      border-left: 3px solid var(--gold);
+      padding-left: 28px;
+    }
+
+    #origin .origin-text em {
+      color: var(--text);
+      font-style: normal;
+    }
+
+    /* ─── BRANDS — FULL-BLEED BANNERS ───────────────────────────────────── */
+    .brand-banners {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .brand-banner {
+      position: relative;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      height: 200px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 30px 40px;
+      text-decoration: none;
+    }
+
+    .brand-banner + .brand-banner {
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .brand-banner img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      transition: transform 0.4s ease;
+    }
+
+    .brand-banner:hover img {
+      transform: scale(1.02);
+    }
+
+    .brand-banner .overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .brand-banner .content {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+    }
+
+    .brand-banner .brand-badge-wrap {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      z-index: 3;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .brand-banner.light-text .brand-name { color: #f0ece4; }
+    .brand-banner.dark-text  .brand-name { color: #1a1510; }
+
+    .brand-desc {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .brand-banner.light-text .brand-desc { color: rgba(240,236,228,0.75); }
+    .brand-banner.dark-text  .brand-desc { color: rgba(26,21,16,0.7); }
+
+    .brand-domain {
+      font-size: 11px;
+      font-family: monospace;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-banner.light-text .brand-domain { color: rgba(200,148,62,0.85); }
+    .brand-banner.dark-text  .brand-domain { color: rgba(80,60,30,0.8); }
+
+    /* ─── STATUS BADGES ──────────────────────────────────────────────────── */
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .badge-live     { background: rgba(200,148,62,0.15); color: var(--gold); border: 1px solid rgba(200,148,62,0.3); }
+    .badge-building { background: rgba(74,158,255,0.12); color: var(--blue); border: 1px solid rgba(74,158,255,0.25); }
+    .badge-planned  { background: rgba(106,101,96,0.2);  color: var(--text-muted); border: 1px solid var(--border-light); }
+    .badge-b2b      { background: rgba(155,89,182,0.12); color: var(--purple); border: 1px solid rgba(155,89,182,0.25); }
+
+    /* ─── MODULES ────────────────────────────────────────────────────────── */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .module-card {
+      background: var(--bg-card);
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: background 0.15s;
+    }
+
+    .module-card:hover { background: #1e1c19; }
+
+    .module-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .module-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .module-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    .module-routes {
+      font-size: 11px;
+      color: var(--gold-dim);
+      font-weight: 500;
+    }
+
+    .module-keys {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .key-pill {
+      font-size: 10px;
+      padding: 2px 7px;
+      background: rgba(200,148,62,0.07);
+      color: var(--text-muted);
+      border: 1px solid var(--border-light);
+      border-radius: 2px;
+      font-family: monospace;
+    }
+
+    /* ─── MOAT ───────────────────────────────────────────────────────────── */
+    #moat {
+      background: var(--bg-moat);
+    }
+
+    .moat-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .moat-card {
+      background: var(--bg-card);
+      padding: 20px 16px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.15s;
+    }
+
+    .moat-card:hover { background: #1e1c19; }
+
+    .moat-name {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .moat-desc {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .moat-value {
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 500;
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      width: 100%;
+      text-align: center;
+    }
+
+    /* ─── COMPARISON TABLE ───────────────────────────────────────────────── */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      font-size: 13.5px;
+    }
+
+    .comparison-table thead th {
+      background: #1a1916;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .comparison-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+
+    .comparison-table tbody tr:hover { background: var(--bg-card); }
+
+    .comparison-table td {
+      padding: 12px 20px;
+      color: var(--text-mid);
+      vertical-align: middle;
+    }
+
+    .comparison-table td:first-child { color: var(--text); }
+
+    .comparison-table .cost-col {
+      color: var(--text-muted);
+      font-family: monospace;
+      font-size: 13px;
+    }
+
+    .comparison-table .tier-col {
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .tier-entry   { color: var(--text-muted); }
+    .tier-listing { color: var(--gold); }
+    .tier-engine  { color: var(--blue); }
+    .tier-works   { color: var(--purple); }
+
+    .comparison-totals {
+      display: flex;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 16px;
+    }
+
+    .totals-cell {
+      flex: 1;
+      padding: 20px 24px;
+      background: var(--bg-card);
+    }
+
+    .totals-cell.highlight { background: rgba(200,148,62,0.07); }
+
+    .totals-cell .totals-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .totals-cell .totals-amount {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .totals-cell.highlight .totals-amount { color: var(--gold); }
+    .totals-cell .totals-amount { color: var(--text-muted); text-decoration: line-through; }
+
+    /* ─── DATABASE ───────────────────────────────────────────────────────── */
+    .db-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .db-domain-card {
+      background: var(--bg-card);
+      padding: 18px 20px;
+    }
+
+    .db-domain-name {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .db-models {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .db-models li {
+      font-size: 12px;
+      font-family: monospace;
+      color: var(--text-muted);
+      padding: 2px 0;
+    }
+
+    .db-models li:hover { color: var(--text); }
+
+    /* ─── TECH STACK ─────────────────────────────────────────────────────── */
+    .stack-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .stack-pill {
+      padding: 8px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-mid);
+      border-radius: 2px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .stack-pill:hover {
+      border-color: var(--gold-dim);
+      color: var(--text);
+    }
+
+    /* ─── INTEGRATIONS ───────────────────────────────────────────────────── */
+    .integrations-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .integrations-col {
+      background: var(--bg-card);
+      padding: 28px;
+    }
+
+    .integrations-col h3 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .integration-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .integration-item {
+      font-size: 13px;
+      padding: 6px 14px;
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      color: var(--text-mid);
+      border-radius: 2px;
+    }
+
+    .integrations-col.outgoing .integration-item {
+      border-color: rgba(200,148,62,0.2);
+      background: rgba(200,148,62,0.04);
+    }
+
+    /* ─── TEAM ───────────────────────────────────────────────────────────── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .team-card {
+      background: var(--bg-card);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .team-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 2px;
+      background: var(--gold-faint);
+      border: 1px solid rgba(200,148,62,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .team-name {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .team-role {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .team-email {
+      font-size: 11px;
+      font-family: monospace;
+      color: var(--gold-dim);
+      margin-top: 4px;
+    }
+
+    /* ─── POSITIONING ────────────────────────────────────────────────────── */
+    #positioning {
+      text-align: center;
+      padding: 100px 0;
+      background: linear-gradient(180deg, var(--bg) 0%, #131210 100%);
+    }
+
+    .positioning-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 24px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .positioning-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-raised);
+    }
+
+    .footer-left {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    .footer-right {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .footer-internal {
+      display: inline-block;
+      padding: 3px 8px;
+      background: rgba(155,89,182,0.1);
+      border: 1px solid rgba(155,89,182,0.25);
+      color: var(--purple);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+    }
+
+    /* ─── DIVIDER ────────────────────────────────────────────────────────── */
+    .divider-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+      margin: 8px 0 40px;
+    }
+
+    /* ─── STAT NUMBERS UPGRADE (overrides earlier rule) ─────────────────── */
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 3rem !important;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 10px;
+      margin-bottom: 8px;
+    }
+
+    /* brand-img-wrap removed — banners use full-bleed background images */
+
+    /* ─── MODULE MOCKUPS ─────────────────────────────────────────────────── */
+    .module-mockup {
+      width: 100%;
+      height: 120px;
+      background: #0d0d0b;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 4px;
+      overflow: hidden;
+      position: relative;
+      font-size: 10px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .module-mockup .mock-titlebar {
+      height: 20px;
+      background: var(--bg-raised);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      gap: 4px;
+    }
+    .module-mockup .mock-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border-light);
+      flex-shrink: 0;
+    }
+    .module-mockup .mock-content {
+      padding: 8px;
+    }
+    /* listing rows */
+    .mock-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 5px;
+    }
+    .mock-bar {
+      height: 7px;
+      background: var(--border-light);
+      border-radius: 2px;
+      flex: 1;
+    }
+    .mock-bar-sm { height: 7px; width: 40px; background: var(--border-light); border-radius: 2px; flex-shrink: 0; }
+    .mock-pill {
+      height: 12px;
+      width: 28px;
+      border-radius: 10px;
+      background: rgba(200,148,62,0.25);
+      flex-shrink: 0;
+    }
+    .mock-stars {
+      display: flex;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+    .mock-star {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+    }
+    /* calendar grid */
+    .mock-cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+      padding: 6px 8px;
+    }
+    .mock-cal-cell {
+      height: 12px;
+      background: var(--border);
+      border-radius: 1px;
+    }
+    .mock-cal-cell.has-post { background: rgba(200,148,62,0.5); }
+    .mock-cal-cell.has-post-blue { background: rgba(74,158,255,0.5); }
+    .mock-cal-cell.has-post-purple { background: rgba(155,89,182,0.4); }
+    /* waveform */
+    .mock-waveform {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 8px 8px 0;
+      height: 60px;
+    }
+    .mock-wave-bar {
+      flex: 1;
+      background: rgba(200,148,62,0.6);
+      border-radius: 1px;
+    }
+    /* image grid */
+    .mock-img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      padding: 6px 8px;
+    }
+    .mock-img-cell {
+      background: var(--border-light);
+      border-radius: 2px;
+    }
+    /* track list */
+    .mock-track {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 4px;
+    }
+    .mock-track-num {
+      color: var(--text-muted);
+      font-size: 9px;
+      width: 10px;
+      flex-shrink: 0;
+    }
+    .mock-track-dur {
+      font-size: 9px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .mock-track-split {
+      height: 4px;
+      background: rgba(200,148,62,0.5);
+      border-radius: 2px;
+    }
+    /* photo overlay (media studio) */
+    .mock-photo-bg {
+      position: absolute;
+      inset: 20px 0 0 0;
+      background: linear-gradient(135deg, var(--border-light) 0%, var(--border) 100%);
+    }
+    .mock-photo-mask {
+      position: absolute;
+      top: 28px;
+      left: 16px;
+      width: 40px;
+      height: 50px;
+      border: 1.5px dashed var(--gold);
+      border-radius: 2px;
+      background: rgba(200,148,62,0.08);
+    }
+    .mock-photo-label {
+      position: absolute;
+      bottom: 28px;
+      left: 16px;
+      font-size: 8px;
+      color: var(--gold);
+      background: rgba(0,0,0,0.6);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    /* CRM card */
+    .mock-crm-card {
+      margin: 4px 0;
+      padding: 4px 6px;
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+    }
+    .mock-tier-badge {
+      display: inline-block;
+      font-size: 8px;
+      padding: 1px 4px;
+      background: rgba(200,148,62,0.2);
+      color: var(--gold);
+      border-radius: 2px;
+    }
+    .mock-metric-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 3px;
+    }
+    .mock-metric {
+      height: 5px;
+      flex: 1;
+      background: var(--border-light);
+      border-radius: 2px;
+    }
+    .mock-metric.active { background: rgba(200,148,62,0.4); }
+    /* campaign timeline */
+    .mock-timeline {
+      padding: 10px 8px;
+    }
+    .mock-tl-line {
+      height: 2px;
+      background: var(--border-light);
+      margin: 14px 0 4px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .mock-tl-fill {
+      height: 2px;
+      background: var(--gold);
+      width: 55%;
+    }
+    .mock-tl-dots {
+      display: flex;
+      justify-content: space-between;
+      margin-top: -10px;
+      padding: 0 0;
+    }
+    .mock-tl-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border-light);
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .mock-tl-dot.done { background: var(--gold); border-color: var(--gold); }
+    /* chat bubbles */
+    .mock-chat {
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .mock-bubble {
+      max-width: 80%;
+      padding: 5px 8px;
+      border-radius: 8px;
+      font-size: 9px;
+      line-height: 1.4;
+    }
+    .mock-bubble.user {
+      background: var(--border-light);
+      color: var(--text-mid);
+      align-self: flex-end;
+      border-bottom-right-radius: 2px;
+    }
+    .mock-bubble.ai {
+      background: rgba(200,148,62,0.15);
+      color: var(--gold);
+      border: 1px solid rgba(200,148,62,0.25);
+      align-self: flex-start;
+      border-bottom-left-radius: 2px;
+    }
+    /* integration logos */
+    .mock-integrations {
+      display: flex;
+      gap: 6px;
+      padding: 8px;
+      flex-wrap: wrap;
+    }
+    .mock-logo-sq {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      background: var(--bg-raised);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    /* task list */
+    .mock-task {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 5px;
+    }
+    .mock-checkbox {
+      width: 9px;
+      height: 9px;
+      border: 1px solid var(--border-light);
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+    .mock-checkbox.checked {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    /* line chart */
+    .mock-chart-wrap {
+      padding: 6px 8px 0;
+    }
+    /* video timeline */
+    .mock-video-tl {
+      padding: 8px;
+    }
+    .mock-vid-track {
+      height: 16px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-bottom: 3px;
+      display: flex;
+      gap: 2px;
+      overflow: hidden;
+    }
+    .mock-vid-clip {
+      height: 100%;
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+    /* knowledge graph nodes */
+    .mock-graph-wrap {
+      position: absolute;
+      inset: 20px 0 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mock-graph-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ─── THE MATH SECTION ───────────────────────────────────────────────── */
+    #math {
+      background: var(--bg-raised);
+    }
+
+    .math-chart-wrap {
+      margin-bottom: 32px;
+    }
+
+    .math-caption {
+      font-size: 1.1rem;
+      color: var(--text-mid);
+      font-style: italic;
+      border-left: 3px solid var(--gold);
+      padding-left: 20px;
+      margin-top: 28px;
+    }
+
+    .math-caption em {
+      color: var(--text);
+      font-style: normal;
+    }
+
+    /* ─── FLYWHEEL SECTION ───────────────────────────────────────────────── */
+    #flywheel {
+      background: var(--bg-moat);
+    }
+
+    .flywheel-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .flywheel-caption {
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      text-align: center;
+      max-width: 560px;
+      font-style: italic;
+    }
+
+    .flywheel-caption em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .flywheel-svg:hover .flywheel-ring {
+      animation: spin-slow 12s linear infinite;
+      transform-origin: 250px 250px;
+    }
+
+    /* ─── STACK REPLACEMENT VISUAL ───────────────────────────────────────── */
+    .stack-vis {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .stack-vis-box {
+      flex: 1;
+      padding: 32px 28px;
+      border: 1px solid var(--border-light);
+      background: var(--bg-card);
+      text-align: center;
+    }
+
+    .stack-vis-box.highlight {
+      border-color: var(--gold);
+      background: rgba(200,148,62,0.05);
+    }
+
+    .stack-vis-price {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stack-vis-box .stack-vis-price { color: var(--text-muted); }
+    .stack-vis-box.highlight .stack-vis-price { color: var(--gold); }
+
+    .stack-vis-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .stack-vis-arrow {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    /* ─── RADAR CHART SECTION ────────────────────────────────────────────── */
+    .radar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .radar-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 180px;
+    }
+
+    .radar-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-mid);
+    }
+
+    .radar-legend-swatch {
+      width: 24px;
+      height: 3px;
+      flex-shrink: 0;
+    }
+
+    /* ─── TIMELINE / ROADMAP SECTION ─────────────────────────────────────── */
+    #roadmap-timeline {
+      background: var(--bg-raised);
+    }
+
+    .timeline-wrap {
+      position: relative;
+      padding: 40px 0 20px;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--border-light);
+    }
+
+    .timeline-quarters {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .timeline-quarter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .timeline-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+      background: var(--bg-raised);
+    }
+
+    .timeline-dot.done  { border-color: var(--gold);   background: var(--gold); }
+    .timeline-dot.now   { border-color: var(--blue);   background: var(--blue); }
+    .timeline-dot.future{ border-color: var(--border-light); background: var(--bg-raised); }
+
+    .timeline-q-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 16px;
+      margin-bottom: 6px;
+    }
+
+    .timeline-dot.done  + .timeline-q-label,
+    .timeline-quarter:has(.done) .timeline-q-label  { color: var(--gold); }
+    .timeline-dot.now   + .timeline-q-label,
+    .timeline-quarter:has(.now)  .timeline-q-label  { color: var(--blue); }
+    .timeline-dot.future+ .timeline-q-label,
+    .timeline-quarter:has(.future).timeline-q-label { color: var(--text-muted); }
+
+    .timeline-qlabel-done   { color: var(--gold); }
+    .timeline-qlabel-now    { color: var(--blue); }
+    .timeline-qlabel-future { color: var(--text-muted); }
+
+    .timeline-phase {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .timeline-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      text-align: center;
+      padding: 0 12px;
+    }
+
+    /* ─── DONUT CHART ─────────────────────────────────────────────────────── */
+    .donut-wrap {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .donut-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .donut-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .donut-legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .donut-legend-count {
+      margin-left: auto;
+      font-family: monospace;
+      color: var(--text-mid);
+      font-size: 12px;
+    }
+
+    /* ─── PRINT ──────────────────────────────────────────────────────────── */
+    @media print {
+      .toc { display: none; }
+      .main { margin-left: 0; }
+      .container { padding: 0 24px; }
+      section { break-inside: avoid; }
+      .brand-banner, .module-card, .team-card { break-inside: avoid; }
+      .flywheel-svg:hover .flywheel-ring { animation: none; }
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .moat-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      :root { --toc-width: 0px; }
+
+      .toc { display: none; }
+      .main { margin-left: 0; }
+      .container { padding: 0 24px; }
+
+      .brand-banner { height: 150px; padding: 20px 24px; }
+      .brand-banner .brand-badge-wrap { right: 24px; top: 16px; }
+      .brand-name { font-size: 1.4rem; }
+      .brand-desc { font-size: 13px; }
+      .modules-grid { grid-template-columns: repeat(2, 1fr); }
+      .moat-grid { grid-template-columns: repeat(2, 1fr); }
+      .db-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .integrations-grid { grid-template-columns: 1fr; }
+      .stats-bar { flex-wrap: wrap; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); min-width: 140px; }
+      .timeline-quarters { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .timeline-line { display: none; }
+      .stack-vis { flex-direction: column; }
+      .stack-vis-arrow { transform: rotate(90deg); }
+      .radar-wrap { flex-direction: column; align-items: flex-start; }
+      .donut-wrap { flex-direction: column; }
+    }
+
+    @media (max-width: 600px) {
+      .modules-grid { grid-template-columns: 1fr; }
+      .moat-grid { grid-template-columns: 1fr 1fr; }
+      .db-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .comparison-totals { flex-direction: column; }
+      .hero-title { font-size: 2.2rem; }
+      .timeline-quarters { grid-template-columns: 1fr; }
+
+      footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        padding: 24px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<p class="badge">Internal only</p>
-<h1>Master roadmap moved</h1>
-<p>The full roadmap — brands, tiers, competitors, product map — lives in <strong class="gold">HQ Admin</strong> (Google sign-in required).</p>
-<p>
-  <a href="/admin/roadmap">Open /admin/roadmap →</a>
-</p>
-<p style="font-size:0.8rem;">If you are not signed in, you will be prompted to log in first.</p>
+<div class="page-wrapper">
 
-<div class="footer">
-  Hillbilly Dreams Inc · April 2026 · Do not share externally
+  <!-- ─── TABLE OF CONTENTS ─────────────────────────────────────────────── -->
+  <nav class="toc" aria-label="Page navigation">
+    <div class="toc-logo">
+      <span class="toc-logo-label">Internal Roadmap</span>
+      <span class="toc-logo-name">Hillbilly Dreams Inc</span>
+    </div>
+    <ul class="toc-nav" id="toc-nav">
+      <li class="toc-section-group"><a href="#hero" data-section="hero">The Full Stack</a></li>
+      <li><a href="#origin" data-section="origin">Origin Story</a></li>
+      <li><a href="#math" data-section="math">The Math</a></li>
+      <li><a href="#brands" data-section="brands">The Brands</a></li>
+      <li><a href="#flywheel" data-section="flywheel">Ecosystem Flywheel</a></li>
+      <li><a href="#modules" data-section="modules">Product Modules</a></li>
+      <li><a href="#moat" data-section="moat">The Moat</a></li>
+      <li><a href="#comparison" data-section="comparison">Stack Replacement</a></li>
+      <li><a href="#database" data-section="database">Database Architecture</a></li>
+      <li><a href="#techstack" data-section="techstack">Tech Stack</a></li>
+      <li><a href="#integrations" data-section="integrations">Integrations</a></li>
+      <li><a href="#roadmap-timeline" data-section="roadmap-timeline">Rollout Timeline</a></li>
+      <li><a href="#team" data-section="team">The Team</a></li>
+      <li><a href="#positioning" data-section="positioning">Positioning</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── MAIN CONTENT ──────────────────────────────────────────────────── -->
+  <main class="main">
+
+    <!-- ─── SECTION 1: HERO ──────────────────────────────────────────────── -->
+    <section id="hero">
+      <div class="container">
+        <span class="hero-eyebrow">Hillbilly Dreams Inc &mdash; Product Overview</span>
+        <h1 class="hero-title">The Full Stack</h1>
+        <p class="hero-subtitle">Every product, every feature, every capability &mdash; from one codebase.</p>
+        <div class="stats-bar" role="list" aria-label="Key metrics">
+          <div class="stat-item" role="listitem">
+            <span class="stat-number">159</span>
+            <span class="stat-label">API Routes</span>
+          </div>
+          <div class="stat-item" role="listitem">
+            <span class="stat-number">56</span>
+            <span class="stat-label">Database Models</span>
+          </div>
+          <div class="stat-item" role="listitem">
+            <span class="stat-number">14</span>
+            <span class="stat-label">Live Domains</span>
+          </div>
+          <div class="stat-item" role="listitem">
+            <span class="stat-number">20</span>
+            <span class="stat-label">Categories Replaced</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 2: ORIGIN ────────────────────────────────────────────── -->
+    <section id="origin">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">02 &mdash; Origin</span>
+          <h2>Where This Came From</h2>
+          <div class="divider-line"></div>
+        </div>
+        <p class="origin-text">
+          In 2022, Chase designed a complete media production-to-distribution pipeline (the <em>DeFacto Codec Market</em>). Global media infrastructure &mdash; broadcast, production, analytics, distribution &mdash; built on open source tools. He realized the same architecture that runs a Viacom can run a small-town media economy. <em>Big Muddy is that architecture, applied to Main Street, powered by AI, anchored in the Mississippi corridor.</em> The gap isn&rsquo;t technology &mdash; it&rsquo;s organization. That&rsquo;s what we sell.
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 2.5: THE MATH ──────────────────────────────────────────── -->
+    <section id="math">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">02.5 &mdash; Economics</span>
+          <h2>The Math</h2>
+          <div class="divider-line"></div>
+          <p style="color: var(--text-muted); font-size: 13px; margin-top: -20px;">What every competitor charges — for a single tool.</p>
+        </div>
+
+        <div class="math-chart-wrap">
+          <svg class="math-chart" viewBox="0 0 700 280" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Competitor pricing comparison chart">
+            <defs>
+              <style>
+                .bar-label { font-family: 'Inter', sans-serif; font-size: 13px; fill: #6a6560; }
+                .bar-price { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; fill: #9a9288; }
+                .bar-price-dsd { fill: #c8943e; }
+                .bar-label-dsd { fill: #e8e0d4; font-weight: 600; }
+              </style>
+            </defs>
+            <!-- Max price = $499 (Townsquare). Chart width = 480px starting at x=160 -->
+            <!-- Scale: 480/499 = ~0.962px per dollar -->
+
+            <!-- Yext $199 → 192px -->
+            <text x="150" y="30" text-anchor="end" class="bar-label">Yext</text>
+            <rect x="158" y="16" width="192" height="20" rx="2" fill="rgba(106,101,96,0.3)"/>
+            <text x="358" y="30" class="bar-price" dx="8">$199/mo</text>
+
+            <!-- Birdeye $299 → 288px -->
+            <text x="150" y="70" text-anchor="end" class="bar-label">Birdeye</text>
+            <rect x="158" y="56" width="288" height="20" rx="2" fill="rgba(106,101,96,0.3)"/>
+            <text x="454" y="70" class="bar-price" dx="8">$299/mo</text>
+
+            <!-- Hootsuite $99 → 95px -->
+            <text x="150" y="110" text-anchor="end" class="bar-label">Hootsuite</text>
+            <rect x="158" y="96" width="95" height="20" rx="2" fill="rgba(106,101,96,0.3)"/>
+            <text x="261" y="110" class="bar-price" dx="8">$99/mo</text>
+
+            <!-- Podium $399 → 384px -->
+            <text x="150" y="150" text-anchor="end" class="bar-label">Podium</text>
+            <rect x="158" y="136" width="384" height="20" rx="2" fill="rgba(106,101,96,0.3)"/>
+            <text x="550" y="150" class="bar-price" dx="8">$399/mo</text>
+
+            <!-- Thryv $244 → 235px -->
+            <text x="150" y="190" text-anchor="end" class="bar-label">Thryv</text>
+            <rect x="158" y="176" width="235" height="20" rx="2" fill="rgba(106,101,96,0.3)"/>
+            <text x="401" y="190" class="bar-price" dx="8">$244/mo</text>
+
+            <!-- Townsquare $499 → 480px -->
+            <text x="150" y="230" text-anchor="end" class="bar-label">Townsquare</text>
+            <rect x="158" y="216" width="480" height="20" rx="2" fill="rgba(106,101,96,0.3)"/>
+            <text x="646" y="230" class="bar-price" dx="8">$499/mo</text>
+
+            <!-- DSD — GOLD bar, no price shown -->
+            <text x="150" y="270" text-anchor="end" class="bar-label bar-label-dsd">DSD</text>
+            <rect x="158" y="256" width="40" height="20" rx="2" fill="#c8943e"/>
+            <text x="206" y="270" class="bar-price bar-price-dsd" dx="8">TBD</text>
+          </svg>
+        </div>
+
+        <p class="math-caption">Every bar above is <em>ONE tool.</em> DSD replaces all of them. <em>Pricing under development.</em></p>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 3: BRANDS ────────────────────────────────────────────── -->
+    <section id="brands">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">03 &mdash; Brands</span>
+          <h2>The Ecosystem</h2>
+          <div class="divider-line"></div>
+        </div>
+      </div>
+
+      <div class="brand-banners" role="list">
+
+        <!-- Big Muddy Touring -->
+        <div class="brand-banner light-text" role="listitem" aria-label="Big Muddy Touring">
+          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-inn-dusk.webp" alt="" loading="lazy">
+          <div class="overlay" style="background: linear-gradient(to right, rgba(15,15,13,0.88) 0%, rgba(15,15,13,0.42) 100%);"></div>
+          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
+          <div class="content">
+            <div class="brand-name">Big Muddy Touring</div>
+            <div class="brand-desc">Touring circuit, shows, venue partnerships along the Mississippi corridor.</div>
+            <div class="brand-domain">bigmuddytouring.com</div>
+          </div>
+        </div>
+
+        <!-- Big Muddy Magazine -->
+        <div class="brand-banner light-text" role="listitem" aria-label="Big Muddy Magazine">
+          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-bluff-sunset.webp" alt="" loading="lazy">
+          <div class="overlay" style="background: linear-gradient(to right, rgba(60,35,8,0.82) 0%, rgba(15,12,5,0.45) 100%);"></div>
+          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
+          <div class="content">
+            <div class="brand-name">Big Muddy Magazine</div>
+            <div class="brand-desc">Editorial coverage of the corridor. Articles, city guides, photo features.</div>
+            <div class="brand-domain">bigmuddymagazine.com</div>
+          </div>
+        </div>
+
+        <!-- Big Muddy Radio -->
+        <div class="brand-banner light-text" role="listitem" aria-label="Big Muddy Radio">
+          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp" alt="" loading="lazy">
+          <div class="overlay" style="background: linear-gradient(to right, rgba(200,148,62,0.72) 0%, rgba(15,15,13,0.52) 100%);"></div>
+          <div class="brand-badge-wrap"><span class="badge badge-building">Building</span></div>
+          <div class="content">
+            <div class="brand-name">Big Muddy Radio</div>
+            <div class="brand-desc">24/7 streaming. AI DJs, curated playlists, original programming.</div>
+            <div class="brand-domain">bigmuddyradio.com</div>
+          </div>
+        </div>
+
+        <!-- Big Muddy Entertainment -->
+        <div class="brand-banner light-text" role="listitem" aria-label="Big Muddy Entertainment">
+          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp" alt="" loading="lazy">
+          <div class="overlay" style="background: linear-gradient(to right, rgba(28,10,45,0.88) 0%, rgba(15,8,25,0.50) 100%);"></div>
+          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
+          <div class="content">
+            <div class="brand-name">Big Muddy Entertainment</div>
+            <div class="brand-desc">House band, talent search, community credits program.</div>
+            <div class="brand-domain">bigmuddyentertainment.com</div>
+          </div>
+        </div>
+
+        <!-- Big Muddy Records -->
+        <div class="brand-banner light-text" role="listitem" aria-label="Big Muddy Records">
+          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/record-player.webp" alt="" loading="lazy">
+          <div class="overlay" style="background: linear-gradient(to right, rgba(8,8,7,0.92) 0%, rgba(8,8,7,0.60) 100%);"></div>
+          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
+          <div class="content">
+            <div class="brand-name">Big Muddy Records</div>
+            <div class="brand-desc">Independent label. Artist deals, distribution, sync licensing.</div>
+            <div class="brand-domain">bigmuddyrecord.com</div>
+          </div>
+        </div>
+
+        <!-- Deep South Directory -->
+        <div class="brand-banner dark-text" role="listitem" aria-label="Deep South Directory">
+          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-main-street.webp" alt="" loading="lazy">
+          <div class="overlay" style="background: linear-gradient(to right, rgba(253,252,248,0.92) 0%, rgba(253,252,248,0.62) 100%);"></div>
+          <div class="brand-badge-wrap"><span class="badge badge-building">Building</span></div>
+          <div class="content">
+            <div class="brand-name">Deep South Directory</div>
+            <div class="brand-desc">Main Street marketing platform for local businesses. The revenue engine.</div>
+            <div class="brand-domain" style="color: rgba(80,55,20,0.75);">deepsouthdirectory.com</div>
+          </div>
+        </div>
+
+        <!-- Outsider Economics -->
+        <div class="brand-banner light-text" role="listitem" aria-label="Outsider Economics">
+          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-trace-parkway.webp" alt="" loading="lazy">
+          <div class="overlay" style="background: linear-gradient(to right, rgba(22,22,20,0.85) 0%, rgba(22,22,20,0.50) 100%); filter: saturate(0.3);"></div>
+          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
+          <div class="content">
+            <div class="brand-name">Outsider Economics</div>
+            <div class="brand-desc">The philosophy. Field manual for building local economies from the outside in.</div>
+            <div class="brand-domain">outsidereconomics.com</div>
+          </div>
+        </div>
+
+        <!-- Venture Gallery -->
+        <div class="brand-banner light-text" role="listitem" aria-label="Venture Gallery">
+          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp" alt="" loading="lazy">
+          <div class="overlay" style="background: linear-gradient(to right, rgba(245,240,232,0.78) 0%, rgba(245,240,232,0.42) 100%);"></div>
+          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
+          <div class="content">
+            <div class="brand-name" style="color: #1a1510;">Venture Gallery</div>
+            <div class="brand-desc" style="color: rgba(26,21,16,0.65);">Chase Pierson Photography + Tracy Alderson Gallery. Prints, originals, commissions.</div>
+            <div class="brand-domain" style="color: rgba(80,55,20,0.75);">buycurious.art</div>
+          </div>
+        </div>
+
+        <!-- Bearsville Media Group -->
+        <div class="brand-banner light-text" role="listitem" aria-label="Bearsville Media Group">
+          <img src="/images/processed/bearsville/theater-show-01.webp" alt="" loading="lazy">
+          <div class="overlay" style="background: linear-gradient(to right, rgba(12,20,32,0.88) 0%, rgba(12,20,32,0.48) 100%);"></div>
+          <div class="brand-badge-wrap"><span class="badge badge-planned">Planned</span></div>
+          <div class="content">
+            <div class="brand-name">Bearsville Media Group</div>
+            <div class="brand-desc">Northeast node. Woodstock, NY. Studio C + Tuthill Design. Summer 2026.</div>
+            <div class="brand-domain">bearsvillemediagroup.com</div>
+          </div>
+        </div>
+
+        <!-- Tuthill Design -->
+        <div class="brand-banner light-text" role="listitem" aria-label="Tuthill Design">
+          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/oxford-square.webp" alt="" loading="lazy">
+          <div class="overlay" style="background: linear-gradient(to right, rgba(20,18,14,0.80) 0%, rgba(20,18,14,0.35) 100%);"></div>
+          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
+          <div class="content">
+            <div class="brand-name">Tuthill Design</div>
+            <div class="brand-desc">Architecture and design partner. Hudson Valley.</div>
+            <div class="brand-domain">tuthilldesign.com</div>
+          </div>
+        </div>
+
+        <!-- Studio C Video -->
+        <div class="brand-banner light-text" role="listitem" aria-label="Studio C Video">
+          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/command/juke-joint.webp" alt="" loading="lazy">
+          <div class="overlay" style="background: linear-gradient(to right, rgba(5,5,5,0.90) 0%, rgba(5,5,5,0.55) 100%);"></div>
+          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
+          <div class="content">
+            <div class="brand-name">Studio C Video</div>
+            <div class="brand-desc">Video production partner. Bearsville ecosystem.</div>
+            <div class="brand-domain">studiocvideo.com</div>
+          </div>
+        </div>
+
+        <!-- Hillbilly Dreams Inc -->
+        <div class="brand-banner light-text" role="listitem" aria-label="Hillbilly Dreams Inc">
+          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/memphis-beale-street-neon.webp" alt="" loading="lazy">
+          <div class="overlay" style="background: linear-gradient(to right, rgba(40,22,4,0.85) 0%, rgba(10,8,4,0.50) 100%);"></div>
+          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
+          <div class="content">
+            <div class="brand-name">Hillbilly Dreams Inc</div>
+            <div class="brand-desc">The holding company. Every brand rolls up here.</div>
+            <div class="brand-domain">hillbillydreamsinc.com</div>
+          </div>
+        </div>
+
+        <!-- Measurably Better -->
+        <div class="brand-banner dark-text" role="listitem" aria-label="Measurably Better">
+          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/jackson-capitol.webp" alt="" loading="lazy">
+          <div class="overlay" style="background: linear-gradient(to right, rgba(248,248,244,0.90) 0%, rgba(248,248,244,0.60) 100%);"></div>
+          <div class="brand-badge-wrap"><span class="badge badge-b2b">B2B</span></div>
+          <div class="content">
+            <div class="brand-name">Measurably Better</div>
+            <div class="brand-desc">B2B platform. Operators and licensees only — not consumer-facing.</div>
+            <div class="brand-domain" style="color: rgba(80,55,20,0.75);">measurablybetter.life</div>
+          </div>
+        </div>
+
+        <!-- The Big Muddy Inn -->
+        <div class="brand-banner light-text" role="listitem" aria-label="The Big Muddy Inn">
+          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp" alt="" loading="lazy">
+          <div class="overlay" style="background: linear-gradient(to right, rgba(35,18,8,0.82) 0%, rgba(35,18,8,0.40) 100%);"></div>
+          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
+          <div class="content">
+            <div class="brand-name">The Big Muddy Inn</div>
+            <div class="brand-desc">The anchor property. 5-room boutique hotel in Natchez, Mississippi.</div>
+            <div class="brand-domain">via bigmuddytouring.com</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── SECTION 3.5: ECOSYSTEM FLYWHEEL ────────────────────────────────── -->
+    <section id="flywheel">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">03.5 &mdash; Multiplier</span>
+          <h2>The Ecosystem Flywheel</h2>
+          <div class="divider-line"></div>
+        </div>
+        <div class="flywheel-wrap">
+          <svg class="flywheel-svg" viewBox="0 0 500 500" width="100%" style="max-width:480px;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ecosystem flywheel diagram showing one show generating six revenue streams">
+            <!-- Spoke lines -->
+            <g class="flywheel-ring" stroke="rgba(106,101,96,0.4)" stroke-width="1.5" fill="none">
+              <!-- Top: Radio Episode -->
+              <line x1="250" y1="250" x2="250" y2="70"/>
+              <!-- Top-right: Magazine Article -->
+              <line x1="250" y1="250" x2="406" y2="155"/>
+              <!-- Bottom-right: Social Campaign -->
+              <line x1="250" y1="250" x2="406" y2="345"/>
+              <!-- Bottom: Photo Gallery -->
+              <line x1="250" y1="250" x2="250" y2="430"/>
+              <!-- Bottom-left: Directory Traffic -->
+              <line x1="250" y1="250" x2="94" y2="345"/>
+              <!-- Top-left: Inn Revenue -->
+              <line x1="250" y1="250" x2="94" y2="155"/>
+            </g>
+
+            <!-- Outer endpoint circles -->
+            <g fill="var(--bg-card)" stroke="rgba(106,101,96,0.5)" stroke-width="1.5">
+              <circle cx="250" cy="70"  r="38"/>
+              <circle cx="406" cy="155" r="38"/>
+              <circle cx="406" cy="345" r="38"/>
+              <circle cx="250" cy="430" r="38"/>
+              <circle cx="94"  cy="345" r="38"/>
+              <circle cx="94"  cy="155" r="38"/>
+            </g>
+
+            <!-- Outer labels -->
+            <g font-family="Inter, sans-serif" font-size="11" fill="#9a9288" text-anchor="middle">
+              <text x="250" y="66"  dy="0">Radio</text>
+              <text x="250" y="79"  dy="0">Episode</text>
+
+              <text x="406" y="151" dy="0">Magazine</text>
+              <text x="406" y="164" dy="0">Article</text>
+
+              <text x="406" y="341" dy="0">Social</text>
+              <text x="406" y="354" dy="0">Campaign</text>
+
+              <text x="250" y="426" dy="0">Photo</text>
+              <text x="250" y="439" dy="0">Gallery</text>
+
+              <text x="94"  y="341" dy="0">Directory</text>
+              <text x="94"  y="354" dy="0">Traffic</text>
+
+              <text x="94"  y="151" dy="0">Inn</text>
+              <text x="94"  y="164" dy="0">Revenue</text>
+            </g>
+
+            <!-- Center gold circle -->
+            <circle cx="250" cy="250" r="58" fill="rgba(200,148,62,0.12)" stroke="var(--gold)" stroke-width="2"/>
+            <text x="250" y="245" font-family="Playfair Display, Georgia, serif" font-size="15" fill="var(--gold)" text-anchor="middle" font-style="italic">1 Show</text>
+            <text x="250" y="263" font-family="Inter, sans-serif" font-size="10" fill="var(--gold-dim)" text-anchor="middle" letter-spacing="0.08em">THE ENGINE</text>
+          </svg>
+
+          <p class="flywheel-caption">One show generates <em>6+ revenue streams.</em> That's the multiplier.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 4: MODULES ───────────────────────────────────────────── -->
+    <section id="modules">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">04 &mdash; Product</span>
+          <h2>Product Modules</h2>
+          <div class="divider-line"></div>
+        </div>
+
+        <!-- Donut chart: API route distribution -->
+        <div class="donut-wrap">
+          <svg viewBox="0 0 160 160" width="160" height="160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="API route distribution donut chart" style="flex-shrink:0;">
+            <!-- Total 159 routes. Each slice = (count/159)*2π*54 arc length, r=54, center=80,80 -->
+            <!-- Using stroke-dasharray on a circle with circumference = 2π×54 ≈ 339.3 -->
+            <!-- Drawn with cumulative stroke-dashoffset rotation trick -->
+            <circle cx="80" cy="80" r="54" fill="none" stroke="var(--border)" stroke-width="22"/>
+            <!-- Integrations 14 → 14/159*339.3=29.8 -->
+            <circle cx="80" cy="80" r="54" fill="none" stroke="#c8943e" stroke-width="22" stroke-dasharray="29.8 309.5" stroke-dashoffset="84.8" transform="rotate(-90 80 80)"/>
+            <!-- Client CRM 13 → 27.7 -->
+            <circle cx="80" cy="80" r="54" fill="none" stroke="#b8842e" stroke-width="22" stroke-dasharray="27.7 311.6" stroke-dashoffset="55.1" transform="rotate(-90 80 80)"/>
+            <!-- Content 12 → 25.6 -->
+            <circle cx="80" cy="80" r="54" fill="none" stroke="#9a6e26" stroke-width="22" stroke-dasharray="25.6 313.7" stroke-dashoffset="29.5" transform="rotate(-90 80 80)"/>
+            <!-- Media 12 → 25.6 -->
+            <circle cx="80" cy="80" r="54" fill="none" stroke="#7a5820" stroke-width="22" stroke-dasharray="25.6 313.7" stroke-dashoffset="3.9" transform="rotate(-90 80 80)"/>
+            <!-- Directory 11 → 23.5 -->
+            <circle cx="80" cy="80" r="54" fill="none" stroke="#5a4418" stroke-width="22" stroke-dasharray="23.5 315.8" stroke-dashoffset="-21.7" transform="rotate(-90 80 80)"/>
+            <!-- Marketing 9 → 19.2 -->
+            <circle cx="80" cy="80" r="54" fill="none" stroke="#443320" stroke-width="22" stroke-dasharray="19.2 320.1" stroke-dashoffset="-45.2" transform="rotate(-90 80 80)"/>
+            <!-- AI 8 → 17.1 -->
+            <circle cx="80" cy="80" r="54" fill="none" stroke="#3a2c1e" stroke-width="22" stroke-dasharray="17.1 322.2" stroke-dashoffset="-64.4" transform="rotate(-90 80 80)"/>
+            <!-- Social 7 → 14.9 -->
+            <circle cx="80" cy="80" r="54" fill="none" stroke="#2a2018" stroke-width="22" stroke-dasharray="14.9 324.4" stroke-dashoffset="-81.5" transform="rotate(-90 80 80)"/>
+            <!-- Other 73 → 155.9 — remaining arc fills naturally -->
+            <circle cx="80" cy="80" r="54" fill="none" stroke="#1e1c18" stroke-width="22" stroke-dasharray="155.9 183.4" stroke-dashoffset="-96.4" transform="rotate(-90 80 80)"/>
+            <!-- Center label -->
+            <text x="80" y="76" font-family="Playfair Display, Georgia, serif" font-size="18" fill="var(--gold)" text-anchor="middle" font-weight="700">159</text>
+            <text x="80" y="91" font-family="Inter, sans-serif" font-size="9" fill="var(--text-muted)" text-anchor="middle" letter-spacing="0.08em">API ROUTES</text>
+          </svg>
+          <div class="donut-legend">
+            <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#c8943e;"></div>Integrations<span class="donut-legend-count">14</span></div>
+            <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#b8842e;"></div>Client CRM<span class="donut-legend-count">13</span></div>
+            <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#9a6e26;"></div>Content<span class="donut-legend-count">12</span></div>
+            <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#7a5820;"></div>Media<span class="donut-legend-count">12</span></div>
+            <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#5a4418;"></div>Directory<span class="donut-legend-count">11</span></div>
+            <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#443320;"></div>Marketing<span class="donut-legend-count">9</span></div>
+            <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#3a2c1e;"></div>AI<span class="donut-legend-count">8</span></div>
+            <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#2a2018;"></div>Social<span class="donut-legend-count">7</span></div>
+            <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#1e1c18; border:1px solid var(--border-light);"></div>Other modules<span class="donut-legend-count">73</span></div>
+          </div>
+        </div>
+
+        <div class="modules-grid" role="list">
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-content">
+                <div class="mock-row"><div class="mock-bar" style="max-width:90px;"></div><div class="mock-stars"><div class="mock-star"></div><div class="mock-star"></div><div class="mock-star"></div><div class="mock-star"></div><div class="mock-star"></div></div><div class="mock-pill"></div></div>
+                <div class="mock-row"><div class="mock-bar" style="max-width:70px;"></div><div class="mock-stars"><div class="mock-star"></div><div class="mock-star"></div><div class="mock-star"></div><div class="mock-star"></div></div><div class="mock-pill"></div></div>
+                <div class="mock-row"><div class="mock-bar" style="max-width:110px;"></div><div class="mock-stars"><div class="mock-star"></div><div class="mock-star"></div><div class="mock-star"></div><div class="mock-star"></div><div class="mock-star"></div></div><div class="mock-pill"></div></div>
+              </div>
+            </div>
+            <div class="module-name">Directory &amp; Listings</div>
+            <p class="module-desc">Business directory, claim flow, enrichment pipeline, Google/Yelp sync.</p>
+            <div class="module-keys">
+              <span class="key-pill">Submit</span>
+              <span class="key-pill">Claim</span>
+              <span class="key-pill">Enrich</span>
+              <span class="key-pill">Search</span>
+              <span class="key-pill">Dashboard</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">11 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-cal-grid">
+                <div class="mock-cal-cell"></div><div class="mock-cal-cell has-post"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell has-post-blue"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell has-post"></div><div class="mock-cal-cell"></div>
+                <div class="mock-cal-cell has-post-purple"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell has-post"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell has-post-blue"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell has-post"></div>
+                <div class="mock-cal-cell"></div><div class="mock-cal-cell has-post"></div><div class="mock-cal-cell has-post-purple"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell has-post"></div><div class="mock-cal-cell"></div>
+                <div class="mock-cal-cell has-post-blue"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell has-post"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell has-post-purple"></div><div class="mock-cal-cell"></div>
+              </div>
+            </div>
+            <div class="module-name">Social Media Engine</div>
+            <p class="module-desc">Multi-platform publishing, AI content generation, scheduling, analytics.</p>
+            <div class="module-keys">
+              <span class="key-pill">Generate</span>
+              <span class="key-pill">Schedule</span>
+              <span class="key-pill">Publish</span>
+              <span class="key-pill">Track</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">7 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-content">
+                <div class="mock-row"><div class="mock-stars"><div class="mock-star"></div><div class="mock-star"></div><div class="mock-star"></div><div class="mock-star"></div><div class="mock-star"></div></div><div class="mock-bar"></div><div class="mock-pill" style="background:rgba(200,148,62,0.3);width:36px;"></div></div>
+                <div class="mock-row" style="margin-bottom:3px;"><div class="mock-bar" style="height:5px;opacity:0.5;"></div></div>
+                <div class="mock-row"><div class="mock-stars"><div class="mock-star"></div><div class="mock-star"></div><div class="mock-star"></div><div class="mock-star"></div></div><div class="mock-bar"></div><div class="mock-pill" style="background:rgba(200,148,62,0.3);width:36px;"></div></div>
+                <div class="mock-row" style="margin-bottom:3px;"><div class="mock-bar" style="height:5px;opacity:0.5;"></div></div>
+                <div class="mock-row"><div class="mock-stars"><div class="mock-star"></div><div class="mock-star"></div><div class="mock-star"></div></div><div class="mock-bar"></div><div class="mock-pill" style="background:rgba(200,148,62,0.3);width:36px;"></div></div>
+              </div>
+            </div>
+            <div class="module-name">Review Management</div>
+            <p class="module-desc">Monitor Google/Yelp/TripAdvisor, AI draft responses, reputation disputes.</p>
+            <div class="module-keys">
+              <span class="key-pill">Monitor</span>
+              <span class="key-pill">Draft</span>
+              <span class="key-pill">Respond</span>
+              <span class="key-pill">Dispute</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">4 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-content">
+                <div class="mock-bar" style="height:9px;max-width:130px;margin-bottom:6px;background:var(--text-muted);opacity:0.4;"></div>
+                <div class="mock-bar" style="height:5px;margin-bottom:3px;opacity:0.3;"></div>
+                <div class="mock-bar" style="height:5px;max-width:85%;margin-bottom:3px;opacity:0.3;"></div>
+                <div class="mock-bar" style="height:5px;max-width:70%;margin-bottom:8px;opacity:0.3;"></div>
+                <div style="display:flex;justify-content:flex-end;"><div style="height:16px;width:52px;background:var(--gold);border-radius:2px;opacity:0.8;"></div></div>
+              </div>
+            </div>
+            <div class="module-name">Content &amp; Publishing</div>
+            <p class="module-desc">Magazine articles, drafts, AI generation, approval workflow, batch publish.</p>
+            <div class="module-keys">
+              <span class="key-pill">Write</span>
+              <span class="key-pill">Refine</span>
+              <span class="key-pill">Approve</span>
+              <span class="key-pill">Publish</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">12 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-content" style="padding:6px 8px;">
+                <div style="height:18px;background:rgba(200,148,62,0.2);border:1px solid rgba(200,148,62,0.3);border-radius:2px;margin-bottom:4px;"></div>
+                <div style="height:24px;background:var(--border);border-radius:2px;margin-bottom:4px;"></div>
+                <div class="mock-bar" style="height:5px;margin-bottom:2px;opacity:0.3;"></div>
+                <div class="mock-bar" style="height:5px;max-width:80%;opacity:0.3;"></div>
+              </div>
+            </div>
+            <div class="module-name">Newsletter</div>
+            <p class="module-desc">Email campaigns, subscriber management, AI-generated content, RSS feeds.</p>
+            <div class="module-keys">
+              <span class="key-pill">Create</span>
+              <span class="key-pill">Subscribe</span>
+              <span class="key-pill">Publish</span>
+              <span class="key-pill">Feed</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">5 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-content" style="padding:5px 8px;">
+                <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:3px;">
+                  <div style="height:8px;background:var(--border-light);border-radius:1px;opacity:0.5;"></div><div style="height:8px;background:var(--border-light);border-radius:1px;opacity:0.5;"></div><div style="height:8px;background:var(--border-light);border-radius:1px;opacity:0.5;"></div><div style="height:8px;background:var(--border-light);border-radius:1px;opacity:0.5;"></div><div style="height:8px;background:var(--border-light);border-radius:1px;opacity:0.5;"></div><div style="height:8px;background:var(--border-light);border-radius:1px;opacity:0.5;"></div><div style="height:8px;background:var(--border-light);border-radius:1px;opacity:0.5;"></div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:2px;">
+                  <div style="height:12px;background:var(--border);border-radius:1px;"></div><div style="height:12px;background:var(--border);border-radius:1px;"></div><div style="height:12px;background:rgba(200,148,62,0.5);border-radius:1px;"></div><div style="height:12px;background:var(--border);border-radius:1px;"></div><div style="height:12px;background:var(--border);border-radius:1px;"></div><div style="height:12px;background:rgba(200,148,62,0.3);border-radius:1px;"></div><div style="height:12px;background:var(--border);border-radius:1px;"></div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;">
+                  <div style="height:12px;background:var(--border);border-radius:1px;"></div><div style="height:12px;background:rgba(200,148,62,0.7);border-radius:1px;"></div><div style="height:12px;background:var(--border);border-radius:1px;"></div><div style="height:12px;background:var(--border);border-radius:1px;"></div><div style="height:12px;background:rgba(200,148,62,0.4);border-radius:1px;"></div><div style="height:12px;background:var(--border);border-radius:1px;"></div><div style="height:12px;background:var(--border);border-radius:1px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="module-name">Events &amp; Calendar</div>
+            <p class="module-desc">Show management, touring circuit, showcases, content calendar.</p>
+            <div class="module-keys">
+              <span class="key-pill">Create</span>
+              <span class="key-pill">Schedule</span>
+              <span class="key-pill">Promote</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">3 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-waveform">
+                <div class="mock-wave-bar" style="height:20%;"></div><div class="mock-wave-bar" style="height:55%;"></div><div class="mock-wave-bar" style="height:80%;"></div><div class="mock-wave-bar" style="height:40%;"></div><div class="mock-wave-bar" style="height:90%;"></div><div class="mock-wave-bar" style="height:60%;"></div><div class="mock-wave-bar" style="height:35%;"></div><div class="mock-wave-bar" style="height:75%;"></div><div class="mock-wave-bar" style="height:50%;"></div><div class="mock-wave-bar" style="height:85%;"></div><div class="mock-wave-bar" style="height:30%;"></div><div class="mock-wave-bar" style="height:65%;"></div><div class="mock-wave-bar" style="height:45%;"></div><div class="mock-wave-bar" style="height:95%;"></div><div class="mock-wave-bar" style="height:25%;"></div><div class="mock-wave-bar" style="height:70%;"></div><div class="mock-wave-bar" style="height:55%;"></div><div class="mock-wave-bar" style="height:40%;"></div><div class="mock-wave-bar" style="height:80%;"></div><div class="mock-wave-bar" style="height:60%;"></div>
+              </div>
+            </div>
+            <div class="module-name">Radio &amp; Audio</div>
+            <p class="module-desc">Playlists, streaming, podcast, AI DJs, OpenBroadcaster integration.</p>
+            <div class="module-keys">
+              <span class="key-pill">Playlist</span>
+              <span class="key-pill">Stream</span>
+              <span class="key-pill">Broadcast</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">3 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-img-grid">
+                <div class="mock-img-cell" style="height:38px;"></div>
+                <div class="mock-img-cell" style="height:38px;"></div>
+                <div class="mock-img-cell" style="height:28px;"></div>
+                <div class="mock-img-cell" style="height:28px;"></div>
+              </div>
+            </div>
+            <div class="module-name">Gallery &amp; Photography</div>
+            <p class="module-desc">Artist profiles, artwork management, print sales, client delivery, photo sessions.</p>
+            <div class="module-keys">
+              <span class="key-pill">Apply</span>
+              <span class="key-pill">Curate</span>
+              <span class="key-pill">Sell</span>
+              <span class="key-pill">Deliver</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">5 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-content">
+                <div class="mock-track"><span class="mock-track-num">1</span><div class="mock-bar" style="max-width:80px;"></div><span class="mock-track-dur">3:42</span><div class="mock-track-split" style="width:45px;"></div></div>
+                <div class="mock-track"><span class="mock-track-num">2</span><div class="mock-bar" style="max-width:65px;"></div><span class="mock-track-dur">4:11</span><div class="mock-track-split" style="width:35px;"></div></div>
+                <div class="mock-track"><span class="mock-track-num">3</span><div class="mock-bar" style="max-width:90px;"></div><span class="mock-track-dur">2:58</span><div class="mock-track-split" style="width:55px;"></div></div>
+              </div>
+            </div>
+            <div class="module-name">Records &amp; Music</div>
+            <p class="module-desc">Artist catalog, tracks, revenue splits, sync licensing, PRO registration, royalties.</p>
+            <div class="module-keys">
+              <span class="key-pill">Ingest</span>
+              <span class="key-pill">Split</span>
+              <span class="key-pill">License</span>
+              <span class="key-pill">Track</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">4 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-photo-bg"></div>
+              <div class="mock-photo-mask"></div>
+              <div class="mock-photo-label">Remove object</div>
+            </div>
+            <div class="module-name">Media &amp; Creative Studio</div>
+            <p class="module-desc">Upload, AI image generation, sky replacement, object removal, enhancement, video production.</p>
+            <div class="module-keys">
+              <span class="key-pill">Upload</span>
+              <span class="key-pill">Generate</span>
+              <span class="key-pill">Enhance</span>
+              <span class="key-pill">Remove</span>
+              <span class="key-pill">Replace</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">12 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-content" style="padding:6px 8px;">
+                <div class="mock-crm-card">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;"><div class="mock-bar" style="height:7px;max-width:70px;"></div><span class="mock-tier-badge">Engine</span></div>
+                  <div class="mock-metric-row"><div class="mock-metric active"></div><div class="mock-metric active"></div><div class="mock-metric"></div><div class="mock-metric active"></div></div>
+                </div>
+                <div class="mock-crm-card" style="margin-top:4px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;"><div class="mock-bar" style="height:7px;max-width:55px;"></div><span class="mock-tier-badge" style="background:rgba(74,158,255,0.15);color:var(--blue);">Works</span></div>
+                  <div class="mock-metric-row"><div class="mock-metric active"></div><div class="mock-metric"></div><div class="mock-metric active"></div><div class="mock-metric"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="module-name">Client CRM</div>
+            <p class="module-desc">Business clients, integrations, reports, invoicing, voice bookkeeping.</p>
+            <div class="module-keys">
+              <span class="key-pill">Onboard</span>
+              <span class="key-pill">Connect</span>
+              <span class="key-pill">Report</span>
+              <span class="key-pill">Invoice</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">13 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-timeline">
+                <div class="mock-bar" style="height:6px;max-width:90px;margin-bottom:8px;opacity:0.4;"></div>
+                <div class="mock-tl-line">
+                  <div class="mock-tl-fill"></div>
+                </div>
+                <div class="mock-tl-dots" style="margin-top:4px;">
+                  <div class="mock-tl-dot done"></div>
+                  <div class="mock-tl-dot done"></div>
+                  <div class="mock-tl-dot done" style="background:var(--blue);border-color:var(--blue);"></div>
+                  <div class="mock-tl-dot"></div>
+                  <div class="mock-tl-dot"></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-top:5px;">
+                  <div class="mock-bar" style="height:5px;width:18%;opacity:0.3;"></div>
+                  <div class="mock-bar" style="height:5px;width:18%;opacity:0.3;"></div>
+                  <div class="mock-bar" style="height:5px;width:18%;opacity:0.3;"></div>
+                  <div class="mock-bar" style="height:5px;width:18%;opacity:0.15;"></div>
+                  <div class="mock-bar" style="height:5px;width:18%;opacity:0.15;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="module-name">Marketing Automation</div>
+            <p class="module-desc">Campaign calendar, poster generation, radio spots, brand DNA, scouting.</p>
+            <div class="module-keys">
+              <span class="key-pill">Plan</span>
+              <span class="key-pill">Generate</span>
+              <span class="key-pill">Scout</span>
+              <span class="key-pill">Execute</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">9 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-chat">
+                <div class="mock-bubble user">What's our best-performing listing?</div>
+                <div class="mock-bubble ai">Magnolia Cafe — 4.9 stars, 312 views this week.</div>
+              </div>
+            </div>
+            <div class="module-name">AI &amp; Agents</div>
+            <p class="module-desc">Analysis, notebook chat (RAG), agent actions, orchestration, context harvesting.</p>
+            <div class="module-keys">
+              <span class="key-pill">Analyze</span>
+              <span class="key-pill">Chat</span>
+              <span class="key-pill">Orchestrate</span>
+              <span class="key-pill">Harvest</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">8 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-integrations">
+                <div class="mock-logo-sq" style="color:var(--gold);">S</div>
+                <div class="mock-logo-sq">G</div>
+                <div class="mock-logo-sq">QB</div>
+                <div class="mock-logo-sq">A</div>
+                <div class="mock-logo-sq">CB</div>
+                <div class="mock-logo-sq">SQ</div>
+              </div>
+              <div style="padding:0 8px;display:flex;gap:5px;align-items:center;">
+                <div style="height:1px;flex:1;background:var(--border-light);"></div>
+                <div style="font-size:9px;color:var(--text-muted);">6 connected</div>
+                <div style="height:1px;flex:1;background:var(--border-light);"></div>
+              </div>
+            </div>
+            <div class="module-name">Integrations</div>
+            <p class="module-desc">Stripe Connect, Square, Cloudbeds, Google Workspace, QuickBooks, Asana.</p>
+            <div class="module-keys">
+              <span class="key-pill">Connect</span>
+              <span class="key-pill">Sync</span>
+              <span class="key-pill">Webhook</span>
+              <span class="key-pill">Billing</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">14 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-content">
+                <div class="mock-task"><div class="mock-checkbox checked"></div><div class="mock-bar" style="max-width:100px;opacity:0.4;"></div></div>
+                <div class="mock-task"><div class="mock-checkbox checked"></div><div class="mock-bar" style="max-width:75px;opacity:0.4;"></div></div>
+                <div class="mock-task"><div class="mock-checkbox"></div><div class="mock-bar" style="max-width:115px;"></div></div>
+                <div class="mock-task"><div class="mock-checkbox"></div><div class="mock-bar" style="max-width:85px;"></div></div>
+              </div>
+            </div>
+            <div class="module-name">Operations</div>
+            <p class="module-desc">Task management, activity log, internal chat, Asana sync, onboarding checklist.</p>
+            <div class="module-keys">
+              <span class="key-pill">Tasks</span>
+              <span class="key-pill">Chat</span>
+              <span class="key-pill">Activity</span>
+              <span class="key-pill">Onboard</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">13 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-chart-wrap">
+                <svg viewBox="0 0 180 72" width="100%" xmlns="http://www.w3.org/2000/svg">
+                  <polyline points="0,60 20,52 40,48 60,38 80,34 100,24 120,20 140,14 160,8 180,4" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linejoin="round"/>
+                  <polyline points="0,60 20,52 40,48 60,38 80,34 100,24 120,20 140,14 160,8 180,4 180,72 0,72" fill="rgba(200,148,62,0.08)" stroke="none"/>
+                  <line x1="0" y1="72" x2="180" y2="72" stroke="var(--border)" stroke-width="1"/>
+                </svg>
+              </div>
+            </div>
+            <div class="module-name">Analytics &amp; Data</div>
+            <p class="module-desc">Metrics tracking, health checks, Census data, economic indicators, enrichment jobs.</p>
+            <div class="module-keys">
+              <span class="key-pill">Track</span>
+              <span class="key-pill">Report</span>
+              <span class="key-pill">Enrich</span>
+              <span class="key-pill">Embed</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">5 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-video-tl">
+                <div class="mock-vid-track">
+                  <div class="mock-vid-clip" style="width:35%;background:rgba(200,148,62,0.5);"></div>
+                  <div class="mock-vid-clip" style="width:25%;background:rgba(200,148,62,0.3);"></div>
+                  <div class="mock-vid-clip" style="width:30%;background:rgba(200,148,62,0.5);"></div>
+                </div>
+                <div class="mock-vid-track">
+                  <div class="mock-vid-clip" style="width:20%;background:rgba(74,158,255,0.3);"></div>
+                  <div class="mock-vid-clip" style="width:45%;background:rgba(74,158,255,0.2);"></div>
+                  <div class="mock-vid-clip" style="width:25%;background:rgba(74,158,255,0.3);"></div>
+                </div>
+                <div class="mock-vid-track">
+                  <div class="mock-vid-clip" style="width:60%;background:rgba(155,89,182,0.25);"></div>
+                  <div class="mock-vid-clip" style="width:30%;background:rgba(155,89,182,0.2);"></div>
+                </div>
+                <div style="margin-top:4px;display:flex;gap:3px;justify-content:flex-end;">
+                  <div style="height:12px;width:44px;background:var(--gold);border-radius:2px;opacity:0.8;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="module-name">Productions</div>
+            <p class="module-desc">Video generation, voiceover, campaign production, approval workflow.</p>
+            <div class="module-keys">
+              <span class="key-pill">Script</span>
+              <span class="key-pill">Generate</span>
+              <span class="key-pill">Approve</span>
+              <span class="key-pill">Publish</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">6 API routes</span>
+            </div>
+          </div>
+
+          <div class="module-card" role="listitem">
+            <div class="module-mockup" aria-hidden="true">
+              <div class="mock-titlebar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+              <div class="mock-graph-wrap">
+                <svg class="mock-graph-svg" viewBox="0 0 160 80" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="80" y1="40" x2="30" y2="20" stroke="rgba(200,148,62,0.35)" stroke-width="1.5"/>
+                  <line x1="80" y1="40" x2="130" y2="20" stroke="rgba(200,148,62,0.35)" stroke-width="1.5"/>
+                  <line x1="80" y1="40" x2="80" y2="68" stroke="rgba(200,148,62,0.35)" stroke-width="1.5"/>
+                  <line x1="30" y1="20" x2="130" y2="20" stroke="rgba(106,101,96,0.25)" stroke-width="1"/>
+                  <line x1="30" y1="20" x2="80" y2="68" stroke="rgba(106,101,96,0.2)" stroke-width="1"/>
+                  <circle cx="80" cy="40" r="10" fill="rgba(200,148,62,0.2)" stroke="var(--gold)" stroke-width="1.5"/>
+                  <circle cx="30" cy="20" r="7" fill="var(--bg-raised)" stroke="var(--border-light)" stroke-width="1.5"/>
+                  <circle cx="130" cy="20" r="7" fill="var(--bg-raised)" stroke="var(--border-light)" stroke-width="1.5"/>
+                  <circle cx="80" cy="68" r="7" fill="var(--bg-raised)" stroke="var(--border-light)" stroke-width="1.5"/>
+                  <text x="80" y="44" font-family="Inter,sans-serif" font-size="6" fill="var(--gold)" text-anchor="middle">HDI</text>
+                  <text x="30" y="23" font-family="Inter,sans-serif" font-size="5.5" fill="var(--text-muted)" text-anchor="middle">DSD</text>
+                  <text x="130" y="23" font-family="Inter,sans-serif" font-size="5.5" fill="var(--text-muted)" text-anchor="middle">BMT</text>
+                  <text x="80" y="71" font-family="Inter,sans-serif" font-size="5.5" fill="var(--text-muted)" text-anchor="middle">MBT</text>
+                </svg>
+              </div>
+            </div>
+            <div class="module-name">Knowledge Graph</div>
+            <p class="module-desc">Notebook drops, vector embeddings, agent context, decision log, semantic search.</p>
+            <div class="module-keys">
+              <span class="key-pill">Store</span>
+              <span class="key-pill">Embed</span>
+              <span class="key-pill">Search</span>
+              <span class="key-pill">Decide</span>
+            </div>
+            <div class="module-meta">
+              <span class="module-routes">7 domains</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 5: THE MOAT ──────────────────────────────────────────── -->
+    <section id="moat">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">05 &mdash; Competitive</span>
+          <h2>The Moat &mdash; What Nobody Else Has</h2>
+          <div class="divider-line"></div>
+        </div>
+        <!-- Radar chart: DSD vs competitor across 6 axes -->
+        <div class="radar-wrap" style="margin-bottom:40px;">
+          <svg viewBox="0 0 340 320" width="340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Feature coverage radar chart comparing DSD to a typical competitor" style="flex-shrink:0;">
+            <defs>
+              <style>
+                .radar-axis-label { font-family: 'Inter', sans-serif; font-size: 11px; fill: #6a6560; }
+                .radar-axis-label-highlight { fill: #c8943e; font-weight: 600; }
+              </style>
+            </defs>
+            <!-- Center: 170, 160. Radius: 100 -->
+            <!-- 6 axes at 0°, 60°, 120°, 180°, 240°, 300° -->
+            <!-- Axis points at r=100: -->
+            <!-- 0°   top:      170, 60  -->
+            <!-- 60°  top-right:  256.6, 110 -->
+            <!-- 120° bot-right:  256.6, 210 -->
+            <!-- 180° bottom:     170, 260 -->
+            <!-- 240° bot-left:   83.4, 210 -->
+            <!-- 300° top-left:   83.4, 110 -->
+
+            <!-- Grid rings at 25%, 50%, 75%, 100% -->
+            <g fill="none" stroke="var(--border)" stroke-width="1">
+              <polygon points="170,135 191.7,147.5 191.7,172.5 170,185 148.3,172.5 148.3,147.5" />
+              <polygon points="170,110 213.3,135 213.3,185 170,210 126.7,185 126.7,135" />
+              <polygon points="170,85  235,122.5 235,197.5 170,235 105,197.5 105,122.5" />
+              <polygon points="170,60  256.6,110 256.6,210 170,260 83.4,210  83.4,110" />
+            </g>
+
+            <!-- Axis lines -->
+            <g stroke="var(--border-light)" stroke-width="1">
+              <line x1="170" y1="160" x2="170"   y2="60"/>
+              <line x1="170" y1="160" x2="256.6" y2="110"/>
+              <line x1="170" y1="160" x2="256.6" y2="210"/>
+              <line x1="170" y1="160" x2="170"   y2="260"/>
+              <line x1="170" y1="160" x2="83.4"  y2="210"/>
+              <line x1="170" y1="160" x2="83.4"  y2="110"/>
+            </g>
+
+            <!-- Competitor polygon: Listings=90%, Reviews=85%, Social=60%, Photography=0%, Magazine=0%, Radio=0% -->
+            <!-- Scale to r=100. Points: -->
+            <!-- Listings 90%:     170, 70  (r=90 up)  -->
+            <!-- Reviews  85%:     170+(256.6-170)*0.85, 110+(110-160)*0.85 = 170+73.6, 110-42.5 = 243.6,67.5 -->
+            <!-- Social   60%:     170+(256.6-170)*0.60, 210+(210-160)*0.60 = 170+51.96,210+30 - wait, recompute -->
+            <!-- Axes as vectors from center 170,160:
+                 0° top:      dx=0,   dy=-100  → (170, 60)
+                 60° TR:      dx=86.6, dy=-50  → (256.6, 110)
+                 120° BR:     dx=86.6, dy=50   → (256.6, 210)
+                 180° bot:    dx=0,   dy=100   → (170, 260)
+                 240° BL:     dx=-86.6,dy=50   → (83.4, 210)
+                 300° TL:     dx=-86.6,dy=-50  → (83.4, 110)
+            -->
+            <!-- Competitor: Listings(top)=90, Reviews(TR)=85, Social(BR)=60, Photography(bot)=5, Magazine(BL)=5, Radio(TL)=5 -->
+            <polygon
+              points="
+                170,70
+                243.6,117.5
+                222,190
+                170,255
+                87.7,207.5
+                87.7,112.5
+              "
+              fill="rgba(106,101,96,0.08)"
+              stroke="rgba(106,101,96,0.5)"
+              stroke-width="1.5"
+              stroke-dasharray="5,3"
+            />
+
+            <!-- DSD polygon: Listings=90%, Reviews=88%, Social=70%, Photography=92%, Magazine=95%, Radio=90% -->
+            <polygon
+              points="
+                170,70
+                244.5,115.9
+                230.8,202.7
+                170,253.9
+                85.9,205.9
+                92.2,114.1
+              "
+              fill="rgba(200,148,62,0.15)"
+              stroke="var(--gold)"
+              stroke-width="2"
+            />
+
+            <!-- Axis labels -->
+            <text x="170" y="50"   text-anchor="middle" class="radar-axis-label radar-axis-label-highlight">Listings</text>
+            <text x="270" y="107"  text-anchor="start"  class="radar-axis-label">Reviews</text>
+            <text x="270" y="220"  text-anchor="start"  class="radar-axis-label radar-axis-label-highlight">Photography</text>
+            <text x="170" y="278"  text-anchor="middle" class="radar-axis-label radar-axis-label-highlight">Magazine</text>
+            <text x="70"  y="220"  text-anchor="end"    class="radar-axis-label radar-axis-label-highlight">Radio</text>
+            <text x="70"  y="107"  text-anchor="end"    class="radar-axis-label">Social</text>
+          </svg>
+
+          <div class="radar-legend">
+            <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;line-height:1.5;">Gold axes are capabilities <em style="color:var(--text);font-style:normal;">no competitor offers.</em></p>
+            <div class="radar-legend-item">
+              <div class="radar-legend-swatch" style="background:var(--gold);"></div>
+              Deep South Directory
+            </div>
+            <div class="radar-legend-item">
+              <div class="radar-legend-swatch" style="background:rgba(106,101,96,0.5);border-top:2px dashed rgba(106,101,96,0.5);height:0;"></div>
+              Typical competitor
+            </div>
+            <p style="font-size:12px;color:var(--text-muted);margin-top:16px;line-height:1.6;">Photography, Magazine, and Radio are exclusive to DSD. Nobody else bundles a media company with a directory.</p>
+          </div>
+        </div>
+
+        <div class="moat-grid" role="list">
+
+          <div class="moat-card" role="listitem">
+            <div class="moat-name">Magazine Features</div>
+            <p class="moat-desc">Editorial coverage in Big Muddy Magazine</p>
+            <div class="moat-value">Worth $2K&ndash;5K / feature</div>
+          </div>
+
+          <div class="moat-card" role="listitem">
+            <div class="moat-name">Radio Airplay</div>
+            <p class="moat-desc">On-air mentions and commercial spots</p>
+            <div class="moat-value">Worth $500&ndash;2K / mo</div>
+          </div>
+
+          <div class="moat-card" role="listitem">
+            <div class="moat-name">Professional Photography</div>
+            <p class="moat-desc">Chase Pierson shoots your business</p>
+            <div class="moat-value">Worth $300&ndash;500 / session</div>
+          </div>
+
+          <div class="moat-card" role="listitem">
+            <div class="moat-name">Record Label</div>
+            <p class="moat-desc">Music ecosystem that draws audiences</p>
+            <div class="moat-value">Priceless</div>
+          </div>
+
+          <div class="moat-card" role="listitem">
+            <div class="moat-name">Touring Circuit</div>
+            <p class="moat-desc">Brings visitors to your town</p>
+            <div class="moat-value">Worth $1K+ / event</div>
+          </div>
+
+          <div class="moat-card" role="listitem">
+            <div class="moat-name">WiFi Portal</div>
+            <p class="moat-desc">Email capture from every Inn guest</p>
+            <div class="moat-value">Worth $50&ndash;100 / mo</div>
+          </div>
+
+          <div class="moat-card" role="listitem">
+            <div class="moat-name">Plex TV Channels</div>
+            <p class="moat-desc">In-room promotion at the Inn</p>
+            <div class="moat-value">Unique</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 6: STACK REPLACEMENT ────────────────────────────────── -->
+    <section id="comparison">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">06 &mdash; Economics</span>
+          <h2>The Stack Replacement</h2>
+          <div class="divider-line"></div>
+        </div>
+
+        <!-- Stack replacement visual summary -->
+        <div class="stack-vis" role="presentation">
+          <div class="stack-vis-box">
+            <div class="stack-vis-price">$4,660/mo</div>
+            <div class="stack-vis-label">20 separate subscriptions</div>
+          </div>
+          <div class="stack-vis-arrow" aria-hidden="true">&rarr;</div>
+          <div class="stack-vis-box highlight">
+            <div class="stack-vis-price">One bill.</div>
+            <div class="stack-vis-label">Pricing TBD &mdash; see agent analysis</div>
+          </div>
+        </div>
+
+        <table class="comparison-table" aria-label="Software cost comparison">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>What We Replace</th>
+              <th>Their Cost</th>
+              <th>DSD Has It</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Business Listing</td><td>Yext</td><td class="cost-col">$199/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>Review Management</td><td>Birdeye</td><td class="cost-col">$299/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>Social Media Scheduling</td><td>Hootsuite</td><td class="cost-col">$99/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>Email Marketing</td><td>Mailchimp</td><td class="cost-col">$65/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>Professional Photography</td><td>Freelancer avg</td><td class="cost-col">$500/session</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>SEO Tools</td><td>Semrush</td><td class="cost-col">$99/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>CRM</td><td>HubSpot</td><td class="cost-col">$50/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>Invoicing</td><td>FreshBooks</td><td class="cost-col">$17/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>Booking / Reservations</td><td>OpenTable / Cloudbeds</td><td class="cost-col">$70/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>Content Calendar</td><td>CoSchedule</td><td class="cost-col">$29/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>Analytics</td><td>GA4 + extras</td><td class="cost-col">$0&ndash;$50/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>Video Production</td><td>Agency retainer</td><td class="cost-col">$500/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>AI Content Writing</td><td>Jasper / Writer</td><td class="cost-col">$49/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>Poster Design</td><td>Canva Pro / designer</td><td class="cost-col">$55/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>Editorial Placement</td><td>PR agency</td><td class="cost-col">$1,000+/mo</td><td style="color:var(--gold);">Yes (unique)</td></tr>
+            <tr><td>Radio Advertising</td><td>Local radio buy</td><td class="cost-col">$500/mo</td><td style="color:var(--gold);">Yes (unique)</td></tr>
+            <tr><td>Event Promotion</td><td>Eventbrite + ads</td><td class="cost-col">$50/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>Task Management</td><td>Asana</td><td class="cost-col">$24/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>Knowledge Base</td><td>Notion</td><td class="cost-col">$16/mo</td><td style="color:var(--gold);">Yes</td></tr>
+            <tr><td>Ecommerce (prints/merch)</td><td>Shopify</td><td class="cost-col">$39/mo</td><td style="color:var(--gold);">Yes</td></tr>
+          </tbody>
+        </table>
+
+        <div class="comparison-totals">
+          <div class="totals-cell">
+            <span class="totals-label">Standalone Tools Total</span>
+            <span class="totals-amount">$4,660/mo</span>
+          </div>
+          <div class="totals-cell highlight">
+            <span class="totals-label">Deep South Directory</span>
+            <span class="totals-amount">All 20 categories &mdash; pricing TBD</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── SECTION 7: DATABASE ──────────────────────────────────────────── -->
+    <section id="database">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">07 &mdash; Architecture</span>
+          <h2>Database Architecture</h2>
+          <div class="divider-line"></div>
+          <p style="color: var(--text-muted); font-size: 13px;">56 models across 14 domain groups.</p>
+        </div>
+
+        <div class="db-grid" role="list">
+
+          <div class="db-domain-card" role="listitem">
+            <div class="db-domain-name">Editorial</div>
+            <ul class="db-models">
+              <li>Article</li>
+              <li>Publication</li>
+            </ul>
+          </div>
+
+          <div class="db-domain-card" role="listitem">
+            <div class="db-domain-name">Audio</div>
+            <ul class="db-models">
+              <li>Playlist</li>
+              <li>Event</li>
+            </ul>
+          </div>
+
+          <div class="db-domain-card" role="listitem">
+            <div class="db-domain-name">Newsletter</div>
+            <ul class="db-models">
+              <li>NewsletterIssue</li>
+            </ul>
+          </div>
+
+          <div class="db-domain-card" role="listitem">
+            <div class="db-domain-name">CRM</div>
+            <ul class="db-models">
+              <li>Contact</li>
+              <li>Client</li>
+              <li>Review</li>
+              <li>ContentCalendar</li>
+              <li>Report</li>
+              <li>Invoice</li>
+              <li>ClientIntegration</li>
+              <li>PublishJob</li>
+            </ul>
+          </div>
+
+          <div class="db-domain-card" role="listitem">
+            <div class="db-domain-name">Social</div>
+            <ul class="db-models">
+              <li>SocialAccount</li>
+              <li>SocialPost</li>
+            </ul>
+          </div>
+
+          <div class="db-domain-card" role="listitem">
+            <div class="db-domain-name">Talent</div>
+            <ul class="db-models">
+              <li>Artist</li>
+              <li>Track</li>
+              <li>Split</li>
+              <li>SyncOpportunity</li>
+              <li>SyncSubmission</li>
+              <li>PRORegistration</li>
+              <li>RoyaltyPayment</li>
+              <li>Showcase</li>
+              <li>ShowcaseSlot</li>
+              <li>TourStop</li>
+            </ul>
+          </div>
+
+          <div class="db-domain-card" role="listitem">
+            <div class="db-domain-name">Photography</div>
+            <ul class="db-models">
+              <li>PhotoSession</li>
+              <li>Photo</li>
+              <li>PhotoClaim</li>
+            </ul>
+          </div>
+
+          <div class="db-domain-card" role="listitem">
+            <div class="db-domain-name">Identity</div>
+            <ul class="db-models">
+              <li>User</li>
+              <li>Account</li>
+              <li>Session</li>
+            </ul>
+          </div>
+
+          <div class="db-domain-card" role="listitem">
+            <div class="db-domain-name">Operations</div>
+            <ul class="db-models">
+              <li>LaunchTask</li>
+              <li>ContentPack</li>
+              <li>OpsActivity</li>
+              <li>ChatMessage</li>
+            </ul>
+          </div>
+
+          <div class="db-domain-card" role="listitem">
+            <div class="db-domain-name">Art &amp; Commerce</div>
+            <ul class="db-models">
+              <li>ArtistProfile</li>
+              <li>Artwork</li>
+              <li>ArtOrder</li>
+              <li>ArtistApplication</li>
+            </ul>
+          </div>
+
+          <div class="db-domain-card" role="listitem">
+            <div class="db-domain-name">Directory</div>
+            <ul class="db-models">
+              <li>DirectoryBusiness</li>
+            </ul>
+          </div>
+
+          <div class="db-domain-card" role="listitem">
+            <div class="db-domain-name">Spatial</div>
+            <ul class="db-models">
+              <li>HDXNode</li>
+              <li>SpatialScan</li>
+            </ul>
+          </div>
+
+          <div class="db-domain-card" role="listitem">
+            <div class="db-domain-name">Knowledge</div>
+            <ul class="db-models">
+              <li>NotebookDrop</li>
+              <li>Embedding</li>
+              <li>CensusData</li>
+              <li>EconomicIndicator</li>
+              <li>EnrichmentJob</li>
+              <li>AgentContext</li>
+              <li>AgentAction</li>
+            </ul>
+          </div>
+
+          <div class="db-domain-card" role="listitem">
+            <div class="db-domain-name">Business Logic</div>
+            <ul class="db-models">
+              <li>ShowEvent</li>
+              <li>Decision</li>
+              <li>PendingDraft</li>
+              <li>PageEdit</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 8: TECH STACK ────────────────────────────────────────── -->
+    <section id="techstack">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">08 &mdash; Infrastructure</span>
+          <h2>Tech Stack</h2>
+          <div class="divider-line"></div>
+        </div>
+        <div class="stack-pills" role="list" aria-label="Technology stack">
+          <span class="stack-pill" role="listitem">Next.js 15</span>
+          <span class="stack-pill" role="listitem">TypeScript</span>
+          <span class="stack-pill" role="listitem">Prisma</span>
+          <span class="stack-pill" role="listitem">Neon Postgres</span>
+          <span class="stack-pill" role="listitem">Vertex AI Gemini</span>
+          <span class="stack-pill" role="listitem">Cloudflare R2</span>
+          <span class="stack-pill" role="listitem">GCS</span>
+          <span class="stack-pill" role="listitem">Vercel</span>
+          <span class="stack-pill" role="listitem">Stripe Connect</span>
+          <span class="stack-pill" role="listitem">pgvector</span>
+          <span class="stack-pill" role="listitem">NextAuth v5</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 9: INTEGRATIONS ──────────────────────────────────────── -->
+    <section id="integrations">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">09 &mdash; Connections</span>
+          <h2>Integrations Map</h2>
+          <div class="divider-line"></div>
+        </div>
+        <div class="integrations-grid">
+          <div class="integrations-col incoming">
+            <h3>Incoming Data</h3>
+            <div class="integration-items">
+              <span class="integration-item">QuickBooks</span>
+              <span class="integration-item">Stripe</span>
+              <span class="integration-item">Square</span>
+              <span class="integration-item">Cloudbeds</span>
+              <span class="integration-item">Google Workspace</span>
+              <span class="integration-item">Google Business Profile</span>
+              <span class="integration-item">Yelp</span>
+              <span class="integration-item">Spotify</span>
+              <span class="integration-item">Apple Music</span>
+              <span class="integration-item">GA4</span>
+              <span class="integration-item">Asana</span>
+              <span class="integration-item">Polycam</span>
+            </div>
+          </div>
+          <div class="integrations-col outgoing">
+            <h3>Outgoing Channels</h3>
+            <div class="integration-items">
+              <span class="integration-item">Twitter/X</span>
+              <span class="integration-item">Instagram</span>
+              <span class="integration-item">TikTok</span>
+              <span class="integration-item">Threads</span>
+              <span class="integration-item">Bluesky</span>
+              <span class="integration-item">LinkedIn</span>
+              <span class="integration-item">Facebook</span>
+              <span class="integration-item">Google Business</span>
+              <span class="integration-item">YouTube</span>
+              <span class="integration-item">Shopify</span>
+              <span class="integration-item">Mailchimp</span>
+              <span class="integration-item">Beehiiv</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 9.5: ROLLOUT TIMELINE ──────────────────────────────────── -->
+    <section id="roadmap-timeline">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">09.5 &mdash; Rollout</span>
+          <h2>Staged Rollout</h2>
+          <div class="divider-line"></div>
+        </div>
+        <div class="timeline-wrap">
+          <div class="timeline-line" aria-hidden="true"></div>
+          <div class="timeline-quarters">
+
+            <div class="timeline-quarter">
+              <div class="timeline-dot done" aria-label="Completed"></div>
+              <div class="timeline-q-label timeline-qlabel-done">Q1 2026</div>
+              <div class="timeline-phase" style="color:var(--gold);">Foundation</div>
+              <p class="timeline-desc">Core platform built. 14 domains live. Codebase unified under one deployment.</p>
+            </div>
+
+            <div class="timeline-quarter">
+              <div class="timeline-dot now" aria-label="Current"></div>
+              <div class="timeline-q-label timeline-qlabel-now">Q2 2026</div>
+              <div class="timeline-phase" style="color:var(--blue);">Dogfood</div>
+              <p class="timeline-desc">Internal testing. Onboard Tracy &amp; Amy. First 10 paying customers. Walk-in sales begin.</p>
+            </div>
+
+            <div class="timeline-quarter">
+              <div class="timeline-dot future" aria-label="Planned"></div>
+              <div class="timeline-q-label timeline-qlabel-future">Q3 2026</div>
+              <div class="timeline-phase" style="color:var(--text-mid);">Scale</div>
+              <p class="timeline-desc">100 customers. Bearsville Media Group activation. Stock photography library launches.</p>
+            </div>
+
+            <div class="timeline-quarter">
+              <div class="timeline-dot future" aria-label="Planned"></div>
+              <div class="timeline-q-label timeline-qlabel-future">Q4 2026</div>
+              <div class="timeline-phase" style="color:var(--text-mid);">Expand</div>
+              <p class="timeline-desc">Corridor growth into new markets. Licensing model. Northeast node fully operational.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 10: TEAM ─────────────────────────────────────────────── -->
+    <section id="team">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">10 &mdash; People</span>
+          <h2>The Team</h2>
+          <div class="divider-line"></div>
+        </div>
+        <div class="team-grid" role="list">
+
+          <div class="team-card" role="listitem">
+            <div class="team-avatar" aria-hidden="true">CP</div>
+            <div class="team-name">Chase Pierson</div>
+            <div class="team-role">CEO &middot; CTO &middot; Showrunner</div>
+            <div class="team-email">me@chasepierson.tv</div>
+          </div>
+
+          <div class="team-card" role="listitem">
+            <div class="team-avatar" aria-hidden="true">TA</div>
+            <div class="team-name">Tracy Alderson-Allen</div>
+            <div class="team-role">Finance &amp; Inn Ops<br><span style="color: var(--gold); font-size: 11px; font-weight: 500; letter-spacing: 0.06em;">Equity Partner</span></div>
+            <div class="team-email">tracyaldersonallen@gmail.com</div>
+          </div>
+
+          <div class="team-card" role="listitem">
+            <div class="team-avatar" aria-hidden="true">AA</div>
+            <div class="team-name">Amy Allen</div>
+            <div class="team-role">Inn &amp; Bar Ops<br><span style="color: var(--gold); font-size: 11px; font-weight: 500; letter-spacing: 0.06em;">Equity Partner</span></div>
+            <div class="team-email">amyaldersonallen@gmail.com</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 11: POSITIONING ─────────────────────────────────────── -->
+    <section id="positioning">
+      <div class="container">
+        <p class="positioning-tagline">&ldquo;Main Street marketing for Main Street money.&rdquo;</p>
+        <p class="positioning-sub">We&rsquo;re not a software company. We&rsquo;re a media company that sells software at software prices.</p>
+      </div>
+    </section>
+
+    <!-- ─── FOOTER ───────────────────────────────────────────────────────── -->
+    <footer>
+      <div class="footer-left">Hillbilly Dreams Inc &mdash; Natchez, Mississippi</div>
+      <div class="footer-right" style="display: flex; align-items: center; gap: 12px;">
+        <span class="footer-internal">Internal Use Only</span>
+        <span>Hillbilly Dreams Inc &middot; Natchez, Mississippi</span>
+      </div>
+    </footer>
+
+  </main>
 </div>
+
+<!-- ─── TOC SCROLL HIGHLIGHT ─────────────────────────────────────────────── -->
+<script>
+  (function () {
+    var sections = document.querySelectorAll('section[id]');
+    var links = document.querySelectorAll('#toc-nav a[data-section]');
+
+    if (!sections.length || !links.length) return;
+
+    function onScroll() {
+      var scrollY = window.scrollY || window.pageYOffset;
+      var windowH = window.innerHeight;
+      var current = '';
+
+      sections.forEach(function (sec) {
+        var top = sec.getBoundingClientRect().top + scrollY;
+        if (scrollY >= top - windowH * 0.35) {
+          current = sec.getAttribute('id');
+        }
+      });
+
+      links.forEach(function (link) {
+        link.classList.toggle('active', link.getAttribute('data-section') === current);
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
 
 </body>
 </html>

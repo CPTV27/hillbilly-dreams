@@ -12,7 +12,9 @@
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate deploy",
     "db:studio": "prisma studio",
-    "seed:directory": "npx tsx scripts/seed-directory-natchez.ts"
+    "seed:directory": "npx tsx scripts/seed-directory-natchez.ts",
+    "seed:sovereign": "npx tsx scripts/seed-sovereign-guild.ts",
+    "seed:physical-nodes": "npx tsx scripts/seed-physical-nodes.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

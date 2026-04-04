@@ -1,9 +1,12 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
-
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function POST(req: Request, { params }: { params: { id: string } }) {
+    const denied = await requireAdmin();
+    if (denied) return denied;
+
     try {
         const appId = params.id;
 

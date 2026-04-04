@@ -29,7 +29,8 @@ const NAV_SECTIONS = [
     label: 'Create',
     items: [
       { label: 'Creative Hub', href: '/creative', icon: '✦' },
-      { label: 'Content Studio', href: '/studio', icon: '◻' },
+      { label: 'Studio OS', href: '/studio', icon: '⌘' },
+      { label: 'Omnipush', href: '/studio-omnipush', icon: '◻' },
       { label: 'Lookbook', href: '/lookbook', icon: '◎' },
       { label: 'Media Vault', href: '/media', icon: '◈' },
       { label: 'Productions', href: '/productions', icon: '▶' },
@@ -52,6 +53,7 @@ const NAV_SECTIONS = [
       { label: 'Newsletter', href: '/newsletter', icon: '◻' },
       { label: 'Social', href: '/social', icon: '◈' },
       { label: 'Publications', href: '/publications', icon: '◻' },
+      { label: 'Resources', href: '/resources', icon: '◆' },
     ],
   },
   {
@@ -72,9 +74,14 @@ const NAV_SECTIONS = [
   {
     label: 'Platform',
     items: [
-      { label: 'Roadmap', href: '/admin/roadmap', icon: '◇' },
+      { label: 'Agents', href: '/agents', icon: '⚙' },
+      { label: 'Glass kiosk', href: '/kiosk', icon: '◇' },
+      { label: 'Contests', href: '/contests', icon: '◆' },
+      { label: 'Design contest', href: '/contest', icon: '◎' },
+      { label: 'Roadmap', href: '/roadmap', icon: '◇' },
       { label: 'Ecosystem', href: '/ecosystem', icon: '◉' },
       { label: 'Bridge Clients', href: '/bridge', icon: '◈' },
+      { label: 'Business (GMB+Shop)', href: '/business', icon: '◆' },
       { label: 'Finance', href: '/finance', icon: '$' },
     ],
   },

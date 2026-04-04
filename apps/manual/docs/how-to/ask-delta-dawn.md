@@ -8,10 +8,10 @@ sidebar_position: 17
 ## Steps
 
 1. **Go to the chat** — Open `/ops/chat` in your browser.
-2. **Type your question** — Just ask whatever you need in plain English. No special commands needed. For example: "What's our occupancy this weekend?" or "Draft a social post about Friday's show."
-3. **Read the response** — Delta Dawn will answer your question, draft your content, or point you in the right direction. She knows the whole ecosystem.
+2. **Type your question** — Ask in plain English. For example: "What's our occupancy this weekend?" or "Draft a social post about Friday's show."
+3. **Read the response** — Delta Dawn answers directly, drafts copy when asked, or points you to the right workflow. Tone is professional and hospitable—think concierge, not caricature.
 
-That's it. Three steps. She's always there.
+That's it. Three steps.
 
 ## If Something Goes Wrong
 

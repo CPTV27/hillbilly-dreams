@@ -1,11 +1,149 @@
 # Agent status
 
-## 2026-04-05 — COS echo reconciliation (implemented)
+## 2026-04-03 — Natchez Protocol “Master Key” wiring (schema + hub pulse + routes)
 
-- **Workflow + replies:** [docs/sovereign/COS_ECHO_WORKFLOW.md](../docs/sovereign/COS_ECHO_WORKFLOW.md) — echo template, Composer + Anti-Gravity notes, `git` verification steps.
-- **PRs merged:** **#66** (report PDF / #32), **#67** (Bearsville rename / #38) → **`main`** @ **`bac84eb`** (verify with `git pull origin main`).
-- **Postiz (#33):** [apps/web/.env.example](../apps/web/.env.example) documents **`POSTIZ_API_KEY`** + **`POSTIZ_URL`**; set in **Vercel** + **Bitwarden** (no secrets in repo).
-- **Schema flag:** GMB/Etsy expansion commit **`86f1143`** was on **`sandbox-protocol-natchez`** only in this clone — merge to **`main`** via PR when ready.
+- **Prisma:** Restored `User.creditLedgers`; added `Contest`, `Submission`, `DisplayChannel`. Run `pnpm db:generate` (done) and `pnpm db:push` (or migrate) with `DATABASE_URL=postgresql://chasethis@localhost:5432/hillbilly_sovereign` before using new tables.
+- **Pulse:** `EventProducer.broadcastPulse` → `io.emit('sovereign_pulse', …)`; `applyCreditDelta` in [`apps/web/lib/sovereign/wallet.ts`](../apps/web/lib/sovereign/wallet.ts) writes `CreditLedger` + emits credit pulse. Contest enter API emits submission pulse.
+- **Hub:** [`apps/web/server.ts`](../apps/web/server.ts) — `join_display` / `leave_display` rooms `display-{slug}`.
+- **Routes:** [`/admin/kiosk`](../apps/web/app/admin/kiosk/page.tsx) + [`KioskLiveClient`](../apps/web/app/admin/kiosk/KioskLiveClient.tsx); [`/display/[slug]`](../apps/web/app/display/[slug]/page.tsx) (YouTube embed + ticker + top `AdCampaign` via [`pickTopCampaign`](../apps/web/lib/ads/pickTopCampaign.ts)); [`/admin/contests`](../apps/web/app/admin/contests/page.tsx); [`POST /api/sovereign/contests/[id]/enter`](../apps/web/app/api/sovereign/contests/[id]/enter/route.ts). Resources hub shows live credits + OE field manual CTA + `LoreEntry` namespaces on tasks.
+- **Script:** [`scripts/economy/ad-auctioneer.ts`](../scripts/economy/ad-auctioneer.ts) reuses `pickTopAdCampaign`.
+- **Env:** Optional `NEXT_PUBLIC_SOVEREIGN_HUB_URL` when the browser does not share origin with the Socket.io hub.
+
+### Quality gate
+
+`pnpm exec tsc --noEmit` in `apps/web` (pass)
+
+---
+
+## 2026-04-04 — Phase 2.5 Synology indexer skeleton
+
+- **Script:** [`scripts/media/synology-indexer.ts`](../scripts/media/synology-indexer.ts) — XMP/RDF parse (`xmp:Rating`, `xmp:Label`, `dc:subject` / `rdf:Bag`), `chokidar` watch, `--file=` one-shot, `SYNOLOGY_MEDIA_PATH`, `SYNOLOGY_INDEXER_WRITE` (Prisma stub until `VisualAsset` gains metadata).
+- **Fixture:** [`scripts/media/fixtures/bridge-sample.xmp`](../scripts/media/fixtures/bridge-sample.xmp)
+- **Root:** `pnpm media:synology-indexer` — deps: `chokidar`, `fast-xml-parser`, `tsx` (workspace root `-w`).
+
+---
+
+## 2026-04-04 — Phase 2.4 Glass UI (`/admin/kiosk`)
+
+- **Route:** [`/admin/kiosk`](../apps/web/app/(admin)/admin/kiosk/page.tsx) — optional `?session=`; staff gate via [`layout.tsx`](../apps/web/app/(admin)/admin/kiosk/layout.tsx).
+- **Client:** [`KioskGlassClient.tsx`](../apps/web/app/(admin)/admin/kiosk/KioskGlassClient.tsx) — Idle / Thinking (65vw hero overlay + dimmed answer) / Resolved (25% **left** Provenance rail + Framer Motion). Socket.io → **`NEXT_PUBLIC_SOVEREIGN_HUB_URL`** or same-origin.
+- **Reducer:** [`glassReducer.ts`](../apps/web/lib/sovereign/glassReducer.ts) — `sovereign_event` → `GlassState`.
+- **Spec:** [`docs/SOVEREIGN_GLASS_KIOSK_SPEC.md`](../docs/SOVEREIGN_GLASS_KIOSK_SPEC.md) updated with implementation pointers.
+
+### Quality gate
+
+`pnpm exec tsc --noEmit` in `apps/web` (pass)
+
+---
+
+## 2026-04-03 — Phase 2.3 Event Producer (Socket.io + Glass contract)
+
+- **Hub server:** [`apps/web/server.ts`](../apps/web/server.ts) — Next + Socket.io on **`0.0.0.0`**; rooms **`kiosk-room-{sessionId}`** (`join_session`), legacy **`next-kiosk`** (`join_kiosk`). **`pnpm dev:hub`** (`tsx server.ts`). Not for Vercel.
+- **Emitter:** [`apps/web/lib/agent/eventProducer.ts`](../apps/web/lib/agent/eventProducer.ts) — wire events: **`session.init`**, **`reasoning.delta`**, **`tool.call.start` / `tool.call.end`**, **`lore.citation`**, **`message.delta` / `message.final`** (payload shape). **`global.sovereignIo`** + **`ioTemplate`**.
+- **Lore tool:** [`tool.lore.query.ts`](../apps/web/lib/agent/tools/tool.lore.query.ts) — Chroma **`DefaultEmbeddingFunction`** + **`IncludeEnum`**; emits tool + citation events with distance→confidence heuristic.
+- **Reasoning tap:** [`reasoningStreamTap.ts`](../apps/web/lib/sovereign/reasoningStreamTap.ts) — `<|think|>` / `</redacted_thinking>` / `[/think]` heuristic; bridge [`llmStreamBridge.ts`](../apps/web/lib/sovereign/llmStreamBridge.ts).
+- **Smoke API:** `POST /api/sovereign/events/emit-test` (admin) — emits sample stream when Hub is up.
+- **Deps:** **`chromadb-default-embed`**, **`tsx`**; **`tsconfig`** **`baseUrl`** for Node module resolution.
+
+### Quality gate
+
+`pnpm exec tsc --noEmit` in `apps/web` (pass)
+
+---
+
+## 2026-04-03 — Phase 2.1 Editorial Bureau (schema + registry + desk)
+
+- **Prisma:** `Job` gains `draftContent`, `humanEditedContent`, `redPenNotes` (Text); `assignedHuman` → `onDelete: SetNull`. Editorial block (`Brand`, `StyleGuide`, `Job`, `VisualAsset`) unchanged structurally — run **`pnpm db:migrate`** / **`db push`** locally so columns exist.
+- **OpenRouter:** [`apps/web/lib/ai/openRouter.ts`](../apps/web/lib/ai/openRouter.ts) — shared completion helper; **`generateTextRedPen`** (Gemma 31B + `<|think|>` prefix → JSON, Claude fallback); **`generateStyleMatchScore`** (Gemma 26B-class); **`OPENROUTER_MODEL_IDS`** re-export. Slugs in [`apps/web/lib/ai-models.ts`](../apps/web/lib/ai-models.ts) **`OPENROUTER_SLUGS`**.
+- **Handlers:** [`apps/web/lib/agent/handlers/editorialBureau.ts`](../apps/web/lib/agent/handlers/editorialBureau.ts) — **`tool.visual.placeholder`** (Imagen → WebP → GCS → `VisualAsset`), **`system.content-review`**, **`system.editorial.style_match`**.
+- **Registry:** [`toolRegistry.ts`](../apps/web/lib/agent/toolRegistry.ts) — three tools registered with **`execute`**.
+- **Orchestrate:** [`orchestrate.ts`](../apps/web/lib/agent/handlers/orchestrate.ts) — when **`context.styleGuideId`** is set, injects few-shot **`StyleGuide`** block into routing prompt.
+- **APIs:** `GET/PATCH /api/admin/editorial/jobs`, `GET/PATCH /api/admin/editorial/jobs/[id]`, `POST /api/admin/editorial/style-match` — all **`requireAdmin()`**; publish requires **`assignedHumanId === session.user.id`**.
+- **UI:** [`/admin/editorial`](../apps/web/app/(admin)/admin/editorial/page.tsx) — inbox, side-by-side draft vs editor, Voice Guard, Red Pen notes panel, link back to Studio.
+
+### Quality gate
+
+`pnpm exec tsc --noEmit` in `apps/web` (pass)
+
+---
+
+## 2026-04-06 — Phase 1: `rook.harvest` contract-coded (registry vanguard)
+
+- **Handler:** [`apps/web/lib/agent/handlers/harvest.ts`](../apps/web/lib/agent/handlers/harvest.ts) — `HarvestInputSchema` (strict Zod: `city`, `category`, `radius`, `limit`; no `url`/`depth`/`maxPages`/`proxyRegion` until the pipeline uses them), `executeHarvest()` → `HarvestResult`.
+- **Registry:** [`apps/web/lib/agent/toolRegistry.ts`](../apps/web/lib/agent/toolRegistry.ts) — `TOOL_REGISTRY` allowlist; first tool **`rook.harvest`**, **`authClass: ToolAuthClass.ADMIN`**, **`name: 'Directory Harvest'`**.
+- **Route:** [`apps/web/app/api/agent/harvest/route.ts`](../apps/web/app/api/agent/harvest/route.ts) — thin wrapper: **`requireAdmin()`** → **`toolRegistry.get('rook.harvest').execute(body)`** (in-process; no self-`fetch`).
+- **`radius`** is in the contract for forward compatibility; Places/geo wiring is still future work.
+
+### Quality gate
+
+`pnpm exec tsc --noEmit -p apps/web` (pass)
+
+---
+
+## 2026-04-06 — Phase 1.1: `rook.orchestrate` + registry dispatch
+
+- **Handler:** [`apps/web/lib/agent/handlers/orchestrate.ts`](../apps/web/lib/agent/handlers/orchestrate.ts) — `executeOrchestrate()`; **`/api/agent/*` tools resolved via `normalizeAgentToolPath` → `toolRegistry.get(id).execute(params)`** (no internal HTTP for harvest/context/action). **`/api/marketing/*`** still uses server `fetch` until those tools are promoted.
+- **Registry:** [`rook.orchestrate`](../apps/web/lib/agent/toolRegistry.ts) with **`OrchestrateInputSchema`**; **`agent.context` / `agent.action`** wired to **`ContextPostInputSchema` / `ActionPostInputSchema`** + **`executePostContext` / `executePostAction`**. **`system.context.*` / `system.action.*`** keep explicit **`execute`** fns for the universal **`POST /api/agent`** contract.
+- **Routes:** [`api/agent/orchestrate/route.ts`](../apps/web/app/api/agent/orchestrate/route.ts) thin wrapper; [`api/agent/route.ts`](../apps/web/app/api/agent/route.ts) uses **`toolRegistry.get(toolId)`** (fixes tools without inline `execute`, e.g. **`rook.orchestrate`**). **`api/agent/harvest/route.ts`** restored for admin UI compatibility.
+- **Live feed:** orchestration writes **`orchestrate_memory`**, **`orchestrate_route`**, **`orchestrate_tool`**, **`orchestrate`** (and **`orchestrate_failed`**) rows to **`agentAction`**.
+- **Removed:** duplicate **`contextWrite` / `actionLog`** handlers (consolidated on **`handlers/context.ts`** + **`handlers/action.ts`**).
+
+### Quality gate
+
+`pnpm exec tsc --noEmit -p apps/web` (pass)
+
+---
+
+## 2026-04-06 — Phase 0.7 Stealth ops lockdown (mutators)
+
+- **`/api/ops/tasks/[id]`:** `PATCH` → **`requireAdmin()`** (replaces non-enforced `auth()` stub).
+- **`/api/ops/tasks/sync-asana`:** `POST` → **`requireAdmin()`** (replaces session-only check).
+- **`/api/integrations`:** `POST` → **`requireAdmin()`**.
+- **`/api/integrations/[id]`:** `PATCH`, `DELETE` → **`requireAdmin()`**.
+- **`/api/integrations/cloudbeds`:** `POST` → **`requireAdmin()`** (GET unchanged this pass).
+- **`/api/admin/*`:** Already gated; no change.
+- **Excluded by design:** `POST /api/ops/chat` stays **session-optional** per existing product/DECISIONS (not bulk-wrapped).
+
+### Quality gate
+
+`pnpm exec tsc --noEmit -p apps/web` (pass)
+
+---
+
+## 2026-04-06 — Phase 0.6 B2B perimeter + rejection gate + cron
+
+- **`/api/gallery/applications/[id]/reject`:** **`requireAdmin()`** on POST (mirror approve).
+- **`/api/clients/[id]/*` mutators:** shared **`requireAdminOrClientContact(clientId)`** in [`lib/client-api-auth.ts`](../apps/web/lib/client-api-auth.ts) — admin **or** session email matches `Client.contactEmail` / `Client.email` (PATCH/DELETE on `route.ts`; POST on calendar, report, reviews, reviews/respond, voice).
+- **Cron:** **`requireCronOrAdmin(request)`** on **`process-enrichment-queue`**, **`sync-census`**, **`sync-touring`** (POST + GET delegates to POST).
+
+### Quality gate
+
+`pnpm exec tsc --noEmit -p apps/web` (pass)
+
+---
+
+## 2026-04-06 — PII mutator auth batch
+
+- **`/api/gallery/applications/[id]/approve`:** **`requireAdmin()`** on POST (Stripe Connect + user PII).
+- **`/api/productions/[id]/voiceover`:** **`requireAdmin()`** on POST (TTS/GCS + `ProductionArtifact`).
+- **`/api/gallery/applications`:** **`auth()`** on POST; user resolved from **session email** only; optional `body.email` must match session (spoofing closed).
+- **Docs:** [`docs/audit/security_pulse_audit_deeper.md`](../docs/audit/security_pulse_audit_deeper.md) (Antigravity export + snapshot note).
+
+### Quality gate
+
+`pnpm exec tsc --noEmit -p apps/web` (pass)
+
+---
+
+## 2026-04-06 — Phase 0 Iron Gates (API auth)
+
+- **`/api/productions/[id]/approve`:** **`requireAdmin()`** on POST (production job / artifact approval).
+- **`/api/agent/orchestrate`:** **`requireAdmin()`** on POST (internal dispatcher; blocks unauthenticated `fetch` to arbitrary paths).
+- **`/api/content/approve`:** **`requireAdmin()`** on POST (calendar / post / review pipeline approvals).
+
+### Quality gate
+
+`pnpm exec tsc --noEmit -p apps/web` (pass)
 
 ---
 
@@ -151,3 +289,30 @@ Playwright now uses **port 3334** by default so smoke tests do not attach to ano
 - **PR (open):** `integrate/elegant-volhard-2026-04-04` → `main` — admin reviews + monthly PDF + cron; includes PDF `NextResponse` typing fix. Create PR: https://github.com/CPTV27/hillbilly-dreams/pull/new/integrate/elegant-volhard-2026-04-04
 - **Handoff doc (on that branch):** `.workflow/AGENT_HANDOFF_TASKS.md` — heuristic worktree product-catalog Prisma WIP, cron checklist, worktree cleanup commands.
 - **`main`:** unchanged until PR merges; local `.gitignore` update for `.playwright-mcp/` ships with the PR.
+
+---
+
+## 2026-04-03 — Phase 1.7 Studio OS Command Plane
+
+- **Registry API:** [`apps/web/app/api/admin/registry/route.ts`](../apps/web/app/api/admin/registry/route.ts) — `requireAdmin()` + `getClientSafeRegistryManifest()` (Zod → JSON Schema via `zod-to-json-schema`); metadata only.
+- **Pulse API:** [`apps/web/app/api/admin/agent-actions/route.ts`](../apps/web/app/api/admin/agent-actions/route.ts) — optional `minutes=1..60` filters `AgentAction.createdAt` and `AgentContext.updatedAt`; merged feed includes context `detailPreview`.
+- **UI:** [`apps/web/app/(admin)/admin/studio/page.tsx`](../apps/web/app/(admin)/admin/studio/page.tsx) — tool picker, JSON-Schema-driven command form, `POST /api/agent` with `{ toolId, params }`, `StudioPulseFeed` polls last 5 minutes.
+- **Omnipush:** former Content Studio moved to [`/admin/studio-omnipush`](../apps/web/app/admin/studio-omnipush/page.tsx); admin nav **Studio OS** + **Omnipush**.
+
+### Quality gate
+
+`pnpm exec tsc --noEmit -p apps/web` (pass)
+
+---
+
+## 2026-04-03 — Phase 1.8 Sandbox mirroring
+
+- **Prisma:** `DraftBusiness`, `DraftAction`, `DraftContext` (with `User` / optional `Client`); duplicate Draft block near `CorridorCity` removed.
+- **Harvest:** `rook.harvest` writes Draft* only when `ToolRunContext.isSandbox === true`; prod writes unchanged.
+- **POST /api/agent:** Injects `isSandbox` from JSON body and `createdByUserId` from session into `ToolExecuteOptions` / `ToolRunContext`.
+- **Studio OS:** Sandbox checkbox + pulse merges `draft_action` / `draft_context`.
+- **DB:** Run `pnpm exec prisma db push` from `packages/database` (or your migration process) before using Draft* in production.
+
+### Quality gate
+
+`prisma validate` + `prisma generate` + `pnpm exec tsc --noEmit -p apps/web` (pass)

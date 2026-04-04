@@ -5,7 +5,7 @@ sidebar_position: 18
 
 # What Can Delta Dawn Do?
 
-Delta Dawn is your AI assistant at `/ops/chat`. She knows the whole Big Muddy ecosystem — all seven brands, the Inn, the bar, the shows, the directory, the magazine, the radio station, and the touring side. Here's what she can help with:
+Delta Dawn is your AI assistant at `/ops/chat`. She has context across the Big Muddy ecosystem—the Inn, the bar, shows, directory, magazine, radio, and touring. Replies are **warm, precise, and professional** (hospitality-grade, not slang-heavy). Here's what she can help with:
 
 - **Draft social media posts** — Tell her the topic and she'll write posts ready to copy and share.
 - **Respond to guest reviews** — Paste a review and she'll draft a warm, professional response.

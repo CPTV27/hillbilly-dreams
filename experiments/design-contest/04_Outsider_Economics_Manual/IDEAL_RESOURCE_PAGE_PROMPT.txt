@@ -1,0 +1,10 @@
+You are designing the "Ideal Resource Page" for the Outsider Economics Sovereign Scholar track.
+
+Requirements:
+- Video summary: include a script outline (hook, 3 beats, CTA) for a 60–90 second explainer; note B-roll: Main Street, courthouse steps, river, ledger paper.
+- Lore Quiz: 5 multiple-choice questions tied to one chapter theme; show correct answer rationale in one sentence each.
+- Launch in DSD: write button label + aria-label + one line of microcopy explaining what happens next (task opens, credits on completion).
+- Visual hierarchy: H1, lede, "In this chapter", "Try it", "Further reading" with Outsider Economics field-guide tone.
+- Accessibility: color contrast WCAG AA; focus states described.
+
+Output: structured markdown sections ready for a Next.js page or CMS.

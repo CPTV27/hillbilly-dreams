@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import * as cloudbeds from '@/lib/cloudbeds';
 import { prisma } from '@/lib/db';
+import { requireAdmin } from '@/lib/admin-auth';
 
 // ── GET /api/integrations/cloudbeds ──
 // Returns connection status, hotel details, and room types
@@ -128,6 +129,9 @@ export async function GET(request: Request) {
 // Actions: update_rates, register_webhooks, sync_metrics
 
 export async function POST(request: Request) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     const body = await request.json();
     const { action } = body;

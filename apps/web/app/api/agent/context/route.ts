@@ -21,16 +21,16 @@ export async function GET(req: NextRequest) {
   const q = searchParams.get('q');
   const key = searchParams.get('key');
   const fresh = searchParams.get('fresh') === 'true';
-  const limit = Math.min(parseInt(searchParams.get('limit') || '20'), 100);
+  const limit = Math.min(parseInt(searchParams.get('limit') || '20', 10), 100);
 
-  const where: any = {};
+  const where: Record<string, unknown> = {};
 
   if (key) {
     where.key = key;
   }
 
   if (domain) {
-    const domains = domain.split(',').map(d => d.trim());
+    const domains = domain.split(',').map((d) => d.trim());
     where.domain = domains.length === 1 ? domains[0] : { in: domains };
   }
 
@@ -43,10 +43,7 @@ export async function GET(req: NextRequest) {
   }
 
   if (fresh) {
-    where.OR = [
-      { validUntil: null },
-      { validUntil: { gt: new Date() } },
-    ];
+    where.OR = [{ validUntil: null }, { validUntil: { gt: new Date() } }];
     where.confidence = { gt: 0.3 };
   }
 
@@ -77,7 +74,6 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Upsert — same domain+key overwrites (knowledge gets updated, not duplicated)
   const result = await prisma.agentContext.upsert({
     where: { domain_key: { domain, key } },
     create: {

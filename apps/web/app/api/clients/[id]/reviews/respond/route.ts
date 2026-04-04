@@ -4,13 +4,20 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { requireAdmin } from '@/lib/admin-auth';
 import { callAI } from '@/lib/ai-models';
+import { requireAdminOrClientContact } from '@/lib/client-api-auth';
 
 type Params = { params: { id: string } };
 
 export async function POST(request: NextRequest, { params }: Params) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
   const clientId = parseInt(params.id, 10);
   if (isNaN(clientId)) return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+
+  const gate = await requireAdminOrClientContact(clientId);
+  if (gate) return gate;
 
   let body: Record<string, unknown>;
   try {

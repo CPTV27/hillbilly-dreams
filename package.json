@@ -4,7 +4,8 @@
   "private": true,
   "packageManager": "pnpm@9.0.0",
   "scripts": {
-    "dev": "turbo run dev",
+    "dev": "tsx apps/web/server.ts",
+    "dev:turbo": "turbo run dev",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "type-check": "turbo run type-check",
@@ -14,7 +15,10 @@
     "db:generate": "turbo run db:generate",
     "db:push": "turbo run db:push",
     "db:migrate": "turbo run db:migrate",
-    "postinstall": "pnpm --filter @bigmuddy/database exec prisma generate"
+    "postinstall": "pnpm --filter @bigmuddy/database exec prisma generate",
+    "sync-docs": "node scripts/sync-docs.mjs",
+    "media:synology-indexer": "tsx scripts/media/synology-indexer.ts",
+    "scout:leads": "tsx scripts/scouts/lead-generator.ts"
   },
   "dependencies": {
     "google-auth-library": "^10.6.2",
@@ -38,7 +42,11 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
+    "@types/node": "^25.5.2",
     "checkly": "^7.7.0",
-    "jiti": "^2.6.1"
+    "chokidar": "^4.0.0",
+    "fast-xml-parser": "^4.3.6",
+    "jiti": "^2.6.1",
+    "tsx": "^4.19.0"
   }
 }

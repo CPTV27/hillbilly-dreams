@@ -4,8 +4,11 @@ export const dynamic = 'force-dynamic';
 // POST /api/clients/:id/calendar — generate a content calendar for a month
 
 import { NextRequest, NextResponse } from 'next/server';
-import Anthropic from '@anthropic-ai/sdk';
+import { ModelTier } from '@/lib/ai/modelTier';
+import { generateTextWithTierOrVertex } from '@/lib/ai/openRouter';
 import { prisma } from '@/lib/db';
+import { requireAdmin } from '@/lib/admin-auth';
+import { requireAdminOrClientContact } from '@/lib/client-api-auth';
 
 type Params = { params: { id: string } };
 
@@ -29,13 +32,15 @@ export async function GET(_request: NextRequest, { params }: Params) {
 }
 
 export async function POST(request: NextRequest, { params }: Params) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
   const clientId = parseInt(params.id, 10);
   if (isNaN(clientId)) return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
-    return NextResponse.json({ error: 'ANTHROPIC_API_KEY not configured' }, { status: 503 });
-  }
+  const gate = await requireAdminOrClientContact(clientId);
+  if (gate) return gate;
+
+
 
   let body: Record<string, unknown>;
   try {
@@ -64,12 +69,7 @@ export async function POST(request: NextRequest, { params }: Params) {
     const postCount = tierPostCounts[client.tier] ?? 12;
     const voiceProfile = client.voiceProfile ? JSON.stringify(client.voiceProfile) : 'No voice profile yet — use a warm, authentic Southern tone.';
 
-    const claude = new Anthropic({ apiKey });
-
-    const response = await claude.messages.create({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 4096,
-      system: `You are a social media content planner for Big Muddy Entertainment. Generate a monthly content calendar for a local business.
+    const systemPrompt: string = `You are a social media content planner for Big Muddy Entertainment. Generate a monthly content calendar for a local business.
 
 Brand voice: ${voiceProfile}
 
@@ -91,28 +91,32 @@ Return a JSON array of objects with these fields:
 - hashtags: string[] (relevant hashtags)
 - category: "promotion" | "behind-scenes" | "community" | "seasonal" | "engagement" | "educational" | "testimonial"
 
-Return ONLY a valid JSON array, no markdown or commentary.`,
-      messages: [{
-        role: 'user',
-        content: `Generate a content calendar for ${MONTH_NAMES[adjustedMonth]} ${year}.
+Return ONLY a valid JSON array, no markdown or commentary.`;
+
+    const userMessage: string = `Generate a content calendar for ${MONTH_NAMES[adjustedMonth]} ${year}.
 
 Business: ${client.name}
 Type: ${client.businessType}
 City: ${client.city}, ${client.state}
 Platforms: ${(client.platforms as string[]).join(', ') || 'instagram, facebook'}
 Description: ${client.description || 'Local business'}
-${context ? `Additional context/events: ${context}` : ''}`,
-      }],
+${context ? `Additional context/events: ${context}` : ''}`;
+
+    const response = await generateTextWithTierOrVertex(ModelTier.ARCHITECT, `${systemPrompt}\n\n${userMessage}`, {
+      maxOutputTokens: 4096,
+      jsonMode: true,
+      telemetry: {
+         toolId: 'marketing.client.calendar',
+         modelTier: ModelTier.ARCHITECT
+       }
     });
 
-    const text = response.content
-      .filter((block): block is Anthropic.TextBlock => block.type === 'text')
-      .map((block) => block.text)
-      .join('');
+    const text = response.text;
 
     let posts: unknown[];
     try {
-      posts = JSON.parse(text);
+      const cleaned = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+      posts = JSON.parse(cleaned);
       if (!Array.isArray(posts)) posts = [];
     } catch {
       posts = [];

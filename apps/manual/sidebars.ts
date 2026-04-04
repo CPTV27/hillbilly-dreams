@@ -77,6 +77,14 @@ const sidebars: SidebarsConfig = {
       ],
     },
   ],
+  referenceTools: [
+    {
+      type: 'category',
+      label: 'Reference',
+      collapsed: false,
+      items: ['reference/tool-registry'],
+    },
+  ],
 };
 
 export default sidebars;

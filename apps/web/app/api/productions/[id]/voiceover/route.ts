@@ -6,6 +6,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { GoogleAuth } from 'google-auth-library';
 import { uploadToGCS } from '@/lib/gcs';
 import { prisma } from '@/lib/db';
+import { requireAdmin } from '@/lib/admin-auth';
 
 const VOICE_PRESETS: Record<string, { languageCode: string; name: string; ssmlGender: string }> = {
   'delta-dawn': { languageCode: 'en-US', name: 'en-US-Journey-F', ssmlGender: 'FEMALE' },
@@ -30,6 +31,9 @@ export async function POST(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     const { id } = await params;
     const jobId = parseInt(id, 10);

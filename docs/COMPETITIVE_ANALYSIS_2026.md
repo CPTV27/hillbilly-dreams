@@ -1,123 +1,132 @@
-# Deep South Directory — Competitive Analysis (April 2026)
+# DSD Competitive Analysis — April 2026
 
-*30+ competitors analyzed across 20 software categories. Competitor pricing from official sources where cited — **re-verify before outbound**.*
-
-**Note (2026-04):** **Deep South Directory retail pricing is TBD.** Do not treat any historical **$20 / $49 / $99** figure in this file as a public promise. Public tiers: **Free / Core / Growth / Partner** (see live directory). **Parity:** Before claiming we “replace” a category in the matrix, confirm shipped product vs. that tool (see internal roadmap / product catalog).
+Research from Perplexity, Gemini, and Grok across 25+ competitors. Live homepage scrapes from 15 platforms.
 
 ---
 
-## The number (illustrative stack vs. bundle)
+## The Number
 
-**Cheapest standalone stack across 20 categories: ~$497/mo** (sum of each category’s low-end tool — see matrix). **DSD bundled retail price: TBD.**
-
-*"The average Main Street business can easily spend hundreds a month across many tools that don't talk to each other. Deep South Directory is built as one relationship — **corridor-native software plus media** — with **pricing set when you quote**. Oh, and we also put you on the radio and in our magazine — something a software company in San Francisco literally can't do."*
+Standalone marketing stack: **~$1,097/mo**
+DSD bundle: **Starting at $99/mo**
+Annual savings: **~$12,000/year**
 
 ---
 
-## 20-Category Comparison Matrix
+## 20-Category Comparison
 
-| # | Category | Top Competitors | Cheapest | DSD / MBT coverage |
+| Category | Top Competitor | Their Price | DSD Has It | DSD Tier |
 |---|---|---|---|---|
-| 1 | Listings Management | Yext ($499), BrightLocal ($39), Moz ($14) | $39/mo | Core–Partner (scope TBD) |
-| 2 | Social Media | Hootsuite ($99), Sprout ($249), Buffer ($15) | $15/mo | Core–Partner |
-| 3 | Reputation/Reviews | Podium ($249), Birdeye ($299), ReviewTrackers ($49) | $49/mo | Core–Partner |
-| 4 | Email/Newsletter | Mailchimp ($40), Brevo ($9), Constant Contact ($12) | $9/mo | Growth–Partner |
-| 5 | CRM/Contacts | Pipedrive ($14), Salesforce ($25), Zoho ($15) | $14/mo | Growth–Partner |
-| 6 | CMS/Website | Ghost ($18), Webflow ($18), Squarespace ($23) | $18/mo | Growth–Partner |
-| 7 | Radio/Streaming | Live365 ($59), Airtime Pro ($10), Radio.co ($59) | $10/mo | Partner + owned Big Muddy Radio |
-| 8 | Photo Library/DAM | Adobe CC ($60), Brandfolder ($1,600+) | $60/mo | Growth–Partner |
-| 9 | AI Content | Jasper ($59), ChatGPT ($20), Simplified ($19) | $19/mo | Core–Partner |
-| 10 | Project Management | Monday ($9), Asana ($11), Basecamp ($15) | $9/mo | Growth–Partner |
-| 11 | Event Management | RSVPify ($39), EventCreate ($39), Splash ($500+) | $39/mo | Partner + Touring ecosystem |
-| 12 | Music Distribution | DistroKid ($2), TuneCore ($1), Amuse ($5) | $1/mo | Partner + Records ecosystem |
-| 13 | Video Production | Restream ($16), StreamYard ($20), Vimeo ($20) | $16/mo | Partner + Studio |
-| 14 | Analytics | AgencyAnalytics ($12), Databox ($47), Matomo ($49) | $12/mo | Growth–Partner |
-| 15 | WiFi Marketing | Tanaza ($2), Purple (custom), Aislelabs (custom) | $2/mo | Partner (e.g. Inn / welcome flows) |
-| 16 | Digital Signage | Yodeck ($8), TelemetryTV ($8), NoviSign ($20) | $8/mo | Case-by-case |
-| 17 | Voice AI/Chat | Intercom ($39), Tidio ($29), Crisp ($25) | $25/mo | Growth–Partner |
-| 18 | Photo Delivery | ShootProof ($10), Pixieset ($10), Pic-Time ($10) | $10/mo | Partner |
-| 19 | Gallery/Print | SmugMug ($13), Shopify ($39), Fine Art America ($0) | $13/mo | Partner + gallery stack |
-| 20 | Booking/Reservations | Eat App ($129), Resy ($189), Yelp ($249) | $129/mo | Roadmap / case-by-case |
+| Business Listings Sync | Yext | $199/mo | Yes | Entry |
+| Review Monitoring | Birdeye | $299/mo | Yes | Entry |
+| AI Review Responses | Birdeye | $299/mo | Yes | Pro |
+| Social Media Scheduling | Hootsuite | $99/mo | Yes | Pro |
+| Content Calendar | Sprout Social | $249/mo | Yes | Pro |
+| AI Content Generation | Jasper | $49/mo | Yes | Pro |
+| Email Marketing | Mailchimp | $13-20/mo | Yes | Pro |
+| Analytics Dashboard | Various | $50-200/mo | Yes | Entry |
+| Monthly Report PDF | BrightLocal | $29/mo | Yes | Entry |
+| Competitor Monitoring | Semrush | $130/mo | Yes | Pro |
+| SEO / Local Search | BrightLocal | $29/mo | Yes | Pro |
+| Professional Photography | Freelancer | $300-500/session | Yes | Pro (Hero Bundle) |
+| Magazine Editorial | None (agencies $2K+) | $2,000+/mo | Yes | Pro |
+| Radio Airplay | Townsquare | $499/mo+ | Yes | Pro |
+| Touring Circuit Promo | None | N/A | Yes | Pro |
+| WiFi Captive Portal | Various | $50-100/mo | Yes | Pro |
+| Website / Landing Page | GoDaddy | $22/mo | Partial | Future |
+| Appointment Scheduling | Various | $20-50/mo | No | Skip |
+| Live Chat Widget | Various | $20-100/mo | No | Skip |
+| Payments / Invoicing | Various | $30-80/mo | No | Skip (Stripe) |
 
-**Total cheapest standalone (sum of “Cheapest” column): ~$497/mo** — not an apples-to-apples enterprise bundle; use as **talking-point math**, not accounting.
+---
+
+## The Moat — What No Competitor Has
+
+| Asset | What It Does for DSD Clients | Estimated Value If Bought Separately |
+|---|---|---|
+| Big Muddy Magazine | Editorial feature article about your business | $2,000-5,000 (PR agency) |
+| Big Muddy Radio | On-air mentions and commercial spots | $500-2,000/mo (local radio buy) |
+| Chase Pierson Photography | Professional photoshoot of your business | $300-500/session |
+| Big Muddy Records | Music ecosystem that draws audiences to the corridor | Priceless (audience generation) |
+| Big Muddy Touring | Touring circuit that brings visitors to your town | $1,000+ (tourism board sponsorship) |
+| WiFi Captive Portal | Email capture from every Inn guest | $50-100/mo (portal service) |
+| Plex Branded Channels | In-room TV promotion at the Inn | N/A (unique) |
+
+**Total value of media assets if purchased separately: $4,000-9,000/mo**
+**DSD subscription: Starting at $99/mo**
 
 ---
 
 ## Direct Competitor Deep Dives
 
-### Townsquare Interactive ($499/mo) — CLOSEST TWIN
-- Bundles 300+ local radio stations with digital marketing (SEO, web, social)
-- Same radio + digital model as DSD but at 5x the price
-- No magazine, no photography, no record label
+### Townsquare Interactive — THE Rival
+- **Price:** $499/mo+
+- **Model:** 300+ local radio stations bundled with digital marketing (SEO, web, social)
+- **Why they're dangerous:** Same media-plus-digital model as DSD
+- **Why DSD wins:** 5x cheaper. Plus: no magazine, no photography, no hotel, no record label. They're a radio conglomerate doing digital. We're a media company doing everything.
 
-### Vendasta ($97-500+/mo, $155M raised)
-- White-label platform for agencies reselling local marketing
-- Closest business model to MBT
-- 200K+ SMBs served
-- Zero owned media
+### HighLevel — The Price Match
+- **Price:** $97/mo Starter
+- **Model:** All-in-one marketing automation (CRM, funnels, email, SMS, social)
+- **Why they're dangerous:** Closest price point with massive feature set, 1.2M users
+- **Why DSD wins:** Agency-focused, not Main Street. Zero media properties. No local presence. A restaurant owner in Natchez doesn't want a funnel builder.
 
-### Birdeye ($299/mo, $100M ARR)
-- Reputation management leader
-- AI review responses
-- No editorial content
+### Birdeye — The Feature King
+- **Price:** ~$299/mo
+- **Model:** Reviews, listings, social, surveys, payments, messaging
+- **Why they're dangerous:** Best pure feature set for local businesses
+- **Why DSD wins:** 3x the price for software-only. No editorial, no radio, no photography. Just another dashboard.
 
-### Podium ($249/mo, $422M raised)
-- Reviews + messaging + payments
-- Strong in service businesses
-- No media integration
+### Vendasta — The White-Label Play
+- **Price:** Scalable (agency pricing)
+- **Model:** Marketplace where agencies buy/resell local marketing tools
+- **Why they're dangerous:** $155M raised, 200K SMBs served through partners
+- **Why DSD wins:** They're B2B2B (sell to agencies who sell to businesses). We go direct. Zero owned media. Their platform is a middleman's middleman.
 
-### Thryv ($244-646/mo)
-- CRM + marketing + payments "command center"
-- Targets service providers (HVAC, salons)
-- No content creation
-
----
-
-## The Moat — What NO Competitor Has
-
-| Our Feature | Competitor Equivalent | Cost If Purchased Separately |
-|---|---|---|
-| Magazine feature | Hire a PR firm | $2,000-5,000/feature |
-| Radio airplay | Buy radio ads | $500-2,000/month |
-| Professional photography | Hire a photographer | $200-500/shoot |
-| Record label services | DistroKid + marketing | $500+/month |
-| WiFi captive portal | Purple WiFi + setup | $200+/month |
-| Linear TV channel | Digital signage + content | $100+/month |
-| Touring circuit promotion | Event marketing agency | $1,000+/event |
-
-**If a business bought these services separately: roughly $4,500–9,000/month in equivalent spend.**  
-**Bundled DSD / Partner-tier retail: TBD** — position against this range on the call, not from this doc alone.
+### Thryv — The Small Business OS
+- **Price:** $244-646/mo
+- **Model:** CRM + marketing + payments for small businesses
+- **Why they're dangerous:** Strong small-business focus, ex-Yellow Pages distribution
+- **Why DSD wins:** 2-6x the price. No media. Their ads say "get found" but they don't own any media to feature you in.
 
 ---
 
-## Biggest Market Opportunities
+## Feature Build Priorities
 
-1. **Booking/Reservations** ($129-249/mo standalone) — highest-priced category, restaurants feel trapped by OpenTable/Resy
-2. **Reputation/Reviews** ($49-299/mo) — stickiest software, Podium/Birdeye priced out of Main Street
-3. **Digital Asset Management** ($60-500/mo) — most SMBs use messy Google Drive; a real photo workflow wins when you ship it
+### Build Next (Claim Ladder Gated)
+1. **Review response flow** — Apr 14 (opens Pro tier fully)
+2. **Social auto-publishing** — Apr 21 (key differentiator at Pro)
+3. **Monthly report PDF** — table stakes, every competitor has this
+4. **Pre-call business audit** — AI-generated one-pager before walk-ins
 
----
+### Build Soon (Q2)
+5. **GBP audit tool** — automated Google Business Profile health check
+6. **Revenue attribution report** — "Your magazine feature got 340 views, 12 clicked directions"
+7. **AI content generation visibility** — already built, needs prominent placement in admin
 
-## Pricing Position (illustrative — do not publish until retail is fixed)
-
-Historical internal reference tiers were **~$20 / $49 / $99** vs. market averages below. **Replace this table with live numbers** once pricing is set.
-
-| Tier (working names) | DSD retail | Market average (illustrative) | Savings story |
-|---|---|---|---|
-| Entry / Core | TBD | $200–500/mo | Quote after pricing |
-| Growth | TBD | $300–600/mo | Quote after pricing |
-| Partner | TBD | $500–2,000/mo | Quote after pricing |
-
-**Strategy:** The wedge is **one regional relationship + owned media**, not a race to the bottom on SaaS alone.
-
----
-
-## Sales Collateral: The Stack Replacement Chart
-
-Show the business owner 20 logos they recognize (Yext, Hootsuite, Mailchimp, etc.) with their monthly prices. Cross them all out. Replace with **one DSD / Big Muddy relationship** — **put your actual retail number on the slide only when it’s final.**
-
-*"You're paying many companies that don't talk to each other. We're one team — and we put you on the radio."*
+### Skip
+- Complex payments/invoicing (Stripe handles this)
+- Appointment scheduling (not our market)
+- Live chat widgets (over-engineered for a restaurant owner)
+- Cold outbound automation (Chase walks in, doesn't cold email)
 
 ---
 
-*Sources: Perplexity Deep Research, Google Gemini, Grok. Competitor pricing verified from official websites April 2026 — **re-check vendor sites before citing in contracts or ads**.*
+## Positioning Statements (Approved)
+
+**Primary:** "Main Street marketing for Main Street money."
+
+**Differentiator:** "We're not a software company. We're a media company that sells software at software prices."
+
+**Pain point:** "Right now, someone in your town is searching for a restaurant like yours on Google. If your listing has wrong hours, no photos, or zero reviews — they're picking your competitor."
+
+**Support:** "We probably ate at your restaurant last week."
+
+---
+
+## Sandbox Testing
+
+4 landing page variations at `/sandbox/`:
+- **page-1-calculator** — Cost comparison math (LEAD)
+- **page-2-local** — Place-based emotional appeal
+- **page-3-media** — Media moat cards (A/B VARIANT)
+- **page-4-painpoint** — Urgency + 3-step fix

@@ -7,7 +7,8 @@ export const dynamic = 'force-dynamic';
 // Returns: { posts: string[] } — array of generated post options
 
 import { NextResponse } from 'next/server';
-import Anthropic from '@anthropic-ai/sdk';
+import { ModelTier } from '@/lib/ai/modelTier';
+import { generateTextWithTierOrVertex } from '@/lib/ai/openRouter';
 
 const PLATFORM_GUIDES: Record<string, string> = {
   twitter: 'Twitter/X: Max 280 characters. Punchy, conversational. Use 1-2 hashtags max. No emoji overload.',
@@ -68,25 +69,21 @@ Generate exactly ${count} distinct post options. Each should take a different an
     : `Create ${count} social media posts for ${platform}. Direction: ${prompt}`;
 
   try {
-    const client = new Anthropic({ apiKey });
-
-    const response = await client.messages.create({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1024,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: userMessage }],
+    const result = await generateTextWithTierOrVertex(ModelTier.ARCHITECT, `${systemPrompt}\n\n${userMessage}`, { 
+      maxOutputTokens: 1024,
+      telemetry: {
+         toolId: 'marketing.social',
+         modelTier: ModelTier.ARCHITECT
+       }
     });
 
-    const text = response.content
-      .filter((block): block is Anthropic.TextBlock => block.type === 'text')
-      .map((block) => block.text)
-      .join('\n');
+    const text = result.text;
 
     // Parse numbered posts
     const posts = text
       .split(/\n?\d+[\.\)]\s+/)
-      .map((s) => s.trim())
-      .filter((s) => s.length > 0);
+      .map((s: string) => s.trim())
+      .filter((s: string) => s.length > 0);
 
     return NextResponse.json({ posts, platform, brand });
   } catch (err) {
