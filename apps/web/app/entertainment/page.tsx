@@ -382,7 +382,7 @@ export default function EntertainmentPage() {
           Natchez, Mississippi. The corridor starts here.
         </p>
         <p style={{ fontSize: '0.7rem', color: 'var(--text-disabled)' }}>
-          Hillbilly Dreams Inc · Natchez, Mississippi
+          Powered by Deep South Directory · Hillbilly Dreams Inc
         </p>
       </footer>
     </main>
