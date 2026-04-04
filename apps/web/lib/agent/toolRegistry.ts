@@ -28,6 +28,8 @@ export enum ToolAuthClass {
 export type ToolDefinition<S extends z.ZodTypeAny = z.ZodTypeAny> = {
   id: string;
   name: string;
+  /** Shown in Admin Command Plane / registry API only. */
+  description?: string;
   authClass: ToolAuthClass;
   modelTier?: ModelTier;
   inputSchema: S;
@@ -101,6 +103,7 @@ export const TOOL_REGISTRY = {
   'rook.harvest': {
     id: 'rook.harvest',
     name: 'Directory Harvest',
+    description: 'Research and ingest regional businesses for the Deep South Directory (LLM + Prisma).',
     authClass: ToolAuthClass.ADMIN,
     modelTier: ModelTier.CARPENTER,
     inputSchema: HarvestInputSchema,
@@ -108,18 +111,21 @@ export const TOOL_REGISTRY = {
   'agent.context': {
     id: 'agent.context',
     name: 'Agent Context Write',
+    description: 'Upsert a knowledge fragment (domain + key) for agent memory.',
     authClass: ToolAuthClass.ADMIN,
     inputSchema: ContextPostInputSchema,
   },
   'agent.action': {
     id: 'agent.action',
     name: 'Agent Action Log',
+    description: 'Append a row to the coordination / audit log.',
     authClass: ToolAuthClass.ADMIN,
     inputSchema: ActionPostInputSchema,
   },
   'rook.orchestrate': {
     id: 'rook.orchestrate',
     name: 'Agent Orchestrator',
+    description: 'Natural-language dispatcher: routes to registry tools or marketing APIs (ARCHITECT tier routing).',
     authClass: ToolAuthClass.ADMIN,
     modelTier: ModelTier.ARCHITECT,
     inputSchema: OrchestrateInputSchema,
@@ -127,6 +133,7 @@ export const TOOL_REGISTRY = {
   'system.context.get': {
     id: 'system.context.get',
     name: 'Get Agent Context',
+    description: 'Query stored context fragments (filters: domain, topic, q, key, fresh).',
     authClass: ToolAuthClass.ADMIN,
     inputSchema: ContextGetInputSchema,
     execute: (input) => executeGetContext(input),
@@ -134,6 +141,7 @@ export const TOOL_REGISTRY = {
   'system.context.post': {
     id: 'system.context.post',
     name: 'Save Agent Context',
+    description: 'Same contract as agent.context write — explicit system tool id for universal router.',
     authClass: ToolAuthClass.ADMIN,
     inputSchema: ContextPostInputSchema,
     execute: (input) => executePostContext(input),
@@ -141,6 +149,7 @@ export const TOOL_REGISTRY = {
   'system.action.get': {
     id: 'system.action.get',
     name: 'Get Agent Actions',
+    description: 'Query recent agent actions (filters: agent, domain, since).',
     authClass: ToolAuthClass.ADMIN,
     inputSchema: ActionGetInputSchema,
     execute: (input) => executeGetAction(input),
@@ -148,6 +157,7 @@ export const TOOL_REGISTRY = {
   'system.action.post': {
     id: 'system.action.post',
     name: 'Log Agent Action',
+    description: 'Same as agent.action — explicit system tool id for universal router.',
     authClass: ToolAuthClass.ADMIN,
     inputSchema: ActionPostInputSchema,
     execute: (input) => executePostAction(input),
