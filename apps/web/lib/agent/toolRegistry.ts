@@ -15,7 +15,20 @@ import {
   executePostContext,
 } from './handlers/context';
 import { HarvestInputSchema } from './handlers/harvest';
+import {
+  ContentReviewInputSchema,
+  executeContentReview,
+  executeStyleMatch,
+  executeVisualPlaceholder,
+  StyleMatchInputSchema,
+  VisualPlaceholderInputSchema,
+} from './handlers/editorialBureau';
+import {
+  executeMediaTranscribe,
+  MediaTranscribeInputSchema,
+} from './handlers/mediaTranscribe';
 import { OrchestrateInputSchema } from './schemas/orchestrate';
+import { queryLore, queryLoreSchema } from './tools/tool.lore.query';
 
 /** Who may invoke this tool at the HTTP edge or via orchestration. */
 export enum ToolAuthClass {
@@ -36,7 +49,6 @@ export type ToolDefinition<S extends z.ZodTypeAny = z.ZodTypeAny> = {
   execute?: (input: z.infer<S>, context?: ToolRunContext) => Promise<unknown>;
 };
 
-/** Per-invocation caps passed to `toolRegistry.get(id).execute(params, options)`. */
 export type ToolExecuteOptions = {
   maxTokens?: number;
   /** Estimated USD cap for this single run (OpenRouter path; see `openRouter.ts`). */
@@ -44,6 +56,10 @@ export type ToolExecuteOptions = {
   traceId?: string;
   /** Admin-only: echo `_telemetry` on LLM-backed tool results when true. */
   includeTelemetry?: boolean;
+  /** Phase 1.8: Route writes to Sandbox mirrored tables */
+  isSandbox?: boolean;
+  /** Injected at HTTP edge from NextAuth session (not from tool params). */
+  createdByUserId?: string;
 };
 
 export type RegisteredTool = {
@@ -57,7 +73,7 @@ export function toolExecuteOptionsToBudget(opts?: ToolExecuteOptions): ToolBudge
 }
 
 /**
- * Strip invocation meta (`maxTokens`, `maxSpend`, `traceId`, `includeTelemetry`) from a JSON body
+ * Strip invocation meta (`maxTokens`, `maxSpend`, `traceId`, `includeTelemetry`, `isSandbox`) from a JSON body
  * so the remainder matches a strict Zod tool schema.
  */
 export function peelAgentInvocationOptions(raw: unknown): { rest: unknown; opts: ToolExecuteOptions } {
@@ -70,11 +86,13 @@ export function peelAgentInvocationOptions(raw: unknown): { rest: unknown; opts:
   const traceId =
     typeof o.traceId === 'string' && o.traceId.trim().length > 0 ? o.traceId.trim().slice(0, 128) : undefined;
   const includeTelemetry = o.includeTelemetry === true;
+  const isSandbox = o.isSandbox === true;
   delete o.maxTokens;
   delete o.maxSpend;
   delete o.traceId;
   delete o.includeTelemetry;
-  return { rest: o, opts: { maxTokens, maxSpend, traceId, includeTelemetry } };
+  delete o.isSandbox;
+  return { rest: o, opts: { maxTokens, maxSpend, traceId, includeTelemetry, isSandbox } };
 }
 
 /** @deprecated Use `peelAgentInvocationOptions` */
@@ -92,6 +110,11 @@ export function buildToolRunContext(
     toolId,
     traceId: execOpts?.traceId,
     includeTelemetry: execOpts?.includeTelemetry === true,
+    isSandbox: execOpts?.isSandbox === true,
+    createdByUserId:
+      typeof execOpts?.createdByUserId === 'string' && execOpts.createdByUserId.length > 0
+        ? execOpts.createdByUserId
+        : undefined,
   };
 }
 
@@ -161,6 +184,53 @@ export const TOOL_REGISTRY = {
     authClass: ToolAuthClass.ADMIN,
     inputSchema: ActionPostInputSchema,
     execute: (input) => executePostAction(input),
+  },
+  'tool.visual.placeholder': {
+    id: 'tool.visual.placeholder',
+    name: 'Editorial Visual Placeholder',
+    description:
+      'Generate an ideal-shot placeholder via Vertex Imagen, upload to GCS, attach to a Job (Editorial Bureau).',
+    authClass: ToolAuthClass.ADMIN,
+    modelTier: ModelTier.CARPENTER,
+    inputSchema: VisualPlaceholderInputSchema,
+    execute: (input, ctx) => executeVisualPlaceholder(input, ctx),
+  },
+  'system.content-review': {
+    id: 'system.content-review',
+    name: 'Red Pen (Content Review)',
+    description:
+      'Gemma 4 Red Pen pass vs StyleGuide samples (thinking prefix); falls back to Claude. Optional persist to Job.',
+    authClass: ToolAuthClass.ADMIN,
+    modelTier: ModelTier.CARPENTER,
+    inputSchema: ContentReviewInputSchema,
+    execute: (input, ctx) => executeContentReview(input, ctx),
+  },
+  'system.editorial.style_match': {
+    id: 'system.editorial.style_match',
+    name: 'Voice Guard (Style Match)',
+    description: 'Score draft vs StyleGuide samples (Gemma 26B-class) — JSON score + rationale.',
+    authClass: ToolAuthClass.ADMIN,
+    modelTier: ModelTier.INTERN,
+    inputSchema: StyleMatchInputSchema,
+    execute: (input, ctx) => executeStyleMatch(input, ctx),
+  },
+  'tool.lore.query': {
+    id: 'tool.lore.query',
+    name: 'Sovereign Lore Query',
+    description: 'Retrieve semantic knowledge chunks from the local ChromaDB Sovereign Engine (Zero Cloud RAG).',
+    authClass: ToolAuthClass.ADMIN,
+    modelTier: ModelTier.CARPENTER,
+    inputSchema: queryLoreSchema,
+    execute: (input, ctx) => queryLore(input, ctx),
+  },
+  'tool.media.transcribe': {
+    id: 'tool.media.transcribe',
+    name: 'Audio Lore Transcription (placeholder)',
+    description:
+      'Radio Studio audio → transcript chunks → Chroma `lore_media` namespace. Stub until STT + collection wiring ships.',
+    authClass: ToolAuthClass.ADMIN,
+    inputSchema: MediaTranscribeInputSchema,
+    execute: (input) => executeMediaTranscribe(input),
   },
 } as const satisfies Record<string, ToolDefinition>;
 

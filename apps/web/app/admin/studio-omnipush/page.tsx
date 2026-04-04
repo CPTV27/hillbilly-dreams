@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 
 /**
  * Content Studio — the "Omnipush" Control Room
- * /admin/studio
+ * /admin/studio-omnipush
  *
  * Drop one asset (text, photo, or business name) and the engine
  * generates content for all channels: DSD social, Magazine blurb,

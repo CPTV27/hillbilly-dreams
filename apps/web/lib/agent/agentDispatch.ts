@@ -13,6 +13,10 @@ export type ToolRunContext = {
   traceId?: string;
   /** When true, successful LLM steps may attach `_telemetry` on the result payload (admin-only caller). */
   includeTelemetry?: boolean;
+  /** Phase 1.8: When true, handlers MUST branch writes into Draft (Sandbox) tables instead of Production tables. */
+  isSandbox?: boolean;
+  /** Set by POST /api/agent from session — never trust client-supplied user id in params. */
+  createdByUserId?: string;
 };
 
 /** Map dispatcher / LLM tool paths → registry tool ids (POST bodies). */

@@ -22,6 +22,13 @@ export interface ModelConfig {
   label: string; // human-readable for marketing/logs
 }
 
+/** OpenRouter slugs for admin / Token Guard tooling only — never surface in customer copy. */
+export const OPENROUTER_SLUGS = {
+  GEMMA_4_31B_IT: 'google/gemma-4-31b-it',
+  GEMMA_4_26B_A4B: 'google/gemma-4-26b-a4b',
+  CLAUDE_3_7_SONNET: 'anthropic/claude-3.7-sonnet',
+} as const;
+
 export const MODELS: Record<string, ModelConfig> = {
   // Gemini (always available via service account)
   'gemini-flash': { provider: 'gemini', model: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash' },

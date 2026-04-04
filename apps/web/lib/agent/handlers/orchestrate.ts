@@ -60,6 +60,21 @@ export async function executeOrchestrate(
   const tier = ctx?.modelTier ?? ModelTier.ARCHITECT;
   let routeLlm: Awaited<ReturnType<typeof generateTextWithTierOrVertex>> | undefined;
 
+  let styleGuideBlock = '';
+  const styleGuideId =
+    extraContext && typeof extraContext.styleGuideId === 'string' ? extraContext.styleGuideId.trim() : '';
+  if (styleGuideId.length > 0) {
+    const sg = await prisma.styleGuide.findUnique({ where: { id: styleGuideId } });
+    if (sg) {
+      const forbid = sg.forbiddenPhrases?.length ? sg.forbiddenPhrases.join(' | ') : '(none listed)';
+      const samples = (sg.samples ?? [])
+        .slice(0, 10)
+        .map((s, i) => `[${i + 1}] ${s}`)
+        .join('\n---\n');
+      styleGuideBlock = `\nAssigned voice — ${sg.name} (${sg.persona}). Tone weight hint: ${sg.toneWeight}.\nForbidden phrases: ${forbid}\nFew-shot voice snippets (writer must match this register, not generic corporate filler):\n${samples}\n`;
+    }
+  }
+
   const relevantMemory = await prisma.agentContext.findMany({
     where: {
       content: { contains: task.split(' ').slice(0, 3).join(' '), mode: 'insensitive' },
@@ -78,16 +93,22 @@ export async function executeOrchestrate(
     impact: 'low',
   });
 
-  const routingPrompt = `You are the Dispatcher for the Big Muddy agent system. You route tasks to the right agent.
+  const routingPrompt = `You are the operations dispatcher for the Big Muddy media stack (a single codebase running touring, inn, magazine, radio, directory, and marketing APIs). You route work to the correct agent and tool with precision.
 
-Available agents and their capabilities:
-- ROOK: Research, data gathering, Places API, business audits, competitive analysis. Tools: /api/agent/harvest, /api/marketing/dna, /api/marketing/competitors
-- CHUCK: Creative content, social media, radio spots, image generation. Tools: /api/marketing/social, /api/marketing/radio-spot, /api/marketing/reskin, /api/marketing/campaign-calendar
-- DELTA_DAWN: Operations, reviews, reputation management, Cloudbeds, scheduling. Tools: /api/marketing/reviews, /api/agent/context
-- LEDGER: Finance, pricing, analytics, revenue tracking. Tools: /api/agent/context (domain=finance)
+Voice (for the "reasoning" field only — user-facing text):
+- Sound like a capable executive producer and a high-end hotel concierge: warm, polite, efficient.
+- You may use courteous phrasing ("Certainly", "I've taken the liberty", "Happy to help"). "Sir" / "Ma'am" sparingly when it fits naturally.
+- Do NOT use hokey or cartoonish Southern clichés: no "fixin' to", "reckon", "slap my knee", "cat on a hot tin roof", or piled-on idioms.
+- Keep technical routing accurate; charm never overrides correct tool choice.
+
+Available agents and capabilities:
+- ROOK: Research, data gathering, business audits, competitive analysis. Registry tools: rook.harvest (or legacy POST /api/agent/harvest). Marketing: /api/marketing/dna, /api/marketing/competitors
+- CHUCK: Creative content, social, radio, imagery. Marketing: /api/marketing/social, /api/marketing/radio-spot, /api/marketing/reskin, /api/marketing/campaign-calendar
+- DELTA_DAWN: Operations, reviews, reputation, scheduling. Marketing: /api/marketing/reviews. Context memory: agent.context / system.context.post or GET/POST /api/agent/context for brain read/write
+- LEDGER: Finance, pricing, analytics. Context memory (domain=finance) as above
 
 Task: "${task}"
-
+${styleGuideBlock}
 Existing memory fragments that may be relevant:
 ${relevantMemory.map((m) => `[${m.domain}/${m.topic}] ${m.content.substring(0, 150)}`).join('\n')}
 
@@ -97,10 +118,10 @@ Return ONLY valid JSON:
 {
   "agent": "rook | chuck | delta_dawn | ledger",
   "action": "What specifically to do",
-  "tool": "The API endpoint to call (e.g., /api/agent/harvest)",
+  "tool": "Registry tool id (e.g. rook.harvest, agent.context) OR legacy /api/agent/harvest OR /api/marketing/... POST path",
   "params": { "key": "value pairs to pass to the tool" },
-  "reasoning": "Why this agent and tool were chosen",
-  "memoryUsed": true/false — did existing memory answer the question?
+  "reasoning": "Brief, professional rationale (see Voice rules above)",
+  "memoryUsed": true/false
 }`;
 
   let routing: {
@@ -165,14 +186,15 @@ Return ONLY valid JSON:
 
   let toolResult: unknown = null;
   if (routing.tool && !routing.memoryUsed) {
-    const toolPath = String(routing.tool);
-    const toolId = normalizeAgentToolPath(toolPath);
+    const toolPath = String(routing.tool).trim();
+    const toolIdFromPath = normalizeAgentToolPath(toolPath);
+    const registryId = toolIdFromPath ?? (toolRegistry.get(toolPath) ? toolPath : null);
 
-    if (toolId) {
-      const reg = toolRegistry.get(toolId);
+    if (registryId) {
+      const reg = toolRegistry.get(registryId);
       toolResult = reg
         ? await reg.execute(routing.params || {})
-        : { error: 'tool_not_registered', toolId };
+        : { error: 'tool_not_registered', toolId: registryId };
     } else if (toolPath.startsWith('/api/marketing/')) {
       try {
         const baseUrl = process.env.NEXTAUTH_URL || 'https://measurablybetterthings.com';
@@ -195,7 +217,7 @@ Return ONLY valid JSON:
       summary: `Tool ${toolPath}`,
       detail: {
         path: toolPath,
-        registryId: toolId,
+        registryId,
         executed: toolResult !== null,
         hasError:
           toolResult !== null &&

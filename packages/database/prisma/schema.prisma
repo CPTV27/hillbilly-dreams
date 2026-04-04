@@ -15,6 +15,17 @@ datasource db {
 }
 
 // ─────────────────────────────────────────────────────────────
+// SOVEREIGN — Natchez Protocol (membership + economy + intelligence graph)
+// ─────────────────────────────────────────────────────────────
+
+enum SovereignMembershipTier {
+  FREE
+  PRO
+  NETWORK
+  INTEL
+}
+
+// ─────────────────────────────────────────────────────────────
 // MAGAZINE
 // ─────────────────────────────────────────────────────────────
 
@@ -126,6 +137,32 @@ model Contact {
 
   @@index([category])
   @@index([email])
+}
+
+// ─────────────────────────────────────────────────────────────
+// GROWTH — Sovereign Sales Engine (scouting & intel tiers)
+// ─────────────────────────────────────────────────────────────
+
+/// High-value prospect for Network ($99) / Intel ($300) outreach — not a substitute for CRM consent.
+model Lead {
+  id                 String    @id @default(cuid())
+  name               String
+  industry           String
+  /// Subjective 1–10 influence / wallet heuristic from scout scoring
+  perceivedPower     Int       @default(5)
+  lastInteraction    DateTime?
+  /// JSONB: graph edges (entity IDs, roles, notes) for follow-up
+  socialGraphNodes   Json      @default("{}")
+  email              String?
+  phone              String?
+  source             String    @default("scout") // scout | manual | import
+  notes              String?   @db.Text
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@index([industry])
+  @@index([perceivedPower])
+  @@index([source])
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -269,6 +306,7 @@ model Client {
   reports          Report[]
   invoices         Invoice[]
   integrations     ClientIntegration[]
+  draftBusinesses  DraftBusiness[]
 
   @@index([city])
   @@index([tier, status])
@@ -444,6 +482,7 @@ model Artist {
   tracks          Track[]
   splits          Split[]
   proRegistrations PRORegistration[]
+  performances    Performance[]
 
   @@index([status])
   @@index([city, state])
@@ -769,9 +808,31 @@ model User {
   // BCA sovereign queries by userId string — no cross-sovereign FK.
   accounts      Account[]
   sessions      Session[]
+  /// Phase 1.8 — sandbox staging rows (Studio OS / agents)
+  draftBusinesses DraftBusiness[]
+  draftActions    DraftAction[]
+  draftContexts   DraftContext[]
+  jobs          Job[]
+
+  // ── Economic Engine (Sovereign Wallet) ──
+  credits       Int      @default(0)
+  contributions ContributionLog[]
+  creditLedgers CreditLedger[]
+  lores         Lore[]
+  loreEntries   LoreEntry[]
+
+  /// Natchez Protocol — DSD ladder (orthogonal to NextAuth `role`)
+  sovereignTier SovereignMembershipTier @default(FREE)
+  isVetted      Boolean  @default(false)
+  referredById  String?
+  referredBy    User?    @relation("GuildReferrals", fields: [referredById], references: [id], onDelete: SetNull)
+  referrals     User[]   @relation("GuildReferrals")
+  entities      Entity[]
+
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
+
 
 model Account {
   id                String  @id @default(cuid())
@@ -1122,6 +1183,8 @@ model Embedding {
   model       String    @default("text-embedding-005") // Embedding model used
   createdAt   DateTime  @default(now())
 
+  loreEntry   LoreEntry?
+
   @@unique([entityType, entityId, chunkIndex])
   @@index([entityType])
 }
@@ -1223,6 +1286,84 @@ model AgentAction {
 
   @@index([agent, createdAt])
   @@index([domain, createdAt])
+}
+
+// ─────────────────────────────────────────────────────────────
+// SANDBOX MIRRORS (Phase 1.8) — staging before promotion to production
+// Branch policy: when ToolRunContext.isSandbox, handlers MUST NOT write prod tables.
+// DraftBusiness mirrors DirectoryBusiness fields used by rook.harvest.
+// ─────────────────────────────────────────────────────────────
+
+model DraftBusiness {
+  id                Int       @id @default(autoincrement())
+  createdByUserId   String?
+  createdBy         User?     @relation(fields: [createdByUserId], references: [id], onDelete: SetNull)
+  clientId          Int?
+  client            Client?   @relation(fields: [clientId], references: [id], onDelete: SetNull)
+
+  name              String
+  slug              String    @unique
+  category          String
+  city              String
+  state             String    @default("MS")
+  address           String?
+  phone             String?
+  website           String?
+  description       String    @db.Text
+  contactName       String
+  contactEmail      String
+  tier              String    @default("free")
+  googleRating      Float?
+  googleReviewCount Int?
+  active            Boolean   @default(false)
+
+  /// Set when promoted to DirectoryBusiness (Phase 1.9+)
+  promotedDirectoryBusinessId Int? @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([createdByUserId])
+  @@index([clientId])
+}
+
+model DraftAction {
+  id              Int      @id @default(autoincrement())
+  createdByUserId String?
+  createdBy       User?    @relation(fields: [createdByUserId], references: [id], onDelete: SetNull)
+
+  agent     String
+  action    String
+  summary   String
+  detail    String? @db.Text
+  domain    String
+  impact    String?
+
+  createdAt DateTime @default(now())
+
+  @@index([createdByUserId, createdAt])
+}
+
+model DraftContext {
+  id              Int       @id @default(autoincrement())
+  createdByUserId String?
+  createdBy       User?     @relation(fields: [createdByUserId], references: [id], onDelete: SetNull)
+
+  domain      String
+  topic       String
+  key         String
+  content     String    @db.Text
+  source      String
+  confidence  Float     @default(1.0)
+  agentAuthor String?
+  visibility  String    @default("private")
+  validUntil  DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([domain, key])
+  @@index([createdByUserId])
 }
 
 /// Show Event — first-class entity spanning all 11 domains
@@ -1719,4 +1860,264 @@ model CorridorCity {
 
   @@unique([name, state])
   @@index([corridorOrder])
+}
+
+// ─────────────────────────────────────────────────────────────
+// EDITORIAL BUREAU (Phase 2.1)
+// ─────────────────────────────────────────────────────────────
+
+model Brand {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  name      String
+  jobs      Job[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model StyleGuide {
+  id               String   @id @default(cuid())
+  name             String
+  persona          String   // e.g. "Tracy", "Amy", "CEO"
+  toneWeight       Float    // e.g. 0.8 to represent intensity of tone
+  forbiddenPhrases String[] // Array of phrases to penalize in checking
+  samples          String[] // Few-shot snippets
+  jobs             Job[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Job {
+  id               String   @id @default(cuid())
+  toolId           String
+  params           Json
+  editorialStatus  String   @default("DRAFT") // DRAFT | AI_READY | HUMAN_REVIEW | LIVE
+  assignedHumanId  String?
+  assignedHuman    User?    @relation(fields: [assignedHumanId], references: [id], onDelete: SetNull)
+  brandId          String?
+  brand            Brand?   @relation(fields: [brandId], references: [id])
+  styleGuideId     String?
+  styleGuide       StyleGuide? @relation(fields: [styleGuideId], references: [id])
+  /// AI / producer draft (HTML or plain text — editor normalizes on save)
+  draftContent       String?  @db.Text
+  /// Editor-in-Chief revision (Tracy / Amy lane)
+  humanEditedContent String?  @db.Text
+  /// Red Pen (Gemma / fallback) structured notes + suggested fixes
+  redPenNotes        String?  @db.Text
+  visualAssets     VisualAsset[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([editorialStatus])
+  @@index([assignedHumanId])
+}
+
+/// Radio / Inn / studio capture — Network Highlight copy + linked `VisualAsset` rows (optional `Job`).
+model MediaSession {
+  id                      String        @id @default(cuid())
+  title                   String?
+  venue                   String        @default("Big Muddy Radio Studio")
+  recordedAt              DateTime      @default(now())
+  endedAt                 DateTime?
+  /// recorded | transcribed | highlight_ready | published
+  status                  String        @default("recorded")
+  networkHighlightSnippet String?       @db.Text
+  sourceRecordingUrl      String?
+  visualAssets            VisualAsset[]
+  performances            Performance[]
+  createdAt               DateTime      @default(now())
+  updatedAt               DateTime      @updatedAt
+
+  @@index([recordedAt])
+  @@index([status])
+}
+
+// ─────────────────────────────────────────────────────────────
+// BIG MUDDY MUSIC VERTICAL (Sovereign Stage + Radio Studio)
+// Links roster `Artist` to physical `Venue` and ingest `MediaSession`.
+// ─────────────────────────────────────────────────────────────
+
+model Venue {
+  id           Int           @id @default(autoincrement())
+  slug         String        @unique
+  name         String
+  /// inn_stage | radio_studio | outdoor | partner
+  kind         String        @default("inn_stage")
+  address      String?
+  city         String        @default("Natchez")
+  state        String        @default("MS")
+  performances Performance[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([kind])
+  @@index([city, state])
+}
+
+/// Scheduled or completed show — headliner is existing talent-pipeline `Artist`.
+model Performance {
+  id                      Int           @id @default(autoincrement())
+  slug                    String?       @unique
+  title                   String?
+  artistId                Int
+  artist                  Artist        @relation(fields: [artistId], references: [id], onDelete: Restrict)
+  venueId                 Int
+  venue                   Venue         @relation(fields: [venueId], references: [id], onDelete: Restrict)
+  mediaSessionId          String?
+  mediaSession            MediaSession? @relation(fields: [mediaSessionId], references: [id], onDelete: SetNull)
+  scheduledAt             DateTime
+  endedAt                 DateTime?
+  /// scheduled | soundcheck | live | completed | cancelled
+  status                  String        @default("scheduled")
+  posterUrl               String?
+  socialSnippet           String?       @db.Text
+  vipNotes                String?       @db.Text
+  createdAt               DateTime      @default(now())
+  updatedAt               DateTime      @updatedAt
+
+  @@index([venueId, scheduledAt])
+  @@index([artistId])
+  @@index([status])
+  @@index([mediaSessionId])
+  mediaAssets MediaAsset[]
+}
+
+/// Captured audio/video/still tied to a `Performance` (flywheel media output).
+model MediaAsset {
+  id               String       @id @default(cuid())
+  performanceId    Int?
+  performance      Performance? @relation(fields: [performanceId], references: [id], onDelete: SetNull)
+  kind             String       @default("audio") // audio | video | image | transcript
+  url              String
+  mimeType         String?
+  durationSeconds  Int?
+  metadata         Json?
+  createdAt        DateTime     @default(now())
+
+  @@index([performanceId])
+  @@index([kind])
+}
+
+model VisualAsset {
+  id                  String        @id @default(cuid())
+  jobId               String?
+  job                 Job?          @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  mediaSessionId      String?
+  mediaSession        MediaSession? @relation(fields: [mediaSessionId], references: [id], onDelete: SetNull)
+  aiPlaceholderUrl    String?
+  finalPhotographyUrl String?
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  @@index([jobId])
+  @@index([mediaSessionId])
+}
+
+// ─────────────────────────────────────────────────────────────
+// ECONOMIC ENGINE (Sovereign Wallet Tracker)
+// ─────────────────────────────────────────────────────────────
+
+model ContributionLog {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount     Int
+  reason     String
+  fileType   String?
+  sourceId   String?  // References Lore or VisualAsset ID
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+}
+
+/// Append-only credit audit (burn / earn). Prefer this over mutating `User.credits` without a row.
+model CreditLedger {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// Signed delta: positive = earn, negative = burn
+  change       Int
+  reason       String   // signing_bonus | daily_burn | lore_submit | admin_adjust | purchase_bypass | barter
+  balanceAfter Int?
+  metadata     Json?
+  createdAt    DateTime @default(now())
+
+  @@index([userId, createdAt])
+  @@index([reason])
+}
+
+/// Power-map node (Who's Who). Distinct from sales `Lead` — optimized for graph + Vertex traversal.
+model Entity {
+  id            String   @id @default(cuid())
+  displayName   String
+  industry      String
+  /// 1–10 regional influence heuristic
+  powerRating   Int      @default(5)
+  connections   Json     @default("{}")
+  notes         String?  @db.Text
+  userId        String?
+  user          User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([industry])
+  @@index([powerRating])
+  @@index([userId])
+}
+
+/// First-class lore unit for RAG + provenance (parallel to legacy `Lore` contributor table).
+model LoreEntry {
+  id               String    @id @default(cuid())
+  /// raw | vetted | lore_media | clearinghouse | scout
+  namespace        String
+  title            String?
+  body             String    @db.Text
+  sourceUrl        String?
+  /// 0–1 model / Vertex uncertainty; low values surface a human review queue
+  confidenceScore  Float?
+  embeddingId      Int?      @unique
+  embedding        Embedding? @relation(fields: [embeddingId], references: [id], onDelete: SetNull)
+  submitterId      String?
+  submitter        User?     @relation(fields: [submitterId], references: [id], onDelete: SetNull)
+  verifiedAt       DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@index([namespace])
+  @@index([confidenceScore])
+  @@index([submitterId])
+}
+
+/// Scout / orchestration job record for autonomous agents (Vertex-backed tasks).
+model AgentTask {
+  id          String    @id @default(cuid())
+  agent       String
+  missionType String    // scout | harvest | transcribe | embed | other
+  status      String    @default("pending") // pending | running | completed | failed | cancelled
+  input       Json?
+  result      Json?
+  error       String?   @db.Text
+  startedAt   DateTime?
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([status, missionType])
+  @@index([createdAt])
+}
+
+model Lore {
+  id          String   @id @default(cuid())
+  sourceFile  String
+  type        String   // manuals | journals | sops
+  rawText     String   @db.Text
+  verified    Boolean  @default(false) // Vetting Flag
+  submitterId String?
+  submitter   User?    @relation(fields: [submitterId], references: [id], onDelete: SetNull)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([verified])
+  @@index([type])
+  @@index([submitterId])
 }

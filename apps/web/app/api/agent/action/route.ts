@@ -16,9 +16,9 @@ export async function GET(req: NextRequest) {
   const agent = searchParams.get('agent');
   const domain = searchParams.get('domain');
   const since = searchParams.get('since');
-  const limit = Math.min(parseInt(searchParams.get('limit') || '20'), 100);
+  const limit = Math.min(parseInt(searchParams.get('limit') || '20', 10), 100);
 
-  const where: any = {};
+  const where: Record<string, unknown> = {};
 
   if (agent) where.agent = agent;
   if (domain) where.domain = domain;

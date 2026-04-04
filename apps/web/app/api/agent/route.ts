@@ -1,7 +1,8 @@
 export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAdmin } from '@/lib/admin-auth';
-import { toolRegistry, ToolAuthClass } from '@/lib/agent/toolRegistry';
+import { auth } from '@/lib/auth';
+import { toolRegistry, ToolAuthClass, type ToolExecuteOptions } from '@/lib/agent/toolRegistry';
 
 function isRecord(v: unknown): v is Record<string, unknown> {
   return typeof v === 'object' && v !== null;
@@ -11,13 +12,14 @@ function isRecord(v: unknown): v is Record<string, unknown> {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { toolId, params, maxTokens, maxSpend, traceId, includeTelemetry } = body as {
+    const { toolId, params, maxTokens, maxSpend, traceId, includeTelemetry, isSandbox } = body as {
       toolId?: string;
       params?: unknown;
       maxTokens?: number;
       maxSpend?: number;
       traceId?: string;
       includeTelemetry?: boolean;
+      isSandbox?: boolean;
     };
 
     if (!toolId || typeof toolId !== 'string') {
@@ -37,18 +39,20 @@ export async function POST(req: NextRequest) {
       if (denied) return denied;
     }
 
-    const execOpts =
-      typeof maxTokens === 'number' ||
-      typeof maxSpend === 'number' ||
-      (typeof traceId === 'string' && traceId.trim().length > 0) ||
-      includeTelemetry === true
-        ? {
-            maxTokens,
-            maxSpend,
-            traceId: typeof traceId === 'string' && traceId.trim() ? traceId.trim().slice(0, 128) : undefined,
-            includeTelemetry: includeTelemetry === true,
-          }
+    const session = await auth();
+    const createdByUserId =
+      session?.user && typeof (session.user as { id?: string }).id === 'string'
+        ? (session.user as { id: string }).id
         : undefined;
+
+    const execOpts: ToolExecuteOptions = {
+      maxTokens: typeof maxTokens === 'number' && Number.isFinite(maxTokens) ? maxTokens : undefined,
+      maxSpend: typeof maxSpend === 'number' && Number.isFinite(maxSpend) ? maxSpend : undefined,
+      traceId: typeof traceId === 'string' && traceId.trim() ? traceId.trim().slice(0, 128) : undefined,
+      includeTelemetry: includeTelemetry === true,
+      isSandbox: isSandbox === true,
+      createdByUserId,
+    };
     const result = await tool.execute(params ?? {}, execOpts);
 
     const registryHeaders = new Headers();

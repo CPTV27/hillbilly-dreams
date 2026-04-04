@@ -117,55 +117,67 @@ Return ONLY valid JSON array (no markdown):
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-|-$/g, '');
 
-      await prisma.directoryBusiness.upsert({
-        where: { slug },
-        create: {
-          name: String(row.name),
-          slug,
-          category: typeof row.category === 'string' ? row.category : 'Services',
-          city: location.split(',')[0].trim(),
-          state: location.split(',')[1]?.trim()?.replace(/^\s+/, '') || 'MS',
-          description:
-            typeof row.description === 'string' ? row.description : 'Local business in ' + location,
-          contactName: 'DSD Harvest',
-          contactEmail: 'harvest@deepsouthdirectory.com',
-          tier:
-            row.tierRecommendation === 'operator_499'
-              ? 'the_route'
-              : row.tierRecommendation === 'engine_99'
-                ? 'main_street'
-                : 'free',
-          googleRating: row.googleRating != null ? parseFloat(String(row.googleRating)) : null,
-          googleReviewCount: row.reviewCount != null ? parseInt(String(row.reviewCount), 10) : null,
-          website: typeof row.website === 'string' ? row.website : null,
-          phone: typeof row.phone === 'string' ? row.phone : null,
-          address: typeof row.address === 'string' ? row.address : null,
-          active: false,
-        },
-        update: {
-          description: typeof row.description === 'string' ? row.description : undefined,
-          googleRating: row.googleRating != null ? parseFloat(String(row.googleRating)) : undefined,
-          googleReviewCount: row.reviewCount != null ? parseInt(String(row.reviewCount), 10) : undefined,
-        },
-      });
+      const createData = {
+        name: String(row.name),
+        slug,
+        category: typeof row.category === 'string' ? row.category : 'Services',
+        city: location.split(',')[0].trim(),
+        state: location.split(',')[1]?.trim()?.replace(/^\s+/, '') || 'MS',
+        description:
+          typeof row.description === 'string' ? row.description : 'Local business in ' + location,
+        contactName: 'DSD Harvest',
+        contactEmail: 'harvest@deepsouthdirectory.com',
+        tier:
+          row.tierRecommendation === 'operator_499'
+            ? 'the_route'
+            : row.tierRecommendation === 'engine_99'
+              ? 'main_street'
+              : 'free',
+        googleRating: row.googleRating != null ? parseFloat(String(row.googleRating)) : null,
+        googleReviewCount: row.reviewCount != null ? parseInt(String(row.reviewCount), 10) : null,
+        website: typeof row.website === 'string' ? row.website : null,
+        phone: typeof row.phone === 'string' ? row.phone : null,
+        address: typeof row.address === 'string' ? row.address : null,
+        active: false,
+      };
+
+      const updateData = {
+        description: typeof row.description === 'string' ? row.description : undefined,
+        googleRating: row.googleRating != null ? parseFloat(String(row.googleRating)) : undefined,
+        googleReviewCount: row.reviewCount != null ? parseInt(String(row.reviewCount), 10) : undefined,
+      };
 
       const contextKey = `harvest.${slug}`;
-      await prisma.agentContext.upsert({
-        where: { domain_key: { domain: 'marketing', key: contextKey } },
-        create: {
-          domain: 'marketing',
-          key: contextKey,
-          topic: 'harvest-audit',
-          content: JSON.stringify(row),
-          source: `api/agent/harvest/${location}`,
-          agentAuthor: 'rook-harvester',
-          confidence: 0.8,
-        },
-        update: {
-          content: JSON.stringify(row),
-          confidence: 0.8,
-        },
-      });
+      const contextCreateData = {
+        domain: 'marketing',
+        key: contextKey,
+        topic: 'harvest-audit',
+        content: JSON.stringify(row),
+        source: `api/agent/harvest/${location}`,
+        agentAuthor: 'rook-harvester',
+        confidence: 0.8,
+      };
+
+      if (ctx?.isSandbox === true) {
+        const uid = ctx.createdByUserId ?? null;
+        await prisma.draftBusiness.upsert({
+          where: { slug },
+          create: { ...createData, createdByUserId: uid },
+          update: { ...updateData, createdByUserId: uid ?? undefined },
+        });
+        await prisma.draftContext.upsert({
+          where: { domain_key: { domain: 'marketing', key: contextKey } },
+          create: { ...contextCreateData, createdByUserId: uid },
+          update: { content: JSON.stringify(row), confidence: 0.8, createdByUserId: uid ?? undefined },
+        });
+      } else {
+        await prisma.directoryBusiness.upsert({ where: { slug }, create: createData, update: updateData });
+        await prisma.agentContext.upsert({
+          where: { domain_key: { domain: 'marketing', key: contextKey } },
+          create: contextCreateData,
+          update: { content: JSON.stringify(row), confidence: 0.8 },
+        });
+      }
 
       saved++;
     } catch {
@@ -174,16 +186,26 @@ Return ONLY valid JSON array (no markdown):
   }
 
   try {
-    await prisma.agentAction.create({
-      data: {
-        agent: 'rook',
-        action: 'harvest',
-        summary: `Harvested ${saved} businesses in ${location} (${searchCategory})`,
-        detail: `Found ${businesses.length}, saved ${saved}, errors ${errors}. Categories: ${searchCategory}`,
-        domain: 'marketing',
-        impact: 'high',
-      },
-    });
+    const actionData = {
+      agent: 'rook',
+      action: 'harvest',
+      summary: `Harvested ${saved} businesses in ${location} (${searchCategory})`,
+      detail: `Found ${businesses.length}, saved ${saved}, errors ${errors}. Categories: ${searchCategory}`,
+      domain: 'marketing',
+      impact: 'high',
+    };
+
+    if (ctx?.isSandbox === true) {
+      await prisma.draftAction.create({
+        data: {
+          ...actionData,
+          summary: `[SANDBOX] ${actionData.summary}`,
+          createdByUserId: ctx.createdByUserId ?? null,
+        },
+      });
+    } else {
+      await prisma.agentAction.create({ data: actionData });
+    }
   } catch {
     // non-fatal
   }
