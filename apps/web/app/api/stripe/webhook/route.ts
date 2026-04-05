@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
           connectedAccount: session.metadata?.connected_account || 'none',
         });
 
-        // TODO: When DB schema supports Connect transactions,
+        // GitHub#203 — When DB schema supports Connect transactions,
         // persist the transaction record here with brand_class tagging.
         break;
       }
@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
           brandClass: account.metadata?.brand_class || 'unknown',
         });
 
-        // TODO: Update partner record in DB when schema supports it.
+        // GitHub#204 — Update partner record in DB when schema supports it.
         // await prisma.partner.upsert({ ... })
         break;
       }

@@ -89,8 +89,8 @@ export async function POST(request: Request) {
         // 2. Queue occupancy metric recalculation
         await upsertMetricFlag(prisma, 'inn_metrics_stale', 1);
 
-        // 3. TODO: Trigger welcome email sequence via gmail-service
-        // 4. TODO: Check occupancy threshold for dynamic pricing trigger
+        // 3. GitHub#207 — Trigger welcome email sequence via gmail-service
+        // 4. GitHub#208 — Check occupancy threshold for dynamic pricing trigger
 
         apiLog.info('webhook/cloudbeds', 'new booking processed', { reservationId: reservationID });
         break;

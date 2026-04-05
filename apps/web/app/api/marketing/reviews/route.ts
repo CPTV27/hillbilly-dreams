@@ -12,7 +12,7 @@ import { callAI } from '@/lib/ai-models';
  * Body: { contextKey: string, reviews?: array }
  * If reviews not provided, uses sample data for demo.
  *
- * TODO: Integrate Google My Business API to fetch real reviews
+ * Backlog: Google My Business API for live reviews — GitHub#205
  * when the business has connected their Google Business Profile.
  */
 export async function POST(req: NextRequest) {

@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
     const imageBuffer = Buffer.from(data.predictions[0].bytesBase64Encoded, 'base64');
     const filename = `reskin/${businessName.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${Date.now()}.png`;
 
-    // TODO: Upload to GCS via @google-cloud/storage
+    // GitHub#209 — Upload to GCS via @google-cloud/storage
     // For now, return base64 for immediate preview
     const base64Url = `data:image/png;base64,${data.predictions[0].bytesBase64Encoded.substring(0, 100)}...`;
 

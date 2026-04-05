@@ -94,7 +94,7 @@ Return ONLY valid JSON (no markdown):
       },
     });
 
-    // TODO: When Cloud Text-to-Speech integration is ready,
+    // GitHub#206 — When Cloud Text-to-Speech integration is ready,
     // render the script to audio and upload to GCS:
     // gs://bmt-media-bigmuddy/radio/spots/{businessId}.mp3
 
