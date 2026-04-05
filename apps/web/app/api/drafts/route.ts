@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
+import { draftUpdateSchema, formatZodError } from '@/lib/user-post-validation';
 
 export async function GET(req: NextRequest) {
   const status = req.nextUrl.searchParams.get('status') || 'pending';
@@ -22,13 +23,22 @@ export async function GET(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
-  const { id, status, content, approvedBy } = await req.json();
-  if (!id) return NextResponse.json({ error: 'id required' }, { status: 400 });
+  let raw: unknown;
+  try {
+    raw = await req.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+  }
+  const parsed = draftUpdateSchema.safeParse(raw);
+  if (!parsed.success) {
+    return NextResponse.json({ error: formatZodError(parsed.error) }, { status: 400 });
+  }
+  const { id, status, content, approvedBy } = parsed.data;
 
-  const update: any = {};
+  const update: Record<string, unknown> = {};
   if (status) update.status = status;
-  if (content) update.content = content;
-  if (approvedBy) update.approvedBy = approvedBy;
+  if (content !== undefined) update.content = content;
+  if (approvedBy !== undefined) update.approvedBy = approvedBy;
   if (status === 'approved') update.approvedAt = new Date();
   if (status === 'published') update.publishedAt = new Date();
 

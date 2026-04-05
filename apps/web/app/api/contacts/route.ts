@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { contactCreateSchema, formatZodError } from '@/lib/user-post-validation';
 
 // GET /api/contacts
 // Query params: ?category=artist|vendor|media|partner|guest|team&q=search&limit=20&page=1
@@ -54,21 +55,22 @@ export async function GET(request: Request) {
 // POST /api/contacts
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-
-    if (!body.name) {
-      return NextResponse.json({ error: 'name is required' }, { status: 400 });
+    const raw = await request.json();
+    const parsed = contactCreateSchema.safeParse(raw);
+    if (!parsed.success) {
+      return NextResponse.json({ error: formatZodError(parsed.error) }, { status: 400 });
     }
+    const body = parsed.data;
 
     const contact = await prisma.contact.create({
       data: {
         name: body.name,
-        role: body.role || null,
-        organization: body.organization || null,
-        email: body.email || null,
-        phone: body.phone || null,
-        category: body.category || null,
-        notes: body.notes || null,
+        role: body.role ?? null,
+        organization: body.organization ?? null,
+        email: body.email ?? null,
+        phone: body.phone ?? null,
+        category: body.category ?? null,
+        notes: body.notes ?? null,
         lastContact: body.lastContact ? new Date(body.lastContact) : null,
       },
     });

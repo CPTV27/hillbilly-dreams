@@ -15,6 +15,7 @@ import { generateTextWithTierOrVertex } from '@/lib/ai/openRouter';
 import { prisma } from '@/lib/db';
 import { notify } from '@/lib/notify';
 import { generateSlug } from '@/lib/google-places';
+import { directorySubmitSchema, formatZodError } from '@/lib/user-post-validation';
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const ip = getClientIp(request.headers);
@@ -27,12 +28,16 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 
   try {
-    const body = await request.json();
+    const raw = await request.json();
+    const parsed = directorySubmitSchema.safeParse(raw);
+    if (!parsed.success) {
+      return NextResponse.json({ error: formatZodError(parsed.error) }, { status: 400 });
+    }
     const {
       name,
       category,
       city,
-      state = 'MS',
+      state,
       website,
       description,
       toolsOrigin,
@@ -41,16 +46,11 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       contactEmail,
       contactPhone,
       hearAbout,
-      // Musician-specific fields
       genre,
       streamingLinks,
       availability,
       feeRange,
-    } = body;
-
-    if (!name || !category || !city || !description || !contactName || !contactEmail) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
-    }
+    } = parsed.data;
 
     // Generate URL-safe slug
     const slug = generateSlug(name, city);

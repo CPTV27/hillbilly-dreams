@@ -13,7 +13,7 @@ const MAX_KEYS = 50_000;
 
 function pruneStale(now: number) {
   if (store.size < MAX_KEYS) return;
-  for (const [k, b] of store) {
+  for (const [k, b] of Array.from(store.entries())) {
     if (b.resetAt <= now) store.delete(k);
   }
 }

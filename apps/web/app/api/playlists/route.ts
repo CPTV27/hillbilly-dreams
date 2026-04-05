@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic';
 
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { formatZodError, playlistCreateSchema } from '@/lib/user-post-validation';
 
 export async function GET(request: Request) {
   try {
@@ -27,20 +28,21 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-
-    if (!body.name) {
-      return NextResponse.json({ error: 'Missing required field: name' }, { status: 400 });
+    const raw = await request.json();
+    const parsed = playlistCreateSchema.safeParse(raw);
+    if (!parsed.success) {
+      return NextResponse.json({ error: formatZodError(parsed.error) }, { status: 400 });
     }
+    const body = parsed.data;
 
     const playlist = await prisma.playlist.create({
       data: {
         name: body.name,
-        description: body.description || null,
-        trackCount: body.trackCount || 0,
-        spotifyUrl: body.spotifyUrl || null,
-        coverImage: body.coverImage || null,
-        status: body.status || 'active',
+        description: body.description ?? null,
+        trackCount: body.trackCount,
+        spotifyUrl: body.spotifyUrl ?? null,
+        coverImage: body.coverImage ?? null,
+        status: body.status,
       },
     });
 

@@ -8,6 +8,7 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { directoryClaimSchema, formatZodError } from '@/lib/user-post-validation';
 
 function slugify(name: string): string {
   return name
@@ -94,29 +95,17 @@ interface ClaimBody {
 export async function POST(request: NextRequest) {
   let body: ClaimBody;
   try {
-    body = await request.json();
+    const raw = await request.json();
+    const parsed = directoryClaimSchema.safeParse(raw);
+    if (!parsed.success) {
+      return NextResponse.json({ error: formatZodError(parsed.error) }, { status: 400 });
+    }
+    body = parsed.data as ClaimBody;
   } catch {
     return NextResponse.json({ error: 'Invalid JSON body.' }, { status: 400 });
   }
 
-  // Validate required fields
   const { name, businessType, city, tier } = body;
-  if (!name || !businessType || !city || !tier) {
-    return NextResponse.json(
-      { error: 'name, businessType, city, and tier are required.' },
-      { status: 400 },
-    );
-  }
-
-  const validTypes = ['restaurant', 'venue', 'hotel', 'shop', 'tour', 'service', 'other'];
-  if (!validTypes.includes(businessType)) {
-    return NextResponse.json({ error: `Invalid businessType: ${businessType}` }, { status: 400 });
-  }
-
-  const validTiers = ['free', 'front-porch', 'route', 'river-room', 'blues-room'];
-  if (!validTiers.includes(tier)) {
-    return NextResponse.json({ error: `Invalid tier: ${tier}` }, { status: 400 });
-  }
 
   try {
 

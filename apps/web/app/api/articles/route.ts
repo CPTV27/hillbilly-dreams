@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { CITY_GUIDE_ARTICLES } from '@/lib/articles';
+import { articleCreateSchema, formatZodError } from '@/lib/user-post-validation';
 
 // ── GET /api/articles ──────────────────────────────────────────────────────
 // Returns all published articles. Tries Prisma first; falls back to static data.
@@ -65,10 +66,14 @@ export async function GET(request: NextRequest) {
 // Returns 503 if database is not available.
 
 export async function POST(request: NextRequest) {
-  let body: Record<string, unknown>;
-
+  let body: import('zod').infer<typeof articleCreateSchema>;
   try {
-    body = await request.json();
+    const raw = await request.json();
+    const parsed = articleCreateSchema.safeParse(raw);
+    if (!parsed.success) {
+      return NextResponse.json({ error: formatZodError(parsed.error) }, { status: 400 });
+    }
+    body = parsed.data;
   } catch {
     return NextResponse.json(
       { error: 'Invalid JSON body.' },
@@ -76,34 +81,20 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Basic validation
-  if (!body.title || typeof body.title !== 'string') {
-    return NextResponse.json(
-      { error: 'title is required and must be a string.' },
-      { status: 400 }
-    );
-  }
-  if (!body.slug || typeof body.slug !== 'string') {
-    return NextResponse.json(
-      { error: 'slug is required and must be a string.' },
-      { status: 400 }
-    );
-  }
-
   try {
     const article = await (prisma as any).article.create({
       data: {
-        title: body.title as string,
-        slug: body.slug as string,
-        category: (body.category as string) ?? 'city-guide',
-        city: (body.city as string | null) ?? null,
-        author: (body.author as string) ?? 'Big Muddy Magazine',
-        status: (body.status as string) ?? 'draft',
-        excerpt: (body.excerpt as string | null) ?? null,
-        body: (body.body as string | null) ?? null,
-        heroImage: (body.heroImage as string | null) ?? null,
-        readTime: (body.readTime as string | null) ?? null,
-        publishedAt: body.publishedAt ? new Date(body.publishedAt as string) : null,
+        title: body.title,
+        slug: body.slug,
+        category: body.category,
+        city: body.city ?? null,
+        author: body.author,
+        status: body.status,
+        excerpt: body.excerpt ?? null,
+        body: body.body ?? null,
+        heroImage: body.heroImage ?? null,
+        readTime: body.readTime ?? null,
+        publishedAt: body.publishedAt ? new Date(body.publishedAt) : null,
       },
     });
 
