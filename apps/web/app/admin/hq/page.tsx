@@ -61,7 +61,7 @@ const BRANDS = [
     name: 'Big Muddy Inn',
     domain: 'bigmuddytouring.com/inn',
     category: 'Hospitality',
-    revenue: { current: 0, projected: 180000, basis: '6 rooms × $275 ADR × 25% occ × 365' },
+    revenue: { current: 0, projected: 150562, basis: '6 rooms × $275 ADR × 25% occ × 365' },
     multiple: 2,
     assets: '6 rooms, Blues Room venue, downtown Natchez location',
     status: 'Active — taking bookings',
