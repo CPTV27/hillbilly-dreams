@@ -1,26 +1,43 @@
-# Studio Almanac: Big Muddy Magazine Print Edition
+# Studio Almanac — monthly print run (Bearsville Creative)
 
-The Studio Almanac functions as the tactical, physical manifestation of Big Muddy Magazine. It is designed to act as a hyper-curated, tactile artifact sitting on coffee tables and hotel nightstands across the footprint, directly converting static readers into active DSD sub-nodes.
+**Intent:** A **collectible print layer** for the Northeast node — photography-forward, editorially sharp, economically rational. Not a newsweekly; a **slow-media artifact** that agents and venues keep on the coffee table.
 
-## 1. Design & Typography Aesthetics
-*   **The Look:** "Anti-SaaS." Sourcing inspiration from premium southern lifestyle publications like *Garden & Gun*, *Kinfolk*, or *The Bitter Southerner*.
-*   **Layout Structure:** Highly generous whitespace, stark minimalist grid systems, and massive edge-to-edge cinematic photography captured by Studio C/Chase.
-*   **Typography:** Strict adherence to the brand book. Modern, severe serif headers (`Playfair Display` or `EB Garamond`) contrasted with highly legible san-serif body copy (`Inter` or `Roboto`).
-*   **Material:** Heavy uncoated stock paper (matte) for total anti-gloss, tactile permanence.
+**P3** — activate after summer 2026 Bearsville footprint is stable.
 
-## 2. Content Architecture (The Monthly Loop)
-*   **The Editorial:** A localized feature written in the "Chase Voice" detailing a granular slice of regional economics or Delta culture. 
-*   **The Founding 10:** A recurring multi-page spread actively spotlighting the core local businesses funding the Deep South Directory (the $99/mo layer). This is the physical "Media Moat."
-*   **The Big Muddy Radar:** A 30-day curated calendar highlighting exact live shows booking through the Big Muddy Touring arm and the mechanical bull events at The Inn.
-*   **Studio C Manifest:** Technical breakdowns of gear or photography tips. 
+---
 
-## 3. Print Logistics & Sourcing
-*   **Printer:** Mixam or Smartpress (for heavy-stock short-run saddle-stitch zines), scaling to web-offset printing for longer runs.
-*   **Dimensions:** Standard magazine size (8.5" x 11") or a slightly over-indexed tactical field manual size (5.5" x 8.5" A5 variant) for easier physical dissemination.
-*   **Frequency:** Quarterly in Year 1, expanding to Monthly as DSD MRR thresholds cover the overhead.
+## 1. Editorial spine
 
-## 4. Distribution Protocol
-We do not rely on traditional newsstand logistics. The Almanac uses a localized "Trojan Horse" distribution flow.
-*   **The Hotel Network:** Copies are deployed aggressively to all 12 rooms at The Big Muddy Inn as standard bedside reading.
-*   **DSD "Drop Points":** Every business paying the $99/mo DSD Marketing Tier receives 20 physical copies as a perk to lay out in their lobby/waiting room/bar—ensuring their customers see the DSD network from multiple angles.
-*   **Direct Mail D2C:** Top-tier Patrons (Engine Members) are direct-mailed shrink-wrapped pristine copies.
+| Section | Content source |
+|---------|----------------|
+| **Cover** | One hero frame from Studio C / Tuthill month (no AI typography on image). |
+| **Field notes** | 2–4 spreads — venue, inn, Main Street business (parallel to Outsider Economics tone, Northeast geography). |
+| **Gear / craft** | Short technical pieces (lighting, audio for video, Matterport hygiene). |
+| **Calendar** | Hand-picked live dates — Big Muddy Touring + local Woodstock / Kingston picks. |
+
+## 2. Design system
+
+- **Size:** 8.5×11” or **digest** (5.5×8.5”) for lower print MOQ.
+- **Typography:** Use brand fonts from design tokens — no one-off freefont soup.
+- **Color:** Analogous to HDI industrial palette; Northeast variant documented in Bearsville brand kit.
+
+## 3. Print partner research (to validate)
+
+- **Digital short-run:** Mixam, Newspaper Club (if broadsheet experiment), local Hudson Valley printer for **proof credibility**.
+- **Paper:** Uncoated stock for editorial feel; heavier cover 100–120# cover.
+
+## 4. Distribution
+
+- **Tuthill** open houses and **Studio C** client gift.
+- **Inn / venue** consignment in Natchez when issue theme ties to Mississippi story (cross-node swap).
+- **Direct mail** to 250 high-LTV agents — not mass saturation.
+
+## 5. Economics
+
+- **Sponsor** one local business per issue (full bleed back cover).
+- **Cost floor:** Design + print + ship ≤ **revenue from sponsors + pre-sales** before greenlight.
+
+## 6. Cadence
+
+- **Monthly** ideal; **bimonthly** acceptable for year one.
+- **Issue 0** — 16 pages, winter 2026–27, PDF proof only.
