@@ -1,22 +1,37 @@
-# Bob Bedard Executive Briefing
+# Bob Bedard — briefing memo (Scan2Plan / S2PX context + HDI)
 
-This document outlines the conversational framework for the immediate alignment discussion with Bob Bedard concerning Scan2Plan (S2PX) and its intersection with Hillbilly Dreams Inc. (HDI) and Tuthill Design.
+**Audience:** Chase (speaker) · **Bob Bedard** (listener)  
+**Intent:** Revive a **technical relationship** without over-promising shuttered product lines. S2PX (Scan2Plan) is **archived**; the through-line is **spatial capture → operator-ready assets → local margin**.
 
-## 1. Context: The S2PX / Tuthill Matrix
-Tuthill Design is structurally positioned to act as a highly specialized digital contractor. 
-*   **The S2PX Angle:** We bring the Scan2Plan architecture (rapid Matterport spatial ingestion + pipeline generation) to reality. We function as the bleeding-edge "Capture and Presentation" layer.
-*   **The Pitch:** "We run the tactical edge. Tuthill will manage the high-fidelity scanning and 3D environment processing to generate your floor plans faster and cleaner than legacy workflows."
+---
 
-## 2. Context: The Broader HDI Vision
-Bob needs to understand that Tuthill Design is a *spoke* in a larger wheel.
-*   **The HDI Explanation:** Tuthill Design operates within the HDI holding company. Our ability to scale Scan2Plan tech is directly subsidized by our robust regional publishing, directory (DSD), and touring networks. This means we have a multi-tenant tech stack ready to deploy for his operations at zero upfront engineering cost to him.
+## 1. What S2PX was (honest)
 
-## 3. What to Pitch (The Offense)
-1.  **Immediate Execution:** Pitch Elijah and Chase as rapid-deployment operators. We can scan a property in the morning and have the digital presentation spun up by that night on the Vercel edge network.
-2.  **Anti-SaaS Lean Pipeline:** Pitch the fact that our custom software stack bypasses bloated traditional SaaS subscriptions. We use lightweight, heavily optimized tools.
-3.  **Local Gravity:** Pitch our complete control of the Deep South footprint (DSD) to help him source beta clients and validate the workflow natively.
+- A **physical-to-digital** bridge: scan spaces, ingest geometry + media, feed operator workflows.
+- Partnership that **ended March 2026** — codebase archived; not a live SKU.
 
-## 4. What NOT to Promise (The Guardrails)
-1.  **Do NOT offer full-time exclusivity.** Do not promise that Chase and Elijah are going to work 40 hours a week exclusively on Scan2Plan. We are independent contractors leveraging the HDI infrastructure, not direct W2 hires.
-2.  **Do NOT promise custom engine builds.** Do not volunteer to build a massive, proprietary software monolith *for* Bob from scratch for free. We use *our* existing stack (MBT) and license them an instance of it.
-3.  **Do NOT surrender IP.** Any tools, scripts, or workflows developed by Tuthill to optimize the scanning-to-plan pipeline remain the intellectual property of HDI/Tuthill Design. Bob pays for the output/service, not the underlying source code.
+## 2. What HDI is now (one sentence)
+
+- **Sovereign media + directory infrastructure** for the Deep South anchor (Natchez) and a **Northeast node** (Bearsville / Tuthill), powered by one Next.js platform — not a generic SaaS story.
+
+## 3. What to **pitch** Bob
+
+- **Composability:** Same engine runs touring, magazine, radio, directory, and **Studio C** production rails.
+- **Google + Meta + Stripe reality:** OAuth, webhooks, and fulfillment are **wired**, not slideware.
+- **Scan-adjacent future:** Gaussian splats, Matterport pipelines, and **Tuthill spatial** SKUs are **product specs**, not shipped consumer apps — invite Bob as **advisor or integration partner**, not as “reseller of S2PX.”
+
+## 4. What **not** to promise
+
+- ❌ Reviving S2PX as a named commercial product without a new contract.
+- ❌ “We’ll merge your repo Monday” — engineering is **prioritized by DSD field sales + Touring**.
+- ❌ Exclusive geographic lock-ups HDI cannot legally or ethically hold.
+
+## 5. Ask (pick one primary)
+
+1. **Technical:** Review archived S2PX assumptions against current **Prisma + Vercel** stack — where would he plug a scanner pipeline today?
+2. **Commercial:** Introductions to **facilities / RE** operators who need recurring media, not one-off scans.
+3. **Research:** Whitepaper credit on **spatial → listing narrative** workflow (no cash ask on first call).
+
+## 6. Closing line (brand-safe)
+
+“We build local. The value stays local. We grow from within.” — use only if the room wants ethos, not deck jargon.
