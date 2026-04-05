@@ -1,25 +1,45 @@
-# Tuthill Design: Realtor Pulse Specification
+# Tuthill — Realtor Pulse ($500/mo package)
 
-The "Realtor Pulse" product is a purpose-built B2B subscription tier operated by Tuthill Design (and executed by Studio C / Chase). It transitions real estate agents from unpredictable freelance media expenses into a predictable, high-value monthly pipeline.
+**SKU:** Recurring **listing narrative + media orchestration** for Hudson Valley agents who are underwater on content. **Studio C** (Bearsville, NY) executes capture; **Tuthill Design** owns the client promise.
 
-## 1. The Financial Model
-*   **Target Market:** Top-producing independent realtors in the Natchez / Delta and Hudson Valley regions.
-*   **Price Point:** $500.00 / month (12-month commitment preferred).
-*   **The Math:** An agent typically pays ~$250/listing a la carte. Generating 2 listings a month costs them $500. We match that price, but drastically overdrive the delivered value by injecting our proprietary AI and media engines, locking them in.
+**Price anchor:** **$500/mo** per agent seat (adjust after first 5 pilots).
 
-## 2. Monthly Deliverables Package
-Each month, the $500 subscription guarantees the following asset pipeline for up to **two distinct property listings**:
-*   **Cinematic Capture:** 20 to 30 ultra-sharp, multi-bracketed HDR architectural interior/exterior photos per property.
-*   **Video Tours:** 60-second stabilized video walkthroughs filmed entirely in vertical aspect ratio (9:16) for immediate deployment on Reels/TikTok/Shorts.
-*   **AI Narrative Summaries:** Using the HDI/DSD generative engine, we run the raw property specs through a custom prompt architecture tuned to the "Chase Voice." We provide the agent with a completely finished, highly compelling listing description ready to be pasted into the MLS.
+---
 
-## 3. The DSD Integration Wedge
-This is the hidden anchor. The $500 Pulse subscription automatically provisions the agent with the highest tier **DSD Marketing Account ($99/mo value)** for free. 
-*   **The Benefit to the Agent:** They get a dedicated, premium directory profile on Deep South Directory to capture inbound residential leads.
-*   **The Benefit to HDI:** We secure absolute platform lock-in. We are not just taking their photos; we control their canonical SEO profile on the directory.
+## 1. What’s included
 
-## 4. Upsells (A La Carte Exclusions)
-The following are stripped from the base $500/mo tier and trigger an immediate upcharge invoice if requested:
-*   Drone/Aerial videography (+$150 per property).
-*   Matterport 3D / Pro3 LiDAR Spatial Scanning (+$250 per property).
-*   Twilight/Dusk architectural photography (+$100 per property).
+| Pillar | Deliverable |
+|--------|-------------|
+| **Photography / scan** | Discounted bundle on Zillow-provider SKUs (see `TUTHILL_ZILLOW_PROVIDER.md`). |
+| **Video** | 1 short tour or vertical reel / month OR quarterly long-form — pick at contract. |
+| **AI narrative** | MLS description + social captions; **human QC** before publish (no hype words, no fake reviews). |
+| **Re-report** | Monthly email: views, saves, funnel proxies from Zillow + site analytics where installed. |
+
+## 2. What’s excluded (unless upsold)
+
+- Paid ads spend.
+- Staging furniture.
+- Legal review of co-broke agreements.
+
+## 3. Workflow
+
+1. **Onboard** — Brand voice questionnaire (reuse DSD voice profile pattern, shorter).
+2. **Capture window** — Studio C schedules; rain dates for exteriors.
+3. **Draft** — Narrative + captions in **Google Doc** or in-app approval (future).
+4. **Publish** — Agent posts to MLS; Tuthill assists Zillow media upload if in scope.
+
+## 4. Stripe / ops
+
+- **Stripe Billing** subscription SKU `tuthill_realtor_pulse` (internal name).
+- **Pause** — 30-day seasonal hold for second-home markets.
+
+## 5. Success metrics (90 days)
+
+- ≥**12** deliverables accepted without rework.
+- Agent-reported **time saved** (survey).
+- **0** MLS compliance flags on imagery.
+
+## 6. Dependencies
+
+- Matterport / camera inventory (**#75** hardware).
+- Canva templates for agent co-branding (**#86** manual).
