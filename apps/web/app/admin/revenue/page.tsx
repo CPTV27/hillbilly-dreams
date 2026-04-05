@@ -27,7 +27,7 @@ export default function AdminRevenuePage() {
   }, []);
 
   return (
-    <div>
+    <div style={{ maxWidth: '100%', minWidth: 0 }}>
       <div className="admin-page-header">
         <div>
           <h1 className="admin-page-title">Revenue</h1>

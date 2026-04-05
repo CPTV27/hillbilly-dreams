@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Sovereign Pi — Your business brain in a box',
@@ -26,6 +27,28 @@ const SPECS = [
   { label: 'Size', value: '3.4 x 2.2 x 1.5 inches. Fits in your hand.' },
 ];
 
+/** GCS library — same bucket as roadmap / gallery; works when /images/* is not in the deploy bundle */
+const HERO_STUDIO_SRC =
+  'https://storage.googleapis.com/bmt-media-bigmuddy/command/juke-joint.webp';
+
+const USE_CASE_IMAGES = [
+  {
+    title: 'Restaurant',
+    src: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp',
+    alt: 'Warm juke-joint interior — Sovereign Pi can drive menus, listings, and signage',
+  },
+  {
+    title: 'Hotel & inn',
+    src: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp',
+    alt: 'Hotel lobby and hospitality setting — local AI for guests and operations',
+  },
+  {
+    title: 'Retail & Main Street',
+    src: 'https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-main-street.webp',
+    alt: 'Retail shopfront on a small-town Main Street',
+  },
+] as const;
+
 const FEATURES = [
   { title: 'Works without internet.', desc: 'Your business data, your AI assistant, your dashboard — all running locally. No cloud. No subscription server. If the internet goes down, your Pi keeps working.' },
   { title: 'Plugs into any TV.', desc: 'HDMI out turns any screen into a business display. Menu boards, specials, social media feed, radio visualizer — all managed from your phone.' },
@@ -45,8 +68,22 @@ export default function SovereignPiPage() {
   return (
     <main style={{ fontFamily: 'var(--font-body, system-ui)', color: 'var(--text, #f0ebe0)', background: 'var(--bg, #0f0f0d)' }}>
 
+      {/* Hero visual */}
+      <section style={{ padding: '2rem 1.5rem 0', maxWidth: 1100, margin: '0 auto', width: '100%' }}>
+        <div style={{ position: 'relative', width: '100%', aspectRatio: '21 / 9', maxHeight: 420, borderRadius: 12, overflow: 'hidden', border: '1px solid var(--border, rgba(200,148,62,0.15))' }}>
+          <Image
+            src={HERO_STUDIO_SRC}
+            alt="Production stack in the field — Studio C and Big Muddy media pipelines"
+            fill
+            sizes="(max-width: 900px) 100vw, 1100px"
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            priority
+          />
+        </div>
+      </section>
+
       {/* Hero */}
-      <section style={{ minHeight: '70vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '4rem 1.5rem', maxWidth: 900, margin: '0 auto' }}>
+      <section style={{ minHeight: '55vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem 1.5rem 2rem', maxWidth: 900, margin: '0 auto' }}>
         <p style={{ color: 'var(--accent, #c8943e)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1.5rem' }}>
           Deep South Directory
         </p>
@@ -65,6 +102,24 @@ export default function SovereignPiPage() {
           <a href="/store/sovereign-pi/configure" style={{ display: 'inline-block', padding: '0.75rem 2rem', border: '1px solid var(--accent, #c8943e)', color: 'var(--accent, #c8943e)', textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }}>
             Configure + buy standalone
           </a>
+        </div>
+      </section>
+
+      {/* Where it shows up */}
+      <section style={{ padding: '3rem 1.5rem', maxWidth: 1100, margin: '0 auto', borderTop: '1px solid var(--border, rgba(200,148,62,0.12))' }}>
+        <p style={{ color: 'var(--accent, #c8943e)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '0.5rem' }}>On the ground</p>
+        <h2 style={{ fontFamily: 'var(--font-display, Georgia)', fontSize: 'clamp(1.35rem, 3vw, 1.75rem)', fontWeight: 700, margin: '0 0 1.5rem', lineHeight: 1.2 }}>
+          Built for real rooms — not slide decks.
+        </h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
+          {USE_CASE_IMAGES.map((u) => (
+            <div key={u.title} style={{ borderRadius: 10, overflow: 'hidden', border: '1px solid var(--border, rgba(200,148,62,0.12))', background: 'var(--surface, #151512)' }}>
+              <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 3' }}>
+                <Image src={u.src} alt={u.alt} fill sizes="(max-width: 600px) 100vw, 33vw" style={{ objectFit: 'cover' }} />
+              </div>
+              <p style={{ padding: '0.75rem 1rem', margin: 0, fontSize: '0.85rem', fontWeight: 600 }}>{u.title}</p>
+            </div>
+          ))}
         </div>
       </section>
 

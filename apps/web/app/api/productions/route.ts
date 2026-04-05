@@ -4,6 +4,7 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function GET(req: NextRequest) {
   try {
@@ -32,6 +33,9 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     const body = await req.json();
     const {

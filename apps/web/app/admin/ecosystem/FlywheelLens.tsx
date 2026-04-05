@@ -7,7 +7,7 @@ const NODES = [
   { id: 'content', label: 'Content', metric: 'Photos, video, articles', desc: 'Every show generates content for all channels', color: '#8b5cf6' },
   { id: 'media', label: 'Media Distribution', metric: 'Magazine + Radio + Social', desc: 'Content reaches people who weren\'t in the room', color: '#ec4899' },
   { id: 'discovery', label: 'Discovery', metric: 'Tourists find us', desc: 'DSD listings, SEO, word of mouth', color: '#f97316' },
-  { id: 'directory', label: 'Directory Revenue', metric: '$20-99/mo per business', desc: 'Businesses join the ecosystem', color: '#c8943e' },
+  { id: 'directory', label: 'Directory Revenue', metric: 'Free–$250/mo per business', desc: 'Businesses join the ecosystem', color: '#c8943e' },
   { id: 'invest', label: 'Reinvestment', metric: 'Better shows, more content', desc: 'Revenue funds the next cycle', color: '#22c55e' },
 ];
 

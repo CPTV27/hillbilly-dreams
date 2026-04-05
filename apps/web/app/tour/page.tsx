@@ -62,7 +62,7 @@ const CONFIG = {
       { label: '4. Big Muddy Magazine', desc: 'Editorial that features DSD businesses and artists', url: 'https://bigmuddymagazine.com' },
       { label: '5. Big Muddy Radio', desc: 'Live stream from the Inn, show archives', url: 'https://bigmuddyradio.com' },
       { label: '6. Big Muddy Entertainment', desc: 'Record label + promoter — artists own their masters', url: 'https://bigmuddyentertainment.com' },
-      { label: '7. Big Muddy Records', desc: 'The label — distribution, sync, artist profiles', url: 'https://bigmuddyrecordlabel.com' },
+      { label: '7. Big Muddy Records', desc: 'The label — distribution, sync, artist profiles', url: 'https://bigmuddyrecord.com' },
       { label: '8. Bearsville Creative', desc: 'Northeast node — Utopia Studios, Woodstock NY (summer activation)', url: 'https://bearsvillemediagroup.com' },
       { label: '9. Outsider Economics', desc: 'The field manual — how local economies actually work', url: 'https://outsidereconomics.com' },
       { label: '10. Sovereign Pi Store', desc: 'NEW: A computer for your business — free with membership', url: 'https://bigmuddytouring.com/store/sovereign-pi' },

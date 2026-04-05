@@ -209,8 +209,18 @@ export default function HQDashboard() {
   const [customArpu, setCustomArpu] = useState(85);
   const [customChurn, setCustomChurn] = useState(3);
   const [useCustom, setUseCustom] = useState(false);
+  const [systemHealth, setSystemHealth] = useState<{
+    database: boolean;
+    deploy: { commit: string | null; createdAt: string | null };
+    rag: { ok: boolean; message: string | null };
+    env: Record<string, boolean>;
+  } | null>(null);
 
   useEffect(() => {
+    fetch('/api/admin/system-health')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => (d && typeof d.database === 'boolean' ? setSystemHealth(d) : null))
+      .catch(() => {});
     // Fetch GitHub issue counts via our API
     fetch('/api/admin/tasks')
       .then(r => r.json())
@@ -236,13 +246,33 @@ export default function HQDashboard() {
   const nextMilestone = MILESTONES.find(m => daysUntil(m.date) > 0);
 
   return (
-    <div className="admin-hq-page">
+    <div className="admin-hq-page" style={{ maxWidth: '100%', overflowX: 'hidden', minWidth: 0 }}>
       <div className="admin-page-header">
         <div>
           <h1 className="admin-page-title">HQ</h1>
           <p className="admin-page-sub">Hillbilly Dreams Inc — Executive Dashboard</p>
         </div>
       </div>
+
+      {systemHealth && (
+        <div className="admin-card" style={{ marginBottom: 'var(--space-4)', fontSize: 'var(--text-xs)' }}>
+          <div style={{ fontWeight: 700, color: 'var(--text-disabled)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-widest)', marginBottom: 'var(--space-2)' }}>
+            System health
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)', alignItems: 'center' }}>
+            <span style={{ color: systemHealth.database ? 'var(--success)' : 'var(--danger)' }}>DB {systemHealth.database ? 'OK' : 'down'}</span>
+            <span style={{ color: 'var(--text-muted)' }}>·</span>
+            <span style={{ color: systemHealth.rag.ok ? 'var(--success)' : 'var(--text-muted)' }}>RAG {systemHealth.rag.ok ? 'OK' : 'unreachable'}</span>
+            <span style={{ color: 'var(--text-muted)' }}>·</span>
+            <span style={{ color: 'var(--text-muted)' }}>
+              Deploy {systemHealth.deploy.commit ? systemHealth.deploy.commit.slice(0, 7) : 'local'}
+            </span>
+          </div>
+          <div style={{ marginTop: 'var(--space-2)', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+            Env: Stripe {systemHealth.env.stripeSecretKey ? '✓' : '—'} · Google creds {systemHealth.env.googleApplicationCredentialsJson ? '✓' : '—'} · Meta {systemHealth.env.metaAppId ? '✓' : '—'} · Cloudbeds {systemHealth.env.cloudbedsApiKey ? '✓' : '—'}
+          </div>
+        </div>
+      )}
 
       {/* Countdown */}
       {nextMilestone && (
@@ -317,7 +347,7 @@ export default function HQDashboard() {
 
               {/* Custom sliders */}
               {useCustom && (
-                <div className="admin-hq-custom-sliders" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-4)', marginBottom: 'var(--space-4)' }}>
+                <div className="admin-hq-custom-sliders" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-4)', marginBottom: 'var(--space-4)', minWidth: 0 }}>
                   <div>
                     <label style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', display: 'block', marginBottom: 'var(--space-1)' }}>New clients/mo: {customNew}</label>
                     <input type="range" min="1" max="50" value={customNew} onChange={e => setCustomNew(parseInt(e.target.value))} style={{ width: '100%', accentColor: '#c8943e' }} />

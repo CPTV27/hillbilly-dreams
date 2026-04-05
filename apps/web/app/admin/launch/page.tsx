@@ -50,7 +50,7 @@ const TASKS: LaunchTask[] = [
   { name: 'Rewrite HDI + MBT homepages', owner: 'Chase', status: 'not-started', target: 'Apr 14', week: 3 },
   { name: 'Fix AI images with text errors', owner: 'Chase', status: 'not-started', target: 'Apr 14', week: 3 },
   { name: 'Seed 200 directory listings', owner: 'Chase', status: 'not-started', target: 'Apr 16', week: 3 },
-  { name: 'Onboard 3-5 pilot businesses ($20/mo)', owner: 'Chase', status: 'not-started', target: 'Apr 16', week: 3 },
+  { name: 'Onboard 3-5 pilot businesses ($25/mo)', owner: 'Chase', status: 'not-started', target: 'Apr 16', week: 3 },
   { name: 'Amy: Add 5 real events to calendar', owner: 'Amy', status: 'not-started', target: 'Apr 16', week: 3 },
   { name: 'Tracy: Verify financial data in dashboard', owner: 'Tracy', status: 'not-started', target: 'Apr 16', week: 3 },
   { name: 'Stripe billing — real transactions', owner: 'Chase', status: 'not-started', target: 'Apr 16', week: 3 },

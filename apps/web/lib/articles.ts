@@ -1159,13 +1159,15 @@ export function getArticlesByCity(city: string): Article[] {
 }
 
 // Helper: get articles by region
-export const CORRIDOR_CITIES = ['memphis', 'clarksdale', 'vicksburg', 'natchez', 'new-orleans'];
+export const DEEP_SOUTH_GUIDE_CITIES = ['memphis', 'clarksdale', 'vicksburg', 'natchez', 'new-orleans'];
+/** @deprecated Use DEEP_SOUTH_GUIDE_CITIES */
+export const CORRIDOR_CITIES = DEEP_SOUTH_GUIDE_CITIES;
 export const LOUISIANA_CITIES = ['st-francisville', 'baton-rouge', 'lafayette', 'alexandria', 'monroe', 'ruston', 'natchitoches', 'shreveport'];
 export const ARKANSAS_MISSOURI_CITIES = ['el-dorado', 'little-rock', 'fayetteville', 'bentonville', 'branson'];
 
 export function getArticlesByRegion(region: 'region' | 'louisiana' | 'arkansas-missouri'): Article[] {
   const cityList = region === 'region'
-    ? CORRIDOR_CITIES
+    ? DEEP_SOUTH_GUIDE_CITIES
     : region === 'louisiana'
     ? LOUISIANA_CITIES
     : ARKANSAS_MISSOURI_CITIES;

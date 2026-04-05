@@ -5,14 +5,14 @@
 //
 // Same flow as business onboard but with musician-specific fields.
 // POSTs to /api/directory/submit with category="musician".
-// URL params: ?tier=free|listing|works|engine
+// URL params: ?tier=free|essentials|pro|marketing|engine250 (legacy: listing|works|engine)
 
 import Link from 'next/link';
 import { useState, useRef, useEffect, Suspense, type FormEvent } from 'react';
 import { useSearchParams } from 'next/navigation';
 import '../onboard.css';
 
-type TierIntent = 'free' | 'listing' | 'works' | 'engine' | '';
+type TierIntent = 'free' | 'essentials' | 'pro' | 'marketing' | 'engine250' | '';
 
 interface FormState {
   name: string;
@@ -55,6 +55,20 @@ const AVAILABILITY_OPTIONS = [
   { value: 'not_touring', label: 'Not touring right now' },
 ];
 
+const LEGACY_TIER_PARAM: Record<string, TierIntent> = {
+  listing: 'essentials',
+  works: 'pro',
+  engine: 'marketing',
+};
+
+function normalizeTierParam(raw: string | null): TierIntent {
+  const v = (raw || '').trim();
+  if (v === 'free' || v === 'essentials' || v === 'pro' || v === 'marketing' || v === 'engine250') {
+    return v;
+  }
+  return LEGACY_TIER_PARAM[v] ?? '';
+}
+
 const TIERS = [
   {
     id: 'free',
@@ -64,26 +78,33 @@ const TIERS = [
     features: ['Basic profile', 'Searchable by venues', 'Visible to bookers'],
   },
   {
-    id: 'listing',
-    name: 'The Listing',
-    price: '$20/mo',
+    id: 'essentials',
+    name: 'Essentials',
+    price: '$25/mo',
     desc: 'Enhanced profile with streaming links. Monthly report on who viewed you.',
     features: ['Streaming links displayed', 'Monthly view report', 'Enhanced search placement'],
   },
   {
-    id: 'works',
-    name: 'The Works',
-    price: '$49/mo',
+    id: 'pro',
+    name: 'Pro',
+    price: '$50/mo',
     desc: 'Social media management. 4 posts/week in your voice. Show promotion.',
     features: ['Social media (4 posts/week)', 'Content calendar', 'Show promotion'],
   },
   {
-    id: 'engine',
-    name: 'The Engine',
+    id: 'marketing',
+    name: 'Marketing',
     price: '$99/mo',
-    desc: 'Full marketing. Radio airplay. Magazine features. Booking priority.',
+    desc: 'Full marketing stack. Radio airplay. Magazine features. Booking priority.',
     features: ['Big Muddy Radio rotation', 'Magazine feature consideration', 'Booking priority', 'Full social media'],
     featured: true,
+  },
+  {
+    id: 'engine250',
+    name: 'Engine',
+    price: '$250/mo',
+    desc: 'Everything in Marketing plus custom campaigns, priority support, and revenue attribution.',
+    features: ['Everything in Marketing', 'Custom campaigns', 'Priority support', 'Revenue attribution'],
   },
 ];
 
@@ -115,7 +136,7 @@ export default function MusicianOnboardPage() {
 
 function MusicianOnboardInner() {
   const searchParams = useSearchParams();
-  const tierFromUrl = (searchParams.get('tier') || '') as TierIntent;
+  const tierFromUrl = normalizeTierParam(searchParams.get('tier'));
 
   const [form, setForm] = useState<FormState>({
     name: '',

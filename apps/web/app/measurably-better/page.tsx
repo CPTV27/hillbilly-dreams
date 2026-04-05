@@ -71,7 +71,7 @@ const PROPERTIES = [
   { name: 'Deep South Directory', url: 'https://deepsouthdirectory.com', desc: 'Business directory & marketing' },
 ];
 
-const CORRIDORS = [
+const PLATFORM_REGIONS = [
   {
     name: 'Music & Hospitality',
     example: 'Big Muddy — Natchez, MS',
@@ -339,13 +339,13 @@ export default function MeasurablyBetterPlatformPage() {
         </h2>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-          {CORRIDORS.map((c, i) => (
+          {PLATFORM_REGIONS.map((c, i) => (
             <div key={c.name} style={{
               display: 'grid',
               gridTemplateColumns: '1fr 1fr 120px',
               gap: '2rem',
               padding: '1.5rem 0',
-              borderBottom: i < CORRIDORS.length - 1 ? '1px solid var(--border)' : 'none',
+              borderBottom: i < PLATFORM_REGIONS.length - 1 ? '1px solid var(--border)' : 'none',
               alignItems: 'center',
             }}>
               <div>

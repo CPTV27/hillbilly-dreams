@@ -3,8 +3,10 @@ import { prisma } from '@bigmuddy/database';
 import { NextResponse } from 'next/server';
 import { requireAdmin } from '@/lib/admin-auth';
 import { callAI } from '@/lib/ai-models';
+import { cloudLog } from '@/lib/cloud-logger';
 
 export async function POST(req: Request) {
+    const start = Date.now();
     const denied = await requireAdmin();
     if (denied) return denied;
 
@@ -62,5 +64,11 @@ Write ONLY the response text, no quotes, no "Dear", no explanation.`;
         // opsActivity may not exist — non-fatal
     }
 
+    cloudLog.info('/api/ops/reviews/draft', 'ok', {
+      method: 'POST',
+      reviewId,
+      durationMs: Date.now() - start,
+      success: true,
+    });
     return NextResponse.json({ draft, reviewId });
 }

@@ -247,60 +247,71 @@
       font-style: normal;
     }
 
-    /* ─── BRANDS — FULL-BLEED BANNERS ───────────────────────────────────── */
+    /* ─── BRANDS — CARD ROWS (image + text, alternating) ───────────────── */
     .brand-banners {
       display: flex;
       flex-direction: column;
-      gap: 0;
+      gap: 2rem;
+      padding: 8px 0 48px;
     }
 
     .brand-banner {
-      position: relative;
-      width: 100vw;
-      margin-left: calc(-50vw + 50%);
-      height: 200px;
-      overflow: hidden;
       display: flex;
-      align-items: flex-end;
-      padding: 30px 40px;
-      text-decoration: none;
+      flex-direction: row;
+      align-items: stretch;
+      min-height: 240px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
     }
 
-    .brand-banner + .brand-banner {
-      border-top: 1px solid rgba(255,255,255,0.06);
+    .brand-banner:nth-child(even) {
+      flex-direction: row-reverse;
     }
 
-    .brand-banner img {
+    .brand-banner__media {
+      position: relative;
+      flex: 1 1 42%;
+      min-height: 220px;
+      min-width: 0;
+    }
+
+    .brand-banner__media img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 0;
-      transition: transform 0.4s ease;
+      transition: transform 0.35s ease;
     }
 
-    .brand-banner:hover img {
-      transform: scale(1.02);
+    .brand-banner:hover .brand-banner__media img {
+      transform: scale(1.03);
     }
 
-    .brand-banner .overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-    }
-
-    .brand-banner .content {
+    .brand-banner__body {
       position: relative;
-      z-index: 2;
-      flex: 1;
+      flex: 1 1 58%;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .brand-banner.light-text .brand-banner__body {
+      background: var(--bg-raised);
+    }
+
+    .brand-banner.dark-text .brand-banner__body {
+      background: linear-gradient(180deg, #faf8f4 0%, #f0ebe3 100%);
     }
 
     .brand-banner .brand-badge-wrap {
       position: absolute;
-      top: 20px;
-      right: 40px;
-      z-index: 3;
+      top: 16px;
+      right: 20px;
+      z-index: 2;
     }
 
     .brand-name {
@@ -1379,8 +1390,15 @@
       .main { margin-left: 0; }
       .container { padding: 0 24px; }
 
-      .brand-banner { height: 150px; padding: 20px 24px; }
-      .brand-banner .brand-badge-wrap { right: 24px; top: 16px; }
+      .brand-banner,
+      .brand-banner:nth-child(even) {
+        flex-direction: column;
+      }
+      .brand-banner__media {
+        min-height: 200px;
+        flex: 0 0 auto;
+      }
+      .brand-banner .brand-badge-wrap { right: 16px; top: 12px; }
       .brand-name { font-size: 1.4rem; }
       .brand-desc { font-size: 13px; }
       .modules-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1483,7 +1501,7 @@
           <div class="divider-line"></div>
         </div>
         <p class="origin-text">
-          In 2022, Chase designed a complete media production-to-distribution pipeline (the <em>DeFacto Codec Market</em>). Global media infrastructure &mdash; broadcast, production, analytics, distribution &mdash; built on open source tools. He realized the same architecture that runs a Viacom can run a small-town media economy. <em>Big Muddy is that architecture, applied to Main Street, powered by AI, anchored in the Mississippi corridor.</em> The gap isn&rsquo;t technology &mdash; it&rsquo;s organization. That&rsquo;s what we sell.
+          In 2022, Chase designed a complete media production-to-distribution pipeline (the <em>DeFacto Codec Market</em>). Global media infrastructure &mdash; broadcast, production, analytics, distribution &mdash; built on open source tools. He realized the same architecture that runs a Viacom can run a small-town media economy. <em>Big Muddy is that architecture, applied to Main Street, powered by AI, anchored in the Deep South.</em> The gap isn&rsquo;t technology &mdash; it&rsquo;s organization. That&rsquo;s what we sell.
         </p>
       </div>
     </section>
@@ -1560,40 +1578,27 @@
           <h2>The Ecosystem</h2>
           <div class="divider-line"></div>
         </div>
-      </div>
 
       <div class="brand-banners" role="list">
 
         <!-- Big Muddy Touring -->
-        <div class="brand-banner light-text" role="listitem" aria-label="Big Muddy Touring">
-          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-inn-dusk.webp" alt="" loading="lazy">
-          <div class="overlay" style="background: linear-gradient(to right, rgba(15,15,13,0.88) 0%, rgba(15,15,13,0.42) 100%);"></div>
-          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
-          <div class="content">
+        <div class="brand-banner light-text" role="listitem" aria-label="Big Muddy Touring"><div class="brand-banner__media"><img src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-inn-dusk.webp" alt="" loading="lazy"></div><div class="brand-banner__body"><div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
             <div class="brand-name">Big Muddy Touring</div>
-            <div class="brand-desc">Touring circuit, shows, venue partnerships along the Mississippi corridor.</div>
+            <div class="brand-desc">Touring circuit, shows, and venue partnerships across the Deep South.</div>
             <div class="brand-domain">bigmuddytouring.com</div>
           </div>
         </div>
 
         <!-- Big Muddy Magazine -->
-        <div class="brand-banner light-text" role="listitem" aria-label="Big Muddy Magazine">
-          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-bluff-sunset.webp" alt="" loading="lazy">
-          <div class="overlay" style="background: linear-gradient(to right, rgba(60,35,8,0.82) 0%, rgba(15,12,5,0.45) 100%);"></div>
-          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
-          <div class="content">
+        <div class="brand-banner light-text" role="listitem" aria-label="Big Muddy Magazine"><div class="brand-banner__media"><img src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-bluff-sunset.webp" alt="" loading="lazy"></div><div class="brand-banner__body"><div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
             <div class="brand-name">Big Muddy Magazine</div>
-            <div class="brand-desc">Editorial coverage of the corridor. Articles, city guides, photo features.</div>
+            <div class="brand-desc">Editorial coverage of the Deep South. Articles, city guides, photo features.</div>
             <div class="brand-domain">bigmuddymagazine.com</div>
           </div>
         </div>
 
         <!-- Big Muddy Radio -->
-        <div class="brand-banner light-text" role="listitem" aria-label="Big Muddy Radio">
-          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp" alt="" loading="lazy">
-          <div class="overlay" style="background: linear-gradient(to right, rgba(200,148,62,0.72) 0%, rgba(15,15,13,0.52) 100%);"></div>
-          <div class="brand-badge-wrap"><span class="badge badge-building">Building</span></div>
-          <div class="content">
+        <div class="brand-banner light-text" role="listitem" aria-label="Big Muddy Radio"><div class="brand-banner__media"><img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp" alt="" loading="lazy"></div><div class="brand-banner__body"><div class="brand-badge-wrap"><span class="badge badge-building">Building</span></div>
             <div class="brand-name">Big Muddy Radio</div>
             <div class="brand-desc">24/7 streaming. AI DJs, curated playlists, original programming.</div>
             <div class="brand-domain">bigmuddyradio.com</div>
@@ -1601,11 +1606,7 @@
         </div>
 
         <!-- Big Muddy Entertainment -->
-        <div class="brand-banner light-text" role="listitem" aria-label="Big Muddy Entertainment">
-          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp" alt="" loading="lazy">
-          <div class="overlay" style="background: linear-gradient(to right, rgba(28,10,45,0.88) 0%, rgba(15,8,25,0.50) 100%);"></div>
-          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
-          <div class="content">
+        <div class="brand-banner light-text" role="listitem" aria-label="Big Muddy Entertainment"><div class="brand-banner__media"><img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp" alt="" loading="lazy"></div><div class="brand-banner__body"><div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
             <div class="brand-name">Big Muddy Entertainment</div>
             <div class="brand-desc">House band, talent search, community credits program.</div>
             <div class="brand-domain">bigmuddyentertainment.com</div>
@@ -1613,11 +1614,7 @@
         </div>
 
         <!-- Big Muddy Records -->
-        <div class="brand-banner light-text" role="listitem" aria-label="Big Muddy Records">
-          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/record-player.webp" alt="" loading="lazy">
-          <div class="overlay" style="background: linear-gradient(to right, rgba(8,8,7,0.92) 0%, rgba(8,8,7,0.60) 100%);"></div>
-          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
-          <div class="content">
+        <div class="brand-banner light-text" role="listitem" aria-label="Big Muddy Records"><div class="brand-banner__media"><img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/record-player.webp" alt="" loading="lazy"></div><div class="brand-banner__body"><div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
             <div class="brand-name">Big Muddy Records</div>
             <div class="brand-desc">Independent label. Artist deals, distribution, sync licensing.</div>
             <div class="brand-domain">bigmuddyrecord.com</div>
@@ -1625,11 +1622,7 @@
         </div>
 
         <!-- Deep South Directory -->
-        <div class="brand-banner dark-text" role="listitem" aria-label="Deep South Directory">
-          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-main-street.webp" alt="" loading="lazy">
-          <div class="overlay" style="background: linear-gradient(to right, rgba(253,252,248,0.92) 0%, rgba(253,252,248,0.62) 100%);"></div>
-          <div class="brand-badge-wrap"><span class="badge badge-building">Building</span></div>
-          <div class="content">
+        <div class="brand-banner dark-text" role="listitem" aria-label="Deep South Directory"><div class="brand-banner__media"><img src="https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-main-street.webp" alt="" loading="lazy"></div><div class="brand-banner__body"><div class="brand-badge-wrap"><span class="badge badge-building">Building</span></div>
             <div class="brand-name">Deep South Directory</div>
             <div class="brand-desc">Main Street marketing platform for local businesses. The revenue engine.</div>
             <div class="brand-domain" style="color: rgba(80,55,20,0.75);">deepsouthdirectory.com</div>
@@ -1637,11 +1630,7 @@
         </div>
 
         <!-- Outsider Economics -->
-        <div class="brand-banner light-text" role="listitem" aria-label="Outsider Economics">
-          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-trace-parkway.webp" alt="" loading="lazy">
-          <div class="overlay" style="background: linear-gradient(to right, rgba(22,22,20,0.85) 0%, rgba(22,22,20,0.50) 100%); filter: saturate(0.3);"></div>
-          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
-          <div class="content">
+        <div class="brand-banner light-text" role="listitem" aria-label="Outsider Economics"><div class="brand-banner__media"><img src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-trace-parkway.webp" alt="" loading="lazy"></div><div class="brand-banner__body"><div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
             <div class="brand-name">Outsider Economics</div>
             <div class="brand-desc">The philosophy. Field manual for building local economies from the outside in.</div>
             <div class="brand-domain">outsidereconomics.com</div>
@@ -1649,11 +1638,7 @@
         </div>
 
         <!-- Venture Gallery -->
-        <div class="brand-banner light-text" role="listitem" aria-label="Venture Gallery">
-          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp" alt="" loading="lazy">
-          <div class="overlay" style="background: linear-gradient(to right, rgba(245,240,232,0.78) 0%, rgba(245,240,232,0.42) 100%);"></div>
-          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
-          <div class="content">
+        <div class="brand-banner light-text" role="listitem" aria-label="Venture Gallery"><div class="brand-banner__media"><img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp" alt="" loading="lazy"></div><div class="brand-banner__body"><div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
             <div class="brand-name" style="color: #1a1510;">Venture Gallery</div>
             <div class="brand-desc" style="color: rgba(26,21,16,0.65);">Chase Pierson Photography + Tracy Alderson Gallery. Prints, originals, commissions.</div>
             <div class="brand-domain" style="color: rgba(80,55,20,0.75);">buycurious.art</div>
@@ -1661,11 +1646,7 @@
         </div>
 
         <!-- Bearsville Media Group -->
-        <div class="brand-banner light-text" role="listitem" aria-label="Bearsville Media Group">
-          <img src="/images/processed/bearsville/theater-show-01.webp" alt="" loading="lazy">
-          <div class="overlay" style="background: linear-gradient(to right, rgba(12,20,32,0.88) 0%, rgba(12,20,32,0.48) 100%);"></div>
-          <div class="brand-badge-wrap"><span class="badge badge-planned">Planned</span></div>
-          <div class="content">
+        <div class="brand-banner light-text" role="listitem" aria-label="Bearsville Media Group"><div class="brand-banner__media"><img src="/images/processed/bearsville/theater-show-01.webp" alt="" loading="lazy"></div><div class="brand-banner__body"><div class="brand-badge-wrap"><span class="badge badge-planned">Planned</span></div>
             <div class="brand-name">Bearsville Media Group</div>
             <div class="brand-desc">Northeast node. Woodstock, NY. Studio C + Tuthill Design. Summer 2026.</div>
             <div class="brand-domain">bearsvillemediagroup.com</div>
@@ -1673,11 +1654,7 @@
         </div>
 
         <!-- Tuthill Design -->
-        <div class="brand-banner light-text" role="listitem" aria-label="Tuthill Design">
-          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/oxford-square.webp" alt="" loading="lazy">
-          <div class="overlay" style="background: linear-gradient(to right, rgba(20,18,14,0.80) 0%, rgba(20,18,14,0.35) 100%);"></div>
-          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
-          <div class="content">
+        <div class="brand-banner light-text" role="listitem" aria-label="Tuthill Design"><div class="brand-banner__media"><img src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/oxford-square.webp" alt="" loading="lazy"></div><div class="brand-banner__body"><div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
             <div class="brand-name">Tuthill Design</div>
             <div class="brand-desc">Architecture and design partner. Hudson Valley.</div>
             <div class="brand-domain">tuthilldesign.com</div>
@@ -1685,11 +1662,7 @@
         </div>
 
         <!-- Studio C Video -->
-        <div class="brand-banner light-text" role="listitem" aria-label="Studio C Video">
-          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/command/juke-joint.webp" alt="" loading="lazy">
-          <div class="overlay" style="background: linear-gradient(to right, rgba(5,5,5,0.90) 0%, rgba(5,5,5,0.55) 100%);"></div>
-          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
-          <div class="content">
+        <div class="brand-banner light-text" role="listitem" aria-label="Studio C Video"><div class="brand-banner__media"><img src="https://storage.googleapis.com/bmt-media-bigmuddy/command/juke-joint.webp" alt="" loading="lazy"></div><div class="brand-banner__body"><div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
             <div class="brand-name">Studio C Video</div>
             <div class="brand-desc">Video production partner. Bearsville ecosystem.</div>
             <div class="brand-domain">studiocvideo.com</div>
@@ -1697,11 +1670,7 @@
         </div>
 
         <!-- Hillbilly Dreams Inc -->
-        <div class="brand-banner light-text" role="listitem" aria-label="Hillbilly Dreams Inc">
-          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/memphis-beale-street-neon.webp" alt="" loading="lazy">
-          <div class="overlay" style="background: linear-gradient(to right, rgba(40,22,4,0.85) 0%, rgba(10,8,4,0.50) 100%);"></div>
-          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
-          <div class="content">
+        <div class="brand-banner light-text" role="listitem" aria-label="Hillbilly Dreams Inc"><div class="brand-banner__media"><img src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/memphis-beale-street-neon.webp" alt="" loading="lazy"></div><div class="brand-banner__body"><div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
             <div class="brand-name">Hillbilly Dreams Inc</div>
             <div class="brand-desc">The holding company. Every brand rolls up here.</div>
             <div class="brand-domain">hillbillydreamsinc.com</div>
@@ -1709,11 +1678,7 @@
         </div>
 
         <!-- Measurably Better -->
-        <div class="brand-banner dark-text" role="listitem" aria-label="Measurably Better">
-          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/jackson-capitol.webp" alt="" loading="lazy">
-          <div class="overlay" style="background: linear-gradient(to right, rgba(248,248,244,0.90) 0%, rgba(248,248,244,0.60) 100%);"></div>
-          <div class="brand-badge-wrap"><span class="badge badge-b2b">B2B</span></div>
-          <div class="content">
+        <div class="brand-banner dark-text" role="listitem" aria-label="Measurably Better"><div class="brand-banner__media"><img src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/jackson-capitol.webp" alt="" loading="lazy"></div><div class="brand-banner__body"><div class="brand-badge-wrap"><span class="badge badge-b2b">B2B</span></div>
             <div class="brand-name">Measurably Better</div>
             <div class="brand-desc">B2B platform. Operators and licensees only — not consumer-facing.</div>
             <div class="brand-domain" style="color: rgba(80,55,20,0.75);">measurablybetter.life</div>
@@ -1721,17 +1686,14 @@
         </div>
 
         <!-- The Big Muddy Inn -->
-        <div class="brand-banner light-text" role="listitem" aria-label="The Big Muddy Inn">
-          <img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp" alt="" loading="lazy">
-          <div class="overlay" style="background: linear-gradient(to right, rgba(35,18,8,0.82) 0%, rgba(35,18,8,0.40) 100%);"></div>
-          <div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
-          <div class="content">
+        <div class="brand-banner light-text" role="listitem" aria-label="The Big Muddy Inn"><div class="brand-banner__media"><img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp" alt="" loading="lazy"></div><div class="brand-banner__body"><div class="brand-badge-wrap"><span class="badge badge-live">Live</span></div>
             <div class="brand-name">The Big Muddy Inn</div>
             <div class="brand-desc">The anchor property. 5-room boutique hotel in Natchez, Mississippi.</div>
             <div class="brand-domain">via bigmuddytouring.com</div>
           </div>
         </div>
 
+      </div>
       </div>
     </section>
 
@@ -2811,7 +2773,7 @@
               <div class="timeline-dot future" aria-label="Planned"></div>
               <div class="timeline-q-label timeline-qlabel-future">Q4 2026</div>
               <div class="timeline-phase" style="color:var(--text-mid);">Expand</div>
-              <p class="timeline-desc">Corridor growth into new markets. Licensing model. Northeast node fully operational.</p>
+              <p class="timeline-desc">Regional growth into new markets. Licensing model. Northeast node fully operational.</p>
             </div>
 
           </div>

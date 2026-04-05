@@ -4,6 +4,7 @@ export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { formatZodError, playlistCreateSchema } from '@/lib/user-post-validation';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function GET(request: Request) {
   try {
@@ -27,6 +28,9 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     const raw = await request.json();
     const parsed = playlistCreateSchema.safeParse(raw);

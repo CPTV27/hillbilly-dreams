@@ -52,7 +52,7 @@ export default function DirectoryLayout({
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
           }}>
-            Mississippi Region
+            Deep South
           </span>
         </a>
         <a href="/directory/onboard" style={{

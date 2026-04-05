@@ -8,8 +8,10 @@ export const maxDuration = 300;
 
 import { NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
+import { cloudLog } from '@/lib/cloud-logger';
 
 export async function GET(request: Request) {
+  const start = Date.now();
   // Authenticate
   const authHeader = request.headers.get('authorization');
   if (
@@ -81,6 +83,14 @@ export async function GET(request: Request) {
       });
     } catch { /* non-fatal */ }
 
+    cloudLog.info('/api/cron/monthly-reports', 'ok', {
+      method: 'GET',
+      period: `${reportMonth}/${reportYear}`,
+      totalClients: clients.length,
+      completed: results.filter((r) => r.status === 'complete').length,
+      durationMs: Date.now() - start,
+      success: true,
+    });
     return NextResponse.json({
       success: true,
       period: `${reportMonth}/${reportYear}`,
@@ -90,6 +100,7 @@ export async function GET(request: Request) {
     });
   } catch (err) {
     console.error('[cron/monthly-reports]', err);
+    cloudLog.error('/api/cron/monthly-reports', 'failed', err, { durationMs: Date.now() - start, success: false });
     return NextResponse.json({ error: 'Monthly report generation failed' }, { status: 500 });
   }
 }

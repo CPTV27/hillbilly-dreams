@@ -163,7 +163,7 @@ export function getHotelSchema() {
         '@type': 'LodgingBusiness',
         name: 'The Big Muddy Inn',
         description:
-            'A boutique inn in Natchez, Mississippi — the home base of Big Muddy Touring along the Mississippi music corridor.',
+            'A boutique inn in Natchez, Mississippi — the home base of Big Muddy Touring in the Deep South.',
         url: 'https://bigmuddytouring.com/touring/inn',
         address: {
             '@type': 'PostalAddress',

@@ -56,6 +56,7 @@ const NAV_SECTIONS = [
       { label: 'Social', href: '/social', icon: '◈' },
       { label: 'Publications', href: '/publications', icon: '◻' },
       { label: 'Resources', href: '/resources', icon: '◆' },
+      { label: 'Press mocks', href: '/press', icon: '◌' },
     ],
   },
   {
@@ -373,6 +374,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           padding: var(--space-8);
           max-width: 1200px;
           width: 100%;
+          min-width: 0;
+          box-sizing: border-box;
+        }
+        @media (max-width: 480px) {
+          .admin-content {
+            padding: var(--space-4);
+            overflow-x: hidden;
+          }
         }
 
         /* ── Shared Admin Styles ── */

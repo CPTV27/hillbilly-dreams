@@ -10,6 +10,7 @@ export const dynamic = 'force-dynamic';
 
 import { NextResponse } from 'next/server';
 import { apiLog } from '@/lib/api-logger';
+import { requireAdmin } from '@/lib/admin-auth';
 import sharp from 'sharp';
 import { uploadToGCS, GCS_BASE_URL } from '@/lib/gcs';
 import { prisma } from '@/lib/prisma';
@@ -129,6 +130,9 @@ function detectBrand(hint?: string, businessName?: string): BrandTag {
 }
 
 export async function POST(request: Request) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File | null;

@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function GET(
   _request: Request,
@@ -35,6 +36,9 @@ export async function PATCH(
   request: Request,
   { params }: { params: { id: string } }
 ) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     const id = parseInt(params.id);
     if (isNaN(id)) {
@@ -86,6 +90,9 @@ export async function DELETE(
   _request: Request,
   { params }: { params: { id: string } }
 ) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     const id = parseInt(params.id);
     if (isNaN(id)) {

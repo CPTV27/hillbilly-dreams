@@ -69,8 +69,8 @@ export default function ChurnAlertsPage() {
       {loading ? (
         <p style={{ color: 'var(--text-muted)' }}>Loading…</p>
       ) : (
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', fontSize: 'var(--text-sm)', borderCollapse: 'collapse' }}>
+        <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', maxWidth: '100%' }}>
+          <table style={{ width: '100%', minWidth: 520, fontSize: 'var(--text-sm)', borderCollapse: 'collapse' }}>
             <thead>
               <tr style={{ borderBottom: '1px solid var(--border)' }}>
                 <th style={{ textAlign: 'left', padding: '8px', color: 'var(--text-disabled)' }}>Client</th>

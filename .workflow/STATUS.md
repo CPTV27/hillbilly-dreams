@@ -1,5 +1,30 @@
 # Agent status
 
+## 2026-04-05 — Sunday Morning Dispatch (Tracy QA slice)
+
+- **DSD / routing:** [`domain-routes.ts`](../apps/web/config/domain-routes.ts) — `/platform` in `BMT_BRAND_PREFIXES` so hostname rewrites do not break `/platform/*` on tenant hosts. [`directory/layout.tsx`](../apps/web/app/directory/layout.tsx) header subtitle → **Deep South**. No `CORRIDOR MUSICIANS` UI in repo; `directory/page.tsx` not modified. If prod still shows it, redeploy or clear edge cache.
+- **Admin @ ~375px:** [`admin/layout.tsx`](../apps/web/app/admin/layout.tsx) — tighter padding + `overflow-x: hidden` on `.admin-content` ≤480px. [`report-card`](../apps/web/app/admin/report-card/page.tsx) feedback stats grid → `auto-fit` + single column ≤480px. [`revenue`](../apps/web/app/admin/revenue/page.tsx), [`churn-alerts`](../apps/web/app/admin/churn-alerts/page.tsx) — `minWidth: 0` / scroll table `minWidth: 520`. [`links`](../apps/web/app/admin/links/page.tsx) — single column ≤600px; Records → **bigmuddyrecord.com**. [`launch`](../apps/web/app/admin/launch/page.tsx) pilot tier copy **$25/mo**.
+- **Store:** [`store/sovereign-pi/page.tsx`](../apps/web/app/store/sovereign-pi/page.tsx) — hero + use-case images from **GCS** (`bmt-media-bigmuddy`) so images load without local `/images` bundle.
+- **Press:** [`public/press/index.html`](../apps/web/public/press/index.html) — **Updated April 5, 2026**, one-line external disclaimer, section labels for 7 + 5 + podcast.
+- **RAG baseline:** [`docs/audit/RAG_AUDIT_SUNDAY_AM.md`](../docs/audit/RAG_AUDIT_SUNDAY_AM.md) + [`scripts/rag-audit-loop.sh`](../scripts/rag-audit-loop.sh) grep fallback when `rg` missing. Infra notes: [`docs/audit/SUNDAY_DISPATCH_INFRA.md`](../docs/audit/SUNDAY_DISPATCH_INFRA.md).
+- **DB:** `pnpm --filter @bigmuddy/database exec prisma db push` — **pass** (Neon in sync, `NpsResponse`).
+- **QC:** `pnpm exec tsc --noEmit -p apps/web` — pass. `pnpm test:p0` — 4 passed, 3 skipped (unchanged).
+
+---
+
+## 2026-04-06 — OVERNIGHT_TASKS P0/P1 slice (press gate, pricing, roadmap brands, domain check)
+
+- **Press:** [`middleware.ts`](../apps/web/middleware.ts) — `/press` and `/press/*` require `isAllowedUser` JWT; response sets **`X-Robots-Tag: noindex, nofollow`**. [`/admin/press`](../apps/web/app/admin/press/page.tsx) hub + sidebar **Press mocks** link (resolves to `/admin/press`).
+- **Pricing / copy:** Musician onboard [`musician/page.tsx`](../apps/web/app/directory/onboard/musician/page.tsx) — five tiers (Free / Essentials $25 / Pro $50 / Marketing $99 / Engine $250); legacy `?tier=listing|works|engine` mapped. [`FlywheelLens.tsx`](../apps/web/app/admin/ecosystem/FlywheelLens.tsx) directory metric updated.
+- **Corridor purge (code):** [`articles.ts`](../apps/web/lib/articles.ts) `DEEP_SOUTH_GUIDE_CITIES` + deprecated `CORRIDOR_CITIES` alias; magazine pages import new name; [`measurably-better/page.tsx`](../apps/web/app/measurably-better/page.tsx) `PLATFORM_REGIONS`.
+- **Roadmap sandbox:** [`public/sandbox/roadmap.html`](../apps/web/public/sandbox/roadmap.html) — section 03 brand cards → spaced alternating image/text cards (`2rem` gap); “corridor” → Deep South / regional in copy; brands wrapped in single `.container`.
+- **Domains:** [`.workflow/DOMAIN_HEALTH_CHECK.md`](./DOMAIN_HEALTH_CHECK.md) — curl table (two hosts returned empty first line from this environment; noted in table).
+- **QC:** `pnpm exec tsc --noEmit -p apps/web` — pass.
+
+**Not done this pass (still on OVERNIGHT_TASKS):** Dependabot triage, stale branch deletes, `gh issue list`, press HTML 375px pass, NpsResponse migration push, remaining `apiLog` / `console.log` in API routes, `obs-client` path alignment, P3 backlog items.
+
+---
+
 ## 2026-04-06 — Autonomous batch (#91, #88, #92, #68, toolRegistry)
 
 - **#91:** [`/hillbilly/org-chart`](../apps/web/app/hillbilly/org-chart/page.tsx) — back link, `TENANTS` live section, correct **bigmuddyrecordlabel.com** + **buycurious.art** URLs, MBT → measurablybetter.life, `<style>` instead of `dangerouslySetInnerHTML`, mobile padding. Footer link already on [`hillbilly/page.tsx`](../apps/web/app/hillbilly/page.tsx).

@@ -7,6 +7,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { CITY_GUIDE_ARTICLES } from '@/lib/articles';
 import { articleCreateSchema, formatZodError } from '@/lib/user-post-validation';
+import { requireAdmin } from '@/lib/admin-auth';
 
 // ── GET /api/articles ──────────────────────────────────────────────────────
 // Returns all published articles. Tries Prisma first; falls back to static data.
@@ -66,6 +67,9 @@ export async function GET(request: NextRequest) {
 // Returns 503 if database is not available.
 
 export async function POST(request: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   let body: import('zod').infer<typeof articleCreateSchema>;
   try {
     const raw = await request.json();

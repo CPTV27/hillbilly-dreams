@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 /* eslint-disable @next/next/no-img-element */
 
@@ -401,8 +402,15 @@ const VIEW_COMPONENTS: Record<View, () => JSX.Element> = {
   architecture: ArchitectureView,
 };
 
-export default function WhiteboardPage() {
+function WhiteboardInner() {
+  const searchParams = useSearchParams();
   const [view, setView] = useState<View>('links');
+
+  useEffect(() => {
+    const v = searchParams.get('view');
+    if (v && v in VIEW_COMPONENTS) setView(v as View);
+  }, [searchParams]);
+
   const ViewComponent = VIEW_COMPONENTS[view];
 
   return (
@@ -416,12 +424,10 @@ export default function WhiteboardPage() {
       flexDirection: 'column',
       overflow: 'hidden',
     }}>
-      {/* Content */}
       <div style={{ flex: 1, overflow: 'auto', padding: '1rem' }}>
         <ViewComponent />
       </div>
 
-      {/* Big Toggle Buttons */}
       <nav style={{
         display: 'flex',
         gap: '0.5rem',
@@ -434,6 +440,7 @@ export default function WhiteboardPage() {
         {VIEWS.map(v => (
           <button
             key={v.id}
+            type="button"
             onClick={() => setView(v.id)}
             style={{
               padding: '0.75rem 1.5rem',
@@ -453,5 +460,28 @@ export default function WhiteboardPage() {
         ))}
       </nav>
     </div>
+  );
+}
+
+export default function WhiteboardPage() {
+  return (
+    <Suspense
+      fallback={(
+        <div style={{
+          width: '100vw',
+          height: '100vh',
+          background: '#0a0a08',
+          color: '#c8943e',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontFamily: "'Inter', system-ui, sans-serif",
+        }}>
+          Loading whiteboard…
+        </div>
+      )}
+    >
+      <WhiteboardInner />
+    </Suspense>
   );
 }

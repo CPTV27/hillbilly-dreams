@@ -12,8 +12,10 @@ import { prisma } from '@/lib/db';
 import { requireCronOrAdmin } from '@/lib/cron-or-admin';
 import { loadAndPublishPostById } from '@/lib/social-publish-run';
 import { apiLog } from '@/lib/api-logger';
+import { cloudLog } from '@/lib/cloud-logger';
 
 export async function POST(request: NextRequest) {
+  const start = Date.now();
   const denied = await requireCronOrAdmin(request);
   if (denied) return denied;
 
@@ -66,9 +68,16 @@ export async function POST(request: NextRequest) {
       include: { account: { select: { id: true, platform: true, handle: true } } },
     });
 
+    cloudLog.info('/api/social/publish', 'ok', {
+      method: 'POST',
+      postId,
+      durationMs: Date.now() - start,
+      success: true,
+    });
     return NextResponse.json({ success: true, postUrl: result.postUrl, data: updated });
   } catch (error) {
     apiLog.error('POST /api/social/publish', 'failed', error);
+    cloudLog.error('/api/social/publish', 'failed', error, { durationMs: Date.now() - start, success: false });
     return NextResponse.json({ error: 'Publish failed' }, { status: 500 });
   }
 }

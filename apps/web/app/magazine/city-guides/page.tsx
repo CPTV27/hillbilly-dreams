@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { BLUR_DATA_URL } from '@bigmuddy/ui';
 import {
   CITY_GUIDE_ARTICLES,
-  CORRIDOR_CITIES,
+  DEEP_SOUTH_GUIDE_CITIES,
   LOUISIANA_CITIES,
   ARKANSAS_MISSOURI_CITIES,
 } from '@/lib/articles';
@@ -70,7 +70,7 @@ const REGIONS = [
     subtitle: 'Memphis to New Orleans',
     description:
       'The core route — five cities along Highway 61, the Blues Highway. This is where the whole journey begins and ends.',
-    citySlugs: CORRIDOR_CITIES,
+    citySlugs: DEEP_SOUTH_GUIDE_CITIES,
   },
   {
     id: 'louisiana',

@@ -76,7 +76,7 @@ const SECTIONS = [
       { label: 'Magazine', href: 'https://bigmuddymagazine.com', desc: 'Big Muddy Magazine' },
       { label: 'Radio', href: 'https://bigmuddyradio.com', desc: 'Big Muddy Radio' },
       { label: 'Entertainment', href: 'https://bigmuddyentertainment.com', desc: 'Big Muddy Entertainment' },
-      { label: 'Records', href: 'https://bigmuddyrecordlabel.com', desc: 'Big Muddy Records' },
+      { label: 'Records', href: 'https://bigmuddyrecord.com', desc: 'Big Muddy Records' },
       { label: 'Inn', href: 'https://bigmuddytouring.com/touring/inn', desc: 'Big Muddy Inn' },
       { label: 'Economics', href: 'https://outsidereconomics.com', desc: 'Outsider Economics' },
       { label: 'HDI', href: 'https://hillbillydreamsinc.com', desc: 'Hillbilly Dreams Inc' },
@@ -169,7 +169,7 @@ export default function LinksPage() {
         </div>
       ))}
       <style>{`
-        @media (max-width: 480px) {
+        @media (max-width: 600px) {
           .admin-links-page .admin-links-grid {
             grid-template-columns: 1fr !important;
           }

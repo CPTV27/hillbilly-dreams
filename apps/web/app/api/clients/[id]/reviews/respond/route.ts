@@ -7,10 +7,12 @@ import { prisma } from '@/lib/db';
 import { requireAdmin } from '@/lib/admin-auth';
 import { callAI } from '@/lib/ai-models';
 import { requireAdminOrClientContact } from '@/lib/client-api-auth';
+import { cloudLog } from '@/lib/cloud-logger';
 
 type Params = { params: { id: string } };
 
 export async function POST(request: NextRequest, { params }: Params) {
+  const start = Date.now();
   const denied = await requireAdmin();
   if (denied) return denied;
   const clientId = parseInt(params.id, 10);
@@ -97,9 +99,21 @@ Return ONLY the response text, no quotes or additional commentary.`;
       results.push(updated);
     }
 
+    cloudLog.info('/api/clients/[id]/reviews/respond', 'ok', {
+      clientId,
+      method: 'POST',
+      count: results.length,
+      durationMs: Date.now() - start,
+      success: true,
+    });
     return NextResponse.json({ data: results });
   } catch (err) {
-    console.error('[POST /api/clients/:id/reviews/respond]', err);
+    cloudLog.error('/api/clients/[id]/reviews/respond', 'failed', err, {
+      clientId,
+      method: 'POST',
+      durationMs: Date.now() - start,
+      success: false,
+    });
     return NextResponse.json({ error: 'Failed to generate review responses' }, { status: 500 });
   }
 }

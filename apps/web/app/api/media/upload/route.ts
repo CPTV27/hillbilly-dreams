@@ -6,8 +6,12 @@ export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import sharp from 'sharp';
 import { uploadToGCS } from '@/lib/gcs';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function POST(request: Request) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File | null;

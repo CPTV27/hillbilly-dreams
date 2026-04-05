@@ -4,7 +4,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { ArticleCard, NewsletterSignup, IllustrationDivider, BLUR_DATA_URL } from '@bigmuddy/ui';
-import { CITY_GUIDE_ARTICLES, CORRIDOR_CITIES, LOUISIANA_CITIES, ARKANSAS_MISSOURI_CITIES } from '@/lib/articles';
+import { CITY_GUIDE_ARTICLES, DEEP_SOUTH_GUIDE_CITIES, LOUISIANA_CITIES, ARKANSAS_MISSOURI_CITIES } from '@/lib/articles';
 
 export const metadata: Metadata = {
   title: 'Big Muddy Magazine',
@@ -19,7 +19,7 @@ const REGION_GROUPS = [
     id: 'region',
     label: 'The Region',
     description: 'Memphis to New Orleans',
-    citySlugs: CORRIDOR_CITIES,
+    citySlugs: DEEP_SOUTH_GUIDE_CITIES,
   },
   {
     id: 'louisiana',

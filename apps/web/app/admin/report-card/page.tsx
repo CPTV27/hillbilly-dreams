@@ -122,7 +122,7 @@ export default function ReportCardPage() {
           {/* Issue Tracking — The Feedback Loop */}
           <h2 style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--text-disabled)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-widest)', marginBottom: 'var(--space-4)' }}>Feedback Loop</h2>
           <div className="admin-card" style={{ marginBottom: 'var(--space-6)' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-3)', marginBottom: 'var(--space-4)' }}>
+            <div className="report-card-feedback-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))', gap: 'var(--space-3)', marginBottom: 'var(--space-4)' }}>
               <div style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: 'var(--text-2xl)', fontWeight: 700, color: 'var(--error, #b54c4c)' }}>{issueStats.open}</div>
                 <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)' }}>Open Issues</div>
@@ -174,6 +174,11 @@ export default function ReportCardPage() {
         <div className="admin-error-banner">Failed to load audit data</div>
       )}
       <style>{`
+        @media (max-width: 480px) {
+          .report-card-feedback-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
         @media (max-width: 420px) {
           .report-card-grade-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
