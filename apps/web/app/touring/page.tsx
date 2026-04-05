@@ -69,7 +69,7 @@ export default function TouringHomepage() {
             maxWidth: '500px',
           }}>
             Booking, promotion, transport, and production for bands and venues
-            along the Mississippi corridor. One call. One show. We handle everything.
+            along the route. One call. One show. We handle everything.
           </p>
         </div>
       </section>
@@ -95,7 +95,7 @@ export default function TouringHomepage() {
           {[
             {
               title: 'Booking',
-              desc: 'We match bands to venues along the corridor. Natchez to Memphis, Clarksdale to New Orleans. We know the rooms, the audiences, and the deals.',
+              desc: 'We match bands to venues along the route. Natchez to Memphis, Clarksdale to New Orleans. We know the rooms, the audiences, and the deals.',
             },
             {
               title: 'Transport',
@@ -154,7 +154,7 @@ export default function TouringHomepage() {
             { name: 'Big Muddy Touring', tag: 'The Circuit', url: 'https://bigmuddytouring.com', desc: '18 cities. Real venues. Real audiences. We book the shows and drive the bands.' },
             { name: 'Big Muddy Radio', tag: 'The Sound', url: 'https://bigmuddyradio.com', desc: 'Streaming worldwide. Live sessions from the Blues Room. No algorithms, just music.' },
             { name: 'Big Muddy Records', tag: 'The Label', url: 'https://bigmuddyrecordlabel.com', desc: 'Non-exclusive. You keep your masters. We distribute, promote, and sell your music.' },
-            { name: 'Big Muddy Magazine', tag: 'The Story', url: 'https://bigmuddymagazine.com', desc: 'Long-form editorial about the corridor. Every show gets a feature. Every artist gets a profile.' },
+            { name: 'Big Muddy Magazine', tag: 'The Story', url: 'https://bigmuddymagazine.com', desc: 'Long-form editorial about the region. Every show gets a feature. Every artist gets a profile.' },
           ].map((brand) => (
             <a key={brand.name} href={brand.url} target="_blank" rel="noopener noreferrer" style={{
               display: 'block',
@@ -254,7 +254,7 @@ export default function TouringHomepage() {
             </h2>
             <ul style={{ listStyle: 'none', padding: 0 }}>
               {[
-                'Booked shows along the corridor',
+                'Booked shows along the route',
                 'Transportation — we drive, you play',
                 'Radio airplay on Big Muddy Radio',
                 'Magazine feature in Big Muddy Magazine',
@@ -366,7 +366,7 @@ export default function TouringHomepage() {
           </h2>
           <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--text-muted)' }}>
             Gospel, soul, and the American songbook — performed live at the Blues Room
-            and on stages across the corridor. Arrie is the first artist in the Big Muddy
+            and on stages across the network. Arrie is the first artist in the Big Muddy
             touring roster, and the proof that the machine works.
           </p>
         </div>
@@ -379,7 +379,7 @@ export default function TouringHomepage() {
         textAlign: 'center',
       }}>
         <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
-          Natchez, Mississippi. The corridor starts here.
+          Natchez, Mississippi. The route starts here.
         </p>
         <p style={{ fontSize: '0.7rem', color: 'var(--text-disabled)' }}>
           Hillbilly Dreams Inc · Natchez, Mississippi
