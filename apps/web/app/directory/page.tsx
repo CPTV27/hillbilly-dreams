@@ -2,15 +2,11 @@
 // Deep South Directory — Business directory landing page
 import type { Metadata } from 'next';
 import { IllustrationDivider } from '@bigmuddy/ui';
-import {
-  getCorridorArtistsPublic,
-  recordsArtistProfileUrl,
-} from '@/lib/corridor-artists-public';
 
 export const metadata: Metadata = {
-  title: 'Deep South Directory — Main Street Marketing for Main Street Money',
+  title: 'Deep South Directory — Your business, online, done right.',
   description:
-    'The only marketing platform with a magazine, radio station, and photography studio built in. Local marketing made by people who actually live here.',
+    'Digital hygiene for your business. Google listing, reviews, social posts, and AI that knows your town — not a generic chatbot. Starting at free.',
 };
 
 const CATEGORIES = [
@@ -18,7 +14,7 @@ const CATEGORIES = [
     name: 'Restaurants & Food',
     icon: 'R',
     count: 'Biscuits & Blues, The Camp, Cotton Alley, and more',
-    desc: 'From Regina\'s biscuits to gas station fried chicken. The corridor eats.',
+    desc: 'From Regina\'s biscuits to gas station fried chicken. The Deep South eats.',
   },
   {
     name: 'Venues & Music',
@@ -42,7 +38,7 @@ const CATEGORIES = [
     name: 'Tours & Experiences',
     icon: 'T',
     count: 'Walking tours, cooking classes, river excursions',
-    desc: 'The things you came to the corridor to do. We know who does them best.',
+    desc: 'The things you came here to do. We know who does them best.',
   },
   {
     name: 'Services',
@@ -78,7 +74,7 @@ const FEATURED_BUSINESSES = [
     name: 'The Big Muddy Inn',
     type: 'Boutique Hotel / Music Venue',
     city: 'Natchez, MS',
-    desc: '6 rooms, a Blues Room, and the headquarters of everything you\'re reading right now.',
+    desc: '6 rooms in downtown Natchez with a live music venue downstairs. Boutique lodging with character.',
     articleSlug: null,
   },
 ];
@@ -96,7 +92,7 @@ const TIERS = [
       'Business listing on the directory',
       'AI assistant trained on your town',
       'Start building your profile',
-      'Visible to visitors searching the corridor',
+      'Visible to visitors searching the Deep South',
       'Part of the Big Muddy network',
     ],
   },
@@ -154,16 +150,7 @@ const TIERS = [
   },
 ];
 
-function truncateBio(text: string | null, max = 140): string | null {
-  if (!text?.trim()) return null;
-  const t = text.trim();
-  if (t.length <= max) return t;
-  return `${t.slice(0, max - 1)}…`;
-}
-
-export default async function DirectoryPage() {
-  const corridorArtists = await getCorridorArtistsPublic(36);
-
+export default function DirectoryPage() {
   return (
     <main>
       {/* Hero */}
@@ -354,276 +341,6 @@ export default async function DirectoryPage() {
         </div>
       </section>
 
-      {/* Corridor musicians — Prisma-backed roster (public statuses only) */}
-      <section
-        id="musicians"
-        style={{
-          borderTop: '1px solid var(--border)',
-          padding: '3rem 1.5rem',
-          maxWidth: 1000,
-          margin: '0 auto',
-        }}
-      >
-        <p
-          style={{
-            fontSize: '0.8rem',
-            textTransform: 'uppercase',
-            letterSpacing: '0.12em',
-            color: 'var(--accent, #c8943e)',
-            marginBottom: '0.5rem',
-          }}
-        >
-          Corridor musicians
-        </p>
-        <h2
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.35rem, 3vw, 1.75rem)',
-            fontWeight: 700,
-            color: 'var(--text)',
-            margin: '0 0 0.75rem',
-            lineHeight: 1.2,
-            letterSpacing: '-0.02em',
-          }}
-        >
-          Talent on the route — tied into radio, rooms, and records.
-        </h2>
-        <p
-          style={{
-            fontSize: '0.95rem',
-            color: 'var(--text-muted)',
-            lineHeight: 1.65,
-            maxWidth: 640,
-            margin: '0 0 2rem',
-          }}
-        >
-          These are artists already moving through the Big Muddy network — showcases, touring, and
-          the label pipeline. The directory isn&apos;t only storefronts; it&apos;s the whole corridor
-          stack working together.
-        </p>
-        {corridorArtists.length === 0 ? (
-          <p
-            style={{
-              fontSize: '0.9rem',
-              color: 'var(--text-muted)',
-              lineHeight: 1.6,
-              margin: 0,
-              maxWidth: 560,
-            }}
-          >
-            Public roster entries appear here as artists graduate into showcases and routed work.
-            Musicians can{' '}
-            <a href="/directory/onboard/musician" style={{ color: 'var(--accent)', fontWeight: 600 }}>
-              get on the list
-            </a>
-            ; talent and booking also run through{' '}
-            <a
-              href="https://bigmuddytouring.com"
-              style={{ color: 'var(--accent)', fontWeight: 600 }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Big Muddy Touring
-            </a>
-            .
-          </p>
-        ) : (
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-              gap: '1.25rem',
-            }}
-          >
-            {corridorArtists.map((a) => (
-              <a
-                key={a.id}
-                href={recordsArtistProfileUrl(a.slug)}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'block',
-                  border: '1px solid var(--border)',
-                  borderRadius: 10,
-                  padding: '1.25rem 1.35rem',
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  background: 'var(--surface)',
-                  boxShadow: 'var(--shadow-sm)',
-                  transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
-                }}
-              >
-                <p
-                  style={{
-                    fontSize: '0.65rem',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.12em',
-                    color: 'var(--accent)',
-                    margin: '0 0 0.35rem',
-                    fontWeight: 700,
-                  }}
-                >
-                  {a.genre?.replace(/-/g, ' ') ?? 'Corridor artist'}
-                </p>
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '1.05rem',
-                    fontWeight: 700,
-                    color: 'var(--text)',
-                    margin: '0 0 0.35rem',
-                    lineHeight: 1.25,
-                  }}
-                >
-                  {a.name}
-                </h3>
-                <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', margin: '0 0 0.6rem' }}>
-                  {a.city}, {a.state}
-                </p>
-                {truncateBio(a.bio) && (
-                  <p
-                    style={{
-                      fontSize: '0.82rem',
-                      color: 'var(--text-muted)',
-                      lineHeight: 1.55,
-                      margin: 0,
-                    }}
-                  >
-                    {truncateBio(a.bio)}
-                  </p>
-                )}
-                <span
-                  style={{
-                    display: 'inline-block',
-                    marginTop: '0.85rem',
-                    fontSize: '0.75rem',
-                    fontWeight: 700,
-                    color: 'var(--accent)',
-                    borderBottom: '1px solid var(--accent)',
-                    paddingBottom: 2,
-                  }}
-                >
-                  Artist profile ↗
-                </span>
-              </a>
-            ))}
-          </div>
-        )}
-      </section>
-
-      {/* Editorial Surface */}
-      <section
-        style={{
-          borderTop: '1px solid var(--border)',
-          padding: '3rem 1.5rem',
-          maxWidth: 900,
-          margin: '0 auto',
-        }}
-      >
-        <p
-          style={{
-            fontSize: '0.8rem',
-            textTransform: 'uppercase',
-            letterSpacing: '0.12em',
-            color: 'var(--accent, #c8943e)',
-            marginBottom: '0.5rem',
-          }}
-        >
-          From the Corridor
-        </p>
-        <p
-          style={{
-            fontSize: '1.15rem',
-            fontWeight: 700,
-            color: 'var(--text)',
-            marginBottom: '2rem',
-            letterSpacing: '-0.02em',
-          }}
-        >
-          The network is alive.
-        </p>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '1.5rem',
-          }}
-        >
-          {[
-            {
-              label: 'From the Corridor',
-              title: 'Where Does the Money Go?',
-              desc: 'Most of the money spent in small Southern towns leaves before the week is out. We looked at why — and what local businesses can do about it.',
-              href: '/economics/field-manual/02-the-extraction-trap',
-            },
-            {
-              label: 'Big Muddy Spotlight · Issue 001',
-              title: 'Rise Up: The Talent Has Always Been Here.',
-              desc: 'Arrie Aslin and the Rise Up Gospel and Blues Band travel the corridor. At every stop: a live show, a regional talent search, and the economic program running underneath.',
-              href: '/touring',
-            },
-          ].map((card) => (
-            <a
-              key={card.title}
-              href={card.href}
-              style={{
-                display: 'block',
-                border: '1px solid var(--border)',
-                padding: '1.75rem',
-                textDecoration: 'none',
-                transition: 'border-color 0.2s',
-              }}
-            >
-              <p
-                style={{
-                  fontSize: '0.7rem',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  color: 'var(--accent, #c8943e)',
-                  marginBottom: '0.5rem',
-                  opacity: 0.8,
-                }}
-              >
-                {card.label}
-              </p>
-              <h3
-                style={{
-                  fontSize: '1rem',
-                  fontWeight: 700,
-                  color: 'var(--text)',
-                  margin: '0 0 0.75rem',
-                  lineHeight: 1.3,
-                  letterSpacing: '-0.01em',
-                }}
-              >
-                {card.title}
-              </h3>
-              <p
-                style={{
-                  fontSize: '0.82rem',
-                  color: 'var(--text)',
-                  opacity: 0.55,
-                  lineHeight: 1.6,
-                  margin: '0 0 1rem',
-                }}
-              >
-                {card.desc}
-              </p>
-              <span
-                style={{
-                  fontSize: '0.75rem',
-                  color: 'var(--accent, #c8943e)',
-                  borderBottom: '1px solid var(--accent, #c8943e)',
-                  paddingBottom: '0.1rem',
-                }}
-              >
-                Read →
-              </span>
-            </a>
-          ))}
-        </div>
-      </section>
-
       {/* Categories */}
       <section
         id="listings"
@@ -741,8 +458,7 @@ export default async function DirectoryPage() {
             maxWidth: 550,
           }}
         >
-          Businesses we&apos;ve written about, photographed, and know personally. The corridor
-          starts here.
+          Businesses we&apos;ve written about, photographed, and know personally.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {FEATURED_BUSINESSES.map((biz) => (
@@ -1087,7 +803,7 @@ export default async function DirectoryPage() {
             marginBottom: '2rem',
           }}
         >
-          Free to list. No long contracts. No setup fees. We&apos;ll build your profile, manage your listings, and put you in front of people already planning trips and nights out on the corridor. Pricing is flexible while we onboard founding members.
+          Free to list. No long contracts. No setup fees. We&apos;ll build your profile, manage your listings, and put you in front of people already planning trips and nights out in the Deep South. Pricing is flexible while we onboard founding members.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <a
