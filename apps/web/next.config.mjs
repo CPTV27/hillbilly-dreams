@@ -13,6 +13,10 @@ const nextConfig = {
   // Skip type checking during builds — we run tsc separately
   typescript: { ignoreBuildErrors: true },
 
+  // Exclude native binary packages from webpack bundling.
+  // ChromaDB pulls in onnxruntime-node which has .node binaries that webpack can't handle.
+  serverExternalPackages: ['chromadb', 'chromadb-default-embed', 'onnxruntime-node'],
+
   images: {
     // Custom loader: serves pre-optimized .webp/.avif from GCS directly,
     // routes everything else through Next.js /_next/image optimizer.
