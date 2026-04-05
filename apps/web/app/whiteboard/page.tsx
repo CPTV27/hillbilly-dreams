@@ -51,7 +51,7 @@ function FlywheelView() {
     { label: 'Content', metric: '4 channels per show', color: '#8b5cf6' },
     { label: 'Media Distribution', metric: 'Magazine + Radio + Social', color: '#ec4899' },
     { label: 'Discovery', metric: 'Tourists find us', color: '#f97316' },
-    { label: 'Directory Revenue', metric: '$20-99/mo per business', color: '#c8943e' },
+    { label: 'Directory Revenue', metric: '$25-250/mo per business', color: '#c8943e' },
     { label: 'Reinvestment', metric: 'Better shows', color: '#22c55e' },
   ];
   return (
@@ -146,7 +146,7 @@ function OrgView() {
     { name: 'Big Muddy Touring', sub: 'Inn, Blues Room, Tours', color: '#3b82f6' },
     { name: 'Big Muddy Media', sub: 'Magazine, Radio, Records', color: '#8b5cf6' },
     { name: 'Big Muddy Entertainment', sub: 'Rise Up, Talent Search', color: '#ec4899' },
-    { name: 'Deep South Directory', sub: 'Free / $20 / $49 / $99', color: '#22c55e' },
+    { name: 'Deep South Directory', sub: 'Free / $25 / $50 / $99 / $250', color: '#22c55e' },
     { name: 'Outsider Economics', sub: 'Philosophy, Toolkit, Resources', color: '#f97316' },
     { name: 'Venture Gallery', sub: 'Photography, Marketplace', color: '#eab308' },
   ];
@@ -172,7 +172,7 @@ function OrgView() {
 
 function RevenueView() {
   const streams = [
-    { name: 'DSD Subscriptions', type: 'Recurring', range: '$20-99/mo per business', color: '#22c55e' },
+    { name: 'DSD Subscriptions', type: 'Recurring', range: '$25-250/mo per business', color: '#22c55e' },
     { name: 'Room Bookings', type: 'Transactional', range: '$125-175/night × 6 suites', color: '#3b82f6' },
     { name: 'Bar Revenue', type: 'Transactional', range: '$300-500/show night', color: '#3b82f6' },
     { name: 'Print Sales', type: 'Transactional', range: '$150-450 per print', color: '#3b82f6' },

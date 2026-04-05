@@ -3,9 +3,10 @@
 const STREAMS = [
   { category: 'Recurring', color: '#22c55e', items: [
     { name: 'DSD The Listing', price: 'Free', mrr: '$0', count: 'Building audience' },
-    { name: 'DSD The Assistant', price: '$20/mo', mrr: 'TBD', count: 'Launches next' },
-    { name: 'DSD The Works', price: '$49/mo', mrr: 'TBD', count: 'Apr 21' },
+    { name: 'DSD paid tier (mid)', price: '$25/mo', mrr: 'TBD', count: 'Walk-in ladder' },
+    { name: 'DSD paid tier (growth)', price: '$50/mo', mrr: 'TBD', count: 'Walk-in ladder' },
     { name: 'DSD The Engine', price: '$99/mo', mrr: 'TBD', count: 'Active' },
+    { name: 'DSD top tier', price: '$250/mo', mrr: 'TBD', count: 'Enterprise / full stack' },
     { name: 'Magazine Subscriptions', price: 'TBD', mrr: 'TBD', count: 'Future' },
   ]},
   { category: 'Transactional', color: '#3b82f6', items: [

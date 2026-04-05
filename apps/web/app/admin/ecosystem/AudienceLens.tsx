@@ -31,7 +31,7 @@ const FUNNEL = [
       { name: 'Room Bookings', role: 'Cloudbeds → Inn revenue', brand: 'Inn' },
       { name: 'Show Tickets', role: 'Blues Room admission', brand: 'Entertainment' },
       { name: 'Bar Sales', role: '$300-500/show night', brand: 'Inn' },
-      { name: 'DSD Subscriptions', role: '$20-99/mo per business', brand: 'DSD' },
+      { name: 'DSD Subscriptions', role: '$25-250/mo per business', brand: 'DSD' },
       { name: 'Print Sales', role: 'Photography storefront', brand: 'Gallery' },
     ],
   },
