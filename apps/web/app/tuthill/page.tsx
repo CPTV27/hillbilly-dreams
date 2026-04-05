@@ -67,7 +67,7 @@ export default function TuthillPage() {
         overflow: 'hidden',
       }}>
         <Image
-          src="/images/corridor/natchez-night-lounge.webp"
+          src="/images/region/natchez-night-lounge.webp"
           alt="Natchez at night — warm interior glow"
           fill
           priority

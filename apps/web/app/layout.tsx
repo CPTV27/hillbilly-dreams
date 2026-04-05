@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     template: '%s — Big Muddy',
   },
   description:
-    'Seven brands anchored in Natchez, Mississippi — touring, magazine, radio, and records along the Mississippi music corridor.',
+    'Seven brands anchored in Natchez, Mississippi — touring, magazine, radio, and records along the Deep South.',
   metadataBase: new URL('https://bigmuddytouring.com'),
   manifest: '/manifest.json',
   appleWebApp: {

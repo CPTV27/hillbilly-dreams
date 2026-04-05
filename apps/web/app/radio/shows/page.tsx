@@ -11,7 +11,7 @@ const SHOWS = [
   { time: '6:15 AM', name: 'Morning Levee Rise', slug: 'morning-levee-rise', host: 'Automated', desc: 'Wake-up blues and gospel. Coffee music from the Delta.', day: 'Daily' },
   { time: '9:00 AM', name: 'Porch Talk', slug: 'porch-talk', host: 'Miss Pearline', desc: 'Conversations, opinions, and community gossip. Miss Pearline holds court.', day: 'Weekdays' },
   { time: '9:00 AM', name: 'Miss Pearline Kitchen Table Hour', slug: 'miss-pearline-kitchen-table', host: 'Miss Pearline', desc: 'Recipes, stories, and life advice from the woman who knows everybody.', day: 'Saturdays' },
-  { time: '10:00 AM', name: 'Region Crossroads', slug: 'corridor-crossroads', host: 'Automated', desc: 'Music mix from across the river region. Memphis to New Orleans.', day: 'Daily' },
+  { time: '10:00 AM', name: 'Region Crossroads', slug: 'region-crossroads', host: 'Automated', desc: 'Music mix from across the river region. Memphis to New Orleans.', day: 'Daily' },
   { time: '12:00 PM', name: 'The Juke Joint Hour', slug: 'juke-joint-hour', host: 'Automated', desc: 'Raw Mississippi blues. The kind of music that sounds like dirt roads.', day: 'Daily' },
   { time: '1:00 PM', name: 'Buddy Boy Backroads', slug: 'buddy-boy-backroads', host: 'Buddy Boy', desc: 'Back roads, lost highways, and the stories between the mile markers.', day: 'Mon/Wed' },
   { time: '1:00 PM', name: 'The Outsider Economics Hour', slug: 'outsider-economics-hour', host: 'Chase', desc: 'How money actually works in small towns. The math nobody ran.', day: 'Tuesdays' },

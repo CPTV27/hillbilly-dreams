@@ -28,7 +28,7 @@ const ROSTER = [
     name: 'Amy Scruggs',
     genre: 'Blues / Soul / Roots',
     description:
-      'Mississippi-born, corridor-raised. Amy Scruggs sings the kind of blues that doesn\'t ask permission — raw, lived-in, the real thing.',
+      'Mississippi-born, Deep South-raised. Amy Scruggs sings the kind of blues that doesn\'t ask permission — raw, lived-in, the real thing.',
     status: 'Active',
   },
   {

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: '%s | Deep South Directory',
   },
   description:
-    'The regional business network for the Mississippi Corridor. Find locals. Get found. Keep your money in the region.',
+    'The regional business network for the Deep South. Find locals. Get found. Keep your money in the region.',
   metadataBase: new URL('https://deepsouthdirectory.com'),
 };
 

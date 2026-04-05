@@ -1,5 +1,5 @@
 // apps/web/app/touring/inn/page.tsx
-// Corridor-Wide Hospitality Guide — Where to Stay Across the Big Muddy Network
+// Region-Wide Hospitality Guide — Where to Stay Across the Big Muddy Network
 // NOT a duplicate of thebigmuddyinn.com — this covers lodging across all 18 cities.
 
 import type { Metadata } from 'next';
@@ -9,7 +9,7 @@ import { NewsletterSignup, BLUR_DATA_URL } from '@bigmuddy/ui';
 export const metadata: Metadata = {
   title: 'Where to Stay — Big Muddy Touring',
   description:
-    'A corridor-wide hospitality guide to the best lodging across 18 cities and 5 states. From haunted plantations to historic downtown hotels — find where to stay on the Big Muddy circuit.',
+    'A region-wide hospitality guide to the best lodging across 18 cities and 5 states. From haunted plantations to historic downtown hotels — find where to stay on the Big Muddy circuit.',
 };
 
 /* ─────────────────────────────────────────────── *
@@ -437,7 +437,7 @@ export default function InnPage() {
             <em>Along the Way</em>
           </h1>
           <p className="inn-hero__sub">
-            A hospitality guide to the entire Big Muddy corridor. Eighteen cities,
+            A hospitality guide to the entire Big Muddy network. Eighteen cities,
             five states, and the best places to lay your head — from haunted
             plantations to artists&rsquo; lofts, juke-joint motels to grand hotels.
           </p>

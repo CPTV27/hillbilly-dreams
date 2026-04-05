@@ -117,19 +117,19 @@ const VENDORS: Vendor[] = [
 
 const GALLERY_IMAGES = [
   {
-    src: '/images/corridor/inn-hallway-gathering.webp',
+    src: '/images/region/inn-hallway-gathering.webp',
     alt: 'The Big Muddy Inn hallway — six rooms opening onto the region',
   },
   {
-    src: '/images/corridor/fire-pit-gathering.webp',
+    src: '/images/region/fire-pit-gathering.webp',
     alt: 'Evening gathering around a fire pit — the kind of night your guests will talk about',
   },
   {
-    src: '/images/corridor/natchez-night-lounge.webp',
+    src: '/images/region/natchez-night-lounge.webp',
     alt: 'Natchez after dark — the Blues Room at night',
   },
   {
-    src: '/images/corridor/natchez-bluff-river-view.webp',
+    src: '/images/region/natchez-bluff-river-view.webp',
     alt: 'The Mississippi River from the Natchez bluff — your wedding backdrop',
   },
 ];
@@ -158,7 +158,7 @@ export default function WeddingsPage() {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: 'url(/images/corridor/oceansprings-natchez-580-of-1183.webp)',
+            backgroundImage: 'url(/images/region/oceansprings-natchez-580-of-1183.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: 0.15,

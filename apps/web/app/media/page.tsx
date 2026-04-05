@@ -26,7 +26,7 @@ const WHAT_YOU_GET = [
   {
     icon: '03',
     title: 'Played on the Radio',
-    desc: 'Big Muddy Radio produces audio and video content. Your events, your music, your story — featured in shows and playlists that reach the whole corridor.',
+    desc: 'Big Muddy Radio produces audio and video content. Your events, your music, your story — featured in shows and playlists that reach the whole network.',
     image: '/images/dsd/blues-musician.webp',
   },
   {
@@ -79,7 +79,7 @@ const ECOSYSTEM = [
   },
   {
     name: 'Big Muddy Radio',
-    desc: 'Podcasts, playlists, and live sessions. Your events and your music, featured on shows that reach the whole corridor.',
+    desc: 'Podcasts, playlists, and live sessions. Your events and your music, featured on shows that reach the whole network.',
     stat: 'Broadcasting',
     accent: false,
   },
@@ -162,7 +162,7 @@ const PIPELINE_STEPS = [
 const MOAT = [
   {
     title: 'The Network Is the Product',
-    desc: 'This isn\'t an agency. It\'s a network. Every business in the directory makes the network more valuable for every other business. Cross-promotion, event packaging, corridor-wide campaigns.',
+    desc: 'This isn\'t an agency. It\'s a network. Every business in the directory makes the network more valuable for every other business. Cross-promotion, event packaging, regional campaigns.',
   },
   {
     title: 'We\'re Already Doing the Marketing',
@@ -431,7 +431,7 @@ export default function MediaHomepage() {
             <div className="section-label">Get Started</div>
             <h2 className="media-cta-section__title">3 Months Free. Zero Risk.</h2>
             <p className="media-cta-section__sub">
-              We come to you, learn your business, build your voice, and plug you into the whole corridor.
+              We come to you, learn your business, build your voice, and plug you into the whole network.
               Delta Dawn handles the rest.
             </p>
             <div className="media-cta-section__buttons">

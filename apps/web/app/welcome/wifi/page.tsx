@@ -16,12 +16,12 @@ const LOCATION_CONFIG: Record<string, { name: string; tagline: string; heroImage
   'big-muddy-inn': {
     name: 'The Big Muddy Inn',
     tagline: 'Natchez, Mississippi',
-    heroImage: '/images/corridor/inn-hallway-gathering.webp',
+    heroImage: '/images/region/inn-hallway-gathering.webp',
   },
   'utopia-studios': {
     name: 'Utopia Studios',
     tagline: 'Natchez, Mississippi',
-    heroImage: '/images/corridor/night-patio-string-lights.webp',
+    heroImage: '/images/region/night-patio-string-lights.webp',
   },
 };
 

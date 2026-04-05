@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
-/** Bearsville-corridor slugs → `/admin/business/[slug]` discovery + shop views. */
+/** Bearsville Creative slugs → `/admin/business/[slug]` discovery + shop views. */
 const BRAND_SLUGS = [
   { slug: 'tuthill-design', label: 'Tuthill Design' },
   { slug: 'studio-c-video', label: 'Studio C Video' },

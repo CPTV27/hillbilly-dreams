@@ -51,7 +51,7 @@ export default async function PlaylistsPage() {
           </h1>
           <p className="playlists-hero__sub">
             Every playlist in the Big Muddy Radio catalog — curated by theme,
-            city, era, and mood along the Mississippi music corridor.
+            city, era, and mood along the Deep South.
           </p>
         </div>
       </section>

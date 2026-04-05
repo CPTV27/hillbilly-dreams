@@ -8,7 +8,7 @@ import { CITY_GUIDE_ARTICLES } from '@/lib/articles';
 
 export const metadata: Metadata = {
   title: 'Articles — Big Muddy Magazine',
-  description: 'Stories, interviews, photo essays, and city guides from the Mississippi music corridor.',
+  description: 'Stories, interviews, photo essays, and city guides from the Deep South.',
 };
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';

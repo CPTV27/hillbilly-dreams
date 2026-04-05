@@ -16,7 +16,7 @@ export const metadata: Metadata = {
       default: 'Big Muddy Magazine | Stories from the Southern Gothic Heartland',
       template: '%s | Big Muddy Magazine',
     },
-    description: 'Long-form editorial, city guides, and stories from the Mississippi music corridor.',
+    description: 'Long-form editorial, city guides, and stories from the Deep South.',
     path: '/magazine',
   }),
   metadataBase: new URL('https://bigmuddymagazine.com'),

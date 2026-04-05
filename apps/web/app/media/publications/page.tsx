@@ -184,7 +184,7 @@ export default async function PublicationsPage() {
       {/* ── Hero ── */}
       <section className="dsp-hero">
         <Image
-          src="/images/corridor/historic-home-natchez.webp"
+          src="/images/region/historic-home-natchez.webp"
           alt="Historic home in Natchez, Mississippi"
           fill
           priority

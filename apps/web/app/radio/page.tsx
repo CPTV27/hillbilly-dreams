@@ -8,7 +8,7 @@ import type { Playlist, Event } from '@bigmuddy/config';
 
 export const metadata: Metadata = {
   title: 'Big Muddy Radio',
-  description: 'Curated playlists and live sessions from the Mississippi music corridor.',
+  description: 'Curated playlists and live sessions from the Deep South.',
 };
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';

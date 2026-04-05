@@ -315,7 +315,7 @@ function JPOptionsView() {
       commitment: '20-30 hrs/week',
       role: 'Produce the Bourdain-of-Music travel series. Own Big Muddy Entertainment.',
       compensation: 'Salary + revenue share + executive producer credit',
-      includes: ['Everything in Programming Director', 'Travel series production', 'EP credit on all content', 'Entertainment division leadership', 'Cross-corridor booking (Natchez + Woodstock)', 'NPR cross-promotion'],
+      includes: ['Everything in Programming Director', 'Travel series production', 'EP credit on all content', 'Entertainment division leadership', 'Cross-regional booking (Natchez + Woodstock)', 'NPR cross-promotion'],
       color: '#22c55e',
     },
     {

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: '%s | Bearsville Creative',
   },
   description:
-    'The Northeast media imprint documenting music, land, and independent culture in the Hudson Valley — and connecting it south through the Big Muddy corridor.',
+    'The Northeast media imprint documenting music, land, and independent culture in the Hudson Valley — and connecting it south through the Big Muddy network.',
   metadataBase: new URL('https://bearsvillecreative.com'),
 };
 

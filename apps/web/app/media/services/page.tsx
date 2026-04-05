@@ -16,7 +16,7 @@ const SERVICES = [
     icon: '✦',
     label: 'AI Content Creation',
     title: 'Content That Sounds Like You',
-    image: '/images/corridor/night-patio-string-lights.webp',
+    image: '/images/region/night-patio-string-lights.webp',
     desc: 'Claude-powered, brand-voice-matched content across every format — captions, blog posts, event copy, menus, email campaigns. We train the AI on your voice once. Every piece of content matches it.',
     tiers: [
       { name: 'Front Porch', detail: '20 posts/month, 2 platforms' },

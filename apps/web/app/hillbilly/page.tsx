@@ -66,7 +66,7 @@ const BRANDS = [
     name: 'Deep South Directory',
     url: 'https://deepsouthdirectory.com',
     what: 'Local business marketing. The engine that pays for everything else.',
-    image: '/images/corridor/natchez-downtown-sidewalk.webp',
+    image: '/images/region/natchez-downtown-sidewalk.webp',
     imageAlt: 'Main Street — Natchez sidewalk and storefronts',
   },
   {

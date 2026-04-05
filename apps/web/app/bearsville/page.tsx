@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Bearsville Creative — Recording Studios of the Hudson Valley',
   description:
-    'The studio node of the Big Muddy corridor. We document recording studios, sessions, engineers, and the rooms where the sound lives — from Woodstock to the Catskills.',
+    'The studio node of the Big Muddy network. We document recording studios, sessions, engineers, and the rooms where the sound lives — from Woodstock to the Catskills.',
 };
 
 // ─── Image archive — Studio C / Utopia photos ─────────────────────────────────
@@ -358,7 +358,7 @@ export default function BearsvillePage() {
         </div>
       </section>
 
-      {/* ── CORRIDOR ── */}
+      {/* ── NETWORK ── */}
       <section style={{
         padding: 'clamp(3rem, 6vw, 5rem) 2rem',
         background: surface,
@@ -386,7 +386,7 @@ export default function BearsvillePage() {
                 Woodstock connects<br />to Natchez.
               </h2>
               <p style={{ fontSize: '0.9rem', color: textMuted, lineHeight: 1.7, margin: '0 0 1rem' }}>
-                Bearsville is the studio node of the Big Muddy corridor. Bands record here and tour south. Engineers swap sessions between Woodstock and Natchez. The infrastructure is shared — the rooms are different.
+                Bearsville is the studio node of the Big Muddy network. Bands record here and tour south. Engineers swap sessions between Woodstock and Natchez. The infrastructure is shared — the rooms are different.
               </p>
               <a href="https://bigmuddytouring.com" style={{
                 fontSize: '0.8rem', fontWeight: 700, color: accent,

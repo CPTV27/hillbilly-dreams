@@ -15,7 +15,7 @@ export const metadata: Metadata = {
       default: 'Big Muddy Radio | Curated Playlists from the Mississippi Music Region',
       template: '%s | Big Muddy Radio',
     },
-    description: 'Curated playlists, live sessions, and the soundtrack of the Mississippi music corridor.',
+    description: 'Curated playlists, live sessions, and the soundtrack of the Deep South.',
     path: '/radio',
   }),
   metadataBase: new URL('https://bigmuddyradio.com'),

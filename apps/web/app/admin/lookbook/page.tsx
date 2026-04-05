@@ -17,7 +17,7 @@ const STYLES = [
   { id: '09-blueprint', name: 'Blueprint / Technical', bestFor: 'MBT Console, Platform', images: ['building-floorplan', 'dashboard-wireframe', 'data-flow'] },
   { id: '10-watercolor', name: 'Watercolor Landscape', bestFor: 'Touring, Magazine headers', images: ['cotton-field', 'river-golden-hour', 'small-town-street'] },
   { id: '11-gig-poster', name: 'Gig Poster / Concert Art', bestFor: 'Records, Entertainment', images: ['big-muddy-presents', 'blues-musician', 'guitar-headstock'] },
-  { id: '12-cartographic', name: 'Map / Cartographic', bestFor: 'Touring, Directory', images: ['corridor-route', 'delta-region', 'touring-circuit'] },
+  { id: '12-cartographic', name: 'Map / Cartographic', bestFor: 'Touring, Directory', images: ['regional-route', 'delta-region', 'touring-circuit'] },
 ];
 
 interface Comment {

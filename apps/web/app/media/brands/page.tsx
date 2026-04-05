@@ -39,7 +39,7 @@ const BRANDS = [
     url: 'https://bigmuddymagazine.com',
     tagline: 'Stories from the Southern Gothic heartland',
     category: 'Editorial & Journalism',
-    desc: 'Long-form editorial, city guides, interviews, and photo essays from along the Mississippi music corridor. Southern Gothic storytelling — musicians, restaurants, hotels, culture, history. The magazine that treats the South like the subject it is.',
+    desc: 'Long-form editorial, city guides, interviews, and photo essays from along the Deep South. Southern Gothic storytelling — musicians, restaurants, hotels, culture, history. The magazine that treats the South like the subject it is.',
     stats: [
       { label: 'Categories', value: '6' },
       { label: 'Format', value: 'Long-form' },
@@ -60,7 +60,7 @@ const BRANDS = [
     url: 'https://bigmuddyradio.com',
     tagline: 'The sound of the river',
     category: 'Music & Audio',
-    desc: 'Curated playlists, live sessions, and the soundtrack of the Mississippi music corridor. Blues, soul, country, gospel, jazz, and the border genres that don\'t have clean names. The radio station the river deserves.',
+    desc: 'Curated playlists, live sessions, and the soundtrack of the Deep South. Blues, soul, country, gospel, jazz, and the border genres that don\'t have clean names. The radio station the river deserves.',
     stats: [
       { label: 'Format', value: 'Streaming' },
       { label: 'Playlists', value: 'Curated' },

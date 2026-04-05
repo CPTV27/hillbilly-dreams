@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       default: 'Big Muddy Touring | Memphis to New Orleans',
       template: '%s | Big Muddy Touring',
     },
-    description: "Eighteen cities. Five states. A thousand years of American music. City guides, curated playlists, live events, and lodging along the Mississippi's music corridor.",
+    description: "Eighteen cities. Five states. A thousand years of American music. City guides, curated playlists, live events, and lodging along the Deep South.",
     openGraphUrl: 'https://bigmuddytouring.com/',
     ogImage: {
       url: sprinterVanOgImage,

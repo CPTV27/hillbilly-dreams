@@ -147,7 +147,7 @@ const lastSteps = [
   { title: 'ENCRYPTION + AUDIT', body: 'Column-level AES-256 for PII. Immutable audit log with hash chain. FERPA/StateRAMP prerequisite.' },
   { title: 'DEPLOYMENT PLAYBOOKS', body: 'Three written playbooks: CivicX small city (90 days), District safety stack (90 days), Delta Dawn pilot (120 days).' },
   { title: 'PRICING MATRICES', body: 'Lock price bands per segment with explicit inclusions/exclusions. No scope creep.' },
-  { title: 'REFERENCE WINS', body: 'Big Muddy Inn + KioskMode as named case studies. Capture one pilot civic client in the five-county corridor.' },
+  { title: 'REFERENCE WINS', body: 'Big Muddy Inn + KioskMode as named case studies. Capture one pilot civic client in the five-county region.' },
   { title: 'GRANT WRITER', body: 'Retainer relationship for ARPA, USDA Rural Development, and E-Rate applications. One of the four vendor stack slots.' },
 ];
 

@@ -143,8 +143,8 @@ export default function GalleryAbout() {
           color: '#e8dcc8',
         }}>
           <p style={{ fontSize: '1rem', lineHeight: 1.7, marginBottom: '2rem', maxWidth: '600px' }}>
-            BCA is one piece of a sovereign creative economy built along the Mississippi
-            corridor. Every brand feeds the others. The inn fills the rooms. The radio plays
+            BCA is one piece of a sovereign creative economy built across the Deep South.
+            Every brand feeds the others. The inn fills the rooms. The radio plays
             the soundtrack. The magazine tells the stories. The gallery sells what the
             region makes.
           </p>
