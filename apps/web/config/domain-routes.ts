@@ -111,6 +111,7 @@ export const BMT_BRAND_PREFIXES = [
   '/mvx',
   '/ffx',
   '/book',
+  '/store',
   '/demo',
   '/jp',
   '/tracy',
