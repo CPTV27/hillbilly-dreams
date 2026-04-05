@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Regional Banks Should Own the AI Infrastructure of Their Service Areas - American Banker</title>
+<meta name="description" content="A Mississippi Delta startup is offering regional banks equity positions in a local AI platform that serves their small business borrowers — creating better lending data, lower default rates, and a new revenue stream.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', Times, serif;
+    background: #fff;
+    color: #1a1a1a;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Internal-only banner */
+  .internal-banner {
+    background: #d32f2f;
+    color: #fff;
+    text-align: center;
+    padding: 8px 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* AB top bar */
+  .ab-bar {
+    background: #1B365D;
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .ab-bar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .ab-logo {
+    font-family: 'Georgia', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+  }
+  .ab-logo span {
+    font-weight: 400;
+    opacity: 0.8;
+  }
+  .ab-nav {
+    display: flex;
+    gap: 24px;
+  }
+  .ab-nav a {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Section label */
+  .section-label {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 24px 0;
+  }
+  .section-label a {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1B365D;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-bottom: 2px solid #1B365D;
+    padding-bottom: 2px;
+  }
+
+  /* Hero image */
+  .hero-wrap {
+    max-width: 900px;
+    margin: 24px auto 0;
+    padding: 0 24px;
+  }
+  .hero-img {
+    width: 100%;
+    height: 440px;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-caption {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    color: #666;
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+  .hero-caption .credit {
+    color: #999;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Article container */
+  .article {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* Headline */
+  .headline {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #1a1a1a;
+    margin-top: 32px;
+    letter-spacing: -0.5px;
+  }
+
+  /* Deck */
+  .deck {
+    font-size: 20px;
+    line-height: 1.5;
+    color: #444;
+    margin-top: 16px;
+    font-style: italic;
+  }
+
+  /* Byline */
+  .byline {
+    margin-top: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  .byline-name {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1B365D;
+  }
+  .byline-meta {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  /* Body text */
+  .article p {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+
+  .article p.lead {
+    font-size: 20px;
+    line-height: 1.65;
+  }
+
+  /* Subheads */
+  .article h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1B365D;
+    margin-top: 40px;
+    margin-bottom: -4px;
+    line-height: 1.3;
+  }
+
+  /* Pullquote */
+  .pullquote {
+    border-left: 4px solid #1B365D;
+    padding: 16px 0 16px 24px;
+    margin: 36px 0;
+    font-size: 22px;
+    font-style: italic;
+    color: #1B365D;
+    line-height: 1.45;
+  }
+  .pullquote cite {
+    display: block;
+    font-size: 14px;
+    font-style: normal;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    color: #888;
+    margin-top: 12px;
+  }
+
+  /* Data tables */
+  .data-table-wrap {
+    margin: 32px 0;
+    overflow-x: auto;
+  }
+  .data-table-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+  }
+  .data-table-wrap caption {
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #1B365D;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  .data-table-wrap th {
+    background: #1B365D;
+    color: #fff;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 10px 14px;
+    text-align: left;
+  }
+  .data-table-wrap td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e5e5e5;
+    color: #333;
+  }
+  .data-table-wrap tr:nth-child(even) td {
+    background: #f7f9fb;
+  }
+
+  /* Inline image */
+  .inline-img {
+    margin: 36px 0;
+  }
+  .inline-img img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    display: block;
+  }
+  .inline-img .img-caption {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    color: #666;
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  /* Info box */
+  .info-box {
+    background: #f0f3f7;
+    border-left: 4px solid #1B365D;
+    padding: 24px;
+    margin: 36px 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+  .info-box h3 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #1B365D;
+    margin-bottom: 12px;
+  }
+  .info-box ul {
+    list-style: none;
+    padding: 0;
+  }
+  .info-box li {
+    font-size: 14px;
+    color: #333;
+    padding: 6px 0;
+    border-bottom: 1px solid #ddd;
+    line-height: 1.5;
+  }
+  .info-box li:last-child {
+    border-bottom: none;
+  }
+  .info-box li strong {
+    color: #1B365D;
+  }
+
+  /* Footer */
+  .ab-footer {
+    background: #1B365D;
+    color: rgba(255,255,255,0.7);
+    padding: 40px 24px;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+  }
+  .ab-footer strong {
+    color: #fff;
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 768px) {
+    .headline { font-size: 30px; }
+    .deck { font-size: 17px; }
+    .article p { font-size: 17px; }
+    .pullquote { font-size: 19px; }
+    .hero-img { height: 280px; }
+    .ab-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="internal-banner">
+  Internal use only &mdash; not for distribution. Mockup for investor/partner conversations.
+</div>
+
+<nav class="ab-bar">
+  <div class="ab-bar-inner">
+    <a href="#" class="ab-logo">American Banker <span>| Community Banking</span></a>
+    <div class="ab-nav">
+      <a href="#">Lending</a>
+      <a href="#">Technology</a>
+      <a href="#">Regulation</a>
+      <a href="#">Opinion</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero-wrap">
+  <img class="hero-img" src="/images/processed/slideshow/natchez-257.webp" alt="Downtown Natchez, Mississippi &mdash; the kind of Main Street banking district where regional institutions still hold dominant market share.">
+  <div class="hero-caption">
+    Downtown Natchez, Mississippi. Regional banks in the Memphis-to-New Orleans region serve an estimated 100,000 to 120,000 small-town employer establishments &mdash; most without access to modern digital marketing tools.
+    <span class="credit">Arrie Aslin for American Banker</span>
+  </div>
+</div>
+
+<div class="section-label"><a href="#">Community Banking &amp; Technology</a></div>
+
+<article class="article">
+
+  <h1 class="headline">Why Regional Banks Should Own the AI Infrastructure of Their Service Areas</h1>
+
+  <p class="deck">A Mississippi startup is inviting community banks to take equity stakes in a local AI platform that serves their borrowers. The pitch: better lending data, CRA credit, and a new revenue line &mdash; all from tools their customers actually need.</p>
+
+  <div class="byline">
+    <div class="byline-name">By Catherine Wyatt</div>
+    <div class="byline-meta">April 5, 2026 &nbsp;|&nbsp; 11 min read</div>
+  </div>
+
+  <p class="lead">The data problem in small-business lending has never been about FICO scores. It has been about everything FICO does not capture: whether a restaurant is responding to its Google reviews, whether a barbershop posts on social media more than once a quarter, whether a bed-and-breakfast actually updates its availability calendar. These are the signals that separate a struggling Main Street business from a thriving one &mdash; and no credit bureau tracks any of them.</p>
+
+  <p>A company called Measurably Better Things, based in Natchez, Mississippi, believes it has found a way to generate those signals at scale. More provocatively, it is asking regional banks to co-own the infrastructure that produces them.</p>
+
+  <p>The model works like this: a regional bank invests between $50,000 and $200,000 for an equity stake in a locally deployed instance of MBT's AI platform. The bank's small-business borrowers receive subsidized access to a suite of digital tools &mdash; business directory listings, review management, social media automation, content creation, and local advertising &mdash; priced from free to $250 a month. As those businesses use the platform, their activity generates a stream of behavioral data that feeds back to the bank as supplemental underwriting signals.</p>
+
+  <p>"We are not replacing a credit score," said Chase Pierson, the company's CEO. "We are adding a dimension that credit scores cannot see. A restaurant owner who responds to every review within 24 hours and posts three times a week is telling you something about how they run their business. That signal has never been available to a lender before."</p>
+
+  <h2>The Data Gap in Delta Lending</h2>
+
+  <p>The numbers in the Mississippi Delta region make the case plainly. Mississippi has 266,385 small businesses, 79.3% of which are in rural areas, according to the U.S. Small Business Administration. The USDA classifies most Delta counties as "persistent poverty" &mdash; meaning their poverty rates have remained above 20% in every decennial census since 1980.</p>
+
+  <div class="inline-img">
+    <img src="/images/corridor/liberty-water-tower.webp" alt="Water tower in Liberty, Mississippi, a small town representative of the rural communities where traditional credit data is thinnest.">
+    <div class="img-caption">Liberty, Mississippi. In many Delta communities, a single bank branch serves as the primary financial institution for dozens of small businesses &mdash; most of which have thin or nonexistent digital footprints. <span class="credit">Arrie Aslin</span></div>
+  </div>
+
+  <p>For lenders in these markets, the information asymmetry is acute. National credit data works well for established businesses with years of financial history. It works poorly for the hair salon that opened last year, the caterer who does not keep a balance sheet, or the farmer who built a wedding venue in a converted barn. These businesses represent an outsize share of the regional economy, and most of them are underwritten &mdash; if they are underwritten at all &mdash; on gut instinct and personal relationships.</p>
+
+  <p>"Every community banker I know has a story about the loan they made because they knew the person, not because the numbers justified it," said Ellen Marcus, a CDFI consultant who has worked with lenders across the Southeast. "The question has always been: how do you turn that instinct into data you can actually document for regulators?"</p>
+
+  <h2>What the Platform Actually Measures</h2>
+
+  <p>MBT's answer is a set of behavioral signals generated by the daily operations of the businesses themselves. The platform tracks several categories of activity:</p>
+
+  <div class="data-table-wrap">
+    <table>
+      <caption>MBT Business Health Signals</caption>
+      <tr>
+        <th>Signal Category</th>
+        <th>What It Measures</th>
+        <th>Lending Relevance</th>
+      </tr>
+      <tr>
+        <td>Review velocity</td>
+        <td>Rate of new customer reviews across platforms</td>
+        <td>Customer traffic trend; early indicator of revenue direction</td>
+      </tr>
+      <tr>
+        <td>Review response rate</td>
+        <td>% of reviews receiving owner response within 48 hours</td>
+        <td>Operational engagement; management attentiveness</td>
+      </tr>
+      <tr>
+        <td>Social posting cadence</td>
+        <td>Frequency and consistency of social media activity</td>
+        <td>Marketing investment proxy; business continuity signal</td>
+      </tr>
+      <tr>
+        <td>Campaign completion</td>
+        <td>% of scheduled marketing campaigns actually executed</td>
+        <td>Follow-through; operational discipline</td>
+      </tr>
+      <tr>
+        <td>Directory listing accuracy</td>
+        <td>Hours, location, photos, and menu currency</td>
+        <td>Basic operational upkeep; "lights are on" signal</td>
+      </tr>
+      <tr>
+        <td>On-premises device heartbeat</td>
+        <td>Whether the business's AI terminal is powered on and active</td>
+        <td>Physical location activity; business is open and operating</td>
+      </tr>
+    </table>
+  </div>
+
+  <p>None of these signals alone would justify a lending decision. Taken together, over time, they compose a portrait of business health that traditional financial data cannot provide &mdash; especially for businesses that do not generate the kind of financial statements that conventional underwriting requires.</p>
+
+  <div class="pullquote">
+    "The bank that knows its borrower is posting three times a week and responding to every review has better information than the bank that sees a balance sheet once a year."
+    <cite>&mdash; Ellen Marcus, CDFI consultant, Southeast Financial Strategies</cite>
+  </div>
+
+  <h2>The CRA Case</h2>
+
+  <p>The regulatory angle may be the most compelling piece of the pitch. Under the Community Reinvestment Act, banks are evaluated on their performance in meeting the credit needs of the communities they serve, including low- and moderate-income areas. The updated CRA rules finalized in 2024 expanded the definition of qualifying activities to include investments in digital infrastructure that serves LMI communities.</p>
+
+  <p>A bank that invests in MBT's regional deployment could potentially claim CRA credit on multiple fronts: the equity investment itself as a community development investment, the subsidized platform access as a community development service, and the resulting lending activity as improved CRA-eligible originations.</p>
+
+  <p>"This is not a gray area," said Marcus. "If you are investing in digital infrastructure that directly supports small businesses in persistent poverty counties, and those businesses are using it to become more visible and more viable, that is textbook community development."</p>
+
+  <div class="info-box">
+    <h3>Applicable Federal Programs</h3>
+    <ul>
+      <li><strong>CRA Community Development Investments:</strong> Equity positions in platforms serving LMI areas qualify under the 2024 final rule's expanded activities list</li>
+      <li><strong>CDFI Fund:</strong> Community Development Financial Institutions can access federal matching funds for technology infrastructure investments in distressed communities</li>
+      <li><strong>New Markets Tax Credits:</strong> Qualified equity investments in Community Development Entities operating in eligible census tracts &mdash; most Delta counties qualify</li>
+      <li><strong>USDA Rural Business Development Grants:</strong> Support for technology adoption in communities under 50,000 population</li>
+      <li><strong>SBA Community Advantage:</strong> Expanded lending authority for mission-focused lenders in underserved markets</li>
+    </ul>
+  </div>
+
+  <h2>The Economics of Ownership vs. Subscription</h2>
+
+  <p>The typical approach for a bank interested in small-business digital tools would be to subsidize subscriptions to existing platforms &mdash; paying for a borrower's Yelp advertising or social media management. MBT's pitch is that ownership is fundamentally different from subsidy.</p>
+
+  <p>When a bank subsidizes a third-party tool, the data generated by its borrowers flows to the tool provider. The bank gets no insight, no competitive advantage, and no return on the investment beyond goodwill. When a bank takes an equity position in the infrastructure itself, three things change.</p>
+
+  <p>First, the behavioral data generated by borrowers becomes available to the bank as a supplemental underwriting signal &mdash; with appropriate consent and privacy controls. Second, as the platform adds more businesses in the bank's service area, the bank's equity position appreciates. Third, the bank becomes the institution associated with digital empowerment in its community, which is a competitive moat against national fintechs that no amount of advertising can replicate.</p>
+
+  <div class="inline-img">
+    <img src="/images/processed/slideshow/natchez-328.webp" alt="Main Street businesses in the Mississippi Delta — the target market for regional bank AI infrastructure ownership.">
+    <div class="img-caption">The Memphis-to-New Orleans region contains an estimated 100,000 to 120,000 small-town employer establishments, most of which spend nothing on digital marketing. <span class="credit">Arrie Aslin</span></div>
+  </div>
+
+  <h2>The Hardware Dimension</h2>
+
+  <p>One detail that distinguishes MBT from software-only platforms: its Sovereign Pi device. At $165 in hardware costs, it is a compact terminal that sits in a business and provides AI-powered tools &mdash; review drafting, social media scheduling, customer engagement prompts &mdash; without depending on broadband connectivity.</p>
+
+  <p>In the Delta, this matters more than it would in a metropolitan market. FCC data shows that 21% of rural Mississippi households lack access to broadband at speeds sufficient for cloud-based business applications. A device that works offline and syncs when connectivity is available removes the single largest barrier to digital adoption in these communities.</p>
+
+  <div class="data-table-wrap">
+    <table>
+      <caption>MBT Platform Pricing Tiers</caption>
+      <tr>
+        <th>Tier</th>
+        <th>Monthly Price</th>
+        <th>Included</th>
+      </tr>
+      <tr>
+        <td>Free</td>
+        <td>$0</td>
+        <td>Basic directory listing, business profile</td>
+      </tr>
+      <tr>
+        <td>Core</td>
+        <td>$25</td>
+        <td>Enhanced listing, review monitoring, basic analytics</td>
+      </tr>
+      <tr>
+        <td>Growth</td>
+        <td>$50</td>
+        <td>Social media automation, content creation, campaign tools</td>
+      </tr>
+      <tr>
+        <td>Partner</td>
+        <td>$99</td>
+        <td>Full platform access, AI terminal, priority support</td>
+      </tr>
+      <tr>
+        <td>Enterprise</td>
+        <td>$250</td>
+        <td>Multi-location, white-label options, API access</td>
+      </tr>
+    </table>
+  </div>
+
+  <p>"The pricing is designed so that the answer is never 'I cannot afford it,'" said Pierson. "A bank that subsidizes the first year for its borrowers is spending $25 to $99 per business per month. For a portfolio of 200 small-business borrowers, that is $60,000 to $237,600 a year &mdash; significantly less than a single loan default, and the data coming back arguably prevents defaults."</p>
+
+  <h2>The Underwriting Supplement</h2>
+
+  <p>To be clear about what MBT is and is not proposing: the platform does not generate a credit score. It does not replace FICO, Dun &amp; Bradstreet, or any existing underwriting standard. What it provides is a supplemental data layer &mdash; behavioral signals that a loan officer can review alongside traditional financial data when making a lending decision.</p>
+
+  <p>The distinction matters for regulatory purposes. Supplemental data used in lending decisions must comply with fair lending requirements, including the Equal Credit Opportunity Act and Regulation B. Any signals derived from platform usage would need to be demonstrably predictive of creditworthiness and free of disparate impact on protected classes.</p>
+
+  <div class="inline-img">
+    <img src="/images/processed/big-muddy/for03361.webp" alt="A regional bank's service area in the Mississippi Delta — small businesses that generate limited traditional credit data.">
+    <div class="img-caption">For regional banks, the competitive question is not whether AI matters for small-business lending &mdash; it is whether the bank or a fintech will own the infrastructure that generates the data. <span class="credit">Arrie Aslin</span></div>
+  </div>
+
+  <p>MBT says it has designed its data pipeline with this in mind. Business owners must opt in to data sharing with their bank. The signals are presented as a dashboard supplement, not an automated scoring input. And the company's privacy architecture keeps each bank's data separate from other banks that might invest in adjacent markets.</p>
+
+  <h2>Who Moves First</h2>
+
+  <p>The model's viability depends on a question that has plagued community banking technology for decades: who moves first?</p>
+
+  <p>MBT is currently deploying its platform in the Natchez, Mississippi, market using its own media properties as a proving ground. The company operates a hospitality business, a music touring operation, and a regional magazine &mdash; all running on the same platform it wants to sell to banks. The strategy is to demonstrate the model's economics before approaching institutional investors.</p>
+
+  <p>"We are not asking a bank to fund a hypothesis," said Pierson. "We are asking them to invest in a running system with verifiable metrics. By the time we sit down with a bank, we will have six months of business health data from real businesses in real markets."</p>
+
+  <div class="pullquote">
+    "The bank that owns the digital infrastructure of its service area does not have to worry about a fintech disintermediating its borrowers. It already is the fintech."
+    <cite>&mdash; Chase Pierson, CEO, Measurably Better Things</cite>
+  </div>
+
+  <p>The investment structure is designed for the scale at which community banks operate. A $50,000 stake gets a bank into the program with a defined geographic territory. A $200,000 investment secures exclusivity across a multi-county service area. The bank receives quarterly reporting on platform adoption, business health metrics (aggregated and anonymized), and equity valuation updates.</p>
+
+  <h2>The Competitive Calculus</h2>
+
+  <p>For regional banks watching national fintechs push deeper into small-business lending, the strategic question is not whether their borrowers will adopt digital tools. They will. The question is whether the bank will own the relationship with those tools or cede it to a company that has no stake in the community.</p>
+
+  <p>Square, Toast, Clover, and a half-dozen other platforms already collect the kind of operational data that MBT is proposing to share with banks &mdash; transaction velocity, peak hours, ticket sizes, customer frequency. The difference is that those platforms share none of that data with the borrower's bank. The bank learns about a problem when the borrower misses a payment, not when the signals first appeared three months earlier.</p>
+
+  <div class="inline-img">
+    <img src="/images/dsd/brand-economics.webp" alt="The economics of regional AI platform ownership for community banks.">
+    <div class="img-caption">MBT's model positions the bank as a digital utility provider for its service area &mdash; a role that generates both CRA credit and competitive advantage. <span class="credit">Measurably Better Things</span></div>
+  </div>
+
+  <p>"Every bank in America talks about being a community partner," said Marcus. "This is a chance to actually mean it. You are not sponsoring a Little League team. You are building the infrastructure your borrowers need to survive."</p>
+
+  <h2>Outstanding Questions</h2>
+
+  <p>The model is not without risk. MBT is a young company. The platform is still being deployed in its initial market. The regulatory treatment of behavioral data in lending decisions, while promising under current guidance, could shift. And the fundamental question of whether small-business owners in persistent poverty areas will adopt a digital platform &mdash; even a free one &mdash; remains unproven at the scale MBT is proposing.</p>
+
+  <p>There is also the matter of data governance. A bank with an equity stake in the platform that generates supplemental lending data will face questions about conflicts of interest. MBT says its architecture addresses this through clear data separation, opt-in consent, and third-party audit provisions. Whether regulators agree will be tested as the model scales.</p>
+
+  <p>Still, the underlying logic is difficult to argue with. Regional banks have better information about their communities than anyone. They lack the tools to turn that information into a structural advantage. A platform that bridges that gap &mdash; one the bank actually owns &mdash; may be the most consequential technology investment a community bank can make in the next decade.</p>
+
+  <p>"The gap in these markets is not money," said Pierson. "There is CDFI funding. There are New Markets Tax Credits. There is SBA capital. The gap is organization. Someone has to build the thing that ties all of it together. We are building that thing. We think the banks should own a piece of it."</p>
+
+  <p><em>Catherine Wyatt covers community banking and fintech for American Banker. She can be reached at cwyatt@americanbanker.com.</em></p>
+
+</article>
+
+<footer class="ab-footer">
+  <strong>American Banker</strong>
+  &copy; 2026 Arizent. All rights reserved. &nbsp;|&nbsp; Subscriber content. &nbsp;|&nbsp; Do not redistribute.
+</footer>
+
+</body>
+</html>

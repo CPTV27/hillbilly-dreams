@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A $165 Device Is Bringing AI to Towns the Internet Forgot - Bloomberg Technology</title>
+<meta name="description" content="While OpenAI and Google race to build AI for the coasts, a four-person company in Natchez, Mississippi is deploying hardware that works without reliable broadband.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: #0d1117;
+    color: #c9d1d9;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Internal-only banner */
+  .internal-banner {
+    background: #1a1206;
+    border-bottom: 2px solid #e8a030;
+    padding: 10px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: #c9a050;
+    letter-spacing: 0.5px;
+  }
+  .internal-banner strong { color: #e8a030; }
+
+  /* Bloomberg top bar */
+  .bb-bar {
+    background: #161b22;
+    border-bottom: 1px solid #30363d;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .bb-bar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .bb-logo {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+  .bb-logo span {
+    color: #00d084;
+  }
+  .bb-section {
+    font-size: 13px;
+    font-weight: 600;
+    color: #00d084;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .bb-nav {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    color: #8b949e;
+  }
+  .bb-nav a {
+    color: #8b949e;
+    text-decoration: none;
+  }
+  .bb-nav a:hover { color: #c9d1d9; }
+
+  /* Section bar */
+  .section-bar {
+    background: #0d1117;
+    border-bottom: 1px solid #21262d;
+    padding: 8px 0;
+  }
+  .section-bar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: #8b949e;
+  }
+  .section-bar .tag {
+    background: #00d084;
+    color: #0d1117;
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .hero-img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    margin-top: 24px;
+    border-radius: 4px;
+  }
+  .hero-caption {
+    font-size: 12px;
+    color: #8b949e;
+    margin-top: 8px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #21262d;
+  }
+  .hero-caption span { color: #c9d1d9; }
+
+  /* Article */
+  .article {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+  .article h1 {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.15;
+    color: #f0f6fc;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+  .article .deck {
+    font-size: 20px;
+    color: #8b949e;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    border-left: 3px solid #00d084;
+    padding-left: 16px;
+  }
+  .byline {
+    font-size: 14px;
+    color: #8b949e;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #21262d;
+  }
+  .byline strong { color: #c9d1d9; }
+  .byline .date { display: block; margin-top: 4px; font-size: 13px; }
+
+  .article p {
+    font-size: 17px;
+    margin-bottom: 20px;
+    color: #c9d1d9;
+  }
+  .article p.lead:first-letter {
+    font-size: 56px;
+    float: left;
+    line-height: 1;
+    margin-right: 8px;
+    margin-top: 4px;
+    color: #00d084;
+    font-weight: 800;
+  }
+
+  /* Stat callout */
+  .stat-box {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-left: 4px solid #00d084;
+    padding: 24px 28px;
+    margin: 32px 0;
+    border-radius: 4px;
+  }
+  .stat-box .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid #21262d;
+  }
+  .stat-box .stat-row:last-child { border-bottom: none; }
+  .stat-box .stat-label {
+    font-size: 13px;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .stat-box .stat-value {
+    font-size: 22px;
+    font-weight: 800;
+    color: #00d084;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Big number callout */
+  .big-number {
+    text-align: center;
+    padding: 40px 24px;
+    margin: 40px 0;
+    border-top: 1px solid #21262d;
+    border-bottom: 1px solid #21262d;
+  }
+  .big-number .number {
+    font-size: 72px;
+    font-weight: 900;
+    color: #00d084;
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+  .big-number .number-label {
+    font-size: 15px;
+    color: #8b949e;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Inline image */
+  .inline-img {
+    margin: 36px 0;
+  }
+  .inline-img img {
+    width: 100%;
+    border-radius: 4px;
+  }
+  .inline-img figcaption {
+    font-size: 12px;
+    color: #8b949e;
+    margin-top: 8px;
+  }
+
+  /* Pullquote */
+  .pullquote {
+    border-left: 3px solid #00d084;
+    padding: 16px 24px;
+    margin: 36px 0;
+    font-size: 22px;
+    font-weight: 600;
+    color: #f0f6fc;
+    line-height: 1.4;
+  }
+  .pullquote cite {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    color: #8b949e;
+    margin-top: 8px;
+    font-style: normal;
+  }
+
+  /* Comparison table */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    font-size: 14px;
+  }
+  .data-table thead th {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 2px solid #00d084;
+    color: #00d084;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .data-table tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #21262d;
+    color: #c9d1d9;
+  }
+  .data-table tbody tr:hover { background: #161b22; }
+
+  /* Section heading */
+  .article h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f0f6fc;
+    margin: 40px 0 16px;
+    padding-top: 24px;
+    border-top: 1px solid #21262d;
+  }
+
+  /* Ticker bar */
+  .ticker-bar {
+    background: #161b22;
+    border-top: 1px solid #21262d;
+    border-bottom: 1px solid #21262d;
+    padding: 10px 0;
+    overflow: hidden;
+    font-size: 12px;
+    color: #8b949e;
+  }
+  .ticker-bar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  .ticker-item {
+    white-space: nowrap;
+  }
+  .ticker-item .t-label { color: #8b949e; }
+  .ticker-item .t-val { color: #00d084; font-weight: 700; }
+  .ticker-item .t-neg { color: #f85149; font-weight: 700; }
+
+  /* Footer */
+  .bb-footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+    font-size: 12px;
+    color: #484f58;
+    text-align: center;
+    border-top: 1px solid #21262d;
+  }
+  .bb-footer a { color: #58a6ff; text-decoration: none; }
+
+  /* Related */
+  .related {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 40px;
+  }
+  .related h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #00d084;
+    margin-bottom: 16px;
+  }
+  .related-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #21262d;
+  }
+  .related-item a {
+    color: #f0f6fc;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .related-item a:hover { color: #00d084; }
+  .related-item .r-meta {
+    font-size: 12px;
+    color: #8b949e;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 680px) {
+    .article h1 { font-size: 28px; }
+    .article .deck { font-size: 17px; }
+    .hero-img { height: 280px; }
+    .stat-box .stat-value { font-size: 18px; }
+    .big-number .number { font-size: 48px; }
+    .pullquote { font-size: 18px; }
+    .bb-nav { display: none; }
+    .ticker-bar-inner { overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Internal-only banner -->
+<div class="internal-banner">
+  <strong>INTERNAL USE ONLY</strong> &mdash; This is a mock-up visualization document. It does not represent actual Bloomberg coverage.
+</div>
+
+<!-- Bloomberg top bar -->
+<header class="bb-bar">
+  <div class="bb-bar-inner">
+    <a href="#" class="bb-logo">Bloomberg<span>.</span></a>
+    <div class="bb-nav">
+      <a href="#">Markets</a>
+      <a href="#">Economics</a>
+      <a href="#">Industries</a>
+      <a href="#">Technology</a>
+      <a href="#">AI</a>
+    </div>
+    <span class="bb-section">Technology</span>
+  </div>
+</header>
+
+<!-- Ticker bar -->
+<div class="ticker-bar">
+  <div class="ticker-bar-inner">
+    <div class="ticker-item"><span class="t-label">MSFT </span><span class="t-val">+1.2%</span></div>
+    <div class="ticker-item"><span class="t-label">GOOGL </span><span class="t-val">+0.8%</span></div>
+    <div class="ticker-item"><span class="t-label">AAPL </span><span class="t-neg">-0.3%</span></div>
+    <div class="ticker-item"><span class="t-label">NVDA </span><span class="t-val">+2.1%</span></div>
+    <div class="ticker-item"><span class="t-label">RPI.PI </span><span class="t-val">+4.7%</span></div>
+    <div class="ticker-item"><span class="t-label">US 10Y </span><span class="t-neg">4.31%</span></div>
+  </div>
+</div>
+
+<!-- Section bar -->
+<div class="section-bar">
+  <div class="section-bar-inner">
+    <span class="tag">Exclusive</span>
+    <span>Technology &rsaquo; AI &rsaquo; Hardware</span>
+    <span style="margin-left: auto;">April 5, 2026, 5:00 AM CDT</span>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <img class="hero-img" src="/images/processed/slideshow/natchez-1065.webp" alt="Downtown Natchez, Mississippi at dusk">
+  <div class="hero-caption">
+    <span>Downtown Natchez, Mississippi.</span> The town of 14,000 is the headquarters of a company shipping AI hardware to businesses across the Delta. Photographer: Arrie Aslin
+  </div>
+</div>
+
+<!-- Article -->
+<article class="article">
+  <h1>A $165 Device Is Bringing AI to Towns the Internet Forgot</h1>
+
+  <div class="deck">
+    While OpenAI and Google race to build cloud-dependent AI for metro markets, a four-person startup in Natchez, Mississippi is shipping hardware that works without reliable broadband &mdash; and it costs less per month than a Netflix subscription to run.
+  </div>
+
+  <div class="byline">
+    By <strong>Sarah Chen</strong> and <strong>Marcus Williams</strong>
+    <span class="date">April 5, 2026, 5:00 AM CDT &middot; Updated April 5, 2026, 8:12 AM CDT</span>
+  </div>
+
+  <p class="lead">The device looks like nothing. A matte-black box roughly the size of a paperback novel, with a single green LED and two ports. It sits on a shelf behind the register at a barbecue joint in Yazoo City, Mississippi, next to a jar of toothpicks and a framed photo of B.B. King. It has no screen. No keyboard. No fan noise. The owner, who asked not to be named because she hasn&rsquo;t told her landlord about the antenna on the roof, calls it &ldquo;the little brain.&rdquo;</p>
+
+  <p>The device is the Sovereign Pi, made by Hillbilly Dreams Inc., a company based 150 miles south in Natchez. It&rsquo;s built on a Raspberry Pi 5 with 8GB of RAM, runs a local AI model, and costs $165 to manufacture. It drafts responses to Google reviews, generates social media posts, tracks business analytics, and produces marketing content &mdash; all without a constant internet connection.</p>
+
+  <p>In an industry spending billions on data centers and GPU clusters, the Sovereign Pi represents a different bet entirely: that the most underserved market for artificial intelligence isn&rsquo;t enterprises that want to spend more on compute, but small businesses in places where the cloud doesn&rsquo;t reliably reach.</p>
+
+  <div class="stat-box">
+    <div class="stat-row">
+      <span class="stat-label">Device COGS</span>
+      <span class="stat-value">$165</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Standalone Price</span>
+      <span class="stat-value">$299</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Margin (Standalone)</span>
+      <span class="stat-value">45%</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">AI Operating Cost</span>
+      <span class="stat-value">$9.33/mo</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Subscription Breakeven</span>
+      <span class="stat-value">2 months</span>
+    </div>
+  </div>
+
+  <p>&ldquo;Everyone in Silicon Valley is building for people who already have gigabit fiber,&rdquo; said Chase Pierson, the CEO and CTO of Hillbilly Dreams. &ldquo;We&rsquo;re building for people who lose internet when it rains.&rdquo;</p>
+
+  <p>Pierson, 40, speaks with the unhurried cadence of someone who has lived in the rural South long enough to stop apologizing for it. A former media infrastructure architect who designed broadcast-to-distribution pipelines for major networks, he moved to Natchez and decided the same architecture that runs a Viacom could run a small-town economy. He incorporated Hillbilly Dreams with two equity partners &mdash; Tracy Alderson-Allen, who manages finance and hospitality operations, and Amy Allen, who runs their inn and bar &mdash; and began building.</p>
+
+  <h2>The Broadband Problem Nobody Fixed</h2>
+
+  <p>Mississippi is 79.3% rural by land area. In the Delta &mdash; the flat, fertile region between Memphis and Vicksburg where cotton once made millionaires and poverty never left &mdash; broadband access is a patchwork of dead zones, throttled connections, and prices that would make a Brooklyn resident wince.</p>
+
+  <div class="big-number">
+    <div class="number">79.3%</div>
+    <div class="number-label">of Mississippi is classified as rural</div>
+  </div>
+
+  <p>The numbers tell a story of systematic abandonment. Delta counties have lost between 36% and 49% of their population since 1960. Coahoma County, home to Clarksdale, peaked at 49,361 residents in 1960; the 2020 census counted 22,124. Issaquena County, the least populated in the state, has fewer people than a Manhattan city block. These are not places where Comcast is building out fiber.</p>
+
+  <figure class="inline-img">
+    <img src="/images/corridor/oceansprings-natchez-580-of-1183.webp" alt="Rural Mississippi landscape">
+    <figcaption>The Mississippi Delta, where some of the target businesses for the Sovereign Pi operate. Photographer: Arrie Aslin</figcaption>
+  </figure>
+
+  <p>The federal government has acknowledged the gap. The NTIA&rsquo;s Digital Equity Act directs states to develop plans for closing the digital divide. Mississippi has a State Digital Equity Plan. The USDA&rsquo;s Rural Business Development Grants fund technology deployment in underserved areas. The Delta Regional Authority covers 255 counties across eight states, all of Mississippi among them.</p>
+
+  <p>But the money has mostly gone to laying cable and building towers &mdash; supply-side infrastructure. Pierson argues the demand side is the actual bottleneck.</p>
+
+  <p>&ldquo;You can wire every county in the Delta with fiber tomorrow,&rdquo; he said. &ldquo;The barbershop owner still doesn&rsquo;t know what to do with it. What she needs isn&rsquo;t more bandwidth. She needs a tool that answers her Google reviews while she&rsquo;s cutting hair.&rdquo;</p>
+
+  <h2>How the Hardware Works</h2>
+
+  <p>The Sovereign Pi runs MBT, the company&rsquo;s AI platform, locally on the device. When internet is available, it syncs &mdash; pushing drafted review responses to Google, scheduling social media posts, uploading analytics. When internet drops, the device keeps working. Drafts queue. Analytics accumulate. The green LED stays on.</p>
+
+  <div class="pullquote">
+    &ldquo;The device costs us $9.33 a month to run. That&rsquo;s 67 times cheaper than running the same workload through OpenAI.&rdquo;
+    <cite>&mdash; Chase Pierson, CEO, Hillbilly Dreams Inc.</cite>
+  </div>
+
+  <p>The AI cost structure is what makes the economics work. Pierson&rsquo;s team built on Google Cloud Platform, where Gemini API access and $200 in monthly free credits cover the compute for the entire device fleet. The total AI cost per device: $9.33 a month. For context, running comparable workloads through OpenAI&rsquo;s API would cost roughly $625 a month, according to Pierson&rsquo;s internal benchmarks &mdash; a 67x difference.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sovereign Pi (base unit)</td>
+        <td>Raspberry Pi 5, 8GB RAM, local AI, offline-capable</td>
+        <td>$299 / free w/ subscription</td>
+      </tr>
+      <tr>
+        <td>Battery Pack</td>
+        <td>Keeps the device running during power outages</td>
+        <td>$59</td>
+      </tr>
+      <tr>
+        <td>Solar Module</td>
+        <td>Off-grid charging for truly disconnected locations</td>
+        <td>$49</td>
+      </tr>
+      <tr>
+        <td>Faraday Enclosure</td>
+        <td>RF shielding for sensitive environments</td>
+        <td>$39</td>
+      </tr>
+      <tr>
+        <td>Display Module</td>
+        <td>Additional screen for signage network</td>
+        <td>$99/screen</td>
+      </tr>
+      <tr>
+        <td>Managed Signage</td>
+        <td>Up to 5 screens, remotely managed</td>
+        <td>$199/mo</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The device ships two ways. Businesses subscribing to the company&rsquo;s Deep South Directory &mdash; a regional business listing and marketing platform &mdash; get the hardware free. The subscription covers AI, directory listing, review management, and social media tools. Alternatively, the device sells standalone at $299, a 45% margin over the $165 cost of goods. At either price point, the company reaches breakeven within two months.</p>
+
+  <figure class="inline-img">
+    <img src="/images/processed/big-muddy/sprinter-van-concept.webp" alt="Hillbilly Dreams delivery vehicle">
+    <figcaption>Hillbilly Dreams deploys devices by hand, driving a Sprinter van from town to town along the Mississippi. Photographer: Arrie Aslin</figcaption>
+  </figure>
+
+  <h2>The Add-On Math</h2>
+
+  <p>What makes Wall Street analysts who have seen the pitch deck take notice is the accessory revenue. The battery pack ($59), solar module ($49), and faraday cage ($39) are optional, but Pierson says early deployments show roughly 40% of businesses adding at least one accessory &mdash; mostly the battery, for a region where power outages are routine.</p>
+
+  <p>The signage network is where per-unit economics get interesting. For $199 a month, the company manages up to five digital displays at a business location &mdash; menu boards, event listings, promotional screens &mdash; all fed by the same AI that handles the business&rsquo;s marketing. Additional screens cost $99 each. It turns a single $165 device into a recurring-revenue terminal.</p>
+
+  <div class="stat-box">
+    <div class="stat-row">
+      <span class="stat-label">Target Addressable Businesses</span>
+      <span class="stat-value">100K&ndash;120K</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Population Loss (Delta Counties, Since 1960)</span>
+      <span class="stat-value">36&ndash;49%</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">AI Cost Per Device</span>
+      <span class="stat-value">$9.33/mo</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Cost vs. OpenAI Equivalent</span>
+      <span class="stat-value">67x cheaper</span>
+    </div>
+  </div>
+
+  <h2>The Federal Money</h2>
+
+  <p>The timing may be deliberate. The Digital Equity Act, signed into law as part of the Infrastructure Investment and Jobs Act, allocated $2.75 billion to close the digital divide. States are now distributing those funds. Mississippi&rsquo;s plan explicitly calls for tools that help small businesses participate in the digital economy.</p>
+
+  <p>The Sovereign Pi, with its offline-first design and sub-$300 price point, fits neatly into the federal definition of digital infrastructure. The Delta Regional Authority, which covers all 82 Mississippi counties and 173 more across seven adjacent states, has historically funded technology deployments that reach underserved populations.</p>
+
+  <p>&ldquo;We didn&rsquo;t design this for grant applications,&rdquo; Pierson said. &ldquo;We designed it for a barbershop that can&rsquo;t keep its Wi-Fi on. If that also qualifies for federal digital equity funding, that&rsquo;s alignment, not coincidence.&rdquo;</p>
+
+  <figure class="inline-img">
+    <img src="/images/processed/slideshow/natchez-170.webp" alt="Small business in Natchez">
+    <figcaption>Small businesses in Natchez, where Hillbilly Dreams tests its technology before deploying across the region. Photographer: Arrie Aslin</figcaption>
+  </figure>
+
+  <p>USDA Rural Business Development Grants, which fund technology access in communities under 50,000 population, represent another channel. Nearly every town in the target region qualifies.</p>
+
+  <h2>Four People, 120,000 Businesses</h2>
+
+  <p>The company has four people. Pierson handles engineering and sales. Alderson-Allen runs finance. Allen manages hospitality operations at the company&rsquo;s inn and bar, which double as a testbed. A fourth team member handles shows and programming for the company&rsquo;s entertainment arm, which Pierson describes as a customer-acquisition engine: live music draws crowds, crowds generate business for directory members, directory members pay subscriptions.</p>
+
+  <p>The go-to-market is deliberately analog. Pierson drives a Sprinter van from town to town, walking into businesses and demonstrating the device. No cold calls. No email campaigns. Face to face, in towns where that still means something.</p>
+
+  <div class="pullquote">
+    &ldquo;You can&rsquo;t sell AI to a catfish restaurant in Greenville over Zoom. You have to eat the catfish first.&rdquo;
+    <cite>&mdash; Chase Pierson</cite>
+  </div>
+
+  <p>The target market is 100,000 to 120,000 small businesses across Mississippi, Louisiana, Alabama, Arkansas, and Tennessee. Even modest penetration &mdash; 1% to 3% in the first 18 months &mdash; would mean 1,000 to 3,600 deployed devices, each generating recurring subscription and signage revenue.</p>
+
+  <figure class="inline-img">
+    <img src="/images/dsd/service-content.webp" alt="Deep South Directory content service">
+    <figcaption>The Deep South Directory, Hillbilly Dreams' business marketing platform that ships with the Sovereign Pi device. Source: Hillbilly Dreams Inc.</figcaption>
+  </figure>
+
+  <h2>The Bigger Question</h2>
+
+  <p>Whether a $165 box can meaningfully close the digital divide in one of America&rsquo;s most economically distressed regions remains an open question. The device handles a narrow set of tasks &mdash; reviews, social media, basic analytics, signage &mdash; not the full spectrum of business computing. And offline AI, by definition, can&rsquo;t access real-time data.</p>
+
+  <p>But the constraint may be the feature. In towns where the alternative is doing nothing &mdash; where Google reviews go unanswered for months, where the Facebook page hasn&rsquo;t been updated since 2019, where the closest &ldquo;digital marketing agency&rdquo; is 90 miles away and charges $2,000 a month &mdash; a device that handles the basics without depending on infrastructure that doesn&rsquo;t exist may be exactly right.</p>
+
+  <p>&ldquo;We&rsquo;re not competing with Salesforce,&rdquo; Pierson said. &ldquo;We&rsquo;re competing with nothing. Our competition is a spiral notebook and a prayer.&rdquo;</p>
+
+  <p>The green LED blinks. The drafts queue. The catfish keeps frying.</p>
+
+  <p style="margin-top: 40px; font-size: 13px; color: #8b949e; font-style: italic;">&mdash; With assistance from DataPoint Research and the Mississippi Business Journal.</p>
+</article>
+
+<!-- Related stories -->
+<div class="related">
+  <h3>Related Stories</h3>
+  <div class="related-item">
+    <a href="/press/wsj-small-town-ai-platform.html">A Four-Person Team Built an AI Platform That Could Replace $800/Month in Small-Business Tools</a>
+    <div class="r-meta">WSJ &middot; Technology</div>
+  </div>
+  <div class="related-item">
+    <a href="/press/wired-glass-engine-ai.html">The Glass Engine: Inside the AI That Runs a Small-Town Media Empire</a>
+    <div class="r-meta">WIRED &middot; AI</div>
+  </div>
+  <div class="related-item">
+    <a href="/press/nyt-natchez-media-revolution.html">In Natchez, a Media Company Rewrites the Rules for Small-Town Economics</a>
+    <div class="r-meta">The New York Times &middot; Business</div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="bb-footer">
+  <p style="margin-bottom: 12px; color: #484f58;">
+    This is an internal visualization document. It does not represent actual Bloomberg coverage.
+  </p>
+  <p>&copy; 2026 Bloomberg L.P. All rights reserved.</p>
+  <p style="margin-top: 8px;">
+    <a href="/press/">Press Room</a> &middot;
+    <a href="/">Home</a>
+  </p>
+</div>
+
+</body>
+</html>

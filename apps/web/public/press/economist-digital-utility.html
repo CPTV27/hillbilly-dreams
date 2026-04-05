@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Case for a Digital Utility in the Mississippi Delta | The Economist</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #fff;
+    color: #1a1a1a;
+    line-height: 1.7;
+    font-size: 17px;
+  }
+
+  .internal-banner {
+    background: #2a1a00;
+    border-bottom: 2px solid #c17817;
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c17817;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .internal-banner strong {
+    color: #e8a030;
+  }
+
+  .economist-header {
+    border-bottom: 3px solid #E3120B;
+    padding: 18px 0 14px;
+    text-align: center;
+  }
+
+  .economist-logo {
+    font-family: Georgia, serif;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+    text-transform: none;
+  }
+
+  .section-label {
+    display: inline-block;
+    background: #E3120B;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    margin: 32px auto 0;
+  }
+
+  .article-container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  .hero-image {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    max-height: 480px;
+    overflow: hidden;
+    margin-top: 0;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-caption {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 12px;
+    color: #666;
+    padding: 8px 0 0;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: left;
+    font-style: italic;
+  }
+
+  h1 {
+    font-size: 36px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 28px 0 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+    line-height: 1.4;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+
+  .dateline {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  p {
+    margin-bottom: 18px;
+  }
+
+  .drop-cap::first-letter {
+    float: left;
+    font-size: 68px;
+    line-height: 56px;
+    padding-right: 8px;
+    padding-top: 4px;
+    color: #E3120B;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 36px 0 14px;
+    padding-top: 12px;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .inline-image {
+    margin: 28px 0;
+  }
+
+  .inline-image img {
+    width: 100%;
+    display: block;
+  }
+
+  .inline-image figcaption {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 12px;
+    color: #666;
+    padding-top: 6px;
+    font-style: italic;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 15px;
+  }
+
+  .data-table caption {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #E3120B;
+    text-align: left;
+    padding-bottom: 10px;
+  }
+
+  .data-table th {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666;
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  .data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+
+  .data-table tr:last-child td {
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  .data-table td:nth-child(n+2) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .data-table th:nth-child(n+2) {
+    text-align: right;
+  }
+
+  .highlight-row td {
+    background: #fef8f0;
+    font-weight: 600;
+  }
+
+  .pullquote {
+    border-left: 4px solid #E3120B;
+    padding: 16px 0 16px 24px;
+    margin: 32px 0;
+    font-size: 21px;
+    line-height: 1.5;
+    color: #333;
+    font-style: italic;
+  }
+
+  .pullquote cite {
+    display: block;
+    font-size: 13px;
+    font-style: normal;
+    color: #999;
+    margin-top: 8px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .sidebar {
+    background: #f7f7f7;
+    border-top: 3px solid #E3120B;
+    padding: 20px 24px;
+    margin: 32px 0;
+    font-size: 15px;
+  }
+
+  .sidebar h3 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #E3120B;
+    margin-bottom: 10px;
+  }
+
+  .sidebar p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .chart-container {
+    margin: 28px 0;
+    padding: 20px;
+    border: 1px solid #eee;
+    background: #fafafa;
+  }
+
+  .chart-title {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #E3120B;
+    margin-bottom: 16px;
+  }
+
+  .bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .bar-label {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 12px;
+    color: #666;
+    width: 80px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .bar-track {
+    flex: 1;
+    background: #eee;
+    height: 24px;
+    position: relative;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: #E3120B;
+    position: relative;
+    transition: width 0.3s ease;
+  }
+
+  .bar-value {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1a1a1a;
+    width: 70px;
+    text-align: left;
+    flex-shrink: 0;
+  }
+
+  .density-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .density-card {
+    border: 1px solid #eee;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .density-card .number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #E3120B;
+    line-height: 1.1;
+  }
+
+  .density-card .label {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #999;
+    margin-top: 4px;
+  }
+
+  .density-card .place {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  .footer-section {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 3px solid #E3120B;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+  }
+
+  @media (max-width: 680px) {
+    h1 { font-size: 28px; }
+    .subtitle { font-size: 17px; }
+    .hero-image { max-height: 320px; }
+    .hero-image img { height: 320px; }
+    .pullquote { font-size: 18px; }
+    .density-comparison { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="internal-banner">
+  <strong style="color:#e8a030;">Internal Use Only</strong> — HDI Marketing — Not real press coverage
+</div>
+
+<header class="economist-header">
+  <div class="economist-logo">The Economist</div>
+</header>
+
+<div class="hero-image">
+  <img src="/images/processed/slideshow/natchez-1032.webp" alt="Downtown Natchez, Mississippi, seen from the bluffs above the river">
+</div>
+
+<div class="article-container">
+  <p class="hero-caption">Natchez, Mississippi. The town has 1,425 registered businesses but fewer than 600 with employees.</p>
+
+  <div style="text-align:center;">
+    <span class="section-label">Finance and economics</span>
+  </div>
+
+  <h1>The case for a digital utility in the Mississippi Delta</h1>
+  <p class="subtitle">Small businesses in the Deep South pay dearly for software they barely use. A startup in Natchez thinks the answer is to treat AI like electricity.</p>
+  <p class="dateline">April 5th 2026 &middot; Natchez, Mississippi</p>
+
+  <p class="drop-cap">Walk down Main Street in Clarksdale, Mississippi, and you will pass 669 registered businesses. That is 45 per 1,000 residents, roughly a third of the national average of 129 per 1,000. The gap is not explained by laziness. It is explained by infrastructure. The Mississippi Delta lost between 36% and 49% of its population between 1960 and 2020. What left with those people was not only labour and capital but the institutional scaffolding that makes commerce possible: banks, newspapers, advertising agencies, bookkeepers, marketing firms. The digital equivalents of these services exist, of course. They just cost more than a Delta barber shop can afford.</p>
+
+  <p>The arithmetic is bleak. A small business owner in Natchez or Vicksburg who wants the baseline digital presence that a comparable firm in Austin or Nashville takes for granted&mdash;a website builder, a social-media scheduler, a review-management tool, local search optimisation, a basic CRM&mdash;will pay between $500 and $800 a month for a patchwork of SaaS subscriptions. The owner of a fried-catfish restaurant in Greenville earning $180,000 a year is devoting between 3% and 5% of gross revenue to tools she logs into perhaps twice a month. Economists have a name for costs imposed by structural disadvantage. In the Delta, the digital poverty tax is real, recurring, and rising.</p>
+
+  <figure class="inline-image">
+    <img src="/images/processed/slideshow/natchez-1110.webp" alt="A quiet commercial street in Natchez at dusk">
+    <figcaption>Commercial vacancy rates in Delta towns run two to three times the national average.</figcaption>
+  </figure>
+
+  <h2>The density problem</h2>
+
+  <p>Business density is the variable that matters. It determines whether a town can support a chamber of commerce, attract a regional bank branch, or justify the attention of a Google sales representative. The numbers tell a stark story.</p>
+
+  <div class="density-comparison">
+    <div class="density-card">
+      <div class="number">45</div>
+      <div class="label">Firms per 1,000 residents</div>
+      <div class="place">Clarksdale, MS</div>
+    </div>
+    <div class="density-card">
+      <div class="number">54</div>
+      <div class="label">Firms per 1,000 residents</div>
+      <div class="place">Greenville, MS</div>
+    </div>
+    <div class="density-card">
+      <div class="number">97</div>
+      <div class="label">Firms per 1,000 residents</div>
+      <div class="place">Hattiesburg, MS</div>
+    </div>
+    <div class="density-card">
+      <div class="number">129</div>
+      <div class="label">Firms per 1,000 residents</div>
+      <div class="place">US national average</div>
+    </div>
+  </div>
+
+  <p>Mississippi has 266,385 small businesses. Some 79.3% of the state&rsquo;s 82 counties are classified as rural. Sixty-five of those counties have fewer businesses per capita than the weakest metropolitan statistical area in the state. The entire lower Mississippi region&mdash;from Memphis to New Orleans, within 100 miles of either side of the river&mdash;contains between 100,000 and 120,000 employer establishments. These are the firms that have at least one person on payroll. They form the addressable market for any technology company that wants to sell into the Deep South.</p>
+
+  <p>Most technology companies do not bother. The unit economics are wrong. A Salesforce rep working the Delta would burn more in petrol than she would earn in commissions. Mailchimp, Yelp, HubSpot, Squarespace&mdash;none has a field team south of Memphis. The towns are too small, the businesses too poor, and the contracts too thin to justify the cost of acquisition. This is, in the bloodless language of venture capital, a market that does not pencil.</p>
+
+  <h2>A platform that pencils differently</h2>
+
+  <p>A firm called Measurably Better Things, based in Natchez, thinks the market does pencil&mdash;provided you change what you are selling. Rather than offering discrete SaaS tools at individual subscription prices, MBT bundles the entire stack into a tiered service that starts at $25 a month and tops out at $250. The cheapest tier includes a business listing in a regional directory and basic AI-generated social-media posts. The most expensive includes a full AI marketing engine: automated review responses, content creation, local search management, and a customer-facing concierge that can answer questions about the business.</p>
+
+  <table class="data-table">
+    <caption>MBT pricing tiers</caption>
+    <tr>
+      <th>Tier</th>
+      <th>Monthly price</th>
+      <th>Key features</th>
+    </tr>
+    <tr>
+      <td>Free</td>
+      <td>$0</td>
+      <td>Basic directory listing</td>
+    </tr>
+    <tr>
+      <td>Core</td>
+      <td>$25</td>
+      <td>Enhanced listing, AI social posts</td>
+    </tr>
+    <tr>
+      <td>Growth</td>
+      <td>$50</td>
+      <td>Review management, content engine</td>
+    </tr>
+    <tr>
+      <td>Partner</td>
+      <td>$99</td>
+      <td>Full marketing stack, analytics</td>
+    </tr>
+    <tr>
+      <td>Enterprise</td>
+      <td>$250</td>
+      <td>AI concierge, white-label tools</td>
+    </tr>
+  </table>
+
+  <p>The pricing looks aggressive until you consider the cost of the alternative. A business owner paying $600 a month for Yelp advertising, Mailchimp, Squarespace, and a freelance social-media manager could replace all four with MBT&rsquo;s $99 tier and save roughly $500 a month. The savings are less dramatic at the low end&mdash;a $25-a-month listing is competing with free Google Business Profile&mdash;but the firm argues that even the free tier creates value by placing the business inside a curated regional directory with editorial content, event listings, and cross-promotion.</p>
+
+  <div class="pullquote">
+    &ldquo;We are not selling software. We are selling the back office that a town of 15,000 people cannot otherwise afford.&rdquo;
+  </div>
+
+  <p>The comparison the company prefers is not to other technology firms but to the Rural Electrification Administration. In the 1930s, private power companies refused to wire the American South. The distances were too great, the customers too few, and the returns too thin. The REA, created in 1935, changed the calculus by treating electricity not as a product but as infrastructure&mdash;something every community deserved access to, priced at cost-plus rather than market rate. MBT&rsquo;s founders argue that digital marketing, business intelligence, and AI-assisted operations have become similarly essential, and that the private market has similarly failed to deliver them to the places that need them most.</p>
+
+  <figure class="inline-image">
+    <img src="/images/processed/big-muddy/corridor-1047.webp" alt="A stretch of the Mississippi River at golden hour">
+    <figcaption>The Mississippi between Vicksburg and Natchez. The region's economic geography has not changed in a century.</figcaption>
+  </figure>
+
+  <h2>What the numbers say</h2>
+
+  <p>The question, as always, is whether the model works at scale. The Deep South&rsquo;s addressable market of 100,000 to 120,000 employer establishments is large enough to support a meaningful business. At a blended average of $65 per month per customer across all tiers&mdash;assuming most customers land in the $25-$99 range&mdash;the revenue mathematics look like this:</p>
+
+  <table class="data-table">
+    <caption>Revenue projections by market penetration</caption>
+    <tr>
+      <th>Penetration</th>
+      <th>Businesses</th>
+      <th>Annual revenue</th>
+    </tr>
+    <tr>
+      <td>1%</td>
+      <td>1,000&ndash;1,200</td>
+      <td>$780K&ndash;$936K</td>
+    </tr>
+    <tr>
+      <td>5%</td>
+      <td>5,000&ndash;6,000</td>
+      <td>$3.9M&ndash;$4.7M</td>
+    </tr>
+    <tr class="highlight-row">
+      <td>10%</td>
+      <td>10,000&ndash;12,000</td>
+      <td>$7.8M&ndash;$9.4M</td>
+    </tr>
+    <tr>
+      <td>20%</td>
+      <td>20,000&ndash;24,000</td>
+      <td>$15.6M&ndash;$18.7M</td>
+    </tr>
+  </table>
+
+  <p>At 1% penetration the business is a modest regional player. At 5% it begins to resemble a mid-size SaaS company. At 10%&mdash;which would require roughly 10,000 paying customers spread across a dozen states&mdash;it generates something north of $8m a year. That is not a venture-scale outcome. It is, however, a self-sustaining infrastructure business of exactly the sort that the Deep South lacks.</p>
+
+  <div class="chart-container">
+    <div class="chart-title">Annual revenue at $65/mo blended average</div>
+    <div class="bar-chart">
+      <div class="bar-row">
+        <span class="bar-label">1%</span>
+        <div class="bar-track"><div class="bar-fill" style="width: 5%;"></div></div>
+        <span class="bar-value">$0.9M</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">5%</span>
+        <div class="bar-track"><div class="bar-fill" style="width: 25%;"></div></div>
+        <span class="bar-value">$4.3M</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">10%</span>
+        <div class="bar-track"><div class="bar-fill" style="width: 50%;"></div></div>
+        <span class="bar-value">$8.6M</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">20%</span>
+        <div class="bar-track"><div class="bar-fill" style="width: 100%;"></div></div>
+        <span class="bar-value">$17.2M</span>
+      </div>
+    </div>
+  </div>
+
+  <p>The more interesting question is what happens to the towns themselves. If 10% of employer establishments in the region gain access to marketing infrastructure they currently lack, the downstream effects compound. Businesses with active online listings attract more customers. More customers mean more revenue. More revenue means more hiring. More hiring slows depopulation. This is not speculation; it is the documented effect of broadband deployment in rural America. A 2019 study by the Federal Communications Commission found that counties with universal broadband access grew small-business formation rates by 3-5% faster than comparable counties without it. Digital marketing infrastructure sits one layer above broadband. The argument is that the effect would be analogous.</p>
+
+  <h2>The banking thesis</h2>
+
+  <figure class="inline-image">
+    <img src="/images/processed/slideshow/natchez-1143.webp" alt="A historic bank building in downtown Natchez">
+    <figcaption>Regional banks in the Delta have more to gain from business intelligence than from higher interest rates.</figcaption>
+  </figure>
+
+  <p>Perhaps the most provocative element of MBT&rsquo;s model is its approach to capital. The firm is exploring co-ownership arrangements with regional banks. The logic runs as follows. A community bank in Vicksburg or Greenville lends primarily to small businesses. Its underwriting data is sparse: tax returns, bank statements, a credit score. If its borrowers were on a platform that tracked review velocity, social-media engagement, website traffic, and appointment bookings, the bank would have a much richer picture of business health. It could lend more confidently, price risk more accurately, and intervene earlier when a borrower showed signs of distress.</p>
+
+  <p>In exchange for co-owning the digital infrastructure in its service area&mdash;providing capital and, crucially, distribution through its branch network&mdash;the bank would receive equity in the regional operation and access to anonymised, aggregated business-health data. The businesses would get AI-powered marketing tools at subsidised rates. The town would get infrastructure that neither the private market nor the federal government has seen fit to provide.</p>
+
+  <div class="sidebar">
+    <h3>The REA precedent</h3>
+    <p>When the Rural Electrification Administration was created in 1935, only 10% of American farms had electricity. Private utilities refused to wire rural areas. The REA lent money to cooperatives at low interest rates and provided technical assistance. By 1950, 90% of farms were electrified. The programme cost the federal government relatively little; the cooperatives repaid their loans. The economic effect was transformative: refrigeration, electric pumps, and radio changed the structure of rural commerce.</p>
+    <p>MBT argues that digital marketing infrastructure occupies a similar position today. Essential, withheld, and deliverable at modest cost if you change the ownership model.</p>
+  </div>
+
+  <p>This is, to put it mildly, untested. Community banks are conservative institutions. Their regulators are wary of novel data arrangements. And the history of technology firms promising to transform rural economies is, shall we say, extensive and unhappy. For every broadband co-operative that succeeded there are a dozen smart-city initiatives that burned through grant money and left nothing behind.</p>
+
+  <p>What distinguishes the MBT model, if anything, is its modesty. The firm is not promising to reinvent small-town commerce. It is promising to give a catfish restaurant in Greenville the same digital back office that a catfish restaurant in Nashville already has&mdash;at a price the Greenville restaurant can afford. Whether that constitutes a utility in the regulatory sense is a question for another decade. Whether it constitutes one in the practical sense&mdash;essential infrastructure, universally needed, best delivered at scale and priced at cost-plus&mdash;is a question the Delta is already answering with its feet.</p>
+
+  <figure class="inline-image">
+    <img src="/images/corridor/ocean-springs-night-mural.webp" alt="A colourful mural on a building in Ocean Springs, Mississippi, illuminated at night">
+    <figcaption>Ocean Springs, on the Gulf Coast. The region's creative economy persists despite, not because of, its digital infrastructure.</figcaption>
+  </figure>
+
+  <h2>The hard part</h2>
+
+  <p>Sceptics will note several things. First, the blended $65-a-month figure assumes a tier distribution that has not been tested at scale. If most customers cluster at the free and $25 tiers, actual revenue per user could be half that. Second, the cost of serving rural customers&mdash;particularly the in-person onboarding and hand-holding that less digitally fluent business owners require&mdash;could consume margins that look attractive on a spreadsheet. Third, the AI that powers the platform is not free. Large-language-model inference costs are falling, but they are falling from expensive to merely costly, not from costly to cheap.</p>
+
+  <p>There is also the question of competition. Google is not oblivious to the small-business market. Its free tools&mdash;Google Business Profile, Google Ads, Google Analytics&mdash;already provide much of what MBT offers at the lower tiers. The firm&rsquo;s counter-argument is that Google&rsquo;s tools are free because Google is selling the business owner&rsquo;s data to advertisers, and that a locally owned alternative with transparent pricing and no advertising model would earn trust that Google cannot. This may be true. It may also be the sort of thing that sounds better in a pitch meeting than in a market where most business owners have never heard of data sovereignty and want their phone to ring.</p>
+
+  <p>The honest case for a digital utility in the Deep South is not that it will transform a region that has resisted transformation for 60 years. It is that the costs of digital exclusion are now high enough, and the costs of AI-powered delivery are now low enough, that the gap can be closed by a competent operator at a sustainable margin. That is not a revolution. But in a place where 45 out of every 1,000 people own a business, compared with 129 nationally, it may be enough.</p>
+
+  <div class="footer-section">
+    <p style="margin-bottom:8px;">This article appeared in the Finance and economics section of the print edition under the headline &ldquo;Wiring the Delta&rdquo;</p>
+    <p style="color:#ccc;margin-top:16px;font-size:11px;">Simulated article &middot; Not real Economist coverage &middot; Created for internal strategy use</p>
+  </div>
+
+</div>
+
+</body>
+</html>

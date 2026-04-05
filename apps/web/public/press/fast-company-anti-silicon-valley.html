@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Anti-Silicon Valley Startup: Building AI for People Who Don't Use Apps | Fast Company</title>
+<meta name="description" content="In Natchez, Mississippi, a team of four runs 14 domains on one codebase for $167 a month. Their secret? Invisible technology and real photographs.">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:18px;scroll-behavior:smooth;background:#fff;color:#1a1a1a}
+  body{font-family:'Inter','Helvetica Neue',Arial,sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+
+  :root{
+    --accent:#FF6B35;
+    --accent-dark:#E04D1A;
+    --accent-light:#FFF0E8;
+    --blue:#0066FF;
+    --teal:#00A896;
+    --yellow:#FFD166;
+    --bg:#ffffff;
+    --bg-warm:#FAFAF7;
+    --text:#1a1a1a;
+    --text-secondary:#555;
+    --text-light:#888;
+    --border:#e5e5e5;
+    --border-light:#f0f0f0;
+  }
+
+  /* ===== INTERNAL BANNER ===== */
+  .internal-banner{
+    background:#1a1a1a;color:#fff;text-align:center;
+    padding:0.6rem 1rem;font-size:0.72rem;
+    letter-spacing:0.08em;text-transform:uppercase;
+    font-weight:600;
+  }
+  .internal-banner span{color:var(--accent);}
+
+  /* ===== MASTHEAD ===== */
+  .masthead{
+    padding:0.8rem 2rem;
+    border-bottom:2px solid #1a1a1a;
+    display:flex;justify-content:space-between;align-items:center;
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,0.97);
+    backdrop-filter:blur(12px);
+  }
+  .masthead-logo{
+    font-size:1.1rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;
+    color:#1a1a1a;
+  }
+  .masthead-nav{display:flex;gap:1.5rem;font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);}
+  .masthead-nav span{cursor:pointer;transition:color 0.2s}
+  .masthead-nav span:hover{color:var(--accent)}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;width:100%;height:85vh;min-height:500px;max-height:800px;
+    overflow:hidden;
+  }
+  .hero img{
+    width:100%;height:100%;object-fit:cover;
+    filter:brightness(0.75);
+  }
+  .hero-overlay{
+    position:absolute;bottom:0;left:0;right:0;
+    padding:3rem 2rem 2.5rem;
+    background:linear-gradient(transparent,rgba(0,0,0,0.85));
+    color:#fff;
+  }
+  .hero-category{
+    display:inline-block;
+    background:var(--accent);color:#fff;
+    font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;
+    padding:0.3rem 0.8rem;margin-bottom:1rem;
+  }
+  .hero-headline{
+    font-size:clamp(2rem,5vw,3.6rem);font-weight:900;line-height:1.08;
+    max-width:900px;margin-bottom:0.8rem;
+    letter-spacing:-0.02em;
+  }
+  .hero-dek{
+    font-size:1.15rem;line-height:1.5;max-width:640px;
+    color:rgba(255,255,255,0.85);font-weight:400;
+  }
+
+  /* ===== ARTICLE BODY ===== */
+  .article-container{
+    max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;
+  }
+  .article-meta{
+    display:flex;align-items:center;gap:1rem;
+    padding-bottom:1.5rem;margin-bottom:2rem;
+    border-bottom:1px solid var(--border);
+    font-size:0.78rem;color:var(--text-light);
+  }
+  .article-meta .author{font-weight:700;color:var(--text);}
+  .article-meta .date{color:var(--text-light);}
+
+  .article-container p{
+    font-size:1.05rem;line-height:1.85;margin-bottom:1.5rem;
+    color:#2a2a2a;
+  }
+  .article-container h2{
+    font-size:1.65rem;font-weight:900;letter-spacing:-0.02em;
+    margin:2.5rem 0 1rem;color:var(--text);line-height:1.2;
+  }
+  .article-container h3{
+    font-size:1.2rem;font-weight:800;
+    margin:2rem 0 0.8rem;color:var(--text);
+  }
+
+  /* Lead paragraph */
+  .lead{
+    font-size:1.25rem;line-height:1.7;font-weight:400;
+    color:#1a1a1a;margin-bottom:2rem;
+  }
+
+  /* Pull quote */
+  .pullquote{
+    margin:2.5rem -2rem;padding:2rem 2rem 2rem 2.5rem;
+    border-left:5px solid var(--accent);
+    background:var(--accent-light);
+    font-size:1.4rem;font-weight:700;line-height:1.4;
+    color:#1a1a1a;letter-spacing:-0.01em;
+  }
+  .pullquote cite{
+    display:block;font-size:0.78rem;font-weight:600;
+    color:var(--accent-dark);margin-top:0.8rem;font-style:normal;
+    text-transform:uppercase;letter-spacing:0.05em;
+  }
+
+  /* Inline photo */
+  .inline-photo{
+    margin:2.5rem -4rem;
+  }
+  .inline-photo img{
+    width:100%;display:block;
+  }
+  .inline-photo figcaption{
+    font-size:0.72rem;color:var(--text-light);
+    padding:0.6rem 0;line-height:1.5;
+    border-bottom:1px solid var(--border-light);
+  }
+  .inline-photo figcaption .credit{font-weight:600;color:var(--text-secondary);}
+
+  /* Stats strip */
+  .stats-strip{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:1px;background:var(--border);
+    margin:2.5rem -2rem;
+  }
+  .stat-card{
+    background:#fff;padding:1.5rem;text-align:center;
+  }
+  .stat-number{
+    font-size:2rem;font-weight:900;color:var(--accent);
+    line-height:1;margin-bottom:0.3rem;
+    letter-spacing:-0.02em;
+  }
+  .stat-label{
+    font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;
+    color:var(--text-light);font-weight:600;
+  }
+
+  /* Sidebar callout */
+  .sidebar-callout{
+    background:var(--bg-warm);
+    border:1px solid var(--border);
+    padding:1.8rem;margin:2.5rem -2rem;
+  }
+  .sidebar-callout h4{
+    font-size:0.72rem;font-weight:800;text-transform:uppercase;
+    letter-spacing:0.1em;color:var(--accent);margin-bottom:0.8rem;
+  }
+  .sidebar-callout p{
+    font-size:0.88rem;line-height:1.65;color:var(--text-secondary);margin-bottom:0.5rem;
+  }
+  .sidebar-callout ul{
+    list-style:none;padding:0;
+  }
+  .sidebar-callout li{
+    font-size:0.88rem;line-height:1.65;color:var(--text-secondary);
+    padding:0.3rem 0;padding-left:1.2rem;position:relative;
+  }
+  .sidebar-callout li::before{
+    content:'';position:absolute;left:0;top:0.65rem;
+    width:6px;height:6px;background:var(--accent);border-radius:50%;
+  }
+
+  /* Photo grid */
+  .photo-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:4px;
+    margin:2.5rem -4rem;
+  }
+  .photo-grid img{
+    width:100%;height:280px;object-fit:cover;display:block;
+  }
+  .photo-grid figcaption{
+    grid-column:1/-1;
+    font-size:0.72rem;color:var(--text-light);
+    padding:0.6rem 0;
+    border-bottom:1px solid var(--border-light);
+  }
+
+  /* Accent bar section break */
+  .section-break{
+    width:60px;height:4px;background:var(--accent);
+    margin:3rem 0 2.5rem;
+  }
+
+  /* Footer */
+  .article-footer{
+    max-width:720px;margin:0 auto;
+    padding:2rem 1.5rem 3rem;
+    border-top:2px solid #1a1a1a;
+  }
+  .article-footer .tags{
+    display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem;
+  }
+  .article-footer .tag{
+    font-size:0.65rem;font-weight:700;text-transform:uppercase;
+    letter-spacing:0.06em;padding:0.3rem 0.7rem;
+    border:1px solid var(--border);color:var(--text-secondary);
+  }
+  .article-footer .newsletter-cta{
+    background:var(--accent-light);padding:1.5rem;text-align:center;
+  }
+  .article-footer .newsletter-cta h4{
+    font-size:0.88rem;font-weight:800;margin-bottom:0.3rem;
+  }
+  .article-footer .newsletter-cta p{
+    font-size:0.78rem;color:var(--text-secondary);
+  }
+
+  .site-footer{
+    background:#1a1a1a;color:#888;
+    padding:2rem;text-align:center;
+    font-size:0.72rem;
+  }
+  .site-footer a{color:var(--accent)}
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:768px){
+    .hero{height:60vh;min-height:350px}
+    .hero-headline{font-size:1.8rem}
+    .hero-dek{font-size:1rem}
+    .article-container{padding:1.5rem 1rem 3rem}
+    .inline-photo,.photo-grid,.stats-strip,.sidebar-callout,.pullquote{margin-left:0;margin-right:0}
+    .photo-grid{grid-template-columns:1fr}
+    .photo-grid img{height:220px}
+    .masthead-nav{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- INTERNAL ONLY BANNER -->
+<div class="internal-banner">
+  <span>&#9632;</span> Internal press mock-up &mdash; not a real Fast Company article &mdash; for pitch deck &amp; investor materials only <span>&#9632;</span>
+</div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-logo">Fast Company</div>
+  <nav class="masthead-nav">
+    <span>Technology</span>
+    <span>Design</span>
+    <span>Work Life</span>
+    <span>Impact</span>
+    <span>Innovation Festival</span>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="/images/processed/slideshow/natchez-319.webp" alt="A quiet street in Natchez, Mississippi at golden hour, storefronts glowing with warm light">
+  <div class="hero-overlay">
+    <div class="hero-category">Most Innovative Companies</div>
+    <h1 class="hero-headline">The Anti-Silicon Valley Startup: Building AI for People Who Don't Use Apps</h1>
+    <p class="hero-dek">In Natchez, Mississippi, a team of four operates 14 domains from a Victorian mansion. Their total infrastructure costs $167 a month. And they might be onto something everyone else missed.</p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-container">
+
+  <div class="article-meta">
+    <span class="author">By Sarah Chen</span>
+    <span class="date">April 5, 2026</span>
+    <span>8 min read</span>
+  </div>
+
+  <p class="lead">Chase Pierson doesn't have a pitch deck. He has a truck. Most mornings, he drives through downtown Natchez, Mississippi&mdash;population 14,500&mdash;and walks into businesses. Not with a laptop. Not with a demo. With a conversation that starts like this: <em>"Your Google listing says you close at 5. Your customers say you close at 9."</em></p>
+
+  <p>That sentence does more work than any onboarding funnel ever could. Because the business owner already knows it's true. They just didn't know anyone was paying attention.</p>
+
+  <p>Pierson is the CEO and CTO of Measurably Better Things, a technology platform that does something profoundly unfashionable in 2026: it hides. There are no dashboards. No user portals. No apps to download. The entire system is designed to be invisible to the people it serves&mdash;small business owners who are too busy running a restaurant, a barbershop, or a bed-and-breakfast to learn another piece of software.</p>
+
+  <p>"The gap isn't technology," Pierson says, sitting on the porch of The Big Muddy Inn, the Victorian mansion that doubles as his company's headquarters. "It's organization. Every one of these businesses has the same twenty problems. Wrong hours on Google. No response to reviews. Photos from 2019. They don't need an app. They need someone to fix it."</p>
+
+  <figure class="inline-photo">
+    <img src="/images/arrie-aslin/ta-c2-148-of-959.webp" alt="Interior of The Big Muddy Inn, warm light streaming through tall windows onto hardwood floors">
+    <figcaption>The Big Muddy Inn in Natchez, Mississippi, serves as both a boutique hotel and the company's working headquarters. <span class="credit">Photo: Arrie Aslin</span></figcaption>
+  </figure>
+
+  <h2>The $165 Device That Replaces a Marketing Department</h2>
+
+  <p>Here's how it works in practice. Pierson walks into a barbershop. He has a small device&mdash;about the size of a deck of cards, cost: $165. He plugs it into the shop's Wi-Fi. Before he leaves, the business's Google listing is updated, its review responses are queued, and a daily text message briefing is configured. No login. No password. No training.</p>
+
+  <p>"If you have to explain the technology, you've already lost," says Pierson. "These aren't people who failed at digital marketing. They never had time to start."</p>
+
+  <p>This philosophy runs so deep it shapes every technical decision the company makes. Instead of dashboards, business owners get an SMS each morning&mdash;a plain-language briefing that reads like a note from a friend: <em>You had 3 new Google reviews yesterday (all positive). Your listing got 47 views. Thursday looks like rain&mdash;might want to move the sidewalk sign inside.</em></p>
+
+  <p>The AI behind those messages has a name&mdash;Delta Dawn&mdash;and she sounds like she's from here. Not a corporate chatbot. Not Siri in a suit. A Southern voice with opinions. "The joke is the insight," Pierson says. "If you can make someone laugh while telling them their hours are wrong, they'll actually fix them."</p>
+
+  <div class="pullquote">
+    "If you have to explain the technology, you've already lost. These aren't people who failed at digital marketing. They never had time to start."
+    <cite>Chase Pierson, CEO &amp; CTO</cite>
+  </div>
+
+  <h2>Photography First, Everything Else Second</h2>
+
+  <p>Walk into any tech startup and the walls are covered in wireframes. Walk into MBT's headquarters and the walls are covered in photographs. This is not an accident.</p>
+
+  <p>The company maintains a library of 16,936 photographs&mdash;every one of them real, taken by real photographers in the real Mississippi Delta. Each image is auto-tagged by Google Cloud Vision. When the system generates a social media post for a client, it pulls from this library. No stock photos. No AI-generated illustrations.</p>
+
+  <p>"AI generates art. Canva handles typography. We never let AI put text in images," Pierson says, articulating a design rule so specific it reads like a religious conviction. "And we never use high-tech imagery. Main Street, not Silicon Valley. Our illustrations show a mix of races, ages, genders&mdash;because that's what Main Street actually looks like."</p>
+
+  <figure class="photo-grid">
+    <img src="/images/corridor/oceansprings-natchez-327-of-1183.webp" alt="Downtown Ocean Springs, Mississippi, with live oaks and storefronts">
+    <img src="/images/processed/big-muddy/natchez-night-1034.webp" alt="Natchez at night, warm streetlights along historic buildings">
+    <figcaption>Left: Ocean Springs, Mississippi. Right: Downtown Natchez after dark. All imagery in the MBT system is drawn from a curated library of real photographs, never AI-generated stock. <span class="credit">Photos: Arrie Aslin &amp; Big Muddy Media</span></figcaption>
+  </figure>
+
+  <p>This commitment to real photography isn't just aesthetic. It's strategic. When a barbershop in Natchez sees itself represented by an actual photo of a barbershop in Natchez&mdash;not a stock image of a model pretending to cut hair&mdash;the trust gap closes instantly. The technology disappears. The place remains.</p>
+
+  <div class="section-break"></div>
+
+  <h2>The Numbers Don't Make Sense (Until They Do)</h2>
+
+  <p>Here's where things get genuinely strange. MBT runs 14 active domains, a full media company (magazine, radio station, touring operation, record label), a hospitality business, an AI platform, and a business directory&mdash;all from a single codebase, deployed to a single Vercel instance.</p>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stat-card">
+      <div class="stat-number">$167</div>
+      <div class="stat-label">Monthly Infrastructure</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">$9.33</div>
+      <div class="stat-label">Monthly AI Costs</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">14</div>
+      <div class="stat-label">Active Domains</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">4</div>
+      <div class="stat-label">Team Members</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">16,936</div>
+      <div class="stat-label">Photos Tagged</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">1,425</div>
+      <div class="stat-label">Businesses in Natchez</div>
+    </div>
+  </div>
+
+  <p>Total monthly infrastructure: $167. That's 90 times cheaper than a typical startup burning through $15,000 a month on AWS before they have a single paying customer. AI costs? $9.33 a month. Not $9,330. Nine dollars and thirty-three cents.</p>
+
+  <p>"Everyone else is optimizing for scale," Pierson says. "We're optimizing for margin. If your infrastructure costs nothing, you can charge $20 a month and still build a real business."</p>
+
+  <p>The team reflects this economy. There are four people. Pierson handles the technology and the sales walks. Tracy Alderson-Allen, an equity partner, manages finance and inn operations. Amy Allen, also an equity partner, runs the inn and bar. JP Houston books the shows and handles programming. That's it. No board. No advisors. No venture capital.</p>
+
+  <div class="sidebar-callout">
+    <h4>The Design Rules</h4>
+    <p>MBT maintains an unusually strict set of design constraints, enforced across every page and every deployment:</p>
+    <ul>
+      <li>No customer-facing tech jargon, ever</li>
+      <li>No hardcoded fonts&mdash;CSS custom properties only</li>
+      <li>No hardcoded colors&mdash;theme tokens for everything</li>
+      <li>No Tailwind CSS&mdash;inline styles by company policy</li>
+      <li>AI generates art, Canva handles typography&mdash;AI never places text in images</li>
+      <li>All illustrations must be diverse&mdash;mix of races, ages, genders</li>
+      <li>No high-tech imagery&mdash;Main Street, not Silicon Valley</li>
+      <li>No dashboards for customers&mdash;SMS-first daily briefing instead</li>
+      <li>Photography from real places, by real photographers, of real people</li>
+    </ul>
+  </div>
+
+  <h2>Why Inline CSS Is a Business Decision</h2>
+
+  <p>The "no Tailwind" rule deserves its own explanation, because it reveals something about how MBT thinks about technology&mdash;not as an end, but as a substrate that should be completely transparent to the people it serves.</p>
+
+  <p>"Tailwind is brilliant if you're building a SaaS product with a design system and a team of twelve," Pierson says. "We're building something that needs to load instantly on a 2019 Android phone over a cell tower in rural Mississippi. Every abstraction layer is a thing that can break. Inline CSS never breaks."</p>
+
+  <p>This same philosophy extends to their AI model routing. Instead of betting on one provider, MBT runs a multi-tier system: Google's Gemini for reasoning, Anthropic's Claude as a fallback, Perplexity for search. If one goes down, the next picks up. The business owner texting Delta Dawn at 6 a.m. never knows the difference.</p>
+
+  <figure class="inline-photo">
+    <img src="/images/gallery/blues-musician-bw.webp" alt="A blues musician performing, captured in black and white">
+    <figcaption>Big Muddy Entertainment, one of MBT's 14 domains, books touring acts through the Mississippi region. Shows generate a 2:1 multiplier across the ecosystem&mdash;every concert fills hotel rooms and drives directory engagement. <span class="credit">Photo: Big Muddy Media</span></figcaption>
+  </figure>
+
+  <h2>The Victorian Mansion Test</h2>
+
+  <p>There's a question that tech reporters love to ask founders: <em>Why aren't you in San Francisco?</em> Pierson's answer is the most compelling version of "that's the wrong question" I've heard in a decade of covering startups.</p>
+
+  <p>"San Francisco is where you go to build things for people who already use technology," he says. "We're building for the owner of a fried chicken restaurant who's never heard of Slack. You can't understand that problem from a WeWork. You have to live inside it."</p>
+
+  <p>Living inside it means running an inn. It means booking bands for a live music venue. It means publishing a regional magazine, operating a radio station, and managing a record label&mdash;not as side projects, but as the living proof that the platform works. Every Big Muddy property is a customer of its own technology. The inn's Google listing is managed by the same system that manages the barbershop's.</p>
+
+  <p>"We're not a tech company that talks about hospitality," Pierson says. "We're a hospitality company that happens to have built technology. There's a difference, and the customer can feel it."</p>
+
+  <div class="pullquote">
+    "San Francisco is where you go to build things for people who already use technology. We're building for the owner of a fried chicken restaurant who's never heard of Slack."
+    <cite>Chase Pierson</cite>
+  </div>
+
+  <div class="section-break"></div>
+
+  <h2>Five Businesses a Day</h2>
+
+  <p>Pierson's sales process is almost comically analog. He walks. Five businesses a day, on foot, through downtown Natchez. No cold emails. No LinkedIn automation. No SDR team. Just a person showing up and pointing out that your Google hours are wrong.</p>
+
+  <p>Natchez has 1,425 businesses. At five per day, that's the entire town in under a year. And here's the part that makes VCs nervous and community organizers excited: the pitch starts at $20 a month. Not $200. Not $2,000. Twenty dollars.</p>
+
+  <p>"Everyone in this industry is trying to charge $500 a month for something the business owner doesn't understand," Pierson says. "We'd rather charge $20 for something they can see working by the time we walk out the door."</p>
+
+  <p>The Deep South Directory&mdash;MBT's customer-facing product for businesses&mdash;is intentionally simple. Claim your listing. Get your hours fixed. Start responding to reviews. See real photos of your business show up online. That's it. No AI jargon. No mention of machine learning. No talk of neural networks or large language models. The technology does the work. The person gets the credit.</p>
+
+  <figure class="inline-photo">
+    <img src="/images/processed/slideshow/for03370.webp" alt="Morning light on a Southern street with historic architecture">
+    <figcaption>Pierson walks five businesses per day through streets like this one&mdash;no cold emails, no automation, just showing up. <span class="credit">Photo: Big Muddy Media</span></figcaption>
+  </figure>
+
+  <h2>The Media Company as Proof of Concept</h2>
+
+  <p>Most platforms show you a demo. MBT shows you a magazine.</p>
+
+  <p>Big Muddy Magazine, Big Muddy Radio, Big Muddy Touring, Big Muddy Entertainment, Big Muddy Records&mdash;these aren't marketing exercises. They're functioning media properties that run on the same infrastructure as the business directory. When a band plays at the venue, the show gets promoted through the radio station, photographed by the media team, written up in the magazine, and the surrounding businesses see a spike in their directory traffic.</p>
+
+  <p>Every show generates what Pierson calls "a 2:1 multiplier"&mdash;for every dollar spent on entertainment, two dollars flow back through inn bookings and directory engagement. It's not a theory. It's what happens every Friday night.</p>
+
+  <p>"The media company is the proof," he says. "When I walk into a restaurant and say we can fix your Google listing, they don't have to take my word for it. They came to a show last week. They read the magazine. They heard us on the radio. The trust is already there."</p>
+
+  <div class="sidebar-callout">
+    <h4>The Stack</h4>
+    <ul>
+      <li>Next.js App Router on Vercel&mdash;single deployment for all 14 domains</li>
+      <li>TypeScript with inline CSS&mdash;no Tailwind, no CSS frameworks</li>
+      <li>Multi-tenant architecture&mdash;config-driven, not fork-driven</li>
+      <li>Google Cloud Vision for photo tagging (16,936 images and counting)</li>
+      <li>Multi-provider AI: Gemini for reasoning, Claude for fallback, Perplexity for search</li>
+      <li>SMS-first interface&mdash;no customer dashboards</li>
+      <li>$167/month total infrastructure</li>
+      <li>$9.33/month AI costs</li>
+    </ul>
+  </div>
+
+  <h2>What the Rest of Tech Gets Wrong</h2>
+
+  <p>I've covered startups for a long time. The pattern is always the same: build the technology, then go looking for the problem. MBT inverted that. Pierson spent years as a media production architect&mdash;he once designed a complete broadcast-to-distribution pipeline that could run a company the size of Viacom. Then he moved to Mississippi and realized the same architecture could run a town.</p>
+
+  <p>"The tools that power global media conglomerates aren't fundamentally different from the tools a small town needs," he says. "Broadcast, production, analytics, distribution. The architecture is the same. The difference is that a media conglomerate has a hundred people to run it. A small town has zero. That's the gap. Not technology. Organization."</p>
+
+  <p>It's a gap that no amount of venture funding has managed to close. Not because the technology is hard&mdash;it's trivially cheap, as MBT's $167-a-month infrastructure proves. But because closing it requires something that doesn't fit on a pitch deck: showing up. Walking into the barbershop. Noticing that the Google hours are wrong. Caring enough to fix it before you leave.</p>
+
+  <p>In Natchez, Mississippi, in a Victorian mansion that smells like fresh coffee and sounds like blues guitar, four people are proving that the most advanced thing technology can do is disappear.</p>
+
+  <p>The barbershop owner doesn't know about the AI. He doesn't need to. His hours are right. His reviews are answered. His phone is ringing.</p>
+
+  <p>That's the whole product.</p>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="article-footer">
+  <div class="tags">
+    <span class="tag">Most Innovative Companies</span>
+    <span class="tag">AI</span>
+    <span class="tag">Design</span>
+    <span class="tag">Small Business</span>
+    <span class="tag">Mississippi</span>
+    <span class="tag">Anti-VC</span>
+  </div>
+  <div class="newsletter-cta">
+    <h4>The Most Innovative Companies of 2026</h4>
+    <p>MBT was recognized in Fast Company's annual list for its design-first approach to small-business AI.</p>
+  </div>
+</footer>
+
+<div class="site-footer">
+  <p style="margin-bottom:0.5rem;font-weight:600;color:#ccc;">FAST COMPANY</p>
+  <p>This is an internal mock-up created for pitch materials. It is not affiliated with or endorsed by Fast Company magazine.</p>
+  <p style="margin-top:0.5rem;">Hillbilly Dreams Inc &middot; <a href="https://measurablybetter.life">measurablybetter.life</a></p>
+</div>
+
+</body>
+</html>

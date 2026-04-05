@@ -1,132 +1,104 @@
 # Outstanding work queue (master list)
 
-**Last updated:** 2026-04-05 (evening). **Purpose:** Single checklist for Cursor / agents / Chase.
+**Last updated:** 2026-04-06 (morning). **Purpose:** Single checklist for Cursor / agents / Chase.
 
 **Cursor setup:** see [`.cursor/CURSOR_SETUP.md`](../.cursor/CURSOR_SETUP.md).
 
-**Code freeze: April 10. No new features. Cleanup and hardening only.**
+**Code freeze: April 10. Four days. Cleanup, hardening, alignment only.**
 
 ---
 
-## OVERNIGHT SPRINT (April 5-6) — Cursor
+## DAYTIME SPRINT (April 6) — Cursor
 
-### P0 — Must ship before morning
+### P0 — Must ship today
 
-- [ ] **Press auth gate:** Move entry point for `/public/press/` files behind admin auth. Pattern: `apps/web/app/briefings/scan2plan-bob/PasswordGate.tsx`. Create `apps/web/app/admin/press/page.tsx` that loads the static HTML files from `/public/press/`. The existing `/admin/` layout requires auth via `lib/admin-auth.ts`. Add `X-Robots-Tag: noindex`.
+- [ ] **Press auth gate:** `/public/press/` files are publicly accessible. Create `apps/web/app/admin/press/page.tsx` behind admin auth that links to or iframes the static HTML files. Pattern: `apps/web/app/briefings/scan2plan-bob/PasswordGate.tsx`. Add `X-Robots-Tag: noindex`. Tracy and Amy are reading these NOW — content is internal only.
 
-- [ ] **Internal-only banner on all press articles:** Add sticky orange banner to all 7 HTML files in `/public/press/` (index.html already has it):
-  ```html
-  <div style="background:#2a1a00;border-bottom:2px solid #c17817;padding:12px 20px;text-align:center;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#c17817;position:sticky;top:0;z-index:100;">
-    <strong style="color:#e8a030;">Internal Use Only</strong> — HDI Marketing — Not real press coverage
-  </div>
-  ```
+- [ ] **Purge "corridor" from customer-facing .tsx pages:** Search all `.tsx` in `apps/web/app/` for "corridor" (case-insensitive). Replace with "the Deep South", "the region", or specific town names. Do NOT touch: Prisma models, database seeds, `outsider-economics-v2/`, image folder paths.
 
-- [ ] **Purge "corridor" from customer-facing pages:** Search all `.tsx` files in `apps/web/app/` for "corridor" (case-insensitive). Replace with "the Deep South", "the region", or specific town names. Do NOT touch: Prisma models, database seeds, `outsider-economics-v2/`, image folder names.
+- [ ] **Internal-only banner on ALL press articles:** 5 new articles landing today (Economist, American Banker, Bloomberg, Fast Company, The Atlantic). Each needs the sticky orange banner. Verify existing 7 articles have it too.
 
-### P1 — Should ship tonight
+- [ ] **Pricing audit on customer-facing .tsx:** Search for `$20`, `$49`, `The Listing`, `The Works` (old tier names). Replace with: Free / $25 Essentials / $50 Pro / $99 Marketing / $250 Engine. Don't touch admin/internal pages or database refs.
 
-- [ ] **Dependabot PR triage:** 10 open. Merge safe patch/minor bumps (`sharp`, `turbo`, `@types/node`, `framer-motion`). Close risky major bumps with "deferring until after April 10 freeze."
+### P1 — Should ship today
 
-- [ ] **Stale branch cleanup:** Check these remote branches — if changes are on main, delete: `feat/dsd-copy-rewrite`, `feat/native-social-publisher`, `dev/cms-editor`, `feat/admin-master-roadmap`, `integrate/elegant-volhard-2026-04-04`, `release/internal-ready-2026-04-04`.
+- [ ] **Roadmap brands redesign** (`/sandbox/roadmap.html`): Section 03 brand cards are stacked too tight with overlapping background images. Redesign:
+  - Each brand gets its own card with whitespace between them
+  - Image on one side, text on other — alternating left/right
+  - Brand name, one-line description, domain, clean photo
+  - 2rem+ gap between cards
+  - Fix "corridor" in descriptions → "the Deep South"
 
-- [ ] **Domain health check:** Curl all 14 domains, log results with timestamp to `.workflow/DOMAIN_HEALTH_CHECK.md`.
+- [ ] **FlywheelLens.tsx pricing alignment:** Update to match 5-tier model (Free/$25/$50/$99/$250). May still show old pricing.
 
-- [ ] **Pricing audit on .tsx files:** Search for remaining `$20`, `$49`, `The Listing`, `The Works` (old tier names) in customer-facing pages. Replace with locked pricing: Free / $25 Essentials / $50 Pro / $99 Marketing / $250 Engine. Don't touch admin/internal pages where these are database references.
+- [ ] **Dependabot PR triage:** 10+ open. Merge safe patch/minor (`sharp`, `turbo`, `@types/node`, `framer-motion`). Close risky majors: "deferring until after April 10 freeze."
 
-### P2 — Nice to have
+- [ ] **Stale branch cleanup:** Delete remote branches where changes are on main: `feat/dsd-copy-rewrite`, `feat/native-social-publisher`, `dev/cms-editor`, `feat/admin-master-roadmap`, `integrate/elegant-volhard-2026-04-04`, `release/internal-ready-2026-04-04`.
 
-- [ ] **Roadmap brands section redesign** (`/sandbox/roadmap.html`): The "Ecosystem / Brands" section (section 03) has brand cards stacked too tight with full-bleed background images that bleed into each other. Text is lost in photo noise. Redesign to:
-  - Give each brand its own distinct card with generous whitespace between them
-  - Image on one side (left or right, alternating), text on the other — not image-as-background
-  - Each card should have: brand name, one-line description, domain, and a clean photo that breathes
-  - More vertical space between cards (at least 2rem gap)
-  - The image should be visible and clear, not overlaid with text
-  - Keep the dark theme, gold accent colors
-  - Look at the press articles (`/press/*.html`) for good image-beside-text patterns
-  - Also fix: "corridor" appears in descriptions — replace with "the Deep South" or specific towns
+- [ ] **Domain health check:** Curl all 14 domains, log results to `.workflow/DOMAIN_HEALTH_CHECK.md`.
 
-- [ ] **Mobile pass on press articles:** Open each press HTML at 375px, fix layout breaks.
+### P2 — If time allows
+
+- [ ] **Mobile pass on press articles:** All 12 press HTML files at 375px. Fix layout breaks.
+
 - [ ] **Install `gh` CLI:** `brew install gh && gh auth login`. Run `gh issue list --state open`, save to `.workflow/GITHUB_ISSUES.md`.
 
-### Rules for tonight
-- All work goes to `main` (build mode until April 10)
+- [ ] **NpsResponse migration:** Prepare migration for NpsResponse model (in schema, not yet in prod DB). Do NOT push without Chase approval.
+
+- [ ] **Extend `apiLog`** to remaining API routes still using `console.log` (grep `console.` under `app/api`).
+
+- [ ] **OBS client paths:** Align `lib/obs-client.ts` placeholder paths with actual OpenBroadcaster REST surface on Mac Mini (192.168.4.37:8080).
+
+### P3 — Backlog (before April 10 freeze)
+
+- [ ] `$transaction` on remaining multi-write routes
+- [ ] N+1 profiling on hot list endpoints
+- [ ] Legacy billing / `directory/claim` — align with current tier model
+- [ ] Authenticated Playwright test with `E2E_SESSION_COOKIE`
+- [ ] `tokens.css` modularization (phased, heavy QA)
+- [ ] Sentry: add `SENTRY_AUTH_TOKEN` to GitHub Secrets, verify symbolicated frames
+
+### Rules
+- All work goes to `main` (build mode until April 10 freeze)
 - `pnpm exec tsc --noEmit` before committing
 - `pnpm test:p0` after significant changes
-- No new features. Cleanup and hardening only.
+- No new features — cleanup, hardening, alignment only
 - Don't touch `outsider-economics-v2/` content
 - Don't rename Prisma models
+- Don't run `db push` / `migrate` against production without Chase
 
 ---
 
 ## Done (archive — do not reopen)
 
-- [x] Docs alignment PR (`chore/docs-alignment-and-api-guards`) merged to `main`.
-- [x] Auth audit batch 2 (agent/publish/media/ops admin view, etc.) on `main`.
-- [x] Playwright smoke: `GET /api/admin/deploys` → **401** without session ([`e2e/smoke.spec.ts`](../e2e/smoke.spec.ts)).
-- [x] **A.** Feature branch **`integrate/elegant-volhard-2026-04-04`** merged to **`main`** (PR #26).
-- [x] **Auth batch 3 (partial):** `/api/metrics` **GET** requires **admin**; **POST/PUT** and **`/api/metrics/[key]` PUT** require **`requireCronOrAdmin`**. **`publish/batch`** uses shared **`lib/cron-or-admin.ts`**.
-- [x] **Structured logging:** `lib/api-logger.ts`; **billing** + **Cloudbeds** webhooks migrated off raw `console.*` (pattern for remaining routes).
-- [x] **Metrics bulk upsert:** **`$transaction`** for metric + snapshot writes.
-- [x] **CI:** **`SENTRY_AUTH_TOKEN`** passed into **build** job env (set secret in GitHub for uploads).
-- [x] **`.gitignore`:** `.playwright-mcp/`.
-- [x] **Decisions / tier reconciliation:** [`.workflow/DECISIONS.md`](DECISIONS.md).
+### April 5-6 overnight
+- [x] Press photo deduplication — 41 unique paths, no duplicates, Victorian banned (dc04c9a, efebc7e)
+- [x] Photo spec canonical doc (`docs/ops/PRESS_PHOTO_ASSIGNMENTS.md`)
+- [x] Auth: requireAdmin on drafts, page-edits, schedule, notebook, scout (#120)
+- [x] Cloud logger on billing, Stripe, AI analyze (#122)
+- [x] Revenue dashboard + API (#6)
+- [x] Churn alerts + metrics + Asana outreach (#7)
+- [x] NPS model + API + portal UI + admin summary (#8)
+- [x] CEO morning brief cron (#119)
+- [x] OBS client stub + content pipeline API (#19-20)
+- [x] Admin sidebar: HQ, report card, revenue, churn, store links (#13-16)
+- [x] P0 e2e fix for directory journey (#17)
+- [x] RAG audit loop script (#18)
+- [x] Rate limiting, CORS, apiLog cleanup, POST validation, TODO→GitHub refs
+- [x] Due diligence data dump + RAG audit results
+- [x] HQ revenue corrections (Inn + Shows + Studio C + Tuthill + S2PX)
+- [x] Report card feedback loop tracking
+- [x] Pricing lock across all agent/GTM/doc files (CoS session)
 
----
-
-## A. Post-merge ops (Chase / Vercel)
-
-- [ ] Confirm **Vercel** env: **`CRON_SECRET`**, cron schedule for `/api/cron/monthly-reports` if desired.
-- [ ] Production smoke: signed-in **Admin → Deploys**, **Amy**, **admin/reviews** as needed.
-
----
-
-## B. Heuristic worktree — product catalog (Prisma)
-
-- [ ] Copy **schema + seed** from `.claude/worktrees/heuristic-volhard` onto a **new branch from `main`** when that worktree exists on a dev machine (not shipped in this repo).
-- [ ] **Migration / `db:generate`:** CC/Chase process; no prod `db push` without approval.
-
----
-
-## C. Observability (remaining)
-
-- [ ] Add **`SENTRY_AUTH_TOKEN`** in **GitHub → Settings → Secrets** (if not already) so CI uploads succeed.
-- [ ] Verify Sentry shows symbolicated frames for a thrown error after deploy.
-
----
-
-## D. Security / API (remaining)
-
-- [ ] Extend **`apiLog`** to remaining API routes (grep `console.` under `app/api`).
-- [ ] **`marketing/scout-photo`:** Optional rate limit / auth if Vertex spend spikes (see DECISIONS).
-- [ ] **`ops/chat` POST:** Optional auth gate (see DECISIONS).
-
----
-
-## E. Dependabot / supply chain
-
-- [ ] GitHub **Security → Dependabot** — triage **critical/high** in small PRs with CI.
-- [ ] Record **deferred** CVEs in [`.workflow/DECISIONS.md`](DECISIONS.md) when skipping.
-
----
-
-## F. Database & architecture debt
-
-- [ ] **Prisma:** baseline **`prisma migrate`** (Chase/CC); see `docs/ARCHITECTURE.md` §5.6.
-- [ ] **`$transaction`** on other multi-write routes (search `Promise.all` + multiple `prisma.` writes).
-- [ ] **N+1** on hot list endpoints (profile with Prisma query logging in staging).
-- [ ] **`tokens.css`** modularization (phased, heavy QA).
-
----
-
-## G. Product / copy
-
-- [ ] **Legacy billing / `directory/claim`:** Mark internal-only or align with current tier model when retail checkout is live.
-
----
-
-## H. Testing (optional)
-
-- [ ] Run Playwright **authenticated** test: set **`E2E_SESSION_COOKIE`** and run `pnpm test:smoke` (see `e2e/smoke.spec.ts`).
+### Earlier
+- [x] Docs alignment PR merged
+- [x] Auth audit batches 2-3
+- [x] Playwright smoke tests
+- [x] Structured logging (`lib/api-logger.ts`)
+- [x] Metrics bulk upsert with `$transaction`
+- [x] CI: `SENTRY_AUTH_TOKEN` in build env
+- [x] `.gitignore`: `.playwright-mcp/`
+- [x] Tier reconciliation (`DECISIONS.md`)
 
 ---
 

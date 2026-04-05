@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Happens When a Town Gets Its Own AI - The Atlantic</title>
+<meta name="description" content="In Natchez, Mississippi, a small company is trying to answer a question that haunted the twentieth century: Can private enterprise do what rural electrification did?">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #faf7f2;
+    --ink: #1a1a1a;
+    --muted: #6b6259;
+    --rule: #d4cec4;
+    --accent: #8b2500;
+    --caption: #7a7267;
+    --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --sans: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  html { font-size: 18px; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--serif);
+    line-height: 1.78;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Internal banner */
+  .internal-banner {
+    background: #2c2c2c;
+    color: #ff9;
+    text-align: center;
+    padding: 8px 16px;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Masthead */
+  .masthead {
+    text-align: center;
+    padding: 28px 20px 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .masthead-title {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+
+  .masthead-nav {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  .masthead-nav span { margin: 0 12px; }
+
+  /* Hero */
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 32px;
+  }
+
+  .hero-caption {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    color: var(--caption);
+    font-style: italic;
+    margin-top: 8px;
+    text-align: right;
+    padding-right: 4px;
+  }
+
+  /* Article header */
+  .article-header {
+    max-width: 660px;
+    margin: 48px auto 0;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .article-kicker {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .article-title {
+    font-family: var(--serif);
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1.18;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .article-subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 28px;
+  }
+
+  .article-byline {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+
+  .article-byline strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .article-date {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    color: var(--caption);
+    margin-top: 4px;
+  }
+
+  /* Body */
+  .article-body {
+    max-width: 660px;
+    margin: 44px auto 80px;
+    padding: 0 20px;
+  }
+
+  .article-body p {
+    margin-bottom: 1.5em;
+    font-size: 1rem;
+  }
+
+  /* Drop cap */
+  .drop-cap::first-letter {
+    float: left;
+    font-size: 4.2rem;
+    line-height: 0.78;
+    font-weight: 700;
+    margin: 4px 10px 0 -3px;
+    color: var(--ink);
+    font-family: var(--serif);
+  }
+
+  /* Section breaks */
+  .section-break {
+    text-align: center;
+    margin: 40px 0;
+    color: var(--rule);
+    font-size: 1.4rem;
+    letter-spacing: 0.5em;
+  }
+
+  hr.thin-rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 44px 0;
+  }
+
+  /* Pullquote */
+  .pullquote {
+    border-left: 3px solid var(--accent);
+    margin: 40px 0 40px -20px;
+    padding: 8px 0 8px 24px;
+    font-style: italic;
+    font-size: 1.22rem;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .pullquote cite {
+    display: block;
+    font-style: normal;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    color: var(--caption);
+    margin-top: 8px;
+    letter-spacing: 0.04em;
+  }
+
+  /* In-article images */
+  .article-image {
+    margin: 44px -60px;
+    text-align: center;
+  }
+
+  .article-image img {
+    max-width: 780px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .article-image figcaption {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    color: var(--caption);
+    font-style: italic;
+    margin-top: 8px;
+    padding: 0 60px;
+  }
+
+  /* Chapter heading */
+  .chapter-heading {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    margin-top: 8px;
+  }
+
+  /* Stat block */
+  .stat-block {
+    background: #f3efe8;
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin: 36px 0;
+    font-family: var(--sans);
+  }
+
+  .stat-block h4 {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .stat-block ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .stat-block li {
+    font-size: 0.85rem;
+    color: var(--ink);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--rule);
+    line-height: 1.5;
+  }
+
+  .stat-block li:last-child { border-bottom: none; }
+
+  .stat-block li strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* Footer */
+  .article-footer {
+    max-width: 660px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+  }
+
+  .article-footer p {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    color: var(--caption);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* Publication footer */
+  .pub-footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    color: var(--caption);
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 740px) {
+    html { font-size: 16px; }
+    .article-title { font-size: 2rem; }
+    .article-image { margin: 36px -10px; }
+    .article-image figcaption { padding: 0 10px; }
+    .pullquote { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="internal-banner">
+  Internal Use Only &mdash; Not for external distribution. Simulated press piece for pitch deck &amp; investor materials.
+</div>
+
+<header class="masthead">
+  <div class="masthead-title">The Atlantic</div>
+  <div class="masthead-nav">
+    <span>Ideas</span>
+    <span>Politics</span>
+    <span>Culture</span>
+    <span>Technology</span>
+    <span>Science</span>
+    <span>Books</span>
+  </div>
+</header>
+
+<div class="hero">
+  <img src="/images/processed/slideshow/natchez-1128.webp" alt="Main Street in Natchez, Mississippi, late afternoon light falling across storefronts" loading="eager">
+  <div class="hero-caption">Natchez, Mississippi. Arrie Aslin</div>
+</div>
+
+<div class="article-header">
+  <div class="article-kicker">Technology</div>
+  <h1 class="article-title">What Happens When a Town Gets Its Own AI</h1>
+  <div class="article-subtitle">
+    In Natchez, Mississippi, a small company built an artificial intelligence that knows the cook's name, knows the hours are wrong on Google, and knows the competing restaurant in Vicksburg just got a five-star review surge. The question it raises is older than the internet.
+  </div>
+  <div class="article-byline">By <strong>Margaret Sullivan</strong></div>
+  <div class="article-date">April 2026 Issue</div>
+</div>
+
+<article class="article-body">
+
+  <p class="drop-cap">At 6:14 in the morning, before the first pot of coffee at Biscuits &amp; Blues on Main Street, before the sun has fully cleared the bluffs above the Mississippi River, an artificial intelligence named Delta Dawn begins its day. It has no body. It occupies no office. But it has opinions about the barbershop on Franklin Street, and at this hour they are specific: the Google listing says the shop closes at five. Customers, who keep leaving reviews mentioning their six-thirty appointments, say otherwise.</p>
+
+  <p>This is the kind of problem that has plagued small-town businesses since the invention of the search engine. The hours are wrong. The phone number routes to a fax machine that hasn't worked since 2014. The photos show an interior that was renovated three years ago. In a city, a marketing intern catches these things. In Natchez, Mississippi&mdash;population 14,500, seat of Adams County, a place that has been losing people for decades&mdash;there is no marketing intern. There is often no marketing at all.</p>
+
+  <p>What there is, now, is Delta Dawn.</p>
+
+  <hr class="thin-rule">
+
+  <div class="chapter-heading">I. The Morning Rounds</div>
+
+  <p class="drop-cap">Delta Dawn is the consumer-facing intelligence built by a company called Measurably Better Things, which operates out of a renovated inn near the river. The company is, by the standards of the technology industry, almost comically small. Its founder, Chase Pierson, is also the innkeeper, the booking agent for a regional touring company, and the publisher of a local magazine. His equity partners&mdash;Tracy Alderson-Allen and Amy Allen&mdash;manage the finances and the bar, respectively. There are no venture capitalists. There is no campus with a rock-climbing wall.</p>
+
+  <p>What there is, instead, is a system. And the system begins every morning with what Pierson calls &ldquo;the rounds.&rdquo;</p>
+
+  <p>Between six and eight a.m., the AI audits every business listing in its directory&mdash;1,425 of them across Adams County&mdash;against the data it can see. Are the hours correct? Has a new review appeared overnight? Has a competitor in a nearby town done something worth noting? The system generates a morning briefing for each subscribing business, delivered by text message or email. The barbershop gets a notification about its hours. A soul-food restaurant gets a heads-up that a Vicksburg competitor, sixty miles north, received eleven new five-star reviews in two days&mdash;a pattern that suggests purchased reviews, which the AI flags as suspicious rather than alarming.</p>
+
+  <figure class="article-image">
+    <img src="/images/corridor/historic-home-natchez.webp" alt="A historic antebellum home in Natchez with columns and a wide porch" loading="lazy">
+    <figcaption>Natchez sits on a bluff above the Mississippi River, a town whose architecture remembers wealth that left generations ago. The businesses that remain operate on margins that leave nothing for marketing departments.</figcaption>
+  </figure>
+
+  <p>&ldquo;Your Google listing says you close at five,&rdquo; the morning message reads. &ldquo;Your customers say you close at nine. Want us to fix it?&rdquo;</p>
+
+  <p>The owner taps &ldquo;Yes.&rdquo; The AI submits the correction to Google. It takes eleven seconds.</p>
+
+  <p>That interaction&mdash;trivial on its face, the kind of thing a college intern could do in under a minute&mdash;is the entire thesis of what is happening in Natchez, compressed into a text message. The question is not whether the technology is impressive. The question is whether the <em>absence</em> of this technology, multiplied across every business in every small town in the American South, constitutes an infrastructure failure as consequential as the ones we have already named.</p>
+
+  <hr class="thin-rule">
+
+  <div class="chapter-heading">II. The Historical Parallel</div>
+
+  <p class="drop-cap">In 1935, the Rural Electrification Administration began stringing wire across the countryside. It was not, strictly speaking, a technology project. The technology&mdash;electricity&mdash;had existed for decades. What had not existed was the organizational will to extend it to places where the unit economics didn&rsquo;t work. Private utilities had done the math and concluded that rural America was not worth the copper. The government disagreed.</p>
+
+  <p>The REA didn&rsquo;t just give farms lights. It changed what was possible. Refrigeration meant milk didn&rsquo;t spoil. Radio meant information traveled. Electric pumps meant running water, which meant hygiene, which meant children survived. The infrastructure was invisible and the effects were total.</p>
+
+  <div class="pullquote">
+    &ldquo;The gap between a small-town business and a sophisticated urban operation is not a technology gap. It is an organization gap. Every tool exists. Nobody has assembled them.&rdquo;
+    <cite>&mdash; Chase Pierson, founder, Measurably Better Things</cite>
+  </div>
+
+  <p>The Tennessee Valley Authority followed a similar logic. Dams and power plants transformed the economy of the Delta not because electricity was new but because its <em>distribution</em> had been shaped by profit motives that treated sparse populations as liabilities. Federal intervention reframed the question: not &ldquo;Is this profitable?&rdquo; but &ldquo;Is this necessary?&rdquo;</p>
+
+  <p>Pierson sees a direct line between those New Deal programs and what he is building in Natchez. &ldquo;Every tool a business needs to compete online already exists,&rdquo; he told me, sitting on the porch of the inn as the river caught the last of the daylight. &ldquo;Review management, social-media scheduling, listing optimization, analytics, content creation. All of it exists. But assembling it costs a thousand dollars a month and requires someone who knows how it all fits together. In Natchez, that person does not exist. So the tools might as well not exist either.&rdquo;</p>
+
+  <p>The cost of the AI itself&mdash;the compute, the inference, the model access&mdash;is $9.33 per business per month. The infrastructure to deliver it runs about $167 per month across the whole system. The subscription starts at twenty dollars. The margins are thin by Silicon Valley standards and irrelevant by Pierson&rsquo;s: the business model, he says, is not the software. It is the ecosystem the software enables.</p>
+
+  <div class="stat-block">
+    <h4>Natchez by the Numbers</h4>
+    <ul>
+      <li><strong>14,500</strong> &mdash; Population of Natchez, Mississippi</li>
+      <li><strong>1,425</strong> &mdash; Businesses in Adams County</li>
+      <li><strong>669</strong> &mdash; Businesses in Clarksdale (Coahoma County), 180 miles north</li>
+      <li><strong>49%</strong> &mdash; Population loss in Coahoma County since 1960</li>
+      <li><strong>79.3%</strong> &mdash; Proportion of Mississippi classified as rural</li>
+      <li><strong>13%</strong> &mdash; How much faster rural new-business applications grew vs. elsewhere, 2019&ndash;2023</li>
+      <li><strong>$9.33</strong> &mdash; Monthly AI cost per business in the Measurably Better system</li>
+    </ul>
+  </div>
+
+  <hr class="thin-rule">
+
+  <div class="chapter-heading">III. The Afternoon</div>
+
+  <p class="drop-cap">By two o&rsquo;clock, Delta Dawn has moved on to content. The soul-food restaurant, which subscribed to the directory three weeks ago, needs a social-media post. The AI knows several things about this restaurant that a generic scheduling tool does not: it knows the cook&rsquo;s name (Jerome), it knows the daily special rotates on a fixed weekly schedule (catfish on Fridays, red beans on Mondays), and it knows that the last post featuring Jerome&rsquo;s hands pulling cornbread from a cast-iron skillet performed four times better than the generic exterior shot that preceded it.</p>
+
+  <figure class="article-image">
+    <img src="/images/arrie-aslin/ta-c2-207-of-955.webp" alt="Interior scene in Natchez, warm light, community gathering" loading="lazy">
+    <figcaption>The interior of a gathering in Natchez. The company maintains a library of local photography rather than relying on stock images or AI-generated art. Arrie Aslin</figcaption>
+  </figure>
+
+  <p>The AI drafts the post. A human reviews it&mdash;this is a hard rule in the system, Pierson says, because &ldquo;nobody wants a robot speaking for their grandmother&rsquo;s restaurant.&rdquo; The review takes thirty seconds. The post goes live across three platforms simultaneously. Total elapsed time from idea to publication: under four minutes. Total cost to the restaurant owner: nothing beyond the subscription. Total time the restaurant owner spent on it: thirty seconds.</p>
+
+  <p>This is the operational reality that the Measurably Better system is designed to produce, and it is worth pausing to consider what it replaces. Before the system, the restaurant posted on Facebook irregularly&mdash;maybe twice a month, usually a photo of the front door taken in harsh midday light, with a caption that read &ldquo;Come see us!&rdquo; The Google listing had two photos, both from 2019. The Yelp page listed the wrong address. No one had ever responded to any of the eleven reviews, three of which were positive and eight of which were mixed but fixable&mdash;complaints about wait times that could have been addressed with a simple &ldquo;We hear you, and we&rsquo;re working on it.&rdquo;</p>
+
+  <p>This is not a technology problem. A teenager with a phone could have done every one of these things. But the teenager has other things to do, and the restaurant owner is in the kitchen at four a.m., and the gap between <em>possible</em> and <em>happening</em> is the gap that defines small-town commerce in the twenty-first century.</p>
+
+  <hr class="thin-rule">
+
+  <div class="chapter-heading">IV. The Evening</div>
+
+  <p class="drop-cap">At seven p.m. on a Thursday in March, a blues band is setting up at a venue called Under-the-Hill Saloon, a bar older than the state of Mississippi, perched on the riverbank below the bluffs. The show is part of a touring circuit organized by Big Muddy Touring, the entertainment arm of the ecosystem that Measurably Better Things powers. The same system that fixed the barbershop&rsquo;s hours this morning is now promoting tonight&rsquo;s show.</p>
+
+  <p>The AI has already done several things. It posted an event announcement three days ago, targeted to users within a forty-mile radius who have previously engaged with live-music content. It identified a food blogger in Jackson, two hours north, who wrote about Natchez restaurants last month, and sent a personalized pitch. It coordinated the show listing with the inn&rsquo;s front desk, so that when guests check in, they receive a printed card about tonight&rsquo;s entertainment.</p>
+
+  <figure class="article-image">
+    <img src="/images/processed/big-muddy/natchez-night-1037.webp" alt="Natchez at night, street lights and buildings in warm evening glow" loading="lazy">
+    <figcaption>Downtown Natchez on a show night. The touring company has found that every live show generates roughly twice its ticket revenue in adjacent spending at nearby businesses&mdash;the inn, the restaurants, the bars.</figcaption>
+  </figure>
+
+  <p>Pierson calls this the &ldquo;ecosystem multiplier.&rdquo; Every show, he has found, generates roughly twice its ticket revenue in adjacent spending. A forty-dollar ticket produces eighty dollars in room-night revenue, dinner checks, bar tabs, and next-morning brunch. The AI tracks this. It knows which shows produce the highest multipliers and which fall flat. It can tell you that a solo acoustic act on a Tuesday generates a 0.8x multiplier while a full band on a Saturday generates 2.3x. This is not because the AI is brilliant. It is because the AI is <em>paying attention</em>, continuously, in a way that no human with four jobs can.</p>
+
+  <div class="pullquote">
+    &ldquo;We are not competing with Google or Facebook. We are competing with nothing. The alternative to what we do is that nobody does it.&rdquo;
+    <cite>&mdash; Chase Pierson</cite>
+  </div>
+
+  <p>The flywheel, as Pierson describes it, is elegant in its circularity: the touring company books shows, which produce recordings, which feed the magazine, which feeds the radio station, which drives social-media content, which populates the directory, which attracts new businesses, which sponsor more shows. Each element generates content and data for every other element. The AI sits at the center, not as a brain but as a nervous system&mdash;routing information, flagging opportunities, compiling the evidence that the whole thing works.</p>
+
+  <hr class="thin-rule">
+
+  <div class="chapter-heading">V. The Late Shift</div>
+
+  <p class="drop-cap">After midnight, when Natchez is asleep and the last bar patrons have walked up the hill from Under-the-Hill, Delta Dawn compiles. This is the least romantic part of the system and arguably the most important. The AI aggregates the day&rsquo;s data across every business in the directory&mdash;foot traffic patterns from Google, review sentiment, social-media engagement, website visits&mdash;and begins building the monthly reports that subscribers receive on the first of each month.</p>
+
+  <figure class="article-image">
+    <img src="/images/processed/slideshow/natchez-1103.webp" alt="A quiet scene in Natchez, buildings and trees in soft light" loading="lazy">
+    <figcaption>Natchez in the quiet hours. The AI compiles its analytics overnight, building the monthly reports that most small businesses have never had access to.</figcaption>
+  </figure>
+
+  <p>The reports are not complex by the standards of a marketing agency. They are, however, revolutionary by the standards of a Main Street barbershop, which has never received any report about anything, ever. The barbershop owner will learn, on the first of next month, that his Google listing received 347 views, that 12 percent of viewers asked for directions, that his most-clicked photo is the one of the vintage barber chair (not the one of the storefront), and that his average review rating rose from 4.2 to 4.4 after the system began responding to reviews on his behalf.</p>
+
+  <p>He will also learn that two of his competitors in a neighboring town updated their listings with professional photography last month, which the AI has flagged as a trend worth watching. And he will receive three specific recommendations, ranked by effort: update his hours (one tap), add three new photos (fifteen minutes), and write a short description of his specialty services (the AI will draft it for him if he wants).</p>
+
+  <p>None of this is magic. All of it was previously impossible.</p>
+
+  <hr class="thin-rule">
+
+  <div class="chapter-heading">VI. The Broadband Problem</div>
+
+  <p class="drop-cap">There is a complication, and it is the one that connects Pierson&rsquo;s project most directly to the history of rural electrification. Mississippi is 79.3 percent rural. In Adams County, broadband access is spotty outside the city limits. In the Delta counties to the north&mdash;Coahoma, Bolivar, Sunflower&mdash;it is worse. An AI that depends on the internet is an AI that depends on infrastructure that does not reliably exist.</p>
+
+  <p>Pierson&rsquo;s answer to this is a device called the Sovereign Pi&mdash;a small, inexpensive computer, roughly the size of a paperback novel, that runs a lightweight version of the AI locally. It does not require broadband. It does not require the cloud. It syncs when it can and operates independently when it cannot. The name is deliberate: sovereignty, in this context, means that the business owns its own intelligence rather than renting it from a distant server.</p>
+
+  <figure class="article-image">
+    <img src="/images/corridor/oceansprings-natchez-1058-of-1183.webp" alt="A street scene in the Deep South" loading="lazy">
+    <figcaption>The challenge of building digital infrastructure for rural businesses is not unlike the challenge the Rural Electrification Administration faced in 1935: the unit economics do not work by conventional measures.</figcaption>
+  </figure>
+
+  <p>The Sovereign Pi is, in Pierson&rsquo;s telling, the philosophical heart of the project. &ldquo;The entire history of technology in rural America is a story of dependency,&rdquo; he said. &ldquo;Somebody in a city decides to extend a service to you, and then somebody in a city decides to take it away. The phone company. The cable company. The bank branch. We wanted to build something that belongs to the place, not to us.&rdquo;</p>
+
+  <p>Whether this is idealism or engineering pragmatism may not matter. The device costs less to produce than a month of the marketing-software subscriptions it replaces. And it raises a question that the REA raised ninety years ago: When private industry has concluded that a population is not worth serving, what fills the gap?</p>
+
+  <hr class="thin-rule">
+
+  <div class="chapter-heading">VII. The Question</div>
+
+  <p class="drop-cap">The United States has spent the past decade debating artificial intelligence as though it were primarily a question about San Francisco&mdash;about autonomous vehicles and large language models and the future of white-collar work. The conversation has been conducted almost entirely by people who live in cities with good broadband, in buildings with marketing departments, in economies where the organizational infrastructure of modern commerce is so thoroughly embedded that it is invisible.</p>
+
+  <p>Natchez does not have that infrastructure. Neither do 1,300 other persistent-poverty counties across the American South and Appalachia. These places did not miss the internet. They got the internet. What they missed was the organizational layer that makes the internet useful for commerce&mdash;the layer of knowledge and coordination that translates a Google listing into foot traffic, a positive review into a return customer, a Thursday-night blues show into a weekend of hotel bookings.</p>
+
+  <div class="pullquote">
+    &ldquo;Running water didn&rsquo;t just make houses cleaner. It changed how people lived. That&rsquo;s what we&rsquo;re talking about. Not the technology. What becomes possible when the gap closes.&rdquo;
+    <cite>&mdash; Chase Pierson</cite>
+  </div>
+
+  <p>Between 2019 and 2023, new-business applications in rural counties increased 13 percent faster than in urban ones. The entrepreneurial energy is there. What is not there is the scaffolding&mdash;the digital equivalent of the wire that the REA strung across the countryside, connecting each farmhouse to a grid that made everything else possible.</p>
+
+  <p>Pierson is not na&iuml;ve about the comparison. The REA was a federal program backed by federal money. His company is a small private enterprise with thin margins and no outside investment. He cannot wire a region the way the government wired the Tennessee Valley. But he argues that the economics of AI have changed the math in a way that Roosevelt could not have imagined: the cost of intelligence is now low enough that a private company, structured less like a startup and more like a utility, can provide the organizational layer that small-town businesses need at a price they can afford.</p>
+
+  <figure class="article-image">
+    <img src="/images/gallery/landscape-bw-panoramic.webp" alt="Panoramic black and white landscape of the Mississippi region" loading="lazy">
+    <figcaption>The view from the bluffs. Natchez has survived cotton, the Civil War, the collapse of the steamboat economy, and fifty years of population decline. Whether it can serve as a model for digital infrastructure in rural America remains an open question.</figcaption>
+  </figure>
+
+  <p>Whether that argument holds will depend on things that have not yet happened&mdash;on whether the barbershop&rsquo;s corrected hours actually produce more walk-ins, on whether the restaurant&rsquo;s improved review rating translates to revenue, on whether the touring company&rsquo;s shows keep filling seats as the novelty wears off. It will depend on whether the model can be replicated in Clarksdale, with its 669 businesses and its county that has lost nearly half its population since 1960, and in the dozens of other towns along the Mississippi where the same conditions prevail.</p>
+
+  <p>But on this particular morning, the barbershop&rsquo;s hours are correct for the first time in three years. The restaurant has a social-media post going live at lunchtime that features Jerome&rsquo;s cornbread and not a stock photo. The venue has a show tonight that will put heads in beds at the inn up the hill. And an AI that knows the names and the hours and the daily specials and the competitive landscape is paying attention to all of it, continuously, for $9.33 a month.</p>
+
+  <p>Rural electrification did not just give farms lights. It changed what was possible. The question in Natchez is whether digital infrastructure&mdash;real infrastructure, not another app, not another platform extracting data and shipping it north&mdash;can do the same thing, one text message at a time, in a town that has been waiting ninety years for someone to string the wire.</p>
+
+</article>
+
+<footer class="article-footer">
+  <p>Margaret Sullivan is a contributing writer at The Atlantic covering media, technology, and the American South. This article appears in the April 2026 issue.</p>
+  <p style="margin-top: 12px;">This is a simulated press piece created for internal strategic purposes. It does not represent actual reporting by The Atlantic or any journalist named herein.</p>
+</footer>
+
+<div class="pub-footer">
+  &copy; 2026 The Atlantic Monthly Group &middot; Simulated Content &middot; Internal Use Only
+</div>
+
+</body>
+</html>
