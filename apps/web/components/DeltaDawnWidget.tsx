@@ -1,6 +1,9 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+const STORAGE_KEY = 'delta-dawn-chat-v1';
 
 interface Message {
   role: 'user' | 'dawn';
@@ -8,46 +11,152 @@ interface Message {
   page?: string;
 }
 
+function trimHistoryForApi(messages: Message[]): Message[] {
+  const idx = messages.findIndex((m) => m.role === 'user');
+  return idx === -1 ? [] : messages.slice(idx);
+}
+
 export default function DeltaDawnWidget() {
+  const pathname = usePathname() || '';
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'dawn', text: "I'm here. Ask me anything or leave a note. I follow you on every page." },
+    { role: 'dawn', text: "I'm here. Ask me anything or leave a note. I follow you on every page.", page: '/' },
   ]);
+  const [hydrated, setHydrated] = useState(false);
+  const [streaming, setStreaming] = useState(false);
+  const [lastError, setLastError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+    try {
+      const raw = typeof window !== 'undefined' ? localStorage.getItem(STORAGE_KEY) : null;
+      if (raw) {
+        const parsed = JSON.parse(raw) as Message[];
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setMessages(parsed);
+        }
+      }
+    } catch {
+      /* ignore corrupt storage */
+    }
+    setHydrated(true);
+  }, []);
 
-  const send = () => {
-    if (!input.trim()) return;
-    const page = typeof window !== 'undefined' ? window.location.pathname : '';
-    const userMsg: Message = { role: 'user', text: input, page };
-    setMessages(prev => [...prev, userMsg]);
+  useEffect(() => {
+    if (!hydrated || typeof window === 'undefined') return;
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+    } catch {
+      /* quota / private mode */
+    }
+  }, [messages, hydrated]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, streaming]);
+
+  const send = useCallback(async () => {
+    if (!input.trim() || streaming) return;
+    const page = pathname || (typeof window !== 'undefined' ? window.location.pathname : '') || '/';
+    const userMsg: Message = { role: 'user', text: input.trim(), page };
+    setLastError(null);
     setInput('');
 
-    // Simulate Delta Dawn response (replace with /api/grok/chat or Gemini call)
-    setTimeout(() => {
-      const responses = [
-        "Got it. I'll remember that.",
-        `Noted — you're on ${page}. What do you need?`,
-        "That's in Tracy's approval queue. Want me to add it to Asana?",
-        "Good question. Let me pull that up.",
-        "I see what you're looking at. The numbers check out.",
-        "Want me to flag this for Chase?",
-      ];
-      const dawn: Message = {
-        role: 'dawn',
-        text: responses[Math.floor(Math.random() * responses.length)],
+    const historyForApi = trimHistoryForApi([...messages, userMsg]);
+    setMessages((prev) => [...prev, userMsg, { role: 'dawn', text: '', page }]);
+    setStreaming(true);
+
+    try {
+      const res = await fetch('/api/dawn/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tenantId: 'hdi-owner',
+          messages: historyForApi.map((m) => ({
+            role: m.role,
+            content: m.text,
+            page: m.page,
+          })),
+        }),
+      });
+
+      if (!res.ok || !res.body) {
+        const errText = await res.text().catch(() => '');
+        throw new Error(errText || `Request failed (${res.status})`);
+      }
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      let streamError: string | null = null;
+
+      const appendDelta = (delta: string) => {
+        setMessages((prev) => {
+          const next = [...prev];
+          const last = next[next.length - 1];
+          if (last?.role === 'dawn') {
+            next[next.length - 1] = { ...last, text: last.text + delta, page: last.page || page };
+          }
+          return next;
+        });
       };
-      setMessages(prev => [...prev, dawn]);
-    }, 800);
-  };
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const parts = buffer.split('\n\n');
+        buffer = parts.pop() ?? '';
+        for (const block of parts) {
+          const line = block.trim();
+          if (!line.startsWith('data:')) continue;
+          const payload = line.slice(5).trim();
+          if (payload === '[DONE]') continue;
+          try {
+            const j = JSON.parse(payload) as { text?: string; error?: string };
+            if (j.error) streamError = j.error;
+            if (j.text) appendDelta(j.text);
+          } catch {
+            /* ignore malformed chunk */
+          }
+        }
+      }
+
+      if (streamError) setLastError(streamError);
+
+      setMessages((prev) => {
+        const next = [...prev];
+        const last = next[next.length - 1];
+        if (last?.role === 'dawn' && !last.text.trim()) {
+          next[next.length - 1] = {
+            ...last,
+            text:
+              streamError ||
+              'No reply received. Set GEMINI_API_KEY or XAI_API_KEY and try again.',
+            page,
+          };
+        }
+        return next;
+      });
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : 'Request failed';
+      setLastError(msg);
+      setMessages((prev) => {
+        const next = [...prev];
+        const last = next[next.length - 1];
+        if (last?.role === 'dawn' && !last.text) {
+          next[next.length - 1] = { ...last, text: msg, page };
+        }
+        return next;
+      });
+    } finally {
+      setStreaming(false);
+    }
+  }, [input, messages, streaming, pathname]);
 
   return (
     <>
-      {/* Floating button */}
       {!open && (
         <button
           onClick={() => setOpen(true)}
@@ -71,15 +180,14 @@ export default function DeltaDawnWidget() {
             justifyContent: 'center',
             transition: 'transform 0.2s',
           }}
-          onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.1)')}
-          onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
           aria-label="Open Delta Dawn"
         >
           DD
         </button>
       )}
 
-      {/* Chat panel */}
       {open && (
         <div
           style={{
@@ -98,10 +206,9 @@ export default function DeltaDawnWidget() {
             overflow: 'hidden',
             boxShadow: '0 8px 40px rgba(0,0,0,0.6)',
             zIndex: 9999,
-            fontFamily: 'Inter, system-ui, sans-serif',
+            fontFamily: 'var(--font-body, Inter, system-ui, sans-serif)',
           }}
         >
-          {/* Header */}
           <div
             style={{
               padding: '0.75rem 1rem',
@@ -111,22 +218,18 @@ export default function DeltaDawnWidget() {
               justifyContent: 'space-between',
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
               <div
                 style={{
                   width: '8px',
                   height: '8px',
                   borderRadius: '50%',
-                  background: '#4a7c59',
-                  animation: 'ddPulse 2s infinite',
+                  background: streaming ? '#c8943e' : '#4a7c59',
+                  animation: streaming ? 'ddPulse 1s infinite' : 'ddPulse 2s infinite',
                 }}
               />
-              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#c8943e' }}>
-                Delta Dawn
-              </span>
-              <span style={{ fontSize: '0.65rem', color: '#6b635a' }}>
-                {typeof window !== 'undefined' ? window.location.pathname : ''}
-              </span>
+              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#c8943e' }}>Delta Dawn</span>
+              <span style={{ fontSize: '0.65rem', color: '#6b635a' }}>{pathname || '—'}</span>
             </div>
             <button
               onClick={() => setOpen(false)}
@@ -144,7 +247,6 @@ export default function DeltaDawnWidget() {
             </button>
           </div>
 
-          {/* Messages */}
           <div
             style={{
               flex: 1,
@@ -169,18 +271,20 @@ export default function DeltaDawnWidget() {
                   lineHeight: 1.5,
                 }}
               >
-                {msg.text}
-                {msg.page && (
+                {msg.text || (msg.role === 'dawn' && streaming ? '…' : '')}
+                {msg.page !== undefined && msg.page !== '' && (
                   <div style={{ fontSize: '0.6rem', color: '#4a4440', marginTop: '0.25rem' }}>
-                    {msg.page}
+                    Page: {msg.page}
                   </div>
                 )}
               </div>
             ))}
+            {lastError && (
+              <div style={{ fontSize: '0.65rem', color: '#b85c5c', padding: '0 0.25rem' }}>{lastError}</div>
+            )}
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input */}
           <div
             style={{
               padding: '0.5rem 0.75rem',
@@ -191,9 +295,10 @@ export default function DeltaDawnWidget() {
           >
             <input
               value={input}
-              onChange={e => setInput(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && send()}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && void send()}
               placeholder="Ask or leave a note..."
+              disabled={streaming}
               style={{
                 flex: 1,
                 background: '#1a1816',
@@ -204,10 +309,12 @@ export default function DeltaDawnWidget() {
                 fontSize: '0.8rem',
                 outline: 'none',
                 fontFamily: 'inherit',
+                opacity: streaming ? 0.7 : 1,
               }}
             />
             <button
-              onClick={send}
+              onClick={() => void send()}
+              disabled={streaming || !input.trim()}
               style={{
                 background: '#c8943e',
                 color: '#0a0a08',
@@ -216,7 +323,8 @@ export default function DeltaDawnWidget() {
                 padding: '0.5rem 0.75rem',
                 fontWeight: 700,
                 fontSize: '0.75rem',
-                cursor: 'pointer',
+                cursor: streaming ? 'wait' : 'pointer',
+                opacity: streaming || !input.trim() ? 0.5 : 1,
               }}
             >
               Send

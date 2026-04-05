@@ -1,5 +1,6 @@
 import { getGrok } from '../../../../lib/xai';
 import { NextRequest, NextResponse } from 'next/server';
+import type { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
 import { GROK_TOOLS } from '../tools';
 
 export const runtime = 'nodejs';
@@ -7,28 +8,47 @@ export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
   try {
-    const { messages, tenantId } = await req.json();
+    const body = await req.json();
+    const { messages, tenantId, systemPrompt, skipTools } = body as {
+      messages: unknown;
+      tenantId?: string;
+      systemPrompt?: string;
+      skipTools?: boolean;
+    };
 
     if (!process.env.XAI_API_KEY) {
       return NextResponse.json({ error: 'XAI_API_KEY not configured' }, { status: 500 });
     }
 
-    const systemMessage = {
-      role: 'system' as const,
-      content: `You are Grok, the strategic advisor for Hillbilly Dreams Inc. You work alongside Delta Dawn (Gemini) as the architecture and research layer. You have access to the same 10 tools as Delta Dawn. You reason about the business at a strategic level — competitive analysis, architecture decisions, R&D experiments, and long-term planning. You are direct, honest, and occasionally sharp. If something is a bad idea, say so.
+    if (!Array.isArray(messages)) {
+      return NextResponse.json({ error: 'messages must be an array' }, { status: 400 });
+    }
+
+    const defaultSystem = `You are Grok, the strategic advisor for Hillbilly Dreams Inc. You work alongside Delta Dawn (Gemini) as the architecture and research layer. You have access to the same 10 tools as Delta Dawn. You reason about the business at a strategic level — competitive analysis, architecture decisions, R&D experiments, and long-term planning. You are direct, honest, and occasionally sharp. If something is a bad idea, say so.
 
 Context: HDI runs one Next.js codebase on Vercel powering 14 domains, 122 Prisma models in Neon Postgres. MBT is the Glass Engine flywheel: shows → content → directory → revenue at $167/mo total infra. DSD pricing: Free/$25/$50/$99/$250. Team: Chase (CEO/CTO), Tracy (Finance), Amy (Operations). Equal equity partners.
 
-Tenant context: ${tenantId || 'hdi-owner'}`,
+Tenant context: ${tenantId || 'hdi-owner'}`;
+
+    const systemMessage = {
+      role: 'system' as const,
+      content:
+        typeof systemPrompt === 'string' && systemPrompt.trim().length > 0
+          ? systemPrompt
+          : defaultSystem,
     };
 
     const grok = getGrok();
     const stream = await grok.chat.completions.create({
       model: 'grok-3',
-      messages: [systemMessage, ...messages],
+      messages: [systemMessage, ...(messages as ChatCompletionMessageParam[])],
       stream: true,
-      tools: GROK_TOOLS,
-      tool_choice: 'auto',
+      ...(skipTools
+        ? {}
+        : {
+            tools: GROK_TOOLS,
+            tool_choice: 'auto' as const,
+          }),
     });
 
     const encoder = new TextEncoder();
