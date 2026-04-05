@@ -85,7 +85,7 @@ const CORRIDORS = [
     modules: 'Directory, Radio, Magazine, Studio',
   },
   {
-    name: 'Your Corridor',
+    name: 'Your Region',
     example: 'Austin, Asheville, Savannah — any town with a story',
     status: 'Open',
     modules: 'Choose your modules. We deploy.',
@@ -160,7 +160,7 @@ export default function MeasurablyBetterPlatformPage() {
           maxWidth: '600px',
           marginBottom: '3rem',
         }}>
-          A complete media-hospitality platform — directory, magazine, radio, events, commerce — deployable to any corridor, any industry, any town. One codebase. Unlimited brands.
+          A complete media-hospitality platform — directory, magazine, radio, events, commerce — deployable to any region, any industry, any town. One codebase. Unlimited brands.
         </p>
         <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
           <a href="https://bigmuddytouring.com" style={{

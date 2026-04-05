@@ -9,11 +9,11 @@ import DirectoryFilters from './DirectoryFilters';
 export const metadata: Metadata = {
   title: 'Browse the Directory',
   description:
-    'The Deep South Directory — curated restaurants, venues, hotels, shops, tours, and services along the Mississippi corridor. Memphis to New Orleans and beyond.',
+    'The Deep South Directory — curated restaurants, venues, hotels, shops, tours, and services along the Deep South. Memphis to New Orleans and beyond.',
   openGraph: {
     title: 'The Deep South Directory',
     description:
-      'Curated businesses along the Mississippi corridor. Memphis to New Orleans and beyond.',
+      'Curated businesses along the Deep South. Memphis to New Orleans and beyond.',
   },
 };
 
@@ -68,7 +68,7 @@ const TYPE_LABELS: Record<string, string> = {
   service: 'Service',
 };
 
-// Corridor cities used for the "Coming Soon" placeholder messaging
+// Region cities used for the "Coming Soon" placeholder messaging
 const PLACEHOLDER_CITIES = [
   'Memphis', 'Clarksdale', 'Vicksburg', 'Natchez',
   'New Orleans', 'Baton Rouge', 'Lafayette',
@@ -158,11 +158,11 @@ export default async function DirectoryPage({ searchParams }: PageProps) {
         <div className="dir-hero__content">
           <div className="dir-hero__eyebrow">
             <span className="dir-hero__ornament" aria-hidden="true">&#9670;</span>
-            <span>Mississippi Corridor · Est. 2024</span>
+            <span>Mississippi Region · Est. 2024</span>
           </div>
           <h1 className="dir-hero__title">The Deep South Directory</h1>
           <p className="dir-hero__sub">
-            Curated businesses along the Mississippi corridor — restaurants, venues, hotels,
+            Curated businesses along the Deep South — restaurants, venues, hotels,
             shops, and more. From Memphis to New Orleans and every city in between.
           </p>
         </div>
@@ -214,7 +214,7 @@ export default async function DirectoryPage({ searchParams }: PageProps) {
           {/* Bottom CTA */}
           <div className="dir-bottom-cta">
             <p className="dir-bottom-cta__text">
-              Own a business on the corridor?
+              Own a business on the region?
             </p>
             <a href="/media/directory/claim" className="btn btn--primary">
               Claim Your Business →

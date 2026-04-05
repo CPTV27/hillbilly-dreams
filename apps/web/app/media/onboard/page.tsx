@@ -273,7 +273,7 @@ function Step1({
             autoComplete="address-level1"
           >
             <option value="">Select state</option>
-            <optgroup label="Deep South Corridor">
+            <optgroup label="Deep South Region">
               {['AL', 'AR', 'FL', 'GA', 'KY', 'LA', 'MS', 'MO', 'NC', 'SC', 'TN', 'TX', 'VA', 'WV'].map((s) => (
                 <option key={s} value={s}>{s}</option>
               ))}
@@ -417,7 +417,7 @@ function Step2({
           <textarea
             id="ob-idealCustomer"
             className="ob-field__textarea ob-field__textarea--tall"
-            placeholder="Someone driving the corridor who knows a little about music history and wants to eat somewhere the locals actually eat, not a place with a billboard on I-20..."
+            placeholder="Someone driving the region who knows a little about music history and wants to eat somewhere the locals actually eat, not a place with a billboard on I-20..."
             value={data.idealCustomer}
             onChange={(e) => onChange({ idealCustomer: e.target.value })}
             rows={5}

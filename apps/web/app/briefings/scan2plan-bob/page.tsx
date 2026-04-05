@@ -226,7 +226,7 @@ export default function BobBriefingPage() {
         </p>
         <p style={S.p}>
           The immediate revenue engine is the <strong style={S.strong}>Deep South Directory</strong> &mdash;
-          a business listing service for Main Street businesses in the Mississippi corridor.
+          a business listing service for Main Street businesses in the Deep South.
           I&rsquo;m doing walk-in sales starting April 1, pitching $20&ndash;$99/month subscriptions.
           The media brands (magazine, radio, entertainment) make the directory pitch credible
           because I can offer editorial coverage, radio features, and event tie-ins that no
@@ -239,7 +239,7 @@ export default function BobBriefingPage() {
             <a href="https://bigmuddytouring.com" target="_blank" rel="noopener" style={S.link}>Big Muddy Touring</a> &mdash; boutique hotel + music venue in Natchez (The Big Muddy Inn)
           </li>
           <li style={S.li}>
-            <a href="https://bigmuddymagazine.com" target="_blank" rel="noopener" style={S.link}>Big Muddy Magazine</a> &mdash; editorial about the Mississippi corridor
+            <a href="https://bigmuddymagazine.com" target="_blank" rel="noopener" style={S.link}>Big Muddy Magazine</a> &mdash; editorial about the Deep South
           </li>
           <li style={S.li}>
             <a href="https://bigmuddyradio.com" target="_blank" rel="noopener" style={S.link}>Big Muddy Radio</a> &mdash; 18-show internet radio station

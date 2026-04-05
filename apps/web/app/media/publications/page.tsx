@@ -7,12 +7,12 @@ import Image from 'next/image';
 import type { Publication } from '@bigmuddy/config';
 
 export const metadata: Metadata = {
-  title: 'Deep South Press | Books & Print from the Mississippi Corridor',
+  title: 'Deep South Press | Books & Print from the Mississippi Region',
   description:
     'Small-run books, portrait photography, and art publications from Deep South Press — the publishing arm of Deep South Directory. Natchez, Mississippi and beyond.',
   openGraph: {
     title: 'Deep South Press',
-    description: 'Small-run books, portraits, and art from the Mississippi corridor.',
+    description: 'Small-run books, portraits, and art from the Deep South.',
     type: 'website',
   },
 };
@@ -201,7 +201,7 @@ export default async function PublicationsPage() {
             Deep South Press
           </h1>
           <p className="dsp-hero__sub">
-            Small-run books, portraits, and art from the Mississippi corridor.
+            Small-run books, portraits, and art from the Deep South.
             Coffee table books, photography collections, and limited-edition print.
             Made in Natchez.
           </p>
@@ -264,7 +264,7 @@ export default async function PublicationsPage() {
               <h2 className="dsp-empty__title">First books in production.</h2>
               <p className="dsp-empty__text">
                 Deep South Press is building its first run of titles — portrait photography,
-                inn art, and Mississippi corridor stories. Check back soon.
+                inn art, and Deep South stories. Check back soon.
               </p>
             </div>
           </div>
@@ -281,7 +281,7 @@ export default async function PublicationsPage() {
               <p className="dsp-about__body">
                 Deep South Press is the publishing arm of Deep South Directory. We produce
                 small-run, high-quality printed books focused on the people, places, and art
-                of the Mississippi corridor — with a focus on Natchez, the Blues Highway,
+                of the Deep South — with a focus on Natchez, the Blues Highway,
                 and the communities along the river.
               </p>
               <p className="dsp-about__body">

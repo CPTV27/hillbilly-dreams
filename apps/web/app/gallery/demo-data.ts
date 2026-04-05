@@ -108,7 +108,7 @@ export const DEMO_ARTISTS: DemoArtist[] = [
     city: 'Natchez',
     state: 'MS',
     medium: 'Photography',
-    bio: 'Chase Pierson is a photographer, technologist, and the founder of the Big Muddy. Based in Natchez, Mississippi, he shoots the corridor — the river, the music, the towns, the people who stay. His work ranges from documentary blues photography to architectural interiors, street portraiture, and fine art landscapes along the Mississippi. Available as archival prints, licensed stock, or commissioned shoots.',
+    bio: 'Chase Pierson is a photographer, technologist, and the founder of the Big Muddy. Based in Natchez, Mississippi, he shoots the region — the river, the music, the towns, the people who stay. His work ranges from documentary blues photography to architectural interiors, street portraiture, and fine art landscapes along the Mississippi. Available as archival prints, licensed stock, or commissioned shoots.',
     instagram: 'chasepierson',
     website: 'https://bigmuddytouring.com',
     featured: true,

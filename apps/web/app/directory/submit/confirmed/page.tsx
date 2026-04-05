@@ -73,7 +73,7 @@ function ConfirmedContent() {
           </p>
           <p style={{ fontSize: 15, lineHeight: 1.7, color: '#ccc', marginBottom: 16 }}>
             The Directory plugs you into the full Big Muddy machine — Magazine features, Radio mentions,
-            event tie-ins, and a real audience of travelers and locals already coming to the corridor.
+            event tie-ins, and a real audience of travelers and locals already coming to the region.
           </p>
           <a
             href={`mailto:listings@hillbillydreamsinc.com?subject=Upgrade inquiry from ${encodeURIComponent(businessName)}`}

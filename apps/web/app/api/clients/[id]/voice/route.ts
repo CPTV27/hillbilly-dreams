@@ -24,7 +24,7 @@ export async function POST(_request: NextRequest, { params }: Params) {
     const client = await (prisma as any).client.findUnique({ where: { id } });
     if (!client) return NextResponse.json({ error: 'Client not found' }, { status: 404 });
 
-    const systemPrompt: string = `You are a brand strategist for Big Muddy Entertainment, a media company serving local businesses along the Mississippi corridor. Your job is to create a concise brand voice profile that our AI content engine will use to generate social media posts, review responses, and marketing copy for this business.
+    const systemPrompt: string = `You are a brand strategist for Big Muddy Entertainment, a media company serving local businesses along the Deep South. Your job is to create a concise brand voice profile that our AI content engine will use to generate social media posts, review responses, and marketing copy for this business.
 
 Return a JSON object with these fields:
 - tone: 2-3 word description (e.g., "warm and welcoming", "bold and soulful")

@@ -346,9 +346,9 @@ export default function PrivacyConsentDialog({
                 fontStyle: 'italic',
                 lineHeight: 1.5,
               }}>
-                Free means you help the corridor grow.
+                Free means you help the region grow.
                 <br />
-                Paid means you own the corridor.
+                Paid means you own the region.
                 <br />
                 We believe in honest data consent from day one.
               </p>

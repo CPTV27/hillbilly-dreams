@@ -60,7 +60,7 @@ export function AudioTab({ quality }: { quality: 'draft' | 'premium' }) {
                 <textarea
                   className="ch-prompt"
                   placeholder={preset === 'station-id'
-                    ? "Big Muddy Radio. The voice of the Mississippi corridor. Broadcasting from Natchez."
+                    ? "Big Muddy Radio. The voice of the Deep South. Broadcasting from Natchez."
                     : "Write your script here, or click Generate to have Gemini write one..."}
                   value={script}
                   onChange={e => setScript(e.target.value)}

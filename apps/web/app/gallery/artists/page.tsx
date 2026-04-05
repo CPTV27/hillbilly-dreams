@@ -8,7 +8,7 @@ import ArtistDirectory from './ArtistDirectory';
 export const metadata: Metadata = {
   title: 'Artists | Venture Gallery',
   description:
-    'Browse the artists behind Venture Gallery — painters, photographers, sculptors, and makers from Natchez, Clarksdale, New Orleans, Memphis, and the full Mississippi corridor.',
+    'Browse the artists behind Venture Gallery — painters, photographers, sculptors, and makers from Natchez, Clarksdale, New Orleans, Memphis, and the full Deep South.',
 };
 
 export default function ArtistsPage() {
@@ -59,7 +59,7 @@ export default function ArtistsPage() {
               margin: 0,
             }}
           >
-            Painters, photographers, sculptors, and makers. All of them from the Mississippi corridor. None of them easy to ignore.
+            Painters, photographers, sculptors, and makers. All of them from the Deep South. None of them easy to ignore.
           </p>
         </div>
       </header>

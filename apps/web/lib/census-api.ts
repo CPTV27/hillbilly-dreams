@@ -22,7 +22,7 @@ export const ACS_VARIABLES = {
   B23025_003E: 'civilian_labor_force',
 } as const;
 
-// Target corridor counties: FIPS state + county codes
+// Target region counties: FIPS state + county codes
 export const CORRIDOR_COUNTIES: Array<{ fips: string; name: string; state: string }> = [
   { fips: '28001', name: 'Adams County', state: 'MS' },
   { fips: '28011', name: 'Coahoma County', state: 'MS' },
@@ -117,7 +117,7 @@ export async function syncCountyCensusData(
 }
 
 /**
- * Sync Census data for all corridor counties.
+ * Sync Census data for all region counties.
  */
 export async function syncAllCorridorCensus(year: number = 2023): Promise<{ counties: number; variables: number; errors: string[] }> {
   const errors: string[] = [];

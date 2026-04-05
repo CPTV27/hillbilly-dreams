@@ -292,7 +292,7 @@ function WifiPortalInner() {
                     Big Muddy Radio
                   </p>
                   <p style={{ fontSize: '0.8rem', opacity: 0.5, margin: 0 }}>
-                    Live stream &mdash; Mississippi corridor music
+                    Live stream &mdash; Deep South music
                   </p>
                 </div>
               </a>

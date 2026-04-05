@@ -127,7 +127,7 @@ export default function SubmitPage() {
               </select>
             </div>
             <div style={fieldStyle}>
-              <label style={labelStyle}>Corridor City *</label>
+              <label style={labelStyle}>Region City *</label>
               <select style={inputStyle} value={form.city} onChange={e => update('city', e.target.value)}>
                 <option value="">Select your city</option>
                 {CITIES.map(c => <option key={c} value={c}>{c}</option>)}

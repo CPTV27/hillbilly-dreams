@@ -148,7 +148,7 @@ export const IMAGE_SLOTS: Record<string, ImageSlotEntry> = {
   // ── Brand images ──────────────────────────────────────────────────────────
   'brand-touring': {
     file: 'brand-touring.webp',
-    alt: 'Antebellum mansion with live oaks along the corridor',
+    alt: 'Antebellum mansion with live oaks across the Deep South',
     aspectRatio: '16/9',
     status: 'ready',
   },

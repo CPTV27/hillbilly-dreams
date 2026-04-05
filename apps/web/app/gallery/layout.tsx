@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: '%s | Venture Gallery',
   },
   description:
-    'Fine art photography by Chase Pierson. Landscapes, aerial panoramas, infrared, and night exposures from the Hudson Valley to the Mississippi corridor. Archival prints available.',
+    'Fine art photography by Chase Pierson. Landscapes, aerial panoramas, infrared, and night exposures from the Hudson Valley to the Deep South. Archival prints available.',
   metadataBase: new URL('https://venturegallery.art'),
   openGraph: {
     type: 'website',

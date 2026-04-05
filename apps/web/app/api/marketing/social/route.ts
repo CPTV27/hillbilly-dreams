@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     const dna = JSON.parse(context.content);
 
     // 2. Generate the campaign via Vertex AI
-    const prompt = `You are a social media strategist for the Deep South Directory, a regional business network along the Mississippi corridor.
+    const prompt = `You are a social media strategist for the Deep South Directory, a regional business network along the Deep South.
 
 Using this Marketing DNA profile:
 ${JSON.stringify(dna, null, 2)}

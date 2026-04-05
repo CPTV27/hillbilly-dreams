@@ -1,7 +1,7 @@
 // apps/web/lib/photo-library.ts
-// Shared photo library — magazine-quality corridor photography available to ALL brands.
+// Shared photo library — magazine-quality region photography available to ALL brands.
 //
-// Every photo is from the Feb–Mar 2026 Ocean Springs / Natchez corridor shoots,
+// Every photo is from the Feb–Mar 2026 Ocean Springs / Natchez region shoots,
 // editorially enhanced (auto levels, contrast, vibrance, warm shift, shadow recovery,
 // sharpening, film vignette).
 //
@@ -49,7 +49,7 @@ export interface LibraryPhoto {
   score: number;
   /** Content tags for filtering */
   tags: PhotoTag[];
-  /** Original photo number from the corridor shoot */
+  /** Original photo number from the region shoot */
   corridorNum: number;
 }
 

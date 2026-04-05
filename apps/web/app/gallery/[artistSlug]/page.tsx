@@ -262,7 +262,7 @@ export default function ArtistStorefrontPage() {
         <h2 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: 8 }}>Book a Shoot</h2>
         <p style={{ fontSize: '0.9rem', color: '#999', marginBottom: 16, maxWidth: 400, margin: '0 auto 16px' }}>
           Street photography, event coverage, architectural interiors, portraits.
-          Based in Natchez, available along the corridor.
+          Based in Natchez, available across the Deep South.
         </p>
         <a
           href="mailto:me@chasepierson.tv?subject=Photography%20Inquiry"

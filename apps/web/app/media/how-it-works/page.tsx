@@ -15,7 +15,7 @@ const STEPS = [
     num: '01',
     title: 'We Meet',
     tagline: 'In person if we can. On a call if we can\'t.',
-    desc: 'We come to your business, walk the space, meet your team, eat your food. We\'re a Mississippi corridor company — we know the culture and we take it seriously. This isn\'t a sales call. It\'s the beginning of the work.',
+    desc: 'We come to your business, walk the space, meet your team, eat your food. We\'re a Deep South company — we know the culture and we take it seriously. This isn\'t a sales call. It\'s the beginning of the work.',
     details: [
       'Business walkthrough and photo documentation',
       'Competitor and local market review',

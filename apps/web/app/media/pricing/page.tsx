@@ -21,7 +21,7 @@ const TIERS = [
     features: [
       'Deep South Directory listing',
       'Featured in Big Muddy Magazine directory',
-      'Included in corridor touring guides',
+      'Included in region touring guides',
       '20 social posts/month (2 platforms)',
       '10 AI-enhanced photos/month',
       'Google Business Profile optimization',
@@ -88,7 +88,7 @@ const TIERS = [
       'Everything in River Room, plus:',
       '100+ posts/month, all platforms',
       'Unlimited photos + 4 videos/month',
-      'Co-branded corridor events',
+      'Co-branded region events',
       'Professional photography sessions',
       'Long-form video production',
       'Managed advertising campaigns',
@@ -128,7 +128,7 @@ const FAQS = [
   },
   {
     q: 'What does "in the directory" actually mean?',
-    a: 'Every subscriber gets a curated listing on deepsouthdirectory.com — SEO-optimized, linked to your socials, featured in our corridor city guides. You also get listed in Big Muddy Magazine\'s business directory. Higher tiers get full editorial features, radio mentions, and dedicated brand pages.',
+    a: 'Every subscriber gets a curated listing on deepsouthdirectory.com — SEO-optimized, linked to your socials, featured in our region city guides. You also get listed in Big Muddy Magazine\'s business directory. Higher tiers get full editorial features, radio mentions, and dedicated brand pages.',
   },
   {
     q: 'Is there a setup fee?',
@@ -139,8 +139,8 @@ const FAQS = [
     a: 'Yes. You can change plans at any time. Upgrades are effective immediately; downgrades take effect at the next billing cycle.',
   },
   {
-    q: 'Do you work with businesses outside the Mississippi corridor?',
-    a: 'We focus on the corridor — it\'s our home and our network. But we do take select clients outside the region on a case-by-case basis. Contact us and we\'ll tell you honestly if we\'re the right fit.',
+    q: 'Do you work with businesses outside the Deep South?',
+    a: 'We focus on the region — it\'s our home and our network. But we do take select clients outside the region on a case-by-case basis. Contact us and we\'ll tell you honestly if we\'re the right fit.',
   },
   {
     q: 'What platforms do you manage?',
@@ -267,7 +267,7 @@ export default function PricingPage() {
               <div className="pricing-compare__us-list">
                 <div>Featured in Big Muddy Magazine</div>
                 <div>Mentioned on Big Muddy Radio</div>
-                <div>Listed on corridor touring guides</div>
+                <div>Listed on region touring guides</div>
                 <div>AI-generated content matched to your voice</div>
                 <div>10 AI-enhanced photos every month</div>
               </div>

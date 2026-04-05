@@ -255,7 +255,7 @@ function DashboardContent() {
             margin: 0,
           }}
         >
-          Manage your listing, connect services, and see how the corridor finds you.
+          Manage your listing, connect services, and see how the region finds you.
         </p>
         <p
           style={{
@@ -383,7 +383,7 @@ function DashboardContent() {
             >
               When you submit your listing, we generate a 200-word editorial spotlight
               about your business in the voice of Big Muddy Magazine. Direct, analog-warm,
-              written for the corridor. At the $99/month Main Street tier, it gets published
+              written for the region. At the $99/month Main Street tier, it gets published
               to your Directory profile. At $299/month, it cross-publishes to Big Muddy Magazine.
             </p>
             <div

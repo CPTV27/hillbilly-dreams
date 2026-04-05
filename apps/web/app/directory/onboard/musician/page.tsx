@@ -213,7 +213,7 @@ function MusicianOnboardInner() {
         <p className="onboard-header-eyebrow">Big Muddy Touring Directory</p>
         <h1 className="onboard-header-title">List your band.</h1>
         <p className="onboard-header-sub">
-          Get found by venues, bookers, and festivals along the Mississippi corridor.
+          Get found by venues, bookers, and festivals along the Deep South.
           Free to list. Takes two minutes.
         </p>
       </div>

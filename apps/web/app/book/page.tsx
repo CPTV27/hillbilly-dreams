@@ -112,12 +112,12 @@ const SECTIONS: BookSection[] = [
     ],
   },
   {
-    id: 'corridor',
+    id: 'region',
     chapter: 'Chapter Five',
-    title: 'The Corridor',
+    title: 'The Region',
     subtitle: 'Highway 61, the towns, the route',
     description:
-      'The corridor runs from Memphis to New Orleans. Eighteen cities. Five states. The road is the connective tissue. Every mile is a photograph waiting.',
+      'The region runs from Memphis to New Orleans. Eighteen cities. Five states. The road is the connective tissue. Every mile is a photograph waiting.',
     slots: [
       { width: 'full', aspectRatio: '16/7', caption: 'Highway 61 — wide, vanishing point' },
       { width: 'third', aspectRatio: '1/1', caption: 'Small-town main street' },

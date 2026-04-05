@@ -454,7 +454,7 @@ export default async function PublicationDetailPage({ params }: PageProps) {
             <div>
               <div className="section-label">Publishing</div>
               <h2 className="pub-back-title">Deep South Press</h2>
-              <p className="pub-back-sub">Small-run books from the Mississippi corridor.</p>
+              <p className="pub-back-sub">Small-run books from the Deep South.</p>
             </div>
             <a href="/media/publications" className="btn btn--outline">
               All Publications →

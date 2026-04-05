@@ -93,7 +93,7 @@ export default function AboutPage() {
             <div className="about-work__card">
               <h3 className="about-work__card-title">Big Muddy Magazine</h3>
               <p className="about-work__card-desc">
-                Long-form stories about the Mississippi corridor. The people, the music,
+                Long-form stories about the Deep South. The people, the music,
                 the food, the economics. The stuff that doesn&apos;t fit in a tweet thread.
               </p>
               <a href="https://bigmuddymagazine.com" className="about-work__link" target="_blank" rel="noopener noreferrer">

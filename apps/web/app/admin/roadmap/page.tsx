@@ -33,13 +33,13 @@ const BRAND_ORDER: BrandId[] = [
 const RETAIL_TIERS = [
   {
     id: 'free',
-    title: 'Free — corridor capture',
+    title: 'Free — region capture',
     price: '$0',
     pitch:
       'We come to you with an iPhone, grab real photos of you and your place, and get you live in the Deep South Directory fast. Low friction so you actually say yes — then you see what the network can do and why paid tiers exist.',
     bullets: [
       'On-site or curbside photo pass (phone camera — authentic, not a stock shoot)',
-      'Directory profile + corridor placement (you show up where travelers look)',
+      'Directory profile + region placement (you show up where travelers look)',
       'Simple onboarding — we do the typing; you approve the copy',
       'Designed as the wedge: proof of value + reason to step up to The Engine',
     ],
@@ -60,14 +60,14 @@ const RETAIL_TIERS = [
   },
   {
     id: 'partner',
-    title: 'Partner / Network — corridor media bundle',
+    title: 'Partner / Network — region media bundle',
     price: 'Custom (often $250–500+ / mo range — set on quote)',
     pitch:
       'For operators who want the software plus the owned media: magazine, radio, photography, and priority when our production calendar allows. This is where absentee platforms cannot compete.',
     bullets: [
       'Everything in The Engine',
       'Editorial + radio exposure when production calendar allows',
-      'On-site or corridor photography sessions on a real schedule (we do not over-promise)',
+      'On-site or region photography sessions on a real schedule (we do not over-promise)',
       'Deeper analytics + competitor watch (bounded, honest scope)',
       'White-glove support / strategy check-ins',
     ],
@@ -100,13 +100,13 @@ const PRODUCT_BRAND_MAP: Array<{
     domain: 'deepsouthdirectory.com',
     role: 'Revenue product — local business marketing + listings',
     dsdProduct: 'Primary — listings, tiers, onboard, dashboard',
-    mediaStack: 'Feeds magazine + radio + touring story; pulls corridor content',
+    mediaStack: 'Feeds magazine + radio + touring story; pulls region content',
   },
   {
     brand: 'Big Muddy Touring',
     domain: 'bigmuddytouring.com',
     role: 'Shows, route, talent pipeline, inn tie-in',
-    dsdProduct: 'Directory clients get show / corridor exposure (Partner tier)',
+    dsdProduct: 'Directory clients get show / region exposure (Partner tier)',
     mediaStack: 'Events → magazine, radio, records, directory features',
   },
   {
@@ -127,7 +127,7 @@ const PRODUCT_BRAND_MAP: Array<{
     brand: 'Big Muddy Records',
     domain: 'bigmuddyrecordlabel.com',
     role: 'Label + artist roster (MelodyVault / talent DB)',
-    dsdProduct: 'Corridor musicians roster surfaces on DSD; artist profiles',
+    dsdProduct: 'Region musicians roster surfaces on DSD; artist profiles',
     mediaStack: 'Releases feed radio + magazine + touring',
   },
   {
@@ -193,7 +193,7 @@ const COMPETITOR_CATEGORIES = [
 const MOAT_ROWS = [
   { ours: 'Magazine feature', alt: 'PR firm', cost: '$2,000–5,000/feature' },
   { ours: 'Radio airplay', alt: 'Spots buy', cost: '$500–2,000/mo' },
-  { ours: 'Corridor photography', alt: 'Freelance shoot', cost: '$200–500/shoot' },
+  { ours: 'Region photography', alt: 'Freelance shoot', cost: '$200–500/shoot' },
   { ours: 'Label / distro narrative', alt: 'Distro + ads', cost: '$500+/mo' },
   { ours: 'WiFi / welcome flows', alt: 'Purple + setup', cost: '$200+/mo' },
   { ours: 'Touring / event lift', alt: 'Agency', cost: '$1,000+/event' },
@@ -210,7 +210,7 @@ const ROLLOUT_PHASES = [
   {
     q: 'Q2',
     title: 'Circuit expansion (months 4–6)',
-    body: 'Clarksdale, Memphis, Lafayette — follow the corridor.',
+    body: 'Clarksdale, Memphis, Lafayette — follow the region.',
     nodes: '46',
     retained: '$32,500',
   },

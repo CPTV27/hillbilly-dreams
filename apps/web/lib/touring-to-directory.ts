@@ -235,7 +235,7 @@ async function linkCorridorCities(): Promise<{ linked: number }> {
 }
 
 /**
- * Main sync function — runs all three entity types + corridor city linking.
+ * Main sync function — runs all three entity types + region city linking.
  */
 export async function syncTouringToDirectory(): Promise<{
   venues: SyncResult;

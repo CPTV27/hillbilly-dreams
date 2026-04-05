@@ -6,7 +6,7 @@ const ANALYSIS_TOPICS = [
   { id: 'gaps', label: 'Gap Analysis', prompt: 'Analyze the Big Muddy ecosystem for gaps — what capabilities are missing, what revenue streams are untapped, what audience segments are unserved? Be specific and actionable.' },
   { id: 'priorities', label: 'Priority Stack', prompt: 'Given the current state of the ecosystem (3 humans, AI-augmented, 15 domains, $0-99 pricing tiers, radio station, hotel), what should be the top 5 priorities for the next 30 days? Rank by revenue impact.' },
   { id: 'risks', label: 'Risk Assessment', prompt: 'What are the top risks to this ecosystem? Consider: single points of failure, key person dependencies, technology risks, market risks, competitive threats. For each, suggest a mitigation.' },
-  { id: 'scaling', label: 'Scaling Playbook', prompt: 'How does this ecosystem scale from 1 corridor town to 10? What needs to change in the architecture, the team, the pricing, the content production? Be specific about what breaks at each stage.' },
+  { id: 'scaling', label: 'Scaling Playbook', prompt: 'How does this ecosystem scale from 1 region town to 10? What needs to change in the architecture, the team, the pricing, the content production? Be specific about what breaks at each stage.' },
   { id: 'monetization', label: 'Monetization Map', prompt: 'Map every possible revenue stream in this ecosystem — active and latent. For each, estimate monthly potential and effort to activate. Include: subscriptions, transactions, licensing, sponsorship, grants, partnerships, content syndication.' },
   { id: 'automation', label: 'Automation Audit', prompt: 'Review the Personnel lens data (10 roles, 3 humans + AI). What can be further automated? What human tasks are bottlenecks? Where is AI underutilized? Suggest specific automations with estimated time savings.' },
 ];
@@ -26,7 +26,7 @@ TEAM: Chase (CEO/CTO), Tracy (Business/Finance), Amy (Inn/Bar Ops), JP (Shows/Pr
 AI STACK: Gemini 2.5 Flash/3.1 Pro, Claude Sonnet/Haiku, Perplexity, Imagen 3, Veo 3.1, Cloud TTS
 INFRASTRUCTURE: 15 domains on Vercel, Neon PostgreSQL, GCS, OpenBroadcaster, Plex, Postiz
 REVENUE: Pre-launch. Free listings building audience. $20 AI assistant launching. $99 engine for social media management.
-LOCATION: Natchez, Mississippi — Mississippi corridor (Memphis to New Orleans)
+LOCATION: Natchez, Mississippi — Deep South (Memphis to New Orleans)
 
 TRADITIONAL STAFFING EQUIVALENT: $50K/mo for 10 roles
 ACTUAL COST: 3 humans + ~$500/mo AI API costs

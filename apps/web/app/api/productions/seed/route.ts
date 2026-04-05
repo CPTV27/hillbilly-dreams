@@ -18,7 +18,7 @@ const CAMPAIGNS = [
     tagline: 'An AI that knows your business and your town',
   },
   {
-    name: 'The Corridor',
+    name: 'The Region',
     slug: 'the-corridor',
     conceptNumber: 3,
     tagline: 'The same architecture. Any town. Any corridor.',

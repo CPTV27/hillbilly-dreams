@@ -20,7 +20,7 @@ const SHOWS: OBShow[] = [
   { name: 'Delta Dawn Report', time: '6:00 AM', day: 'Daily', host: 'Delta Dawn', status: 'scheduled', poster: 'delta-dawn-report' },
   { name: 'Morning Levee Rise', time: '6:15 AM', day: 'Daily', host: 'Automated', status: 'scheduled', poster: 'morning-levee-rise' },
   { name: 'Porch Talk', time: '9:00 AM', day: 'Weekdays', host: 'Miss Pearline', status: 'scheduled', poster: 'porch-talk' },
-  { name: 'Corridor Crossroads', time: '10:00 AM', day: 'Daily', host: 'Automated', status: 'scheduled', poster: 'corridor-crossroads' },
+  { name: 'Region Crossroads', time: '10:00 AM', day: 'Daily', host: 'Automated', status: 'scheduled', poster: 'corridor-crossroads' },
   { name: 'The Juke Joint Hour', time: '12:00 PM', day: 'Daily', host: 'Automated', status: 'scheduled', poster: 'juke-joint-hour' },
   { name: 'Mechanical Bull Sessions', time: '3:00 PM', day: 'Daily', host: 'Live Studio', status: 'scheduled', poster: 'mechanical-bull-sessions' },
   { name: 'Honky Tonk Highway', time: '4:00 PM', day: 'Daily', host: 'Automated', status: 'scheduled', poster: 'honky-tonk-highway' },

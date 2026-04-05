@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Our Brands',
   description:
-    'Deep South Directory is powered by five Big Muddy brands across the Mississippi corridor — Touring, Magazine, Radio, the Inn, and Outsider Economics. The same engine now powers your business.',
+    'Deep South Directory is powered by five Big Muddy brands across the Deep South — Touring, Magazine, Radio, the Inn, and Outsider Economics. The same engine now powers your business.',
 };
 
 const BRANDS = [
@@ -16,7 +16,7 @@ const BRANDS = [
     num: '01',
     name: 'Big Muddy Touring',
     url: 'https://bigmuddytouring.com',
-    tagline: 'The Mississippi\'s Music Corridor',
+    tagline: 'The Mississippi\'s Music Region',
     category: 'Travel & Culture',
     desc: 'The flagship. Eighteen cities across five states, from Memphis to New Orleans. City guides, lodging at the Inn, the Blues Highway route, curated playlists, and editorial about the culture that made American music.',
     stats: [
@@ -28,7 +28,7 @@ const BRANDS = [
       'Full editorial calendar — features, guides, event coverage',
       'Lodging network: 40+ partner properties along the route',
       'Multi-platform social presence: Instagram, Facebook, TikTok',
-      'Newsletter audience across the corridor',
+      'Newsletter audience across the region',
       'Google ranking for Mississippi music tourism searches',
     ],
   },
@@ -64,11 +64,11 @@ const BRANDS = [
     stats: [
       { label: 'Format', value: 'Streaming' },
       { label: 'Playlists', value: 'Curated' },
-      { label: 'Genre', value: 'Corridor' },
+      { label: 'Genre', value: 'Region' },
     ],
     highlights: [
       'Curated playlists organized by city, era, and genre',
-      'Live session recordings from corridor venues',
+      'Live session recordings from region venues',
       'Integration with the Magazine and Touring editorial calendar',
       'Social presence focused on music discovery',
       'Podcast content in development',
@@ -92,7 +92,7 @@ const BRANDS = [
       'Editorial features in Big Muddy Magazine',
       'Google Business Profile fully optimized',
       'Photography and video production on-site',
-      'Corridor event hosting and promotion',
+      'Region event hosting and promotion',
     ],
   },
   {

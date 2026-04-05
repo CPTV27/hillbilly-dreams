@@ -342,7 +342,7 @@ export default function GetStartedPage() {
                     <span className="gs-sidebar__step-num">2</span>
                     <div>
                       <strong>We reach out in 24 hours</strong>
-                      <p>We'll email or call to set up a conversation. In-person if you're in the corridor. Video if you're not.</p>
+                      <p>We'll email or call to set up a conversation. In-person if you're in the region. Video if you're not.</p>
                     </div>
                   </li>
                   <li className="gs-sidebar__step">

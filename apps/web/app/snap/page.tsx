@@ -16,9 +16,9 @@ const SHOT_LIST: ShotLocation[] = [
   { id: 'crossroads', name: 'The Crossroads (Hwy 61 & 49)', lat: 34.1674, lng: -90.5723, desc: 'Iconic crossroads marker — Robert Johnson legend. Get the guitar sculptures.', category: 'landmark', radius: 200 },
   { id: 'delta-blues-museum', name: 'Delta Blues Museum', lat: 34.2003, lng: -90.5731, desc: 'Museum exterior + any exhibits visible from outside', category: 'culture', radius: 100 },
   // Vicksburg
-  { id: 'vicksburg-riverfront', name: 'Vicksburg Riverfront', lat: 32.3526, lng: -90.8779, desc: 'River, bridges, murals along the waterfront — corridor vibes', category: 'landscape', radius: 300 },
+  { id: 'vicksburg-riverfront', name: 'Vicksburg Riverfront', lat: 32.3526, lng: -90.8779, desc: 'River, bridges, murals along the waterfront — region vibes', category: 'landscape', radius: 300 },
   // Memphis
-  { id: 'beale-street', name: 'Beale Street', lat: 35.1392, lng: -90.0533, desc: 'Neon signs, music venues, street life — the northern anchor of the corridor', category: 'street', radius: 200 },
+  { id: 'beale-street', name: 'Beale Street', lat: 35.1392, lng: -90.0533, desc: 'Neon signs, music venues, street life — the northern anchor of the region', category: 'street', radius: 200 },
   // New Orleans
   { id: 'frenchmen-street', name: 'Frenchmen Street', lat: 29.9643, lng: -90.0561, desc: 'Live music strip — the southern anchor. Night shots preferred.', category: 'street', radius: 200 },
 ];

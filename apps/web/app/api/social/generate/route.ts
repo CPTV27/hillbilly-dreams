@@ -21,9 +21,9 @@ const PLATFORM_GUIDES: Record<string, string> = {
 
 const BRAND_VOICES: Record<string, string> = {
   bigmuddy: 'Big Muddy Entertainment: Southern, warm, authentic. Blues-soaked hospitality. "Where the music lives." Think front-porch storytelling meets editorial polish.',
-  radio: 'Big Muddy Radio: Music-forward, curator energy. Deep cuts and live sessions. "Your soundtrack to the Mississippi corridor."',
+  radio: 'Big Muddy Radio: Music-forward, curator energy. Deep cuts and live sessions. "Your soundtrack to the Deep South."',
   magazine: 'Big Muddy Magazine: Editorial, visual, story-driven. City guides and culture pieces. Rich descriptions, travel-magazine tone.',
-  touring: 'Big Muddy Touring: Adventure, discovery, road-trip energy. The Mississippi corridor as America\'s most underrated route.',
+  touring: 'Big Muddy Touring: Adventure, discovery, road-trip energy. The Deep South as America\'s most underrated route.',
   economics: 'Outsider Economics: Intellectual rebel energy. Counter-narrative economics. Sharp, contrarian, backed by real theory. Think "economics for people who question everything."',
 };
 
@@ -54,7 +54,7 @@ export async function POST(request: Request) {
   const platformGuide = PLATFORM_GUIDES[platform] ?? PLATFORM_GUIDES.twitter;
   const brandVoice = BRAND_VOICES[brand] ?? BRAND_VOICES.bigmuddy;
 
-  const systemPrompt = `You are a social media content creator for Big Muddy Entertainment, a multi-brand media company based along the Mississippi corridor.
+  const systemPrompt = `You are a social media content creator for Big Muddy Entertainment, a multi-brand media company based along the Deep South.
 
 Brand voice: ${brandVoice}
 

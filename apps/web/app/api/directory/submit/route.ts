@@ -71,7 +71,7 @@ Voice guidelines:
 - Sound like someone who has seen them play, not a press release
 - No industry jargon, no hyperbole
 - Focus on what they sound like and why people should hear them
-- End with one sentence connecting them to the corridor music scene
+- End with one sentence connecting them to the region music scene
 
 Write only the spotlight text, no headers or labels.`
         : `Write a 200-word editorial spotlight for a business listing in the Deep South Directory.
@@ -88,7 +88,7 @@ Voice guidelines:
 - Sound like a neighbor who knows the town, not a tech company
 - No startup jargon, no hyperbole
 - Focus on what makes this place real and worth visiting
-- End with one sentence that connects this business to the corridor
+- End with one sentence that connects this business to the region
 
 Write only the spotlight text, no headers or labels.`;
 

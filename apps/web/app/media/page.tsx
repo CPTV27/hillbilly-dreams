@@ -5,16 +5,16 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Deep South Directory | The Mississippi Corridor\'s Media Network',
+  title: 'Deep South Directory | The Mississippi Region\'s Media Network',
   description:
-    'Magazine. Radio. Touring. AI. One subscription puts your business in front of the entire Mississippi corridor — from Memphis to New Orleans. Delta Dawn does the heavy lifting.',
+    'Magazine. Radio. Touring. AI. One subscription puts your business in front of the entire Deep South — from Memphis to New Orleans. Delta Dawn does the heavy lifting.',
 };
 
 const WHAT_YOU_GET = [
   {
     icon: '01',
     title: 'Listed in the Directory',
-    desc: 'Your business shows up in the Deep South Directory — a curated, SEO-optimized listing that puts you in front of travelers, locals, and people planning trips along the corridor.',
+    desc: 'Your business shows up in the Deep South Directory — a curated, SEO-optimized listing that puts you in front of travelers, locals, and people planning trips across the Deep South.',
     image: '/images/dsd/hero-mainstreet.webp',
   },
   {
@@ -32,7 +32,7 @@ const WHAT_YOU_GET = [
   {
     icon: '04',
     title: 'On the Touring Route',
-    desc: 'Big Muddy Touring drives people down the corridor. Directory businesses become stops on the route — recommended by name in every city guide.',
+    desc: 'Big Muddy Touring drives people down the region. Directory businesses become stops on the route — recommended by name in every city guide.',
     image: '/images/dsd/mississippi-sunset.webp',
   },
   {
@@ -103,7 +103,7 @@ const ECOSYSTEM = [
   },
   {
     name: 'Rise Up Talent Pipeline',
-    desc: 'Discover artists → showcase at Ground Zero & B.B. King\'s → tour the corridor → promote on Radio. The full loop.',
+    desc: 'Discover artists → showcase at Ground Zero & B.B. King\'s → tour the region → promote on Radio. The full loop.',
     stat: 'New artists',
     accent: false,
   },
@@ -147,7 +147,7 @@ const PIPELINE_STEPS = [
   },
   {
     step: 'Tour',
-    desc: 'Big Muddy Touring books discovered bands through the Mississippi corridor.',
+    desc: 'Big Muddy Touring books discovered bands through the Deep South.',
   },
   {
     step: 'Promote',
@@ -174,7 +174,7 @@ const MOAT = [
   },
   {
     title: 'One River. One Story.',
-    desc: 'Every business in the directory is part of one story — the Mississippi corridor. Travelers don\'t visit one restaurant. They drive the route. You\'re a stop on that route.',
+    desc: 'Every business in the directory is part of one story — the Deep South. Travelers don\'t visit one restaurant. They drive the route. You\'re a stop on that route.',
   },
   {
     title: 'Delta Dawn Never Sleeps',
@@ -192,7 +192,7 @@ export default function MediaHomepage() {
         <div className="media-hero__content">
           <div className="media-hero__eyebrow">
             <span className="media-hero__ornament">&#9670;</span>
-            <span>Deep South Directory · The Mississippi Corridor&apos;s Media Network</span>
+            <span>Deep South Directory · The Mississippi Region&apos;s Media Network</span>
           </div>
           <h1 className="media-hero__title">
             One Network.
@@ -203,7 +203,7 @@ export default function MediaHomepage() {
           </h1>
           <p className="media-hero__sub">
             Magazine. Radio. Touring. AI. One subscription puts your business in front of the entire
-            Mississippi corridor — from Memphis to New Orleans. Delta Dawn does the heavy lifting.
+            Deep South — from Memphis to New Orleans. Delta Dawn does the heavy lifting.
           </p>
           <div className="media-hero__free-badge">
             3 Months Free — Then $99/month
@@ -333,7 +333,7 @@ export default function MediaHomepage() {
             <h2 className="section-title">One Subscription. The Whole Network.</h2>
             <p className="section-desc">
               When you join the Deep South Directory, you don&apos;t just get a listing.
-              You get plugged into a media network that&apos;s already reaching people across the corridor —
+              You get plugged into a media network that&apos;s already reaching people across the region —
               magazine, radio, touring, social, all of it.
             </p>
           </div>

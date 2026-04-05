@@ -378,7 +378,7 @@ export default function RegionalPage() {
               <strong>1. Marketing output</strong> &mdash; The CVB gets their tourism content. The school gets their enrollment materials. The city gets their economic development story.
             </p>
             <p style={{ fontSize: 15, color: C.text, margin: 0, lineHeight: 1.5 }}>
-              <strong>2. Local employment</strong> &mdash; Photographers, writers, musicians, and filmmakers in the corridor get paid. Not an agency in another state.
+              <strong>2. Local employment</strong> &mdash; Photographers, writers, musicians, and filmmakers in the region get paid. Not an agency in another state.
             </p>
             <p style={{ fontSize: 15, color: C.text, margin: 0, lineHeight: 1.5 }}>
               <strong>3. Permanent assets</strong> &mdash; Content compounds on the platform. Magazine articles, radio episodes, city guides &mdash; they build SEO and brand equity forever. Not a disposable Facebook ad.

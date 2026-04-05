@@ -19,7 +19,7 @@ const ORG: OrgNode = {
       children: [
         { name: 'The Big Muddy Inn', role: '6 Suites — Natchez' },
         { name: 'The Blues Room', role: '50-Seat Listening Room' },
-        { name: 'Corridor Tours', role: 'Memphis → New Orleans' },
+        { name: 'Region Tours', role: 'Memphis → New Orleans' },
       ],
     },
     {

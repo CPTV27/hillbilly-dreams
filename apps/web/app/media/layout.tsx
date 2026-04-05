@@ -12,11 +12,11 @@ import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Deep South Directory | The Local Business Network for the Mississippi Corridor',
+    default: 'Deep South Directory | The Local Business Network for the Mississippi Region',
     template: '%s | Deep South Directory',
   },
   description:
-    'Join the directory. Get featured in the magazine, played on the radio, and listed on the touring route. AI-powered media services for local businesses along the Mississippi corridor — starting at $99/month.',
+    'Join the directory. Get featured in the magazine, played on the radio, and listed on the touring route. AI-powered media services for local businesses along the Deep South — starting at $99/month.',
   metadataBase: new URL('https://deepsouthdirectory.com'),
   openGraph: {
     type: 'website',

@@ -34,7 +34,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
         {children}
       </main>
       <footer className="portal-footer">
-        <p>Big Muddy Entertainment &mdash; Media services for the Mississippi corridor</p>
+        <p>Big Muddy Entertainment &mdash; Media services for the Deep South</p>
       </footer>
       <style>{`
         .portal-shell {

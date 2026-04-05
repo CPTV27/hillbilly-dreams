@@ -123,7 +123,7 @@ export default function GalleryPage() {
           }}
         >
           Landscapes, architecture, and infrared from the Hudson Valley to the
-          Mississippi corridor. Aerial panoramas shot from drones at dawn.
+          Deep South. Aerial panoramas shot from drones at dawn.
           Night exposures under Catskill stars. False-color experiments that
           turn forests into paintings.
         </p>
@@ -426,7 +426,7 @@ export default function GalleryPage() {
             }}
           >
             Original art from the artists, musicians, and makers who call the
-            Mississippi corridor home. Paintings, mixed media, ceramics, textiles,
+            Deep South home. Paintings, mixed media, ceramics, textiles,
             and sculpture — collected the way you&apos;d find it in the rooms of the
             Big Muddy Inn. Layered, personal, and meant to live with.
           </p>

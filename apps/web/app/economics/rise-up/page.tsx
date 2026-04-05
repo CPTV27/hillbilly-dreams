@@ -26,7 +26,7 @@ const PHASES = [
   {
     num: '01',
     title: 'Apply',
-    desc: 'Your community tells us what it needs. A town, a neighborhood, a corridor of shops that used to be something. We look for willingness, not polish. If your people will show up, we show up.',
+    desc: 'Your community tells us what it needs. A town, a neighborhood, a region of shops that used to be something. We look for willingness, not polish. If your people will show up, we show up.',
   },
   {
     num: '02',

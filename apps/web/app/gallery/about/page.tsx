@@ -146,7 +146,7 @@ export default function GalleryAbout() {
             BCA is one piece of a sovereign creative economy built along the Mississippi
             corridor. Every brand feeds the others. The inn fills the rooms. The radio plays
             the soundtrack. The magazine tells the stories. The gallery sells what the
-            corridor makes.
+            region makes.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
             {[

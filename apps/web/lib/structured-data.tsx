@@ -190,12 +190,12 @@ export function getHotelSchema() {
     };
 }
 
-// TouristDestination schema (Mississippi corridor)
+// TouristDestination schema (Deep South)
 export function getTouristDestinationSchema() {
     return {
         '@context': 'https://schema.org',
         '@type': 'TouristDestination',
-        name: 'Mississippi Music Corridor',
+        name: 'Mississippi Music Region',
         description:
             'A touring route along the Mississippi River from Memphis to New Orleans — blues, soul, jazz, and the culture that made American music. Curated by Big Muddy Touring.',
         url: 'https://bigmuddytouring.com/touring/route',
@@ -204,7 +204,7 @@ export function getTouristDestinationSchema() {
             { '@type': 'TouristAttraction', name: 'Natchez, Mississippi', description: 'Home base of Big Muddy. Oldest settlement on the Mississippi River.' },
             { '@type': 'TouristAttraction', name: 'Clarksdale, Mississippi', description: 'Birthplace of the Delta Blues. Crossroads of Highways 61 and 49.' },
             { '@type': 'TouristAttraction', name: 'Memphis, Tennessee', description: 'Beale Street, Sun Studio, Stax Records — where rock and roll was born.' },
-            { '@type': 'TouristAttraction', name: 'New Orleans, Louisiana', description: 'Jazz, brass bands, Frenchmen Street, and the end of the corridor.' },
+            { '@type': 'TouristAttraction', name: 'New Orleans, Louisiana', description: 'Jazz, brass bands, Frenchmen Street, and the end of the region.' },
             { '@type': 'TouristAttraction', name: 'Vicksburg, Mississippi', description: 'Civil War history, river overlooks, and blues heritage.' },
         ],
     };

@@ -329,7 +329,7 @@ function Report() {
           'The Big Muddy Inn (6-room boutique hotel)',
           'Big Muddy Magazine (editorial content)',
           'Big Muddy Radio (curated playlists, streaming)',
-          'Big Muddy Touring (18-city corridor guide)',
+          'Big Muddy Touring (18-city region guide)',
           'Big Muddy Records (artist services, 100% masters retained)',
           'Rise Up (regional talent development circuit)',
         ].map((a, i) => <p key={i} style={S.indent}>--  {a}</p>)}
