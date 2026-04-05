@@ -90,6 +90,11 @@ export async function middleware(request: NextRequest) {
   const hostname = resolveHostname(request);
   const pathname = request.nextUrl.pathname;
 
+  // ── Spatial Explorer — public, no domain rewriting ──
+  if (pathname.startsWith('/explorer')) {
+    return NextResponse.next();
+  }
+
   // Press mocks — internal-only static HTML under /public/press.
   // Auth gate temporarily disabled so Tracy/Amy can access via direct links.
   // TODO: Re-enable auth after team has accounts. Each file has an internal-only banner.
