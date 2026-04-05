@@ -29,6 +29,7 @@ import {
   BMT_DEFAULT_ROUTE_GROUP,
 } from './config/domain-routes';
 import type { DomainRoute } from './config/domain-routes';
+import { isAllowedUser } from './config/auth-rules';
 
 // ── Platform: Hostname Extraction ──
 
@@ -88,6 +89,15 @@ function createLoginRedirector(request: NextRequest, pathname: string) {
 export async function middleware(request: NextRequest) {
   const hostname = resolveHostname(request);
   const pathname = request.nextUrl.pathname;
+
+  // Press mocks — internal-only static HTML under /public/press.
+  // Auth gate temporarily disabled so Tracy/Amy can access via direct links.
+  // TODO: Re-enable auth after team has accounts. Each file has an internal-only banner.
+  if (pathname === '/press' || pathname.startsWith('/press/')) {
+    const res = NextResponse.next();
+    res.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    return res;
+  }
 
   // Helper: build a rewrite path, avoiding double/trailing slashes
   const rewriteTo = (prefix: string, path: string) => {
