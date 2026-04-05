@@ -29,3 +29,7 @@
 ### Issue #68 & #55 — Stripe Connect webhooks & commission routing
 **Status:** BLOCKED
 **Reason:** STRIPE_SECRET_KEY is missing from the environment variables.
+
+### Issue #64 — Stale dependencies (Dependabot)
+**Status:** BLOCKED
+**Reason:** The sandbox agent environment lacks GitHub CLI permissions to pull, view, or merge Dependabot pull requests.
