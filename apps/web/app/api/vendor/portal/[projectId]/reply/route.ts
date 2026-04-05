@@ -5,11 +5,21 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createTask } from '@/lib/asana-client';
+import { getClientIp, rateLimitHeaders, rateLimitIp } from '@/lib/rate-limit';
 
 type Params = { params: Promise<{ projectId: string }> };
 
 export async function POST(request: NextRequest, ctx: Params) {
   const { projectId } = await ctx.params;
+
+  const ip = getClientIp(request.headers);
+  const retryAfter = rateLimitIp(ip);
+  if (retryAfter !== null) {
+    return NextResponse.json(
+      { error: 'Too many requests' },
+      { status: 429, headers: rateLimitHeaders(retryAfter) }
+    );
+  }
 
   try {
     const body = await request.json();

@@ -4,11 +4,21 @@ export const dynamic = 'force-dynamic';
 // Used by the band sign-up template and admin dashboard
 
 import { NextResponse } from 'next/server';
+import { getClientIp, rateLimitHeaders, rateLimitIp } from '@/lib/rate-limit';
 import { syncOnboardingPipeline } from '@/lib/task-sync';
 import { scanArtistEmails } from '@/lib/gmail-service';
 import { prisma } from '@/lib/db';
 
 export async function POST(request: Request) {
+  const ip = getClientIp(request.headers);
+  const retryAfter = rateLimitIp(ip);
+  if (retryAfter !== null) {
+    return NextResponse.json(
+      { error: 'Too many requests' },
+      { status: 429, headers: rateLimitHeaders(retryAfter) }
+    );
+  }
+
   try {
     const body = await request.json();
     const { name, genre, city, state, contactEmail, contactName, contactPhone, bio, socialLinks } = body;

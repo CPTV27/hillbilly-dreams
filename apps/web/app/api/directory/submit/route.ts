@@ -9,6 +9,7 @@ export const dynamic = 'force-dynamic';
 // 5. Sends ntfy notification to ops channel
 
 import { NextRequest, NextResponse } from 'next/server';
+import { getClientIp, rateLimitHeaders, rateLimitIp } from '@/lib/rate-limit';
 import { ModelTier } from '@/lib/ai/modelTier';
 import { generateTextWithTierOrVertex } from '@/lib/ai/openRouter';
 import { prisma } from '@/lib/db';
@@ -16,6 +17,15 @@ import { notify } from '@/lib/notify';
 import { generateSlug } from '@/lib/google-places';
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
+  const ip = getClientIp(request.headers);
+  const retryAfter = rateLimitIp(ip);
+  if (retryAfter !== null) {
+    return NextResponse.json(
+      { error: 'Too many requests' },
+      { status: 429, headers: rateLimitHeaders(retryAfter) }
+    );
+  }
+
   try {
     const body = await request.json();
     const {

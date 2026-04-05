@@ -1,9 +1,19 @@
 export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
+import { getClientIp, rateLimitHeaders, rateLimitIp } from '@/lib/rate-limit';
 import { auth } from '@/lib/auth';
 
 export async function POST(req: NextRequest) {
+  const ip = getClientIp(req.headers);
+  const retryAfter = rateLimitIp(ip);
+  if (retryAfter !== null) {
+    return NextResponse.json(
+      { error: 'Too many requests' },
+      { status: 429, headers: rateLimitHeaders(retryAfter) }
+    );
+  }
+
   const session = await auth();
   const email = (session?.user as any)?.email;
 
