@@ -269,6 +269,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           align-items: center;
           gap: var(--space-3);
           padding: var(--space-2) var(--space-3);
+          min-height: 44px;
           font-size: var(--text-sm);
           font-weight: 500;
           color: var(--text-muted);
@@ -312,6 +313,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           border: 1px solid var(--border);
           color: var(--text-muted);
           padding: 3px 8px;
+          min-height: 44px;
           font-size: 11px;
           font-family: var(--font-body);
           border-radius: var(--radius-sm);
@@ -379,6 +381,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           align-items: center;
           gap: var(--space-2);
           padding: var(--space-2) var(--space-4);
+          min-height: 44px;
           font-family: var(--font-body);
           font-size: var(--text-sm);
           font-weight: 600;
@@ -533,6 +536,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         .admin-select,
         .admin-textarea {
           padding: var(--space-3) var(--space-4);
+          min-height: 44px;
           background: var(--bg);
           border: 1px solid var(--border);
           border-radius: var(--radius-sm);
@@ -569,7 +573,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           grid-template-columns: 1fr 1fr;
           gap: var(--space-5);
         }
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .admin-form-row { grid-template-columns: 1fr; }
         }
         .admin-form-actions {
@@ -657,6 +661,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           background: none;
           border: none;
           padding: 0;
+          min-height: 44px;
+          min-width: 44px;
           cursor: pointer;
           transition: opacity var(--duration-fast) var(--ease-default);
         }
