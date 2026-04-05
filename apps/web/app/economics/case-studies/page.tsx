@@ -21,13 +21,14 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://outsidereconomics.com/case-studies' },
 };
 
-export const dynamic = 'force-dynamic';
+/** ISR — re-read markdown after deploy / periodic refresh */
+export const revalidate = 300;
 
 export default function CaseStudiesIndexPage() {
   const studies = getAllCaseStudies();
 
   return (
-    <>
+    <div className="oe-case-studies-scope">
       <section
         className="cs-hero"
         style={{
@@ -71,6 +72,17 @@ export default function CaseStudiesIndexPage() {
       </section>
 
       <style>{`
+        .oe-case-studies-scope {
+          --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+          --font-body: 'Inter', system-ui, sans-serif;
+          --accent: #c8943e;
+          --accent-hover: #d4a04a;
+          --accent-muted: rgba(200, 148, 62, 0.15);
+          --accent-subtle: rgba(200, 148, 62, 0.08);
+          --border: rgba(200, 148, 62, 0.12);
+          --border-strong: rgba(200, 148, 62, 0.25);
+          --shadow-glow: 0 0 24px rgba(200, 148, 62, 0.14);
+        }
         .cs-hero {
           width: 100%;
           height: 42vh;
@@ -179,6 +191,6 @@ export default function CaseStudiesIndexPage() {
           color: var(--accent);
         }
       `}</style>
-    </>
+    </div>
   );
 }

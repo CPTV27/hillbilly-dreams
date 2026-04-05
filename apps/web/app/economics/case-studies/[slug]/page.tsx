@@ -1,9 +1,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getCaseStudyBySlug, getAdjacentCaseStudies } from '@/lib/case-studies';
+import { getAllCaseStudies, getCaseStudyBySlug, getAdjacentCaseStudies } from '@/lib/case-studies';
 import { CaseStudyPrintButton } from './print-button';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 300;
+
+export function generateStaticParams() {
+  return getAllCaseStudies().map((c) => ({ slug: c.slug }));
+}
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -42,7 +46,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
   const { prev, next } = getAdjacentCaseStudies(slug);
 
   return (
-    <>
+    <div className="oe-case-studies-scope">
       <article className="post cs-study">
         <div className="post__container">
           <header className="post__header">
@@ -95,6 +99,17 @@ export default async function CaseStudyPage({ params }: PageProps) {
       </article>
 
       <style>{`
+        .oe-case-studies-scope {
+          --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+          --font-body: 'Inter', system-ui, sans-serif;
+          --accent: #c8943e;
+          --accent-hover: #d4a04a;
+          --accent-muted: rgba(200, 148, 62, 0.15);
+          --accent-subtle: rgba(200, 148, 62, 0.08);
+          --border: rgba(200, 148, 62, 0.12);
+          --border-strong: rgba(200, 148, 62, 0.25);
+          --shadow-glow: 0 0 24px rgba(200, 148, 62, 0.14);
+        }
         .post {
           background: var(--bg);
           padding-top: var(--space-16);
@@ -248,6 +263,6 @@ export default async function CaseStudyPage({ params }: PageProps) {
           .post__nav-link--next { text-align: left; }
         }
       `}</style>
-    </>
+    </div>
   );
 }

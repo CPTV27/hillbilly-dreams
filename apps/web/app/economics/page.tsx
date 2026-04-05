@@ -144,6 +144,21 @@ export default function EconomicsHomepage() {
         </div>
       </section>
 
+      {/* ── Case studies ── */}
+      <section className="econ-case-studies-cta" style={{ position: 'relative', zIndex: 3, background: 'var(--surface)' }}>
+        <div className="section-container econ-case-studies-cta__inner">
+          <div className="section-label econ-case-studies-cta__label">Field notes</div>
+          <h2 className="section-title econ-case-studies-cta__title">Case studies</h2>
+          <p className="section-desc econ-case-studies-cta__desc">
+            Field reports from real builds — media nodes, directories, mesh edges, hospitality stacks. Same voice as the
+            manual; heavier on the receipts.
+          </p>
+          <a href="/case-studies" className="btn btn--ghost econ-case-studies-cta__btn">
+            Browse case studies &rarr;
+          </a>
+        </div>
+      </section>
+
       {/* ── The Thesis ── */}
       <section className="econ-thesis" style={{ position: 'relative', zIndex: 3, background: 'var(--bg)' }}>
         <div className="section-container">
@@ -569,6 +584,35 @@ export default function EconomicsHomepage() {
         .econ-video-container {
           display: flex;
           justify-content: center;
+        }
+
+        /* ── Case studies CTA (gold band — matches case study routes) ── */
+        .econ-case-studies-cta {
+          --oe-gold: #c8943e;
+          --oe-gold-border: rgba(200, 148, 62, 0.45);
+        }
+        .econ-case-studies-cta__inner {
+          padding-top: var(--space-12);
+          padding-bottom: var(--space-12);
+        }
+        .econ-case-studies-cta__label {
+          color: var(--oe-gold);
+          margin-bottom: var(--space-3);
+        }
+        .econ-case-studies-cta__title {
+          margin-bottom: var(--space-4);
+        }
+        .econ-case-studies-cta__desc {
+          max-width: 560px;
+          margin-bottom: var(--space-6);
+        }
+        .econ-case-studies-cta__btn {
+          border-color: var(--oe-gold-border);
+          color: var(--oe-gold);
+        }
+        .econ-case-studies-cta__btn:hover {
+          border-color: var(--oe-gold);
+          background: rgba(200, 148, 62, 0.08);
         }
 
         /* ── Trends ── */
