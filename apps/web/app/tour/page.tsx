@@ -52,10 +52,32 @@ const CONFIG = {
       { label: 'Ecosystem Dashboard', desc: 'The full stack mapped out', url: 'https://bigmuddytouring.com/admin/ecosystem' }
     ]
   },
+  team: {
+    hero: 'Welcome to Hillbilly Dreams',
+    subtitle: 'A guided tour of everything we built — click each link, look around, come back for the next one.',
+    links: [
+      { label: '1. HDI Portfolio', desc: 'The holding company — all our brands on one page', url: 'https://hillbillydreamsinc.com' },
+      { label: '2. Deep South Directory', desc: 'What we sell to businesses — 5 tiers, walk-in sales', url: 'https://deepsouthdirectory.com' },
+      { label: '3. Big Muddy Touring', desc: 'The flagship — shows, the Inn, the route', url: 'https://bigmuddytouring.com' },
+      { label: '4. Big Muddy Magazine', desc: 'Editorial that features DSD businesses and artists', url: 'https://bigmuddymagazine.com' },
+      { label: '5. Big Muddy Radio', desc: 'Live stream from the Inn, show archives', url: 'https://bigmuddyradio.com' },
+      { label: '6. Big Muddy Entertainment', desc: 'Record label + promoter — artists own their masters', url: 'https://bigmuddyentertainment.com' },
+      { label: '7. Big Muddy Records', desc: 'The label — distribution, sync, artist profiles', url: 'https://bigmuddyrecordlabel.com' },
+      { label: '8. Bearsville Creative', desc: 'Northeast node — Utopia Studios, Woodstock NY (summer activation)', url: 'https://bearsvillemediagroup.com' },
+      { label: '9. Outsider Economics', desc: 'The field manual — how local economies actually work', url: 'https://outsidereconomics.com' },
+      { label: '10. Sovereign Pi Store', desc: 'NEW: A computer for your business — free with membership', url: 'https://bigmuddytouring.com/store/sovereign-pi' },
+      { label: '11. HQ Dashboard', desc: 'Your daily check-in — valuation, timeline, team', url: 'https://bigmuddytouring.com/admin/hq' },
+      { label: '12. All Links', desc: 'Every admin page, tool, and service on one screen', url: 'https://bigmuddytouring.com/admin/links' },
+      { label: '13. Walk-In Flyer', desc: 'Print this — the sales one-pager for walk-in visits', url: 'https://bigmuddytouring.com/sandbox/dsd-flyer.html' },
+      { label: '14. Org Chart', desc: 'Who we are — brands, team, partners', url: 'https://bigmuddytouring.com/hillbilly/org-chart' },
+      { label: '15. Your Asana Tasks', desc: 'Open Asana — your tasks for this week are ready', url: 'https://app.asana.com' }
+    ]
+  },
   default: {
     hero: 'The Platform',
     subtitle: 'Select your lens to begin the tour.',
     links: [
+      { label: 'Team Walkthrough', desc: 'For Tracy, Amy, and the team', url: '?audience=team' },
       { label: 'Partner Review', desc: 'For stakeholders and partners', url: '?audience=partner' },
       { label: 'Local Impact', desc: 'For Natchez and Main Street', url: '?audience=local' },
       { label: 'Scalable Model', desc: 'For ecosystem scale', url: '?audience=aggressive' },
