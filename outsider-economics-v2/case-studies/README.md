@@ -10,6 +10,7 @@ These chapters document systems Chase and partners actually built — not though
 | [03-mechanical-bull-music-pipeline.md](./03-mechanical-bull-music-pipeline.md) | Label release machine — reusable pipeline |
 | [04-revofi-local-distribution.md](./04-revofi-local-distribution.md) | Mesh WiFi as distribution edge |
 | [05-catskills-weekender.md](./05-catskills-weekender.md) | Tourism app that pays the town |
+| [05-utility-model.md](./05-utility-model.md) | Telco + bank framing — hardware, trust, churn |
 | [06-high-falls-road.md](./06-high-falls-road.md) | Rural land — hospitality + GlampStar |
 
 **Voice:** See [../VOICE-GUIDE.md](../VOICE-GUIDE.md). **Editorial:** Do not use *corridor* for geography — use *the Deep South*, *the region*, or name the town.
