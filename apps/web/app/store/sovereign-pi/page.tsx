@@ -198,7 +198,8 @@ export default function SovereignPiPage() {
           Display Module — $99 per screen
         </h2>
         <p style={{ fontSize: '0.95rem', opacity: 0.6, lineHeight: 1.7, maxWidth: 600, margin: '0 0 1.5rem' }}>
-          Got 3 TVs? Add a Display Module to each one. All managed from your phone. Menus, specials, social feed, radio — different content on every screen, coordinated from one dashboard.
+          Got 3 TVs? Add a Display Module to each one. All managed from your phone. Menus, specials, social feed, radio — different content on every screen, coordinated from one dashboard.{' '}
+          <a href="/store/sovereign-pi/display-module" style={{ color: 'var(--accent, #c8943e)', fontWeight: 600 }}>Full Display Module page →</a>
         </p>
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <div style={{ border: '1px solid var(--border, rgba(200,148,62,0.12))', padding: '1.25rem', flex: 1, minWidth: 200 }}>
