@@ -94,7 +94,7 @@ export default async function LivePage() {
             </div>
             <div className="live-info__item">
               <h3>Propose a Session</h3>
-              <p>Artist or label? Contact us about performing at the Blues Room. We book independently with a focus on the corridor.</p>
+              <p>Artist or label? Contact us about performing at the Blues Room. We book independently with a focus on the region.</p>
             </div>
           </div>
         </div>

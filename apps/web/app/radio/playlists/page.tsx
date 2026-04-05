@@ -7,7 +7,7 @@ import type { Playlist } from '@bigmuddy/config';
 
 export const metadata: Metadata = {
   title: 'All Playlists',
-  description: 'Every curated playlist from Big Muddy Radio — Delta blues, soul, jazz, and the full soundtrack of the Mississippi corridor.',
+  description: 'Every curated playlist from Big Muddy Radio — Delta blues, soul, jazz, and the full soundtrack of the Deep South.',
 };
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';

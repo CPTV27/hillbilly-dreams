@@ -12,7 +12,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 export const metadata: Metadata = {
   ...constructMetadata({
     title: {
-      default: 'Big Muddy Radio | Curated Playlists from the Mississippi Music Corridor',
+      default: 'Big Muddy Radio | Curated Playlists from the Mississippi Music Region',
       template: '%s | Big Muddy Radio',
     },
     description: 'Curated playlists, live sessions, and the soundtrack of the Mississippi music corridor.',

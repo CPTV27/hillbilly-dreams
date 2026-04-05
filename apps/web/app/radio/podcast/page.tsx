@@ -8,7 +8,7 @@ import { NewsletterSignup, BLUR_DATA_URL } from '@bigmuddy/ui';
 export const metadata: Metadata = {
   title: 'Podcast',
   description:
-    'Radio Big Muddy — conversations from the round table at The Big Muddy Inn in Natchez, Mississippi. Music, food, culture, and the stories behind the corridor.',
+    'Radio Big Muddy — conversations from the round table at The Big Muddy Inn in Natchez, Mississippi. Music, food, culture, and the stories behind the region.',
 };
 
 const EPISODES = [
@@ -35,7 +35,7 @@ const EPISODES = [
     date: 'March 18, 2026',
     duration: '19:00',
     description:
-      'The conversation continues from the round table at The Big Muddy Inn. More stories from the corridor, the music scene, and what\'s next for Radio Big Muddy.',
+      'The conversation continues from the round table at The Big Muddy Inn. More stories from the region, the music scene, and what\'s next for Radio Big Muddy.',
     highlights: [],
     guests: ['Amy Allen', 'Tracy Allen', 'Chase Pierson'],
     audioUrl: '/audio/ep2.mp3',
@@ -66,7 +66,7 @@ export default async function PodcastPage() {
           </h1>
           <p className="podcast-hero__sub">
             Conversations from the round table at The Big Muddy Inn.
-            Music, food, culture, and the stories behind the Mississippi corridor.
+            Music, food, culture, and the stories behind the Deep South.
             Recorded live in Natchez, Mississippi.
           </p>
         </div>
@@ -167,7 +167,7 @@ export default async function PodcastPage() {
               <div className="podcast-detail">
                 <h3>Be a Guest</h3>
                 <p>
-                  Got a story from the corridor? A restaurant, a venue, a piece of history?
+                  Got a story from the region? A restaurant, a venue, a piece of history?
                   We want to hear it. Email{' '}
                   <a href="mailto:radio@thebigmuddyinn.com" className="podcast-link">
                     radio@thebigmuddyinn.com

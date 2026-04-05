@@ -130,7 +130,7 @@ export default async function Image() {
             maxWidth: '620px',
           }}
         >
-          Live music from the corridor
+          Live music from the region
         </div>
 
         {/* Bottom domain */}

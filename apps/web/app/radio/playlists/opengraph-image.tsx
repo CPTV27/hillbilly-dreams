@@ -105,7 +105,7 @@ export default async function Image() {
             maxWidth: '620px',
           }}
         >
-          The soundtrack of the Mississippi corridor
+          The soundtrack of the Deep South
         </div>
 
         {/* Bottom domain */}

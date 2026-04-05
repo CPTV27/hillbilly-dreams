@@ -111,7 +111,7 @@ export default async function RadioHomepage() {
             fontSize: '1.05rem',
             lineHeight: 1.6,
           }}>
-            No algorithms. No playlists-by-committee. Just the corridor, broadcast live from the mud.
+            No algorithms. No playlists-by-committee. Just the region, broadcast live from the mud.
           </p>
 
           {/* Player Frame */}
@@ -140,7 +140,7 @@ export default async function RadioHomepage() {
                 Now Streaming
               </div>
               <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', color: 'var(--text)' }}>
-                Big Muddy Radio — The Corridor Feed
+                Big Muddy Radio — The Region Feed
               </div>
             </div>
           </div>
@@ -224,7 +224,7 @@ export default async function RadioHomepage() {
           <div className="section-header">
             <div>
               <div className="section-label">Playlists</div>
-              <h2 className="section-title-sm">Curated for the Corridor</h2>
+              <h2 className="section-title-sm">Curated for the region</h2>
             </div>
             <a href="/radio/playlists" className="section-link">All Playlists →</a>
           </div>
@@ -263,7 +263,7 @@ export default async function RadioHomepage() {
               <h2 className="radio-about__title">Live from Natchez</h2>
               <p className="radio-about__desc">
                 The Blues Room is the performance space at the inn — a 40-seat room 
-                built for the music that made the corridor famous. Live sessions stream 
+                built for the music that made the region famous. Live sessions stream 
                 to subscribers. Upcoming shows post here first.
               </p>
               <a href="/radio/live" className="btn btn--outline">

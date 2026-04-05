@@ -10,7 +10,7 @@ import { prisma } from '@/lib/db';
 export const metadata: Metadata = {
   title: 'On the Route — Directory Businesses',
   description:
-    'Local businesses featured on Big Muddy Radio across the Mississippi corridor.',
+    'Local businesses featured on Big Muddy Radio across the Deep South.',
 };
 
 interface DirectoryClient {
@@ -99,7 +99,7 @@ export default async function RadioDirectoryPage() {
           <h1 className="rtdir-hero__title">On the Route</h1>
           <p className="rtdir-hero__sub">
             The businesses behind the music. Local restaurants, venues, shops, and
-            services from across the Mississippi corridor — all featured on Big Muddy Radio.
+            services from across the Deep South — all featured on Big Muddy Radio.
           </p>
           {totalClients > 0 && (
             <div className="rtdir-hero__stats">
@@ -203,7 +203,7 @@ export default async function RadioDirectoryPage() {
                   <p className="rtdir-promo__desc">
                     Directory clients get featured in Big Muddy editorial content, radio
                     programming, and the city guides read by travelers planning trips
-                    through the corridor.
+                    through the region.
                   </p>
                 </div>
                 <div className="rtdir-promo__actions">

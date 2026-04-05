@@ -13,7 +13,7 @@ const SHOWS = [
   { time: '6:00 AM', name: 'Delta Dawn Report', host: 'Delta Dawn' },
   { time: '6:15 AM', name: 'Morning Levee Rise', host: 'Automated' },
   { time: '9:00 AM', name: 'Porch Talk', host: 'Miss Pearline' },
-  { time: '10:00 AM', name: 'Corridor Crossroads', host: 'Automated' },
+  { time: '10:00 AM', name: 'Region Crossroads', host: 'Automated' },
   { time: '12:00 PM', name: 'The Juke Joint Hour', host: 'Automated' },
   { time: '1:00 PM', name: 'Rotating Specials', host: 'Various' },
   { time: '3:00 PM', name: 'Mechanical Bull Sessions', host: 'Live Studio' },
@@ -106,7 +106,7 @@ export default function RadioPlayerPage() {
 
         {/* Station Info */}
         <div className="rp-info">
-          <p>Big Muddy Radio — The Voice of the Mississippi Corridor</p>
+          <p>Big Muddy Radio — The Voice of the Mississippi Region</p>
           <p>Broadcasting from Natchez, Mississippi</p>
         </div>
       </div>
