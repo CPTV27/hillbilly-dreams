@@ -15,7 +15,7 @@ export default function PrintMagazinePage() {
         {/* Cover */}
         <section className="print-page print-cover">
           <div className="print-cover__content">
-            <p className="print-cover__eyebrow">The Mississippi Music Corridor</p>
+            <p className="print-cover__eyebrow">The Mississippi Music Region</p>
             <h1 className="print-cover__title">Big Muddy<br />Magazine</h1>
             <p className="print-cover__issue">Spring 2026 &middot; Volume 1</p>
             <p className="print-cover__tagline">Memphis to New Orleans. The towns, the music, the people who stay.</p>
@@ -62,7 +62,7 @@ export default function PrintMagazinePage() {
         <section className="print-page print-back">
           <div className="print-back__content">
             <p className="print-back__brand">Big Muddy</p>
-            <p className="print-back__tagline">The Mississippi&apos;s Music Corridor</p>
+            <p className="print-back__tagline">The Mississippi&apos;s Music Region</p>
             <p className="print-back__url">bigmuddymagazine.com</p>
           </div>
         </section>

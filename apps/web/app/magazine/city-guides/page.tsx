@@ -65,8 +65,8 @@ export const metadata: Metadata = {
 
 const REGIONS = [
   {
-    id: 'corridor',
-    label: 'The Corridor',
+    id: 'region',
+    label: 'The Region',
     subtitle: 'Memphis to New Orleans',
     description:
       'The core route — five cities along Highway 61, the Blues Highway. This is where the whole journey begins and ends.',

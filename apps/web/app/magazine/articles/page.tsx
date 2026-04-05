@@ -62,7 +62,7 @@ export default async function ArticlesIndexPage({
             </h1>
             <p className="articles-index__sub">
               {articles.length} {articles.length === 1 ? 'story' : 'stories'}
-              {categoryLabel ? ` in ${categoryLabel}` : ' from the Mississippi corridor'}
+              {categoryLabel ? ` in ${categoryLabel}` : ' from the Deep South'}
             </p>
           </div>
 

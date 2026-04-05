@@ -16,8 +16,8 @@ const CATEGORIES = ['All', 'City Guide', 'Feature', 'Music', 'Interview', 'Photo
 
 const REGION_GROUPS = [
   {
-    id: 'corridor',
-    label: 'The Corridor',
+    id: 'region',
+    label: 'The Region',
     description: 'Memphis to New Orleans',
     citySlugs: CORRIDOR_CITIES,
   },
@@ -99,7 +99,7 @@ export default async function MagazineHomepage() {
           color: 'var(--text)',
           textAlign: 'center',
         }}>
-          Long-form editorial from the Mississippi corridor. City guides, artist profiles,
+          Long-form editorial from the Deep South. City guides, artist profiles,
           photo essays, and the stories behind the businesses, musicians, and towns that make
           this region what it is. Published from Natchez, Mississippi.
         </p>
@@ -163,10 +163,10 @@ export default async function MagazineHomepage() {
         </div>
       </section>
 
-      {/* ── Corridor Photo Strip ── */}
+      {/* ── Region Photo Strip ── */}
       <section className="mag-photostrip">
         <div className="mag-photostrip__inner">
-          <Image src="/images/corridor/oceansprings-natchez-327-of-1183.webp" alt="Along the Mississippi corridor" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover', opacity: 0.7 }} />
+          <Image src="/images/corridor/oceansprings-natchez-327-of-1183.webp" alt="Along the Deep South" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover', opacity: 0.7 }} />
           <Image src="/images/corridor/cafe-sidewalk-natchez.webp" alt="Live oak canopy over Ocean Springs street" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
           <Image src="/images/corridor/historic-home-natchez.webp" alt="Antebellum mansion with iron fence and carriage" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
           <Image src="/images/corridor/natchez-bluff-river-view.webp" alt="Teal shrimp boat at Ocean Springs marina" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
@@ -226,7 +226,7 @@ export default async function MagazineHomepage() {
       <section className="mag-photostrip">
         <div className="mag-photostrip__inner">
           <Image src="/images/corridor/cafe-sidewalk-natchez.webp" alt="Cafe sidewalk scene in Natchez" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-          <Image src="/images/corridor/oceansprings-natchez-1058-of-1183.webp" alt="Ocean Springs to Natchez corridor" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover', opacity: 0.7 }} />
+          <Image src="/images/corridor/oceansprings-natchez-1058-of-1183.webp" alt="Ocean Springs to Natchez region" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover', opacity: 0.7 }} />
           <Image src="/images/corridor/craftsman-porch-columns.webp" alt="Pink azaleas cascading along Natchez sidewalk" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
           <Image src="/images/corridor/natchez-downtown-sidewalk.webp" alt="Brick sidewalk with awnings on Natchez main street" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
         </div>
