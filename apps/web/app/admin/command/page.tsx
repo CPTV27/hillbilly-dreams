@@ -50,6 +50,10 @@ export default function CommandCenter() {
   const [chatInput, setChatInput] = useState('');
   const [chatSending, setChatSending] = useState(false);
   const [chatHistory, setChatHistory] = useState<Array<{ role: 'user' | 'system'; text: string; at: string }>>([]);
+  const [prodBundles, setProdBundles] = useState<any[]>([]);
+  const [prodFeatures, setProdFeatures] = useState<any[]>([]);
+  const [prodLoading, setProdLoading] = useState(false);
+  const [prodUpdating, setProdUpdating] = useState<string | null>(null);
 
   useEffect(() => {
     Promise.all([
@@ -136,6 +140,31 @@ export default function CommandCenter() {
   const prodStages = ['script', 'voiceover', 'video', 'review', 'published'];
   const taskStatusColor: Record<string, string> = { pending: '#c89e3e', running: '#c8943e', completed: '#4a7c59', failed: '#b54c4c', cancelled: '#6b635a', script: '#c89e3e', voiceover: '#c8943e', video: '#4a6274', review: '#c89e3e', published: '#4a7c59' };
 
+  const loadProducts = () => {
+    setProdLoading(true);
+    fetch('/api/admin/products')
+      .then(r => r.json())
+      .then(d => { setProdBundles(d.bundles || []); setProdFeatures(d.features || []); })
+      .catch(() => {})
+      .finally(() => setProdLoading(false));
+  };
+
+  useEffect(() => { if (activeTab === 'products') loadProducts(); }, [activeTab]);
+
+  const toggleBundleFeature = async (bundleId: number, featureId: number, enabled: boolean) => {
+    setProdUpdating(`${bundleId}-${featureId}`);
+    await fetch('/api/admin/products', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'toggle-feature', bundleId, featureId, enabled }) });
+    loadProducts();
+    setProdUpdating(null);
+  };
+
+  const updateBundlePrice = async (bundleId: number, priceMonthly: number | null) => {
+    setProdUpdating(`price-${bundleId}`);
+    await fetch('/api/admin/products', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'update-bundle', bundleId, priceMonthly }) });
+    loadProducts();
+    setProdUpdating(null);
+  };
+
   const sendChat = async () => {
     if (!chatInput.trim() || chatSending) return;
     const text = chatInput.trim();
@@ -186,7 +215,7 @@ export default function CommandCenter() {
       </div>
 
       <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
-        {[['overview','📊 Overview'],['tasks','📋 Tasks'],['audit','📜 Audit'],['businesses','🏪 Businesses'],['engine','🚀 Engine'],['brain','🧠 Brain']].map(([id,label]) => (
+        {[['overview','📊 Overview'],['tasks','📋 Tasks'],['products','📦 Products'],['audit','📜 Audit'],['businesses','🏪 Businesses'],['engine','🚀 Engine'],['brain','🧠 Brain']].map(([id,label]) => (
           <button key={id} onClick={() => setActiveTab(id)} style={{ padding: '0.5rem 1.25rem', borderRadius: '8px', border: activeTab === id ? '1px solid #c8943e' : '1px solid #333', background: activeTab === id ? '#c8943e' : 'transparent', color: activeTab === id ? '#0f0f0f' : '#8a8074', cursor: 'pointer', fontSize: '0.875rem', fontWeight: 600 }}>{label}</button>
         ))}
       </div>
@@ -280,6 +309,66 @@ export default function CommandCenter() {
             </div>
           </div>
         ))}
+      </>)}
+
+      {activeTab === 'products' && (<>
+        {prodLoading ? (
+          <div style={{ textAlign: 'center', padding: '2rem', color: '#8a8074' }}>Loading products...</div>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            {prodBundles.map((bundle: any) => {
+              const bundleFeatureIds = new Set((bundle.features || []).map((bf: any) => bf.featureId));
+              return (
+                <div key={bundle.id} style={{ background: '#1a1816', borderRadius: '12px', border: '1px solid #2a2725', padding: '1.25rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                    <div>
+                      <span style={{ fontSize: '1rem', fontWeight: 700, color: bundle.isActive ? '#c8943e' : '#6a6460' }}>{bundle.name}</span>
+                      <span style={{ fontSize: '0.7rem', color: '#6a6460', marginLeft: '0.5rem' }}>{bundle.slug} {bundle.market !== 'general' ? `\u00b7 ${bundle.market}` : ''}</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                      <input
+                        type="number"
+                        placeholder="$/mo (cents)"
+                        defaultValue={bundle.priceMonthly || ''}
+                        onBlur={e => {
+                          const v = e.target.value ? parseInt(e.target.value, 10) : null;
+                          if (v !== bundle.priceMonthly) updateBundlePrice(bundle.id, v);
+                        }}
+                        style={{ width: 90, padding: '4px 8px', background: '#231f1c', border: '1px solid #333', borderRadius: '6px', color: '#e8e4de', fontSize: '0.75rem', textAlign: 'right' }}
+                      />
+                      <span style={{ fontSize: '0.65rem', color: '#6a6460' }}>{bundle.priceMonthly ? `$${(bundle.priceMonthly / 100).toFixed(0)}/mo` : 'TBD'}</span>
+                    </div>
+                  </div>
+
+                  {/* Feature matrix for this bundle */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                    {prodFeatures.map((feat: any) => {
+                      const isEnabled = bundleFeatureIds.has(feat.id);
+                      const bf = (bundle.features || []).find((f: any) => f.featureId === feat.id);
+                      const isUpdating = prodUpdating === `${bundle.id}-${feat.id}`;
+                      return (
+                        <div key={feat.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.35rem 0.5rem', borderRadius: '4px', background: isEnabled ? 'rgba(200,148,62,0.06)' : 'transparent', opacity: isUpdating ? 0.5 : 1 }}>
+                          <input
+                            type="checkbox"
+                            checked={isEnabled}
+                            onChange={() => toggleBundleFeature(bundle.id, feat.id, !isEnabled)}
+                            style={{ accentColor: '#c8943e', cursor: 'pointer' }}
+                          />
+                          <span style={{ fontSize: '0.8rem', color: isEnabled ? '#e8e4de' : '#6a6460', flex: 1 }}>
+                            {feat.name}
+                            {feat.isUnique && <span style={{ marginLeft: '0.4rem', fontSize: '0.6rem', color: '#c8943e', fontWeight: 700 }}>MOAT</span>}
+                          </span>
+                          <span style={{ fontSize: '0.65rem', color: '#4a4440' }}>{feat.category}</span>
+                          {bf?.limit && <span style={{ fontSize: '0.6rem', color: '#c89e3e', padding: '1px 4px', background: 'rgba(200,158,62,0.12)', borderRadius: '3px' }}>{bf.limit}</span>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </>)}
 
       {activeTab === 'audit' && (<>
