@@ -2,7 +2,7 @@
 
 *Canonical hardware spec for issue #80. Studio C is the video department at **Utopia Studios, Bearsville, NY** — it serves the full HDI portfolio, not a single brand.*
 
-**Related:** GitHub #79 (multi-gimbal / auto-cut / Restream), #77 (Studio C request → production pipeline), `docs/CREATIVE_PRODUCTION_PIPELINE.md`.
+**Related:** GitHub #79 (multi-gimbal / auto-cut / Restream) → **`STUDIO_C_MULTI_GIMBAL_AUTOCUT.md`**, #77 (Studio C request → production pipeline), `docs/CREATIVE_PRODUCTION_PIPELINE.md`.
 
 ---
 
