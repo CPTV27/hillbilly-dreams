@@ -103,7 +103,7 @@ export default function ReportCardPage() {
           </div>
 
           {/* Category Grades */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 'var(--space-3)', marginBottom: 'var(--space-6)' }}>
+          <div className="report-card-grade-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 'var(--space-3)', marginBottom: 'var(--space-6)' }}>
             {[
               { label: 'Database', grade: audit.categories.database.grade, detail: `${audit.categories.database.models} models, ${audit.categories.database.compositeIndexes} indexes` },
               { label: 'API Security', grade: audit.categories.security.grade, detail: `${audit.categories.security.coverage} coverage (${audit.categories.security.authedRoutes}/${audit.categories.security.totalRoutes})` },
@@ -150,12 +150,12 @@ export default function ReportCardPage() {
 
           {['Legal', 'Commerce', 'Hardware', 'Revenue', 'Growth'].map(cat => (
             <div key={cat} style={{ marginBottom: 'var(--space-4)' }}>
-              <h3 style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--accent)', marginBottom: 'var(--space-2)' }}>{cat}</h3>
+              <h3 className="report-card-cat-title" style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--accent)', marginBottom: 'var(--space-2)' }}>{cat}</h3>
               {CHECKLIST.filter(c => c.category === cat).map(item => {
                 const done = item.check();
                 return (
                   <div key={item.id} className="admin-card" style={{ padding: 'var(--space-2) var(--space-4)', marginBottom: 'var(--space-1)', borderLeft: `3px solid ${done ? 'var(--success)' : 'var(--border)'}`, opacity: done ? 0.7 : 1 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div className="report-card-checklist-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <div>
                         <span style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--text)', textDecoration: done ? 'line-through' : 'none' }}>{item.label}</span>
                         <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', marginLeft: 'var(--space-2)' }}>{item.note}</span>
@@ -173,6 +173,36 @@ export default function ReportCardPage() {
       ) : (
         <div className="admin-error-banner">Failed to load audit data</div>
       )}
+      <style>{`
+        @media (max-width: 420px) {
+          .report-card-grade-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: var(--space-2) !important;
+          }
+          .report-card-grade-grid .admin-card {
+            min-width: 0;
+            overflow: hidden;
+          }
+          .report-card-checklist-row {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: var(--space-2) !important;
+          }
+          .report-card-checklist-row > div:first-child span:last-child {
+            display: block;
+            margin-left: 0 !important;
+            margin-top: var(--space-1);
+          }
+          .report-card-cat-title {
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            z-index: 1;
+            padding-top: var(--space-1);
+            padding-bottom: var(--space-1);
+          }
+        }
+      `}</style>
     </div>
   );
 }

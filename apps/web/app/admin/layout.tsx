@@ -61,9 +61,21 @@ const NAV_SECTIONS = [
   {
     label: 'Operations',
     items: [
+      { label: 'HQ', href: '/hq', icon: '◇' },
+      { label: 'Report Card', href: '/report-card', icon: '★' },
+      { label: 'Revenue', href: '/revenue', icon: '$' },
+      { label: 'Churn alerts', href: '/churn-alerts', icon: '⚠' },
       { label: 'Delta Dawn', href: 'https://bigmuddytouring.com/ops/chat', icon: '⚡', external: true },
       { label: 'Ops Dashboard', href: '/ops', icon: '◻' },
       { label: 'Reviews', href: '/reviews', icon: '⭐' },
+    ],
+  },
+  {
+    label: 'Store',
+    items: [
+      { label: 'Sovereign Pi', href: '/store/sovereign-pi', icon: '◆', sitePath: true },
+      { label: 'Spatial', href: '/store/spatial', icon: '◇', sitePath: true },
+      { label: 'Display Module', href: '/store/sovereign-pi/display-module', icon: '▣', sitePath: true },
     ],
   },
   {
@@ -129,19 +141,27 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <div key={section.label} className="admin-nav-section">
               <span className="admin-nav-section__label">{section.label}</span>
               <ul role="list">
-                {section.items.map((item) => (
-                  <li key={item.href}>
+                {section.items.map((item) => {
+                  const nav = item as { external?: boolean; sitePath?: boolean };
+                  const href = nav.external
+                    ? item.href
+                    : nav.sitePath
+                      ? item.href
+                      : `/admin${item.href}`;
+                  return (
+                  <li key={`${section.label}-${item.label}`}>
                     <a
-                      href={(item as { external?: boolean }).external ? item.href : `/admin${item.href}`}
+                      href={href}
                       className="admin-nav-link"
-                      target={(item as { external?: boolean }).external ? '_blank' : undefined}
-                      rel={(item as { external?: boolean }).external ? 'noopener noreferrer' : undefined}
+                      target={nav.external ? '_blank' : undefined}
+                      rel={nav.external ? 'noopener noreferrer' : undefined}
                     >
                       <span className="admin-nav-link__icon" aria-hidden="true">{item.icon}</span>
                       {item.label}
                     </a>
                   </li>
-                ))}
+                  );
+                })}
               </ul>
             </div>
           ))}

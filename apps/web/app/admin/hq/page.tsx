@@ -199,6 +199,11 @@ function forecastRevenue(scenario: typeof SCENARIOS[0], months: number = 12) {
 export default function HQDashboard() {
   const [openIssues, setOpenIssues] = useState(0);
   const [closedIssues, setClosedIssues] = useState(0);
+  const [npsSummary, setNpsSummary] = useState<{
+    count: number;
+    nps: number | null;
+    avgScore?: number;
+  } | null>(null);
   const [scenarioIndex, setScenarioIndex] = useState(1); // Base scenario
   const [customNew, setCustomNew] = useState(10);
   const [customArpu, setCustomArpu] = useState(85);
@@ -214,6 +219,10 @@ export default function HQDashboard() {
         setOpenIssues(items.filter((t: { status: string }) => t.status !== 'completed').length);
         setClosedIssues(items.filter((t: { status: string }) => t.status === 'completed').length);
       })
+      .catch(() => {});
+    fetch('/api/admin/nps-summary')
+      .then((r) => r.json())
+      .then(setNpsSummary)
       .catch(() => {});
   }, []);
 
@@ -240,6 +249,21 @@ export default function HQDashboard() {
         <div className="admin-card" style={{ textAlign: 'center', marginBottom: 'var(--space-6)', background: 'var(--accent-muted)', borderColor: 'var(--accent)' }}>
           <div style={{ fontSize: '3rem', fontWeight: 800, color: 'var(--accent)', lineHeight: 1 }}>{daysUntil(nextMilestone.date)}</div>
           <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text)', marginTop: 'var(--space-1)' }}>days to {nextMilestone.label}</div>
+        </div>
+      )}
+
+      {npsSummary && npsSummary.count > 0 && (
+        <div className="admin-card" style={{ marginBottom: 'var(--space-6)' }}>
+          <h2 style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--text-disabled)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-widest)', marginBottom: 'var(--space-3)' }}>
+            Deep South Directory — NPS
+          </h2>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-4)', alignItems: 'baseline' }}>
+            <span style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--accent)' }}>{npsSummary.nps ?? '—'}</span>
+            <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)' }}>
+              NPS from {npsSummary.count} response{npsSummary.count === 1 ? '' : 's'}
+              {typeof npsSummary.avgScore === 'number' ? ` · avg score ${npsSummary.avgScore}` : ''}
+            </span>
+          </div>
         </div>
       )}
 
@@ -272,9 +296,9 @@ export default function HQDashboard() {
           const maxMrr = Math.max(...forecast.map(f => f.mrr));
 
           return (
-            <div className="admin-card" style={{ marginBottom: 'var(--space-6)' }}>
+            <div className="admin-card admin-hq-forecast" style={{ marginBottom: 'var(--space-6)' }}>
               {/* Scenario selector */}
-              <div style={{ display: 'flex', gap: 'var(--space-2)', marginBottom: 'var(--space-4)', flexWrap: 'wrap' }}>
+              <div className="admin-hq-scenario-row" style={{ display: 'flex', gap: 'var(--space-2)', marginBottom: 'var(--space-4)', flexWrap: 'nowrap', overflowX: 'auto', paddingBottom: 'var(--space-1)', WebkitOverflowScrolling: 'touch' }}>
                 {SCENARIOS.map((s, i) => (
                   <button key={s.name} onClick={() => { setScenarioIndex(i); setUseCustom(false); }} style={{
                     padding: '6px 16px', fontSize: 'var(--text-xs)', fontWeight: 600, borderRadius: 'var(--radius-full)', cursor: 'pointer',
@@ -293,7 +317,7 @@ export default function HQDashboard() {
 
               {/* Custom sliders */}
               {useCustom && (
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-4)', marginBottom: 'var(--space-4)' }}>
+                <div className="admin-hq-custom-sliders" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-4)', marginBottom: 'var(--space-4)' }}>
                   <div>
                     <label style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', display: 'block', marginBottom: 'var(--space-1)' }}>New clients/mo: {customNew}</label>
                     <input type="range" min="1" max="50" value={customNew} onChange={e => setCustomNew(parseInt(e.target.value))} style={{ width: '100%', accentColor: '#c8943e' }} />
@@ -330,16 +354,18 @@ export default function HQDashboard() {
               </div>
 
               {/* Bar chart */}
-              <div style={{ display: 'flex', alignItems: 'flex-end', gap: 2, height: 120, marginBottom: 'var(--space-3)' }}>
+              <div className="admin-hq-chart-scroll" style={{ overflowX: 'auto', marginBottom: 'var(--space-3)', WebkitOverflowScrolling: 'touch' }}>
+                <div className="admin-hq-chart-bars" style={{ display: 'flex', alignItems: 'flex-end', gap: 4, height: 120, minWidth: 'min(100%, 520px)' }}>
                 {forecast.map(f => (
-                  <div key={f.month} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+                  <div key={f.month} style={{ flex: '1 0 28px', maxWidth: 48, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
                     <div style={{
                       width: '100%', background: 'var(--accent)', borderRadius: '2px 2px 0 0',
                       height: `${(f.mrr / maxMrr) * 100}%`, minHeight: 2,
                     }} />
-                    <span style={{ fontSize: '9px', color: 'var(--text-disabled)' }}>{f.label}</span>
+                    <span style={{ fontSize: '10px', color: 'var(--text-disabled)', whiteSpace: 'nowrap' }}>{f.label}</span>
                   </div>
                 ))}
+                </div>
               </div>
 
               {/* Monthly breakdown table */}
@@ -535,6 +561,14 @@ export default function HQDashboard() {
         @media (max-width: 480px) {
           .admin-hq-page .hq-two-region { grid-template-columns: 1fr !important; }
           .admin-hq-page .admin-page-header { flex-wrap: wrap; gap: var(--space-3); }
+        }
+        @media (max-width: 420px) {
+          .admin-hq-page .admin-hq-custom-sliders {
+            grid-template-columns: 1fr !important;
+          }
+          .admin-hq-page .admin-hq-scenario-row button {
+            flex-shrink: 0;
+          }
         }
       `}</style>
     </div>
