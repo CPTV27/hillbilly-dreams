@@ -33,6 +33,11 @@ interface Job {
   _count: { artifacts: number };
 }
 
+interface PipelineStageRow {
+  stage: string;
+  count: number;
+}
+
 function formatDate(date: string): string {
   return new Date(date).toLocaleDateString('en-US', {
     month: 'short',
@@ -82,17 +87,25 @@ export default function ProductionsPage() {
   const [error, setError] = useState<string | null>(null);
   const [stageFilter, setStageFilter] = useState('all');
   const [campaignFilter, setCampaignFilter] = useState<number | null>(null);
+  const [pipelineStages, setPipelineStages] = useState<PipelineStageRow[] | null>(null);
 
   const fetchData = useCallback(async () => {
     try {
-      const [jobsRes, campaignsRes] = await Promise.all([
+      const [jobsRes, campaignsRes, pipeRes] = await Promise.all([
         fetch('/api/productions'),
         fetch('/api/productions/campaigns'),
+        fetch('/api/content/pipeline'),
       ]);
       const jobsData = await jobsRes.json();
       const campaignsData = await campaignsRes.json();
       setJobs(jobsData.jobs ?? []);
       setCampaigns(campaignsData.campaigns ?? []);
+      if (pipeRes.ok) {
+        const pipe = await pipeRes.json();
+        setPipelineStages(pipe.stages ?? null);
+      } else {
+        setPipelineStages(null);
+      }
       setError(null);
     } catch (err) {
       console.error('Failed to fetch productions:', err);
@@ -136,6 +149,18 @@ export default function ProductionsPage() {
       </div>
 
       {error && <div className="admin-error-banner">{error}</div>}
+
+      {pipelineStages && pipelineStages.length > 0 && (
+        <div className="admin-card" style={{ marginBottom: 'var(--space-4)', display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)', alignItems: 'center' }}>
+          <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--text-disabled)', textTransform: 'uppercase' }}>Pipeline</span>
+          {pipelineStages.map((s) => (
+            <span key={s.stage} className="admin-badge admin-badge--draft">
+              {STAGE_LABELS[s.stage] || s.stage}: {s.count}
+            </span>
+          ))}
+          <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>Live from /api/content/pipeline</span>
+        </div>
+      )}
 
       {/* Filters */}
       <div style={{ display: 'flex', gap: 'var(--space-4)', marginBottom: 'var(--space-5)', flexWrap: 'wrap', alignItems: 'center' }}>
