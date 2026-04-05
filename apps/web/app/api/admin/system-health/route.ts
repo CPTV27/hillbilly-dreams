@@ -34,6 +34,8 @@ export async function GET() {
     ragMessage = e instanceof Error ? e.message : String(e);
   }
 
+  const asanaPat = Boolean(process.env.ASANA_PAT || process.env.ASANA_ACCESS_TOKEN);
+
   return NextResponse.json({
     ok: true,
     database: databaseOk,
@@ -41,11 +43,16 @@ export async function GET() {
       commit: process.env.VERCEL_GIT_COMMIT_SHA ?? null,
       createdAt: process.env.VERCEL_DEPLOYMENT_CREATED_AT ?? null,
     },
+    build: {
+      nodeEnv: process.env.NODE_ENV ?? null,
+      vercelEnv: process.env.VERCEL_ENV ?? null,
+    },
     rag: { ok: ragOk, baseUrl: ragBase, message: ragMessage },
     env: {
       googleApplicationCredentialsJson: Boolean(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON),
       stripeSecretKey: Boolean(process.env.STRIPE_SECRET_KEY),
       metaAppId: Boolean(process.env.META_APP_ID),
+      asanaPat,
       cloudbedsApiKey: Boolean(process.env.CLOUDBEDS_API_KEY),
       cronSecret: Boolean(process.env.CRON_SECRET),
     },
