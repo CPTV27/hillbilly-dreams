@@ -20,7 +20,7 @@ const NAV_SECTIONS = [
   {
     label: 'Main',
     items: [
-      { label: 'Dashboard', href: '/dashboard', icon: '◈' },
+      { label: 'Dashboard', href: '/dashboard', icon: '▣' },
       { label: 'Launch', href: '/launch', icon: '◉' },
       { label: 'Calendar', href: '/calendar', icon: '◷' },
       { label: 'Upload', href: '/upload', icon: '↑' },
@@ -62,7 +62,7 @@ const NAV_SECTIONS = [
   {
     label: 'Operations',
     items: [
-      { label: 'HQ', href: '/hq', icon: '◇' },
+      { label: 'HQ', href: '/hq', icon: '◈' },
       { label: 'Report Card', href: '/report-card', icon: '★' },
       { label: 'Revenue', href: '/revenue', icon: '$' },
       { label: 'Churn alerts', href: '/churn-alerts', icon: '⚠' },
@@ -74,9 +74,14 @@ const NAV_SECTIONS = [
   {
     label: 'Store',
     items: [
-      { label: 'Sovereign Pi', href: '/store/sovereign-pi', icon: '◆', sitePath: true },
-      { label: 'Spatial', href: '/store/spatial', icon: '◇', sitePath: true },
-      { label: 'Display Module', href: '/store/sovereign-pi/display-module', icon: '▣', sitePath: true },
+      { label: 'Sovereign Pi', href: 'https://bigmuddytouring.com/store/sovereign-pi', icon: '◻', external: true },
+      { label: 'Spatial', href: 'https://bigmuddytouring.com/store/spatial', icon: '◻', external: true },
+      {
+        label: 'Display Module',
+        href: 'https://bigmuddytouring.com/store/sovereign-pi/display-module',
+        icon: '▣',
+        external: true,
+      },
     ],
   },
   {
