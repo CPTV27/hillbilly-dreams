@@ -1,4 +1,4 @@
-import type { z } from 'zod';
+import { z } from 'zod';
 import type { ToolBudget } from '@/lib/ai/openRouter';
 import { ModelTier } from '@/lib/ai/modelTier';
 import { executeRegisteredToolId, type ToolRunContext } from './agentDispatch';
@@ -28,13 +28,14 @@ import {
   MediaTranscribeInputSchema,
 } from './handlers/mediaTranscribe';
 import { OrchestrateInputSchema } from './schemas/orchestrate';
+
 // ChromaDB lore tool loaded dynamically to avoid bundling onnxruntime-node binaries.
 // Schema is inline; execute() lazy-imports the module.
-import { z } from 'zod';
-const queryLoreSchema = z.object({
-  query: z.string().describe('The user question or subject to search for.'),
-  namespace: z.enum(['lore_manuals', 'lore_journals', 'lore_sops']).describe('Which collection to search.'),
-  maxResults: z.number().optional().describe('Max chunks to return (default 3).'),
+import { z as zod } from 'zod';
+const queryLoreSchema = zod.object({
+  query: zod.string().describe('The user question or subject to search for.'),
+  namespace: zod.enum(['lore_manuals', 'lore_journals', 'lore_sops']).describe('Which collection to search.'),
+  maxResults: zod.number().optional().describe('Max chunks to return (default 3).'),
 });
 
 /** Who may invoke this tool at the HTTP edge or via orchestration. */
