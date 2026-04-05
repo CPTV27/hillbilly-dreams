@@ -65,7 +65,7 @@ export default function DeepSouthPitch() {
             <div style={{ backgroundColor: colors.slate900, padding: 32, borderRadius: 24, borderLeft: `4px solid ${colors.sky500}`, borderTop: `1px solid ${colors.slate800}`, borderRight: `1px solid ${colors.slate800}`, borderBottom: `1px solid ${colors.slate800}` }}>
               <h3 style={{ color: colors.white, fontSize: '1.25rem', fontWeight: 800, margin: '0 0 16px' }}>The Parallel Economy</h3>
               <p style={{ margin: 0, lineHeight: 1.6, color: colors.slate400 }}>
-                The Deep South Directory isn&apos;t a list of businesses; it&apos;s a closed-loop economy. Every venue, artist, and storefront is a <strong style={{ color: colors.white }}>Node</strong>. When they connect on our sovereign infrastructure, the capital stays trapped in the corridor, driving a massive <strong style={{ color: colors.white }}>Local Multiplier</strong>.
+                The Deep South Directory isn&apos;t a list of businesses; it&apos;s a closed-loop economy. Every venue, artist, and storefront is a <strong style={{ color: colors.white }}>Node</strong>. When they connect on our sovereign infrastructure, the capital stays trapped in the region, driving a massive <strong style={{ color: colors.white }}>Local Multiplier</strong>.
               </p>
             </div>
           </div>

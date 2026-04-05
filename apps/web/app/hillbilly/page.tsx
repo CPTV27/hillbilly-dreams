@@ -32,12 +32,12 @@ const BRANDS = [
     url: 'https://bigmuddytouring.com',
     what: 'The route, the inn, the shows. Thirteen cities between New Orleans and Memphis.',
     image: '/images/processed/big-muddy/sprinter-van-concept.webp',
-    imageAlt: 'Tour corridor — Sprinter on the road',
+    imageAlt: 'Tour region — Sprinter on the road',
   },
   {
     name: 'Big Muddy Magazine',
     url: 'https://bigmuddymagazine.com',
-    what: 'City guides, interviews, photo essays from the corridor.',
+    what: 'City guides, interviews, photo essays from the region.',
     image: '/images/processed/big-muddy/natchez-brick-street-live-oaks.webp',
     imageAlt: 'Natchez brick street and live oaks',
   },
@@ -58,7 +58,7 @@ const BRANDS = [
   {
     name: 'Big Muddy Entertainment',
     url: 'https://bigmuddyentertainment.com',
-    what: 'Booking, production, talent search along the corridor.',
+    what: 'Booking, production, talent search across the Deep South.',
     image: '/images/processed/arrie-aslin-inn-portrait.webp',
     imageAlt: 'Performance in the Inn parlor',
   },
@@ -80,7 +80,7 @@ const BRANDS = [
   {
     name: 'Venture Gallery',
     url: 'https://venturegallery.art',
-    what: 'Art from corridor artists. Photography, prints, limited editions.',
+    what: 'Art from regional artists. Photography, prints, limited editions.',
     image: '/images/gallery/prints/glass-house-blue-hour.webp',
     imageAlt: 'Fine art photograph — Glass House, Blue Hour',
   },
@@ -184,7 +184,7 @@ export default function HillbillyDreamsPage() {
           </h2>
           <div style={{ lineHeight: 1.85, fontSize: '1.02rem', color: c.inkMuted }}>
             <p style={{ margin: 0 }}>
-              The Mississippi corridor between Memphis and New Orleans produced more American music per
+              The Deep South between Memphis and New Orleans produced more American music per
               mile than anywhere on earth. The same towns that gave us blues, jazz, gospel, and rock and
               roll are still there. The talent is still there. The culture is still there.
             </p>
@@ -357,7 +357,7 @@ export default function HillbillyDreamsPage() {
           </p>
           <p style={{ margin: '1.25rem 0 0' }}>
             He realized the same system that runs a Viacom can run a small-town media economy. Big Muddy
-            is that architecture, applied to Main Street, anchored in the Mississippi corridor.
+            is that architecture, applied to Main Street, anchored in the Deep South.
           </p>
           <p
             style={{
@@ -403,7 +403,7 @@ export default function HillbillyDreamsPage() {
             }}
           >
             We&apos;re always looking for musicians, businesses, and people who want to build something real
-            in the corridor.
+            in the region.
           </p>
           <a
             href="mailto:info@hillbillydreamsinc.com"
