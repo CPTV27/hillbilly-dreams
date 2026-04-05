@@ -15,6 +15,7 @@ interface StudioCJob {
   assignedTo: string | null;
   jobId: number | null;
   notes: string | null;
+  callSheet?: unknown;
   createdAt: string;
 }
 
@@ -145,6 +146,13 @@ export default function StudioCJobsPage() {
                 <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>
                   {job.budget || 'No budget'} {job.location ? `\u00b7 ${job.location}` : ''}
                 </span>
+                <a
+                  href={`/admin/studio-c/sessions/${job.id}/call-sheet`}
+                  className="admin-btn admin-btn--ghost"
+                  style={{ fontSize: 'var(--text-xs)', padding: '4px 10px', textDecoration: 'none' }}
+                >
+                  Call sheet
+                </a>
                 {job.jobId != null && (
                   <a
                     href={`/admin/productions/${job.jobId}`}

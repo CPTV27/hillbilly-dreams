@@ -1,11 +1,11 @@
 export const dynamic = 'force-dynamic';
 
-// PATCH /api/studio-c/jobs/:id — Update a Studio C request (status, assignment, notes)
+// GET /api/studio-c/jobs/:id — Full Studio C request (admin)
+// PATCH /api/studio-c/jobs/:id — Update; `callSheet` merges shallow into existing JSON
 // When status moves to `accepted` and no jobId yet, creates a ProductionJob under the Studio C intake campaign.
 
 import { NextRequest, NextResponse } from 'next/server';
-import type { Prisma } from '@bigmuddy/database';
-import { prisma } from '@bigmuddy/database';
+import { Prisma, prisma } from '@bigmuddy/database';
 import { requireAdmin } from '@/lib/admin-auth';
 import { apiLog } from '@/lib/api-logger';
 
@@ -26,15 +26,56 @@ function serialize(req: {
   assignedTo: string | null;
   jobId: number | null;
   notes: string | null;
+  callSheet: Prisma.JsonValue | null;
   createdAt: Date;
   updatedAt: Date;
 }) {
   return {
-    ...req,
+    id: req.id,
+    clientBrand: req.clientBrand,
+    clientId: req.clientId,
+    requestType: req.requestType,
+    brief: req.brief,
+    location: req.location,
+    budget: req.budget,
+    status: req.status,
+    assignedTo: req.assignedTo,
+    jobId: req.jobId,
+    notes: req.notes,
+    callSheet: req.callSheet,
     preferredDate: req.preferredDate?.toISOString() ?? null,
     createdAt: req.createdAt.toISOString(),
     updatedAt: req.updatedAt.toISOString(),
   };
+}
+
+function mergeCallSheet(
+  existing: Prisma.JsonValue | null | undefined,
+  patch: Record<string, unknown>,
+): Prisma.InputJsonValue {
+  const prev =
+    existing && typeof existing === 'object' && !Array.isArray(existing)
+      ? (existing as Record<string, unknown>)
+      : {};
+  return { ...prev, ...patch } as Prisma.InputJsonValue;
+}
+
+export async function GET(_request: NextRequest, ctx: Params) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
+  const { id } = await ctx.params;
+
+  try {
+    const row = await prisma.studioCRequest.findUnique({ where: { id } });
+    if (!row) {
+      return NextResponse.json({ error: 'Not found' }, { status: 404 });
+    }
+    return NextResponse.json({ data: serialize(row) });
+  } catch (err) {
+    apiLog.error('GET /api/studio-c/jobs/:id', 'fetch_failed', err);
+    return NextResponse.json({ error: 'Failed to load' }, { status: 500 });
+  }
 }
 
 export async function PATCH(request: NextRequest, ctx: Params) {
@@ -66,6 +107,16 @@ export async function PATCH(request: NextRequest, ctx: Params) {
       data.preferredDate = body.preferredDate ? new Date(body.preferredDate) : null;
     }
     if (body.jobId !== undefined) data.jobId = body.jobId;
+
+    if (body.callSheet === null) {
+      data.callSheet = Prisma.JsonNull;
+    } else if (
+      body.callSheet !== undefined &&
+      typeof body.callSheet === 'object' &&
+      !Array.isArray(body.callSheet)
+    ) {
+      data.callSheet = mergeCallSheet(existing.callSheet, body.callSheet as Record<string, unknown>);
+    }
 
     if (Object.keys(data).length === 0) {
       return NextResponse.json({ error: 'No valid fields to update' }, { status: 400 });

@@ -2223,6 +2223,8 @@ model StudioCRequest {
   assignedTo    String?   // Crew member name
   jobId         Int?      // FK to ProductionJob when accepted and converted
   notes         String?   @db.Text
+  /// Call sheet / session ops: engineer, musicians, equipment, catering, times (JSON)
+  callSheet     Json?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
