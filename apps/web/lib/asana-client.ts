@@ -5,8 +5,8 @@
 const ASANA_BASE = 'https://app.asana.com/api/1.0';
 
 function getToken(): string {
-  const token = process.env.ASANA_PAT;
-  if (!token) throw new Error('ASANA_PAT not set');
+  const token = process.env.ASANA_PAT || process.env.ASANA_ACCESS_TOKEN;
+  if (!token) throw new Error('ASANA_PAT or ASANA_ACCESS_TOKEN not set');
   return token;
 }
 
@@ -83,5 +83,13 @@ export async function completeTask(taskId: string): Promise<void> {
   await asanaFetch(`/tasks/${taskId}`, {
     method: 'PUT',
     body: JSON.stringify({ data: { completed: true } }),
+  });
+}
+
+/** Re-open a completed task (e.g. GitHub issue reopened) */
+export async function uncompleteTask(taskId: string): Promise<void> {
+  await asanaFetch(`/tasks/${taskId}`, {
+    method: 'PUT',
+    body: JSON.stringify({ data: { completed: false } }),
   });
 }
