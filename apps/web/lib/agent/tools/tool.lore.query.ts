@@ -4,7 +4,7 @@ import type { ToolRunContext } from '../agentDispatch';
 
 /** Lazy-load ChromaDB to avoid bundling onnxruntime-node binaries at build time. */
 async function getChromaClient() {
-  const { ChromaClient, DefaultEmbeddingFunction } = await import('chromadb');
+  const { ChromaClient, DefaultEmbeddingFunction } = await import(/* webpackIgnore: true */ 'chromadb');
   return { client: new ChromaClient(), embedder: new DefaultEmbeddingFunction() };
 }
 
@@ -30,7 +30,7 @@ export type QueryLoreParams = z.infer<typeof queryLoreSchema>;
  */
 export async function queryLore(params: QueryLoreParams, _context?: ToolRunContext) {
   const CHROMA_URL = process.env.CHROMA_URL || 'http://localhost:8000';
-  const { ChromaClient: CC, DefaultEmbeddingFunction: DEF } = await import('chromadb');
+  const { ChromaClient: CC, DefaultEmbeddingFunction: DEF } = await import(/* webpackIgnore: true */ 'chromadb');
   const client = new CC({ path: CHROMA_URL });
   const embedder = new DEF();
 
