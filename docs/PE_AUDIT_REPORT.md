@@ -5,7 +5,7 @@
 
 ## Executive Summary
 
-HDI is a pre-revenue media-hospitality platform with $618K in projected Year 1 revenue across 11 brands, running on $145-167/mo of infrastructure. The platform has 122 database models, 200 API routes, 14 domains, and serves 4 tenants from a single Vercel deployment.
+HDI is a pre-revenue media-hospitality platform with **~$589K** in projected Year 1 revenue across 11 brands (Inn line corrected to $150,562), running on $145-167/mo of infrastructure. The platform has 122 database models, 200 API routes, 14 domains, and serves 4 tenants from a single Vercel deployment.
 
 **Estimated valuation (revenue multiple method): $2.4M at 3.9x blended multiple.**
 
@@ -63,14 +63,14 @@ Most critical: SocialAccount.clientId, ContentCalendar.clientId, Report.clientId
 | Magazine | $36,000 | Ad revenue + sponsored | Unverifiable — no ad pipeline built |
 | Radio | $24,000 | Sponsorships + streaming | Unverifiable — no sponsor contracts |
 | Records | $18,000 | Distribution + sync | Unverifiable — no distribution deal |
-| Inn | $180,000 | 6 rooms × $275 × 25% × 365 | ⚠ Actual: $150,562 |
+| Inn | $150,562 | 6 rooms × $275 ADR × 25% occ × 365 | ✓ Correct |
 | Studio C | $96,000 | 8 shoots/mo × $1K | Reasonable if bookings materialize |
 | Tuthill | $60,000 | $500/mo × 10 clients | Reasonable — no clients yet |
-| **Total** | **$618,000** | | **Corrected: ~$595,000** |
+| **Total** | **~$588,562** | | Inn line corrected in dashboard |
 
 ### Revenue Model Risks
 1. **$0 current revenue.** Everything is projected. No paying customers exist.
-2. **Inn math is overstated by $29K.** Fix the formula or the ADR/occupancy assumptions.
+2. **Inn math** was overstated in early drafts; HQ dashboard now uses **$150,562** (6 × $275 × 0.25 × 365).
 3. **Magazine, Radio, Records have unverifiable assumptions.** No ad contracts, no sponsorship deals, no distribution agreements exist.
 4. **DSD is the only revenue line with a concrete go-to-market.** Walk-in sales, flyer, pricing page, onboarding flow — all built.
 5. **Coordination multiplier (2:1 show-to-revenue) is unproven.** Reasonable hypothesis but no data.
@@ -141,18 +141,18 @@ A PE buyer would discount the $2.4M valuation by 50-70% given zero revenue, arri
 ## 6. ENTITY AND LEGAL STRUCTURE
 
 ### Current State
-- **Operating entity:** FarleyPierson LLC (EIN 81-4280721)
-- **HDI not formally incorporated.** "Hillbilly Dreams Inc" is a brand name, not a legal entity.
-- **Cap table:** Handshake agreement — Chase, Tracy, Amy as "equity partners" with no formal documentation.
+- **Operating entity (legacy ops):** FarleyPierson LLC (EIN 81-4280721) — historical operating context; not the long-term holdco label in external materials.
+- **HDI Inc (Mississippi):** Articles / corporation filing **in progress** for **Hillbilly Dreams Incorporated** as the formal operating company.
+- **Equity structure (target):** Three economic partners — **Chase Pierson**, **Tracy Alderson-Allen**, **Amy Allen** — plus ownership held in **trust** as documented in counsel drafts (exact percentages subject to final filing).
+- **Operating agreement:** Draft exists in **Google Docs** under counsel review; execution pending completion of incorporation.
 - **JP's deal:** Not finalized. No written agreement.
 
-### PE Concerns
-1. **No formal entity.** A PE buyer needs a clean legal entity to acquire. HDI must be incorporated.
-2. **No equity agreements.** The "equal thirds" arrangement has no legal standing.
-3. **No operating agreement.** No LLC operating agreement for FarleyPierson.
-4. **IP assignment:** Is all code assigned to the entity? Developer agreements needed.
+### PE Concerns (updated)
+1. **Filing completion.** Until MS SOS acceptance is on file, buyers will treat legal identity as in flux — track filing status weekly.
+2. **Executed equity docs.** Draft OA is progress; executed signatures + cap table ledger remain the gating artifact.
+3. **IP assignment:** Confirm all repo/IP assignments to HDI Inc post-formation; developer agreements for any non-employee contributors.
 
-**Fix:** Incorporate HDI, draft equity agreements, execute IP assignment. This is a lawyer task ($2,000-5,000). Must be done before any investor/acquirer conversation.
+**Fix:** Close the MS incorporation, execute the operating agreement, finalize IP assignment. Remainder is counsel-led ($2,000–5,000 incremental typical). Do not open formal diligence until executed OA + cap table summary exist.
 
 ---
 
@@ -175,7 +175,7 @@ A PE buyer would discount the $2.4M valuation by 50-70% given zero revenue, arri
 **Assessment:** Extremely capital-efficient. $167/mo running a platform that could support 1,000+ businesses. Infrastructure cost per customer approaches $0 at scale. This is a strong PE talking point.
 
 ### Force-Dynamic Compliance
-197/200 API routes have `export const dynamic = 'force-dynamic'`. 3 routes missing (media cleanup endpoints). Low risk.
+200/200 API routes now declare `export const dynamic = 'force-dynamic'` (media plugin cleanup endpoints aligned with the rest of the surface).
 
 ---
 
@@ -199,10 +199,10 @@ A PE buyer would discount the $2.4M valuation by 50-70% given zero revenue, arri
 | Category | Score | Notes |
 |----------|-------|-------|
 | Product | 7/10 | Feature-rich, multi-brand, multi-region. No paying customers. |
-| Database | 6/10 | Good schema design, missing indexes on 10 models + 19 FKs |
+| Database | 7/10 | Schema indexed for hot paths (PE audit index pass applied) |
 | Security | 3/10 | 48% of API unprotected. Critical fix needed. |
 | Revenue | 2/10 | $0 current. Projections reasonable but unproven. |
-| Legal | 2/10 | No formal entity, no equity docs, no IP assignment |
+| Legal | 6/10 | MS corp filing in progress; OA in Google Docs; three partners + trust structure documented in draft — execution and IP assignment still open |
 | Infrastructure | 9/10 | $167/mo for the full stack. Exceptional efficiency. |
 | Team | 7/10 | Small but functional. Operator model scales. |
 | **Overall** | **5/10** | Not PE-ready today. Fixable in 30-60 days. |
