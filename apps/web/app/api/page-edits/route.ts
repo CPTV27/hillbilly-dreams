@@ -53,6 +53,11 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({ saved: results.length, path });
 }
 
+/** Alias for clients that send PATCH instead of POST (same body). */
+export async function PATCH(req: NextRequest) {
+  return POST(req);
+}
+
 // DELETE /api/page-edits?path=/touring&editId=edit-5
 // Revert a single edit (soft delete)
 export async function DELETE(req: NextRequest) {
