@@ -10,6 +10,14 @@
 
 ---
 
+## 2026-04-05 — QC smoke test (#87)
+
+- **Doc:** [`docs/QC_SMOKE_TEST_RESULTS.md`](../docs/QC_SMOKE_TEST_RESULTS.md) — 14-domain HTTPS sweep, corridor substring scan, brand flags, OE `/case-studies` 404 on prod, `studiocvideo.com` DNS inconclusive from runner.
+- **Branch:** `qc/issue-87-smoke-results` (pushed). Claimed #87 with “Starting this”.
+- **Issue:** [#87](https://github.com/CPTV27/hillbilly-dreams/issues/87).
+
+---
+
 ## 2026-04-03 — Natchez Protocol “Master Key” wiring (schema + hub pulse + routes)
 
 - **Prisma:** Restored `User.creditLedgers`; added `Contest`, `Submission`, `DisplayChannel`. Run `pnpm db:generate` (done) and `pnpm db:push` (or migrate) with `DATABASE_URL=postgresql://chasethis@localhost:5432/hillbilly_sovereign` before using new tables.
