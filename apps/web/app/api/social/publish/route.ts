@@ -1,20 +1,31 @@
 export const dynamic = 'force-dynamic';
+export const maxDuration = 60;
 
-// POST /api/social/publish
-// Publish a single SocialPost by ID. Requires admin auth.
+/**
+ * POST /api/social/publish
+ * Publish a single SocialPost by ID (status must be ready).
+ * Auth: admin session or Bearer CRON_SECRET.
+ */
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
-import { requireAdmin } from '@/lib/admin-auth';
-import { publishPost } from '@/lib/social-publisher';
+import { requireCronOrAdmin } from '@/lib/cron-or-admin';
+import { loadAndPublishPostById } from '@/lib/social-publish-run';
+import { apiLog } from '@/lib/api-logger';
 
 export async function POST(request: NextRequest) {
-  const denied = await requireAdmin();
+  const denied = await requireCronOrAdmin(request);
   if (denied) return denied;
 
-  const { postId } = await request.json();
+  let body: { postId?: unknown };
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+  }
 
-  if (!postId || typeof postId !== 'number') {
+  const postId = body.postId;
+  if (postId == null || typeof postId !== 'number' || !Number.isFinite(postId)) {
     return NextResponse.json({ error: 'postId (number) is required' }, { status: 400 });
   }
 
@@ -29,47 +40,35 @@ export async function POST(request: NextRequest) {
     }
 
     if (post.status === 'published') {
-      return NextResponse.json({ error: 'Post already published', postUrl: post.postUrl }, { status: 409 });
+      return NextResponse.json(
+        { error: 'Post already published', postUrl: post.postUrl },
+        { status: 409 }
+      );
     }
 
-    const account = post.account as {
-      id: number;
-      platform: string;
-      handle: string;
-      platformId: string | null;
-      accessToken: string | null;
-      refreshToken: string | null;
-      tokenExpiry: Date | null;
-    };
-
-    if (!account.accessToken) {
+    if (!post.account.accessToken) {
       return NextResponse.json(
-        { error: `No access token on account ${account.handle} (${account.platform}). Connect the account first.` },
+        {
+          error: `No access token on account ${post.account.handle} (${post.account.platform}). Connect the account first.`,
+        },
         { status: 422 }
       );
     }
 
-    const result = await publishPost(account, post.content, post.mediaUrls);
+    const result = await loadAndPublishPostById(postId);
 
-    if (result.success) {
-      await prisma.socialPost.update({
-        where: { id: postId },
-        data: {
-          status: 'published',
-          publishedAt: new Date(),
-          postUrl: result.postUrl || null,
-        },
-      });
-    } else {
-      await prisma.socialPost.update({
-        where: { id: postId },
-        data: { status: 'failed' },
-      });
+    if (!result.ok) {
+      return NextResponse.json({ success: false, error: result.error, code: result.code }, { status: 502 });
     }
 
-    return NextResponse.json(result);
+    const updated = await prisma.socialPost.findUnique({
+      where: { id: postId },
+      include: { account: { select: { id: true, platform: true, handle: true } } },
+    });
+
+    return NextResponse.json({ success: true, postUrl: result.postUrl, data: updated });
   } catch (error) {
-    console.error('[POST /api/social/publish]', error);
+    apiLog.error('POST /api/social/publish', 'failed', error);
     return NextResponse.json({ error: 'Publish failed' }, { status: 500 });
   }
 }

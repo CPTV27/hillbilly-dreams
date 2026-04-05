@@ -1,31 +1,30 @@
 export const dynamic = 'force-dynamic';
-export const maxDuration = 60;
+export const maxDuration = 300;
 
-// GET /api/cron/social-publish
-// Publishes all SocialPosts with status=ready and scheduledAt <= now.
-// Auth: CRON_SECRET bearer token.
+/**
+ * GET /api/cron/social-publish
+ * Publishes SocialPost rows with status=ready, scheduledAt set, and scheduledAt <= now.
+ * Auth: Bearer CRON_SECRET (production).
+ */
 
 import { NextResponse } from 'next/server';
-import { publishScheduledPosts } from '@/lib/social-publisher';
+import { runDueSocialPublishBatch } from '@/lib/social-publish-run';
+import { apiLog } from '@/lib/api-logger';
 
 export async function GET(request: Request) {
   const authHeader = request.headers.get('authorization');
   if (
     process.env.NODE_ENV !== 'development' &&
-    authHeader !== `Bearer ${process.env.CRON_SECRET}`
+    (!process.env.CRON_SECRET || authHeader !== `Bearer ${process.env.CRON_SECRET}`)
   ) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   try {
-    const result = await publishScheduledPosts();
-
-    return NextResponse.json({
-      success: true,
-      ...result,
-    });
+    const result = await runDueSocialPublishBatch(25);
+    return NextResponse.json({ success: true, ...result });
   } catch (error) {
-    console.error('[cron/social-publish]', error);
+    apiLog.error('GET /api/cron/social-publish', 'failed', error);
     return NextResponse.json({ error: 'Social publish cron failed' }, { status: 500 });
   }
 }

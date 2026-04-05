@@ -6,8 +6,6 @@
  * Token refresh is handled transparently before each publish attempt.
  */
 
-import { prisma } from '@/lib/db';
-
 // ── Types ────────────────────────────────────────────────────
 
 interface PublishResult {
@@ -51,6 +49,7 @@ async function publishToFacebook(
     if (mediaUrls.length > 0) {
       endpoint = `${META_GRAPH_URL}/${account.platformId}/photos`;
       params.url = mediaUrls[0];
+      params.caption = content;
     }
 
     const res = await fetch(endpoint, {
@@ -62,10 +61,16 @@ async function publishToFacebook(
     const data = await res.json();
 
     if (data.id) {
+      const rawId = String(data.id);
+      let postUrl = `https://www.facebook.com/${account.platformId}`;
+      if (rawId.includes('_')) {
+        const [pid, story] = rawId.split('_', 2);
+        postUrl = `https://www.facebook.com/${pid}/posts/${story}`;
+      }
       return {
         success: true,
-        platformPostId: data.id,
-        postUrl: `https://facebook.com/${data.id}`,
+        platformPostId: rawId,
+        postUrl,
       };
     }
 
@@ -190,79 +195,16 @@ export async function publishPost(
   content: string,
   mediaUrls: string[]
 ): Promise<PublishResult> {
-  switch (account.platform) {
+  const p = account.platform.toLowerCase();
+  switch (p) {
     case 'facebook':
       return publishToFacebook(account, content, mediaUrls);
     case 'instagram':
       return publishToInstagram(account, content, mediaUrls);
     case 'google_business':
+    case 'google':
       return publishToGoogleBusiness(account, content, mediaUrls);
     default:
       return { success: false, error: `Unsupported platform: ${account.platform}` };
   }
-}
-
-// ── Batch Publisher (called by cron) ─────────────────────────
-
-export async function publishScheduledPosts(): Promise<{
-  processed: number;
-  published: number;
-  failed: number;
-  results: Array<{ postId: number; status: string; error?: string }>;
-}> {
-  const now = new Date();
-
-  // Find all posts that are ready and scheduled for now or earlier
-  const readyPosts = await prisma.socialPost.findMany({
-    where: {
-      status: 'ready',
-      scheduledAt: { lte: now },
-    },
-    include: {
-      account: true,
-    },
-    take: 50, // Process max 50 per cron run
-  });
-
-  const results: Array<{ postId: number; status: string; error?: string }> = [];
-
-  for (const post of readyPosts) {
-    const account = post.account as SocialAccountWithTokens;
-
-    if (!account.accessToken) {
-      await prisma.socialPost.update({
-        where: { id: post.id },
-        data: { status: 'failed' },
-      });
-      results.push({ postId: post.id, status: 'failed', error: 'No access token on account' });
-      continue;
-    }
-
-    const result = await publishPost(account, post.content, post.mediaUrls);
-
-    if (result.success) {
-      await prisma.socialPost.update({
-        where: { id: post.id },
-        data: {
-          status: 'published',
-          publishedAt: new Date(),
-          postUrl: result.postUrl || null,
-        },
-      });
-      results.push({ postId: post.id, status: 'published' });
-    } else {
-      await prisma.socialPost.update({
-        where: { id: post.id },
-        data: { status: 'failed' },
-      });
-      results.push({ postId: post.id, status: 'failed', error: result.error });
-    }
-  }
-
-  return {
-    processed: readyPosts.length,
-    published: results.filter(r => r.status === 'published').length,
-    failed: results.filter(r => r.status === 'failed').length,
-    results,
-  };
 }

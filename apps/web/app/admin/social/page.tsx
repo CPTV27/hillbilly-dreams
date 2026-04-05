@@ -10,7 +10,7 @@ export default function SocialDashboard() {
   const [result, setResult] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/api/social/accounts')
+    fetch('/api/social/accounts', { credentials: 'include' })
       .then(r => r.json())
       .then(d => {
         setAccounts(d.integrations || []);
@@ -27,13 +27,18 @@ export default function SocialDashboard() {
       const res = await fetch('/api/social/schedule', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({
           content: postContent,
           integrationIds: accounts.map((a: any) => a.id),
         }),
       });
       const data = await res.json();
-      setResult(data.success ? 'Posted successfully!' : data.error);
+      if (data.success && data.posts?.some((p: { error?: string }) => p.error)) {
+        setResult(`Partial: ${data.posts.map((p: { error?: string }) => p.error).filter(Boolean).join('; ')}`);
+      } else {
+        setResult(data.success ? 'Posted successfully!' : data.error || 'Request failed');
+      }
       if (data.success) setPostContent('');
     } catch (err: any) {
       setResult('Error: ' + err.message);
@@ -45,7 +50,7 @@ export default function SocialDashboard() {
     <div style={{ minHeight: '100vh', background: '#0f0f0f', color: '#e8e4de', fontFamily: "'Inter', system-ui", padding: '1.5rem', maxWidth: '900px', margin: '0 auto' }}>
       <div style={{ borderBottom: '1px solid #2a2725', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
         <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#c8943e', margin: '0 0 0.25rem' }}>Social Command Center</h1>
-        <p style={{ fontSize: '0.75rem', color: '#8a8074', margin: 0, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Powered by Postiz</p>
+        <p style={{ fontSize: '0.75rem', color: '#8a8074', margin: 0, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Native publisher · Meta / GBP next</p>
       </div>
 
       {/* Connected Accounts */}
@@ -63,10 +68,9 @@ export default function SocialDashboard() {
           </div>
         ) : (
           <div>
-            <p style={{ color: '#8a8074', fontSize: '0.875rem', marginBottom: '0.75rem' }}>No social accounts connected yet.</p>
-            <a href="http://localhost:4007" target="_blank" rel="noopener" style={{ padding: '0.5rem 1rem', background: '#c8943e', color: '#0f0f0f', borderRadius: '8px', fontSize: '0.8125rem', fontWeight: 700, textDecoration: 'none' }}>
-              Open Postiz to Connect Accounts →
-            </a>
+            <p style={{ color: '#8a8074', fontSize: '0.875rem', marginBottom: '0.75rem' }}>
+              No active SocialAccount rows in the database. Add accounts (and OAuth tokens) via Prisma admin or a future connect flow.
+            </p>
           </div>
         )}
       </div>
@@ -99,7 +103,6 @@ export default function SocialDashboard() {
 
       {/* Links */}
       <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-        <a href="http://localhost:4007" target="_blank" rel="noopener" style={{ padding: '0.5rem 1rem', border: '1px solid #c8943e', borderRadius: '8px', color: '#c8943e', textDecoration: 'none', fontSize: '0.8125rem', fontWeight: 600 }}>Postiz Dashboard ↗</a>
         <a href="/admin/studio" style={{ padding: '0.5rem 1rem', border: '1px solid #333', borderRadius: '8px', color: '#8a8074', textDecoration: 'none', fontSize: '0.8125rem', fontWeight: 600 }}>Content Studio</a>
         <a href="/admin/command" style={{ padding: '0.5rem 1rem', border: '1px solid #333', borderRadius: '8px', color: '#8a8074', textDecoration: 'none', fontSize: '0.8125rem', fontWeight: 600 }}>Command Center</a>
       </div>
