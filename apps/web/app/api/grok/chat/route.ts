@@ -1,4 +1,4 @@
-import { grok } from '../../../../lib/xai';
+import { getGrok } from '../../../../lib/xai';
 import { NextRequest, NextResponse } from 'next/server';
 import { GROK_TOOLS } from '../tools';
 
@@ -22,6 +22,7 @@ Context: HDI runs one Next.js codebase on Vercel powering 14 domains, 122 Prisma
 Tenant context: ${tenantId || 'hdi-owner'}`,
     };
 
+    const grok = getGrok();
     const stream = await grok.chat.completions.create({
       model: 'grok-3',
       messages: [systemMessage, ...messages],
