@@ -527,6 +527,19 @@ model Track {
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
 
+  // ── MelodyVault Airtable additions ──
+  trackNumber       Int?
+  lyricsFull        String?   @db.Text
+  hookLine          String?
+  theme             String[]  
+  tiktokStartTime   String?   
+  tiktokHookSeconds Int       @default(15)
+  explicit          Boolean   @default(false)
+  pressAssets       TrackPressAsset[]
+  videos            TrackVideo[]
+  posts             TrackPost[]
+  metrics           TrackMetric[]
+
   @@index([artistId])
   @@index([genre, mood])
   @@index([status])
@@ -626,6 +639,166 @@ model RoyaltyPayment {
 
   @@index([trackId, period])
   @@index([source])
+}
+
+// ── MelodyVault: Airtable Port Additions ──
+
+model TrackPressAsset {
+  id              Int       @id @default(autoincrement())
+  trackId         Int
+  track           Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  pressKitUrl     String?
+  reviewExcerpt   String?   @db.Text
+  tagline         String?
+  oneSheetUrl     String?
+  bioVersion      String?
+  photoUrl        String?
+  status          String    @default("draft") // draft | review | approved | distributed
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([trackId, status])
+}
+
+model TrackVideo {
+  id              Int       @id @default(autoincrement())
+  trackId         Int
+  track           Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  platform        String    // TikTok | Instagram Reels | YouTube Shorts | Facebook
+  scriptText      String?   @db.Text
+  hashtags        String?   @db.Text
+  publishDate     DateTime?
+  publishTime     String?
+  status          String    @default("draft") // draft | scheduled | published | archived
+  views           Int       @default(0)
+  likes           Int       @default(0)
+  shares          Int       @default(0)
+  engagementRate  Float?  
+  viralThreshold  Boolean   @default(false)
+  publishUrl      String?
+  variantOfId     Int?
+  variantOf       TrackVideo?  @relation("VariantOf", fields: [variantOfId], references: [id])
+  variants        TrackVideo[] @relation("VariantOf")
+  topMetrics      TrackMetric[] @relation("TopVideo")
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([trackId])
+  @@index([status, publishDate])
+  @@index([viralThreshold, views])
+}
+
+model TrackPost {
+  id              Int       @id @default(autoincrement())
+  trackId         Int
+  track           Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  platform        String    // Twitter/X | Facebook | Instagram | Reddit | Newsletter
+  contentType     String    // meme | lyric_card | story | announcement | poll | thread
+  caption         String?   @db.Text
+  publishDate     DateTime?
+  publishTime     String?
+  status          String    @default("draft") // draft | scheduled | published
+  engagement      Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([trackId, status])
+  @@index([publishDate])
+}
+
+model MusicCurator {
+  id              Int       @id @default(autoincrement())
+  name            String
+  platform        String    // Spotify | Apple Music | YouTube | TikTok | Blog | Radio
+  playlistName    String?
+  playlistUrl     String?
+  followerCount   Int       @default(0)
+  tier            String    @default("3") // 1 | 2 | 3
+  outreachStatus  String    @default("not_contacted") // not_contacted | contacted | replied | added | rejected
+  lastContactDate DateTime?
+  notes           String?   @db.Text
+  email           String?
+  genreFocus      String[]  // ["country", "americana", "outlaw"]
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([tier, outreachStatus])
+  @@index([platform])
+}
+
+model TrackMetric {
+  id              Int       @id @default(autoincrement())
+  date            DateTime
+  platform        String    // Spotify | TikTok | Instagram | YouTube | Bandcamp | All
+  streams         Int       @default(0)
+  followers       Int       @default(0)
+  engagementRate  Float?
+  playlistAdds    Int       @default(0)
+  revenueEstCents Int       @default(0)
+  topPerformingVideoId Int?
+  topPerformingVideo TrackVideo? @relation("TopVideo", fields: [topPerformingVideoId], references: [id])
+  trackId         Int?
+  track           Track?    @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  createdAt       DateTime  @default(now())
+
+  @@index([date, platform])
+  @@index([trackId])
+}
+
+model ReleaseCampaign {
+  id              Int       @id @default(autoincrement())
+  name            String
+  startDate       DateTime?
+  endDate         DateTime?
+  status          String    @default("planning") // planning | active | paused | completed
+  budgetCents     Int       @default(0)
+  channels        String[]  // ["TikTok", "Spotify"]
+  goal            String?   @db.Text
+  kpis            String?   @db.Text
+  notes           String?   @db.Text
+  tasks           CampaignTask[]
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([status])
+}
+
+model CampaignTask {
+  id              Int       @id @default(autoincrement())
+  title           String
+  description     String?   @db.Text
+  assignedTo      String    // human | content_agent | ops_agent | strategy_agent
+  dueDate         DateTime?
+  priority        String    @default("medium") // low | medium | high | critical
+  status          String    @default("todo") // todo | in_progress | review | completed | blocked
+  campaignId      Int?
+  campaign        ReleaseCampaign? @relation(fields: [campaignId], references: [id])
+  dependenciesId  Int?
+  dependency      CampaignTask? @relation("Dependencies", fields: [dependenciesId], references: [id])
+  dependentTasks  CampaignTask[] @relation("Dependencies")
+  outputUrl       String?
+  timeSpentMins   Int       @default(0)
+  recurring       String    @default("none") // daily | weekly | monthly | none
+  automationTrigger Boolean @default(false)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([assignedTo, status])
+  @@index([dueDate])
+  @@index([campaignId])
+}
+
+model MelodyVaultLog {
+  id              Int       @id @default(autoincrement())
+  timestamp       DateTime  @default(now())
+  flowName        String
+  triggerEvent    String
+  actionTaken     String?   @db.Text
+  status          String    @default("success") // success | failed | partial | skipped
+  errorMessage    String?   @db.Text
+
+  @@index([flowName, status])
+  @@index([timestamp])
 }
 
 model Showcase {
