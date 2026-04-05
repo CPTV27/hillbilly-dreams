@@ -35,6 +35,10 @@ export default function PortalDashboardClient() {
   const [client, setClient] = useState<ClientData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [npsEligible, setNpsEligible] = useState(false);
+  const [npsSubmitted, setNpsSubmitted] = useState(false);
+  const [npsScore, setNpsScore] = useState<number | null>(null);
+  const [npsSaving, setNpsSaving] = useState(false);
 
   useEffect(() => {
     if (!clientId) {
@@ -50,6 +54,19 @@ export default function PortalDashboardClient() {
       })
       .catch(e => setError(e.message))
       .finally(() => setLoading(false));
+  }, [clientId]);
+
+  useEffect(() => {
+    if (!clientId) return;
+    fetch(`${baseUrl}/api/nps?client=${encodeURIComponent(clientId)}`)
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.error) return;
+        setNpsEligible(Boolean(d.eligible));
+        setNpsSubmitted(Boolean(d.submitted));
+        setNpsScore(typeof d.score === 'number' ? d.score : null);
+      })
+      .catch(() => {});
   }, [clientId]);
 
   if (loading) {
@@ -99,6 +116,61 @@ export default function PortalDashboardClient() {
           <span className="portal-stat__label">Monthly Reports</span>
         </div>
       </div>
+
+      {npsEligible && (
+        <div className="portal-card">
+          <h2 className="portal-card__title">Quick feedback</h2>
+          <p className="portal-card__text">
+            How likely are you to recommend Deep South Directory? (1 = not at all, 10 = very likely)
+          </p>
+          {npsSubmitted && npsScore != null ? (
+            <p className="portal-card__text" style={{ marginBottom: 0 }}>
+              Thank you. You rated <strong>{npsScore}</strong> out of 10.
+            </p>
+          ) : (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2, 8px)', marginTop: 'var(--space-3, 12px)' }}>
+              {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+                <button
+                  key={n}
+                  type="button"
+                  disabled={npsSaving}
+                  onClick={async () => {
+                    if (!clientId) return;
+                    setNpsSaving(true);
+                    try {
+                      const res = await fetch(`${baseUrl}/api/nps`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ clientId: parseInt(clientId, 10), score: n }),
+                      });
+                      const j = await res.json();
+                      if (!res.ok) throw new Error(j.error || 'Save failed');
+                      setNpsSubmitted(true);
+                      setNpsScore(n);
+                    } catch {
+                      /* ignore */
+                    } finally {
+                      setNpsSaving(false);
+                    }
+                  }}
+                  style={{
+                    minWidth: 40,
+                    minHeight: 44,
+                    padding: '0 10px',
+                    borderRadius: 'var(--radius-sm, 4px)',
+                    border: '1px solid var(--border, #e5e2dc)',
+                    background: 'var(--surface, #fff)',
+                    fontWeight: 600,
+                    cursor: npsSaving ? 'wait' : 'pointer',
+                  }}
+                >
+                  {n}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {voice && (
         <div className="portal-card">
