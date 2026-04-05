@@ -1,6 +1,14 @@
 import fs from 'fs';
 import path from 'path';
-import DOMPurify from 'isomorphic-dompurify';
+// Lazy-load DOMPurify to avoid jsdom loading default-stylesheet.css at webpack build time
+let _purify: typeof import('isomorphic-dompurify').default | null = null;
+function getPurify() {
+  if (!_purify) {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    _purify = require('isomorphic-dompurify').default || require('isomorphic-dompurify');
+  }
+  return _purify;
+}
 
 export const CONTEST_TRACKS = [
   {
@@ -91,11 +99,11 @@ function snippetFromFile(absPath: string, name: string): ContestSnippet {
   const raw = fs.readFileSync(absPath, 'utf8');
   const rawLength = raw.length;
   if (HTML_EXT.test(name)) {
-    const clean = DOMPurify.sanitize(raw, { WHOLE_DOCUMENT: true });
+    const clean = getPurify().sanitize(raw, { WHOLE_DOCUMENT: true });
     return { name, kind: 'html', previewHtml: clean || null, rawLength };
   }
   if (MD_EXT.test(name)) {
-    const escaped = DOMPurify.sanitize(raw.slice(0, 12000), { ALLOWED_TAGS: [] });
+    const escaped = getPurify().sanitize(raw.slice(0, 12000), { ALLOWED_TAGS: [] });
     const wrapped = `<pre style="white-space:pre-wrap;font:inherit;margin:0">${escaped}</pre>`;
     return { name, kind: 'md', previewHtml: wrapped, rawLength };
   }
