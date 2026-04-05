@@ -1,5 +1,13 @@
 # Agent status
 
+## 2026-04-03 — OE case studies (#85)
+
+- **Branch:** `fix/oe-case-studies-isr-gold-cta` — gold + Playfair/Inter scope on [`case-studies/page.tsx`](../apps/web/app/economics/case-studies/page.tsx) and [`[slug]/page.tsx`](../apps/web/app/economics/case-studies/[slug]/page.tsx); `revalidate: 300` + `generateStaticParams`; economics homepage CTA to `/case-studies`.
+- **Comment:** [issue #85](https://github.com/CPTV27/hillbilly-dreams/issues/85).
+- **QC:** `pnpm exec tsc --noEmit -p apps/web` (pass).
+
+---
+
 ## 2026-04-05 — Swarm pass (GitHub issues)
 
 - **#57 closed:** `GET /api/admin/agent-audit` + Command Center **Audit** tab (merged AgentAction + ReasoningTrace). Commit `17619b7`.
