@@ -4,6 +4,8 @@ export const dynamic = 'force-dynamic';
 
 import { CITY_GUIDE_ARTICLES } from '@/lib/articles';
 import { prisma } from '@/lib/db';
+import { mergePublicCorsHeaders, publicDataCorsHeaders } from '@/lib/public-data-cors';
+import type { NextRequest } from 'next/server';
 
 export const revalidate = 3600; // 1 hour
 
@@ -57,7 +59,11 @@ function toRfc822(date: Date | string | null | undefined): string {
   return d.toUTCString();
 }
 
-export async function GET() {
+export async function OPTIONS(request: NextRequest) {
+  return new Response(null, { status: 204, headers: publicDataCorsHeaders(request) });
+}
+
+export async function GET(request: NextRequest) {
   const articles = await getArticles();
 
   const lastBuildDate = articles.length > 0
@@ -94,9 +100,9 @@ ${items}
 </rss>`;
 
   return new Response(xml, {
-    headers: {
+    headers: mergePublicCorsHeaders(request, {
       'Content-Type': 'application/xml; charset=utf-8',
       'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=600',
-    },
+    }),
   });
 }

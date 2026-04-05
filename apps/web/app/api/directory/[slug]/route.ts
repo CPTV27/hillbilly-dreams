@@ -9,6 +9,7 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { publicDataCorsHeaders } from '@/lib/public-data-cors';
 
 interface RawClient {
   id: number;
@@ -52,11 +53,16 @@ function sanitize(client: RawClient) {
 
 type Params = { params: { slug: string } };
 
-export async function GET(_request: NextRequest, { params }: Params) {
+export async function OPTIONS(request: NextRequest) {
+  return new Response(null, { status: 204, headers: publicDataCorsHeaders(request) });
+}
+
+export async function GET(request: NextRequest, { params }: Params) {
   const { slug } = params;
+  const cors = publicDataCorsHeaders(request);
 
   if (!slug || typeof slug !== 'string') {
-    return NextResponse.json({ error: 'Invalid slug.' }, { status: 400 });
+    return NextResponse.json({ error: 'Invalid slug.' }, { status: 400, headers: cors });
   }
 
   try {
@@ -66,10 +72,13 @@ export async function GET(_request: NextRequest, { params }: Params) {
     });
 
     if (!client) {
-      return NextResponse.json({ data: null, _note: 'Client not found or not active.' }, { status: 404 });
+      return NextResponse.json(
+        { data: null, _note: 'Client not found or not active.' },
+        { status: 404, headers: cors }
+      );
     }
 
-    return NextResponse.json({ data: sanitize(client as RawClient) });
+    return NextResponse.json({ data: sanitize(client as RawClient) }, { headers: cors });
   } catch (e) {
     const msg = String(e);
     if (
@@ -80,9 +89,9 @@ export async function GET(_request: NextRequest, { params }: Params) {
       msg.includes('P1001') ||
       msg.includes('does not exist')
     ) {
-      return NextResponse.json({ data: null, _source: 'no-db' });
+      return NextResponse.json({ data: null, _source: 'no-db' }, { headers: cors });
     }
     console.error(`[GET /api/directory/${slug}]`, e);
-    return NextResponse.json({ error: 'Failed to load directory client.' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to load directory client.' }, { status: 500, headers: cors });
   }
 }
