@@ -2,6 +2,8 @@
 
 This document outlines the real estate viability for establishing a consolidated Big Muddy / HDI headquarters in downtown Natchez, MS.
 
+**Governance:** Tracy and Amy are **equity partners** in Inn and related operating entities — any live/work or retail lease structure should be reviewed with them as partners, not as a landlord–employee arrangement.
+
 ## Ideal Property Parameters
 The operational thesis requires a mixed-use/multi-level footprint encompassing:
 1. **Gallery/Front-of-House:** Street-level retail or gallery space for public-facing engagement and art exhibitions.
