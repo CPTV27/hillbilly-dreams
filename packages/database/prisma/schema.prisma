@@ -167,6 +167,8 @@ model Lead {
   @@index([industry])
   @@index([perceivedPower])
   @@index([source])
+  @@index([source, createdAt])
+  @@index([createdAt])
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -248,6 +250,7 @@ model SocialAccount {
   @@unique([platform, handle])
   @@index([brand])
   @@index([status])
+  @@index([clientId])
 }
 
 model SocialPost {
@@ -361,6 +364,7 @@ model ContentCalendar {
 
   @@unique([clientId, month, year])
   @@index([status])
+  @@index([clientId])
 }
 
 model Report {
@@ -377,6 +381,8 @@ model Report {
   updatedAt   DateTime  @updatedAt
 
   @@unique([clientId, month, year])
+  @@index([clientId])
+  @@index([clientId, createdAt])
 }
 
 model Invoice {
@@ -892,6 +898,10 @@ model Photo {
   status       String       @default("visible") // visible | hidden
   claims       PhotoClaim[]
   createdAt    DateTime     @default(now())
+
+  @@index([sessionId])
+  @@index([sessionId, sortOrder])
+  @@index([status, createdAt])
 }
 
 model PhotoClaim {
@@ -904,6 +914,9 @@ model PhotoClaim {
   shared     Boolean  @default(false)
   printOrder Boolean  @default(false)
   createdAt  DateTime @default(now())
+
+  @@index([photoId])
+  @@index([photoId, createdAt])
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -1105,6 +1118,9 @@ model OpsActivity {
   userName  String?
   taskId    Int?     // optional reference to task number
   createdAt DateTime @default(now())
+
+  @@index([type, createdAt])
+  @@index([createdAt])
 }
 
 model ChatMessage {
@@ -1161,6 +1177,8 @@ model Artwork {
   orderCount  Int           @default(0)
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
+
+  @@index([artistId])
 }
 
 model ArtOrder {
@@ -1174,6 +1192,10 @@ model ArtOrder {
   stripePaymentId String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  @@index([artworkId])
+  @@index([artworkId, status])
+  @@index([status, createdAt])
 }
 
 // SOVEREIGNTY NOTE: BCA models below are pending migration to packages/db-bca.
@@ -1942,6 +1964,7 @@ model TouringHotel {
   routeStops          TourRouteStop[]
 
   @@index([city, state])
+  @@index([city, state, isPublic])
   @@index([isPublic])
   @@index([directoryBusinessId])
 }
@@ -2021,6 +2044,7 @@ model TouringRestaurant {
   createdAt           DateTime  @default(now())
 
   @@index([city, state])
+  @@index([city, state, lateNight])
   @@index([lateNight])
   @@index([corridorCityId])
   @@index([directoryBusinessId])
@@ -2076,6 +2100,9 @@ model StyleGuide {
   jobs             Job[]
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
+
+  @@index([persona])
+  @@index([persona, createdAt])
 }
 
 model Job {
@@ -2101,6 +2128,8 @@ model Job {
 
   @@index([editorialStatus])
   @@index([assignedHumanId])
+  @@index([brandId])
+  @@index([styleGuideId])
 }
 
 /// Radio / Inn / studio capture — Network Highlight copy + linked `VisualAsset` rows (optional `Job`).
@@ -2257,6 +2286,7 @@ model Entity {
 
   @@index([industry])
   @@index([powerRating])
+  @@index([industry, powerRating])
   @@index([userId])
   @@index([supersededById])
 }
@@ -2355,6 +2385,7 @@ model Contest {
   updatedAt         DateTime     @updatedAt
 
   @@index([status])
+  @@index([status, startDate])
   @@index([organizerId])
   @@index([endDate])
 }
@@ -2403,6 +2434,7 @@ model StudioCRequest {
 
   @@index([status])
   @@index([clientBrand])
+  @@index([clientId])
 }
 
 // ─────────────────────────────────────────────────────────────
