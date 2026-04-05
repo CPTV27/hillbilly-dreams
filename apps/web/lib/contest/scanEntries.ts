@@ -4,7 +4,7 @@ import path from 'path';
 let _purify: typeof import('isomorphic-dompurify').default | null = null;
 function getPurify() {
   if (!_purify) {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    // Runtime require keeps isomorphic-dompurify (and jsdom CSS) out of the static webpack graph.
     _purify = require('isomorphic-dompurify').default || require('isomorphic-dompurify');
   }
   return _purify;
