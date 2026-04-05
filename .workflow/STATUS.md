@@ -1,5 +1,17 @@
 # Agent status
 
+## 2026-04-06 — Autonomous batch (#91, #88, #92, #68, toolRegistry)
+
+- **#91:** [`/hillbilly/org-chart`](../apps/web/app/hillbilly/org-chart/page.tsx) — back link, `TENANTS` live section, correct **bigmuddyrecordlabel.com** + **buycurious.art** URLs, MBT → measurablybetter.life, `<style>` instead of `dangerouslySetInnerHTML`, mobile padding. Footer link already on [`hillbilly/page.tsx`](../apps/web/app/hillbilly/page.tsx).
+- **#88:** [`admin/command/page.tsx`](../apps/web/app/admin/command/page.tsx) — horizontal scroll tab strip, 44px+ touch targets, task filters + status `select` at 16px, stacked task cards on narrow view.
+- **#92:** [`GET /api/cron/sync-github-asana`](../apps/web/app/api/cron/sync-github-asana/route.ts) — label **`sync-asana`** → Asana project `1213753731475702`; map in `AgentContext` domain `asana_sync`. Needs `GITHUB_TOKEN` or `GH_TOKEN` + `ASANA_ACCESS_TOKEN` + Vercel Cron.
+- **#68:** [`POST /api/webhooks/stripe`](../apps/web/app/api/webhooks/stripe/route.ts) — `commerce=marketplace` checkout: decrement `ApprovedSupply`, optional `CreditLedger` affiliate commission. Env: **`STRIPE_COMMERCE_WEBHOOK_SECRET`** (separate Stripe webhook endpoint).
+- **Build:** `toolRegistry` uses single `z` for `queryLoreSchema` (no duplicate import).
+
+`pnpm --filter @bigmuddy/web typecheck` — pass.
+
+---
+
 ## 2026-04-05 — Swarm pass (GitHub issues)
 
 - **#57 closed:** `GET /api/admin/agent-audit` + Command Center **Audit** tab (merged AgentAction + ReasoningTrace). Commit `17619b7`.

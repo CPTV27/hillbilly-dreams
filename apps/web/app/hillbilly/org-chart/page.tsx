@@ -1,4 +1,6 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { TENANTS } from '@/config/tenants';
 
 export const metadata: Metadata = {
   title: 'Organizational Chart | Hillbilly Dreams Inc.',
@@ -13,10 +15,10 @@ export default function OrgChartPage() {
         color: '#f9fafb',
         fontFamily: "'Inter', sans-serif",
         minHeight: '100vh',
-        padding: '4rem 2rem',
+        padding: 'clamp(1.25rem, 4vw, 4rem) clamp(1rem, 4vw, 2rem)',
       }}
     >
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style>{`
         @media print {
           body, main { background-color: white !important; color: black !important; }
           .card { border-color: #ccc !important; color: black !important; background-color: #fafafa !important;}
@@ -69,9 +71,28 @@ export default function OrgChartPage() {
           margin-right: 0.5rem;
           margin-bottom: 0.5rem;
         }
-      `}} />
+        @media (max-width: 480px) {
+          .card { min-height: 44px; }
+        }
+      `}</style>
 
       <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
+        <div style={{ textAlign: 'left', marginBottom: '1.5rem' }}>
+          <Link
+            href="/hillbilly"
+            style={{
+              color: '#c8943e',
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: '0.95rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              minHeight: 44,
+            }}
+          >
+            ← Hillbilly Dreams Inc.
+          </Link>
+        </div>
         
         {/* HOLDING COMPANY */}
         <div style={{ display: 'inline-block', textAlign: 'center', marginBottom: '1rem' }}>
@@ -131,21 +152,20 @@ export default function OrgChartPage() {
                 { name: 'Big Muddy Magazine', desc: 'editorial publication', url: 'https://bigmuddymagazine.com' },
                 { name: 'Big Muddy Radio', desc: 'streaming radio', url: 'https://bigmuddyradio.com' },
                 { name: 'Big Muddy Entertainment', desc: 'record label + promoter', url: 'https://bigmuddyentertainment.com' },
-                { name: 'Big Muddy Records', desc: 'independent label', url: 'https://bigmuddyrecord.com' },
+                { name: 'Big Muddy Records', desc: 'independent label', url: 'https://bigmuddyrecordlabel.com' },
                 { name: 'Outsider Economics', desc: 'field manual', url: 'https://outsidereconomics.com' },
-                { name: 'Chase Pierson Photography', desc: 'portfolio + gallery', url: null },
+                {
+                  name: 'Chase Pierson Photography / Venture Gallery',
+                  desc: 'portfolio + gallery',
+                  url: 'https://buycurious.art',
+                },
               ].map(brand => (
                 brand.url ? (
                   <a key={brand.name} href={brand.url} target="_blank" rel="noopener noreferrer" className="card" style={{ textDecoration: 'none' }}>
                     <div style={{ fontWeight: 600, fontSize: '1.05rem', color: '#fff', marginBottom: '0.4rem' }}>{brand.name}</div>
                     <div className="subtext" style={{ fontSize: '0.85rem', color: '#9ca3af', lineHeight: 1.4 }}>{brand.desc}</div>
                   </a>
-                ) : (
-                  <div key={brand.name} className="card">
-                    <div style={{ fontWeight: 600, fontSize: '1.05rem', color: '#fff', marginBottom: '0.4rem' }}>{brand.name}</div>
-                    <div className="subtext" style={{ fontSize: '0.85rem', color: '#9ca3af', lineHeight: 1.4 }}>{brand.desc}</div>
-                  </div>
-                )
+                ) : null
               ))}
             </div>
           </div>
@@ -193,10 +213,18 @@ export default function OrgChartPage() {
                   Technology
                 </h2>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <div className="card" style={{ borderColor: '#c8943e' }}>
-                    <div style={{ fontWeight: 600, fontSize: '1.05rem', color: '#c8943e' }}>Measurably Better Things (MBT)</div>
-                    <div className="subtext" style={{ fontSize: '0.85rem', color: '#9ca3af', marginTop: '0.4rem' }}>the platform everything runs on (B2B only)</div>
-                  </div>
+                  <a
+                    href="https://measurablybetter.life"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="card"
+                    style={{ borderColor: '#c8943e', textDecoration: 'none' }}
+                  >
+                    <div style={{ fontWeight: 600, fontSize: '1.05rem', color: '#c8943e' }}>Measurably Better Things (MBT) ↗</div>
+                    <div className="subtext" style={{ fontSize: '0.85rem', color: '#9ca3af', marginTop: '0.4rem' }}>
+                      The platform everything runs on — B2B only; not the walk-in pitch.
+                    </div>
+                  </a>
                   <div className="card">
                     <div style={{ fontWeight: 600, fontSize: '1.05rem', color: '#fff' }}>Measurably Better Life</div>
                     <div className="subtext" style={{ fontSize: '0.85rem', color: '#9ca3af', marginTop: '0.4rem' }}>non-branded individual version</div>
@@ -208,6 +236,48 @@ export default function OrgChartPage() {
           </div>
         </div>
 
+        <div style={{ marginTop: '3rem', textAlign: 'left' }}>
+          <h2
+            className="accent"
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              color: '#c8943e',
+              fontSize: '1.35rem',
+              borderBottom: '1px solid #333',
+              paddingBottom: '0.5rem',
+              marginBottom: '1rem',
+            }}
+          >
+            Live tenant registry (from config)
+          </h2>
+          <p className="subtext" style={{ fontSize: '0.88rem', color: '#9ca3af', marginBottom: '1rem', lineHeight: 1.5 }}>
+            Pulled from <code style={{ color: '#c8943e' }}>apps/web/config/tenants.ts</code> — updates when we ship a deploy.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            {TENANTS.map((t) => (
+              <div key={t.id} className="card" style={{ padding: '1rem 1.25rem' }}>
+                <div style={{ fontWeight: 700, fontSize: '1.05rem', color: '#fff' }}>{t.name}</div>
+                <div className="subtext" style={{ fontSize: '0.82rem', marginTop: 6 }}>
+                  {t.entity} · {t.location.city}, {t.location.state}
+                </div>
+                <div className="subtext" style={{ fontSize: '0.8rem', marginTop: 8, lineHeight: 1.5 }}>
+                  {t.domains.map((d, i) => (
+                    <span key={d}>
+                      {i > 0 ? ' · ' : ''}
+                      <a href={`https://${d}`} style={{ color: '#c8943e' }} target="_blank" rel="noopener noreferrer">
+                        {d}
+                      </a>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <p className="subtext" style={{ textAlign: 'center', marginTop: '2.5rem', fontSize: '0.85rem', lineHeight: 1.5 }}>
+          We build local. The value stays local. We grow from within.
+        </p>
       </div>
     </main>
   );

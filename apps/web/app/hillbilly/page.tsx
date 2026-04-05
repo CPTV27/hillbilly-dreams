@@ -433,6 +433,19 @@ export default function HillbillyDreamsPage() {
           background: c.paper,
         }}
       >
+        <p style={{ margin: '0 0 0.75rem' }}>
+          <a
+            href="/hillbilly/org-chart"
+            style={{
+              fontSize: '0.875rem',
+              fontWeight: 600,
+              color: c.accent,
+              textDecoration: 'none',
+            }}
+          >
+            Who does what — org chart
+          </a>
+        </p>
         <p
           style={{
             fontSize: '0.65rem',

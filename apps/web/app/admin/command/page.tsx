@@ -205,18 +205,86 @@ export default function CommandCenter() {
     { n: 'HDI', u: 'https://hillbillydreamsinc.com' },
   ];
 
-  if (loading) return <div style={{ minHeight: '100vh', background: '#0f0f0f', color: '#c8943e', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter, system-ui', fontSize: '1.25rem' }}>Loading...</div>;
+  if (loading) return <div className="command-cc" style={{ minHeight: '100vh', background: '#0f0f0f', color: '#c8943e', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter, system-ui', fontSize: '1.25rem' }}>Loading...</div>;
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0f0f0f', color: '#e8e4de', fontFamily: "'Inter', system-ui", padding: '1.5rem', maxWidth: '1200px', margin: '0 auto' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #2a2725', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#c8943e', margin: 0 }}>HDI Command Center</h1>
-        <a href="/admin/scout" style={{ padding: '0.5rem 1rem', border: '1px solid #c8943e', borderRadius: '8px', color: '#c8943e', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 600 }}>📷 Scout</a>
+    <div
+      className="command-cc"
+      style={{
+        minHeight: '100vh',
+        background: '#0f0f0f',
+        color: '#e8e4de',
+        fontFamily: "'Inter', system-ui",
+        padding: 'clamp(0.75rem, 3vw, 1.5rem)',
+        maxWidth: '1200px',
+        margin: '0 auto',
+        fontSize: 'clamp(15px, 3.8vw, 16px)',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: 12,
+          flexWrap: 'wrap',
+          borderBottom: '1px solid #2a2725',
+          paddingBottom: '1rem',
+          marginBottom: '1.5rem',
+        }}
+      >
+        <h1 style={{ fontSize: 'clamp(1.2rem, 5vw, 1.5rem)', fontWeight: 800, color: '#c8943e', margin: 0 }}>HDI Command Center</h1>
+        <a
+          href="/admin/scout"
+          style={{
+            padding: '12px 16px',
+            minHeight: 44,
+            display: 'inline-flex',
+            alignItems: 'center',
+            border: '1px solid #c8943e',
+            borderRadius: '8px',
+            color: '#c8943e',
+            textDecoration: 'none',
+            fontSize: '0.9375rem',
+            fontWeight: 600,
+          }}
+        >
+          📷 Scout
+        </a>
       </div>
 
-      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+      <div
+        className="cc-tabs"
+        style={{
+          display: 'flex',
+          gap: '0.5rem',
+          marginBottom: '1.5rem',
+          flexWrap: 'nowrap',
+          overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch',
+          paddingBottom: 4,
+        }}
+      >
         {[['overview','📊 Overview'],['tasks','📋 Tasks'],['products','📦 Products'],['audit','📜 Audit'],['businesses','🏪 Businesses'],['engine','🚀 Engine'],['brain','🧠 Brain']].map(([id,label]) => (
-          <button key={id} onClick={() => setActiveTab(id)} style={{ padding: '0.5rem 1.25rem', borderRadius: '8px', border: activeTab === id ? '1px solid #c8943e' : '1px solid #333', background: activeTab === id ? '#c8943e' : 'transparent', color: activeTab === id ? '#0f0f0f' : '#8a8074', cursor: 'pointer', fontSize: '0.875rem', fontWeight: 600 }}>{label}</button>
+          <button
+            key={id}
+            type="button"
+            onClick={() => setActiveTab(id)}
+            style={{
+              padding: '12px 16px',
+              minHeight: 44,
+              flexShrink: 0,
+              borderRadius: '8px',
+              border: activeTab === id ? '1px solid #c8943e' : '1px solid #333',
+              background: activeTab === id ? '#c8943e' : 'transparent',
+              color: activeTab === id ? '#0f0f0f' : '#8a8074',
+              cursor: 'pointer',
+              fontSize: '0.9375rem',
+              fontWeight: 600,
+            }}
+          >
+            {label}
+          </button>
         ))}
       </div>
 
@@ -281,34 +349,87 @@ export default function CommandCenter() {
       )}
 
       {activeTab === 'tasks' && (<>
-        <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '1rem' }}>
+        <div
+          className="cmd-task-filters"
+          style={{
+            display: 'flex',
+            gap: '0.5rem',
+            marginBottom: '1rem',
+            flexWrap: 'nowrap',
+            overflowX: 'auto',
+            WebkitOverflowScrolling: 'touch',
+            alignItems: 'center',
+          }}
+        >
           {(['all', 'agent', 'production'] as const).map(f => (
-            <button key={f} onClick={() => setTaskFilter(f)} style={{ padding: '0.4rem 1rem', borderRadius: '999px', border: taskFilter === f ? '1px solid #c8943e' : '1px solid #333', background: taskFilter === f ? 'rgba(200,148,62,0.1)' : 'transparent', color: taskFilter === f ? '#c8943e' : '#8a8074', fontWeight: 600, fontSize: '0.75rem', cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <button
+              key={f}
+              type="button"
+              onClick={() => setTaskFilter(f)}
+              style={{
+                padding: '10px 14px',
+                minHeight: 44,
+                flexShrink: 0,
+                borderRadius: '999px',
+                border: taskFilter === f ? '1px solid #c8943e' : '1px solid #333',
+                background: taskFilter === f ? 'rgba(200,148,62,0.1)' : 'transparent',
+                color: taskFilter === f ? '#c8943e' : '#8a8074',
+                fontWeight: 600,
+                fontSize: '0.8125rem',
+                cursor: 'pointer',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+              }}
+            >
               {f === 'all' ? 'All' : f === 'agent' ? 'Agent Tasks' : 'Production'}
             </button>
           ))}
-          <button onClick={loadTasks} style={{ marginLeft: 'auto', padding: '0.4rem 1rem', background: 'transparent', border: '1px solid #333', borderRadius: '999px', color: '#8a8074', fontWeight: 600, fontSize: '0.75rem', cursor: 'pointer' }}>Refresh</button>
+          <button
+            type="button"
+            onClick={loadTasks}
+            style={{
+              marginLeft: 'auto',
+              padding: '10px 14px',
+              minHeight: 44,
+              flexShrink: 0,
+              background: 'transparent',
+              border: '1px solid #333',
+              borderRadius: '999px',
+              color: '#8a8074',
+              fontWeight: 600,
+              fontSize: '0.8125rem',
+              cursor: 'pointer',
+            }}
+          >
+            Refresh
+          </button>
         </div>
 
         {taskItems.length === 0 ? (
           <div style={{ background: '#1a1816', borderRadius: '12px', padding: '2rem', border: '1px solid #2a2725', textAlign: 'center', color: '#4a4440' }}>No tasks found.</div>
-        ) : taskItems.map((item: any) => (
-          <div key={`${item.type}-${item.id}`} style={{ background: '#1a1816', borderRadius: '10px', padding: '1rem', border: '1px solid #2a2725', marginBottom: '0.6rem', borderLeft: `3px solid ${taskStatusColor[item.status] || '#333'}`, opacity: taskUpdating === item.id ? 0.5 : 1 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ padding: '0.1rem 0.5rem', borderRadius: '999px', fontSize: '0.6rem', fontWeight: 700, background: item.type === 'agent' ? 'rgba(200,148,62,0.15)' : 'rgba(74,98,116,0.15)', color: item.type === 'agent' ? '#c8943e' : '#4a6274', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{item.type === 'agent' ? 'Agent' : 'Prod'}</span>
-                <span style={{ fontWeight: 600, fontSize: '0.875rem', color: '#e8e4de' }}>{item.title}</span>
+        ) : (
+          <div className="cmd-task-list" style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            {taskItems.map((item: any) => (
+          <div key={`${item.type}-${item.id}`} style={{ background: '#1a1816', borderRadius: '10px', padding: '1rem', border: '1px solid #2a2725', marginBottom: 0, borderLeft: `3px solid ${taskStatusColor[item.status] || '#333'}`, opacity: taskUpdating === item.id ? 0.5 : 1 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: '0.5rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8, flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', minWidth: 0 }}>
+                  <span style={{ padding: '4px 10px', borderRadius: '999px', fontSize: '0.6875rem', fontWeight: 700, background: item.type === 'agent' ? 'rgba(200,148,62,0.15)' : 'rgba(74,98,116,0.15)', color: item.type === 'agent' ? '#c8943e' : '#4a6274', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{item.type === 'agent' ? 'Agent' : 'Prod'}</span>
+                  <span style={{ fontWeight: 600, fontSize: '0.9375rem', color: '#e8e4de', wordBreak: 'break-word' }}>{item.title}</span>
+                </div>
+                <span style={{ fontSize: '0.75rem', color: '#6a6460', flexShrink: 0 }}>{new Date(item.created).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}</span>
               </div>
-              <span style={{ fontSize: '0.65rem', color: '#6a6460' }}>{new Date(item.created).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}</span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '0.75rem', color: '#8a8074' }}>{item.assignee}</span>
-              <select value={item.status} onChange={e => updateTaskStatus(item.id, item.type, e.target.value)} disabled={taskUpdating === item.id} style={{ padding: '4px 28px 4px 8px', fontSize: '0.7rem', background: '#231f1c', border: '1px solid #333', borderRadius: '6px', color: taskStatusColor[item.status] || '#e8e4de', fontWeight: 600, cursor: 'pointer', appearance: 'none', backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8074' stroke-width='1.5' fill='none'/%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 8px center' }}>
-                {(item.type === 'agent' ? agentStatuses : prodStages).map((s: string) => <option key={s} value={s}>{s}</option>)}
-              </select>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <span style={{ fontSize: '0.875rem', color: '#8a8074' }}>{item.assignee}</span>
+                <select value={item.status} onChange={e => updateTaskStatus(item.id, item.type, e.target.value)} disabled={taskUpdating === item.id} style={{ width: '100%', maxWidth: '100%', minHeight: 44, padding: '10px 36px 10px 12px', fontSize: 16, background: '#231f1c', border: '1px solid #333', borderRadius: '8px', color: taskStatusColor[item.status] || '#e8e4de', fontWeight: 600, cursor: 'pointer', appearance: 'none', backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8074' stroke-width='1.5' fill='none'/%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}>
+                  {(item.type === 'agent' ? agentStatuses : prodStages).map((s: string) => <option key={s} value={s}>{s}</option>)}
+                </select>
+              </div>
             </div>
           </div>
-        ))}
+            ))}
+          </div>
+        )}
       </>)}
 
       {activeTab === 'products' && (<>
@@ -560,6 +681,16 @@ export default function CommandCenter() {
           style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 98 }}
         />
       )}
+
+      <style>{`
+        @media (max-width: 480px) {
+          .command-cc .cc-tabs::-webkit-scrollbar { height: 4px; }
+          .command-cc .cc-tabs::-webkit-scrollbar-thumb { background: #3d3834; border-radius: 4px; }
+        }
+        @media (max-width: 375px) {
+          .command-cc { padding-left: 0.65rem !important; padding-right: 0.65rem !important; }
+        }
+      `}</style>
     </div>
   );
 }
