@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Big Muddy Inn — Print Ad</title>
+<style>
+  /* ── Reset ── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* ── Internal-only banner (hidden in print) ── */
+  .internal-banner {
+    background: #b91c1c;
+    color: #fff;
+    text-align: center;
+    padding: 6px 12px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── Page container ── */
+  .page {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+
+  /* ── Hero photograph ── */
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    display: block;
+  }
+
+  /* ── Dark overlay — graduated from top to bottom ── */
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 10, 10, 0.10) 0%,
+      rgba(10, 10, 10, 0.15) 30%,
+      rgba(10, 10, 10, 0.40) 55%,
+      rgba(10, 10, 10, 0.78) 75%,
+      rgba(10, 10, 10, 0.92) 100%
+    );
+  }
+
+  /* ── Content layer ── */
+  .content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 8% 0 8%;
+  }
+
+  /* ── Inn name ── */
+  .inn-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(28px, 4.5vw, 52px);
+    font-weight: 400;
+    color: #c8943e;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 0.6em;
+  }
+
+  /* ── Decorative rule ── */
+  .rule {
+    width: 60px;
+    height: 1px;
+    background: #c8943e;
+    opacity: 0.6;
+    margin-bottom: 1.8em;
+    border: none;
+  }
+
+  /* ── Story copy ── */
+  .story {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(13px, 1.6vw, 18px);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 2.2em;
+  }
+
+  .story em {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.70);
+  }
+
+  /* ── Contact block ── */
+  .contact {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: clamp(9px, 1vw, 12px);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 2;
+    margin-bottom: 3.5em;
+  }
+
+  .contact .address {
+    color: rgba(255, 255, 255, 0.70);
+  }
+
+  .contact .separator {
+    margin: 0 0.6em;
+    opacity: 0.3;
+  }
+
+  /* ── Ecosystem footer strip ── */
+  .ecosystem-strip {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.95);
+    border-top: 1px solid rgba(200, 148, 62, 0.15);
+    padding: 10px 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3em;
+  }
+
+  .ecosystem-strip span {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: clamp(7px, 0.8vw, 9px);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.30);
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+  }
+
+  .ecosystem-strip .dot {
+    color: rgba(200, 148, 62, 0.25);
+    margin: 0 0.5em;
+  }
+
+  /* ── Print styles ── */
+  @page {
+    size: 8.5in 11in;
+    margin: 0;
+  }
+
+  @media print {
+    html, body {
+      width: 8.5in;
+      height: 11in;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .internal-banner {
+      display: none !important;
+    }
+
+    .page {
+      width: 8.5in;
+      height: 11in;
+      min-height: 11in;
+      page-break-after: avoid;
+      page-break-inside: avoid;
+    }
+
+    .inn-name {
+      font-size: 42pt;
+    }
+
+    .story {
+      font-size: 12pt;
+    }
+
+    .contact {
+      font-size: 8pt;
+    }
+
+    .ecosystem-strip span {
+      font-size: 6pt;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Internal-only: hidden when printed -->
+<div class="internal-banner">
+  Internal proof — not for distribution &middot; Bearsville Creative print edition
+</div>
+
+<div class="page">
+  <!-- Hero photograph -->
+  <img
+    class="hero-photo"
+    src="/images/corridor/inn-hallway-gathering.webp"
+    alt="Guests gathering in the warmly lit Victorian hallway of The Big Muddy Inn, Natchez, Mississippi"
+  />
+
+  <!-- Graduated dark overlay -->
+  <div class="overlay"></div>
+
+  <!-- Ad content -->
+  <div class="content">
+    <h1 class="inn-name">The Big Muddy Inn</h1>
+    <hr class="rule" />
+    <div class="story">
+      There's a radio station in the back room.<br/>
+      A bar where the bartender is one of the owners.<br/>
+      A stage where the bands play for the town,<br/>
+      <em>not for the algorithm.</em><br/><br/>
+      Six rooms. Downtown Natchez.<br/>
+      The kind of place that doesn't exist anymore.<br/>
+      Except it does.
+    </div>
+    <div class="contact">
+      <span class="address">411 North Commerce Street<span class="separator">&middot;</span>Natchez, Mississippi</span><br/>
+      (769) 376-8045<span class="separator">&middot;</span>thebigmuddyinn.com
+    </div>
+  </div>
+
+  <!-- Ecosystem footer -->
+  <div class="ecosystem-strip">
+    <span>A Big Muddy property</span>
+    <span class="dot">&middot;</span>
+    <span>bigmuddytouring.com</span>
+    <span class="dot">&middot;</span>
+    <span>bigmuddyradio.com</span>
+    <span class="dot">&middot;</span>
+    <span>bigmuddymagazine.com</span>
+  </div>
+</div>
+
+</body>
+</html>
