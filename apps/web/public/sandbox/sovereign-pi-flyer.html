@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Sovereign Pi — Walk-In Flyer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: letter; margin: 0.5in; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #2a2520; background: #fff;
+    max-width: 8.5in; margin: 0 auto; padding: 0.5in;
+    line-height: 1.5; font-size: 11pt;
+  }
+  .hdr { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18pt; padding-bottom: 12pt; border-bottom: 2pt solid #c8943e; }
+  .hdr-logo { font-size: 8pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #c8943e; }
+  .hdr-sub { font-size: 7.5pt; color: #8a8074; margin-top: 2pt; }
+  .hdr-right { text-align: right; font-size: 8pt; color: #8a8074; line-height: 1.6; }
+
+  .hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 24pt; font-weight: 700; line-height: 1.12; margin-bottom: 8pt; }
+  .hero h1 em { color: #c8943e; font-style: normal; }
+  .hero p { font-size: 10.5pt; color: #6b635a; max-width: 480pt; line-height: 1.55; margin-bottom: 14pt; }
+
+  .opts { margin-bottom: 16pt; }
+  .opts h2 { font-size: 8.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #c8943e; margin-bottom: 8pt; }
+  .opts table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+  .opts th { text-align: left; font-size: 7.5pt; font-weight: 700; text-transform: uppercase; color: #8a8074; padding: 4pt 0; border-bottom: 1pt solid #e5e2dc; }
+  .opts td { padding: 5pt 0; border-bottom: 1pt solid #f0ebe0; }
+  .opts td:last-child { text-align: right; font-weight: 700; color: #c8943e; }
+  .opts .bundle td { font-weight: 700; background: #faf9f6; }
+
+  .bullets { margin-bottom: 16pt; }
+  .bullets h2 { font-size: 8.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #c8943e; margin-bottom: 8pt; }
+  .bullets ul { padding-left: 14pt; font-size: 9.5pt; color: #4a4540; }
+  .bullets li { margin-bottom: 5pt; }
+
+  .ftr { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 12pt; border-top: 1pt solid #e5e2dc; }
+  .ftr-left { font-size: 9pt; color: #6b635a; line-height: 1.55; max-width: 62%; }
+  .ftr-left strong { color: #2a2520; }
+  .qr { text-align: center; }
+  .qr-box { width: 72pt; height: 72pt; border: 1pt dashed #c8943e; border-radius: 4pt; display: flex; align-items: center; justify-content: center; font-size: 6.5pt; color: #8a8074; text-align: center; padding: 4pt; margin-bottom: 4pt; }
+  .qr-label { font-size: 7pt; color: #c8943e; font-weight: 600; }
+
+  @media print { body { padding: 0; } .opts, .bullets { break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div>
+    <div class="hdr-logo">Deep South Directory</div>
+    <div class="hdr-sub">Sovereign Pi · Natchez, Mississippi</div>
+  </div>
+  <div class="hdr-right">deepsouthdirectory.com<br>listings@hillbillydreamsinc.com</div>
+</div>
+
+<div class="hero">
+  <h1>Your business brain <em>in a box.</em></h1>
+  <p>A small computer on your counter: local AI, your dashboard, signage out to any TV. Works when the internet doesn’t. <strong>Free with paid DSD membership</strong> — or buy standalone below.</p>
+</div>
+
+<div class="opts">
+  <h2>Configuration &amp; prices</h2>
+  <table>
+    <thead><tr><th>Item</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>Sovereign Pi Core (Pi 5, 8GB, 256GB NVMe, case, software)</td><td>$299</td></tr>
+      <tr><td>Battery pack — 4–6 hr off-grid</td><td>+$59</td></tr>
+      <tr><td>Solar kit — keeps battery topped outdoors</td><td>+$49</td></tr>
+      <tr><td>Faraday shield case</td><td>+$39</td></tr>
+      <tr><td>6ft HDMI display cable</td><td>+$9</td></tr>
+      <tr class="bundle"><td>Full add-on bundle (all four above)</td><td>+$129</td></tr>
+      <tr><td>Display Module — extra TV output</td><td>$99 / screen</td></tr>
+      <tr><td>Signage Network — we run up to 5 screens</td><td>$199 / mo</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="bullets">
+  <h2>Why operators say yes</h2>
+  <ul>
+    <li><strong>Offline-capable</strong> — hours, menus, and assistant stay local.</li>
+    <li><strong>HDMI to any TV</strong> — menu board, social wall, radio visualizer.</li>
+    <li><strong>Not another cloud rent check</strong> — your data sits on your desk.</li>
+    <li><strong>Built by a hospitality + media shop</strong> — we run venues, not slides.</li>
+  </ul>
+</div>
+
+<div class="ftr">
+  <div class="ftr-left">
+    <strong>Live builder:</strong> deepsouthdirectory.com/store/sovereign-pi/configure<br>
+    <small>Stripe checkout soon — email orders today.</small>
+  </div>
+  <div class="qr">
+    <div class="qr-box">PLACE QR HERE<br>(Canva → link to<br>/store/sovereign-pi)</div>
+    <div class="qr-label">Scan · configure · order</div>
+  </div>
+</div>
+
+</body>
+</html>
