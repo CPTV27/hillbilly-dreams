@@ -17,13 +17,13 @@ export const metadata: Metadata = {
       template: '%s | Big Muddy Entertainment',
     },
     description:
-      'Booking, promotion, transport, and production for bands and venues along the Mississippi corridor. Big Muddy Entertainment is the music and media arm of Hillbilly Dreams, Inc.',
+      'Booking, promotion, transport, and production for bands and venues along the Deep South. Big Muddy Entertainment is the music and media arm of Hillbilly Dreams, Inc.',
     openGraphUrl: 'https://bigmuddyentertainment.com/',
     ogImage: {
       url: sprinterVanOgImage,
       width: 1200,
       height: 630,
-      alt: 'Big Muddy Touring Sprinter van — corridor transport and production',
+      alt: 'Big Muddy Touring Sprinter van — region transport and production',
     },
   }),
   metadataBase: new URL('https://bigmuddyentertainment.com'),
