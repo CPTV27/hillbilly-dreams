@@ -33,3 +33,7 @@
 ### Issue #64 — Stale dependencies (Dependabot)
 **Status:** BLOCKED
 **Reason:** The sandbox agent environment lacks GitHub CLI permissions to pull, view, or merge Dependabot pull requests.
+
+### Issue #92 — GitHub-to-Asana sync
+**Status:** PARTIALLY BLOCKED
+**Reason:** The technical specification (`docs/specs/GITHUB_ASANA_SYNC.md`) and the webhook handler are built. However, executing a live end-to-end test with a real issue is blocked because the sandbox cannot post issues to GitHub via CLI, and `GITHUB_WEBHOOK_SECRET` is not set in `.env.local`.
