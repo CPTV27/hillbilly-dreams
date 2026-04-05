@@ -78,8 +78,8 @@ test.describe('P0 — Sovereign Pi store (/store/sovereign-pi)', () => {
     });
 
     await page.getByRole('link', { name: /Configure \+ buy standalone/i }).click();
-    await expect(page.locator('#configure')).toBeVisible();
-    await expect(page.getByRole('heading', { name: /Add what you need/i })).toBeVisible();
+    await page.waitForURL(/\/store\/sovereign-pi\/configure/, { timeout: 15_000 });
+    await expect(page.getByRole('heading', { name: /Configure your Pi/i })).toBeVisible();
 
     const cta = page.getByRole('link', { name: /Get yours free with DSD/i });
     await expect(cta).toBeVisible();

@@ -62,7 +62,7 @@ export default function SovereignPiPage() {
           <a href="/directory/onboard?addon=sovereign-pi" style={{ display: 'inline-block', padding: '0.75rem 2rem', background: 'var(--accent, #c8943e)', color: '#0a0a0a', textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }}>
             Get yours free
           </a>
-          <a href="#configure" style={{ display: 'inline-block', padding: '0.75rem 2rem', border: '1px solid var(--accent, #c8943e)', color: 'var(--accent, #c8943e)', textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }}>
+          <a href="/store/sovereign-pi/configure" style={{ display: 'inline-block', padding: '0.75rem 2rem', border: '1px solid var(--accent, #c8943e)', color: 'var(--accent, #c8943e)', textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }}>
             Configure + buy standalone
           </a>
         </div>
