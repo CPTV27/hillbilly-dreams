@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Vertex AI Report Card — HDI Performance Analysis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', system-ui; background: #0f0f0d; color: #f0ebe0; padding: 2rem; max-width: 1000px; margin: 0 auto; }
+  h1 { font-size: 2rem; font-weight: 800; color: #c8943e; margin-bottom: 0.5rem; }
+  h2 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #c8943e; margin: 2.5rem 0 1rem; }
+  .subtitle { font-size: 0.9rem; color: #9d968a; margin-bottom: 2rem; }
+  .card { background: #1a1816; border: 1px solid rgba(200,148,62,0.12); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; }
+  .grade { font-size: 4rem; font-weight: 800; text-align: center; padding: 1rem; }
+  .grade-a { color: #4a7c59; }
+  .grade-b { color: #c8943e; }
+  .grade-c { color: #c89e3e; }
+  .grade-f { color: #b54c4c; }
+  .bar-chart { display: flex; align-items: flex-end; gap: 4px; height: 200px; margin: 1rem 0; }
+  .bar { display: flex; flex-direction: column; align-items: center; flex: 1; }
+  .bar-fill { width: 100%; border-radius: 3px 3px 0 0; transition: height 0.5s; }
+  .bar-label { font-size: 9px; color: #6b635a; margin-top: 4px; text-align: center; }
+  .bar-value { font-size: 10px; color: #f0ebe0; margin-bottom: 2px; font-weight: 600; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; }
+  .stat { text-align: center; padding: 1rem; background: #231f1c; border-radius: 6px; }
+  .stat-value { font-size: 1.75rem; font-weight: 800; }
+  .stat-label { font-size: 0.65rem; color: #6b635a; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+  th { text-align: left; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: #6b635a; padding: 0.5rem; border-bottom: 1px solid rgba(200,148,62,0.12); }
+  td { padding: 0.5rem; border-bottom: 1px solid rgba(200,148,62,0.06); }
+  .highlight { color: #c8943e; font-weight: 700; }
+  .good { color: #4a7c59; }
+  .warn { color: #c89e3e; }
+  .bad { color: #b54c4c; }
+  .comparison-bar { display: flex; align-items: center; gap: 0.5rem; margin: 0.25rem 0; }
+  .comparison-fill { height: 20px; border-radius: 3px; display: flex; align-items: center; padding: 0 8px; font-size: 10px; font-weight: 700; color: #0f0f0d; }
+</style>
+</head>
+<body>
+
+<h1>Vertex AI Report Card</h1>
+<p class="subtitle">Hillbilly Dreams Incorporated — GCP Performance Analysis</p>
+
+<!-- Overall Grade -->
+<div class="card" style="text-align: center;">
+  <div class="grade grade-b">B+</div>
+  <p style="font-size: 0.9rem; color: #9d968a;">Right products, right models, room for operational improvement</p>
+</div>
+
+<!-- Cost Comparison -->
+<h2>Cost Per AI Call — HDI vs Competitors</h2>
+<div class="card">
+  <p style="font-size: 0.8rem; color: #9d968a; margin-bottom: 1rem;">Input cost per 1M tokens. Lower is better. We use the cheapest tier for 80% of calls.</p>
+
+  <div style="margin-bottom: 0.5rem;">
+    <div class="comparison-bar">
+      <span style="width: 120px; font-size: 0.75rem; color: #f0ebe0;">OpenAI GPT-4o</span>
+      <div class="comparison-fill" style="width: 100%; background: #b54c4c;">$5.00 — 67x more expensive</div>
+    </div>
+    <div class="comparison-bar">
+      <span style="width: 120px; font-size: 0.75rem; color: #f0ebe0;">Claude Sonnet</span>
+      <div class="comparison-fill" style="width: 60%; background: #c89e3e;">$3.00 — 40x</div>
+    </div>
+    <div class="comparison-bar">
+      <span style="width: 120px; font-size: 0.75rem; color: #f0ebe0;">Gemini Pro</span>
+      <div class="comparison-fill" style="width: 25%; background: #c8943e;">$1.25 — 17x</div>
+    </div>
+    <div class="comparison-bar">
+      <span style="width: 120px; font-size: 0.75rem; color: #f0ebe0; font-weight: 700;">Gemini Flash ★</span>
+      <div class="comparison-fill" style="width: 1.5%; min-width: 80px; background: #4a7c59;">$0.075</div>
+    </div>
+  </div>
+  <p style="font-size: 0.7rem; color: #6b635a; margin-top: 0.75rem;">★ HDI uses Gemini Flash for 80% of AI calls. We're at the bottom of the cost stack.</p>
+</div>
+
+<!-- Monthly AI Spend -->
+<h2>Projected Monthly AI Spend</h2>
+<div class="card">
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="stat-value good">$9.33</div>
+      <div class="stat-label">Monthly AI cost</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value highlight">$200</div>
+      <div class="stat-label">GCP Free Credit</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value good">$0.00</div>
+      <div class="stat-label">Net Cost</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" style="color: #f0ebe0;">~100</div>
+      <div class="stat-label">Calls/Day</div>
+    </div>
+  </div>
+  <p style="font-size: 0.7rem; color: #6b635a; margin-top: 1rem; text-align: center;">At 100 calls/day, our entire AI stack costs $9.33/mo. Google's free tier covers it 20x over.</p>
+</div>
+
+<!-- Cost Per Route -->
+<h2>Cost Per API Route (Monthly)</h2>
+<div class="card">
+  <div class="bar-chart">
+    <div class="bar"><div class="bar-value">$3.91</div><div class="bar-fill" style="height: 100%; background: #c8943e;"></div><div class="bar-label">AI Analyze</div></div>
+    <div class="bar"><div class="bar-value">$3.60</div><div class="bar-fill" style="height: 92%; background: #c8943e;"></div><div class="bar-label">Imagen</div></div>
+    <div class="bar"><div class="bar-value">$0.67</div><div class="bar-fill" style="height: 17%; background: #4a7c59;"></div><div class="bar-label">TTS</div></div>
+    <div class="bar"><div class="bar-value">$0.41</div><div class="bar-fill" style="height: 10%; background: #4a7c59;"></div><div class="bar-label">Notebook</div></div>
+    <div class="bar"><div class="bar-value">$0.39</div><div class="bar-fill" style="height: 10%; background: #4a7c59;"></div><div class="bar-label">Drafts</div></div>
+    <div class="bar"><div class="bar-value">$0.16</div><div class="bar-fill" style="height: 4%; background: #4a7c59;"></div><div class="bar-label">Social</div></div>
+    <div class="bar"><div class="bar-value">$0.05</div><div class="bar-fill" style="height: 1%; background: #4a7c59;"></div><div class="bar-label">Scout</div></div>
+    <div class="bar"><div class="bar-value">$0.04</div><div class="bar-fill" style="height: 1%; background: #4a7c59;"></div><div class="bar-label">DNA</div></div>
+    <div class="bar"><div class="bar-value">$0.03</div><div class="bar-fill" style="height: 1%; background: #4a7c59;"></div><div class="bar-label">Report</div></div>
+    <div class="bar"><div class="bar-value">$0.02</div><div class="bar-fill" style="height: 1%; background: #4a7c59;"></div><div class="bar-label">Reviews</div></div>
+  </div>
+  <p style="font-size: 0.7rem; color: #6b635a; text-align: center;">AI Analyze uses Gemini Pro (17x more expensive). Everything else runs on Flash.</p>
+</div>
+
+<!-- Model Selection -->
+<h2>Model Selection Matrix</h2>
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>Role</th><th>Primary</th><th>Fallback 1</th><th>Fallback 2</th><th>Grade</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Generation</td><td class="highlight">Gemini Flash</td><td>Claude Haiku</td><td>Perplexity</td><td class="good">A</td></tr>
+      <tr><td>Reasoning</td><td class="highlight">Gemini Pro</td><td>Claude Sonnet</td><td>Gemini Flash</td><td class="good">A</td></tr>
+      <tr><td>Chat</td><td class="highlight">Gemini Flash</td><td>Claude Sonnet</td><td>Perplexity</td><td class="good">A</td></tr>
+      <tr><td>Voice</td><td class="highlight">Gemini Flash</td><td>Gemini Pro</td><td>—</td><td class="good">A</td></tr>
+      <tr><td>Editorial</td><td>Claude Sonnet</td><td class="highlight">Gemini Pro</td><td>Gemini Flash</td><td class="warn">B</td></tr>
+      <tr><td>Search</td><td>Perplexity</td><td class="highlight">Gemini Flash</td><td>—</td><td class="warn">B</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size: 0.7rem; color: #6b635a; margin-top: 0.75rem;">Google models are primary for 4/6 roles. Editorial and search use non-Google primary with Google fallback. Proper cost-tiering: cheap model first, expensive only when needed.</p>
+</div>
+
+<!-- Failover System -->
+<h2>Failover Architecture</h2>
+<div class="card">
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="stat-value highlight">3</div>
+      <div class="stat-label">AI Providers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value good">30s</div>
+      <div class="stat-label">Timeout</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value highlight">5min</div>
+      <div class="stat-label">Health Reset</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value good">2</div>
+      <div class="stat-label">Fails Before Skip</div>
+    </div>
+  </div>
+  <p style="font-size: 0.8rem; color: #9d968a; margin-top: 1rem; line-height: 1.6;">If Gemini fails twice in a row, the system marks it unhealthy and routes to Claude for 5 minutes. After cooldown, it tries Gemini again. Three providers means no single point of failure.</p>
+  <p style="font-size: 0.7rem; color: #6b635a; margin-top: 0.5rem;">⚠ Only 3/16 routes use this system. 13 routes bypass failover entirely.</p>
+</div>
+
+<!-- GCP Products -->
+<h2>GCP Product Utilization</h2>
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>Product</th><th>Status</th><th>Grade</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Vertex AI (Gemini Flash)</td><td class="good">Primary generation model. Correct tier.</td><td class="good">A</td></tr>
+      <tr><td>Vertex AI (Gemini Pro)</td><td class="good">Reasoning model. Proper escalation.</td><td class="good">A</td></tr>
+      <tr><td>Cloud TTS (Journey)</td><td class="good">Highest quality voices. 10/12 presets use Journey.</td><td class="good">A</td></tr>
+      <tr><td>Cloud Storage (GCS)</td><td class="good">Public IAM, 1yr cache headers, lazy init.</td><td class="good">A</td></tr>
+      <tr><td>Imagen 3.0</td><td class="good">Image generation. Correct endpoint.</td><td class="good">A</td></tr>
+      <tr><td>Google Places API</td><td class="good">New v1 API. Text Search + Nearby.</td><td class="good">A</td></tr>
+      <tr><td>Vertex Embeddings</td><td class="highlight">text-embedding-005, 768d. Correct model.</td><td class="good">A</td></tr>
+      <tr><td>Cloud SQL</td><td class="warn">On standby. Not connected to Vercel.</td><td class="warn">C</td></tr>
+      <tr><td>Google Workspace</td><td class="bad">4 API calls. Reseller opportunity missed.</td><td class="bad">D</td></tr>
+      <tr><td>Cloud Logging</td><td class="bad">Not implemented. Console.log only.</td><td class="bad">F</td></tr>
+      <tr><td>Cloud Monitoring</td><td class="bad">Not implemented. No alerts.</td><td class="bad">F</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Speed Comparison -->
+<h2>Speed: DSD vs Competitors</h2>
+<div class="card">
+  <p style="font-size: 0.8rem; color: #9d968a; margin-bottom: 1rem;">Time from "business signs up" to "first value delivered"</p>
+  <div style="margin-bottom: 0.5rem;">
+    <div class="comparison-bar">
+      <span style="width: 100px; font-size: 0.75rem;">Birdeye</span>
+      <div class="comparison-fill" style="width: 100%; background: #b54c4c;">2-4 weeks (sales call + onboarding + setup)</div>
+    </div>
+    <div class="comparison-bar">
+      <span style="width: 100px; font-size: 0.75rem;">Podium</span>
+      <div class="comparison-fill" style="width: 80%; background: #c89e3e;">1-3 weeks (demo + contract + implementation)</div>
+    </div>
+    <div class="comparison-bar">
+      <span style="width: 100px; font-size: 0.75rem;">Thryv</span>
+      <div class="comparison-fill" style="width: 70%; background: #c89e3e;">1-2 weeks (sales + onboarding)</div>
+    </div>
+    <div class="comparison-bar">
+      <span style="width: 100px; font-size: 0.75rem; font-weight: 700;">DSD ★</span>
+      <div class="comparison-fill" style="width: 5%; min-width: 120px; background: #4a7c59;">Same day — walk in, sign up, done</div>
+    </div>
+  </div>
+  <p style="font-size: 0.7rem; color: #6b635a; margin-top: 0.75rem;">DSD onboarding is instant. Chase walks in with a Pi, plugs it in, business is live. No sales call. No contract negotiation. No implementation timeline. Gemini Flash processes the business data in <2 seconds.</p>
+</div>
+
+<!-- Infrastructure Comparison -->
+<h2>Infrastructure Cost: HDI vs Building from Scratch</h2>
+<div class="card">
+  <div class="stat-grid" style="grid-template-columns: 1fr 1fr;">
+    <div class="stat">
+      <div class="stat-value bad">$15,000</div>
+      <div class="stat-label">Typical startup monthly infra</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value good">$167</div>
+      <div class="stat-label">HDI monthly infra</div>
+    </div>
+  </div>
+  <p style="font-size: 0.8rem; color: #9d968a; margin-top: 1rem; text-align: center; font-weight: 600;">90x more capital efficient than a typical SaaS startup.</p>
+  <p style="font-size: 0.7rem; color: #6b635a; margin-top: 0.5rem; text-align: center;">122 database models, 200 API routes, 14 domains, multi-tenant, AI pipeline — for the price of a nice dinner.</p>
+</div>
+
+<p style="text-align: center; font-size: 0.6rem; color: #4a4440; margin-top: 3rem; text-transform: uppercase; letter-spacing: 0.15em;">
+  Hillbilly Dreams Incorporated · Vertex AI Report Card · April 2026
+</p>
+
+</body>
+</html>
