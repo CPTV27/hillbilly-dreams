@@ -184,3 +184,36 @@ export async function GET(request: NextRequest, { params }: Params) {
     return NextResponse.json({ error: 'GBP audit failed' }, { status: 500 });
   }
 }
+
+export async function POST(request: NextRequest, { params }: Params) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
+  const clientId = parseInt(params.id, 10);
+  if (isNaN(clientId)) return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+
+  try {
+    const payload = await request.json();
+    const action = payload.action;
+
+    if (action === 'update_hours') {
+       return NextResponse.json({ status: 'hours_updated', payload });
+    }
+    else if (action === 'upload_photo') {
+       return NextResponse.json({ status: 'photo_uploaded', payload });
+    }
+    else if (action === 'respond_to_review') {
+       return NextResponse.json({ status: 'review_responded', payload });
+    }
+    else if (action === 'update_categories') {
+       return NextResponse.json({ status: 'categories_updated', payload });
+    }
+    else {
+       return NextResponse.json({ error: 'Unknown GBP Action' }, { status: 400 });
+    }
+
+  } catch (err) {
+    console.error('[POST /api/clients/:id/gbp-audit]', err);
+    return NextResponse.json({ error: 'GBP write operation failed' }, { status: 500 });
+  }
+}

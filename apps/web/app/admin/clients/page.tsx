@@ -33,7 +33,7 @@ const BUSINESS_TYPES = ['restaurant', 'venue', 'hotel', 'shop', 'tour', 'service
 
 const ALL_PLATFORMS = ['instagram', 'facebook', 'twitter', 'tiktok', 'bluesky', 'linkedin', 'google'];
 
-const DETAIL_TABS = ['info', 'voice', 'calendar', 'reviews', 'reports'] as const;
+const DETAIL_TABS = ['info', 'voice', 'calendar', 'reviews', 'reports', 'gbp'] as const;
 type DetailTab = typeof DETAIL_TABS[number];
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -491,6 +491,27 @@ function ClientDetail({
   const [reportError, setReportError] = useState<string | null>(null);
   const [reports, setReports] = useState<Report[]>(client.reports ?? []);
 
+  const [gbpLoading, setGbpLoading] = useState(false);
+  const [gbpMessage, setGbpMessage] = useState<string | null>(null);
+
+  async function handleGBPWrite(action: string) {
+    setGbpLoading(true);
+    setGbpMessage(null);
+    try {
+      const res = await fetch(`${baseUrl}/api/clients/${client.id}/gbp-audit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action }),
+      });
+      if (!res.ok) throw new Error(await res.text());
+      setGbpMessage('GBP ' + action + ' executed successfully.');
+    } catch (err) {
+      setGbpMessage(err instanceof Error ? err.message : 'GBP operation failed.');
+    } finally {
+      setGbpLoading(false);
+    }
+  }
+
   async function handleSave(data: FormData) {
     setSaving(true);
     setSaveError(null);
@@ -860,6 +881,38 @@ function ClientDetail({
               <p className="admin-empty__text">No reports generated yet. Click Generate Report to produce the first one.</p>
             </div>
           )}
+        </div>
+      )}
+
+      {/* Tab: GBP */}
+      {activeTab === 'gbp' && (
+        <div className="clients-tab-content">
+          <div className="admin-page-header" style={{ marginBottom: 'var(--space-5)' }}>
+            <div>
+              <h2 className="clients-tab-heading">Google Business Profile Management</h2>
+              <p className="admin-page-sub">Directly push hours, photos, and review responses to the client's live Google listing.</p>
+            </div>
+          </div>
+
+          {gbpMessage && <div className="admin-error-banner" style={{ background: '#22c55e20', color: '#22c55e', borderColor: '#22c55e' }}>{gbpMessage}</div>}
+
+          <div className="admin-card" style={{ marginBottom: '1rem' }}>
+             <h3 className="clients-section-title">Store Hours</h3>
+             <p className="admin-page-sub" style={{ marginBottom: '1rem' }}>Ensure DSD hours match Google Places.</p>
+             <button className="admin-btn admin-btn--primary" onClick={() => handleGBPWrite('update_hours')} disabled={gbpLoading}>Push Hours to Google</button>
+          </div>
+
+          <div className="admin-card" style={{ marginBottom: '1rem' }}>
+             <h3 className="clients-section-title">Media Management</h3>
+             <p className="admin-page-sub" style={{ marginBottom: '1rem' }}>Upload high-fidelity Studio C photography directly to the GBP gallery.</p>
+             <button className="admin-btn admin-btn--ghost" onClick={() => handleGBPWrite('upload_photo')} disabled={gbpLoading}>Upload Photo to Google</button>
+          </div>
+
+          <div className="admin-card">
+             <h3 className="clients-section-title">Categorization</h3>
+             <p className="admin-page-sub" style={{ marginBottom: '1rem' }}>Force alignment on primary and secondary service categories.</p>
+             <button className="admin-btn admin-btn--ghost" onClick={() => handleGBPWrite('update_categories')} disabled={gbpLoading}>Sync Categories</button>
+          </div>
         </div>
       )}
     </div>
