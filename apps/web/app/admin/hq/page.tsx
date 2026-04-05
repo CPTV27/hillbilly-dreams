@@ -72,7 +72,7 @@ const BRANDS = [
     category: 'Production Services',
     revenue: { current: 0, projected: 96000, basis: '~8 shoots/mo × $1,000 avg' },
     multiple: 3,
-    assets: '$70-80K equipment, Utopia Studios campus, multi-cam broadcast',
+    assets: '$70-80K equipment, Utopia Studios (Bearsville, NY), multi-cam broadcast',
     status: 'Active — booking sessions',
   },
   {
@@ -168,7 +168,7 @@ export default function HQDashboard() {
   const nextMilestone = MILESTONES.find(m => daysUntil(m.date) > 0);
 
   return (
-    <div>
+    <div className="admin-hq-page">
       <div className="admin-page-header">
         <div>
           <h1 className="admin-page-title">HQ</h1>
@@ -289,7 +289,7 @@ export default function HQDashboard() {
       {/* Two-Region Model */}
       <div style={{ marginBottom: 'var(--space-6)' }}>
         <h2 style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--text-disabled)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-widest)', marginBottom: 'var(--space-4)' }}>Two-Region Model</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-3)' }}>
+        <div className="hq-two-region" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-3)' }}>
           <div className="admin-card" style={{ borderLeft: '3px solid var(--accent)' }}>
             <div style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-widest)', marginBottom: 'var(--space-3)' }}>Deep South (Natchez)</div>
             <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', lineHeight: 1.6 }}>
@@ -319,8 +319,8 @@ export default function HQDashboard() {
             { name: 'Chase Pierson', role: 'CEO / CTO / Showrunner', shift: 'Day: Tech, sales, media' },
             { name: 'Tracy Alderson-Allen', role: 'Finance & Inn Ops', shift: 'Day: Finance, admin. Night: Inn.' },
             { name: 'Amy Allen', role: 'Inn & Bar Ops', shift: 'Night: Bar, events, social.' },
-            { name: 'JP Houston', role: 'Shows & Programming', shift: 'Night: Blues Room, bookings.' },
-            { name: 'Elijah Tuttle', role: 'Tech Deployment (NE)', shift: 'Bearsville: infrastructure.' },
+            { name: 'Shows programming', role: 'TBD — contract in progress', shift: 'Night: Blues Room, bookings.' },
+            { name: 'Elijah Tuttle', role: 'Tech Deployment (NE)', shift: 'Bearsville, NY: infrastructure.' },
           ].map(p => (
             <div key={p.name} className="admin-card" style={{ padding: 'var(--space-3) var(--space-4)' }}>
               <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--text)' }}>{p.name}</div>
@@ -353,6 +353,12 @@ export default function HQDashboard() {
           ))}
         </div>
       </div>
+      <style>{`
+        @media (max-width: 480px) {
+          .admin-hq-page .hq-two-region { grid-template-columns: 1fr !important; }
+          .admin-hq-page .admin-page-header { flex-wrap: wrap; gap: var(--space-3); }
+        }
+      `}</style>
     </div>
   );
 }
