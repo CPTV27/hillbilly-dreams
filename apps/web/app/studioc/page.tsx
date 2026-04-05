@@ -147,7 +147,7 @@ export default function StudioPage() {
             textTransform: 'uppercase' as const,
             marginBottom: 'var(--space-4)',
           }}>
-            Live Production · Natchez, Mississippi
+            Live Production · Bearsville, NY at Utopia Studios
           </div>
           <h1 style={{
             fontFamily: 'var(--font-display)',
@@ -169,7 +169,7 @@ export default function StudioPage() {
             margin: '0 0 var(--space-10)',
           }}>
             Multi-camera live production, streaming, and content creation
-            from inside The Big Muddy Inn. Real gear, real room, real sound.
+            from Bearsville, NY at Utopia Studios. Real gear, real room, real sound.
           </p>
           <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' as const }}>
             <a href="mailto:studio@thebigmuddyinn.com" className="btn btn--primary">Book the Studio</a>
@@ -579,8 +579,8 @@ export default function StudioPage() {
             maxWidth: 560,
             margin: '0 auto var(--space-8)',
           }}>
-            Studio C is at The Big Muddy Inn, 411 N Commerce St, Natchez, Mississippi.
-            Bring your project. We&apos;ll bring the rig.
+            Studio C is at Bearsville, NY at Utopia Studios.
+            Bring your project. We'll bring the rig.
           </p>
           <a href="mailto:studio@thebigmuddyinn.com" className="btn btn--primary" style={{ fontSize: 'var(--text-lg)', padding: 'var(--space-4) var(--space-8)' }}>
             studio@thebigmuddyinn.com
