@@ -107,10 +107,32 @@ Raw data view for Tracy:
 - **Pros:** best UX, haptics, App Store presence
 - **Cons:** separate codebase, Apple Developer account, review process
 
-### Option C: Hybrid (recommended)
-- Start with Option A (web canvas) as the MVP
-- If Tracy and Amy love it, build Option B as native
-- The data layer is the same either way — just the rendering changes
+### DECIDED: D3-zoom + HTML Canvas (Grok-validated)
+
+**Stack:** D3-zoom for pinch/pan/momentum/elastic bounds + HTML Canvas for rendering. No WebGL. No Pixi. No Three.js (yet).
+
+**Why:** Native Safari pinch/momentum on iPad, 60fps with 50 nodes + photos, lightest bundle, zero WebGL tax on Sovereign Pi.
+
+**Component architecture (Grok):**
+- `app/explorer/page.tsx` — server wrapper
+- `components/explorer/SpatialCanvas.tsx` — 'use client' main component
+- `hooks/useD3Zoom.ts` — D3 zoom hook
+- `components/explorer/CanvasRenderer.tsx` — Canvas drawing logic
+- `components/explorer/NodeRenderer.ts` — photo + label + edge drawing
+- Zustand store for nodes/edges/zoomState
+
+**Zoom rendering (LOD via requestAnimationFrame):**
+- 0.3–0.6: 60px photo circles + thin edges
+- 0.6–1.5: 200px cards (fade in title/metrics via opacity)
+- 1.5–3.0: sub-nodes + detail panels
+- 3.0+: full articles/tables (conditional render)
+- Opacity transitions only — no CSS transforms on canvas
+
+**Data:** React Query + Zustand. Fetch once on mount, cache forever (stale-while-revalidate). No re-fetch on zoom.
+
+**Sovereign Pi:** Detect via userAgent/deviceMemory. Cap 30 nodes + 30fps. Fallback: static PNG + hotspots if <30fps.
+
+**Future WebXR:** Abstract data model (plain JS nodes/edges array) + pluggable renderer. Keep 2D CanvasRenderer; later add ThreeRenderer without touching business logic.
 
 ---
 
