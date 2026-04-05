@@ -113,6 +113,7 @@ export const BMT_BRAND_PREFIXES = [
   '/book',
   '/store',
   '/vr',
+  '/events',
   '/demo',
   '/jp',
   '/tracy',
