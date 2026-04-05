@@ -5,6 +5,7 @@
 import type { Metadata } from 'next';
 import { auth, signOut } from '@/lib/auth';
 import DeltaDawnFloat from './components/DeltaDawnFloat';
+import { ReviewModeShell } from './components/ReviewModeShell';
 
 
 export const metadata: Metadata = {
@@ -169,7 +170,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       {/* Main content */}
       <div className="admin-main">
         <main className="admin-content">
-          {children}
+          <ReviewModeShell>{children}</ReviewModeShell>
         </main>
       </div>
 
