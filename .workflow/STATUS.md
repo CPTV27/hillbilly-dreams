@@ -1,5 +1,15 @@
 # Agent status
 
+## 2026-04-05 — Swarm pass (GitHub issues)
+
+- **#57 closed:** `GET /api/admin/agent-audit` + Command Center **Audit** tab (merged AgentAction + ReasoningTrace). Commit `17619b7`.
+- **#54 closed:** `POST /api/admin/marketplace/seed-topology` (idempotent DSD + Bearsville marketplace graph); admin business empty state points to it. Commit `18ff2ae`.
+- **#77 (open):** Phase 2 slice — accepting a Studio C request creates `ProductionJob` + `jobId`; admin queue links to `/admin/productions/[id]`. Commit `94546f4`.
+- **#78:** Blocker comment posted (Meta app + env). Skipped execution.
+- **`memory/feedback_brand_family.md`:** not in repo; skipped read.
+
+---
+
 ## 2026-04-03 — Natchez Protocol “Master Key” wiring (schema + hub pulse + routes)
 
 - **Prisma:** Restored `User.creditLedgers`; added `Contest`, `Submission`, `DisplayChannel`. Run `pnpm db:generate` (done) and `pnpm db:push` (or migrate) with `DATABASE_URL=postgresql://chasethis@localhost:5432/hillbilly_sovereign` before using new tables.
