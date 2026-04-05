@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/media/remove/route.ts
 // Vertex AI Imagen 3 — Object removal endpoint for Photoshop plugin
 // SAFETY: Never alters people. Environment only.

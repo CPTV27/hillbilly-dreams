@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/media/property-cleanup/route.ts
 // Vertex AI Imagen 3 — Property cleanup endpoint for Photoshop plugin
 // Multi-pass: remove objects, then enhance the scene

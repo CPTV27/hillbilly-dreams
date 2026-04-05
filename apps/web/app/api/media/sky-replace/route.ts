@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // apps/web/app/api/media/sky-replace/route.ts
 // Vertex AI Imagen 3 — Sky replacement endpoint for Photoshop plugin
 
