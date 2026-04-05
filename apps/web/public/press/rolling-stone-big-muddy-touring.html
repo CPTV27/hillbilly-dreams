@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Muddy Touring Is Rewriting the Rules of the Southern Circuit — Rolling Stone</title>
+<meta name="description" content="One company books the bands, drives them there, puts them on the radio, writes about them in the magazine, and releases their records. Welcome to the anti-major-label model.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a1a;
+    color: #e8e4df;
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    font-size: 19px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* --- HEADER BAR --- */
+  .rs-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(26, 26, 26, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(229, 0, 0, 0.3);
+    padding: 12px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .rs-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: #E50000;
+    text-transform: uppercase;
+  }
+
+  .rs-nav {
+    display: flex;
+    gap: 24px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  .rs-nav span { cursor: pointer; }
+  .rs-nav span:hover { color: #E50000; }
+
+  /* --- HERO --- */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+  }
+
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: brightness(0.55) contrast(1.1);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(26, 26, 26, 0.1) 0%,
+      rgba(26, 26, 26, 0.0) 30%,
+      rgba(26, 26, 26, 0.4) 65%,
+      rgba(26, 26, 26, 1) 100%
+    );
+  }
+
+  .hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 32px 64px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-category {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #E50000;
+    margin-bottom: 16px;
+  }
+
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5.5vw, 64px);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  .hero-deck {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(17px, 2.2vw, 22px);
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 680px;
+  }
+
+  /* --- BYLINE --- */
+  .byline-bar {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 24px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .byline-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #E50000 0%, #8b0000 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .byline-text {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    color: #999;
+    line-height: 1.5;
+  }
+
+  .byline-name {
+    color: #e8e4df;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .byline-role {
+    color: #777;
+  }
+
+  /* --- ARTICLE BODY --- */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  .article-body p {
+    margin-bottom: 28px;
+    font-size: 19px;
+    line-height: 1.78;
+    color: #d4d0cb;
+  }
+
+  /* --- DROP CAP --- */
+  .drop-cap::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 4.8em;
+    float: left;
+    line-height: 0.78;
+    margin-right: 12px;
+    margin-top: 8px;
+    color: #E50000;
+  }
+
+  /* --- SUBHEADS --- */
+  .article-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    margin: 56px 0 24px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  /* --- PULL QUOTE --- */
+  .pull-quote {
+    margin: 48px 0;
+    padding: 24px 0 24px 28px;
+    border-left: 4px solid #E50000;
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.4;
+    color: #fff;
+    margin-bottom: 12px !important;
+  }
+
+  .pull-quote cite {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #E50000;
+  }
+
+  /* --- INLINE IMAGE --- */
+  .inline-image {
+    margin: 48px -60px;
+    position: relative;
+  }
+
+  .inline-image img {
+    width: 100%;
+    display: block;
+    border-radius: 2px;
+  }
+
+  .inline-image figcaption {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    color: #777;
+    margin-top: 10px;
+    padding: 0 60px;
+    line-height: 1.5;
+  }
+
+  .inline-image figcaption span {
+    color: #999;
+    font-weight: 600;
+  }
+
+  /* --- PHOTO GRID --- */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 48px -60px;
+  }
+
+  .photo-grid img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+
+  .photo-grid figcaption {
+    grid-column: 1 / -1;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    color: #777;
+    padding: 0 60px;
+    line-height: 1.5;
+  }
+
+  /* --- STATS BAR --- */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 56px 0;
+    padding: 32px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    color: #E50000;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #777;
+  }
+
+  /* --- TAGS --- */
+  .article-tags {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #999;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 14px;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  .tag:hover {
+    color: #E50000;
+    border-color: rgba(229, 0, 0, 0.3);
+  }
+
+  /* --- FOOTER --- */
+  .rs-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 48px 32px;
+    text-align: center;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    color: #555;
+  }
+
+  .rs-footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: #E50000;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 840px) {
+    .inline-image,
+    .photo-grid {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .inline-image figcaption,
+    .photo-grid figcaption {
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    body { font-size: 17px; }
+
+    .rs-nav { display: none; }
+
+    .hero { height: 80vh; min-height: 480px; }
+
+    .hero-content { padding: 0 20px 40px; }
+
+    .article-body { padding: 32px 20px 60px; }
+    .article-body p { font-size: 17px; }
+    .article-body h2 { font-size: 26px; }
+
+    .pull-quote p { font-size: 22px; }
+
+    .byline-bar { padding: 24px 20px 20px; }
+
+    .photo-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .photo-grid img {
+      height: 240px;
+    }
+
+    .stats-bar {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .stat-number { font-size: 36px; }
+
+    .drop-cap::first-letter {
+      font-size: 3.6em;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="rs-header">
+  <div class="rs-logo">Rolling Stone</div>
+  <nav class="rs-nav">
+    <span>Music</span>
+    <span>Culture</span>
+    <span>Politics</span>
+    <span>TV & Movies</span>
+    <span>Video</span>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-img" src="/images/corridor/guitarist-chandelier-venue.webp" alt="A guitarist performs under a chandelier in a Natchez venue">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-category">Music Feature</div>
+    <h1 class="hero-headline">Big Muddy Touring Is Rewriting the Rules of the Southern Circuit</h1>
+    <p class="hero-deck">One company books the bands, drives them there, puts them on the radio, writes about them in the magazine, and releases their records. Artists keep their masters. Welcome to the anti-major-label model.</p>
+  </div>
+</section>
+
+<!-- BYLINE -->
+<div class="byline-bar">
+  <div class="byline-avatar">JK</div>
+  <div class="byline-text">
+    <div class="byline-name">Jesse Kellerman</div>
+    <div class="byline-role">Contributing Writer &middot; June 18, 2026 &middot; 12 min read</div>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<article class="article-body">
+
+  <p class="drop-cap">There is a particular quality of darkness on the Natchez Bluff at two in the morning. The Mississippi River moves below like a black muscle, and the only light comes from the neon spilling out of a honky-tonk where a five-piece band from Austin is playing their third encore to a crowd that will not let them leave. The drummer is grinning like a man who just discovered religion. The bartender is pouring bourbon with both hands. And somewhere in the back, a guy named JP Houston is on his phone, confirming tomorrow's load-in at a juke joint in Clarksdale, 180 miles north.</p>
+
+  <p>This is a Tuesday night on the Big Muddy Touring circuit. By Thursday, this same band will have played Clarksdale, gotten interviewed on Big Muddy Radio, had their set reviewed in Big Muddy Magazine, and been offered a non-exclusive recording deal by Big Muddy Records. They will have traveled between shows in a converted Sprinter van with their gear in the back and cold water in the cooler. They will not have paid for a single night of lodging, because the circuit's anchor property &mdash; The Big Muddy Inn in Natchez &mdash; puts touring artists up between runs. And they will still own every note they play.</p>
+
+  <p>If this sounds like a fantasy cooked up by someone who read too many Woody Guthrie biographies, I understand. I thought the same thing when I first heard about Big Muddy Touring six months ago. Then I drove down to see it for myself, and what I found was something stranger and more compelling than a fantasy. I found a system.</p>
+
+  <h2>The Pitch Nobody Believes Until They See It</h2>
+
+  <p>The elevator pitch goes like this: <em>"We book your shows, drive you there, put you on the radio, write about you in the magazine, release your record, and sell it in the store."</em> It sounds like a lie. It sounds like something a manager says in a bar to impress a band that doesn't know any better. But Big Muddy Touring is actually doing it &mdash; all of it &mdash; across seven towns in the Deep South, with a lean team and an infrastructure that would make most regional promoters weep with envy.</p>
+
+  <div class="pull-quote">
+    <p>"Every show feeds every other thing we do. The radio promotes the show, the magazine reviews the show, the record label captures the show. Nothing is wasted."</p>
+    <cite>JP Houston, Head of Shows &amp; Programming</cite>
+  </div>
+
+  <p>Houston, who runs shows and programming for the entire operation, calls this the "2:1 multiplier" &mdash; the idea that every show generates at least twice its direct revenue through the surrounding ecosystem. A band plays a Tuesday night in Natchez? The inn fills rooms. The radio station gets content. The magazine gets a story. The bar sells drinks. The Deep South Directory &mdash; Big Muddy's business listing platform &mdash; gets another proof point to show local merchants why joining the network matters.</p>
+
+  <p>It's not a booking agency. It's not a label. It's not a magazine or a radio station. It's all of those things laced together so tightly that pulling on one thread moves the whole fabric.</p>
+
+  <figure class="inline-image">
+    <img src="/images/corridor/drummer-pearl-kit.webp" alt="Drummer performing on a Pearl kit in a packed room">
+    <figcaption><span>Big Muddy Touring.</span> A drummer locks in during a packed weeknight show in Natchez. The circuit's model means even Tuesday gigs draw real crowds &mdash; because the radio, magazine, and social channels have been talking about it for days.</figcaption>
+  </figure>
+
+  <h2>The Towns</h2>
+
+  <p>The circuit currently threads through Natchez, Clarksdale, Memphis, New Orleans, Vicksburg, Oxford, and Tupelo &mdash; with satellite dates in six more towns across Mississippi, Louisiana, Alabama, and Tennessee. That's 31 artists, 26 venues, and 20 hotels seeded into the booking database across 13 cities. If you drew a line on a map connecting all of them, it would look like a ragged constellation tracing the Mississippi River from Memphis to the Gulf.</p>
+
+  <p>Each town has its own personality. Clarksdale is blues &mdash; raw, loud, unapologetic. You book a band into Ground Zero or a juke joint on Blues Alley and the crowd comes ready to sweat. Natchez is more eclectic, more surprising &mdash; the kind of place where you can follow a brass band with a singer-songwriter and nobody blinks. Oxford is the college town circuit, all energy and beer sales. New Orleans doesn't need an explanation. Memphis doesn't either.</p>
+
+  <p>What Big Muddy figured out is that these towns had been operating in isolation. A band would play New Orleans, then drive six hours home to Nashville without realizing there were three other rooms between there and here that would have paid them to stop. The infrastructure didn't exist to string those shows together. Now it does.</p>
+
+  <div class="photo-grid">
+    <img src="/images/corridor/night-neon-moon-entrance.webp" alt="Neon sign glowing above a venue entrance at night">
+    <img src="/images/corridor/night-patio-string-lights.webp" alt="String lights over an outdoor patio venue">
+    <figcaption><span>The circuit after dark.</span> Venues across the Deep South share a common atmosphere &mdash; low light, loud music, and the feeling that something is about to happen. Left: a Natchez honky-tonk. Right: a patio stage in Vicksburg.</figcaption>
+  </div>
+
+  <h2>The Van, the Bus, and the Promise</h2>
+
+  <p>Transportation is the quiet revolution here. Most unsigned and mid-tier bands tour in whatever they can afford &mdash; a busted Econoline, a borrowed Suburban, a rental that's bleeding money at 39 cents a mile. Big Muddy runs a converted Sprinter van that picks up bands at their first date and carries them through the circuit. Gear goes in the back. Bodies go in the captain's chairs. The AC works.</p>
+
+  <p>It's not glamorous, but it's reliable &mdash; and reliable is the thing that kills most tours. A band from Birmingham can say yes to five dates in five towns without worrying about whether their bass player's Jeep will survive the trip. The long-term plan is more ambitious: a 40-foot sleeper bus, the kind that real touring acts use, running a continuous loop through the Deep South. For now, the Sprinter does the job. And the bands can't believe it.</p>
+
+  <div class="pull-quote">
+    <p>"Nobody has ever offered to drive us to a gig before. We showed up, plugged in, and they'd already promoted it on the radio. I kept waiting for the catch. There isn't one."</p>
+    <cite>Touring artist, after a four-date run through Mississippi</cite>
+  </div>
+
+  <h2>The Radio Station in the Closet</h2>
+
+  <p>Big Muddy Radio is, technically, a Mac Mini running Icecast in a back room. A Part 15 FM transmitter covers the inn's property and the immediate neighborhood. The stream goes everywhere else. It sounds, frankly, fantastic &mdash; warm and slightly compressed the way good college radio always sounded before Clear Channel ate everything.</p>
+
+  <p>The station runs 24 hours. Local music. Touring artists. Interviews with bands passing through the circuit. Show announcements. The kind of deep cuts and B-sides that an algorithm would never surface but a real human DJ &mdash; or in this case, a carefully programmed rotation &mdash; absolutely would.</p>
+
+  <p>What makes it matter for touring is timing. A band arrives in Natchez on Monday. By Tuesday morning, their music is in rotation. By Tuesday evening, the audience at their show has already heard them. This is not Spotify playlist placement. This is someone hearing a song on the radio while driving down John R. Junkin Drive and thinking, <em>I should go see that band tonight.</em></p>
+
+  <figure class="inline-image">
+    <img src="/images/ai-corridor/juke-joint-night.webp" alt="Inside a juke joint at night, crowd pressed close to the stage">
+    <figcaption><span>Deep South after midnight.</span> The circuit's juke joint shows are standing-room-only affairs where the line between audience and performer dissolves by the second set.</figcaption>
+  </figure>
+
+  <h2>The Anti-Label</h2>
+
+  <p>Big Muddy Records might be the most interesting piece of the operation, because it does exactly the opposite of what a record label is supposed to do. The deals are non-exclusive. The artists keep their masters. The label keeps the system.</p>
+
+  <p>What does that mean in practice? It means Big Muddy Records provides distribution, promotion through the magazine and radio, placement in the touring rotation, and presence in the online store. In exchange, they get the right to include the music in their ecosystem &mdash; radio play, playlist features, magazine coverage. The artist can walk away at any time and take everything with them.</p>
+
+  <p>The economics are startling. The label's release system &mdash; internally called the Mechanical Bull &mdash; has reduced the cost of a full music marketing push from the industry standard of $50,000 to $100,000 down to under $3,000 per release. That's not a typo. The difference is that Big Muddy already owns the media channels. They don't need to buy ads on someone else's platform, because they <em>are</em> the platform. The radio station, the magazine, the touring network, the social media accounts &mdash; it's all in-house.</p>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-number">31</div>
+      <div class="stat-label">Artists</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">26</div>
+      <div class="stat-label">Venues</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">13</div>
+      <div class="stat-label">Cities</div>
+    </div>
+  </div>
+
+  <p>For an unsigned artist, this is a complete inversion of how the music industry works. Nobody is asking for your publishing. Nobody is locking you into a seven-album deal. Nobody is telling you to change your sound so it works on TikTok. The pitch is: play the circuit, and we'll wrap the entire media operation around you while you do it. If it works, keep going. If it doesn't, no hard feelings, and your masters are still yours.</p>
+
+  <h2>The Artist in Residence</h2>
+
+  <p>Arrie Aslin was the first artist to move into The Big Muddy Inn under the artist-in-residence program. The deal is simple: you get a room, you get meals, you get access to the radio station and the magazine. In exchange, you play shows, you help out around the property, and you become part of the fabric of the place. It's not a contract &mdash; it's a handshake and a front porch.</p>
+
+  <p>When I met Aslin, she was sitting on that porch with a guitar, working out a chord progression while watching the river. She'd played three shows that week, been interviewed on the radio twice, and had a feature in the magazine dropping the following Monday. She was also helping set up chairs for that evening's show. This is the Big Muddy model in miniature: everyone does everything, nobody is too important for a folding chair, and the music comes first.</p>
+
+  <div class="photo-grid">
+    <img src="/images/ai-corridor/vinyl-records.webp" alt="Vinyl records in crates, warm light">
+    <img src="/images/records/anthologist-turntable.webp" alt="A turntable with warm amber light">
+    <figcaption><span>Big Muddy Records.</span> The label's non-exclusive model lets artists keep their masters while gaining access to the full media ecosystem &mdash; radio, magazine, touring, and retail distribution.</figcaption>
+  </div>
+
+  <h2>What the Music Industry Gets Wrong</h2>
+
+  <p>I've covered the music industry for twelve years, and in that time I've watched it eat itself with the mechanical efficiency of a paper shredder. The streaming economy pays artists fractions of pennies. The touring economy prices out anyone who isn't already famous. The label economy demands ownership of everything in exchange for services that most artists could do themselves if they had the infrastructure.</p>
+
+  <p>Big Muddy's bet is that the infrastructure can be built once and shared by everyone. They didn't invent a new kind of music or a new audience. They built a system that connects the audiences and venues that already exist in the Deep South and wrapped media around all of it. The magazine writes about the artists who play the circuit. The radio plays the artists who play the circuit. The label records the artists who play the circuit. The van drives the artists who play the circuit. Remove any one piece and it still works. Put them all together and you get something that no individual venue, label, station, or magazine could create alone.</p>
+
+  <div class="pull-quote">
+    <p>"The gap isn't technology. It's organization. Somebody just had to decide to do all of it at once, in the same place, for the same artists."</p>
+    <cite>Big Muddy Touring internal planning document</cite>
+  </div>
+
+  <p>Is it perfect? No. The Sprinter has 187,000 miles on it. The radio station is, again, running off a Mac Mini. The magazine is lean. The team is small. But every piece of it is real, and every piece of it is running right now, tonight, in a handful of towns between Memphis and New Orleans that most of the music industry has never thought about twice.</p>
+
+  <p>And that, maybe, is the point. The major labels and the streaming platforms and the big promoters have spent thirty years fighting over the same five cities. Meanwhile, down in the Deep South, in the towns where the blues was born and rock and roll learned to walk, somebody went ahead and built the whole thing from scratch. The bands show up, the van is running, the radio is on, and the porch light is on at the inn.</p>
+
+  <p>All you have to do is play.</p>
+
+  <!-- TAGS -->
+  <div class="article-tags">
+    <span class="tag">Live Music</span>
+    <span class="tag">Indie Labels</span>
+    <span class="tag">Deep South</span>
+    <span class="tag">Touring</span>
+    <span class="tag">Mississippi</span>
+    <span class="tag">Artist Rights</span>
+    <span class="tag">Music Industry</span>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="rs-footer">
+  <div class="rs-footer-logo">Rolling Stone</div>
+  <p>&copy; 2026 Rolling Stone LLC. All rights reserved. &middot; This is a concept piece created for Big Muddy Touring.</p>
+</footer>
+
+</body>
+</html>

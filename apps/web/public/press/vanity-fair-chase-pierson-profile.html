@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Man Who Wired Main Street | Vanity Fair</title>
+<meta name="description" content="Chase Pierson built broadcast infrastructure for global media companies. Then he moved to a Victorian mansion in Natchez, Mississippi, and started wiring it for the town.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f8f5f0;
+    color: #1a1a1a;
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    font-size: 19px;
+    line-height: 1.72;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Masthead ── */
+  .masthead {
+    text-align: center;
+    padding: 28px 20px 18px;
+    border-bottom: 1px solid #c8bfb0;
+  }
+  .masthead-logo {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+  }
+  .masthead-section {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8a7e6e;
+    margin-top: 6px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    min-height: 520px;
+    max-height: 900px;
+    overflow: hidden;
+  }
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.65);
+  }
+  .hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 60px 32px 48px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.72));
+    color: #fff;
+    text-align: center;
+  }
+  .hero-kicker {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #d4c8b0;
+    margin-bottom: 16px;
+  }
+  .hero-headline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900;
+    font-size: clamp(36px, 6vw, 72px);
+    line-height: 1.08;
+    margin-bottom: 20px;
+    max-width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-dek {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: clamp(16px, 2.2vw, 21px);
+    font-weight: 300;
+    line-height: 1.52;
+    max-width: 600px;
+    margin: 0 auto;
+    color: #e8e0d4;
+  }
+
+  /* ── Article container ── */
+  .article-container {
+    max-width: 660px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── Byline block ── */
+  .byline-block {
+    text-align: center;
+    padding: 44px 0 40px;
+    border-bottom: 1px solid #d4c8b0;
+    margin-bottom: 44px;
+  }
+  .byline-author {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #5a5245;
+  }
+  .byline-date {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 13px;
+    color: #8a7e6e;
+    margin-top: 6px;
+  }
+
+  /* ── Body text ── */
+  .article-container p {
+    margin-bottom: 24px;
+    font-size: 19px;
+    line-height: 1.72;
+    color: #2a2520;
+  }
+
+  /* ── Drop cap ── */
+  .drop-cap::first-letter {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900;
+    float: left;
+    font-size: 82px;
+    line-height: 0.72;
+    padding-right: 10px;
+    padding-top: 8px;
+    color: #1a1a1a;
+  }
+
+  /* ── Section break ── */
+  .section-break {
+    border: none;
+    border-top: 1px solid #d4c8b0;
+    margin: 48px auto;
+    width: 120px;
+  }
+
+  /* ── Pull quotes ── */
+  .pull-quote {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(24px, 3.5vw, 32px);
+    line-height: 1.4;
+    color: #3d3529;
+    text-align: center;
+    padding: 36px 0;
+    margin: 40px 0;
+    border-top: 1px solid #d4c8b0;
+    border-bottom: 1px solid #d4c8b0;
+  }
+
+  /* ── Inline images ── */
+  .article-photo {
+    margin: 44px -60px;
+    position: relative;
+  }
+  .article-photo img {
+    width: 100%;
+    display: block;
+  }
+  .article-photo figcaption {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+    color: #8a7e6e;
+    margin-top: 10px;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ── Full-bleed images ── */
+  .full-bleed {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-top: 48px;
+    margin-bottom: 48px;
+    position: relative;
+  }
+  .full-bleed img {
+    width: 100%;
+    max-height: 560px;
+    object-fit: cover;
+    display: block;
+  }
+  .full-bleed figcaption {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+    color: #8a7e6e;
+    text-align: center;
+    margin-top: 10px;
+    padding: 0 24px;
+    line-height: 1.5;
+  }
+
+  /* ── Sub-headings ── */
+  .section-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.25;
+    color: #1a1a1a;
+    margin: 48px 0 24px;
+    text-align: center;
+  }
+
+  /* ── Footer ── */
+  .article-footer {
+    text-align: center;
+    padding: 60px 24px 80px;
+    border-top: 1px solid #d4c8b0;
+    margin-top: 60px;
+  }
+  .article-footer p {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 13px;
+    color: #8a7e6e;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .article-footer .end-mark {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    color: #d4c8b0;
+    margin-bottom: 16px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    body { font-size: 17px; }
+    .article-container p { font-size: 17px; }
+    .article-photo { margin: 36px 0; }
+    .hero { height: 65vh; min-height: 400px; }
+    .hero-overlay { padding: 40px 20px 32px; }
+    .drop-cap::first-letter { font-size: 64px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Masthead -->
+<header class="masthead">
+  <div class="masthead-logo">Vanity Fair</div>
+  <div class="masthead-section">Profiles</div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <img class="hero-img" src="/images/corridor/victorian-mansion-natchez.webp" alt="A Victorian mansion in Natchez, Mississippi, its columns lit by the warm glow of a Southern evening">
+  <div class="hero-overlay">
+    <div class="hero-kicker">The Deep South</div>
+    <h1 class="hero-headline">The Man Who Wired Main&nbsp;Street</h1>
+    <p class="hero-dek">Chase Pierson designed broadcast systems for global media companies. Then he bought a Victorian mansion in Mississippi and started running the same architecture for a town&nbsp;of&nbsp;15,000.</p>
+  </div>
+</div>
+
+<!-- Byline -->
+<div class="article-container">
+  <div class="byline-block">
+    <div class="byline-author">By Margaux St. Claire</div>
+    <div class="byline-date">April 2026 &middot; Photographs by Arrie Aslin</div>
+  </div>
+
+  <!-- Lede -->
+  <p class="drop-cap">The morning light in Natchez, Mississippi, does something particular to old brick. It warms the red to the color of Georgia clay, softens the mortar lines, makes the whole downtown look like it was hand-tinted by someone who loved it. Chase Pierson walks through this light at seven-fifteen in the morning, coffee in one hand, phone in the other, checking the occupancy numbers for The Big Muddy Inn. Three of six rooms are booked tonight. He scrolls to the weather. Clear skies. A good day to walk.</p>
+
+  <p>Walking, in Pierson's world, is a business strategy. Five businesses a day, every day, on foot. The barbershop on Franklin Street. The soul food place near the bluff. The florist who just opened on Main. He carries no brochures, no slide deck, no laptop bag. Just himself and a pitch he can deliver in under ninety seconds: <em>For twenty-five dollars a month, your business shows up on every search, every map, every recommendation engine that tourists use to decide where to eat, where to shop, and what to do when they visit this town.</em></p>
+
+  <p>The product is called the Deep South Directory, and it is, depending on your vantage point, either a modest local business listing or the visible tip of something considerably stranger&mdash;a fourteen-domain media company running on a single codebase, operated by three partners from a two-story Victorian house on a bluff above the Mississippi River.</p>
+
+  <figure class="full-bleed">
+    <img src="/images/corridor/natchez-bluff-river-view.webp" alt="The Mississippi River seen from the bluffs of Natchez at golden hour">
+    <figcaption>The view from the Natchez bluffs. The river bends here like a question mark. Pierson chose this town partly for the view and partly because nobody else was building what he wanted to build.</figcaption>
+  </figure>
+
+  <hr class="section-break">
+
+  <!-- The Fever Dream -->
+  <h2 class="section-heading">The Fever Dream</h2>
+
+  <p class="drop-cap">It started, as so many unlikely things do, with COVID. In the winter of 2021, Pierson was sick in bed with the virus, running a fever that bent the ceiling above him into shapes. In that state he dreamed up something he would later call Bearsville Media Group&mdash;a full-stack media operation that could run from a single building. Broadcasting, publishing, photography, production, distribution. All of it. Not in New York or Los Angeles, but in a small town. Any small town.</p>
+
+  <p>The fever broke. The idea did not.</p>
+
+  <p>Pierson had spent years designing media infrastructure. His background was broadcast engineering and production technology&mdash;the invisible architecture that lets content move from a camera to a control room to a satellite to a screen. In 2022, he had designed something called the DeFacto Codec Market, a complete media production-to-distribution pipeline built on open-source tools. It was the kind of system that could run a Viacom or a BBC. Global infrastructure. Serious engineering.</p>
+
+  <p>&ldquo;And then one morning I just looked at it and thought, <em>this is exactly what a small town needs,</em>&rdquo; he says. We are sitting on the porch of the Inn, which is also his home, which is also the de facto headquarters of everything. A ceiling fan turns overhead. The river is somewhere behind the trees. &ldquo;The gap isn&rsquo;t technology. It&rsquo;s organization. Nobody has organized these tools for Main Street. They&rsquo;ve organized them for Manhattan.&rdquo;</p>
+
+  <div class="pull-quote">
+    &ldquo;The gap isn&rsquo;t technology. It&rsquo;s organization. Nobody has organized these tools for Main Street. They&rsquo;ve organized them for Manhattan.&rdquo;
+  </div>
+
+  <p>This is the thesis of Chase Pierson&rsquo;s life, distilled into two sentences. And what makes it interesting is not the idea itself&mdash;lots of people talk about democratizing media tools&mdash;but the fact that he actually moved to Natchez and started doing it. With his own money. In a house he shares with his two business partners. Running the code himself.</p>
+
+  <figure class="article-photo">
+    <img src="/images/studio-c/utopiademo-day-10.webp" alt="Behind the camera: production equipment and monitors during a live setup">
+    <figcaption>Pierson's production rig in the field. He owns roughly $70,000 worth of broadcast-grade equipment outright&mdash;DJI Ronin 4D, Blackmagic cameras, Aputure lighting, ATEM switchers&mdash;the same gear used on network television.</figcaption>
+  </figure>
+
+  <hr class="section-break">
+
+  <!-- The House -->
+  <h2 class="section-heading">The House on the Bluff</h2>
+
+  <p class="drop-cap">To understand Big Muddy, you have to understand the house. The Big Muddy Inn is a Victorian-era mansion perched on the Natchez bluffs, with wide porches and tall windows and the kind of history that real estate agents call &ldquo;storied.&rdquo; It operates as a boutique inn&mdash;six rooms, nightly rates, the usual&mdash;but it is also, simultaneously, a live music venue, a bar, a media production studio, a broadcasting hub, and the nerve center of a company that spans two time zones and fourteen internet domains.</p>
+
+  <p>Three people run all of it. And the division of labor, while informal in the way that small operations tend to be, is specific enough to be instructive.</p>
+
+  <p>Tracy Alderson-Allen handles the finances. She is an equity partner&mdash;equal thirds, all three of them&mdash;and she manages the books, the tax filings, the inn&rsquo;s operations, and the careful math of keeping a company alive on ambition while the revenue catches up. She has the kind of calm that suggests she has seen worse.</p>
+
+  <p>Amy Allen runs the bar, the front of house, the guest experience, the day-to-day operations that keep people fed and drinks poured and rooms clean. She is also an equity partner. She is also the reason the place feels like someone&rsquo;s home rather than someone&rsquo;s startup.</p>
+
+  <p>And Pierson does everything else. He writes the code. He sells the product. He shoots the photographs. He books the bands. He mixes the sound. He walks Main Street five days a week pitching the directory. CEO, CTO, and showrunner&mdash;three titles that, in any normal company, would represent three separate departments with three separate budgets and roughly forty people between them.</p>
+
+  <figure class="full-bleed">
+    <img src="/images/corridor/inn-hallway-gathering.webp" alt="Guests gathering in the warm hallway of The Big Muddy Inn">
+    <figcaption>Inside The Big Muddy Inn. The line between business headquarters and hospitality operation blurs by design&mdash;guests eat breakfast in the same room where the partners take meetings.</figcaption>
+  </figure>
+
+  <p>&ldquo;People hear &lsquo;fourteen domains&rsquo; and they picture some corporate campus,&rdquo; Pierson says, laughing. &ldquo;It&rsquo;s a house. It&rsquo;s a very nice house, but it&rsquo;s a house. Tracy does the books at the kitchen table. Amy runs the bar in the parlor. I write code on the porch. That&rsquo;s the empire.&rdquo;</p>
+
+  <p>The empire, for the record: Big Muddy Touring. Big Muddy Magazine. Big Muddy Radio. Big Muddy Entertainment. Big Muddy Records. The Deep South Directory. Outsider Economics. Tuthill Design. Studio C Video. Bearsville Creative. And a B2B platform called Measurably Better Things that ties them all together under the hood. One Next.js application. One deployment. Fourteen domains. Three people and a porch.</p>
+
+  <hr class="section-break">
+
+  <!-- The Walk -->
+  <h2 class="section-heading">Five Businesses a Day</h2>
+
+  <p class="drop-cap">At two in the afternoon, Pierson is on foot. Franklin Street. The heat is manageable in early April, but just barely. He pushes through the door of a barbershop that has been in the same location for forty years and introduces himself like he&rsquo;s done it a thousand times, because he has.</p>
+
+  <p>The pitch is disarming in its simplicity. No jargon. No screen. Just a conversation about whether people can find this place when they search for it online. The barber, a man in his sixties with a client in the chair, listens with the patient skepticism of someone who has heard promises before.</p>
+
+  <p>&ldquo;Twenty-five a month,&rdquo; Pierson says. &ldquo;We put you on the directory. We keep your listing current. When tourists come to Natchez and search for a barber, you show up. That&rsquo;s it. No contract. Cancel whenever.&rdquo;</p>
+
+  <p>The barber looks at him. &ldquo;Who does the work?&rdquo;</p>
+
+  <p>&ldquo;We do. You don&rsquo;t touch anything.&rdquo;</p>
+
+  <p>This exchange, or a version of it, happens five times a day. Sometimes the answer is yes. Sometimes it&rsquo;s a polite no. Sometimes it&rsquo;s a maybe-come-back-next-week. Pierson tracks none of this in a CRM. He remembers. He says he&rsquo;ll come back, and he does.</p>
+
+  <figure class="article-photo">
+    <img src="/images/corridor/cafe-sidewalk-natchez.webp" alt="A sidewalk cafe scene in Natchez, chairs and tables catching afternoon light">
+    <figcaption>Downtown Natchez, where Pierson walks his daily route. The pitch is always the same: twenty-five dollars, no contract, we do the work.</figcaption>
+  </figure>
+
+  <p>What makes this unusual is not the door-to-door sales&mdash;people have sold advertising to local businesses since advertising existed&mdash;but the fact that the person doing the selling also wrote the software, designed the database, configured the servers, and will personally handle the customer support call if something breaks at 2 a.m. In the modern technology economy, this kind of vertical integration doesn&rsquo;t happen. The coder doesn&rsquo;t sell. The seller doesn&rsquo;t code. The founder doesn&rsquo;t walk.</p>
+
+  <p>Pierson walks.</p>
+
+  <hr class="section-break">
+
+  <!-- The Show -->
+  <h2 class="section-heading">Showtime on the Bluff</h2>
+
+  <p class="drop-cap">By six in the evening, the Inn is transforming. Amy is behind the bar. The parlor, which by day serves as a breakfast room and by afternoon serves as a workspace, is being rearranged for a live show. Chairs move. A small PA system appears. Pierson is running cables, checking microphones, testing the stream that will go out live on Big Muddy Radio.</p>
+
+  <p>Tonight it&rsquo;s a three-piece blues act from Clarksdale, about two hours north. They drove down in a van that has seen better decades. The guitar player is seventy-one years old and has been playing juke joints since he was fifteen. He does not know what a &ldquo;single codebase&rdquo; is and does not care. He knows the room sounds good and the people are friendly and someone is going to hand him a check at the end of the night.</p>
+
+  <figure class="full-bleed">
+    <img src="/images/corridor/natchez-night-lounge.webp" alt="A warmly lit lounge space at night, ready for a live performance">
+    <figcaption>The venue space at The Big Muddy Inn. Every show feeds the ecosystem&mdash;guests book rooms, the bar sells drinks, the magazine covers the act, the radio streams the set, the directory lists the business. One event, five revenue lines.</figcaption>
+  </figure>
+
+  <p>This is the part that Pierson calls the multiplier. A single show at the Inn doesn&rsquo;t just sell tickets. It fills rooms at the inn&mdash;people drive from Jackson and Baton Rouge for a good show and need somewhere to sleep. It sells drinks at the bar. It generates content for the magazine. It creates a live broadcast for the radio station. It provides material for the photographer. It gives the directory something to recommend. Pierson estimates the multiplier at roughly two-to-one: every dollar in show revenue generates about two dollars in ecosystem revenue around it.</p>
+
+  <p>&ldquo;This is what the big media companies figured out fifty years ago,&rdquo; he says, taping a cable to the floor. &ldquo;Content is the engine. Everything else is exhaust. The difference is they needed a thousand people and a building in Midtown. We need Amy, Tracy, a good sound system, and this house.&rdquo;</p>
+
+  <div class="pull-quote">
+    &ldquo;Content is the engine. Everything else is exhaust.&rdquo;
+  </div>
+
+  <hr class="section-break">
+
+  <!-- The Equipment -->
+  <h2 class="section-heading">Seventy Thousand Dollars of Glass</h2>
+
+  <p class="drop-cap">Upstairs, in a room that was probably a nursery when this house was built, Pierson keeps his gear. The inventory is startling for a company that currently generates zero dollars in monthly recurring revenue: a DJI Ronin 4D cinema camera system, Blackmagic Design cameras and ATEM production switchers, Aputure professional lighting kits, audio equipment sufficient to record and broadcast a live concert, and a Mac mini server running OpenBroadcaster and Icecast for the radio station. Total value, by his estimate, somewhere between seventy and eighty thousand dollars. All of it owned outright. No debt. No leases.</p>
+
+  <p>&ldquo;People think you need a studio,&rdquo; he says, pulling a Ronin 4D from its case with the careful hands of someone who has dropped expensive things before and learned from it. &ldquo;You don&rsquo;t need a studio. You need the right glass, the right light, and somewhere to plug it in. The studio is the town.&rdquo;</p>
+
+  <p>Pierson is also a photographer&mdash;fine art and editorial work that predates the business and informs the visual language of everything Big Muddy produces. The images on the directory, the magazine, the website&mdash;they are not stock photography. They are his photographs, or his partner Arrie Aslin&rsquo;s photographs, shot in the same towns they are trying to serve. This matters more than it might seem. When a business owner in Natchez sees their street on the directory and recognizes the light, the angle, the specific way the afternoon hits the bricks on Franklin Street, something shifts. It stops being a tech product and starts being <em>their</em> thing.</p>
+
+  <figure class="article-photo">
+    <img src="/images/studio-c/utopiademo-day-25.webp" alt="Production day: cameras and crew in a creative workspace">
+    <figcaption>A production day at the Inn. Pierson shoots, directs, and edits. The same person who wrote the booking software is behind the camera.</figcaption>
+  </figure>
+
+  <hr class="section-break">
+
+  <!-- The Second Node -->
+  <h2 class="section-heading">Woodstock Is Watching</h2>
+
+  <p class="drop-cap">The plan, and Pierson is the first to acknowledge that plans are cheap, is to replicate the model. Not franchise it. Not sell it. Replicate it, organically, in towns that share certain characteristics: cultural history, tourism traffic, a creative class that is underserved by the existing digital economy, and rents low enough that a small operation can survive the years of zero revenue that precede the years of actual revenue.</p>
+
+  <p>The second node is Bearsville Creative, based in Woodstock, New York. Same platform, different region. The Hudson Valley and Catskills instead of the Deep South. Different music, different food, different light&mdash;but the same architecture underneath. Same codebase. Same approach. Same bet that a media-hospitality operation can serve a small creative economy better than a collection of unrelated apps and platforms ever could.</p>
+
+  <p>&ldquo;Woodstock is the proof of concept for portability,&rdquo; Pierson says. &ldquo;If the same system that works in Natchez works in the Hudson Valley, then it&rsquo;s not about Mississippi. It&rsquo;s about the model.&rdquo;</p>
+
+  <p>Bearsville is scheduled for activation in summer 2026. The domain is live. The DNS is wired. The configuration file is twelve lines of code.</p>
+
+  <hr class="section-break">
+
+  <!-- The Numbers -->
+  <h2 class="section-heading">The Math of Belief</h2>
+
+  <p class="drop-cap">Here is where the profile would normally pivot to revenue. The growth chart. The series A. The monthly recurring revenue that proves the thesis. And here is where Chase Pierson&rsquo;s story departs from the script, because the current monthly recurring revenue of this fourteen-domain, three-partner, seventy-thousand-dollars-in-equipment media company is zero.</p>
+
+  <p>Zero.</p>
+
+  <p>Not approximately zero. Not early-stage-startup zero-with-an-asterisk. Zero. The company is in what Pierson calls the &ldquo;dogfood phase&rdquo;&mdash;running the entire platform on their own properties before selling it to anyone else. The Big Muddy Inn. The touring operation. The magazine. A restaurant partnership in town. They are their own first four clients, and they are not charging themselves.</p>
+
+  <p>The pipeline, by contrast, is $1.35 million. Which is either a sign of extraordinary future potential or the kind of number that means nothing until someone writes a check. Pierson seems unbothered by the gap. He has been unbothered by gaps his entire career. The gap between global media infrastructure and a small-town economy. The gap between having the gear and having the revenue. The gap between the porch and the plan.</p>
+
+  <figure class="full-bleed">
+    <img src="/images/corridor/fire-pit-gathering.webp" alt="Guests and friends gathered around a fire pit on the grounds of the Inn at dusk">
+    <figcaption>Evening at the Inn. The line between hospitality, community, and business development blurs around a fire. Half the directory leads started as conversations like this one.</figcaption>
+  </figure>
+
+  <p>&ldquo;Every media company in history was broke before it wasn&rsquo;t,&rdquo; he says. &ldquo;ESPN ran on fumes for years. MTV was a joke until it wasn&rsquo;t. The difference is they needed venture capital to survive the gap. We don&rsquo;t. We own the house. We own the gear. The three of us split everything equally and we all live here. Our burn rate is basically groceries and internet.&rdquo;</p>
+
+  <p>He pauses. The ceiling fan makes its slow turn.</p>
+
+  <p>&ldquo;And I can write the code myself. That&rsquo;s the part nobody accounts for. The technology that would cost a normal company two million dollars in engineering salaries, I can build on the porch in the morning and sell on Main Street in the afternoon. The gap isn&rsquo;t capital. It&rsquo;s time.&rdquo;</p>
+
+  <div class="pull-quote">
+    &ldquo;Every media company in history was broke before it wasn&rsquo;t.&rdquo;
+  </div>
+
+  <hr class="section-break">
+
+  <!-- The Evening -->
+  <h2 class="section-heading">After the Last Set</h2>
+
+  <p class="drop-cap">It is eleven at night. The blues trio from Clarksdale has packed up. Amy is closing down the bar. Tracy has already gone upstairs, having reconciled the evening&rsquo;s receipts on her phone during the second set. A couple from Memphis who booked a room for the show are on the porch with a nightcap, watching the dark where the river must be.</p>
+
+  <p>Pierson is at his laptop. He is committing code. He is also answering an email from a restaurant owner on Main Street who wants to know more about the directory. He is also checking the broadcast logs to make sure the live stream went out cleanly. He is doing three jobs at once because he has three jobs and all of them are his.</p>
+
+  <p>I ask him if he ever thinks about what happens if this doesn&rsquo;t work. The question seems to genuinely puzzle him, as if I&rsquo;d asked whether gravity might take a day off.</p>
+
+  <p>&ldquo;This already works,&rdquo; he says. &ldquo;The Inn has guests tonight because a band played. The band played because I booked them. The stream went out because I built the radio station. The restaurant owner emailed because I walked in there on Tuesday. It works. It just doesn&rsquo;t make money yet. Those are different problems.&rdquo;</p>
+
+  <p>He closes the laptop. The fan turns. Somewhere down the bluff, the river moves at its own pace, dark and wide and indifferent to the plans of the people who live along its banks. Chase Pierson has bet his life on the idea that the same systems that run Manhattan can run Natchez, Mississippi, if somebody bothers to organize them. He has two partners who believe him, a house full of cameras, a porch with decent Wi-Fi, and five businesses to walk into tomorrow morning.</p>
+
+  <p>The light on the porch goes off. The empire sleeps.</p>
+
+</div>
+
+<!-- Footer -->
+<footer class="article-footer">
+  <div class="end-mark">&#9830;</div>
+  <p>Margaux St. Claire is a contributing editor at Vanity Fair</p>
+</footer>
+
+</body>
+</html>

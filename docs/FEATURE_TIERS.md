@@ -18,7 +18,7 @@ Solve the #1 pain point (manual data entry) so deeply they never unplug.
 4. Central Notification Hub (all alerts in one feed)
 5. Directory listing on Deep South Directory
 
-## $20/mo: The Doer (Marketing & Operations)
+## $25/mo Essentials + $50/mo Pro: The Doer (Marketing & Operations)
 "Take a photo. It does the rest."
 
 5. The Photo Content Engine (snap → caption → posts to IG/FB/Google)
@@ -62,16 +62,10 @@ For $500K+/yr businesses. Replaces back-office headcount entirely.
 | Too complex | Dashboard fatigue | No dashboard. Text + camera + voice |
 | Doesn't show ROI | Users can't find the value | Daily text TELLS them the value |
 
-## PRICING NOTE (Updated April 2026)
-**Previous tiers (Free/$20/$49/$99) are being reconsidered.** Chase is leaning toward Free / $99 / $250.
+## PRICING (LOCKED — April 5, 2026)
+**Canonical tiers: Free / $25 Essentials / $50 Pro / $99 Marketing / $250 Engine.**
 
-Staged rollout plan:
-1. Internal dogfood (now)
-2. Fix + adjust pricing
-3. First 10 customers (special founding deal)
-4. Revise
-5. Next 100 customers
-6. Revise and scale
+Previous $20/$49/$99 structure is retired. $1,500/mo Operator tier above is aspirational — not in current launch.
 
 Hero Bundle (one professional photoshoot/year) confirmed as a concept, not yet tier-assigned.
 

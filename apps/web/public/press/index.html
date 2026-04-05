@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Morning News — Hillbilly Dreams in the Press</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0f0f0f;
+    color: #e8e4df;
+    min-height: 100vh;
+  }
+
+  .masthead {
+    text-align: center;
+    padding: 60px 20px 40px;
+    border-bottom: 1px solid #333;
+  }
+
+  .masthead .date {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 16px;
+  }
+
+  .masthead h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(32px, 6vw, 56px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+
+  .masthead .subtitle {
+    font-size: 16px;
+    color: #aaa;
+    font-weight: 300;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .greeting {
+    text-align: center;
+    padding: 40px 20px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .greeting p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #ccc;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+  }
+
+  .greeting .names {
+    font-style: normal;
+    font-weight: 700;
+    color: #e8e4df;
+  }
+
+  .section-label {
+    text-align: center;
+    padding: 40px 20px 20px;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #666;
+  }
+
+  .articles {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    gap: 24px;
+  }
+
+  .card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+
+  .card-inner {
+    padding: 28px 32px;
+  }
+
+  .card .pub {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card .pub .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .card h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .card .deck {
+    font-size: 15px;
+    color: #999;
+    line-height: 1.6;
+  }
+
+  .card .read-time {
+    font-size: 12px;
+    color: #666;
+    margin-top: 16px;
+  }
+
+  .podcast-card {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 1px solid #2a3a5c;
+  }
+
+  .podcast-card .pub .dot { background: #4ecdc4; }
+
+  .nyt .pub .dot { background: #e8e4df; }
+  .rs .pub .dot { background: #e50000; }
+  .vf .pub .dot { background: #c4a35a; }
+  .wsj .pub .dot { background: #0274B6; }
+  .wired .pub .dot { background: #00ff88; }
+  .ba .pub .dot { background: #c17817; }
+
+  .footer {
+    text-align: center;
+    padding: 60px 20px;
+    color: #444;
+    font-size: 13px;
+    border-top: 1px solid #222;
+    margin-top: 40px;
+  }
+
+  .footer em {
+    color: #666;
+  }
+
+  .internal-banner {
+    background: #2a1a00;
+    border-bottom: 2px solid #c17817;
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c17817;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .internal-banner strong { color: #e8a030; }
+
+  .disclaimer-box {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #999;
+    line-height: 1.7;
+    margin-top: 10px;
+  }
+
+  .disclaimer-box strong { color: #ccc; }
+</style>
+</head>
+<body>
+
+<div class="internal-banner">
+  <strong>Internal Use Only</strong> &mdash; HDI Marketing Department &mdash; Not for public distribution
+</div>
+
+<div class="masthead">
+  <div class="date">Sunday, April 6, 2026</div>
+  <h1>The Morning News</h1>
+  <div class="subtitle">What the world might say about what we're building.</div>
+</div>
+
+<div class="greeting">
+  <p>Good morning, <span class="names">Tracy</span> and <span class="names">Amy</span>. Pour some coffee. Here's what the press could be writing about us.</p>
+</div>
+
+<div style="padding: 0 20px;">
+  <div class="disclaimer-box">
+    <strong>What is this?</strong> These are fictional articles written in the style of real publications. They imagine what major outlets might write about Hillbilly Dreams if we execute on our current plan. <strong>None of these articles are real.</strong> They exist to help our team understand the full scope of what we're building — told through the lens of journalists who would cover us. Use them for internal alignment and motivation, not external marketing.
+  </div>
+</div>
+
+<div class="section-label">Listen First</div>
+
+<div class="articles">
+  <a class="card podcast-card" href="podcast-morning-briefing.html">
+    <div class="card-inner">
+      <div class="pub"><span class="dot"></span> The Morning Wire: Deep South Edition</div>
+      <h2>Episode 47: "The Company That Wired Main Street"</h2>
+      <div class="deck">Two hosts break down every story below — the Times profile, Rolling Stone's touring piece, the Wall Street Journal economics, the Vanity Fair profile, and what Bon Appetit said about the Inn. 20 minutes.</div>
+      <div class="read-time">20 min listen / read</div>
+    </div>
+  </a>
+</div>
+
+<div class="section-label">The Articles</div>
+
+<div class="articles">
+  <a class="card nyt" href="nyt-natchez-media-revolution.html">
+    <div class="card-inner">
+      <div class="pub"><span class="dot"></span> The New York Times</div>
+      <h2>In Natchez, a Media Company Built for Main Street</h2>
+      <div class="deck">A reporter discovers that a small team in Mississippi has built what amounts to a complete media-hospitality ecosystem — 14 domains, one codebase, four people.</div>
+      <div class="read-time">12 min read</div>
+    </div>
+  </a>
+
+  <a class="card rs" href="rolling-stone-big-muddy-touring.html">
+    <div class="card-inner">
+      <div class="pub"><span class="dot"></span> Rolling Stone</div>
+      <h2>Big Muddy Touring Is Rewriting the Rules of the Southern Circuit</h2>
+      <div class="deck">One company books the bands, drives them there, puts them on the radio, writes about them in the magazine, and releases their records. Non-exclusive. Artists keep their masters.</div>
+      <div class="read-time">10 min read</div>
+    </div>
+  </a>
+
+  <a class="card vf" href="vanity-fair-chase-pierson-profile.html">
+    <div class="card-inner">
+      <div class="pub"><span class="dot"></span> Vanity Fair</div>
+      <h2>The Man Who Wired Main Street</h2>
+      <div class="deck">A profile of Chase Pierson — morning at the Inn, afternoon pitching the directory to barbershops, evening setting up a show. Three equity partners, one Victorian mansion, fourteen domains.</div>
+      <div class="read-time">14 min read</div>
+    </div>
+  </a>
+
+  <a class="card wsj" href="wsj-small-town-ai-platform.html">
+    <div class="card-inner">
+      <div class="pub"><span class="dot"></span> The Wall Street Journal</div>
+      <h2>A Four-Person Team Built an AI Platform That Could Replace $800 a Month in Small-Business Tools</h2>
+      <div class="deck">The economics: most small businesses in towns under 50,000 are paying $500-800/month across disconnected SaaS tools they barely use. This replaces them all for $25-250.</div>
+      <div class="read-time">9 min read</div>
+    </div>
+  </a>
+
+  <a class="card wired" href="wired-glass-engine-ai.html">
+    <div class="card-inner">
+      <div class="pub"><span class="dot"></span> Wired</div>
+      <h2>The Glass Engine: How One Codebase Became a Small-Town Media Empire</h2>
+      <div class="deck">Inside the tech: one Next.js app, 14 domains, 9 modules, AI model routing, 16,936 auto-tagged photos, and a radio station running on a Mac Mini in the back of a Victorian inn.</div>
+      <div class="read-time">11 min read</div>
+    </div>
+  </a>
+
+  <a class="card ba" href="bon-appetit-big-muddy-inn.html">
+    <div class="card-inner">
+      <div class="pub"><span class="dot"></span> Bon Appetit</div>
+      <h2>The Inn Where the Music Plays and the AI Answers the Phone</h2>
+      <div class="deck">A Victorian mansion that doubles as a hotel, music venue, radio station, and tech headquarters. Amy runs the bar. Tracy runs the books. The technology is invisible to guests.</div>
+      <div class="read-time">10 min read</div>
+    </div>
+  </a>
+</div>
+
+<div class="footer">
+  <em>These articles imagine what the press might say when we do what we said we'd do.</em><br>
+  Built with love in Natchez, Mississippi. April 2026.
+</div>
+
+</body>
+</html>

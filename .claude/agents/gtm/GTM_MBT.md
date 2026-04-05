@@ -2,14 +2,14 @@
 
 ## 90-Day Priorities
 1. **Onboarding flow end-to-end** — Google sign-in → QBO connect → first content generated
-2. **10 pilot businesses** — Natchez Main Street businesses onboarded at $20/month
+2. **10 pilot businesses** — Natchez Main Street businesses onboarded at $25/month
 3. **Content Studio validation** — Type a name, get 5 channels of content, no errors (Gate 1)
-4. **Pricing page live** — Free / $20 / $99 tiers clearly explained with sign-up
+4. **Pricing page live** — Free / $25 / $50 / $99 / $250 tiers clearly explained with sign-up
 5. **Municipality pitch deck** — For ARPA/CDBG block-purchase conversations
 
 ## Channel Strategy
 - **Website:** measurablybetter.life — product pages, pricing, onboarding, dashboard
-- **Directory:** Free tier = DSD listing. Upsell to $20 for AI management
+- **Directory:** Free tier = DSD listing. Upsell to $25 Essentials for AI management
 - **OE:** Philosophy arm explains why MBT matters
 - **Social:** LinkedIn (B2B), Facebook (local business owners)
 - **Boots on ground:** Chase and team walk Main Street in Natchez
@@ -18,7 +18,7 @@
 | Week | Content | Channel | Format |
 |---|---|---|---|
 | 1 | Homepage rewrite — Swiss-clean, demo-forward | Website | Page redesign |
-| 1 | "What $20 Gets You" — product video | Social + Website | :30 video |
+| 1 | "What $25 Gets You" — product video | Social + Website | :30 video |
 | 2 | First 3 businesses onboarded — case studies begin | Internal | Documentation |
 | 2 | Pricing page with tier comparison | Website | Page |
 | 3 | "Before MBT / After MBT" — real business comparison | Social + OE | :15 video + article |
@@ -33,16 +33,17 @@
 - Peer referral ("I run the hotel — the barbershop next door should use this")
 
 ## Revenue Model
-- $20/month per business (AI-managed presence)
-- $99/month per business (full AI engine)
-- $499/month enterprise (custom, white-label)
+- Free basic listing (feeds DSD data moat)
+- $25/month Essentials (AI-managed presence)
+- $50/month Pro (+ social posting, content calendar)
+- $99/month Marketing (full AI engine)
+- $250/month Engine (dedicated account, custom integrations)
 - Municipality block purchases (10-50 licenses at discount)
-- Free tier feeds DSD (data moat)
 
 ## Success Metrics
 - **30 days:** Onboarding flow working, 3 pilot businesses live
 - **60 days:** 10 businesses onboarded, first municipality meeting scheduled
-- **90 days:** 20 businesses, $400/month MRR, Content Studio passing all tests (Gate 1)
+- **90 days:** 20 businesses, $500+/month MRR, Content Studio passing all tests (Gate 1)
 
 ## Production Order
 | Title | Format | Priority |

@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Morning Wire: Deep South Edition - Episode 47</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a1a;
+    color: #e0e0e0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  .player-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+
+  /* Top bar */
+  .show-brand {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 1px solid #2a2a2a;
+    margin-bottom: 32px;
+  }
+  .show-brand h1 {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: 500;
+  }
+
+  /* Artwork + episode info */
+  .episode-header {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+  .artwork {
+    flex-shrink: 0;
+    width: 180px;
+    height: 180px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1a3a4a 0%, #0d1f2d 40%, #2a1a0a 70%, #3d2a1a 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .artwork::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(94, 200, 200, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 70% 60%, rgba(217, 170, 90, 0.12) 0%, transparent 50%);
+  }
+  .artwork::after {
+    content: 'MW';
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    font-size: 36px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.08);
+    letter-spacing: 4px;
+  }
+  .episode-meta {
+    flex: 1;
+    padding-top: 4px;
+  }
+  .episode-meta .ep-number {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #5ec8c8;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .episode-meta h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .episode-meta .ep-subtitle {
+    font-size: 15px;
+    color: #999;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .episode-meta .ep-date {
+    font-size: 13px;
+    color: #666;
+  }
+  .episode-meta .ep-date span {
+    color: #888;
+  }
+
+  /* Player controls */
+  .player-controls {
+    background: #222;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .controls-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .play-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #5ec8c8;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .play-btn:hover { background: #4ab8b8; }
+  .play-btn svg { fill: #1a1a1a; margin-left: 3px; }
+  .skip-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 6px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .skip-btn:hover { color: #ccc; }
+  .progress-area { flex: 1; }
+  .progress-bar {
+    width: 100%;
+    height: 4px;
+    background: #333;
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+  }
+  .progress-bar .fill {
+    width: 0%;
+    height: 100%;
+    background: #5ec8c8;
+    border-radius: 2px;
+  }
+  .time-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #666;
+    padding: 0 64px;
+  }
+  .speed-btn {
+    background: #333;
+    border: none;
+    color: #999;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  /* Show notes */
+  .show-notes {
+    background: #222;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  .show-notes h3 {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .show-notes ul {
+    list-style: none;
+    padding: 0;
+  }
+  .show-notes li {
+    padding: 10px 0;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .show-notes li:last-child { border-bottom: none; }
+  .show-notes a {
+    color: #5ec8c8;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .show-notes a:hover { color: #8edede; }
+  .show-notes .pub-name {
+    color: #d9aa5a;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* Transcript */
+  .transcript-section {
+    margin-top: 40px;
+  }
+  .transcript-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .transcript-header h3 {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: 600;
+  }
+  .host-legend {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+  }
+  .legend-sarah { color: #5ec8c8; }
+  .legend-marcus { color: #d9aa5a; }
+  .legend-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .legend-sarah .legend-dot { background: #5ec8c8; }
+  .legend-marcus .legend-dot { background: #d9aa5a; }
+
+  .line {
+    margin-bottom: 20px;
+    padding-left: 20px;
+    position: relative;
+  }
+  .line::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 4px;
+    height: calc(100% - 6px);
+    border-radius: 2px;
+  }
+  .line.sarah::before { background: #5ec8c8; }
+  .line.marcus::before { background: #d9aa5a; }
+  .line .speaker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .line.sarah .speaker { color: #5ec8c8; }
+  .line.marcus .speaker { color: #d9aa5a; }
+  .line p {
+    font-size: 15px;
+    color: #ccc;
+    line-height: 1.75;
+  }
+  .line .stage-direction {
+    font-style: italic;
+    color: #666;
+    font-size: 13px;
+  }
+  .section-break {
+    text-align: center;
+    padding: 24px 0;
+    color: #444;
+    font-size: 18px;
+    letter-spacing: 8px;
+  }
+
+  /* Footer */
+  .podcast-footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    border-top: 1px solid #2a2a2a;
+    margin-top: 40px;
+  }
+  .podcast-footer p {
+    color: #555;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .podcast-footer a {
+    color: #5ec8c8;
+    text-decoration: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .episode-header { flex-direction: column; align-items: center; text-align: center; }
+    .artwork { width: 160px; height: 160px; }
+    .time-row { padding: 0; }
+    .host-legend { gap: 12px; }
+    .transcript-header { flex-direction: column; gap: 12px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="player-wrapper">
+
+  <div class="show-brand">
+    <h1>The Morning Wire &middot; Deep South Edition</h1>
+  </div>
+
+  <div class="episode-header">
+    <div class="artwork"></div>
+    <div class="episode-meta">
+      <div class="ep-number">Episode 47</div>
+      <h2>The Four-Person Media Company That Major Publications Can't Stop Writing About</h2>
+      <p class="ep-subtitle">The New York Times, Rolling Stone, Vanity Fair, WSJ, Wired, and Bon Appetit all covered the same small-town operation in the same month. We break down why.</p>
+      <p class="ep-date"><span>June 18, 2026</span> &middot; 22 min</p>
+    </div>
+  </div>
+
+  <!-- Player -->
+  <div class="player-controls">
+    <div class="controls-row">
+      <button class="skip-btn">-15s</button>
+      <button class="play-btn" aria-label="Play episode">
+        <svg width="18" height="20" viewBox="0 0 18 20"><polygon points="0,0 18,10 0,20"/></svg>
+      </button>
+      <button class="skip-btn">+15s</button>
+      <div class="progress-area">
+        <div class="progress-bar"><div class="fill"></div></div>
+      </div>
+      <button class="speed-btn">1x</button>
+    </div>
+    <div class="time-row">
+      <span>0:00</span>
+      <span>22:14</span>
+    </div>
+  </div>
+
+  <!-- Show Notes -->
+  <div class="show-notes">
+    <h3>Show Notes &amp; Sources</h3>
+    <ul>
+      <li>
+        <span class="pub-name">The New York Times</span>
+        <a href="nyt-natchez-media-revolution.html">"The Natchez Media Revolution: One Codebase, 14 Domains, Four People"</a>
+      </li>
+      <li>
+        <span class="pub-name">Rolling Stone</span>
+        <a href="rolling-stone-big-muddy-touring.html">"Big Muddy Touring Is Rewriting the Rules of the Road"</a>
+      </li>
+      <li>
+        <span class="pub-name">Vanity Fair</span>
+        <a href="vanity-fair-chase-pierson.html">"The Showrunner of Natchez, Mississippi"</a>
+      </li>
+      <li>
+        <span class="pub-name">The Wall Street Journal</span>
+        <a href="wsj-deep-south-directory.html">"AI Comes to Main Street: The $25-a-Month Disruptor"</a>
+      </li>
+      <li>
+        <span class="pub-name">Wired</span>
+        <a href="wired-one-codebase.html">"One Next.js App, 14 Domains, and a Mac Mini Radio Station"</a>
+      </li>
+      <li>
+        <span class="pub-name">Bon Appetit</span>
+        <a href="bon-appetit-big-muddy-inn.html">"The Victorian Mansion Where Media Meets Hospitality"</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Transcript -->
+  <div class="transcript-section">
+    <div class="transcript-header">
+      <h3>Full Transcript</h3>
+      <div class="host-legend">
+        <span class="legend-sarah"><span class="legend-dot"></span>Sarah Chen</span>
+        <span class="legend-marcus"><span class="legend-dot"></span>Marcus Webb</span>
+      </div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>Good morning, it's Wednesday, June 18th. I'm Sarah Chen.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>And I'm Marcus Webb. This is The Morning Wire: Deep South Edition, and today we have one of those episodes where I genuinely don't know where to start.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>So here's the setup. Over the past four weeks, six major national publications have all independently covered the same company. A media-hospitality operation based in Natchez, Mississippi. Four people. Fourteen domains. One codebase. And somehow, every single outlet found a completely different angle.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>The company is called Hillbilly Dreams Inc. The brands operate under Big Muddy &mdash; Big Muddy Touring, Big Muddy Magazine, Big Muddy Radio, Big Muddy Entertainment, Big Muddy Records. Their business-facing product is the Deep South Directory. And the whole thing is run by a team of four out of a Victorian mansion that doubles as an inn, a live music venue, and a radio station headquarters.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p class="stage-direction">[laughs]</p>
+      <p>When you say it out loud, it sounds completely made up.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>It does. It absolutely does. But The New York Times thought it was worth 3,000 words, so let's get into it.</p>
+    </div>
+
+    <div class="section-break">&middot; &middot; &middot;</div>
+
+    <!-- NYT SECTION -->
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>OK. The Times piece ran first. Their angle was the architecture &mdash; and I don't mean the building. The technology. Their headline was essentially about how broadcast infrastructure originally designed for companies like Viacom got repurposed for Main Street.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Right. The founder, Chase Pierson, designed a complete media production-to-distribution pipeline back in 2022. We're talking broadcast, production, analytics, distribution &mdash; the whole thing. Open source tools. And at some point he had this realization that the same architecture that runs a major media conglomerate could run a small-town media economy.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>And the Times loved that framing. Because the conventional wisdom is that small towns can't afford this kind of infrastructure. You need a certain scale to justify the overhead of a radio station, a touring operation, a magazine, a record label. But what Pierson figured out is that the gap isn't the technology. The technology is basically free now. The gap is organization.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Which &mdash; and this is the part that caught my attention &mdash; is exactly right. I've covered enough small-market media companies to know that the tools exist. WordPress is free. Podcast hosting is essentially free. Streaming is cheap. But nobody puts it together into something coherent. Nobody wires it up so the radio station feeds the magazine which feeds the touring operation which feeds the directory. That's the hard part.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>And they did it with four people. The Times made a big deal of that number.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Four people, fourteen active domains, all running on a single deployment. One Next.js codebase. The Times reporter seemed almost personally offended by how efficient that is.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p class="stage-direction">[laughs]</p>
+      <p>Well, when you've covered media companies with headcounts of 400 that produce less output than this team of four, I imagine it stings a little.</p>
+    </div>
+
+    <div class="section-break">&middot; &middot; &middot;</div>
+
+    <!-- ROLLING STONE SECTION -->
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>So then Rolling Stone comes in with a completely different angle. They profiled Big Muddy Touring specifically. And what they zeroed in on was the model itself. This is a touring operation where one company books the bands, drives them to the venue &mdash; they literally have a Sprinter van &mdash; puts them on the radio, writes about them in the magazine, and releases their records.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>Wait. All of that is one company?</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>One company. And here's the part that Rolling Stone loved: the deals are non-exclusive. Artists keep their masters. Big Muddy isn't trying to lock anyone in. They're providing the full stack of services that an independent artist actually needs &mdash; transportation, booking, promotion, recording, distribution &mdash; but without the typical extraction that comes with those services.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>That's a direct shot at the traditional label model.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Absolutely. And Rolling Stone was honest about it. They said, look, we've been writing about artists getting ripped off for 60 years. Here's somebody actually building the alternative. Non-exclusive. Artists keep their masters. Full-service but not full-capture.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>The Rolling Stone piece also mentioned the 2:1 multiplier. Can you explain that?</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Yeah, this is fascinating. Every show that Big Muddy books generates roughly twice its ticket revenue in secondary revenue. A show brings people to the inn, they book rooms. The band gets written up in the magazine, which drives traffic to the directory. The performance gets broadcast on the radio, which draws attention to other businesses in the area. So a $1,000 show might generate $2,000 in ecosystem revenue on top of the ticket sales.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>That's the kind of math that makes venture capitalists very interested.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Except they haven't taken any venture money. It's self-funded. Which brings us to the Vanity Fair piece.</p>
+    </div>
+
+    <div class="section-break">&middot; &middot; &middot;</div>
+
+    <!-- VANITY FAIR SECTION -->
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>OK, Vanity Fair. This was the profile of Chase Pierson himself. Media technologist turned small-town entrepreneur. And they did that Vanity Fair thing where they follow someone through an entire day.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Morning at the inn. Afternoon pitching the directory to local businesses on foot. Evening setting up a live show. That's his actual day.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>But the piece I thought was most interesting for was the equity structure. This isn't a solo founder story. Tracy Alderson-Allen and Amy Allen are equal equity partners. Tracy runs finance and inn operations. Amy runs the bar and day-to-day operations. The three of them own the company together.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>And Vanity Fair made a point of that. This isn't a tech founder with some employees. Tracy Alderson-Allen is an equity partner who handles everything from tax compliance to room bookings. Amy Allen is an equity partner who runs the bar, manages the live events, keeps the place actually functioning. Chase builds the technology and sells the product. They each own their piece of it.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>I loved the detail about Amy's bar inventory system. Vanity Fair described her running operations for a live music venue, a radio broadcast facility, and a six-room inn &mdash; and she's doing it with the same tools that power the directory product. She's literally the first customer.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>That's the dogfooding principle, right? Run the system on yourself before you sell it to anyone. Tracy Alderson-Allen is doing the books on the same platform they're going to sell to accountants. Amy Allen is managing events on the same system they're pitching to venue operators. Every feature they ship has been tested internally first.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>It's a very different origin story than most tech companies. There's no garage in Palo Alto. There's a Victorian mansion in Natchez.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p class="stage-direction">[laughs]</p>
+      <p>With better food, probably.</p>
+    </div>
+
+    <div class="section-break">&middot; &middot; &middot;</div>
+
+    <!-- WSJ SECTION -->
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>Now. The Wall Street Journal. This is where it gets into the economics, and honestly, this is the story that made me sit up straight.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>The Journal's angle was the Deep South Directory &mdash; the business-facing product. Their thesis was: here's an AI platform that replaces $500 to $800 a month in small-business tools &mdash; your social media scheduler, your review management, your listing service, your basic analytics &mdash; for somewhere between $25 and $250 a month.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>Walk me through the tiers.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Free gets you a basic listing. $25 a month for Essentials &mdash; your listing is active, you're in the directory, basic features. $50 for Pro, which adds review management and social tools. $99 for the full Marketing tier &mdash; AI-generated social posts, review responses, content creation. And $250 for the Engine tier, which is the full-service treatment: custom integrations, dedicated support, the whole thing.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>And the gross margins?</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>The Journal estimated 93% at scale. Because the product is mostly software and AI. Once you build the platform, the marginal cost of adding another business is near zero. The AI handles the content generation, the review responses, the social posting. There's no human in the loop for most of the routine work.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>93% gross margins. For a product that serves Main Street businesses. That's &mdash; that's genuinely unusual.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>What makes it credible, according to the Journal, is that they're not asking you to trust some pitch deck. The media company IS the proof. Big Muddy Touring is using this system to book shows. Big Muddy Magazine is using it to publish articles. The inn is using it to manage rooms and reviews. You can see the product working in the wild before you buy it.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>The media company is basically the world's most expensive demo.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>That's exactly what the Journal said. And the pitch is: if it works for a touring company, a magazine, a radio station, an inn, and a bar &mdash; all at the same time &mdash; it'll probably work for your restaurant.</p>
+    </div>
+
+    <div class="section-break">&middot; &middot; &middot;</div>
+
+    <!-- WIRED SECTION -->
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>Alright. Wired. This is where things get nerdy, and I'm here for it.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Wired went straight to the technical architecture. One Next.js codebase. Fourteen domains, all running from a single Vercel deployment with multi-tenant routing. Nine modules &mdash; touring, radio, magazine, directory, records, entertainment, the inn, the gallery, and the publishing arm. All of it sharing one database, one authentication system, one deployment pipeline.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>The AI routing was interesting.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Right. They use Google's Gemini as the primary AI model for both reasoning and content generation, with Claude as the fallback. Perplexity for search. Vertex AI Imagen for image generation. Everything is centralized in a single routing file, so if one provider goes down, it fails over automatically. No hardcoded model names anywhere in the codebase.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>And then there's the photo library.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>16,936 photos. All auto-tagged by Google Cloud Vision. Stored in a GCS bucket. The system can pull the right photo for an article, a social post, a listing, a promotional piece &mdash; all automatically. Wired called it "the most over-engineered small-town photo library in America."</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p class="stage-direction">[laughs]</p>
+      <p>I love that.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>But the detail that got the most attention was the radio station. Big Muddy Radio runs on a Mac Mini. OpenBroadcaster for automation, Icecast for streaming, Plex for the music library. A Mac Mini. Running a radio station.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>That's a $700 computer running a broadcast operation.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>And Wired made the point that this is exactly what the original internet promise was supposed to look like. Not everyone becoming a content creator on someone else's platform, but people actually owning their own infrastructure. Your own radio station. Your own magazine. Your own distribution. Running on commodity hardware.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>Wired also broke the news about the Sovereign Pi. Did you catch that?</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Oh, the hardware device. Yes. So they're building a physical device &mdash; cost of goods around $165 &mdash; that they plan to give away free with a subscription. It's basically a local AI node that handles display signage, ambient processing, and acts as a bridge between the business and the platform. Wired compared it to what Sonos did for speakers &mdash; a hardware trojan horse for a software ecosystem.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>A $165 device, free with subscription. That's aggressive.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>It's aggressive, but the math works if your margins are 93%. You eat the hardware cost and make it back in three to four months of subscription revenue. It's the razor-and-blades model, except the razor is a tiny computer that runs your business signage.</p>
+    </div>
+
+    <div class="section-break">&middot; &middot; &middot;</div>
+
+    <!-- BON APPETIT SECTION -->
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>And finally, Bon Appetit. Which took the most human angle of all of them.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Bon Appetit visited The Big Muddy Inn. Victorian mansion in Natchez. Six rooms. Live music venue on the ground floor. A bar that Amy Allen runs &mdash; again, equity partner, not an employee. The radio station broadcasts from inside the building. And the technology, Bon Appetit noted, is completely invisible to guests.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>That was my favorite detail. You check in, you have a drink, you watch a show, you go to bed. You have no idea that the inn, the bar, the venue, the radio station, and the magazine are all running on the same platform. It just feels like a well-run place.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Bon Appetit spent a lot of time with Tracy Alderson-Allen, actually. As an equity partner handling finance, she's the one who sees the full picture &mdash; what the shows bring in, what the rooms bring in, how the directory revenue tracks, where the money actually flows. The piece described her as "the person who knows exactly what every decision costs and exactly what it earns."</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>And Amy Allen on the operations side &mdash; Bon Appetit described her managing a Wednesday night where there's a live show, six rooms occupied, the bar is full, and a radio broadcast is happening simultaneously. And she's handling all of it.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>The Bon Appetit writer asked her how she manages it all, and Amy apparently just shrugged and said, "The system works. I just make sure the people are taken care of." Which is &mdash; I mean, that's the whole thesis of the company in one sentence.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>The system works. She just takes care of the people.</p>
+    </div>
+
+    <div class="section-break">&middot; &middot; &middot;</div>
+
+    <!-- BIGGER PICTURE -->
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>OK. Let's zoom out. Because I think the reason six publications all covered this at once is that they're each seeing a different piece of something larger.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>Agreed. The Times saw the architecture. Rolling Stone saw the music industry disruption. Vanity Fair saw the human story. The Journal saw the economics. Wired saw the technology. Bon Appetit saw the hospitality. But they're all describing the same elephant.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>And the elephant is: what happens when you take serious infrastructure &mdash; the kind that used to require a hundred-person team and millions of dollars &mdash; and you run it with four people, AI, and commodity hardware?</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>The answer, apparently, is you get a media company, a hospitality business, a technology platform, a touring operation, a record label, and a radio station. Out of one building in Mississippi.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>And they're already expanding. Bearsville Creative is the second node &mdash; based in Woodstock, New York. Same model, different region. The Hudson Valley instead of the Mississippi River. They're activating this summer.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>So the plan is to prove it works in Natchez, then replicate the model in other small cultural capitals.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Exactly. Woodstock already has the music history, the arts scene, the tourism base. It's the same DNA as Natchez &mdash; a small town with outsized cultural influence and not enough infrastructure to capitalize on it.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>OK. Before we close &mdash; Marcus, what's the thing that sticks with you from all six of these pieces?</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Honestly? The equity structure. I've covered hundreds of startups. The founder always owns the overwhelming majority. The "team" is employees with stock options that might vest in four years. Here, Tracy Alderson-Allen and Amy Allen own their piece. Day one. Equal equity partners. Tracy runs the money. Amy runs the operations. Chase builds the technology. Three people, three domains, equal ownership. That's not how this industry usually works.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>Mine is simpler. It's the fact that the technology is invisible. Bon Appetit's piece proved it. Guests at the inn have no idea they're inside a technology company. They just think it's a nice place with good music. And that, I think, is the real tell. Because the tech that actually works is the tech you don't notice.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>I want to add one more thing. We talk a lot on this show about what AI is going to do to small towns. Usually the narrative is: automation is going to hollow out Main Street even further. But this is a case where AI is actually being used to rebuild Main Street infrastructure. A radio station that couldn't exist without AI automation. A magazine that publishes because AI handles the production pipeline. A directory that gives small businesses tools that used to cost $800 a month, for $25.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>It's AI in service of a place, not AI in service of a platform. That's a meaningful distinction.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>Four people. Fourteen domains. One Victorian mansion. And six major publications trying to explain it. I think we're going to be covering this company for a long time.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p>Agreed. That's The Morning Wire for Wednesday, June 18th. Links to all six articles are in the show notes. I'm Sarah Chen.</p>
+    </div>
+
+    <div class="line marcus">
+      <div class="speaker">Marcus Webb</div>
+      <p>And I'm Marcus Webb. See you tomorrow morning.</p>
+    </div>
+
+    <div class="line sarah">
+      <div class="speaker">Sarah Chen</div>
+      <p class="stage-direction">[outro music]</p>
+    </div>
+
+  </div>
+
+  <div class="podcast-footer">
+    <p>The Morning Wire: Deep South Edition is a production of Big Muddy Media.<br>
+    &copy; 2026 Hillbilly Dreams Inc. All rights reserved.<br><br>
+    <a href="/">bigmuddytouring.com</a> &middot; <a href="/">deepsouthdirectory.com</a> &middot; <a href="/">bigmuddyradio.com</a></p>
+  </div>
+
+</div>
+</body>
+</html>

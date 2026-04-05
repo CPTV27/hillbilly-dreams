@@ -9,7 +9,7 @@
 ## Voice Attributes
 1. **Swiss-clean authority** — Minimal words, maximum clarity. Apple product page energy. "One subscription. Five channels. Your business runs while you sleep."
 2. **Relief** — MBT solves the invisibility problem. Small businesses exist but nobody knows. "You're open. You're good. Nobody can find you. That changes today."
-3. **Price-confident** — $20/month is the headline. Never apologize for it. Never bury it. "Twenty dollars a month. That's less than your Spotify subscription."
+3. **Price-confident** — $25/month is the Essentials headline. Never apologize for it. Never bury it. "Twenty-five dollars a month. Less than your Spotify subscription."
 4. **Demo-able** — Every claim can be shown, not just said. "Type your business name. Watch what happens."
 5. **No jargon** — The customer is a busy Main Street owner. "AI" is fine. "Machine learning pipeline" is not. "Your website updates itself" beats "automated content generation."
 

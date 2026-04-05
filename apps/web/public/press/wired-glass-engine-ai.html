@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Glass Engine: How One Codebase Became a Small-Town Media Empire | WIRED</title>
+<meta name="description" content="What if the same infrastructure that runs a Viacom could run a town of 15,000? In Natchez, Mississippi, one developer is proving it can.">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:18px;scroll-behavior:smooth;background:#111;color:#e0e0e0}
+  body{font-family:'Inter','Helvetica Neue',Arial,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+  /* WIRED-style accent palette */
+  :root{
+    --accent:#00ff87;
+    --accent-alt:#ff3366;
+    --accent-blue:#00c2ff;
+    --bg:#111;
+    --bg-code:#1a1a2e;
+    --text:#e0e0e0;
+    --text-muted:#888;
+    --border:#2a2a2a;
+  }
+
+  /* ===== MASTHEAD ===== */
+  .masthead{
+    padding:1rem 2rem;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;top:0;z-index:100;
+    background:rgba(17,17,17,0.95);
+    backdrop-filter:blur(12px);
+  }
+  .masthead-logo{
+    font-size:1.6rem;font-weight:900;letter-spacing:0.15em;text-transform:uppercase;
+    color:#fff;
+  }
+  .masthead-section{
+    font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);font-weight:600;
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;width:100%;min-height:90vh;
+    display:flex;align-items:flex-end;
+    overflow:hidden;
+  }
+  .hero-img{
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    object-fit:cover;
+    filter:brightness(0.4) contrast(1.2);
+  }
+  .hero-overlay{
+    position:relative;z-index:2;
+    padding:4rem 2rem 3rem;
+    max-width:900px;
+    background:linear-gradient(transparent, rgba(17,17,17,0.95) 40%);
+    width:100%;
+  }
+  .hero-kicker{
+    font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;
+    color:var(--accent);font-weight:700;margin-bottom:1rem;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem,6vw,4.2rem);
+    font-weight:900;line-height:1.05;
+    color:#fff;margin-bottom:1.2rem;
+  }
+  .hero h1 span{color:var(--accent)}
+  .hero-deck{
+    font-size:1.15rem;color:var(--text-muted);max-width:620px;line-height:1.6;
+  }
+
+  /* ===== BYLINE ===== */
+  .byline-bar{
+    padding:1.5rem 2rem;
+    border-bottom:1px solid var(--border);
+    display:flex;flex-wrap:wrap;gap:2rem;align-items:center;
+    max-width:900px;
+  }
+  .byline-name{font-weight:700;color:#fff;font-size:0.85rem}
+  .byline-meta{font-size:0.72rem;color:var(--text-muted);letter-spacing:0.04em}
+
+  /* ===== ARTICLE BODY ===== */
+  .article{
+    max-width:700px;
+    margin:0 auto;
+    padding:3rem 2rem 6rem;
+  }
+  .article p{
+    margin-bottom:1.4rem;
+    font-size:1rem;
+    color:var(--text);
+  }
+  .article p:first-of-type::first-letter{
+    font-size:3.6rem;float:left;line-height:0.8;
+    font-weight:900;color:var(--accent);
+    margin-right:0.15em;margin-top:0.08em;
+  }
+  .article h2{
+    font-size:1.6rem;font-weight:900;color:#fff;
+    margin:3rem 0 1.2rem;line-height:1.15;
+  }
+  .article h3{
+    font-size:1.1rem;font-weight:700;color:var(--accent);
+    margin:2.5rem 0 0.8rem;text-transform:uppercase;letter-spacing:0.08em;
+  }
+  .article a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+  .article a:hover{color:#fff}
+
+  /* Pull quote */
+  .pull-quote{
+    border-left:4px solid var(--accent);
+    padding:1.2rem 0 1.2rem 1.5rem;
+    margin:2.5rem 0;
+    font-size:1.3rem;font-weight:700;line-height:1.35;
+    color:#fff;
+  }
+  .pull-quote cite{
+    display:block;margin-top:0.6rem;
+    font-size:0.75rem;font-weight:400;color:var(--text-muted);
+    font-style:normal;letter-spacing:0.04em;
+  }
+
+  /* Inline photo */
+  .inline-photo{
+    margin:2.5rem -2rem;
+    position:relative;
+  }
+  .inline-photo img{
+    width:100%;display:block;
+    border-radius:2px;
+  }
+  .inline-photo figcaption{
+    font-size:0.7rem;color:var(--text-muted);
+    padding:0.6rem 2rem 0;letter-spacing:0.03em;
+  }
+  .inline-photo figcaption span{color:var(--accent-alt)}
+
+  /* Code blocks */
+  .code-block{
+    background:var(--bg-code);
+    border:1px solid #2a2a3e;
+    border-radius:6px;
+    padding:1.2rem 1.5rem;
+    margin:1.5rem 0;
+    overflow-x:auto;
+    font-family:'SF Mono','Fira Code','Consolas',monospace;
+    font-size:0.78rem;
+    line-height:1.7;
+    color:#c8d6e5;
+  }
+  .code-block .comment{color:#5c6370;font-style:italic}
+  .code-block .string{color:var(--accent)}
+  .code-block .key{color:var(--accent-blue)}
+  .code-block .punct{color:#666}
+
+  /* Inline code */
+  code{
+    background:var(--bg-code);
+    padding:0.15em 0.4em;
+    border-radius:3px;
+    font-family:'SF Mono','Fira Code','Consolas',monospace;
+    font-size:0.82em;
+    color:var(--accent-blue);
+  }
+
+  /* ===== DATA VIZ: BAR CHART ===== */
+  .chart-section{
+    margin:3rem 0;
+    padding:2rem;
+    background:#161622;
+    border:1px solid var(--border);
+    border-radius:8px;
+  }
+  .chart-title{
+    font-size:0.7rem;text-transform:uppercase;letter-spacing:0.2em;
+    color:var(--accent);font-weight:700;margin-bottom:1.5rem;
+  }
+  .bar-chart{display:flex;flex-direction:column;gap:0.8rem}
+  .bar-row{display:flex;align-items:center;gap:0.8rem}
+  .bar-label{
+    width:120px;flex-shrink:0;
+    font-size:0.72rem;color:var(--text-muted);text-align:right;
+  }
+  .bar-track{flex:1;height:28px;background:#1a1a2e;border-radius:3px;position:relative;overflow:hidden}
+  .bar-fill{
+    height:100%;border-radius:3px;
+    display:flex;align-items:center;padding-left:0.6rem;
+    font-size:0.65rem;font-weight:700;color:#111;
+    transition:width 0.8s ease;
+  }
+  .bar-fill.green{background:var(--accent)}
+  .bar-fill.pink{background:var(--accent-alt)}
+  .bar-fill.blue{background:var(--accent-blue)}
+
+  /* ===== DOMAIN GRID ===== */
+  .domain-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    gap:1px;margin:2rem 0;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .domain-cell{
+    background:var(--bg);
+    padding:0.8rem 1rem;
+    font-size:0.72rem;
+  }
+  .domain-cell strong{
+    display:block;color:#fff;font-size:0.8rem;margin-bottom:0.15rem;
+  }
+  .domain-cell span{color:var(--text-muted)}
+
+  /* ===== MODULE GRID (CSS-only viz) ===== */
+  .module-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:2px;margin:2rem 0;
+    border-radius:6px;overflow:hidden;
+  }
+  .module-card{
+    background:#161622;
+    padding:1rem;
+    border-left:3px solid var(--accent);
+    transition:background 0.2s;
+  }
+  .module-card:hover{background:#1e1e34}
+  .module-card h4{font-size:0.75rem;color:#fff;margin-bottom:0.3rem}
+  .module-card p{font-size:0.65rem;color:var(--text-muted);margin:0;line-height:1.4}
+  .module-card:nth-child(2){border-color:var(--accent-alt)}
+  .module-card:nth-child(3){border-color:var(--accent-blue)}
+  .module-card:nth-child(4){border-color:#ffd700}
+  .module-card:nth-child(5){border-color:#ff8800}
+  .module-card:nth-child(6){border-color:#a855f7}
+  .module-card:nth-child(7){border-color:#14b8a6}
+  .module-card:nth-child(8){border-color:#f472b6}
+  .module-card:nth-child(9){border-color:#60a5fa}
+
+  /* ===== COST COMPARISON ===== */
+  .cost-compare{
+    display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    margin:2rem 0;background:var(--border);
+    border:1px solid var(--border);border-radius:6px;overflow:hidden;
+  }
+  .cost-col{background:var(--bg);padding:1.5rem}
+  .cost-col h4{
+    font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;
+    color:var(--text-muted);margin-bottom:0.8rem;
+  }
+  .cost-col .price{
+    font-size:2.2rem;font-weight:900;margin-bottom:0.5rem;
+  }
+  .cost-col.old .price{color:var(--accent-alt);text-decoration:line-through}
+  .cost-col.new .price{color:var(--accent)}
+  .cost-col .detail{font-size:0.72rem;color:var(--text-muted);line-height:1.5}
+
+  /* ===== FOOTER ===== */
+  .article-footer{
+    max-width:700px;margin:0 auto;
+    padding:2rem;
+    border-top:1px solid var(--border);
+    font-size:0.72rem;color:var(--text-muted);
+    text-align:center;line-height:1.6;
+  }
+  .article-footer a{color:var(--accent);text-decoration:none}
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:768px){
+    .hero{min-height:70vh}
+    .hero h1{font-size:2rem}
+    .hero-overlay{padding:2rem 1.5rem}
+    .article{padding:2rem 1.5rem 4rem}
+    .inline-photo{margin:2rem -1.5rem}
+    .inline-photo figcaption{padding:0.6rem 1.5rem 0}
+    .module-grid{grid-template-columns:1fr 1fr}
+    .cost-compare{grid-template-columns:1fr}
+    .bar-label{width:80px;font-size:0.65rem}
+    .domain-grid{grid-template-columns:1fr 1fr}
+    .byline-bar{padding:1rem 1.5rem}
+  }
+  @media(max-width:480px){
+    .module-grid{grid-template-columns:1fr}
+    .domain-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-logo">Wired</div>
+  <div class="masthead-section">Infrastructure</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-img" src="/images/ai-corridor/radio-studio.webp" alt="A radio studio control board with warm analog light, Natchez, Mississippi">
+  <div class="hero-overlay">
+    <div class="hero-kicker">Exclusive &middot; April 2026</div>
+    <h1>The <span>Glass Engine</span>: How One Codebase Became a Small-Town Media Empire</h1>
+    <p class="hero-deck">What if the same infrastructure that runs a Viacom could run a town of 15,000 people? In Natchez, Mississippi, a former media architect is proving it can &mdash; with one Next.js monorepo, a Mac Mini, and a radical theory about small-market economics.</p>
+  </div>
+</section>
+
+<!-- BYLINE -->
+<div class="byline-bar">
+  <div>
+    <div class="byline-name">Maren Ochoa</div>
+    <div class="byline-meta">Infrastructure &amp; Systems</div>
+  </div>
+  <div class="byline-meta">April 5, 2026 &middot; 14 min read</div>
+</div>
+
+<!-- ARTICLE -->
+<article class="article">
+
+<p>Chase Pierson has a theory. It goes like this: the same architecture that powers a global media conglomerate &mdash; broadcast, production, analytics, distribution, advertising &mdash; can run a town. Not a metaphorical town. An actual town with 15,000 people, a couple of bars, a historic inn, and a river so wide it swallows the horizon. The town is Natchez, Mississippi. The architecture is called the Glass Engine. And the proof is already live across 14 domains, serving four separate tenants from a single deployment on Vercel.</p>
+
+<p>I first heard about this from a source at Google's Cloud team who flagged an anomaly: someone in Mississippi was routing AI model calls through a sophisticated fallback chain &mdash; Gemini 2.5 Pro for reasoning, Flash for generation, Perplexity for search, Vertex Imagen 3 for images, Veo 3 for video &mdash; all from what appeared to be a single Next.js application. "It looked like an enterprise setup," the source said. "Then we saw the billing address was a bed-and-breakfast."</p>
+
+<h2>The DeFacto Codec Market</h2>
+
+<p>To understand the Glass Engine, you have to go back to 2022 and a document called the DeFacto Codec Market. Pierson, who'd spent years in broadcast engineering and media production, wrote what amounted to a complete specification for a media infrastructure stack &mdash; from capture to distribution &mdash; built entirely on open-source tools. It described how broadcast-grade production, content management, analytics, and advertising could be unified under one system. The kind of blueprint that would normally live inside a Viacom or a Disney.</p>
+
+<p>"The spec was 80 pages," Pierson tells me over a video call from the inn's front porch. Behind him, a live oak drips Spanish moss. "It described everything. Ingest, transcode, distribute, measure, monetize. The whole pipeline. And then I realized &mdash; this is insane overkill for a network. But it's exactly right for a town."</p>
+
+<figure class="inline-photo">
+  <img src="/images/corridor/night-bar-green-glow.webp" alt="A bar interior with green neon glow in Natchez at night">
+  <figcaption><span>Natchez, MS</span> &mdash; The entertainment arm books live acts into local venues. Shows generate a documented 2:1 multiplier: every dollar of ticket revenue produces two dollars of inn bookings and directory signups.</figcaption>
+</figure>
+
+<p>The insight was simple but counterintuitive. Large media companies spend millions building infrastructure that does roughly nine things: manage content, publish across channels, handle identity and access, run analytics, process payments, manage advertising, coordinate production, distribute across platforms, and maintain a directory of participants. A small town needs the same nine things. The difference is volume, not architecture.</p>
+
+<h2>One Deployment, Fourteen Domains</h2>
+
+<p>The Glass Engine &mdash; formally branded Measurably Better Things, or MBT &mdash; runs as a single Next.js 14 application using the App Router. It's TypeScript throughout, with Prisma over PostgreSQL for data, next-auth v5 for identity, and inline CSS instead of any framework like Tailwind. That last choice gets a reaction from every developer I mention it to.</p>
+
+<p>"Inline CSS means every component owns its own presentation completely," Pierson explains. "No class name collisions across tenants. No build step surprises. No 'I changed a utility class and broke three other sites.' When you're running four brands from one codebase, isolation isn't optional."</p>
+
+<div class="code-block">
+<span class="comment">// apps/web/config/domain-routes.ts</span><br>
+<span class="comment">// Every incoming request maps a hostname to a route group</span><br><br>
+<span class="key">export const</span> domainRoutes = {<br>
+&nbsp;&nbsp;<span class="string">'bigmuddytouring.com'</span><span class="punct">:</span> <span class="string">'/touring'</span>,<br>
+&nbsp;&nbsp;<span class="string">'bigmuddymagazine.com'</span><span class="punct">:</span> <span class="string">'/magazine'</span>,<br>
+&nbsp;&nbsp;<span class="string">'bigmuddyradio.com'</span><span class="punct">:</span> <span class="string">'/radio'</span>,<br>
+&nbsp;&nbsp;<span class="string">'bigmuddyentertainment.com'</span><span class="punct">:</span> <span class="string">'/entertainment'</span>,<br>
+&nbsp;&nbsp;<span class="string">'deepsouthdirectory.com'</span><span class="punct">:</span> <span class="string">'/directory'</span>,<br>
+&nbsp;&nbsp;<span class="string">'bearsvillemediagroup.com'</span><span class="punct">:</span> <span class="string">'/bearsville'</span>,<br>
+&nbsp;&nbsp;<span class="comment">// ... 8 more domains</span><br>
+}<br>
+</div>
+
+<p>The multi-tenant system works through a file called <code>domain-routes.ts</code> that maps hostnames to route groups. Middleware intercepts every request, reads the hostname, and rewrites the path. A second file, <code>tenants.ts</code>, defines the four tenant configurations &mdash; Big Muddy (the flagship), Bearsville (the northeast clone in Woodstock, NY), Studio C (a video production partner), and Tuthill (a design partner). Each tenant gets its own theme tokens, its own content scope, and its own analytics partition. But they share one deployment, one database, and one CI pipeline.</p>
+
+<div class="domain-grid">
+  <div class="domain-cell"><strong>bigmuddytouring.com</strong><span>Entertainment &amp; live bookings</span></div>
+  <div class="domain-cell"><strong>bigmuddymagazine.com</strong><span>Long-form editorial</span></div>
+  <div class="domain-cell"><strong>bigmuddyradio.com</strong><span>Streaming &amp; podcasts</span></div>
+  <div class="domain-cell"><strong>bigmuddyentertainment.com</strong><span>Event production</span></div>
+  <div class="domain-cell"><strong>bigmuddyrecordlabel.com</strong><span>Music releases</span></div>
+  <div class="domain-cell"><strong>deepsouthdirectory.com</strong><span>Business marketing</span></div>
+  <div class="domain-cell"><strong>outsidereconomics.com</strong><span>Editorial &amp; field manual</span></div>
+  <div class="domain-cell"><strong>bearsvillemediagroup.com</strong><span>Northeast node (Woodstock, NY)</span></div>
+  <div class="domain-cell"><strong>measurablybetter.life</strong><span>B2B platform</span></div>
+  <div class="domain-cell"><strong>studiocvideo.com</strong><span>Video production partner</span></div>
+  <div class="domain-cell"><strong>tuthilldesign.com</strong><span>Design partner</span></div>
+  <div class="domain-cell"><strong>hillbillydreamsinc.com</strong><span>Holding company</span></div>
+</div>
+
+<p>"Most people look at this and say 'just use microservices,'" Pierson says. "But microservices solve a team coordination problem, not an architecture problem. We're four people. We don't have a team coordination problem. We have a 'get everything live before the money runs out' problem. One deployment means one CI check, one preview URL, one thing to monitor at 2 a.m."</p>
+
+<h2>Nine Modules, One Engine</h2>
+
+<p>The Glass Engine isn't just a website. It's nine interlocking modules that cover the full media-and-commerce stack. Each module maps to a capability that, in a traditional setup, would require a separate SaaS subscription and a separate vendor relationship.</p>
+
+<div class="module-grid">
+  <div class="module-card"><h4>Directory</h4><p>Business listings, search, map views, claim/verify flow</p></div>
+  <div class="module-card"><h4>Editorial</h4><p>Articles, newsletters, field manual content, AI drafts</p></div>
+  <div class="module-card"><h4>Social</h4><p>Multi-platform scheduling, posting, analytics</p></div>
+  <div class="module-card"><h4>Radio</h4><p>Live streaming, scheduling, podcast hosting</p></div>
+  <div class="module-card"><h4>Touring</h4><p>Event production, artist booking, show promotion</p></div>
+  <div class="module-card"><h4>Gallery</h4><p>Art sales, artist profiles, exhibition management</p></div>
+  <div class="module-card"><h4>Records</h4><p>Music releases, artist onboarding, splits tracking</p></div>
+  <div class="module-card"><h4>Ops</h4><p>Task management, reviews, property sync, chat</p></div>
+  <div class="module-card"><h4>Analytics</h4><p>KPIs, reporting, client dashboards, AI insights</p></div>
+</div>
+
+<p>What makes this unusual isn't any individual module &mdash; it's the fact that they all share a data layer. When a band is booked through the Touring module, that event automatically appears in the Directory, gets promoted through Social, gets covered by Editorial, and shows up on Radio. There's no integration to build. It's one database.</p>
+
+<h2>The AI Routing Layer</h2>
+
+<p>The technical choice that made the Google Cloud team take notice is the AI model routing system. Rather than committing to a single AI provider, the Glass Engine maintains a routing table defined in a single file: <code>lib/ai-models.ts</code>. Every AI call in the system goes through this router.</p>
+
+<div class="code-block">
+<span class="comment">// AI Model Routing Table</span><br><br>
+<span class="key">Reasoning</span><span class="punct">:</span>&nbsp;&nbsp;&nbsp;&nbsp;Gemini 2.5 Pro &rarr; Claude Sonnet <span class="comment">(fallback)</span><br>
+<span class="key">Generation</span><span class="punct">:</span>&nbsp;&nbsp;Gemini 2.5 Flash &rarr; Claude Haiku <span class="comment">(fallback)</span><br>
+<span class="key">Search</span><span class="punct">:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Perplexity &rarr; Gemini Flash <span class="comment">(fallback)</span><br>
+<span class="key">Images</span><span class="punct">:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vertex AI Imagen 3<br>
+<span class="key">Video</span><span class="punct">:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Veo 3<br>
+<span class="key">Audio</span><span class="punct">:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cloud TTS Journey<br>
+</div>
+
+<p>"The model landscape changes every six weeks," Pierson says. "If you hardcode a model name anywhere in your application, you're making a commitment you can't keep. We route by capability, not by model. If Gemini goes down or a better option appears, we change one file."</p>
+
+<p>The system already handles automatic photo tagging. Google Cloud Vision API has processed 16,936 photos, generating structured metadata that feeds the editorial pipeline and the directory. A photo taken at a venue during a show gets auto-tagged with the venue name, the performer, the event type, and a scene description. That metadata becomes a magazine caption, a social post, and a directory listing photo &mdash; without a human touching it.</p>
+
+<figure class="inline-photo">
+  <img src="/images/dsd/service-ai.webp" alt="AI-powered business insights visualization">
+  <figcaption><span>The Glass Engine</span> &mdash; AI model routing handles everything from photo tagging to editorial drafts to business analytics, all through a single capability-based dispatch system.</figcaption>
+</figure>
+
+<h2>The $50,000 Radio Station</h2>
+
+<p>In a closet at a residential address in Natchez sits a Mac Mini. It runs OpenBroadcaster on port 8080, feeds an Icecast stream on port 8010, serves a Plex media library on port 32400, and manages social scheduling through Postiz on port 4007. This is the entire broadcast infrastructure for Big Muddy Radio.</p>
+
+<div class="pull-quote">
+  "A traditional small-market radio setup runs $200K to $500K. We did it for the cost of a Mac Mini and some software that was already free."
+  <cite>Chase Pierson, CEO/CTO, Hillbilly Dreams Inc.</cite>
+</div>
+
+<p>The radio station isn't a metaphor or a podcast feed branded as radio. It's a continuous stream with scheduled programming, live DJ slots, automated playlists pulled from Plex, and promotional interstitials generated by Cloud TTS. The signal goes out over the internet, but the architecture is identical to what a terrestrial station would run &mdash; minus the transmitter and the FCC license.</p>
+
+<p>When I ask Pierson about the decision to run broadcast infrastructure on a consumer-grade Mac Mini instead of cloud instances, he doesn't hesitate: "Latency. A broadcast stream needs sub-second response. Try running OBS and Icecast on a cloud VM and you'll spend more time fighting network jitter than making content. A $700 machine in a closet with a gigabit uplink just works."</p>
+
+<h3>The Mechanical Bull</h3>
+
+<p>Before the Glass Engine existed as code, there was the Mechanical Bull &mdash; Pierson's name for the Airtable-and-Zapier system that ran music releases. Nine Airtable tables and 25 Zapier flows replaced a process that traditionally costs $50,000 to $100,000 per release at a major label. The Mechanical Bull did it for $3,000.</p>
+
+<div class="chart-section">
+  <div class="chart-title">Music Release Cost: Traditional vs. Mechanical Bull</div>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">Traditional</div>
+      <div class="bar-track"><div class="bar-fill pink" style="width:100%">$50K &ndash; $100K</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Mechanical Bull</div>
+      <div class="bar-track"><div class="bar-fill green" style="width:4%">$3K</div></div>
+    </div>
+  </div>
+</div>
+
+<p>"The Bull taught me something important," Pierson says. "The expense in media production isn't talent or equipment. It's coordination. A music release involves an artist, a producer, a mixer, a masterer, a distributor, a publicist, a social media person, a playlist pitcher, and a lawyer. The music costs $3K. Coordinating ten people for three months costs $47K. Automation eats coordination costs."</p>
+
+<figure class="inline-photo">
+  <img src="/images/studio-c/utopiademo-day-15.webp" alt="Studio production session in progress">
+  <figcaption><span>Studio C, Woodstock</span> &mdash; The production partner proves the multi-tenant model works. Same codebase, different brand, different region, 1,000 miles apart.</figcaption>
+</figure>
+
+<h2>The Data Flywheel</h2>
+
+<p>The most interesting part of the Glass Engine isn't any single module. It's the feedback loop between them. Pierson calls it the flywheel, and it works like this:</p>
+
+<p>The Directory collects business data &mdash; hours, menus, events, photos. AI processes that data into structured content. Editorial uses structured content to produce magazine articles and newsletters. Social distributes those articles. Distribution brings audience. Audience generates more directory data &mdash; reviews, check-ins, photos. And the cycle accelerates.</p>
+
+<div class="chart-section">
+  <div class="chart-title">The Flywheel: Data Flow Between Modules</div>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">Directory</div>
+      <div class="bar-track"><div class="bar-fill green" style="width:92%">Business data in</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">AI Layer</div>
+      <div class="bar-track"><div class="bar-fill blue" style="width:85%">16,936 photos tagged</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Editorial</div>
+      <div class="bar-track"><div class="bar-fill green" style="width:78%">Articles generated</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Social</div>
+      <div class="bar-track"><div class="bar-fill pink" style="width:70%">Distribution</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Audience</div>
+      <div class="bar-track"><div class="bar-fill blue" style="width:65%">Engagement returns</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Revenue</div>
+      <div class="bar-track"><div class="bar-fill green" style="width:55%">Subscriptions + bookings</div></div>
+    </div>
+  </div>
+</div>
+
+<p>The entertainment arm amplifies this. Shows booked through Touring bring people to town. Those people stay at the inn, eat at restaurants in the directory, and generate reviews. Pierson's internal data shows a consistent 2:1 multiplier &mdash; every dollar of ticket revenue produces two dollars of ecosystem activity across inn bookings and directory signups.</p>
+
+<h2>Why Not Tailwind? Why Not Microservices? Why Not Firebase?</h2>
+
+<p>The technical choices behind the Glass Engine are deliberately contrarian, and Pierson is ready for every objection.</p>
+
+<p><strong>Why inline CSS instead of Tailwind?</strong> "Multi-tenancy. Each tenant has its own visual identity. With Tailwind, you're fighting the framework to scope styles per tenant. With inline CSS and CSS custom properties, each tenant gets a theme token set and every component reads from it. No collisions. No purge surprises. The tradeoff is verbosity &mdash; we write more CSS. But it's CSS that never breaks across tenants."</p>
+
+<p><strong>Why one Vercel deployment instead of microservices?</strong> "Team size. We're four people. Microservices are a coordination strategy for large teams. For a small team, they're pure overhead &mdash; you spend more time wiring services together than building features. One deployment means shared types, shared auth, shared data layer. The entire system fits in one developer's head."</p>
+
+<p><strong>Why Prisma over raw SQL?</strong> "Type safety across the full stack. When a database column changes, TypeScript catches it at compile time in every API route and every component. With raw SQL, you find out at runtime. In production. At 2 a.m."</p>
+
+<p><strong>Why Vercel instead of Firebase or AWS?</strong> "Vercel does one thing: deploy Next.js apps. We have a Next.js app. Firebase wants to be your entire backend. AWS wants to be your entire everything. We don't need an entire everything. We need deploys that work."</p>
+
+<figure class="inline-photo">
+  <img src="/images/studio-c/utopiademo-day-30.webp" alt="Production review session with multiple screens">
+  <figcaption><span>Multi-region proof</span> &mdash; Bearsville Media Group in Woodstock, NY runs on the same deployment as Big Muddy in Natchez. Two brands, two regions, one Git repository.</figcaption>
+</figure>
+
+<h2>The Sovereign Pi</h2>
+
+<p>The most ambitious piece of the Glass Engine isn't software at all. It's a $165 hardware device called the Sovereign Pi &mdash; a Raspberry Pi-based unit that runs a local AI agent, operates off-grid if necessary, and connects to the Glass Engine when network is available.</p>
+
+<p>The concept came from Pierson's background with RevoFi, a mesh networking company. "We built WiFi captive portals as marketing funnels &mdash; you land on the network and the first thing you see is local content, local business listings, local events. The Sovereign Pi takes that further. It's a local-first AI that knows your town."</p>
+
+<p>At $165 COGS &mdash; that's the Raspberry Pi board, a case, storage, and a power supply &mdash; the unit is cheap enough to place in every business in a downtown district. Each one runs a lightweight AI agent that handles customer questions, generates social posts, manages reviews, and syncs back to the central Glass Engine when connected.</p>
+
+<p>"The question everyone asks about AI in small towns is 'what about the internet?'" Pierson says. "Rural broadband is real, but it's inconsistent. A device that works offline and syncs when it can isn't a compromise. It's the correct architecture for places where the connection drops when it rains."</p>
+
+<h2>The Two-Region Test</h2>
+
+<p>The proof that this model works beyond one town is Bearsville. Bearsville Media Group, based in Woodstock, New York, runs on the exact same deployment as Big Muddy. Different brand. Different region. Different content. Same codebase, same infrastructure, same AI routing.</p>
+
+<p>The Bearsville tenant was stood up in under a week. A new entry in <code>tenants.ts</code>, a new set of theme tokens, DNS pointed at Vercel, and it was live. No new servers. No new deployments. No new CI pipelines.</p>
+
+<div class="code-block">
+<span class="comment">// apps/web/config/tenants.ts</span><br><br>
+<span class="key">export const</span> tenants = {<br>
+&nbsp;&nbsp;<span class="string">'big-muddy'</span><span class="punct">:</span> { region: <span class="string">'deep-south'</span>, theme: <span class="string">'muddy'</span> },<br>
+&nbsp;&nbsp;<span class="string">'bearsville'</span><span class="punct">:</span> { region: <span class="string">'hudson-valley'</span>, theme: <span class="string">'bearsville'</span> },<br>
+&nbsp;&nbsp;<span class="string">'studio-c'</span><span class="punct">:</span>&nbsp; { region: <span class="string">'hudson-valley'</span>, theme: <span class="string">'studio-c'</span> },<br>
+&nbsp;&nbsp;<span class="string">'tuthill'</span><span class="punct">:</span>&nbsp;&nbsp; { region: <span class="string">'hudson-valley'</span>, theme: <span class="string">'tuthill'</span> },<br>
+}<br>
+</div>
+
+<p>"Natchez to Woodstock is about 1,200 miles," Pierson says. "Same architecture, completely different culture. If it works in both places, it works. That's the test."</p>
+
+<h2>The Gap Nobody Talks About</h2>
+
+<p>When I ask Pierson what the Glass Engine actually sells, he pauses. "Organization," he says. "Not software. Not AI. Organization."</p>
+
+<p>He pulls up a spreadsheet on his phone. "A small-market business &mdash; a restaurant, a boutique, a venue &mdash; typically pays for eight to twelve separate SaaS subscriptions. Website builder, social scheduler, review manager, email marketing, analytics, booking system, POS integration, accounting sync. That's $500 to $800 a month, minimum. And none of those tools talk to each other. The owner spends ten hours a week being an unpaid systems integrator."</p>
+
+<div class="cost-compare">
+  <div class="cost-col old">
+    <h4>Typical SaaS Stack</h4>
+    <div class="price">$500&ndash;$800/mo</div>
+    <div class="detail">8&ndash;12 subscriptions<br>No shared data<br>Manual integration<br>10+ hrs/week overhead</div>
+  </div>
+  <div class="cost-col new">
+    <h4>Glass Engine (DSD)</h4>
+    <div class="price">$20&ndash;$99/mo</div>
+    <div class="detail">One platform<br>Shared data layer<br>AI-powered automation<br>Show up, it works</div>
+  </div>
+</div>
+
+<p>"The gap isn't technology," he continues. "Every tool they need exists. The gap is that nobody has organized those tools into a system that makes sense for a ten-person business in a town of 15,000. That's what the Glass Engine is. It's the organizational layer."</p>
+
+<div class="pull-quote">
+  "The same architecture that runs a Viacom can run a town. The difference is volume, not design. And volume is exactly what AI solves."
+  <cite>Chase Pierson</cite>
+</div>
+
+<h2>What Comes Next</h2>
+
+<p>Pierson is cagey about revenue numbers but open about the model. The Deep South Directory &mdash; the consumer-facing product powered by the Glass Engine &mdash; launched its paid tiers in April 2026. The team is doing walk-in sales, five businesses per day, starting at $20 a month. No pitch decks. No demo calls. They walk into a restaurant, show the listing on a phone, and ask if the owner wants to claim it.</p>
+
+<p>The Bearsville activation is set for summer 2026. If it hits the same early traction as Natchez, the model proves out: one codebase, templated for any small market, with local operators running the ground game and the Glass Engine running everything else.</p>
+
+<p>As I'm wrapping up the call, Pierson points the camera out the window. The Mississippi River is a dark line against the bluff. "People keep asking me when we're going to move to Austin or raise a Series A," he says. "They're missing the point. The whole thesis is that you don't have to leave. You don't have to scale to San Francisco. You build the machine where the life is. And then the machine runs."</p>
+
+<p>The Glass Engine hums. Natchez sleeps. Fourteen domains keep serving.</p>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="article-footer">
+  <p>This feature was reported and written by Maren Ochoa. Photography from Big Muddy Media archives.<br>
+  &copy; 2026 Cond&eacute; Nast &middot; <a href="https://wired.com">WIRED</a></p>
+  <p style="margin-top:1rem;font-size:0.6rem;color:#555">This is a fictional editorial treatment. Not an actual WIRED publication.</p>
+</footer>
+
+</body>
+</html>

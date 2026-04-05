@@ -5,7 +5,7 @@
 2. **Category pages** — Restaurants, lodging, shops, services, entertainment
 3. **Claim your listing flow** — Business owners verify and enhance their listings
 4. **Google My Business sync** — Pull hours, reviews, photos automatically
-5. **MBT upsell integration** — Free listing → "Want AI to manage this? $20/month"
+5. **MBT upsell integration** — Free listing → "Want AI to manage this? $25/month"
 
 ## Channel Strategy
 - **Website:** deepsouthdirectory.com — the directory itself is the product

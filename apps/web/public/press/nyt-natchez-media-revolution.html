@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In Natchez, a Media Company Built for Main Street - The New York Times</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #121212;
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #121212;
+    text-align: center;
+    padding: 14px 0 6px;
+    border-bottom: 2px solid #121212;
+    margin: 0 auto;
+    max-width: 680px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 440px;
+    max-height: 720px;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.7;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 60px 24px 40px;
+    background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+  }
+
+  .hero-overlay h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-overlay .hero-sub {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.85);
+    max-width: 600px;
+    margin: 14px auto 0;
+    text-align: center;
+  }
+
+  .hero-caption {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 11px;
+    color: #999;
+    text-align: right;
+    padding: 6px 16px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* ── Article container ── */
+  .article {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ── Byline ── */
+  .byline {
+    padding: 28px 0 8px;
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 28px;
+  }
+
+  .byline-author {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #121212;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  .byline-meta {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 13px;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  .dateline {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 13px;
+    color: #666;
+    margin-top: 2px;
+  }
+
+  /* ── Body text ── */
+  .article p {
+    font-size: 19px;
+    line-height: 1.63;
+    margin-bottom: 22px;
+    color: #333;
+  }
+
+  .article p.lede {
+    font-size: 21px;
+    line-height: 1.58;
+    color: #121212;
+  }
+
+  .article p .place {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* ── Drop cap ── */
+  .drop-cap::first-letter {
+    float: left;
+    font-size: 68px;
+    line-height: 0.8;
+    font-weight: 700;
+    margin-right: 8px;
+    margin-top: 6px;
+    color: #121212;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+  /* ── Pull quote ── */
+  .pull-quote {
+    margin: 44px 0;
+    padding: 28px 0;
+    border-top: 3px solid #121212;
+    border-bottom: 1px solid #e2e2e2;
+  }
+
+  .pull-quote blockquote {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 26px;
+    font-style: italic;
+    line-height: 1.4;
+    color: #121212;
+  }
+
+  .pull-quote .attribution {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 13px;
+    color: #666;
+    margin-top: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  /* ── Inline images ── */
+  .article-img {
+    margin: 36px -40px;
+    position: relative;
+  }
+
+  .article-img img {
+    width: 100%;
+    display: block;
+  }
+
+  .article-img figcaption {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 12px;
+    color: #999;
+    padding: 8px 0 0;
+    line-height: 1.5;
+  }
+
+  .article-img figcaption .credit {
+    color: #bbb;
+    margin-left: 4px;
+  }
+
+  /* ── Subhead ── */
+  .article h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 26px;
+    font-weight: 700;
+    margin: 40px 0 18px;
+    color: #121212;
+    line-height: 1.25;
+  }
+
+  /* ── Footer ── */
+  .article-footer {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 36px 20px 60px;
+    border-top: 1px solid #e2e2e2;
+  }
+
+  .article-footer p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 13px;
+    color: #999;
+    line-height: 1.6;
+  }
+
+  /* ── NYT top bar ── */
+  .nyt-bar {
+    text-align: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e2e2;
+    background: #fff;
+  }
+
+  .nyt-bar .nyt-logo {
+    font-family: 'Chomsky', Georgia, 'Times New Roman', Times, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #121212;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+  }
+
+  .nyt-bar .nyt-date {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 11px;
+    color: #999;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 720px) {
+    .hero { height: 50vh; min-height: 320px; }
+    .hero-overlay h1 { font-size: 28px; }
+    .hero-overlay .hero-sub { font-size: 16px; }
+    .article p { font-size: 17px; }
+    .article p.lede { font-size: 18px; }
+    .pull-quote blockquote { font-size: 22px; }
+    .article-img { margin: 28px 0; }
+    .section-label { margin: 0 20px; }
+    .drop-cap::first-letter { font-size: 54px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-overlay { padding: 40px 16px 24px; }
+    .hero-overlay h1 { font-size: 24px; }
+    .hero-overlay .hero-sub { font-size: 15px; }
+    .article { padding: 0 16px; }
+    .article-img { margin: 20px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="nyt-bar">
+  <span class="nyt-logo">The New York Times</span>
+  <span class="nyt-date">Sunday, July 12, 2026</span>
+</div>
+
+<div class="section-label">Business</div>
+
+<!-- Hero -->
+<div class="hero">
+  <img src="/images/corridor/victorian-mansion-natchez.webp" alt="A Victorian mansion in Natchez, Mississippi, where Big Muddy Media operates its offices and inn.">
+  <div class="hero-overlay">
+    <h1>In Natchez, a Media Company Built for Main Street</h1>
+    <p class="hero-sub">Four people. Fourteen domains. One codebase. A small Mississippi town becomes an unlikely proving ground for a new kind of media economy.</p>
+  </div>
+</div>
+<div class="hero-caption">The Big Muddy Inn, a Victorian-era building in Natchez, Miss., houses the company's offices, a bar, guest rooms and a radio station.&ensp;<span style="color:#bbb;">Arrie Aslin for The New York Times</span></div>
+
+<!-- Article body -->
+<div class="article">
+
+  <div class="byline">
+    <div class="byline-author">By Margaret Anne Calloway</div>
+    <div class="byline-meta">July 12, 2026 &middot; 12 min read</div>
+    <div class="dateline">Published in The New York Times Business section</div>
+  </div>
+
+  <p class="lede drop-cap"><span class="place">Natchez, Miss.</span> &mdash; The radio station is in the back room of a Victorian inn, on a folding table next to a case of Abita beer. The transmitter is a Mac Mini. The antenna is the internet. And somehow, on a Tuesday afternoon in June, it is broadcasting a live set by a blues guitarist from Clarksdale to anyone in the world who cares to listen.</p>
+
+  <p>This is Big Muddy Radio, one piece of an improbable media operation run by four people out of a 160-year-old building on the bluffs above the Mississippi River. There is also a touring company, a magazine, a record label, a business directory and an artificial intelligence platform &mdash; all of it stitched together, all of it running on a single software deployment, all of it pointed at one goal: making a small Southern town's economy a little less dependent on people passing through and a little more capable of sustaining itself.</p>
+
+  <p>"The gap isn't technology," said Chase Pierson, the company's founder and chief executive, sitting on the inn's porch as the afternoon heat settled over the bluffs. "It's organization. Every small town in America has talent, has stories, has something to sell. What they don't have is the infrastructure to connect those things."</p>
+
+  <p>Mr. Pierson, 42, is a media technologist who spent years designing broadcast infrastructure for large companies &mdash; the kind of architecture that lets a Viacom or a Disney move content from production through distribution across dozens of platforms simultaneously. In 2022, he drew up a complete production-to-distribution pipeline he called the DeFacto Codec Market. It was meant for global media. Then he looked at it and had a thought that changed the direction of his career.</p>
+
+  <p>"The same system that runs a billion-dollar media company can run a small-town economy," he said. "The tools are all open source now. The AI is here. The only thing missing is someone willing to organize it."</p>
+
+  <figure class="article-img">
+    <img src="/images/corridor/natchez-downtown-sidewalk.webp" alt="Downtown Natchez, Mississippi, with brick storefronts along a tree-lined street.">
+    <figcaption>Downtown Natchez, where the Deep South Directory has signed up more than 200 businesses since launching earlier this year.<span class="credit">Arrie Aslin for The New York Times</span></figcaption>
+  </figure>
+
+  <h2>Fourteen Domains, One Deployment</h2>
+
+  <p>The company Mr. Pierson built, Hillbilly Dreams Inc., operates 14 websites from a single codebase. That is not a typo. BigMuddyTouring.com, BigMuddyMagazine.com, BigMuddyRadio.com, BigMuddyEntertainment.com, BigMuddyRecordLabel.com, DeepSouthDirectory.com, OutsiderEconomics.com &mdash; all of them, and several more, run on one Next.js application deployed to one server.</p>
+
+  <p>In the technology industry, this would be called multi-tenant architecture. In Natchez, it just means that when a band plays a show at a local venue, the same system that promotes the concert through the magazine also lists the venue in the directory, streams the performance on the radio, and logs the booking for the record label's non-exclusive catalog. One event. One entry point. Multiple outputs.</p>
+
+  <p>Mr. Pierson calls this the "ecosystem multiplier." His internal math suggests that a $1,000 show generates at least $500 in downstream revenue &mdash; through inn bookings, bar sales, directory traffic, magazine readership and radio listenership. The number is hard to verify independently, but several local business owners said they had noticed an uptick in foot traffic on nights when Big Muddy events were running.</p>
+
+  <div class="pull-quote">
+    <blockquote>&ldquo;He showed up with a laptop and a pitch about a $20 listing. I figured it was another one of those things. Six months later, my lunch traffic is up 30 percent on show nights.&rdquo;</blockquote>
+    <div class="attribution">Deborah Washington, owner of The Magnolia Table, Natchez</div>
+  </div>
+
+  <p>The Deep South Directory, which Mr. Pierson describes as the company's primary revenue engine, has enrolled more than 200 businesses across the Mississippi Delta region since its launch. The pricing is modest by technology industry standards: a free tier for basic listings, then $25, $50, $99 and $250 per month for progressively richer packages that include social media management, review responses, AI-generated marketing copy and what the company calls "full engine" &mdash; a suite of tools that handles most of what a small business would pay a marketing agency several thousand dollars a month to do.</p>
+
+  <p>Whether the software actually delivers on that promise is a fair question. The platform is young, the team is small, and the claims are large. But after spending three days in Natchez watching the operation up close, what struck me was less the technology and more the organizational logic behind it.</p>
+
+  <h2>The Four-Person Orchestra</h2>
+
+  <p>Hillbilly Dreams has four people. Mr. Pierson handles the technology and business development during the day. Tracy Alderson-Allen, an equity partner, manages finances and inn operations. Amy Allen, also an equity partner, runs the bar and day-to-day hospitality. JP Houston books the acts and manages programming.</p>
+
+  <p>The arrangement is unusual for a technology company. Two of the four principals are equity partners in the hospitality side of the business, not employees of the software operation. The inn, the bar, the touring &mdash; these are not side projects. They are the proving ground. Every tool in the platform gets tested on the company's own properties before it is offered to anyone else.</p>
+
+  <figure class="article-img">
+    <img src="/images/ai-corridor/radio-studio.webp" alt="A small radio studio setup with a microphone, monitor and mixing board.">
+    <figcaption>The Big Muddy Radio studio, which streams from a back room of the inn using consumer-grade equipment and open-source broadcasting software.<span class="credit">Arrie Aslin for The New York Times</span></figcaption>
+  </figure>
+
+  <p>"We eat our own cooking," Ms. Alderson-Allen said, reviewing a financial dashboard on her phone while checking in a guest. "If the directory can't help us fill rooms on a Tuesday, it's not going to help the restaurant down the street."</p>
+
+  <p>This approach &mdash; dogfooding, in technology parlance &mdash; is common at large software companies. It is almost unheard-of at this scale, in a town of 14,000 people, where the operators of the software are also the people pouring drinks and checking the thermostat in room three.</p>
+
+  <h2>The Touring Engine</h2>
+
+  <p>The most tangible piece of the Big Muddy operation is the touring company. Mr. Houston, a lanky Mississippian with an encyclopedic knowledge of Southern musicians, books acts ranging from solo blues performers to five-piece rock bands. The company provides transportation &mdash; a converted Sprinter van that doubles as a mobile billboard &mdash; and promotes every show through its own media channels.</p>
+
+  <figure class="article-img">
+    <img src="/images/corridor/street-musician-guitar.webp" alt="A musician playing guitar on a street in the Deep South.">
+    <figcaption>A guitarist performing in the Mississippi Delta region. Big Muddy Touring books artists and provides transportation, promotion and recording opportunities.<span class="credit">Arrie Aslin for The New York Times</span></figcaption>
+  </figure>
+
+  <p>"The music is the front door," Mr. Houston said. "People come for the show. They eat dinner. They book a room. They discover the town. That's not a theory. I watch it happen every weekend."</p>
+
+  <p>The record label, Big Muddy Records, offers non-exclusive deals. Artists keep their masters &mdash; an arrangement that would have been radical a decade ago and now reads as simply fair. The label's catalog feeds the radio station, which in turn promotes the touring calendar, which fills the inn. Everything connects.</p>
+
+  <p>This circularity is the point. In most small towns, a band plays a gig and goes home. The venue gets one night of revenue. The town gets nothing else. Mr. Pierson's argument is that by connecting the media, the hospitality and the commerce into a single loop, each event does more work.</p>
+
+  <div class="pull-quote">
+    <blockquote>&ldquo;The same architecture that runs a billion-dollar media company can run a small-town economy. The tools are all open source now. The only thing missing is someone willing to organize it.&rdquo;</blockquote>
+    <div class="attribution">Chase Pierson, founder and chief executive of Hillbilly Dreams Inc.</div>
+  </div>
+
+  <h2>The Skeptic's Case</h2>
+
+  <p>It is worth pausing here to note what this is not. This is not a venture-backed startup with plans to disrupt the local media industry. There is no series A. There is no board of directors. There is no plan to reach a million users.</p>
+
+  <p>What there is, instead, is an argument. The argument goes like this: Small towns have been told for 30 years that the internet will save them, and for 30 years it has mostly extracted from them &mdash; pulling ad dollars to Google, pulling storefronts to Amazon, pulling attention to platforms that have no interest in whether the hardware store on Main Street survives another winter.</p>
+
+  <p>Mr. Pierson's counter-proposition is that the same digital tools can be organized to flow value inward instead of outward. The directory keeps marketing dollars local. The magazine tells local stories. The radio station plays local music. The touring company brings outside money in but keeps the infrastructure under local control.</p>
+
+  <p>There are obvious risks. The operation is young and depends heavily on Mr. Pierson's technical abilities. The team is very small. The revenue model, while rational, has not been tested at any meaningful scale. And the AI tools that power the directory's marketing features &mdash; social media drafts, review responses, business listing optimization &mdash; are no better or worse than what any number of competing products offer.</p>
+
+  <p>What is different, and what I found genuinely interesting, is the integration. No one else is running a record label, a radio station, a touring company, a magazine, a business directory and a hospitality operation from the same codebase, in the same town, with the same four people. The question is whether that integration produces something greater than the sum of its parts.</p>
+
+  <figure class="article-img">
+    <img src="/images/corridor/mississippi-river-bridge.webp" alt="A bridge spanning the Mississippi River near Natchez, silhouetted against the sky.">
+    <figcaption>The Mississippi River near Natchez. The company plans to expand its model to Woodstock, N.Y., this summer &mdash; the same platform, adapted to a different region.<span class="credit">Arrie Aslin for The New York Times</span></figcaption>
+  </figure>
+
+  <h2>Going North</h2>
+
+  <p>The next test comes this summer, when the company activates a second node in Woodstock, N.Y. The operation, called Bearsville Creative, will run on the same platform but serve the Hudson Valley and Catskills region. Different music, different businesses, different culture &mdash; same underlying architecture.</p>
+
+  <p>"If this only works in Natchez, it's a nice story," Mr. Pierson said. "If it works in Woodstock too, it's a pattern."</p>
+
+  <p>The Woodstock expansion will test whether the model is genuinely transferable or whether its apparent success in Natchez owes more to Mr. Pierson's personal relationships, the town's unusual density of cultural assets, and the irreplaceable charm of a radio station broadcasting from behind a case of Abita.</p>
+
+  <p>On my last evening in Natchez, I walked from the inn down to the bluffs. The sun was dropping behind the Louisiana side of the river. Big Muddy Radio was streaming a set of Delta blues, audible from a Bluetooth speaker someone had set on the porch rail. A couple from Chicago, in town for a show that night, were checking in. Ms. Allen was behind the bar. Ms. Alderson-Allen was on her laptop. Mr. Houston was on the phone, booking an act for the following weekend.</p>
+
+  <p>Mr. Pierson was in the back room, staring at a monitor, making adjustments to the same codebase that would, in a few hours, promote that night's show across 14 websites simultaneously.</p>
+
+  <p>It is a small operation. It is also, in its way, a complete one. Whether it becomes something bigger depends on questions that four people in a Mississippi river town cannot answer alone. But watching them try was the most interesting thing I saw in business this month.</p>
+
+  <figure class="article-img">
+    <img src="/images/dsd/hero-mainstreet.webp" alt="A Main Street scene in a small Southern town.">
+    <figcaption>A scene from the Deep South, where Big Muddy's model aims to keep technology spending within the local economy rather than flowing to distant platforms.<span class="credit">Arrie Aslin for The New York Times</span></figcaption>
+  </figure>
+
+</div>
+
+<!-- Footer -->
+<div class="article-footer">
+  <p>Margaret Anne Calloway covers technology and small business from the paper's Atlanta bureau. Follow her on Twitter: @macalloway</p>
+  <p style="margin-top: 12px;">A version of this article appears in print on July 13, 2026, Section B, Page 1 of the New York edition with the headline: &ldquo;A Media Company Built for Main Street.&rdquo;</p>
+  <p style="margin-top: 24px; color: #ccc; font-size: 11px;">This is an internal visualization document. It does not represent actual New York Times coverage.</p>
+</div>
+
+</body>
+</html>

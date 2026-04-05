@@ -120,13 +120,19 @@ Northeast node (Woodstock, NY). Summer 2026 activation.
 
 ---
 
-## DSD tiers & pricing (retail TBD)
+## DSD Pricing (LOCKED — April 5, 2026)
 
-Public-facing names: **Free · Core · Growth · Partner** — **no dollar amounts on the customer site** until pricing is locked. Historical reference tiers ($20 / $49 / $99) may still appear in old docs; reconcile before sales.
+| Tier | Price | Name |
+|------|-------|------|
+| Free | $0 | Free |
+| Essentials | $25/mo | Essentials |
+| Pro | $50/mo | Pro |
+| Marketing | $99/mo | Marketing |
+| Engine | $250/mo | Engine |
 
-Walk-in: lead with value and corridor fit; never claim features not yet shipped.
+Walk-in pitch: lead with value and the region. Never claim features not yet shipped.
 
-When checkout is live: Stripe payment links in Vercel — `STRIPE_PAYMENT_LINK_LISTING`, `STRIPE_PAYMENT_LINK_ENGINE` (confirm env names match the tier you wire).
+Stripe payment links in Vercel — `STRIPE_PAYMENT_LINK_ESSENTIALS`, `STRIPE_PAYMENT_LINK_PRO`, `STRIPE_PAYMENT_LINK_MARKETING`, `STRIPE_PAYMENT_LINK_ENGINE`.
 
 ---
 

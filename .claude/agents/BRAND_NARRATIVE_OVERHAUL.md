@@ -23,15 +23,15 @@ Big Muddy is that architecture, applied to Main Street, powered by AI, anchored 
 
 **Expanded:** You have a ChatGPT account you don't really know how to use. You have a Facebook page you haven't updated since October. You have a Google listing with wrong hours. You have 4-6 SaaS tools you're paying for and barely using. You know AI could help but you don't know where to start.
 
-We do all of it. For $20/month, you get an AI assistant that already knows your business and your town. For $99/month, you get the whole media machine — your reviews answered, your social media running, your business featured in a magazine, mentioned on the radio, and listed in the directory every tourist sees.
+We do all of it. For $25/month, you get an AI assistant that already knows your business and your town. For $99/month, you get the whole media machine — your reviews answered, your social media running, your business featured in a magazine, mentioned on the radio, and listed in the directory every tourist sees.
 
 **What makes this different from every other SaaS pitch:** We own the media properties. No competitor can offer editorial coverage, radio mentions, and a regional directory because they don't own a magazine, a radio station, or a hotel. We do.
 
 ## The Value Props (Must Land 100%)
 
-### For the $20 AI Assistant:
+### For the $25 Essentials:
 **Don't say:** "AI-powered business intelligence platform"
-**Say:** "It's like having ChatGPT, except it already knows your business, your town, your competitors, and your customers. Same price. Actually useful."
+**Say:** "It's like having ChatGPT, except it already knows your business, your town, your competitors, and your customers. $25 a month. Actually useful."
 
 ### For the $99 Engine:
 **Don't say:** "Comprehensive digital marketing automation suite"
@@ -128,12 +128,12 @@ This is the endgame — and it connects directly to Outsider Economics:
 
 **Sponsor deals based on reach.** The platform tracks impressions, plays, page views per business. A tourism board sponsors the businesses with the most reach. The math is transparent.
 
-**Credits, not just dollars.** MBT credits let participants exchange services within the ecosystem. A $20/mo listing earns credits by contributing content. Credits buy services from other ecosystem members. This is the task board economy from Outsider Economics — implemented as a real platform feature.
+**Credits, not just dollars.** MBT credits let participants exchange services within the ecosystem. A $25/mo listing earns credits by contributing content. Credits buy services from other ecosystem members. This is the task board economy from Outsider Economics — implemented as a real platform feature.
 
 **Don't mention this publicly yet** — but it's the reason the architecture matters. The media properties (magazine, radio, directory) generate measurable audience. The audience has value. The value flows to the operators who create it. That's the opposite of extraction.
 
 ## Success Criteria
 
-When someone reads any page on any site, they should think: "These people actually do the thing. This isn't vaporware. This is a real media company that will handle my digital presence for $20/month."
+When someone reads any page on any site, they should think: "These people actually do the thing. This isn't vaporware. This is a real media company that will handle my digital presence for $25/month."
 
 If a value prop doesn't make a barber shop owner in Natchez nod and say "yeah, I need that" — rewrite it until it does.

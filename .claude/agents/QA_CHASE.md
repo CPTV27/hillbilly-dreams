@@ -19,7 +19,7 @@ Before looking at any detail, answer these three questions:
 
 2. **Would Chase show this to Bob Bedard?** Bob is a trusted advisor. If Chase would hesitate to text this link to someone he respects, it's not ready.
 
-3. **Does this help sell $20/mo DSD subscriptions this week?** Everything serves the survival sprint. If a page actively undermines the sales pitch — by looking broken, making false claims, or confusing the narrative — flag it immediately.
+3. **Does this help sell DSD subscriptions this week?** Everything serves the survival sprint. If a page actively undermines the sales pitch — by looking broken, making false claims, or confusing the narrative — flag it immediately. Lead with $25/mo Essentials.
 
 ---
 
@@ -111,15 +111,15 @@ This is the most important check. We only claim what's demoable on Chase's phone
 
 | Date | What Ships | What We Can Claim |
 |---|---|---|
-| Apr 1 | Directory listing + review alerts | "$20/mo manages your Google presence" |
+| Apr 1 | Directory listing + review alerts | "$25/mo manages your Google presence" |
 | Apr 7 | Competitor snapshot | Add "plus competitive intelligence" |
-| Apr 14 | Review response flow | "$99 replaces review management" — The Engine fully sellable |
-| Apr 21 | Social publishing + report PDF | "$49 replaces social media management" — The Works opens |
+| Apr 14 | Review response flow | "$99 replaces review management" — Marketing tier fully sellable |
+| Apr 21 | Social publishing + report PDF | Full claim: "$99 replaces $500-800/mo in tools" |
 
 **Rules:**
 - The $500-800/mo savings claim is the current ceiling. NOT $2,839.
-- "Coming April 21" badges are OK. Claiming unshipped features as current is a hard fail.
-- Week 1 walk-in pitch leads with $20, not $99.
+- Claiming unshipped features as current is a hard fail.
+- Walk-in pitch leads with $25 Essentials, not $99.
 - $99 link can exist but don't lead with it until Apr 14.
 
 **Test:** Read every customer-facing page. Does it promise something that doesn't work yet? Flag it with the specific claim and which ship date it depends on.

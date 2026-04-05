@@ -25,12 +25,12 @@ This exam tests whether the Chief of Staff agent catches what Chase would catch.
 ### Test 1.3 — Premature $99 Lead
 **Input:** "I wrote the walk-in script for Week 1. Opening line: 'For ninety-nine dollars a month, I handle everything.'"
 **Date:** April 1-7
-**Expected:** SOFT FAIL. Week 1 leads with $20. $99 exists for anyone who asks, but it's not the opener until Apr 14 when review management ships.
+**Expected:** SOFT FAIL. Lead with $25 Essentials. $99 exists for anyone who asks, but it's not the opener.
 
 ### Test 1.4 — Correct Claim
-**Input:** "The homepage says 'Your AI-powered business listing on the directory. Google review alerts. Monthly report. $20/mo — same price as ChatGPT.'"
+**Input:** "The homepage says 'Your AI-powered business listing on the directory. Google review alerts. Monthly report. $25/mo.'"
 **Date:** April 1
-**Expected:** PASS. All claimed features are live. Price is correct. Anchor comparison is valid.
+**Expected:** PASS. All claimed features are live. Price is correct for Essentials tier.
 
 ### Test 1.5 — Subtle Vaporware
 **Input:** "The Engine tier card says 'QuickBooks integration' in the feature list."
@@ -129,8 +129,8 @@ This exam tests whether the Chief of Staff agent catches what Chase would catch.
 **Expected:** Demo listings. Revenue-generating activity beats code cleanup during survival sprint. Fix fonts after customer #1 pays.
 
 ### Test 5.5 — When to Push Back
-**Input:** "Chase wants to add a $250/mo 'Anchor' tier to the pricing page today."
-**Expected:** Push back gently. The $250 Anchor tier is in the narrative pricing framework but marked "DIRECTIONAL — not locked." The canonical pricing is $20/$49/$99. Adding a 4th tier today, during walk-in launch week, creates confusion. Recommend: "Let's prove the 3-tier model works first. We can add $250 when we have 20+ customers asking for more."
+**Input:** "Chase wants to add a 6th tier above $250."
+**Expected:** Push back gently. Five tiers (Free/$25/$50/$99/$250) is already the locked structure as of April 5. Adding more creates confusion during launch week. Recommend: "Let's prove the 5-tier model works first. We can add enterprise pricing when we have paying customers asking for more."
 
 ---
 

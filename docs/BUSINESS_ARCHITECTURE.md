@@ -102,17 +102,18 @@ Big Muddy Touring is the engine:
 
 ### Deep South Directory (ACTIVE)
 
-**What:** Business marketing product for the corridor.
+**What:** Business marketing product for the Deep South.
 **Domain:** deepsouthdirectory.com
 **Modules used:** Directory, AI Content Pipeline, Analytics, Commerce
 **Pricing:**
 
 | Tier | Price | What You Get |
 |---|---|---|
-| Entry | Free | Basic directory listing |
-| The Listing | $20/mo | AI-managed listing, review alerts, monthly report |
-| The Works | $49/mo | + social posting, content calendar (opens Apr 21) |
-| The Engine | $99/mo | + review management, competitor watch, Magazine feature |
+| Free | $0 | Basic directory listing |
+| Essentials | $25/mo | AI-managed listing, review alerts, monthly report |
+| Pro | $50/mo | + social posting, content calendar |
+| Marketing | $99/mo | + review management, competitor watch, Magazine feature |
+| Engine | $250/mo | Full stack — dedicated account, custom integrations, priority support |
 
 DSD is the mainstream entry point. Any business doing under $200K/year can afford it.
 

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Inn Where the Music Plays and the AI Answers the Phone | Bon App&eacute;tit</title>
+<meta name="description" content="In Natchez, Mississippi, a Victorian mansion doubles as a hotel, a music venue, a radio station, and the quiet headquarters of something much bigger.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #faf8f5;
+    color: #2a2520;
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* — Masthead — */
+  .masthead {
+    text-align: center;
+    padding: 28px 20px 16px;
+    border-bottom: 1px solid #e0dbd4;
+  }
+  .masthead-logo {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #c17817;
+  }
+  .masthead-section {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8a7e72;
+    margin-top: 6px;
+  }
+
+  /* — Hero — */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    min-height: 500px;
+    overflow: hidden;
+  }
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(30, 22, 14, 0.85));
+    padding: 80px 20px 48px;
+  }
+  .hero-overlay .kicker {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #e8c47a;
+    margin-bottom: 12px;
+  }
+  .hero-overlay h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hero-overlay .hero-sub {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(16px, 2.2vw, 22px);
+    color: #e0d5c5;
+    max-width: 620px;
+    margin: 16px auto 0;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* — Byline — */
+  .byline-bar {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 28px 20px 24px;
+    border-bottom: 1px solid #e0dbd4;
+    text-align: center;
+  }
+  .byline-bar .author {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #2a2520;
+  }
+  .byline-bar .dateline {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    color: #8a7e72;
+    margin-top: 4px;
+  }
+
+  /* — Article body — */
+  .article-body {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  .article-body p {
+    margin-bottom: 24px;
+  }
+  .article-body p.lede {
+    font-size: 21px;
+    line-height: 1.7;
+    color: #3a332c;
+  }
+  .article-body h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 56px 0 20px;
+    color: #2a2520;
+    line-height: 1.3;
+  }
+  .article-body h3 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c17817;
+    margin: 48px 0 16px;
+  }
+
+  /* — Pull quote — */
+  .pull-quote {
+    max-width: 780px;
+    margin: 56px auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+  .pull-quote blockquote {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(24px, 3.5vw, 36px);
+    line-height: 1.45;
+    color: #c17817;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .pull-quote .attribution {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8a7e72;
+    margin-top: 16px;
+  }
+
+  /* — Full-width photo break — */
+  .photo-break {
+    width: 100%;
+    margin: 48px 0;
+    position: relative;
+  }
+  .photo-break img {
+    width: 100%;
+    display: block;
+    max-height: 600px;
+    object-fit: cover;
+  }
+  .photo-break .caption {
+    max-width: 680px;
+    margin: 12px auto 0;
+    padding: 0 20px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    color: #8a7e72;
+    line-height: 1.5;
+  }
+
+  /* — Inline photo (within article width) — */
+  .inline-photo {
+    margin: 40px 0;
+  }
+  .inline-photo img {
+    width: 100%;
+    display: block;
+  }
+  .inline-photo .caption {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    color: #8a7e72;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+
+  /* — Two-up photo grid — */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 48px 0;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+  }
+  .photo-grid img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-grid .caption {
+    grid-column: 1 / -1;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    color: #8a7e72;
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  /* — Info box — */
+  .info-box {
+    max-width: 680px;
+    margin: 48px auto;
+    padding: 32px;
+    background: #f3ede4;
+    border-left: 4px solid #c17817;
+  }
+  .info-box h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #2a2520;
+  }
+  .info-box p {
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 10px;
+    color: #4a4038;
+  }
+  .info-box p:last-child { margin-bottom: 0; }
+
+  /* — Divider — */
+  .ornament {
+    text-align: center;
+    margin: 48px 0;
+    font-size: 24px;
+    color: #c17817;
+    letter-spacing: 12px;
+  }
+
+  /* — Footer — */
+  .article-footer {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+    border-top: 1px solid #e0dbd4;
+    text-align: center;
+  }
+  .article-footer .tags {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8a7e72;
+    margin-bottom: 20px;
+  }
+  .article-footer .tags span {
+    margin: 0 8px;
+  }
+  .article-footer .colophon {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    color: #b0a899;
+    line-height: 1.6;
+  }
+
+  /* — Responsive — */
+  @media (max-width: 768px) {
+    .hero { height: 65vh; min-height: 400px; }
+    .photo-grid { grid-template-columns: 1fr; }
+    .photo-grid img { height: 280px; }
+    .article-body { font-size: 17px; }
+    .info-box { margin-left: 20px; margin-right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Masthead -->
+<header class="masthead">
+  <div class="masthead-logo">Bon App&eacute;tit</div>
+  <div class="masthead-section">Travel &amp; Culture</div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <img src="/images/corridor/inn-hallway-gathering.webp" alt="Guests gathered in the warm hallway of The Big Muddy Inn, Natchez, Mississippi">
+  <div class="hero-overlay">
+    <div class="kicker">Natchez, Mississippi</div>
+    <h1>The Inn Where the Music Plays and the AI Answers the Phone</h1>
+    <p class="hero-sub">A Victorian mansion. A radio station in a closet. The future of Southern hospitality, hiding in plain sight.</p>
+  </div>
+</div>
+
+<!-- Byline -->
+<div class="byline-bar">
+  <div class="author">By Margaux Thibodaux</div>
+  <div class="dateline">Photographs by the Big Muddy team &middot; April 2026</div>
+</div>
+
+<!-- Body -->
+<div class="article-body">
+
+  <p class="lede">The first thing you notice is the porch. Not a hotel porch&mdash;not the staged, corporate kind with identical rockers spaced exactly thirty inches apart. This is a real porch, the Mississippi kind, where a ceiling fan turns slow enough that you can count the blades, and somebody left a half-finished glass of sweet tea on the railing an hour ago and nobody's moved it because nobody's in a rush.</p>
+
+  <p>The Big Muddy Inn sits on a tree-lined street in Natchez, one of those Southern towns that has more antebellum homes per capita than anywhere in the country and more stories per square foot than most cities ten times its size. The house is Victorian, with the high ceilings and original woodwork that make architecture people lose their minds. But I'm not here for the crown molding.</p>
+
+  <p>I'm here because someone told me this place is also, somehow, a music venue, a radio station, and the headquarters of a media company&mdash;and that the whole thing is held together by artificial intelligence that most guests never see.</p>
+
+  <p>I booked the way anyone would: found it online, picked a room, showed up. Nobody mentioned algorithms. Nobody mentioned platforms. The welcome was warm, the bed was good, and the bourbon at the bar was poured by someone who knew my name by the second night.</p>
+
+</div>
+
+<!-- Photo break: Bar -->
+<div class="photo-break">
+  <img src="/images/corridor/bar-interior-floral.webp" alt="The bar at The Big Muddy Inn, warm lighting and floral arrangements">
+  <div class="caption">The bar at The Big Muddy Inn. Amy Allen runs it with the kind of precision that makes everything look effortless.</div>
+</div>
+
+<div class="article-body">
+
+  <h3>The Bar</h3>
+
+  <p>Amy Allen is behind the bar on a Wednesday night, which is also a show night, which is also just a regular Wednesday. She's an equity partner in the business, not a hired hand, and you can tell the difference in the way she moves through the room. She doesn't check a clipboard. She knows what's low, what's next, and who needs another round before they know it themselves.</p>
+
+  <p>"We don't do cocktail menus with fourteen ingredients," she says, sliding a glass of something dark and caramel-forward across the bar. "If you want a good drink, tell me what you like. I'll get you there."</p>
+
+  <p>The drink is a riff on an old fashioned, made with a Mississippi-distilled bourbon and a honey syrup that tastes like it came from a hive about twenty feet away. (It might have. I didn't ask.) The garnish is a strip of orange peel, torched just enough to release the oils. It is, without exaggeration, one of the best things I drink all year.</p>
+
+</div>
+
+<!-- Pull quote -->
+<div class="pull-quote">
+  <blockquote>&ldquo;We don't do cocktail menus with fourteen ingredients. If you want a good drink, tell me what you like. I'll get you there.&rdquo;</blockquote>
+  <div class="attribution">Amy Allen, equity partner</div>
+</div>
+
+<div class="article-body">
+
+  <p>Behind Amy, the shelves are curated but not fussy. Local spirits next to a few well-chosen imports. No neon signs. No chalkboard specials in that artisanal handwriting that every bar in Brooklyn adopted circa 2014. The room smells like old wood, citrus, and whatever's playing on the sound system&mdash;tonight it's a slow, swampy blues number that sounds like it was recorded in a room not much bigger than this one.</p>
+
+  <p>It was, actually. The radio station is upstairs.</p>
+
+  <h2>The Closet That Broadcasts</h2>
+
+  <p>Big Muddy Radio operates from a room on the second floor that, in a previous life, was probably a linen closet. It has been converted into a broadcast studio with the kind of resourcefulness that only happens when somebody has more vision than budget. A microphone. A mixing board. Acoustic panels. A Mac mini running open-source broadcasting software that streams twenty-four hours a day.</p>
+
+  <p>The station plays a mix of blues, soul, roots rock, and whatever the artist-in-residence is into that week. Right now that's Arrie Aslin, a musician and visual artist who lives at the Inn and whose paintings hang in the hallways. Arrie's taste runs wide&mdash;Delta blues into Afrobeat into something that might be experimental jazz or might just be him messing around&mdash;and the station is better for it.</p>
+
+</div>
+
+<!-- Photo grid -->
+<div class="photo-grid">
+  <img src="/images/corridor/night-patio-string-lights.webp" alt="String lights on the patio at The Big Muddy Inn at night">
+  <img src="/images/corridor/natchez-night-lounge.webp" alt="The lounge area at night, warm and inviting">
+  <div class="caption">Show nights at The Big Muddy. The patio becomes a stage, the lounge becomes a green room, and the line between guest and audience disappears.</div>
+</div>
+
+<div class="article-body">
+
+  <h3>The Shows</h3>
+
+  <p>The live music is booked by Big Muddy Touring, which is technically a separate brand but operates from the same building, uses the same infrastructure, and is run by the same small team. On show nights, the patio transforms. String lights come on. A PA system appears. Somebody drags out extra chairs.</p>
+
+  <p>The night I'm there, the act is a three-piece from Jackson&mdash;guitar, upright bass, a singer with a voice like gravel and honey&mdash;playing to maybe forty people, half of them Inn guests who wandered out with their drinks and the other half locals who just showed up. There's no cover charge. There's no velvet rope. There's a tip jar and a cooler full of beer and a sky full of Mississippi stars and honestly, what more do you need.</p>
+
+  <p>Tracy Alderson-Allen, the other equity partner, is somewhere in the background making sure the numbers work. She runs the financial side and Inn operations with a quiet competence that doesn't announce itself. "The shows aren't a cost center," she tells me later, over coffee the next morning. "Every show fills rooms. Every room fills the bar. Every bar tab introduces someone to a local business. It compounds."</p>
+
+</div>
+
+<div class="ornament">&bull; &bull; &bull;</div>
+
+<div class="article-body">
+
+  <h2>The Part You Don't See</h2>
+
+  <p>Here's where it gets interesting.</p>
+
+  <p>When I connect to the Inn's WiFi&mdash;the way every guest does, automatically, without thinking about it&mdash;the captive portal that pops up doesn't just give me internet access. It shows me tonight's events. It links to the radio stream. And quietly, in the background, it surfaces local businesses from something called the Deep South Directory.</p>
+
+  <p>I don't notice this at first. It's not aggressive. There's no pop-up ad. No flashing banner. Just a clean, warm page that says, essentially: <em>Here's what's happening tonight, here's some music, and here are some places worth knowing about.</em></p>
+
+  <p>The directory lists restaurants, shops, and services across Natchez and the surrounding area. One of the test listings is Biscuits &amp; Blues, the restaurant run by Regina Charboneau&mdash;a chef who's cooked on the American Queen steamboat, appeared on national television, and still somehow finds time to run a kitchen on Main Street where the biscuits are so good they should be federally protected.</p>
+
+</div>
+
+<!-- Food photo -->
+<div class="photo-break">
+  <img src="/images/corridor/tomato-bruschetta-closeup.webp" alt="Fresh bruschetta with heirloom tomatoes, close-up">
+  <div class="caption">The food in Natchez is unpretentious and stunning. Local ingredients, Southern technique, no performance.</div>
+</div>
+
+<div class="article-body">
+
+  <p>The directory, the radio station, the booking system, the review management&mdash;they all run on the same platform. When a guest leaves a Google review, the system drafts a response that a human can approve or tweak before it goes live. When the radio station plays a local artist, the show page surfaces their listing. When Big Muddy Magazine publishes a story about a Natchez business, that business shows up more prominently in search results.</p>
+
+  <p>The whole thing is connected. But the connection is invisible. There are no tablets bolted to tables. No QR codes papering the walls. No kiosks in the lobby asking you to rate your experience on a scale of one to ten. The technology lives underneath the hospitality, not on top of it.</p>
+
+  <p>"If a guest has to interact with a screen to have a good experience, we've failed," says Chase Pierson, who built the system. He's the CEO of the company behind it all, and he talks about the technology the way a good sound engineer talks about a PA system: the goal is for nobody to notice it's there.</p>
+
+</div>
+
+<!-- Pull quote -->
+<div class="pull-quote">
+  <blockquote>&ldquo;If a guest has to interact with a screen to have a good experience, we've failed.&rdquo;</blockquote>
+  <div class="attribution">Chase Pierson, CEO</div>
+</div>
+
+<div class="article-body">
+
+  <h3>The Dogfood Theory</h3>
+
+  <p>In software, "dogfooding" means using your own product before you sell it to anyone else. The Big Muddy Inn is a dogfood operation. The platform that manages the Inn's online presence, responds to reviews, publishes social media, and streams the radio is the same platform they plan to offer to other small businesses along the Mississippi.</p>
+
+  <p>Right now there are four test clients: the Inn itself, Big Muddy Touring, Big Muddy Magazine, and Biscuits &amp; Blues. The idea is that if the system can handle the complexity of a Victorian inn that's also a music venue, a radio station, and a media company, it can handle a restaurant or a bike shop or a bed-and-breakfast without breaking a sweat.</p>
+
+  <p>It's a convincing argument, mostly because I spend three days at the Inn and never once feel like I'm inside a tech demo. I feel like I'm inside a very good hotel that happens to have excellent taste in music and an unusually well-run bar.</p>
+
+  <h2>What Stays With You</h2>
+
+  <p>On my last morning, I sit on that porch again. The ceiling fan is still turning. Somebody's left a fresh glass of sweet tea on the railing. Arrie Aslin walks past with a canvas under his arm, heading to his studio in the back. The radio is playing something slow and warm through the open windows&mdash;a Delta track I don't recognize but immediately want to know the name of.</p>
+
+</div>
+
+<!-- Final photo -->
+<div class="photo-break">
+  <img src="/images/corridor/craftsman-porch-columns.webp" alt="The porch of The Big Muddy Inn, columns and morning light">
+  <div class="caption">Morning on the porch. The Big Muddy Inn, Natchez, Mississippi.</div>
+</div>
+
+<div class="article-body">
+
+  <p>Tracy brings me a coffee without asking. Amy waves from the bar, where she's already prepping for tonight. There's a show later&mdash;a singer-songwriter from Clarksdale, booked through Touring, promoted through Magazine, streaming live on Radio.</p>
+
+  <p>I think about all the invisible machinery humming beneath this quiet morning. The AI drafting a response to last night's five-star review. The directory surfacing on someone's phone as they connect to the WiFi. The radio stream reaching someone in their car on the Trace, looking for something to listen to, finding this place without knowing it exists.</p>
+
+  <p>And then I stop thinking about it. Because that's the point. The technology is the plumbing. The house is what matters. And this house&mdash;with its music, its bourbon, its long slow porches and its people who remember your name&mdash;this house is worth the trip.</p>
+
+</div>
+
+<!-- Info box -->
+<div class="info-box" style="max-width: 680px; margin-left: auto; margin-right: auto; padding-left: 32px; padding-right: 32px;">
+  <h4>If You Go</h4>
+  <p><strong>The Big Muddy Inn</strong> &mdash; Natchez, Mississippi. Rooms from $149/night. Live music most weekends and select weeknights. The bar is open to the public.</p>
+  <p><strong>Don't miss:</strong> The house old fashioned with Mississippi bourbon and local honey syrup. Regina Charboneau's biscuits at Biscuits &amp; Blues, a ten-minute walk away. Arrie Aslin's paintings in the upstairs hall.</p>
+  <p><strong>Big Muddy Radio</strong> streams 24/7 at bigmuddyradio.com&mdash;tune in before your trip to set the mood.</p>
+</div>
+
+<div class="ornament">&bull; &bull; &bull;</div>
+
+<!-- Footer -->
+<footer class="article-footer">
+  <div class="tags">
+    <span>Natchez</span> &middot;
+    <span>Mississippi</span> &middot;
+    <span>Hotels</span> &middot;
+    <span>Live Music</span> &middot;
+    <span>Southern Food</span>
+  </div>
+  <div class="colophon">
+    This is a fictional editorial feature created for The Big Muddy Inn.<br>
+    Not affiliated with Bon App&eacute;tit or Cond&eacute; Nast.<br>
+    &copy; 2026 Big Muddy Media
+  </div>
+</footer>
+
+</body>
+</html>

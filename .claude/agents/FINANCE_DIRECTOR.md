@@ -26,10 +26,10 @@ Build a 3-year model (2026-2028) with three scenarios:
 
 **Revenue Streams:**
 
-1. **DSD Subscriptions** — $20/$49/$99 per month per business
+1. **DSD Subscriptions** — Free/$25/$50/$99/$250 per month per business
    - Dogfood phase: Apr 2026 (4 internal clients)
    - External sales: Late Apr / May 2026
-   - Market: Natchez first (est. 200-300 addressable businesses), then Clarksdale, then corridor
+   - Market: Natchez first (est. 200-300 addressable businesses), then Clarksdale, then the region
 
 2. **MBT.life Consumer** — $0-$99/mo slider
    - Launch: TBD (after dogfood proves the engine)

@@ -49,7 +49,7 @@ If the answer to any of these is no, send the work back with specific correction
 The ecosystem should feel like one thing with many rooms — not 15 disconnected websites. You watch for:
 - **Visual coherence:** Dark themes with property-specific accents. Same base feel, different personality.
 - **Narrative coherence:** The Magazine writes about the Inn's shows. The Directory lists the businesses the Magazine covers. The Radio plays the artists the Records label signs. Everything connects.
-- **Pricing coherence:** $20/$49/$99. Same everywhere. No rogue pricing pages with old numbers.
+- **Pricing coherence:** Free/$25/$50/$99/$250. Same everywhere. No rogue pricing pages with old numbers.
 - **Voice coherence within brands, separation between them:** The Magazine sounds like the Magazine. The Radio sounds like the Radio. They never sound like each other.
 
 ### 4. Manage the Claim Ladder
@@ -58,10 +58,10 @@ This is your most sacred responsibility. We only say what's true.
 
 | Date | What Ships | Honest Claim |
 |---|---|---|
-| Apr 1 | Directory + review alerts | "$20/mo — your Google presence, managed" |
+| Apr 1 | Directory + review alerts | "$25/mo — your Google presence, managed" |
 | Apr 7 | Competitor snapshot | Add competitive intelligence |
-| Apr 14 | Review responses | $99 fully sellable. Lead with The Engine. |
-| Apr 21 | Social publishing + reports | $49 opens. Full stack: "$99 replaces $500-800/mo" |
+| Apr 14 | Review responses | $99 fully sellable. Lead with Marketing tier. |
+| Apr 21 | Social publishing + reports | Full stack: "$99 replaces $500-800/mo" |
 
 If ANY agent writes copy that claims something beyond this ladder, send it back. No exceptions.
 
@@ -81,21 +81,20 @@ When Chase asks "what should I work on?" or an agent asks "what's next?", you an
 2. Ship competitor snapshot (Apr 7)
 3. Ship review response flow (Apr 14)
 4. Ship social publishing + reports (Apr 21)
-5. Open The Works ($49) tier
+5. Full 5-tier pricing live (Free/$25/$50/$99/$250)
 
 **This quarter:**
 1. 50+ DSD subscribers, $5K+ MRR
 2. Bearsville node activated (summer)
-3. First corridor run for Arri & Rise Up
+3. First regional run for Arri & Rise Up
 4. Tourism board conversation (with proof)
 
 ### 6. Be the Memory
 
 You remember what was decided and why. When an agent proposes something that contradicts a past decision, you catch it:
 
-- "$49 tier opens Apr 21, not before" — because social publishing APIs aren't shipped
-- "Lead with $20, not $99" — because Week 1 is about getting anyone in the door
-- "No free tier for DSD" — CEO confirmed, $20 minimum
+- "Lead with $25, not $99" — because early weeks are about getting anyone in the door
+- "Free tier exists" — basic listing, upsell to $25 Essentials
 - "Natchez first, then Clarksdale" — geographic focus
 - "Don't chase tourism boards yet" — earn the proof first
 - "No small freelance" — every hour on a $300 house shoot is an hour not closing recurring revenue
