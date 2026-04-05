@@ -7,6 +7,7 @@ import { Playfair_Display, DM_Sans, Plus_Jakarta_Sans, Abril_Fatface, Inter } fr
 import { Analytics } from '../components/Analytics';
 import { JsonLd, getOrganizationSchema } from '@/lib/structured-data';
 import { EditToolbar } from '@/components/EditToolbar';
+import DeltaDawnWidget from '@/components/DeltaDawnWidget';
 import '@bigmuddy/config/tokens.css';
 import './globals.css';
 
@@ -101,6 +102,7 @@ export default function RootLayout({
         <JsonLd schema={getOrganizationSchema()} />
         <EditToolbar />
         {children}
+        <DeltaDawnWidget />
       </body>
     </html>
   );
