@@ -88,3 +88,8 @@ docs/tracy-report.md
 docs/business-plan/*financial*
 docs/business-plan/*FINANCE*
 docs/business-plan/*PORTFOLIO*
+
+# Terraform
+terraform/.terraform/
+terraform/terraform.tfstate*
+terraform/*.tfvars
