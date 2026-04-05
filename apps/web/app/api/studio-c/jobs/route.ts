@@ -5,6 +5,7 @@ export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { requireAdmin } from '@/lib/admin-auth';
+import { apiLog } from '@/lib/api-logger';
 
 export async function GET(request: NextRequest) {
   const authError = await requireAdmin();
@@ -34,7 +35,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ data: serialized });
   } catch (err) {
-    console.error('[GET /api/studio-c/jobs]', err);
+    apiLog.error('GET /api/studio-c/jobs', 'list_failed', err);
     return NextResponse.json({ data: [] });
   }
 }

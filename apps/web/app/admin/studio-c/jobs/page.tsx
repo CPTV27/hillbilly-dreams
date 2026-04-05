@@ -13,6 +13,7 @@ interface StudioCJob {
   budget: string | null;
   status: string;
   assignedTo: string | null;
+  jobId: number | null;
   notes: string | null;
   createdAt: string;
 }
@@ -46,14 +47,19 @@ export default function StudioCJobsPage() {
   const updateJob = async (id: string, field: string, value: string) => {
     setUpdating(id);
     try {
-      await fetch(`/api/studio-c/jobs/${id}`, {
+      const res = await fetch(`/api/studio-c/jobs/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ [field]: value }),
       });
-      setJobs(prev => prev.map(j => j.id === id ? { ...j, [field]: value } : j));
-    } catch (err) {
-      console.error('Update failed:', err);
+      const body = await res.json().catch(() => ({}));
+      if (body.data) {
+        setJobs((prev) => prev.map((j) => (j.id === id ? { ...j, ...body.data } : j)));
+      } else {
+        setJobs((prev) => prev.map((j) => (j.id === id ? { ...j, [field]: value } : j)));
+      }
+    } catch {
+      /* keep UI stable */
     }
     setUpdating(null);
   };
@@ -139,6 +145,15 @@ export default function StudioCJobsPage() {
                 <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>
                   {job.budget || 'No budget'} {job.location ? `\u00b7 ${job.location}` : ''}
                 </span>
+                {job.jobId != null && (
+                  <a
+                    href={`/admin/productions/${job.jobId}`}
+                    className="admin-btn admin-btn--ghost"
+                    style={{ fontSize: 'var(--text-xs)', padding: '4px 10px', textDecoration: 'none' }}
+                  >
+                    Production job #{job.jobId}
+                  </a>
+                )}
               </div>
             </div>
           ))}
