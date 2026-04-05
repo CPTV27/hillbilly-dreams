@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Big Muddy Inn — Marketing Content Kit</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0f0f0d;
+    color: #e8e0d4;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Internal banner */
+  .internal-banner {
+    background: #1a1200;
+    border-bottom: 2px solid #c8943e;
+    padding: 14px 20px;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c8943e;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .internal-banner strong { color: #e8a030; }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+    border-bottom: 1px solid #2a2418;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700;
+    color: #c8943e;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .hero .subtitle {
+    font-size: 18px;
+    color: #9a9080;
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .hero .date {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #6a6050;
+    margin-top: 20px;
+  }
+
+  /* Navigation */
+  .toc {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    border-bottom: 1px solid #2a2418;
+  }
+  .toc h2 {
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c8943e;
+    margin-bottom: 16px;
+  }
+  .toc ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .toc a {
+    color: #b8a888;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    transition: color 0.2s;
+  }
+  .toc a:hover { color: #c8943e; }
+
+  /* Voice rules box */
+  .voice-rules {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 32px;
+    background: #1a1610;
+    border-left: 4px solid #c8943e;
+    border-radius: 0 8px 8px 0;
+  }
+  .voice-rules h2 {
+    font-size: 20px;
+    color: #c8943e;
+    margin-bottom: 16px;
+  }
+  .voice-rules ul {
+    list-style: none;
+    padding: 0;
+  }
+  .voice-rules li {
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+    font-size: 15px;
+    color: #c8b898;
+  }
+  .voice-rules li::before {
+    content: "\2022";
+    color: #c8943e;
+    position: absolute;
+    left: 0;
+  }
+
+  /* Section headers */
+  .section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 20px 20px;
+  }
+  .section-header {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #6a6050;
+    margin-bottom: 8px;
+  }
+  .section h2 {
+    font-size: 32px;
+    color: #c8943e;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .section .section-desc {
+    font-size: 15px;
+    color: #8a8070;
+    font-style: italic;
+    margin-bottom: 32px;
+  }
+
+  /* Content cards */
+  .card {
+    background: #1a1610;
+    border: 1px solid #2a2418;
+    border-radius: 8px;
+    padding: 28px;
+    margin-bottom: 20px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .card:hover {
+    border-color: #3a3020;
+  }
+  .card-label {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c8943e;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .copy-hint {
+    font-size: 10px;
+    color: #5a5040;
+    letter-spacing: 1px;
+    cursor: pointer;
+    padding: 4px 10px;
+    border: 1px solid #3a3020;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .copy-hint:hover {
+    border-color: #c8943e;
+    color: #c8943e;
+  }
+  .copy-hint.copied {
+    border-color: #4a8;
+    color: #4a8;
+  }
+  .card-body {
+    color: #d8d0c4;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .card-body p { margin-bottom: 12px; }
+  .card-body p:last-child { margin-bottom: 0; }
+  .card-meta {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #2a2418;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    color: #6a6050;
+    line-height: 1.6;
+  }
+  .card-meta strong { color: #9a8a70; }
+  .hashtags {
+    color: #8a7a60;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    margin-top: 8px;
+    word-spacing: 2px;
+  }
+
+  /* Newsletter card */
+  .newsletter-card {
+    background: #1a1610;
+    border: 1px solid #2a2418;
+    border-radius: 8px;
+    padding: 0;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .newsletter-header {
+    background: #221c12;
+    padding: 20px 28px;
+    border-bottom: 1px solid #2a2418;
+  }
+  .newsletter-body {
+    padding: 28px;
+  }
+
+  /* Divider */
+  .divider {
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+    color: #3a3020;
+    letter-spacing: 12px;
+    font-size: 18px;
+  }
+
+  /* Key facts footer */
+  .facts {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 32px 20px;
+    border-top: 1px solid #2a2418;
+  }
+  .facts h2 {
+    font-size: 20px;
+    color: #c8943e;
+    margin-bottom: 20px;
+  }
+  .facts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .fact {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    color: #8a8070;
+    padding: 8px 0;
+  }
+  .fact strong { color: #c8b898; }
+
+  /* Footer */
+  footer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+    text-align: center;
+    border-top: 1px solid #2a2418;
+  }
+  footer p {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    color: #4a4030;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 600px) {
+    .toc ul { grid-template-columns: 1fr; }
+    .facts-grid { grid-template-columns: 1fr; }
+    .card { padding: 20px; }
+    .section { padding: 40px 16px 16px; }
+    .voice-rules { margin-left: 16px; margin-right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Internal Banner -->
+<div class="internal-banner">
+  <strong>Internal Use Only</strong> &mdash; Tracy &amp; Amy Preview &mdash; April 5, 2026
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>The Big Muddy Inn</h1>
+  <p class="subtitle">Marketing Content Kit &mdash; Copy-Paste Ready for Social, Email, and Print</p>
+  <p class="date">Prepared April 5, 2026 &bull; Ready to post today</p>
+</div>
+
+<!-- Table of Contents -->
+<nav class="toc">
+  <h2>Sections</h2>
+  <ul>
+    <li><a href="#voice-rules">Voice Rules</a></li>
+    <li><a href="#instagram">Instagram Captions (10)</a></li>
+    <li><a href="#facebook">Facebook Posts (5)</a></li>
+    <li><a href="#google">Google Business Posts (5)</a></li>
+    <li><a href="#newsletter">Email Newsletter (1)</a></li>
+    <li><a href="#hero-copy">Website Hero Copy (3)</a></li>
+    <li><a href="#rack-card">Print / Rack Card (1)</a></li>
+    <li><a href="#reviews">Review Responses (3)</a></li>
+  </ul>
+</nav>
+
+<!-- Voice Rules -->
+<div class="voice-rules" id="voice-rules">
+  <h2>Voice Rules &mdash; Read Before Posting</h2>
+  <ul>
+    <li>The joke IS the insight &mdash; funny first, then the truth lands</li>
+    <li>Small-town specific &mdash; use names, places, real details</li>
+    <li>Never punch down at the guest &mdash; punch at generic hotels</li>
+    <li>Tracy and Amy are equity partners who built this &mdash; not employees, not managers</li>
+    <li>The technology is invisible &mdash; guests don't know about AI. Don't mention it.</li>
+    <li>Photography first &mdash; every post needs a real photo, not stock</li>
+    <li>The Inn is a music venue AND a hotel &mdash; that's the point, not a quirk</li>
+    <li>Don't say: corridor, leverage, utilize, robust, scalable, synergy, journey</li>
+    <li>Sound like the smartest person in the room who happens to be from Mississippi</li>
+  </ul>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 1: INSTAGRAM CAPTIONS -->
+<!-- ============================================ -->
+
+<div class="section" id="instagram">
+  <div class="section-header">Section 1</div>
+  <h2>Instagram Captions</h2>
+  <p class="section-desc">10 posts, ready to copy-paste. Each includes a hook, caption, hashtags, and photo suggestion.</p>
+</div>
+
+<!-- IG Post 1 -->
+<div class="section" style="padding-top: 0;">
+  <div class="card">
+    <div class="card-label">
+      <span>Instagram &mdash; Room / Atmosphere</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p>Six rooms. One bar. Zero algorithms deciding what you hear tonight. The band picks the setlist. Amy pours the bourbon. That's the whole app.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Photo:</strong> Wide interior shot of the bar with warm light, stools, Amy behind the rail<br>
+      <div class="hashtags">#BigMuddyInn #NatchezMS #BoutiqueHotel #LiveMusicHotel #NatchezNights #SouthernHospitality #MississippiTravel</div>
+    </div>
+  </div>
+
+  <!-- IG Post 2 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Instagram &mdash; Bar / Cocktail</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p>We don't do cocktail menus with fourteen ingredients. Tell Amy what you like. She'll get you there. Tonight's recommendation is Mississippi bourbon, local honey, and a strip of orange peel torched just enough to make you close your eyes.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Photo:</strong> Close-up of an old fashioned on the bar top, warm amber light, blurred shelves behind<br>
+      <div class="hashtags">#BigMuddyInn #CraftCocktails #BourbonBar #NatchezBar #MississippiBourbon #DrinkLocal #SouthernDrinks</div>
+    </div>
+  </div>
+
+  <!-- IG Post 3 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Instagram &mdash; Live Music</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p>Forty people, string lights, a tip jar, and a singer from Clarksdale with a voice like gravel and honey. No cover. No velvet rope. Just a sky full of Mississippi stars and a reason to stay up past your bedtime.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Photo:</strong> Patio at night, string lights, performer in the background, guests with drinks<br>
+      <div class="hashtags">#BigMuddyInn #LiveMusic #NatchezLive #BluesRoom #MississippiMusic #SouthernNights #BigMuddyTouring</div>
+    </div>
+  </div>
+
+  <!-- IG Post 4 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Instagram &mdash; Natchez Town / History</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p>Natchez has more antebellum homes per capita than anywhere in the country and more stories per square foot than cities ten times its size. We just happen to have a bar in one of them.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Photo:</strong> Victorian architecture exterior, live oaks, golden hour light on the porch<br>
+      <div class="hashtags">#Natchez #NatchezMississippi #MississippiRiver #DeepSouth #SouthernTravel #HistoricHotels #VictorianMansion</div>
+    </div>
+  </div>
+
+  <!-- IG Post 5 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Instagram &mdash; Behind the Scenes</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p>Not a chain. Not a franchise. Three partners who live here. Tracy runs the numbers. Amy runs the bar. The ceiling fan turns slow enough that you can count the blades, and nobody's in a rush.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Photo:</strong> Candid of Tracy and Amy together in the Inn, morning light, coffee in hand<br>
+      <div class="hashtags">#BigMuddyInn #SmallBusiness #WomanOwned #NatchezMS #IndependentHotel #SouthernLife #MainStreet</div>
+    </div>
+  </div>
+
+  <!-- IG Post 6 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Instagram &mdash; Room / Morning</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p>Morning at the Inn. The radio's playing something slow through the open windows. Somebody left a fresh glass of sweet tea on the porch railing. Nobody's moved it because nobody needs to be anywhere. That's the review we're going for.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Photo:</strong> Porch with ceiling fan, morning light, tea glass on the railing<br>
+      <div class="hashtags">#BigMuddyInn #SlowMorning #PorchLife #SouthernMornings #NatchezMS #BoutiqueHotel #BigMuddyRadio</div>
+    </div>
+  </div>
+
+  <!-- IG Post 7 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Instagram &mdash; Music / Radio</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p>Big Muddy Radio streams 24/7 from a room upstairs that used to be a linen closet. Blues, soul, roots, and whatever the artist-in-residence is into this week. Tune in before your trip. It'll set the mood better than any travel blog.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Photo:</strong> Close-up of the broadcast setup, microphone, warm light, vinyl or records visible<br>
+      <div class="hashtags">#BigMuddyRadio #InternetRadio #Blues #Soul #RootsMusic #NatchezMS #BigMuddyInn #TuneIn</div>
+    </div>
+  </div>
+
+  <!-- IG Post 8 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Instagram &mdash; Bar / Night Energy</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p>The cocktail menu changes for each act. The show is free for overnight guests. Breakfast the next morning includes conversation about what you heard the night before. That's not a hotel. That's a night.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Photo:</strong> Night scene at the bar during a show, guests with drinks, performer in view<br>
+      <div class="hashtags">#BigMuddyInn #ShowNight #NatchezNightlife #LiveMusicBar #MississippiNights #ComeForTheMusic</div>
+    </div>
+  </div>
+
+  <!-- IG Post 9 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Instagram &mdash; Food / Culture</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p>Natchez food. Unpretentious and stunning. Local ingredients, Southern technique, no performance. Walk ten minutes from our door and you'll find biscuits that should be federally protected. We'll tell you exactly where.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Photo:</strong> Southern plates, biscuits, or a table spread with warm local restaurant light<br>
+      <div class="hashtags">#NatchezFood #SouthernFood #EatLocal #NatchezMS #DeepSouthEats #BigMuddyInn #BiscuitsAndBlues</div>
+    </div>
+  </div>
+
+  <!-- IG Post 10 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Instagram &mdash; The Ecosystem</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p>A hotel that books the bands. A bar that knows the setlist. A radio station that plays the session the next morning. A magazine that writes about the town. We didn't build a hotel. We built a reason to come to Natchez.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Photo:</strong> Collage or carousel: Inn exterior, bar, performer, radio setup, magazine cover<br>
+      <div class="hashtags">#BigMuddyInn #BigMuddyTouring #BigMuddyRadio #BigMuddyMagazine #NatchezMS #SouthernCulture #AllOneRoof</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider">&bull; &bull; &bull;</div>
+
+<!-- ============================================ -->
+<!-- SECTION 2: FACEBOOK POSTS -->
+<!-- ============================================ -->
+
+<div class="section" id="facebook">
+  <div class="section-header">Section 2</div>
+  <h2>Facebook Posts</h2>
+  <p class="section-desc">5 posts. Slightly longer, community-focused. Events, stories, invitations.</p>
+</div>
+
+<div class="section" style="padding-top: 0;">
+
+  <!-- FB Post 1 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Facebook &mdash; Event Announcement</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p><strong>This Saturday at The Big Muddy Inn</strong></p>
+      <p>Live music on the patio. The bar opens at 6. The band starts at 8. No cover charge, no dress code, no pretense. Half the crowd will be guests who wandered downstairs with their drinks. The other half will be locals who've made this their Saturday thing.</p>
+      <p>If you've been meaning to check out the Inn, this is the night. Amy's behind the bar. The string lights are up. Come see what we built down here on Commerce Street.</p>
+      <p>411 North Commerce Street, Natchez, MS &bull; (769) 376-8045</p>
+    </div>
+    <div class="card-meta">
+      <strong>Photo:</strong> Patio with string lights, live music setup, crowd<br>
+      <strong>Note:</strong> Update with actual band name and time before posting
+    </div>
+  </div>
+
+  <!-- FB Post 2 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Facebook &mdash; The Story</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p>People ask how a Victorian mansion in Natchez became a music venue, a hotel, a bar, and a radio station all at once.</p>
+      <p>The honest answer is: it happened in order. First we found the house. Then we heard the music. Then we opened the bar because the musicians needed somewhere to play and the guests needed somewhere to listen. Then we started a radio station because the music was too good to only hear it once.</p>
+      <p>Three partners, six rooms, and a town worth showing up for. That's the whole story. Come write the next chapter with us.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Photo:</strong> The Inn exterior, warm evening light, front porch
+    </div>
+  </div>
+
+  <!-- FB Post 3 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Facebook &mdash; Community / Local</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p>We love it when locals show up on a weeknight.</p>
+      <p>The bar is open to the public every evening. You don't need to be a hotel guest. You don't need a reservation. You just need to walk through the door and tell Amy what you're in the mood for. Sometimes there's live music. Sometimes there's just the radio playing through the house and a conversation that goes longer than you planned.</p>
+      <p>Natchez, this is your bar too. Come sit.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Photo:</strong> Interior bar shot, locals at the rail, candid and warm
+    </div>
+  </div>
+
+  <!-- FB Post 4 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Facebook &mdash; Travel / Booking</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p><strong>Planning a trip to Natchez?</strong></p>
+      <p>Six rooms in a Victorian mansion on North Commerce Street. High ceilings, original woodwork, and a bar downstairs where the bartender knows your name by the second night. Live music most weekends. A 24/7 radio station upstairs playing blues, soul, and roots.</p>
+      <p>We're not a chain hotel. We're not trying to be. We're three people who built something worth driving to. Book direct and we'll make sure you're here on a good night.</p>
+      <p>bigmuddyinn.com &bull; (769) 376-8045</p>
+    </div>
+    <div class="card-meta">
+      <strong>Photo:</strong> Best room interior shot, bed made, warm light, window view
+    </div>
+  </div>
+
+  <!-- FB Post 5 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Facebook &mdash; Partner / Ecosystem</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p>A guest checked in on Friday. Heard the sound check through the floor. Came to the show. Stayed for three drinks. Went to dinner at a spot we recommended. Came back for breakfast. Asked who the band was. We told her where they're playing next &mdash; Clarksdale, Saturday &mdash; and how to find them online.</p>
+      <p>That's not a hotel stay. That's a night that turned into a weekend that turned into a story. That's what we do here.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Photo:</strong> Guest candid or morning breakfast scene (with permission)
+    </div>
+  </div>
+</div>
+
+<div class="divider">&bull; &bull; &bull;</div>
+
+<!-- ============================================ -->
+<!-- SECTION 3: GOOGLE BUSINESS PROFILE -->
+<!-- ============================================ -->
+
+<div class="section" id="google">
+  <div class="section-header">Section 3</div>
+  <h2>Google Business Profile Posts</h2>
+  <p class="section-desc">5 posts. Short, SEO-aware. Written for what people search.</p>
+</div>
+
+<div class="section" style="padding-top: 0;">
+
+  <!-- GBP Post 1 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Google &mdash; Boutique Hotel</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p><strong>Boutique hotel in downtown Natchez, Mississippi.</strong> Six rooms in a restored Victorian mansion with a full bar and live music. High ceilings, original woodwork, and a porch where the ceiling fan turns slow and nobody's in a rush. 411 North Commerce Street. Book direct: (769) 376-8045.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Keywords:</strong> boutique hotel Natchez, hotel downtown Natchez MS, Victorian hotel Mississippi
+    </div>
+  </div>
+
+  <!-- GBP Post 2 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Google &mdash; Live Music</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p><strong>Live music in Natchez this weekend.</strong> The Big Muddy Inn hosts live bands and solo acts most weekends in our Blues Room and patio. No cover charge. Full bar open to the public. Blues, soul, roots, and whatever sounds good under the Mississippi stars. 411 N Commerce St.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Keywords:</strong> live music Natchez MS, Natchez nightlife, blues music Mississippi, things to do Natchez
+    </div>
+  </div>
+
+  <!-- GBP Post 3 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Google &mdash; Bar</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p><strong>Cocktail bar open to the public in downtown Natchez.</strong> Local spirits, Mississippi bourbon, and a bartender who asks what you like instead of handing you a 40-page menu. The Big Muddy Inn bar is open every evening &mdash; hotel guests and locals welcome. Walk-ins always.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Keywords:</strong> bar Natchez MS, cocktails Natchez, bourbon bar Mississippi, best bar Natchez
+    </div>
+  </div>
+
+  <!-- GBP Post 4 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Google &mdash; Things to Do</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p><strong>Visiting Natchez?</strong> The Big Muddy Inn is a six-room boutique hotel with live music, a full bar, and 24/7 internet radio streaming blues and soul from right here in the building. Located on North Commerce Street in the historic downtown. We'll point you to the best restaurants, music, and history in town.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Keywords:</strong> things to do Natchez Mississippi, Natchez tourism, where to stay Natchez, Natchez hotel with live music
+    </div>
+  </div>
+
+  <!-- GBP Post 5 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Google &mdash; Special Event</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p><strong>Book your weekend in Natchez at The Big Muddy Inn.</strong> Six rooms, a Victorian mansion, live music on the patio, and a bar that changes its cocktail menu to match the band. Not a chain. Not a franchise. Three partners who built something worth the drive. (769) 376-8045.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Keywords:</strong> Natchez MS hotel, book hotel Natchez, weekend getaway Mississippi, romantic hotel Mississippi
+    </div>
+  </div>
+</div>
+
+<div class="divider">&bull; &bull; &bull;</div>
+
+<!-- ============================================ -->
+<!-- SECTION 4: EMAIL NEWSLETTER -->
+<!-- ============================================ -->
+
+<div class="section" id="newsletter">
+  <div class="section-header">Section 4</div>
+  <h2>Email Newsletter</h2>
+  <p class="section-desc">One complete newsletter. "This Week at the Big Muddy" format.</p>
+</div>
+
+<div class="section" style="padding-top: 0;">
+  <div class="newsletter-card">
+    <div class="newsletter-header">
+      <div class="card-label" style="margin-bottom: 0;">
+        <span>Email Newsletter</span>
+        <span class="copy-hint" onclick="copyCard(this)">Copy All</span>
+      </div>
+    </div>
+    <div class="newsletter-body">
+      <div class="card-body">
+        <p style="color: #c8943e; font-weight: bold; font-size: 14px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: 1px; text-transform: uppercase;">Subject Line:</p>
+        <p style="font-size: 20px; font-weight: bold; color: #e8d8c4;">This Week at the Big Muddy: The Band, the Bourbon, and the Porch</p>
+
+        <p style="color: #c8943e; font-weight: bold; font-size: 14px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: 1px; text-transform: uppercase; margin-top: 20px;">Preview Text:</p>
+        <p style="color: #9a9080; font-style: italic;">Live music Saturday. The bar's open every night. And the radio never stops.</p>
+
+        <hr style="border: none; border-top: 1px solid #2a2418; margin: 24px 0;">
+
+        <p>Hey there &mdash;</p>
+
+        <p>Quick story from last week. A couple from Jackson drove two hours on a tip from a friend. They walked in during sound check, sat at the bar, and told Amy they'd never been to Natchez before. By midnight they'd heard three sets, made friends with a table of locals, and asked us where the band was playing next.</p>
+
+        <p>That's the whole pitch for this place, honestly. Not the rooms &mdash; though the rooms are good. Not the building &mdash; though the Victorian woodwork is the kind that makes architecture people lose their composure. It's the night. The unexpected set. The drink you didn't know you wanted until Amy slid it across the bar.</p>
+
+        <p style="color: #c8943e; font-weight: bold; margin-top: 24px;">This Week</p>
+
+        <p><strong>Saturday Night Live Music</strong> &mdash; The patio. String lights. No cover. Bar opens at 6, music at 8. Bring a friend or make one here. [Update with actual act name.]</p>
+
+        <p><strong>The Bar</strong> &mdash; Open every evening to the public. This week Amy's featuring a Mississippi bourbon old fashioned with local honey syrup. It's the kind of drink that makes you close your eyes on the first sip. Worth the trip on its own.</p>
+
+        <p><strong>Big Muddy Radio</strong> &mdash; Streaming 24/7 at <strong>bigmuddyradio.com</strong>. Blues, soul, roots, and whatever Arrie Aslin is into this week. Tune in on your way down &mdash; by the time you get here, you'll already feel like you've arrived.</p>
+
+        <p style="color: #c8943e; font-weight: bold; margin-top: 24px;">Book Your Night</p>
+
+        <p>Six rooms. A bar. Live music. A town with more stories than it knows what to do with. We'll tell you the best ones.</p>
+
+        <p>(769) 376-8045 &bull; 411 North Commerce Street, Natchez, MS</p>
+
+        <p style="color: #6a6050; font-size: 14px; margin-top: 24px;">&mdash; The Big Muddy Inn<br>Tracy, Amy &amp; Chase</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider">&bull; &bull; &bull;</div>
+
+<!-- ============================================ -->
+<!-- SECTION 5: WEBSITE HERO COPY -->
+<!-- ============================================ -->
+
+<div class="section" id="hero-copy">
+  <div class="section-header">Section 5</div>
+  <h2>Website Hero Copy</h2>
+  <p class="section-desc">Three options. Headline + subhead + CTA. Pick the one that fits.</p>
+</div>
+
+<div class="section" style="padding-top: 0;">
+
+  <!-- Hero Option 1 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Hero Option A &mdash; The Experience</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size: 28px; color: #c8943e; font-weight: bold; line-height: 1.2;">Six Rooms. One Bar. Every Night Is a Show Night.</p>
+      <p style="font-size: 18px; color: #b8a888; font-style: italic; margin-top: 8px;">A Victorian mansion in downtown Natchez with live music, a full bar, and a 24/7 radio station upstairs. Not a chain. Not a franchise. Just a damn good night.</p>
+      <p style="margin-top: 16px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: #c8943e;">CTA: Book Your Night</p>
+    </div>
+  </div>
+
+  <!-- Hero Option 2 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Hero Option B &mdash; The Place</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size: 28px; color: #c8943e; font-weight: bold; line-height: 1.2;">The Inn Where the Music Plays</p>
+      <p style="font-size: 18px; color: #b8a888; font-style: italic; margin-top: 8px;">Natchez, Mississippi. A hotel, a bar, a music venue, and a radio station &mdash; all under one roof, all run by three people who live here. The band picks the setlist. Amy pours the bourbon. Come see what that sounds like.</p>
+      <p style="margin-top: 16px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: #c8943e;">CTA: See What's Playing</p>
+    </div>
+  </div>
+
+  <!-- Hero Option 3 -->
+  <div class="card">
+    <div class="card-label">
+      <span>Hero Option C &mdash; The Invitation</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size: 28px; color: #c8943e; font-weight: bold; line-height: 1.2;">Check In. Hear Something. Stay Up Too Late.</p>
+      <p style="font-size: 18px; color: #b8a888; font-style: italic; margin-top: 8px;">The Big Muddy Inn is a six-room hotel in a Victorian mansion in Natchez, Mississippi. Live music most nights. A bar that knows your name by night two. A porch where the ceiling fan turns slow and nobody's watching the clock.</p>
+      <p style="margin-top: 16px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: #c8943e;">CTA: Book a Room</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider">&bull; &bull; &bull;</div>
+
+<!-- ============================================ -->
+<!-- SECTION 6: RACK CARD / PRINT -->
+<!-- ============================================ -->
+
+<div class="section" id="rack-card">
+  <div class="section-header">Section 6</div>
+  <h2>Print / Rack Card</h2>
+  <p class="section-desc">For the front desk, local coffee shops, or anywhere guests might pick up a card.</p>
+</div>
+
+<div class="section" style="padding-top: 0;">
+  <div class="card" style="border: 2px solid #3a3020;">
+    <div class="card-label">
+      <span>Rack Card &mdash; Front</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body" style="text-align: center;">
+      <p style="font-size: 24px; color: #c8943e; font-weight: bold; line-height: 1.3;">THE BIG MUDDY INN</p>
+      <p style="font-size: 14px; color: #8a8070; font-family: -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px;">Natchez, Mississippi</p>
+
+      <hr style="border: none; border-top: 1px solid #3a3020; margin: 20px auto; max-width: 100px;">
+
+      <p style="font-size: 18px; font-style: italic; color: #c8b898;">A hotel, a bar, a music venue,<br>and a radio station &mdash; all under one roof.</p>
+
+      <hr style="border: none; border-top: 1px solid #3a3020; margin: 20px auto; max-width: 100px;">
+
+      <p style="font-size: 15px; color: #a89878;">Six rooms in a Victorian mansion on North Commerce Street. Live music most weekends. A full bar where the bartender asks what you like instead of handing you a menu. A 24/7 radio station upstairs playing blues, soul, and roots.</p>
+
+      <p style="font-size: 15px; color: #a89878; margin-top: 12px;">Not a chain. Three partners who built this and live here.</p>
+
+      <hr style="border: none; border-top: 1px solid #3a3020; margin: 20px auto; max-width: 100px;">
+
+      <p style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 13px; color: #8a8070;">
+        411 North Commerce Street &bull; Natchez, MS 39120<br>
+        (769) 376-8045<br>
+        bigmuddyradio.com
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="divider">&bull; &bull; &bull;</div>
+
+<!-- ============================================ -->
+<!-- SECTION 7: REVIEW RESPONSES -->
+<!-- ============================================ -->
+
+<div class="section" id="reviews">
+  <div class="section-header">Section 7</div>
+  <h2>Review Response Templates</h2>
+  <p class="section-desc">Three templates for Google reviews. Warm, specific, never corporate.</p>
+</div>
+
+<div class="section" style="padding-top: 0;">
+
+  <!-- Positive Review -->
+  <div class="card">
+    <div class="card-label">
+      <span>Response &mdash; Positive Review (5 stars)</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p style="color: #8a8070; font-style: italic; font-size: 14px;">Example review: "Amazing place! The bar was incredible and the live music was the highlight of our trip. Will definitely be back!"</p>
+      <hr style="border: none; border-top: 1px solid #2a2418; margin: 16px 0;">
+      <p>This made our morning. Glad the music caught you &mdash; the band that night was something special, and Amy was particularly proud of the bourbon lineup she put together for the set. We'll save you a seat at the bar next time. Natchez always has something new playing.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Rules:</strong> Reference something specific from their review. Mention a team member by name. End with a reason to come back. Never say "we appreciate your feedback" or "thank you for your kind words."
+    </div>
+  </div>
+
+  <!-- Mixed Review -->
+  <div class="card">
+    <div class="card-label">
+      <span>Response &mdash; Mixed Review (3 stars)</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p style="color: #8a8070; font-style: italic; font-size: 14px;">Example review: "Nice place, cool vibe. Room was a bit small and could hear music late at night. Good drinks though."</p>
+      <hr style="border: none; border-top: 1px solid #2a2418; margin: 16px 0;">
+      <p>Fair point on the sound &mdash; it's a Victorian house with live music downstairs, and we know that's not for everyone on a Tuesday when you just want to sleep. We've been working on the sound insulation, and we're always happy to put you in the room furthest from the stage if quiet is what you need. The drinks part, though? That's all Amy. Glad that landed. Hope we get a second chance to get the whole night right.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Rules:</strong> Acknowledge the issue honestly. Explain without excusing. Offer a concrete solution. Close with warmth. Never be defensive. Never say "we're sorry you feel that way."
+    </div>
+  </div>
+
+  <!-- "We'll Be Back" Review -->
+  <div class="card">
+    <div class="card-label">
+      <span>Response &mdash; "We'll Be Back" Review (4-5 stars)</span>
+      <span class="copy-hint" onclick="copyCard(this)">Copy</span>
+    </div>
+    <div class="card-body">
+      <p style="color: #8a8070; font-style: italic; font-size: 14px;">Example review: "What a gem! Loved everything about this place. Already planning our next trip down."</p>
+      <hr style="border: none; border-top: 1px solid #2a2418; margin: 16px 0;">
+      <p>That's the best thing we hear. The second trip is always better than the first &mdash; you already know where to sit at the bar, Amy already knows your drink, and you can skip straight to the part where the music starts and the night gets interesting. Give us a call when you're heading back and we'll make sure you're here on a good night. They're almost all good nights, but some are better.</p>
+    </div>
+    <div class="card-meta">
+      <strong>Rules:</strong> Make the return feel like coming home, not a transaction. Reference the repeat experience as an upgrade. End with a specific, human invitation.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- KEY FACTS -->
+<!-- ============================================ -->
+
+<div class="facts">
+  <h2>Key Facts &mdash; Quick Reference</h2>
+  <div class="facts-grid">
+    <div class="fact"><strong>Address:</strong> 411 North Commerce Street, Natchez, MS 39120</div>
+    <div class="fact"><strong>Phone:</strong> (769) 376-8045</div>
+    <div class="fact"><strong>Rooms:</strong> 6 guest rooms</div>
+    <div class="fact"><strong>Building:</strong> Restored Victorian mansion</div>
+    <div class="fact"><strong>Bar:</strong> Full bar, open to public, Amy Allen runs it</div>
+    <div class="fact"><strong>Music:</strong> Live music in the Blues Room, most weekends + select weeknights</div>
+    <div class="fact"><strong>Radio:</strong> Big Muddy Radio, 24/7 stream at bigmuddyradio.com</div>
+    <div class="fact"><strong>WiFi:</strong> Guest portal shows tonight's events + radio stream</div>
+    <div class="fact"><strong>Ecosystem:</strong> Big Muddy Touring, Magazine, Radio, Records, Entertainment</div>
+    <div class="fact"><strong>Partners:</strong> Tracy Alderson-Allen, Amy Allen, Chase Pierson (equity partners)</div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>
+    The Big Muddy Inn &mdash; Marketing Content Kit<br>
+    Internal use only &mdash; Prepared for Tracy &amp; Amy<br>
+    April 5, 2026
+  </p>
+</footer>
+
+<script>
+function copyCard(btn) {
+  const card = btn.closest('.card') || btn.closest('.newsletter-card');
+  const body = card.querySelector('.card-body') || card.querySelector('.newsletter-body .card-body');
+  if (!body) return;
+
+  const text = body.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(() => {
+    // Fallback for older browsers
+    const range = document.createRange();
+    range.selectNodeContents(body);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    btn.textContent = 'Selected';
+    setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
