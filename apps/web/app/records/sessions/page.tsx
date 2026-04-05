@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Live Sessions — Big Muddy Records',
   description:
-    'Live recordings from the Blues Room, front porches, and juke joints along the Mississippi corridor.',
+    'Live recordings from the Blues Room, front porches, and juke joints along the Deep South.',
 };
 
 const SESSIONS = [
@@ -41,7 +41,7 @@ const SESSIONS = [
     status: 'Starting Spring 2026',
   },
   {
-    title: 'Corridor Sessions',
+    title: 'Region Sessions',
     frequency: 'Quarterly',
     location: 'Memphis to New Orleans, various venues',
     description:
@@ -51,7 +51,7 @@ const SESSIONS = [
   {
     title: 'Church Sessions',
     frequency: 'Monthly (by invitation)',
-    location: 'Various churches, Natchez and corridor',
+    location: 'Various churches, Natchez and region',
     description:
       'Gospel recordings in the churches where the music started. We record Sunday services with permission, capture choir rehearsals, and document the musical tradition that predates every genre that came after it.',
     status: 'Planning',
@@ -77,10 +77,10 @@ const RECORDING_PHILOSOPHY = [
   {
     principle: 'Press it',
     detail:
-      "Vinyl is not a novelty. It's the format. We press limited runs and sell them through the Inn, Venture Gallery, and local record shops along the corridor. The revenue goes directly to the artist.",
+      "Vinyl is not a novelty. It's the format. We press limited runs and sell them through the Inn, Venture Gallery, and local record shops across the Deep South. The revenue goes directly to the artist.",
   },
   {
-    principle: 'Keep it in the corridor',
+    principle: 'Keep it in the region',
     detail:
       'Revenue from Big Muddy Records stays in the communities where the music was made. We pay artists directly and immediately. No recoupment games. No creative accounting.',
   },
@@ -106,7 +106,7 @@ export default function SessionsPage() {
           opacity: 0.7,
         }}
         role="img"
-        aria-label="Juke joint at night along the Mississippi corridor"
+        aria-label="Juke joint at night along the Deep South"
       />
       <h1
         style={{

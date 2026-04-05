@@ -1,7 +1,13 @@
 // apps/web/app/records/page.tsx
 // Big Muddy Records — Landing page
 
+import type { Metadata } from 'next';
 import { IllustrationDivider } from '@bigmuddy/ui';
+
+export const metadata: Metadata = {
+  title: 'Big Muddy Records',
+  description: 'Independent label. Artists own their masters. The sound of the Deep South.',
+};
 
 const ROSTER = [
   {
@@ -15,7 +21,7 @@ const ROSTER = [
     name: 'Amy Allen',
     genre: 'Soul / Blues / Storytelling',
     description:
-      'Songs that carry the weight of the corridor — the Rhythm Nightclub Fire, the river towns, the people who stayed.',
+      'Songs that carry the weight of the region — the Rhythm Nightclub Fire, the river towns, the people who stayed.',
     status: 'Active',
   },
   {
@@ -63,7 +69,7 @@ const UPCOMING_SESSIONS = [
       'Acoustic recordings on front porches across Natchez. The cicadas are part of the mix.',
   },
   {
-    title: 'Corridor Sessions',
+    title: 'Region Sessions',
     date: 'Summer 2026',
     location: 'Memphis to New Orleans',
     description:
@@ -163,7 +169,7 @@ export default function RecordsPage() {
           }}
         >
           Big Muddy Records is an independent label based in Natchez, Mississippi.
-          We record the music that lives along the Mississippi corridor and give artists
+          We record the music that lives along the Deep South and give artists
           the infrastructure of a full media operation — without taking their masters.
         </p>
         <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -230,7 +236,7 @@ export default function RecordsPage() {
           }}
         >
           <p>
-            The Mississippi corridor between Memphis and New Orleans produced more
+            The Deep South between Memphis and New Orleans produced more
             American music per mile than anywhere on earth. That music is still being
             made — in living rooms in Clarksdale, on front porches in Natchez, in the
             back of churches in Vicksburg. By people who play because they have to.
@@ -393,7 +399,7 @@ export default function RecordsPage() {
           Where it gets made.
         </h2>
         <p style={{ fontSize: '0.95rem', color: 'var(--fg, #f5f0eb)', opacity: 0.65, lineHeight: 1.7, maxWidth: 600, marginBottom: '2rem' }}>
-          Studio C is the recording and production arm of Big Muddy Records. From live session captures to full production — this is where corridor music becomes something you can hold in your hands.
+          Studio C is the recording and production arm of Big Muddy Records. From live session captures to full production — this is where region music becomes something you can hold in your hands.
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
           {[
@@ -502,7 +508,7 @@ export default function RecordsPage() {
           >
             Three recording venues: the Blues Room at the Big Muddy Inn, the Anthologist
             (record store, flower shop, and performance space on Main Street), and Bobby
-            J&apos;s. Plus a Sprinter van for corridor tours, the radio show for
+            J&apos;s. Plus a Sprinter van for region tours, the radio show for
             pre-release cross-promotion, the Magazine for earned features and interviews,
             and Chase Pierson for photography and visual content. None of it billed
             separately.
@@ -704,7 +710,7 @@ export default function RecordsPage() {
             marginBottom: '1rem',
           }}
         >
-          Play along the corridor?
+          Play across the Deep South?
         </h2>
         <p
           style={{

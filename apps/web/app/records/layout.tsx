@@ -4,15 +4,15 @@ import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Big Muddy Records — Music from the Mississippi Corridor',
+    default: 'Big Muddy Records — Music from the Mississippi Region',
     template: '%s | Big Muddy Records',
   },
   description:
-    'Independent record label capturing the sound of the Mississippi music corridor — blues, soul, gospel, and the voices that carry the river.',
+    'Independent record label capturing the sound of the Mississippi music region — blues, soul, gospel, and the voices that carry the river.',
   metadataBase: new URL('https://bigmuddyrecordlabel.com'),
   openGraph: {
     title: 'Big Muddy Records',
-    description: 'Music from the Mississippi corridor. Memphis to New Orleans.',
+    description: 'Music from the Deep South. Memphis to New Orleans.',
     siteName: 'Big Muddy Records',
   },
 };

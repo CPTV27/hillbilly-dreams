@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Artists — Big Muddy Records',
-  description: 'The Big Muddy Records roster. Musicians from the Mississippi corridor.',
+  description: 'The Big Muddy Records roster. Musicians from the Deep South.',
 };
 
 const ARTISTS = [
@@ -27,9 +27,9 @@ const ARTISTS = [
   },
   {
     name: 'Kate Squire',
-    location: 'Mississippi Corridor',
+    location: 'Mississippi Region',
     genre: 'Folk / Americana / Singer-Songwriter',
-    bio: 'Kate Squire writes quiet songs that hit hard — the kind that sit with you for days after you hear them. Spare arrangements, honest vocals, stories pulled from the corridor and delivered without decoration. The less she does, the more you feel it.',
+    bio: 'Kate Squire writes quiet songs that hit hard — the kind that sit with you for days after you hear them. Spare arrangements, honest vocals, stories pulled from the region and delivered without decoration. The less she does, the more you feel it.',
     upcoming: 'First recordings — 2026',
     mastersNote: 'Masters owned by the artist.',
     url: 'https://kateskwiremusic.com',
@@ -60,7 +60,7 @@ export default function RecordsArtistsPage() {
           opacity: 0.7,
         }}
         role="img"
-        aria-label="Guitarist performing at a venue along the Mississippi corridor"
+        aria-label="Guitarist performing at a venue along the Deep South"
       />
       <h1
         style={{
@@ -262,7 +262,7 @@ export default function RecordsArtistsPage() {
             marginBottom: '1rem',
           }}
         >
-          We take 2–4 artists per year. If you play music along the Mississippi corridor
+          We take 2–4 artists per year. If you play music along the Deep South
           and you want to be on it, send us something. You keep your masters. We handle
           the rest.
         </p>
