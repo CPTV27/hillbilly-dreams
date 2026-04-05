@@ -29,13 +29,15 @@ Sourcing a cohesive backing band (e.g. Gal Holiday ecosystem) out of New Orleans
 *   **Lighting:** Ambient gold/amber wash. Cinematic low-light aesthetic. No aggressive strobes.
 
 ## 4. Content Capture Plan (Studio C)
-This is not just a gig; it is a bulk content origin point directed by Chase/Studio C.
+This is not just a gig; it is a bulk content origin point directed by Chase and the Studio C team. **Studio C** is anchored in **Bearsville, NY** (Utopia Studios); Natchez capture may include remote direction or on-site crew as scheduled.
+
+**Ops note:** Amy is an **equity partner** at The Inn — not staff. Budget and approvals flow through partner channels.
 *   **A-Cam:** Locked off wide (Ronin 4D on tripod) capturing the full stage.
 *   **B-Cam & C-Cam:** Roaming tight shots / gimbal work focusing on emotive close-ups and instrument isolation.
 *   **Audio:** Multi-track split directly from the console to capture raw stems for post-mixing and potential "Live from Natchez" EP release on Big Muddy Records.
 
 ## 5. Promotion Timeline
 *   **T-Minus 4 Weeks:** Announce show on all respective IG/FB brand accounts (Magazine, Radio, Touring). Announce NOLA backing band to leverage regional crossover.
-*   **T-Minus 3 Weeks:** Distribute print flyers natively designed via Canvas to key downtown Natchez hubs, coffee shops, and partnering DSD businesses.
+*   **T-Minus 3 Weeks:** Distribute print flyers natively designed via Canva to key downtown Natchez hubs, coffee shops, and partnering Deep South Directory businesses.
 *   **T-Minus 2 Weeks:** Pitch targeted local press (Natchez Democrat) framing the event as the kick-off for the broader Big Muddy Touring season.
 *   **Post-Show:** Export highlights to the Weekly Regional Narrative editorial track for next-day DSD / Magazine distribution.
