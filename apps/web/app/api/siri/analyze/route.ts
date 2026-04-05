@@ -1,31 +1,28 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
-import { GoogleGenAI } from '@google/genai';
+import { callAI } from '@/lib/ai-models';
 
-const PROJECT_ID = process.env.VERTEX_PROJECT_ID || 'bigmuddy-ff651';
-const LOCATION = process.env.VERTEX_LOCATION || 'us-east4';
-const MODEL = 'gemini-3.1-pro'; // Reasoning tasks use Pro
+const MODEL = 'gemini-3.1-pro';
 
-const ai = new GoogleGenAI({ vertexai: true, project: PROJECT_ID, location: LOCATION });
+const toolsConfig = [
+  {
+    functionDeclarations: [
+      {
+        name: 'sync_quickbooks',
+        description:
+          'Synchronize the QuickBooks Online ledger and retrieve the latest P&L margin recovery metrics. Call this if the user asks to sync quickbooks, check the ledger, or view finances.',
+      },
+      {
+        name: 'sync_calendar',
+        description:
+          'Fetch the latest Google Workspace calendar to update the capacity forecast. Call this if the user asks to check schedules, availability, or calendar.',
+      },
+    ],
+  },
+];
 
-const toolsConfig = [{
-  functionDeclarations: [
-    {
-      name: 'sync_quickbooks',
-      description: 'Synchronize the QuickBooks Online ledger and retrieve the latest P&L margin recovery metrics. Call this if the user asks to sync quickbooks, check the ledger, or view finances.',
-    },
-    {
-      name: 'sync_calendar',
-      description: 'Fetch the latest Google Workspace calendar to update the capacity forecast. Call this if the user asks to check schedules, availability, or calendar.',
-    }
-  ]
-}];
-
-// The Siri API needs to orchestration function calls entirely Server-Side 
-// because Apple Shortcuts cannot easily execute multi-turn async client loops.
 export async function POST(req: Request) {
   try {
-    // 1. Headless Authorization (Siri passes Bearer token)
     const authHeader = req.headers.get('authorization');
     if (authHeader !== `Bearer ${process.env.SIRI_API_KEY || 'hdx-siri-token-2026'}`) {
       return NextResponse.json({ error: 'Unauthorized hardware edge request.' }, { status: 401 });
@@ -37,66 +34,70 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Missing prompt' }, { status: 400 });
     }
 
-    const contents: any[] = [{ role: 'user', parts: [{ text: prompt }] }];
+    const contents: unknown[] = [{ role: 'user', parts: [{ text: prompt }] }];
     const config = {
       tools: toolsConfig,
-      systemInstruction: "You are the Measurably Better Sovereign AI, reporting directly to Owen via his iPhone Siri Shortcut. Your responses will be read aloud by Siri, so keep them extremely concise, conversational, and omit all markdown formatting like asterisks or bullet points. Speak in clear sentences."
+      systemInstruction:
+        'You are the Measurably Better Sovereign AI, reporting directly to Owen via his iPhone Siri Shortcut. Your responses will be read aloud by Siri, so keep them extremely concise, conversational, and omit all markdown formatting like asterisks or bullet points. Speak in clear sentences.',
     };
 
-    let response = await ai.models.generateContent({
-      model: MODEL,
-      contents,
-      config
+    let response = await callAI({
+      vertexNative: {
+        model: MODEL,
+        contents,
+        config,
+      },
     });
-    
-    // 2. Server-side Autonomous execution intercept
+
     const functionCalls = response.functionCalls;
 
     if (functionCalls && functionCalls.length > 0) {
       const call = functionCalls[0];
-      
-      // We route the intercept securely on the server wrapper
-      let functionResponseData = {};
+
+      let functionResponseData: Record<string, unknown> = {};
 
       if (call.name === 'sync_quickbooks') {
         functionResponseData = {
           status: 'success',
           margin_recovery_rate: '11.4%',
           unbilled_capacity: 45000,
-          cash_on_hand: 215000
+          cash_on_hand: 215000,
         };
       } else if (call.name === 'sync_calendar') {
         functionResponseData = {
           status: 'success',
           available_hours_this_week: 14,
-          next_bottleneck: 'Thursday afternoon'
+          next_bottleneck: 'Thursday afternoon',
         };
       }
 
-      // 3. Pipe the synthetic/secure data back into Vertex
-      contents.push(response.candidates?.[0]?.content); // Push Assistant's function call intent
+      if (response.vertexContent) {
+        contents.push(response.vertexContent);
+      }
       contents.push({
         role: 'user',
-        parts: [{
-          functionResponse: {
-            name: call.name,
-            response: functionResponseData
-          }
-        }]
-      }); // Push User's tool result payload
+        parts: [
+          {
+            functionResponse: {
+              name: call.name,
+              response: functionResponseData,
+            },
+          },
+        ],
+      });
 
-      response = await ai.models.generateContent({
-        model: MODEL,
-        contents,
-        config
+      response = await callAI({
+        vertexNative: {
+          model: MODEL,
+          contents,
+          config,
+        },
       });
     }
 
-    // 4. Return purely the finalized text string for Siri to dictate
     const text = response.text || 'I encountered an error analyzing the parameters, Owen.';
-    
+
     return NextResponse.json({ text });
-    
   } catch (error: any) {
     console.error('[SIRI_API_ERROR]', error);
     return NextResponse.json({ error: 'Internal server error processing Siri inference.' }, { status: 500 });

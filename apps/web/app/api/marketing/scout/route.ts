@@ -1,10 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
-import { getGeminiModel } from '@/lib/vertex-client';
-
-let _model: ReturnType<typeof getGeminiModel> | null = null;
-function model() { if (!_model) _model = getGeminiModel(); return _model; }
+import { callAI } from '@/lib/ai-models';
 
 /**
  * POST /api/marketing/scout
@@ -61,8 +58,14 @@ Return ONLY valid JSON (no markdown):
 
 Make everything specific to this actual business. If you know real details about them, use them. If not, create plausible content based on their category and location.`;
 
-    const result = await model().generateContent(researchPrompt);
-    const responseText = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+    const result = await callAI({
+      role: 'generation',
+      system: 'You return only valid JSON as specified. No markdown code fences.',
+      messages: [{ role: 'user', content: researchPrompt }],
+      maxTokens: 8192,
+      temperature: 0.3,
+    });
+    const responseText = result.text || '{}';
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     const scoutData = JSON.parse(cleaned);
 

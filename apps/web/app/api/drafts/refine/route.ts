@@ -1,10 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
-import { getGeminiModel } from '@/lib/vertex-client';
-
-let _model: ReturnType<typeof getGeminiModel> | null = null;
-function model() { if (!_model) _model = getGeminiModel(); return _model; }
+import { callAI } from '@/lib/ai-models';
 
 export async function POST(req: NextRequest) {
   const { draftId, instruction } = await req.json();
@@ -14,10 +11,19 @@ export async function POST(req: NextRequest) {
     const draft = await (prisma as any).pendingDraft.findUnique({ where: { id: draftId } });
     if (!draft) return NextResponse.json({ error: 'Draft not found' }, { status: 404 });
 
-    const result = await model().generateContent(
-      `Rewrite this ${draft.channel} content with this direction: "${instruction}"\n\nOriginal:\n${draft.content}`
-    );
-    const refined = result.response.candidates?.[0]?.content?.parts?.[0]?.text || draft.content;
+    const result = await callAI({
+      role: 'generation',
+      system: 'You rewrite marketing copy precisely per the user direction. Output only the revised copy.',
+      messages: [
+        {
+          role: 'user',
+          content: `Rewrite this ${draft.channel} content with this direction: "${instruction}"\n\nOriginal:\n${draft.content}`,
+        },
+      ],
+      maxTokens: 4096,
+      temperature: 0.6,
+    });
+    const refined = result.text || draft.content;
 
     const refinements = JSON.parse(draft.refinements || '[]');
     refinements.push({ instruction, timestamp: new Date().toISOString() });

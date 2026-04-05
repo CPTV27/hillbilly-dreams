@@ -2,11 +2,7 @@ export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { requireAdmin } from '@/lib/admin-auth';
-import { getGeminiModel } from '@/lib/vertex-client';
-
-// Initialize Vertex AI — uses Application Default Credentials
-let _model: ReturnType<typeof getGeminiModel> | null = null;
-function model() { if (!_model) _model = getGeminiModel(); return _model; }
+import { callAI } from '@/lib/ai-models';
 
 /**
  * POST /api/marketing/dna
@@ -44,8 +40,14 @@ Return ONLY a valid JSON object (no markdown, no backticks) with these fields:
   "suggestedCategory": "Food & Drink | Lodging | Arts & Culture | Retail | Services | Entertainment"
 }`;
 
-    const result = await model().generateContent(prompt);
-    const responseText = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+    const result = await callAI({
+      role: 'generation',
+      system: 'You return only valid JSON as specified. No markdown code fences.',
+      messages: [{ role: 'user', content: prompt }],
+      maxTokens: 4096,
+      temperature: 0.2,
+    });
+    const responseText = result.text || '{}';
 
     // Parse — handle markdown code blocks if Gemini wraps it
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();

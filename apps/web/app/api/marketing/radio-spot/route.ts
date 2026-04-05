@@ -2,10 +2,7 @@ export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { requireAdmin } from '@/lib/admin-auth';
-import { getGeminiModel } from '@/lib/vertex-client';
-
-let _model: ReturnType<typeof getGeminiModel> | null = null;
-function model() { if (!_model) _model = getGeminiModel(); return _model; }
+import { callAI } from '@/lib/ai-models';
 
 /**
  * POST /api/marketing/radio-spot
@@ -67,8 +64,14 @@ Return ONLY valid JSON (no markdown):
   "callToAction": "Visit us at... / Find us on the Deep South Directory"
 }`;
 
-    const result = await model().generateContent(prompt);
-    const responseText = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+    const result = await callAI({
+      role: 'generation',
+      system: 'You return only valid JSON as specified. No markdown code fences.',
+      messages: [{ role: 'user', content: prompt }],
+      maxTokens: 4096,
+      temperature: 0.4,
+    });
+    const responseText = result.text || '{}';
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     const spot = JSON.parse(cleaned);
 

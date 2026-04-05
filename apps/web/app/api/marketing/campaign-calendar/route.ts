@@ -2,10 +2,7 @@ export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { requireAdmin } from '@/lib/admin-auth';
-import { getGeminiModel } from '@/lib/vertex-client';
-
-let _model: ReturnType<typeof getGeminiModel> | null = null;
-function model() { if (!_model) _model = getGeminiModel(); return _model; }
+import { callAI } from '@/lib/ai-models';
 
 /**
  * POST /api/marketing/campaign-calendar
@@ -83,8 +80,14 @@ Return ONLY valid JSON (no markdown):
 
 Make the content specific to this business — reference their actual value props, location, and audience.`;
 
-    const result = await model().generateContent(prompt);
-    const responseText = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+    const result = await callAI({
+      role: 'generation',
+      system: 'You return only valid JSON as specified. No markdown code fences.',
+      messages: [{ role: 'user', content: prompt }],
+      maxTokens: 8192,
+      temperature: 0.3,
+    });
+    const responseText = result.text || '{}';
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     const calendar = JSON.parse(cleaned);
 

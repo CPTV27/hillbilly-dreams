@@ -1,10 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
-import { getGeminiModel } from '@/lib/vertex-client';
-
-let _model: ReturnType<typeof getGeminiModel> | null = null;
-function model() { if (!_model) _model = getGeminiModel(); return _model; }
+import { callAI } from '@/lib/ai-models';
 
 export async function POST(req: NextRequest) {
   const { sourceType, sourceId } = await req.json();
@@ -32,8 +29,14 @@ export async function POST(req: NextRequest) {
 
     const draftIds: number[] = [];
     for (const channel of channels) {
-      const result = await model().generateContent(prompts[channel]);
-      const text = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      const result = await callAI({
+        role: 'generation',
+        system: 'You are a Big Muddy media copywriter. Follow the user instructions exactly.',
+        messages: [{ role: 'user', content: prompts[channel] }],
+        maxTokens: 4096,
+        temperature: 0.7,
+      });
+      const text = result.text;
 
       const draft = await (prisma as any).pendingDraft.create({
         data: {

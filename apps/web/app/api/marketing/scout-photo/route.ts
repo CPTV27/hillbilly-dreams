@@ -1,10 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
-import { getGeminiModel } from '@/lib/vertex-client';
-
-let _model: ReturnType<typeof getGeminiModel> | null = null;
-function model() { if (!_model) _model = getGeminiModel(); return _model; }
+import { callAI } from '@/lib/ai-models';
 
 /**
  * POST /api/marketing/scout-photo
@@ -64,17 +61,23 @@ Then research this business and return ONLY valid JSON (no markdown):
 
 Be specific — use the actual business name from the photo, their real location, and make the content feel custom-built for them.`;
 
-    const result = await model().generateContent({
-      contents: [{
-        role: 'user',
-        parts: [
-          { inlineData: { mimeType: 'image/jpeg', data: imageBase64 } },
-          { text: prompt },
+    const result = await callAI({
+      vertexNative: {
+        model: 'gemini-2.5-flash',
+        contents: [
+          {
+            role: 'user',
+            parts: [
+              { inlineData: { mimeType: 'image/jpeg', data: imageBase64 } },
+              { text: prompt },
+            ],
+          },
         ],
-      }],
+        config: { temperature: 0.3, maxOutputTokens: 8192 },
+      },
     });
 
-    const responseText = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+    const responseText = result.text || '{}';
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     const scoutData = JSON.parse(cleaned);
 

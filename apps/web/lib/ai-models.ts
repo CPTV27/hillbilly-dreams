@@ -105,6 +105,7 @@ function markProviderHealthy(provider: Provider) {
 
 // ── Unified Call Interface ──
 
+/** Standard chat-style request (multi-provider failover via REST). */
 export interface AIRequest {
   role: AIRole;
   system: string;
@@ -113,11 +114,40 @@ export interface AIRequest {
   temperature?: number;
 }
 
+/**
+ * Pass-through to Vertex `@google/genai` (tools, multi-turn `contents`, usage metadata).
+ * No Anthropic/Perplexity failover — use for function-calling flows only.
+ */
+export interface VertexNativeAIRequest {
+  vertexNative: {
+    model: string;
+    contents: unknown[];
+    config: Record<string, unknown>;
+  };
+}
+
+export type CallAIRequest = AIRequest | VertexNativeAIRequest;
+
+export interface SerializedFunctionCall {
+  name: string;
+  args: Record<string, unknown>;
+}
+
 export interface AIResponse {
   text: string;
   model: string;
-  provider: Provider;
+  provider: Provider | 'vertex-sdk';
   label: string;
+  /** Present when `vertexNative` was used and the model returned tool calls. */
+  functionCalls?: SerializedFunctionCall[];
+  /** Raw assistant content for multi-turn history (Vertex SDK shape). */
+  vertexContent?: unknown;
+  rawVertexResponse?: unknown;
+  usageMetadata?: {
+    promptTokenCount?: number;
+    candidatesTokenCount?: number;
+    totalTokenCount?: number;
+  };
 }
 
 /** Get Google auth token for Vertex AI */
@@ -221,13 +251,60 @@ const CALLERS: Record<Provider, (config: ModelConfig, req: AIRequest) => Promise
 
 // ── Main API: Call with Failover ──
 
+const VERTEX_PROJECT_ID = process.env.VERTEX_PROJECT_ID || 'bigmuddy-ff651';
+const VERTEX_LOCATION = process.env.VERTEX_LOCATION || 'us-east4';
+
+async function callVertexNativeSDK(vertexNative: VertexNativeAIRequest['vertexNative']): Promise<AIResponse> {
+  const { GoogleGenAI } = await import('@google/genai');
+  const ai = new GoogleGenAI({
+    vertexai: true,
+    project: VERTEX_PROJECT_ID,
+    location: VERTEX_LOCATION,
+  });
+  const response = await ai.models.generateContent({
+    model: vertexNative.model,
+    contents: vertexNative.contents as never,
+    config: vertexNative.config as never,
+  });
+  const text = response.text || '';
+  const fc = response.functionCalls;
+  const functionCalls: SerializedFunctionCall[] | undefined =
+    fc && fc.length > 0
+      ? fc.map((call) => ({
+          name: call.name ?? '',
+          args: (call.args as Record<string, unknown>) ?? {},
+        }))
+      : undefined;
+  const um = response.usageMetadata;
+  return {
+    text,
+    model: vertexNative.model,
+    provider: 'vertex-sdk',
+    label: 'Vertex AI (GenAI SDK)',
+    functionCalls,
+    vertexContent: response.candidates?.[0]?.content,
+    rawVertexResponse: response,
+    usageMetadata: um
+      ? {
+          promptTokenCount: um.promptTokenCount,
+          candidatesTokenCount: um.candidatesTokenCount,
+          totalTokenCount: um.totalTokenCount,
+        }
+      : undefined,
+  };
+}
+
 /**
- * Call an AI model with automatic failover.
- * Tries the primary model for the given role, then falls back through the chain.
- * Always lands on Gemini as the last resort.
+ * Call an AI model with automatic failover (standard request), or invoke Vertex
+ * `@google/genai` directly when `vertexNative` is set (tools / multi-turn).
  */
-export async function callAI(req: AIRequest): Promise<AIResponse> {
-  const chain = ROUTING[req.role];
+export async function callAI(req: CallAIRequest): Promise<AIResponse> {
+  if ('vertexNative' in req && req.vertexNative) {
+    return callVertexNativeSDK(req.vertexNative);
+  }
+
+  const std = req as AIRequest;
+  const chain = ROUTING[std.role];
   const errors: string[] = [];
 
   for (const modelKey of chain) {
@@ -236,7 +313,7 @@ export async function callAI(req: AIRequest): Promise<AIResponse> {
     if (!isProviderHealthy(config.provider)) continue;
 
     try {
-      const text = await CALLERS[config.provider](config, req);
+      const text = await CALLERS[config.provider](config, std);
       markProviderHealthy(config.provider);
       return { text, model: config.model, provider: config.provider, label: config.label };
     } catch (err: any) {
@@ -246,8 +323,7 @@ export async function callAI(req: AIRequest): Promise<AIResponse> {
     }
   }
 
-  // All failed — return error message
-  throw new Error(`All models failed for role "${req.role}": ${errors.join(' | ')}`);
+  throw new Error(`All models failed for role "${std.role}": ${errors.join(' | ')}`);
 }
 
 /**

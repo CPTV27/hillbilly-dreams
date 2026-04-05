@@ -16,14 +16,10 @@ export const dynamic = 'force-dynamic';
 // Future: swap to Gemini Live for native audio-to-audio when SDK stabilizes.
 
 import { NextRequest, NextResponse } from 'next/server';
-import { GoogleGenAI } from '@google/genai';
+import { callAI } from '@/lib/ai-models';
 import { VOICE_TOOLS_CONFIG, executeVoiceTool } from '../tools';
 
-const PROJECT_ID = process.env.VERTEX_PROJECT_ID || 'bigmuddy-ff651';
-const LOCATION = process.env.VERTEX_LOCATION || 'us-east4';
-const MODEL = 'gemini-2.5-flash'; // Fast model for conversational latency
-
-const ai = new GoogleGenAI({ vertexai: true, project: PROJECT_ID, location: LOCATION });
+const MODEL = 'gemini-2.5-flash';
 
 const SYSTEM_PROMPT = `You are the Measurably Better concierge — a warm, knowledgeable local AI for the Deep South.
 
@@ -46,11 +42,9 @@ export async function POST(req: NextRequest) {
     let userPrompt: string;
 
     if (contentType.includes('application/json')) {
-      // Text-based request
       const body = await req.json();
       userPrompt = body.prompt || body.text || '';
     } else if (contentType.includes('multipart/form-data') || contentType.includes('audio/')) {
-      // Audio blob — transcribe with Whisper
       const formData = await req.formData();
       const audioFile = formData.get('audio') as File | null;
 
@@ -58,7 +52,6 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'No audio file provided' }, { status: 400 });
       }
 
-      // Transcribe via OpenAI Whisper
       const whisperKey = process.env.OPENAI_API_KEY;
       if (!whisperKey) {
         return NextResponse.json({ error: 'Speech transcription not configured' }, { status: 503 });
@@ -93,56 +86,53 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Send JSON with {prompt} or multipart form with audio file' }, { status: 400 });
     }
 
-    // ── Gemini reasoning with tool calling ──
-
-    const contents: Array<{ role: string; parts: Array<Record<string, unknown>> }> = [
-      { role: 'user', parts: [{ text: userPrompt }] },
-    ];
+    const contents: unknown[] = [{ role: 'user', parts: [{ text: userPrompt }] }];
 
     const config = {
       tools: VOICE_TOOLS_CONFIG,
       systemInstruction: SYSTEM_PROMPT,
     };
 
-    let response = await ai.models.generateContent({
-      model: MODEL,
-      contents,
-      config,
+    let response = await callAI({
+      vertexNative: {
+        model: MODEL,
+        contents,
+        config,
+      },
     });
-
-    // ── Server-side tool execution (same pattern as /api/siri/analyze) ──
 
     const functionCalls = response.functionCalls;
 
     if (functionCalls && functionCalls.length > 0) {
       const call = functionCalls[0];
 
-      // Execute the tool against the database
       const toolResult = await executeVoiceTool(
         call.name ?? '',
         (call.args as Record<string, unknown>) ?? {}
       );
 
-      // Feed result back to Gemini for natural language response
-      const assistantContent = response.candidates?.[0]?.content;
-      if (assistantContent) {
-        contents.push(assistantContent as { role: string; parts: Array<Record<string, unknown>> });
+      if (response.vertexContent) {
+        contents.push(response.vertexContent);
       }
 
       contents.push({
         role: 'user',
-        parts: [{
-          functionResponse: {
-            name: call.name ?? '',
-            response: toolResult,
+        parts: [
+          {
+            functionResponse: {
+              name: call.name ?? '',
+              response: toolResult,
+            },
           },
-        }],
+        ],
       });
 
-      response = await ai.models.generateContent({
-        model: MODEL,
-        contents,
-        config,
+      response = await callAI({
+        vertexNative: {
+          model: MODEL,
+          contents,
+          config,
+        },
       });
     }
 
@@ -155,7 +145,7 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error('[voice/stream] Error:', error);
     return NextResponse.json(
-      { error: 'Voice processing failed', text: "Something went wrong. Try again in a moment." },
+      { error: 'Voice processing failed', text: 'Something went wrong. Try again in a moment.' },
       { status: 500 }
     );
   }
