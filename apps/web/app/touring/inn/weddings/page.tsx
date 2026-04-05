@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   title: 'Weddings at The Big Muddy Inn — Natchez, MS',
   description:
-    'Intimate destination weddings in historic Natchez, Mississippi. Six rooms, live blues, professional photography, and the whole Mississippi corridor as your backdrop. Packages from $4,500.',
+    'Intimate destination weddings in historic Natchez, Mississippi. Six rooms, live blues, professional photography, and the whole Deep South as your backdrop. Packages from $4,500.',
 };
 
 /* ─────────────────────────────────────────────── *
@@ -74,8 +74,8 @@ const PACKAGES: WeddingPackage[] = [
     ],
   },
   {
-    id: 'corridor',
-    name: 'The Corridor',
+    id: 'region',
+    name: 'The Region',
     capacity: 'Multi-Day, Up to 60 guests',
     price: 'Starting at $15,000',
     features: [
@@ -118,7 +118,7 @@ const VENDORS: Vendor[] = [
 const GALLERY_IMAGES = [
   {
     src: '/images/corridor/inn-hallway-gathering.webp',
-    alt: 'The Big Muddy Inn hallway — six rooms opening onto the corridor',
+    alt: 'The Big Muddy Inn hallway — six rooms opening onto the region',
   },
   {
     src: '/images/corridor/fire-pit-gathering.webp',
@@ -238,7 +238,7 @@ export default function WeddingsPage() {
             }}
           >
             Intimate weddings in a historic Natchez inn. Six rooms, live blues, a
-            photographer who lives here, and the whole Mississippi corridor as your
+            photographer who lives here, and the whole Deep South as your
             backdrop.
           </p>
 

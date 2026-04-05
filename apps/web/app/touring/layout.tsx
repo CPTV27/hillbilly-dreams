@@ -23,7 +23,7 @@ export const metadata: Metadata = {
       url: sprinterVanOgImage,
       width: 1200,
       height: 630,
-      alt: 'Big Muddy Touring Sprinter van — Memphis to New Orleans corridor',
+      alt: 'Big Muddy Touring Sprinter van — Memphis to New Orleans region',
     },
   }),
   metadataBase: new URL('https://bigmuddytouring.com'),

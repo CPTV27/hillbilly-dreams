@@ -39,7 +39,7 @@ interface Region {
 
 const REGIONS: Region[] = [
   {
-    name: 'The Core Corridor',
+    name: 'The Core Region',
     description: 'Memphis to New Orleans — the headline run. Five cities along the Mississippi where the music started and never stopped.',
     cities: [
       {

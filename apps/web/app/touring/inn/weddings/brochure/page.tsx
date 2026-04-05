@@ -19,7 +19,7 @@ export default function WeddingBrochurePage() {
           <h2 style={{ fontSize: '2rem', fontWeight: 400, marginBottom: '20px' }}>Your Weekend on the River</h2>
           <p style={{ lineHeight: 1.8, fontSize: '1.1rem', color: '#444' }}>
             Intimate weddings in a historic Natchez inn. Six rooms, live blues, a photographer who lives here, 
-            and the entire Mississippi corridor as your backdrop. No traffic, no crowds—just you and your closest friends, 
+            and the entire Deep South as your backdrop. No traffic, no crowds—just you and your closest friends, 
             taking over a 19th-century property for the weekend.
           </p>
         </section>

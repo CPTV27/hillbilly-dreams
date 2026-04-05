@@ -23,7 +23,7 @@ const CHANNELS = [
     id: 'gallery',
     name: 'Photo Gallery',
     icon: 'G',
-    description: 'Photography from the Mississippi Corridor',
+    description: 'Photography from the Mississippi Region',
     content: 'gallery',
   },
   {
@@ -99,7 +99,7 @@ export default function InRoomTVPage() {
                 ))}
               </div>
               <h2 className="tv-radio__title">Big Muddy Radio</h2>
-              <p className="tv-radio__sub">The Voice of the Mississippi Corridor</p>
+              <p className="tv-radio__sub">The Voice of the Mississippi Region</p>
               <p className="tv-radio__now">Now Playing: Late Night Levee with Deacon Slim</p>
             </div>
           )}

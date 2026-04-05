@@ -8,7 +8,7 @@ import { NewsletterSignup, BLUR_DATA_URL } from '@bigmuddy/ui';
 export const metadata: Metadata = {
   title: 'The Route — Memphis to New Orleans & The Big Muddy Network',
   description:
-    'Eighteen cities, five states, twelve hundred miles of territory. The Big Muddy Touring route along the Mississippi corridor and the expanded network.',
+    'Eighteen cities, five states, twelve hundred miles of territory. The Big Muddy Touring route along the Deep South and the expanded network.',
 };
 
 const STOPS = [
@@ -352,7 +352,7 @@ export default function RoutePage() {
             <p className="route-overview__body">
               Highway 61 is the Blues Highway — the road that carried a generation of 
               Black musicians from the Delta to Chicago, and brought the whole world south 
-              to find where the music came from. The full corridor drive takes about eight hours 
+              to find where the music came from. The full region drive takes about eight hours 
               without stops. Plan for four days minimum; a week if you want to do it right.
               The expanded network extends the journey into Louisiana, Arkansas, and Missouri —
               thirteen more cities where the same musical traditions run underground, waiting to be found.
@@ -361,10 +361,10 @@ export default function RoutePage() {
         </div>
       </section>
 
-      {/* ── Core Corridor Stops ── */}
+      {/* ── Core Region Stops ── */}
       <section className="route-stops">
         <div className="section-container">
-          <div className="section-label" style={{ marginBottom: 'var(--space-10)' }}>The Core Corridor</div>
+          <div className="section-label" style={{ marginBottom: 'var(--space-10)' }}>The Core Region</div>
           {/* Memphis */}
           {[STOPS[0]].map((stop) => (
             <article key={stop.id} id={stop.id} className="route-stop-detail">
@@ -512,7 +512,7 @@ export default function RoutePage() {
       <section className="route-network">
         <div className="section-container">
           <div className="route-network__header">
-            <div className="section-label">Beyond the Corridor</div>
+            <div className="section-label">Beyond the region</div>
             <h2 className="route-network__title">The Big Muddy Network</h2>
             <p className="route-network__desc">
               Thirteen more cities where the same traditions live — blues, country, soul, Cajun, 
