@@ -1,5 +1,14 @@
 # Agent status
 
+## 2026-04-05 — Sunday Morning Batch 2 (Tracy testing live)
+
+- **Branch:** `sunday-batch-2-tracy` — 6 commits: tour Records URL → **bigmuddyrecordlabel.com**; **system-health** `build` + **asanaPat**; **HQ** card shows Asana/Cron/build; **admin** Store links absolute + external, HQ **◈**; **PATCH /api/page-edits**; **docs/QC_DOMAIN_CHECK.md** + **RAG_AUDIT_SUNDAY_AM.md**.
+- **Prod DSD:** `curl` grep — no `corridor` / `musician` / `artist profile` in homepage HTML.
+- **ProductionJob:** 14 rows, all **voiceover**; 14 **ProductionArtifact**; none stuck at `script`.
+- **QC:** `pnpm exec tsc --noEmit -p apps/web` pass; `pnpm test:p0` 4 passed, 3 skipped.
+
+---
+
 ## 2026-04-05 — Sunday Morning Dispatch (Tracy QA slice)
 
 - **DSD / routing:** [`domain-routes.ts`](../apps/web/config/domain-routes.ts) — `/platform` in `BMT_BRAND_PREFIXES` so hostname rewrites do not break `/platform/*` on tenant hosts. [`directory/layout.tsx`](../apps/web/app/directory/layout.tsx) header subtitle → **Deep South**. No `CORRIDOR MUSICIANS` UI in repo; `directory/page.tsx` not modified. If prod still shows it, redeploy or clear edge cache.
