@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-// Lazy-load to avoid jsdom loading default-stylesheet.css at webpack build time
+// Lazy-load DOMPurify to avoid jsdom loading default-stylesheet.css at webpack build time
 let _purify: typeof import('isomorphic-dompurify').default | null = null;
 function getPurify() {
   if (!_purify) {
