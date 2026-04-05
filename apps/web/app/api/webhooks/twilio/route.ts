@@ -11,6 +11,7 @@ export const dynamic = 'force-dynamic';
 //     e.g. {"6015551234":"1213942086747969"} (Chandra → her project)
 
 import { NextRequest, NextResponse } from 'next/server';
+import { apiLog } from '@/lib/api-logger';
 import { createTask } from '@/lib/asana-client';
 
 // Vendor phone → Asana project mapping
@@ -51,7 +52,7 @@ export async function POST(request: NextRequest) {
       );
     } else {
       // Unknown number — log to a catch-all or ignore
-      console.log(`[twilio] Unknown sender ${from}: ${body.slice(0, 100)}`);
+      apiLog.info('webhooks/twilio', 'unknown sender', { from, preview: body.slice(0, 100) });
     }
 
     // Respond with empty TwiML (no auto-reply for now)

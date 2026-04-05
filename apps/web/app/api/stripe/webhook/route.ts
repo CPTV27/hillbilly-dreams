@@ -5,6 +5,7 @@ export const dynamic = 'force-dynamic';
 // Separate from the BMT billing webhook (/api/billing/webhook).
 
 import { NextRequest, NextResponse } from 'next/server';
+import { apiLog } from '@/lib/api-logger';
 import { stripe } from '@/lib/stripe';
 
 // Stripe requires raw body for signature verification — Next.js App Router
@@ -12,7 +13,7 @@ import { stripe } from '@/lib/stripe';
 export async function POST(request: NextRequest) {
   const webhookSecret = process.env.STRIPE_CONNECT_WEBHOOK_SECRET;
   if (!webhookSecret) {
-    console.warn('[Stripe Connect Webhook] STRIPE_CONNECT_WEBHOOK_SECRET not configured');
+    apiLog.warn('stripe/connect-webhook', 'STRIPE_CONNECT_WEBHOOK_SECRET not configured');
     return NextResponse.json(
       { error: 'Webhook not configured' },
       { status: 503 }
@@ -61,12 +62,12 @@ export async function POST(request: NextRequest) {
           customer_email?: string;
         };
 
-        console.log(
-          `[Stripe Connect] checkout.session.completed — ${session.id}`,
-          `| brand: ${session.metadata?.brand_class || 'unknown'}`,
-          `| amount: $${((session.amount_total || 0) / 100).toFixed(2)}`,
-          `| connected: ${session.metadata?.connected_account || 'none'}`
-        );
+        apiLog.info('stripe/connect-webhook', 'checkout.session.completed', {
+          sessionId: session.id,
+          brandClass: session.metadata?.brand_class || 'unknown',
+          amountCents: session.amount_total || 0,
+          connectedAccount: session.metadata?.connected_account || 'none',
+        });
 
         // TODO: When DB schema supports Connect transactions,
         // persist the transaction record here with brand_class tagging.
@@ -89,12 +90,12 @@ export async function POST(request: NextRequest) {
             ? 'pending_verification'
             : 'onboarding';
 
-        console.log(
-          `[Stripe Connect] account.updated — ${account.id}`,
-          `| status: ${status}`,
-          `| partner: ${account.metadata?.partner_name || 'unknown'}`,
-          `| brand: ${account.metadata?.brand_class || 'unknown'}`
-        );
+        apiLog.info('stripe/connect-webhook', 'account.updated', {
+          accountId: account.id,
+          status,
+          partner: account.metadata?.partner_name || 'unknown',
+          brandClass: account.metadata?.brand_class || 'unknown',
+        });
 
         // TODO: Update partner record in DB when schema supports it.
         // await prisma.partner.upsert({ ... })
@@ -110,16 +111,17 @@ export async function POST(request: NextRequest) {
           metadata?: { brand_class?: string };
         };
 
-        console.log(
-          `[Stripe Connect] transfer.created — ${transfer.id}`,
-          `| $${(transfer.amount / 100).toFixed(2)} → ${transfer.destination}`,
-          `| brand: ${transfer.metadata?.brand_class || 'unknown'}`
-        );
+        apiLog.info('stripe/connect-webhook', 'transfer.created', {
+          transferId: transfer.id,
+          amountCents: transfer.amount,
+          destination: transfer.destination,
+          brandClass: transfer.metadata?.brand_class || 'unknown',
+        });
         break;
       }
 
       default:
-        console.log(`[Stripe Connect Webhook] Unhandled: ${event.type}`);
+        apiLog.info('stripe/connect-webhook', 'unhandled event type', { type: event.type });
     }
 
     return NextResponse.json({ received: true });

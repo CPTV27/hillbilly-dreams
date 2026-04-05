@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic';
 // Runs hourly via Vercel Cron. Creates follow-up tasks from team feedback.
 
 import { NextResponse } from 'next/server';
+import { apiLog } from '@/lib/api-logger';
 
 export const maxDuration = 300;
 
@@ -170,7 +171,10 @@ export async function GET(request: Request) {
       comments: results,
     };
 
-    console.log(`[scan-asana] Found ${results.length} new comments, created ${summary.actionsCreated} follow-up tasks`);
+    apiLog.info('cron/scan-asana', 'scan complete', {
+      newComments: results.length,
+      actionsCreated: summary.actionsCreated,
+    });
 
     return NextResponse.json(summary);
   } catch (err: any) {

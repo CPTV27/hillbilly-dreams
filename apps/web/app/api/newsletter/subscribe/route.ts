@@ -1,5 +1,6 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
+import { apiLog } from '@/lib/api-logger';
 import { newsletterProvider } from '@/lib/newsletter-provider';
 
 // Simple email regex — catches most obvious typos without being overly strict
@@ -44,7 +45,13 @@ export async function POST(request: Request) {
 
     // Log WiFi portal signups for tracking
     if (source || location) {
-      console.log(`[Newsletter] subscribe: ${trimmed} (name: ${name || 'n/a'}, source: ${source || 'web'}, location: ${location || 'unknown'}, brand: ${brand || 'default'})`);
+      apiLog.info('newsletter/subscribe', 'wifi or attributed signup', {
+        email: trimmed,
+        name: name || 'n/a',
+        source: source || 'web',
+        location: location || 'unknown',
+        brand: brand || 'default',
+      });
     }
 
     return NextResponse.json({ success: true });

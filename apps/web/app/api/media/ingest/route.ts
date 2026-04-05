@@ -9,6 +9,7 @@ export const dynamic = 'force-dynamic';
 // 6. Returns metadata for registry
 
 import { NextResponse } from 'next/server';
+import { apiLog } from '@/lib/api-logger';
 import sharp from 'sharp';
 import { uploadToGCS, GCS_BASE_URL } from '@/lib/gcs';
 import { prisma } from '@/lib/prisma';
@@ -81,11 +82,11 @@ function parseExif(metadata: sharp.Metadata): ExifData {
       if (gpsMarker > -1) {
         // GPS data exists — for production, we'd use a proper EXIF parser
         // For now, log that GPS was found
-        console.log('[ingest] GPS EXIF data detected — full parsing requires exifr library');
+        apiLog.info('media/ingest', 'GPS EXIF detected; full parse deferred to exifr');
       }
     }
   } catch (err) {
-    console.warn('[ingest] EXIF parse warning:', err);
+    apiLog.warn('media/ingest', 'EXIF parse warning', { err: String(err) });
   }
 
   return result;

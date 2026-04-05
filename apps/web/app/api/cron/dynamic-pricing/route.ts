@@ -7,6 +7,7 @@ export const dynamic = 'force-dynamic';
 //   { "path": "/api/cron/dynamic-pricing", "schedule": "0 7 * * *" }
 
 import { NextResponse } from 'next/server';
+import { apiLog } from '@/lib/api-logger';
 import { prisma } from '@/lib/db';
 import {
   getAvailability,
@@ -165,9 +166,10 @@ export async function GET(request: Request) {
       }
     }
 
-    console.log(
-      `[cron/dynamic-pricing] ${changes.length} rate changes across ${jobs.length} API batches`
-    );
+    apiLog.info('cron/dynamic-pricing', 'rate changes applied', {
+      rateChanges: changes.length,
+      batchJobs: jobs.length,
+    });
 
     return NextResponse.json({
       success: true,

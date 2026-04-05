@@ -8,6 +8,7 @@ export const dynamic = 'force-dynamic';
 //   { "crons": [{ "path": "/api/cron/cloudbeds-sync", "schedule": "0 6 * * *" }] }
 
 import { NextResponse } from 'next/server';
+import { apiLog } from '@/lib/api-logger';
 import { calculateOccupancyMetrics, healthCheck } from '@/lib/cloudbeds';
 import { prisma } from '@/lib/db';
 
@@ -55,13 +56,12 @@ export async function GET(request: Request) {
       });
     }
 
-    console.log(
-      `[cron/cloudbeds-sync] ` +
-      `Occupancy: ${metrics.occupancyRate}% | ` +
-      `MTD: $${metrics.revenueMTD} | ` +
-      `ADR: $${metrics.adr} | ` +
-      `RevPAR: $${metrics.revpar}`
-    );
+    apiLog.info('cron/cloudbeds-sync', 'metrics synced', {
+      occupancyRate: metrics.occupancyRate,
+      revenueMTD: metrics.revenueMTD,
+      adr: metrics.adr,
+      revpar: metrics.revpar,
+    });
 
     return NextResponse.json({
       success: true,

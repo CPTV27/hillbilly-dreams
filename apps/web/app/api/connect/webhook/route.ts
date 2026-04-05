@@ -4,12 +4,13 @@ export const dynamic = 'force-dynamic';
 // Handles: account.updated, payment_intent.succeeded (on behalf of connected accounts)
 
 import { NextRequest, NextResponse } from 'next/server';
+import { apiLog } from '@/lib/api-logger';
 import { prisma } from '@/lib/db';
 
 export async function POST(request: NextRequest) {
   const webhookSecret = process.env.STRIPE_CONNECT_WEBHOOK_SECRET;
   if (!webhookSecret) {
-    console.warn('[Connect Webhook] STRIPE_CONNECT_WEBHOOK_SECRET not configured');
+    apiLog.warn('connect/webhook', 'STRIPE_CONNECT_WEBHOOK_SECRET not configured');
     return NextResponse.json({ error: 'Webhook not configured' }, { status: 503 });
   }
 
@@ -82,7 +83,7 @@ export async function POST(request: NextRequest) {
           },
         });
 
-        console.log(`[Connect Webhook] account.updated — ${account.id} → ${connectStatus}`);
+        apiLog.info('connect/webhook', 'account.updated', { accountId: account.id, connectStatus });
         break;
       }
 
@@ -98,18 +99,19 @@ export async function POST(request: NextRequest) {
 
         const connectedAccountId = event.account || paymentIntent.on_behalf_of;
 
-        console.log(
-          `[Connect Webhook] payment_intent.succeeded — ${paymentIntent.id}` +
-          ` amount=${paymentIntent.amount} currency=${paymentIntent.currency}` +
-          ` connected_account=${connectedAccountId || 'n/a'}`
-        );
+        apiLog.info('connect/webhook', 'payment_intent.succeeded', {
+          paymentIntentId: paymentIntent.id,
+          amount: paymentIntent.amount,
+          currency: paymentIntent.currency,
+          connectedAccount: connectedAccountId || 'n/a',
+        });
 
         // Future: create a payment record, update revenue tracking, etc.
         break;
       }
 
       default:
-        console.log(`[Connect Webhook] Unhandled event type: ${event.type}`);
+        apiLog.info('connect/webhook', 'unhandled event type', { type: event.type });
     }
 
     return NextResponse.json({ received: true });

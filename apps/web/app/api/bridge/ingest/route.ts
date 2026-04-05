@@ -8,6 +8,7 @@ export const dynamic = 'force-dynamic';
 // Falls back to BMT_BRIDGE_SECRET env var for legacy/single-tenant mode.
 
 import { NextRequest, NextResponse } from 'next/server';
+import { apiLog } from '@/lib/api-logger';
 import bcrypt from 'bcryptjs';
 import { verifyPayload, isTimestampValid, type SignedPayload } from '@/lib/hmac';
 import { prisma } from '@/lib/db';
@@ -170,7 +171,11 @@ export async function POST(request: NextRequest) {
     });
 
     if (existing) {
-      console.log(`[bridge/ingest] Duplicate from ${client.clientName}/${sourceProjectId} — updating article ${existing.id}`);
+      apiLog.info('bridge/ingest', 'duplicate source project; updating article', {
+        client: client.clientName,
+        sourceProjectId,
+        articleId: existing.id,
+      });
 
       const updated = await (prisma as any).article.update({
         where: { id: existing.id },
@@ -237,7 +242,11 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    console.log(`[bridge/ingest] Created draft article ${created.id} from ${client.clientName}/${sourceProjectId}`);
+    apiLog.info('bridge/ingest', 'created draft article', {
+      articleId: created.id,
+      client: client.clientName,
+      sourceProjectId,
+    });
 
     return NextResponse.json(
       {
