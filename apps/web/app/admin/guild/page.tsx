@@ -71,7 +71,7 @@ export default function GuildPage() {
           <h1 className="admin-page-title">Creative Guild</h1>
           <p className="admin-page-sub">Contributor profiles, credit balances, and lore submissions</p>
         </div>
-        <button onClick={load} className="admin-btn admin-btn--ghost">Refresh</button>
+        <button type="button" onClick={load} className="admin-btn admin-btn--ghost" style={{ minHeight: 44 }}>Refresh</button>
       </div>
 
       {/* Stats */}
@@ -100,17 +100,17 @@ export default function GuildPage() {
           {members.map(m => (
             <div key={m.userId} className="admin-card" style={{ borderLeft: m.balance > 0 ? '3px solid var(--success)' : '3px solid var(--border)' }}>
               {/* Header */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-2)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+              <div className="guild-member-head" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-2)', flexWrap: 'wrap', gap: 'var(--space-3)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', minWidth: 0 }}>
                   {m.image && (
-                    <img src={m.image} alt="" style={{ width: 32, height: 32, borderRadius: '50%' }} />
+                    <img src={m.image} alt="" style={{ width: 32, height: 32, borderRadius: '50%', flexShrink: 0 }} />
                   )}
-                  <div>
+                  <div style={{ minWidth: 0 }}>
                     <span style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--text)' }}>{m.name || 'Unknown'}</span>
-                    {m.email && <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', marginLeft: 'var(--space-2)' }}>{m.email}</span>}
+                    {m.email && <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', marginLeft: 'var(--space-2)', display: 'block', wordBreak: 'break-all' }}>{m.email}</span>}
                   </div>
                 </div>
-                <div style={{ textAlign: 'right' }}>
+                <div style={{ textAlign: 'right', flexShrink: 0 }}>
                   <div style={{ fontSize: 'var(--text-lg)', fontWeight: 700, color: m.balance > 0 ? 'var(--success)' : 'var(--text-muted)' }}>{m.balance}</div>
                   <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)' }}>credits</div>
                 </div>
@@ -127,16 +127,18 @@ export default function GuildPage() {
               {/* Actions */}
               <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
                 <button
+                  type="button"
                   onClick={() => setAdjustUserId(adjustUserId === m.userId ? null : m.userId)}
                   className="admin-btn admin-btn--ghost"
-                  style={{ fontSize: 'var(--text-xs)', padding: '4px 12px' }}
+                  style={{ fontSize: 'var(--text-sm)', padding: '10px 14px', minHeight: 44 }}
                 >
                   {adjustUserId === m.userId ? 'Cancel' : 'Adjust Credits'}
                 </button>
                 <button
+                  type="button"
                   onClick={() => setExpandedId(expandedId === m.userId ? null : m.userId)}
                   className="admin-btn admin-btn--ghost"
-                  style={{ fontSize: 'var(--text-xs)', padding: '4px 12px' }}
+                  style={{ fontSize: 'var(--text-sm)', padding: '10px 14px', minHeight: 44 }}
                 >
                   {expandedId === m.userId ? 'Hide History' : 'History'}
                 </button>
@@ -144,28 +146,30 @@ export default function GuildPage() {
 
               {/* Adjust form */}
               {adjustUserId === m.userId && (
-                <div style={{ display: 'flex', gap: 'var(--space-2)', marginTop: 'var(--space-3)', alignItems: 'center' }}>
+                <div className="guild-adjust-row" style={{ display: 'flex', gap: 'var(--space-2)', marginTop: 'var(--space-3)', alignItems: 'stretch', flexWrap: 'wrap' }}>
                   <input
                     type="number"
+                    inputMode="numeric"
                     placeholder="+100 or -50"
                     value={adjustAmount}
                     onChange={e => setAdjustAmount(e.target.value)}
                     className="admin-input"
-                    style={{ width: 100, padding: '4px 8px', fontSize: 'var(--text-xs)' }}
+                    style={{ flex: '1 1 120px', minWidth: 100, minHeight: 44, padding: '10px 12px', fontSize: '16px' }}
                   />
                   <select
                     value={adjustReason}
                     onChange={e => setAdjustReason(e.target.value)}
                     className="admin-select"
-                    style={{ width: 'auto', padding: '4px 28px 4px 8px', fontSize: 'var(--text-xs)' }}
+                    style={{ flex: '1 1 180px', minHeight: 44, padding: '10px 32px 10px 12px', fontSize: '16px' }}
                   >
                     {Object.entries(REASON_LABELS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
                   </select>
                   <button
+                    type="button"
                     onClick={submitAdjust}
                     disabled={submitting || !adjustAmount}
                     className="admin-btn admin-btn--primary"
-                    style={{ fontSize: 'var(--text-xs)', padding: '4px 12px' }}
+                    style={{ fontSize: 'var(--text-sm)', padding: '10px 18px', minHeight: 44 }}
                   >
                     Apply
                   </button>
@@ -174,11 +178,25 @@ export default function GuildPage() {
 
               {/* History */}
               {expandedId === m.userId && m.entries.length > 0 && (
-                <div style={{ marginTop: 'var(--space-3)', borderTop: '1px solid var(--border-subtle)', paddingTop: 'var(--space-2)' }}>
+                <div className="guild-history" style={{ marginTop: 'var(--space-3)', borderTop: '1px solid var(--border-subtle)', paddingTop: 'var(--space-2)', display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' }}>
                   {m.entries.map(e => (
-                    <div key={e.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '2px 0', fontSize: 'var(--text-xs)' }}>
+                    <div
+                      key={e.id}
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        gap: 'var(--space-2)',
+                        padding: 'var(--space-3)',
+                        borderRadius: '8px',
+                        border: '1px solid var(--border-subtle)',
+                        background: 'var(--surface-raised, rgba(255,255,255,0.02))',
+                        fontSize: 'var(--text-sm)',
+                        minHeight: 44,
+                      }}
+                    >
                       <span style={{ color: 'var(--text-muted)' }}>{REASON_LABELS[e.reason] || e.reason}</span>
-                      <span style={{ fontWeight: 600, color: e.change > 0 ? 'var(--success)' : 'var(--error)' }}>
+                      <span style={{ fontWeight: 600, color: e.change > 0 ? 'var(--success)' : 'var(--error)', flexShrink: 0 }}>
                         {e.change > 0 ? '+' : ''}{e.change}
                       </span>
                     </div>
@@ -189,6 +207,20 @@ export default function GuildPage() {
           ))}
         </div>
       )}
+      <style>{`
+        @media (max-width: 480px) {
+          .guild-adjust-row {
+            flex-direction: column !important;
+            align-items: stretch !important;
+          }
+          .guild-adjust-row .admin-input,
+          .guild-adjust-row .admin-select,
+          .guild-adjust-row .admin-btn {
+            width: 100%;
+            flex: none !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

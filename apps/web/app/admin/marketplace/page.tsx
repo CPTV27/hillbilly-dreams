@@ -80,13 +80,15 @@ export default function MarketplacePage() {
         <button onClick={load} className="admin-btn admin-btn--ghost">Refresh</button>
       </div>
 
-      {/* Tabs */}
-      <div className="admin-filter-bar">
-        {(['stores', 'vendors', 'profiles', 'new'] as const).map(t => (
-          <button key={t} onClick={() => setTab(t)} className={`admin-filter-btn ${tab === t ? 'admin-filter-btn--active' : ''}`}>
-            {t === 'new' ? '+ New' : t.charAt(0).toUpperCase() + t.slice(1)} {t !== 'new' ? `(${t === 'stores' ? stores.length : t === 'vendors' ? vendors.length : profiles.length})` : ''}
-          </button>
-        ))}
+      {/* Tabs — scroll horizontally on small screens (#88) */}
+      <div className="mp-tabs-scroll" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', marginBottom: 'var(--space-4)' }}>
+        <div className="admin-filter-bar" style={{ flexWrap: 'nowrap', width: 'max-content', minWidth: '100%' }}>
+          {(['stores', 'vendors', 'profiles', 'new'] as const).map(t => (
+            <button key={t} onClick={() => setTab(t)} className={`admin-filter-btn ${tab === t ? 'admin-filter-btn--active' : ''}`} style={{ flexShrink: 0, minHeight: 44 }}>
+              {t === 'new' ? '+ New' : t.charAt(0).toUpperCase() + t.slice(1)} {t !== 'new' ? `(${t === 'stores' ? stores.length : t === 'vendors' ? vendors.length : profiles.length})` : ''}
+            </button>
+          ))}
+        </div>
       </div>
 
       {loading ? (
@@ -168,7 +170,7 @@ export default function MarketplacePage() {
 
           {/* New Entry Form */}
           {tab === 'new' && (
-            <div className="admin-card">
+            <div className="admin-card mp-new-form">
               <h2 style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--text)', marginBottom: 'var(--space-4)' }}>Create Marketplace Entry</h2>
               <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', marginBottom: 'var(--space-4)' }}>Creates a vendor, business profile, and storefront in one step.</p>
 
@@ -207,7 +209,7 @@ export default function MarketplacePage() {
               </div>
 
               <div className="admin-form-actions">
-                <button onClick={createEntry} disabled={submitting || !form.vendorName || !form.storeName} className="admin-btn admin-btn--primary">
+                <button onClick={createEntry} disabled={submitting || !form.vendorName || !form.storeName} className="admin-btn admin-btn--primary" style={{ minHeight: 44 }}>
                   {submitting ? 'Creating...' : 'Create Entry'}
                 </button>
               </div>
@@ -215,6 +217,28 @@ export default function MarketplacePage() {
           )}
         </>
       )}
+      <style>{`
+        @media (max-width: 480px) {
+          .mp-new-form .admin-form-row {
+            flex-direction: column;
+            gap: var(--space-4);
+          }
+          .mp-new-form .admin-form-group {
+            width: 100%;
+            min-width: 0;
+          }
+          .mp-new-form .admin-input,
+          .mp-new-form .admin-select,
+          .mp-new-form .admin-textarea {
+            width: 100%;
+            min-height: 44px;
+            font-size: 16px;
+          }
+          .mp-new-form .admin-textarea {
+            min-height: 120px;
+          }
+        }
+      `}</style>
     </div>
   );
 }

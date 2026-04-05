@@ -75,16 +75,16 @@ export default function StudioCJobsPage() {
         <button onClick={load} className="admin-btn admin-btn--ghost">Refresh</button>
       </div>
 
-      {/* Filters */}
-      <div style={{ display: 'flex', gap: 'var(--space-4)', marginBottom: 'var(--space-5)', flexWrap: 'wrap' }}>
-        <div className="admin-filter-bar" style={{ margin: 0 }}>
+      {/* Filters — horizontal scroll on narrow viewports (#88) */}
+      <div className="studio-c-jobs-filters" style={{ display: 'flex', gap: 'var(--space-4)', marginBottom: 'var(--space-5)', flexWrap: 'nowrap', overflowX: 'auto', WebkitOverflowScrolling: 'touch', alignItems: 'center' }}>
+        <div className="admin-filter-bar" style={{ margin: 0, flexShrink: 0 }}>
           {['all', ...STATUSES.slice(0, 5)].map(s => (
-            <button key={s} onClick={() => setStatusFilter(s)} className={`admin-filter-btn ${statusFilter === s ? 'admin-filter-btn--active' : ''}`}>
+            <button key={s} onClick={() => setStatusFilter(s)} className={`admin-filter-btn ${statusFilter === s ? 'admin-filter-btn--active' : ''}`} style={{ minHeight: 44 }}>
               {s}
             </button>
           ))}
         </div>
-        <select value={brandFilter} onChange={e => setBrandFilter(e.target.value)} className="admin-select" style={{ width: 'auto', minWidth: 140 }}>
+        <select value={brandFilter} onChange={e => setBrandFilter(e.target.value)} className="admin-select" style={{ width: 'auto', minWidth: 160, minHeight: 44, fontSize: '16px', flexShrink: 0 }}>
           {BRANDS.map(b => <option key={b} value={b}>{b === 'all' ? 'All Brands' : BRAND_LABELS[b] || b}</option>)}
         </select>
       </div>
@@ -121,13 +121,13 @@ export default function StudioCJobsPage() {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: 'var(--space-3)', alignItems: 'center', flexWrap: 'wrap' }}>
+              <div className="studio-c-job-actions" style={{ display: 'flex', gap: 'var(--space-3)', alignItems: 'stretch', flexWrap: 'wrap' }}>
                 {/* Status */}
                 <select
                   value={job.status}
                   onChange={e => updateJob(job.id, 'status', e.target.value)}
                   className="admin-select"
-                  style={{ width: 'auto', minWidth: 120, padding: '4px 28px 4px 8px', fontSize: 'var(--text-xs)' }}
+                  style={{ width: 'auto', minWidth: 'min(100%, 200px)', minHeight: 44, padding: '10px 32px 10px 12px', fontSize: '16px' }}
                 >
                   {STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
@@ -139,17 +139,17 @@ export default function StudioCJobsPage() {
                   defaultValue={job.assignedTo || ''}
                   onBlur={e => { if (e.target.value !== (job.assignedTo || '')) updateJob(job.id, 'assignedTo', e.target.value); }}
                   className="admin-input"
-                  style={{ width: 'auto', minWidth: 140, padding: '4px 8px', fontSize: 'var(--text-xs)' }}
+                  style={{ flex: '1 1 160px', minWidth: 140, minHeight: 44, padding: '10px 12px', fontSize: '16px' }}
                 />
 
                 {/* Budget + Location */}
-                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>
+                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', alignSelf: 'center', width: '100%', flexBasis: '100%' }}>
                   {job.budget || 'No budget'} {job.location ? `\u00b7 ${job.location}` : ''}
                 </span>
                 <a
                   href={`/admin/studio-c/sessions/${job.id}/call-sheet`}
                   className="admin-btn admin-btn--ghost"
-                  style={{ fontSize: 'var(--text-xs)', padding: '4px 10px', textDecoration: 'none' }}
+                  style={{ fontSize: 'var(--text-sm)', minHeight: 44, padding: '10px 16px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
                 >
                   Call sheet
                 </a>
@@ -157,7 +157,7 @@ export default function StudioCJobsPage() {
                   <a
                     href={`/admin/productions/${job.jobId}`}
                     className="admin-btn admin-btn--ghost"
-                    style={{ fontSize: 'var(--text-xs)', padding: '4px 10px', textDecoration: 'none' }}
+                    style={{ fontSize: 'var(--text-sm)', minHeight: 44, padding: '10px 16px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
                   >
                     Production job #{job.jobId}
                   </a>

@@ -320,7 +320,7 @@ export default function CommandCenter() {
       {activeTab === 'businesses' && (<>
         <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
           {[['🍽 Food','restaurants, food'],['🏨 Lodging','lodging, hotels'],['🛍 Retail','retail, shops'],['🎭 Arts','arts, entertainment']].map(([l,c]) => (
-            <button key={c} style={{ padding: '0.5rem 1rem', background: '#c8943e', color: '#0f0f0f', border: 'none', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer', opacity: harvesting?0.6:1 }} disabled={harvesting} onClick={()=>runHarvest(c as string)}>{l}</button>
+            <button key={c} style={{ padding: '10px 14px', minHeight: 44, background: '#c8943e', color: '#0f0f0f', border: 'none', borderRadius: '8px', fontSize: '0.8125rem', fontWeight: 700, cursor: 'pointer', opacity: harvesting?0.6:1 }} disabled={harvesting} onClick={()=>runHarvest(c as string)}>{l}</button>
           ))}
         </div>
         {harvestResult && <div style={{ background: '#1a2e1a', border: '1px solid #22c55e', borderRadius: '8px', padding: '0.6rem', color: '#22c55e', marginBottom: '1rem', fontSize: '0.8rem' }}>{harvestResult}</div>}
@@ -340,9 +340,9 @@ export default function CommandCenter() {
       {activeTab === 'engine' && (
         <div style={{ background: '#1a1816', borderRadius: '12px', padding: '1.25rem', border: '1px solid #2a2725' }}>
           <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#c8943e', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>Scout a Business</div>
-          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
-            <input style={{ flex: 1, padding: '0.75rem', background: '#231f1c', border: '1px solid #333', borderRadius: '8px', color: '#e8e4de', fontSize: '0.9rem', outline: 'none' }} placeholder="Business name..." value={scoutName} onChange={e=>setScoutName(e.target.value)} onKeyDown={e=>e.key==='Enter'&&runScout()} />
-            <button style={{ padding: '0.75rem 1.5rem', background: '#c8943e', color: '#0f0f0f', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer', opacity: scouting?0.6:1 }} onClick={runScout} disabled={scouting}>{scouting?'⟳':'Scout'}</button>
+          <div className="cmd-engine-row" style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
+            <input style={{ flex: 1, minHeight: 44, padding: '10px 12px', background: '#231f1c', border: '1px solid #333', borderRadius: '8px', color: '#e8e4de', fontSize: '16px', outline: 'none' }} placeholder="Business name..." value={scoutName} onChange={e=>setScoutName(e.target.value)} onKeyDown={e=>e.key==='Enter'&&runScout()} />
+            <button style={{ minHeight: 44, padding: '10px 1.25rem', background: '#c8943e', color: '#0f0f0f', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer', opacity: scouting?0.6:1 }} onClick={runScout} disabled={scouting}>{scouting?'⟳':'Scout'}</button>
           </div>
           {scoutResult && <pre style={{ background: '#231f1c', borderRadius: '8px', padding: '1rem', fontSize: '0.75rem', color: '#b8b0a4', whiteSpace: 'pre-wrap', overflow: 'auto', maxHeight: '400px', margin: 0 }}>{JSON.stringify(scoutResult,null,2)}</pre>}
         </div>
@@ -441,12 +441,12 @@ export default function CommandCenter() {
               const bundleFeatureIds = new Set((bundle.features || []).map((bf: any) => bf.featureId));
               return (
                 <div key={bundle.id} style={{ background: '#1a1816', borderRadius: '12px', border: '1px solid #2a2725', padding: '1.25rem' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                    <div>
+                  <div className="cmd-bundle-head" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.75rem' }}>
+                    <div style={{ minWidth: 0 }}>
                       <span style={{ fontSize: '1rem', fontWeight: 700, color: bundle.isActive ? '#c8943e' : '#6a6460' }}>{bundle.name}</span>
                       <span style={{ fontSize: '0.7rem', color: '#6a6460', marginLeft: '0.5rem' }}>{bundle.slug} {bundle.market !== 'general' ? `\u00b7 ${bundle.market}` : ''}</span>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
                       <input
                         type="number"
                         placeholder="$/mo (cents)"
@@ -455,7 +455,8 @@ export default function CommandCenter() {
                           const v = e.target.value ? parseInt(e.target.value, 10) : null;
                           if (v !== bundle.priceMonthly) updateBundlePrice(bundle.id, v);
                         }}
-                        style={{ width: 90, padding: '4px 8px', background: '#231f1c', border: '1px solid #333', borderRadius: '6px', color: '#e8e4de', fontSize: '0.75rem', textAlign: 'right' }}
+                        className="cmd-bundle-price"
+                        style={{ width: 90, minHeight: 44, padding: '8px 10px', background: '#231f1c', border: '1px solid #333', borderRadius: '6px', color: '#e8e4de', fontSize: '0.875rem', textAlign: 'right' }}
                       />
                       <span style={{ fontSize: '0.65rem', color: '#6a6460' }}>{bundle.priceMonthly ? `$${(bundle.priceMonthly / 100).toFixed(0)}/mo` : 'TBD'}</span>
                     </div>
@@ -468,18 +469,18 @@ export default function CommandCenter() {
                       const bf = (bundle.features || []).find((f: any) => f.featureId === feat.id);
                       const isUpdating = prodUpdating === `${bundle.id}-${feat.id}`;
                       return (
-                        <div key={feat.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.35rem 0.5rem', borderRadius: '4px', background: isEnabled ? 'rgba(200,148,62,0.06)' : 'transparent', opacity: isUpdating ? 0.5 : 1 }}>
+                        <div key={feat.id} className="cmd-prod-feat-row" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.35rem 0.5rem', borderRadius: '4px', background: isEnabled ? 'rgba(200,148,62,0.06)' : 'transparent', opacity: isUpdating ? 0.5 : 1 }}>
                           <input
                             type="checkbox"
                             checked={isEnabled}
                             onChange={() => toggleBundleFeature(bundle.id, feat.id, !isEnabled)}
-                            style={{ accentColor: '#c8943e', cursor: 'pointer' }}
+                            style={{ width: 22, height: 22, accentColor: '#c8943e', cursor: 'pointer', flexShrink: 0 }}
                           />
-                          <span style={{ fontSize: '0.8rem', color: isEnabled ? '#e8e4de' : '#6a6460', flex: 1 }}>
+                          <span style={{ fontSize: '0.8rem', color: isEnabled ? '#e8e4de' : '#6a6460', flex: 1, minWidth: 0 }}>
                             {feat.name}
                             {feat.isUnique && <span style={{ marginLeft: '0.4rem', fontSize: '0.6rem', color: '#c8943e', fontWeight: 700 }}>MOAT</span>}
                           </span>
-                          <span style={{ fontSize: '0.65rem', color: '#4a4440' }}>{feat.category}</span>
+                          <span className="cmd-prod-feat-meta" style={{ fontSize: '0.65rem', color: '#4a4440' }}>{feat.category}</span>
                           {bf?.limit && <span style={{ fontSize: '0.6rem', color: '#c89e3e', padding: '1px 4px', background: 'rgba(200,158,62,0.12)', borderRadius: '3px' }}>{bf.limit}</span>}
                         </div>
                       );
@@ -493,42 +494,42 @@ export default function CommandCenter() {
       </>)}
 
       {activeTab === 'audit' && (<>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1rem', alignItems: 'flex-end', fontFamily: 'var(--font-body, system-ui)' }}>
+        <div className="cmd-audit-bar" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1rem', alignItems: 'flex-end', fontFamily: 'var(--font-body, system-ui)' }}>
           <div>
             <div style={{ fontSize: '0.65rem', fontWeight: 700, color: 'var(--accent, #c8943e)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '0.35rem' }}>Kind</div>
             <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
               {(['all', 'action', 'trace'] as const).map((k) => (
-                <button key={k} type="button" onClick={() => setAuditKind(k)} style={{ padding: '0.35rem 0.75rem', borderRadius: '999px', border: auditKind === k ? '1px solid var(--accent, #c8943e)' : '1px solid var(--border-strong, #333)', background: auditKind === k ? 'var(--accent-muted, rgba(200,148,62,0.12))' : 'transparent', color: auditKind === k ? 'var(--accent, #c8943e)' : 'var(--text-muted, #8a8074)', fontWeight: 600, fontSize: '0.75rem', cursor: 'pointer', textTransform: 'capitalize' }}>{k}</button>
+                <button key={k} type="button" onClick={() => setAuditKind(k)} style={{ padding: '10px 14px', minHeight: 44, borderRadius: '999px', border: auditKind === k ? '1px solid var(--accent, #c8943e)' : '1px solid var(--border-strong, #333)', background: auditKind === k ? 'var(--accent-muted, rgba(200,148,62,0.12))' : 'transparent', color: auditKind === k ? 'var(--accent, #c8943e)' : 'var(--text-muted, #8a8074)', fontWeight: 600, fontSize: '0.8125rem', cursor: 'pointer', textTransform: 'capitalize' }}>{k}</button>
               ))}
             </div>
           </div>
           <div>
             <div style={{ fontSize: '0.65rem', fontWeight: 700, color: 'var(--accent, #c8943e)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '0.35rem' }}>Window</div>
-            <select value={auditDays} onChange={(e) => setAuditDays(Number(e.target.value))} style={{ padding: '0.45rem 0.75rem', borderRadius: '8px', border: '1px solid var(--border-strong, #333)', background: 'var(--surface-raised, #231f1c)', color: 'var(--text, #e8e4de)', fontSize: '0.8rem', fontFamily: 'var(--font-body, system-ui)' }}>
+            <select value={auditDays} onChange={(e) => setAuditDays(Number(e.target.value))} style={{ minHeight: 44, padding: '10px 12px', borderRadius: '8px', border: '1px solid var(--border-strong, #333)', background: 'var(--surface-raised, #231f1c)', color: 'var(--text, #e8e4de)', fontSize: '16px', fontFamily: 'var(--font-body, system-ui)' }}>
               {[1, 7, 30, 90].map((d) => (
                 <option key={d} value={d}>{d === 1 ? '24h window (1d)' : `${d} days`}</option>
               ))}
             </select>
           </div>
-          <div>
+          <div style={{ flex: '1 1 140px', minWidth: 0 }}>
             <div style={{ fontSize: '0.65rem', fontWeight: 700, color: 'var(--accent, #c8943e)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '0.35rem' }}>Agent</div>
-            <select value={auditAgent} onChange={(e) => setAuditAgent(e.target.value)} style={{ minWidth: '140px', padding: '0.45rem 0.75rem', borderRadius: '8px', border: '1px solid var(--border-strong, #333)', background: 'var(--surface-raised, #231f1c)', color: 'var(--text, #e8e4de)', fontSize: '0.8rem', fontFamily: 'var(--font-body, system-ui)' }}>
+            <select value={auditAgent} onChange={(e) => setAuditAgent(e.target.value)} style={{ width: '100%', maxWidth: '100%', minHeight: 44, padding: '10px 12px', borderRadius: '8px', border: '1px solid var(--border-strong, #333)', background: 'var(--surface-raised, #231f1c)', color: 'var(--text, #e8e4de)', fontSize: '16px', fontFamily: 'var(--font-body, system-ui)' }}>
               <option value="">All agents</option>
               {(auditMeta?.agents ?? []).map((a) => (
                 <option key={a} value={a}>{a}</option>
               ))}
             </select>
           </div>
-          <div>
+          <div style={{ flex: '1 1 160px', minWidth: 0 }}>
             <div style={{ fontSize: '0.65rem', fontWeight: 700, color: 'var(--accent, #c8943e)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '0.35rem' }}>Action type</div>
-            <select value={auditAction} onChange={(e) => setAuditAction(e.target.value)} style={{ minWidth: '160px', padding: '0.45rem 0.75rem', borderRadius: '8px', border: '1px solid var(--border-strong, #333)', background: 'var(--surface-raised, #231f1c)', color: 'var(--text, #e8e4de)', fontSize: '0.8rem', fontFamily: 'var(--font-body, system-ui)' }}>
+            <select value={auditAction} onChange={(e) => setAuditAction(e.target.value)} style={{ width: '100%', maxWidth: '100%', minHeight: 44, padding: '10px 12px', borderRadius: '8px', border: '1px solid var(--border-strong, #333)', background: 'var(--surface-raised, #231f1c)', color: 'var(--text, #e8e4de)', fontSize: '16px', fontFamily: 'var(--font-body, system-ui)' }}>
               <option value="">All types</option>
               {(auditMeta?.actionTypes ?? []).map((a) => (
                 <option key={a} value={a}>{a}</option>
               ))}
             </select>
           </div>
-          <button type="button" onClick={() => setAuditRefresh((n) => n + 1)} style={{ padding: '0.45rem 1rem', borderRadius: '8px', border: '1px solid var(--border-strong, #333)', background: 'transparent', color: 'var(--text-muted, #8a8074)', fontWeight: 600, fontSize: '0.75rem', cursor: 'pointer', fontFamily: 'var(--font-body, system-ui)' }} disabled={auditLoading}>{auditLoading ? 'Loading…' : 'Refresh'}</button>
+          <button type="button" onClick={() => setAuditRefresh((n) => n + 1)} style={{ minHeight: 44, padding: '10px 16px', borderRadius: '8px', border: '1px solid var(--border-strong, #333)', background: 'transparent', color: 'var(--text-muted, #8a8074)', fontWeight: 600, fontSize: '0.8125rem', cursor: 'pointer', fontFamily: 'var(--font-body, system-ui)' }} disabled={auditLoading}>{auditLoading ? 'Loading…' : 'Refresh'}</button>
         </div>
         <p style={{ fontSize: '0.75rem', color: 'var(--text-muted, #8a8074)', margin: '0 0 1rem', fontFamily: 'var(--font-body, system-ui)', lineHeight: 1.5 }}>AgentAction ledger plus ReasoningTrace rows (linked tasks). Issue numbers in text surface as links.</p>
         {auditLoading && auditEntries.length === 0 ? (
@@ -595,9 +596,9 @@ export default function CommandCenter() {
       {activeTab === 'brain' && (<>
         <div style={{ background: '#1a1816', borderRadius: '12px', padding: '1.25rem', border: '1px solid #2a2725', marginBottom: '1rem' }}>
           <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#c8943e', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Search Knowledge Base</div>
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
-            <input style={{ flex: 1, padding: '0.75rem', background: '#231f1c', border: '1px solid #333', borderRadius: '8px', color: '#e8e4de', fontSize: '0.9rem', outline: 'none' }} placeholder="pricing, wedding revenue, cap table..." value={searchQuery} onChange={e=>setSearchQuery(e.target.value)} onKeyDown={e=>e.key==='Enter'&&searchContext()} />
-            <button style={{ padding: '0.75rem 1.5rem', background: '#c8943e', color: '#0f0f0f', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }} onClick={searchContext}>Search</button>
+          <div className="cmd-brain-row" style={{ display: 'flex', gap: '0.5rem' }}>
+            <input style={{ flex: 1, minHeight: 44, padding: '10px 12px', background: '#231f1c', border: '1px solid #333', borderRadius: '8px', color: '#e8e4de', fontSize: '16px', outline: 'none' }} placeholder="pricing, wedding revenue, cap table..." value={searchQuery} onChange={e=>setSearchQuery(e.target.value)} onKeyDown={e=>e.key==='Enter'&&searchContext()} />
+            <button style={{ minHeight: 44, padding: '10px 1.25rem', background: '#c8943e', color: '#0f0f0f', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }} onClick={searchContext}>Search</button>
           </div>
         </div>
         {searchResults.map((r:any,i:number) => (
@@ -628,13 +629,22 @@ export default function CommandCenter() {
         {sidebarOpen ? '\u2715' : '\u2318'}
       </button>
 
-      {/* Slide-out Sidebar */}
-      <div style={{
-        position: 'fixed', top: 0, right: sidebarOpen ? 0 : -360, width: 340, height: '100vh',
-        background: '#1a1816', borderLeft: '1px solid #2a2725', zIndex: 99,
-        transition: 'right 0.25s ease', display: 'flex', flexDirection: 'column',
-        boxShadow: sidebarOpen ? '-4px 0 20px rgba(0,0,0,0.5)' : 'none',
-      }}>
+      {/* Slide-out Sidebar — full viewport width on small screens (#88) */}
+      <div
+        className={`cc-command-sidebar${sidebarOpen ? ' cc-command-sidebar--open' : ''}`}
+        style={{
+          position: 'fixed',
+          top: 0,
+          height: '100vh',
+          background: '#1a1816',
+          borderLeft: '1px solid #2a2725',
+          zIndex: 99,
+          transition: 'right 0.25s ease',
+          display: 'flex',
+          flexDirection: 'column',
+          boxShadow: sidebarOpen ? '-4px 0 20px rgba(0,0,0,0.5)' : 'none',
+        }}
+      >
         <div style={{ padding: '1.25rem', borderBottom: '1px solid #2a2725' }}>
           <h2 style={{ fontSize: '0.9rem', fontWeight: 700, color: '#c8943e', margin: 0, letterSpacing: '-0.01em' }}>Command</h2>
           <p style={{ fontSize: '0.7rem', color: '#6a6460', margin: '0.25rem 0 0' }}>Type a task. It becomes an AgentTask.</p>
@@ -656,18 +666,18 @@ export default function CommandCenter() {
           ))}
         </div>
 
-        <div style={{ padding: '0.75rem', borderTop: '1px solid #2a2725', display: 'flex', gap: '0.5rem' }}>
+        <div style={{ padding: '0.75rem', borderTop: '1px solid #2a2725', display: 'flex', gap: '0.5rem', alignItems: 'stretch' }}>
           <input
             value={chatInput}
             onChange={e => setChatInput(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && sendChat()}
             placeholder="e.g., Scout restaurants in Vicksburg"
-            style={{ flex: 1, padding: '0.6rem 0.8rem', background: '#231f1c', border: '1px solid #333', borderRadius: '8px', color: '#e8e4de', fontSize: '0.8rem', outline: 'none' }}
+            style={{ flex: 1, minHeight: 44, padding: '10px 12px', background: '#231f1c', border: '1px solid #333', borderRadius: '8px', color: '#e8e4de', fontSize: '16px', outline: 'none' }}
           />
           <button
             onClick={sendChat}
             disabled={chatSending}
-            style={{ padding: '0.6rem 1rem', background: '#c8943e', color: '#0f0f0f', border: 'none', borderRadius: '8px', fontWeight: 700, fontSize: '0.8rem', cursor: 'pointer', opacity: chatSending ? 0.6 : 1 }}
+            style={{ minHeight: 44, minWidth: 72, padding: '10px 14px', background: '#c8943e', color: '#0f0f0f', border: 'none', borderRadius: '8px', fontWeight: 700, fontSize: '0.875rem', cursor: 'pointer', opacity: chatSending ? 0.6 : 1 }}
           >
             {chatSending ? '\u21BB' : 'Send'}
           </button>
@@ -683,12 +693,53 @@ export default function CommandCenter() {
       )}
 
       <style>{`
+        .command-cc .cc-command-sidebar {
+          width: 340px;
+          max-width: 100vw;
+          right: -360px;
+        }
+        .command-cc .cc-command-sidebar.cc-command-sidebar--open {
+          right: 0;
+        }
         @media (max-width: 480px) {
           .command-cc .cc-tabs::-webkit-scrollbar { height: 4px; }
           .command-cc .cc-tabs::-webkit-scrollbar-thumb { background: #3d3834; border-radius: 4px; }
+          .command-cc .cc-command-sidebar {
+            width: 100vw;
+            right: -100vw;
+          }
+          .command-cc .cc-command-sidebar.cc-command-sidebar--open {
+            right: 0;
+          }
         }
         @media (max-width: 375px) {
           .command-cc { padding-left: 0.65rem !important; padding-right: 0.65rem !important; }
+          .command-cc .cmd-prod-feat-row {
+            flex-wrap: wrap;
+            align-items: flex-start !important;
+            padding: 0.5rem 0.6rem !important;
+          }
+          .command-cc .cmd-prod-feat-meta {
+            width: 100%;
+            margin-left: 1.75rem;
+          }
+          .command-cc .cmd-bundle-price {
+            width: 100% !important;
+            max-width: 100%;
+          }
+          .command-cc .cmd-audit-bar {
+            flex-direction: column;
+            align-items: stretch !important;
+          }
+          .command-cc .cmd-engine-row,
+          .command-cc .cmd-brain-row {
+            flex-direction: column !important;
+          }
+          .command-cc .cmd-engine-row button,
+          .command-cc .cmd-brain-row button {
+            width: 100%;
+            min-height: 44px;
+          }
         }
       `}</style>
     </div>
