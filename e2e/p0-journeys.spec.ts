@@ -69,6 +69,18 @@ test.describe('P0 — Admin (bigmuddytouring.com/admin)', () => {
 });
 
 test.describe('P0 — Sovereign Pi store (/store/sovereign-pi)', () => {
+  test('configure page — 375px touch layout', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/store/sovereign-pi/configure');
+    await expect(page.getByRole('heading', { name: /Configure your Pi/i })).toBeVisible({
+      timeout: 15_000,
+    });
+    const first = page.getByRole('checkbox').first();
+    await first.click();
+    await expect(page.getByText('$358')).toBeVisible();
+    await expect(page.getByRole('link', { name: /Add to cart/i })).toBeVisible();
+  });
+
   test('configure section via anchor → bottom CTA', async ({ page }) => {
     await page.goto('/store/sovereign-pi');
     await expect(
@@ -80,10 +92,14 @@ test.describe('P0 — Sovereign Pi store (/store/sovereign-pi)', () => {
     await page.getByRole('link', { name: /Configure \+ buy standalone/i }).click();
     await page.waitForURL(/\/store\/sovereign-pi\/configure/, { timeout: 15_000 });
     await expect(page.getByRole('heading', { name: /Configure your Pi/i })).toBeVisible();
+    const onboardFromConfigure = page.getByRole('link', { name: /Free with DSD membership/i });
+    await expect(onboardFromConfigure).toHaveAttribute('href', /\/directory\/onboard\?addon=sovereign-pi/);
 
-    const cta = page.getByRole('link', { name: /Get yours free with DSD/i });
-    await expect(cta).toBeVisible();
-    await expect(cta).toHaveAttribute('href', /\/directory\/onboard\?addon=sovereign-pi/);
+    await page.goto('/store/sovereign-pi');
+    const bottomCta = page.getByRole('link', { name: /Get yours free with DSD/i });
+    await bottomCta.scrollIntoViewIfNeeded();
+    await expect(bottomCta).toBeVisible();
+    await expect(bottomCta).toHaveAttribute('href', /\/directory\/onboard\?addon=sovereign-pi/);
   });
 });
 
