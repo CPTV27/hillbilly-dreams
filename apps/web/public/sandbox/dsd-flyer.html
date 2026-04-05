@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Deep South Directory - Main Street Pricing</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap');
+
+    :root {
+      --bg: #FAFAFA;
+      --text: #1a1a1a;
+      --accent: #E11D48; /* Deep crimson */
+      --border: #E5E7EB;
+      --subtext: #4B5563;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      /* Optimized for standard US Letter (8.5x11 inches) */
+      width: 8.5in;
+      height: 11in;
+      margin: 0 auto;
+      padding: 0.6in 0.8in;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    @media print {
+      body {
+        box-shadow: none;
+        margin: 0;
+        padding: 0.6in 0.8in;
+      }
+      @page {
+        margin: 0;
+        size: letter;
+      }
+    }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3 {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 0.5in;
+      border-bottom: 1px solid var(--text);
+      padding-bottom: 0.2in;
+    }
+
+    .header h1 {
+      font-size: 2.2rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.1in;
+    }
+
+    .header p {
+      font-size: 1rem;
+      color: var(--subtext);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* VALUE PROP */
+    .value-prop {
+      margin-bottom: 0.4in;
+    }
+
+    .value-prop h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.1in;
+    }
+
+    .value-prop p {
+      font-size: 0.95rem;
+      color: var(--subtext);
+      max-width: 6.5in;
+    }
+
+    /* PRICING GRID */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.25in;
+      margin-bottom: 0.4in;
+    }
+
+    .tier {
+      border: 1px solid var(--border);
+      padding: 0.25in;
+      background-color: #ffffff;
+    }
+
+    .tier-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.15in;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.1in;
+    }
+
+    .tier h3 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tier .price {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .tier ul {
+      list-style: none;
+    }
+
+    .tier li {
+      font-size: 0.85rem;
+      color: var(--subtext);
+      margin-bottom: 0.08in;
+      position: relative;
+      padding-left: 0.15in;
+    }
+
+    .tier li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--text);
+    }
+
+    /* FULL WIDTH TIER - $250 Custom */
+    .tier-full {
+      grid-column: 1 / -1;
+      display: flex;
+      border-color: var(--text);
+      background-color: #FAFAFA;
+      padding: 0.3in;
+    }
+
+    .tier-full .content {
+      flex: 1;
+    }
+
+    .tier-full-price {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      min-width: 1.5in;
+    }
+
+    .tier-full-price span {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      color: var(--text);
+      font-weight: 700;
+      display: block;
+    }
+
+    /* FOOTER */
+    .footer {
+      position: absolute;
+      bottom: 0.6in;
+      left: 0.8in;
+      right: 0.8in;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding-top: 0.2in;
+    }
+
+    .footer h3 {
+      font-size: 1rem;
+      margin-bottom: 0.05in;
+    }
+
+    .footer p {
+      font-size: 0.85rem;
+      color: var(--subtext);
+    }
+    
+    .qr-placeholder {
+      margin-top: 0.15in;
+      margin-bottom: 0.1in;
+    }
+    
+    .qr-box {
+      width: 1in;
+      height: 1in;
+      border: 1px solid var(--text);
+      display: inline-block;
+      line-height: 1in;
+      font-size: 0.6rem;
+      color: var(--subtext);
+      text-transform: uppercase;
+      background: #f9f9f9;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Deep South Directory</h1>
+    <p>Main Street, Not Silicon Valley</p>
+  </div>
+
+  <div class="value-prop">
+    <h2>Take the Power Back.</h2>
+    <p>
+      Big tech platforms are flooding search results with noise, fake reviews, and national brands. We are building the definitive, verified ecosystem for businesses across the Deep South. Connect directly with locals and travelers who specifically look for independent operations. No algorithms, no pay-per-click wars.
+    </p>
+  </div>
+
+  <div class="pricing-grid">
+    <!-- FREE -->
+    <div class="tier">
+      <div class="tier-header">
+        <h3>Front Porch</h3>
+        <span class="price">Free</span>
+      </div>
+      <ul>
+        <li>Basic directory listing</li>
+        <li>Name, address, and phone number</li>
+        <li>Indexed for regional search</li>
+      </ul>
+    </div>
+
+    <!-- $25 -->
+    <div class="tier">
+      <div class="tier-header">
+        <h3>Verified Route</h3>
+        <span class="price">$25<small>/mo</small></span>
+      </div>
+      <ul>
+        <li>Official Verified Badge</li>
+        <li>Direct website links</li>
+        <li>Extended operating hours</li>
+        <li>Up to 5 storefront photos</li>
+      </ul>
+    </div>
+
+    <!-- $50 -->
+    <div class="tier">
+      <div class="tier-header">
+        <h3>River Room</h3>
+        <span class="price">$50<small>/mo</small></span>
+      </div>
+      <ul>
+        <li>Everything in Verified</li>
+        <li>Priority directory ranking</li>
+        <li>Access to platform analytics</li>
+        <li>Direct messaging & leads</li>
+        <li>Seasonal menu or promotions tab</li>
+      </ul>
+    </div>
+
+    <!-- $99 -->
+    <div class="tier">
+      <div class="tier-header">
+        <h3>Blues Room</h3>
+        <span class="price">$99<small>/mo</small></span>
+      </div>
+      <ul>
+        <li>Everything in River Room</li>
+        <li>Custom editorial Spotlight article</li>
+        <li>Featured placement on homepage</li>
+        <li>Quarterly strategy check-ins</li>
+      </ul>
+    </div>
+
+    <!-- $250 -->
+    <div class="tier tier-full">
+      <div class="content">
+        <div class="tier-header" style="border: none; padding-bottom: 0;">
+          <h3>The Sovereign Package</h3>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--subtext); max-width: 4.5in; margin-bottom: 0.15in; line-height: 1.4;">
+          For the anchors of the regional ecosystem. Dedicated concierge management integrated directly behind your counter.
+        </p>
+        <ul>
+          <li>Everything in the Blues Room</li>
+          <li>Fully managed profile updates</li>
+          <li>Full media kit integration</li>
+          <li>White-glove listing sync protection</li>
+        </ul>
+      </div>
+      <div class="tier-full-price">
+        <span>$250<small style="font-size: 1rem; color: var(--subtext);">/mo</small></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <h3>Claim Your Space on the Map</h3>
+    <div class="qr-placeholder">
+      <div class="qr-box">[ QR CODE ]</div>
+    </div>
+    <p>deepsouthdirectory.com | support@deepsouthdirectory.com</p>
+  </div>
+
+</body>
+</html>
