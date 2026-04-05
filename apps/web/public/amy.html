@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Amy — Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:             #050510;
+      --bg-card:        #0d0d22;
+      --bg-card-hover:  #141430;
+      --border:         rgba(138, 80, 220, 0.2);
+      --border-glow:    rgba(138, 80, 220, 0.5);
+      --purple-deep:    #1a0533;
+      --purple-mid:     #2d0b5e;
+      --purple-light:   #8a50dc;
+      --blue-deep:      #0a0b2e;
+      --blue-mid:       #0d1a5c;
+      --gold:           #c8943e;
+      --gold-bright:    #e8b86d;
+      --gold-dim:       rgba(200,148,62,0.4);
+      --gold-glow:      rgba(200,148,62,0.15);
+      --gold-glow-hard: rgba(200,148,62,0.35);
+      --text:           #e8e2f8;
+      --text-muted:     #7068a0;
+      --text-mid:       #b0a8d8;
+      --font-display:   'Cinzel', Georgia, serif;
+      --font-body:      'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── PARTICLE LAYER ──────────────────────────────────────────────────── */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      opacity: 0;
+      animation: drift linear infinite;
+    }
+
+    @keyframes drift {
+      0%   { opacity: 0;    transform: translateY(0) scale(1); }
+      10%  { opacity: var(--op); }
+      90%  { opacity: var(--op); }
+      100% { opacity: 0;    transform: translateY(-100vh) scale(0.5); }
+    }
+
+    /* Individual particle definitions — varied size, position, timing */
+    .p1  { --op: 0.7; width:2px; height:2px; left:5%;   bottom:0; animation-duration:18s; animation-delay:0s;   }
+    .p2  { --op: 0.5; width:1px; height:1px; left:12%;  bottom:0; animation-duration:24s; animation-delay:3s;   }
+    .p3  { --op: 0.8; width:2px; height:2px; left:20%;  bottom:0; animation-duration:15s; animation-delay:1s;   }
+    .p4  { --op: 0.4; width:1px; height:1px; left:28%;  bottom:0; animation-duration:30s; animation-delay:7s;   }
+    .p5  { --op: 0.9; width:3px; height:3px; left:35%;  bottom:0; animation-duration:20s; animation-delay:2s;   background: var(--gold); }
+    .p6  { --op: 0.5; width:1px; height:1px; left:42%;  bottom:0; animation-duration:22s; animation-delay:9s;   }
+    .p7  { --op: 0.7; width:2px; height:2px; left:50%;  bottom:0; animation-duration:17s; animation-delay:4s;   }
+    .p8  { --op: 0.6; width:1px; height:1px; left:58%;  bottom:0; animation-duration:28s; animation-delay:11s;  }
+    .p9  { --op: 0.8; width:2px; height:2px; left:65%;  bottom:0; animation-duration:19s; animation-delay:6s;   background: var(--purple-light); }
+    .p10 { --op: 0.4; width:1px; height:1px; left:73%;  bottom:0; animation-duration:33s; animation-delay:14s;  }
+    .p11 { --op: 0.7; width:2px; height:2px; left:80%;  bottom:0; animation-duration:21s; animation-delay:5s;   }
+    .p12 { --op: 0.5; width:1px; height:1px; left:88%;  bottom:0; animation-duration:26s; animation-delay:8s;   }
+    .p13 { --op: 0.9; width:3px; height:3px; left:95%;  bottom:0; animation-duration:16s; animation-delay:1.5s; background: var(--gold); }
+    .p14 { --op: 0.6; width:2px; height:2px; left:8%;   bottom:0; animation-duration:23s; animation-delay:12s;  }
+    .p15 { --op: 0.5; width:1px; height:1px; left:16%;  bottom:0; animation-duration:29s; animation-delay:16s;  }
+    .p16 { --op: 0.8; width:2px; height:2px; left:24%;  bottom:0; animation-duration:18s; animation-delay:0.5s; }
+    .p17 { --op: 0.4; width:1px; height:1px; left:33%;  bottom:0; animation-duration:35s; animation-delay:19s;  }
+    .p18 { --op: 0.7; width:2px; height:2px; left:45%;  bottom:0; animation-duration:14s; animation-delay:3.5s; background: var(--purple-light); }
+    .p19 { --op: 0.6; width:1px; height:1px; left:55%;  bottom:0; animation-duration:25s; animation-delay:10s;  }
+    .p20 { --op: 0.8; width:2px; height:2px; left:62%;  bottom:0; animation-duration:20s; animation-delay:7.5s; }
+    .p21 { --op: 0.5; width:1px; height:1px; left:70%;  bottom:0; animation-duration:31s; animation-delay:22s;  }
+    .p22 { --op: 0.9; width:3px; height:3px; left:77%;  bottom:0; animation-duration:17s; animation-delay:2.5s; background: var(--gold); }
+    .p23 { --op: 0.4; width:1px; height:1px; left:85%;  bottom:0; animation-duration:36s; animation-delay:13s;  }
+    .p24 { --op: 0.7; width:2px; height:2px; left:92%;  bottom:0; animation-duration:22s; animation-delay:6.5s; }
+    .p25 { --op: 0.6; width:1px; height:1px; left:3%;   bottom:0; animation-duration:27s; animation-delay:17s;  }
+
+    /* ─── HERO ────────────────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--purple-deep) 0%, var(--blue-deep) 35%, #050510 55%, var(--purple-deep) 80%, var(--blue-deep) 100%);
+      background-size: 400% 400%;
+      animation: cosmicShift 20s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes cosmicShift {
+      0%   { background-position: 0% 0%; }
+      25%  { background-position: 100% 0%; }
+      50%  { background-position: 100% 100%; }
+      75%  { background-position: 0% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    .hero-nebula {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .nebula-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: pulse 8s ease-in-out infinite alternate;
+    }
+
+    .nebula-orb-1 {
+      width: 500px;
+      height: 500px;
+      top: -100px;
+      left: -100px;
+      background: radial-gradient(circle, rgba(138,80,220,0.25) 0%, transparent 70%);
+      animation-delay: 0s;
+    }
+
+    .nebula-orb-2 {
+      width: 400px;
+      height: 400px;
+      bottom: -80px;
+      right: -80px;
+      background: radial-gradient(circle, rgba(13,26,92,0.4) 0%, transparent 70%);
+      animation-delay: 3s;
+    }
+
+    .nebula-orb-3 {
+      width: 300px;
+      height: 300px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(200,148,62,0.08) 0%, transparent 70%);
+      animation-delay: 5s;
+    }
+
+    @keyframes pulse {
+      0%   { opacity: 0.6; transform: scale(1); }
+      100% { opacity: 1;   transform: scale(1.15); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 5px;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(96px, 20vw, 200px);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 0.9;
+      letter-spacing: -2px;
+      margin-bottom: 40px;
+      text-shadow:
+        0 0 60px rgba(200,148,62,0.5),
+        0 0 120px rgba(200,148,62,0.2),
+        0 0 200px rgba(200,148,62,0.1);
+      animation: goldGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes goldGlow {
+      0%   { text-shadow: 0 0 60px rgba(200,148,62,0.4), 0 0 120px rgba(200,148,62,0.15); }
+      100% { text-shadow: 0 0 80px rgba(200,148,62,0.7), 0 0 160px rgba(200,148,62,0.3), 0 0 240px rgba(200,148,62,0.12); }
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(16px, 3vw, 26px);
+      font-weight: 400;
+      color: var(--text-mid);
+      max-width: 600px;
+      margin: 0 auto 56px;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.4;
+      animation: fadeScroll 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes fadeScroll {
+      0%   { opacity: 0.2; transform: translateX(-50%) translateY(0); }
+      100% { opacity: 0.6; transform: translateX(-50%) translateY(8px); }
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, var(--gold));
+    }
+
+    .scroll-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    /* ─── SECTION WRAPPER ─────────────────────────────────────────────────── */
+    .section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 24px;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 5px;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 56px;
+      line-height: 1.15;
+    }
+
+    .section-title span {
+      color: var(--gold);
+    }
+
+    /* ─── BRAND CARDS ─────────────────────────────────────────────────────── */
+    .brand-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .brand-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .brand-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(138,80,220,0.1) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .brand-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-glow);
+      box-shadow:
+        0 0 30px rgba(138,80,220,0.25),
+        0 0 60px rgba(138,80,220,0.1),
+        0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .brand-card:hover::before {
+      opacity: 1;
+    }
+
+    .brand-card-image {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.75) saturate(0.9);
+      transition: filter 0.3s ease;
+    }
+
+    .brand-card:hover .brand-card-image {
+      filter: brightness(0.9) saturate(1.1);
+    }
+
+    .brand-card-image-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: linear-gradient(135deg, var(--purple-deep), var(--blue-mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-card-body {
+      padding: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .brand-card-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-card-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .brand-card-link {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-card-link::after {
+      content: '→';
+      transition: transform 0.2s ease;
+    }
+
+    .brand-card:hover .brand-card-link::after {
+      transform: translateX(4px);
+    }
+
+    /* ─── THE BAR ─────────────────────────────────────────────────────────── */
+    .bar-section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .bar-cinematic {
+      position: relative;
+      width: 100%;
+      height: clamp(340px, 55vw, 620px);
+      overflow: hidden;
+    }
+
+    .bar-cinematic-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.45) saturate(0.8);
+    }
+
+    .bar-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(5,5,16,0.3) 40%,
+        rgba(5,5,16,0.7) 80%,
+        var(--bg) 100%
+      );
+    }
+
+    .bar-overlay-top {
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 30%;
+      background: linear-gradient(to bottom, var(--bg), transparent);
+    }
+
+    .bar-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px 32px;
+      z-index: 2;
+    }
+
+    .bar-headline {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 4vw, 42px);
+      font-weight: 600;
+      color: var(--text);
+      max-width: 720px;
+      line-height: 1.3;
+      margin-bottom: 24px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+    }
+
+    .bar-subline {
+      font-size: clamp(13px, 1.8vw, 17px);
+      color: var(--text-mid);
+      max-width: 520px;
+      line-height: 1.65;
+      text-shadow: 0 1px 10px rgba(0,0,0,0.8);
+      font-style: italic;
+    }
+
+    /* ─── FLYWHEEL ────────────────────────────────────────────────────────── */
+    .flywheel-section {
+      background: linear-gradient(180deg, var(--bg) 0%, rgba(26,5,51,0.15) 50%, var(--bg) 100%);
+    }
+
+    .flywheel-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .flywheel-visual {
+      position: relative;
+      width: min(480px, 90vw);
+      height: min(480px, 90vw);
+    }
+
+    .flywheel-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(138,80,220,0.15);
+      animation: slowRotate 60s linear infinite;
+    }
+
+    .flywheel-ring-2 {
+      inset: 20px;
+      border-color: rgba(200,148,62,0.1);
+      animation: slowRotateReverse 80s linear infinite;
+    }
+
+    @keyframes slowRotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    @keyframes slowRotateReverse {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(-360deg); }
+    }
+
+    .flywheel-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flywheel-center-text {
+      text-align: center;
+    }
+
+    .flywheel-center-main {
+      font-family: var(--font-display);
+      font-size: 15px;
+      color: var(--gold);
+      display: block;
+      letter-spacing: 1px;
+    }
+
+    .flywheel-center-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 4px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .flywheel-nodes {
+      position: absolute;
+      inset: 0;
+    }
+
+    .flywheel-node {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flywheel-node-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--purple-light);
+      box-shadow: 0 0 12px rgba(138,80,220,0.8), 0 0 24px rgba(138,80,220,0.4);
+      animation: nodePulse 3s ease-in-out infinite alternate;
+    }
+
+    .flywheel-node:nth-child(2n) .flywheel-node-dot {
+      background: var(--gold);
+      box-shadow: 0 0 12px rgba(200,148,62,0.8), 0 0 24px rgba(200,148,62,0.4);
+      animation-delay: 1.5s;
+    }
+
+    @keyframes nodePulse {
+      0%   { transform: scale(1);    opacity: 0.7; }
+      100% { transform: scale(1.4);  opacity: 1; }
+    }
+
+    .flywheel-node-label {
+      position: absolute;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      white-space: nowrap;
+    }
+
+    /* Position each node around the circle */
+    /* Circle radius ~180px from center of 480px container (center = 240px) */
+    /* 8 nodes at 45deg intervals starting from top */
+    .fn-show      { top:  14px;  left: 50%; transform: translateX(-50%); }
+    .fn-record    { top:  60px;  right: 30px; }
+    .fn-radio     { top: 50%;   right: 10px; transform: translateY(-50%); }
+    .fn-magazine  { bottom: 60px; right: 30px; }
+    .fn-social    { bottom: 14px; left: 50%; transform: translateX(-50%); }
+    .fn-directory { bottom: 60px; left: 30px; }
+    .fn-inn       { top: 50%;   left: 10px; transform: translateY(-50%); }
+    .fn-touring   { top:  60px;  left: 30px; }
+
+    .fn-show      .flywheel-node-label { bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); }
+    .fn-record    .flywheel-node-label { left: calc(100% + 8px); top: 50%; transform: translateY(-50%); }
+    .fn-radio     .flywheel-node-label { left: calc(100% + 8px); top: 50%; transform: translateY(-50%); }
+    .fn-magazine  .flywheel-node-label { left: calc(100% + 8px); top: 50%; transform: translateY(-50%); }
+    .fn-social    .flywheel-node-label { top: calc(100% + 6px);  left: 50%; transform: translateX(-50%); }
+    .fn-directory .flywheel-node-label { right: calc(100% + 8px); top: 50%; transform: translateY(-50%); text-align: right; }
+    .fn-inn       .flywheel-node-label { right: calc(100% + 8px); top: 50%; transform: translateY(-50%); text-align: right; }
+    .fn-touring   .flywheel-node-label { right: calc(100% + 8px); top: 50%; transform: translateY(-50%); text-align: right; }
+
+    .flywheel-copy {
+      text-align: center;
+      max-width: 520px;
+    }
+
+    .flywheel-copy-main {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 3.5vw, 30px);
+      color: var(--text);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .flywheel-copy-main span {
+      color: var(--gold);
+    }
+
+    .flywheel-copy-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ─── ACTION CARDS ────────────────────────────────────────────────────── */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .action-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 28px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .action-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top left, rgba(138,80,220,0.12) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .action-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-glow);
+      background: var(--bg-card-hover);
+      box-shadow: 0 0 40px rgba(138,80,220,0.2), 0 16px 32px rgba(0,0,0,0.3);
+    }
+
+    .action-card:hover::after {
+      opacity: 1;
+    }
+
+    .action-card-number {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 900;
+      color: rgba(138,80,220,0.2);
+      line-height: 1;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .action-card-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .action-card-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      position: relative;
+      z-index: 1;
+    }
+
+    .action-card-arrow {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+      transition: letter-spacing 0.2s ease;
+    }
+
+    .action-card:hover .action-card-arrow {
+      letter-spacing: 4px;
+    }
+
+    /* ─── APPROVAL SECTION ────────────────────────────────────────────────── */
+    .approval-section {
+      background: linear-gradient(135deg, rgba(26,5,51,0.3) 0%, rgba(10,11,46,0.3) 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .approval-statement {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 3vw, 28px);
+      color: var(--text);
+      margin-bottom: 44px;
+      line-height: 1.4;
+      font-style: italic;
+    }
+
+    .approval-statement span {
+      color: var(--gold);
+    }
+
+    .approval-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 44px;
+    }
+
+    .approval-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .approval-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 8px rgba(200,148,62,0.6);
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    .approval-item-text {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    .approval-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: transparent;
+      border: 1px solid var(--gold-dim);
+      border-radius: 6px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .approval-cta:hover {
+      background: var(--gold-glow);
+      border-color: var(--gold);
+      box-shadow: 0 0 20px var(--gold-glow-hard);
+    }
+
+    /* ─── DELTA DAWN ──────────────────────────────────────────────────────── */
+    .delta-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 52px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .delta-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(138,80,220,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .delta-pulse-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .delta-pulse {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 0 rgba(200,148,62,0.6);
+      animation: sonarPulse 2.5s ease-out infinite;
+    }
+
+    @keyframes sonarPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(200,148,62,0.6); }
+      50%  { box-shadow: 0 0 0 14px rgba(200,148,62,0); }
+      100% { box-shadow: 0 0 0 0 rgba(200,148,62,0); }
+    }
+
+    .delta-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+    }
+
+    .delta-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .delta-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .delta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: linear-gradient(135deg, rgba(138,80,220,0.25) 0%, rgba(26,5,51,0.5) 100%);
+      border: 1px solid var(--border-glow);
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 1;
+      transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .delta-btn:hover {
+      background: linear-gradient(135deg, rgba(138,80,220,0.4) 0%, rgba(26,5,51,0.7) 100%);
+      box-shadow: 0 0 30px rgba(138,80,220,0.35), 0 8px 24px rgba(0,0,0,0.3);
+      border-color: rgba(138,80,220,0.7);
+    }
+
+    .delta-btn-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 6px rgba(200,148,62,0.8);
+    }
+
+    /* ─── EXPLORE GRID ────────────────────────────────────────────────────── */
+    .explore-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .explore-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-mid);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+
+    .explore-link:hover {
+      color: var(--gold);
+      border-color: var(--gold-dim);
+      background: var(--bg-card-hover);
+      transform: translateX(4px);
+    }
+
+    .explore-link-arrow {
+      opacity: 0.4;
+      font-size: 12px;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .explore-link:hover .explore-link-arrow {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────────────────────── */
+    .footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .footer-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: var(--gold);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .footer-tagline {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .footer-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+      margin: 0 auto 24px;
+    }
+
+    .footer-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+    }
+
+    /* ─── HORIZONTAL RULE ─────────────────────────────────────────────────── */
+    .cosmic-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent 0%, var(--border-glow) 30%, var(--border-glow) 70%, transparent 100%);
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .section { padding: 72px 20px; }
+
+      .flywheel-visual {
+        width: min(340px, 88vw);
+        height: min(340px, 88vw);
+      }
+
+      .fn-show      { top:  8px; }
+      .fn-social    { bottom: 8px; }
+      .fn-radio     { right: 2px; }
+      .fn-inn       { left: 2px; }
+
+      .delta-card { padding: 36px 24px; }
+
+      .brand-cards { grid-template-columns: 1fr; }
+      .action-grid { grid-template-columns: 1fr; }
+      .explore-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PARTICLE LAYER -->
+  <div class="particles" aria-hidden="true">
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+    <div class="particle p5"></div>
+    <div class="particle p6"></div>
+    <div class="particle p7"></div>
+    <div class="particle p8"></div>
+    <div class="particle p9"></div>
+    <div class="particle p10"></div>
+    <div class="particle p11"></div>
+    <div class="particle p12"></div>
+    <div class="particle p13"></div>
+    <div class="particle p14"></div>
+    <div class="particle p15"></div>
+    <div class="particle p16"></div>
+    <div class="particle p17"></div>
+    <div class="particle p18"></div>
+    <div class="particle p19"></div>
+    <div class="particle p20"></div>
+    <div class="particle p21"></div>
+    <div class="particle p22"></div>
+    <div class="particle p23"></div>
+    <div class="particle p24"></div>
+    <div class="particle p25"></div>
+  </div>
+
+  <!-- ─── SECTION 1: HERO ──────────────────────────────────────────────── -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-bg"></div>
+    <div class="hero-nebula" aria-hidden="true">
+      <div class="nebula-orb nebula-orb-1"></div>
+      <div class="nebula-orb nebula-orb-2"></div>
+      <div class="nebula-orb nebula-orb-3"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Equity Partner · Music Director · Bar Manager</p>
+      <h1 class="hero-name">Amy.</h1>
+      <p class="hero-subtitle">You built the music. Now watch it become everything.</p>
+    </div>
+    <div class="hero-scroll-indicator" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <div class="scroll-dot"></div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 2: THE BRANDS YOU STARTED ───────────────────────────── -->
+  <section class="section" aria-label="The brands you started">
+    <div class="section-inner">
+      <p class="section-label">The music you made</p>
+      <h2 class="section-title">The Brands <span>You Started</span></h2>
+
+      <div class="brand-cards">
+
+        <a class="brand-card" href="https://bigmuddytouring.com" target="_blank" rel="noopener" aria-label="Big Muddy Touring">
+          <img
+            class="brand-card-image"
+            src="/images/processed/bearsville/theater-show-04.webp"
+            alt="Live show at the theater"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+          <div class="brand-card-image-placeholder" style="display:none; background: linear-gradient(135deg,#1a0533,#0a0b2e);"></div>
+          <div class="brand-card-body">
+            <div class="brand-card-name">Big Muddy Touring</div>
+            <p class="brand-card-desc">You book the bands. You drive them there. You put them on the radio.</p>
+            <span class="brand-card-link">bigmuddytouring.com</span>
+          </div>
+        </a>
+
+        <a class="brand-card" href="https://bigmuddyradio.com" target="_blank" rel="noopener" aria-label="Big Muddy Radio">
+          <img
+            class="brand-card-image"
+            src="/images/dsd/brand-radio.webp"
+            alt="Big Muddy Radio"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+          <div class="brand-card-image-placeholder" style="display:none; background: linear-gradient(135deg,#0d1a5c,#1a0533);"></div>
+          <div class="brand-card-body">
+            <div class="brand-card-name">Big Muddy Radio</div>
+            <p class="brand-card-desc">A Mac Mini in the back room. The voice of the region.</p>
+            <span class="brand-card-link">bigmuddyradio.com</span>
+          </div>
+        </a>
+
+        <a class="brand-card" href="https://bigmuddyentertainment.com" target="_blank" rel="noopener" aria-label="Big Muddy Entertainment">
+          <img
+            class="brand-card-image"
+            src="/images/corridor/guitarist-chandelier-venue.webp"
+            alt="Guitarist performing at venue"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+          <div class="brand-card-image-placeholder" style="display:none; background: linear-gradient(135deg,#1a0533,#050510);"></div>
+          <div class="brand-card-body">
+            <div class="brand-card-name">Big Muddy Entertainment</div>
+            <p class="brand-card-desc">The stage. The talent. The magical musical moments.</p>
+            <span class="brand-card-link">bigmuddyentertainment.com</span>
+          </div>
+        </a>
+
+        <a class="brand-card" href="https://bigmuddyrecordlabel.com" target="_blank" rel="noopener" aria-label="Big Muddy Records">
+          <img
+            class="brand-card-image"
+            src="/images/records/anthologist-turntable.webp"
+            alt="Turntable and vinyl records"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+          <div class="brand-card-image-placeholder" style="display:none; background: linear-gradient(135deg,#0a0b2e,#1a0533);"></div>
+          <div class="brand-card-body">
+            <div class="brand-card-name">Big Muddy Records</div>
+            <p class="brand-card-desc">Non-exclusive. Artists keep their masters. $3K per release.</p>
+            <span class="brand-card-link">bigmuddyrecordlabel.com</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="cosmic-divider" aria-hidden="true"></div>
+
+  <!-- ─── SECTION 3: THE BAR ────────────────────────────────────────────── -->
+  <section class="bar-section" aria-label="The bar">
+    <div class="bar-cinematic">
+      <img
+        class="bar-cinematic-img"
+        src="/images/corridor/bar-interior-floral.webp"
+        alt="Bar interior with floral decor"
+        loading="lazy"
+        onerror="this.style.background='linear-gradient(135deg,#1a0533,#0a0b2e)'; this.style.display='block'; this.remove();"
+      >
+      <div class="bar-overlay-top" aria-hidden="true"></div>
+      <div class="bar-overlay" aria-hidden="true"></div>
+      <div class="bar-text">
+        <h2 class="bar-headline">"Six rooms. One bar. Zero algorithms deciding what you hear tonight."</h2>
+        <p class="bar-subline">The band picks the setlist. You pour the bourbon. That's the whole app.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cosmic-divider" aria-hidden="true"></div>
+
+  <!-- ─── SECTION 4: THE FLYWHEEL ──────────────────────────────────────── -->
+  <section class="section flywheel-section" aria-label="The flywheel you power">
+    <div class="section-inner">
+      <p class="section-label">The engine</p>
+      <h2 class="section-title">The Flywheel <span>You Power</span></h2>
+
+      <div class="flywheel-container">
+        <div class="flywheel-visual" role="img" aria-label="The flywheel: Show feeds Record feeds Radio feeds Magazine feeds Social feeds Directory feeds Inn feeds back to Show">
+
+          <div class="flywheel-ring" aria-hidden="true"></div>
+          <div class="flywheel-ring flywheel-ring-2" aria-hidden="true"></div>
+
+          <div class="flywheel-nodes" aria-hidden="true">
+            <div class="flywheel-node fn-show">
+              <div class="flywheel-node-dot"></div>
+              <span class="flywheel-node-label">Show</span>
+            </div>
+            <div class="flywheel-node fn-record">
+              <div class="flywheel-node-dot"></div>
+              <span class="flywheel-node-label">Record</span>
+            </div>
+            <div class="flywheel-node fn-radio">
+              <div class="flywheel-node-dot"></div>
+              <span class="flywheel-node-label">Radio</span>
+            </div>
+            <div class="flywheel-node fn-magazine">
+              <div class="flywheel-node-dot"></div>
+              <span class="flywheel-node-label">Magazine</span>
+            </div>
+            <div class="flywheel-node fn-social">
+              <div class="flywheel-node-dot"></div>
+              <span class="flywheel-node-label">Social</span>
+            </div>
+            <div class="flywheel-node fn-directory">
+              <div class="flywheel-node-dot"></div>
+              <span class="flywheel-node-label">Directory</span>
+            </div>
+            <div class="flywheel-node fn-inn">
+              <div class="flywheel-node-dot"></div>
+              <span class="flywheel-node-label">Inn</span>
+            </div>
+            <div class="flywheel-node fn-touring">
+              <div class="flywheel-node-dot"></div>
+              <span class="flywheel-node-label">Touring</span>
+            </div>
+          </div>
+
+          <div class="flywheel-center" aria-hidden="true">
+            <div class="flywheel-center-text">
+              <span class="flywheel-center-main">2:1</span>
+              <span class="flywheel-center-sub">multiplier</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="flywheel-copy">
+          <p class="flywheel-copy-main">Every show has a <span>2:1 multiplier.</span><br>You are the engine.</p>
+          <p class="flywheel-copy-sub">A band on Saturday fills rooms Sunday. The radio plays the recording Monday. The magazine writes the story Tuesday. The directory lists them Wednesday. The cycle continues.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cosmic-divider" aria-hidden="true"></div>
+
+  <!-- ─── SECTION 5: WHAT YOU NEED TO DO ───────────────────────────────── -->
+  <section class="section" aria-label="What you need to do">
+    <div class="section-inner">
+      <p class="section-label">Right now</p>
+      <h2 class="section-title">What You <span>Need To Do</span></h2>
+
+      <div class="action-grid">
+
+        <a class="action-card" href="https://deepsouthdirectory.com/sandbox/inn-marketing-kit.html" target="_blank" rel="noopener" aria-label="Post to Social">
+          <div class="action-card-number">01</div>
+          <div class="action-card-title">Post to Social</div>
+          <p class="action-card-desc">10 Instagram captions ready. Pick one. Post it. First one wins.</p>
+          <span class="action-card-arrow">Open the kit →</span>
+        </a>
+
+        <a class="action-card" href="https://deepsouthdirectory.com/admin/social" target="_blank" rel="noopener" aria-label="Connect Facebook">
+          <div class="action-card-number">02</div>
+          <div class="action-card-title">Connect Facebook</div>
+          <p class="action-card-desc">One click. Log in. Select the Inn page. Done.</p>
+          <span class="action-card-arrow">Connect now →</span>
+        </a>
+
+        <a class="action-card" href="https://bigmuddymagazine.com" target="_blank" rel="noopener" aria-label="Read The Cook's Name">
+          <div class="action-card-number">03</div>
+          <div class="action-card-title">Read The Cook's Name</div>
+          <p class="action-card-desc">The philosophy essay. Start here.</p>
+          <span class="action-card-arrow">Read it →</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="cosmic-divider" aria-hidden="true"></div>
+
+  <!-- ─── SECTION 6: YOUR APPROVAL QUEUE ──────────────────────────────── -->
+  <section class="section approval-section" aria-label="Your approval queue">
+    <div class="section-inner">
+      <p class="section-label">Your gate</p>
+      <p class="approval-statement">"Nothing goes out without you. <span>You and Tracy approve everything.</span>"</p>
+
+      <ul class="approval-list">
+        <li class="approval-item">
+          <div class="approval-dot" aria-hidden="true"></div>
+          <span class="approval-item-text">Social posts — you approve</span>
+        </li>
+        <li class="approval-item">
+          <div class="approval-dot" aria-hidden="true"></div>
+          <span class="approval-item-text">Show announcements — you approve</span>
+        </li>
+        <li class="approval-item">
+          <div class="approval-dot" aria-hidden="true"></div>
+          <span class="approval-item-text">Hospitality content — you approve</span>
+        </li>
+        <li class="approval-item">
+          <div class="approval-dot" aria-hidden="true"></div>
+          <span class="approval-item-text">Anything a guest sees — you approve</span>
+        </li>
+      </ul>
+
+      <a class="approval-cta" href="https://app.asana.com" target="_blank" rel="noopener" aria-label="Open Asana approval queue">
+        Open Asana
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="cosmic-divider" aria-hidden="true"></div>
+
+  <!-- ─── SECTION 7: TALK TO DELTA DAWN ───────────────────────────────── -->
+  <section class="section" aria-label="Talk to Delta Dawn">
+    <div class="section-inner">
+      <p class="section-label">Your AI concierge</p>
+
+      <div class="delta-card">
+        <div class="delta-pulse-wrapper">
+          <div class="delta-pulse" aria-hidden="true"></div>
+          <span class="delta-label">Delta Dawn is online</span>
+        </div>
+        <h2 class="delta-title">Talk to Delta Dawn</h2>
+        <p class="delta-desc">She knows the shows, the revenue, the reviews, and where the bourbon is.</p>
+        <a class="delta-btn" href="https://delta-dawn-871897240645.us-west1.run.app" target="_blank" rel="noopener" aria-label="Talk to Delta Dawn">
+          <div class="delta-btn-dot" aria-hidden="true"></div>
+          Ask Delta Dawn
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="cosmic-divider" aria-hidden="true"></div>
+
+  <!-- ─── SECTION 8: EXPLORE EVERYTHING ───────────────────────────────── -->
+  <section class="section" aria-label="Explore everything">
+    <div class="section-inner">
+      <p class="section-label">The full constellation</p>
+      <h2 class="section-title"><span>Explore</span> Everything</h2>
+
+      <div class="explore-grid">
+        <a class="explore-link" href="/explorer" aria-label="The Constellation">
+          <span>The Constellation</span>
+          <span class="explore-link-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="explore-link" href="/inn/tv" aria-label="Inn TV">
+          <span>Inn TV</span>
+          <span class="explore-link-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="explore-link" href="https://bigmuddymagazine.com" target="_blank" rel="noopener" aria-label="The Magazine">
+          <span>The Magazine</span>
+          <span class="explore-link-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="explore-link" href="/press/index.html" aria-label="Morning News">
+          <span>Morning News</span>
+          <span class="explore-link-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="explore-link" href="/sandbox/inn-print-ad.html" aria-label="Print Ad">
+          <span>Print Ad</span>
+          <span class="explore-link-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-name">Amy Allen</div>
+    <p class="footer-tagline">The woman who built the music.</p>
+    <div class="footer-divider" aria-hidden="true"></div>
+    <p class="footer-meta">Equity Partner · Music Director · Bar Manager<br>Hillbilly Dreams Inc · Natchez, Mississippi</p>
+  </footer>
+
+</body>
+</html>
