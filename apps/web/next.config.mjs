@@ -43,7 +43,7 @@ const nextConfig = {
   },
 
   // Transpile shared packages
-  transpilePackages: ['@bigmuddy/ui', '@bigmuddy/config'],
+  transpilePackages: ['@bigmuddy/ui', '@bigmuddy/config', 'maplibre-gl'],
 
   // Allow larger page payloads for rich article content
   // Increase timeout for large static pages (weddings = 1161 lines)

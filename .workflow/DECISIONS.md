@@ -39,6 +39,13 @@
 
 ---
 
+## 2026-04-05 — `maplibre-gl` (DSD directory map)
+
+- **Added** `maplibre-gl` to **`@bigmuddy/web`** for `/directory/map` (#51).
+- **Why not Mapbox GL JS:** same API family; **Carto basemap** works **without a Mapbox access token** (fewer secrets for LAN/dev). Swap to Mapbox-hosted tiles later if product requires it.
+
+---
+
 ## Dependabot / supply chain
 
 - Triage **critical/high** in **small PRs** with green CI.
