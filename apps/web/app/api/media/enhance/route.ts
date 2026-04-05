@@ -8,6 +8,7 @@ export const dynamic = 'force-dynamic';
 //   album (optional) — target album in GCS (default: 'enhanced')
 
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 import { enhancePhoto, type EnhancePreset, ENHANCE_PRESETS } from '@/lib/enhance';
 import { editImage } from '@/lib/imagen';
 import { uploadToGCS } from '@/lib/gcs';
@@ -17,6 +18,9 @@ const VALID_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/avif'];
 
 export async function POST(request: Request) {
   try {
+    const authError = await requireAdmin();
+    if (authError) return authError;
+
     const formData = await request.formData();
     const file = formData.get('file') as File | null;
     const preset = (formData.get('preset') as EnhancePreset) ?? 'auto';

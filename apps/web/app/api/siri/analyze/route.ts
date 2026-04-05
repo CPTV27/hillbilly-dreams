@@ -1,5 +1,6 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 import { callAI } from '@/lib/ai-models';
 
 const MODEL = 'gemini-3.1-pro';
@@ -24,8 +25,10 @@ const toolsConfig = [
 export async function POST(req: Request) {
   try {
     const authHeader = req.headers.get('authorization');
-    if (authHeader !== `Bearer ${process.env.SIRI_API_KEY || 'hdx-siri-token-2026'}`) {
-      return NextResponse.json({ error: 'Unauthorized hardware edge request.' }, { status: 401 });
+    const siriBearer = `Bearer ${process.env.SIRI_API_KEY || 'hdx-siri-token-2026'}`;
+    if (authHeader !== siriBearer) {
+      const authError = await requireAdmin();
+      if (authError) return authError;
     }
 
     const { prompt } = await req.json();

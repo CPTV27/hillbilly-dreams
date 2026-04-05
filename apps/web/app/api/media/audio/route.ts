@@ -4,6 +4,7 @@ export const dynamic = 'force-dynamic';
 
 
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 import { GoogleAuth } from 'google-auth-library';
 import { uploadToGCS } from '@/lib/gcs';
 
@@ -31,6 +32,9 @@ const VOICE_PRESETS: Record<string, { languageCode: string; name: string; ssmlGe
 
 export async function POST(req: NextRequest) {
   try {
+    const authError = await requireAdmin();
+    if (authError) return authError;
+
     const body = await req.json();
     const {
       text,

@@ -5,6 +5,7 @@ export const dynamic = 'force-dynamic';
 // Part of the content pipeline: Audio → Text → Gemini → Social Posts → Asana queue
 
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 import { transcribe, estimateCost, type TranscriptionModel } from '@/lib/whisper';
 import { notify } from '@/lib/notify';
 
@@ -23,6 +24,9 @@ const ALLOWED_TYPES = new Set([
 ]);
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   if (!process.env.OPENAI_API_KEY) {
     return NextResponse.json(
       { error: 'OPENAI_API_KEY not configured' },

@@ -16,6 +16,7 @@ export const dynamic = 'force-dynamic';
 // Future: swap to Gemini Live for native audio-to-audio when SDK stabilizes.
 
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 import { callAI } from '@/lib/ai-models';
 import { VOICE_TOOLS_CONFIG, executeVoiceTool } from '../tools';
 
@@ -37,6 +38,9 @@ Rules:
 
 export async function POST(req: NextRequest) {
   try {
+    const authError = await requireAdmin();
+    if (authError) return authError;
+
     const contentType = req.headers.get('content-type') || '';
 
     let userPrompt: string;

@@ -5,6 +5,7 @@ export const dynamic = 'force-dynamic';
 // brand_class metadata ensures revenue attribution across BMT / Storefront.
 
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 import {
   stripe,
   calculateApplicationFee,
@@ -12,6 +13,9 @@ import {
 } from '@/lib/stripe';
 
 export async function POST(request: NextRequest) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   if (!process.env.STRIPE_SECRET_KEY) {
     return NextResponse.json(
       { error: 'STRIPE_SECRET_KEY not configured' },

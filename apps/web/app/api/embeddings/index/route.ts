@@ -5,9 +5,13 @@ export const dynamic = 'force-dynamic';
 // Admin only.
 
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 import { embedDirectoryBusiness, embedArticle, reindexAll } from '@/lib/embedding-pipeline';
 
 export async function POST(request: NextRequest) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   try {
     const body = await request.json();
 

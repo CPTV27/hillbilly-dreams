@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic';
 // Returns a GCS URL to the generated video
 
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 import { GoogleAuth } from 'google-auth-library';
 
 const PROJECT_ID = process.env.GCP_PROJECT_ID || 'bigmuddy-ff651';
@@ -19,6 +20,9 @@ function getAuth() {
 
 export async function POST(req: NextRequest) {
   try {
+    const authError = await requireAdmin();
+    if (authError) return authError;
+
     const body = await req.json();
     const {
       prompt,

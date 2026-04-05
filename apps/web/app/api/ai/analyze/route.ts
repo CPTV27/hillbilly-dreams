@@ -1,11 +1,15 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 import { callAI } from '@/lib/ai-models';
 
 const MODEL = 'gemini-3.1-pro'; // Reasoning tasks use Pro
 const LOCATION = process.env.VERTEX_LOCATION || 'us-east4';
 
 export async function POST(req: Request) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   try {
     const { contents, context } = await req.json();
 

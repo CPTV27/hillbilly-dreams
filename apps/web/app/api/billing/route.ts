@@ -4,6 +4,7 @@ export const dynamic = 'force-dynamic';
 // POST /api/billing — create invoice manually or sync from Stripe
 
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 import { prisma } from '@/lib/db';
 
 export async function GET(request: NextRequest) {
@@ -39,6 +40,9 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();

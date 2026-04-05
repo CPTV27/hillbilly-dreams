@@ -1,9 +1,13 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
+import { requireAdmin } from '@/lib/admin-auth';
 import { callAI } from '@/lib/ai-models';
 
 export async function POST(req: Request) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   try {
     const { messages, contextDropIds = [] } = await req.json();
 
