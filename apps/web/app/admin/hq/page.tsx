@@ -142,9 +142,59 @@ function formatMoney(n: number): string {
   return `$${n}`;
 }
 
+// ── Revenue Forecast Scenarios ──
+const SCENARIOS = [
+  { name: 'Conservative', newClientsPerMonth: 5, avgRevPerClient: 75, churnRate: 5, piAttachRate: 20, displayAttachRate: 10 },
+  { name: 'Base', newClientsPerMonth: 10, avgRevPerClient: 85, churnRate: 3, piAttachRate: 30, displayAttachRate: 15 },
+  { name: 'Aggressive', newClientsPerMonth: 20, avgRevPerClient: 99, churnRate: 2, piAttachRate: 40, displayAttachRate: 25 },
+];
+
+function forecastRevenue(scenario: typeof SCENARIOS[0], months: number = 12) {
+  const results = [];
+  let totalClients = 0;
+  let cumulativeRevenue = 0;
+  let mrr = 0;
+
+  for (let m = 1; m <= months; m++) {
+    // New clients this month
+    const newClients = scenario.newClientsPerMonth;
+    // Churn
+    const churned = Math.floor(totalClients * (scenario.churnRate / 100));
+    totalClients = totalClients + newClients - churned;
+
+    // MRR from subscriptions
+    mrr = totalClients * scenario.avgRevPerClient;
+
+    // Hardware revenue (one-time from new clients)
+    const piRevenue = newClients * (scenario.piAttachRate / 100) * 299;
+    const displayRevenue = newClients * (scenario.displayAttachRate / 100) * 99;
+
+    const monthlyTotal = mrr + piRevenue + displayRevenue;
+    cumulativeRevenue += monthlyTotal;
+
+    results.push({
+      month: m,
+      label: new Date(2026, 3 + m, 1).toLocaleDateString('en-US', { month: 'short', year: '2-digit' }),
+      totalClients,
+      mrr,
+      piRevenue,
+      displayRevenue,
+      monthlyTotal,
+      cumulativeRevenue,
+      arr: mrr * 12,
+    });
+  }
+  return results;
+}
+
 export default function HQDashboard() {
   const [openIssues, setOpenIssues] = useState(0);
   const [closedIssues, setClosedIssues] = useState(0);
+  const [scenarioIndex, setScenarioIndex] = useState(1); // Base scenario
+  const [customNew, setCustomNew] = useState(10);
+  const [customArpu, setCustomArpu] = useState(85);
+  const [customChurn, setCustomChurn] = useState(3);
+  const [useCustom, setUseCustom] = useState(false);
 
   useEffect(() => {
     // Fetch GitHub issue counts via our API
@@ -203,6 +253,125 @@ export default function HQDashboard() {
 
       {/* Brand Valuation Cards */}
       <div style={{ marginBottom: 'var(--space-6)' }}>
+        <h2 style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--text-disabled)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-widest)', marginBottom: 'var(--space-4)' }}>Revenue Forecast</h2>
+        {(() => {
+          const activeScenario = useCustom
+            ? { name: 'Custom', newClientsPerMonth: customNew, avgRevPerClient: customArpu, churnRate: customChurn, piAttachRate: 30, displayAttachRate: 15 }
+            : SCENARIOS[scenarioIndex];
+          const forecast = forecastRevenue(activeScenario);
+          const month12 = forecast[11];
+          const maxMrr = Math.max(...forecast.map(f => f.mrr));
+
+          return (
+            <div className="admin-card" style={{ marginBottom: 'var(--space-6)' }}>
+              {/* Scenario selector */}
+              <div style={{ display: 'flex', gap: 'var(--space-2)', marginBottom: 'var(--space-4)', flexWrap: 'wrap' }}>
+                {SCENARIOS.map((s, i) => (
+                  <button key={s.name} onClick={() => { setScenarioIndex(i); setUseCustom(false); }} style={{
+                    padding: '6px 16px', fontSize: 'var(--text-xs)', fontWeight: 600, borderRadius: 'var(--radius-full)', cursor: 'pointer',
+                    background: !useCustom && scenarioIndex === i ? 'var(--accent)' : 'transparent',
+                    color: !useCustom && scenarioIndex === i ? 'var(--bg)' : 'var(--text-muted)',
+                    border: !useCustom && scenarioIndex === i ? 'none' : '1px solid var(--border)',
+                  }}>{s.name}</button>
+                ))}
+                <button onClick={() => setUseCustom(true)} style={{
+                  padding: '6px 16px', fontSize: 'var(--text-xs)', fontWeight: 600, borderRadius: 'var(--radius-full)', cursor: 'pointer',
+                  background: useCustom ? 'var(--accent)' : 'transparent',
+                  color: useCustom ? 'var(--bg)' : 'var(--text-muted)',
+                  border: useCustom ? 'none' : '1px solid var(--border)',
+                }}>Custom</button>
+              </div>
+
+              {/* Custom sliders */}
+              {useCustom && (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-4)', marginBottom: 'var(--space-4)' }}>
+                  <div>
+                    <label style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', display: 'block', marginBottom: 'var(--space-1)' }}>New clients/mo: {customNew}</label>
+                    <input type="range" min="1" max="50" value={customNew} onChange={e => setCustomNew(parseInt(e.target.value))} style={{ width: '100%', accentColor: '#c8943e' }} />
+                  </div>
+                  <div>
+                    <label style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', display: 'block', marginBottom: 'var(--space-1)' }}>Avg revenue/client: ${customArpu}</label>
+                    <input type="range" min="25" max="250" step="5" value={customArpu} onChange={e => setCustomArpu(parseInt(e.target.value))} style={{ width: '100%', accentColor: '#c8943e' }} />
+                  </div>
+                  <div>
+                    <label style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', display: 'block', marginBottom: 'var(--space-1)' }}>Monthly churn: {customChurn}%</label>
+                    <input type="range" min="0" max="15" value={customChurn} onChange={e => setCustomChurn(parseInt(e.target.value))} style={{ width: '100%', accentColor: '#c8943e' }} />
+                  </div>
+                </div>
+              )}
+
+              {/* Key metrics */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 'var(--space-3)', marginBottom: 'var(--space-4)' }}>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: 'var(--text-2xl)', fontWeight: 700, color: 'var(--accent)' }}>{month12.totalClients}</div>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)' }}>Clients (Month 12)</div>
+                </div>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: 'var(--text-2xl)', fontWeight: 700, color: 'var(--success)' }}>{formatMoney(month12.mrr)}</div>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)' }}>MRR (Month 12)</div>
+                </div>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: 'var(--text-2xl)', fontWeight: 700, color: 'var(--accent)' }}>{formatMoney(month12.arr)}</div>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)' }}>ARR (Month 12)</div>
+                </div>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: 'var(--text-2xl)', fontWeight: 700, color: 'var(--text)' }}>{formatMoney(month12.cumulativeRevenue)}</div>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)' }}>Cumulative (12mo)</div>
+                </div>
+              </div>
+
+              {/* Bar chart */}
+              <div style={{ display: 'flex', alignItems: 'flex-end', gap: 2, height: 120, marginBottom: 'var(--space-3)' }}>
+                {forecast.map(f => (
+                  <div key={f.month} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+                    <div style={{
+                      width: '100%', background: 'var(--accent)', borderRadius: '2px 2px 0 0',
+                      height: `${(f.mrr / maxMrr) * 100}%`, minHeight: 2,
+                    }} />
+                    <span style={{ fontSize: '9px', color: 'var(--text-disabled)' }}>{f.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Monthly breakdown table */}
+              <details>
+                <summary style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', cursor: 'pointer', marginBottom: 'var(--space-2)' }}>Monthly breakdown</summary>
+                <div style={{ overflowX: 'auto' }}>
+                  <table style={{ width: '100%', fontSize: 'var(--text-xs)', borderCollapse: 'collapse' }}>
+                    <thead>
+                      <tr style={{ borderBottom: '1px solid var(--border)' }}>
+                        <th style={{ textAlign: 'left', padding: '4px 8px', color: 'var(--text-disabled)' }}>Month</th>
+                        <th style={{ textAlign: 'right', padding: '4px 8px', color: 'var(--text-disabled)' }}>Clients</th>
+                        <th style={{ textAlign: 'right', padding: '4px 8px', color: 'var(--text-disabled)' }}>MRR</th>
+                        <th style={{ textAlign: 'right', padding: '4px 8px', color: 'var(--text-disabled)' }}>Pi Rev</th>
+                        <th style={{ textAlign: 'right', padding: '4px 8px', color: 'var(--text-disabled)' }}>Total</th>
+                        <th style={{ textAlign: 'right', padding: '4px 8px', color: 'var(--text-disabled)' }}>Cumulative</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {forecast.map(f => (
+                        <tr key={f.month} style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                          <td style={{ padding: '4px 8px', color: 'var(--text-muted)' }}>{f.label}</td>
+                          <td style={{ padding: '4px 8px', textAlign: 'right', color: 'var(--text)' }}>{f.totalClients}</td>
+                          <td style={{ padding: '4px 8px', textAlign: 'right', color: 'var(--success)' }}>{formatMoney(f.mrr)}</td>
+                          <td style={{ padding: '4px 8px', textAlign: 'right', color: 'var(--text-muted)' }}>{formatMoney(f.piRevenue)}</td>
+                          <td style={{ padding: '4px 8px', textAlign: 'right', fontWeight: 600, color: 'var(--text)' }}>{formatMoney(f.monthlyTotal)}</td>
+                          <td style={{ padding: '4px 8px', textAlign: 'right', color: 'var(--accent)' }}>{formatMoney(f.cumulativeRevenue)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+
+              {/* Assumptions */}
+              <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', marginTop: 'var(--space-3)', lineHeight: 1.5 }}>
+                {activeScenario.name}: {activeScenario.newClientsPerMonth} new clients/mo, ${activeScenario.avgRevPerClient} ARPU, {activeScenario.churnRate}% monthly churn, {activeScenario.piAttachRate}% Pi attach, {activeScenario.displayAttachRate}% display attach. Hardware at $299 (Pi) and $99 (display module).
+              </p>
+            </div>
+          );
+        })()}
+
         <h2 style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--text-disabled)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-widest)', marginBottom: 'var(--space-4)' }}>Brand Valuations</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' }}>
           {BRANDS.filter(b => b.revenue.projected > 0).sort((a, b) => (b.revenue.projected * b.multiple) - (a.revenue.projected * a.multiple)).map(brand => {
