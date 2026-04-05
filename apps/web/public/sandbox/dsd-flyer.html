@@ -51,10 +51,11 @@
   .tier-price span { font-size: 7.5pt; font-weight: 400; color: #8a8074; }
   .tier-desc { font-size: 7pt; color: #6b635a; margin-top: 3pt; line-height: 1.35; }
 
-  .ftr { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 12pt; border-top: 1pt solid #e5e2dc; }
-  .ftr-left { font-size: 9pt; color: #6b635a; line-height: 1.6; }
+  .ftr { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 14pt; padding-top: 12pt; border-top: 1pt solid #e5e2dc; }
+  .ftr-left { font-size: 9pt; color: #6b635a; line-height: 1.6; flex: 1 1 220pt; min-width: 200pt; }
   .ftr-left strong { color: #2a2520; }
   .ftr-left small { font-size: 7.5pt; color: #8a8074; }
+  .ftr-qr-row { display: flex; gap: 14pt; flex-wrap: wrap; justify-content: flex-end; }
   .qr { text-align: center; }
   .qr-box { width: 68pt; height: 68pt; border: 1pt solid #e5e2dc; border-radius: 4pt; display: flex; align-items: center; justify-content: center; font-size: 6.5pt; color: #8a8074; margin-bottom: 3pt; }
   .qr-label { font-size: 7pt; color: #c8943e; font-weight: 600; }
@@ -74,7 +75,7 @@
 
 <div class="hero">
   <h1>Your digital hygiene — <em>handled.</em></h1>
-  <p>Google listing corrected. Reviews monitored. Social posts going out every week. An AI that already knows your business and your town — not a generic chatbot. The one that knows your hours, your menu, and your regulars.</p>
+  <p>Google listing corrected. Reviews monitored. Social posts going out every week. An AI that already knows your business and your town — not a generic chatbot. The one that knows your hours, your menu, and your regulars. <strong>Free computer for your business included</strong> on paid tiers — local AI, works offline, HDMI to your TV. See deepsouthdirectory.com/store/sovereign-pi</p>
 </div>
 
 <div class="stack">
@@ -87,6 +88,7 @@
       <tr><td>Social posting (Hootsuite)</td><td>$99/mo</td><td>Included</td></tr>
       <tr><td>AI business assistant (ChatGPT)</td><td>$20/mo</td><td>Included</td></tr>
       <tr><td>Magazine feature (PR agency)</td><td>$2,000/mo</td><td>$250 tier</td></tr>
+      <tr><td>Local business computer + TV display (mini PC)</td><td>$299+</td><td>Included — paid tiers</td></tr>
       <tr class="total"><td>Total</td><td>$2,617/mo</td><td>Starting at $99/mo</td></tr>
     </tbody>
   </table>
@@ -151,9 +153,15 @@
     Already in the network. Your business should be too.<br>
     <small>Free to list. No contracts. No setup fees.</small>
   </div>
-  <div class="qr">
-    <div class="qr-box">QR CODE<br>(generate via Canva)</div>
-    <div class="qr-label">deepsouthdirectory.com/onboard</div>
+  <div class="ftr-qr-row">
+    <div class="qr">
+      <div class="qr-box">QR CODE<br>(generate via Canva)</div>
+      <div class="qr-label">deepsouthdirectory.com/onboard</div>
+    </div>
+    <div class="qr">
+      <div class="qr-box">QR CODE<br>(generate via Canva)</div>
+      <div class="qr-label">deepsouthdirectory.com/store/sovereign-pi</div>
+    </div>
   </div>
 </div>
 
