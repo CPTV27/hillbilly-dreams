@@ -4,6 +4,7 @@ export const dynamic = 'force-dynamic';
 // Body: { calendarId: number }
 
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 import { prisma } from '@/lib/db';
 
 // Optimal posting times by platform (hour in CT, 24h)
@@ -18,6 +19,9 @@ const OPTIMAL_TIMES: Record<string, number[]> = {
 };
 
 export async function POST(request: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();

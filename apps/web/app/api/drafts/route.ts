@@ -1,9 +1,13 @@
 export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
+import { requireAdmin } from '@/lib/admin-auth';
 import { draftUpdateSchema, formatZodError } from '@/lib/user-post-validation';
 
 export async function GET(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   const status = req.nextUrl.searchParams.get('status') || 'pending';
   const limit = parseInt(req.nextUrl.searchParams.get('limit') || '20');
 
@@ -23,6 +27,9 @@ export async function GET(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
+  const deniedPut = await requireAdmin();
+  if (deniedPut) return deniedPut;
+
   let raw: unknown;
   try {
     raw = await req.json();

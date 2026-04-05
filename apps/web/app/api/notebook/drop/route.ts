@@ -1,8 +1,12 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function POST(req: Request) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     // We expect a JSON payload from the Swarm Agents or CLI tools
     const payload = await req.json();

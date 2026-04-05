@@ -2,8 +2,12 @@ export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { callAI } from '@/lib/ai-models';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function POST(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   const { draftId, instruction } = await req.json();
   if (!draftId || !instruction) return NextResponse.json({ error: 'draftId and instruction required' }, { status: 400 });
 

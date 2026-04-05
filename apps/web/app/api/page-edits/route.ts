@@ -1,10 +1,14 @@
 export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 import { prisma } from '@/lib/db';
 
 // GET /api/page-edits?path=/touring
 // Returns all active edits for a given page path
 export async function GET(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   const path = req.nextUrl.searchParams.get('path');
   if (!path) {
     return NextResponse.json({ error: 'path is required' }, { status: 400 });
@@ -22,6 +26,9 @@ export async function GET(req: NextRequest) {
 // Save a batch of edits for a page
 // Body: { path: string, edits: Array<{ editId: string, editType: "text"|"image", content: string }>, editedBy?: string }
 export async function POST(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   const body = await req.json();
   const { path, edits, editedBy } = body as {
     path: string;
@@ -49,6 +56,9 @@ export async function POST(req: NextRequest) {
 // DELETE /api/page-edits?path=/touring&editId=edit-5
 // Revert a single edit (soft delete)
 export async function DELETE(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   const path = req.nextUrl.searchParams.get('path');
   const editId = req.nextUrl.searchParams.get('editId');
 
