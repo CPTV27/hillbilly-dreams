@@ -21,3 +21,11 @@
 ### Issue #53 — Canva Brand Integration
 **Status:** BLOCKED
 **Reason:** Lacking Canva Developer API tokens. Until Chase sets up the app inside Canva's developer portal, the Next.js platform cannot push our 12-brand hex codes and typography automatically into the Canva tenant.
+
+### Issue #78 — Facebook OAuth Connect
+**Status:** BLOCKED
+**Reason:** META_APP_ID and META_APP_SECRET are missing from the environment variables.
+
+### Issue #68 & #55 — Stripe Connect webhooks & commission routing
+**Status:** BLOCKED
+**Reason:** STRIPE_SECRET_KEY is missing from the environment variables.
