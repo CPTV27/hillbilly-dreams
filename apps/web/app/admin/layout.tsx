@@ -31,6 +31,7 @@ const NAV_SECTIONS = [
     items: [
       { label: 'Creative Hub', href: '/creative', icon: '✦' },
       { label: 'Studio OS', href: '/studio', icon: '⌘' },
+      { label: 'Utopia Session', href: '/studio-mode', icon: '◇' },
       { label: 'Omnipush', href: '/studio-omnipush', icon: '◻' },
       { label: 'Lookbook', href: '/lookbook', icon: '◎' },
       { label: 'Media Vault', href: '/media', icon: '◈' },
