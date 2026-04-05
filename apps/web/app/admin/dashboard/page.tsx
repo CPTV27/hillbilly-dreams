@@ -742,6 +742,12 @@ export default function DashboardPage() {
           text-decoration: none;
           font-weight: 600;
         }
+
+        @media (max-width: 480px) {
+          .mc-btn { min-height: 44px; padding: 10px 16px; display: inline-flex; align-items: center; justify-content: center; }
+          .mc-tool { min-height: 56px; padding: var(--space-3); }
+          .mc-list__action { min-height: 44px; padding: 8px 12px; display: inline-flex; align-items: center; }
+        }
       `}</style>
     </>
   );

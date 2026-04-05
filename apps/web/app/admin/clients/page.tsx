@@ -1296,6 +1296,16 @@ function ClientPageStyles() {
         flex-direction: column;
         gap: var(--space-2);
       }
+      .clients-filter-groups .admin-filter-bar {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 4px;
+      }
+      .clients-filter-groups .admin-filter-btn {
+        flex-shrink: 0;
+        min-height: 44px;
+      }
 
       /* ── Table / Mobile toggle ── */
       .clients-table-wrap { display: none; }

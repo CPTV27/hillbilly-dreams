@@ -85,12 +85,37 @@ export default function AdminReviewsClient({ reviews, stats }: { reviews: Serial
     }
   };
 
+  const [postingGbp, setPostingGbp] = useState<number | null>(null);
+
+  const postToGbp = async (review: SerializedReview, comment: string) => {
+    if (review.platform !== 'google') return;
+    setPostingGbp(review.id);
+    try {
+      const res = await fetch(`/api/clients/${review.clientId}/gbp`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'postReviewReply', reviewId: review.id, comment }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) {
+        setLocalReviews(prev => prev.map(r =>
+          r.id === review.id ? { ...r, response: comment, responseStatus: 'posted', respondedAt: new Date().toISOString() } : r
+        ));
+      } else {
+        alert((data as { error?: string }).error || 'GBP post failed');
+      }
+    } catch (e) {
+      alert(e instanceof Error ? e.message : 'GBP post failed');
+    }
+    setPostingGbp(null);
+  };
+
   const stars = (rating: number) => '\u2605'.repeat(rating) + '\u2606'.repeat(5 - rating);
 
   const filters = ['all', 'pending', 'drafted', 'approved', 'posted'];
 
   return (
-    <div>
+    <div className="admin-reviews-mobile">
       <div className="admin-page-header">
         <div>
           <h1 className="admin-page-title">Review Queue</h1>
@@ -129,12 +154,14 @@ export default function AdminReviewsClient({ reviews, stats }: { reviews: Serial
       </div>
 
       {/* Filters */}
-      <div className="admin-filter-bar">
+      <div className="admin-filter-bar reviews-filter-scroll" style={{ flexWrap: 'nowrap', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
         {filters.map(f => (
           <button
             key={f}
+            type="button"
             onClick={() => setFilter(f)}
             className={`admin-filter-btn ${filter === f ? 'admin-filter-btn--active' : ''}`}
+            style={{ flexShrink: 0, minHeight: 44 }}
           >
             {f} ({f === 'all' ? localReviews.length : localReviews.filter(r => r.responseStatus === f).length})
           </button>
@@ -155,12 +182,19 @@ export default function AdminReviewsClient({ reviews, stats }: { reviews: Serial
             key={review.id}
             review={review}
             generating={generating === review.id}
+            postingGbp={postingGbp === review.id}
             onGenerateDraft={() => generateDraft(review.id)}
             onApprove={(response) => approveResponse(review.id, response)}
+            onPostGbp={(comment) => postToGbp(review, comment)}
             stars={stars}
           />
         ))}
       </div>
+      <style>{`
+        @media (max-width: 480px) {
+          .admin-reviews-mobile .reviews-filter-scroll { padding-bottom: 4px; }
+        }
+      `}</style>
     </div>
   );
 }
@@ -168,14 +202,18 @@ export default function AdminReviewsClient({ reviews, stats }: { reviews: Serial
 function ReviewCard({
   review,
   generating,
+  postingGbp,
   onGenerateDraft,
   onApprove,
+  onPostGbp,
   stars,
 }: {
   review: SerializedReview;
   generating: boolean;
+  postingGbp: boolean;
   onGenerateDraft: () => void;
   onApprove: (response: string) => void;
+  onPostGbp: (comment: string) => void;
   stars: (n: number) => string;
 }) {
   const [editing, setEditing] = useState(false);
@@ -268,13 +306,14 @@ function ReviewCard({
       )}
 
       {/* Actions */}
-      <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap', alignItems: 'stretch' }}>
         {review.responseStatus === 'pending' && (
           <button
+            type="button"
             onClick={onGenerateDraft}
             disabled={generating}
             className="admin-btn admin-btn--primary"
-            style={{ opacity: generating ? 0.6 : 1, cursor: generating ? 'wait' : 'pointer' }}
+            style={{ opacity: generating ? 0.6 : 1, cursor: generating ? 'wait' : 'pointer', minHeight: 44 }}
           >
             {generating ? 'Generating...' : 'Generate AI Response'}
           </button>
@@ -283,28 +322,44 @@ function ReviewCard({
           <>
             {!editing && (
               <button
+                type="button"
                 onClick={() => { setEditing(true); setEditedResponse(review.aiDraft || ''); }}
                 className="admin-btn admin-btn--ghost"
+                style={{ minHeight: 44 }}
               >
                 Edit
               </button>
             )}
             <button
+              type="button"
               onClick={() => { onApprove(editedResponse); setEditing(false); }}
               className="admin-btn"
-              style={{ background: 'var(--success)', color: 'var(--bg)' }}
+              style={{ background: 'var(--success)', color: 'var(--bg)', minHeight: 44 }}
             >
               Approve
             </button>
             {editing && (
               <button
+                type="button"
                 onClick={() => setEditing(false)}
                 className="admin-btn admin-btn--ghost"
+                style={{ minHeight: 44 }}
               >
                 Cancel
               </button>
             )}
           </>
+        )}
+        {review.platform === 'google' && review.responseStatus === 'approved' && (review.response || editedResponse) && (
+          <button
+            type="button"
+            onClick={() => onPostGbp((review.response || editedResponse).trim())}
+            disabled={postingGbp}
+            className="admin-btn admin-btn--primary"
+            style={{ minHeight: 44, opacity: postingGbp ? 0.6 : 1 }}
+          >
+            {postingGbp ? 'Posting to GBP…' : 'Post reply to Google Business'}
+          </button>
         )}
       </div>
     </div>
