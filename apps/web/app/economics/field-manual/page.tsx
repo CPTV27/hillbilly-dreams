@@ -111,6 +111,29 @@ export default function FieldManualPage() {
         </div>
       </section>
 
+      {/* ── Case studies (field reports) ── */}
+      <section
+        style={{
+          background: 'var(--bg)',
+          padding: 'var(--space-16) 0',
+          borderTop: '1px solid var(--border)',
+        }}
+      >
+        <div className="section-container">
+          <div className="section-label">Proof</div>
+          <h2 className="section-title" style={{ fontSize: 'var(--text-3xl)' }}>
+            Case studies
+          </h2>
+          <p className="section-desc" style={{ maxWidth: 640 }}>
+            Natchez, the Bronx, Bearsville, mesh edges, tourism rails, rural land — builds that shipped, with math
+            attached. Same field manual voice; longer receipts.
+          </p>
+          <a href="/case-studies" className="btn btn--primary">
+            Read case studies
+          </a>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
       <section className="fm-cta">
         <div className="section-container">

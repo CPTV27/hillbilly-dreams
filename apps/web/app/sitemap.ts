@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { prisma } from '@bigmuddy/database';
 import { getAllPosts } from '@/lib/posts';
+import { getAllCaseStudies } from '@/lib/case-studies';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
@@ -117,6 +118,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
+      url: `${brands.economics}/case-studies`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
       url: `${brands.economics}/the-math`,
       lastModified: now,
       changeFrequency: 'monthly',
@@ -148,6 +155,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
   } catch {
     // Posts directory unavailable
+  }
+
+  let econCaseStudyEntries: MetadataRoute.Sitemap = [];
+  try {
+    const cases = getAllCaseStudies();
+    econCaseStudyEntries = cases.map((c) => ({
+      url: `${brands.economics}/case-studies/${c.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.75,
+    }));
+  } catch {
+    // Case studies directory unavailable
   }
 
   // ── MBT / Deep South Directory marketing pages ──
@@ -249,6 +269,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...radioEntries,
     ...econEntries,
     ...econPostEntries,
+    ...econCaseStudyEntries,
     ...mbtEntries,
     ...bearsvilleEntries,
     ...recordsEntries,

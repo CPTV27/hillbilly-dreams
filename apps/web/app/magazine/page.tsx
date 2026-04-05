@@ -139,6 +139,90 @@ export default async function MagazineHomepage() {
         </div>
       </section>
 
+      {/* ── Outsider Economics case studies (sister site) ── */}
+      <section
+        className="section-container"
+        style={{
+          padding: 'var(--space-10) var(--space-6)',
+          borderTop: '1px solid var(--border)',
+          borderBottom: '1px solid var(--border)',
+          background: 'var(--surface)',
+        }}
+      >
+        <div className="section-label">Field manual</div>
+        <h2 className="section-title" style={{ fontSize: 'var(--text-2xl)', marginBottom: 'var(--space-4)' }}>
+          Proof from real builds
+        </h2>
+        <p
+          style={{
+            fontFamily: 'var(--font-body)',
+            color: 'var(--text-muted)',
+            maxWidth: 560,
+            lineHeight: 1.65,
+            marginBottom: 'var(--space-6)',
+          }}
+        >
+          Long-form case studies on Outsider Economics — the Natchez stack, Bearsville / Utopia, the Bronx, mesh
+          distribution, tourism rails. Magazine stays narrative; the spreadsheets and system notes live there.
+        </p>
+        <ul
+          style={{
+            listStyle: 'none',
+            margin: 0,
+            padding: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 'var(--space-3)',
+          }}
+        >
+          <li>
+            <a
+              href="https://outsidereconomics.com/case-studies/03-big-muddy-natchez"
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontWeight: 600,
+                color: 'var(--accent)',
+                textDecoration: 'none',
+              }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Big Muddy / Natchez — inn, directory, radio, touring
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://outsidereconomics.com/case-studies/02-bearsville-utopia"
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontWeight: 600,
+                color: 'var(--accent)',
+                textDecoration: 'none',
+              }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Bearsville / Utopia — studio campus as media node
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://outsidereconomics.com/case-studies"
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontWeight: 600,
+                color: 'var(--accent)',
+                textDecoration: 'none',
+              }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              All case studies on Outsider Economics →
+            </a>
+          </li>
+        </ul>
+      </section>
+
       {/* ── Category Filter + Grid ── */}
       <section className="mag-grid">
         <div className="section-container">
