@@ -7,6 +7,7 @@ export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { apiLog } from '@/lib/api-logger';
+import { cloudLog } from '@/lib/cloud-logger';
 
 // Map Stripe unit_amount (cents) → tier name.
 // The subscribe route creates inline prices with these amounts,
@@ -274,9 +275,11 @@ export async function POST(request: NextRequest) {
         apiLog.info('stripe/billing-webhook', 'unhandled event', { type: event.type });
     }
 
+    cloudLog.info('/api/billing/webhook', 'processed', { eventType: event.type });
     return NextResponse.json({ received: true });
   } catch (err) {
     apiLog.error('stripe/billing-webhook', 'processing error', err);
+    cloudLog.error('/api/billing/webhook', 'processing error', err);
     return NextResponse.json({ error: 'Webhook processing failed' }, { status: 500 });
   }
 }

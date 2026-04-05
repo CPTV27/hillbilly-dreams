@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { apiLog } from '@/lib/api-logger';
+import { cloudLog } from '@/lib/cloud-logger';
 import { stripe } from '@/lib/stripe';
 
 // Stripe requires raw body for signature verification — Next.js App Router
@@ -124,9 +125,11 @@ export async function POST(request: NextRequest) {
         apiLog.info('stripe/connect-webhook', 'unhandled event type', { type: event.type });
     }
 
+    cloudLog.info('/api/stripe/webhook', 'processed', { eventType: event.type });
     return NextResponse.json({ received: true });
   } catch (err) {
     console.error('[Stripe Connect Webhook] Processing error:', err);
+    cloudLog.error('/api/stripe/webhook', 'processing error', err);
     return NextResponse.json(
       { error: 'Webhook processing failed' },
       { status: 500 }

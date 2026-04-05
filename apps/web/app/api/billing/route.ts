@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAdmin } from '@/lib/admin-auth';
 import { prisma } from '@/lib/db';
+import { cloudLog } from '@/lib/cloud-logger';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -40,6 +41,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  const t0 = Date.now();
   const authError = await requireAdmin();
   if (authError) return authError;
 
@@ -93,9 +95,13 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    cloudLog.info('/api/billing', 'invoice created', {
+      durationMs: Date.now() - t0,
+      clientId: body.clientId as number,
+    });
     return NextResponse.json({ data: invoice }, { status: 201 });
   } catch (err) {
-    console.error('[POST /api/billing]', err);
+    cloudLog.error('/api/billing', 'create invoice failed', err, { durationMs: Date.now() - t0 });
     return NextResponse.json({ error: 'Failed to create invoice' }, { status: 500 });
   }
 }

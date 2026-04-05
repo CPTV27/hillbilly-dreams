@@ -2,11 +2,13 @@ export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { requireAdmin } from '@/lib/admin-auth';
 import { callAI } from '@/lib/ai-models';
+import { cloudLog } from '@/lib/cloud-logger';
 
 const MODEL = 'gemini-3.1-pro'; // Reasoning tasks use Pro
 const LOCATION = process.env.VERTEX_LOCATION || 'us-east4';
 
 export async function POST(req: Request) {
+  const t0 = Date.now();
   const authError = await requireAdmin();
   if (authError) return authError;
 
@@ -64,6 +66,7 @@ export async function POST(req: Request) {
         args: call.args,
       }));
 
+      cloudLog.info('/api/ai/analyze', 'function_call response', { durationMs: Date.now() - t0 });
       return NextResponse.json({
         type: 'function_call',
         functionCalls: serializedCalls,
@@ -82,6 +85,7 @@ export async function POST(req: Request) {
     const tokensPerSecond = processingTimeMs > 0 ? Math.round((totalTokens / processingTimeMs) * 1000) : 0;
     const costPerQuery = contextWindowUsed / 1000000 * 1.25 + outputTokens / 1000000 * 3.75;
 
+    cloudLog.info('/api/ai/analyze', 'text response', { durationMs: Date.now() - t0 });
     return NextResponse.json({
       type: 'text',
       processingTimeMs,
@@ -95,6 +99,7 @@ export async function POST(req: Request) {
     });
   } catch (error: any) {
     console.error('[API/VertexAI] Error:', error);
+    cloudLog.error('/api/ai/analyze', 'error', error, { durationMs: Date.now() - t0 });
     return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
   }
 }
