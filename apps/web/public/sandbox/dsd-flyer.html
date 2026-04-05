@@ -1,319 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Deep South Directory - Main Street Pricing</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Deep South Directory — Walk-In Flyer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: letter; margin: 0.5in; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #2a2520; background: #fff;
+    max-width: 8.5in; margin: 0 auto; padding: 0.5in;
+    line-height: 1.5; font-size: 11pt;
+  }
+  .hdr { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 22pt; padding-bottom: 14pt; border-bottom: 2pt solid #c8943e; }
+  .hdr-logo { font-size: 8pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #c8943e; }
+  .hdr-sub { font-size: 7.5pt; color: #8a8074; margin-top: 2pt; }
+  .hdr-right { text-align: right; font-size: 8pt; color: #8a8074; line-height: 1.6; }
 
-    :root {
-      --bg: #FAFAFA;
-      --text: #1a1a1a;
-      --accent: #E11D48; /* Deep crimson */
-      --border: #E5E7EB;
-      --subtext: #4B5563;
-    }
+  .hero { margin-bottom: 18pt; }
+  .hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 26pt; font-weight: 700; color: #2a2520; line-height: 1.15; margin-bottom: 6pt; }
+  .hero h1 em { color: #c8943e; font-style: normal; }
+  .hero p { font-size: 10.5pt; color: #6b635a; max-width: 460pt; line-height: 1.6; }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  .stack { background: #faf9f6; border: 1pt solid #e5e2dc; border-radius: 6pt; padding: 12pt 14pt; margin-bottom: 18pt; }
+  .stack h2 { font-size: 8.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #c8943e; margin-bottom: 8pt; }
+  .stack table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+  .stack th { text-align: left; font-size: 7.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #8a8074; padding: 3pt 0; border-bottom: 1pt solid #e5e2dc; }
+  .stack td { padding: 3pt 0; border-bottom: 1pt solid #f0ebe0; }
+  .stack td:nth-child(2) { text-align: right; color: #b54c4c; font-weight: 600; }
+  .stack td:nth-child(3) { text-align: right; color: #4a7c59; font-weight: 700; }
+  .stack .total td { font-weight: 700; font-size: 10pt; border-top: 2pt solid #e5e2dc; border-bottom: none; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-      /* Optimized for standard US Letter (8.5x11 inches) */
-      width: 8.5in;
-      height: 11in;
-      margin: 0 auto;
-      padding: 0.6in 0.8in;
-      background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      position: relative;
-    }
+  .why { margin-bottom: 18pt; }
+  .why h2 { font-size: 8.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #c8943e; margin-bottom: 8pt; }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8pt; }
+  .why-item { border-left: 2pt solid #c8943e; padding-left: 8pt; }
+  .why-item h3 { font-size: 9.5pt; font-weight: 700; color: #2a2520; margin-bottom: 1pt; }
+  .why-item p { font-size: 8.5pt; color: #6b635a; line-height: 1.45; }
 
-    @media print {
-      body {
-        box-shadow: none;
-        margin: 0;
-        padding: 0.6in 0.8in;
-      }
-      @page {
-        margin: 0;
-        size: letter;
-      }
-    }
+  .tiers { margin-bottom: 18pt; }
+  .tiers h2 { font-size: 8.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #c8943e; margin-bottom: 8pt; }
+  .tiers-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5pt; }
+  .tier { border: 1pt solid #e5e2dc; border-radius: 4pt; padding: 7pt 6pt; text-align: center; }
+  .tier--hl { border: 2pt solid #c8943e; background: #faf9f6; }
+  .tier-name { font-size: 7.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #c8943e; margin-bottom: 1pt; }
+  .tier-price { font-size: 15pt; font-weight: 700; color: #2a2520; line-height: 1.2; }
+  .tier-price span { font-size: 7.5pt; font-weight: 400; color: #8a8074; }
+  .tier-desc { font-size: 7pt; color: #6b635a; margin-top: 3pt; line-height: 1.35; }
 
-    /* TYPOGRAPHY */
-    h1, h2, h3 {
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-    }
+  .ftr { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 12pt; border-top: 1pt solid #e5e2dc; }
+  .ftr-left { font-size: 9pt; color: #6b635a; line-height: 1.6; }
+  .ftr-left strong { color: #2a2520; }
+  .ftr-left small { font-size: 7.5pt; color: #8a8074; }
+  .qr { text-align: center; }
+  .qr-box { width: 68pt; height: 68pt; border: 1pt solid #e5e2dc; border-radius: 4pt; display: flex; align-items: center; justify-content: center; font-size: 6.5pt; color: #8a8074; margin-bottom: 3pt; }
+  .qr-label { font-size: 7pt; color: #c8943e; font-weight: 600; }
 
-    .header {
-      text-align: center;
-      margin-bottom: 0.5in;
-      border-bottom: 1px solid var(--text);
-      padding-bottom: 0.2in;
-    }
-
-    .header h1 {
-      font-size: 2.2rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 0.1in;
-    }
-
-    .header p {
-      font-size: 1rem;
-      color: var(--subtext);
-      font-weight: 300;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    /* VALUE PROP */
-    .value-prop {
-      margin-bottom: 0.4in;
-    }
-
-    .value-prop h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.1in;
-    }
-
-    .value-prop p {
-      font-size: 0.95rem;
-      color: var(--subtext);
-      max-width: 6.5in;
-    }
-
-    /* PRICING GRID */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.25in;
-      margin-bottom: 0.4in;
-    }
-
-    .tier {
-      border: 1px solid var(--border);
-      padding: 0.25in;
-      background-color: #ffffff;
-    }
-
-    .tier-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 0.15in;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.1in;
-    }
-
-    .tier h3 {
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .tier .price {
-      font-family: 'Cinzel', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .tier ul {
-      list-style: none;
-    }
-
-    .tier li {
-      font-size: 0.85rem;
-      color: var(--subtext);
-      margin-bottom: 0.08in;
-      position: relative;
-      padding-left: 0.15in;
-    }
-
-    .tier li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--text);
-    }
-
-    /* FULL WIDTH TIER - $250 Custom */
-    .tier-full {
-      grid-column: 1 / -1;
-      display: flex;
-      border-color: var(--text);
-      background-color: #FAFAFA;
-      padding: 0.3in;
-    }
-
-    .tier-full .content {
-      flex: 1;
-    }
-
-    .tier-full-price {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      min-width: 1.5in;
-    }
-
-    .tier-full-price span {
-      font-family: 'Cinzel', serif;
-      font-size: 1.8rem;
-      color: var(--text);
-      font-weight: 700;
-      display: block;
-    }
-
-    /* FOOTER */
-    .footer {
-      position: absolute;
-      bottom: 0.6in;
-      left: 0.8in;
-      right: 0.8in;
-      text-align: center;
-      border-top: 1px solid var(--border);
-      padding-top: 0.2in;
-    }
-
-    .footer h3 {
-      font-size: 1rem;
-      margin-bottom: 0.05in;
-    }
-
-    .footer p {
-      font-size: 0.85rem;
-      color: var(--subtext);
-    }
-    
-    .qr-placeholder {
-      margin-top: 0.15in;
-      margin-bottom: 0.1in;
-    }
-    
-    .qr-box {
-      width: 1in;
-      height: 1in;
-      border: 1px solid var(--text);
-      display: inline-block;
-      line-height: 1in;
-      font-size: 0.6rem;
-      color: var(--subtext);
-      text-transform: uppercase;
-      background: #f9f9f9;
-    }
-
-  </style>
+  @media print { body { padding: 0; } .stack, .tiers { break-inside: avoid; } }
+</style>
 </head>
 <body>
 
-  <div class="header">
-    <h1>Deep South Directory</h1>
-    <p>Main Street, Not Silicon Valley</p>
+<div class="hdr">
+  <div>
+    <div class="hdr-logo">Deep South Directory</div>
+    <div class="hdr-sub">Natchez, Mississippi</div>
   </div>
+  <div class="hdr-right">deepsouthdirectory.com<br>listings@hillbillydreamsinc.com</div>
+</div>
 
-  <div class="value-prop">
-    <h2>Take the Power Back.</h2>
-    <p>
-      Big tech platforms are flooding search results with noise, fake reviews, and national brands. We are building the definitive, verified ecosystem for businesses across the Deep South. Connect directly with locals and travelers who specifically look for independent operations. No algorithms, no pay-per-click wars.
-    </p>
-  </div>
+<div class="hero">
+  <h1>Your digital hygiene — <em>handled.</em></h1>
+  <p>Google listing corrected. Reviews monitored. Social posts going out every week. An AI that already knows your business and your town — not a generic chatbot. The one that knows your hours, your menu, and your regulars.</p>
+</div>
 
-  <div class="pricing-grid">
-    <!-- FREE -->
-    <div class="tier">
-      <div class="tier-header">
-        <h3>Front Porch</h3>
-        <span class="price">Free</span>
-      </div>
-      <ul>
-        <li>Basic directory listing</li>
-        <li>Name, address, and phone number</li>
-        <li>Indexed for regional search</li>
-      </ul>
+<div class="stack">
+  <h2>What you're paying now vs. what you could be paying</h2>
+  <table>
+    <thead><tr><th>Service</th><th>Typical Cost</th><th>DSD</th></tr></thead>
+    <tbody>
+      <tr><td>Google listing management (Yext)</td><td>$199/mo</td><td>Included</td></tr>
+      <tr><td>Review monitoring (Birdeye)</td><td>$299/mo</td><td>Included</td></tr>
+      <tr><td>Social posting (Hootsuite)</td><td>$99/mo</td><td>Included</td></tr>
+      <tr><td>AI business assistant (ChatGPT)</td><td>$20/mo</td><td>Included</td></tr>
+      <tr><td>Magazine feature (PR agency)</td><td>$2,000/mo</td><td>$250 tier</td></tr>
+      <tr class="total"><td>Total</td><td>$2,617/mo</td><td>Starting at $99/mo</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="why">
+  <h2>Why businesses in Natchez choose DSD</h2>
+  <div class="why-grid">
+    <div class="why-item">
+      <h3>We actually live here.</h3>
+      <p>Run out of Natchez. We ate at your restaurant last week. The companies charging $300/mo have never been to Mississippi.</p>
     </div>
-
-    <!-- $25 -->
-    <div class="tier">
-      <div class="tier-header">
-        <h3>Verified Route</h3>
-        <span class="price">$25<small>/mo</small></span>
-      </div>
-      <ul>
-        <li>Official Verified Badge</li>
-        <li>Direct website links</li>
-        <li>Extended operating hours</li>
-        <li>Up to 5 storefront photos</li>
-      </ul>
+    <div class="why-item">
+      <h3>Set it and forget it.</h3>
+      <p>Marketing on autopilot. Google listing, reviews, social posts — all handled. You run your business, we handle your internet.</p>
     </div>
-
-    <!-- $50 -->
-    <div class="tier">
-      <div class="tier-header">
-        <h3>River Room</h3>
-        <span class="price">$50<small>/mo</small></span>
-      </div>
-      <ul>
-        <li>Everything in Verified</li>
-        <li>Priority directory ranking</li>
-        <li>Access to platform analytics</li>
-        <li>Direct messaging & leads</li>
-        <li>Seasonal menu or promotions tab</li>
-      </ul>
+    <div class="why-item">
+      <h3>A media company, not a dashboard.</h3>
+      <p>We own a magazine, a radio station, and a photo studio. Higher tiers get real editorial coverage, not another app.</p>
     </div>
-
-    <!-- $99 -->
-    <div class="tier">
-      <div class="tier-header">
-        <h3>Blues Room</h3>
-        <span class="price">$99<small>/mo</small></span>
-      </div>
-      <ul>
-        <li>Everything in River Room</li>
-        <li>Custom editorial Spotlight article</li>
-        <li>Featured placement on homepage</li>
-        <li>Quarterly strategy check-ins</li>
-      </ul>
-    </div>
-
-    <!-- $250 -->
-    <div class="tier tier-full">
-      <div class="content">
-        <div class="tier-header" style="border: none; padding-bottom: 0;">
-          <h3>The Sovereign Package</h3>
-        </div>
-        <p style="font-size: 0.85rem; color: var(--subtext); max-width: 4.5in; margin-bottom: 0.15in; line-height: 1.4;">
-          For the anchors of the regional ecosystem. Dedicated concierge management integrated directly behind your counter.
-        </p>
-        <ul>
-          <li>Everything in the Blues Room</li>
-          <li>Fully managed profile updates</li>
-          <li>Full media kit integration</li>
-          <li>White-glove listing sync protection</li>
-        </ul>
-      </div>
-      <div class="tier-full-price">
-        <span>$250<small style="font-size: 1rem; color: var(--subtext);">/mo</small></span>
-      </div>
+    <div class="why-item">
+      <h3>Cancel ChatGPT.</h3>
+      <p>An AI trained on your business and your town. Real local context for $25/mo — not generic internet answers.</p>
     </div>
   </div>
+</div>
 
-  <div class="footer">
-    <h3>Claim Your Space on the Map</h3>
-    <div class="qr-placeholder">
-      <div class="qr-box">[ QR CODE ]</div>
+<div class="tiers">
+  <h2>Plans</h2>
+  <div class="tiers-grid">
+    <div class="tier">
+      <div class="tier-name">Free</div>
+      <div class="tier-price">$0</div>
+      <div class="tier-desc">Directory listing + limited AI</div>
     </div>
-    <p>deepsouthdirectory.com | support@deepsouthdirectory.com</p>
+    <div class="tier">
+      <div class="tier-name">Essentials</div>
+      <div class="tier-price">$25<span>/mo</span></div>
+      <div class="tier-desc">Full AI for your business</div>
+    </div>
+    <div class="tier">
+      <div class="tier-name">Pro</div>
+      <div class="tier-price">$50<span>/mo</span></div>
+      <div class="tier-desc">Network + referrals</div>
+    </div>
+    <div class="tier tier--hl">
+      <div class="tier-name">Marketing</div>
+      <div class="tier-price">$99<span>/mo</span></div>
+      <div class="tier-desc">Digital hygiene autopilot</div>
+    </div>
+    <div class="tier">
+      <div class="tier-name">Engine</div>
+      <div class="tier-price">$250<span>/mo</span></div>
+      <div class="tier-desc">Full media company</div>
+    </div>
   </div>
+</div>
+
+<div class="ftr">
+  <div class="ftr-left">
+    <strong>Biscuits &amp; Blues. The Anthologist. The Big Muddy Inn.</strong><br>
+    Already in the network. Your business should be too.<br>
+    <small>Free to list. No contracts. No setup fees.</small>
+  </div>
+  <div class="qr">
+    <div class="qr-box">QR CODE<br>(generate via Canva)</div>
+    <div class="qr-label">deepsouthdirectory.com/onboard</div>
+  </div>
+</div>
 
 </body>
 </html>
