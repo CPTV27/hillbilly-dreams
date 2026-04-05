@@ -1,5 +1,5 @@
 // apps/web/app/bearsville/layout.tsx
-// Bearsville Creative — branded shell for bearsvillemediagroup.com
+// Bearsville Creative — branded shell for bearsvillecreative.com
 // Dark warm base, antique gold accent — theme-bearsville tokens
 
 import type { Metadata, Viewport } from 'next';
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
   description:
     'The Northeast media imprint documenting music, land, and independent culture in the Hudson Valley — and connecting it south through the Big Muddy corridor.',
-  metadataBase: new URL('https://bearsvillemediagroup.com'),
+  metadataBase: new URL('https://bearsvillecreative.com'),
 };
 
 export const viewport: Viewport = {
@@ -54,7 +54,7 @@ export default function BearsvilleLayout({
             Hudson Valley &middot; Catskills
           </span>
         </a>
-        <a href="mailto:hello@bearsvillemediagroup.com?subject=Inquiry" style={{
+        <a href="mailto:hello@bearsvillecreative.com?subject=Inquiry" style={{
           fontFamily: 'var(--font-body)',
           fontSize: '0.75rem',
           fontWeight: 700,
@@ -94,7 +94,7 @@ export default function BearsvilleLayout({
         }}>
           Part of the{' '}
           <a href="https://bigmuddytouring.com" style={{ color: 'var(--accent)', textDecoration: 'none' }}>
-            Big Muddy corridor
+            Big Muddy region
           </a>
           {' '}&middot;{' '}
           <a href="https://hillbillydreamsinc.com" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>

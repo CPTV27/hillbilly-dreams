@@ -78,9 +78,9 @@ const FEATURED_STUDIOS = [
 
 // ─── Intake CTAs ─────────────────────────────────────────────────────────────
 const INTAKE_ACTIONS = [
-  { label: 'Get featured', desc: 'We write the story about your session, your studio, your work', href: 'mailto:hello@bearsvillemediagroup.com?subject=Get+Featured' },
+  { label: 'Get featured', desc: 'We write the story about your session, your studio, your work', href: 'mailto:hello@bearsvillecreative.com?subject=Get+Featured' },
   { label: 'List your studio', desc: 'Join the Hudson Valley studio directory', href: '/directory/onboard' },
-  { label: 'Submit your work', desc: 'Have something we should publish? Send it over', href: 'mailto:hello@bearsvillemediagroup.com?subject=Submission' },
+  { label: 'Submit your work', desc: 'Have something we should publish? Send it over', href: 'mailto:hello@bearsvillecreative.com?subject=Submission' },
   { label: 'Hire Studio C', desc: 'Need the recording first? Our production arm handles that', href: 'https://studiocvideo.com' },
 ];
 
@@ -168,7 +168,7 @@ export default function BearsvillePage() {
             }}>
               Read the Magazine
             </a>
-            <a href="mailto:hello@bearsvillemediagroup.com?subject=Get+Featured" style={{
+            <a href="mailto:hello@bearsvillecreative.com?subject=Get+Featured" style={{
               padding: '13px 32px', background: 'transparent', color: accent,
               border: `1px solid ${accent}`, borderRadius: 8,
               fontWeight: 700, fontSize: '0.85rem', textDecoration: 'none',
@@ -376,7 +376,7 @@ export default function BearsvillePage() {
                 fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.2em',
                 textTransform: 'uppercase', color: accent, marginBottom: '0.75rem',
               }}>
-                The Corridor
+                The Region
               </p>
               <h2 style={{
                 fontSize: 'clamp(1.5rem, 3.5vw, 2rem)', fontWeight: 800,
@@ -400,7 +400,7 @@ export default function BearsvillePage() {
               {[
                 { city: 'Woodstock, NY', label: 'Studio node — Utopia / Studio C', isAccent: true },
                 { city: 'Hudson Valley', label: 'Dreamland, Levon Helm, The Barn', isAccent: false },
-                { city: 'Appalachian spine', label: 'Connecting corridor', isAccent: false },
+                { city: 'Appalachian spine', label: 'Connecting region', isAccent: false },
                 { city: 'Nashville, TN', label: 'Music city crossover', isAccent: false },
                 { city: 'Natchez, MS', label: 'Big Muddy anchor', isAccent: true },
               ].map((node, i) => (
@@ -482,8 +482,8 @@ export default function BearsvillePage() {
 
           <p style={{ marginTop: '2rem', fontSize: '0.75rem', color: textDim }}>
             Or email directly:{' '}
-            <a href="mailto:hello@bearsvillemediagroup.com" style={{ color: accent, textDecoration: 'none' }}>
-              hello@bearsvillemediagroup.com
+            <a href="mailto:hello@bearsvillecreative.com" style={{ color: accent, textDecoration: 'none' }}>
+              hello@bearsvillecreative.com
             </a>
           </p>
         </div>
@@ -504,7 +504,7 @@ export default function BearsvillePage() {
         <p style={{ margin: 0 }}>
           Part of the{' '}
           <a href="https://bigmuddytouring.com" style={{ color: accent, textDecoration: 'none' }}>
-            Big Muddy corridor
+            Big Muddy region
           </a>
           {' '}&mdash; powered by{' '}
           <a href="https://measurablybetter.life" style={{ color: accent, textDecoration: 'none' }}>
