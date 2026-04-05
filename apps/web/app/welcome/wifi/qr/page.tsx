@@ -100,7 +100,7 @@ export default function QRCodePage() {
           textTransform: 'uppercase',
           letterSpacing: '0.1em',
         }}>
-          Powered by Measurably Better Things
+          Powered by Deep South Directory
         </p>
         <button
           onClick={() => window.print()}

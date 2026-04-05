@@ -267,7 +267,7 @@ function DashboardContent() {
             textTransform: 'uppercase',
           }}
         >
-          Powered by Measurably Better Things · hillbillydreamsinc.com
+          Deep South Directory · hillbillydreamsinc.com
         </p>
       </section>
 
@@ -633,7 +633,7 @@ function DashboardContent() {
         </div>
       </section>
 
-      {/* Measurably Better OS Locked Panel */}
+      {/* The Engine tier — upsell (no platform brand on customer copy) */}
       <section
         style={{
           padding: '0 1.5rem 3rem',
@@ -661,7 +661,7 @@ function DashboardContent() {
                 fontWeight: 700,
               }}
             >
-              Measurably Better Operating System
+              The Engine — operator stack
             </p>
             <span
               style={{
@@ -704,7 +704,7 @@ function DashboardContent() {
                 maxWidth: 560,
               }}
             >
-              Measurably Better is the full operating system: sales pipeline, billing, project management,
+              The Engine is the full operator stack: sales pipeline, billing, project management,
               client delivery — all connected. The Directory runs on it. Your business can too.
               One monthly cost. No engineering team required. Hillbilly Dreams as your embedded
               technology arm.
@@ -722,7 +722,7 @@ function DashboardContent() {
                 opacity: 0.7,
               }}
             >
-              Talk to us about Measurably Better →
+              Talk to us about The Engine →
             </a>
           </div>
         </div>

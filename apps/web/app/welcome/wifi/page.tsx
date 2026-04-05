@@ -349,7 +349,7 @@ function WifiPortalInner() {
             letterSpacing: '0.1em',
             margin: 0,
           }}>
-            Powered by Measurably Better Things
+            Powered by Deep South Directory
           </p>
         </footer>
       </main>
