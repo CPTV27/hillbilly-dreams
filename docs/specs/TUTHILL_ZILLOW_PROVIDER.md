@@ -1,28 +1,39 @@
-# Tuthill Zillow Service Provider Specification
+# Tuthill Design — Zillow service provider positioning
 
-Tuthill Design functions as an elevated production studio for elite real estate listings, effectively serving as an authorized Zillow media contractor for the surrounding Delta properties.
+**Brand:** Tuthill Design (Hudson Valley / Catskills real-estate creative)  
+**Channel:** Zillow **Verified Photographer / media partner** workflows + direct agent relationships  
+**Feeds:** **Realtor Pulse** monthly package, listing microsites, Deep South Directory cross-links only where brand-appropriate (Northeast-first).
 
-## 1. The Core Services
-While raw photos are commoditized, specialized spatial mapping is not.
-*   **Estate Photography:** Ultra-sharp, HDR multi-bracketed interior and exterior architectural photography.
-*   **Matterport Spatial Capture:** Using the Pro3 LiDAR scanner to generate flawless 3D 4K walkthroughs directly embeddable on Zillow.
-*   **Cinematic Video Tours:** Gimbal-stabilized, color-graded 60-second property highlight reels for IG/FB distribution.
-*   **Interactive Floor Plans:** Auto-generated structural maps extracted radially from the Matterport capture data (Scan2Plan integration).
+---
 
-## 2. A LA CARTE Pricing Packages
-*   **Tier 1 (The Basic Lock) — $250:** 
-    *   20 HDR Interior/Exterior Photos. 
-    *   Next-day delivery.
-*   **Tier 2 (The 3D Immersive) — $450:** 
-    *   30 HDR interior/exterior photos.
-    *   Complete Matterport 3D digital twin of the property.
-*   **Tier 3 (The Director's Cut) — $850:** 
-    *   Full HDR gallery. 
-    *   Full Matterport scan + 2D Floor Plan.
-    *   60-second cinematic video reel optimized for social media vertical format (9:16).
+## 1. Service menu (packages)
 
-## 3. The Feed into "Realtor Pulse"
-The above pricing exists solely for independent agents needing a one-off hit. The goal is to aggressively pivot a la carte volume into the $500/mo **Realtor Pulse** subscription through DSD.
+| SKU | Deliverable | Target agent |
+|-----|-------------|--------------|
+| **Stills — Essential** | 25–35 HDR stills, sky replacement optional, next-day proxy | Listings under $400k |
+| **Still + floor** | Essential + 2D floor plan from measure session | Mid-market single-family |
+| **Matterport tier** | Dollhouse + embed + MLS-compliant links | Higher-end / second home |
+| **Social reel** | 15–45s vertical cut + captions file (no burned-in AI type) | All tiers upsell |
 
-*   **The Pitch:** "You just paid us $450 for that one listing. Instead, pay us $500 a month on retainer through our Realtor Pulse package. We will shoot 2 properties a month for you *and* give you a premium DSD Founding Member spot to boost your personal brand SEO."
-*   **The Engine:** Once locked into Pulse, Tuthill guarantees baseline production quota per month, ensuring predictable cash flow and cementing the agent into the DSD tech ecosystem instead of bouncing around independent freelance photographers.
+## 2. Pricing philosophy
+
+- **Anchor:** Beat NYC day-rate chaos with **Woodstock / Kingston radius** efficiency; charge for **drive time** outside 25 mi.
+- **Platform fee:** If booked through HDI rails, apply agreed **take rate** (mirror DSD marketplace doc for structure).
+- **Zillow compliance:** Follow current Zillow media specs for resolution, aspect ratio, and branded watermark rules — re-check quarterly.
+
+## 3. Operations
+
+1. **Book** — Agent selects slot; weather / dusk shoots flagged at booking.
+2. **Shoot** — Two-person rule when ladder + exterior elevations; solo allowed condos.
+3. **Ingest** — Proxy same day; finals within **SLA** (define: 24h / 48h by tier).
+4. **Delivery** — ZIP + Zillow upload assist + **Realtor Pulse** narrative block (see `TUTHILL_REALTOR_PULSE.md`).
+
+## 4. Handoff to Realtor Pulse
+
+- Photography **does not** replace copy — AI-assisted narrative and MLS description live in the **$500/mo** pulse SKU.
+- Single **style guide** for color grade so listing pages feel like one studio, not a marketplace grab bag.
+
+## 5. Blockers / dependencies
+
+- **Canva / brand kits** — manual (see Canva blocker docs) for template consistency.
+- **Hardware** — Matterport subscription + camera inventory on Miles checklist.
