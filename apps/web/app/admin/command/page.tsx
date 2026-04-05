@@ -13,6 +13,9 @@ export default function CommandCenter() {
   const [scouting, setScouting] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
   const [loading, setLoading] = useState(true);
+  const [taskItems, setTaskItems] = useState<any[]>([]);
+  const [taskFilter, setTaskFilter] = useState<'all' | 'agent' | 'production'>('all');
+  const [taskUpdating, setTaskUpdating] = useState<string | null>(null);
 
   useEffect(() => {
     Promise.all([
@@ -55,6 +58,28 @@ export default function CommandCenter() {
     setScouting(false);
   };
 
+  const loadTasks = () => {
+    fetch(`/api/admin/tasks?type=${taskFilter}`)
+      .then(r => r.json())
+      .then(d => setTaskItems(d.data || []))
+      .catch(() => {});
+  };
+
+  useEffect(() => { if (activeTab === 'tasks') loadTasks(); }, [activeTab, taskFilter]);
+
+  const updateTaskStatus = async (id: string, type: string, newStatus: string) => {
+    setTaskUpdating(id);
+    try {
+      await fetch('/api/admin/tasks', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, type, status: newStatus }) });
+      setTaskItems(prev => prev.map(t => t.id === id ? { ...t, status: newStatus } : t));
+    } catch {}
+    setTaskUpdating(null);
+  };
+
+  const agentStatuses = ['pending', 'running', 'completed', 'failed', 'cancelled'];
+  const prodStages = ['script', 'voiceover', 'video', 'review', 'published'];
+  const taskStatusColor: Record<string, string> = { pending: '#c89e3e', running: '#c8943e', completed: '#4a7c59', failed: '#b54c4c', cancelled: '#6b635a', script: '#c89e3e', voiceover: '#c8943e', video: '#4a6274', review: '#c89e3e', published: '#4a7c59' };
+
   const tc: Record<string, string> = { engine_99: '#22c55e', growth_50: '#f59e0b', starter_20: '#8a8074', operator_499: '#c8943e' };
   const domains = [
     { n: 'MBT', u: 'https://measurablybetterthings.com' }, { n: 'Touring', u: 'https://bigmuddytouring.com' },
@@ -74,7 +99,7 @@ export default function CommandCenter() {
       </div>
 
       <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' }}>
-        {[['overview','📊 Overview'],['businesses','🏪 Businesses'],['engine','🚀 Engine'],['brain','🧠 Brain']].map(([id,label]) => (
+        {[['overview','📊 Overview'],['tasks','📋 Tasks'],['businesses','🏪 Businesses'],['engine','🚀 Engine'],['brain','🧠 Brain']].map(([id,label]) => (
           <button key={id} onClick={() => setActiveTab(id)} style={{ padding: '0.5rem 1.25rem', borderRadius: '8px', border: activeTab === id ? '1px solid #c8943e' : '1px solid #333', background: activeTab === id ? '#c8943e' : 'transparent', color: activeTab === id ? '#0f0f0f' : '#8a8074', cursor: 'pointer', fontSize: '0.875rem', fontWeight: 600 }}>{label}</button>
         ))}
       </div>
@@ -138,6 +163,37 @@ export default function CommandCenter() {
           {scoutResult && <pre style={{ background: '#231f1c', borderRadius: '8px', padding: '1rem', fontSize: '0.75rem', color: '#b8b0a4', whiteSpace: 'pre-wrap', overflow: 'auto', maxHeight: '400px', margin: 0 }}>{JSON.stringify(scoutResult,null,2)}</pre>}
         </div>
       )}
+
+      {activeTab === 'tasks' && (<>
+        <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '1rem' }}>
+          {(['all', 'agent', 'production'] as const).map(f => (
+            <button key={f} onClick={() => setTaskFilter(f)} style={{ padding: '0.4rem 1rem', borderRadius: '999px', border: taskFilter === f ? '1px solid #c8943e' : '1px solid #333', background: taskFilter === f ? 'rgba(200,148,62,0.1)' : 'transparent', color: taskFilter === f ? '#c8943e' : '#8a8074', fontWeight: 600, fontSize: '0.75rem', cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              {f === 'all' ? 'All' : f === 'agent' ? 'Agent Tasks' : 'Production'}
+            </button>
+          ))}
+          <button onClick={loadTasks} style={{ marginLeft: 'auto', padding: '0.4rem 1rem', background: 'transparent', border: '1px solid #333', borderRadius: '999px', color: '#8a8074', fontWeight: 600, fontSize: '0.75rem', cursor: 'pointer' }}>Refresh</button>
+        </div>
+
+        {taskItems.length === 0 ? (
+          <div style={{ background: '#1a1816', borderRadius: '12px', padding: '2rem', border: '1px solid #2a2725', textAlign: 'center', color: '#4a4440' }}>No tasks found.</div>
+        ) : taskItems.map((item: any) => (
+          <div key={`${item.type}-${item.id}`} style={{ background: '#1a1816', borderRadius: '10px', padding: '1rem', border: '1px solid #2a2725', marginBottom: '0.6rem', borderLeft: `3px solid ${taskStatusColor[item.status] || '#333'}`, opacity: taskUpdating === item.id ? 0.5 : 1 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ padding: '0.1rem 0.5rem', borderRadius: '999px', fontSize: '0.6rem', fontWeight: 700, background: item.type === 'agent' ? 'rgba(200,148,62,0.15)' : 'rgba(74,98,116,0.15)', color: item.type === 'agent' ? '#c8943e' : '#4a6274', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{item.type === 'agent' ? 'Agent' : 'Prod'}</span>
+                <span style={{ fontWeight: 600, fontSize: '0.875rem', color: '#e8e4de' }}>{item.title}</span>
+              </div>
+              <span style={{ fontSize: '0.65rem', color: '#6a6460' }}>{new Date(item.created).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontSize: '0.75rem', color: '#8a8074' }}>{item.assignee}</span>
+              <select value={item.status} onChange={e => updateTaskStatus(item.id, item.type, e.target.value)} disabled={taskUpdating === item.id} style={{ padding: '4px 28px 4px 8px', fontSize: '0.7rem', background: '#231f1c', border: '1px solid #333', borderRadius: '6px', color: taskStatusColor[item.status] || '#e8e4de', fontWeight: 600, cursor: 'pointer', appearance: 'none', backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8074' stroke-width='1.5' fill='none'/%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 8px center' }}>
+                {(item.type === 'agent' ? agentStatuses : prodStages).map((s: string) => <option key={s} value={s}>{s}</option>)}
+              </select>
+            </div>
+          </div>
+        ))}
+      </>)}
 
       {activeTab === 'brain' && (<>
         <div style={{ background: '#1a1816', borderRadius: '12px', padding: '1.25rem', border: '1px solid #2a2725', marginBottom: '1rem' }}>
