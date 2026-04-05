@@ -212,6 +212,7 @@ export default function HQDashboard() {
   const [systemHealth, setSystemHealth] = useState<{
     database: boolean;
     deploy: { commit: string | null; createdAt: string | null };
+    build?: { nodeEnv: string | null; vercelEnv: string | null };
     rag: { ok: boolean; message: string | null };
     env: Record<string, boolean>;
   } | null>(null);
@@ -268,8 +269,16 @@ export default function HQDashboard() {
               Deploy {systemHealth.deploy.commit ? systemHealth.deploy.commit.slice(0, 7) : 'local'}
             </span>
           </div>
+          {systemHealth.build && (
+            <div style={{ marginTop: 'var(--space-1)', color: 'var(--text-disabled)', fontSize: 'var(--text-xs)' }}>
+              Build: {systemHealth.build.vercelEnv || systemHealth.build.nodeEnv || '—'}
+            </div>
+          )}
           <div style={{ marginTop: 'var(--space-2)', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-            Env: Stripe {systemHealth.env.stripeSecretKey ? '✓' : '—'} · Google creds {systemHealth.env.googleApplicationCredentialsJson ? '✓' : '—'} · Meta {systemHealth.env.metaAppId ? '✓' : '—'} · Cloudbeds {systemHealth.env.cloudbedsApiKey ? '✓' : '—'}
+            Env: Stripe {systemHealth.env.stripeSecretKey ? '✓' : '—'} · Google creds{' '}
+            {systemHealth.env.googleApplicationCredentialsJson ? '✓' : '—'} · Meta {systemHealth.env.metaAppId ? '✓' : '—'} · Asana{' '}
+            {systemHealth.env.asanaPat ? '✓' : '—'} · Cloudbeds {systemHealth.env.cloudbedsApiKey ? '✓' : '—'} · Cron{' '}
+            {systemHealth.env.cronSecret ? '✓' : '—'}
           </div>
         </div>
       )}
