@@ -2206,6 +2206,31 @@ model Submission {
 }
 
 // ─────────────────────────────────────────────────────────────
+// STUDIO C — Video production request pipeline
+// Any HDI brand submits → Studio C accepts → produces → delivers
+// ─────────────────────────────────────────────────────────────
+
+model StudioCRequest {
+  id            String    @id @default(cuid())
+  clientBrand   String    // big-muddy | bearsville | dsd | tuthill | magazine
+  clientId      Int?      // FK to Client if DSD merchant
+  requestType   String    // session-recording | promo-video | property-tour | social-clips | bts | documentary
+  brief         String    @db.Text
+  location      String?   // Shoot location (default: Utopia Studios, Bearsville NY)
+  preferredDate DateTime?
+  budget        String?   // "included-in-tier" | dollar amount | "quote-requested"
+  status        String    @default("submitted") // submitted | accepted | scheduled | shooting | editing | review | delivered | archived
+  assignedTo    String?   // Crew member name
+  jobId         Int?      // FK to ProductionJob when accepted and converted
+  notes         String?   @db.Text
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([status])
+  @@index([clientBrand])
+}
+
+// ─────────────────────────────────────────────────────────────
 // SIGNAGE — YouTube + Sovereign ticker (display routes)
 // ─────────────────────────────────────────────────────────────
 
