@@ -493,7 +493,7 @@ export default function InRoomTVPage() {
 
         /* Welcome */
         .tv-welcome { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-        .tv-welcome__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
+        .tv-welcome__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
         .tv-welcome__overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,8,0.4) 0%, rgba(10,10,8,0.85) 100%); }
         .tv-welcome__text { position: relative; text-align: center; padding: 2rem; }
         .tv-welcome__eyebrow { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #c8943e; margin-bottom: 0.5rem; }
@@ -533,7 +533,7 @@ export default function InRoomTVPage() {
         .tv-video__bg-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(135deg, rgba(10,10,8,0.75) 0%, rgba(20,14,6,0.88) 100%);
+          background: linear-gradient(135deg, rgba(10,10,8,0.40) 0%, rgba(20,14,6,0.60) 100%);
         }
         .tv-video__body {
           position: relative;
