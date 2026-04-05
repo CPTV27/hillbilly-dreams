@@ -19,6 +19,15 @@ export default function SocialDashboard() {
       .catch(() => setLoading(false));
   }, []);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const p = new URLSearchParams(window.location.search);
+    const err = p.get('fb_error');
+    const ok = p.get('fb_connected');
+    if (err) setResult('Facebook: ' + decodeURIComponent(err.replace(/\+/g, ' ')));
+    if (ok) setResult('Facebook pages connected. Refresh accounts below.');
+  }, []);
+
   const schedulePost = async () => {
     if (!postContent.trim()) return;
     setScheduling(true);
@@ -55,7 +64,26 @@ export default function SocialDashboard() {
 
       {/* Connected Accounts */}
       <div style={{ background: '#1a1816', borderRadius: '12px', padding: '1.25rem', border: '1px solid #2a2725', marginBottom: '1rem' }}>
-        <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#c8943e', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>Connected Accounts</div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+          <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#c8943e', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Connected Accounts</div>
+          <a
+            href="/api/auth/facebook/connect"
+            style={{
+              minHeight: 44,
+              padding: '10px 16px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              background: '#1877f2',
+              color: '#fff',
+              borderRadius: '8px',
+              fontWeight: 700,
+              fontSize: '0.875rem',
+              textDecoration: 'none',
+            }}
+          >
+            Connect Facebook Page
+          </a>
+        </div>
         {loading ? (
           <p style={{ color: '#8a8074', fontSize: '0.875rem' }}>Loading accounts...</p>
         ) : accounts.length > 0 ? (
@@ -79,7 +107,7 @@ export default function SocialDashboard() {
       <div style={{ background: '#1a1816', borderRadius: '12px', padding: '1.25rem', border: '1px solid #2a2725', marginBottom: '1rem' }}>
         <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#c8943e', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>Quick Post</div>
         <textarea
-          style={{ width: '100%', minHeight: '100px', padding: '0.75rem', background: '#231f1c', border: '1px solid #333', borderRadius: '8px', color: '#e8e4de', fontSize: '0.9375rem', outline: 'none', resize: 'vertical', boxSizing: 'border-box', fontFamily: 'inherit' }}
+          style={{ width: '100%', minHeight: 120, padding: '12px', background: '#231f1c', border: '1px solid #333', borderRadius: '8px', color: '#e8e4de', fontSize: '16px', outline: 'none', resize: 'vertical', boxSizing: 'border-box', fontFamily: 'inherit' }}
           placeholder="Write a post for all connected accounts..."
           value={postContent}
           onChange={e => setPostContent(e.target.value)}
@@ -87,7 +115,8 @@ export default function SocialDashboard() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.75rem' }}>
           <span style={{ fontSize: '0.75rem', color: '#8a8074' }}>{postContent.length} / 280 chars</span>
           <button
-            style={{ padding: '0.625rem 1.5rem', background: '#c8943e', color: '#0f0f0f', border: 'none', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, cursor: 'pointer', opacity: scheduling ? 0.6 : 1 }}
+            type="button"
+            style={{ minHeight: 44, padding: '10px 20px', background: '#c8943e', color: '#0f0f0f', border: 'none', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, cursor: 'pointer', opacity: scheduling ? 0.6 : 1 }}
             onClick={schedulePost}
             disabled={scheduling || !postContent.trim()}
           >
@@ -103,8 +132,8 @@ export default function SocialDashboard() {
 
       {/* Links */}
       <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-        <a href="/admin/studio" style={{ padding: '0.5rem 1rem', border: '1px solid #333', borderRadius: '8px', color: '#8a8074', textDecoration: 'none', fontSize: '0.8125rem', fontWeight: 600 }}>Content Studio</a>
-        <a href="/admin/command" style={{ padding: '0.5rem 1rem', border: '1px solid #333', borderRadius: '8px', color: '#8a8074', textDecoration: 'none', fontSize: '0.8125rem', fontWeight: 600 }}>Command Center</a>
+        <a href="/admin/studio" style={{ minHeight: 44, padding: '10px 16px', display: 'inline-flex', alignItems: 'center', border: '1px solid #333', borderRadius: '8px', color: '#8a8074', textDecoration: 'none', fontSize: '0.8125rem', fontWeight: 600 }}>Content Studio</a>
+        <a href="/admin/command" style={{ minHeight: 44, padding: '10px 16px', display: 'inline-flex', alignItems: 'center', border: '1px solid #333', borderRadius: '8px', color: '#8a8074', textDecoration: 'none', fontSize: '0.8125rem', fontWeight: 600 }}>Command Center</a>
       </div>
     </div>
   );
