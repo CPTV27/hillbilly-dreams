@@ -28,7 +28,14 @@ import {
   MediaTranscribeInputSchema,
 } from './handlers/mediaTranscribe';
 import { OrchestrateInputSchema } from './schemas/orchestrate';
-import { queryLore, queryLoreSchema } from './tools/tool.lore.query';
+// ChromaDB lore tool loaded dynamically to avoid bundling onnxruntime-node binaries.
+// Schema is inline; execute() lazy-imports the module.
+import { z } from 'zod';
+const queryLoreSchema = z.object({
+  query: z.string().describe('The user question or subject to search for.'),
+  namespace: z.enum(['lore_manuals', 'lore_journals', 'lore_sops']).describe('Which collection to search.'),
+  maxResults: z.number().optional().describe('Max chunks to return (default 3).'),
+});
 
 /** Who may invoke this tool at the HTTP edge or via orchestration. */
 export enum ToolAuthClass {
@@ -221,7 +228,10 @@ export const TOOL_REGISTRY = {
     authClass: ToolAuthClass.ADMIN,
     modelTier: ModelTier.CARPENTER,
     inputSchema: queryLoreSchema,
-    execute: (input, ctx) => queryLore(input, ctx),
+    execute: async (input, ctx) => {
+      const { queryLore } = await import('./tools/tool.lore.query');
+      return queryLore(input, ctx);
+    },
   },
   'tool.media.transcribe': {
     id: 'tool.media.transcribe',
