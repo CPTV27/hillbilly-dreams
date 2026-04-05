@@ -2,6 +2,7 @@ export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { prisma } from '@bigmuddy/database';
 import { requireAdmin } from '@/lib/admin-auth';
+import { apiLog } from '@/lib/api-logger';
 
 export async function POST(req: Request) {
   const denied = await requireAdmin();
@@ -38,10 +39,10 @@ export async function POST(req: Request) {
       tokenCount
     });
 
-  } catch (error: any) {
-    console.error('[API/Notebook/Drop] Error:', error);
+  } catch (error: unknown) {
+    apiLog.error('POST /api/notebook/drop', 'ingest failed', error);
     return NextResponse.json(
-      { error: error.message || 'Internal Server Error' },
+      { error: error instanceof Error ? error.message : 'Internal Server Error' },
       { status: 500 }
     );
   }

@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { prisma } from '@/lib/db';
+import { apiLog } from '@/lib/api-logger';
 
 const MS_30_DAYS = 30 * 24 * 60 * 60 * 1000;
 
@@ -80,7 +81,7 @@ export async function POST(req: NextRequest) {
     });
     return NextResponse.json({ ok: true });
   } catch (e) {
-    console.error('[nps]', e);
+    apiLog.error('POST /api/nps', 'save failed', e);
     return NextResponse.json({ error: 'Save failed' }, { status: 500 });
   }
 }

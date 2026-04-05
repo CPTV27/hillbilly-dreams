@@ -46,10 +46,11 @@ const ORG: OrgNode = {
       role: 'SaaS Division',
       color: '#22c55e',
       children: [
-        { name: 'Free Listing', role: 'Directory + Alerts' },
-        { name: 'The Assistant — $20', role: 'AI + Local Knowledge' },
-        { name: 'The Works — $49', role: 'Social Media' },
-        { name: 'The Engine — $99', role: 'Full Stack' },
+        { name: 'Free', role: 'Directory + alerts' },
+        { name: 'Essentials — $25', role: 'AI + local knowledge' },
+        { name: 'Pro — $50', role: 'Network + grid' },
+        { name: 'Marketing — $99', role: 'Autopilot social + content' },
+        { name: 'Engine — $250', role: 'Full stack + display' },
       ],
     },
     {

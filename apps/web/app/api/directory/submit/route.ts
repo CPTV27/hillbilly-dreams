@@ -16,6 +16,7 @@ import { prisma } from '@/lib/db';
 import { notify } from '@/lib/notify';
 import { generateSlug } from '@/lib/google-places';
 import { directorySubmitSchema, formatZodError } from '@/lib/user-post-validation';
+import { apiLog } from '@/lib/api-logger';
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const ip = getClientIp(request.headers);
@@ -111,44 +112,44 @@ Write only the spotlight text, no headers or labels.`;
       });
       spotlight = result.text;
     } catch (err) {
-      console.error('[directory/submit] Spotlight generation failed:', err);
+      apiLog.error('POST /api/directory/submit', 'spotlight generation failed', err);
     }
 
-    // Create DirectoryBusiness record
-    const business = await prisma.directoryBusiness.create({
-      data: {
-        name,
-        slug,
-        category,
-        city,
-        state,
-        website: website || null,
-        description,
-        contactName,
-        contactEmail,
-        phone: contactPhone || null,
-        toolsOrigin: toolsOrigin || null,
-        softwareSpend: softwareSpend || null,
-        hearAbout: hearAbout || null,
-        spotlight: spotlight || null,
-        tier: 'free',
-        active: false, // Admin activates after review
-        // Musician-specific fields
-        ...(genre && { genre }),
-        ...(streamingLinks && { streamingLinks }),
-        ...(availability && { availability }),
-        ...(feeRange && { feeRange }),
-      },
-    });
+    const jobTypes = ['google_places', 'embedding'] as const;
 
-    // Queue enrichment jobs
-    const jobTypes = ['google_places', 'embedding'];
-    await prisma.enrichmentJob.createMany({
-      data: jobTypes.map((jobType) => ({
-        entityType: 'directory_business',
-        entityId: String(business.id),
-        jobType,
-      })),
+    const business = await prisma.$transaction(async (tx) => {
+      const b = await tx.directoryBusiness.create({
+        data: {
+          name,
+          slug,
+          category,
+          city,
+          state,
+          website: website || null,
+          description,
+          contactName,
+          contactEmail,
+          phone: contactPhone || null,
+          toolsOrigin: toolsOrigin || null,
+          softwareSpend: softwareSpend || null,
+          hearAbout: hearAbout || null,
+          spotlight: spotlight || null,
+          tier: 'free',
+          active: false,
+          ...(genre && { genre }),
+          ...(streamingLinks && { streamingLinks }),
+          ...(availability && { availability }),
+          ...(feeRange && { feeRange }),
+        },
+      });
+      await tx.enrichmentJob.createMany({
+        data: jobTypes.map((jobType) => ({
+          entityType: 'directory_business',
+          entityId: String(b.id),
+          jobType,
+        })),
+      });
+      return b;
     });
 
     // Send ntfy notification to ops channel
@@ -170,7 +171,7 @@ Write only the spotlight text, no headers or labels.`;
       message: 'Submission received. Business created. Enrichment queued.',
     });
   } catch (err) {
-    console.error('[directory/submit] Error:', err);
+    apiLog.error('POST /api/directory/submit', 'submit failed', err);
     return NextResponse.json({ error: 'Submission failed' }, { status: 500 });
   }
 }

@@ -227,7 +227,7 @@ export default function BobBriefingPage() {
         <p style={S.p}>
           The immediate revenue engine is the <strong style={S.strong}>Deep South Directory</strong> &mdash;
           a business listing service for Main Street businesses in the Deep South.
-          I&rsquo;m doing walk-in sales starting April 1, pitching $20&ndash;$99/month subscriptions.
+          I&rsquo;m doing walk-in sales starting April 1, pitching $25&ndash;$250/month subscriptions (Essentials through Engine).
           The media brands (magazine, radio, entertainment) make the directory pitch credible
           because I can offer editorial coverage, radio features, and event tie-ins that no
           generic SaaS tool can match.

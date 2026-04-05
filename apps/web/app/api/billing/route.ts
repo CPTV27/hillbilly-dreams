@@ -7,6 +7,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireAdmin } from '@/lib/admin-auth';
 import { prisma } from '@/lib/db';
 import { cloudLog } from '@/lib/cloud-logger';
+import { apiLog } from '@/lib/api-logger';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -35,7 +36,7 @@ export async function GET(request: NextRequest) {
     ) {
       return NextResponse.json({ data: [], _source: 'no-db' });
     }
-    console.error('[GET /api/billing]', dbError);
+    apiLog.error('GET /api/billing', 'list invoices failed', dbError);
     return NextResponse.json({ error: 'Failed to list invoices' }, { status: 500 });
   }
 }
@@ -66,16 +67,20 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Client not found.' }, { status: 404 });
     }
 
+    /** Amounts in cents — canonical DSD ladder: Free / $25 / $50 / $99 / $250 */
     const tierPrices: Record<string, number> = {
-      'listing': 0,          // The Listing — Free
-      'assistant': 2000,     // The Assistant — $20/mo (replaces ChatGPT)
-      'works': 4900,         // The Works — $49/mo
-      'engine': 9900,        // The Engine — $99/mo
-      // Legacy tiers (kept for existing clients)
-      'front-porch': 2000,
-      'route': 4900,
+      listing: 0,
+      free: 0,
+      assistant: 2500,
+      essentials: 2500,
+      works: 5000,
+      pro: 5000,
+      marketing: 9900,
+      engine: 25000,
+      'front-porch': 2500,
+      route: 5000,
       'river-room': 9900,
-      'blues-room': 9900,
+      'blues-room': 25000,
     };
 
     const amount = (body.amount as number) ?? tierPrices[client.tier] ?? 9900;

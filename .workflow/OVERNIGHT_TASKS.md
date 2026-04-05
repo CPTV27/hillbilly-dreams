@@ -1,6 +1,6 @@
 # Outstanding work queue (master list)
 
-**Last updated:** 2026-04-06 (morning). **Purpose:** Single checklist for Cursor / agents / Chase.
+**Last updated:** 2026-04-06 (pre-freeze pass). **Purpose:** Single checklist for Cursor / agents / Chase.
 
 **Cursor setup:** see [`.cursor/CURSOR_SETUP.md`](../.cursor/CURSOR_SETUP.md).
 
@@ -29,7 +29,7 @@
   - 2rem+ gap between cards
   - Fix "corridor" in descriptions → "the Deep South"
 
-- [ ] **FlywheelLens.tsx pricing alignment:** Update to match 5-tier model (Free/$25/$50/$99/$250). May still show old pricing.
+- [x] **FlywheelLens + ecosystem lenses pricing:** OrgChartLens, AdvisorLens, RevenueLens aligned to Free / $25 / $50 / $99 / $250 (pre-freeze pass). FlywheelLens directory node already showed Free–$250/mo.
 
 - [ ] **Dependabot PR triage:** 10+ open. Merge safe patch/minor (`sharp`, `turbo`, `@types/node`, `framer-motion`). Close risky majors: "deferring until after April 10 freeze."
 
@@ -39,21 +39,22 @@
 
 ### P2 — If time allows
 
-- [ ] **Mobile pass on press articles:** All 12 press HTML files at 375px. Fix layout breaks.
+- [x] **Mobile pass on press (baseline):** Added `public/press/shared-mobile.css` + `<link>` on all 14 press HTML files (375–420px overflow, img max-width). Per-article fine-tuning still allowed before freeze.
 
 - [ ] **Install `gh` CLI:** `brew install gh && gh auth login`. Run `gh issue list --state open`, save to `.workflow/GITHUB_ISSUES.md`.
 
 - [ ] **NpsResponse migration:** Prepare migration for NpsResponse model (in schema, not yet in prod DB). Do NOT push without Chase approval.
 
-- [ ] **Extend `apiLog`** to remaining API routes still using `console.log` (grep `console.` under `app/api`).
+- [ ] **Extend `apiLog`** to remaining API routes still using `console.error` / `console.warn` (grep under `app/api`). *Partial:* billing GET, nps, notebook/drop, directory/submit, cron/cloudbeds-sync migrated in pre-freeze pass.
 
-- [ ] **OBS client paths:** Align `lib/obs-client.ts` placeholder paths with actual OpenBroadcaster REST surface on Mac Mini (192.168.4.37:8080).
+- [x] **OBS client paths:** `lib/obs-client.ts` now targets OpenBroadcaster **5.x** `/api/v2/` routes per docs (media/search, media PUT, playlists, timeslots). **Not yet called from production routes** — verify payloads against live Mini before relying on writes.
 
 ### P3 — Backlog (before April 10 freeze)
 
-- [ ] `$transaction` on remaining multi-write routes
+- [ ] `$transaction` on remaining multi-write routes (*partial:* `page-edits` POST, `directory/submit` create + enrichment jobs)
 - [ ] N+1 profiling on hot list endpoints
-- [ ] Legacy billing / `directory/claim` — align with current tier model
+- [x] Legacy billing tier cents in `POST /api/billing` — aligned to $25/$50/$99/$250 ladder
+- [ ] `directory/claim` — Stripe / tier copy audit if still needed
 - [ ] Authenticated Playwright test with `E2E_SESSION_COOKIE`
 - [ ] `tokens.css` modularization (phased, heavy QA)
 - [ ] Sentry: add `SENTRY_AUTH_TOKEN` to GitHub Secrets, verify symbolicated frames
@@ -70,6 +71,17 @@
 ---
 
 ## Done (archive — do not reopen)
+
+### April 6 — Pre-freeze dispatch (Cursor, partial)
+- [x] Press mobile shared stylesheet + 14 HTML links
+- [x] Billing: `apiLog` on GET errors + canonical tier cents
+- [x] `page-edits` batch upserts → `prisma.$transaction`
+- [x] `directory/submit` business create + enrichment jobs → `$transaction`
+- [x] `apiLog` on: nps POST, notebook/drop, directory/submit errors, cloudbeds-sync catch
+- [x] Ecosystem org/advisor/revenue lens copy — DSD 5-tier naming
+- [x] Briefing scan2plan Bob — walk-in pitch $25–$250
+- [x] OBS client — `/api/v2/` path alignment + doc link
+- [x] Gates: `pnpm exec tsc --noEmit -p apps/web`, `pnpm test:p0`
 
 ### April 5-6 overnight
 - [x] Press photo deduplication — 41 unique paths, no duplicates, Victorian banned (dc04c9a, efebc7e)

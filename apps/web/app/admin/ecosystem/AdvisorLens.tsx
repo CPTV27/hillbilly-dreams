@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const ANALYSIS_TOPICS = [
   { id: 'gaps', label: 'Gap Analysis', prompt: 'Analyze the Big Muddy ecosystem for gaps — what capabilities are missing, what revenue streams are untapped, what audience segments are unserved? Be specific and actionable.' },
-  { id: 'priorities', label: 'Priority Stack', prompt: 'Given the current state of the ecosystem (3 humans, AI-augmented, 15 domains, $0-99 pricing tiers, radio station, hotel), what should be the top 5 priorities for the next 30 days? Rank by revenue impact.' },
+  { id: 'priorities', label: 'Priority Stack', prompt: 'Given the current state of the ecosystem (3 humans, AI-augmented, 14+ domains, DSD walk-in ladder $25–$250/mo, radio station, hotel), what should be the top 5 priorities for the next 30 days? Rank by revenue impact.' },
   { id: 'risks', label: 'Risk Assessment', prompt: 'What are the top risks to this ecosystem? Consider: single points of failure, key person dependencies, technology risks, market risks, competitive threats. For each, suggest a mitigation.' },
   { id: 'scaling', label: 'Scaling Playbook', prompt: 'How does this ecosystem scale from 1 region town to 10? What needs to change in the architecture, the team, the pricing, the content production? Be specific about what breaks at each stage.' },
   { id: 'monetization', label: 'Monetization Map', prompt: 'Map every possible revenue stream in this ecosystem — active and latent. For each, estimate monthly potential and effort to activate. Include: subscriptions, transactions, licensing, sponsorship, grants, partnerships, content syndication.' },
@@ -18,14 +18,14 @@ DIVISIONS:
 - Big Muddy Touring (Hotel: 6 suites, Blues Room: 50-seat venue)
 - Big Muddy Media (Magazine, Radio: 18 shows, Records)
 - Big Muddy Entertainment (Rise Up talent pipeline, shows)
-- Deep South Directory (Free/$20/$49/$99 tiers for Main Street businesses)
+- Deep South Directory (Free / $25 Essentials / $50 Pro / $99 Marketing / $250 Engine for Main Street businesses)
 - Outsider Economics (Economic philosophy, field manual)
 - Venture Gallery (Photography storefront, Stripe Connect marketplace)
 
 TEAM: Chase (CEO/CTO), Tracy (Business/Finance), Amy (Inn/Bar Ops), JP (Shows/Programming)
 AI STACK: Gemini 2.5 Flash/3.1 Pro, Claude Sonnet/Haiku, Perplexity, Imagen 3, Veo 3.1, Cloud TTS
 INFRASTRUCTURE: 15 domains on Vercel, Neon PostgreSQL, GCS, OpenBroadcaster, Plex, Postiz
-REVENUE: Pre-launch. Free listings building audience. $20 AI assistant launching. $99 engine for social media management.
+REVENUE: Pre-launch. Free listings building audience. Paid walk-in ladder ($25–$250). Marketing and Engine tiers include full social and media workflows.
 LOCATION: Natchez, Mississippi — Deep South (Memphis to New Orleans)
 
 TRADITIONAL STAFFING EQUIVALENT: $50K/mo for 10 roles

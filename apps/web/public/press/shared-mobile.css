@@ -1,0 +1,26 @@
+/* Pre-freeze (Apr 10): shared 375–420px pass for press mock articles.
+   Load after page-local <style> via <link rel="stylesheet" href="/press/shared-mobile.css"> */
+@media (max-width: 420px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    overflow-x: hidden;
+  }
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  figure,
+  .figure,
+  .hero-img,
+  .article-hero img {
+    max-width: 100%;
+  }
+  pre,
+  code {
+    max-width: 100%;
+    overflow-x: auto;
+    word-break: break-word;
+  }
+}

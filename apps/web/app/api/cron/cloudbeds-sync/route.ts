@@ -69,7 +69,7 @@ export async function GET(request: Request) {
       metrics,
     });
   } catch (error) {
-    console.error('[cron/cloudbeds-sync] Error:', error);
+    apiLog.error('cron/cloudbeds-sync', 'sync failed', error);
     return NextResponse.json({
       success: false,
       error: error instanceof Error ? error.message : 'Sync failed',

@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'path and edits[] are required' }, { status: 400 });
   }
 
-  const results = await Promise.all(
+  const results = await prisma.$transaction(
     edits.map((edit) =>
       prisma.pageEdit.upsert({
         where: { path_editId: { path, editId: edit.editId } },
