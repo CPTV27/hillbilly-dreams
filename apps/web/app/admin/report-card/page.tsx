@@ -40,6 +40,8 @@ export default function ReportCardPage() {
   const [audit, setAudit] = useState<AuditData | null>(null);
   const [loading, setLoading] = useState(true);
   const [lastRefresh, setLastRefresh] = useState('');
+  const [issues, setIssues] = useState<Array<{ number: number; title: string; state: string; labels: string[]; created: string }>>([]);
+  const [issueStats, setIssueStats] = useState({ open: 0, closed: 0, closedToday: 0 });
 
   const load = () => {
     setLoading(true);
@@ -50,7 +52,29 @@ export default function ReportCardPage() {
       .finally(() => setLoading(false));
   };
 
-  useEffect(() => { load(); }, []);
+  const loadIssues = () => {
+    // Fetch from our tasks API as a proxy for issue tracking
+    fetch('/api/admin/tasks?type=all')
+      .then(r => r.json())
+      .then(d => {
+        const items = d.data || [];
+        const open = items.filter((t: { status: string }) => !['completed', 'failed'].includes(t.status));
+        const closed = items.filter((t: { status: string }) => t.status === 'completed');
+        const today = new Date().toDateString();
+        const closedToday = closed.filter((t: { created: string }) => new Date(t.created).toDateString() === today);
+        setIssueStats({ open: open.length, closed: closed.length, closedToday: closedToday.length });
+        setIssues(items.slice(0, 20).map((t: { id: string; title: string; status: string; created: string }) => ({
+          number: parseInt(t.id) || 0,
+          title: t.title,
+          state: t.status === 'completed' ? 'closed' : 'open',
+          labels: [],
+          created: t.created,
+        })));
+      })
+      .catch(() => {});
+  };
+
+  useEffect(() => { load(); loadIssues(); }, []);
 
   const gradeColor = (g: string) => GRADE_COLORS[g] || 'var(--text-muted)';
 
@@ -93,6 +117,32 @@ export default function ReportCardPage() {
                 <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', marginTop: 'var(--space-1)' }}>{c.detail}</div>
               </div>
             ))}
+          </div>
+
+          {/* Issue Tracking — The Feedback Loop */}
+          <h2 style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--text-disabled)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-widest)', marginBottom: 'var(--space-4)' }}>Feedback Loop</h2>
+          <div className="admin-card" style={{ marginBottom: 'var(--space-6)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-3)', marginBottom: 'var(--space-4)' }}>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 'var(--text-2xl)', fontWeight: 700, color: 'var(--error, #b54c4c)' }}>{issueStats.open}</div>
+                <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)' }}>Open Issues</div>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 'var(--text-2xl)', fontWeight: 700, color: 'var(--success, #4a7c59)' }}>{issueStats.closed}</div>
+                <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)' }}>Resolved</div>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 'var(--text-2xl)', fontWeight: 700, color: 'var(--accent)' }}>{issueStats.closed > 0 ? Math.round((issueStats.closed / (issueStats.open + issueStats.closed)) * 100) : 0}%</div>
+                <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)' }}>Resolution Rate</div>
+              </div>
+            </div>
+            {/* Progress bar */}
+            <div style={{ height: 8, background: 'var(--surface-2)', borderRadius: 4, overflow: 'hidden', marginBottom: 'var(--space-3)' }}>
+              <div style={{ height: '100%', width: `${issueStats.closed > 0 ? Math.round((issueStats.closed / (issueStats.open + issueStats.closed)) * 100) : 0}%`, background: 'var(--success)', borderRadius: 4, transition: 'width 0.5s' }} />
+            </div>
+            <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', textAlign: 'center' }}>
+              RAG audit finds issues → GitHub tracks them → Agents fix them → Grades update automatically
+            </p>
           </div>
 
           {/* Launch Checklist */}
