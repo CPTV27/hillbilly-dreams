@@ -25,7 +25,10 @@ test.describe('P0 — Deep South Directory (deepsouthdirectory.com)', () => {
       timeout: 20_000,
     });
 
-    await expect(page.getByRole('heading', { name: /Directory Membership/i })).toBeVisible();
+    await expect(page.getByText('Directory Membership')).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /More than a listing/i })
+    ).toBeVisible();
     await page.getByRole('link', { name: 'Get Started' }).first().click();
 
     await page.waitForURL(/\/directory\/onboard/, { timeout: 15_000 });
