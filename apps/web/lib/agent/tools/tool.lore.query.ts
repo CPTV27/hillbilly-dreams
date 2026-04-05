@@ -1,10 +1,17 @@
 import { z } from 'zod';
-import { ChromaClient, DefaultEmbeddingFunction, IncludeEnum } from 'chromadb';
 import { EventProducer } from '../eventProducer';
 import type { ToolRunContext } from '../agentDispatch';
 
-/** Must match the embedding used when ingesting (Chroma default / ambient-watcher). */
-const loreEmbeddingFunction = new DefaultEmbeddingFunction();
+/** Lazy-load ChromaDB to avoid bundling onnxruntime-node binaries at build time. */
+async function getChromaClient() {
+  const { ChromaClient, DefaultEmbeddingFunction } = await import('chromadb');
+  return { client: new ChromaClient(), embedder: new DefaultEmbeddingFunction() };
+}
+
+/** IncludeEnum values — hardcoded to avoid import at build time. */
+const INCLUDE_DOCUMENTS = 'documents';
+const INCLUDE_METADATAS = 'metadatas';
+const INCLUDE_DISTANCES = 'distances';
 
 export const queryLoreSchema = z.object({
   query: z.string().describe('The user question or subject to search for in the Deep Lore memory banks.'),
@@ -23,7 +30,9 @@ export type QueryLoreParams = z.infer<typeof queryLoreSchema>;
  */
 export async function queryLore(params: QueryLoreParams, _context?: ToolRunContext) {
   const CHROMA_URL = process.env.CHROMA_URL || 'http://localhost:8000';
-  const client = new ChromaClient({ path: CHROMA_URL });
+  const { ChromaClient: CC, DefaultEmbeddingFunction: DEF } = await import('chromadb');
+  const client = new CC({ path: CHROMA_URL });
+  const embedder = new DEF();
 
   const toolName = 'lore_query';
   EventProducer.toolCallStart(toolName, {
@@ -35,13 +44,13 @@ export async function queryLore(params: QueryLoreParams, _context?: ToolRunConte
   try {
     const collection = await client.getCollection({
       name: params.namespace,
-      embeddingFunction: loreEmbeddingFunction,
+      embeddingFunction: embedder,
     });
 
     const results = await collection.query({
       queryTexts: [params.query],
       nResults: params.maxResults || 3,
-      include: [IncludeEnum.Documents, IncludeEnum.Metadatas, IncludeEnum.Distances],
+      include: [INCLUDE_DOCUMENTS, INCLUDE_METADATAS, INCLUDE_DISTANCES] as any,
     });
 
     if (!results.documents?.[0]?.length) {
