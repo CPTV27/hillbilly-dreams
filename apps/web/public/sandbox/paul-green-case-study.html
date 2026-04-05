@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paul Green Real Estate — Case Study | Deep South Directory + Tuthill Design</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f0f0d;
+    --bg-card: #1a1a17;
+    --bg-card-alt: #222219;
+    --gold: #c8943e;
+    --gold-light: #e0b966;
+    --gold-dim: #8a6528;
+    --text: #e8e4dc;
+    --text-muted: #9c9788;
+    --text-dim: #6b6760;
+    --green: #4caf50;
+    --blue: #5b9bd5;
+    --red: #e06060;
+    --border: #2a2a24;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Internal Banner */
+  .internal-banner {
+    background: linear-gradient(90deg, #b71c1c, #c62828);
+    color: #fff;
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('/images/corridor/historic-home-natchez.webp') center/cover no-repeat;
+    filter: brightness(0.3);
+    z-index: 0;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 60px 24px;
+  }
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  .hero h1 em {
+    color: var(--gold);
+    font-style: normal;
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .hero-logos {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .hero-logo .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* Section */
+  section {
+    padding: 80px 0;
+  }
+  .section-label {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 640px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  /* Listing Mockup */
+  .listing-mockup {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .listing-header {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+  }
+  .listing-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .listing-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--gold);
+    color: #0f0f0d;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .listing-badge svg { width: 14px; height: 14px; }
+  .listing-body {
+    padding: 32px;
+  }
+  .listing-name {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .listing-category {
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+  .listing-stars {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .stars { color: var(--gold); font-size: 18px; letter-spacing: 2px; }
+  .rating-text { color: var(--text-muted); font-size: 14px; }
+  .listing-desc {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    border-left: 3px solid var(--gold-dim);
+    padding-left: 16px;
+  }
+  .listing-desc em { color: var(--text); font-style: normal; }
+  .listing-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .meta-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  .meta-icon {
+    color: var(--gold);
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .meta-item strong { color: var(--text); display: block; margin-bottom: 2px; }
+
+  /* Review Cards */
+  .reviews-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .review-card {
+    background: var(--bg-card-alt);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .review-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .review-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--gold-light);
+  }
+  .review-name { font-weight: 500; font-size: 14px; }
+  .review-date { font-size: 12px; color: var(--text-dim); }
+  .review-stars { color: var(--gold); font-size: 13px; letter-spacing: 1px; margin-bottom: 8px; }
+  .review-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  /* Featured Properties */
+  .properties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .property-card {
+    background: var(--bg-card-alt);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .property-img {
+    height: 160px;
+    background: var(--bg);
+    overflow: hidden;
+    position: relative;
+  }
+  .property-img img { width: 100%; height: 100%; object-fit: cover; }
+  .property-tag {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(15,15,13,0.85);
+    color: var(--gold);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .property-info { padding: 16px; }
+  .property-price { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--gold); }
+  .property-address { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+  .property-specs { font-size: 12px; color: var(--text-dim); margin-top: 8px; display: flex; gap: 12px; }
+
+  /* Capability Cards */
+  .cap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .cap-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color 0.2s;
+  }
+  .cap-card:hover { border-color: var(--gold-dim); }
+  .cap-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(200,148,62,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+  .cap-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .cap-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .cap-tag {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--green);
+    font-weight: 500;
+    background: rgba(76,175,80,0.1);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  /* AI Chat Mockup */
+  .chat-mockup {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 640px;
+  }
+  .chat-bar {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .chat-avatar-dd {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .chat-name { font-weight: 600; font-size: 15px; }
+  .chat-status { font-size: 12px; color: var(--green); }
+  .chat-messages {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .chat-msg {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .chat-msg-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .chat-msg-avatar.dd {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+  }
+  .chat-msg-bubble {
+    background: var(--bg-card-alt);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 460px;
+  }
+  .chat-msg-bubble strong { color: var(--text); }
+  .chat-msg-bubble .highlight { color: var(--gold); font-weight: 500; }
+  .chat-msg-time { font-size: 11px; color: var(--text-dim); margin-top: 6px; }
+  .chat-msg-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .chat-btn {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+  }
+  .chat-btn.primary { background: var(--gold); color: #0f0f0d; }
+  .chat-btn.secondary { background: var(--bg-card); color: var(--text-muted); border: 1px solid var(--border); }
+
+  /* Report Card Mockup */
+  .report-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 560px;
+  }
+  .report-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+  .report-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  .report-period {
+    font-size: 13px;
+    color: var(--text-muted);
+    background: var(--bg-card-alt);
+    padding: 4px 12px;
+    border-radius: 6px;
+  }
+  .report-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .stat-box {
+    background: var(--bg-card-alt);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .stat-label { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .stat-value { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; }
+  .stat-change { font-size: 12px; margin-top: 4px; }
+  .stat-change.up { color: var(--green); }
+  .stat-change.down { color: var(--red); }
+  .report-bar-section { margin-top: 20px; }
+  .report-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .report-bar {
+    height: 6px;
+    background: var(--bg-card-alt);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .report-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--gold);
+  }
+
+  /* Tuthill Section */
+  .tuthill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .tuthill-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .tuthill-card:hover { transform: translateY(-2px); border-color: var(--gold-dim); }
+  .tuthill-img {
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+  }
+  .tuthill-img img { width: 100%; height: 100%; object-fit: cover; }
+  .tuthill-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15,15,13,0.7), transparent);
+  }
+  .tuthill-label {
+    position: absolute;
+    bottom: 10px;
+    left: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .tuthill-info { padding: 18px; }
+  .tuthill-info h4 { font-family: var(--font-display); font-size: 1rem; margin-bottom: 6px; }
+  .tuthill-info p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* Ecosystem */
+  .eco-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .eco-node {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    text-align: center;
+    flex: 1;
+    min-width: 200px;
+    max-width: 260px;
+  }
+  .eco-node.active { border-color: var(--gold); }
+  .eco-icon { font-size: 28px; margin-bottom: 12px; }
+  .eco-node h4 { font-family: var(--font-display); font-size: 1rem; margin-bottom: 6px; }
+  .eco-node p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+  .eco-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    color: var(--gold-dim);
+    font-size: 24px;
+  }
+
+  /* Media Section */
+  .media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .media-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .media-img {
+    height: 180px;
+    overflow: hidden;
+  }
+  .media-img img { width: 100%; height: 100%; object-fit: cover; }
+  .media-body { padding: 24px; }
+  .media-brand {
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .media-body h4 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 8px; }
+  .media-body p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+  /* Ecosystem Effect */
+  .eco-stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 48px;
+  }
+  .eco-stat {
+    text-align: center;
+    padding: 28px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .eco-stat-num {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .eco-stat-label {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    padding: 80px 0 100px;
+  }
+  .cta-section h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    margin-bottom: 16px;
+  }
+  .cta-section p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin: 0 auto 32px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: #0f0f0d;
+    padding: 14px 36px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .cta-btn:hover { background: var(--gold-light); }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  /* Two-col layout */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; }
+    .eco-flow { flex-direction: column; align-items: center; }
+    .eco-arrow { transform: rotate(90deg); padding: 8px 0; }
+    .listing-meta { grid-template-columns: 1fr; }
+    .report-stats { grid-template-columns: 1fr; }
+    section { padding: 60px 0; }
+    .hero { min-height: 70vh; }
+  }
+
+  /* Search mockup */
+  .search-mockup {
+    background: var(--bg-card-alt);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+  }
+  .search-mockup .query { color: var(--text); font-weight: 500; }
+
+  /* Notification mockup */
+  .notif-mockup {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .notif-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+  .notif-icon.gold { background: rgba(200,148,62,0.15); }
+  .notif-icon.green { background: rgba(76,175,80,0.15); }
+  .notif-icon.blue { background: rgba(91,155,213,0.15); }
+  .notif-icon.red { background: rgba(224,96,96,0.15); }
+  .notif-body { flex: 1; }
+  .notif-title { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+  .notif-text { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+  .notif-time { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<!-- Internal Only Banner -->
+<div class="internal-banner">
+  Internal Use Only — Not for Public Distribution
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Case Study</div>
+    <h1>What <em>AI-Powered Real Estate</em> Looks Like in Natchez</h1>
+    <p class="hero-sub">
+      A capabilities overview for Paul Green Real Estate — powered by Deep South Directory and Tuthill Design.
+    </p>
+    <div class="hero-logos">
+      <span class="hero-logo"><span class="dot"></span> Deep South Directory</span>
+      <span class="hero-logo"><span class="dot"></span> Tuthill Design</span>
+      <span class="hero-logo"><span class="dot"></span> AI-Powered</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ THE AI LISTING ============ -->
+<section>
+  <div class="container">
+    <span class="section-label">Your Listing</span>
+    <h2 class="section-title">The Deep South Directory Listing</h2>
+    <p class="section-desc">
+      This is what buyers, tourists, and relocators see when they search for real estate in Natchez. Not a basic business card — a living, AI-managed profile that works around the clock.
+    </p>
+
+    <!-- Search bar mockup -->
+    <div class="search-mockup">
+      <span style="font-size:18px;">&#128269;</span>
+      <span>Searching: <span class="query">"real estate Natchez MS"</span></span>
+    </div>
+
+    <!-- Listing card -->
+    <div class="listing-mockup">
+      <div class="listing-header">
+        <img src="/images/corridor/craftsman-porch-columns.webp" alt="Historic Natchez architecture">
+        <div class="listing-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Category Champion: Real Estate
+        </div>
+      </div>
+      <div class="listing-body">
+        <h3 class="listing-name">Paul Green Real Estate</h3>
+        <div class="listing-category">Real Estate &middot; Natchez, Mississippi</div>
+
+        <div class="listing-stars">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="rating-text">4.9 &middot; 67 reviews on Google</span>
+        </div>
+
+        <p class="listing-desc">
+          <em>Paul Green has been helping people buy and sell homes in Natchez for over two decades.</em>
+          Specializing in the historic properties that make this city one-of-a-kind — antebellum estates,
+          downtown commercial, river-view lots, and starter homes for young families putting down roots.
+          Whether you're relocating from out of state or a lifelong local ready to make a move,
+          Paul knows every street, every neighborhood, and every hidden gem in Adams County.
+        </p>
+
+        <div class="listing-meta">
+          <div class="meta-item">
+            <span class="meta-icon">&#128205;</span>
+            <div>
+              <strong>Address</strong>
+              Franklin Street, Natchez, MS 39120
+            </div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">&#128222;</span>
+            <div>
+              <strong>Phone</strong>
+              (601) 555-0142
+            </div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">&#128338;</span>
+            <div>
+              <strong>Hours</strong>
+              Mon-Fri 9am-5pm &middot; Sat by appt
+            </div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">&#127968;</span>
+            <div>
+              <strong>Specialties</strong>
+              Historic homes, Commercial, Land, New construction
+            </div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">&#127758;</span>
+            <div>
+              <strong>Service Area</strong>
+              Adams County, Concordia Parish, Jefferson County
+            </div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">&#9989;</span>
+            <div>
+              <strong>Founding Member</strong>
+              Deep South Directory Verified
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured Properties -->
+        <div class="properties-grid">
+          <div class="property-card">
+            <div class="property-img">
+              <img src="/images/corridor/historic-home-natchez.webp" alt="Historic home in Natchez">
+              <span class="property-tag">Featured</span>
+            </div>
+            <div class="property-info">
+              <div class="property-price">$425,000</div>
+              <div class="property-address">218 S. Commerce Street</div>
+              <div class="property-specs">
+                <span>4 bed</span> <span>3 bath</span> <span>3,200 sqft</span> <span>1858</span>
+              </div>
+            </div>
+          </div>
+          <div class="property-card">
+            <div class="property-img">
+              <img src="/images/corridor/natchez-bluff-river-view.webp" alt="River view property">
+              <span class="property-tag">New</span>
+            </div>
+            <div class="property-info">
+              <div class="property-price">$289,000</div>
+              <div class="property-address">44 Bluff Road</div>
+              <div class="property-specs">
+                <span>3 bed</span> <span>2 bath</span> <span>2,100 sqft</span> <span>River view</span>
+              </div>
+            </div>
+          </div>
+          <div class="property-card">
+            <div class="property-img">
+              <img src="/images/corridor/cafe-sidewalk-natchez.webp" alt="Downtown commercial property">
+              <span class="property-tag">Commercial</span>
+            </div>
+            <div class="property-info">
+              <div class="property-price">$175,000</div>
+              <div class="property-address">112 Main Street</div>
+              <div class="property-specs">
+                <span>Retail</span> <span>1,800 sqft</span> <span>Corner lot</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reviews -->
+        <div class="reviews-row">
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar">JH</div>
+              <div>
+                <div class="review-name">James Henderson</div>
+                <div class="review-date">3 weeks ago</div>
+              </div>
+            </div>
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="review-text">
+              Paul made our move to Natchez seamless. We were relocating from Houston and he understood exactly what we were looking for. Found us a beautiful home on the bluff within our budget. Highly recommend.
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar">MT</div>
+              <div>
+                <div class="review-name">Martha Thompson</div>
+                <div class="review-date">1 month ago</div>
+              </div>
+            </div>
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="review-text">
+              Sold our family home of 40 years with Paul. He treated it with the care it deserved and found buyers who love the house as much as we did. Professional, honest, and genuinely kind.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ AI-MANAGED PRESENCE ============ -->
+<section>
+  <div class="container">
+    <span class="section-label">Automated Marketing</span>
+    <h2 class="section-title">AI-Managed Digital Presence</h2>
+    <p class="section-desc">
+      Your online presence is managed continuously — Google, social media, reviews — so you can focus on clients and closings, not marketing chores.
+    </p>
+
+    <div class="two-col">
+      <div>
+        <div class="cap-grid" style="grid-template-columns: 1fr;">
+          <div class="cap-card">
+            <div class="cap-icon">&#127760;</div>
+            <h3>Google Business Profile — Always Current</h3>
+            <p>Hours, photos, services, and Google Posts updated automatically. No more outdated info confusing potential clients.</p>
+            <span class="cap-tag">&#10003; Runs automatically</span>
+          </div>
+          <div class="cap-card">
+            <div class="cap-icon">&#11088;</div>
+            <h3>Review Alerts + AI Responses</h3>
+            <p>Instant notification when a new review appears. An AI-drafted response is ready for your approval — just tap and send.</p>
+            <span class="cap-tag">&#10003; Under 2 minutes to respond</span>
+          </div>
+          <div class="cap-card">
+            <div class="cap-icon">&#128241;</div>
+            <h3>Social Media on Autopilot</h3>
+            <p>New listings automatically become polished social posts for Facebook and Instagram. Photo carousel, description, call to action — all generated.</p>
+            <span class="cap-tag">&#10003; Posts generated from your listings</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Report Card -->
+      <div>
+        <div class="report-card">
+          <div class="report-header">
+            <div class="report-title">Monthly Report Card</div>
+            <div class="report-period">March 2026</div>
+          </div>
+          <div class="report-stats">
+            <div class="stat-box">
+              <div class="stat-label">Profile Views</div>
+              <div class="stat-value">2,847</div>
+              <div class="stat-change up">&#9650; 23% vs Feb</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Phone Calls</div>
+              <div class="stat-value">38</div>
+              <div class="stat-change up">&#9650; 12% vs Feb</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Direction Requests</div>
+              <div class="stat-value">94</div>
+              <div class="stat-change up">&#9650; 8% vs Feb</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Website Clicks</div>
+              <div class="stat-value">186</div>
+              <div class="stat-change up">&#9650; 31% vs Feb</div>
+            </div>
+          </div>
+          <div class="report-bar-section">
+            <div class="report-bar-label">
+              <span>Search Impressions</span>
+              <span style="color:var(--gold);">12,400</span>
+            </div>
+            <div class="report-bar"><div class="report-bar-fill" style="width:78%;"></div></div>
+            <div class="report-bar-label">
+              <span>Map Impressions</span>
+              <span style="color:var(--gold);">8,200</span>
+            </div>
+            <div class="report-bar"><div class="report-bar-fill" style="width:62%;"></div></div>
+            <div class="report-bar-label">
+              <span>Photo Views</span>
+              <span style="color:var(--gold);">3,100</span>
+            </div>
+            <div class="report-bar"><div class="report-bar-fill" style="width:41%;"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ TUTHILL DESIGN ============ -->
+<section>
+  <div class="container">
+    <span class="section-label">Tuthill Design</span>
+    <h2 class="section-title">Professional Visual Content</h2>
+    <p class="section-desc">
+      Every listing deserves to look its best. Tuthill Design handles the capture — you get broadcast-quality visuals delivered to your MLS, directory profile, and social channels simultaneously.
+    </p>
+
+    <div class="tuthill-grid">
+      <div class="tuthill-card">
+        <div class="tuthill-img">
+          <img src="/images/corridor/historic-home-natchez.webp" alt="HDR property photography">
+          <div class="tuthill-overlay"></div>
+          <span class="tuthill-label">HDR Photography</span>
+        </div>
+        <div class="tuthill-info">
+          <h4>Property Photography</h4>
+          <p>Professional HDR interior and exterior shots. Every room lit and composed for maximum appeal. MLS-ready formats delivered same week.</p>
+        </div>
+      </div>
+      <div class="tuthill-card">
+        <div class="tuthill-img">
+          <img src="/images/corridor/natchez-bluff-river-view.webp" alt="Drone aerial photography">
+          <div class="tuthill-overlay"></div>
+          <span class="tuthill-label">Aerial / Drone</span>
+        </div>
+        <div class="tuthill-info">
+          <h4>Drone Aerial Shots</h4>
+          <p>Bird's-eye views that show lot boundaries, neighborhood context, and that river view. Perfect for acreage and estate properties.</p>
+        </div>
+      </div>
+      <div class="tuthill-card">
+        <div class="tuthill-img">
+          <img src="/images/dsd/service-photo.webp" alt="Video walkthrough">
+          <div class="tuthill-overlay"></div>
+          <span class="tuthill-label">Video Tour</span>
+        </div>
+        <div class="tuthill-info">
+          <h4>Video Walkthroughs</h4>
+          <p>Cinematic property tours that let buyers experience the home before scheduling a visit. Edited, scored, and ready to share.</p>
+        </div>
+      </div>
+      <div class="tuthill-card">
+        <div class="tuthill-img">
+          <img src="/images/dsd/service-ai.webp" alt="Virtual staging">
+          <div class="tuthill-overlay"></div>
+          <span class="tuthill-label">AI-Enhanced</span>
+        </div>
+        <div class="tuthill-info">
+          <h4>Virtual Staging</h4>
+          <p>Empty rooms transformed with AI-generated furnishings. Show buyers the potential without the expense of physical staging.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px;">
+      <span class="cap-tag" style="color: var(--gold); background: rgba(200,148,62,0.1);">&#10003; Delivered to MLS-ready formats</span>
+      <span class="cap-tag" style="color: var(--gold); background: rgba(200,148,62,0.1);">&#10003; Auto-posted to DSD profile</span>
+      <span class="cap-tag" style="color: var(--gold); background: rgba(200,148,62,0.1);">&#10003; Social-optimized versions included</span>
+      <span class="cap-tag" style="color: var(--gold); background: rgba(200,148,62,0.1);">&#10003; Monthly content quota</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ AI ASSISTANT ============ -->
+<section>
+  <div class="container">
+    <span class="section-label">Your AI Assistant</span>
+    <h2 class="section-title">Delta Dawn — Working for You</h2>
+    <p class="section-desc">
+      Think of Delta Dawn as your always-on marketing assistant. She monitors your listings, watches your reviews, tracks competitors, and surfaces the insights that matter — so you hear about it first.
+    </p>
+
+    <div class="two-col">
+      <!-- Chat Mockup -->
+      <div class="chat-mockup">
+        <div class="chat-bar">
+          <div class="chat-avatar-dd">&#9734;</div>
+          <div>
+            <div class="chat-name">Delta Dawn</div>
+            <div class="chat-status">&#9679; Online</div>
+          </div>
+        </div>
+        <div class="chat-messages">
+          <div class="chat-msg">
+            <div class="chat-msg-avatar dd">&#9734;</div>
+            <div>
+              <div class="chat-msg-bubble">
+                <strong>Good morning, Paul.</strong> You got a <span class="highlight">5-star review</span> from the Hendersons overnight. Here's a draft response:
+                <br><br>
+                <em>"Thank you so much, James and Linda! It was a joy helping you find your dream home on the bluff. Welcome to Natchez — we're glad you're here."</em>
+              </div>
+              <div class="chat-msg-actions">
+                <button class="chat-btn primary">Approve & Send</button>
+                <button class="chat-btn secondary">Edit</button>
+              </div>
+              <div class="chat-msg-time">Today, 7:12 AM</div>
+            </div>
+          </div>
+          <div class="chat-msg">
+            <div class="chat-msg-avatar dd">&#9734;</div>
+            <div>
+              <div class="chat-msg-bubble">
+                Your listing at <span class="highlight">218 S. Commerce</span> got <strong>47 views</strong> this week, up from 29 last week. The Smiths' open house had <strong>12 inquiries</strong> — 4 requested a second showing.
+              </div>
+              <div class="chat-msg-time">Today, 7:14 AM</div>
+            </div>
+          </div>
+          <div class="chat-msg">
+            <div class="chat-msg-avatar dd">&#9734;</div>
+            <div>
+              <div class="chat-msg-bubble">
+                <strong>Competitor alert:</strong> Century 21 Natchez just listed 3 new properties in the $200-350K range. Want me to pull a comparison?
+              </div>
+              <div class="chat-msg-actions">
+                <button class="chat-btn primary">Show Comparison</button>
+                <button class="chat-btn secondary">Dismiss</button>
+              </div>
+              <div class="chat-msg-time">Today, 7:15 AM</div>
+            </div>
+          </div>
+          <div class="chat-msg">
+            <div class="chat-msg-avatar dd">&#9734;</div>
+            <div>
+              <div class="chat-msg-bubble">
+                One more thing — your Google listing is <strong>missing a photo of the office interior</strong>. Clients searching online see the exterior but can't picture walking in. Want me to flag that for the next Tuthill shoot?
+              </div>
+              <div class="chat-msg-actions">
+                <button class="chat-btn primary">Yes, Schedule It</button>
+              </div>
+              <div class="chat-msg-time">Today, 7:16 AM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notification feed -->
+      <div>
+        <div style="margin-bottom: 20px;">
+          <h3 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 4px;">Daily Notifications</h3>
+          <p style="font-size: 14px; color: var(--text-muted);">The kind of alerts that show up on your phone:</p>
+        </div>
+
+        <div class="notif-mockup">
+          <div class="notif-icon gold">&#11088;</div>
+          <div class="notif-body">
+            <div class="notif-title">New 5-star review from James Henderson</div>
+            <div class="notif-text">AI response draft ready for your approval.</div>
+            <div class="notif-time">7:12 AM</div>
+          </div>
+        </div>
+
+        <div class="notif-mockup">
+          <div class="notif-icon green">&#128200;</div>
+          <div class="notif-body">
+            <div class="notif-title">Weekly listing report ready</div>
+            <div class="notif-text">218 S. Commerce: 47 views (+62%), 12 inquiries, 4 second showings requested.</div>
+            <div class="notif-time">7:14 AM</div>
+          </div>
+        </div>
+
+        <div class="notif-mockup">
+          <div class="notif-icon red">&#128680;</div>
+          <div class="notif-body">
+            <div class="notif-title">Competitor activity detected</div>
+            <div class="notif-text">Century 21 Natchez listed 3 new properties in your primary price range.</div>
+            <div class="notif-time">7:15 AM</div>
+          </div>
+        </div>
+
+        <div class="notif-mockup">
+          <div class="notif-icon blue">&#128247;</div>
+          <div class="notif-body">
+            <div class="notif-title">Profile optimization suggestion</div>
+            <div class="notif-text">Your Google profile is missing an office interior photo. Schedule a Tuthill shoot?</div>
+            <div class="notif-time">7:16 AM</div>
+          </div>
+        </div>
+
+        <div class="notif-mockup">
+          <div class="notif-icon gold">&#128240;</div>
+          <div class="notif-body">
+            <div class="notif-title">Social post published</div>
+            <div class="notif-text">Your Oak Street listing was automatically posted to Facebook and Instagram with photo carousel.</div>
+            <div class="notif-time">Yesterday, 6:00 PM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ MAGAZINE + RADIO ============ -->
+<section>
+  <div class="container">
+    <span class="section-label">Media Exposure</span>
+    <h2 class="section-title">The Magazine + Radio Connection</h2>
+    <p class="section-desc">
+      Your properties don't just live in a database. They appear in the media ecosystem that tourists, relocators, and locals actually pay attention to.
+    </p>
+
+    <div class="media-grid">
+      <div class="media-card">
+        <div class="media-img">
+          <img src="/images/dsd/brand-magazine.webp" alt="Big Muddy Magazine">
+        </div>
+        <div class="media-body">
+          <div class="media-brand">Big Muddy Magazine</div>
+          <h4>"The 10 Most Stunning Historic Homes in Natchez"</h4>
+          <p>Your properties featured in editorial content about Natchez real estate, architecture, and relocation. Readers who are already dreaming about the move see your name first.</p>
+        </div>
+      </div>
+      <div class="media-card">
+        <div class="media-img">
+          <img src="/images/ai-corridor/radio-studio.webp" alt="Big Muddy Radio">
+        </div>
+        <div class="media-body">
+          <div class="media-brand">Big Muddy Radio</div>
+          <h4>Community Segments + Sponsor Mentions</h4>
+          <p>Local programming that highlights the people and places that make Natchez special. Your name in the conversation — not as an ad, but as part of the community story.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px; text-align: center;">
+      <p style="font-size: 15px; color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.7;">
+        Featured in the directory every tourist and relocator sees. Not buried on page three of a Google search — woven into the media fabric of the Mississippi corridor.
+      </p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ ECOSYSTEM EFFECT ============ -->
+<section>
+  <div class="container">
+    <span class="section-label">The Ecosystem</span>
+    <h2 class="section-title">The 2:1 Multiplier Effect</h2>
+    <p class="section-desc">
+      Your listing doesn't sit in a database. It lives inside a media ecosystem where every touchpoint drives attention to the next.
+    </p>
+
+    <div class="eco-flow">
+      <div class="eco-node">
+        <div class="eco-icon">&#127976;</div>
+        <h4>Hotel WiFi</h4>
+        <p>Every guest who connects at The Big Muddy Inn sees the Deep South Directory — including your listing.</p>
+      </div>
+      <div class="eco-arrow">&#8594;</div>
+      <div class="eco-node">
+        <div class="eco-icon">&#128218;</div>
+        <h4>Magazine</h4>
+        <p>Readers exploring Natchez discover properties through editorial features and neighborhood guides.</p>
+      </div>
+      <div class="eco-arrow">&#8594;</div>
+      <div class="eco-node active">
+        <div class="eco-icon">&#127968;</div>
+        <h4>Your Listing</h4>
+        <p>All roads lead here — the AI-powered profile that converts attention into phone calls.</p>
+      </div>
+      <div class="eco-arrow">&#8594;</div>
+      <div class="eco-node">
+        <div class="eco-icon">&#127908;</div>
+        <h4>Radio</h4>
+        <p>Community programming puts your name in the daily conversation across the corridor.</p>
+      </div>
+    </div>
+
+    <div class="eco-stat-row">
+      <div class="eco-stat">
+        <div class="eco-stat-num">14</div>
+        <div class="eco-stat-label">Connected domains in the ecosystem</div>
+      </div>
+      <div class="eco-stat">
+        <div class="eco-stat-num">2:1</div>
+        <div class="eco-stat-label">Ecosystem multiplier — every touchpoint feeds the next</div>
+      </div>
+      <div class="eco-stat">
+        <div class="eco-stat-num">24/7</div>
+        <div class="eco-stat-label">AI-managed presence while you focus on clients</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 48px; background: var(--bg-card); border: 1px solid var(--gold-dim); border-radius: 12px; padding: 32px; text-align: center;">
+      <p style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; margin-bottom: 8px;">
+        The difference between a listing and an engine.
+      </p>
+      <p style="font-size: 15px; color: var(--text-muted); max-width: 560px; margin: 0 auto; line-height: 1.7;">
+        Most directories put your name in a box. This one puts it inside a media company — with a magazine, a radio station, a hotel, and an AI that never sleeps.
+      </p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ CTA ============ -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to See It in Action?</h2>
+    <p>Let's sit down and walk through what this looks like for your specific listings and your market.</p>
+    <a href="mailto:me@chasepierson.tv?subject=Paul%20Green%20%E2%80%94%20Deep%20South%20Directory" class="cta-btn">
+      Let's Talk
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<div class="footer">
+  Deep South Directory &middot; Tuthill Design &middot; Natchez, Mississippi<br>
+  <span style="opacity: 0.5;">Case study prepared April 2026</span>
+</div>
+
+</body>
+</html>
