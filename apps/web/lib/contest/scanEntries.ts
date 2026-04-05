@@ -99,11 +99,13 @@ function snippetFromFile(absPath: string, name: string): ContestSnippet {
   const raw = fs.readFileSync(absPath, 'utf8');
   const rawLength = raw.length;
   if (HTML_EXT.test(name)) {
-    const clean = getPurify().sanitize(raw, { WHOLE_DOCUMENT: true });
+    const purify = getPurify();
+    const clean = purify ? purify.sanitize(raw, { WHOLE_DOCUMENT: true }) : raw;
     return { name, kind: 'html', previewHtml: clean || null, rawLength };
   }
   if (MD_EXT.test(name)) {
-    const escaped = getPurify().sanitize(raw.slice(0, 12000), { ALLOWED_TAGS: [] });
+    const purify = getPurify();
+    const escaped = purify ? purify.sanitize(raw.slice(0, 12000), { ALLOWED_TAGS: [] }) : raw.slice(0, 12000);
     const wrapped = `<pre style="white-space:pre-wrap;font:inherit;margin:0">${escaped}</pre>`;
     return { name, kind: 'md', previewHtml: wrapped, rawLength };
   }
