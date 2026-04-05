@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Tracy's Command Center — Hillbilly Dreams</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0a0a08;
+      --bg-raised:    #111110;
+      --bg-card:      #161512;
+      --border:       #252320;
+      --border-light: #302e2a;
+      --gold:         #c8943e;
+      --gold-dim:     #8a6228;
+      --gold-faint:   rgba(200,148,62,0.07);
+      --gold-glow:    rgba(200,148,62,0.18);
+      --text:         #e8e0d4;
+      --text-muted:   #6a6560;
+      --text-mid:     #9a9288;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── INTERNAL BANNER ─────────────────────────────────────────────── */
+    .internal-banner {
+      background: #0f0900;
+      border-bottom: 1px solid var(--gold-dim);
+      padding: 11px 20px;
+      text-align: center;
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+    .internal-banner strong { color: var(--gold); }
+
+    /* ─── HERO SLIDESHOW ──────────────────────────────────────────────── */
+    .hero-slideshow {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      margin-top: 36px;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.4s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide.active { opacity: 1; }
+
+    .slide-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.04);
+      transition: transform 8s ease-out;
+    }
+
+    .slide.active .slide-bg { transform: scale(1); }
+
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.18) 0%,
+        rgba(0,0,0,0.45) 40%,
+        rgba(0,0,0,0.72) 100%
+      );
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 20px 32px;
+      max-width: 900px;
+    }
+
+    .slide-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .slide-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 6.5vw, 88px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.08;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 40px rgba(0,0,0,0.5);
+    }
+
+    .slide-subtitle {
+      font-family: var(--font-body);
+      font-size: clamp(15px, 2vw, 22px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.6;
+      letter-spacing: 0.2px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .slide-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      background: var(--gold);
+      z-index: 10;
+      width: 0%;
+      transition: width 8s linear;
+    }
+
+    .slide-progress.running { width: 100%; }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      animation: bob 2.4s ease-in-out infinite;
+    }
+
+    .scroll-cue svg {
+      width: 20px;
+      height: 20px;
+      opacity: 0.5;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ─── SHARED SECTION CHROME ───────────────────────────────────────── */
+    section {
+      padding: 80px 20px;
+    }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      text-align: center;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--text-mid);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto 52px;
+    }
+
+    .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ─── TODAY CARDS ──────────────────────────────────────────────────── */
+    .today-section {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+
+    .today-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 2px;
+    }
+
+    .today-card {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      cursor: pointer;
+      display: block;
+      text-decoration: none;
+    }
+
+    .today-card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.7s ease;
+    }
+
+    .today-card:hover .today-card-bg { transform: scale(1.05); }
+
+    .today-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.85) 0%,
+        rgba(0,0,0,0.3) 60%,
+        rgba(0,0,0,0.1) 100%
+      );
+      transition: background 0.4s ease;
+    }
+
+    .today-card:hover .today-card-overlay {
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.92) 0%,
+        rgba(0,0,0,0.45) 60%,
+        rgba(0,0,0,0.15) 100%
+      );
+    }
+
+    .today-card-body {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 28px 24px;
+      z-index: 2;
+    }
+
+    .today-card-num {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .today-card-title {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.2vw, 26px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .today-card-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .today-card-arrow {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-bottom: 1px solid var(--gold-dim);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .today-card:hover .today-card-arrow {
+      color: #e8b060;
+      border-color: #e8b060;
+    }
+
+    /* ─── PLATFORM TILES ──────────────────────────────────────────────── */
+    .platform-section {
+      background: var(--bg-raised);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tiles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .tile {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 20px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.25s ease, background 0.25s ease;
+      cursor: pointer;
+    }
+
+    .tile:hover {
+      border-color: var(--gold-dim);
+      background: var(--gold-faint);
+    }
+
+    .tile-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--gold-faint);
+      border: 1px solid var(--border-light);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 16px;
+    }
+
+    .tile-name {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .tile-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    /* ─── STATS ───────────────────────────────────────────────────────── */
+    .stats-section {
+      background: var(--bg);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .stat-cell {
+      background: var(--bg-card);
+      padding: 36px 24px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 10px;
+      letter-spacing: -1px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ─── ASANA ───────────────────────────────────────────────────────── */
+    .asana-section {
+      background: var(--bg-raised);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .asana-copy {
+      font-size: 18px;
+      color: var(--text-mid);
+      font-weight: 300;
+      line-height: 1.8;
+      max-width: 560px;
+      margin: 0 auto 36px;
+    }
+
+    .btn-gold {
+      display: inline-block;
+      padding: 16px 40px;
+      background: var(--gold);
+      color: #0a0a08;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 1px;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-gold:hover {
+      background: #e8b060;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 14px 36px;
+      border: 1px solid var(--gold-dim);
+      color: var(--gold);
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 1px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      background: var(--gold-faint);
+      color: #e8b060;
+    }
+
+    /* ─── DELTA DAWN ──────────────────────────────────────────────────── */
+    .delta-section {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .delta-embed {
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+
+    .delta-embed-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg-raised);
+    }
+
+    .delta-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 8px var(--gold-dim);
+      animation: pulse-dot 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--gold-dim); }
+      50%       { opacity: 0.6; box-shadow: 0 0 16px var(--gold); }
+    }
+
+    .delta-embed-header span {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-style: italic;
+      color: var(--text);
+    }
+
+    .delta-embed-header small {
+      margin-left: auto;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .delta-launch-area {
+      padding: 52px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .delta-tagline {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 300;
+      max-width: 400px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────────────────── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 52px 20px;
+      text-align: center;
+    }
+
+    .footer-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--gold-dim);
+      margin: 0 auto 28px;
+    }
+
+    .footer-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .footer-role {
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .footer-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 2;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .today-grid {
+        grid-template-columns: 1fr;
+        gap: 1px;
+      }
+
+      .today-card { aspect-ratio: 16/9; }
+
+      .tiles-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      section { padding: 52px 16px; }
+    }
+
+    @media (max-width: 380px) {
+      .tiles-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Internal banner -->
+  <div class="internal-banner">
+    <strong>Internal Use Only</strong> &nbsp;·&nbsp; Not for public distribution &nbsp;·&nbsp; Tracy Alderson-Allen Command Center
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       SECTION 1 — HERO SLIDESHOW
+  ═══════════════════════════════════════════════════════════════════ -->
+  <div class="hero-slideshow" id="heroSlideshow">
+
+    <!-- Slide 1 -->
+    <div class="slide active" id="slide-0">
+      <div class="slide-bg" style="background-image: url('/images/corridor/natchez-bluff-river-view.webp')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-eyebrow">Hillbilly Dreams Inc &nbsp;·&nbsp; Natchez, Mississippi</div>
+        <h1 class="slide-title">Welcome, Tracy.</h1>
+        <p class="slide-subtitle">You own one-third of everything you're about to see.</p>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide" id="slide-1">
+      <div class="slide-bg" style="background-image: url('/images/ai-corridor/radio-studio.webp')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-eyebrow">The Infrastructure &nbsp;·&nbsp; One Codebase, Fourteen Sites</div>
+        <h1 class="slide-title">14 Websites.<br>One Codebase.<br>$167 a Month.</h1>
+        <p class="slide-subtitle">The constellation is live. Zoom in to explore.</p>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide" id="slide-2">
+      <div class="slide-bg" style="background-image: url('/images/corridor/tomato-bruschetta-closeup.webp')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-eyebrow">Big Muddy Magazine &nbsp;·&nbsp; The Voice of the Corridor</div>
+        <h1 class="slide-title">The Cook's Name</h1>
+        <p class="slide-subtitle">Read the essay that defines our voice.</p>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide" id="slide-3">
+      <div class="slide-bg" style="background-image: url('/images/corridor/bar-interior-floral.webp')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-eyebrow">Your Role &nbsp;·&nbsp; Editor-in-Chief &amp; Gallery Curator</div>
+        <h1 class="slide-title">Your Gallery.<br>Your Magazine.<br>Your Call.</h1>
+        <p class="slide-subtitle">Pick 20 photos. Edit 5 articles. The system sells the rest.</p>
+      </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="slide-progress" id="slideProgress"></div>
+
+    <!-- Scroll cue -->
+    <div class="scroll-cue">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+      Scroll
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       SECTION 2 — WHAT YOU NEED TO DO TODAY
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="today-section">
+    <div class="inner">
+      <div class="section-label">Your Action Items</div>
+      <h2 class="section-title">What You Need To Do Today</h2>
+      <p class="section-sub">Four tasks. All of them yours. None of them technical.</p>
+
+      <div class="today-grid">
+
+        <a class="today-card" href="https://bigmuddymagazine.com" target="_blank" rel="noopener">
+          <div class="today-card-bg" style="background-image: url('/images/corridor/cafe-sidewalk-natchez.webp')"></div>
+          <div class="today-card-overlay"></div>
+          <div class="today-card-body">
+            <span class="today-card-num">Task 01</span>
+            <div class="today-card-title">Read The Cook's Name</div>
+            <div class="today-card-desc">The philosophy essay. Start here. It explains everything about why we're doing this.</div>
+            <span class="today-card-arrow">Open Magazine &rarr;</span>
+          </div>
+        </a>
+
+        <a class="today-card" href="https://deepsouthdirectory.com/gallery" target="_blank" rel="noopener">
+          <div class="today-card-bg" style="background-image: url('/images/gallery/prints/ashokan-reservoir-last-light.webp')"></div>
+          <div class="today-card-overlay"></div>
+          <div class="today-card-body">
+            <span class="today-card-num">Task 02</span>
+            <div class="today-card-title">Pick 20 Photos for the Gallery</div>
+            <div class="today-card-desc">Browse Chase's photography. Pick your favorites. You're the curator.</div>
+            <span class="today-card-arrow">Open Gallery &rarr;</span>
+          </div>
+        </a>
+
+        <a class="today-card" href="/sandbox/inn-marketing-kit.html" target="_blank" rel="noopener">
+          <div class="today-card-bg" style="background-image: url('/images/corridor/night-patio-string-lights.webp')"></div>
+          <div class="today-card-overlay"></div>
+          <div class="today-card-body">
+            <span class="today-card-num">Task 03</span>
+            <div class="today-card-title">Review the Marketing Kit</div>
+            <div class="today-card-desc">10 Instagram captions ready to copy-paste. The Inn's social presence, done.</div>
+            <span class="today-card-arrow">Open Kit &rarr;</span>
+          </div>
+        </a>
+
+        <a class="today-card" href="https://delta-dawn-871897240645.us-west1.run.app" target="_blank" rel="noopener">
+          <div class="today-card-bg" style="background-image: url('/images/dsd/service-ai.webp')"></div>
+          <div class="today-card-overlay"></div>
+          <div class="today-card-body">
+            <span class="today-card-num">Task 04</span>
+            <div class="today-card-title">Talk to Delta Dawn</div>
+            <div class="today-card-desc">Ask her anything about the business. She knows the pricing, the grants, and where the bourbon is.</div>
+            <span class="today-card-arrow">Open Chat &rarr;</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       SECTION 3 — EXPLORE THE PLATFORM
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="platform-section">
+    <div class="inner">
+      <div class="section-label">The Full Picture</div>
+      <h2 class="section-title">Explore the Platform</h2>
+      <p class="section-sub">Everything we've built, live and linked. Click anything.</p>
+
+      <div class="tiles-grid">
+
+        <a class="tile" href="/explorer" target="_blank" rel="noopener">
+          <div class="tile-icon">&#9733;</div>
+          <div class="tile-name">The Constellation</div>
+          <div class="tile-desc">All 14 domains, mapped and linked.</div>
+        </a>
+
+        <a class="tile" href="/inn/tv" target="_blank" rel="noopener">
+          <div class="tile-icon">&#9654;</div>
+          <div class="tile-name">Inn TV</div>
+          <div class="tile-desc">6 curated channels for guests.</div>
+        </a>
+
+        <a class="tile" href="https://bigmuddymagazine.com" target="_blank" rel="noopener">
+          <div class="tile-icon">&#9998;</div>
+          <div class="tile-name">The Magazine</div>
+          <div class="tile-desc">Big Muddy editorial. Your voice.</div>
+        </a>
+
+        <a class="tile" href="/press/index.html" target="_blank" rel="noopener">
+          <div class="tile-icon">&#9474;</div>
+          <div class="tile-name">Morning News</div>
+          <div class="tile-desc">14 articles. The press portfolio.</div>
+        </a>
+
+        <a class="tile" href="/sandbox/inn-print-ad.html" target="_blank" rel="noopener">
+          <div class="tile-icon">&#9633;</div>
+          <div class="tile-name">Print Ad</div>
+          <div class="tile-desc">Ready-to-run Inn advertisement.</div>
+        </a>
+
+        <a class="tile" href="/directory" target="_blank" rel="noopener">
+          <div class="tile-icon">&#9783;</div>
+          <div class="tile-name">DSD Homepage</div>
+          <div class="tile-desc">The Deep South Directory, live.</div>
+        </a>
+
+        <a class="tile" href="/sandbox/paul-green-case-study.html" target="_blank" rel="noopener">
+          <div class="tile-icon">&#9660;</div>
+          <div class="tile-name">Paul Green Case Study</div>
+          <div class="tile-desc">What the platform does for a real business.</div>
+        </a>
+
+        <a class="tile" href="/sandbox/vertex-report-card.html" target="_blank" rel="noopener">
+          <div class="tile-icon">&#9650;</div>
+          <div class="tile-name">AI Cost Report</div>
+          <div class="tile-desc">Where the $9.33/month goes.</div>
+        </a>
+
+        <a class="tile" href="/sandbox/roadmap.html" target="_blank" rel="noopener">
+          <div class="tile-icon">&#9670;</div>
+          <div class="tile-name">Internal Roadmap</div>
+          <div class="tile-desc">What we're building next, and when.</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       SECTION 4 — THE NUMBERS
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="stats-section">
+    <div class="inner">
+      <div class="section-label">The Business</div>
+      <h2 class="section-title">The Numbers</h2>
+      <p class="section-sub">A media company, a directory, a radio station, and a gallery. All running at once.</p>
+
+      <div class="stats-grid">
+
+        <div class="stat-cell">
+          <div class="stat-number">$160K</div>
+          <div class="stat-label">Annualized Revenue</div>
+        </div>
+
+        <div class="stat-cell">
+          <div class="stat-number">$167</div>
+          <div class="stat-label">Monthly Infrastructure</div>
+        </div>
+
+        <div class="stat-cell">
+          <div class="stat-number">$9.33</div>
+          <div class="stat-label">Monthly AI Cost</div>
+        </div>
+
+        <div class="stat-cell">
+          <div class="stat-number">14</div>
+          <div class="stat-label">Live Domains</div>
+        </div>
+
+        <div class="stat-cell">
+          <div class="stat-number">17,956</div>
+          <div class="stat-label">Photos in the Library</div>
+        </div>
+
+        <div class="stat-cell">
+          <div class="stat-number">27</div>
+          <div class="stat-label">Magazine Articles</div>
+        </div>
+
+        <div class="stat-cell">
+          <div class="stat-number">$1B</div>
+          <div class="stat-label">Grant Funding Available</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       SECTION 5 — YOUR ASANA
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="asana-section">
+    <div class="inner">
+      <div class="section-label">Task Management</div>
+      <h2 class="section-title">Your Asana</h2>
+      <p class="asana-copy">
+        Everything you need to do is in Asana. Check your inbox. Comment on a task.
+        The system responds. Nothing falls through the cracks.
+      </p>
+      <a class="btn-gold" href="https://app.asana.com" target="_blank" rel="noopener">Open Asana &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       SECTION 6 — DELTA DAWN
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="delta-section">
+    <div class="inner">
+      <div class="section-label">AI Assistant</div>
+      <h2 class="section-title">Talk to Delta Dawn</h2>
+      <p class="section-sub">
+        Ask her anything. She knows the pricing, the grants, the revenue model, and where the bourbon is.
+      </p>
+
+      <div class="delta-embed">
+        <div class="delta-embed-header">
+          <div class="delta-dot"></div>
+          <span>Delta Dawn</span>
+          <small>Online &nbsp;·&nbsp; Big Muddy AI</small>
+        </div>
+        <div class="delta-launch-area">
+          <p class="delta-tagline">
+            Delta Dawn knows everything about Hillbilly Dreams. Ask her about the business, the numbers, the roadmap, or what's playing at the bar tonight.
+          </p>
+          <a class="btn-gold" href="https://delta-dawn-871897240645.us-west1.run.app" target="_blank" rel="noopener">Open Delta Dawn &rarr;</a>
+          <a class="btn-outline" href="https://delta-dawn-871897240645.us-west1.run.app" target="_blank" rel="noopener">Open in New Tab</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-rule"></div>
+    <div class="footer-name">Tracy Alderson-Allen</div>
+    <div class="footer-role">Equity Partner &nbsp;·&nbsp; Editor-in-Chief &nbsp;·&nbsp; Gallery Curator</div>
+    <div class="footer-meta">
+      Hillbilly Dreams Inc &nbsp;·&nbsp; Natchez, Mississippi &nbsp;·&nbsp; April 2026<br>
+      Internal document &mdash; not for public distribution
+    </div>
+  </footer>
+
+
+  <script>
+    // ─── HERO SLIDESHOW ───────────────────────────────────────────────
+    (function () {
+      var slides     = document.querySelectorAll('.slide');
+      var progress   = document.getElementById('slideProgress');
+      var total      = slides.length;
+      var current    = 0;
+      var duration   = 8000;   // ms per slide
+      var fadeMs     = 1400;   // matches CSS transition
+
+      function resetProgress () {
+        progress.classList.remove('running');
+        // Force reflow so the transition restarts from 0
+        void progress.offsetWidth;
+        progress.style.transition = 'none';
+        progress.style.width = '0%';
+        void progress.offsetWidth;
+        progress.style.transition = 'width ' + (duration / 1000) + 's linear';
+        progress.classList.add('running');
+      }
+
+      function goToSlide (index) {
+        slides[current].classList.remove('active');
+        current = (index + total) % total;
+        slides[current].classList.add('active');
+        resetProgress();
+      }
+
+      function advance () {
+        goToSlide(current + 1);
+      }
+
+      // Kick off
+      resetProgress();
+      var timer = setInterval(advance, duration);
+
+      // Pause on hover (optional nice-to-have)
+      var container = document.getElementById('heroSlideshow');
+      container.addEventListener('mouseenter', function () {
+        clearInterval(timer);
+        progress.style.animationPlayState = 'paused';
+      });
+      container.addEventListener('mouseleave', function () {
+        timer = setInterval(advance, duration);
+        resetProgress();
+      });
+    }());
+  </script>
+
+</body>
+</html>
