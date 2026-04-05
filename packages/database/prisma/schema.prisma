@@ -325,6 +325,19 @@ model Client {
   @@index([status])
 }
 
+/// Deep South Directory NPS — one score per client (1–10).
+model NpsResponse {
+  id        String   @id @default(cuid())
+  clientId  Int
+  score     Int
+  comment   String?  @db.Text
+  createdAt DateTime @default(now())
+
+  @@unique([clientId])
+  @@index([clientId])
+  @@index([createdAt])
+}
+
 model Review {
   id             Int       @id @default(autoincrement())
   clientId       Int
