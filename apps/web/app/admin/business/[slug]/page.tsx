@@ -77,11 +77,12 @@ export default async function AdminBusinessDiscoveryShopPage({ params }: { param
             fontSize: '0.9rem',
           }}
         >
-          <strong style={{ color: 'var(--text, #e8e4de)' }}>No rows yet.</strong> Run{' '}
-          <code style={{ color: 'var(--accent, #c8943e)' }}>pnpm db:push</code> with Cloud SQL / local{' '}
-          <code style={{ color: 'var(--accent, #c8943e)' }}>DATABASE_URL</code>, then seed{' '}
-          <code style={{ color: 'var(--accent, #c8943e)' }}>BusinessProfile</code> +{' '}
-          <code style={{ color: 'var(--accent, #c8943e)' }}>MarketplaceStore</code> for this brand.
+          <strong style={{ color: 'var(--text, #e8e4de)' }}>No rows yet.</strong> Ensure{' '}
+          <code style={{ color: 'var(--accent, #c8943e)' }}>DATABASE_URL</code> is set and schema is applied (
+          <code style={{ color: 'var(--accent, #c8943e)' }}>pnpm db:push</code>
+          ), then as admin POST{' '}
+          <code style={{ color: 'var(--accent, #c8943e)' }}>/api/admin/marketplace/seed-topology</code> once to
+          activate the marketplace graph (profiles, vendors, stores, affiliate defaults).
         </div>
       ) : (
         <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
