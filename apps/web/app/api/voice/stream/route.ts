@@ -14,32 +14,32 @@ export const dynamic = 'force-dynamic';
 // Client-side TTS uses Web Speech API or Cloud TTS for playback.
 //
 // Future: swap to Gemini Live for native audio-to-audio when SDK stabilizes.
+//
+// Dialogflow CX / Google ADK: after your flow does STT, POST JSON `{ "prompt": "<transcript>" }`
+// to this route (admin session or same auth). Response `{ "text" }` is the model reply for TTS.
 
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@bigmuddy/database';
 import { requireAdmin } from '@/lib/admin-auth';
-import { callAI } from '@/lib/ai-models';
+import { MODELS, callAI } from '@/lib/ai-models';
+import { getDawnVoiceSystemPrompt } from '@/lib/voice/dawn-voice-system-prompt';
 import { VOICE_TOOLS_CONFIG, executeVoiceTool } from '../tools';
 
-const MODEL = 'gemini-2.5-flash';
-
-const SYSTEM_PROMPT = `You are the Measurably Better concierge — a warm, knowledgeable local AI for the Deep South.
-
-You know every restaurant, venue, shop, and show in the region because you're connected to the Deep South Directory and Big Muddy's media network.
-
-Voice: Warm, direct, helpful. Like a local friend who knows everyone. Not robotic. Not over-eager. Think "the neighbor who knows every good restaurant and will text you the address."
-
-Rules:
-- When asked about businesses, shows, or local info — use your tools to look up real data. Never make up business names or show times.
-- Keep responses conversational and brief — this is voice, not text. 2-3 sentences max unless they ask for detail.
-- No markdown formatting. No bullet points. No asterisks. Speak in clear, natural sentences.
-- If you don't have data for something, say so honestly: "I don't have that in the directory yet, but I can help you find it."
-- For the Deep South: Natchez is your home base. You also know Memphis, Clarksdale, Vicksburg, and New Orleans.
-- The platform is Measurably Better — mention it naturally if relevant, never push it.`;
+const MODEL = MODELS['gemini-flash'].model;
+const SYSTEM_PROMPT = getDawnVoiceSystemPrompt();
+const MAX_TOOL_ROUNDS = 8;
 
 export async function POST(req: NextRequest) {
   try {
-    const authError = await requireAdmin();
-    if (authError) return authError;
+    // API key auth for Siri Shortcuts and other voice-only callers
+    const authHeader = req.headers.get('authorization') || '';
+    const siriKey = process.env.SIRI_API_KEY;
+    const isSiriAuth = siriKey && authHeader === `Bearer ${siriKey}`;
+
+    if (!isSiriAuth) {
+      const authError = await requireAdmin();
+      if (authError) return authError;
+    }
 
     const contentType = req.headers.get('content-type') || '';
 
@@ -105,31 +105,32 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    const functionCalls = response.functionCalls;
-
-    if (functionCalls && functionCalls.length > 0) {
-      const call = functionCalls[0];
-
-      const toolResult = await executeVoiceTool(
-        call.name ?? '',
-        (call.args as Record<string, unknown>) ?? {}
-      );
+    let text = '';
+    for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
+      const functionCalls = response.functionCalls;
+      if (!functionCalls?.length) {
+        text = response.text || '';
+        break;
+      }
 
       if (response.vertexContent) {
         contents.push(response.vertexContent);
       }
 
-      contents.push({
-        role: 'user',
-        parts: [
-          {
-            functionResponse: {
-              name: call.name ?? '',
-              response: toolResult,
-            },
+      const parts: unknown[] = [];
+      for (const call of functionCalls) {
+        const toolResult = await executeVoiceTool(
+          call.name ?? '',
+          (call.args as Record<string, unknown>) ?? {}
+        );
+        parts.push({
+          functionResponse: {
+            name: call.name ?? '',
+            response: toolResult,
           },
-        ],
-      });
+        });
+      }
+      contents.push({ role: 'user', parts });
 
       response = await callAI({
         vertexNative: {
@@ -140,7 +141,24 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const text = response.text || "I'm having trouble thinking right now. Try again in a moment.";
+    if (!text.trim()) {
+      text = response.text || "I'm having trouble thinking right now. Try again in a moment.";
+    }
+
+    try {
+      await prisma.agentAction.create({
+        data: {
+          agent: 'delta-dawn-voice',
+          action: 'chief-of-staff-relay',
+          summary: `Voice: ${userPrompt.slice(0, 180)}`,
+          detail: text.slice(0, 8000),
+          domain: 'operations',
+          impact: 'low',
+        },
+      });
+    } catch (logErr) {
+      console.error('[voice/stream] chief-of-staff relay log failed', logErr);
+    }
 
     return NextResponse.json({
       text,

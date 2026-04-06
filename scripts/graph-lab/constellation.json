@@ -1,0 +1,186 @@
+{
+  "nodes": [
+    {
+      "id": "hdi",
+      "label": "Hillbilly Dreams Inc",
+      "metric": "$160K revenue",
+      "type": "holding",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "mbt",
+      "label": "Measurably Better Things",
+      "metric": "9 modules \u00b7 122 models",
+      "type": "platform",
+      "x": 0,
+      "y": -150
+    },
+    {
+      "id": "touring",
+      "label": "Big Muddy Touring",
+      "metric": "2:1 show multiplier",
+      "type": "brand",
+      "x": -250,
+      "y": -320
+    },
+    {
+      "id": "magazine",
+      "label": "Big Muddy Magazine",
+      "metric": "27 articles",
+      "type": "brand",
+      "x": -90,
+      "y": -350
+    },
+    {
+      "id": "radio",
+      "label": "Big Muddy Radio",
+      "metric": "Streaming live",
+      "type": "brand",
+      "x": 90,
+      "y": -350
+    },
+    {
+      "id": "records",
+      "label": "Big Muddy Records",
+      "metric": "$3K per release",
+      "type": "brand",
+      "x": 250,
+      "y": -320
+    },
+    {
+      "id": "dsd",
+      "label": "Deep South Directory",
+      "metric": "Free \u2013 $250/mo",
+      "type": "product",
+      "x": -180,
+      "y": 120
+    },
+    {
+      "id": "inn",
+      "label": "The Big Muddy Inn",
+      "metric": "6 rooms \u00b7 Blues Room",
+      "type": "venue",
+      "x": 180,
+      "y": 120
+    },
+    {
+      "id": "bearsville",
+      "label": "Bearsville Creative",
+      "metric": "Woodstock, NY",
+      "type": "region",
+      "x": -300,
+      "y": 60
+    },
+    {
+      "id": "gallery",
+      "label": "Chase Pierson Photography",
+      "metric": "17,956 photos",
+      "type": "brand",
+      "x": 300,
+      "y": 60
+    }
+  ],
+  "hierarchy": [
+    {
+      "source": "hdi",
+      "target": "mbt"
+    },
+    {
+      "source": "mbt",
+      "target": "touring"
+    },
+    {
+      "source": "mbt",
+      "target": "magazine"
+    },
+    {
+      "source": "mbt",
+      "target": "radio"
+    },
+    {
+      "source": "mbt",
+      "target": "records"
+    },
+    {
+      "source": "mbt",
+      "target": "dsd"
+    },
+    {
+      "source": "mbt",
+      "target": "inn"
+    },
+    {
+      "source": "mbt",
+      "target": "bearsville"
+    },
+    {
+      "source": "mbt",
+      "target": "gallery"
+    }
+  ],
+  "flywheel": [
+    {
+      "source": "touring",
+      "target": "records"
+    },
+    {
+      "source": "records",
+      "target": "radio"
+    },
+    {
+      "source": "radio",
+      "target": "magazine"
+    },
+    {
+      "source": "magazine",
+      "target": "dsd"
+    },
+    {
+      "source": "dsd",
+      "target": "inn"
+    },
+    {
+      "source": "inn",
+      "target": "touring"
+    }
+  ],
+  "analysis": {
+    "degree_centrality": {
+      "hdi": 0.111,
+      "mbt": 1.0,
+      "touring": 0.333,
+      "magazine": 0.333,
+      "radio": 0.333,
+      "records": 0.333,
+      "dsd": 0.333,
+      "inn": 0.333,
+      "bearsville": 0.111,
+      "gallery": 0.111
+    },
+    "betweenness": {
+      "hdi": 0.0,
+      "mbt": 0.111,
+      "touring": 0.139,
+      "magazine": 0.139,
+      "radio": 0.139,
+      "records": 0.139,
+      "dsd": 0.139,
+      "inn": 0.139,
+      "bearsville": 0.0,
+      "gallery": 0.0
+    },
+    "pagerank": {
+      "hdi": 0.019,
+      "mbt": 0.035,
+      "touring": 0.15,
+      "magazine": 0.15,
+      "radio": 0.15,
+      "records": 0.15,
+      "dsd": 0.15,
+      "inn": 0.15,
+      "bearsville": 0.023,
+      "gallery": 0.023
+    }
+  }
+}

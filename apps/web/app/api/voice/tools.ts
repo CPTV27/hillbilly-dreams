@@ -10,6 +10,7 @@
 //   - executor: async function that queries Prisma + returns data
 
 import { prisma } from '@bigmuddy/database';
+import { queryConstellationStats, queryConstellationSubgraph } from '@/lib/constellation/querySubgraph';
 
 // ── Tool Declarations (Gemini function calling format) ──────
 
@@ -63,6 +64,84 @@ export const VOICE_TOOL_DECLARATIONS: Record<string, unknown>[] = [
       },
     },
   },
+  {
+    name: 'get_constellation_stats',
+    description:
+      'Returns counts of constellation graph nodes and edges (derived touring + directory graph). Use when asked how big the graph is or whether constellation data is loaded.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {},
+    },
+  },
+  {
+    name: 'get_constellation_subgraph',
+    description:
+      'Loads a neighborhood of the Postgres constellation graph around one entity: venues, hotels, restaurants, cities, routes, directory businesses. Use for questions about how a venue connects to routes, cities, or listings. entityType is one of: venue, hotel, restaurant, city, route, directory_business. entityId is the numeric id as a string.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        entityType: {
+          type: 'STRING',
+          description: 'venue | hotel | restaurant | city | route | directory_business',
+        },
+        entityId: { type: 'STRING', description: 'Primary key id as string, e.g. "12"' },
+        depth: {
+          type: 'NUMBER',
+          description: 'How many hops from root (0-4). Default 2.',
+        },
+      },
+      required: ['entityType', 'entityId'],
+    },
+  },
+  {
+    name: 'search_touring_venues',
+    description:
+      'Search Big Muddy touring venues: capacity, city, type (club, theater, etc.). Read-only. Use for load-in, booking context, or "where can we play near X".',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        query: { type: 'STRING', description: 'Name or keyword; optional' },
+        city: { type: 'STRING', description: 'Filter by city name' },
+        state: { type: 'STRING', description: 'Two-letter state, default MS' },
+        limit: { type: 'NUMBER', description: 'Max rows, default 8, max 15' },
+      },
+    },
+  },
+  {
+    name: 'list_corridor_cities',
+    description:
+      'Lists corridor cities in drive order with role (hub, stopover, etc.). Use for tour planning or "what cities are on the corridor".',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        limit: { type: 'NUMBER', description: 'Max cities, default 20' },
+      },
+    },
+  },
+  {
+    name: 'list_tour_routes',
+    description:
+      'Lists public pre-built tour routes with names and slug. Use when the user asks about defined routes or corridors.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        limit: { type: 'NUMBER', description: 'Max routes, default 10' },
+      },
+    },
+  },
+  {
+    name: 'search_directory_listings',
+    description:
+      'Search Deep South Directory business listings (DirectoryBusiness): name, city, category. Read-only. Prefer this for "businesses on the directory" vs paid CRM clients.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        query: { type: 'STRING', description: 'Name or keyword' },
+        city: { type: 'STRING', description: 'City filter' },
+        limit: { type: 'NUMBER', description: 'Max rows, default 6' },
+      },
+    },
+  },
 ];
 
 export const VOICE_TOOLS_CONFIG = [{
@@ -84,6 +163,18 @@ export async function executeVoiceTool(
       return getArticles(args);
     case 'get_business_reviews':
       return getBusinessReviews(args);
+    case 'get_constellation_stats':
+      return getConstellationStats();
+    case 'get_constellation_subgraph':
+      return getConstellationSubgraphTool(args);
+    case 'search_touring_venues':
+      return searchTouringVenues(args);
+    case 'list_corridor_cities':
+      return listCorridorCities(args);
+    case 'list_tour_routes':
+      return listTourRoutes(args);
+    case 'search_directory_listings':
+      return searchDirectoryListings(args);
     default:
       return { error: `Unknown tool: ${name}` };
   }
@@ -218,6 +309,166 @@ async function getArticles(args: Record<string, unknown>) {
   } catch (e) {
     console.error('[voice/tools] getArticles error', e);
     return { error: 'Could not search articles right now.' };
+  }
+}
+
+async function getConstellationStats() {
+  try {
+    const stats = await queryConstellationStats();
+    return stats;
+  } catch (e) {
+    console.error('[voice/tools] getConstellationStats error', e);
+    return { error: 'Could not read constellation stats.' };
+  }
+}
+
+async function getConstellationSubgraphTool(args: Record<string, unknown>) {
+  const entityType = String(args.entityType || '').trim();
+  const entityId = String(args.entityId || '').trim();
+  const depth = Math.min(4, Math.max(0, Number(args.depth ?? 2) || 2));
+  if (!entityType || !entityId) {
+    return { error: 'entityType and entityId are required.' };
+  }
+  try {
+    const result = await queryConstellationSubgraph(entityType, entityId, depth);
+    if (!result.ok) {
+      return { error: result.error, notFound: result.notFound === true };
+    }
+    return {
+      root: result.root,
+      depth: result.depth,
+      nodeCount: result.nodes.length,
+      edgeCount: result.edges.length,
+      nodes: result.nodes.slice(0, 40),
+      edges: result.edges.slice(0, 80),
+    };
+  } catch (e) {
+    console.error('[voice/tools] getConstellationSubgraph error', e);
+    return { error: 'Could not load constellation subgraph.' };
+  }
+}
+
+async function searchTouringVenues(args: Record<string, unknown>) {
+  const query = (args.query as string)?.trim() || '';
+  const city = (args.city as string)?.trim();
+  const state = (args.state as string)?.trim() || 'MS';
+  const limit = Math.min(15, Math.max(1, Number(args.limit) || 8));
+
+  try {
+    const venues = await prisma.touringVenue.findMany({
+      where: {
+        isPublic: true,
+        state: { equals: state.length === 2 ? state.toUpperCase() : state },
+        ...(city && { city: { contains: city, mode: 'insensitive' } }),
+        ...(query && {
+          OR: [
+            { name: { contains: query, mode: 'insensitive' } },
+            { venueType: { contains: query, mode: 'insensitive' } },
+            { notes: { contains: query, mode: 'insensitive' } },
+          ],
+        }),
+      },
+      select: {
+        id: true,
+        name: true,
+        city: true,
+        state: true,
+        capacity: true,
+        venueType: true,
+        slug: true,
+      },
+      take: limit,
+      orderBy: { name: 'asc' },
+    });
+    return { count: venues.length, venues };
+  } catch (e) {
+    console.error('[voice/tools] searchTouringVenues error', e);
+    return { error: 'Could not search touring venues.' };
+  }
+}
+
+async function listCorridorCities(args: Record<string, unknown>) {
+  const limit = Math.min(40, Math.max(1, Number(args.limit) || 20));
+  try {
+    const cities = await prisma.corridorCity.findMany({
+      where: { isPublic: true },
+      select: {
+        id: true,
+        name: true,
+        state: true,
+        role: true,
+        corridorOrder: true,
+        slug: true,
+      },
+      orderBy: { corridorOrder: 'asc' },
+      take: limit,
+    });
+    return { count: cities.length, cities };
+  } catch (e) {
+    console.error('[voice/tools] listCorridorCities error', e);
+    return { error: 'Could not list corridor cities.' };
+  }
+}
+
+async function listTourRoutes(args: Record<string, unknown>) {
+  const limit = Math.min(20, Math.max(1, Number(args.limit) || 10));
+  try {
+    const routes = await prisma.tourRoute.findMany({
+      where: { isPublic: true },
+      select: {
+        id: true,
+        name: true,
+        slug: true,
+        totalMiles: true,
+        estimatedDriveHours: true,
+      },
+      orderBy: { name: 'asc' },
+      take: limit,
+    });
+    return { count: routes.length, routes };
+  } catch (e) {
+    console.error('[voice/tools] listTourRoutes error', e);
+    return { error: 'Could not list tour routes.' };
+  }
+}
+
+async function searchDirectoryListings(args: Record<string, unknown>) {
+  const query = (args.query as string)?.trim() || '';
+  const city = (args.city as string)?.trim();
+  const limit = Math.min(12, Math.max(1, Number(args.limit) || 6));
+
+  if (!query && !city) {
+    return { error: 'Provide a query or a city to search directory listings.' };
+  }
+
+  try {
+    const rows = await prisma.directoryBusiness.findMany({
+      where: {
+        ...(city && { city: { contains: city, mode: 'insensitive' } }),
+        ...(query && {
+          OR: [
+            { name: { contains: query, mode: 'insensitive' } },
+            { category: { contains: query, mode: 'insensitive' } },
+            { description: { contains: query, mode: 'insensitive' } },
+          ],
+        }),
+      },
+      select: {
+        id: true,
+        name: true,
+        city: true,
+        state: true,
+        category: true,
+        tier: true,
+        active: true,
+      },
+      take: limit,
+      orderBy: { name: 'asc' },
+    });
+    return { count: rows.length, listings: rows };
+  } catch (e) {
+    console.error('[voice/tools] searchDirectoryListings error', e);
+    return { error: 'Could not search directory listings.' };
   }
 }
 

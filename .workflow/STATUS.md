@@ -1,5 +1,44 @@
 # Agent status
 
+## 2026-04-05 — Voice/stream E2E + CoS AgentAction filter + prod deploy
+
+- **Tests:** [`e2e/voice-stream.spec.ts`](../e2e/voice-stream.spec.ts) — anonymous `POST /api/voice/stream` expects **401**; optional authed tests when `E2E_SESSION_COOKIE` set; live Gemini when `RUN_VOICE_STREAM_E2E=1`. Run: `pnpm exec playwright test e2e/voice-stream.spec.ts --project=local`.
+- **Chief of Staff:** [`.claude/agents/CHIEF_OF_STAFF.md`](../.claude/agents/CHIEF_OF_STAFF.md) — Delta Dawn voice relay monitoring via `GET /api/admin/agent-actions?agent=delta-dawn-voice&action=chief-of-staff-relay&minutes=30&limit=50`.
+- **API:** [`GET /api/admin/agent-actions`](../apps/web/app/api/admin/agent-actions/route.ts) — optional `agent` and `action` query params filter `AgentAction` rows; response includes `filters`.
+- **Deploy:** Vercel production completed (inspect URL in deploy output / Vercel dashboard).
+
+---
+
+## 2026-04-05 — Delta Dawn voice agent + DB read tools (constellation / touring)
+
+- **Voice:** [`POST /api/voice/stream`](../apps/web/app/api/voice/stream/route.ts) — Delta Dawn system prompt ([`lib/voice/dawn-voice-system-prompt.ts`](../apps/web/lib/voice/dawn-voice-system-prompt.ts)), `MODELS['gemini-flash']`, multi-turn Gemini tool loop (max 8 rounds). Still admin-gated (`requireAdmin`).
+- **Tools:** [`app/api/voice/tools.ts`](../apps/web/app/api/voice/tools.ts) — added read-only Prisma tools: `get_constellation_stats`, `get_constellation_subgraph`, `search_touring_venues`, `list_corridor_cities`, `list_tour_routes`, `search_directory_listings` (plus existing directory/shows/articles/reviews).
+- **Shared graph:** [`lib/constellation/querySubgraph.ts`](../apps/web/lib/constellation/querySubgraph.ts) — used by [`GET /api/constellation`](../apps/web/app/api/constellation/route.ts) and voice tools.
+- **Chief of Staff relay:** each successful turn appends `AgentAction` (`agent: delta-dawn-voice`, `action: chief-of-staff-relay`). No GenAI Toolbox / arbitrary SQL — whitelisted tools only.
+- **QC:** `pnpm --filter @bigmuddy/web exec tsc --noEmit` — pass.
+
+---
+
+## 2026-04-05 — Postgres constellation layer (implemented)
+
+- **Prisma:** `ConstellationNode`, `ConstellationEdge` in [`packages/database/prisma/schema.prisma`](../packages/database/prisma/schema.prisma). Migration: [`packages/database/prisma/migrations/20260405163000_constellation_layer/migration.sql`](../packages/database/prisma/migrations/20260405163000_constellation_layer/migration.sql) (tables + 4 materialized views + unique indexes for refresh).
+- **Seed:** [`scripts/graph-lab/seed-constellation.ts`](../scripts/graph-lab/seed-constellation.ts) — derives nodes/edges from `CorridorCity`, `DirectoryBusiness`, `TouringVenue`, `TouringHotel`, `TouringRestaurant`, `TourRoute`, `TourRouteStop`. **Views:** `pnpm --filter @bigmuddy/database run refresh:constellation-views` after seed.
+- **API:** [`GET /api/constellation`](../apps/web/app/api/constellation/route.ts) — `entityType`, `entityId`, `depth` (0–4); no params returns `{ meta: { nodeCount, edgeCount } }`.
+- **UI:** [`/constellation`](../apps/web/app/constellation/page.tsx) — registry + container/presentational split + HTML Canvas renderer ([`components/constellation/`](../apps/web/components/constellation/)).
+- **Make live:** `pnpm --filter @bigmuddy/database exec prisma migrate deploy` (or `db push` if you do not use migrations — **do not** apply both paths to the same objects). Then `pnpm --filter @bigmuddy/database run seed:constellation` and `pnpm --filter @bigmuddy/database run refresh:constellation-views`.
+- **QC:** `pnpm --filter web exec tsc --noEmit` — pass.
+
+---
+
+## 2026-04-03 — Delta Dawn widget → Gemini + Grok fallback
+
+- **`POST /api/dawn/chat`:** Streams SSE `data: {"text":"…"}` then `data: [DONE]`. Loads full system text from [`docs/ops/DELTA_DAWN_ONBOARDING_PROMPT_V2.md`](../docs/ops/DELTA_DAWN_ONBOARDING_PROMPT_V2.md) via [`lib/delta-dawn-system-prompt.ts`](../apps/web/lib/delta-dawn-system-prompt.ts). Primary: **Gemini 2.5 Flash** with `GEMINI_API_KEY` and `@google/genai` (model id from [`lib/ai-models.ts`](../apps/web/lib/ai-models.ts) `gemini-flash`). User turns prefixed with `[Page: …]` server-side when `page` is sent. Fallback: **same-origin `POST /api/grok/chat`** with `systemPrompt` + `skipTools: true`.
+- **Grok route:** Optional `systemPrompt` and `skipTools`; validates `messages` is an array.
+- **Widget:** [`DeltaDawnWidget.tsx`](../apps/web/components/DeltaDawnWidget.tsx) — `fetch` stream parse, **localStorage** key `delta-dawn-chat-v1`, **usePathname** for header + per-message `page`, send disabled while streaming.
+- **QC:** `pnpm exec tsc --noEmit -p apps/web` pass; `pnpm --filter @bigmuddy/web lint` exit 0.
+
+---
+
 ## 2026-04-05 — Sunday Morning Batch 2 (Tracy testing live)
 
 - **Branch:** `sunday-batch-2-tracy` — 6 commits: tour Records URL → **bigmuddyrecordlabel.com**; **system-health** `build` + **asanaPat**; **HQ** card shows Asana/Cron/build; **admin** Store links absolute + external, HQ **◈**; **PATCH /api/page-edits**; **docs/QC_DOMAIN_CHECK.md** + **RAG_AUDIT_SUNDAY_AM.md**.

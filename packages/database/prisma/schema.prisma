@@ -2091,6 +2091,45 @@ model CorridorCity {
 }
 
 // ─────────────────────────────────────────────────────────────
+// POSTGRES CONSTELLATION LAYER — derived graph over touring + directory
+// Nodes/edges populated by scripts/graph-lab/seed-constellation.ts
+// Materialized views: packages/database/prisma/sql/constellation_views.sql
+// ─────────────────────────────────────────────────────────────
+
+model ConstellationNode {
+  id         String   @id @default(cuid())
+  /// venue | hotel | restaurant | city | route | directory_business
+  entityType String
+  /// Stable string id, e.g. "42" for numeric PKs
+  entityId   String
+  label      String
+  subtitle   String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([entityType, entityId])
+  @@index([entityType])
+}
+
+model ConstellationEdge {
+  id         String   @id @default(cuid())
+  fromType   String
+  fromId     String
+  toType     String
+  toId       String
+  /// directory_link | corridor_city | route_stop_venue | route_stop_hotel | route_sequence
+  relation   String
+  weight     Float    @default(1)
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  @@index([fromType, fromId])
+  @@index([toType, toId])
+  @@index([relation])
+}
+
+// ─────────────────────────────────────────────────────────────
 // EDITORIAL BUREAU (Phase 2.1)
 // ─────────────────────────────────────────────────────────────
 

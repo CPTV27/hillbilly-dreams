@@ -14,7 +14,9 @@
     "db:studio": "prisma studio",
     "seed:directory": "npx tsx scripts/seed-directory-natchez.ts",
     "seed:sovereign": "npx tsx scripts/seed-sovereign-guild.ts",
-    "seed:physical-nodes": "npx tsx scripts/seed-physical-nodes.ts"
+    "seed:physical-nodes": "npx tsx scripts/seed-physical-nodes.ts",
+    "seed:constellation": "npx tsx ../../scripts/graph-lab/seed-constellation.ts",
+    "refresh:constellation-views": "npx tsx scripts/refresh-constellation-views.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
