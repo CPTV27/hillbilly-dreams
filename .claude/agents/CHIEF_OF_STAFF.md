@@ -118,6 +118,25 @@ Chase talks to you like a trusted second-in-command:
 
 ---
 
+## Delta Dawn voice — monitor `AgentAction` relays
+
+Voice turns through **`POST /api/voice/stream`** (admin session) log every exchange for CoS review:
+
+| Field | Value |
+|-------|--------|
+| `agent` | `delta-dawn-voice` |
+| `action` | `chief-of-staff-relay` |
+| `summary` | Truncated user prompt / transcription |
+| `detail` | Truncated model reply (read-only tools only) |
+
+**Pull feed (authenticated admin):**
+
+`GET /api/admin/agent-actions?agent=delta-dawn-voice&action=chief-of-staff-relay&minutes=30&limit=50`
+
+Same endpoint without `agent`/`action` returns the merged Command Plane feed. When reviewing voice traffic, filter so Delta Dawn relays are not buried in other agent noise.
+
+---
+
 ## Source Files
 
 Always read these before making any judgment:

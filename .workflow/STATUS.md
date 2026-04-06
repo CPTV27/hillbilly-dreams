@@ -1,5 +1,17 @@
 # Agent status
 
+## 2026-04-05 — Backlog slice: DCTV, WiFi config, press verify, Studio C + Feed Farm, TS fixes
+
+- **DCTV tenant:** [`config/tenants.ts`](../apps/web/config/tenants.ts) — `dctv` + domains `dctvny.org`, `dctv.org`. [`domain-routes.ts`](../apps/web/config/domain-routes.ts) — patterns `dctvny`, `dctv.org`; `/dctv` + `/feed-farm` in brand prefixes + dev brands. New routes: [`app/dctv/`](../apps/web/app/dctv/).
+- **WiFi captive:** [`config/wifi-portal-locations.ts`](../apps/web/config/wifi-portal-locations.ts) — shared location table + `NEXT_PUBLIC_WIFI_PORTAL_BASE_URL` for QR / splash origin. Wired [`welcome/wifi/page.tsx`](../apps/web/app/welcome/wifi/page.tsx) + [`welcome/wifi/qr/page.tsx`](../apps/web/app/welcome/wifi/qr/page.tsx).
+- **Press QC:** duplicate `src=` across all `public/press/*.html` → **0** duplicate URLs; per-file dupes → **0**. Victorian/mansion strings remain editorial copy only (not a stock-photo ban violation).
+- **Studio C / Feed Farm:** [`/studioc/catalog`](../apps/web/app/studioc/catalog/page.tsx), [`/studioc/about`](../apps/web/app/studioc/about/page.tsx), [`/feed-farm`](../apps/web/app/feed-farm/page.tsx). [`studioc/layout.tsx`](../apps/web/app/studioc/layout.tsx) nav links fixed `/studio` → `/studioc` + Catalog/About.
+- **TS:** [`dawn/chat`](../apps/web/app/api/dawn/chat/route.ts) + [`grok/chat`](../apps/web/app/api/grok/chat/route.ts) tool-loop typing fixes (restore clean `tsc`).
+- **Not done (CC / schema):** DCTV equipment + Event Production Prisma models — hand off to CC per file ownership.
+- **QC:** `pnpm --filter @bigmuddy/web exec tsc --noEmit` — pass.
+
+---
+
 ## 2026-04-05 — Voice/stream E2E + CoS AgentAction filter + prod deploy
 
 - **Tests:** [`e2e/voice-stream.spec.ts`](../e2e/voice-stream.spec.ts) — anonymous `POST /api/voice/stream` expects **401**; optional authed tests when `E2E_SESSION_COOKIE` set; live Gemini when `RUN_VOICE_STREAM_E2E=1`. Run: `pnpm exec playwright test e2e/voice-stream.spec.ts --project=local`.

@@ -2,6 +2,10 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import {
+  DEFAULT_WIFI_PORTAL_LOCATION_KEY,
+  getWifiPortalLocation,
+} from '@/config/wifi-portal-locations';
 
 interface EventData {
   id: number;
@@ -11,21 +15,6 @@ interface EventData {
   artist?: string;
   price?: string;
 }
-
-const LOCATION_CONFIG: Record<string, { name: string; tagline: string; heroImage: string }> = {
-  'big-muddy-inn': {
-    name: 'The Big Muddy Inn',
-    tagline: 'Natchez, Mississippi',
-    heroImage: '/images/region/inn-hallway-gathering.webp',
-  },
-  'utopia-studios': {
-    name: 'Utopia Studios',
-    tagline: 'Natchez, Mississippi',
-    heroImage: '/images/region/night-patio-string-lights.webp',
-  },
-};
-
-const DEFAULT_LOCATION = 'big-muddy-inn';
 
 export default function WifiPortalPage() {
   return (
@@ -37,8 +26,8 @@ export default function WifiPortalPage() {
 
 function WifiPortalInner() {
   const searchParams = useSearchParams();
-  const locationKey = searchParams.get('location') || DEFAULT_LOCATION;
-  const config = LOCATION_CONFIG[locationKey] || LOCATION_CONFIG[DEFAULT_LOCATION];
+  const locationKey = searchParams.get('location') || DEFAULT_WIFI_PORTAL_LOCATION_KEY;
+  const config = getWifiPortalLocation(locationKey);
 
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -70,7 +59,7 @@ function WifiPortalInner() {
         body: JSON.stringify({
           email: email.trim(),
           name: name.trim() || undefined,
-          brand: 'inn',
+          brand: config.brand,
           source: 'wifi-portal',
           location: locationKey,
         }),

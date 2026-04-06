@@ -2,8 +2,12 @@
 // apps/web/app/welcome/wifi/qr/page.tsx
 // Printable QR code page for Inn room cards and front desk tablets
 // Print this page — it generates a card-sized QR code pointing to the WiFi portal
+//
+// Override origin: NEXT_PUBLIC_WIFI_PORTAL_BASE_URL (see config/wifi-portal-locations.ts)
 
-const PORTAL_URL = 'https://bigmuddytouring.com/welcome/wifi?location=big-muddy-inn';
+import { buildWifiPortalUrl, DEFAULT_WIFI_PORTAL_LOCATION_KEY } from '@/config/wifi-portal-locations';
+
+const PORTAL_URL = buildWifiPortalUrl(DEFAULT_WIFI_PORTAL_LOCATION_KEY);
 
 // Simple QR code as an SVG data URL using a Google Charts API fallback
 // In production, replace with a locally generated QR

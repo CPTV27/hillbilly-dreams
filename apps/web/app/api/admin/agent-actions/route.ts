@@ -4,9 +4,10 @@ import { prisma } from '@bigmuddy/database';
 import { requireAdmin } from '@/lib/admin-auth';
 
 /**
- * GET /api/admin/agent-actions?limit=25&minutes=5
+ * GET /api/admin/agent-actions?limit=25&minutes=5&agent=delta-dawn-voice&action=chief-of-staff-relay
  * Live feed for Admin Command Plane — AgentAction + AgentContext.
  * When `minutes` is set, only rows with createdAt/updatedAt within that window (max 60).
+ * Optional `agent` / `action` filter AgentAction rows only (Chief of Staff: Delta Dawn voice relays).
  */
 export async function GET(req: NextRequest) {
   const denied = await requireAdmin();
@@ -19,10 +20,16 @@ export async function GET(req: NextRequest) {
       ? Math.min(Math.max(parseInt(minutesRaw, 10) || 5, 1), 60)
       : null;
   const since = minutes !== null ? new Date(Date.now() - minutes * 60_000) : null;
+  const agentFilter = req.nextUrl.searchParams.get('agent')?.trim() || null;
+  const actionFilter = req.nextUrl.searchParams.get('action')?.trim() || null;
 
   try {
     const actionsP = prisma.agentAction.findMany({
-      where: since ? { createdAt: { gte: since } } : undefined,
+      where: {
+        ...(since ? { createdAt: { gte: since } } : {}),
+        ...(agentFilter ? { agent: agentFilter } : {}),
+        ...(actionFilter ? { action: actionFilter } : {}),
+      },
       orderBy: { createdAt: 'desc' },
       take: limit,
       select: {
@@ -142,6 +149,10 @@ export async function GET(req: NextRequest) {
       actions: mixedFeed,
       windowMinutes: minutes,
       since: since?.toISOString() ?? null,
+      filters: {
+        agent: agentFilter,
+        action: actionFilter,
+      },
     });
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e);
