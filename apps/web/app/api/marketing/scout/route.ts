@@ -27,10 +27,33 @@ export async function POST(req: NextRequest) {
   }
 
   const location = city || 'Natchez, Mississippi';
+  const cityName = city || 'Natchez';
 
   try {
-    // 1. Use Gemini to research the business (faster than Places API for demo)
-    const researchPrompt = `Research the business "${businessName}" in ${location}.
+    // 1. Check our own database FIRST
+    let dbBusiness = null;
+    let dbVenue = null;
+    try {
+      dbBusiness = await prisma.directoryBusiness.findFirst({
+        where: {
+          name: { contains: businessName, mode: 'insensitive' },
+          ...(cityName && { city: { contains: cityName, mode: 'insensitive' } }),
+        },
+      });
+      dbVenue = await prisma.touringVenue.findFirst({
+        where: {
+          name: { contains: businessName, mode: 'insensitive' },
+          ...(cityName && { city: { contains: cityName, mode: 'insensitive' } }),
+        },
+      });
+    } catch { /* tables may not exist */ }
+
+    const dbContext = dbBusiness || dbVenue
+      ? `\n\nIMPORTANT — We already have this business in our database:\n${JSON.stringify(dbBusiness || dbVenue, null, 2)}\nUse this REAL data as the foundation. Do not make up conflicting details.`
+      : '\n\nThis business is NOT yet in our database. Research it externally but be clear about what is confirmed vs estimated.';
+
+    // 2. Use Gemini to enrich with AI (grounded by DB data if available)
+    const researchPrompt = `Research the business "${businessName}" in ${location}.${dbContext}
 
 Return ONLY valid JSON (no markdown):
 {
