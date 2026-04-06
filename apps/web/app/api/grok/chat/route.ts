@@ -117,6 +117,7 @@ Tenant context: ${tenantId || 'hdi-owner'}`;
       // Check for tool calls
       if (message.tool_calls && message.tool_calls.length > 0) {
         for (const toolCall of message.tool_calls) {
+          if (toolCall.type !== 'function' || !('function' in toolCall) || !toolCall.function) continue;
           const fnName = toolCall.function.name;
           const fnArgs = JSON.parse(toolCall.function.arguments || '{}');
 

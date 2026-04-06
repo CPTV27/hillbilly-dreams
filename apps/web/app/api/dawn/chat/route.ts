@@ -84,12 +84,12 @@ export async function POST(req: NextRequest) {
         if (!key) return false;
         try {
           const ai = new GoogleGenAI({ apiKey: key });
-          const contents = toGeminiContents(messages);
+          const contents = toGeminiContents(messages) as unknown[];
 
           // First call — may return function calls or text
           let response = await ai.models.generateContent({
             model: MODELS['gemini-flash'].model,
-            contents,
+            contents: contents as never,
             config: {
               systemInstruction,
               maxOutputTokens: 4096,
@@ -100,18 +100,18 @@ export async function POST(req: NextRequest) {
           // Tool execution loop
           for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
             const candidate = response.candidates?.[0];
-            const parts = candidate?.content?.parts || [];
+            const parts = (candidate?.content?.parts || []) as Array<
+              Record<string, unknown> & { text?: string; functionCall?: { name?: string; args?: unknown } }
+            >;
 
             // Check for function calls
-            const functionCalls = parts.filter(
-              (p: Record<string, unknown>) => p.functionCall
-            );
+            const functionCalls = parts.filter((p) => p.functionCall);
 
             if (functionCalls.length === 0) {
               // No function calls — extract text and stream it
               const text = parts
-                .filter((p: Record<string, unknown>) => p.text)
-                .map((p: Record<string, unknown>) => p.text as string)
+                .filter((p) => p.text)
+                .map((p) => p.text as string)
                 .join('');
               if (text) {
                 controller.enqueue(encoder.encode(sse({ text, source: 'gemini' })));
@@ -121,13 +121,13 @@ export async function POST(req: NextRequest) {
             }
 
             // Execute each function call
-            contents.push(candidate!.content as { role: string; parts: unknown[] });
+            contents.push(candidate!.content as unknown);
 
             const functionResponses: unknown[] = [];
             for (const part of functionCalls) {
-              const fc = (part as Record<string, Record<string, unknown>>).functionCall;
-              const toolName = fc.name as string;
-              const toolArgs = (fc.args as Record<string, unknown>) || {};
+              const fc = part.functionCall;
+              const toolName = (fc?.name as string) || '';
+              const toolArgs = (fc?.args as Record<string, unknown>) || {};
 
               const result = await executeVoiceTool(toolName, toolArgs);
               functionResponses.push({
@@ -143,7 +143,7 @@ export async function POST(req: NextRequest) {
             // Call Gemini again with tool results
             response = await ai.models.generateContent({
               model: MODELS['gemini-flash'].model,
-              contents,
+              contents: contents as never,
               config: {
                 systemInstruction,
                 maxOutputTokens: 4096,
@@ -153,10 +153,14 @@ export async function POST(req: NextRequest) {
           }
 
           // Final attempt to get text after tool loop
-          const finalText = response.candidates?.[0]?.content?.parts
-            ?.filter((p: Record<string, unknown>) => p.text)
-            ?.map((p: Record<string, unknown>) => p.text as string)
-            ?.join('') || '';
+          const finalParts = (response.candidates?.[0]?.content?.parts || []) as Array<
+            Record<string, unknown> & { text?: string }
+          >;
+          const finalText =
+            finalParts
+              .filter((p) => p.text)
+              .map((p) => p.text as string)
+              .join('') || '';
           if (finalText) {
             controller.enqueue(encoder.encode(sse({ text: finalText, source: 'gemini' })));
             return true;

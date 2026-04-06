@@ -53,7 +53,7 @@ export default function StudioLayout({
         }}
       >
         <a
-          href="/studio"
+          href="/studioc"
           style={{
             fontFamily: 'var(--font-display)',
             fontSize: 'var(--text-lg)',
@@ -66,9 +66,11 @@ export default function StudioLayout({
           Studio <span style={{ color: 'var(--accent)' }}>C</span>
         </a>
         <div style={{ display: 'flex', gap: 'var(--space-6)', alignItems: 'center' }}>
-          <a href="/studio#capabilities" style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--text-muted)', textDecoration: 'none' }}>Capabilities</a>
-          <a href="/studio#packages" style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--text-muted)', textDecoration: 'none' }}>Packages</a>
-          <a href="/studio#gear" style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--text-muted)', textDecoration: 'none' }}>Gear</a>
+          <a href="/studioc#capabilities" style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--text-muted)', textDecoration: 'none' }}>Capabilities</a>
+          <a href="/studioc#packages" style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--text-muted)', textDecoration: 'none' }}>Packages</a>
+          <a href="/studioc/catalog" style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--text-muted)', textDecoration: 'none' }}>Catalog</a>
+          <a href="/studioc/about" style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--text-muted)', textDecoration: 'none' }}>About</a>
+          <a href="/studioc#gear" style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--text-muted)', textDecoration: 'none' }}>Gear</a>
           <a href="mailto:studio@thebigmuddyinn.com" className="btn btn--primary" style={{ fontSize: 'var(--text-sm)', padding: 'var(--space-2) var(--space-5)' }}>Book Studio</a>
         </div>
       </nav>

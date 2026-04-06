@@ -64,6 +64,8 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
   { pattern: 'hillbillydreams', routeGroup: 'hillbilly' },
   { pattern: 'measurablybetter', routeGroup: 'measurably-better' },
   { pattern: 'bearsville', routeGroup: 'bearsville' },
+  { pattern: 'dctvny', routeGroup: 'dctv' },
+  { pattern: 'dctv.org', routeGroup: 'dctv' },
 ];
 
 // ── Local Development Domain Mappings ──
@@ -104,6 +106,8 @@ export const BMT_BRAND_PREFIXES = [
   '/welcome',
   '/whiteboard', '/whiteboard/v1-jp-meeting', '/tour',
   '/bearsville',
+  '/dctv',
+  '/feed-farm',
   '/snap',
   '/inn',
   '/nexus',
@@ -136,6 +140,7 @@ export const BMT_VALID_DEV_BRANDS = [
   'admin', 'ops', 'gallery', 'records',
   'studioc', 'tuthill', 'hillbilly', 'measurably-better',
   'directory', 'entertainment',
+  'dctv', 'feed-farm',
 ];
 
 // ── Default fallback route group ──

@@ -89,6 +89,20 @@ export const TENANTS: TenantConfig[] = [
     // Tuthill Design is Elijah's company — integrates with Studio C
     // Shared access to Creative Hub + Google AI Studio
   },
+  {
+    id: 'dctv',
+    name: 'DCTV',
+    entity: 'DCTV',
+    domains: ['dctvny.org', 'dctv.org'],
+    primaryDomain: 'dctvny.org',
+    routeGroup: 'dctv',
+    themeClass: 'theme-dctv',
+    gcsBucket: 'bmt-media-bigmuddy',
+    accentColor: '#38bdf8',
+    tagline: 'Hudson Valley public access television',
+    location: { city: 'Woodstock', state: 'NY' },
+    features: ['broadcast', 'community-media', 'events'],
+  },
 ];
 
 /** Resolve tenant from hostname */
