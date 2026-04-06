@@ -52,8 +52,8 @@ const PHASES = [
 
 const PARTNERS = [
   {
-    name: 'StudioC.video',
-    url: 'https://studioc.video',
+    name: 'Studio C Video',
+    url: 'https://studiocvideo.com',
     role: 'Video Production',
     desc: 'They teach your people how to hold a camera, frame a shot, and tell their own story. No polish required — just real footage of real work. StudioC turns that into something other communities can watch and say "we could do that."',
   },

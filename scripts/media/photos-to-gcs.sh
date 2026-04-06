@@ -75,7 +75,7 @@ end tell
     local SKIPPED=0
 
     # Process photos
-    for file in "$EXPORT_DIR"/*.{HEIC,heic,JPG,jpg,JPEG,jpeg,PNG,png} 2>/dev/null; do
+    for file in "$EXPORT_DIR"/*.HEIC "$EXPORT_DIR"/*.heic "$EXPORT_DIR"/*.JPG "$EXPORT_DIR"/*.jpg "$EXPORT_DIR"/*.JPEG "$EXPORT_DIR"/*.jpeg "$EXPORT_DIR"/*.PNG "$EXPORT_DIR"/*.png; do
         [ -f "$file" ] || continue
         local BASENAME
         BASENAME=$(basename "$file")
@@ -124,7 +124,7 @@ end tell
     done
 
     # Process videos
-    for file in "$EXPORT_DIR"/*.{MOV,mov,MP4,mp4} 2>/dev/null; do
+    for file in "$EXPORT_DIR"/*.MOV "$EXPORT_DIR"/*.mov "$EXPORT_DIR"/*.MP4 "$EXPORT_DIR"/*.mp4; do
         [ -f "$file" ] || continue
         local BASENAME
         BASENAME=$(basename "$file")

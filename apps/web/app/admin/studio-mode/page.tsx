@@ -50,7 +50,7 @@ export default function StudioModePage() {
           <p className="usm-panel__p">
             Studio C handles multi-cam production, live streams, and deliverables from the same building.
           </p>
-          <a href="https://studio-c.video" className="usm-cta" target="_blank" rel="noopener noreferrer">
+          <a href="https://studiocvideo.com" className="usm-cta" target="_blank" rel="noopener noreferrer">
             Open Studio C Video ↗
           </a>
         </section>

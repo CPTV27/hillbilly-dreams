@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
   description:
     'Multi-camera live production, streaming, and video content from Studio C at The Big Muddy Inn in Natchez, Mississippi. ATEM switching, Hollyland wireless, and a Steinway grand.',
-  metadataBase: new URL('https://studioc.video'),
+  metadataBase: new URL('https://studiocvideo.com'),
   openGraph: {
     type: 'website',
     locale: 'en_US',

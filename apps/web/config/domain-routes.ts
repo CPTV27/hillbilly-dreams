@@ -59,8 +59,6 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
   // Canonical records host: bigmuddyrecordlabel.com (we do not own bigmuddyrecords.com / bigmuddyrecord.com)
   { pattern: 'bigmuddyrecordlabel', routeGroup: 'records' },
   { pattern: 'studiocvideo', routeGroup: 'studioc' },
-  { pattern: 'studio-c', routeGroup: 'studioc' },
-  { pattern: 'studioc.video', routeGroup: 'studioc' },
   { pattern: 'tuthilldesign', routeGroup: 'tuthill' },
   { pattern: 'bigmuddyentertainment', routeGroup: 'entertainment' },
   { pattern: 'hillbillydreams', routeGroup: 'hillbilly' },
