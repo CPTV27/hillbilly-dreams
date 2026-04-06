@@ -2,6 +2,7 @@ import { GoogleGenAI } from '@google/genai';
 import { NextRequest, NextResponse } from 'next/server';
 import { MODELS } from '@/lib/ai-models';
 import { getDeltaDawnSystemPromptV2 } from '@/lib/delta-dawn-system-prompt';
+import { VOICE_TOOL_DECLARATIONS, executeVoiceTool } from '@/app/api/voice/tools';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -45,6 +46,8 @@ function sse(data: Record<string, unknown>) {
   return `data: ${JSON.stringify(data)}\n\n`;
 }
 
+const MAX_TOOL_ROUNDS = 6;
+
 export async function POST(req: NextRequest) {
   let body: { messages?: DawnChatMessage[]; tenantId?: string };
   try {
@@ -68,7 +71,7 @@ export async function POST(req: NextRequest) {
   }
 
   const tenantId = body.tenantId || 'hdi-owner';
-  const systemInstruction = `${baseSystem}\n\n## Runtime context\nTenant: ${tenantId}`;
+  const systemInstruction = `${baseSystem}\n\n## Runtime context\nTenant: ${tenantId}\n\nIMPORTANT: When asked about venues, businesses, cities, routes, hotels, restaurants, or anything in the database — ALWAYS use your tools to look up real data. NEVER make up business names, addresses, or details. If a tool returns no results, say so honestly.`;
   const messages = withPageContext(trimmed);
 
   const encoder = new TextEncoder();
@@ -81,25 +84,86 @@ export async function POST(req: NextRequest) {
         if (!key) return false;
         try {
           const ai = new GoogleGenAI({ apiKey: key });
-          const stream = await ai.models.generateContentStream({
+          const contents = toGeminiContents(messages);
+
+          // First call — may return function calls or text
+          let response = await ai.models.generateContent({
             model: MODELS['gemini-flash'].model,
-            contents: toGeminiContents(messages),
+            contents,
             config: {
               systemInstruction,
               maxOutputTokens: 4096,
+              tools: [{ functionDeclarations: VOICE_TOOL_DECLARATIONS }],
             },
           });
-          let any = false;
-          for await (const chunk of stream) {
-            const t = chunk.text;
-            if (t) {
-              any = true;
-              controller.enqueue(encoder.encode(sse({ text: t, source: 'gemini' })));
+
+          // Tool execution loop
+          for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
+            const candidate = response.candidates?.[0];
+            const parts = candidate?.content?.parts || [];
+
+            // Check for function calls
+            const functionCalls = parts.filter(
+              (p: Record<string, unknown>) => p.functionCall
+            );
+
+            if (functionCalls.length === 0) {
+              // No function calls — extract text and stream it
+              const text = parts
+                .filter((p: Record<string, unknown>) => p.text)
+                .map((p: Record<string, unknown>) => p.text as string)
+                .join('');
+              if (text) {
+                controller.enqueue(encoder.encode(sse({ text, source: 'gemini' })));
+                return true;
+              }
+              return false;
             }
+
+            // Execute each function call
+            contents.push(candidate!.content as { role: string; parts: unknown[] });
+
+            const functionResponses: unknown[] = [];
+            for (const part of functionCalls) {
+              const fc = (part as Record<string, Record<string, unknown>>).functionCall;
+              const toolName = fc.name as string;
+              const toolArgs = (fc.args as Record<string, unknown>) || {};
+
+              const result = await executeVoiceTool(toolName, toolArgs);
+              functionResponses.push({
+                functionResponse: {
+                  name: toolName,
+                  response: result,
+                },
+              });
+            }
+
+            contents.push({ role: 'user', parts: functionResponses });
+
+            // Call Gemini again with tool results
+            response = await ai.models.generateContent({
+              model: MODELS['gemini-flash'].model,
+              contents,
+              config: {
+                systemInstruction,
+                maxOutputTokens: 4096,
+                tools: [{ functionDeclarations: VOICE_TOOL_DECLARATIONS }],
+              },
+            });
           }
-          return any;
+
+          // Final attempt to get text after tool loop
+          const finalText = response.candidates?.[0]?.content?.parts
+            ?.filter((p: Record<string, unknown>) => p.text)
+            ?.map((p: Record<string, unknown>) => p.text as string)
+            ?.join('') || '';
+          if (finalText) {
+            controller.enqueue(encoder.encode(sse({ text: finalText, source: 'gemini' })));
+            return true;
+          }
+          return false;
         } catch (e) {
-          console.error('[dawn/chat] Gemini stream failed', e);
+          console.error('[dawn/chat] Gemini with tools failed', e);
           return false;
         }
       };
