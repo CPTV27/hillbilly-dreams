@@ -24,7 +24,7 @@ export default function BearsvilleLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="theme-bearsville" style={{ background: 'var(--bg)', color: 'var(--text)', minHeight: '100vh' }}>
+    <div className="theme-bearsville" style={{ background: 'var(--bg, #0f0f0d)', color: 'var(--text, #e8e0d4)', minHeight: '100vh' }}>
       {/* Minimal header */}
       <header style={{
         display: 'flex',
