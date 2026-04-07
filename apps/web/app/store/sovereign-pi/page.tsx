@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { DSD_GCS_AUTO_PHOTOS } from '@/lib/dsd-gcs-photos';
+
+const P = DSD_GCS_AUTO_PHOTOS;
 
 export const metadata: Metadata = {
   title: 'Sovereign Pi — Your business brain in a box',
@@ -27,25 +30,23 @@ const SPECS = [
   { label: 'Size', value: '3.4 x 2.2 x 1.5 inches. Fits in your hand.' },
 ];
 
-/** GCS library — same bucket as roadmap / gallery; works when /images/* is not in the deploy bundle */
-const HERO_STUDIO_SRC =
-  'https://storage.googleapis.com/bmt-media-bigmuddy/command/juke-joint.webp';
+const HERO_STUDIO_SRC = P[18];
 
 const USE_CASE_IMAGES = [
   {
     title: 'Restaurant',
-    src: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp',
-    alt: 'Warm juke-joint interior — Sovereign Pi can drive menus, listings, and signage',
+    src: P[19],
+    alt: 'Local dining room — Sovereign Pi can drive menus, listings, and signage',
   },
   {
     title: 'Hotel & inn',
-    src: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp',
-    alt: 'Hotel lobby and hospitality setting — local AI for guests and operations',
+    src: P[20],
+    alt: 'Hospitality interior — local AI for guests and operations',
   },
   {
     title: 'Retail & Main Street',
-    src: 'https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-main-street.webp',
-    alt: 'Retail shopfront on a small-town Main Street',
+    src: P[21],
+    alt: 'Main Street storefront — regional retail',
   },
 ] as const;
 
@@ -73,7 +74,7 @@ export default function SovereignPiPage() {
         <div style={{ position: 'relative', width: '100%', aspectRatio: '21 / 9', maxHeight: 420, borderRadius: 12, overflow: 'hidden', border: '1px solid var(--border, rgba(200,148,62,0.15))' }}>
           <Image
             src={HERO_STUDIO_SRC}
-            alt="Production stack in the field — Studio C and Big Muddy media pipelines"
+            alt="Natchez nightlife — local rooms Sovereign Pi is built for"
             fill
             sizes="(max-width: 900px) 100vw, 1100px"
             style={{ objectFit: 'cover', objectPosition: 'center' }}

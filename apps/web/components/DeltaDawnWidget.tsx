@@ -159,11 +159,13 @@ export default function DeltaDawnWidget() {
     <>
       {!open && (
         <button
+          type="button"
+          className="dd-dawn-fab"
           onClick={() => setOpen(true)}
           style={{
             position: 'fixed',
-            bottom: '1.5rem',
-            right: '1.5rem',
+            bottom: 'max(1.25rem, env(safe-area-inset-bottom, 0px))',
+            right: 'max(1.25rem, env(safe-area-inset-right, 0px))',
             width: '56px',
             height: '56px',
             borderRadius: '50%',
@@ -179,6 +181,7 @@ export default function DeltaDawnWidget() {
             alignItems: 'center',
             justifyContent: 'center',
             transition: 'transform 0.2s',
+            touchAction: 'manipulation',
           }}
           onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
           onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
@@ -190,14 +193,16 @@ export default function DeltaDawnWidget() {
 
       {open && (
         <div
+          className="dd-dawn-panel"
           style={{
             position: 'fixed',
-            bottom: '1.5rem',
-            right: '1.5rem',
+            bottom: 'max(1rem, env(safe-area-inset-bottom, 0px))',
+            right: 'max(1rem, env(safe-area-inset-right, 0px))',
+            left: 'auto',
             width: '360px',
-            maxWidth: 'calc(100vw - 2rem)',
-            height: '480px',
-            maxHeight: 'calc(100vh - 3rem)',
+            maxWidth: 'calc(100vw - 2rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px))',
+            height: 'min(480px, calc(100dvh - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)))',
+            maxHeight: 'calc(100dvh - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px))',
             background: '#0f0f0d',
             border: '1px solid rgba(200,148,62,0.3)',
             borderRadius: '16px',
@@ -232,14 +237,23 @@ export default function DeltaDawnWidget() {
               <span style={{ fontSize: '0.65rem', color: '#6b635a' }}>{pathname || '—'}</span>
             </div>
             <button
+              type="button"
+              className="dd-dawn-close"
               onClick={() => setOpen(false)}
               style={{
                 background: 'none',
                 border: 'none',
                 color: '#6b635a',
                 cursor: 'pointer',
-                fontSize: '1.2rem',
-                padding: '0.25rem',
+                fontSize: '1.35rem',
+                lineHeight: 1,
+                padding: '0.5rem',
+                minWidth: '44px',
+                minHeight: '44px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                touchAction: 'manipulation',
               }}
               aria-label="Close"
             >
@@ -248,9 +262,12 @@ export default function DeltaDawnWidget() {
           </div>
 
           <div
+            className="dd-dawn-messages"
             style={{
               flex: 1,
               overflowY: 'auto',
+              WebkitOverflowScrolling: 'touch',
+              overscrollBehavior: 'contain',
               padding: '0.75rem',
               display: 'flex',
               flexDirection: 'column',
@@ -260,6 +277,7 @@ export default function DeltaDawnWidget() {
             {messages.map((msg, i) => (
               <div
                 key={i}
+                className="dd-dawn-msg"
                 style={{
                   alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
                   maxWidth: '85%',
@@ -286,33 +304,43 @@ export default function DeltaDawnWidget() {
           </div>
 
           <div
+            className="dd-dawn-inputrow"
             style={{
               padding: '0.5rem 0.75rem',
+              paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom, 0px))',
               borderTop: '1px solid rgba(200,148,62,0.15)',
               display: 'flex',
               gap: '0.5rem',
+              alignItems: 'center',
+              flexShrink: 0,
             }}
           >
             <input
+              className="dd-dawn-input"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && void send()}
               placeholder="Ask or leave a note..."
               disabled={streaming}
+              enterKeyHint="send"
+              autoComplete="off"
+              autoCorrect="on"
               style={{
                 flex: 1,
+                minWidth: 0,
                 background: '#1a1816',
                 border: '1px solid rgba(200,148,62,0.2)',
                 borderRadius: '8px',
-                padding: '0.5rem 0.75rem',
+                padding: '0.65rem 0.75rem',
                 color: '#e8e0d4',
-                fontSize: '0.8rem',
+                fontSize: '16px',
                 outline: 'none',
                 fontFamily: 'inherit',
                 opacity: streaming ? 0.7 : 1,
               }}
             />
             <button
+              type="button"
               onClick={() => void send()}
               disabled={streaming || !input.trim()}
               style={{
@@ -320,11 +348,14 @@ export default function DeltaDawnWidget() {
                 color: '#0a0a08',
                 border: 'none',
                 borderRadius: '8px',
-                padding: '0.5rem 0.75rem',
+                padding: '0.65rem 0.85rem',
                 fontWeight: 700,
-                fontSize: '0.75rem',
+                fontSize: '16px',
+                minHeight: '44px',
                 cursor: streaming ? 'wait' : 'pointer',
                 opacity: streaming || !input.trim() ? 0.5 : 1,
+                flexShrink: 0,
+                touchAction: 'manipulation',
               }}
             >
               Send
@@ -337,6 +368,22 @@ export default function DeltaDawnWidget() {
         @keyframes ddPulse {
           0%, 100% { opacity: 0.6; }
           50% { opacity: 1; }
+        }
+        /* Phone: near-full-width panel, no iOS zoom on focus (16px+ on .dd-dawn-input) */
+        @media (max-width: 480px) {
+          .dd-dawn-panel {
+            left: max(0.75rem, env(safe-area-inset-left, 0px)) !important;
+            right: max(0.75rem, env(safe-area-inset-right, 0px)) !important;
+            width: auto !important;
+            max-width: none !important;
+            height: min(560px, calc(100dvh - 1.5rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px))) !important;
+            max-height: calc(100dvh - 1.5rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important;
+            border-radius: 14px !important;
+          }
+          .dd-dawn-msg {
+            font-size: 0.9375rem !important;
+            max-width: 92% !important;
+          }
         }
       `}</style>
     </>

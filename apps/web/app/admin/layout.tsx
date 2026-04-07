@@ -5,6 +5,7 @@
 import type { Metadata } from 'next';
 import { auth, signOut } from '@/lib/auth';
 import DeltaDawnFloat from './components/DeltaDawnFloat';
+import { AdminNavCloseOnRoute } from './components/AdminNavCloseOnRoute';
 import { ReviewModeShell } from './components/ReviewModeShell';
 
 
@@ -126,6 +127,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   return (
     <div className="admin-shell theme-admin">
+      <input type="checkbox" id="admin-nav-toggle" className="admin-nav-toggle" />
       {/* Sidebar */}
       <aside className="admin-sidebar" role="navigation" aria-label="Admin navigation">
         <div className="admin-sidebar__header">
@@ -194,9 +196,21 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         </div>
       </aside>
 
+      <label htmlFor="admin-nav-toggle" className="admin-nav-overlay" aria-hidden="true" />
+
       {/* Main content */}
       <div className="admin-main">
+        <header className="admin-mobile-topbar">
+          <label htmlFor="admin-nav-toggle" className="admin-mobile-burger">
+            <span className="admin-mobile-burger__icon" aria-hidden="true" />
+            <span className="admin-mobile-burger__sr">Menu</span>
+          </label>
+          <a href="/admin/dashboard" className="admin-mobile-brand">
+            Big Muddy HQ
+          </a>
+        </header>
         <main className="admin-content">
+          <AdminNavCloseOnRoute />
           <ReviewModeShell>{children}</ReviewModeShell>
         </main>
       </div>
@@ -213,12 +227,102 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           background: var(--bg);
           font-family: var(--font-body);
         }
+        .admin-nav-toggle {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        }
+        .admin-nav-overlay {
+          display: none;
+        }
+        .admin-mobile-topbar {
+          display: none;
+        }
         @media (max-width: 768px) {
           .admin-shell {
             grid-template-columns: 1fr;
           }
           .admin-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: min(280px, 88vw);
+            transform: translateX(-100%);
+            transition: transform 0.2s ease;
+            z-index: 200;
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.35);
+            height: 100vh;
+          }
+          #admin-nav-toggle:checked + .admin-sidebar {
+            transform: translateX(0);
+          }
+          .admin-nav-overlay {
             display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 199;
+            cursor: pointer;
+          }
+          #admin-nav-toggle:checked ~ .admin-nav-overlay {
+            display: block;
+          }
+          .admin-mobile-topbar {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            min-height: 52px;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+          }
+          .admin-mobile-burger {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            min-width: 44px;
+            margin: 0;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            color: var(--text);
+            cursor: pointer;
+          }
+          .admin-mobile-burger__icon {
+            display: inline-block;
+            width: 18px;
+            height: 2px;
+            background: var(--text);
+            box-shadow: 0 6px 0 var(--text), 0 -6px 0 var(--text);
+            border-radius: 1px;
+          }
+          .admin-mobile-burger__sr {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+          }
+          .admin-mobile-brand {
+            font-size: var(--text-sm);
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
           }
         }
 
@@ -382,10 +486,11 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           min-width: 0;
           box-sizing: border-box;
         }
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
           .admin-content {
             padding: var(--space-4);
-            overflow-x: hidden;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
           }
         }
 
@@ -659,8 +764,12 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         }
         .admin-table-wrap {
           overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
           border: 1px solid var(--border);
           border-radius: var(--radius-md);
+        }
+        .admin-table-wrap .admin-table {
+          min-width: 520px;
         }
         .admin-error-banner {
           background: rgba(239, 68, 68, 0.1);

@@ -36,12 +36,12 @@ const CHANNELS = [
 ];
 
 const GALLERY_IMAGES = [
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-inn-dusk.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp',
+  '/images/corridor/natchez-bluff-river-view.webp',
+  '/images/corridor/guitarist-chandelier-venue.webp',
+  '/images/corridor/inn-hallway-gathering.webp',
+  '/images/processed/big-muddy/reginas-kitchen-exterior.webp',
+  '/images/processed/slideshow/natchez-340.webp',
+  '/images/corridor/live-oak-street-night.webp',
 ];
 
 export default function InRoomTVPage() {
@@ -56,8 +56,8 @@ export default function InRoomTVPage() {
           {activeChannel === 'welcome' && (
             <div className="tv-welcome">
               <img
-                src="https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/10-watercolor/small-town-street.webp"
-                alt="Welcome"
+                src="/images/corridor/victorian-mansion-natchez.webp"
+                alt="Historic Natchez architecture near the Big Muddy Inn"
                 className="tv-welcome__bg"
               />
               <div className="tv-welcome__overlay" />

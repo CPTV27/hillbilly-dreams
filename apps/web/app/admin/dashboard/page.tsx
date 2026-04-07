@@ -553,6 +553,11 @@ export default function DashboardPage() {
           grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
           gap: var(--space-3);
         }
+        @media (max-width: 768px) {
+          .mc-tools__grid {
+            grid-template-columns: 1fr;
+          }
+        }
         .mc-tool {
           display: flex;
           align-items: center;

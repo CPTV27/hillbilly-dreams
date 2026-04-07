@@ -16,18 +16,6 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-const NEAR_THRESHOLD_MILES = 5;
-
-function haversine(lat1: number, lng1: number, lat2: number, lng2: number): number {
-  const R = 3959;
-  const dLat = ((lat2 - lat1) * Math.PI) / 180;
-  const dLng = ((lng2 - lng1) * Math.PI) / 180;
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos((lat1 * Math.PI) / 180) * Math.cos((lat2 * Math.PI) / 180) * Math.sin(dLng / 2) ** 2;
-  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-}
-
 async function clearConstellation() {
   console.log('Clearing existing constellation data...');
   await prisma.constellationEdge.deleteMany();
@@ -280,35 +268,14 @@ async function seedEdges() {
     }
   }
 
-  // 6. Proximity edges (venues near hotels/restaurants)
-  const allNodes = await prisma.constellationNode.findMany();
-  const geoNodes = allNodes.filter((n) => {
-    const m = n.metadata as Record<string, unknown> | null;
-    return m && typeof m.lat === 'number' && typeof m.lng === 'number';
+  // 6. DirectoryBusiness → corridor city (when linked)
+  const businessesForCity = await prisma.directoryBusiness.findMany({
+    where: { corridorCityId: { not: null } },
+    select: { id: true, corridorCityId: true },
   });
-  for (let i = 0; i < geoNodes.length; i++) {
-    for (let j = i + 1; j < geoNodes.length; j++) {
-      const a = geoNodes[i];
-      const b = geoNodes[j];
-      if (a.entityType === b.entityType) continue;
-      const am = a.metadata as Record<string, number>;
-      const bm = b.metadata as Record<string, number>;
-      const dist = haversine(am.lat, am.lng, bm.lat, bm.lng);
-      if (dist <= NEAR_THRESHOLD_MILES) {
-        let rel = 'proximity';
-        if (
-          (a.entityType === 'venue' && b.entityType === 'hotel') ||
-          (a.entityType === 'hotel' && b.entityType === 'venue')
-        ) rel = 'stays_near';
-        if (
-          (a.entityType === 'venue' && b.entityType === 'restaurant') ||
-          (a.entityType === 'restaurant' && b.entityType === 'venue')
-        ) rel = 'eats_near';
-
-        await addEdge(a.entityType, a.entityId, b.entityType, b.entityId, rel, 1 - dist / NEAR_THRESHOLD_MILES, {
-          distance_miles: Math.round(dist * 100) / 100,
-        });
-      }
+  for (const b of businessesForCity) {
+    if (b.corridorCityId != null) {
+      await addEdge('directory_business', b.id, 'city', b.corridorCityId, 'corridor_city');
     }
   }
 

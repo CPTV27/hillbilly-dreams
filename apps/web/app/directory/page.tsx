@@ -2,6 +2,10 @@
 // Deep South Directory — Business directory landing page
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { DSD_GCS_AUTO_PHOTOS } from '@/lib/dsd-gcs-photos';
+
+/** Real camera-roll WebP on GCS — see docs/ops/PHOTO_PROCESSING_SPEC.md */
+const P = DSD_GCS_AUTO_PHOTOS;
 
 export const metadata: Metadata = {
   title: 'Deep South Directory — Your business, online, done right.',
@@ -12,37 +16,37 @@ export const metadata: Metadata = {
 const CATEGORIES = [
   {
     name: 'Restaurants & Food',
-    image: '/images/dsd/cat-restaurant.webp',
+    image: P[0],
     count: 'Biscuits & Blues, The Camp, Cotton Alley, and more',
     desc: "From Regina's biscuits to gas station fried chicken. The Deep South eats.",
   },
   {
     name: 'Venues & Events',
-    image: '/images/dsd/cat-venue.webp',
+    image: P[1],
     count: 'Live rooms, event halls, supper clubs',
     desc: "Where the town gathers. Weddings, shows, private dining — places with history in the walls.",
   },
   {
     name: 'Hotels & Lodging',
-    image: '/images/dsd/cat-hotel.webp',
+    image: P[2],
     count: 'Big Muddy Inn, B&Bs, historic homes',
     desc: "Places to stay that have a story. Not chains — characters.",
   },
   {
     name: 'Shops & Retail',
-    image: '/images/dsd/cat-shop.webp',
+    image: P[3],
     count: 'Antiques, art, flowers, gifts',
     desc: "Main Street still works in these towns. Support the people who keep it open.",
   },
   {
     name: 'Tours & Experiences',
-    image: '/images/dsd/cat-tour.webp',
+    image: P[4],
     count: 'Walking tours, cooking classes, river excursions',
     desc: "The things you came here to do. We know who does them best.",
   },
   {
     name: 'Services',
-    image: '/images/dsd/cat-service.webp',
+    image: P[5],
     count: 'Barbershops, salons, contractors, professionals',
     desc: "The behind-the-scenes people who keep small-town businesses running.",
   },
@@ -54,7 +58,7 @@ const FEATURED_BUSINESSES = [
     type: 'Restaurant / Cooking School',
     city: 'Natchez, MS',
     desc: "Built by Regina Charboneau, the Biscuit Queen of Natchez. Paris-trained technique, Mississippi soul.",
-    image: '/images/dsd/southern-food.webp',
+    image: P[6],
     articleSlug: 'reginas-biscuits-how-the-biscuit-queen-of-natchez-trained-in-paris-and-came-home',
   },
   {
@@ -62,7 +66,7 @@ const FEATURED_BUSINESSES = [
     type: 'Boutique Hotel',
     city: 'Natchez, MS',
     desc: "6 rooms in downtown Natchez. Every room has a story. No two are alike.",
-    image: '/images/dsd/hotel-room.webp',
+    image: P[7],
     articleSlug: null,
   },
   {
@@ -70,7 +74,7 @@ const FEATURED_BUSINESSES = [
     type: 'Historic Venue / Event Space',
     city: 'Natchez, MS',
     desc: "Built in 1857. Maintained by the Pilgrimage Garden Club since 1938. National Historic Landmark.",
-    image: '/images/dsd/hero-mainstreet.webp',
+    image: P[8],
     articleSlug: 'save-the-hall-ball-pilgrimage-garden-clubs-fight-for-stanton-hall',
   },
   {
@@ -155,31 +159,31 @@ const HOW_IT_WORKS = [
     step: '01',
     title: 'We meet',
     desc: 'We visit your business. Learn what makes you special. No forms, no onboarding call — a real conversation.',
-    image: '/images/dsd/step-meet.webp',
+    image: P[9],
   },
   {
     step: '02',
     title: 'We listen',
     desc: 'Tell us your story. We capture your voice so your listing sounds like you — not a software template.',
-    image: '/images/dsd/step-voice.webp',
+    image: P[10],
   },
   {
     step: '03',
     title: 'We build',
     desc: "Your listing goes live across 50+ directories. Google, Yelp, Facebook — all synced from one place.",
-    image: '/images/dsd/step-publish.webp',
+    image: P[11],
   },
   {
     step: '04',
     title: 'We watch',
     desc: "Reviews, mentions, and competitor moves — we monitor it all and flag anything that needs your attention.",
-    image: '/images/dsd/step-review.webp',
+    image: P[12],
   },
   {
     step: '05',
     title: 'You grow',
     desc: "Monthly report card. Real numbers. No jargon. You see exactly what's working and what changed.",
-    image: '/images/dsd/step-results.webp',
+    image: P[13],
   },
 ];
 
@@ -272,8 +276,8 @@ export default function DirectoryPage() {
         {/* Background image */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <Image
-            src="/images/dsd/hero-mainstreet.webp"
-            alt="Main Street in the Deep South"
+            src={P[14]}
+            alt="Deep South street — real photo from the corridor"
             fill
             priority
             style={{ objectFit: 'cover', objectPosition: 'center 40%' }}
@@ -396,8 +400,8 @@ export default function DirectoryPage() {
           }}
         >
           <Image
-            src="/images/dsd/restaurant-owner.webp"
-            alt="Restaurant owner in the Deep South"
+            src={P[15]}
+            alt="Local business storefront — Deep South Directory member"
             fill
             style={{ objectFit: 'cover' }}
           />
@@ -734,8 +738,8 @@ export default function DirectoryPage() {
         }}
       >
         <Image
-          src="/images/dsd/mississippi-sunset.webp"
-          alt="Mississippi at sunset"
+          src={P[16]}
+          alt="Mississippi corridor — river and sky"
           fill
           style={{ objectFit: 'cover', objectPosition: 'center 60%' }}
         />
@@ -1349,8 +1353,8 @@ export default function DirectoryPage() {
         {/* Background photo */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <Image
-            src="/images/dsd/southern-food.webp"
-            alt="Deep South food and hospitality"
+            src={P[17]}
+            alt="Deep South — local table and light"
             fill
             style={{ objectFit: 'cover', objectPosition: 'center' }}
           />
