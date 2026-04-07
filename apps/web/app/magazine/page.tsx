@@ -122,7 +122,7 @@ export default async function MagazineHomepage() {
       {/* ── Visual break (scroll — no fixed/parallax; avoids hero bleed-through) ── */}
       <div className="mag-visual-break" role="img" aria-label="Natchez lounge at night">
         <Image
-          src="/images/region/natchez-night-lounge.webp"
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-bluff-sunset.webp"
           alt=""
           fill
           sizes="100vw"
@@ -250,10 +250,10 @@ export default async function MagazineHomepage() {
       {/* ── Region Photo Strip ── */}
       <section className="mag-photostrip">
         <div className="mag-photostrip__inner">
-          <Image src="/images/region/oceansprings-natchez-327-of-1183.webp" alt="Along the Deep South" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover', opacity: 0.7 }} />
-          <Image src="/images/region/cafe-sidewalk-natchez.webp" alt="Live oak canopy over Ocean Springs street" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-          <Image src="/images/region/historic-home-natchez.webp" alt="Antebellum mansion with iron fence and carriage" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-          <Image src="/images/region/natchez-bluff-river-view.webp" alt="Teal shrimp boat at Ocean Springs marina" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/clarksdale-crossroads.webp" alt="Along the Deep South" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover', opacity: 0.7 }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/oxford-square.webp" alt="Live oak canopy over Ocean Springs street" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-trace-parkway.webp" alt="Antebellum mansion with iron fence and carriage" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/vicksburg-bluffs.webp" alt="Teal shrimp boat at Ocean Springs marina" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
         </div>
       </section>
 
@@ -309,10 +309,10 @@ export default async function MagazineHomepage() {
       {/* ── Real Photo Strip ── */}
       <section className="mag-photostrip">
         <div className="mag-photostrip__inner">
-          <Image src="/images/region/cafe-sidewalk-natchez.webp" alt="Cafe sidewalk scene in Natchez" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-          <Image src="/images/region/oceansprings-natchez-1058-of-1183.webp" alt="Ocean Springs to Natchez region" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover', opacity: 0.7 }} />
-          <Image src="/images/region/craftsman-porch-columns.webp" alt="Pink azaleas cascading along Natchez sidewalk" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-          <Image src="/images/region/natchez-downtown-sidewalk.webp" alt="Brick sidewalk with awnings on Natchez main street" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/oxford-square.webp" alt="Cafe sidewalk scene in Natchez" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/greenville-levee.webp" alt="Ocean Springs to Natchez region" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover', opacity: 0.7 }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/helena-river-levee.webp" alt="Pink azaleas cascading along Natchez sidewalk" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/jackson-capitol.webp" alt="Brick sidewalk with awnings on Natchez main street" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
         </div>
       </section>
 
