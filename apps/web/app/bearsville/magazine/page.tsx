@@ -143,8 +143,7 @@ export default function BearsvilleMagazinePage() {
                   display: 'block',
                   transition: 'transform 0.6s ease',
                 }}
-                onMouseOver={(e: any) => e.currentTarget.style.transform = 'scale(1.03)'}
-                onMouseOut={(e: any) => e.currentTarget.style.transform = 'scale(1)'}
+                className="mag-hover-img"
               />
             </div>
           ))}
@@ -211,8 +210,7 @@ export default function BearsvilleMagazinePage() {
                   display: 'block',
                   transition: 'transform 0.6s ease',
                 }}
-                onMouseOver={(e: any) => e.currentTarget.style.transform = 'scale(1.03)'}
-                onMouseOut={(e: any) => e.currentTarget.style.transform = 'scale(1)'}
+                className="mag-hover-img"
               />
             </div>
           ))}
@@ -277,8 +275,7 @@ export default function BearsvilleMagazinePage() {
                   display: 'block',
                   transition: 'transform 0.6s ease',
                 }}
-                onMouseOver={(e: any) => e.currentTarget.style.transform = 'scale(1.03)'}
-                onMouseOut={(e: any) => e.currentTarget.style.transform = 'scale(1)'}
+                className="mag-hover-img"
               />
             </div>
           ))}
@@ -342,6 +339,10 @@ export default function BearsvilleMagazinePage() {
       }}>
         Bearsville Creative &middot; Woodstock, NY &middot; Powered by Measurably Better Things
       </footer>
+      <style dangerouslySetInnerHTML={{ __html: `
+        .mag-hover-img { transition: transform 0.3s ease; }
+        .mag-hover-img:hover { transform: scale(1.03); }
+      `}} />
     </main>
   );
 }
