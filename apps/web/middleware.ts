@@ -163,15 +163,10 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // ── If path already starts with a known brand prefix, pass through ──
-  if (BMT_BRAND_PREFIXES.some(p => pathname === p || pathname.startsWith(p + '/'))) {
-    return NextResponse.next();
-  }
-
   // ── Hostname-based routing: match against tenant domain table ──
-  // Must run before admin path detection so that e.g.
+  // MUST run before brand prefix check so that e.g.
+  // bearsvillemediagroup.com/magazine → /bearsville/magazine (not /magazine)
   // bigmuddymagazine.com/articles/slug → /magazine/articles/slug
-  // instead of being intercepted as an admin /articles path.
 
   const matched = matchDomainRoute(hostname, ALL_BMT_DOMAIN_ROUTES);
 
@@ -185,6 +180,12 @@ export async function middleware(request: NextRequest) {
       }
     }
     return rewriteTo(matched.routeGroup, pathname);
+  }
+
+  // ── If path already starts with a known brand prefix, pass through ──
+  // Only checked AFTER hostname routing — so domain-based rewrites take priority
+  if (BMT_BRAND_PREFIXES.some(p => pathname === p || pathname.startsWith(p + '/'))) {
+    return NextResponse.next();
   }
 
   // ── Directory routes always pass through — never rewritten ──
