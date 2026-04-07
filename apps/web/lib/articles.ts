@@ -1146,6 +1146,65 @@ The room is open. Bring your project north.
 
 *Studio C at Utopia Studios is available for tracking, mixing, and mastering sessions. Contact hello@bearsvillemediagroup.com for rates and availability.*`,
   },
+  {
+    id: 22,
+    title: 'Save the Hall Ball — A Night at Stanton Hall',
+    slug: 'save-the-hall-ball-pilgrimage-garden-clubs-fight-for-stanton-hall',
+    category: 'events',
+    city: 'natchez',
+    author: 'Chase Pierson',
+    status: 'published',
+    excerpt:
+      'Stanton Hall has stood on High Street since 1857. On March 21, Natchez came together to make sure it keeps standing. A photo essay from the Save the Hall Ball.',
+    heroImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-003.webp',
+    readTime: '3 min read',
+    publishedAt: new Date('2026-03-22').toISOString(),
+    createdAt: new Date('2026-03-22').toISOString(),
+    updatedAt: new Date('2026-03-22').toISOString(),
+    body: `# Save the Hall Ball — A Night at Stanton Hall
+
+Stanton Hall has stood on High Street since 1857. Built by Frederick Stanton, an Irish immigrant who made his fortune in cotton, the house is one of the grandest antebellum mansions in the American South. The Pilgrimage Garden Club has maintained it since 1938 as a National Historic Landmark, open to the public, a living piece of the corridor's story.
+
+On March 21, 2026, Natchez came together to make sure it keeps standing.
+
+---
+
+![Save the Hall Ball](https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-010.webp)
+
+![Save the Hall Ball](https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-020.webp)
+
+![Save the Hall Ball](https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-030.webp)
+
+![Save the Hall Ball](https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-040.webp)
+
+![Save the Hall Ball](https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-050.webp)
+
+![Save the Hall Ball](https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-060.webp)
+
+![Save the Hall Ball](https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-070.webp)
+
+![Save the Hall Ball](https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-080.webp)
+
+![Save the Hall Ball](https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-090.webp)
+
+![Save the Hall Ball](https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-100.webp)
+
+![Save the Hall Ball](https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-110.webp)
+
+![Save the Hall Ball](https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-120.webp)
+
+![Save the Hall Ball](https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-130.webp)
+
+![Save the Hall Ball](https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-140.webp)
+
+![Save the Hall Ball](https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-150.webp)
+
+---
+
+*All photos by Chase Pierson. Stanton Hall, 401 High Street, Natchez, Mississippi. March 21, 2026.*
+
+*The Pilgrimage Garden Club maintains Stanton Hall as a National Historic Landmark. Learn more at the [Deep South Directory](/directory).*`,
+  },
 ];
 
 // Helper: get article by slug
