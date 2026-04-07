@@ -1,10 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 
 const API_ROUTES = {
@@ -21,9 +20,24 @@ const artistApplicationSchema = z.object({
 type ApplicationForm = z.infer<typeof artistApplicationSchema>;
 
 export default function GalleryApply() {
-  const { data: session, status } = useSession();
+  const [session, setSession] = useState<{ user?: { email?: string } } | null>(null);
+  const [status, setStatus] = useState<'loading' | 'authenticated' | 'unauthenticated'>('loading');
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch('/api/auth/session')
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data?.user) {
+          setSession(data);
+          setStatus('authenticated');
+        } else {
+          setStatus('unauthenticated');
+        }
+      })
+      .catch(() => setStatus('unauthenticated'));
+  }, []);
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ApplicationForm>({
     resolver: zodResolver(artistApplicationSchema),
@@ -33,20 +47,17 @@ export default function GalleryApply() {
   const onSubmit = async (data: ApplicationForm) => {
     setSubmitError(null);
     try {
-      if (!session?.user) {
+      if (!session?.user?.email) {
         setSubmitError('You must be logged in to apply.');
         return;
       }
 
-      // We pass the NextAuth session user's email or ID to the backend if needed, 
-      // but ideally the backend infers the userId from the server session.
-      // For this scaffold, we'll send the email just in case ID is not on the client session.
       const res = await fetch(API_ROUTES.GALLERY_APPLY, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...data,
-          email: session.user.email
+          email: session.user.email,
         })
       });
       
