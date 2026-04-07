@@ -28,8 +28,8 @@ export default function EntertainmentPage() {
         overflow: 'hidden',
       }}>
         <Image
-          src="/images/processed/big-muddy/sprinter-van-concept.webp"
-          alt="Big Muddy Touring Sprinter van on a Southern road at golden hour"
+          src="/images/processed/big-muddy/save-the-hall-ball-003.webp"
+          alt="Save the Hall Ball at Stanton Hall, Natchez — March 2026. Photo by Chase Pierson"
           fill
           priority
           sizes="100vw"

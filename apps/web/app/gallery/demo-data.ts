@@ -410,8 +410,26 @@ export const DEMO_SHOOTS: DemoShoot[] = [
     date: '2026-03-22',
     location: 'Natchez, Mississippi',
     artistSlug: 'chase-pierson',
-    isPublic: false,
-    photos: [], // Photos will be added once Chase edits them
+    isPublic: true,
+    photos: Array.from({ length: 30 }, (_, i) => ({
+      id: `sth-${String(i + 1).padStart(3, '0')}`,
+      slug: `save-the-hall-ball-${String(i * 5 + 1).padStart(3, '0')}`,
+      title: `Save the Hall Ball #${i + 1}`,
+      artistId: 'a1',
+      artistName: 'Chase Pierson',
+      artistSlug: 'chase-pierson',
+      medium: 'Photography',
+      dimensions: '24 × 36 in',
+      year: 2026,
+      price: 15000, // $150 print
+      category: 'Photography',
+      edition: 'Open Edition',
+      description: `Save the Hall Ball at Stanton Hall, Natchez, Mississippi. March 21, 2026. Photo by Chase Pierson.`,
+      images: [`https://storage.googleapis.com/bmt-media-bigmuddy/events/save-the-hall-ball-2026/hero/save-the-hall-ball-${String(i * 5 + 1).padStart(3, '0')}.webp`],
+      tags: ['natchez', 'event', 'stanton-hall', 'ball', 'fundraiser', 'historic'],
+      available: true,
+      featured: i < 5,
+    })),
   },
 ];
 
