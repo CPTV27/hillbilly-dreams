@@ -196,3 +196,23 @@ The immediate expression: art direction analysis from 3 models, synthesized into
 **Content Brands = The product people see.** Big Muddy, Bearsville, future clients. Each is a branded media ecosystem powered by MBT, built by Studio C. The customer never sees "platform" — they see their brand.
 
 This is the canonical model. Every future operator, pitch, and onboarding should use this framework.
+
+---
+
+## LATE ADDITION 2: Workflow Presentation for Miles & Elijah
+
+The onboarding needs to show CUSTOMIZABLE WORKFLOWS, not just "what we built." Show them what THEY can build.
+
+Four example workflows to present:
+
+1. **"Band walks in"** — booking → call sheet → QR check-in → recording → MelodyVault → radio → magazine → social → 80% to artist
+
+2. **"Business wants marketing"** — DSD signup → Google data auto-populates → Delta Dawn manages reviews → social posts generated → magazine feature → radio spot → monthly report
+
+3. **"Sell a house"** — broker brings listing → Studio C cinematic video → Tuthill AI staging → magazine feature → radio spot → directory neighborhood data → Delta Dawn answers area questions
+
+4. **"Throw a show"** — JP picks band → call sheet → Studio C recording → show → video clips same night → radio gets live recording → magazine covers it → Inn sells rooms → directory businesses promoted
+
+Each workflow is modular — steps can be reordered, added, skipped. The tools are building blocks. MBT licenses the blocks, Studio C assembles them, the content brand is what customers see.
+
+Build this as an interactive workflow builder on the onboarding deck — draggable steps that show how tools connect. Chase wants Miles and Elijah to see it's totally customizable for their own workflow.
