@@ -176,3 +176,50 @@ The Sprinter van serves dual purpose:
 5. **DJI video transmitter setup** — wireless camera feeds
 6. **Voice automation** — Siri + HomeKit integration
 7. **Van fit-out** — organize gear storage
+
+---
+
+## The Van — Triple Revenue Model
+
+The Sprinter van isn't just transport. It's three businesses:
+
+### 1. Big Muddy Touring — Band Transport
+- Seats in for band + gear
+- Corridor circuit runs (Memphis → Natchez → New Orleans)
+- Revenue: built into show booking fees
+
+### 2. Studio C — Mobile Production Unit  
+- Camera cases, lighting, audio rack, grip gear
+- Roll up to any location and shoot
+- Revenue: production day rates ($1,500-3,000/day)
+
+### 3. Studio C — Grip Van Rental
+- Seats OUT, grip gear IN
+- Rent to film productions as a self-contained grip truck
+- C-stands, lights, apple boxes, sandbags, flags, frames
+- Revenue: $500-1,000/day rental (industry standard for grip vans)
+
+### Modular Interior
+- Quick-release seat mounts — seats bolt in/out in 30 minutes
+- Standardized rack cases that stack and lock
+- Pegboard/slotted walls for grip gear organization
+- Drawer system under the floor for cable/hardware storage
+
+### Van Wrap — Dual Brand
+- One side: Big Muddy Touring (dark, music, the corridor)
+- Other side: Studio C (production, professional, clean)
+- Or: unified design that reads as both — "Big Muddy Touring × Studio C"
+- Professional enough for corporate film sets, cool enough for shows
+
+### The Garage
+- Dedicated parking/storage at the Inn
+- Gear staging area
+- Van prep and load-out space
+- Doubles as a workshop for gear maintenance
+
+### Why This Works in Natchez
+- Film productions come to Natchez regularly (historic locations, tax incentives)
+- No local grip van rental — nearest is Jackson or New Orleans
+- We're already the only production company in town (Studio C)
+- The van pays for itself on 2-3 film rental days per month
+- Between shows, the van earns money sitting in the driveway
