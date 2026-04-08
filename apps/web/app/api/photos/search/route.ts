@@ -58,11 +58,11 @@ export async function GET(req: NextRequest) {
     'studio': ['recording', 'studio', 'audio equipment', 'mixing console', 'sound'],
     'console': ['mixing console', 'audio equipment', 'recording', 'studio', 'electronic instrument'],
     'house': ['house', 'building', 'mansion', 'home', 'residential'],
-    'church': ['church', 'chapel', 'steeple', 'place of worship'],
-    'tree': ['tree', 'plant', 'oak', 'vegetation', 'branch'],
-    'crowd': ['crowd', 'audience', 'people', 'spectator', 'fan'],
-    'bridge': ['bridge', 'overpass', 'viaduct'],
-    'portrait': ['portrait', 'face', 'person', 'selfie'],
+    'church': ['church', 'chapel', 'steeple', 'place of worship', 'cathedral'],
+    'tree': ['tree', 'plant', 'oak', 'vegetation', 'branch', 'forest', 'woodland'],
+    'crowd': ['crowd', 'audience', 'people', 'spectator', 'fan', 'gathering'],
+    'bridge': ['bridge', 'overpass', 'viaduct', 'truss'],
+    'portrait': ['portrait', 'face', 'person', 'head', 'selfie', 'close-up'],
     'street': ['street', 'road', 'alley', 'sidewalk', 'town', 'neighborhood'],
     'architecture': ['architecture', 'building', 'facade', 'column', 'balcony', 'historic'],
     'players': ['musician', 'performer', 'musical instrument', 'performing arts'],
@@ -73,23 +73,17 @@ export async function GET(req: NextRequest) {
     'concert': ['concert', 'performance', 'performing arts', 'entertainment', 'music venue', 'stage'],
     'trumpet': ['trumpet', 'brass instrument', 'cornet', 'flugelhorn'],
     'saxophone': ['saxophone', 'saxophonist', 'woodwind', 'reed instrument'],
-    'violin': ['violin', 'violin family', 'fiddle', 'string instrument', 'chordophone'],
-    'piano': ['piano', 'keyboard', 'musical keyboard', 'pianist'],
-    'portrait': ['portrait', 'face', 'person', 'head', 'selfie', 'close-up'],
-    'crowd': ['crowd', 'audience', 'people', 'spectator', 'fan', 'gathering'],
-    'tree': ['tree', 'plant', 'oak', 'vegetation', 'branch', 'forest', 'woodland'],
-    'bridge': ['bridge', 'overpass', 'viaduct', 'truss'],
-    'church': ['church', 'chapel', 'steeple', 'place of worship', 'cathedral'],
   };
 
   let expandedTerms = q.split(/\s+/).filter(Boolean);
-  for (const term of [...expandedTerms]) {
+  const originalTerms = expandedTerms.slice();
+  for (const term of originalTerms) {
     const lower = term.toLowerCase();
     if (synonyms[lower]) {
       expandedTerms = expandedTerms.concat(synonyms[lower]);
     }
   }
-  const terms = [...new Set(expandedTerms)];
+  const terms = Array.from(new Set(expandedTerms));
   const manifest = getManifest();
 
   const hideJunk = req.nextUrl.searchParams.get('hideJunk') !== 'false'; // default ON

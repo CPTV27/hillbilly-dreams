@@ -48,12 +48,12 @@ export default function PhotoSearchPage() {
     const next = new Set(rejected);
     next.add(slug);
     setRejected(next);
-    localStorage.setItem('photo-rejected', JSON.stringify([...next]));
+    localStorage.setItem('photo-rejected', JSON.stringify(Array.from(next)));
     // Remove from approved if it was there
     const nextApproved = new Set(approved);
     nextApproved.delete(slug);
     setApproved(nextApproved);
-    localStorage.setItem('photo-approved', JSON.stringify([...nextApproved]));
+    localStorage.setItem('photo-approved', JSON.stringify(Array.from(nextApproved)));
     setSelected(null);
   };
 
@@ -61,12 +61,12 @@ export default function PhotoSearchPage() {
     const next = new Set(approved);
     next.add(slug);
     setApproved(next);
-    localStorage.setItem('photo-approved', JSON.stringify([...next]));
+    localStorage.setItem('photo-approved', JSON.stringify(Array.from(next)));
     // Remove from rejected if it was there
     const nextRejected = new Set(rejected);
     nextRejected.delete(slug);
     setRejected(nextRejected);
-    localStorage.setItem('photo-rejected', JSON.stringify([...nextRejected]));
+    localStorage.setItem('photo-rejected', JSON.stringify(Array.from(nextRejected)));
     setSelected(null);
   };
 
@@ -74,7 +74,7 @@ export default function PhotoSearchPage() {
     const next = new Set(rejected);
     next.delete(slug);
     setRejected(next);
-    localStorage.setItem('photo-rejected', JSON.stringify([...next]));
+    localStorage.setItem('photo-rejected', JSON.stringify(Array.from(next)));
     setSelected(null);
   };
 

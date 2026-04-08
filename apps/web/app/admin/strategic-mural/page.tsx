@@ -226,7 +226,7 @@ export default function StrategicMural() {
                   flexDirection: 'column',
                   gap: '3px',
                 }}>
-                  {items.map((item, i) => (
+                  {items.map((item: string, i: number) => (
                     <li key={i} style={{
                       fontSize: '0.75rem',
                       color: '#b8b0a4',
