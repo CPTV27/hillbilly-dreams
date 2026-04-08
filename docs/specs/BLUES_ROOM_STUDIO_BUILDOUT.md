@@ -223,3 +223,31 @@ The Sprinter van isn't just transport. It's three businesses:
 - We're already the only production company in town (Studio C)
 - The van pays for itself on 2-3 film rental days per month
 - Between shows, the van earns money sitting in the driveway
+
+### The Indie Grip Van Concept
+
+NOT a Sprinter with seats and some gear in the back. A proper hybrid indie grip van.
+
+**What it is:** A self-contained production package on wheels. Cameras, lights, grip, audio — everything a small crew needs to walk onto a location and shoot. One truck, one crew, amazing results.
+
+**The pitch to productions:** "You don't need three trucks and a 20-person crew. You need our van and two people. We show up with cameras, lights, grip, wireless audio, and a monitor wall. You get broadcast-quality content for indie prices."
+
+**Configuration modes:**
+- **Full production:** Cameras on gimbals, Aputure lights, C-stands, wireless audio, DJI control module, monitor — walk onto any location
+- **Touring:** Swap in seats, band rides with backline, gear stays organized in cases
+- **Grip rental:** Strip to grip essentials, rent to productions who have their own cameras
+
+**What makes it "indie grip" not "cargo van with stuff":**
+- Purpose-built shelving and case mounts
+- Power distribution (inverter + shore power)
+- Liftgate or ramp for heavy cases
+- Cable management built into the walls
+- Lighting pre-rigged on quick-deploy stands
+- Monitor/DIT station that deploys from the tailgate
+
+**Why "go light but do amazing stuff" works:**
+- Sony A7 series + DJI gimbals = cinema-quality on a DSLR budget
+- Aputure LEDs replace HMIs at 1/10th the weight
+- Wireless everything (video, audio, control) eliminates cable runs
+- One operator can run 2 cameras on gimbals via DJI controller
+- The quality gap between a $50K RED package and a $15K Sony/DJI package is invisible to 95% of audiences
