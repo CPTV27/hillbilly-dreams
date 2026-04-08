@@ -122,6 +122,8 @@ export const BMT_BRAND_PREFIXES = [
   '/tracy',
   '/amy',
   '/kiosk',
+  '/constellation',
+  '/dawn',
 ];
 
 // ── Admin path shortcuts ──
