@@ -1,16 +1,16 @@
-# Welcome to Big Muddy — Raya Mochiak
+# Welcome to Big Muddy — Rea Mochiach
 
 *Artist-in-Residence & Studio Director, The Big Muddy Inn, Natchez, Mississippi*
 
 ---
 
-## Who Raya Is
+## Who Rea Is
 
-Raya Mochiak was the most famous musician in Israel as a teenager. Founding member of Gogol Bordello. Drummer for David Byrne of Talking Heads. He worked with The National. He's an expert on Delta Blues — an Israeli who knows the Mississippi Delta better than most people born here.
+Rea Mochiach was the most famous musician in Israel as a teenager. Founding member of Gogol Bordello. Drummer for David Byrne of Talking Heads. He worked with The National. He's an expert on Delta Blues — an Israeli who knows the Mississippi Delta better than most people born here.
 
 He owns one of the best recording consoles in the world — the board Taylor Swift recorded on. It's from the 1960s, recently restored, and it's coming to Natchez. His studio is full of vintage gear. Everything analog. Everything real.
 
-Raya is the king of the audio world at Big Muddy. Chase handles video and technology. Raya handles sound.
+Rea is the king of the audio world at Big Muddy. Chase handles video and technology. Rea handles sound.
 
 ---
 
@@ -20,7 +20,7 @@ Raya is the king of the audio world at Big Muddy. Chase handles video and techno
 
 **Requirements:**
 - Large open room for recording, performances, and events
-- Small apartment attached (or upstairs) for Raya to live
+- Small apartment attached (or upstairs) for Rea to live
 - Room for a proper control room built around his vintage console
 - Space for art exhibits on the walls
 - High ceilings preferred (sound + events)
@@ -28,7 +28,7 @@ Raya is the king of the audio world at Big Muddy. Chase handles video and techno
 - Power: enough for vintage tube gear + modern lighting + video production
 
 **What goes in the space:**
-- Raya's vintage console (the Taylor Swift board) + his full analog gear collection
+- Rea's vintage console (the Taylor Swift board) + his full analog gear collection
 - Chase's video production kit (Sony cameras, DJI gimbals, Aputure lights, DIT station)
 - A live room that doubles as a performance space and art gallery
 - A control room that's a destination — people come to see this console
@@ -54,7 +54,7 @@ Raya is the king of the audio world at Big Muddy. Chase handles video and techno
 We book bands on a circuit from Memphis to New Orleans — 13 cities, 735 venues. When you're here, you have access to the whole corridor. Clarksdale, Jackson, Oxford, Tupelo, Baton Rouge, New Orleans. One call and you're on a stage anywhere between Memphis and the Gulf.
 
 ### Big Muddy Records
-80% of royalties go to the artist. 15% to the label. 5% platform. That's the deal for everyone. Raya's console and Chase's video rig mean we can produce at a level nobody in Mississippi can touch — and we own it all.
+80% of royalties go to the artist. 15% to the label. 5% platform. That's the deal for everyone. Rea's console and Chase's video rig mean we can produce at a level nobody in Mississippi can touch — and we own it all.
 
 ### Big Muddy Radio
 Streaming radio station. Your music gets first play. Recorded on Tuesday, on the radio by Wednesday.
@@ -73,7 +73,7 @@ Think the Swampers at FAME Studios in Muscle Shoals. Think Booker T. & the MG's 
 
 A rotating cast of musicians who live in or come through Natchez. They back up touring artists in the studio and on the road. They play the Blues Room on regular nights. When someone needs a session band, they're the call.
 
-Raya shapes the sound. Chase documents everything. The house band becomes the signature — the reason artists come to Natchez to record instead of going to Nashville or LA.
+Rea shapes the sound. Chase documents everything. The house band becomes the signature — the reason artists come to Natchez to record instead of going to Nashville or LA.
 
 ---
 
@@ -102,7 +102,7 @@ The corridor is pre-built:
 
 ---
 
-## What Raya Brings
+## What Rea Brings
 
 - World-class vintage recording console (Taylor Swift's board, 1960s, fully restored)
 - Full collection of vintage analog studio gear
