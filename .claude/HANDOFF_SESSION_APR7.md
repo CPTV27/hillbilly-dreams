@@ -308,3 +308,57 @@ Chase wants a comprehensive web page for Raya Mochiak that tells the FULL story.
 - Owns the console Taylor Swift recorded on (1960s, fully restored)
 - Expert on Delta Blues (Israeli who knows the Delta better than most locals)
 - Full studio of vintage analog gear
+
+---
+
+## LATE ADDITION 5: Technical Studio Page for Raya + Stage Trailer
+
+### Technical Detail Page (build next session)
+Show Raya the full technical plan:
+
+**Audio Signal Path:**
+- Midas MR18 vs Soundcraft Ui24R vs Behringer XR18 — RESEARCH which is best for this use case
+  - Midas MR18: Midas preamps, 18-input, rack-mount, WiFi control, ~$650
+  - Soundcraft Ui24R: 24-channel, browser-based control (no app needed), ~$900
+  - Behringer XR18: Same hardware as Midas MR18 but Behringer preamps, ~$550
+  - COMPARE: preamp quality, channel count, control interface, reliability, recording capability
+- Stage box: 16-channel XLR snake → rack case
+- Sennheiser EW-D wireless (6 channels)
+- Zoom P8 as podcast submix feed
+- Signal routing diagram showing the full path
+
+**Video Signal Path:**
+- Sony cameras on DJI RS gimbals (2x)
+- DJI wireless video transmitter → control module
+- DJI Osmo for run-and-gun
+- Aputure lights + C-stands
+- Monitor wall (Samsung 65" + LG 43")
+- Mac Mini as media server / Plex / streaming
+- Full camera package breakdown
+
+**The Road Kit:**
+- What fits in the indie grip van
+- What the full production package looks like deployed
+- How 2 people + the van = broadcast-quality production
+
+**The Stage Trailer:**
+- Horse trailer that converts to a mobile stage
+- Chase has photos in Lightroom from an October shoot
+- Gallery name: "Long Steel Railway" (check Lightroom catalog)
+- Need to find those photos and use them
+- Create a rendering/mockup with "Big Muddy" branding on the trailer
+- This is for outdoor shows, festivals, parking lot concerts, corridor touring
+
+### Lightroom Photo Search
+- Look in Chase's Lightroom catalog for "Long Steel Railway" gallery
+- October 2025 or 2026 shoot
+- Contains photos of a horse trailer / mobile stage setup
+- These are REAL photos from a REAL event — use them on the page
+
+### Mixer Comparison Task
+Research and present a comparison:
+- Midas MR18 ($650) — Midas preamps, proven reliability, Behringer ecosystem
+- Soundcraft Ui24R ($900) — 24 channels, browser control, Harman/Soundcraft quality
+- Behringer XR18 ($550) — budget option, same form factor as Midas
+- For THIS use case: live sound at 50-seat venue, recording, podcast, mobile production
+- Recommendation with reasoning
