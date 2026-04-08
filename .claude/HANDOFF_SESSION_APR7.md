@@ -184,3 +184,15 @@ Miro-like visual workspace where every block has a Delta Dawn chat:
 An AI routing system that hits multiple models, gets diversity of perspectives, synthesizes results, and uses Claude as the gatekeeper. Not for everything — for strategic decisions. 3x the tokens, 3x the perspectives, better outcomes. This is the "swarm" architecture.
 
 The immediate expression: art direction analysis from 3 models, synthesized into one recommendation. The long-term expression: every strategic question gets the swarm treatment automatically.
+
+---
+
+## LATE ADDITION: Business Model Clarity (Chase's final word)
+
+**MBT = Licensing company.** Licenses the platform tools (AI, CMS, pipeline, constellation, Delta Dawn) to operators. Never touches end customers. B2B only.
+
+**Studio C = Integrator + Implementer.** Builds, deploys, customizes MBT tools for each client/region. Provides ongoing production services (video, audio, photo). Bills for setup + production.
+
+**Content Brands = The product people see.** Big Muddy, Bearsville, future clients. Each is a branded media ecosystem powered by MBT, built by Studio C. The customer never sees "platform" — they see their brand.
+
+This is the canonical model. Every future operator, pitch, and onboarding should use this framework.
