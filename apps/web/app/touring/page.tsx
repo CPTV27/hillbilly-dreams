@@ -1,390 +1,375 @@
 // apps/web/app/touring/page.tsx
-// Big Muddy Touring — bigmuddytouring.com
-//
-// Now shows the Entertainment company content. The touring page was absorbed
-// into entertainment because Entertainment covers everything touring did, better.
-// Inn sub-pages (/touring/inn/*) are unaffected.
+// Big Muddy Touring — The Hottest Room on the River
 
 import type { Metadata } from 'next';
-import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'Big Muddy — Gateway to the Heart of Soul Music',
-  description:
-    'Booking, promotion, and production. We bring the bands, the van, the PA, and the audience. Gateway to the heart of soul music.',
+  title: 'Big Muddy Touring — The Hottest Room on the River',
+  description: 'Live music in Natchez, Mississippi. 50 seats. No barrier. The Blues Room at 411 North Congress Street.',
 };
 
-export default function TouringHomepage() {
-  return (
-    <main style={{ backgroundColor: 'var(--bg)', color: 'var(--text)', minHeight: '100vh' }}>
+const HOUSE_BAND_PHOTOS = [
+  '/images/studio-c/utopiademo-day-5.webp',
+  '/images/studio-c/utopiademo-day-12.webp',
+  '/images/studio-c/utopiademo-day-22.webp',
+  '/images/studio-c/utopiademo-day-38.webp',
+];
 
-      {/* ── Hero: The Van ── */}
+const THEATER_PHOTOS = [
+  '/images/processed/bearsville/theater-show-01.webp',
+  '/images/processed/bearsville/theater-show-03.webp',
+  '/images/processed/bearsville/theater-show-05.webp',
+];
+
+const CORRIDOR_CITIES = [
+  'Memphis', 'Clarksdale', 'Oxford', 'Tupelo', 'Holly Springs',
+  'Greenwood', 'Indianola', 'Greenville', 'Jackson', 'Vicksburg',
+  'Natchez', 'Baton Rouge', 'New Orleans',
+];
+
+export default function TouringPage() {
+  return (
+    <main style={{ background: '#0f0f0d', color: '#e8e0d4', minHeight: '100vh' }}>
+
+      {/* ── HERO ── */}
       <section style={{
         position: 'relative',
-        minHeight: '85vh',
+        height: '100vh',
         display: 'flex',
-        alignItems: 'flex-end',
-        padding: '4rem 5%',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        padding: '0 0 80px',
         overflow: 'hidden',
       }}>
-        <Image
-          src="/images/processed/big-muddy/sprinter-van-concept.webp"
-          alt="Big Muddy Touring Sprinter van on a Southern road at golden hour"
-          fill
-          priority
-          sizes="100vw"
-          style={{ objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.8)' }}
+        <img
+          src="/images/studio-c/utopiademo-day-14.webp"
+          alt=""
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            opacity: 0.4,
+          }}
         />
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to top, var(--bg) 0%, transparent 60%)',
-          zIndex: 1,
+          background: 'linear-gradient(to top, #0f0f0d 0%, transparent 50%, rgba(15,15,13,0.3) 100%)',
         }} />
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: '700px' }}>
-          <p style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '0.7rem',
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color: 'var(--accent)',
-            marginBottom: '1rem',
-          }}>
-            Big Muddy Entertainment
-          </p>
+        <div style={{ position: 'relative', zIndex: 1, padding: '0 clamp(24px, 5vw, 80px)' }}>
           <h1 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(2.5rem, 7vw, 5rem)',
-            fontWeight: 400,
+            fontFamily: 'var(--font-display, Georgia, serif)',
+            fontSize: 'clamp(2.5rem, 8vw, 6rem)',
+            fontWeight: 800,
             lineHeight: 0.95,
             letterSpacing: '-0.03em',
-            marginBottom: '1.5rem',
+            color: '#e8e0d4',
+            margin: '0 0 16px',
+            maxWidth: '800px',
           }}>
-            Gateway to the heart<br />of soul music.
+            The Hottest Room<br />on the River
           </h1>
           <p style={{
-            fontSize: '1.15rem',
-            lineHeight: 1.7,
-            color: 'var(--text-muted)',
-            maxWidth: '500px',
+            fontFamily: 'var(--font-body, sans-serif)',
+            fontSize: '0.85rem',
+            fontWeight: 600,
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: '#c8943e',
+            margin: 0,
           }}>
-            Booking, promotion, transport, and production for bands and venues
-            along the route. One call. One show. We handle everything.
+            411 North Congress Street &middot; Natchez, Mississippi
           </p>
         </div>
       </section>
 
-      {/* ── What We Do ── */}
+      {/* ── THE BLUES ROOM ── */}
       <section style={{
-        padding: '5rem 5%',
-        borderTop: '1px solid var(--border)',
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        minHeight: '70vh',
+        gap: 0,
       }}>
-        <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
-          The Entertainment Company
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          padding: 'clamp(40px, 6vw, 100px)',
+        }}>
+          <p style={{
+            fontSize: '0.7rem',
+            fontWeight: 700,
+            letterSpacing: '0.25em',
+            textTransform: 'uppercase',
+            color: '#c8943e',
+            margin: '0 0 20px',
+          }}>
+            The Blues Room
+          </p>
+          <h2 style={{
+            fontFamily: 'var(--font-display, Georgia, serif)',
+            fontSize: 'clamp(1.8rem, 4vw, 3rem)',
+            fontWeight: 700,
+            lineHeight: 1.1,
+            letterSpacing: '-0.02em',
+            margin: '0 0 24px',
+          }}>
+            Fifty seats.<br />No barrier.<br />No mercy.
+          </h2>
+          <p style={{
+            fontSize: '1rem',
+            lineHeight: 1.7,
+            color: '#9b9488',
+            maxWidth: '400px',
+            margin: 0,
+          }}>
+            The stage is four feet from the front row. You hear the pick hit the string.
+            You see the sweat. This is not a concert &mdash; it&rsquo;s a conversation
+            between the band and the room.
+          </p>
+        </div>
+        <div style={{ position: 'relative', minHeight: '400px' }}>
+          <img
+            src="/images/studio-c/utopiademo-day-18.webp"
+            alt="The Blues Room"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          />
+        </div>
+      </section>
+
+      {/* ── THE HOUSE BAND ── */}
+      <section style={{
+        padding: 'clamp(60px, 10vw, 140px) clamp(24px, 5vw, 80px)',
+        textAlign: 'center',
+      }}>
+        <p style={{
+          fontSize: '0.7rem',
+          fontWeight: 700,
+          letterSpacing: '0.25em',
+          textTransform: 'uppercase',
+          color: '#c8943e',
+          margin: '0 0 16px',
+        }}>
+          The House Band
         </p>
-        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '3rem', maxWidth: '600px' }}>
-          We book the bands. We drive the van. We run the sound. We promote the show. We fill the room.
+        <h2 style={{
+          fontFamily: 'var(--font-display, Georgia, serif)',
+          fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
+          fontWeight: 700,
+          letterSpacing: '-0.02em',
+          margin: '0 0 12px',
+        }}>
+          Every night is different. Same fire.
         </h2>
+        <p style={{
+          fontSize: '0.95rem',
+          color: '#6b635a',
+          margin: '0 auto 48px',
+          maxWidth: '500px',
+          lineHeight: 1.6,
+        }}>
+          A rotating cast. Blues, soul, country, rock &mdash; whatever walks through the door.
+          No setlists. No safety nets.
+        </p>
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: '1px',
-          backgroundColor: 'var(--border)',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: '4px',
+          maxWidth: '1200px',
+          margin: '0 auto',
         }}>
-          {[
-            {
-              title: 'Booking',
-              desc: 'We match bands to venues along the route. Natchez to Memphis, Clarksdale to New Orleans. We know the rooms, the audiences, and the deals.',
-            },
-            {
-              title: 'Transport',
-              desc: 'Black Sprinter van with a PA system in the back. We drive, you play. Sleeper bus coming for longer runs. Travel in style.',
-            },
-            {
-              title: 'Production',
-              desc: 'Sound, lights, stage management. We bring what the venue needs. From a 40-seat Blues Room to a 500-seat theater.',
-            },
-            {
-              title: 'Promotion',
-              desc: 'Every show gets the full media company behind it. Big Muddy Magazine writes the preview. Radio plays the music. Social posts go out. The audience shows up.',
-            },
-            {
-              title: 'Recording',
-              desc: 'Every show can be a live recording. Board mix at minimum, multitrack when the room is right. Released through Big Muddy Records.',
-            },
-            {
-              title: 'The Whole Network',
-              desc: 'Venues end up in the Deep South Directory. Bands end up on the radio. Shows become Magazine features. One booking feeds the entire ecosystem.',
-            },
-          ].map((item) => (
-            <div key={item.title} style={{
-              padding: '2rem',
-              backgroundColor: 'var(--bg)',
-            }}>
-              <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.5rem' }}>
-                {item.title}
-              </h3>
-              <p style={{ fontSize: '0.85rem', lineHeight: 1.6, color: 'var(--text-muted)' }}>
-                {item.desc}
-              </p>
+          {HOUSE_BAND_PHOTOS.map((src, i) => (
+            <div key={i} style={{ position: 'relative', aspectRatio: '3/4', overflow: 'hidden' }}>
+              <img
+                src={src}
+                alt=""
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  filter: 'contrast(1.1) saturate(0.9)',
+                }}
+              />
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── The Brands ── */}
+      {/* ── LIVE SHOWS ── */}
       <section style={{
-        padding: '5rem 5%',
-        borderTop: '1px solid var(--border)',
+        padding: '0 clamp(24px, 5vw, 80px)',
+        marginBottom: 'clamp(60px, 10vw, 140px)',
       }}>
-        <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
-          The Family
-        </p>
-        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '3rem' }}>
-          Every division feeds the others.
-        </h2>
-
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-          gap: '1.5rem',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '4px',
+          maxWidth: '1200px',
+          margin: '0 auto',
         }}>
-          {[
-            { name: 'Big Muddy Touring', tag: 'The Circuit', url: 'https://bigmuddytouring.com', desc: '18 cities. Real venues. Real audiences. We book the shows and drive the bands.' },
-            { name: 'Big Muddy Radio', tag: 'The Sound', url: 'https://bigmuddyradio.com', desc: 'Streaming worldwide. Live sessions from the Blues Room. No algorithms, just music.' },
-            { name: 'Big Muddy Records', tag: 'The Label', url: 'https://bigmuddyrecordlabel.com', desc: 'Non-exclusive. You keep your masters. We distribute, promote, and sell your music.' },
-            { name: 'Big Muddy Magazine', tag: 'The Story', url: 'https://bigmuddymagazine.com', desc: 'Long-form editorial about the region. Every show gets a feature. Every artist gets a profile.' },
-          ].map((brand) => (
-            <a key={brand.name} href={brand.url} target="_blank" rel="noopener noreferrer" style={{
-              display: 'block',
-              padding: '2rem',
-              border: '1px solid var(--border)',
-              textDecoration: 'none',
-              color: 'var(--text)',
-            }}>
-              <p style={{ fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
-                {brand.tag}
-              </p>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.5rem' }}>
-                {brand.name}
-              </h3>
-              <p style={{ fontSize: '0.85rem', lineHeight: 1.6, color: 'var(--text-muted)', marginBottom: '1rem' }}>
-                {brand.desc}
-              </p>
-              <span style={{ fontSize: '0.7rem', color: 'var(--accent)' }}>
-                {brand.url.replace('https://', '')} →
-              </span>
-            </a>
+          {THEATER_PHOTOS.map((src, i) => (
+            <div key={i} style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden' }}>
+              <img
+                src={src}
+                alt=""
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  filter: 'brightness(0.85) contrast(1.1)',
+                }}
+              />
+            </div>
           ))}
         </div>
       </section>
 
-      {/* ── The House Band: Modern Muscle Shoals ── */}
+      {/* ── THE CIRCUIT ── */}
       <section style={{
-        padding: '5rem 5%',
-        borderTop: '1px solid var(--border)',
-      }}>
-        <div style={{ maxWidth: '800px' }}>
-          <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
-            The House Band
-          </p>
-          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem', fontWeight: 400, letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: '2rem' }}>
-            You bring the songs.<br />
-            We bring the band.
-          </h2>
-          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
-            Natchez is building a world-class rhythm section — bass, drums, keys, guitar —
-            that visiting artists perform with. Fly in or ride down in the Sprinter.
-            Walk into the Blues Room. Play with musicians who already know the pocket.
-          </p>
-          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--text-muted)', marginBottom: '2rem' }}>
-            Think Muscle Shoals. The Swampers backed everyone from Aretha to the Stones
-            because the house band was that good. We&apos;re building the same thing on the
-            Mississippi — a rhythm section so locked in that artists come from Europe to play with them.
-          </p>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '1.5rem',
-            marginBottom: '2rem',
-          }}>
-            {[
-              {
-                title: 'Solo Artists',
-                desc: 'Bring your songs, sing with the house band. We handle the rest — sound, recording, promotion.',
-              },
-              {
-                title: 'Touring Acts',
-                desc: 'Already have a band? Play the circuit. Or sit in with the house band for a special session.',
-              },
-              {
-                title: 'Recording Sessions',
-                desc: 'Every performance can be a live album. Board mix at minimum, multitrack when the room is right. Released on Big Muddy Records.',
-              },
-            ].map((item) => (
-              <div key={item.title} style={{ padding: '1.5rem', border: '1px solid var(--border)' }}>
-                <h3 style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.5rem' }}>{item.title}</h3>
-                <p style={{ fontSize: '0.85rem', lineHeight: 1.6, color: 'var(--text-muted)' }}>{item.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <p style={{ fontSize: '0.95rem', lineHeight: 1.7, color: 'var(--text-muted)', fontStyle: 'italic' }}>
-            The record label makes it real. Non-exclusive deal — you keep your masters,
-            we promote you through the magazine, the radio, the store, and the touring circuit.
-            Every tool you need to succeed, under one roof.
-          </p>
-        </div>
-      </section>
-
-      {/* ── For Bands ── */}
-      <section style={{
-        padding: '5rem 5%',
-        borderTop: '1px solid var(--border)',
-      }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', maxWidth: '1000px' }}>
-          <div>
-            <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
-              For Bands
-            </p>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.75rem', fontWeight: 400, marginBottom: '1.5rem' }}>
-              Sign with us and the whole machine works for you.
-            </h2>
-            <ul style={{ listStyle: 'none', padding: 0 }}>
-              {[
-                'Booked shows along the route',
-                'Transportation — we drive, you play',
-                'Radio airplay on Big Muddy Radio',
-                'Magazine feature in Big Muddy Magazine',
-                'Non-exclusive record deal — you keep your masters',
-                'Your music in the Big Muddy catalog and store',
-                'Social media promotion for every show',
-              ].map((item) => (
-                <li key={item} style={{
-                  padding: '0.6rem 0',
-                  borderBottom: '1px solid var(--border)',
-                  fontSize: '0.9rem',
-                  color: 'var(--text-muted)',
-                  paddingLeft: '1.25rem',
-                  position: 'relative',
-                }}>
-                  <span style={{ position: 'absolute', left: 0, color: 'var(--accent)' }}>—</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <a href="mailto:music@bigmuddyrecordlabel.com" style={{
-              display: 'inline-block',
-              marginTop: '2rem',
-              padding: '0.75rem 2rem',
-              backgroundColor: 'var(--accent)',
-              color: 'var(--bg)',
-              textDecoration: 'none',
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              letterSpacing: '0.05em',
-            }}>
-              Get in Touch
-            </a>
-          </div>
-          <div>
-            <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.5rem' }}>
-              For Venues
-            </p>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.75rem', fontWeight: 400, marginBottom: '1.5rem' }}>
-              We bring the talent, the crowd, and the story.
-            </h2>
-            <ul style={{ listStyle: 'none', padding: 0 }}>
-              {[
-                'Curated talent from the Big Muddy roster',
-                'Full production — PA, sound, stage management',
-                'Promotion through our media company',
-                'Your venue in the Deep South Directory',
-                'Magazine and radio coverage of every show',
-                'Show recaps and photo sets for your marketing',
-              ].map((item) => (
-                <li key={item} style={{
-                  padding: '0.6rem 0',
-                  borderBottom: '1px solid var(--border)',
-                  fontSize: '0.9rem',
-                  color: 'var(--text-muted)',
-                  paddingLeft: '1.25rem',
-                  position: 'relative',
-                }}>
-                  <span style={{ position: 'absolute', left: 0, color: 'var(--accent)' }}>—</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <a href="mailto:chase@hillbillydreamsinc.com" style={{
-              display: 'inline-block',
-              marginTop: '2rem',
-              padding: '0.75rem 2rem',
-              border: '1px solid var(--accent)',
-              color: 'var(--accent)',
-              textDecoration: 'none',
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              letterSpacing: '0.05em',
-            }}>
-              Book a Show
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Arrie Aslin Feature ── */}
-      <section style={{
-        position: 'relative',
-        minHeight: '60vh',
-        display: 'flex',
-        alignItems: 'flex-end',
-        padding: '4rem 5%',
-        overflow: 'hidden',
-      }}>
-        <Image
-          src="/images/processed/arrie-aslin-inn-portrait.webp"
-          alt="Arrie Aslin performing at The Big Muddy Inn"
-          fill
-          sizes="100vw"
-          style={{ objectFit: 'cover', objectPosition: 'center top', filter: 'brightness(0.5)' }}
-        />
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(to top, var(--bg) 0%, transparent 50%)',
-          zIndex: 1,
-        }} />
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: '600px' }}>
-          <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.75rem' }}>
-            Artist in Residence
-          </p>
-          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem', fontWeight: 400, lineHeight: 1.05, marginBottom: '1rem' }}>
-            Arrie Aslin &amp; Rise Up
-          </h2>
-          <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--text-muted)' }}>
-            Gospel, soul, and the American songbook — performed live at the Blues Room
-            and on stages across the network. Arrie is the first artist in the Big Muddy
-            touring roster, and the proof that the machine works.
-          </p>
-        </div>
-      </section>
-
-      {/* ── Footer ── */}
-      <footer style={{
-        padding: '3rem 5%',
-        borderTop: '1px solid var(--border)',
+        padding: 'clamp(60px, 10vw, 120px) clamp(24px, 5vw, 80px)',
         textAlign: 'center',
+        borderTop: '1px solid rgba(200,148,62,0.15)',
       }}>
-        <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
-          Natchez, Mississippi. The route starts here.
+        <p style={{
+          fontSize: '0.7rem',
+          fontWeight: 700,
+          letterSpacing: '0.25em',
+          textTransform: 'uppercase',
+          color: '#c8943e',
+          margin: '0 0 16px',
+        }}>
+          The Circuit
         </p>
-        <p style={{ fontSize: '0.7rem', color: 'var(--text-disabled)' }}>
-          Hillbilly Dreams Inc · Natchez, Mississippi
+        <h2 style={{
+          fontFamily: 'var(--font-display, Georgia, serif)',
+          fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
+          fontWeight: 700,
+          letterSpacing: '-0.02em',
+          margin: '0 0 12px',
+        }}>
+          We don&rsquo;t just play Natchez.
+        </h2>
+        <p style={{
+          fontSize: '1.1rem',
+          color: '#6b635a',
+          margin: '0 0 48px',
+        }}>
+          We play the corridor.
+        </p>
+
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: '8px 20px',
+          maxWidth: '800px',
+          margin: '0 auto',
+        }}>
+          {CORRIDOR_CITIES.map((city) => (
+            <span
+              key={city}
+              style={{
+                fontFamily: 'var(--font-display, Georgia, serif)',
+                fontSize: city === 'Natchez' ? '1.3rem' : '1rem',
+                fontWeight: city === 'Natchez' ? 800 : 400,
+                color: city === 'Natchez' ? '#c8943e' : '#4a4440',
+                letterSpacing: '-0.01em',
+                transition: 'color 0.2s',
+              }}
+            >
+              {city}
+            </span>
+          ))}
+        </div>
+
+        <p style={{
+          fontSize: '0.8rem',
+          color: '#4a4440',
+          margin: '32px 0 0',
+        }}>
+          13 cities &middot; 735 venues &middot; Memphis to New Orleans
+        </p>
+      </section>
+
+      {/* ── PLAY WITH US ── */}
+      <section style={{
+        padding: 'clamp(80px, 12vw, 160px) clamp(24px, 5vw, 80px)',
+        textAlign: 'center',
+        borderTop: '1px solid rgba(200,148,62,0.15)',
+      }}>
+        <h2 style={{
+          fontFamily: 'var(--font-display, Georgia, serif)',
+          fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+          fontWeight: 800,
+          letterSpacing: '-0.03em',
+          lineHeight: 1.05,
+          margin: '0 0 20px',
+        }}>
+          Got a band?<br />Got a sound?
+        </h2>
+        <p style={{
+          fontSize: '1.1rem',
+          color: '#9b9488',
+          margin: '0 0 40px',
+          lineHeight: 1.6,
+        }}>
+          We want to hear it.
+        </p>
+        <a
+          href="mailto:booking@bigmuddytouring.com?subject=Booking Inquiry"
+          style={{
+            display: 'inline-block',
+            fontFamily: 'var(--font-body, sans-serif)',
+            fontSize: '0.8rem',
+            fontWeight: 700,
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: '#c8943e',
+            border: '1px solid #c8943e',
+            padding: '16px 48px',
+            textDecoration: 'none',
+            borderRadius: '2px',
+          }}
+        >
+          Get in Touch
+        </a>
+      </section>
+
+      {/* ── FOOTER ── */}
+      <footer style={{
+        padding: '40px clamp(24px, 5vw, 80px)',
+        textAlign: 'center',
+        borderTop: '1px solid rgba(200,148,62,0.08)',
+      }}>
+        <p style={{
+          fontFamily: 'var(--font-body, sans-serif)',
+          fontSize: '0.65rem',
+          color: '#3a3630',
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          margin: 0,
+        }}>
+          Big Muddy Touring &middot; Natchez, Mississippi &middot; A Hillbilly Dreams Production
         </p>
       </footer>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media (max-width: 768px) {
+          section:nth-of-type(2) { grid-template-columns: 1fr !important; }
+          section:nth-of-type(2) > div:last-child { min-height: 300px !important; }
+          section:nth-of-type(3) div[style*="grid-template-columns: repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; }
+          section:nth-of-type(4) div[style*="grid-template-columns: repeat(3"] { grid-template-columns: 1fr !important; }
+        }
+      `}} />
     </main>
   );
 }
