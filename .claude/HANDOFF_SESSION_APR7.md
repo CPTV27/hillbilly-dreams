@@ -216,3 +216,48 @@ Four example workflows to present:
 Each workflow is modular — steps can be reordered, added, skipped. The tools are building blocks. MBT licenses the blocks, Studio C assembles them, the content brand is what customers see.
 
 Build this as an interactive workflow builder on the onboarding deck — draggable steps that show how tools connect. Chase wants Miles and Elijah to see it's totally customizable for their own workflow.
+
+---
+
+## LATE ADDITION 3: STOP ALL FRONTEND DESIGN (Chase's directive)
+
+**Effective immediately:** No more frontend design work. Strip branding assumptions. Start with a blank palette. Let Tracy decide what we're building.
+
+The directory page is broken (showing "Listing Not Found"). The design is getting ahead of the strategy.
+
+### The Two Prime Objectives (in order)
+
+1. **Get the Inn breaking even** — stop losing money
+2. **Make money** — so we can focus on creating magical experiences with music
+
+### What "magical experiences with music" means
+
+- Developing Amy's music career
+- Getting her a band together
+- Getting her on stages
+- Marketing that properly with media (magazine, radio, social)
+
+### How you do that
+
+You do it with media. That's why we built this thing. Magazine, radio, touring, directory — they're all tools to accomplish those two objectives.
+
+### Tracy's Onboarding: Choose Your Own Adventure
+
+Tracy should NOT be shown "here's what we built." She should be taken through a storyline:
+
+**"You want Amy on stages. How do you make that happen?"**
+
+- Need a venue → Blues Room (we have it)
+- Need an audience → How do you get people there? → Magazine articles, radio, social, directory
+- Need bookings → How do you book other venues? → Touring module, corridor database
+- Need money → How does the Inn cover costs? → Shows drive bookings (2:1 multiplier)
+- Need marketing → How do you promote? → AI-generated social, review management, Delta Dawn
+- Need photos/video → How do you capture it? → Photo pipeline, Studio C, shared albums
+
+Each branch leads to a module. Tracy discovers the tools by following her own goals, not by being shown a feature list.
+
+**This is the onboarding process for EVERYONE.** Customize it to whatever the person wants. Miles and Elijah get the Bearsville version. A DSD customer gets the "I want more customers" version. Tracy gets the "I want Amy on stages" version.
+
+### What to build next
+
+NOT more pages. NOT more design. Build the choose-your-own-adventure onboarding flow that walks Tracy (or anyone) through THEIR goals and shows them which tools accomplish each step.
