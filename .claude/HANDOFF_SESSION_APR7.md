@@ -261,3 +261,50 @@ Each branch leads to a module. Tracy discovers the tools by following her own go
 ### What to build next
 
 NOT more pages. NOT more design. Build the choose-your-own-adventure onboarding flow that walks Tracy (or anyone) through THEIR goals and shows them which tools accomplish each step.
+
+---
+
+## LATE ADDITION 4: Raya Mochiak Full Pitch Page (BUILD NEXT SESSION)
+
+Chase wants a comprehensive web page for Raya Mochiak that tells the FULL story. NOT on the DSD domain. On bigmuddyentertainment.com.
+
+### What the page covers (in order):
+
+1. **The Route** — Memphis to New Orleans, 13 cities, 735 venues. The touring corridor map.
+
+2. **The Van** — The indie grip van / tour bus. Dual branded Big Muddy Touring × Studio C. Show cool van photos. Also show a 40-footer Prevost-style tour bus as the aspiration.
+
+3. **The Dual Studio** — Partnership between Utopia (Raya's vintage studio coming to Natchez) and Studio C (Chase's video/tech production). Two studios, one ecosystem. Raya = audio king, Chase = video/tech king.
+
+4. **The Micro-Media Company** — Big Muddy Magazine (editorial), Big Muddy Radio (streaming), Big Muddy Entertainment (shows). How one show becomes a magazine article, a radio session, a concert film, and 15 social clips.
+
+5. **Workflow Automation + Publishing** — How content flows automatically: show → recording → radio → magazine → social → distribution. The pipeline is automated, not manual.
+
+6. **The Record Label** — Big Muddy Records. 80/15/5 split. Music publishing. Marketing. Producing. Distribution via SoundCloud, Spotify, Apple Music.
+
+7. **The House Band** — Swampers model. Deep roster. Rotating cast. Session players who can back anyone.
+
+8. **The Ritz Theater** — Show what it looks like NOW (from Historic Natchez Foundation / Library of Congress photos). Then show what it COULD look like as a studio/gallery/performance space. Use AI visualization or reference images of converted theater studios.
+   - Historic Natchez Foundation: https://natchez.org/properties/the-ritz-theatre
+   - Library of Congress photos: https://www.loc.gov/item/2017703300/
+   - 6,385 sq ft, Art Deco facade, on Commerce Street, empty since 1986
+
+9. **"There's more"** — Brief mention that DSD and MBT exist, with links, but don't feature them. This page is about the creative/music/production story.
+
+### Design notes:
+- Use Chase's real photos from /images/studio-c/ (59 utopiademo shots)
+- Use theater show photos from /images/processed/bearsville/
+- Find or generate tour bus / van photos
+- Dark theme, gold accents, same aesthetic as touring and house-band pages
+- Long scroll, immersive, photo-forward
+- Server component, no event handlers
+- Mobile responsive
+
+### Raya's credentials (for the page):
+- Most famous musician in Israel as a teenager
+- Founding member of Gogol Bordello (bass player)
+- Drummer for David Byrne of Talking Heads
+- Worked with The National (the console is from that session)
+- Owns the console Taylor Swift recorded on (1960s, fully restored)
+- Expert on Delta Blues (Israeli who knows the Delta better than most locals)
+- Full studio of vintage analog gear
