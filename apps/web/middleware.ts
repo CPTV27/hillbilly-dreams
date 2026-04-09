@@ -186,7 +186,9 @@ export async function middleware(request: NextRequest) {
     }
     // Before rewriting, check if this path is a top-level route that should NOT
     // be prefixed with the route group (e.g., /constellation, /dawn, /admin, /directory)
-    const topLevelPassthrough = ['/constellation', '/dawn', '/admin', '/directory', '/gallery', '/snap', '/kiosk'];
+    // Consolidated sub-domains (April 2026) now live as top-level paths on bigmuddytouring.com
+    const topLevelPassthrough = ['/constellation', '/dawn', '/admin', '/directory', '/gallery', '/snap', '/kiosk',
+      '/magazine', '/radio', '/records', '/entertainment', '/studio'];
     if (topLevelPassthrough.some(p => pathname === p || pathname.startsWith(p + '/'))) {
       return NextResponse.next();
     }
