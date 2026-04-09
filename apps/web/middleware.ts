@@ -166,7 +166,12 @@ export async function middleware(request: NextRequest) {
   // ── Hostname-based routing: match against tenant domain table ──
   // MUST run before brand prefix check so that e.g.
   // bearsvillemediagroup.com/magazine → /bearsville/magazine (not /magazine)
-  // bigmuddymagazine.com/articles/slug → /magazine/articles/slug
+  //
+  // NOTE (April 2026): bigmuddymagazine.com, bigmuddyradio.com,
+  // bigmuddyentertainment.com, and bigmuddyrecordlabel.com now 301 at
+  // Cloudflare Bulk Redirects to bigmuddytouring.com/{path}. Their content
+  // is accessible as /magazine, /radio, /entertainment, /records paths
+  // under the touring default. Domain mappings removed from domain-routes.ts.
 
   const matched = matchDomainRoute(hostname, ALL_BMT_DOMAIN_ROUTES);
 

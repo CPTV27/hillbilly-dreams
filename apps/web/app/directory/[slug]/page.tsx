@@ -517,6 +517,11 @@ export default async function DirectoryListingPage(
   const hasPaidTier =
     tier && !['free', 'front-porch'].includes(tier.toLowerCase());
 
+  const stripeMarketing = process.env.STRIPE_PAYMENT_LINK_MARKETING;
+  const stripeEngine = process.env.STRIPE_PAYMENT_LINK_ENGINE;
+  const showTierUpgrades =
+    !hasPaidTier && Boolean(stripeMarketing || stripeEngine);
+
   return (
     <div className="theme-dsd dsd-page">
       {/* ── Hero ── */}
@@ -734,6 +739,42 @@ export default async function DirectoryListingPage(
               {platforms.map((p) => (
                 <span key={p} className="dsd-platform-tag">{p}</span>
               ))}
+            </div>
+          </section>
+        )}
+
+        {/* Self-serve tier upgrades (free / front-porch listings) */}
+        {showTierUpgrades && (
+          <section className="dsd-card" aria-label="Upgrade listing">
+            <div className="dsd-card__header">
+              <h2 className="dsd-card__title">Grow this listing</h2>
+            </div>
+            <div className="dsd-card__body">
+              <p className="dsd-spotlight__text" style={{ marginBottom: 'var(--space-4)' }}>
+                More reach for reviews, magazine placement, and hands-on support when you need it.
+              </p>
+              <div className="dsd-upgrade-row">
+                {stripeMarketing ? (
+                  <a
+                    href={stripeMarketing}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="dsd-upgrade-btn dsd-upgrade-btn--primary"
+                  >
+                    Upgrade to Marketing ($99/mo)
+                  </a>
+                ) : null}
+                {stripeEngine ? (
+                  <a
+                    href={stripeEngine}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="dsd-upgrade-btn"
+                  >
+                    Upgrade to Engine ($250/mo)
+                  </a>
+                ) : null}
+              </div>
             </div>
           </section>
         )}

@@ -1,8 +1,14 @@
 # Feature Tiers — Product Roadmap
-## Last Updated: April 2, 2026
+## Last Updated: April 8, 2026
 ## Source: Perplexity Deep Research + Internal Strategy + 15-Competitor Homepage Scrape
 
-> **PRICING STATUS (April 2026):** Tiers are NOT FINALIZED. Chase is leaning toward Free / $99 / $250 (dropping $49). The tiers below reflect the feature roadmap, not locked pricing. Use "starting at" language in all customer-facing copy. See `docs/DSD_MARKETING_COPY.md` for approved copy and `docs/COMPETITIVE_ANALYSIS_2026.md` for competitor matrix.
+> **PRICING MODEL (April 8, 2026):** MBT now has TWO pricing tracks. See `docs/OFFER_ARCHITECTURE.md` for the full model.
+> 
+> **Primary Track (Institutional):** Setup fee + annual platform license + optional service packages. This is a program sale to towns, chambers, districts, etc. Not a tier chart — each engagement gets a tailored proposal.
+>
+> **Secondary Track (Individual/Self-Serve):** For walk-in businesses not part of an institutional program: Free / $99 Marketing / $250 Engine. The tiers below show the feature roadmap for this track.
+>
+> See `docs/DSD_MARKETING_COPY.md` for approved copy and `docs/COMPETITIVE_ANALYSIS_2026.md` for competitor matrix.
 
 ---
 
@@ -62,16 +68,26 @@ For $500K+/yr businesses. Replaces back-office headcount entirely.
 | Too complex | Dashboard fatigue | No dashboard. Text + camera + voice |
 | Doesn't show ROI | Users can't find the value | Daily text TELLS them the value |
 
-## PRICING (LOCKED — April 5, 2026)
-**Canonical tiers: Free / $25 Essentials / $50 Pro / $99 Marketing / $250 Engine.**
+## INDIVIDUAL/SELF-SERVE PRICING (Secondary Track — April 8, 2026)
+**Simplified tiers for walk-in businesses not in an institutional program: Free / $99 Marketing / $250 Engine.**
 
-Previous $20/$49/$99 structure is retired. $1,500/mo Operator tier above is aspirational — not in current launch.
+Previous $25/$50 tiers (Essentials/Pro) are retired. $1,500/mo Operator tier is aspirational — reserved for potential institutional add-on.
 
-Hero Bundle (one professional photoshoot/year) confirmed as a concept, not yet tier-assigned.
+Hero Bundle (one professional photoshoot/year) confirmed as a concept — likely bundled into institutional service packages.
 
-## DSD POSITIONING (Locked April 2026)
+## INSTITUTIONAL PRICING (Primary Track — April 8, 2026)
+Not a tier chart. Each institutional engagement is a tailored proposal:
+- **Setup/Implementation Fee** — one-time, scope-dependent
+- **Annual Platform License** — recurring, covers admin + modules + reporting
+- **Content/Media Package** — optional, Studio C services
+- **Merchant Onboarding Package** — optional, per-business at scale
+
+See `docs/OFFER_ARCHITECTURE.md` for the full offer model.
+
+## DSD POSITIONING (Updated April 2026)
 - **Headline:** "Main Street marketing for Main Street money."
 - **Statement:** "We're not a software company. We're a media company that sells software at software prices."
 - **Differentiator:** The Ecosystem Multiplier — owned magazine, radio, photography, records, touring
 - **Pain point:** The Ghost Town Effect — invisible to people searching right now
 - **Support:** "We probably ate at your restaurant last week."
+- **Institutional angle:** DSD is the public participation layer of MBT. Institutions buy the program; businesses join the directory.

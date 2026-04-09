@@ -1,5 +1,12 @@
 # Agent status
 
+## 2026-04-09 — Frontend sprint: /radio player, MBT institutional landing, DSD upgrades
+
+- **`/radio`:** New client [`RadioStreamPlayer`](../apps/web/app/radio/RadioStreamPlayer.tsx) — HTML5 audio → `https://stream.bigmuddytouring.com/stream`, large play/pause, `/api/radio/now-playing` poll every 15s (title, artist, listeners), schedule from [`config/radio-schedule.ts`](../apps/web/config/radio-schedule.ts) (18 slots). [`radio/page.tsx`](../apps/web/app/radio/page.tsx) is the listen page; [`radio/player`](../apps/web/app/radio/player/page.tsx) reuses the same component.
+- **`measurablybetter.life`:** Rewrote [`measurably-better/page.tsx`](../apps/web/app/measurably-better/page.tsx) — institutional copy, GCS photography, CTAs “Request a Deployment” (`NEXT_PUBLIC_MBT_DEPLOYMENT_CAL_URL` or mailto fallback) and “See it live” → bigmuddytouring.com; footer “Powered by Measurably Better Things.” (`docs/OFFER_ARCHITECTURE.md` not in repo — used `docs/BUSINESS_ARCHITECTURE.md` + handoff.)
+- **DSD:** [`directory/[slug]/page.tsx`](../apps/web/app/directory/[slug]/page.tsx) — “Upgrade to Marketing ($99/mo)” / “Upgrade to Engine ($250/mo)” links via `STRIPE_PAYMENT_LINK_MARKETING` / `STRIPE_PAYMENT_LINK_ENGINE` when listing is free/front-porch. Styles in [`directory-listing.css`](../apps/web/app/directory/[slug]/directory-listing.css). Env keys documented in [`apps/web/.env.example`](../apps/web/.env.example).
+- **QC:** `pnpm type-check` — pass.
+
 ## 2026-04-05 — Backlog slice: DCTV, WiFi config, press verify, Studio C + Feed Farm, TS fixes
 
 - **DCTV tenant:** [`config/tenants.ts`](../apps/web/config/tenants.ts) — `dctv` + domains `dctvny.org`, `dctv.org`. [`domain-routes.ts`](../apps/web/config/domain-routes.ts) — patterns `dctvny`, `dctv.org`; `/dctv` + `/feed-farm` in brand prefixes + dev brands. New routes: [`app/dctv/`](../apps/web/app/dctv/).

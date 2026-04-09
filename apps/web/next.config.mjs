@@ -43,6 +43,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: '*.bigmuddytouring.com',
       },
+      // Sanity CDN for CMS-managed images
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
     ],
   },
 

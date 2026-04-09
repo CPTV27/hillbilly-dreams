@@ -42,8 +42,10 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
       { pathPrefix: '/dashboard', target: '/ops' },
     ],
   },
-  { pattern: 'bigmuddymagazine', routeGroup: 'magazine' },
-  { pattern: 'bigmuddyradio', routeGroup: 'radio' },
+  // Consolidated to bigmuddytouring.com via Cloudflare Bulk Redirects (April 2026).
+  // Content lives at /magazine and /radio paths on bigmuddytouring.com.
+  // { pattern: 'bigmuddymagazine', routeGroup: 'magazine' },
+  // { pattern: 'bigmuddyradio', routeGroup: 'radio' },
   {
     pattern: 'deepsouthdirectory',
     routeGroup: 'directory',
@@ -56,11 +58,12 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
   { pattern: 'buycurious', routeGroup: 'gallery' },
   { pattern: 'buycuriousart', routeGroup: 'gallery' },
   { pattern: 'venturegallery', routeGroup: 'gallery' },
-  // Canonical records host: bigmuddyrecordlabel.com (we do not own bigmuddyrecords.com / bigmuddyrecord.com)
-  { pattern: 'bigmuddyrecordlabel', routeGroup: 'records' },
+  // Consolidated to bigmuddytouring.com via Cloudflare Bulk Redirects (April 2026).
+  // Content lives at /records and /entertainment paths on bigmuddytouring.com.
+  // { pattern: 'bigmuddyrecordlabel', routeGroup: 'records' },
+  // { pattern: 'bigmuddyentertainment', routeGroup: 'entertainment' },
   { pattern: 'studiocvideo', routeGroup: 'studioc' },
   { pattern: 'tuthilldesign', routeGroup: 'tuthill' },
-  { pattern: 'bigmuddyentertainment', routeGroup: 'entertainment' },
   { pattern: 'hillbillydreams', routeGroup: 'hillbilly' },
   { pattern: 'measurablybetter', routeGroup: 'measurably-better' },
   { pattern: 'bearsville', routeGroup: 'bearsville' },
@@ -77,9 +80,10 @@ export const BMT_LOCAL_DOMAIN_ROUTES: DomainRoute[] = [
     routeGroup: 'touring',
     excludeAdmin: true,
   },
-  { pattern: 'bigmuddymagazine.local', routeGroup: 'magazine' },
-  { pattern: 'bigmuddyradio.local', routeGroup: 'radio' },
-  { pattern: 'bigmuddyrecordlabel.local', routeGroup: 'records' },
+  // Consolidated to bigmuddytouring.com via Cloudflare Bulk Redirects (April 2026).
+  // { pattern: 'bigmuddymagazine.local', routeGroup: 'magazine' },
+  // { pattern: 'bigmuddyradio.local', routeGroup: 'radio' },
+  // { pattern: 'bigmuddyrecordlabel.local', routeGroup: 'records' },
   { pattern: 'deepsouthdirectory.local', routeGroup: 'directory' },
   // bigmuddymedia.local removed — domain not ours
   { pattern: 'outsidereconomics.local', routeGroup: 'economics' },
