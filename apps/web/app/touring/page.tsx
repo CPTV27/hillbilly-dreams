@@ -9,16 +9,16 @@ export const metadata: Metadata = {
 };
 
 const HOUSE_BAND_PHOTOS = [
-  '/images/studio-c/utopiademo-day-5.webp',
-  '/images/studio-c/utopiademo-day-12.webp',
-  '/images/studio-c/utopiademo-day-22.webp',
-  '/images/studio-c/utopiademo-day-38.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/real/musician-performing.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-show.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp',
 ];
 
 const THEATER_PHOTOS = [
-  '/images/processed/bearsville/theater-show-01.webp',
-  '/images/processed/bearsville/theater-show-03.webp',
-  '/images/processed/bearsville/theater-show-05.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/juke-joint-saturday.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp',
 ];
 
 const CORRIDOR_CITIES = [
@@ -42,7 +42,7 @@ export default function TouringPage() {
         overflow: 'hidden',
       }}>
         <img
-          src="/images/studio-c/utopiademo-day-14.webp"
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp"
           alt=""
           style={{
             position: 'absolute',
@@ -132,7 +132,7 @@ export default function TouringPage() {
         </div>
         <div style={{ position: 'relative', minHeight: '400px' }}>
           <img
-            src="/images/studio-c/utopiademo-day-18.webp"
+            src="https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp"
             alt="The Blues Room"
             style={{
               position: 'absolute',
