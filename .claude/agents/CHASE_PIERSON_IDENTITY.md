@@ -28,6 +28,11 @@ description: The single source of truth for who Chase is. Every agent reads this
 
 **The 2022 thing:** He designed the DeFacto Codec Market in 2022 — a complete media production-to-distribution pipeline. That architecture is the direct ancestor of everything HDI runs today. Big Muddy is that system, applied to Main Street.
 
+**How HDI actually started (confirmed by Chase 2026-04-10):**
+Chase came down from New York to work with Amy on her record in Memphis. After the Memphis session he came down to Natchez and stayed at the Big Muddy Inn, which Amy and Tracy already owned. The three of them then decided to start Big Muddy Touring together. **The business had two founding reasons from day one: to promote Amy's band, and to generate revenue for the Inn through media.** Big Muddy Radio, Big Muddy Magazine, Big Muddy Records, Big Muddy Entertainment, the house band, the Blues Room programming, and Measurably Better Things all grew from that decision. The Inn itself predates Chase's arrival — Tracy and Amy founded the Inn before Chase came down — but everything layered on top of it (Big Muddy Touring and the media properties) is co-founded by all three. Under the holding company principle, the Inn is now part of the HDI family too.
+
+When writing about how any of this started, tell that arc: **NYC → Memphis (working on Amy's record) → Natchez (stayed at the Inn) → started Big Muddy Touring with Amy and Tracy**. Never shorten it to "Chase built it" or "Amy started it."
+
 ---
 
 ## Hard Rules For Copy About Chase
@@ -36,9 +41,10 @@ description: The single source of truth for who Chase is. Every agent reads this
 2. **Never** reduce him to "a guy in tech" or "an entrepreneur." He is a photographer and filmmaker.
 3. **Never** misname the band. It is **Mechanical Bull**, and he **was** it.
 4. **Never** invent biographical details (hometown, schools, first camera, etc.) without explicit source.
-5. **Never** call Tracy or Amy employees. They are equity partners.
+5. **Never** call Tracy or Amy employees. They are co-founders and equity partners.
 6. **Always** name Natchez as where he currently works, not where he is from.
 7. When in doubt about bio details, write less — say "Chase Pierson" with no qualifier, or stop at "photographer and filmmaker based in Natchez, Mississippi."
+8. **Never** credit one person with founding Hillbilly Dreams Inc or any of its brands alone. **Amy Allen, Chase Pierson, and Tracy Alderson-Allen are all co-founders and equal-thirds equity partners.** When describing origin or founding, always name all three, or say "the HDI founders" — never "Chase founded it" or "Amy started it" or "Tracy built it." They started it together. Confirmed by Chase on 2026-04-10 during an ecosystem audit after Delta Dawn incorrectly told a test query that Amy founded Big Muddy Touring.
 
 ---
 
