@@ -56,6 +56,25 @@ export default function DeltaDawnWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, streaming]);
 
+  // External open trigger — listens for "delta-dawn:open" window events so
+  // other pages (e.g. /dawn) can bring the widget to the foreground without
+  // re-implementing the chat UI. Fully backward compatible — nothing else
+  // dispatches this event yet.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const handler = () => setOpen(true);
+    window.addEventListener('delta-dawn:open', handler);
+    return () => window.removeEventListener('delta-dawn:open', handler);
+  }, []);
+
+  // Auto-open when the user lands on /dawn — that page is now a branded
+  // landing for the widget, not its own chat UI.
+  useEffect(() => {
+    if (pathname === '/dawn') {
+      setOpen(true);
+    }
+  }, [pathname]);
+
   const send = useCallback(async () => {
     if (!input.trim() || streaming) return;
     const page = pathname || (typeof window !== 'undefined' ? window.location.pathname : '') || '/';

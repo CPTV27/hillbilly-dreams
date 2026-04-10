@@ -1,220 +1,114 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 
-interface Message {
-  role: 'user' | 'dawn';
-  content: string;
-}
-
+/**
+ * /dawn is a branded landing page for Delta Dawn.
+ *
+ * The actual chat is rendered by the globally-mounted <DeltaDawnWidget />
+ * in app/layout.tsx. This page used to have its own duplicated chat UI
+ * that called /api/dawn/chat with res.json(), which broke when the API
+ * switched to Server-Sent Events streaming — every request would throw
+ * in the JSON parser and show "Connection error. Try again."
+ *
+ * The widget already handles the SSE stream correctly. Rather than
+ * duplicate that logic here, this page just tells the widget to open
+ * (via a custom event, and via a pathname check inside the widget) and
+ * shows a welcoming hero behind it.
+ */
 export default function DawnPage() {
-  const [messages, setMessages] = useState<Message[]>([
-    { role: 'dawn', content: 'Hey. I\'m Delta Dawn — the Big Muddy AI. Ask me anything about the corridor, the shows, the Inn, or the business.' },
-  ]);
-  const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
-
-  const send = useCallback(async () => {
-    const text = input.trim();
-    if (!text || loading) return;
-
-    const userMsg: Message = { role: 'user', content: text };
-    const updated = [...messages, userMsg];
-    setMessages(updated);
-    setInput('');
-    setLoading(true);
-
-    try {
-      const res = await fetch('/api/dawn/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: updated }),
-      });
-
-      if (!res.ok) {
-        setMessages([...updated, { role: 'dawn', content: 'Something went wrong. Try again.' }]);
-        setLoading(false);
-        return;
-      }
-
-      const data = await res.json();
-      const dawnText = data.reply || data.content || data.message || 'No response.';
-      setMessages([...updated, { role: 'dawn', content: dawnText }]);
-    } catch {
-      setMessages([...updated, { role: 'dawn', content: 'Connection error. Try again.' }]);
-    }
-    setLoading(false);
-    inputRef.current?.focus();
-  }, [input, messages, loading]);
+    if (typeof window === 'undefined') return;
+    // Dispatch the open event so the global widget pops up immediately.
+    // The widget also auto-opens on this pathname, so this is belt +
+    // suspenders.
+    window.dispatchEvent(new CustomEvent('delta-dawn:open'));
+  }, []);
 
   return (
-    <div style={{
-      height: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      background: '#0a0a08',
-      color: '#e8e0d4',
-      fontFamily: 'var(--font-body, system-ui, sans-serif)',
-    }}>
-
-      {/* Header */}
-      <div style={{
-        padding: '16px 20px',
-        borderBottom: '1px solid rgba(200,148,62,0.1)',
+    <main
+      style={{
+        minHeight: '100vh',
+        background: '#0a0a08',
+        color: '#e8e0d4',
+        fontFamily: 'var(--font-body, system-ui, sans-serif)',
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
-        gap: '12px',
-        flexShrink: 0,
-      }}>
-        <div style={{
-          width: 32,
-          height: 32,
+        justifyContent: 'center',
+        padding: 'clamp(32px, 6vw, 80px)',
+        textAlign: 'center',
+      }}
+    >
+      <div
+        style={{
+          width: 96,
+          height: 96,
           borderRadius: '50%',
           background: '#c8943e',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: '0.8rem',
-          fontWeight: 700,
+          fontSize: '2rem',
+          fontWeight: 800,
           color: '#0a0a08',
-        }}>
-          DD
-        </div>
-        <div>
-          <p style={{ fontSize: '0.9rem', fontWeight: 700, margin: 0 }}>Delta Dawn</p>
-          <p style={{ fontSize: '0.6rem', color: '#6b635a', margin: 0 }}>Big Muddy AI &middot; Natchez, Mississippi</p>
-        </div>
+          marginBottom: '32px',
+          boxShadow: '0 8px 40px rgba(200,148,62,0.25)',
+        }}
+      >
+        DD
       </div>
 
-      {/* Messages */}
-      <div style={{
-        flex: 1,
-        overflow: 'auto',
-        padding: '20px',
-      }}>
-        {messages.map((msg, i) => (
-          <div
-            key={i}
-            style={{
-              display: 'flex',
-              justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start',
-              marginBottom: '16px',
-            }}
-          >
-            <div style={{
-              maxWidth: '70%',
-              padding: '12px 16px',
-              borderRadius: msg.role === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
-              background: msg.role === 'user' ? '#c8943e' : '#1a1816',
-              color: msg.role === 'user' ? '#0a0a08' : '#e8e0d4',
-              fontSize: '0.9rem',
-              lineHeight: 1.6,
-              border: msg.role === 'dawn' ? '1px solid rgba(200,148,62,0.1)' : 'none',
-              whiteSpace: 'pre-wrap',
-            }}>
-              {msg.content}
-            </div>
-          </div>
-        ))}
-        {loading && (
-          <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '16px' }}>
-            <div style={{
-              padding: '12px 16px',
-              borderRadius: '16px 16px 16px 4px',
-              background: '#1a1816',
-              border: '1px solid rgba(200,148,62,0.1)',
-              fontSize: '0.9rem',
-              color: '#6b635a',
-            }}>
-              Thinking...
-            </div>
-          </div>
-        )}
-        <div ref={messagesEndRef} />
-      </div>
+      <h1
+        style={{
+          fontFamily: 'var(--font-display, Georgia, serif)',
+          fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+          fontWeight: 400,
+          letterSpacing: '-0.03em',
+          lineHeight: 1.05,
+          margin: '0 0 20px',
+        }}
+      >
+        Delta Dawn
+      </h1>
 
-      {/* Input */}
-      <div style={{
-        padding: '12px 20px 20px',
-        borderTop: '1px solid rgba(200,148,62,0.1)',
-        flexShrink: 0,
-      }}>
-        <div style={{
-          display: 'flex',
-          gap: '8px',
-        }}>
-          <input
-            ref={inputRef}
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && send()}
-            placeholder="Ask Delta Dawn anything..."
-            autoFocus
-            style={{
-              flex: 1,
-              padding: '12px 16px',
-              fontSize: '0.9rem',
-              background: '#141410',
-              border: '1px solid rgba(200,148,62,0.2)',
-              borderRadius: '8px',
-              color: '#e8e0d4',
-              outline: 'none',
-              fontFamily: 'inherit',
-            }}
-          />
-          <button
-            onClick={send}
-            disabled={loading || !input.trim()}
-            style={{
-              padding: '12px 24px',
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              background: loading || !input.trim() ? '#2a2620' : '#c8943e',
-              border: 'none',
-              borderRadius: '8px',
-              color: loading || !input.trim() ? '#6b635a' : '#0a0a08',
-              cursor: loading ? 'wait' : 'pointer',
-              fontFamily: 'inherit',
-            }}
-          >
-            Send
-          </button>
-        </div>
-        <div style={{
-          display: 'flex',
-          gap: '6px',
-          marginTop: '8px',
-          flexWrap: 'wrap',
-        }}>
-          {['How many venues on the corridor?', 'Tell me about the Blues Room', 'What shows are coming up?', 'Who is Arrie Aslin?'].map(q => (
-            <button
-              key={q}
-              onClick={() => { setInput(q); }}
-              style={{
-                padding: '4px 10px',
-                fontSize: '0.6rem',
-                background: 'transparent',
-                border: '1px solid rgba(200,148,62,0.1)',
-                borderRadius: '4px',
-                color: '#6b635a',
-                cursor: 'pointer',
-                fontFamily: 'inherit',
-              }}
-            >
-              {q}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
+      <p
+        style={{
+          fontSize: '0.7rem',
+          fontWeight: 700,
+          letterSpacing: '0.3em',
+          textTransform: 'uppercase',
+          color: '#c8943e',
+          margin: '0 0 32px',
+        }}
+      >
+        Big Muddy AI &middot; Natchez, Mississippi
+      </p>
+
+      <p
+        style={{
+          fontSize: 'clamp(1.05rem, 2vw, 1.25rem)',
+          lineHeight: 1.7,
+          color: '#9b9488',
+          maxWidth: '640px',
+          margin: '0 0 40px',
+        }}
+      >
+        She knows the corridor, the shows, the Inn, the directory, and every
+        brand under Hillbilly Dreams. Ask her anything. She&rsquo;s open in the
+        chat panel on this page.
+      </p>
+
+      <p
+        style={{
+          fontSize: '0.9rem',
+          color: '#6b635a',
+          margin: 0,
+        }}
+      >
+        If the chat panel isn&rsquo;t open, tap the <strong style={{ color: '#c8943e' }}>DD</strong>{' '}
+        button in the bottom-right corner.
+      </p>
+    </main>
   );
 }
