@@ -18,7 +18,7 @@ description: Capabilities audit, integration status, and priority tasks for the 
 |---|---|---|
 | Next.js monorepo | ✅ Green | Build passes, deploys to Vercel |
 | 14 domains | ✅ All routing | Middleware hostname-based routing working |
-| Multi-tenant (4 tenants) | ✅ Working | big-muddy, bearsville, studio-c, tuthill |
+| Multi-tenant (5 tenants) | ✅ Working | big-muddy, bearsville, studio-c, tuthill, dctv |
 | Prisma + Cloud SQL | ✅ Connected | PostgreSQL, all models active |
 | GCS (bmt-media-bigmuddy) | ✅ Working | Auth needs re-login for CLI, web uploads work |
 | Cloudflare DNS | ✅ All domains | Gray cloud, A → 76.76.21.21 |

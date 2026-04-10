@@ -100,7 +100,7 @@ Sovereign map:
 ## 4. TECH STACK — DO NOT DEVIATE
 
 ```
-Frontend:   Next.js 14 App Router · React 18 · TypeScript 5.5 · inline CSS (no Tailwind)
+Frontend:   Next.js 14.2 App Router · React 18 · TypeScript 5.5 · Tailwind 3.4 + inline CSS + CSS custom properties (QC rule: prefer var(--font-*), var(--bg), var(--accent) tokens; Tailwind coexists but is not the primary layer)
 Backend:    Next.js API Routes (route.ts) · REST only — no tRPC, no GraphQL
 Database:   PostgreSQL via Prisma 5.14 · @bigmuddy/database workspace package
 Auth:       next-auth v5 (JWT strategy) · Google OAuth + credentials

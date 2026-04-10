@@ -1,0 +1,491 @@
+{
+  "_comment": "Big Muddy Radio station ID stingers — ElevenLabs generation manifest. Edit this file to add/remove/change stingers. Run `node scripts/stingers/generate.mjs` to generate MP3s, then `bash scripts/stingers/deploy.sh` to ship them to the Mac mini. Voice IDs are from Chase's ElevenLabs account library (listed at https://elevenlabs.io/app/voice-library).",
+  "_voice_settings_default": {
+    "stability": 0.55,
+    "similarity_boost": 0.85,
+    "style": 0.35,
+    "use_speaker_boost": true
+  },
+  "stingers": [
+    {
+      "id": "01-grandpa-preacher",
+      "character": "Grandpa Preacher",
+      "voice_id": "NOpBlnGInO9m6vDvFkFC",
+      "voice_name": "Grandpa Spuds Oxley",
+      "script": "Y'all listening to the Big Muddy, riding the river from Memphis to New Orleans. The soul of the South. Amen."
+    },
+    {
+      "id": "02-ralph-barker",
+      "character": "Ralph Barker",
+      "voice_id": "nPczCjzI2devNBz1zQrb",
+      "voice_name": "Brian",
+      "script": "Ralph Barker here, live from Natchez, Mississippi. You're tuned to Big Muddy Radio. Twenty-four hours a day. The soul of the South."
+    },
+    {
+      "id": "03-daniel-noir",
+      "character": "Daniel Noir",
+      "voice_id": "pNInz6obpgDQGcFmaJgB",
+      "voice_name": "Adam",
+      "script": "In a town by the river, the music never stops. Big Muddy Radio. The soul of the South, after dark.",
+      "voice_settings": {
+        "stability": 0.45,
+        "similarity_boost": 0.85,
+        "style": 0.55,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "04-reed-latenight",
+      "character": "Reed Latenight",
+      "voice_id": "cjVigY5qzO86Huf0OWal",
+      "voice_name": "Eric",
+      "script": "It's late. You're driving. You're alone. And we're here. Big Muddy Radio. The soul of the South.",
+      "voice_settings": {
+        "stability": 0.65,
+        "similarity_boost": 0.9,
+        "style": 0.25,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "05-grandma-porch",
+      "character": "Grandma Porch",
+      "voice_id": "XW70ikSsadUbinwLMZ5w",
+      "voice_name": "Annie K",
+      "script": "Now honey, pour yourself somethin' cold and stay a while. You're on Big Muddy Radio. The soul of the South."
+    },
+    {
+      "id": "06-fred-promo",
+      "character": "Fred Promo",
+      "voice_id": "mUfWEBhcigm8YlCDbmGP",
+      "voice_name": "Joey",
+      "script": "Big Muddy Radio! Memphis to New Orleans! The only station playing the real soul of the South. Every hour. Every day.",
+      "voice_settings": {
+        "stability": 0.4,
+        "similarity_boost": 0.85,
+        "style": 0.7,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "07-moira-gospel",
+      "character": "Moira Gospel",
+      "voice_id": "hpp4J3VqNfWAUOO0d1Us",
+      "voice_name": "Bella",
+      "script": "Music was born here. On this river. Big Muddy Radio. Broadcasting the soul of the South, from Natchez, Mississippi."
+    },
+    {
+      "id": "08-whisper-midnight",
+      "character": "Whisper Midnight",
+      "voice_id": "pFZP5JQG7iQjIQuC4Bku",
+      "voice_name": "Lily",
+      "script": "Don't tell a soul. It's just us. Big Muddy Radio. Whispering the soul of the South, at midnight.",
+      "voice_settings": {
+        "stability": 0.75,
+        "similarity_boost": 0.95,
+        "style": 0.15,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "09-grandpa-preacher-02",
+      "character": "Grandpa Preacher",
+      "voice_id": "NOpBlnGInO9m6vDvFkFC",
+      "voice_name": "Grandpa Spuds Oxley",
+      "script": "Brothers and sisters, the river carries the music. Big Muddy Radio. The soul of the South, been here longer than you have."
+    },
+    {
+      "id": "10-grandpa-preacher-03",
+      "character": "Grandpa Preacher",
+      "voice_id": "NOpBlnGInO9m6vDvFkFC",
+      "voice_name": "Grandpa Spuds Oxley",
+      "script": "The river don't forget a name. Neither do we. Big Muddy Radio, broadcasting to every crossroads from Memphis to the Gulf."
+    },
+    {
+      "id": "11-grandpa-preacher-04",
+      "character": "Grandpa Preacher",
+      "voice_id": "NOpBlnGInO9m6vDvFkFC",
+      "voice_name": "Grandpa Spuds Oxley",
+      "script": "Turn it up, child. This is the church of the Big Muddy. The soul of the South on every frequency."
+    },
+    {
+      "id": "12-grandpa-preacher-05",
+      "character": "Grandpa Preacher",
+      "voice_id": "NOpBlnGInO9m6vDvFkFC",
+      "voice_name": "Grandpa Spuds Oxley",
+      "script": "If the music's good, you don't need a sermon. Big Muddy Radio. The soul of the South. Amen and goodnight."
+    },
+    {
+      "id": "13-ralph-barker-02",
+      "character": "Ralph Barker",
+      "voice_id": "nPczCjzI2devNBz1zQrb",
+      "voice_name": "Brian",
+      "script": "This is Ralph Barker. You're listening to Big Muddy Radio, broadcasting live from Natchez, Mississippi. Don't touch that dial."
+    },
+    {
+      "id": "14-ralph-barker-03",
+      "character": "Ralph Barker",
+      "voice_id": "nPczCjzI2devNBz1zQrb",
+      "voice_name": "Brian",
+      "script": "From the bluff above the Mississippi, this is Big Muddy Radio. Ralph Barker, your host, keeping the lights on all night long."
+    },
+    {
+      "id": "15-ralph-barker-04",
+      "character": "Ralph Barker",
+      "voice_id": "nPczCjzI2devNBz1zQrb",
+      "voice_name": "Brian",
+      "script": "Ralph Barker at the controls. Big Muddy Radio, the soul of the South, streaming from the Blues Room in Natchez."
+    },
+    {
+      "id": "16-ralph-barker-05",
+      "character": "Ralph Barker",
+      "voice_id": "nPczCjzI2devNBz1zQrb",
+      "voice_name": "Brian",
+      "script": "You made it this far. That means something. Ralph Barker, Big Muddy Radio, the soul of the South. Stay with us."
+    },
+    {
+      "id": "17-daniel-noir-02",
+      "character": "Daniel Noir",
+      "voice_id": "pNInz6obpgDQGcFmaJgB",
+      "voice_name": "Adam",
+      "script": "Rain on the windshield. Static on the dial. Then a voice cut through. Big Muddy Radio. The soul of the South.",
+      "voice_settings": {
+        "stability": 0.45,
+        "similarity_boost": 0.85,
+        "style": 0.55,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "18-daniel-noir-03",
+      "character": "Daniel Noir",
+      "voice_id": "pNInz6obpgDQGcFmaJgB",
+      "voice_name": "Adam",
+      "script": "She said she'd meet me at the river. She didn't say which one. I've been here ever since. Big Muddy Radio.",
+      "voice_settings": {
+        "stability": 0.45,
+        "similarity_boost": 0.85,
+        "style": 0.55,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "19-daniel-noir-04",
+      "character": "Daniel Noir",
+      "voice_id": "pNInz6obpgDQGcFmaJgB",
+      "voice_name": "Adam",
+      "script": "Midnight in Natchez. The music knows things you don't. Big Muddy Radio. The soul of the South.",
+      "voice_settings": {
+        "stability": 0.45,
+        "similarity_boost": 0.85,
+        "style": 0.55,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "20-daniel-noir-05",
+      "character": "Daniel Noir",
+      "voice_id": "pNInz6obpgDQGcFmaJgB",
+      "voice_name": "Adam",
+      "script": "Every river hides a body. Every bar hides a song. Big Muddy Radio. The soul of the South, after dark.",
+      "voice_settings": {
+        "stability": 0.45,
+        "similarity_boost": 0.85,
+        "style": 0.55,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "21-reed-latenight-02",
+      "character": "Reed Latenight",
+      "voice_id": "cjVigY5qzO86Huf0OWal",
+      "voice_name": "Eric",
+      "script": "Can't sleep. Can't stop. That's the Big Muddy way. Big Muddy Radio, the soul of the South, all night long.",
+      "voice_settings": {
+        "stability": 0.65,
+        "similarity_boost": 0.9,
+        "style": 0.25,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "22-reed-latenight-03",
+      "character": "Reed Latenight",
+      "voice_id": "cjVigY5qzO86Huf0OWal",
+      "voice_name": "Eric",
+      "script": "Reed Latenight. Big Muddy Radio. This is the hour when the river talks back.",
+      "voice_settings": {
+        "stability": 0.65,
+        "similarity_boost": 0.9,
+        "style": 0.25,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "23-reed-latenight-04",
+      "character": "Reed Latenight",
+      "voice_id": "cjVigY5qzO86Huf0OWal",
+      "voice_name": "Eric",
+      "script": "Slow it down. Feel the river. Big Muddy Radio. The soul of the South, the way you remember it.",
+      "voice_settings": {
+        "stability": 0.65,
+        "similarity_boost": 0.9,
+        "style": 0.25,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "24-reed-latenight-05",
+      "character": "Reed Latenight",
+      "voice_id": "cjVigY5qzO86Huf0OWal",
+      "voice_name": "Eric",
+      "script": "Midnight on the Mississippi. Nothing else matters for the next three minutes. Big Muddy Radio.",
+      "voice_settings": {
+        "stability": 0.65,
+        "similarity_boost": 0.9,
+        "style": 0.25,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "25-grandma-porch-02",
+      "character": "Grandma Porch",
+      "voice_id": "XW70ikSsadUbinwLMZ5w",
+      "voice_name": "Annie K",
+      "script": "Come sit down, baby. I made iced tea. The radio's already on. Big Muddy Radio, the soul of the South."
+    },
+    {
+      "id": "26-grandma-porch-03",
+      "character": "Grandma Porch",
+      "voice_id": "XW70ikSsadUbinwLMZ5w",
+      "voice_name": "Annie K",
+      "script": "You remember when they used to play this on the porch radio? We still do. Big Muddy Radio."
+    },
+    {
+      "id": "27-grandma-porch-04",
+      "character": "Grandma Porch",
+      "voice_id": "XW70ikSsadUbinwLMZ5w",
+      "voice_name": "Annie K",
+      "script": "The porch light's on. The door's unlocked. The music's playing. Big Muddy Radio, y'all. The soul of the South."
+    },
+    {
+      "id": "28-grandma-porch-05",
+      "character": "Grandma Porch",
+      "voice_id": "XW70ikSsadUbinwLMZ5w",
+      "voice_name": "Annie K",
+      "script": "I don't know the song title. I know how it feels. That's enough. Big Muddy Radio, the soul of the South."
+    },
+    {
+      "id": "29-fred-promo-02",
+      "character": "Fred Promo",
+      "voice_id": "mUfWEBhcigm8YlCDbmGP",
+      "voice_name": "Joey",
+      "script": "Big Muddy Radio! Broadcasting from the Blues Room in historic Natchez, Mississippi! The only station that plays it the way it was meant to be played!",
+      "voice_settings": {
+        "stability": 0.4,
+        "similarity_boost": 0.85,
+        "style": 0.7,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "30-fred-promo-03",
+      "character": "Fred Promo",
+      "voice_id": "mUfWEBhcigm8YlCDbmGP",
+      "voice_name": "Joey",
+      "script": "Twenty-four hours a day! Seven days a week! Big Muddy Radio! The soul of the South, non-stop, coast to coast!",
+      "voice_settings": {
+        "stability": 0.4,
+        "similarity_boost": 0.85,
+        "style": 0.7,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "31-fred-promo-04",
+      "character": "Fred Promo",
+      "voice_id": "mUfWEBhcigm8YlCDbmGP",
+      "voice_name": "Joey",
+      "script": "From Memphis to New Orleans! The corridor that built American music! Big Muddy Radio! The soul of the South!",
+      "voice_settings": {
+        "stability": 0.4,
+        "similarity_boost": 0.85,
+        "style": 0.7,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "32-fred-promo-05",
+      "character": "Fred Promo",
+      "voice_id": "mUfWEBhcigm8YlCDbmGP",
+      "voice_name": "Joey",
+      "script": "You're tuned to Big Muddy Radio! The only station recording live from Natchez, Mississippi! Turn it up!",
+      "voice_settings": {
+        "stability": 0.4,
+        "similarity_boost": 0.85,
+        "style": 0.7,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "33-moira-gospel-02",
+      "character": "Moira Gospel",
+      "voice_id": "hpp4J3VqNfWAUOO0d1Us",
+      "voice_name": "Bella",
+      "script": "The music is a prayer and the river is the church. Big Muddy Radio. The soul of the South."
+    },
+    {
+      "id": "34-moira-gospel-03",
+      "character": "Moira Gospel",
+      "voice_id": "hpp4J3VqNfWAUOO0d1Us",
+      "voice_name": "Bella",
+      "script": "They sang it first in the fields. Then in the churches. Then in the juke joints. Now on Big Muddy Radio."
+    },
+    {
+      "id": "35-moira-gospel-03",
+      "character": "Moira Gospel",
+      "voice_id": "hpp4J3VqNfWAUOO0d1Us",
+      "voice_name": "Bella",
+      "script": "Every song has a name. Every name has a story. Big Muddy Radio. The soul of the South, every hour."
+    },
+    {
+      "id": "36-moira-gospel-04",
+      "character": "Moira Gospel",
+      "voice_id": "hpp4J3VqNfWAUOO0d1Us",
+      "voice_name": "Bella",
+      "script": "This music was here before you. It will be here after you. Big Muddy Radio, from Natchez, Mississippi."
+    },
+    {
+      "id": "37-whisper-midnight-02",
+      "character": "Whisper Midnight",
+      "voice_id": "pFZP5JQG7iQjIQuC4Bku",
+      "voice_name": "Lily",
+      "script": "Closer. Closer than that. Big Muddy Radio. The soul of the South. Only us, only now.",
+      "voice_settings": {
+        "stability": 0.75,
+        "similarity_boost": 0.95,
+        "style": 0.15,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "38-whisper-midnight-03",
+      "character": "Whisper Midnight",
+      "voice_id": "pFZP5JQG7iQjIQuC4Bku",
+      "voice_name": "Lily",
+      "script": "The river's asleep. The town's asleep. But not you. Not me. Big Muddy Radio.",
+      "voice_settings": {
+        "stability": 0.75,
+        "similarity_boost": 0.95,
+        "style": 0.15,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "39-whisper-midnight-04",
+      "character": "Whisper Midnight",
+      "voice_id": "pFZP5JQG7iQjIQuC4Bku",
+      "voice_name": "Lily",
+      "script": "Keep it between us. The good songs, the late hours, the river. Big Muddy Radio. The soul of the South.",
+      "voice_settings": {
+        "stability": 0.75,
+        "similarity_boost": 0.95,
+        "style": 0.15,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "40-whisper-midnight-05",
+      "character": "Whisper Midnight",
+      "voice_id": "pFZP5JQG7iQjIQuC4Bku",
+      "voice_name": "Lily",
+      "script": "Stay with me a little longer. The music isn't done. Big Muddy Radio. Midnight on the Mississippi.",
+      "voice_settings": {
+        "stability": 0.75,
+        "similarity_boost": 0.95,
+        "style": 0.15,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "41-grandpa-preacher-06",
+      "character": "Grandpa Preacher",
+      "voice_id": "NOpBlnGInO9m6vDvFkFC",
+      "voice_name": "Grandpa Spuds Oxley",
+      "script": "Praise the good Lord and pass the guitar. Big Muddy Radio. The soul of the South, amen amen."
+    },
+    {
+      "id": "42-ralph-barker-06",
+      "character": "Ralph Barker",
+      "voice_id": "nPczCjzI2devNBz1zQrb",
+      "voice_name": "Brian",
+      "script": "This is Big Muddy Radio. Ralph Barker saying, the next song is worth waiting for. Stay tuned."
+    },
+    {
+      "id": "43-daniel-noir-06",
+      "character": "Daniel Noir",
+      "voice_id": "pNInz6obpgDQGcFmaJgB",
+      "voice_name": "Adam",
+      "script": "The bar was closing. The music kept going. Somewhere out there, someone was still listening. Big Muddy Radio.",
+      "voice_settings": {
+        "stability": 0.45,
+        "similarity_boost": 0.85,
+        "style": 0.55,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "44-reed-latenight-06",
+      "character": "Reed Latenight",
+      "voice_id": "cjVigY5qzO86Huf0OWal",
+      "voice_name": "Eric",
+      "script": "No commercials, no interruptions, no hurry. Big Muddy Radio. The soul of the South, after hours.",
+      "voice_settings": {
+        "stability": 0.65,
+        "similarity_boost": 0.9,
+        "style": 0.25,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "45-grandma-porch-06",
+      "character": "Grandma Porch",
+      "voice_id": "XW70ikSsadUbinwLMZ5w",
+      "voice_name": "Annie K",
+      "script": "Now you mind your manners and enjoy the music. Big Muddy Radio, sweetheart. The soul of the South."
+    },
+    {
+      "id": "46-fred-promo-06",
+      "character": "Fred Promo",
+      "voice_id": "mUfWEBhcigm8YlCDbmGP",
+      "voice_name": "Joey",
+      "script": "Big Muddy Radio! Live from Natchez, Mississippi! Music, stories, and the sound of the river! All day, every day!",
+      "voice_settings": {
+        "stability": 0.4,
+        "similarity_boost": 0.85,
+        "style": 0.7,
+        "use_speaker_boost": true
+      }
+    },
+    {
+      "id": "47-moira-gospel-05",
+      "character": "Moira Gospel",
+      "voice_id": "hpp4J3VqNfWAUOO0d1Us",
+      "voice_name": "Bella",
+      "script": "Let the music carry you. The river has. It still does. Big Muddy Radio, the soul of the South."
+    },
+    {
+      "id": "48-whisper-midnight-06",
+      "character": "Whisper Midnight",
+      "voice_id": "pFZP5JQG7iQjIQuC4Bku",
+      "voice_name": "Lily",
+      "script": "One more song. One more song. One more song. Big Muddy Radio. We don't sleep either.",
+      "voice_settings": {
+        "stability": 0.75,
+        "similarity_boost": 0.95,
+        "style": 0.15,
+        "use_speaker_boost": true
+      }
+    }
+  ]
+}

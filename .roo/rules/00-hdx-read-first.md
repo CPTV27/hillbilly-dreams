@@ -15,7 +15,7 @@ Per `.cursorrules`, prefer work in: `packages/content-engine/`, `app/api/*/gener
 
 ## Stack (non-negotiable)
 
-Next.js App Router, TypeScript, **inline CSS (no Tailwind)**, Prisma/PostgreSQL, next-auth, REST API routes only.
+Next.js 14.2 App Router, TypeScript, **Tailwind 3.4 + inline CSS + CSS tokens** (prefer `var(--font-*)`, `var(--bg)`, `var(--accent)` per QC rules; Tailwind coexists), Prisma/PostgreSQL, next-auth, REST API routes only.
 
 ## MCP (optional)
 
