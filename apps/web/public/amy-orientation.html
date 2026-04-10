@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Amy Onboarding">
+<title>Welcome, Amy — Hillbilly Dreams Inc</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%2278%22 font-size=%2290%22%3E%F0%9F%8C%8A%3C/text%3E%3C/svg%3E">
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  :root {
+    --bg: #0a0a08;
+    --surface: rgba(232,224,212,0.03);
+    --surface-hover: rgba(232,224,212,0.06);
+    --text: #e8e0d4;
+    --text-muted: #9b9488;
+    --text-dim: #6b635a;
+    --text-faint: #4a4440;
+    --accent: #c8943e;
+    --border: rgba(200,148,62,0.15);
+    --border-strong: rgba(200,148,62,0.35);
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif; line-height: 1.6; }
+  body { min-height: 100vh; padding: env(safe-area-inset-top, 0) 0 env(safe-area-inset-bottom, 0); }
+  .hero {
+    padding: clamp(40px, 8vw, 80px) clamp(24px, 5vw, 60px);
+    background: radial-gradient(ellipse at top, rgba(200,148,62,0.08) 0%, transparent 60%), var(--bg);
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+  .hero-title { font-family: Georgia, serif; font-size: clamp(2.5rem, 7vw, 4.5rem); font-weight: 800; line-height: 0.9; letter-spacing: -0.03em; margin: 0 0 16px; }
+  .hero-subtitle { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--text-muted); max-width: 640px; margin: 0 auto; }
+  .container { max-width: 820px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 60px); }
+  .quick-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; padding: 32px 0 16px; }
+  .tile { display: block; background: var(--surface); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 22px; text-decoration: none; color: var(--text); transition: border-color 150ms ease, background 150ms ease, transform 150ms ease; }
+  .tile:hover, .tile:active { border-color: var(--accent); background: var(--surface-hover); transform: translateY(-1px); }
+  .tile-emoji { font-size: 1.8rem; display: block; margin-bottom: 8px; }
+  .tile-title { font-family: Georgia, serif; font-size: 1.1rem; font-weight: 700; margin: 0 0 4px; }
+  .tile-desc { font-size: 0.8rem; color: var(--text-dim); margin: 0; line-height: 1.4; }
+  .tile-highlight { border-color: var(--accent); background: rgba(200,148,62,0.08); }
+  .section { padding: 48px 0; border-top: 1px solid var(--border); }
+  .section:first-of-type { border-top: none; }
+  .section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
+  .section-title { font-family: Georgia, serif; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; line-height: 1; margin: 0 0 20px; letter-spacing: -0.02em; }
+  p { font-size: 1rem; color: var(--text-muted); margin: 0 0 16px; }
+  strong { color: var(--text); font-weight: 700; }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 150ms ease; }
+  a:hover { border-bottom-color: var(--accent); }
+  ul, ol { padding-left: 24px; margin: 0 0 16px; }
+  ul li, ol li { color: var(--text-muted); margin-bottom: 8px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+  table th { text-align: left; padding: 10px 12px; background: var(--surface); color: var(--accent); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+  table td { padding: 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: top; }
+  .big-button { display: inline-flex; align-items: center; gap: 10px; padding: 16px 24px; background: var(--accent); color: var(--bg); border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 1rem; border: none; transition: transform 120ms ease, box-shadow 120ms ease; }
+  .big-button:hover { border-bottom: none; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(200,148,62,0.3); }
+  .big-button:active { transform: scale(0.97); }
+  .big-button.outline { background: transparent; color: var(--text); border: 1.5px solid var(--border-strong); }
+  .big-button.outline:hover { border-color: var(--accent); color: var(--accent); }
+  .next-block { margin-top: 24px; padding: 20px 24px; background: var(--surface); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; }
+  .next-block-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
+  .next-block ul { margin: 0; padding-left: 20px; }
+  .next-block ul li { color: var(--text); margin-bottom: 6px; }
+  .toc { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 32px 0; }
+  .toc-title { font-family: Georgia, serif; font-size: 1.1rem; font-weight: 700; margin: 0 0 12px; color: var(--accent); }
+  .toc ol { padding-left: 22px; margin: 0; }
+  .toc li { color: var(--text-muted); margin-bottom: 6px; }
+  .toc a { color: var(--text); }
+  .footer { padding: 60px 24px 80px; text-align: center; border-top: 1px solid var(--border); margin-top: 40px; }
+  .footer p { font-size: 0.8rem; color: var(--text-faint); }
+  .callout { background: rgba(200,148,62,0.08); border: 1px solid var(--accent); border-radius: 12px; padding: 20px 24px; margin: 20px 0; }
+  .callout-title { font-family: Georgia, serif; font-weight: 700; color: var(--accent); margin: 0 0 8px; font-size: 1.05rem; }
+  .callout p { margin: 0; color: var(--text); }
+  @media (max-width: 640px) { .hero-title { font-size: 2.5rem; } .section { padding: 32px 0; } }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">Hillbilly Dreams Inc</div>
+  <h1 class="hero-title">Welcome, Amy</h1>
+  <p class="hero-subtitle">Everything you need to run the Inn, find photos, make posters, and move through the whole stack without asking Chase every time.</p>
+</div>
+
+<div class="container">
+
+  <div class="toc">
+    <div class="toc-title">What is in this page</div>
+    <ol>
+      <li><a href="#right-now">Right now — CloudBeds + VRBO photos</a></li>
+      <li><a href="#your-stuff">Where everything lives</a></li>
+      <li><a href="#command-center">Your command center</a></li>
+      <li><a href="#delta-dawn">Delta Dawn — the AI you can ask anything</a></li>
+      <li><a href="#posters">Making a poster</a></li>
+      <li><a href="#team">The team</a></li>
+      <li><a href="#logins">Security and logins</a></li>
+      <li><a href="#stuck">When you get stuck</a></li>
+    </ol>
+  </div>
+
+  <div class="quick-tiles">
+    <a href="https://bigmuddytouring.com/amy-photos.html" class="tile tile-highlight">
+      <span class="tile-emoji">🖼️</span>
+      <div class="tile-title">Photo Resize Tool</div>
+      <p class="tile-desc">Drag Inn photos in, get CloudBeds + VRBO sizes out. Use this for the listings.</p>
+    </a>
+    <a href="https://bigmuddytouring.com/admin/photos" class="tile">
+      <span class="tile-emoji">🔍</span>
+      <div class="tile-title">Photo Search</div>
+      <p class="tile-desc">Search 16,936 tagged photos. Type "inn" or "bar" or "bedroom."</p>
+    </a>
+    <a href="https://deepsouthdirectory.com/amy.html" class="tile">
+      <span class="tile-emoji">⭐</span>
+      <div class="tile-title">Your Command Center</div>
+      <p class="tile-desc">Chase built this just for you. Check it daily.</p>
+    </a>
+    <a href="https://bigmuddytouring.com/inn" class="tile">
+      <span class="tile-emoji">🏨</span>
+      <div class="tile-title">The Inn Page</div>
+      <p class="tile-desc">What guests see. Pull this up before any guest meeting.</p>
+    </a>
+    <a href="https://bigmuddytouring.com/radio" class="tile">
+      <span class="tile-emoji">📻</span>
+      <div class="tile-title">Big Muddy Radio</div>
+      <p class="tile-desc">Live 24/7 from Natchez. Works on any device on the Inn WiFi.</p>
+    </a>
+    <a href="https://bigmuddytouring.com/links" class="tile">
+      <span class="tile-emoji">🔗</span>
+      <div class="tile-title">All HDI Links</div>
+      <p class="tile-desc">Every page in the ecosystem in one place.</p>
+    </a>
+  </div>
+
+  <section class="section" id="right-now">
+    <div class="section-label">Section 1 — Right now</div>
+    <h2 class="section-title">CloudBeds + VRBO photos</h2>
+    <p>You are working on the Big Muddy Inn listings on CloudBeds and VRBO. Each platform wants photos in a specific size, which means you need two separate sets of the same photos — one set for CloudBeds, one set for VRBO.</p>
+
+    <div class="callout">
+      <div class="callout-title">The tool does this for you</div>
+      <p>Open the <a href="https://bigmuddytouring.com/amy-photos.html">Photo Resize Tool</a>, drag your photos in (or tap to pick them), and hit Process. You will get two folders back, one for CloudBeds and one for VRBO, with every photo already resized to the right spec. Upload them directly from your iPad.</p>
+    </div>
+
+    <p><strong>Step by step:</strong></p>
+    <ol>
+      <li>Open the <a href="https://bigmuddytouring.com/admin/photos">Photo Search</a> page in Safari on your iPad. Search for "inn", then "bedroom", then "bar", then "hallway", then "porch", then "exterior", then "blues room". Each search finds different photos.</li>
+      <li>Long-press any photo you want to keep and save it to your Files app (in a folder like "Inn photos April").</li>
+      <li>Pick your best 30. You want at least 20 for CloudBeds and 24 for VRBO.</li>
+      <li>Open the <a href="https://bigmuddytouring.com/amy-photos.html">Photo Resize Tool</a>.</li>
+      <li>Tap Select Photos or drag them onto the page, and pick all 30 you just saved.</li>
+      <li>Tap Process All. The tool resizes everything in your browser — nothing uploaded anywhere.</li>
+      <li>Tap Download CloudBeds Set and Download VRBO Set.</li>
+      <li>Log into <strong>CloudBeds</strong> → your property → Media → Upload. Select the CloudBeds photos.</li>
+      <li>Log into <strong>VRBO</strong> → your listing → Photos. Select the VRBO photos.</li>
+      <li>Check each listing from a real phone (not the admin view) to confirm the photos look sharp.</li>
+    </ol>
+
+    <p><strong>The sizes used by the tool</strong> (verified against industry standards — double-check the latest at the platform help sites before a mass upload):</p>
+    <table>
+      <thead><tr><th>Platform</th><th>Size</th><th>Format</th><th>Max file</th></tr></thead>
+      <tbody>
+        <tr><td>CloudBeds</td><td>2048 × 1536</td><td>JPG, sRGB</td><td>5 MB</td></tr>
+        <tr><td>VRBO</td><td>2400 × 1600</td><td>JPG, sRGB</td><td>10 MB</td></tr>
+      </tbody>
+    </table>
+
+    <div class="next-block">
+      <div class="next-block-label">What to do next</div>
+      <ul>
+        <li>Open the <a href="https://bigmuddytouring.com/amy-photos.html">Photo Resize Tool</a> in a new tab now</li>
+        <li>Open the <a href="https://bigmuddytouring.com/admin/photos">Photo Search</a> in another tab</li>
+        <li>Collect 30 Inn photos to your Files app</li>
+        <li>Run them through the resize tool</li>
+        <li>Upload to CloudBeds and VRBO</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="your-stuff">
+    <div class="section-label">Section 2</div>
+    <h2 class="section-title">Where everything lives</h2>
+    <p>The stack has a lot of pieces. Here is the map.</p>
+
+    <h3 style="font-family: Georgia, serif; color: var(--text); margin-top: 24px;">Your personal tools</h3>
+    <table>
+      <tbody>
+        <tr><td><strong>CloudBeds</strong></td><td>Inn bookings, availability, channel manager. <a href="https://hotels.cloudbeds.com/">Login</a></td></tr>
+        <tr><td><strong>VRBO Partner</strong></td><td>VRBO listings, calendar, inquiries. <a href="https://www.vrbo.com/pc/home">Login</a></td></tr>
+        <tr><td><strong>Canva</strong></td><td>Posters, flyers, social graphics. <a href="https://www.canva.com/">Open</a></td></tr>
+        <tr><td><strong>Bitwarden</strong></td><td>All your passwords. <a href="https://vault.bitwarden.com/">Login</a></td></tr>
+        <tr><td><strong>Gmail</strong></td><td>Your HDI email. <a href="https://mail.google.com/">Open</a></td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-family: Georgia, serif; color: var(--text); margin-top: 24px;">HDI public pages</h3>
+    <table>
+      <tbody>
+        <tr><td><strong><a href="https://bigmuddytouring.com">Big Muddy Touring</a></strong></td><td>The public face of the whole operation</td></tr>
+        <tr><td><strong><a href="https://bigmuddytouring.com/inn">The Inn page</a></strong></td><td>What guests see. Check it before guest meetings.</td></tr>
+        <tr><td><strong><a href="https://bigmuddytouring.com/radio">Big Muddy Radio</a></strong></td><td>The live radio stream page</td></tr>
+        <tr><td><strong><a href="https://bigmuddytouring.com/magazine">Big Muddy Magazine</a></strong></td><td>Tracy runs this</td></tr>
+        <tr><td><strong><a href="https://bigmuddytouring.com/links">The Link Tree</a></strong></td><td>Every link in the HDI ecosystem</td></tr>
+        <tr><td><strong><a href="https://bigmuddytouring.com/demo/presentation">The Whole Story</a></strong></td><td>A one-page walkthrough of the whole business</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-family: Georgia, serif; color: var(--text); margin-top: 24px;">Your tools on the HDI network</h3>
+    <table>
+      <tbody>
+        <tr><td><strong><a href="https://deepsouthdirectory.com/amy.html">Amy Command Center</a></strong></td><td>Your personalized dashboard</td></tr>
+        <tr><td><strong><a href="https://bigmuddytouring.com/admin/photos">Photo Search</a></strong></td><td>16,936 photos, searchable by tag</td></tr>
+        <tr><td><strong><a href="https://bigmuddytouring.com/amy-photos.html">Photo Resize Tool</a></strong></td><td>Resize photos for CloudBeds and VRBO (only works on the Inn WiFi)</td></tr>
+        <tr><td><strong><a href="https://bigmuddytouring.com/radio">Big Muddy Radio player</a></strong></td><td>Full player with live metadata (only works on the Inn WiFi)</td></tr>
+        <tr><td><strong><a href="https://bigmuddytouring.com/inn/tv">Big Muddy TV slideshow</a></strong></td><td>What the in-room TVs display</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="callout-title">Local vs public links</div>
+      <p>Anything starting with <strong>http://192.168.4.37</strong> only works when you are on the Inn WiFi. Anything starting with <strong>https://bigmuddytouring.com</strong> or <strong>https://deepsouthdirectory.com</strong> works anywhere in the world.</p>
+    </div>
+  </section>
+
+  <section class="section" id="command-center">
+    <div class="section-label">Section 3</div>
+    <h2 class="section-title">Your command center</h2>
+    <p>Chase built a dashboard just for you at <a href="https://deepsouthdirectory.com/amy.html">deepsouthdirectory.com/amy.html</a>. It is your home base. Visit it every day.</p>
+    <p>If something on the command center does not work right, or if there is something you wish was there, <strong>tell Chase.</strong> The page is designed to be customized specifically for you.</p>
+
+    <p style="text-align: center; margin-top: 32px;">
+      <a href="https://deepsouthdirectory.com/amy.html" class="big-button">Open your command center →</a>
+    </p>
+  </section>
+
+  <section class="section" id="delta-dawn">
+    <div class="section-label">Section 4</div>
+    <h2 class="section-title">Delta Dawn — the AI you can ask anything</h2>
+    <p>Delta Dawn is the sovereign AI for Hillbilly Dreams Inc. She is built into every page on <a href="https://bigmuddytouring.com">bigmuddytouring.com</a> as a floating chat button. She knows the whole business — who you, Chase, and Tracy are, the origin story, the Inn address and phone, pricing, current team members, even the grants we are tracking.</p>
+
+    <p><strong>Things you can ask her:</strong></p>
+    <ul>
+      <li>"What is the Inn phone number?"</li>
+      <li>"How many rooms does the Inn have?"</li>
+      <li>"Who is Terry and what is she doing with us?"</li>
+      <li>"Give me a short pitch for the Inn I can send to a guest"</li>
+      <li>"Summarize what Chase has been working on"</li>
+      <li>"What is the cheapest Deep South Directory tier?"</li>
+    </ul>
+
+    <p>If she is ever wrong about something, <strong>tell Chase</strong> so he can fix her system prompt. She is only as good as the information we have given her.</p>
+
+    <p style="text-align: center; margin-top: 32px;">
+      <a href="https://bigmuddytouring.com/" class="big-button outline">Open bigmuddytouring.com to find her →</a>
+    </p>
+  </section>
+
+  <section class="section" id="posters">
+    <div class="section-label">Section 5</div>
+    <h2 class="section-title">Making a poster</h2>
+    <p>Rule: <strong>AI generates the art. Canva handles the typography.</strong></p>
+    <p>You pick or generate the image, and you use Canva to add text, layout, and brand elements on top.</p>
+
+    <p><strong>HDI brand colors to use in Canva:</strong></p>
+    <ul>
+      <li>Background: <code style="color: #e8e0d4; background: #0a0a08; padding: 2px 8px; border-radius: 4px;">#0a0a08</code> — near-black</li>
+      <li>Text: <code style="color: #0a0a08; background: #e8e0d4; padding: 2px 8px; border-radius: 4px;">#e8e0d4</code> — warm cream</li>
+      <li>Accent: <code style="color: #0a0a08; background: #c8943e; padding: 2px 8px; border-radius: 4px;">#c8943e</code> — amber gold</li>
+    </ul>
+
+    <p><strong>HDI fonts:</strong> Georgia (serif) for headings, any clean sans-serif for body. Do not mix more than 2 fonts.</p>
+
+    <p><strong>What you will probably make first:</strong></p>
+    <ul>
+      <li>Show posters for the Blues Room</li>
+      <li>Inn social posts (rooms, breakfast, the porch, guest moments)</li>
+      <li>Event flyers for weddings and private bookings</li>
+      <li>Radio show promos</li>
+    </ul>
+
+    <p style="text-align: center; margin-top: 32px;">
+      <a href="https://www.canva.com/" class="big-button">Open Canva →</a>
+    </p>
+  </section>
+
+  <section class="section" id="team">
+    <div class="section-label">Section 6</div>
+    <h2 class="section-title">The team</h2>
+    <table>
+      <thead><tr><th>Person</th><th>Role</th><th>Decides</th></tr></thead>
+      <tbody>
+        <tr><td><strong>You</strong></td><td>Co-founder, equity partner (one-third)</td><td>Music, shows, guest experience, bar, hospitality</td></tr>
+        <tr><td><strong>Chase Pierson</strong></td><td>Co-founder, CEO/CTO, radio host, photographer</td><td>Creative direction, code, product, photography</td></tr>
+        <tr><td><strong>Tracy Alderson-Allen</strong></td><td>Co-founder, Finance, Executive Producer of the Magazine</td><td>Money, approvals, editorial</td></tr>
+        <tr><td><strong>Terry</strong></td><td>Tracy's friend — writer, commission sales, possibly on-air</td><td>In discovery — working with Tracy</td></tr>
+        <tr><td><strong>Carrie</strong></td><td>Interested in editorial — photo curation, story selection, storytelling</td><td>Follow-up meeting pending</td></tr>
+        <tr><td><strong>Arrie Aslin</strong></td><td>Artist-in-residence</td><td>Reports to you creatively</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="callout-title">The short version</div>
+      <p>If it is about <strong>money or approvals</strong>, Tracy decides. If it is about <strong>music or guests</strong>, you decide. If it is about <strong>the website or photography</strong>, Chase decides. When it is unclear, the three of you talk.</p>
+    </div>
+  </section>
+
+  <section class="section" id="logins">
+    <div class="section-label">Section 7</div>
+    <h2 class="section-title">Security and logins</h2>
+    <p><strong>The one rule:</strong> all passwords go in Bitwarden. No exceptions.</p>
+    <p>If you have a password written down anywhere else — Notes, your phone, sticky notes, your email — move it into Bitwarden tonight. Chase will help the first time.</p>
+    <p><strong>Turn on two-factor authentication</strong> on everything important: your Apple ID, CloudBeds, VRBO, Gmail, Bitwarden, your bank. Use the iPad built-in authenticator or Google Authenticator. <strong>Do not use SMS two-factor</strong> for anything financial — phones can be SIM-swapped.</p>
+
+    <p style="text-align: center; margin-top: 32px;">
+      <a href="https://vault.bitwarden.com/" class="big-button">Open Bitwarden →</a>
+    </p>
+  </section>
+
+  <section class="section" id="stuck">
+    <div class="section-label">Section 8</div>
+    <h2 class="section-title">When you get stuck</h2>
+    <p>In order of who to ask first:</p>
+    <ol>
+      <li><strong>Delta Dawn</strong> — fastest answer for simple questions. The floating chat on every bigmuddytouring.com page.</li>
+      <li><strong>This page</strong> — search for the word you are stuck on.</li>
+      <li><strong>Chase</strong> — anything technical, photo-related, website-related, or "how does this work."</li>
+      <li><strong>Tracy</strong> — anything finance, booking-money, grant, or Magazine-related.</li>
+    </ol>
+    <p>Do not Google a problem and then try to fix it yourself. The stack has been set up specifically for you, and random internet advice is usually wrong for the way HDI is wired.</p>
+  </section>
+
+</div>
+
+<div class="footer">
+  <p>Natchez, Mississippi · Built with love · Welcome to the stack, Amy</p>
+  <p>Tap the Share button in Safari → Add to Home Screen to pin this page to your iPad home screen.</p>
+</div>
+
+</body>
+</html>
