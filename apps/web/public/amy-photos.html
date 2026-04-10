@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Photo Resize">
+<title>Photo Resize — CloudBeds + VRBO — Big Muddy Inn</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%2278%22 font-size=%2290%22%3E%F0%9F%96%BC%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  :root {
+    --bg: #0a0a08;
+    --surface: rgba(232,224,212,0.03);
+    --surface-hover: rgba(232,224,212,0.06);
+    --text: #e8e0d4;
+    --text-muted: #9b9488;
+    --text-dim: #6b635a;
+    --accent: #c8943e;
+    --border: rgba(200,148,62,0.15);
+    --border-strong: rgba(200,148,62,0.4);
+    --red: #ff3b30;
+    --green: #34c759;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif; line-height: 1.55; }
+  body { min-height: 100vh; padding: env(safe-area-inset-top, 0) 0 env(safe-area-inset-bottom, 40px); }
+  .header {
+    padding: clamp(32px, 6vw, 60px) clamp(20px, 5vw, 60px) 24px;
+    text-align: center;
+    background: radial-gradient(ellipse at top, rgba(200,148,62,0.08) 0%, transparent 60%), var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .header h1 { font-family: Georgia, serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 0 0 8px; letter-spacing: -0.02em; }
+  .header p { color: var(--text-muted); font-size: clamp(0.95rem, 1.8vw, 1.1rem); margin: 0 auto; max-width: 600px; }
+  .back-link { display: inline-block; margin-top: 20px; color: var(--accent); text-decoration: none; font-size: 0.85rem; border-bottom: 1px solid transparent; transition: border-color 150ms ease; }
+  .back-link:hover { border-bottom-color: var(--accent); }
+  .container { max-width: 960px; margin: 0 auto; padding: 32px clamp(20px, 5vw, 60px); }
+  .how-it-works { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 32px; }
+  .how-it-works h3 { font-family: Georgia, serif; margin: 0 0 12px; color: var(--accent); font-size: 1rem; }
+  .how-it-works ol { padding-left: 22px; margin: 0; color: var(--text-muted); font-size: 0.9rem; }
+  .how-it-works li { margin-bottom: 6px; }
+  .how-it-works strong { color: var(--text); }
+  .dropzone {
+    border: 2px dashed var(--border-strong);
+    border-radius: 16px;
+    padding: 48px 24px;
+    text-align: center;
+    background: var(--surface);
+    cursor: pointer;
+    transition: border-color 150ms ease, background 150ms ease;
+    margin-bottom: 24px;
+  }
+  .dropzone:hover, .dropzone.dragover { border-color: var(--accent); background: var(--surface-hover); }
+  .dropzone-icon { font-size: 3rem; margin-bottom: 12px; display: block; }
+  .dropzone-title { font-family: Georgia, serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+  .dropzone-subtitle { color: var(--text-muted); font-size: 0.9rem; }
+  .dropzone input[type="file"] { display: none; }
+  .controls { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 22px; border-radius: 999px;
+    font-family: inherit; font-size: 0.95rem; font-weight: 700;
+    border: none; cursor: pointer;
+    transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+    text-decoration: none;
+    -webkit-appearance: none;
+  }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn:not(:disabled):active { transform: scale(0.97); }
+  .btn-primary { background: var(--accent); color: var(--bg); }
+  .btn-primary:not(:disabled):hover { box-shadow: 0 4px 16px rgba(200,148,62,0.4); }
+  .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border-strong); }
+  .btn-outline:not(:disabled):hover { border-color: var(--accent); color: var(--accent); }
+  .btn-small { padding: 10px 16px; font-size: 0.8rem; }
+  .counter { color: var(--text-muted); font-size: 0.85rem; margin-left: auto; }
+  .progress-bar { width: 100%; height: 6px; background: var(--border); border-radius: 999px; overflow: hidden; margin-bottom: 16px; display: none; }
+  .progress-bar.show { display: block; }
+  .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 200ms ease; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; margin-top: 16px; }
+  .photo {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 4/3;
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo .remove {
+    position: absolute; top: 6px; right: 6px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(0,0,0,0.7); color: #fff;
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700;
+  }
+  .photo .status {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 6px 10px; font-size: 0.7rem; font-weight: 700;
+    background: rgba(0,0,0,0.75); color: var(--text);
+    letter-spacing: 0.05em; text-transform: uppercase;
+    display: none;
+  }
+  .photo.done .status { display: block; background: rgba(52,199,89,0.85); color: #fff; }
+  .photo.error .status { display: block; background: rgba(255,59,48,0.85); color: #fff; }
+  .downloads { margin-top: 32px; padding: 24px; background: var(--surface); border: 1px solid var(--accent); border-radius: 12px; display: none; }
+  .downloads.show { display: block; }
+  .downloads h3 { font-family: Georgia, serif; color: var(--accent); margin: 0 0 12px; font-size: 1.1rem; }
+  .downloads p { color: var(--text-muted); font-size: 0.9rem; margin: 0 0 16px; }
+  .download-set { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+  .download-set-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; width: 100%; }
+  .download-link {
+    display: inline-block;
+    padding: 10px 16px;
+    background: rgba(200,148,62,0.12);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .download-link:hover { border-color: var(--accent); }
+  .footer { text-align: center; padding: 40px 24px; color: var(--text-dim); font-size: 0.8rem; }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .empty { text-align: center; padding: 40px 24px; color: var(--text-dim); }
+  @media (max-width: 480px) { .header h1 { font-size: 1.8rem; } .dropzone { padding: 32px 16px; } .btn { width: 100%; justify-content: center; } .counter { width: 100%; text-align: center; margin-left: 0; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-label">Big Muddy Inn · Amy's Tools</div>
+  <h1>Photo Resize Tool</h1>
+  <p>Drag Inn photos in — get CloudBeds and VRBO sizes out. Everything runs in your browser. Nothing gets uploaded anywhere.</p>
+  <a href="/amy-orientation.html" class="back-link">← Back to onboarding</a>
+</div>
+
+<div class="container">
+
+  <div class="how-it-works">
+    <h3>How this works</h3>
+    <ol>
+      <li><strong>Pick your photos</strong> — tap the box below or drag photos onto it (JPG, PNG, HEIC, WEBP, all work)</li>
+      <li><strong>Tap Process All</strong> — every photo gets resized twice, once for CloudBeds (2048 × 1536) and once for VRBO (2400 × 1600)</li>
+      <li><strong>Download each set</strong> — tap the download buttons. Your browser saves the files to Downloads (or the Files app on iPad)</li>
+      <li><strong>Upload to CloudBeds and VRBO</strong> from the Files app on your iPad — use the CloudBeds files for the CloudBeds listing and the VRBO files for the VRBO listing</li>
+    </ol>
+  </div>
+
+  <label class="dropzone" id="dropzone">
+    <span class="dropzone-icon">📷</span>
+    <div class="dropzone-title">Tap here to pick photos</div>
+    <div class="dropzone-subtitle">Or drag them in — JPG, PNG, HEIC, WEBP up to 50 MB each</div>
+    <input type="file" id="fileInput" multiple accept="image/*">
+  </label>
+
+  <div class="controls">
+    <button class="btn btn-primary" id="processBtn" disabled>Process All</button>
+    <button class="btn btn-outline btn-small" id="clearBtn" disabled>Clear</button>
+    <div class="counter" id="counter">No photos selected</div>
+  </div>
+
+  <div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="downloads" id="downloads">
+    <h3>Resized photos ready</h3>
+    <p>Tap each link below to save the file. If nothing happens, check your browser's Downloads setting.</p>
+
+    <div class="download-set-label">CloudBeds set · 2048 × 1536 · JPG</div>
+    <div class="download-set" id="cloudbedsLinks"></div>
+
+    <div class="download-set-label">VRBO set · 2400 × 1600 · JPG</div>
+    <div class="download-set" id="vrboLinks"></div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Big Muddy Inn · Natchez, Mississippi · Built for Amy</p>
+  <p><a href="/amy-orientation.html">Back to the full onboarding →</a></p>
+</div>
+
+<script>
+  const CLOUDBEDS = { name: 'CloudBeds', maxW: 2048, maxH: 1536, quality: 0.85, prefix: 'cloudbeds' };
+  const VRBO      = { name: 'VRBO',      maxW: 2400, maxH: 1600, quality: 0.88, prefix: 'vrbo' };
+
+  const fileInput = document.getElementById('fileInput');
+  const dropzone = document.getElementById('dropzone');
+  const processBtn = document.getElementById('processBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const counter = document.getElementById('counter');
+  const grid = document.getElementById('grid');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const downloadsBox = document.getElementById('downloads');
+  const cloudbedsLinks = document.getElementById('cloudbedsLinks');
+  const vrboLinks = document.getElementById('vrboLinks');
+
+  // State: array of { file, id, el, thumbUrl, results: { cloudbeds: blob, vrbo: blob } }
+  let photos = [];
+  let nextId = 0;
+
+  function updateCounter() {
+    if (photos.length === 0) {
+      counter.textContent = 'No photos selected';
+      processBtn.disabled = true;
+      clearBtn.disabled = true;
+    } else {
+      counter.textContent = photos.length + ' photo' + (photos.length === 1 ? '' : 's') + ' selected';
+      processBtn.disabled = false;
+      clearBtn.disabled = false;
+    }
+  }
+
+  function addFiles(fileList) {
+    const files = Array.from(fileList).filter(f => f.type.startsWith('image/'));
+    for (const file of files) {
+      const id = nextId++;
+      const thumbUrl = URL.createObjectURL(file);
+      const el = document.createElement('div');
+      el.className = 'photo';
+      el.dataset.id = id;
+      el.innerHTML = '<img src="' + thumbUrl + '" alt=""><button class="remove" aria-label="Remove">×</button><div class="status">—</div>';
+      el.querySelector('.remove').addEventListener('click', (e) => {
+        e.preventDefault();
+        removePhoto(id);
+      });
+      grid.appendChild(el);
+      photos.push({ file, id, el, thumbUrl, results: null });
+    }
+    updateCounter();
+  }
+
+  function removePhoto(id) {
+    const idx = photos.findIndex(p => p.id === id);
+    if (idx === -1) return;
+    URL.revokeObjectURL(photos[idx].thumbUrl);
+    photos[idx].el.remove();
+    photos.splice(idx, 1);
+    updateCounter();
+  }
+
+  function clearAll() {
+    for (const p of photos) {
+      URL.revokeObjectURL(p.thumbUrl);
+      p.el.remove();
+    }
+    photos = [];
+    cloudbedsLinks.innerHTML = '';
+    vrboLinks.innerHTML = '';
+    downloadsBox.classList.remove('show');
+    progressBar.classList.remove('show');
+    progressFill.style.width = '0%';
+    updateCounter();
+  }
+
+  async function resizeImage(file, spec) {
+    // Decode the image. createImageBitmap handles HEIC on iOS Safari 17+.
+    let bitmap;
+    try {
+      bitmap = await createImageBitmap(file);
+    } catch (err) {
+      // Fallback: use an <img> element
+      const url = URL.createObjectURL(file);
+      try {
+        bitmap = await new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => resolve(img);
+          img.onerror = reject;
+          img.src = url;
+        });
+      } finally {
+        URL.revokeObjectURL(url);
+      }
+    }
+
+    const srcW = bitmap.width || bitmap.naturalWidth;
+    const srcH = bitmap.height || bitmap.naturalHeight;
+    const scale = Math.min(spec.maxW / srcW, spec.maxH / srcH, 1);
+    const dstW = Math.round(srcW * scale);
+    const dstH = Math.round(srcH * scale);
+
+    const canvas = document.createElement('canvas');
+    canvas.width = dstW;
+    canvas.height = dstH;
+    const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(bitmap, 0, 0, dstW, dstH);
+
+    // Free bitmap memory
+    if (bitmap.close) bitmap.close();
+
+    return new Promise((resolve, reject) => {
+      canvas.toBlob((blob) => {
+        if (blob) resolve({ blob, width: dstW, height: dstH });
+        else reject(new Error('toBlob failed'));
+      }, 'image/jpeg', spec.quality);
+    });
+  }
+
+  function makeDownloadLink(blob, filename, container) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.className = 'download-link';
+    a.textContent = filename;
+    container.appendChild(a);
+  }
+
+  async function processAll() {
+    processBtn.disabled = true;
+    clearBtn.disabled = true;
+    fileInput.disabled = true;
+    cloudbedsLinks.innerHTML = '';
+    vrboLinks.innerHTML = '';
+    downloadsBox.classList.remove('show');
+    progressBar.classList.add('show');
+    progressFill.style.width = '0%';
+
+    const total = photos.length * 2; // cloudbeds + vrbo per photo
+    let done = 0;
+
+    for (const p of photos) {
+      p.el.classList.remove('done', 'error');
+      const statusEl = p.el.querySelector('.status');
+      statusEl.textContent = 'Processing...';
+      statusEl.style.display = 'block';
+      statusEl.style.background = 'rgba(0,0,0,0.8)';
+      statusEl.style.color = 'var(--text)';
+
+      try {
+        const cbResult = await resizeImage(p.file, CLOUDBEDS);
+        done++;
+        progressFill.style.width = (done / total * 100) + '%';
+
+        const vrResult = await resizeImage(p.file, VRBO);
+        done++;
+        progressFill.style.width = (done / total * 100) + '%';
+
+        p.results = { cloudbeds: cbResult, vrbo: vrResult };
+
+        const baseName = p.file.name.replace(/\.[^.]+$/, '').replace(/[^a-zA-Z0-9_-]/g, '_');
+        const cbName = 'cloudbeds_' + baseName + '.jpg';
+        const vrName = 'vrbo_' + baseName + '.jpg';
+
+        makeDownloadLink(cbResult.blob, cbName, cloudbedsLinks);
+        makeDownloadLink(vrResult.blob, vrName, vrboLinks);
+
+        p.el.classList.add('done');
+        statusEl.textContent = 'Done · ' + cbResult.width + '×' + cbResult.height + ' / ' + vrResult.width + '×' + vrResult.height;
+      } catch (err) {
+        console.error('Resize failed for', p.file.name, err);
+        p.el.classList.add('error');
+        statusEl.textContent = 'Error: ' + (err.message || 'resize failed');
+      }
+    }
+
+    progressFill.style.width = '100%';
+    downloadsBox.classList.add('show');
+    processBtn.disabled = false;
+    clearBtn.disabled = false;
+    fileInput.disabled = false;
+  }
+
+  fileInput.addEventListener('change', (e) => addFiles(e.target.files));
+  processBtn.addEventListener('click', processAll);
+  clearBtn.addEventListener('click', clearAll);
+
+  // Drag and drop
+  dropzone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropzone.classList.add('dragover');
+  });
+  dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+  dropzone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
+    if (e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files);
+  });
+
+  // Prevent browser from navigating on stray file drops outside the dropzone
+  document.addEventListener('dragover', (e) => e.preventDefault());
+  document.addEventListener('drop', (e) => e.preventDefault());
+</script>
+
+</body>
+</html>
