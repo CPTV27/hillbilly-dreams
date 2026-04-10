@@ -71,9 +71,9 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
-          sidebarId: 'jpGuide',
+          sidebarId: 'setup',
           position: 'left',
-          label: "JP's Guide",
+          label: 'Machine Setup',
         },
         {
           type: 'docSidebar',
