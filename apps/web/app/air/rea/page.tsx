@@ -68,21 +68,77 @@ export default function ReaInvitationPage() {
         </div>
       </section>
 
-      {/* THE RADIO SHOW */}
+      {/* BIG MUDDY RADIO */}
       <section style={{ padding: 'clamp(60px, 10vw, 140px) clamp(40px, 8vw, 120px)', borderTop: '1px solid rgba(200,148,62,0.15)' }}>
-        <div style={{ maxWidth: '750px' }}>
-          <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>The Radio Show</p>
-          <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, lineHeight: 0.95, letterSpacing: '-0.03em', margin: '0 0 32px' }}>
-            The front door.
+        <div style={{ maxWidth: '850px' }}>
+          <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>Big Muddy Radio</p>
+          <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: 800, lineHeight: 0.95, letterSpacing: '-0.03em', margin: '0 0 32px' }}>
+            A real radio station with real shows.
           </h2>
-          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 16px' }}>
-            The radio show is how musicians find us. They come on, we interview them, we play their music, we tell them what&rsquo;s going on down here. They&rsquo;re already thinking about their next move by the end of the conversation.
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            Streaming 24/7 from Natchez. Not a Spotify playlist — a station. Programming blocks, rotating shows, live sessions, interviews, curated hours built around real musical knowledge.
           </p>
-          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 16px' }}>
-            Then they book a show at the Blues Room. Then they tour the corridor. Then they get magazine coverage. Then they end up on a record. The show feeds the room. The room feeds the shows.
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 32px' }}>
+            Amy hosts a show. Chase hosts a show. Rotating guest hosts from the corridor. Deep cuts from the Delta. Live performances from the Blues Room cut into the rotation the next morning. Conversations with every musician who walks through the door.
           </p>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginBottom: '32px' }}>
+            {[
+              { title: 'Artist Interviews', desc: 'Long-form conversations with every musician who visits Natchez. Not 30-second soundbites — actual interviews. The way they used to do it.' },
+              { title: 'Live Sessions', desc: 'Recorded in the Blues Room, mixed overnight, on the air the next day. One show becomes a radio session becomes a podcast episode becomes a live album track.' },
+              { title: 'The Deep South Hour', desc: 'Curated deep cuts from the Delta, Memphis, New Orleans, and the corridor in between. Music you can&rsquo;t find on the algorithms.' },
+              { title: 'Amy&rsquo;s Show', desc: 'Amy hosts her own program. Musician&rsquo;s perspective, musician&rsquo;s taste, live from the bar at the Inn when she&rsquo;s in the mood.' },
+              { title: 'The Corridor Rotation', desc: 'Artists from every city on the route — Memphis to New Orleans, Clarksdale to Vicksburg. The station is the soundtrack of the whole corridor.' },
+              { title: 'Guest Hosts', desc: 'Rotating slots for visiting musicians to build their own hour. Play what they love, talk about what they&rsquo;re working on, tell stories.' },
+            ].map((show, i) => (
+              <div key={i} style={{ padding: '20px', borderLeft: '2px solid #c8943e' }}>
+                <h3 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: '1rem', fontWeight: 700, margin: '0 0 6px', color: '#e8e0d4' }}>{show.title}</h3>
+                <p style={{ fontSize: '0.85rem', lineHeight: 1.5, color: '#9b9488', margin: 0 }}>{show.desc}</p>
+              </div>
+            ))}
+          </div>
+
           <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: '#c8943e', fontWeight: 600, margin: 0 }}>
-            You&rsquo;re coming on the show. We&rsquo;re going to tell your story.
+            You&rsquo;re coming on the show. Multiple shows, probably. We&rsquo;re going to tell your story the way it deserves to be told.
+          </p>
+        </div>
+      </section>
+
+      {/* BIG MUDDY MAGAZINE */}
+      <section style={{ padding: 'clamp(60px, 10vw, 140px) clamp(40px, 8vw, 120px)', borderTop: '1px solid rgba(200,148,62,0.15)' }}>
+        <div style={{ maxWidth: '850px' }}>
+          <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>Big Muddy Magazine</p>
+          <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: 800, lineHeight: 0.95, letterSpacing: '-0.03em', margin: '0 0 32px' }}>
+            Editorial photography and real stories.
+          </h2>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            The magazine is how we cover the corridor. Not blog posts — real editorial. Long-form profiles. Photo essays. City guides. The kind of coverage music and culture used to get before everything turned into quick hits and algorithm bait.
+          </p>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            Chase is the photographer. 25 years of shooting — concerts, studios, architecture, landscape. 51,000 photos in the archive. The magazine is where that photography gets used the way it should be used: big, editorial, with space to breathe.
+          </p>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 32px' }}>
+            Tracy is the executive producer. She edits everything, including Chase&rsquo;s copy. Every story gets her sign-off before it ships. That&rsquo;s how you know the magazine is real and not just a personal blog.
+          </p>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginBottom: '32px' }}>
+            {[
+              { title: 'The Studios', desc: 'Every studio in the region gets photographed and profiled. The consoles, the rooms, the engineers, the history. Visual coverage you can&rsquo;t get anywhere else.' },
+              { title: 'The Musicians', desc: 'Every artist who comes through the corridor gets the photo treatment. Portraits, sessions, live shots. Real photography, not iPhone snaps.' },
+              { title: 'Performance Spaces', desc: 'The Blues Room, the theaters, the juke joints, the bars. Documenting the venues that keep the music alive along the corridor.' },
+              { title: 'City Guides', desc: 'Natchez, Clarksdale, Memphis, New Orleans, and every stop in between. The places worth stopping, the food worth eating, the people worth meeting.' },
+              { title: 'The Label Roster', desc: 'Every Big Muddy Records artist gets the magazine treatment. Cover shoots, feature spreads, album stories. The label and the magazine work together.' },
+              { title: 'The Culture', desc: 'Food, architecture, history, traditions. The stuff that makes the South what it is. Not tourist coverage — lived coverage.' },
+            ].map((section, i) => (
+              <div key={i} style={{ padding: '20px', borderLeft: '2px solid #c8943e' }}>
+                <h3 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: '1rem', fontWeight: 700, margin: '0 0 6px', color: '#e8e0d4' }}>{section.title}</h3>
+                <p style={{ fontSize: '0.85rem', lineHeight: 1.5, color: '#9b9488', margin: 0 }}>{section.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: '#c8943e', fontWeight: 600, margin: 0 }}>
+            The magazine will photograph every studio and every musician on the corridor. That&rsquo;s the promise. That&rsquo;s what we&rsquo;re building toward.
           </p>
         </div>
       </section>
@@ -146,16 +202,13 @@ export default function ReaInvitationPage() {
         </div>
       </section>
 
-      {/* THE OPEN QUESTION */}
+      {/* WHAT'S HAPPENING */}
       <section style={{ padding: 'clamp(80px, 12vw, 160px) clamp(40px, 8vw, 120px)', borderTop: '1px solid rgba(200,148,62,0.15)', textAlign: 'center' }}>
-        <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>The Open Question</p>
-        <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2.5rem, 7vw, 5rem)', fontWeight: 800, lineHeight: 0.9, letterSpacing: '-0.04em', margin: '0 0 32px' }}>
-          Recording studio?
+        <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, lineHeight: 0.95, letterSpacing: '-0.03em', margin: '0 0 32px', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
+          You&rsquo;re coming to see the town. We&rsquo;ll figure the rest out together.
         </h2>
-        <p style={{ fontSize: '1.1rem', lineHeight: 1.6, color: '#9b9488', maxWidth: '550px', margin: '0 auto' }}>
-          We have the engine. We have the room. We have the corridor. We have the artists moving through.
-          <br /><br />
-          We don&rsquo;t have a studio yet. Think about it on the drive. We&rsquo;ll talk when you get here.
+        <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#9b9488', maxWidth: '600px', margin: '0 auto' }}>
+          Stay at the Inn. Meet the people. Walk the streets. Hear a show. See what we&rsquo;re doing. We&rsquo;ll talk about whatever makes sense to talk about when we&rsquo;re actually in the room together.
         </p>
       </section>
 
