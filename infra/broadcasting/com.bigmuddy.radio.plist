@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Big Muddy Radio launchd agent.
+  Deployed location: ~/Library/LaunchAgents/com.bigmuddy.radio.plist (clawdbot user on Mac mini)
+
+  Runs boot-radio.sh at login, which detaches a screen session and exits.
+  The screen session handles ezstream crash/restart internally, so we deliberately
+  do NOT set KeepAlive here — launchd should only run boot-radio.sh once per session.
+
+  Install:
+    cp infra/broadcasting/com.bigmuddy.radio.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.bigmuddy.radio.plist
+
+  Uninstall:
+    launchctl unload ~/Library/LaunchAgents/com.bigmuddy.radio.plist
+    rm ~/Library/LaunchAgents/com.bigmuddy.radio.plist
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.bigmuddy.radio</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/ClawdBOT/broadcasting/boot-radio.sh</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/ClawdBOT/broadcasting/boot-stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/ClawdBOT/broadcasting/boot-stderr.log</string>
+</dict>
+</plist>

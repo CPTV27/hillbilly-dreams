@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Big Muddy Radio — ezstream configuration
+  Deployed location: /Users/ClawdBOT/broadcasting/ezstream.xml on the Mac mini
+
+  Source:   ezstream 1.0.2 via homebrew
+  Target:   openbroadcaster-icecast container (localhost:8010 → 8000)
+  Pipeline: playlist (m3u) -> ffmpeg decode -> oggenc 44.1kHz/Q5 Vorbis -> libshout -> Icecast
+
+  Runbook: docs/runbooks/broadcasting.md
+  Architecture note: This is a tactical solution. The "correct" long-term
+  architecture is OpenBroadcaster.org OBServer + OBPlayer for scheduling.
+  See docs/research/openbroadcaster-2026-04-10.md for migration path.
+-->
+<ezstream>
+
+  <servers>
+    <server>
+      <name>bigmuddy-icecast</name>
+      <protocol>HTTP</protocol>
+      <hostname>127.0.0.1</hostname>
+      <port>8010</port>
+      <user>source</user>
+      <password>bigmuddy-source</password>
+      <tls>None</tls>
+      <reconnect_attempts>20</reconnect_attempts>
+    </server>
+  </servers>
+
+  <streams>
+    <stream>
+      <mountpoint>/stream</mountpoint>
+      <intake>bigmuddy-lib</intake>
+      <server>bigmuddy-icecast</server>
+      <public>No</public>
+      <format>Ogg</format>
+      <encoder>OggVorbis-Q5</encoder>
+      <stream_name>Big Muddy Radio</stream_name>
+      <stream_url>https://bigmuddyradio.com</stream_url>
+      <stream_genre>Deep South Roots</stream_genre>
+      <stream_description>Live from Natchez, Mississippi.</stream_description>
+    </stream>
+  </streams>
+
+  <intakes>
+    <intake>
+      <name>bigmuddy-lib</name>
+      <type>playlist</type>
+      <filename>/Users/ClawdBOT/broadcasting/bigmuddy-playlist.m3u</filename>
+      <shuffle>Yes</shuffle>
+      <stream_once>No</stream_once>
+    </intake>
+  </intakes>
+
+  <metadata>
+    <format_str>@a@ - @t@</format_str>
+    <normalize_strings>Yes</normalize_strings>
+  </metadata>
+
+  <decoders>
+    <decoder>
+      <name>FFmpegDec</name>
+      <program>/opt/homebrew/bin/ffmpeg -loglevel quiet -i @T@ -f s16le -ar 44100 -ac 2 -</program>
+      <file_ext>.mp3</file_ext>
+      <file_ext>.flac</file_ext>
+      <file_ext>.m4a</file_ext>
+      <file_ext>.wav</file_ext>
+      <file_ext>.ogg</file_ext>
+    </decoder>
+  </decoders>
+
+  <encoders>
+    <encoder>
+      <name>OggVorbis-Q5</name>
+      <format>Ogg</format>
+      <program>/opt/homebrew/bin/oggenc -r -B 16 -C 2 -R 44100 --raw-endianness 0 -q 5 -t @M@ -</program>
+    </encoder>
+  </encoders>
+
+</ezstream>

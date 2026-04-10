@@ -58,6 +58,7 @@ export const HDI_LINK_TREE: LinkSection[] = [
         label: 'Tonight at the Blues Room',
         url: 'https://bigmuddytouring.com/events',
         note: 'Shows, tickets, lineup',
+        hidden: true, // TODO: unhide when /events page ships
       },
     ],
   },
@@ -300,10 +301,21 @@ export const HDI_LINK_TREE: LinkSection[] = [
   },
 ];
 
-// Filter out hidden links and return the tree
-export function getVisibleLinkTree(): LinkSection[] {
+// Filter out hidden links and return the tree.
+//
+// Options:
+//   - includeLocalOnly: if true, LAN-only URLs (http://192.168.4.37:*) render.
+//     Default is false so remote visitors don't see unreachable LAN URLs.
+//     The /links page can pass `true` when rendered from a trusted LAN context
+//     (e.g. the Mac mini kiosk itself) if it ever needs them visible there.
+export function getVisibleLinkTree(options: { includeLocalOnly?: boolean } = {}): LinkSection[] {
+  const { includeLocalOnly = false } = options;
   return HDI_LINK_TREE.map((section) => ({
     ...section,
-    links: section.links.filter((link) => !link.hidden),
+    links: section.links.filter((link) => {
+      if (link.hidden) return false;
+      if (link.localOnly && !includeLocalOnly) return false;
+      return true;
+    }),
   })).filter((section) => section.links.length > 0);
 }
