@@ -72,25 +72,23 @@ export default function MBTPage() {
         </div>
       </section>
 
-      {/* THE MATH */}
+      {/* THE TECH STACK */}
       <section style={{ padding: 'clamp(60px, 10vw, 120px) clamp(40px, 8vw, 120px)', borderTop: '1px solid rgba(200,148,62,0.1)' }}>
-        <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>The Math</p>
-        <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 800, lineHeight: 0.95, letterSpacing: '-0.03em', margin: '0 0 48px' }}>It stacks.</h2>
-        <div style={{ maxWidth: '600px' }}>
+        <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>The Tech Stack</p>
+        <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 800, lineHeight: 0.95, letterSpacing: '-0.03em', margin: '0 0 24px' }}>One platform. Every tool wired together.</h2>
+        <p style={{ fontSize: '1rem', lineHeight: 1.6, color: '#9b9488', maxWidth: '700px', margin: '0 0 48px' }}>The same technology that runs Big Muddy runs everywhere. Same engine. Same AI. Same media pipeline. Skinned for whoever&rsquo;s using it.</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', maxWidth: '1000px' }}>
           {[
-            { label: 'Town kickstart', amount: '$10,000', note: 'one-time' },
-            { label: 'Network SLA', amount: '$500/mo', note: 'ongoing' },
-            { label: '50 businesses at $50/mo', amount: '$2,500/mo', note: 'recurring' },
-            { label: '1 broker at $500/mo', amount: '$500/mo', note: 'recurring' },
-            { label: '5 agents at $150/mo', amount: '$750/mo', note: 'recurring' },
-            { label: 'Shows (2:1 multiplier)', amount: 'variable', note: 'Inn + bar revenue' },
+            { layer: 'Directory', tools: 'Business data, categories, analytics' },
+            { layer: 'Magazine', tools: 'Editorial CMS, photo pipeline, publishing' },
+            { layer: 'Radio', tools: 'Streaming, scheduling, live sessions' },
+            { layer: 'Social', tools: 'AI content generation, scheduling, review management' },
+            { layer: 'Photo & Video', tools: 'Vision AI tagging, curation, searchable archive' },
+            { layer: 'Communication', tools: 'Delta Dawn AI, multi-agent coordination, voice' },
           ].map((row, i) => (
-            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '12px 0', borderBottom: '1px solid rgba(200,148,62,0.08)' }}>
-              <span style={{ fontSize: '0.95rem', color: '#9b9488' }}>{row.label}</span>
-              <span style={{ display: 'flex', gap: '16px', alignItems: 'baseline' }}>
-                <span style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: '1.2rem', fontWeight: 700, color: '#c8943e' }}>{row.amount}</span>
-                <span style={{ fontSize: '0.65rem', color: '#4a4440', width: '60px', textAlign: 'right' }}>{row.note}</span>
-              </span>
+            <div key={i} style={{ padding: '20px', borderLeft: '2px solid #c8943e' }}>
+              <h3 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: '1rem', fontWeight: 700, margin: '0 0 6px', color: '#e8e0d4' }}>{row.layer}</h3>
+              <p style={{ fontSize: '0.85rem', lineHeight: 1.5, color: '#6b635a', margin: 0 }}>{row.tools}</p>
             </div>
           ))}
         </div>
