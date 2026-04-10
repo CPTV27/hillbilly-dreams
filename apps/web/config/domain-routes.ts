@@ -103,7 +103,7 @@ export const ALL_BMT_DOMAIN_ROUTES: DomainRoute[] = [
 
 export const BMT_BRAND_PREFIXES = [
   '/touring', '/magazine', '/radio', '/economics', '/media',
-  '/platform',
+  '/platform', '/mbt',
   '/admin', '/ops', '/portal', '/gallery',
   '/records', '/studioc', '/tuthill', '/hillbilly',
   '/measurably-better', '/directory', '/entertainment',

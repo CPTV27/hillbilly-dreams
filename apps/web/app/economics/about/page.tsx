@@ -2,7 +2,7 @@
 // About — Chase and the project
 
 import type { Metadata } from 'next';
-const description = 'Chase Tuthill Pierson — Delta kid, systems thinker, reluctant economist. The story behind Outsider Economics.';
+const description = 'Chase Tuthill Pierson — photographer, filmmaker, and the guy who was Mechanical Bull. The story behind Outsider Economics.';
 export const metadata: Metadata = {
   title: 'About',
   description,
@@ -28,7 +28,7 @@ export default function AboutPage() {
             Who Wrote This
           </h1>
           <p className="section-desc" style={{ maxWidth: 640 }}>
-            Not an economist. Not an academic. Just a guy from the Delta
+            Not an economist. Not an academic. A photographer and filmmaker
             who got annoyed enough to run the numbers.
           </p>
         </div>
@@ -40,19 +40,22 @@ export default function AboutPage() {
           <div className="about-story__inner">
             <div className="about-story__text">
               <div className="section-label">The Short Version</div>
-              <h2 className="section-title">Delta Kid Makes Spreadsheet</h2>
+              <h2 className="section-title">Photographer Makes Spreadsheet</h2>
               <div className="about-story__body">
                 <p>
-                  I grew up in the Mississippi Delta — the kind of place where the last
-                  grocery store closed before I got my driver&apos;s license. Smart people left.
-                  The ones who stayed made it work anyway, trading favors and skills in a
-                  network nobody ever wrote down.
+                  I spent years behind a camera. Stills, motion, the same picture from a hundred
+                  angles until the right one showed up. I was the band Mechanical Bull — not
+                  in it, I was it — and we ended up in more movies than we ever meant to.
+                  Film sets, tour vans, small towns that were nothing like the ones on the
+                  posters. That's where this all started.
                 </p>
                 <p>
-                  Later I ended up in tech, building systems. And at some point I realized:
-                  those informal networks back home weren&apos;t just neighborly — they were
-                  an economy. A real one. Just undocumented, uncoordinated, and invisible to
-                  anyone with a spreadsheet.
+                  Later I ended up building systems, the way a lot of photographers do when they
+                  realize the work is half making the thing and half running the pipeline that
+                  ships it. And at some point I looked at the small towns I kept driving through
+                  and realized: the informal networks holding them together weren&apos;t just
+                  neighborly — they were an economy. A real one. Just undocumented, uncoordinated,
+                  and invisible to anyone with a spreadsheet.
                 </p>
                 <p>
                   So I built the spreadsheet.
@@ -103,7 +106,7 @@ export default function AboutPage() {
             <div className="about-work__card">
               <h3 className="about-work__card-title">Big Muddy Radio</h3>
               <p className="about-work__card-desc">
-                Internet radio from the Mississippi Delta. Blues, roots, the American Parlor
+                Internet radio from Natchez, Mississippi. Blues, roots, the American Parlor
                 Songbook. The soundtrack to everything else we do.
               </p>
               <a href="https://bigmuddyradio.com" className="about-work__link" target="_blank" rel="noopener noreferrer">

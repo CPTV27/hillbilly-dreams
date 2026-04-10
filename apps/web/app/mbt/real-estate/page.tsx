@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { imageBadgeStyle } from '@/lib/content-status';
 
 export const metadata: Metadata = {
   title: 'MBT Real Estate — For Brokers & Agents',
@@ -9,10 +10,15 @@ export default function MBTRealEstatePage() {
   return (
     <main style={{ background: '#0a0a08', color: '#e8e0d4', minHeight: '100vh', fontFamily: 'var(--font-body, system-ui, sans-serif)' }}>
 
-      <section style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(40px, 8vw, 120px)' }}>
-        <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 24px' }}>Measurably Better Things — Real Estate</p>
-        <h1 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2.5rem, 7vw, 5rem)', fontWeight: 800, lineHeight: 0.9, letterSpacing: '-0.04em', margin: '0 0 24px' }}>We shoot it. We set it up. You never think about it again.</h1>
-        <p style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', lineHeight: 1.6, color: '#9b9488', maxWidth: '550px', margin: 0 }}>Your listings in a magazine, on the radio, and across social media. Produced by the same team that shoots for Brown Harris Stevens and Berkshire Hathaway.</p>
+      <section style={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', position: 'relative', overflow: 'hidden' }}>
+        <img src="/images/corridor/victorian-mansion-natchez.webp" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #0a0a08 0%, rgba(10,10,8,0.5) 30%, rgba(10,10,8,0.1) 60%, transparent 100%)' }} />
+        <span style={imageBadgeStyle('borrowed')!}>BORROWED</span>
+        <div style={{ position: 'relative', zIndex: 1, padding: 'clamp(32px, 6vw, 80px)' }}>
+          <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 24px' }}>Measurably Better Things — Real Estate</p>
+          <h1 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2.5rem, 7vw, 5rem)', fontWeight: 800, lineHeight: 0.9, letterSpacing: '-0.04em', margin: '0 0 24px' }}>We shoot it. We set it up. You never think about it again.</h1>
+          <p style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', lineHeight: 1.6, color: '#9b9488', maxWidth: '550px', margin: 0 }}>Your listings in a magazine, on the radio, and across social media. Produced by the same team that shoots for Brown Harris Stevens and Berkshire Hathaway.</p>
+        </div>
       </section>
 
       <section style={{ padding: 'clamp(60px, 10vw, 120px) clamp(40px, 8vw, 120px)', borderTop: '1px solid rgba(200,148,62,0.1)' }}>
