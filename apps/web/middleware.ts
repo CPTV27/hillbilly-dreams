@@ -188,7 +188,7 @@ export async function middleware(request: NextRequest) {
     // be prefixed with the route group (e.g., /constellation, /dawn, /admin, /directory)
     // Consolidated sub-domains (April 2026) now live as top-level paths on bigmuddytouring.com
     const topLevelPassthrough = ['/constellation', '/dawn', '/admin', '/directory', '/gallery', '/snap', '/kiosk',
-      '/magazine', '/radio', '/records', '/entertainment', '/studio', '/mbt', '/demo', '/links'];
+      '/magazine', '/radio', '/records', '/entertainment', '/studio', '/air', '/chase', '/mbt', '/hillbilly', '/demo', '/links', '/foreman'];
     if (topLevelPassthrough.some(p => pathname === p || pathname.startsWith(p + '/'))) {
       return NextResponse.next();
     }
