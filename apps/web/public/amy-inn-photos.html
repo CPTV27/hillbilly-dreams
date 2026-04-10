@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Inn Photos">
+<title>Big Muddy Inn Photos — Tracy + Amy</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%2278%22 font-size=%2290%22%3E%F0%9F%8F%A8%3C/text%3E%3C/svg%3E">
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  :root {
+    --bg: #0a0a08;
+    --surface: rgba(232,224,212,0.03);
+    --surface-hover: rgba(232,224,212,0.06);
+    --text: #e8e0d4;
+    --text-muted: #9b9488;
+    --text-dim: #6b635a;
+    --accent: #c8943e;
+    --border: rgba(200,148,62,0.15);
+    --border-strong: rgba(200,148,62,0.4);
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif; line-height: 1.5; }
+  body { min-height: 100vh; padding: env(safe-area-inset-top, 0) 0 120px; }
+  .header { padding: clamp(24px, 5vw, 48px) clamp(20px, 5vw, 48px) 16px; text-align: center; background: radial-gradient(ellipse at top, rgba(200,148,62,0.08) 0%, transparent 60%), var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background-color: rgba(10,10,8,0.92); }
+  .header-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .header h1 { font-family: Georgia, serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; margin: 0 0 8px; letter-spacing: -0.02em; }
+  .header p { color: var(--text-muted); font-size: clamp(0.85rem, 1.5vw, 1rem); margin: 0 auto 12px; max-width: 600px; }
+  .header-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; font-size: 0.8rem; margin-top: 8px; }
+  .header-links a { color: var(--accent); text-decoration: none; }
+  .header-links a:hover { text-decoration: underline; }
+  .filters { padding: 20px clamp(16px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; border-bottom: 1px solid var(--border); background: var(--bg); position: sticky; top: 120px; z-index: 9; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background-color: rgba(10,10,8,0.92); }
+  .filter-btn {
+    padding: 8px 16px; border-radius: 999px; background: var(--surface);
+    border: 1px solid var(--border); color: var(--text-muted);
+    font-family: inherit; font-size: 0.78rem; font-weight: 600;
+    cursor: pointer; transition: all 150ms ease;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+  .filter-btn.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .status { text-align: center; padding: 16px; color: var(--text-muted); font-size: 0.85rem; }
+  .status .count { color: var(--accent); font-weight: 700; }
+  .loading { text-align: center; padding: 60px 24px; color: var(--text-dim); font-size: 0.95rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; padding: 0 clamp(12px, 3vw, 32px); }
+  .card {
+    position: relative; background: var(--surface); border: 2px solid var(--border);
+    border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; cursor: pointer;
+    transition: border-color 150ms ease, transform 150ms ease;
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .card.selected { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(200,148,62,0.3); }
+  .card img { width: 100%; height: 100%; object-fit: cover; display: block; background: #111; }
+  .card .check {
+    position: absolute; top: 8px; right: 8px; width: 28px; height: 28px;
+    border-radius: 50%; background: rgba(0,0,0,0.7); color: transparent;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 800; transition: all 150ms ease;
+    border: 2px solid rgba(255,255,255,0.4);
+  }
+  .card.selected .check { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .card .download {
+    position: absolute; bottom: 8px; right: 8px; width: 32px; height: 32px;
+    border-radius: 50%; background: rgba(0,0,0,0.75); color: var(--accent);
+    display: flex; align-items: center; justify-content: center; text-decoration: none;
+    font-size: 16px; border: 1px solid var(--border-strong);
+  }
+  .card .download:hover { background: var(--accent); color: var(--bg); }
+  .card .label { position: absolute; bottom: 8px; left: 8px; font-size: 0.65rem; padding: 3px 8px; background: rgba(0,0,0,0.75); border-radius: 4px; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600; }
+  .action-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    padding: 16px clamp(16px, 4vw, 48px); padding-bottom: calc(16px + env(safe-area-inset-bottom, 0));
+    background: rgba(10,10,8,0.95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--border-strong);
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    z-index: 20; transform: translateY(120%); transition: transform 250ms ease;
+  }
+  .action-bar.show { transform: translateY(0); }
+  .action-count { color: var(--text); font-size: 0.9rem; font-weight: 600; min-width: fit-content; }
+  .action-count strong { color: var(--accent); font-size: 1.1rem; }
+  .action-bar .btn { flex: 1; min-width: fit-content; padding: 14px 18px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; border: none; cursor: pointer; font-family: inherit; }
+  .action-bar .btn-primary { background: var(--accent); color: var(--bg); }
+  .action-bar .btn-primary:active { transform: scale(0.97); }
+  .action-bar .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border-strong); }
+  .action-bar .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .empty { text-align: center; padding: 80px 24px; color: var(--text-dim); }
+  .empty-title { font-family: Georgia, serif; font-size: 1.3rem; color: var(--text-muted); margin-bottom: 8px; }
+  .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 30; display: none; align-items: center; justify-content: center; padding: 20px; }
+  .modal.show { display: flex; }
+  .modal img { max-width: 100%; max-height: 90vh; border-radius: 8px; }
+  .modal-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,0.7); color: #fff; border: 1px solid rgba(255,255,255,0.3); font-size: 20px; cursor: pointer; }
+  @media (max-width: 480px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 8px; } .header { padding: 20px 16px 12px; } .header h1 { font-size: 1.5rem; } .action-bar { padding: 12px 16px; } .action-bar .btn { padding: 12px 14px; font-size: 0.8rem; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-label">Big Muddy Inn · Tracy + Amy</div>
+  <h1>Inn Photo Library</h1>
+  <p>Every photo in the library that could belong on a listing. Tap to select, download the ones you want, then open the Resize Tool.</p>
+  <div class="header-links">
+    <a href="/amy-orientation.html">← Onboarding</a>
+    <a href="/amy-photos.html">Resize Tool →</a>
+  </div>
+</div>
+
+<div class="filters" id="filters">
+  <button class="filter-btn active" data-q="all">All Inn</button>
+  <button class="filter-btn" data-q="inn">Inn</button>
+  <button class="filter-btn" data-q="bedroom">Bedrooms</button>
+  <button class="filter-btn" data-q="bathroom">Bathrooms</button>
+  <button class="filter-btn" data-q="bar">Bar</button>
+  <button class="filter-btn" data-q="porch">Porch</button>
+  <button class="filter-btn" data-q="exterior">Exterior</button>
+  <button class="filter-btn" data-q="blues room">Blues Room</button>
+  <button class="filter-btn" data-q="kitchen">Kitchen</button>
+</div>
+
+<div class="status" id="status">Loading Inn photos...</div>
+
+<div class="loading" id="loading">Searching the photo library...</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="action-bar" id="actionBar">
+  <div class="action-count"><strong id="selectedCount">0</strong> selected</div>
+  <button class="btn btn-outline" id="clearBtn">Clear</button>
+  <button class="btn btn-primary" id="downloadBtn">Download All Selected</button>
+  <a href="/amy-photos.html" class="btn btn-primary" style="text-decoration: none; text-align: center; display: inline-flex; align-items: center; justify-content: center;">Open Resize Tool →</a>
+</div>
+
+<div class="modal" id="modal">
+  <button class="modal-close" id="modalClose">×</button>
+  <img id="modalImg" src="" alt="">
+</div>
+
+<script>
+  const QUERIES = ['inn', 'bedroom', 'bathroom', 'bar', 'hallway', 'porch', 'exterior', 'blues room', 'kitchen', 'dining room', 'suite', 'living room'];
+  const PER_QUERY_LIMIT = 40;
+
+  const loadingEl = document.getElementById('loading');
+  const gridEl = document.getElementById('grid');
+  const statusEl = document.getElementById('status');
+  const actionBar = document.getElementById('actionBar');
+  const selectedCountEl = document.getElementById('selectedCount');
+  const clearBtn = document.getElementById('clearBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const filtersEl = document.getElementById('filters');
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modalImg');
+  const modalClose = document.getElementById('modalClose');
+
+  // Photo data: Map<slug, photo>
+  const allPhotos = new Map();
+  const selected = new Set();
+  let currentFilter = 'all';
+
+  function photoHero(p) {
+    return p.hero || p.grid || p.thumb;
+  }
+
+  function fullResFilename(p) {
+    // Extract a filename from the slug
+    return (p.slug || 'inn-photo').replace(/[^a-zA-Z0-9_-]/g, '_') + '.webp';
+  }
+
+  async function fetchQuery(q) {
+    try {
+      const r = await fetch('/api/photos/search?q=' + encodeURIComponent(q) + '&limit=' + PER_QUERY_LIMIT, { cache: 'no-store' });
+      if (!r.ok) return [];
+      const j = await r.json();
+      return j.results || [];
+    } catch (err) {
+      console.warn('Query failed:', q, err);
+      return [];
+    }
+  }
+
+  async function loadAllPhotos() {
+    loadingEl.textContent = 'Searching ' + QUERIES.length + ' categories in parallel...';
+    const batches = await Promise.all(QUERIES.map(fetchQuery));
+    let total = 0;
+    batches.forEach((results, i) => {
+      const q = QUERIES[i];
+      results.forEach(p => {
+        if (!allPhotos.has(p.slug)) {
+          p._queries = [q];
+          allPhotos.set(p.slug, p);
+          total++;
+        } else {
+          allPhotos.get(p.slug)._queries.push(q);
+        }
+      });
+    });
+    loadingEl.style.display = 'none';
+    statusEl.innerHTML = '<span class="count">' + total + '</span> photos loaded across ' + QUERIES.length + ' categories';
+    renderGrid();
+  }
+
+  function photoMatchesFilter(p, filter) {
+    if (filter === 'all') return true;
+    return (p._queries || []).includes(filter);
+  }
+
+  function renderGrid() {
+    gridEl.innerHTML = '';
+    const visible = Array.from(allPhotos.values()).filter(p => photoMatchesFilter(p, currentFilter));
+
+    if (visible.length === 0) {
+      gridEl.innerHTML = '<div class="empty" style="grid-column: 1/-1;"><div class="empty-title">No photos in this category</div><div>Try a different filter above</div></div>';
+      return;
+    }
+
+    for (const p of visible) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      if (selected.has(p.slug)) card.classList.add('selected');
+      card.dataset.slug = p.slug;
+
+      const img = document.createElement('img');
+      img.src = p.thumb || p.grid || p.hero;
+      img.loading = 'lazy';
+      img.alt = (p.labels || []).slice(0, 3).join(', ');
+      card.appendChild(img);
+
+      const check = document.createElement('div');
+      check.className = 'check';
+      check.textContent = '✓';
+      card.appendChild(check);
+
+      const download = document.createElement('a');
+      download.className = 'download';
+      download.href = photoHero(p);
+      download.download = fullResFilename(p);
+      download.target = '_blank';
+      download.rel = 'noopener';
+      download.title = 'Download full-res';
+      download.innerHTML = '⬇';
+      download.addEventListener('click', (e) => e.stopPropagation());
+      card.appendChild(download);
+
+      if (p._queries && p._queries.length > 0) {
+        const label = document.createElement('div');
+        label.className = 'label';
+        label.textContent = p._queries[0];
+        card.appendChild(label);
+      }
+
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.download')) return;
+        toggleSelected(p.slug);
+      });
+
+      // Long-press / double-click to open modal
+      let pressTimer;
+      card.addEventListener('mousedown', () => {
+        pressTimer = setTimeout(() => openModal(photoHero(p)), 500);
+      });
+      card.addEventListener('mouseup', () => clearTimeout(pressTimer));
+      card.addEventListener('mouseleave', () => clearTimeout(pressTimer));
+
+      gridEl.appendChild(card);
+    }
+  }
+
+  function toggleSelected(slug) {
+    if (selected.has(slug)) {
+      selected.delete(slug);
+    } else {
+      selected.add(slug);
+    }
+    updateSelectedUI();
+  }
+
+  function updateSelectedUI() {
+    selectedCountEl.textContent = selected.size;
+    if (selected.size > 0) {
+      actionBar.classList.add('show');
+    } else {
+      actionBar.classList.remove('show');
+    }
+    // Update card classes
+    document.querySelectorAll('.card').forEach(c => {
+      if (selected.has(c.dataset.slug)) c.classList.add('selected');
+      else c.classList.remove('selected');
+    });
+  }
+
+  function clearSelection() {
+    selected.clear();
+    updateSelectedUI();
+  }
+
+  async function downloadAllSelected() {
+    const list = Array.from(selected).map(slug => allPhotos.get(slug)).filter(Boolean);
+    if (list.length === 0) return;
+
+    downloadBtn.disabled = true;
+    downloadBtn.textContent = 'Downloading 0/' + list.length;
+
+    for (let i = 0; i < list.length; i++) {
+      const p = list[i];
+      const a = document.createElement('a');
+      a.href = photoHero(p);
+      a.download = fullResFilename(p);
+      a.target = '_blank';
+      a.rel = 'noopener';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      downloadBtn.textContent = 'Downloading ' + (i + 1) + '/' + list.length;
+      // Small delay to avoid browser rate-limiting
+      await new Promise(r => setTimeout(r, 400));
+    }
+
+    downloadBtn.textContent = 'Download All Selected';
+    downloadBtn.disabled = false;
+  }
+
+  function openModal(src) {
+    modalImg.src = src;
+    modal.classList.add('show');
+  }
+  function closeModal() {
+    modal.classList.remove('show');
+    modalImg.src = '';
+  }
+
+  // Event handlers
+  filtersEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.q;
+    renderGrid();
+  });
+
+  clearBtn.addEventListener('click', clearSelection);
+  downloadBtn.addEventListener('click', downloadAllSelected);
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Kick off
+  loadAllPhotos();
+</script>
+
+</body>
+</html>
