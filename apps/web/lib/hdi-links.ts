@@ -221,6 +221,7 @@ export const HDI_LINK_TREE: LinkSection[] = [
         label: 'Studio C Video',
         url: 'https://studiocvideo.com',
         note: 'Video + production · expanding to Natchez',
+        hidden: true, // DNS not yet set up (Elijah, Studio C Control Center task)
       },
       {
         label: 'Tuthill Design',
