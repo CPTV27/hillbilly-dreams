@@ -1,470 +1,223 @@
 // apps/web/app/hillbilly/page.tsx
-// Hillbilly Dreams Inc. — holding company portfolio
-// hillbillydreamsinc.com
-// Light, editorial portfolio — distinct from consumer brand dark themes.
+// Hillbilly Dreams Inc. — portfolio tour as a magazine
+// Welcome → Portfolio chart → Each property as a story
 
 import type { Metadata } from 'next';
-import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Hillbilly Dreams Inc.',
-  description:
-    'A media-hospitality company anchored in Natchez, Mississippi. We run the shows, the inn, the magazine, the radio, the records, and the directory. All of it feeds all of it.',
+  description: 'A portfolio of interesting, interconnected properties at the intersection of technology, hospitality, entertainment, and media.',
 };
-
-/** Portfolio palette — scoped to this page (not global theme tokens). */
-const c = {
-  paper: '#faf7f2',
-  paperWarm: '#f3ece4',
-  surface: '#ffffff',
-  ink: '#1a1814',
-  inkMuted: '#5c5348',
-  inkSoft: '#8a8174',
-  border: 'rgba(26, 24, 20, 0.1)',
-  accent: '#8b6914',
-  accentHover: '#6d5210',
-  shadow: '0 1px 2px rgba(26, 24, 20, 0.06), 0 8px 24px rgba(26, 24, 20, 0.06)',
-};
-
-const BRANDS = [
-  {
-    name: 'Big Muddy Touring',
-    url: 'https://bigmuddytouring.com',
-    what: 'The route, the inn, the shows. Thirteen cities between New Orleans and Memphis.',
-    image: '/images/processed/big-muddy/sprinter-van-concept.webp',
-    imageAlt: 'Tour region — Sprinter on the road',
-  },
-  {
-    name: 'Big Muddy Magazine',
-    url: 'https://bigmuddymagazine.com',
-    what: 'City guides, interviews, photo essays from the region.',
-    image: '/images/processed/big-muddy/natchez-brick-street-live-oaks.webp',
-    imageAlt: 'Natchez brick street and live oaks',
-  },
-  {
-    name: 'Big Muddy Radio',
-    url: 'https://bigmuddyradio.com',
-    what: 'Curated playlists, live sessions, the American Parlor Songbook.',
-    image: '/images/radio/podcast-hero-studio-placeholder.webp',
-    imageAlt: 'Radio studio — microphones and mixing console',
-  },
-  {
-    name: 'Big Muddy Records',
-    url: 'https://bigmuddyrecordlabel.com',
-    what: 'Independent label. Artists own their masters.',
-    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
-    imageAlt: 'Blues Room live session at The Big Muddy Inn',
-  },
-  {
-    name: 'Big Muddy Entertainment',
-    url: 'https://bigmuddyentertainment.com',
-    what: 'Booking, production, talent search across the Deep South.',
-    image: '/images/processed/arrie-aslin-inn-portrait.webp',
-    imageAlt: 'Performance in the Inn parlor',
-  },
-  {
-    name: 'Deep South Directory',
-    url: 'https://deepsouthdirectory.com',
-    what: 'Local business marketing. The engine that pays for everything else.',
-    image: '/images/region/natchez-downtown-sidewalk.webp',
-    imageAlt: 'Main Street — Natchez sidewalk and storefronts',
-  },
-  {
-    name: 'Outsider Economics',
-    url: 'https://outsidereconomics.com',
-    what: 'The field manual. Why small towns work and how to prove it.',
-    image:
-      'https://storage.googleapis.com/bmt-media-bigmuddy/illustrations/lookbook/01-woodcut/main-street-storefront.webp',
-    imageAlt: 'Woodcut illustration — Main Street storefronts and local commerce',
-  },
-  {
-    name: 'Venture Gallery',
-    url: 'https://venturegallery.art',
-    what: 'Art from regional artists. Photography, prints, limited editions.',
-    image: '/images/gallery/prints/glass-house-blue-hour.webp',
-    imageAlt: 'Fine art photograph — Glass House, Blue Hour',
-  },
-];
-
-const TEAM = [
-  { name: 'Chase Pierson', role: 'Everything Else', note: 'CEO, CTO, photographer, and the person who answers the phone.' },
-  { name: 'Tracy Alderson-Allen', role: 'Finance & Inn Operations', note: 'Equity partner. Runs the numbers and the Inn.' },
-  { name: 'Amy Allen', role: 'Inn & Bar Operations', note: 'Equity partner. Runs the bar and keeps the Blues Room alive.' },
-];
 
 export default function HillbillyDreamsPage() {
   return (
-    <main
-      style={{
-        background: c.paper,
-        color: c.ink,
-        fontFamily: 'var(--font-body, system-ui, sans-serif)',
-        minHeight: '100vh',
-      }}
-    >
-      {/* Top rule — portfolio letterhead feel */}
-      <div
-        style={{
-          height: 3,
-          background: `linear-gradient(90deg, ${c.accent} 0%, ${c.accent} 120px, ${c.border} 120px, ${c.border} 100%)`,
-        }}
-      />
+    <main style={{ background: '#0a0a08', color: '#e8e0d4', minHeight: '100vh', fontFamily: 'var(--font-body, system-ui, sans-serif)' }}>
 
-      {/* Hero */}
-      <section
-        style={{
-          padding: 'clamp(3rem, 8vw, 5.5rem) 1.5rem 3rem',
-          maxWidth: 820,
-          margin: '0 auto',
-        }}
-      >
-        <p
-          style={{
-            fontSize: '0.7rem',
-            textTransform: 'uppercase',
-            letterSpacing: '0.2em',
-            color: c.accent,
-            marginBottom: '1.25rem',
-            fontWeight: 600,
-          }}
-        >
-          Holding company · Natchez, Mississippi
-        </p>
-        <h1
-          style={{
-            fontSize: 'clamp(2.25rem, 5.5vw, 3.35rem)',
-            fontWeight: 700,
-            fontFamily: 'var(--font-display, Georgia, serif)',
-            lineHeight: 1.12,
-            letterSpacing: '-0.02em',
-            margin: '0 0 1.5rem',
-            color: c.ink,
-          }}
-        >
-          We built a media company
-          <br />
-          in a town of 14,000 people.
-        </h1>
-        <p
-          style={{
-            fontSize: '1.125rem',
-            lineHeight: 1.75,
-            color: c.inkMuted,
-            maxWidth: 640,
-            margin: 0,
-          }}
-        >
-          Hillbilly Dreams Inc. runs eight brands from one building in Natchez — an inn, a record label,
-          a magazine, a radio station, a touring operation, a gallery, a directory, and an economics
-          publication. All of it feeds all of it. The gap isn&apos;t technology — it&apos;s organization.
+      {/* WELCOME */}
+      <section style={{ minHeight: '85vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(40px, 8vw, 120px)' }}>
+        <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 24px' }}>Welcome To</p>
+        <h1 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(3rem, 8vw, 6.5rem)', fontWeight: 800, lineHeight: 0.85, letterSpacing: '-0.04em', margin: '0 0 32px', maxWidth: '1100px' }}>Hillbilly Dreams<br />Incorporated</h1>
+        <p style={{ fontSize: 'clamp(1.05rem, 1.8vw, 1.35rem)', lineHeight: 1.6, color: '#9b9488', maxWidth: '720px', margin: 0 }}>
+          A portfolio of interesting, interconnected properties at the intersection of technology, hospitality, entertainment, and media. A number of properties acting dynamically together.
         </p>
       </section>
 
-      {/* Thesis — band on warm paper */}
-      <section
-        style={{
-          background: c.paperWarm,
-          borderTop: `1px solid ${c.border}`,
-          borderBottom: `1px solid ${c.border}`,
-          padding: 'clamp(3rem, 6vw, 4.5rem) 1.5rem',
-        }}
-      >
-        <div style={{ maxWidth: 700, margin: '0 auto' }}>
-          <h2
-            style={{
-              fontSize: '0.7rem',
-              textTransform: 'uppercase',
-              letterSpacing: '0.18em',
-              color: c.accent,
-              marginBottom: '1.5rem',
-              fontWeight: 600,
-            }}
-          >
-            The thesis
+      {/* THE PORTFOLIO CHART */}
+      <section style={{ padding: 'clamp(60px, 10vw, 140px) clamp(40px, 8vw, 120px)', borderTop: '1px solid rgba(200,148,62,0.15)' }}>
+        <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>The Portfolio</p>
+        <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 800, lineHeight: 0.95, letterSpacing: '-0.03em', margin: '0 0 48px', maxWidth: '900px' }}>
+          Two businesses. One ecosystem. Two creative nodes.
+        </h2>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginBottom: '32px' }}>
+          {[
+            { tag: 'The Entertainment Business', title: 'Big Muddy Touring', desc: 'Radio show, concerts, touring, booking, record label, magazine. The radio show is the front door — musicians come on, see the ecosystem, get hooked.' },
+            { tag: 'The Product', title: 'Measurably Better Things', desc: 'Sold to towns, brokers, and banks. We clean up your digital life, make everything look amazing, and put it on autopilot. You never think about it again.' },
+            { tag: 'The Vendor', title: 'Studio C', desc: 'Video production, photography, tech support, playout systems, website management. Services both Big Muddy and MBT. Operates in both markets.' },
+            { tag: 'The Real Estate Vendor', title: 'Tuthill Design', desc: 'Handles real estate implementations of MBT. Existing brokerage relationships in the Hudson Valley — Brown Harris Stevens, Berkshire Hathaway, Coldwell Banker, Keller Williams.' },
+          ].map((prop, i) => (
+            <div key={i} style={{ padding: '32px', border: '1px solid rgba(200,148,62,0.15)', borderTop: '3px solid #c8943e', borderRadius: '4px' }}>
+              <p style={{ fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 8px' }}>{prop.tag}</p>
+              <h3 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: '1.4rem', fontWeight: 700, margin: '0 0 12px' }}>{prop.title}</h3>
+              <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: '#9b9488', margin: 0 }}>{prop.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: '#6b635a', fontStyle: 'italic', margin: 0 }}>
+          Anchored in Natchez, Mississippi. Connected to Woodstock, New York. Two creative nodes on the American map.
+        </p>
+      </section>
+
+      {/* STORY 1: BIG MUDDY TOURING */}
+      <section style={{ padding: 'clamp(60px, 10vw, 140px) clamp(40px, 8vw, 120px)', borderTop: '1px solid rgba(200,148,62,0.15)' }}>
+        <div style={{ maxWidth: '800px' }}>
+          <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>Story One</p>
+          <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 0.9, letterSpacing: '-0.03em', margin: '0 0 32px' }}>
+            Big Muddy Touring
           </h2>
-          <div style={{ lineHeight: 1.85, fontSize: '1.02rem', color: c.inkMuted }}>
-            <p style={{ margin: 0 }}>
-              The Deep South between Memphis and New Orleans produced more American music per
-              mile than anywhere on earth. The same towns that gave us blues, jazz, gospel, and rock and
-              roll are still there. The talent is still there. The culture is still there.
+          <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            It started because Amy needed her band promoted. The answer wasn&rsquo;t a flyer or a Facebook post. The answer was a media company.
+          </p>
+          <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            We built a magazine, a record label, and a radio station. We mapped the touring corridor from Memphis to New Orleans — 13 cities, 735 venues. We booked shows. We drove the van. We recorded every performance. We wrote the stories.
+          </p>
+          <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            The radio show became the front door. Musicians come on to be interviewed, see the whole ecosystem, and want in. They play the Blues Room. They record at the studio. They tour the corridor. The magazine covers it. The label distributes it. The flywheel spins.
+          </p>
+          <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#c8943e', fontWeight: 600, margin: 0 }}>
+            Amy&rsquo;s band needed promotion. We built an entertainment company to do it. Now the tools work for everyone.
+          </p>
+        </div>
+      </section>
+
+      {/* STORY 2: MEASURABLY BETTER THINGS */}
+      <section style={{ padding: 'clamp(60px, 10vw, 140px) clamp(40px, 8vw, 120px)', borderTop: '1px solid rgba(200,148,62,0.15)' }}>
+        <div style={{ maxWidth: '800px' }}>
+          <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>Story Two</p>
+          <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 0.9, letterSpacing: '-0.03em', margin: '0 0 32px' }}>
+            Measurably Better Things
+          </h2>
+          <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            Once we had the tools, other people started asking for them. Brokers saw the magazine and wanted their listings in it. Mayors saw the directory and wanted it for their town. Restaurant owners saw the social posts and wanted their bakery to look that good online.
+          </p>
+          <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            So we packaged it. Measurably Better Things is the product version of what Big Muddy does every day. We come, we shoot, we set you up, and then we put it on autopilot. You never think about your marketing again unless you want to.
+          </p>
+          <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            A town buys it for $10,000 and gets a content library, a business directory, and a marketing engine. A broker buys it for $500 a month and gets their listings in a magazine, on the radio, across social media. An agent pays $150 and rides under their broker&rsquo;s brand.
+          </p>
+          <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#c8943e', fontWeight: 600, margin: 0 }}>
+            Same platform. Different skin. Every vertical gets what it needs.
+          </p>
+        </div>
+      </section>
+
+      {/* STORY 3: STUDIO C */}
+      <section style={{ padding: 'clamp(60px, 10vw, 140px) clamp(40px, 8vw, 120px)', borderTop: '1px solid rgba(200,148,62,0.15)' }}>
+        <div style={{ maxWidth: '800px' }}>
+          <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>Story Three</p>
+          <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 0.9, letterSpacing: '-0.03em', margin: '0 0 32px' }}>
+            Studio C
+          </h2>
+          <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            The production company that makes the rest of it possible. Video, photography, broadcast systems, websites. Studio C is the vendor that services Big Muddy and Measurably Better Things both.
+          </p>
+          <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            When a band plays the Blues Room, Studio C shoots it. When a broker buys MBT, Studio C shoots the listings. When a town signs on, Studio C comes for a week and captures everything. The corridor from Memphis to New Orleans. The Hudson Valley to Bearsville. Same team. Same cameras. Same eye.
+          </p>
+          <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#c8943e', fontWeight: 600, margin: 0 }}>
+            The content is the product. Studio C makes the content.
+          </p>
+        </div>
+      </section>
+
+      {/* STORY 4: TUTHILL DESIGN */}
+      <section style={{ padding: 'clamp(60px, 10vw, 140px) clamp(40px, 8vw, 120px)', borderTop: '1px solid rgba(200,148,62,0.15)' }}>
+        <div style={{ maxWidth: '800px' }}>
+          <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>Story Four</p>
+          <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 0.9, letterSpacing: '-0.03em', margin: '0 0 32px' }}>
+            Tuthill Design
+          </h2>
+          <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            The real estate arm. Hudson Valley architectural and interiors photography for the brokerages that actually move houses — Brown Harris Stevens, Berkshire Hathaway, Coldwell Banker, Keller Williams, Win Morrison, Halter Associates. Airbnb and VRBO property shoots.
+          </p>
+          <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            When Measurably Better Things sells a real estate product, Tuthill Design handles the implementation. They already know the market, the buyers, and the properties. They&rsquo;ve been shooting for these brokerages for years.
+          </p>
+          <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#c8943e', fontWeight: 600, margin: 0 }}>
+            The existing relationships become the pilot customers.
+          </p>
+        </div>
+      </section>
+
+      {/* THE TWO NODES */}
+      <section style={{ padding: 'clamp(60px, 10vw, 140px) clamp(40px, 8vw, 120px)', borderTop: '1px solid rgba(200,148,62,0.15)' }}>
+        <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>Two Nodes</p>
+        <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 0.9, letterSpacing: '-0.03em', margin: '0 0 48px' }}>
+          Natchez, Mississippi. Woodstock, New York.
+        </h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px' }}>
+          <div>
+            <h3 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: '1.4rem', fontWeight: 700, margin: '0 0 16px' }}>Natchez, Mississippi</h3>
+            <p style={{ fontSize: '1rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 12px' }}>
+              The anchor. The Big Muddy Inn, the Blues Room, the radio station, the corridor. 14,000 people on a 200-foot bluff over the river. Blues, jazz, gospel, and the oldest settlement on the Mississippi.
             </p>
-            <p style={{ margin: '1.35rem 0 0' }}>
-              What&apos;s missing is coordination. A photographer, a radio station, a venue, a magazine, a
-              record label, and a touring route — if they&apos;re all in the same building, they stop
-              being separate businesses and start being an ecosystem. Every show feeds the magazine. Every
-              magazine feature feeds the radio. Every radio play feeds the record label. Every record feeds
-              the next show.
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: '#6b635a', margin: 0 }}>
+              Where the entertainment business lives.
             </p>
-            <p style={{ margin: '1.35rem 0 0', color: c.ink, fontWeight: 500 }}>
-              That&apos;s not a theory. That&apos;s what we&apos;re running right now.
+          </div>
+          <div>
+            <h3 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: '1.4rem', fontWeight: 700, margin: '0 0 16px' }}>Woodstock, New York</h3>
+            <p style={{ fontSize: '1rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 12px' }}>
+              The northeast node. Bearsville Creative, the Hudson Valley photography business, the Tuthill Design clientele. Arts and culture. Same playbook, different river.
+            </p>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: '#6b635a', margin: 0 }}>
+              Where the product pilots with real estate.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Brands — card grid */}
-      <section style={{ padding: 'clamp(3rem, 6vw, 5rem) 1.5rem', maxWidth: 1120, margin: '0 auto' }}>
-        <h2
-          style={{
-            fontSize: '0.7rem',
-            textTransform: 'uppercase',
-            letterSpacing: '0.18em',
-            color: c.accent,
-            marginBottom: '0.35rem',
-            fontWeight: 600,
-          }}
-        >
-          Portfolio
+      {/* THE TECHNOLOGY */}
+      <section style={{ padding: 'clamp(60px, 10vw, 140px) clamp(40px, 8vw, 120px)', borderTop: '1px solid rgba(200,148,62,0.15)' }}>
+        <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>The Technology</p>
+        <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 0.9, letterSpacing: '-0.03em', margin: '0 0 32px', maxWidth: '800px' }}>
+          One platform. Every brand runs on it.
         </h2>
-        <p
-          style={{
-            fontFamily: 'var(--font-display, Georgia, serif)',
-            fontSize: 'clamp(1.5rem, 3vw, 1.85rem)',
-            fontWeight: 600,
-            color: c.ink,
-            margin: '0 0 2rem',
-            lineHeight: 1.3,
-          }}
-        >
-          Eight brands. One building.
-        </p>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: '1.25rem',
-          }}
-        >
-          {BRANDS.map((brand) => (
-            <a
-              key={brand.name}
-              href={brand.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'block',
-                textDecoration: 'none',
-                color: 'inherit',
-                background: c.surface,
-                borderRadius: 12,
-                overflow: 'hidden',
-                border: `1px solid ${c.border}`,
-                boxShadow: c.shadow,
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-              }}
-              className="hdi-brand-card"
-            >
-              <div style={{ position: 'relative', aspectRatio: '16 / 10', width: '100%' }}>
-                <Image
-                  src={brand.image}
-                  alt={brand.imageAlt}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
-              <div style={{ padding: '1.25rem 1.35rem 1.4rem' }}>
-                <p
-                  style={{
-                    fontSize: '1rem',
-                    fontWeight: 700,
-                    color: c.accent,
-                    margin: '0 0 0.4rem',
-                    letterSpacing: '-0.01em',
-                  }}
-                >
-                  {brand.name}
-                  <span style={{ fontWeight: 400, color: c.inkSoft, fontSize: '0.85rem' }}> ↗</span>
-                </p>
-                <p
-                  style={{
-                    fontSize: '0.875rem',
-                    color: c.inkMuted,
-                    lineHeight: 1.55,
-                    margin: 0,
-                  }}
-                >
-                  {brand.what}
-                </p>
-              </div>
-            </a>
-          ))}
+        <div style={{ maxWidth: '800px' }}>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            A single codebase serves every Hillbilly Dreams property. The magazine, the radio station, the record label, the directory, the touring engine, the Inn, the product pages — all one system. Different skins. Same engine.
+          </p>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            AI handles the daily work. Photos get tagged automatically. Social posts get generated and scheduled. Reviews get managed. The radio station runs itself. The content flywheel turns without a human touching it.
+          </p>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: '#9b9488', margin: '0 0 20px' }}>
+            When a broker or a town buys Measurably Better Things, they&rsquo;re buying access to the same platform that runs Big Muddy. The difference is the skin, the brand, and the content. The engine is already proven.
+          </p>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: '#c8943e', fontWeight: 600, margin: 0 }}>
+            We built it for ourselves first. Now it works for everyone.
+          </p>
         </div>
       </section>
 
-      {/* People */}
-      <section
-        style={{
-          background: c.paperWarm,
-          borderTop: `1px solid ${c.border}`,
-          padding: 'clamp(3rem, 6vw, 4.5rem) 1.5rem',
-        }}
-      >
-        <div style={{ maxWidth: 700, margin: '0 auto' }}>
-          <h2
-            style={{
-              fontSize: '0.7rem',
-              textTransform: 'uppercase',
-              letterSpacing: '0.18em',
-              color: c.accent,
-              marginBottom: '2rem',
-              fontWeight: 600,
-            }}
-          >
-            Leadership
-          </h2>
-          {TEAM.map((person, i) => (
-            <div
-              key={person.name}
-              style={{
-                padding: '1.25rem 0',
-                borderBottom: i < TEAM.length - 1 ? `1px solid ${c.border}` : 'none',
-              }}
-            >
-              <p style={{ fontSize: '1.05rem', fontWeight: 700, margin: '0 0 0.15rem', color: c.ink }}>
-                {person.name}
-              </p>
-              <p style={{ fontSize: '0.8rem', color: c.accent, margin: '0 0 0.35rem', fontWeight: 600 }}>
-                {person.role}
-              </p>
-              <p style={{ fontSize: '0.875rem', color: c.inkMuted, margin: 0, lineHeight: 1.55 }}>
-                {person.note}
-              </p>
+      {/* THE PEOPLE */}
+      <section style={{ padding: 'clamp(60px, 10vw, 140px) clamp(40px, 8vw, 120px)', borderTop: '1px solid rgba(200,148,62,0.15)' }}>
+        <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>The People</p>
+        <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 0.9, letterSpacing: '-0.03em', margin: '0 0 48px' }}>
+          A small team with big leverage.
+        </h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px' }}>
+          {[
+            { name: 'Chase Pierson', role: 'Founder, Creative Director', bio: 'Photography, architecture, the radio show, the story. Twenty-five years behind the lens. Wrote Outsider Economics.' },
+            { name: 'Tracy Alderson-Allen', role: 'Executive Producer, Finance', bio: 'Runs the Inn, edits the magazine, keeps the books honest. Equity partner. Nothing ships without her sign-off.' },
+            { name: 'Amy Allen', role: 'Inn & Bar Operations, Musician', bio: 'The reason this all started. Runs the hospitality side, plays the room, knows every guest by name. Equity partner.' },
+            { name: 'Elijah & Miles', role: 'Bearsville Creative', bio: 'The northeast node. Arts and culture programming in Woodstock. Activating summer 2026.' },
+          ].map((person, i) => (
+            <div key={i} style={{ padding: '24px', borderLeft: '2px solid #c8943e' }}>
+              <h3 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: '1.1rem', fontWeight: 700, margin: '0 0 4px' }}>{person.name}</h3>
+              <p style={{ fontSize: '0.7rem', color: '#c8943e', margin: '0 0 12px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>{person.role}</p>
+              <p style={{ fontSize: '0.85rem', lineHeight: 1.6, color: '#6b635a', margin: 0 }}>{person.bio}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Origin */}
-      <section style={{ padding: 'clamp(3rem, 6vw, 4.5rem) 1.5rem', maxWidth: 700, margin: '0 auto' }}>
-        <h2
-          style={{
-            fontSize: '0.7rem',
-            textTransform: 'uppercase',
-            letterSpacing: '0.18em',
-            color: c.accent,
-            marginBottom: '1.5rem',
-            fontWeight: 600,
-          }}
-        >
-          Origin
+      {/* CLOSING */}
+      <section style={{ padding: 'clamp(80px, 12vw, 180px) clamp(40px, 8vw, 120px)', textAlign: 'center', borderTop: '1px solid rgba(200,148,62,0.15)' }}>
+        <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2.5rem, 7vw, 5rem)', fontWeight: 800, letterSpacing: '-0.04em', lineHeight: 0.9, margin: '0 0 24px' }}>
+          Hillbilly Dreams Incorporated.
         </h2>
-        <div style={{ lineHeight: 1.85, fontSize: '0.98rem', color: c.inkMuted }}>
-          <p style={{ margin: 0 }}>
-            In 2022, Chase Pierson designed a complete media production-to-distribution pipeline —
-            broadcast, production, analytics, distribution — built on open source tools. It was
-            architecture for running a media company at any scale.
-          </p>
-          <p style={{ margin: '1.25rem 0 0' }}>
-            He realized the same system that runs a Viacom can run a small-town media economy. Big Muddy
-            is that architecture, applied to Main Street, anchored in the Deep South.
-          </p>
-          <p
-            style={{
-              margin: '1.5rem 0 0',
-              fontStyle: 'italic',
-              color: c.accent,
-              fontFamily: 'var(--font-display, Georgia, serif)',
-              fontSize: '1.05rem',
-            }}
-          >
-            The gap isn&apos;t technology — it&apos;s organization. That&apos;s what we sell.
-          </p>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section
-        style={{
-          background: c.ink,
-          color: c.paper,
-          padding: 'clamp(3.5rem, 8vw, 5rem) 1.5rem',
-          textAlign: 'center',
-        }}
-      >
-        <div style={{ maxWidth: 520, margin: '0 auto' }}>
-          <h2
-            style={{
-              fontSize: 'clamp(1.5rem, 3vw, 1.85rem)',
-              fontWeight: 700,
-              fontFamily: 'var(--font-display, Georgia, serif)',
-              marginBottom: '0.75rem',
-              color: c.paper,
-            }}
-          >
-            Want to talk?
-          </h2>
-          <p
-            style={{
-              fontSize: '1rem',
-              lineHeight: 1.65,
-              marginBottom: '1.75rem',
-              color: 'rgba(250, 247, 242, 0.75)',
-            }}
-          >
-            We&apos;re always looking for musicians, businesses, and people who want to build something real
-            in the region.
-          </p>
-          <a
-            href="mailto:info@hillbillydreamsinc.com"
-            style={{
-              display: 'inline-block',
-              padding: '0.9rem 2.25rem',
-              background: c.paper,
-              color: c.ink,
-              textDecoration: 'none',
-              fontWeight: 700,
-              fontSize: '0.9rem',
-              letterSpacing: '0.02em',
-              borderRadius: 6,
-            }}
-          >
-            info@hillbillydreamsinc.com
-          </a>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer
-        style={{
-          borderTop: `1px solid ${c.border}`,
-          padding: '1.75rem 1.5rem',
-          textAlign: 'center',
-          background: c.paper,
-        }}
-      >
-        <p style={{ margin: '0 0 0.75rem' }}>
-          <a
-            href="/hillbilly/org-chart"
-            style={{
-              fontSize: '0.875rem',
-              fontWeight: 600,
-              color: c.accent,
-              textDecoration: 'none',
-            }}
-          >
-            Who does what — org chart
-          </a>
+        <p style={{ fontSize: '1.1rem', color: '#9b9488', margin: 0 }}>
+          Natchez, Mississippi + Woodstock, New York.
         </p>
-        <p
-          style={{
-            fontSize: '0.65rem',
-            color: c.inkSoft,
-            textTransform: 'uppercase',
-            letterSpacing: '0.12em',
-            margin: 0,
-          }}
-        >
-          Powered by Measurably Better Things
+      </section>
+
+      <footer style={{ padding: '40px', textAlign: 'center', borderTop: '1px solid rgba(200,148,62,0.08)' }}>
+        <p style={{ fontSize: '0.6rem', color: '#2a2620', letterSpacing: '0.1em', textTransform: 'uppercase', margin: 0 }}>
+          Hillbilly Dreams Inc &middot; A portfolio of interesting, interconnected properties
         </p>
       </footer>
-
-      <style>{`
-        .hdi-brand-card:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 28px rgba(26, 24, 20, 0.12);
-        }
-      `}</style>
     </main>
   );
 }
