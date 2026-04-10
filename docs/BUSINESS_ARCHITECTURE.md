@@ -277,7 +277,7 @@ Running the system on ourselves before licensing to an external institution:
 
 ### New Modules & Features
 - **WiFi Captive Portal** (`/welcome/wifi`) — Email capture for Inn guests. Branded splash page, shows tonight's events, links to Radio. Future: deploy at any ecosystem business.
-- **Musician Directory** (`/directory/onboard/musician`) — Same tier model as DSD ($0/$20/$49/$99) but for bands. Genre, streaming links, availability, fee range. Listing page detects musicians and shows "Book This Artist" CTA.
+- **Musician Directory** (`/directory/onboard/musician`) — Same tier model as DSD ($0/$25/$50/$99/$250, Apr 5 canon) but for bands. Genre, streaming links, availability, fee range. Listing page detects musicians and shows "Book This Artist" CTA.
 - **Client Photo Delivery** (`/gallery/clients/[name]`) — Masonry grid with lightbox, heart favorites, print ordering ($25-$350), tip jar (Stripe), share buttons, download requests. Template for all future client deliveries.
 - **Voice AI** (`/measurably-better/life`) — Southern Concierge. Tap-to-talk mic button, Whisper STT, Gemini Flash reasoning with real database queries.
 
