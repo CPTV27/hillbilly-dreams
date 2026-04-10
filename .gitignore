@@ -97,3 +97,18 @@ terraform/terraform.tfstate*
 terraform/*.tfvars
 .env*.local
 scripts/stingers/out/
+
+# Large binary media — belongs in GCS, not git (GitHub 100 MB hard limit)
+# Added 2026-04-10 pre-freeze
+content/episode-1/clips/
+content/episode-1/exports/
+content/episode-1/review-approve/
+content/episode-1/*.mp4
+content/episode-1/*.mov
+docs/creative/*.pdf
+docs/creative/*.pptx
+docs/creative/*.key
+docs/creative/*.mp4
+docs/creative/*.mov
+*.psd
+*.ai

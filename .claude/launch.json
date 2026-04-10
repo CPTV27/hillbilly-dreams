@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "web",
-      "cwd": "apps/web",
+      "cwd": "/Users/chasethis/hillbilly-dreams/apps/web",
       "runtimeExecutable": "/opt/homebrew/bin/node",
       "runtimeArgs": ["/opt/homebrew/bin/npx", "next", "dev"],
       "port": 3000,

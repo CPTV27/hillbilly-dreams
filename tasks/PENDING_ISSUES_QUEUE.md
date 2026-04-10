@@ -30,3 +30,636 @@ The recent local database schema expansions were heavily throttled by MacOS `EPE
 - Explicitly set `PRISMA_CLI_QUERY_ENGINE_TYPE=library` in environment configs.
 - Override the Prisma Client output path in `schema.prisma` natively to `node_modules/.prisma/client` to bypass the global cache lock.
 - Run a clean `pnpm turbo build` in a pipeline simulating a completely fresh container.
+
+---
+
+## Issue: Generate 30-Second Apple-Style Product Trailer (MBT + Big Muddy)
+**Labels:** `P0`, `Type: Media Generation`, `Trailer`, `Capability Demo`
+**Requested:** 2026-04-10 — Chase, mid-presentation
+**Brief:** `.claude/worktrees/vigilant-dubinsky/docs/tasks/VIDEO_TRAILER_30S_BRIEF.md`
+
+**Description:**
+Full 30-second trailer showcasing Hillbilly Dreams ecosystem AND demonstrating our own video/voice/music/image generation stack. The medium is the message — every tool used must be our own (Veo 3, ElevenLabs, Suno, Imagen 3, assembly pipeline).
+
+**Pipeline (route to subagents):**
+1. Voice generation (ElevenLabs → Cloud TTS fallback) — script in brief
+2. Video generation (Veo 3) — shot list in brief
+3. Music generation (Suno or equivalent) — brief in brief
+4. Assembly (Mac mini / DaVinci or ffmpeg agent)
+5. QA pass (QA_CHASE)
+6. Upload to `gs://bmt-media-bigmuddy/trailers/mbt-30s-v1.mp4`
+7. Notify Chase via Google Chat webhook
+
+**Acceptance:**
+- 30s ± 1s
+- 16:9, 9:16, 1:1 cuts delivered
+- Real Natchez footage (no stock)
+- Chase previews before public
+- Brand-accurate color grade (#0a0a08 / #e8e0d4 / #c8943e)
+
+**Owner:** Media Generation Agent
+**Full brief:** `docs/tasks/VIDEO_TRAILER_30S_BRIEF.md` in vigilant-dubinsky worktree
+
+---
+
+## Issue: Explore Unified Insurance Policy — Big Muddy Touring + Studio C
+**Labels:** `P2`, `Type: Ops/Finance`, `Insurance`, `Risk`
+**Requested:** 2026-04-10 — Chase
+**Owner:** Finance Director agent (route to ops/finance)
+
+**Description:**
+Explore options for putting Big Muddy Touring and Studio C on the same commercial insurance policy. Two operating entities, shared facilities (Blues Room, studios), shared vehicles (Sprinter van, potential bus), overlapping personnel working across both brands. A unified policy may reduce premium, simplify renewals, and give broader coverage than two separate policies.
+
+**Research to produce:**
+1. **Package policy options** — BOP (Business Owners Policy), commercial package, industry-specific (entertainment / production company). Which carriers underwrite both live music venues AND video production under one policy?
+2. **Coverage components needed:**
+   - General liability (music events, production sets, public venue)
+   - Property (Blues Room equipment, Studio C gear, instruments, cameras, vehicles)
+   - Commercial auto (Sprinter van, touring vehicles, potential bus)
+   - Inland marine / scheduled equipment (high-value cameras, audio gear)
+   - Workers comp (equity partners + vendor staff — verify what structure requires it)
+   - Liquor liability (Blues Room / bar ops — coordinate with Inn policy if separate)
+   - Errors & omissions (media production, editorial publishing via magazine/radio)
+   - Cyber / data (CMS, customer data from DSD, MBT platform)
+3. **Entity structure gotchas** — FarleyPierson LLC is the operating entity; HDI not yet incorporated; Studio C is a separate vendor. Can one policy cover multiple legal entities via "named insured" + "additional insureds"? Or does it need a holding company above?
+4. **Carrier shortlist** to get quotes from: Heffernan, Front Row, Allied (all entertainment-industry specialists); also State Farm / Liberty Mutual / Travelers commercial divisions for comparison.
+5. **What Tracy needs** to brief a broker — schedule of assets, revenue projections, headcount/contractor count, venues/locations, vehicle VINs.
+
+**Deliverables:**
+- Options comparison document (package vs. separate policies, cost estimate ranges)
+- Broker outreach checklist for Tracy
+- List of documents to gather before quote calls
+- Risk map — what's currently uncovered or under-covered
+
+**Not doing:** Do NOT purchase or bind any policy. Research only. Tracy approves direction, Chase signs.
+
+**Notes:**
+- Insurance shopping is a 2–4 week process, not urgent for today's presentation.
+- If Inn has existing hospitality policy, coordinate — don't create gaps at the handoff points.
+- Equity partners (Tracy, Amy) are owners not employees — affects workers comp requirements.
+
+---
+
+## Issue: Brand Competition Series — Winner Becomes Founding Creative Executive
+**Labels:** `P1`, `Type: Strategic`, `Brand`, `Creative Competition`
+**Requested:** 2026-04-10 — Chase
+
+**Description:**
+Set up a structured competition series — one per brand in the HDI portfolio — where multiple AI agents (or agent + model combos) compete to produce the best version of that brand's creative work. The winner of each competition is not just awarded a fee — **the winning agent becomes the founding creative executive for that brand**. They get to produce:
+
+1. The full brand video (30s, 60s, 3-minute cuts)
+2. All brand assets for all websites (hero photography direction, typography palette, illustration system)
+3. The ongoing creative direction for that brand until replaced
+4. A standing seat in the agent roster — persisted identity, name, voice, portfolio
+
+**Brands to run competitions for:**
+1. Big Muddy Touring
+2. Big Muddy Magazine
+3. Big Muddy Radio
+4. Big Muddy Records
+5. Big Muddy Entertainment (house band + events)
+6. Deep South Directory
+7. Measurably Better Things (the platform)
+8. Outsider Economics
+9. Hillbilly Dreams Inc (corporate)
+10. Bearsville Creative (NE node — Elijah + Miles could judge)
+11. Chase Pierson Photography / Venture Gallery
+12. Big Muddy Inn (hospitality)
+13. The House Band (Swampers model — Arrie Aslin + future residents)
+
+**Competition format (draft):**
+- **Brief release** — each competition gets a shared brand brief, source photos, copy anchors, Chase's voice rules (Iron & Earth)
+- **Sprint** — competing agents have N hours to produce the full deliverable package
+- **Blind judging** — Chase, Tracy, Amy (and Elijah/Miles for Bearsville) rank entries without seeing agent names
+- **Honest claims gate** — entries that use unshipped features or invent facts are disqualified
+- **Winner ceremony** — winning agent gets the founding executive title, a persisted identity file in `.claude/agents/`, and their work ships
+- **Loser feedback** — losing agents get detailed critique to improve for the next round
+
+**Why this matters:**
+- Forces quality through competition instead of relying on a single agent's taste
+- Creates genuine agent specialization — the Big Muddy Radio winner is different from the Outsider Economics winner
+- Produces real shipable assets at every round
+- Builds Chase's agent roster as a meritocracy instead of a spawn list
+- Documents the HDI brand system by generating many variants against the same brief
+
+**Owner:** Chief of Staff (routes to brand-voice skills, spawns competing agents in isolated worktrees)
+**Prerequisites:**
+- Canonical brand briefs per brand (some exist in `.claude/agents/brands/`, most don't)
+- Judging rubric — scorecard Chase, Tracy, Amy actually want to use
+- Isolated worktree-per-agent execution (so each competitor has an independent branch)
+- Winner persistence mechanism (how does the founding executive identity survive across sessions)
+
+**First step:** Pick ONE brand as pilot. Recommend Big Muddy Radio — it has clear deliverables (station ID, show posters, voice direction) and lowest risk. Run the first competition, learn the format, then scale.
+
+**Do not start competitions today.** Chase is in a presentation. Queue the framework, then he approves the first pilot brand.
+
+---
+
+## Issue: HDI Utility Tokens — Store + Trade Value Across Preferred Vendor Network
+**Labels:** `P2`, `Type: Strategic`, `Type: Tokenomics`, `Type: Legal`, `Needs Counsel`
+**Requested:** 2026-04-10 — Chase, late in a working session
+**Status:** EXPLORATION ONLY — nothing ships without a securities attorney
+
+**The idea Chase floated:**
+Utility tokens could stand in place of currency where HDI wants to store and trade value across its preferred vendor network. Concrete example from the conversation: **Studio C could work for "BitToken stocks" of Hillbilly Dreams** — i.e., accept HDI tokens as partial compensation for production work, where the tokens represent future participation in HDI's growth.
+
+This is not a crypto play for its own sake. It's a way to:
+- Pay preferred vendors (Studio C, Tuthill Design, Terry, Arrie, future partners) without burning cash
+- Give vendors a stake in HDI's upside without issuing formal equity or SAFEs (which require real legal machinery HDI doesn't have yet)
+- Build a value-exchange layer that makes the ecosystem more aligned — everyone in the network wins as HDI wins
+- Keep optionality open for Brian Windle / Source Protocol integration if that conversation advances
+
+**The fork in the road (must pick before any tokenomics work happens):**
+
+| Type | What it is | Legal exposure | Build complexity |
+|---|---|---|---|
+| **A. Closed-loop credit** | Internal "HDI Bucks" — not tradeable, not a security, redeemable only within the ecosystem (Inn stays, magazine ads, DSD listings) | Low — similar to airline miles or retail points | Low — a database table + a UI |
+| **B. On-chain utility token** | An actual ERC-20 or Source Protocol SPL-equivalent, tradeable on secondary markets | HIGH — almost certainly a security under Howey test if it promises upside from HDI's growth | High — smart contract + audit + legal + exchange listings |
+| **C. Stablecoin-backed credit** | USD-pegged internal unit, convertible back to cash with a penalty (Chase's earlier "export with a big penalty" idea) | Medium — money transmitter licensing gets complicated above certain volumes | Medium |
+| **D. NFT-style equity pass** | A limited-run NFT that represents a founding partner seat, not actively traded, mostly symbolic | Medium — still a security if it promises returns | Medium |
+
+**"BitToken stocks of Hillbilly Dreams" sounds like Option B.** That's the one that needs the most careful handling because promising upside from HDI's growth is the classic definition of a security under the Howey test. It can be done legally (Reg A, Reg D, Reg CF exemptions exist) but it's a 6-12 month effort with counsel.
+
+**The pragmatic alternative** — Option A (closed-loop credit) combined with a separate Partner Equity program for vendors who want actual HDI participation. This gets most of the ecosystem benefit without the legal complexity.
+
+---
+
+## The "Survivalist Version" Question (unresolved)
+
+Chase asked for a tokenomics analysis for "the survivalist version" but did not define what that means. Three candidate interpretations, all worth taking seriously:
+
+1. **Off-grid resilient infrastructure** — the version of HDI that runs on the Mac mini, survives network outages, and degrades gracefully. Tokens here would be a local settlement unit that works even when Stripe is down. This ties to the Mac mini SPOF + UPS + Homebridge thread.
+2. **Lean bootstrap tokenomics** — the cheapest legal version of value exchange that avoids blockchain gas fees, smart contract audits, and SEC exposure. Option A closed-loop credit fits this.
+3. **Outsider Economics community capital framework** — the thesis of Chase's book extended into an operating mechanic. Community dues, pooled capital, local settlement units. This is the most ambitious version and the most on-brand for HDI.
+
+**Chase should clarify which one before any tokenomics work starts.** Most likely interpretation: #3 — the Outsider Economics framework operationalized.
+
+---
+
+## Google AI Studio Connection
+
+Chase mentioned Google AI Studio in the same breath as the token idea. AI Studio is Google's dev console — it's not where tokens get issued, and it doesn't have native tokenization features. The likely intent is one of:
+
+- **AI credits as tokens** — HDI customers buy AI agent compute in pre-paid token bundles. Tokens meter usage of Gemini / Veo / Imagen through AI Studio or Vertex AI. This is real and achievable — it's a metering layer, not blockchain.
+- **Admin console for token issuance** — Chase uses AI Studio prompts to decide who gets tokens and why. This is just "use Claude / Gemini as an admin tool." Not really tokenomics.
+- **Red herring** — Chase was brainstorming and AI Studio was the last tool he'd touched. Verify with him.
+
+**Recommend confirming with Chase which of the three he meant before wiring anything into AI Studio.**
+
+---
+
+## What Needs To Happen Before Any Tokenomics Work Is Real
+
+1. **Chase picks one of A/B/C/D.** Without this, any analysis is fiction.
+2. **Chase defines "survivalist version."**
+3. **Chase confirms Google AI Studio's actual role.**
+4. **HDI is incorporated first.** You cannot issue "BitToken stocks of Hillbilly Dreams" when HDI is not a filed entity. Finance + Insurance + Legal all flagged this same bottleneck today.
+5. **A securities attorney is consulted.** Not optional. Not skippable. Even Option A (closed-loop credit) has consumer-protection implications above certain volumes.
+6. **The preferred vendor agreements exist on paper first.** Token compensation to Studio C for production work requires a base vendor agreement that says compensation is partly in tokens and defines what that means.
+
+**Owner when picked up:** Finance Director + (new) Legal & Entity Structure department + (new) Product MBT department.
+
+**Do not start today.** Chase is in the middle of a presentation and several other concurrent threads. Log the thinking, revisit when he has calendar space and wants to focus on this specifically.
+
+---
+
+## Issue: MBT Open Core Architecture + Platform-Agnostic Principles
+**Labels:** `P1`, `Type: Strategic`, `Type: Architecture`, `Type: Licensing`, `Needs Counsel`
+**Requested:** 2026-04-10 — Chase, late-night working session
+**Status:** STRATEGIC PIVOT — needs Chase's explicit go-ahead before any docs are rewritten
+
+**The statement Chase made:**
+> "I want our platform to be Bitcoin platform agnostic, crypto agnostic. I want us to be compatible with as many things as possible because Measurably Better Things is an open source project."
+
+This is a meaningfully different positioning from where `docs/BUSINESS_ARCHITECTURE.md` currently describes MBT. The canonical doc today describes MBT as "a licensed civic-commerce operating system" sold as "a program sale." That framing is incompatible with "MBT is an open source project" unless we pick a specific open-core model that lets both be true simultaneously.
+
+**This issue exists because the two positions need to be reconciled.**
+
+---
+
+### The open-core decision (pick one before rewriting docs)
+
+**Pattern A — Open Core (Apache 2.0 / MIT)** — **recommended**
+- Core MBT platform is fully open source, free to fork, self-host, run your own town
+- HDI sells the managed service, hosted version, Chief of Staff orchestration, enterprise support, content production bundles, training, migration help
+- Used by: Supabase, Plausible, Cal.com, PostHog, Sentry, GitLab, Bitwarden, and most successful B2B open source companies
+- Strongest for Outsider Economics alignment — the book tells people to build their own local economy, the code is the tool to do it with
+- Strongest for Brian Windle / Source Protocol conversation — crypto-agnostic core means MBT can integrate Source as one of many options, not commit to Source as the only chain
+- Strongest for investor story — open core is a proven model investors understand
+
+**Pattern B — Source Available (BSL / SSPL)**
+- Core is readable, auditable, forkable for personal use
+- Commercial resale (running it as a competing SaaS) requires HDI license
+- Used by: Sentry, CockroachDB, MongoDB
+- More defensive, less evangelistic
+- Still compatible with crypto-agnostic claims
+
+**Pattern C (rejected) — "Licensed program AND open source"**
+- These two positions cannot coexist without a specific open-core model
+- If Chase picks this without picking A or B, the business model breaks
+
+**Recommendation:** Pattern A (full Apache 2.0 open core) for the MBT platform kernel, with everything HDI actually sells sitting as a proprietary service layer on top.
+
+---
+
+### What goes in the open core vs the proprietary layer
+
+**Open core (Apache 2.0) — `packages/mbt-core/*`:**
+- Directory module (business listings, categories, search)
+- Content generation module (AI-routed, provider-agnostic)
+- Magazine / editorial CMS kernel
+- Radio streaming kernel
+- Review management kernel
+- Photography pipeline (Vision AI tagging, GCS-agnostic storage)
+- Plugin interfaces for: payment rails, identity providers, AI providers, storage backends, blockchain adapters
+- Multi-tenant tenant config scaffolding
+- Open documentation site
+
+**Proprietary service layer — `packages/hdi-*/*`:**
+- **The Chief of Staff orchestrator** (the $99 Marketing tier moat — do not open source this, it is what you sell)
+- Brand-specific agents (Delta Dawn, Gaffer, Robin, Levee, the whole `.claude/agents/` roster)
+- HDI's specific content production bundles (Studio C video, Tuthill design, Chase Pierson photography)
+- Town kickstart / broker pilot / enterprise contracts and workflows
+- HDI's revenue-sharing + commission ledger
+- HDI's specific brand voice, photography, editorial templates
+- The Foreman canvas (HDI-specific node structure and operator UX)
+
+**Rule of thumb:** If it's code that runs a town, it's open core. If it's the human + AI service that runs on top of the code, it's proprietary.
+
+---
+
+### Platform-agnostic architectural principles
+
+Regardless of the open-core decision, Chase stated he wants MBT to be **compatible with as many things as possible**. This is a technical architecture principle that should be codified in `docs/BUSINESS_ARCHITECTURE.md` as a new section:
+
+**1. Payment rails are plug-in.** The MBT core has a `PaymentProvider` interface. Stripe is the default implementation today. Adapters can be written for ACH, wire, Bitcoin (via BTCPay Server or Lightning), Source Protocol, any future chain, and any future fintech rail. No hardcoded assumption that payments = Stripe.
+
+**2. AI providers are plug-in.** `lib/ai-models.ts` already does this — Anthropic, Google, OpenAI, xAI, local Llama all route through the same interface. The open core exposes the same interface publicly. Anyone forking MBT can swap providers.
+
+**3. Storage is plug-in.** `StorageProvider` interface. GCS today, S3/R2/local filesystem/IPFS/Arweave all pluggable.
+
+**4. Identity is plug-in.** `IdentityProvider` interface. Email + password, OAuth (Google, GitHub, Sign in with Apple), WebAuthn, Sign in with Vercel, future DIDs all pluggable.
+
+**5. Blockchain integration is optional.** MBT core does not assume you use any chain. But if you want to, the `BlockchainAdapter` interface lets you plug in Bitcoin, Source Protocol, Solana, Base, or anything else. HDI's own deployment may or may not use a chain — that's a business decision, not a platform decision.
+
+**6. Content provenance is pluggable.** The `content-status.ts` system (borrowed / AI / placeholder / final) is part of the open core and can be extended by forks.
+
+---
+
+### Revenue model under open core
+
+| Layer | Source | How HDI captures value |
+|---|---|---|
+| **MBT core code** | Apache 2.0, free | Evangelism → new customers for HDI's hosted version |
+| **Hosted MBT at deepsouthdirectory.com** | $0 / $25 / $50 / $99 / $250 | Service revenue, current ladder |
+| **Chief of Staff ($99 tier)** | Proprietary, bundled in Marketing tier | The moat — orchestration + auto-follow-ups + attention liberation |
+| **Content production bundles** | Studio C + Tuthill + Chase Pierson | Service revenue with revenue share back to the HDI family companies |
+| **Town kickstarts** | $10,000 | Service revenue — a production week + platform setup |
+| **Enterprise support + SLA** | $500/mo and up | Service revenue |
+| **Training + migration help** | Project-based | Service revenue |
+| **Brand competitions + founding executives** | Internal, not sold | Marketing + agent roster building |
+
+Total under open core = same total as under "licensed program" — maybe higher because the open core brings in evangelism-driven leads that a closed program can't.
+
+---
+
+### Governance question
+
+If MBT core is genuinely open source, who decides what gets merged? Three options:
+
+1. **BDFL (Chase)** — Chase is the benevolent dictator. Simplest, ships fastest, concentrates decision-making.
+2. **HDI committee** — Chase + Tracy + Amy + Miles + Elijah as the merge council. More democratic, slower.
+3. **Open governance (RFC + contributor ladder)** — full community governance with a CONTRIBUTING.md, CODE_OF_CONDUCT.md, RFC process, contributor ladder. Most open, most work.
+
+**Recommendation: start as BDFL (Chase)** and evolve toward option 3 as the community grows. This is how Linux, Python, and most real open source projects actually started. A `GOVERNANCE.md` file is needed once there's a public repo.
+
+---
+
+### What needs to happen before this ships
+
+1. **Chase picks Pattern A or Pattern B.** Without this, nothing else can be written.
+2. **Chase picks a license** (Apache 2.0 recommended for A, BSL 1.1 or SSPL for B).
+3. **Repo split decision** — does the open core live in the same monorepo with a clear package boundary, or does it get hoisted into a separate public repo at github.com/hillbilly-dreams/mbt-core? I recommend the monorepo-with-boundary approach — less ops work, easier to keep in sync.
+4. **All five Q2 department reports need to be updated** to reflect the open core positioning:
+   - Finance — revenue model doesn't change much under open core, but the pitch to investors does
+   - Sales MBT Enterprise — pitch becomes "here's the platform, which is free, and here's the service we wrap around it, which is what you pay for"
+   - Product MBT — roadmap gets a clear "open core" / "proprietary layer" split
+   - Insurance & Risk — E&O coverage scope may change (advising on open source vs licensing closed software have different liability profiles)
+   - Technical / Build — needs a real repo split plan
+5. **`docs/BUSINESS_ARCHITECTURE.md` rewrite** — the "licensed civic-commerce OS" framing needs to be replaced with "open core civic-commerce platform, hosted service + Chief of Staff orchestration layer"
+6. **A securities attorney should review** — Apache 2.0 is extremely standard and low-risk, but anything involving tokens + open source + a founder's holding company is worth running past counsel once.
+
+---
+
+### Questions for Chase (answer when fresh)
+
+1. **Pattern A (Apache 2.0) or Pattern B (source-available BSL)?** My recommendation is A.
+2. **Does the Chief of Staff orchestrator stay closed-source?** My strong recommendation is YES — it's the moat.
+3. **Does the open source thing apply only to the MBT core, or also to brand-specific agents?** My recommendation: core open, agents closed.
+4. **Do you want a single repo with a package boundary, or a separate public repo?** Recommendation: single repo with boundary.
+5. **Who's the initial governance model?** Recommendation: BDFL (Chase) for the first year.
+6. **Do you want me to write the full decision doc tonight or queue it for a dedicated session?** The decision doc is 60–90 minutes of careful work. Not a midnight task.
+
+**Do not start rewriting BUSINESS_ARCHITECTURE.md or the five Q2 reports until Chase explicitly approves the pivot.**
+
+---
+
+## Issue: Apple HomeKit + Homebridge Integration — Physical Spaces In The HDI UI/UX
+**Labels:** `P1`, `Type: Infrastructure`, `Type: Product`, `HomeKit`, `Mac mini`
+**Requested:** 2026-04-10 — Chase
+**Owner:** Patch (Technical Director) + new department TBD (Broadcasting Operations)
+
+**Description:**
+Integrate Apple HomeKit into the HDI ecosystem using Homebridge on the Mac mini. The goal is to make physical spaces (Big Muddy Inn, Blues Room, Studio C, Bearsville) controllable from the Foreman, from guest iPhones, and from Tracy/Amy's iPads via Apple's native Home app. Physical world and digital world move together on one tap.
+
+**Critical correction:**
+Chase initially framed this as "use the Mac mini as a HomeKit server." Apple removed Mac as a supported HomeKit hub years ago. The correct architecture is:
+- **HomeKit hub** (required for remote access + automations): HomePod mini (~$100) or Apple TV at the Inn
+- **Device exposure layer:** Homebridge running on the Mac mini, exposing everything as HomeKit accessories
+- **Client apps:** Apple Home app on iPhone/iPad (Chase, Tracy, Amy, guests)
+
+**Prerequisites (MUST ship before HomeKit goes live):**
+1. **UPS for the Mac mini** (~$120 APC Back-UPS). Without it, a power blink kills broadcasting + room controls simultaneously.
+2. **Mac mini runbook** — documented reboot, service restart, health check procedures. See tech report findings.
+3. **Cold-standby plan** — second mini at the Inn mirroring the Homebridge config, so the Inn survives if the studio mini dies. Can be deferred to Phase 2.
+4. **Fix the mini's GitHub credentials** (currently broken per earlier inventory — can't fetch/push).
+
+**Phase 1 — Foundation (1 week):**
+- Install Homebridge on Mac mini (`npm install -g homebridge homebridge-config-ui-x`)
+- Install HomePod mini at the Inn (or provision existing Apple TV as hub)
+- Create the HDI HomeKit Home: "Big Muddy" with rooms for Inn (by room number), Blues Room, Studio C, Bearsville (future)
+- Wire Homebridge to the Mac mini's existing services as HomeKit accessories:
+  - OpenBroadcaster status → virtual "ON AIR" switch
+  - Icecast stream → virtual music player
+  - Plex → virtual media player
+  - Postiz → virtual "Publishing" status light
+  - Open Notebook → not exposed (no physical-world value)
+- Document plugins: homebridge-config-ui-x (web UI), homebridge-http-switch (generic API bridge), homebridge-camera-ffmpeg (parking cameras)
+
+**Phase 2 — Physical Inn integration (2-3 weeks):**
+- Audit Inn current hardware: thermostats, locks, lights, TVs, Bluetooth speakers
+- Bridge what's already HomeKit-native directly (skip Homebridge where possible)
+- Bridge non-HomeKit gear via Homebridge plugins (there's one for almost every brand)
+- Create per-room HomeKit scenes: "Arrive," "Sleep," "Away," "Party"
+- Guest invite flow: when a booking is confirmed, guest gets a HomeKit Home invite limited to their room and their stay window
+
+**Phase 3 — Foreman integration (2-4 weeks, depends on Foreman build):**
+- Foreman nodes for each physical space
+- Tap-to-agent pattern extended to physical actions
+- Spawned agents like **Gaffer** (Blues Room lighting), **Otis** (Inn maintenance), **Cue** (studio signage) that can trigger HomeKit scenes via the Mac mini's Homebridge API
+- "Start Show Tonight" becomes one tap → stage lights, on-air sign, stream start, cameras rolling
+- "Arrie arrives Thursday" becomes one tap → her room auto-configures on her arrival time
+
+**Phase 4 — Public product feature (4-8 weeks):**
+- Wrap the guest HomeKit invite flow into the Inn's booking confirmation email
+- Market as "Big Muddy Inn, the first boutique hotel where your iPhone already has the key" (only if we actually ship it — honest claims gate)
+- Document the pattern as a reusable module in MBT Civic / MBT Hospitality (sell to other inns, B&Bs)
+
+**Acceptance criteria:**
+- [ ] Homebridge running on Mac mini with uptime monitoring
+- [ ] HomePod mini or Apple TV operating as HomeKit hub
+- [ ] At least 3 Inn room accessories exposed in Apple Home app
+- [ ] At least 1 Blues Room scene triggered from an Apple Shortcut or Foreman tap
+- [ ] Runbook documented for "Homebridge died, what do I do"
+- [ ] Cold-standby plan drafted (Phase 2 can be just a plan, Phase 1 ships without the redundant hardware)
+
+**Risks:**
+- **SPOF amplification on the Mac mini** — adding HomeKit responsibilities makes the mini even more critical. Mitigate with UPS + runbook + standby.
+- **Guest privacy** — HomeKit invites expire automatically, but audit the flow end-to-end.
+- **Apple platform lock-in** — if HDI ever pivots to Android-first guests, this investment is partly stranded. Accept it because you're iPad-first anyway.
+- **Honest claims** — do not advertise "smart Inn" until at least 3 rooms and 1 full scene work end-to-end.
+
+**Hardware shopping list (for Chase to approve):**
+- APC Back-UPS 850VA — ~$120 (prerequisite, ships first)
+- HomePod mini — ~$100 (HomeKit hub at the Inn)
+- Second Mac mini (used M1, refurb) — ~$400 (Phase 2 cold standby, optional)
+- Smart plugs (Meross or Eve brand, HomeKit-native) — ~$30/room × 8 rooms = $240
+- Smart door lock (Aqara U100 or Schlage Encode Plus) — ~$200/door × 8 doors = $1,600 (biggest line item, defer if tight)
+- **Phase 1 MVP hardware: ~$220 (UPS + HomePod mini only) — rest can be incremental.**
+
+**Owner recommendation:** Stand up a new "Broadcasting & Physical Operations" department that owns the Mac mini stack, Homebridge, HomeKit, OpenBroadcaster, Icecast, Plex, Postiz, and the physical-space automation layer. This department is one of the ones already listed in `docs/tasks/HDI_DEPARTMENT_OPERATIONAL_REPORTS.md` (#18 Broadcasting Operations). Roll HomeKit under it.
+
+**Do not start today.** Chase is in a presentation. This is a build-next-week project. Prerequisites (UPS + runbook) should ship first regardless of whether HomeKit happens.
+
+---
+
+## Issue: Chase Pierson Photography — Independent Pricing From Tuthill Design
+**Labels:** `P1`, `Type: Pricing`, `Type: Brand`, `Chase Pierson Photography`
+**Requested:** 2026-04-10 — Chase, during presentation
+**Owner:** Gallery Director + Finance
+
+**Description:**
+Chase Pierson Photography needs its own pricing catalog, independent from Tuthill Design's real estate media packages. The two should not be conflated. Rules:
+
+1. **Chase Pierson Photography has its own pricing** — published on the gallery / photography site, distinct from Tuthill's Realtor Pulse / listing media packages.
+2. **Chase still shoots for Tuthill Design customers if they request him specifically** — this is an a-la-carte upsell on top of Tuthill packages, not the default fulfillment.
+3. **The pricing needs to make it obvious** that hiring Chase personally is different from hiring "Tuthill's photographer of the day." Chase's rate reflects portfolio-level work; Tuthill's default rate reflects listing-throughput work. Both are real, both coexist.
+
+**What to produce:**
+- Published pricing page at `/photography/pricing` or `/gallery/pricing` (confirm slug with Chase)
+- Package tiers for Chase Pierson Photography (likely: Portrait session, Editorial day rate, Commercial half-day / full-day, Print/licensing fee schedule, Travel rates, Rush rates)
+- Print pricing already exists in `apps/web/app/gallery/` — this is the SERVICES pricing, distinct from print sales
+- Clear language that Tuthill Design clients can "request Chase" as an upgrade
+- Handoff mechanic: how does a Tuthill client route a "can Chase shoot it?" request? Email? Form? Chief of Staff tap-to-agent?
+
+**Not doing:**
+- Do NOT undercut Tuthill's base pricing — Chase's pricing should be a clear upgrade tier
+- Do NOT overlap into "listing media throughput" — that's Tuthill's lane
+- Do NOT publish until Chase approves the numbers
+
+**First step:** Gallery Director drafts three proposed tier schedules (Conservative / Market / Premium), Chase picks one, Finance reviews against tax-db for any conflicts, page ships after approval.
+
+**NEW — dedicated booking website for Chase:**
+Chase asked for a standalone booking site he can use in the Deep South market immediately. Not a page buried under bigmuddytouring.com — a clean, own-brand site where:
+
+- Photographers, agencies, magazines, real estate agents, chefs, venues, event organizers can book Chase directly
+- His rates are published (Portrait / Editorial / Commercial / Travel / Licensing)
+- His availability shows his current region (Natchez now, Hudson Valley when he's there)
+- Book-a-shoot form routes to Chase's inbox and to The Foreman as a node
+- Payment via Stripe (deposit + balance pattern)
+- Gallery/book section showcases recent work
+- Clear statement: "Tuthill Design clients can request me specifically — ask for a quote"
+
+**Domain candidates:** chasepierson.tv (already Chase's email domain), chasepierson.photo, chasepiersonphotography.com. Chase picks.
+
+**Stack recommendation:** Same Next.js monorepo, new route group `/photography` or a new subdomain routing to its own page set. Can ship as a new tenant in `apps/web/config/tenants.ts` if Chase wants full brand isolation. Reuses the existing photo pipeline (Lightroom CC → GCS → signed URLs).
+
+**First pass deliverable for the Miles + Elijah meeting tomorrow:** a single rate card page at `/photography/book` (no full site yet) so Chase can point people at a URL if they ask during the meeting. Full site build-out is Phase 2.
+
+---
+
+## Issue: Onboard Terry — Writer + Commission Sales (Referral Partner)
+**Labels:** `P1`, `Type: People`, `Type: Editorial`, `Type: Sales`, `Terry`, `NEW HIRE`
+**Requested:** 2026-04-10 — Chase, same day he met with Terry (neighbor + friend of Tracy, writer)
+**Status:** Needs last name (`[?]`) — check with Tracy before formalizing any contract
+**Reports to:** Tracy (editorial), dotted line to MBT Enterprise Sales (referral program)
+
+**Description:**
+Terry is Tracy's neighbor and friend. She's a writer. Chase met with her today and wants to bring her on in a dual role:
+
+1. **Writing team — reports to Tracy.** Terry oversees some of the writing under Tracy's direction as Executive Producer. Tracy is already the editor of Big Muddy Magazine; Terry becomes the editorial sub-lead for specific beats (to be scoped with Tracy).
+2. **Commission sales — referral partner.** Terry has relationships in her community and can move HDI products (DSD listings, MBT Real Estate broker packages, MBT Civic for her network, Inn stays, Big Muddy Magazine sponsorships). She earns on a recurring basis so this can actually be something she builds and sustains — not a one-time kickback.
+
+**Both roles exist at once.** She writes AND she refers. The two feed each other — when she writes a magazine feature about a local business, that's natural lead-gen for a DSD listing or a sponsorship.
+
+---
+
+### Writing team role
+
+**Title:** Contributing Editor or Editorial Sub-Lead (Tracy picks the exact title)
+**Reports to:** Tracy Alderson-Allen, Executive Producer, Big Muddy Magazine
+**Scope (to be scoped with Tracy — starting guesses):**
+- Local feature writing — Natchez businesses, people, places, history
+- Editing and shaping contributed pieces from the community
+- Finding and recruiting other writers over time (if the network grows)
+- Attending events Tracy can't make and writing them up
+- Maintaining a beat schedule aligned with Big Muddy Magazine's publishing cadence
+
+**Compensation for the writing side (to be scoped with Tracy + Finance):**
+- Per-piece rate (e.g., $X per feature, $Y per short piece, $Z per editing pass)
+- Or a monthly editorial retainer if Tracy prefers steady output
+- Or a mix — small retainer + per-piece bonuses
+- Tracy decides the structure; Finance signs off on the number
+
+---
+
+### Commission sales role — this is the part that needs design
+
+**The principle Chase stated:** Terry gets paid on a **recurring basis** so she can build and sustain this. Not a one-time finder's fee. Not "here's $500 for the intro." A real, long-term commission on the revenue her referrals generate.
+
+**Recommended structure — Referral Partner Program (Terry is Partner #1):**
+
+| Product referred | Commission structure | Why |
+|---|---|---|
+| DSD listing ($0/$25/$50/$99/$250) | **15% of MRR for 12 months** | Recurring, simple, aligned |
+| MBT Real Estate Broker ($199/$500/$1,500) | **10% of MRR for 12 months** | Higher ticket, longer cycle |
+| MBT Civic ($10k kickstart + $500/mo SLA) | **$500 flat on kickstart + 10% of SLA for 12 months** | Big upfront, recurring tail |
+| Magazine sponsorship | **15% of sponsor fee, recurring per issue** | Clean recurring |
+| Inn stays (direct-booked via Terry's referral) | **10% of booking value** | One-time, low effort for us |
+| Ongoing DSD renewal (months 13+) | **5% residual** | Sustains Terry over time |
+
+The 12-month primary + 5% residual pattern means Terry earns **real money in the first year** and **residual income after** — exactly what Chase asked for: something she can build and sustain.
+
+**Why this structure works:**
+- Every tier has an easy answer to "what do I get for bringing someone in"
+- The residual means Terry can refer someone in 2026 and still be earning in 2028 if they stay
+- It's a model we can extend to other referral partners as the program proves out (Regina, other neighbors, Miles, Elijah, etc.)
+- It aligns with Chase's stated principle that nobody at HDI is an employee-first relationship — equity partners, contractors, referral partners
+
+**Legal/ops requirements before anyone refers anyone:**
+- A **Referral Partner Agreement** template (from Legal department, once it exists — this is a new blocker for that dept)
+- W-9 on file (Finance)
+- A way to **track the attribution** — when Terry refers Joe's Cafe, the system has to remember "Terry → Joe's Cafe → DSD Essentials tier → $25/mo" so her commission routes correctly
+- Monthly payout via Stripe Connect, ACH, or check — Tracy and Terry decide
+- Tax form (1099-NEC) at year-end
+
+**Technical requirements (Product MBT picks this up):**
+- Add a `referral_partner_id` field on the DSD / MBT onboarding flows ("Who referred you?")
+- Build a simple referral partner dashboard — Terry logs in, sees her referrals, current MRR, projected payout, paid history
+- Stripe Connect OR manual monthly reporting + ACH push to start (simpler, ships faster)
+- Commission ledger in the database — who referred who, what they're owed, what's been paid
+
+---
+
+### First 30 days — concrete plan
+
+**Week 1 (this week):**
+- Tracy and Terry have a working dinner/coffee to define the editorial scope
+- Chase gets her last name and adds her to the team in `CLAUDE.md`
+- Legal (new dept) drafts the Referral Partner Agreement template — this is also Partner #1 for that template
+- Finance adds her to the payables ledger
+- A single Notion/Google Doc with Terry's beats, cadence, and first 3 assignments
+
+**Week 2:**
+- First piece due from Terry (a Natchez feature of Tracy's choosing)
+- Terry gets the referral program walkthrough from Chase — what each product is, how to talk about it, how the commission works
+- She signs the Referral Partner Agreement (backdated to week 1 if needed)
+
+**Week 3:**
+- First piece publishes in Big Muddy Magazine
+- Terry has her first 3 target referrals identified (her network + her editorial reach)
+- Feedback loop — does this feel sustainable to her?
+
+**Week 4:**
+- First full month in both roles
+- Tracy gives editorial feedback
+- First referral (if any) logged in the commission ledger
+- Review with Chase on whether the structure needs tuning
+
+---
+
+### Things to decide with Chase + Tracy (BEFORE Terry signs anything)
+
+1. **Terry's last name** (blocker on `CLAUDE.md` team section + any public mention)
+2. **Exact title** — Contributing Editor? Editorial Sub-Lead? Writer? (Tracy picks)
+3. **Writing compensation structure** — per-piece / retainer / hybrid (Tracy + Finance)
+4. **Referral program formal name** — "Big Muddy Partners"? "HDI Referral Network"? Something else?
+5. **Stripe Connect now or manual ACH now?** — Stripe Connect is cleaner but adds implementation weight. Manual ACH ships tomorrow.
+6. **Does the referral program extend to others day one** or is Terry the pilot and we add partners after her model is proven? Recommendation: Terry is the pilot for 90 days, then we roll the program out.
+7. **Public vs private partner program** — do we put a "Become a Partner" page on deepsouthdirectory.com or is this invite-only by Chase/Tracy?
+
+**Chase should decide 1–4 this week, 5–7 this month.**
+
+---
+
+### Honest note about dual roles
+
+Writing + sales in the same person is usually a conflict of interest at big publications — editorial independence matters. At HDI, it's a feature not a bug **as long as disclosure is honest**:
+
+- When Terry writes about a business that's also a paying DSD customer OR a business she referred, the piece needs a disclosure line ("Disclosure: Joe's Cafe is a Deep South Directory subscriber and was introduced to the program by the author.")
+- Tracy owns the honesty gate on this — the same way she edits voice, she edits disclosures
+- This is actually a selling point: "Terry writes about the places she believes in, and when you become part of the network she keeps writing about you."
+- Model on `memory/feedback_honest_claims_only.md` — we don't hide commercial relationships, we name them and keep the work honest.
+
+**This is not a blocker. It's a discipline.** Flag in the agreement so everyone knows the rules up front.
+
+---
+
+### Radio — third lane for Terry (on the air if she wants it)
+
+Chase also said: **she can have her own radio show. Or if she doesn't want her own show, we can get her on the air if she wants to be on the air. Chase will make a show for her. We're going to make a lot of shows.**
+
+Big Muddy Radio is the front door of the entertainment company. Terry is a writer with a community and a voice — exactly the profile of a great host. Adding a radio lane to her onboarding:
+
+**Option A — Her own show (if she wants it):**
+- Format: a weekly 30-minute or hour-long show built around Terry's beat — could be Natchez features, community voices, writer interviews, book talk, whatever she's passionate about
+- Chase produces and hosts her into the format — she doesn't have to build it alone
+- Recorded at the Blues Room or the studio, same pipeline as every other Big Muddy Radio show
+- Goes into the 18-show lineup on bigmuddyradio.com (or wherever the show schedule lives)
+- The show IS her audience-building engine for both the writing and the referrals — the three roles reinforce each other
+
+**Option B — Guest appearances (if she doesn't want her own show):**
+- Recurring segment on an existing show — Morning Levee Rise, or something Chase hosts
+- Low commitment, she shows up when she has something to say
+- Still builds her audience and her voice
+- Great on-ramp if she wants to try before committing to a full show
+
+**Principle Chase stated:** "We're going to make a lot of shows." — Terry is one of the first new hosts. The Big Muddy Radio lineup expansion becomes a standing pattern: every new person joining HDI gets asked "do you want to be on the air in some form?" The people who say yes become hosts, guests, correspondents. The people who say no stay off the air — no pressure.
+
+**How this connects to Terry's commission sales:**
+- Every show she's on is also a soft referral moment — she talks about local businesses, introduces people, builds the social proof that makes her DSD / MBT / sponsorship pitches easier
+- If a business she features on-air becomes a DSD customer, that's a referral. Same attribution rules as above. Same commission structure.
+- The honesty gate still applies: if Terry's on the air talking about a business she referred, she names it as her referral.
+
+**Ask for Terry (when she's brought in):**
+- Do you want your own show, guest segments, or to stay off the air entirely?
+- There's no wrong answer. Whichever you pick is what we build.
+
+**Ask for the Radio department (doesn't exist yet as its own dept — lives under Big Muddy Touring):**
+- Build a "show intake" template for onboarding new hosts — equipment, recording schedule, publishing cadence, voice guide
+- Add Terry as a prospective host in the show lineup planning doc
+- Start the pattern: every new HDI person gets asked about radio
+
+**Do not start building her show until Terry confirms she wants one.** This is opt-in, not draft.
+
+**Geographic availability (important):**
+Chase is not always in the Hudson Valley. He is increasingly in Mississippi running HDI day to day. The "request Chase" booking flow must handle this explicitly:
+
+- The booking form / request path must show Chase's current region and his next Hudson Valley availability window (or "ask for travel quote" if the client needs him out of region)
+- If Chase is in Mississippi, the response is "I'm available — here's the travel addendum to the quote" OR "next Hudson Valley window is [date]" — never a silent decline
+- Tuthill's default photographer queue handles the throughput jobs when Chase isn't available; Chase is the reserved upgrade
+- This is also true in reverse: Tuthill clients in Hudson Valley who want Chase AND Chase happens to be in Natchez → travel quote, not a no
+- The calendar should live on the Foreman as a node that other agents can read ("is Chase in Natchez this week?") so the booking response is always current
+
+Implementation note: this is a natural first Tracy-tap-to-agent use case. Tracy taps "Chase availability for Vicki Wolpert client" on the Foreman, an agent named, say, **Levee** pulls Chase's calendar, writes the quote with or without travel fees, and hands off to Tracy for approval.
+
