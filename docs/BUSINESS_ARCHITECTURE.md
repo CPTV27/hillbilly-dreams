@@ -172,17 +172,26 @@ Natchez is the live case study that proves MBT works before licensing to other m
 **Modules used:** Magazine, AI Content Pipeline
 **Voice:** Sophisticated, accessible. Field manual energy.
 
-### Studio C Video (PARTNER — Implementation Arm)
+### Studio C Video (PARTNER — Two-Market Production)
 
 **What:** Production and implementation services. Recording, video, broadcasting, training.
 **Domain:** studiocvideo.com
-**Note:** Chase 40% owner. The done-for-you rollout and media production arm of MBT.
+**Ownership:** Chase is a 40% owner.
+**Growth move (Q2/Q3 2026):** Expanding into the Natchez market. Adds capability, region, and customer base. Opens a working exchange between Utopia in Bearsville and the Deep South — radio shows and content move between the two rooms. The remote workflow gets tested on real paying projects in both markets at once.
 
-### Tuthill Design (PARTNER)
+### Tuthill Design (PARTNER — Two-Market Design + Real Estate)
 
-**What:** Design studio.
+**What:** Design studio and real estate media specialist, proven in the Hudson Valley.
 **Domain:** tuthilldesign.com
-**Note:** Elijah's company. Integrates with Studio C.
+**Ownership:** Elijah's company. Integrates operationally with Studio C.
+**Growth move (Q2/Q3 2026):** Expanding the platform built in Woodstock into the Deep South so HDI has coverage in both markets. Post-production is remote anyway. Chase works with Tracy as interior designer to push Tuthill design services into the Natchez corridor. Same platform, two markets.
+
+### Chase Pierson Photography (OWNED — Independent Practice)
+
+**What:** Chase's personal photography practice. Editorial, portraits, commercial, fine art.
+**Positioning:** Separate from Tuthill Design's default real estate media pricing. Chase publishes his own rates and his own book. Tuthill clients can *request Chase* specifically as an upgrade.
+**Booking website (Q2 2026 — NEW):** A dedicated booking site for Chase's rates and availability, usable in the Deep South market immediately. See `PENDING_ISSUES_QUEUE.md`.
+**Availability rule:** Chase is increasingly in Natchez. The booking flow must handle his actual location and quote travel when needed. He does not silently decline — he quotes.
 
 ---
 

@@ -79,7 +79,7 @@ export default function PresentationPage() {
               The radio show is the front door. Musicians come on, see the ecosystem, get hooked.
             </p>
             <p style={{ fontSize: '1rem', lineHeight: 1.7, color: '#c8943e', fontWeight: 600, margin: 0 }}>
-              Studio C is a vendor for video, production, and tech support.
+              Studio C handles the video, production, and tech. Expanding into Natchez this year.
             </p>
           </div>
           <div style={{ padding: '40px', border: '1px solid rgba(200,148,62,0.2)', borderTop: '3px solid #c8943e', borderRadius: '6px' }}>
@@ -93,7 +93,7 @@ export default function PresentationPage() {
               You never think about it again.
             </p>
             <p style={{ fontSize: '1rem', lineHeight: 1.7, color: '#c8943e', fontWeight: 600, margin: 0 }}>
-              Studio C and Tuthill Design are vendors.
+              Studio C and Tuthill Design run the delivery. Both expanding into the Deep South.
             </p>
           </div>
         </div>
@@ -143,6 +143,62 @@ export default function PresentationPage() {
             <p key={i} style={{ fontSize: '1.1rem', color: '#e8e0d4', margin: '0 0 14px', paddingLeft: '20px', borderLeft: '2px solid #c8943e' }}>
               {item}
             </p>
+          ))}
+        </div>
+      </section>
+
+      {/* THE TECH STACK */}
+      <section style={{ padding: 'clamp(40px, 8vw, 100px)', borderTop: '1px solid rgba(200,148,62,0.1)' }}>
+        <p style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>
+          The Tech Stack
+        </p>
+        <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 800, lineHeight: 0.95, margin: '0 0 24px' }}>
+          One platform. Every tool wired together.
+        </h2>
+        <p style={{ fontSize: '1rem', lineHeight: 1.6, color: '#9b9488', maxWidth: '650px', margin: '0 0 40px' }}>
+          Same engine runs every vertical. Directory, magazine, radio, social, photo archive, AI — all connected.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', maxWidth: '900px' }}>
+          {[
+            { layer: 'Directory', tools: 'Business data, analytics, review management' },
+            { layer: 'Magazine', tools: 'Editorial CMS, photo pipeline, publishing' },
+            { layer: 'Radio', tools: 'Streaming, scheduling, live sessions' },
+            { layer: 'Social', tools: 'AI content, multi-channel scheduling' },
+            { layer: 'Photo & Video', tools: 'Vision AI tagging, searchable archive' },
+            { layer: 'AI Agents', tools: 'Delta Dawn, voice, multi-agent coordination' },
+          ].map((row, i) => (
+            <div key={i} style={{ padding: '20px', borderLeft: '2px solid #c8943e' }}>
+              <h3 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: '1rem', fontWeight: 700, margin: '0 0 6px', color: '#e8e0d4' }}>{row.layer}</h3>
+              <p style={{ fontSize: '0.85rem', lineHeight: 1.5, color: '#6b635a', margin: 0 }}>{row.tools}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* THE MATH */}
+      <section style={{ padding: 'clamp(40px, 8vw, 100px)', borderTop: '1px solid rgba(200,148,62,0.1)' }}>
+        <p style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>
+          MBT Revenue Model
+        </p>
+        <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 800, lineHeight: 0.95, margin: '0 0 40px' }}>
+          It stacks.
+        </h2>
+        <div style={{ maxWidth: '550px' }}>
+          {[
+            { label: 'Town kickstart', amount: '$10,000', note: 'one-time' },
+            { label: 'Network SLA', amount: '$500/mo', note: 'ongoing' },
+            { label: '50 businesses at $50/mo', amount: '$2,500/mo', note: 'recurring' },
+            { label: '1 broker at $500/mo', amount: '$500/mo', note: 'recurring' },
+            { label: '5 agents at $150/mo', amount: '$750/mo', note: 'recurring' },
+            { label: 'Shows (2:1 multiplier)', amount: 'variable', note: 'Inn + bar' },
+          ].map((row, i) => (
+            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '14px 0', borderBottom: '1px solid rgba(200,148,62,0.1)' }}>
+              <span style={{ fontSize: '1.05rem', color: '#9b9488' }}>{row.label}</span>
+              <span style={{ display: 'flex', gap: '16px', alignItems: 'baseline' }}>
+                <span style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: '1.3rem', fontWeight: 700, color: '#c8943e' }}>{row.amount}</span>
+                <span style={{ fontSize: '0.7rem', color: '#4a4440', width: '65px', textAlign: 'right' }}>{row.note}</span>
+              </span>
+            </div>
           ))}
         </div>
       </section>

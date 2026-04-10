@@ -59,9 +59,9 @@ export default function MBTPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '24px' }}>
           {[
             { title: 'Big Muddy Touring', role: 'The Entertainment Business', desc: 'Radio show, concerts, touring, booking, label services. The radio show is the front door — musicians come on, see the ecosystem, want in. Studio C is a vendor.' },
-            { title: 'Measurably Better Things', role: 'The Product', desc: 'Sold to municipalities, brokers, banks. Always with a support package. Studio C and Tuthill Design are vendors. Placeholder for a web services vendor as it grows.' },
-            { title: 'Studio C', role: 'The Vendor', desc: 'Video production, tech support, playout systems, website. Services both Big Muddy and MBT. The cash flow engine that funds the creative work.' },
-            { title: 'Tuthill Design', role: 'Real Estate Vendor', desc: 'Handles real estate-specific MBT implementations. Existing relationships with Brown Harris Stevens, Berkshire Hathaway, Coldwell Banker, Keller Williams.' },
+            { title: 'Measurably Better Things', role: 'The Product', desc: 'Sold to municipalities, brokers, banks. Always with a support package. Studio C and Tuthill Design run delivery — both expanding from their home markets into the other region for two-coast coverage.' },
+            { title: 'Studio C', role: 'The Vendor', desc: 'Video production, tech support, playout systems, website. Expanding into Natchez adds capability, region, and customer base — and opens a working exchange between Utopia in Bearsville and the Deep South. Same radio shows, two rooms, content moving both ways. The remote workflow proven in the field.' },
+            { title: 'Tuthill Design', role: 'Design + Real Estate Partner', desc: 'The design and real estate arm. Proven in Woodstock with Brown Harris Stevens, Berkshire Hathaway, Coldwell Banker, Keller Williams — now expanding into the Deep South market for coverage on both ends of the corridor. Tracy leads interior design. Post-production runs remote. Same platform, two markets.' },
           ].map((company, i) => (
             <div key={i} style={{ padding: '28px', border: '1px solid rgba(200,148,62,0.1)', borderRadius: '4px' }}>
               <p style={{ fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 8px' }}>{company.role}</p>

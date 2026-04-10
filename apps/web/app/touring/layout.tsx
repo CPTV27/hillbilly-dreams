@@ -8,6 +8,7 @@ import { BRANDS } from '@bigmuddy/config';
 import { JsonLd, getOrganizationSchema, getWebSiteSchema } from '@/lib/structured-data';
 
 import { ThemeProvider } from '@/components/theme-provider';
+import { LiveBar } from '@/components/LiveBar';
 import { constructMetadata, sprinterVanOgImage, themeColor } from '../metadata';
 import type { Viewport } from 'next';
 
@@ -50,6 +51,7 @@ export default function TouringLayout({
           links={brand.nav.links}
           logoHref="/"
         />
+        <LiveBar />
         <main>{children}</main>
         <Footer brand="touring" />
       </div>
