@@ -79,7 +79,7 @@ export default function PresentationPage() {
               The radio show is the front door. Musicians come on, see the ecosystem, get hooked.
             </p>
             <p style={{ fontSize: '1rem', lineHeight: 1.7, color: '#c8943e', fontWeight: 600, margin: 0 }}>
-              Studio C is a vendor for video, production, and tech support.
+              Studio C handles the video, production, and tech. Expanding into Natchez this year.
             </p>
           </div>
           <div style={{ padding: '40px', border: '1px solid rgba(200,148,62,0.2)', borderTop: '3px solid #c8943e', borderRadius: '6px' }}>
@@ -93,7 +93,7 @@ export default function PresentationPage() {
               You never think about it again.
             </p>
             <p style={{ fontSize: '1rem', lineHeight: 1.7, color: '#c8943e', fontWeight: 600, margin: 0 }}>
-              Studio C and Tuthill Design are vendors.
+              Studio C and Tuthill Design run the delivery. Both expanding into the Deep South.
             </p>
           </div>
         </div>
