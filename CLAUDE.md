@@ -145,9 +145,11 @@ Stripe payment links in Vercel — `STRIPE_PAYMENT_LINK_ESSENTIALS`, `STRIPE_PAY
 | Search | Perplexity | Gemini Flash |
 | Images | Vertex AI Imagen 3 | — |
 | Video | Veo 3 | — |
-| Audio | Cloud TTS Journey | — |
+| Audio | ElevenLabs | Google Cloud TTS Journey |
 
-API keys in Vercel: `ANTHROPIC_API_KEY`, `PERPLEXITY_API_KEY`, `GOOGLE_APPLICATION_CREDENTIALS_JSON`
+API keys in Vercel: `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`, `PERPLEXITY_API_KEY`, `ELEVENLABS_API_KEY`, `GOOGLE_APPLICATION_CREDENTIALS_JSON`. `OPENAI_API_KEY` [verify] — SDK installed but not present in last env snapshot.
+
+> **Note (2026-04-10):** `ELEVENLABS_API_KEY` is provisioned in Vercel Production but has **no SDK integration in the codebase yet** (no imports in `apps/web`). When you wire it, extend `apps/web/lib/ai-models.ts` with an `audio` role so it follows the same primary/fallback routing pattern as reasoning and generation.
 
 ---
 
@@ -197,7 +199,7 @@ API keys in Vercel: `ANTHROPIC_API_KEY`, `PERPLEXITY_API_KEY`, `GOOGLE_APPLICATI
 | File | What |
 |------|------|
 | `apps/web/config/domain-routes.ts` | Hostname → route group mapping |
-| `apps/web/config/tenants.ts` | Multi-tenant registry (big-muddy, bearsville, studio-c, tuthill) |
+| `apps/web/config/tenants.ts` | Multi-tenant registry (big-muddy, bearsville, studio-c, tuthill, dctv) |
 | `apps/web/middleware.ts` | Routing engine — reads domain-routes.ts |
 | `apps/web/lib/ai-models.ts` | Multi-provider AI routing code |
 | `outsider-economics-v2/` | Live field manual content — DO NOT DELETE |
@@ -220,11 +222,11 @@ API keys in Vercel: `ANTHROPIC_API_KEY`, `PERPLEXITY_API_KEY`, `GOOGLE_APPLICATI
 
 ## Architecture Notes
 
-- **Stack:** Next.js 14.2 App Router (see `apps/web/package.json` for exact `next` version) · TypeScript · Inline CSS (no Tailwind) · Prisma/PostgreSQL · next-auth v5
+- **Stack:** Next.js 14.2.35 App Router · TypeScript 5.5 · Tailwind 3.4 + inline CSS + CSS custom properties (token rules enforce `var(--font-*)`, `var(--bg)`, `var(--accent)` as the primary discipline — Tailwind coexists but is not the primary layer) · Prisma/PostgreSQL · next-auth v5 · Sanity CMS (civic-commerce pivot, Apr 2026)
 - **Deploy:** Vercel (sole platform — not Firebase)
 - **Storage:** GCS bucket `bmt-media-bigmuddy` · Cloudflare R2
 - **DNS:** All domains in Cloudflare (ChasePierson.TV account) · Gray cloud · A → 76.76.21.21 · www CNAME → cname.vercel-dns.com
-- **Multi-tenant:** 4 tenants share one deployment. Never cross entity data boundaries.
+- **Multi-tenant:** 5 tenants share one deployment — `big-muddy`, `bearsville`, `studio-c`, `tuthill`, `dctv`. Never cross entity data boundaries.
 - **`outsider-economics-v2/`** is read by `apps/web/lib/posts.ts` at build time — never delete this directory.
 
 ---

@@ -14,6 +14,8 @@ out
 .env
 .env.local
 .env.vercel.local
+.env.vercel-check
+.env.vercel*
 .env.development.local
 .env.test.local
 .env.production.local
@@ -93,3 +95,5 @@ docs/business-plan/*PORTFOLIO*
 terraform/.terraform/
 terraform/terraform.tfstate*
 terraform/*.tfvars
+.env*.local
+scripts/stingers/out/

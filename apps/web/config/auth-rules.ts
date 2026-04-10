@@ -63,6 +63,7 @@ export const BMT_ALLOWED_DOMAINS: string[] = [
 export const BMT_ALLOWED_EMAILS: string[] = [
   // Core team
   'tracy@thebigmuddyinn.com',
+  'tracy@thebigmuddy.com', // added 2026-04-10 — Chase flagged as separate address
   'amy@thebigmuddyinn.com',
   'amyaldersonallen@gmail.com',
   'tracyaldersonallen@gmail.com',
