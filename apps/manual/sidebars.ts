@@ -15,6 +15,19 @@ const sidebars: SidebarsConfig = {
       ],
     },
   ],
+  setup: [
+    {
+      type: 'category',
+      label: 'Machine Setup',
+      collapsed: false,
+      items: [
+        'setup/overview',
+        'setup/mac',
+        'setup/ipad',
+        'setup/iphone',
+      ],
+    },
+  ],
   amyGuide: [
     {
       type: 'category',
@@ -24,6 +37,7 @@ const sidebars: SidebarsConfig = {
         'amy/overview',
         'amy/bar-inventory',
         'amy/show-night-checklist',
+        'amy/computer-setup',
       ],
     },
   ],
@@ -36,17 +50,7 @@ const sidebars: SidebarsConfig = {
         'tracy/overview',
         'tracy/compliance',
         'tracy/financial-dashboards',
-      ],
-    },
-  ],
-  jpGuide: [
-    {
-      type: 'category',
-      label: "JP's Guide — Shows & Programming",
-      collapsed: false,
-      items: [
-        'jp/overview',
-        'jp/booking-acts',
+        'tracy/computer-setup',
       ],
     },
   ],
@@ -82,9 +86,15 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Reference',
       collapsed: false,
-      items: ['reference/tool-registry'],
+      items: [
+        'reference/tool-registry',
+        'reference/google-drive-structure',
+        'reference/fleet-registry',
+      ],
     },
   ],
+  // jpGuide intentionally removed from sidebar per Chase 2026-04-10
+  // (JP's docs still exist at apps/manual/docs/jp/ but are not featured)
 };
 
 export default sidebars;
