@@ -116,7 +116,7 @@ Lock screen customization:
 - [ ] Bitwarden installed + unlocked
 - [ ] HDI Drop shared album created
 - [ ] At least 3 Siri Shortcuts installed
-- [ ] Home screen page 1 organized, <20 icons
+- [ ] Home screen page 1 organized, under 20 icons
 - [ ] Delta Dawn bookmarked / shortcut works
 - [ ] Owner has had the "how to send a photo to the team" walkthrough
 
