@@ -176,7 +176,7 @@ export default function AdminArticlesPage() {
             {loading ? '…' : `${articles.length} articles total · ${filtered.length} shown`}
           </p>
         </div>
-        <a href="/articles/new" className="admin-btn admin-btn--primary">
+        <a href="/admin/articles/new" className="admin-btn admin-btn--primary">
           + New Article
         </a>
       </div>
@@ -263,7 +263,7 @@ export default function AdminArticlesPage() {
                     <div className="articles-title-cell">
                       <div className="articles-title-row">
                         <a
-                          href={`/articles/${article.id}/edit`}
+                          href={`/admin/articles/${article.id}/edit`}
                           className="articles-title-link"
                         >
                           {article.title}
@@ -297,7 +297,7 @@ export default function AdminArticlesPage() {
                   <td>
                     <div className="articles-actions">
                       <a
-                        href={`/articles/${article.id}/edit`}
+                        href={`/admin/articles/${article.id}/edit`}
                         className="admin-btn admin-btn--ghost articles-action-btn"
                       >
                         Edit
@@ -358,7 +358,7 @@ export default function AdminArticlesPage() {
               </div>
               <div className="articles-title-row" style={{ marginBottom: 'var(--space-2)' }}>
                 <a
-                  href={`/articles/${article.id}/edit`}
+                  href={`/admin/articles/${article.id}/edit`}
                   className="articles-title-link article-mobile-card__title"
                 >
                   {article.title}
@@ -374,7 +374,7 @@ export default function AdminArticlesPage() {
               </div>
               <div className="articles-actions" style={{ marginTop: 'var(--space-3)' }}>
                 <a
-                  href={`/articles/${article.id}/edit`}
+                  href={`/admin/articles/${article.id}/edit`}
                   className="admin-btn admin-btn--ghost articles-action-btn"
                 >
                   Edit
