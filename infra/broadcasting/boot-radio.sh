@@ -20,10 +20,32 @@ for i in $(seq 1 60); do
   sleep 2
 done
 
-# Don't double-launch if screen session already exists
+# ZOMBIE PREVENTION — kill orphaned ezstream wrappers from previous runs.
+# The screen-session check below catches the normal case, but if launchctl
+# kickstart was called while a screen session was dying (e.g. during a Docker
+# wedge recovery), orphaned bash+ezstream+ffmpeg+oggenc process trees survive
+# the screen session's death and compete for the Icecast /stream mount. That's
+# how we got 7 zombie wrappers on 2026-04-10. Kill them all before checking.
+EXISTING_EZ=$(pgrep -f 'ezstream.*ezstream.xml' 2>/dev/null | wc -l | tr -d ' ')
+if [ "$EXISTING_EZ" -gt 0 ]; then
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Killing $EXISTING_EZ orphaned ezstream processes" >> "$LOG"
+  pkill -9 -f 'ezstream.*ezstream.xml' 2>/dev/null
+  /usr/bin/screen -S bigmuddy-radio -X quit 2>/dev/null
+  /usr/bin/screen -wipe 2>/dev/null
+  sleep 2
+fi
+
+# Don't double-launch if screen session already exists AND is healthy
 if /usr/bin/screen -list 2>&1 | grep -q 'bigmuddy-radio'; then
-  echo "[$(date '+%Y-%m-%d %H:%M:%S')] bigmuddy-radio screen session already running, skipping" >> "$LOG"
-  exit 0
+  # Verify ezstream is actually running inside the screen, not just a dead shell
+  if pgrep -f 'ezstream.*ezstream.xml' > /dev/null 2>&1; then
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] bigmuddy-radio screen + ezstream both alive, skipping" >> "$LOG"
+    exit 0
+  else
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] bigmuddy-radio screen exists but ezstream dead, restarting" >> "$LOG"
+    /usr/bin/screen -S bigmuddy-radio -X quit 2>/dev/null
+    sleep 1
+  fi
 fi
 
 # Launch ezstream inside detached screen with auto-restart wrapper.
