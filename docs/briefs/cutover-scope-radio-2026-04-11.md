@@ -13,7 +13,7 @@ The cloud migration is NOT a new plan. It was specified on April 9 and parts of 
 | Doc | What it establishes |
 |---|---|
 | `docs/HANDOFF_MAC_MINI_RADIO.md` | **Canonical plan.** AzuraCast on a $6/mo DigitalOcean droplet. Mac mini stays as the automation source and pushes OUT to the droplet via Icecast source protocol. Cloudflare Tunnel explicitly rejected as a ToS violation for sustained media streams. |
-| `docs/DEMO_RADIO_TV_PREP.md` | **Execution checklist.** Droplet provisioned at `206.189.200.208`. `stream.bigmuddytouring.com` DNS already points at the droplet (gray cloud). Fallback MP3 path is `gs://bmt-media-bigmuddy/radio/fallback-loop.mp3`. |
+| `docs/DEMO_RADIO_TV_PREP.md` | **Execution checklist.** Droplet provisioned at `206.189.200.208`. `stream.bigmuddytouring.com` DNS already points at the droplet (gray cloud). Fallback MP3 path is `bmt-media-bigmuddy/radio/fallback-loop.mp3 (R2 bucket — note: same name as the GCS photo bucket, different service)`. |
 | `docs/BROADCASTING_CAPABILITIES.md` | **Current on-mini state.** OpenBroadcaster + OB DB + Icecast containers via Docker on Colima (now Docker Desktop). 18 scheduled shows, 7 DJ characters. |
 | `docs/specs/SHOW_CREATION_PIPELINE.md` | Show-creation wizard targets OpenBroadcaster API/DB directly. **This stays valid** because OB stays on the mini post-cutover. |
 | `docs/EXTERNAL_ARCHITECTURE_REVIEW.md` | Earlier review that mentioned Cloudflare Tunnel as an option (L379). That option was later rejected in `HANDOFF_MAC_MINI_RADIO.md`. Older, superseded. |
@@ -148,7 +148,7 @@ Before any code changes, the mini agent's durability handoff should confirm:
 2. **Is AzuraCast set up?** Station "Big Muddy Radio" created, Icecast source password set, mount `/stream` configured.
 3. **Is DNS live?** `dig stream.bigmuddytouring.com` should return the droplet IP (or a Cloudflare edge IP if the orange cloud is back on).
 4. **Does `stream.bigmuddytouring.com` return audio from an external network?** (Test from cellular, not LAN.)
-5. **Is the R2 fallback MP3 uploaded?** `gsutil ls gs://bmt-media-bigmuddy/radio/fallback-loop.mp3`
+5. **Is the R2 fallback MP3 uploaded?** `gsutil ls bmt-media-bigmuddy/radio/fallback-loop.mp3 (R2 bucket — note: same name as the GCS photo bucket, different service)`
 6. **Is AzuraCast's fallback mount pointed at the R2 URL?** Check the AzuraCast station config.
 7. **Is OpenBroadcaster on the mini already pushing to the droplet, or is it still only feeding local Icecast?**
 
@@ -208,7 +208,7 @@ These are things I can't verify from the MacBook and the mini's draft should ans
 
 1. **Is droplet `206.189.200.208` still alive and running AzuraCast?** If the droplet is gone, the $6/mo bill was cancelled, or it was never fully set up, this is the actual blocker and Chase needs to re-provision.
 2. **What is the Icecast source password on the AzuraCast station?** The mini needs this to configure OB's push. The password lives either in Chase's head, in Bitwarden, or in the AzuraCast UI. If none of the above, re-run the wizard.
-3. **Does the R2 fallback MP3 exist at `gs://bmt-media-bigmuddy/radio/fallback-loop.mp3`?** If not, the mini should create it from the Plex library or the `~/broadcasting/` music.
+3. **Does the R2 fallback MP3 exist at `bmt-media-bigmuddy/radio/fallback-loop.mp3 (R2 bucket — note: same name as the GCS photo bucket, different service)`?** If not, the mini should create it from the Plex library or the `~/broadcasting/` music.
 4. **Is AzuraCast's fallback mount actually configured to pull from the R2 URL?** This is done in the AzuraCast station settings, not on the mini.
 5. **Is OpenBroadcaster currently configured to push to the droplet?** If yes, the cutover is already half done. If no, the mini does Phase 1 now.
 6. **What's the current state of ezstream?** Is it also pushing to the droplet (bad — conflicts with OB as a source), still running locally, or disabled? **The duality needs to die.** My recommendation (for the mini's handoff to endorse or reject): **OpenBroadcaster is the canonical source post-cutover; ezstream gets retired.** But the mini has more context on why ezstream was set up in the first place and should flag if retiring it breaks anything.
