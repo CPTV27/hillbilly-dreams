@@ -196,7 +196,43 @@ Commit message: `fix(radio): route public Icecast references through stream.bigm
 3. On the mini: restart OpenBroadcaster
 4. On external listener: verify source reconnects and live audio resumes
 
-### Phase 5 — Documentation sweep (non-blocking, can run asynchronously)
+### Phase 5 — Amy onboarding as station programmer (REQUIRED, not optional)
+
+**This is the reason the migration matters.** AzuraCast isn't just a durability play — it's Amy's tool. Right now Amy can't change the station's programming without Chase editing a flat `.m3u` text file and restarting ezstream. Every playlist change is a Chase bottleneck. AzuraCast eliminates that by giving Amy a browser-based station manager UI designed for exactly her role: music director with strong opinions and zero interest in Docker.
+
+**Amy Alderson Allen** — equity partner, radio station programmer, performer, Tracy's deputy on Inn ops. She decides what plays, when it plays, and how the station sounds. She performs live on-air or on stage. She handles operational tasks Tracy delegates on the Inn side.
+
+**What Amy needs from AzuraCast (all built-in, no code required):**
+- Build playlists by feel — drag songs, set the vibe for a daypart ("more blues after 10 PM, lighter stuff in the morning")
+- Schedule her own live segments or performances
+- Place stinger characters where SHE wants them, not where an algorithm puts them
+- Preview what the next few hours sound like before it goes live
+- Flag a song as "never play this again" or "play this more" (weighted rotation)
+- Go live from the Inn without touching any backend
+
+**Onboarding steps (do these BEFORE declaring the cutover complete):**
+
+1. Create Amy's AzuraCast admin account on the droplet (`http://206.189.200.208` or `https://stream.bigmuddytouring.com` if the admin panel is exposed there)
+   - Username: `amy@thebigmuddyinn.com` or `amyaldersonallen@gmail.com`
+   - Role: Station Manager (full playlist + scheduling control, no infrastructure access)
+2. Walk Amy through the AzuraCast UI on her preferred device (phone, iPad, or laptop at the Inn):
+   - How to create and edit a playlist
+   - How to schedule a playlist for a daypart (morning vs evening vs late night)
+   - How to set rotation weights ("play this song 3x more than that one")
+   - How to add a song to the library (upload from her phone or from the music library on T7)
+   - How to go live (AzuraCast has a "Go Live" button that switches from automation to a live DJ input)
+   - How to see what's playing right now and what's coming up next
+3. Create Amy's three starter playlists (she can rename/edit later):
+   - **Morning** — acoustic, gospel, lighter blues (6 AM – noon)
+   - **Afternoon** — full blues, soul, corridor mix (noon – 7 PM)
+   - **Evening** — raw juke joint, honky tonk, late-night blues (7 PM – midnight)
+4. Import the existing stinger library (`~/bigmuddy-radio/stingers/`, all 48 character voices) into AzuraCast's jingle/bumper system so Amy can place them where she wants
+5. Verify Amy can access AzuraCast from her phone on cellular (not just Inn WiFi)
+6. Add the AzuraCast dashboard URL to the Big Muddy START HERE task on Amy's Asana shared seat (`bigmuddy@chasepierson.tv`)
+
+**Definition of done for Phase 5:** Amy has changed one playlist, scheduled one daypart, and flagged one song — all without Chase touching anything. If she can't do that, the cutover is not complete.
+
+### Phase 6 — Documentation sweep (non-blocking, can run asynchronously)
 
 Update the ~20 informational docs listed above to reference `stream.bigmuddytouring.com` as the public URL, while keeping the LAN-only URLs for services that stay on the mini (OB admin, Plex, Postiz, Open Notebook). This sweep is cosmetic and can happen a day later.
 
