@@ -55,7 +55,7 @@ const WALKTHROUGH_STEPS: WalkthroughStep[] = [
   },
   {
     title: 'Bridge Clients — The Revenue Engine',
-    content: `Bridge Clients are Deep South Directory advertisers — restaurants, venues, shops across the Deep South. They pay monthly for listings, content, and exposure across all seven brands.\n\nTiers: Front Porch ($99/mo) → The Route ($249/mo) → River Room ($499/mo) → Blues Room ($999/mo)\n\nEvery business you add here is revenue.`,
+    content: `Bridge Clients are Deep South Directory advertisers — restaurants, venues, shops across the Deep South. They pay monthly for listings, content, and exposure across all seven brands.\n\nTiers: Free ($0) → Essentials ($25/mo) → Pro ($50/mo) → Marketing ($99/mo) → Engine ($250/mo)\n\nEvery business you add here is revenue.`,
     position: 'right',
     action: 'View Bridge Clients',
     actionHref: '/bridge',

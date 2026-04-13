@@ -4,8 +4,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Big Muddy Touring — The Hottest Room on the River',
-  description: 'Live music in Natchez, Mississippi. 50 seats. No barrier. The Blues Room at 411 North Congress Street.',
+  title: 'Big Muddy Touring — We bring the party.',
+  description: 'Booking, transport, promotion, the whole show. 13 cities from Memphis to New Orleans. We book your shows, drive you there, put you on the radio, and write about you in the magazine.',
 };
 
 const HOUSE_BAND_PHOTOS = [
@@ -69,8 +69,19 @@ export default function TouringPage() {
             margin: '0 0 16px',
             maxWidth: '800px',
           }}>
-            The Hottest Room<br />on the River
+            We bring<br />the party.
           </h1>
+          <p style={{
+            fontFamily: 'var(--font-body, sans-serif)',
+            fontSize: '1rem',
+            lineHeight: 1.65,
+            color: '#9b9488',
+            margin: '0 0 12px',
+            maxWidth: '520px',
+          }}>
+            We book your shows, drive you there, put you on the radio, write about you in the
+            magazine, release your record, and sell it in the store.
+          </p>
           <p style={{
             fontFamily: 'var(--font-body, sans-serif)',
             fontSize: '0.85rem',
@@ -80,7 +91,7 @@ export default function TouringPage() {
             color: '#c8943e',
             margin: 0,
           }}>
-            411 North Congress Street &middot; Natchez, Mississippi
+            Memphis to New Orleans &middot; 13 cities &middot; 735 venues
           </p>
         </div>
       </section>

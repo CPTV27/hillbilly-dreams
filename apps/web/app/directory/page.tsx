@@ -4,9 +4,9 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'Deep South Directory — Your business, online, done right.',
+  title: 'Deep South Directory — Find locals. Get found.',
   description:
-    'Digital hygiene for your business. Google listing, reviews, social posts, and AI that knows your town — not a generic chatbot. Starting at free.',
+    'The business directory backed by a media company. Magazine, radio, photography, and a touring circuit — all working for your listing. Starting at free.',
 };
 
 const CATEGORIES = [

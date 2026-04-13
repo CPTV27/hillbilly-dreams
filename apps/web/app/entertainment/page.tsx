@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Big Muddy Entertainment',
-  description: 'Touring, records, radio, magazine, and a house band. Natchez, Mississippi.',
+  title: 'Big Muddy Entertainment — One show becomes everything.',
+  description: 'A media company on the Mississippi River. One show becomes a magazine feature, a radio session, a concert film, a live album, and the next booking. Natchez, Mississippi.',
 };
 
 export default function EntertainmentPage() {
@@ -15,8 +15,8 @@ export default function EntertainmentPage() {
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #0a0a08 0%, rgba(10,10,8,0.5) 30%, rgba(10,10,8,0.1) 60%, transparent 100%)' }} />
         <div style={{ position: 'relative', zIndex: 1, padding: 'clamp(32px, 6vw, 80px)' }}>
           <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>Big Muddy Entertainment</p>
-          <h1 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(3rem, 9vw, 7rem)', fontWeight: 800, lineHeight: 0.85, letterSpacing: '-0.04em', margin: '0 0 24px' }}>Natchez,<br />Mississippi.</h1>
-          <p style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.15rem)', lineHeight: 1.6, color: '#9b9488', maxWidth: '450px', margin: 0 }}>A media company on the Mississippi River. Touring, records, radio, magazine, and a house band.</p>
+          <h1 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(3rem, 9vw, 7rem)', fontWeight: 800, lineHeight: 0.85, letterSpacing: '-0.04em', margin: '0 0 24px' }}>One show becomes<br />everything.</h1>
+          <p style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.15rem)', lineHeight: 1.6, color: '#9b9488', maxWidth: '500px', margin: 0 }}>Touring. Records. Radio. Magazine. A house band. Five divisions, one operation. A band plays Friday night — by Monday there&rsquo;s a magazine feature, a radio session, a concert film, and the next show booked.</p>
         </div>
       </section>
 
@@ -47,7 +47,7 @@ export default function EntertainmentPage() {
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #0a0a08 0%, rgba(10,10,8,0.5) 30%, rgba(10,10,8,0.05) 65%, transparent 100%)' }} />
         <div style={{ position: 'relative', zIndex: 1, padding: 'clamp(32px, 6vw, 80px)', maxWidth: '650px' }}>
           <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>Big Muddy Records</p>
-          <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 0.9, letterSpacing: '-0.03em', margin: '0 0 20px' }}>The label exists because everything else already does.</h2>
+          <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 0.9, letterSpacing: '-0.03em', margin: '0 0 20px' }}>Keep your masters. Get the machine.</h2>
           <p style={{ fontSize: '1rem', lineHeight: 1.6, color: '#9b9488', margin: 0 }}>Recording. Distribution. Radio play. Magazine coverage. A corridor of venues. The music just has to be good.</p>
         </div>
       </section>

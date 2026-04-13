@@ -7,9 +7,9 @@ import { ArticleCard, NewsletterSignup, IllustrationDivider, BLUR_DATA_URL } fro
 import { CITY_GUIDE_ARTICLES, DEEP_SOUTH_GUIDE_CITIES, LOUISIANA_CITIES, ARKANSAS_MISSOURI_CITIES } from '@/lib/articles';
 
 export const metadata: Metadata = {
-  title: 'Big Muddy Magazine',
+  title: 'Big Muddy Magazine — Real stories. Real photography. The Deep South.',
   description:
-    'Long-form editorial, city guides, and stories from the Deep South. Eighteen cities across five states.',
+    'Long-form editorial from the corridor between Memphis and New Orleans. City guides, artist profiles, photo essays, and the stories behind the businesses and musicians that make this region what it is.',
 };
 
 const CATEGORIES = ['All', 'City Guide', 'Feature', 'Music', 'Interview', 'Photo Essay', 'Food & Drink'];
@@ -76,7 +76,7 @@ export default async function MagazineHomepage() {
           </span>
           <h1 className="mag-hero__title">Big Muddy Magazine</h1>
           <p className="mag-hero__sub">
-            Stories from the Southern Gothic heartland
+            The stories are already here. Somebody has to tell them right.
           </p>
         </div>
       </section>
@@ -99,9 +99,9 @@ export default async function MagazineHomepage() {
           color: 'var(--text)',
           textAlign: 'center',
         }}>
-          Long-form editorial from the Deep South. City guides, artist profiles,
-          photo essays, and the stories behind the businesses, musicians, and towns that make
-          this region what it is. Published from Natchez, Mississippi.
+          The music, the food, the architecture, the people. Real editorial. Real photography.
+          Every artist on the corridor gets the feature they deserve. Every town gets told
+          the way it actually is. Published from Natchez, Mississippi.
         </p>
       </section>
 

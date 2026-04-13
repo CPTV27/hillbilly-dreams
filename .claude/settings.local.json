@@ -1250,7 +1250,10 @@
       "Bash(__NEW_LINE_25fff3c620f4c574__ gcloud:*)",
       "Bash(docker images:*)",
       "Bash(export PATH=\"/opt/homebrew/share/google-cloud-sdk/bin:$PATH\")",
-      "Bash(export PATH=\"/opt/homebrew/share/google-cloud-sdk/bin:/Applications/Docker.app/Contents/Resources/bin:$PATH\" __NEW_LINE_f7ac7ecf178cbd7e__ docker buildx build --platform linux/amd64 -t us-east4-docker.pkg.dev/bigmuddy-ff651/bmt/web:latest --push .)"
+      "Bash(export PATH=\"/opt/homebrew/share/google-cloud-sdk/bin:/Applications/Docker.app/Contents/Resources/bin:$PATH\" __NEW_LINE_f7ac7ecf178cbd7e__ docker buildx build --platform linux/amd64 -t us-east4-docker.pkg.dev/bigmuddy-ff651/bmt/web:latest --push .)",
+      "mcp__042b5d06-27ad-4e2e-87a2-8ed277a08bdd__asana_update_task",
+      "mcp__042b5d06-27ad-4e2e-87a2-8ed277a08bdd__asana_create_task_story",
+      "Bash(pnpm turbo:*)"
     ]
   }
 }

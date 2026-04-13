@@ -267,7 +267,7 @@ export default function ReaPage() {
             letterSpacing: '-0.03em',
             margin: '0 0 20px',
           }}>
-            The label exists because everything else already does.
+            Keep your masters. Get the machine.
           </h2>
           <p style={{
             fontSize: '1rem',

@@ -10,7 +10,9 @@
 //   - executor: async function that queries Prisma + returns data
 
 import { prisma } from '@bigmuddy/database';
-import { queryConstellationStats, queryConstellationSubgraph } from '@/lib/constellation/querySubgraph';
+// constellation removed in prune — stub if needed later
+const queryConstellationStats = async () => ({ nodes: 0, edges: 0 });
+const queryConstellationSubgraph = async () => ({ nodes: [], edges: [] });
 
 // ── Tool Declarations (Gemini function calling format) ──────
 

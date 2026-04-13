@@ -5,8 +5,8 @@ import type { Metadata } from 'next';
 import { IllustrationDivider } from '@bigmuddy/ui';
 
 export const metadata: Metadata = {
-  title: 'Big Muddy Records',
-  description: 'Independent label. Artists own their masters. The sound of the Deep South.',
+  title: 'Big Muddy Records — Keep your masters. Get the machine.',
+  description: 'Non-exclusive deals. Artists own their masters. Radio play, magazine features, touring bookings, and a corridor of venues — all included.',
 };
 
 const ROSTER = [
@@ -154,9 +154,9 @@ export default function RecordsPage() {
             margin: 0,
           }}
         >
-          The sound of
+          Keep your masters.
           <br />
-          <span style={{ color: 'var(--accent, #c8943e)' }}>the river.</span>
+          <span style={{ color: 'var(--accent, #c8943e)' }}>Get the machine.</span>
         </h1>
         <p
           style={{
@@ -168,9 +168,8 @@ export default function RecordsPage() {
             marginTop: '2rem',
           }}
         >
-          Big Muddy Records is an independent label based in Natchez, Mississippi.
-          We record the music that lives along the Deep South and give artists
-          the infrastructure of a full media operation — without taking their masters.
+          Recording. Distribution. Radio play. Magazine coverage. A corridor of venues.
+          Non-exclusive deals. You keep your masters. The music just has to be good.
         </p>
         <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <a
@@ -225,7 +224,7 @@ export default function RecordsPage() {
             marginBottom: '1.5rem',
           }}
         >
-          Why another label?
+          What you get.
         </h2>
         <div
           style={{
@@ -236,21 +235,19 @@ export default function RecordsPage() {
           }}
         >
           <p>
-            The Deep South between Memphis and New Orleans produced more
-            American music per mile than anywhere on earth. That music is still being
-            made — in living rooms in Clarksdale, on front porches in Natchez, in the
-            back of churches in Vicksburg. By people who play because they have to.
+            We already own a radio station, a magazine, a touring circuit, and a photography studio.
+            The label is what happens when you point all of that at an artist instead of a town.
           </p>
           <p style={{ marginTop: '1rem' }}>
-            Traditional labels take your masters, lock you into multi-album deals, and
-            charge you for the marketing they promised. You recoup for years. You
-            own nothing.
+            You keep your masters. No multi-album deal — twelve months at a time,
+            walk anytime. Marketing is included: Radio airplay, Magazine features,
+            touring bookings, professional photography. No separate invoices. No recoup.
           </p>
           <p style={{ marginTop: '1rem' }}>
-            We do it differently. Artists own their masters from day one. Marketing
-            services are included. Radio, Magazine, the Inn, the touring
-            route — every brand amplifies your release without burning your budget on ad spend.
-            Twelve months at a time. No multi-year lock-in.
+            The corridor between Memphis and New Orleans produced more American music
+            per mile than anywhere on earth. That music is still being made — in living
+            rooms in Clarksdale, on front porches in Natchez, in the back of churches
+            in Vicksburg. We record it and give it the infrastructure it deserves.
           </p>
           <p style={{ marginTop: '1rem', fontStyle: 'italic', color: 'var(--accent, #c8943e)' }}>
             Artists own their masters. Always. No exceptions.
