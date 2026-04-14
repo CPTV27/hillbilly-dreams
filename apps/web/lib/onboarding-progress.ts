@@ -223,9 +223,25 @@ export async function setCurrentTask(
 // ─── Peer progress (for Tracy's review-amy-progress task) ────────────────────
 
 /**
+ * Canonical email allowlist per role. Used by getPeerProgress() so
+ * that test/development rows by other users (e.g. Chase visiting
+ * /admin/onboarding/amy to test) don't pollute the peer view Tracy
+ * sees. Only real-Amy and real-Tracy rows count.
+ */
+const CANONICAL_EMAILS: Record<OnboardingRole, string[]> = {
+  amy: ['amy@thebigmuddyinn.com', 'amyaldersonallen@gmail.com'],
+  tracy: ['tracy@thebigmuddyinn.com', 'tracyaldersonallen@gmail.com'],
+  'future-hire': [],
+};
+
+/**
  * Read-only peer progress view. Tracy can see Amy's onboarding state
  * (and vice versa) for the "review-amy-progress" task. Returns just the
  * safe, non-sensitive fields — no task state blob, no notification prefs.
+ *
+ * Filters by a canonical email allowlist per role so that test rows
+ * (from developers testing the UI under other emails) don't pollute
+ * the peer view. Returns the most-recently-active real row.
  */
 export async function getPeerProgress(peerRole: OnboardingRole): Promise<{
   completedTasks: string[];
@@ -236,10 +252,14 @@ export async function getPeerProgress(peerRole: OnboardingRole): Promise<{
   totalTasks: number;
   startedAt: Date | null;
 } | null> {
-  // Look up the most recent progress row for this role. We expect at
-  // most one row per role for today's needs (Amy and Tracy each have one).
+  const canonicalEmails = CANONICAL_EMAILS[peerRole];
+  if (canonicalEmails.length === 0) return null;
+
   const row = await prisma.onboardingProgress.findFirst({
-    where: { role: peerRole },
+    where: {
+      role: peerRole,
+      userEmail: { in: canonicalEmails },
+    },
     orderBy: { lastSeenAt: 'desc' },
   });
   if (!row) return null;
