@@ -112,3 +112,5 @@ docs/creative/*.mp4
 docs/creative/*.mov
 *.psd
 *.ai
+# Added by code-review-graph
+.code-review-graph/
