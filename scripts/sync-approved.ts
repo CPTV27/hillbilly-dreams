@@ -67,6 +67,62 @@ const KNOWN_CATEGORIES = new Set([
   'food-drink', 'music', 'venue', 'portrait', 'landscape',
 ]);
 
+// City centers for GPS reverse-geocoding. When a photo has GPS coordinates,
+// we look up the nearest entry here. If it's within MAX_GPS_MATCH_MILES, we
+// override the folder-based city/region with the GPS-derived value (still
+// can be overridden by an explicit Lightroom keyword).
+const MAX_GPS_MATCH_MILES = 30;
+
+const CITY_CENTERS: Array<{ region: string; city: string; lat: number; lng: number }> = [
+  // Big Muddy / Mississippi corridor
+  { region: 'big-muddy', city: 'natchez',     lat: 31.5604, lng: -91.4032 },
+  { region: 'big-muddy', city: 'vicksburg',   lat: 32.3526, lng: -90.8779 },
+  { region: 'big-muddy', city: 'greenville',  lat: 33.4101, lng: -91.0617 },
+  { region: 'big-muddy', city: 'clarksdale',  lat: 34.2002, lng: -90.5712 },
+  { region: 'big-muddy', city: 'tunica',      lat: 34.6845, lng: -90.3826 },
+  { region: 'big-muddy', city: 'memphis',     lat: 35.1495, lng: -90.0490 },
+  { region: 'big-muddy', city: 'helena',      lat: 34.5293, lng: -90.5915 },
+  { region: 'big-muddy', city: 'indianola',   lat: 33.4509, lng: -90.6553 },
+  { region: 'big-muddy', city: 'oxford',      lat: 34.3665, lng: -89.5193 },
+  { region: 'big-muddy', city: 'tupelo',      lat: 34.2576, lng: -88.7034 },
+  { region: 'big-muddy', city: 'new-orleans', lat: 29.9511, lng: -90.0715 },
+  { region: 'big-muddy', city: 'jackson',     lat: 32.2988, lng: -90.1848 },
+  { region: 'big-muddy', city: 'yazoo-city',  lat: 32.8551, lng: -90.4054 },
+  // Bearsville / Catskills
+  { region: 'bearsville', city: 'woodstock',  lat: 42.0409, lng: -74.1182 },
+  { region: 'bearsville', city: 'catskills',  lat: 42.1500, lng: -74.2000 },
+  { region: 'bearsville', city: 'studio-c',   lat: 42.0409, lng: -74.1182 },
+];
+
+/** Haversine great-circle distance in miles. */
+function haversineMiles(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 3958.8; // Earth radius in miles
+  const toRad = (deg: number) => (deg * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+/**
+ * Find the nearest known city center to a given GPS coordinate.
+ * Returns null if no city is within MAX_GPS_MATCH_MILES.
+ */
+function nearestCity(lat: number, lng: number):
+  | { region: string; city: string; distance: number }
+  | null {
+  let best: { region: string; city: string; distance: number } | null = null;
+  for (const c of CITY_CENTERS) {
+    const d = haversineMiles(lat, lng, c.lat, c.lng);
+    if (d <= MAX_GPS_MATCH_MILES && (!best || d < best.distance)) {
+      best = { region: c.region, city: c.city, distance: d };
+    }
+  }
+  return best;
+}
+
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 interface PhotoEntry {
@@ -327,7 +383,19 @@ async function processPhoto(
 
     const pathParts = parsePathParts(filePath, inputRoot);
     const raw = await extractMeta(buffer);
-    const tax = parseKeywords(raw.keywords, { region: pathParts.region, city: pathParts.city });
+
+    // Priority for region/city: explicit Lightroom keyword > GPS reverse-geocode > folder.
+    // Start from folder defaults, then layer GPS on top, then keywords on top of that.
+    let region = pathParts.region;
+    let city = pathParts.city;
+    if (raw.gps) {
+      const geo = nearestCity(raw.gps.lat, raw.gps.lng);
+      if (geo) {
+        region = geo.region;
+        city = geo.city;
+      }
+    }
+    const tax = parseKeywords(raw.keywords, { region, city });
 
     // Convert to three webp sizes
     const sizes: Record<string, { buffer: Buffer; width: number }> = {};
