@@ -5,7 +5,17 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { RadioShowSlot } from '@/config/radio-schedule';
 import { RADIO_SHOWS } from '@/config/radio-schedule';
 
-const STREAM_URL = 'https://stream.bigmuddytouring.com/stream';
+// AzuraCast public stream URL. Path must match the station shortcode and
+// mountpoint configured on the droplet — currently station 1 "Big Muddy
+// Radio" with shortcode "bigmuddyradio" and a 192kbps MP3 mount at
+// /radio.mp3. Override via NEXT_PUBLIC_STREAM_URL in Vercel.
+//
+// NOTE: stream.bigmuddytouring.com must have a valid SSL cert for browsers
+// to connect. Enable Let's Encrypt in AzuraCast admin:
+// Settings → Web Updates → Let's Encrypt → apply for "stream.bigmuddytouring.com".
+const STREAM_URL =
+  process.env.NEXT_PUBLIC_STREAM_URL ||
+  'https://stream.bigmuddytouring.com/listen/bigmuddyradio/radio.mp3';
 
 const POLL_MS = 15_000;
 
