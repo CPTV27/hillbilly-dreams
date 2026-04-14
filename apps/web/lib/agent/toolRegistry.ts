@@ -224,13 +224,12 @@ export const TOOL_REGISTRY = {
   'tool.lore.query': {
     id: 'tool.lore.query',
     name: 'Sovereign Lore Query',
-    description: 'Retrieve semantic knowledge chunks from the local ChromaDB Sovereign Engine (Zero Cloud RAG).',
+    description: 'Retrieve semantic knowledge chunks from the local ChromaDB Sovereign Engine (Zero Cloud RAG). Currently stubbed — implementation was removed during codebase prune.',
     authClass: ToolAuthClass.ADMIN,
     modelTier: ModelTier.CARPENTER,
     inputSchema: queryLoreSchema,
-    execute: async (input, ctx) => {
-      const { queryLore } = await import('./tools/tool.lore.query');
-      return queryLore(input, ctx);
+    execute: async () => {
+      return { success: false, error: 'Lore query tool not yet re-implemented' };
     },
   },
   'tool.media.transcribe': {

@@ -111,7 +111,7 @@ export default function KioskPage() {
             status="live"
             statusLabel="ON AIR"
             detail="Big Muddy Radio — Icecast streaming"
-            link="http://192.168.4.37:8010"
+            link={process.env.NEXT_PUBLIC_ICECAST_URL?.replace(/\/stream\/?$/, '') || "http://192.168.4.37:8010"}
           />
 
           {/* Platform Status */}

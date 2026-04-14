@@ -23,7 +23,7 @@ const LOCAL_DEMOS = [
   { label: 'Photo Search (16,936 photos)', url: '/admin/photos', note: 'Searchable photo library' },
   { label: 'Hotel TV Slideshow', url: 'http://192.168.4.37:8888/tv', note: 'Photo slideshow on Mac mini' },
   { label: 'Hotel Kiosk', url: 'http://192.168.4.37:8888/kiosk', note: 'Lobby display' },
-  { label: 'Big Muddy Radio (Icecast)', url: 'http://192.168.4.37:8010', note: 'Live stream server' },
+  { label: 'Big Muddy Radio (Icecast)', url: process.env.NEXT_PUBLIC_ICECAST_URL?.replace(/\/stream\/?$/, '') || 'http://192.168.4.37:8010', note: 'Live stream server' },
 ];
 
 export default function PresentationPage() {

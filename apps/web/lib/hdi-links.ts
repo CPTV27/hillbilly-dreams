@@ -276,9 +276,9 @@ export const HDI_LINK_TREE: LinkSection[] = [
       },
       {
         label: 'Big Muddy Radio (Icecast)',
-        url: 'http://192.168.4.37:8010',
+        url: process.env.NEXT_PUBLIC_ICECAST_URL?.replace(/\/stream\/?$/, '') || 'http://192.168.4.37:8010',
         note: 'Live stream server',
-        localOnly: true,
+        localOnly: !process.env.NEXT_PUBLIC_ICECAST_URL,
       },
       {
         label: 'Broadcast Control',

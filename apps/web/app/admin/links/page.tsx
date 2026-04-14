@@ -118,7 +118,7 @@ const SECTIONS = [
     external: true,
     links: [
       { label: 'OpenBroadcaster', href: 'http://192.168.4.37:8080', desc: 'Radio broadcast control' },
-      { label: 'Icecast', href: 'http://192.168.4.37:8010', desc: 'Stream status' },
+      { label: 'Icecast', href: process.env.NEXT_PUBLIC_ICECAST_URL?.replace(/\/stream\/?$/, '') || 'http://192.168.4.37:8010', desc: 'Stream status' },
       { label: 'Plex', href: 'http://192.168.4.37:32400', desc: 'Media server' },
       { label: 'Postiz', href: 'http://192.168.4.37:4007', desc: 'Social scheduling (self-hosted)' },
       { label: 'Open Notebook', href: 'http://192.168.4.37:5055', desc: 'AI notebook' },

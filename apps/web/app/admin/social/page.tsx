@@ -22,10 +22,14 @@ export default function SocialDashboard() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const p = new URLSearchParams(window.location.search);
-    const err = p.get('fb_error');
-    const ok = p.get('fb_connected');
-    if (err) setResult('Facebook: ' + decodeURIComponent(err.replace(/\+/g, ' ')));
-    if (ok) setResult('Facebook pages connected. Refresh accounts below.');
+    const fbErr = p.get('fb_error');
+    const fbOk = p.get('fb_connected');
+    const gbpErr = p.get('gbp_error');
+    const gbpOk = p.get('gbp_connected');
+    if (fbErr) setResult('Facebook: ' + decodeURIComponent(fbErr.replace(/\+/g, ' ')));
+    if (fbOk) setResult('Facebook pages connected. Refresh accounts below.');
+    if (gbpErr) setResult('Google Business: ' + decodeURIComponent(gbpErr.replace(/\+/g, ' ')));
+    if (gbpOk) setResult('Google Business locations connected. Refresh accounts below.');
   }, []);
 
   const schedulePost = async () => {
@@ -66,23 +70,42 @@ export default function SocialDashboard() {
       <div style={{ background: '#1a1816', borderRadius: '12px', padding: '1.25rem', border: '1px solid #2a2725', marginBottom: '1rem' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
           <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#c8943e', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Connected Accounts</div>
-          <a
-            href="/api/auth/facebook/connect"
-            style={{
-              minHeight: 44,
-              padding: '10px 16px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              background: '#1877f2',
-              color: '#fff',
-              borderRadius: '8px',
-              fontWeight: 700,
-              fontSize: '0.875rem',
-              textDecoration: 'none',
-            }}
-          >
-            Connect Facebook Page
-          </a>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            <a
+              href="/api/auth/facebook/connect"
+              style={{
+                minHeight: 44,
+                padding: '10px 16px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                background: '#1877f2',
+                color: '#fff',
+                borderRadius: '8px',
+                fontWeight: 700,
+                fontSize: '0.875rem',
+                textDecoration: 'none',
+              }}
+            >
+              Connect Facebook Page
+            </a>
+            <a
+              href="/api/auth/google-business/connect"
+              style={{
+                minHeight: 44,
+                padding: '10px 16px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                background: '#4285f4',
+                color: '#fff',
+                borderRadius: '8px',
+                fontWeight: 700,
+                fontSize: '0.875rem',
+                textDecoration: 'none',
+              }}
+            >
+              Connect Google Business
+            </a>
+          </div>
         </div>
         {loading ? (
           <p style={{ color: '#8a8074', fontSize: '0.875rem' }}>Loading accounts...</p>

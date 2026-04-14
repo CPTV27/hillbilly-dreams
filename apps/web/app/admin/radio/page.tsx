@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 /* eslint-disable @next/next/no-img-element */
 
 const OB_HOST = 'http://192.168.4.37:8080';
-const ICECAST_HOST = 'http://192.168.4.37:8010';
+const ICECAST_HOST = process.env.NEXT_PUBLIC_ICECAST_URL?.replace(/\/stream\/?$/, '') || 'http://192.168.4.37:8010';
 
 interface OBShow {
   name: string;
