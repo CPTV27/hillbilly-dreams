@@ -37,27 +37,27 @@ model Article {
   id          Int       @id @default(autoincrement())
   title       String
   slug        String    @unique
-  category    String    // city-guide | feature | photo-essay | interview | food-drink | music
-  city        String?   // memphis | clarksdale | natchez | new-orleans | vicksburg | etc.
+  category    String // city-guide | feature | photo-essay | interview | food-drink | music
+  city        String? // memphis | clarksdale | natchez | new-orleans | vicksburg | etc.
   author      String    @default("Big Muddy Magazine")
-  status      String    @default("draft")     // draft | review | published
+  status      String    @default("draft") // draft | review | published
   excerpt     String?
   body        String?   @db.Text
-  heroImage   String?   // Cloudflare R2 URL
-  readTime    String?   // e.g. "6 min read"
+  heroImage   String? // Cloudflare R2 URL
+  readTime    String? // e.g. "6 min read"
   publishedAt DateTime?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
   // ── S2PX Bridge Provenance ──
-  sourceSystem    String?   // "s2px" | null (manual)
-  sourceProjectId String?   // S2PX UPID e.g. "S2P-042-2025"
-  sourcePayload   String?   @db.Text  // Sanitized JSON audit trail
+  sourceSystem    String? // "s2px" | null (manual)
+  sourceProjectId String? // S2PX UPID e.g. "S2P-042-2025"
+  sourcePayload   String?   @db.Text // Sanitized JSON audit trail
   sourceSyncedAt  DateTime?
 
   // ── Deep South Directory Link ──
   // SOFT FK: references db-media Client.id — no @relation constraint (cross-sovereign)
-  clientId    Int?
+  clientId Int?
 
   @@index([status, publishedAt])
   @@index([category])
@@ -75,9 +75,9 @@ model Playlist {
   name        String
   description String?
   trackCount  Int      @default(0)
-  spotifyUrl  String?  // spotify:playlist:xxx or https://open.spotify.com/playlist/xxx
-  coverImage  String?  // Cloudflare R2 URL
-  status      String   @default("active")  // active | archived
+  spotifyUrl  String? // spotify:playlist:xxx or https://open.spotify.com/playlist/xxx
+  coverImage  String? // Cloudflare R2 URL
+  status      String   @default("active") // active | archived
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -88,13 +88,13 @@ model Event {
   id          Int      @id @default(autoincrement())
   name        String
   date        DateTime
-  time        String?              // e.g. "7:00 PM CT" — stored separately for display flexibility
+  time        String? // e.g. "7:00 PM CT" — stored separately for display flexibility
   artist      String?
   description String?
-  price       String?              // e.g. "$25" or "Free" — string to allow flexibility
+  price       String? // e.g. "$25" or "Free" — string to allow flexibility
   capacity    Int      @default(50)
-  status      String   @default("upcoming")  // upcoming | sold-out | cancelled | completed
-  stream      Boolean  @default(false)       // whether this event will be livestreamed
+  status      String   @default("upcoming") // upcoming | sold-out | cancelled | completed
+  stream      Boolean  @default(false) // whether this event will be livestreamed
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -106,18 +106,18 @@ model Event {
 // ─────────────────────────────────────────────────────────────
 
 model NewsletterIssue {
-  id          Int      @id @default(autoincrement())
-  issueNumber Int      @unique
+  id          Int       @id @default(autoincrement())
+  issueNumber Int       @unique
   subject     String
   storyTitle  String?
-  storyBody   String?  @db.Text
-  playlist    String?  // Playlist name or Spotify URL
-  reason      String?  // "Why You Should Go" section
-  quickHits   String?  @db.Text  // Comma-separated or JSON array of bullets
-  status      String   @default("draft")  // draft | scheduled | sent
+  storyBody   String?   @db.Text
+  playlist    String? // Playlist name or Spotify URL
+  reason      String? // "Why You Should Go" section
+  quickHits   String?   @db.Text // Comma-separated or JSON array of bullets
+  status      String    @default("draft") // draft | scheduled | sent
   sendDate    DateTime?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 
   @@index([status, sendDate])
 }
@@ -133,7 +133,7 @@ model Contact {
   organization String?
   email        String?
   phone        String?
-  category     String?   // artist | vendor | media | partner | guest | team
+  category     String? // artist | vendor | media | partner | guest | team
   notes        String?   @db.Text
   lastContact  DateTime?
   createdAt    DateTime  @default(now())
@@ -149,20 +149,20 @@ model Contact {
 
 /// High-value prospect for Network ($99) / Intel ($300) outreach — not a substitute for CRM consent.
 model Lead {
-  id                 String    @id @default(cuid())
-  name               String
-  industry           String
+  id               String    @id @default(cuid())
+  name             String
+  industry         String
   /// Subjective 1–10 influence / wallet heuristic from scout scoring
-  perceivedPower     Int       @default(5)
-  lastInteraction    DateTime?
+  perceivedPower   Int       @default(5)
+  lastInteraction  DateTime?
   /// JSONB: graph edges (entity IDs, roles, notes) for follow-up
-  socialGraphNodes   Json      @default("{}")
-  email              String?
-  phone              String?
-  source             String    @default("scout") // scout | manual | import
-  notes              String?   @db.Text
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
+  socialGraphNodes Json      @default("{}")
+  email            String?
+  phone            String?
+  source           String    @default("scout") // scout | manual | import
+  notes            String?   @db.Text
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 
   @@index([industry])
   @@index([perceivedPower])
@@ -177,12 +177,12 @@ model Lead {
 
 model Metric {
   id        Int      @id @default(autoincrement())
-  key       String   @unique  // e.g. "newsletter_subscribers", "inn_occupancy_rate", "spotify_followers"
+  key       String   @unique // e.g. "newsletter_subscribers", "inn_occupancy_rate", "spotify_followers"
   value     Float
   target    Float?
-  label     String?           // Display label: "Newsletter Subscribers"
-  unit      String?           // "subscribers", "%", "followers", etc.
-  source    String?           // "beehiiv" | "cloudbeds" | "spotify" | "manual"
+  label     String? // Display label: "Newsletter Subscribers"
+  unit      String? // "subscribers", "%", "followers", etc.
+  source    String? // "beehiiv" | "cloudbeds" | "spotify" | "manual"
   updatedAt DateTime @updatedAt
 
   @@index([key])
@@ -192,9 +192,9 @@ model Metric {
 // MetricSnapshot stores the full history for trend charts and client reports.
 model MetricSnapshot {
   id         Int      @id @default(autoincrement())
-  metricKey  String                                // Matches Metric.key
+  metricKey  String // Matches Metric.key
   value      Float
-  source     String?                               // "beehiiv" | "cloudbeds" | "census" | "bls" | "manual"
+  source     String? // "beehiiv" | "cloudbeds" | "census" | "bls" | "manual"
   recordedAt DateTime @default(now())
 
   @@index([metricKey, recordedAt])
@@ -211,15 +211,15 @@ model MetricSnapshot {
 // ─────────────────────────────────────────────────────────────
 
 model BridgeClient {
-  id          Int      @id @default(autoincrement())
-  name        String                    // "Scan2Plan", "FutureClient_X"
-  apiKey      String   @unique          // Public identifier (cuid)
-  apiSecret   String                    // HMAC-SHA256 secret (64-char hex, hashed at rest)
-  status      String   @default("active") // active | suspended
-  allowedCategories String[]            // Which article categories this client can create
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  lastSyncAt  DateTime?
+  id                Int       @id @default(autoincrement())
+  name              String // "Scan2Plan", "FutureClient_X"
+  apiKey            String    @unique // Public identifier (cuid)
+  apiSecret         String // HMAC-SHA256 secret (64-char hex, hashed at rest)
+  status            String    @default("active") // active | suspended
+  allowedCategories String[] // Which article categories this client can create
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  lastSyncAt        DateTime?
 
   @@index([apiKey])
   @@index([status])
@@ -230,22 +230,22 @@ model BridgeClient {
 // ─────────────────────────────────────────────────────────────
 
 model SocialAccount {
-  id          Int      @id @default(autoincrement())
-  platform    String   // facebook | instagram | google_business | twitter | tiktok | threads | bluesky | linkedin
-  handle      String   // @outsiderecon, @bigmuddymedia, etc.
-  brand       String   @default("bigmuddy") // bigmuddy | radio | magazine | touring | economics
-  status      String   @default("active")   // active | paused | disconnected
-  notes       String?
+  id           Int          @id @default(autoincrement())
+  platform     String // facebook | instagram | google_business | twitter | tiktok | threads | bluesky | linkedin
+  handle       String // @outsiderecon, @bigmuddymedia, etc.
+  brand        String       @default("bigmuddy") // bigmuddy | radio | magazine | touring | economics
+  status       String       @default("active") // active | paused | disconnected
+  notes        String?
   // SOFT FK: references db-media Client.id — no @relation constraint (cross-sovereign)
-  clientId    Int?
+  clientId     Int?
   // ── OAuth / Publishing Tokens ──
-  platformId    String?  // Platform-specific page/account ID (e.g. FB Page ID, GBP location ID)
-  accessToken   String?  @db.Text  // OAuth access token (encrypted at rest via GCP)
-  refreshToken  String?  @db.Text  // OAuth refresh token
-  tokenExpiry   DateTime?          // When the access token expires
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  posts       SocialPost[]
+  platformId   String? // Platform-specific page/account ID (e.g. FB Page ID, GBP location ID)
+  accessToken  String?      @db.Text // OAuth access token (encrypted at rest via GCP)
+  refreshToken String?      @db.Text // OAuth refresh token
+  tokenExpiry  DateTime? // When the access token expires
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  posts        SocialPost[]
 
   @@unique([platform, handle])
   @@index([brand])
@@ -254,21 +254,21 @@ model SocialAccount {
 }
 
 model SocialPost {
-  id          Int       @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   accountId   Int
   account     SocialAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
-  content     String    @db.Text           // Post body / caption
-  mediaUrls   String[]                     // GCS image/video URLs
-  postUrl     String?                      // URL after publishing (paste back)
-  status      String    @default("draft")  // draft | ready | published | failed
-  scheduledAt DateTime?                    // When to publish (null = no schedule)
-  publishedAt DateTime?                    // When actually published
-  sourceType  String?                      // article | newsletter | event | economics | manual
-  sourceId    String?                      // Reference to source content ID
-  tags        String[]                     // hashtags, topics
-  visibility  String    @default("draft")  // draft | internal | public — controls AI assistant access
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  content     String        @db.Text // Post body / caption
+  mediaUrls   String[] // GCS image/video URLs
+  postUrl     String? // URL after publishing (paste back)
+  status      String        @default("draft") // draft | ready | published | failed
+  scheduledAt DateTime? // When to publish (null = no schedule)
+  publishedAt DateTime? // When actually published
+  sourceType  String? // article | newsletter | event | economics | manual
+  sourceId    String? // Reference to source content ID
+  tags        String[] // hashtags, topics
+  visibility  String        @default("draft") // draft | internal | public — controls AI assistant access
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 
   @@index([accountId, status])
   @@index([status, scheduledAt])
@@ -285,7 +285,7 @@ model Client {
   name             String
   slug             String    @unique
   tier             String    @default("front-porch") // front-porch | route | river-room | blues-room
-  businessType     String    // restaurant | venue | hotel | shop | tour | service | other
+  businessType     String // restaurant | venue | hotel | shop | tour | service | other
   city             String
   state            String    @default("MS")
   address          String?
@@ -293,16 +293,16 @@ model Client {
   email            String?
   website          String?
   description      String?   @db.Text
-  voiceProfile     Json?     // AI-generated brand voice document
-  platforms        String[]  // which social platforms they're on
-  gbpPlaceId       String?   // Google Business Profile place ID
-  gbpUrl           String?   // Google Maps URL
+  voiceProfile     Json? // AI-generated brand voice document
+  platforms        String[] // which social platforms they're on
+  gbpPlaceId       String? // Google Business Profile place ID
+  gbpUrl           String? // Google Maps URL
   stripeCustomerId String?
   logoUrl          String?
   heroImageUrl     String?
-  stripeConnectId  String?   // Stripe Connect account ID (acct_xxx)
-  connectStatus    String?   // "pending" | "active" | "restricted" | "disabled"
-  contactName      String?   // Primary contact person
+  stripeConnectId  String? // Stripe Connect account ID (acct_xxx)
+  connectStatus    String? // "pending" | "active" | "restricted" | "disabled"
+  contactName      String? // Primary contact person
   contactEmail     String?
   contactPhone     String?
   notes            String?   @db.Text
@@ -313,12 +313,12 @@ model Client {
 
   // SOVEREIGNTY NOTE: SocialAccount[] and Article[] back-references REMOVED (2026-03-24)
   // These models reference Client via soft FK (clientId int, no @relation).
-  reviews          Review[]
-  calendars        ContentCalendar[]
-  reports          Report[]
-  invoices         Invoice[]
-  integrations     ClientIntegration[]
-  draftBusinesses  DraftBusiness[]
+  reviews         Review[]
+  calendars       ContentCalendar[]
+  reports         Report[]
+  invoices        Invoice[]
+  integrations    ClientIntegration[]
+  draftBusinesses DraftBusiness[]
 
   @@index([city])
   @@index([tier, status])
@@ -342,15 +342,15 @@ model Review {
   id             Int       @id @default(autoincrement())
   clientId       Int
   client         Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
-  platform       String    // google | yelp | tripadvisor | facebook
+  platform       String // google | yelp | tripadvisor | facebook
   externalId     String    @unique
   author         String
-  rating         Int       // 1-5
+  rating         Int // 1-5
   text           String?   @db.Text
-  response       String?   @db.Text   // Our drafted response
+  response       String?   @db.Text // Our drafted response
   responseStatus String    @default("pending") // pending | drafted | approved | posted | skipped
-  aiDraft        String?   @db.Text   // AI-generated response draft
-  postedAt       DateTime  // When the review was posted
+  aiDraft        String?   @db.Text // AI-generated response draft
+  postedAt       DateTime // When the review was posted
   respondedAt    DateTime? // When we responded
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
@@ -364,9 +364,9 @@ model ContentCalendar {
   id          Int       @id @default(autoincrement())
   clientId    Int
   client      Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
-  month       Int       // 1-12
+  month       Int // 1-12
   year        Int
-  posts       Json      // Array of planned post objects with content, platform, scheduledDate, status
+  posts       Json // Array of planned post objects with content, platform, scheduledDate, status
   status      String    @default("draft") // draft | review | approved | active | completed
   generatedAt DateTime  @default(now())
   approvedAt  DateTime?
@@ -381,17 +381,17 @@ model ContentCalendar {
 }
 
 model Report {
-  id          Int       @id @default(autoincrement())
-  clientId    Int
-  client      Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
-  month       Int
-  year        Int
-  data        Json      // Metrics snapshot: posts published, engagement, reviews, etc.
-  summary     String?   @db.Text // AI-generated narrative summary
-  pdfUrl      String?   // GCS URL for generated PDF
-  sentAt      DateTime?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id        Int       @id @default(autoincrement())
+  clientId  Int
+  client    Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  month     Int
+  year      Int
+  data      Json // Metrics snapshot: posts published, engagement, reviews, etc.
+  summary   String?   @db.Text // AI-generated narrative summary
+  pdfUrl    String? // GCS URL for generated PDF
+  sentAt    DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 
   @@unique([clientId, month, year])
   @@index([clientId])
@@ -399,20 +399,20 @@ model Report {
 }
 
 model Invoice {
-  id               Int       @id @default(autoincrement())
-  clientId         Int
-  client           Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
-  stripeInvoiceId  String?   @unique
-  amount           Int       // Amount in cents
-  currency         String    @default("usd")
-  status           String    @default("draft") // draft | open | paid | void | uncollectible
-  periodStart      DateTime
-  periodEnd        DateTime
-  paidAt           DateTime?
-  dueDate          DateTime?
-  pdfUrl           String?
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
+  id              Int       @id @default(autoincrement())
+  clientId        Int
+  client          Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  stripeInvoiceId String?   @unique
+  amount          Int // Amount in cents
+  currency        String    @default("usd")
+  status          String    @default("draft") // draft | open | paid | void | uncollectible
+  periodStart     DateTime
+  periodEnd       DateTime
+  paidAt          DateTime?
+  dueDate         DateTime?
+  pdfUrl          String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 
   @@index([clientId, status])
   @@index([status])
@@ -426,15 +426,15 @@ model ClientIntegration {
   id           Int       @id @default(autoincrement())
   clientId     Int
   client       Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
-  provider     String    // stripe | square | clover | opentable | resy | cloudbeds | mailchimp | google-analytics | meta-pixel | toast
+  provider     String // stripe | square | clover | opentable | resy | cloudbeds | mailchimp | google-analytics | meta-pixel | toast
   status       String    @default("pending") // pending | active | error | disconnected
-  accountId    String?   // External account/merchant ID
-  accessToken  String?   @db.Text  // Encrypted OAuth token
-  refreshToken String?   @db.Text  // Encrypted OAuth refresh token
+  accountId    String? // External account/merchant ID
+  accessToken  String?   @db.Text // Encrypted OAuth token
+  refreshToken String?   @db.Text // Encrypted OAuth refresh token
   expiresAt    DateTime? // Token expiry
-  config       Json?     // Provider-specific config (e.g. location IDs, webhook URLs)
-  scopes       String[]  // OAuth scopes granted
-  displayName  String?   // Human-friendly name ("Anthologist Stripe", "Bobby J's Square")
+  config       Json? // Provider-specific config (e.g. location IDs, webhook URLs)
+  scopes       String[] // OAuth scopes granted
+  displayName  String? // Human-friendly name ("Anthologist Stripe", "Bobby J's Square")
   lastSyncAt   DateTime?
   errorMessage String?
   createdAt    DateTime  @default(now())
@@ -451,11 +451,11 @@ model ClientIntegration {
 
 model PublishJob {
   id          Int       @id @default(autoincrement())
-  postId      Int       // Reference to SocialPost
-  platform    String    // twitter | instagram | tiktok | bluesky | linkedin | facebook | gbp
+  postId      Int // Reference to SocialPost
+  platform    String // twitter | instagram | tiktok | bluesky | linkedin | facebook | gbp
   status      String    @default("pending") // pending | processing | published | failed | cancelled
-  externalId  String?   // Platform's post ID after publishing
-  externalUrl String?   // URL of published post
+  externalId  String? // Platform's post ID after publishing
+  externalUrl String? // URL of published post
   error       String?   @db.Text
   attempts    Int       @default(0)
   scheduledAt DateTime?
@@ -477,40 +477,40 @@ model PublishJob {
 // ─────────────────────────────────────────────────────────────
 
 model Artist {
-  id              Int       @id @default(autoincrement())
-  name            String
-  slug            String    @unique
-  genre           String?   // blues | soul | gospel | rock | folk | jazz | hip-hop | country | other
-  city            String
-  state           String    @default("MS")
-  bio             String?   @db.Text
-  photoUrl        String?
-  socialLinks     Json?     // { instagram, tiktok, spotify, youtube, website, etc }
-  source          String    @default("rise-up") // rise-up | scouted | submitted | referral
-  status          String    @default("discovered") // discovered | contacted | showcasing | touring | alumni
-  contactName     String?
-  contactEmail    String?
-  contactPhone    String?
-  notes           String?   @db.Text
-  riseUpCohort    String?   // e.g. "2026-spring"
-  discoveredAt    DateTime  @default(now())
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id           Int      @id @default(autoincrement())
+  name         String
+  slug         String   @unique
+  genre        String? // blues | soul | gospel | rock | folk | jazz | hip-hop | country | other
+  city         String
+  state        String   @default("MS")
+  bio          String?  @db.Text
+  photoUrl     String?
+  socialLinks  Json? // { instagram, tiktok, spotify, youtube, website, etc }
+  source       String   @default("rise-up") // rise-up | scouted | submitted | referral
+  status       String   @default("discovered") // discovered | contacted | showcasing | touring | alumni
+  contactName  String?
+  contactEmail String?
+  contactPhone String?
+  notes        String?  @db.Text
+  riseUpCohort String? // e.g. "2026-spring"
+  discoveredAt DateTime @default(now())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   // ── External Enrichment IDs ──
-  spotifyId             String?   @unique  // Spotify artist ID
-  spotifyPopularity     Int?               // 0-100 popularity score
-  spotifyFollowers      Int?               // Total Spotify followers
-  spotifyMonthlyListeners Int?             // Monthly listener count
-  spotifyGenres         String[]           // Spotify genre tags
-  musicbrainzId         String?   @unique  // Musicbrainz artist MBID
+  spotifyId               String?  @unique // Spotify artist ID
+  spotifyPopularity       Int? // 0-100 popularity score
+  spotifyFollowers        Int? // Total Spotify followers
+  spotifyMonthlyListeners Int? // Monthly listener count
+  spotifyGenres           String[] // Spotify genre tags
+  musicbrainzId           String?  @unique // Musicbrainz artist MBID
 
-  showcases       ShowcaseSlot[]
-  tourStops       TourStop[]
-  tracks          Track[]
-  splits          Split[]
+  showcases        ShowcaseSlot[]
+  tourStops        TourStop[]
+  tracks           Track[]
+  splits           Split[]
   proRegistrations PRORegistration[]
-  performances    Performance[]
+  performances     Performance[]
 
   @@index([status])
   @@index([city, state])
@@ -520,40 +520,40 @@ model Artist {
 
 // ── MelodyVault: Track Catalog ──
 model Track {
-  id              Int       @id @default(autoincrement())
-  title           String
-  slug            String    @unique
-  artistId        Int
-  artist          Artist    @relation(fields: [artistId], references: [id], onDelete: Cascade)
-  albumTitle      String?
-  duration        Int?      // seconds
-  genre           String?
-  mood            String?   // uplifting | melancholic | energetic | chill | intense | warm
-  bpm             Int?
-  musicalKey      String?   // e.g. "D Major", "A Minor"
-  isrc            String?   // International Standard Recording Code
-  iswc            String?   // International Standard Musical Work Code
-  audioUrl        String?   // GCS or R2 URL to master file
-  waveformData    Json?     // pre-computed waveform for UI
-  aiAnalysis      Json?     // { genre, mood, bpm, key, syncSuggestions, trendingInsights }
-  metadata        Json?     // additional metadata (lyrics, credits, instruments)
-  releaseDate     DateTime?
-  status          String    @default("uploaded") // uploaded | analyzing | active | archived
-  splits          Split[]
-  syncSubmissions SyncSubmission[]
+  id               Int               @id @default(autoincrement())
+  title            String
+  slug             String            @unique
+  artistId         Int
+  artist           Artist            @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  albumTitle       String?
+  duration         Int? // seconds
+  genre            String?
+  mood             String? // uplifting | melancholic | energetic | chill | intense | warm
+  bpm              Int?
+  musicalKey       String? // e.g. "D Major", "A Minor"
+  isrc             String? // International Standard Recording Code
+  iswc             String? // International Standard Musical Work Code
+  audioUrl         String? // GCS or R2 URL to master file
+  waveformData     Json? // pre-computed waveform for UI
+  aiAnalysis       Json? // { genre, mood, bpm, key, syncSuggestions, trendingInsights }
+  metadata         Json? // additional metadata (lyrics, credits, instruments)
+  releaseDate      DateTime?
+  status           String            @default("uploaded") // uploaded | analyzing | active | archived
+  splits           Split[]
+  syncSubmissions  SyncSubmission[]
   proRegistrations PRORegistration[]
-  royalties       RoyaltyPayment[]
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  royalties        RoyaltyPayment[]
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
 
   // ── MelodyVault Airtable additions ──
   trackNumber       Int?
-  lyricsFull        String?   @db.Text
+  lyricsFull        String?           @db.Text
   hookLine          String?
-  theme             String[]  
-  tiktokStartTime   String?   
-  tiktokHookSeconds Int       @default(15)
-  explicit          Boolean   @default(false)
+  theme             String[]
+  tiktokStartTime   String?
+  tiktokHookSeconds Int               @default(15)
+  explicit          Boolean           @default(false)
   pressAssets       TrackPressAsset[]
   videos            TrackVideo[]
   posts             TrackPost[]
@@ -566,19 +566,19 @@ model Track {
 
 // ── MelodyVault: Splits Ledger ──
 model Split {
-  id          Int       @id @default(autoincrement())
-  trackId     Int
-  track       Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
-  artistId    Int?
-  artist      Artist?   @relation(fields: [artistId], references: [id])
-  name        String    // contributor name (may not be a roster artist)
-  email       String?
-  role        String    // songwriter | producer | performer | engineer | featured
-  sharePercent Float    // 0.0 to 100.0
-  paypalEmail String?   // for royalty payouts
-  status      String    @default("pending") // pending | confirmed | disputed
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id           Int      @id @default(autoincrement())
+  trackId      Int
+  track        Track    @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  artistId     Int?
+  artist       Artist?  @relation(fields: [artistId], references: [id])
+  name         String // contributor name (may not be a roster artist)
+  email        String?
+  role         String // songwriter | producer | performer | engineer | featured
+  sharePercent Float // 0.0 to 100.0
+  paypalEmail  String? // for royalty payouts
+  status       String   @default("pending") // pending | confirmed | disputed
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   @@unique([trackId, name, role])
   @@index([trackId])
@@ -587,35 +587,35 @@ model Split {
 
 // ── MelodyVault: Sync Marketplace ──
 model SyncOpportunity {
-  id            Int       @id @default(autoincrement())
-  title         String
-  description   String?   @db.Text
-  projectType   String    // film | tv | ad | game | podcast | documentary | social
-  genre         String?
-  mood          String?
-  budgetAmount  Int?      // dollars
-  budgetType    String?   // buyout | 1-year | 2-year | perpetual
-  deadline      DateTime?
-  contactEmail  String?
-  status        String    @default("open") // open | filled | expired | cancelled
-  submissions   SyncSubmission[]
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id           Int              @id @default(autoincrement())
+  title        String
+  description  String?          @db.Text
+  projectType  String // film | tv | ad | game | podcast | documentary | social
+  genre        String?
+  mood         String?
+  budgetAmount Int? // dollars
+  budgetType   String? // buyout | 1-year | 2-year | perpetual
+  deadline     DateTime?
+  contactEmail String?
+  status       String           @default("open") // open | filled | expired | cancelled
+  submissions  SyncSubmission[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
 
   @@index([status, genre])
   @@index([deadline])
 }
 
 model SyncSubmission {
-  id              Int       @id @default(autoincrement())
-  trackId         Int
-  track           Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
-  opportunityId   Int
-  opportunity     SyncOpportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
-  status          String    @default("submitted") // submitted | shortlisted | selected | rejected
-  notes           String?   @db.Text
-  submittedAt     DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id            Int             @id @default(autoincrement())
+  trackId       Int
+  track         Track           @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  opportunityId Int
+  opportunity   SyncOpportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  status        String          @default("submitted") // submitted | shortlisted | selected | rejected
+  notes         String?         @db.Text
+  submittedAt   DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
 
   @@unique([trackId, opportunityId])
   @@index([opportunityId])
@@ -623,18 +623,18 @@ model SyncSubmission {
 
 // ── MelodyVault: PRO Rights Management ──
 model PRORegistration {
-  id            Int       @id @default(autoincrement())
-  trackId       Int
-  track         Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
-  artistId      Int?
-  artist        Artist?   @relation(fields: [artistId], references: [id])
-  pro           String    // ASCAP | BMI | SESAC
-  workId        String?   // W123456789
-  registrationStatus String @default("pending") // pending | processing | registered | error
-  registeredAt  DateTime?
-  notes         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id                 Int       @id @default(autoincrement())
+  trackId            Int
+  track              Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  artistId           Int?
+  artist             Artist?   @relation(fields: [artistId], references: [id])
+  pro                String // ASCAP | BMI | SESAC
+  workId             String? // W123456789
+  registrationStatus String    @default("pending") // pending | processing | registered | error
+  registeredAt       DateTime?
+  notes              String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
 
   @@unique([trackId, pro])
   @@index([registrationStatus])
@@ -645,10 +645,10 @@ model RoyaltyPayment {
   id          Int       @id @default(autoincrement())
   trackId     Int
   track       Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
-  source      String    // spotify | apple_music | youtube | sync | merch | direct
-  period      String    // "2026-Q1" or "2026-03"
-  grossAmount Float     // total before splits
-  netAmount   Float     // after platform fees
+  source      String // spotify | apple_music | youtube | sync | merch | direct
+  period      String // "2026-Q1" or "2026-03"
+  grossAmount Float // total before splits
+  netAmount   Float // after platform fees
   currency    String    @default("USD")
   streams     Int?
   downloads   Int?
@@ -663,44 +663,44 @@ model RoyaltyPayment {
 // ── MelodyVault: Airtable Port Additions ──
 
 model TrackPressAsset {
-  id              Int       @id @default(autoincrement())
-  trackId         Int
-  track           Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
-  pressKitUrl     String?
-  reviewExcerpt   String?   @db.Text
-  tagline         String?
-  oneSheetUrl     String?
-  bioVersion      String?
-  photoUrl        String?
-  status          String    @default("draft") // draft | review | approved | distributed
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id            Int      @id @default(autoincrement())
+  trackId       Int
+  track         Track    @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  pressKitUrl   String?
+  reviewExcerpt String?  @db.Text
+  tagline       String?
+  oneSheetUrl   String?
+  bioVersion    String?
+  photoUrl      String?
+  status        String   @default("draft") // draft | review | approved | distributed
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   @@index([trackId, status])
 }
 
 model TrackVideo {
-  id              Int       @id @default(autoincrement())
-  trackId         Int
-  track           Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
-  platform        String    // TikTok | Instagram Reels | YouTube Shorts | Facebook
-  scriptText      String?   @db.Text
-  hashtags        String?   @db.Text
-  publishDate     DateTime?
-  publishTime     String?
-  status          String    @default("draft") // draft | scheduled | published | archived
-  views           Int       @default(0)
-  likes           Int       @default(0)
-  shares          Int       @default(0)
-  engagementRate  Float?  
-  viralThreshold  Boolean   @default(false)
-  publishUrl      String?
-  variantOfId     Int?
-  variantOf       TrackVideo?  @relation("VariantOf", fields: [variantOfId], references: [id])
-  variants        TrackVideo[] @relation("VariantOf")
-  topMetrics      TrackMetric[] @relation("TopVideo")
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id             Int           @id @default(autoincrement())
+  trackId        Int
+  track          Track         @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  platform       String // TikTok | Instagram Reels | YouTube Shorts | Facebook
+  scriptText     String?       @db.Text
+  hashtags       String?       @db.Text
+  publishDate    DateTime?
+  publishTime    String?
+  status         String        @default("draft") // draft | scheduled | published | archived
+  views          Int           @default(0)
+  likes          Int           @default(0)
+  shares         Int           @default(0)
+  engagementRate Float?
+  viralThreshold Boolean       @default(false)
+  publishUrl     String?
+  variantOfId    Int?
+  variantOf      TrackVideo?   @relation("VariantOf", fields: [variantOfId], references: [id])
+  variants       TrackVideo[]  @relation("VariantOf")
+  topMetrics     TrackMetric[] @relation("TopVideo")
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
 
   @@index([trackId])
   @@index([status, publishDate])
@@ -708,18 +708,18 @@ model TrackVideo {
 }
 
 model TrackPost {
-  id              Int       @id @default(autoincrement())
-  trackId         Int
-  track           Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
-  platform        String    // Twitter/X | Facebook | Instagram | Reddit | Newsletter
-  contentType     String    // meme | lyric_card | story | announcement | poll | thread
-  caption         String?   @db.Text
-  publishDate     DateTime?
-  publishTime     String?
-  status          String    @default("draft") // draft | scheduled | published
-  engagement      Int       @default(0)
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id          Int       @id @default(autoincrement())
+  trackId     Int
+  track       Track     @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  platform    String // Twitter/X | Facebook | Instagram | Reddit | Newsletter
+  contentType String // meme | lyric_card | story | announcement | poll | thread
+  caption     String?   @db.Text
+  publishDate DateTime?
+  publishTime String?
+  status      String    @default("draft") // draft | scheduled | published
+  engagement  Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 
   @@index([trackId, status])
   @@index([publishDate])
@@ -728,7 +728,7 @@ model TrackPost {
 model MusicCurator {
   id              Int       @id @default(autoincrement())
   name            String
-  platform        String    // Spotify | Apple Music | YouTube | TikTok | Blog | Radio
+  platform        String // Spotify | Apple Music | YouTube | TikTok | Blog | Radio
   playlistName    String?
   playlistUrl     String?
   followerCount   Int       @default(0)
@@ -737,7 +737,7 @@ model MusicCurator {
   lastContactDate DateTime?
   notes           String?   @db.Text
   email           String?
-  genreFocus      String[]  // ["country", "americana", "outlaw"]
+  genreFocus      String[] // ["country", "americana", "outlaw"]
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
 
@@ -746,61 +746,61 @@ model MusicCurator {
 }
 
 model TrackMetric {
-  id              Int       @id @default(autoincrement())
-  date            DateTime
-  platform        String    // Spotify | TikTok | Instagram | YouTube | Bandcamp | All
-  streams         Int       @default(0)
-  followers       Int       @default(0)
-  engagementRate  Float?
-  playlistAdds    Int       @default(0)
-  revenueEstCents Int       @default(0)
+  id                   Int         @id @default(autoincrement())
+  date                 DateTime
+  platform             String // Spotify | TikTok | Instagram | YouTube | Bandcamp | All
+  streams              Int         @default(0)
+  followers            Int         @default(0)
+  engagementRate       Float?
+  playlistAdds         Int         @default(0)
+  revenueEstCents      Int         @default(0)
   topPerformingVideoId Int?
-  topPerformingVideo TrackVideo? @relation("TopVideo", fields: [topPerformingVideoId], references: [id])
-  trackId         Int?
-  track           Track?    @relation(fields: [trackId], references: [id], onDelete: Cascade)
-  createdAt       DateTime  @default(now())
+  topPerformingVideo   TrackVideo? @relation("TopVideo", fields: [topPerformingVideoId], references: [id])
+  trackId              Int?
+  track                Track?      @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  createdAt            DateTime    @default(now())
 
   @@index([date, platform])
   @@index([trackId])
 }
 
 model ReleaseCampaign {
-  id              Int       @id @default(autoincrement())
-  name            String
-  startDate       DateTime?
-  endDate         DateTime?
-  status          String    @default("planning") // planning | active | paused | completed
-  budgetCents     Int       @default(0)
-  channels        String[]  // ["TikTok", "Spotify"]
-  goal            String?   @db.Text
-  kpis            String?   @db.Text
-  notes           String?   @db.Text
-  tasks           CampaignTask[]
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id          Int            @id @default(autoincrement())
+  name        String
+  startDate   DateTime?
+  endDate     DateTime?
+  status      String         @default("planning") // planning | active | paused | completed
+  budgetCents Int            @default(0)
+  channels    String[] // ["TikTok", "Spotify"]
+  goal        String?        @db.Text
+  kpis        String?        @db.Text
+  notes       String?        @db.Text
+  tasks       CampaignTask[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
 
   @@index([status])
 }
 
 model CampaignTask {
-  id              Int       @id @default(autoincrement())
-  title           String
-  description     String?   @db.Text
-  assignedTo      String    // human | content_agent | ops_agent | strategy_agent
-  dueDate         DateTime?
-  priority        String    @default("medium") // low | medium | high | critical
-  status          String    @default("todo") // todo | in_progress | review | completed | blocked
-  campaignId      Int?
-  campaign        ReleaseCampaign? @relation(fields: [campaignId], references: [id])
-  dependenciesId  Int?
-  dependency      CampaignTask? @relation("Dependencies", fields: [dependenciesId], references: [id])
-  dependentTasks  CampaignTask[] @relation("Dependencies")
-  outputUrl       String?
-  timeSpentMins   Int       @default(0)
-  recurring       String    @default("none") // daily | weekly | monthly | none
-  automationTrigger Boolean @default(false)
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id                Int              @id @default(autoincrement())
+  title             String
+  description       String?          @db.Text
+  assignedTo        String // human | content_agent | ops_agent | strategy_agent
+  dueDate           DateTime?
+  priority          String           @default("medium") // low | medium | high | critical
+  status            String           @default("todo") // todo | in_progress | review | completed | blocked
+  campaignId        Int?
+  campaign          ReleaseCampaign? @relation(fields: [campaignId], references: [id])
+  dependenciesId    Int?
+  dependency        CampaignTask?    @relation("Dependencies", fields: [dependenciesId], references: [id])
+  dependentTasks    CampaignTask[]   @relation("Dependencies")
+  outputUrl         String?
+  timeSpentMins     Int              @default(0)
+  recurring         String           @default("none") // daily | weekly | monthly | none
+  automationTrigger Boolean          @default(false)
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
 
   @@index([assignedTo, status])
   @@index([dueDate])
@@ -808,75 +808,75 @@ model CampaignTask {
 }
 
 model MelodyVaultLog {
-  id              Int       @id @default(autoincrement())
-  timestamp       DateTime  @default(now())
-  flowName        String
-  triggerEvent    String
-  actionTaken     String?   @db.Text
-  status          String    @default("success") // success | failed | partial | skipped
-  errorMessage    String?   @db.Text
+  id           Int      @id @default(autoincrement())
+  timestamp    DateTime @default(now())
+  flowName     String
+  triggerEvent String
+  actionTaken  String?  @db.Text
+  status       String   @default("success") // success | failed | partial | skipped
+  errorMessage String?  @db.Text
 
   @@index([flowName, status])
   @@index([timestamp])
 }
 
 model Showcase {
-  id          Int       @id @default(autoincrement())
-  name        String    // e.g. "Rise Up Showcase — Spring 2026"
-  venue       String    // "Ground Zero Blues Club" | "B.B. King's" | "Blues Room" | etc
-  venueCity   String    // "Clarksdale" | "Memphis" | "Natchez"
-  venueState  String    @default("MS")
+  id          Int      @id @default(autoincrement())
+  name        String // e.g. "Rise Up Showcase — Spring 2026"
+  venue       String // "Ground Zero Blues Club" | "B.B. King's" | "Blues Room" | etc
+  venueCity   String // "Clarksdale" | "Memphis" | "Natchez"
+  venueState  String   @default("MS")
   date        DateTime
-  time        String?   // "7:00 PM CT"
-  description String?   @db.Text
+  time        String? // "7:00 PM CT"
+  description String?  @db.Text
   capacity    Int?
-  ticketPrice String?   // "$15" | "Free" | "$10-25"
+  ticketPrice String? // "$15" | "Free" | "$10-25"
   ticketUrl   String?
-  status      String    @default("planning") // planning | confirmed | promoted | completed | cancelled
-  eventId     Int?      // Link to Event model if also listed as an event
-  notes       String?   @db.Text
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  status      String   @default("planning") // planning | confirmed | promoted | completed | cancelled
+  eventId     Int? // Link to Event model if also listed as an event
+  notes       String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  slots       ShowcaseSlot[]
+  slots ShowcaseSlot[]
 
   @@index([date, status])
   @@index([venue])
 }
 
 model ShowcaseSlot {
-  id          Int       @id @default(autoincrement())
-  showcaseId  Int
-  showcase    Showcase  @relation(fields: [showcaseId], references: [id], onDelete: Cascade)
-  artistId    Int
-  artist      Artist    @relation(fields: [artistId], references: [id], onDelete: Cascade)
-  setOrder    Int       @default(0)  // Performance order
-  setLength   Int?      // Minutes
-  status      String    @default("confirmed") // invited | confirmed | declined | performed
-  notes       String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id         Int      @id @default(autoincrement())
+  showcaseId Int
+  showcase   Showcase @relation(fields: [showcaseId], references: [id], onDelete: Cascade)
+  artistId   Int
+  artist     Artist   @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  setOrder   Int      @default(0) // Performance order
+  setLength  Int? // Minutes
+  status     String   @default("confirmed") // invited | confirmed | declined | performed
+  notes      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   @@unique([showcaseId, artistId])
   @@index([artistId])
 }
 
 model TourStop {
-  id          Int       @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   artistId    Int
-  artist      Artist    @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  artist      Artist   @relation(fields: [artistId], references: [id], onDelete: Cascade)
   venue       String
   venueCity   String
-  venueState  String    @default("MS")
+  venueState  String   @default("MS")
   date        DateTime
   time        String?
-  guarantee   Int?      // Artist guarantee in cents
-  doorDeal    String?   // "70/30" | "80/20" | "flat $500"
+  guarantee   Int? // Artist guarantee in cents
+  doorDeal    String? // "70/30" | "80/20" | "flat $500"
   ticketPrice String?
-  status      String    @default("hold") // hold | confirmed | advanced | completed | cancelled
+  status      String   @default("hold") // hold | confirmed | advanced | completed | cancelled
   notes       String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@index([artistId, date])
   @@index([date, status])
@@ -887,11 +887,11 @@ model TourStop {
 model PhotoSession {
   id          String   @id @default(cuid())
   code        String   @unique // short code for QR URL e.g. "blues-room-mar-15"
-  name        String   // "Blues Room — March 15, 2026"
-  location    String   // "The Big Muddy Inn"
+  name        String // "Blues Room — March 15, 2026"
+  location    String // "The Big Muddy Inn"
   date        DateTime
   description String?
-  coverImage  String?  // GCS URL
+  coverImage  String? // GCS URL
   status      String   @default("active") // active | archived
   photos      Photo[]
   createdAt   DateTime @default(now())
@@ -902,8 +902,8 @@ model Photo {
   id           String       @id @default(cuid())
   sessionId    String
   session      PhotoSession @relation(fields: [sessionId], references: [id])
-  url          String       // GCS URL for full res
-  thumbnailUrl String?      // GCS URL for thumbnail
+  url          String // GCS URL for full res
+  thumbnailUrl String? // GCS URL for thumbnail
   caption      String?
   sortOrder    Int          @default(0)
   shareCount   Int          @default(0)
@@ -943,26 +943,26 @@ model Publication {
   subtitle        String?
   author          String    @default("Chase Pierson")
   description     String?   @db.Text
-  longDescription String?   @db.Text   // Full book description / back cover copy
+  longDescription String?   @db.Text // Full book description / back cover copy
   category        String    @default("book") // book | zine | print | catalog
   format          String    @default("hardcover") // hardcover | softcover | digital | limited-edition
   pageCount       Int?
-  dimensions      String?   // e.g. "10 x 10 inches"
+  dimensions      String? // e.g. "10 x 10 inches"
   isbn            String?
-  price           Int?      // Price in cents
+  price           Int? // Price in cents
   currency        String    @default("usd")
-  coverImageUrl   String?   // Front cover
-  backCoverUrl    String?   // Back cover
-  previewImages   String[]  // Interior spread previews
-  printPartner    String?   // e.g. "Blurb", "Lulu", "self"
-  printUrl        String?   // URL to order (Blurb, Amazon, etc.)
-  shopifyUrl      String?   // If sold through Shopify
+  coverImageUrl   String? // Front cover
+  backCoverUrl    String? // Back cover
+  previewImages   String[] // Interior spread previews
+  printPartner    String? // e.g. "Blurb", "Lulu", "self"
+  printUrl        String? // URL to order (Blurb, Amazon, etc.)
+  shopifyUrl      String? // If sold through Shopify
   status          String    @default("draft") // draft | production | preorder | available | sold-out | archived
-  edition         String?   // e.g. "First Edition", "Artist Proof"
-  printRun        Int?      // Total copies in print run
+  edition         String? // e.g. "First Edition", "Artist Proof"
+  printRun        Int? // Total copies in print run
   soldCount       Int       @default(0)
-  relatedCity     String?   // natchez | clarksdale | etc.
-  tags            String[]  // portrait | art | photography | inn | blues
+  relatedCity     String? // natchez | clarksdale | etc.
+  tags            String[] // portrait | art | photography | inn | blues
   publishedAt     DateTime?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
@@ -980,76 +980,75 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  role          String    @default("viewer")  // admin | ops | artist | viewer
-  
+  role          String    @default("viewer") // admin | ops | artist | viewer
+
   // ── Onboarding & Personalization Matrix ──
-  onboardingStep String   @default("pending_survey") // pending_survey | pending_asana | completed
-  communicationChannels String[] // e.g. ["asana", "email", "google_chat"]
-  communicationStyle    String?  // bulleted_brief | detailed_warm | data_heavy
-  interfaceTheme        String   @default("minimal") // futuristic | retro | minimal
-  asanaMemberId         String?
+  onboardingStep              String    @default("pending_survey") // pending_survey | pending_asana | completed
+  communicationChannels       String[] // e.g. ["asana", "email", "google_chat"]
+  communicationStyle          String? // bulleted_brief | detailed_warm | data_heavy
+  interfaceTheme              String    @default("minimal") // futuristic | retro | minimal
+  asanaMemberId               String?
   communicationPrefsUpdatedAt DateTime?
 
   // ── Identity & Email ──
-  preferredName     String?   // "Tracy" vs "Tracy Pierson"
-  personalEmail     String?   // non-work email for password resets, etc.
-  businessEmail     String?   // assigned @bigmuddytouring.com or @hillbillydreamsinc.com
-  jobTitle          String?   // "Guest Experience Coordinator"
-  brandAffiliation  String?   // S2PX | BMT | BuyCurious | Corporate
-  notifyTo          String?   // personal | business | both
+  preferredName    String? // "Tracy" vs "Tracy Pierson"
+  personalEmail    String? // non-work email for password resets, etc.
+  businessEmail    String? // assigned @bigmuddytouring.com or @hillbillydreamsinc.com
+  jobTitle         String? // "Guest Experience Coordinator"
+  brandAffiliation String? // S2PX | BMT | BuyCurious | Corporate
+  notifyTo         String? // personal | business | both
 
   // ── Signature & Branding ──
-  avatarUrl         String?
-  signatureStyle    String?   // classic | minimal | bold
-  bioBlurb          String?   // one-liner for email signature
-  phoneDisplay      String?   // phone to show in signature
+  avatarUrl      String?
+  signatureStyle String? // classic | minimal | bold
+  bioBlurb       String? // one-liner for email signature
+  phoneDisplay   String? // phone to show in signature
 
   onboardingCompletedAt DateTime?
 
   // ── Data Consent (Honest Data Exchange) ──
-  profileType       String?   // 'private' | 'business'
-  dataTier          String?   // 'free' | 'paid'
-  consentVersion    String?   // version of consent form accepted
-  consentTimestamp   DateTime? // when they accepted
+  profileType      String? // 'private' | 'business'
+  dataTier         String? // 'free' | 'paid'
+  consentVersion   String? // version of consent form accepted
+  consentTimestamp DateTime? // when they accepted
 
   // SOVEREIGNTY NOTE: artistApplications relation REMOVED (2026-03-24)
   // BCA sovereign queries by userId string — no cross-sovereign FK.
-  accounts      Account[]
-  sessions      Session[]
+  accounts        Account[]
+  sessions        Session[]
   /// Phase 1.8 — sandbox staging rows (Studio OS / agents)
   draftBusinesses DraftBusiness[]
   draftActions    DraftAction[]
   draftContexts   DraftContext[]
-  jobs          Job[]
+  jobs            Job[]
 
   // ── Economic Engine (Sovereign Wallet) ──
-  credits       Int      @default(0)
+  credits       Int               @default(0)
   contributions ContributionLog[]
   creditLedgers CreditLedger[]
   lores         Lore[]
   loreEntries   LoreEntry[]
 
   /// Product ladder tier (DSD Free → Intel). Alias in docs: "tier".
-  sovereignTier SovereignMembershipTier @default(FREE)
-  isVetted      Boolean  @default(false)
+  sovereignTier            SovereignMembershipTier @default(FREE)
+  isVetted                 Boolean                 @default(false)
   /// City / ARPA-subsidized $20 utility tier — KYC path; off when user opts for full privacy off-grid
-  isGovernmentSubsidized Boolean @default(false)
+  isGovernmentSubsidized   Boolean                 @default(false)
   /// Last completed mini-task that unlocked or renewed subsidy eligibility (proof-of-life)
   lastVerificationTaskDate DateTime?
-  sponsoredAds  AdCampaign[] @relation("AdSponsor")
-  referredById  String?
-  referredBy    User?    @relation("GuildReferrals", fields: [referredById], references: [id], onDelete: SetNull)
-  referrals     User[]   @relation("GuildReferrals")
-  entities      Entity[]
-  organizedContests Contest[] @relation("ContestOrganizer")
-  submissions   Submission[]
-  groups        GroupMember[]
-  apiKeys       ApiKey[]
+  sponsoredAds             AdCampaign[]            @relation("AdSponsor")
+  referredById             String?
+  referredBy               User?                   @relation("GuildReferrals", fields: [referredById], references: [id], onDelete: SetNull)
+  referrals                User[]                  @relation("GuildReferrals")
+  entities                 Entity[]
+  organizedContests        Contest[]               @relation("ContestOrganizer")
+  submissions              Submission[]
+  groups                   GroupMember[]
+  apiKeys                  ApiKey[]
 
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
-
 
 model Account {
   id                String  @id @default(cuid())
@@ -1090,46 +1089,46 @@ model VerificationToken {
 // ============================================================
 
 model LaunchTask {
-  id           Int       @id @default(autoincrement())
-  taskNumber   Int       @unique
-  title        String
-  session      Int       // 1-7 (work session grouping)
-  sessionName  String    // e.g. "Quick Wins", "Google Business Profile"
-  platform     String?   // e.g. "Google", "Facebook", "Yelp"
-  timeEstimate String?   // e.g. "15 min", "1 hour"
-  status       String    @default("pending") // pending, done, skipped
-  assignedTo   String?   // "tracy", "amy", "chase"
-  guide        String?   @db.Text // HTML step-by-step instructions
-  link         String?   // external URL for the task
-  requiresLogin Boolean  @default(false)
+  id              Int       @id @default(autoincrement())
+  taskNumber      Int       @unique
+  title           String
+  session         Int // 1-7 (work session grouping)
+  sessionName     String // e.g. "Quick Wins", "Google Business Profile"
+  platform        String? // e.g. "Google", "Facebook", "Yelp"
+  timeEstimate    String? // e.g. "15 min", "1 hour"
+  status          String    @default("pending") // pending, done, skipped
+  assignedTo      String? // "tracy", "amy", "chase"
+  guide           String?   @db.Text // HTML step-by-step instructions
+  link            String? // external URL for the task
+  requiresLogin   Boolean   @default(false)
   contentPackSlug String? // FK reference to ContentPack.slug
-  triggers     Json?     // array of trigger objects
-  notes        Json?     @default("[]") // array of note objects
-  completedAt  DateTime?
-  completedBy  String?
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  triggers        Json? // array of trigger objects
+  notes           Json?     @default("[]") // array of note objects
+  completedAt     DateTime?
+  completedBy     String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 
-  contentPack  ContentPack? @relation(fields: [contentPackSlug], references: [slug])
+  contentPack ContentPack? @relation(fields: [contentPackSlug], references: [slug])
 }
 
 model ContentPack {
-  slug     String @id // e.g. "google_description", "facebook_about"
-  title    String
-  sections Json   // array of { label: string, content: string }
+  slug      String   @id // e.g. "google_description", "facebook_about"
+  title     String
+  sections  Json // array of { label: string, content: string }
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  tasks    LaunchTask[]
+  tasks LaunchTask[]
 }
 
 model OpsActivity {
   id        Int      @id @default(autoincrement())
-  type      String   // "login", "task_completed", "task_skipped", "chat", "content_viewed"
+  type      String // "login", "task_completed", "task_skipped", "chat", "content_viewed"
   message   String
-  userId    String?  // email
+  userId    String? // email
   userName  String?
-  taskId    Int?     // optional reference to task number
+  taskId    Int? // optional reference to task number
   createdAt DateTime @default(now())
 
   @@index([type, createdAt])
@@ -1139,9 +1138,9 @@ model OpsActivity {
 model ChatMessage {
   id        Int      @id @default(autoincrement())
   sessionId String
-  role      String   // "user" or "assistant"
+  role      String // "user" or "assistant"
   content   String   @db.Text
-  userId    String   // email of the user
+  userId    String // email of the user
   userName  String
   createdAt DateTime @default(now())
 
@@ -1151,22 +1150,22 @@ model ChatMessage {
 
 // ─── BuyCurious Art Marketplace ──────────────────────────────
 model ArtistProfile {
-  id          String    @id @default(cuid())
-  name        String
-  slug        String    @unique
-  bio         String?   @db.Text
-  city        String?
-  state       String?
-  medium      String?   // painting, photography, sculpture, mixed media, textile, ceramics, printmaking
-  profileImage String?  // GCS URL
-  website     String?
-  instagram   String?
-  featured    Boolean   @default(false)
-  status      String    @default("active") // active | inactive | pending
+  id              String    @id @default(cuid())
+  name            String
+  slug            String    @unique
+  bio             String?   @db.Text
+  city            String?
+  state           String?
+  medium          String? // painting, photography, sculpture, mixed media, textile, ceramics, printmaking
+  profileImage    String? // GCS URL
+  website         String?
+  instagram       String?
+  featured        Boolean   @default(false)
+  status          String    @default("active") // active | inactive | pending
   stripeAccountId String? // For connected Stripe Express accounts
-  artworks    Artwork[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  artworks        Artwork[]
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 }
 
 model Artwork {
@@ -1176,17 +1175,17 @@ model Artwork {
   title       String
   slug        String        @unique
   description String?       @db.Text
-  medium      String?       // oil on canvas, digital print, photograph, etc.
-  dimensions  String?       // "24x36 inches"
+  medium      String? // oil on canvas, digital print, photograph, etc.
+  dimensions  String? // "24x36 inches"
   year        Int?
-  price       Int           // cents
-  salePrice   Int?          // cents, optional sale price
-  images      Json          // array of GCS URLs
-  category    String?       // original, print, photograph, sculpture, craft
-  edition     String?       // "1/50" or "open edition" or "original"
+  price       Int // cents
+  salePrice   Int? // cents, optional sale price
+  images      Json // array of GCS URLs
+  category    String? // original, print, photograph, sculpture, craft
+  edition     String? // "1/50" or "open edition" or "original"
   available   Boolean       @default(true)
   featured    Boolean       @default(false)
-  tags        String[]      // ["blues", "mississippi", "portrait", "landscape"]
+  tags        String[] // ["blues", "mississippi", "portrait", "landscape"]
   orderCount  Int           @default(0)
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
@@ -1195,16 +1194,16 @@ model Artwork {
 }
 
 model ArtOrder {
-  id          String   @id @default(cuid())
-  artworkId   String
-  buyerName   String
-  buyerEmail  String
-  amount      Int      // cents
-  status      String   @default("pending") // pending | paid | shipped | delivered | cancelled
+  id              String   @id @default(cuid())
+  artworkId       String
+  buyerName       String
+  buyerEmail      String
+  amount          Int // cents
+  status          String   @default("pending") // pending | paid | shipped | delivered | cancelled
   shippingAddress Json?
   stripePaymentId String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
   @@index([artworkId])
   @@index([artworkId, status])
@@ -1222,7 +1221,7 @@ model ArtistApplication {
   portfolioUrl    String
   artistStatement String   @db.Text
   status          String   @default("PENDING") // PENDING | APPROVED | REJECTED
-  stripeAccountId String?  // nullable string for the Connect destination
+  stripeAccountId String? // nullable string for the Connect destination
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
@@ -1233,61 +1232,61 @@ model ArtistApplication {
 // ── Deep South Directory ──────────────────────────────────────────────────────
 
 model DirectoryBusiness {
-  id                Int       @id @default(autoincrement())
-  name              String
-  slug              String    @unique              // URL-safe: slugify(name)-slugify(city)
-  category          String
-  subcategory       String?                        // e.g. "BBQ" under "Food & Drink"
-  city              String
-  state             String    @default("MS")       // 2-letter state code
-  address           String?                        // Street address
-  phone             String?                        // Primary phone (E.164 or 10-digit)
-  zip               String?                        // 5-digit ZIP
-  lat               Float?                         // Latitude (decimal degrees)
-  lng               Float?                         // Longitude (decimal degrees)
-  website           String?
-  description       String    @db.Text
-  contactName       String
-  contactEmail      String
-  tier              String    @default("free")     // free | main_street | the_route | hdx_ops
-  spotlight         String?   @db.Text             // AI-generated editorial copy
-  toolsOrigin       String?                        // Survey: where tools come from
-  softwareSpend     String?                        // Survey: monthly software spend
-  hearAbout         String?                        // How they found the directory
-  active            Boolean   @default(false)      // Manually activated by admin
-  visibility        String    @default("private")  // private | approved | featured — controls AI assistant access
+  id            Int     @id @default(autoincrement())
+  name          String
+  slug          String  @unique // URL-safe: slugify(name)-slugify(city)
+  category      String
+  subcategory   String? // e.g. "BBQ" under "Food & Drink"
+  city          String
+  state         String  @default("MS") // 2-letter state code
+  address       String? // Street address
+  phone         String? // Primary phone (E.164 or 10-digit)
+  zip           String? // 5-digit ZIP
+  lat           Float? // Latitude (decimal degrees)
+  lng           Float? // Longitude (decimal degrees)
+  website       String?
+  description   String  @db.Text
+  contactName   String
+  contactEmail  String
+  tier          String  @default("free") // free | main_street | the_route | hdx_ops
+  spotlight     String? @db.Text // AI-generated editorial copy
+  toolsOrigin   String? // Survey: where tools come from
+  softwareSpend String? // Survey: monthly software spend
+  hearAbout     String? // How they found the directory
+  active        Boolean @default(false) // Manually activated by admin
+  visibility    String  @default("private") // private | approved | featured — controls AI assistant access
 
   // ── External Data Sources ──
-  googlePlaceId     String?   @unique              // Google Places place_id
-  yelpBusinessId    String?   @unique              // Yelp business alias
-  googleRating      Float?                         // Cached Google rating (1-5)
-  googleReviewCount Int?                           // Cached Google review count
-  yelpRating        Float?                         // Cached Yelp rating (1-5)
-  yelpReviewCount   Int?                           // Cached Yelp review count
-  hoursJson         Json?                          // Structured hours from Google Places
-  photoUrls         String[]                       // Cached photo URLs (first 3)
-  lastEnrichedAt    DateTime?                      // Last external data sync timestamp
+  googlePlaceId     String?   @unique // Google Places place_id
+  yelpBusinessId    String?   @unique // Yelp business alias
+  googleRating      Float? // Cached Google rating (1-5)
+  googleReviewCount Int? // Cached Google review count
+  yelpRating        Float? // Cached Yelp rating (1-5)
+  yelpReviewCount   Int? // Cached Yelp review count
+  hoursJson         Json? // Structured hours from Google Places
+  photoUrls         String[] // Cached photo URLs (first 3)
+  lastEnrichedAt    DateTime? // Last external data sync timestamp
 
   // ── Musician Fields (category="musician") ──
-  genre             String?                        // Primary genre (Blues, Soul, Gospel, etc.)
-  streamingLinks    Json?                          // { spotify?: string, appleMusic?: string, youtube?: string, bandcamp?: string }
-  feeRange          String?                        // under_500 | 500_1000 | 1000_2500 | 2500_5000 | 5000_plus | negotiable
-  availability      String?                        // available | selective | not_touring
+  genre          String? // Primary genre (Blues, Soul, Gospel, etc.)
+  streamingLinks Json? // { spotify?: string, appleMusic?: string, youtube?: string, bandcamp?: string }
+  feeRange       String? // under_500 | 500_1000 | 1000_2500 | 2500_5000 | 5000_plus | negotiable
+  availability   String? // available | selective | not_touring
 
   // ── Promotion Path ──
-  clientId          Int?      @unique              // FK to Client when free listing converts to paid
+  clientId Int? @unique // FK to Client when free listing converts to paid
 
   // ── Corridor + Touring Links ──
-  corridorCityId    Int?                           // FK to CorridorCity
-  corridorCity      CorridorCity? @relation(fields: [corridorCityId], references: [id])
+  corridorCityId Int? // FK to CorridorCity
+  corridorCity   CorridorCity? @relation(fields: [corridorCityId], references: [id])
 
   // ── Back-references from Touring models ──
-  touringVenues     TouringVenue[]
-  touringHotels     TouringHotel[]
+  touringVenues      TouringVenue[]
+  touringHotels      TouringHotel[]
   touringRestaurants TouringRestaurant[]
 
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([city, state])
   @@index([category])
@@ -1307,25 +1306,25 @@ model DirectoryBusiness {
 // ─────────────────────────────────────────────────────────────
 
 model HDXNode {
-  id              String    @id @default(cuid())
-  name            String                            // Venue or business name
-  slug            String    @unique                  // URL-safe identifier
-  address         String?                            // Street address
-  city            String                             // City for geo grouping
-  state           String    @default("NY")           // State code
-  zipCode         String?                            // 5-digit ZIP for Local Multiplier
-  lat             Float?                             // Latitude (geocoded)
-  lng             Float?                             // Longitude (geocoded)
-  nodeType        String    @default("commercial")   // commercial | residential | industrial | mixed-use
-  contactName     String?                            // Primary contact
-  contactEmail    String?
-  contactPhone    String?
-  metadata        Json?                              // Extensible metadata (industry, notes, etc.)
-  status          String    @default("active")       // active | onboarding | archived
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id           String   @id @default(cuid())
+  name         String // Venue or business name
+  slug         String   @unique // URL-safe identifier
+  address      String? // Street address
+  city         String // City for geo grouping
+  state        String   @default("NY") // State code
+  zipCode      String? // 5-digit ZIP for Local Multiplier
+  lat          Float? // Latitude (geocoded)
+  lng          Float? // Longitude (geocoded)
+  nodeType     String   @default("commercial") // commercial | residential | industrial | mixed-use
+  contactName  String? // Primary contact
+  contactEmail String?
+  contactPhone String?
+  metadata     Json? // Extensible metadata (industry, notes, etc.)
+  status       String   @default("active") // active | onboarding | archived
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  scans           SpatialScan[]
+  scans SpatialScan[]
 
   @@index([city, state])
   @@index([nodeType])
@@ -1334,36 +1333,36 @@ model HDXNode {
 }
 
 model SpatialScan {
-  id              String    @id @default(cuid())
-  nodeId          String
-  node            HDXNode   @relation(fields: [nodeId], references: [id], onDelete: Cascade)
+  id     String  @id @default(cuid())
+  nodeId String
+  node   HDXNode @relation(fields: [nodeId], references: [id], onDelete: Cascade)
 
   // ── Raw Asset References ──
-  gcsVideoUri     String?                            // gs://bucket/path/walkthrough.mp4
-  gcsPointCloudUri String?                           // gs://bucket/path/pointcloud.las
-  gcsFloorPlanUri String?                            // gs://bucket/path/floorplan.pdf
-  gcsThumbnailUri String?                            // gs://bucket/path/thumb.webp
+  gcsVideoUri      String? // gs://bucket/path/walkthrough.mp4
+  gcsPointCloudUri String? // gs://bucket/path/pointcloud.las
+  gcsFloorPlanUri  String? // gs://bucket/path/floorplan.pdf
+  gcsThumbnailUri  String? // gs://bucket/path/thumb.webp
 
   // ── Processing State Machine ──
-  status          String    @default("PENDING")      // PENDING | ANALYZING | MAPPED | ERROR
-  errorMessage    String?                            // Error details if status = ERROR
-  processingStartedAt DateTime?                      // When Vertex AI processing began
-  processingCompletedAt DateTime?                    // When extraction finished
+  status                String    @default("PENDING") // PENDING | ANALYZING | MAPPED | ERROR
+  errorMessage          String? // Error details if status = ERROR
+  processingStartedAt   DateTime? // When Vertex AI processing began
+  processingCompletedAt DateTime? // When extraction finished
 
   // ── Extracted Metrics (Vertex AI output) ──
-  capacityMetrics Json?                              // CapacityMetrics JSON (sqft, materials, occupancy, hazards)
-  aiModelVersion  String?                            // e.g. "gemini-1.5-pro-002"
-  aiConfidence    Float?                             // Overall confidence score 0.0-1.0
+  capacityMetrics Json? // CapacityMetrics JSON (sqft, materials, occupancy, hazards)
+  aiModelVersion  String? // e.g. "gemini-1.5-pro-002"
+  aiConfidence    Float? // Overall confidence score 0.0-1.0
 
   // ── Quote Generation ──
-  estimatedQuote  Json?                              // Auto-generated quote breakdown
-  quoteTotalCents Int?                               // Total quote in cents
+  estimatedQuote  Json? // Auto-generated quote breakdown
+  quoteTotalCents Int? // Total quote in cents
 
   // ── Provenance ──
-  uploadedBy      String?                            // User ID or service account
-  scanDate        DateTime?                          // Date the physical scan was performed
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  uploadedBy String? // User ID or service account
+  scanDate   DateTime? // Date the physical scan was performed
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
 
   @@index([nodeId])
   @@index([status])
@@ -1375,16 +1374,16 @@ model SpatialScan {
 // ─────────────────────────────────────────────────────────────
 
 model NotebookDrop {
-  id              String    @id @default(cuid())
-  title           String
-  author          String    @default("Agent Swarm") // "AG", "CC", "Chase", etc.
-  content         String    @db.Text
-  tags            String[]  // e.g. ["architecture", "research", "musings"]
-  sourceSystem    String?   // e.g. "cli", "web", "webhook"
-  tokenCount      Int?      // Estimated tokens for RAG context packing logic
-  status          String    @default("active") // active | archived
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id           String   @id @default(cuid())
+  title        String
+  author       String   @default("Agent Swarm") // "AG", "CC", "Chase", etc.
+  content      String   @db.Text
+  tags         String[] // e.g. ["architecture", "research", "musings"]
+  sourceSystem String? // e.g. "cli", "web", "webhook"
+  tokenCount   Int? // Estimated tokens for RAG context packing logic
+  status       String   @default("active") // active | archived
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   @@index([author])
   @@index([status])
@@ -1400,16 +1399,16 @@ model NotebookDrop {
 // Uses Vertex AI text-embedding-005 (768 dimensions).
 // Query via prisma.$queryRaw with pgvector <=> cosine distance operator.
 model Embedding {
-  id          Int       @id @default(autoincrement())
-  entityType  String                                   // "directory_business" | "article" | "client" | "transcript"
-  entityId    String                                   // Polymorphic FK (string to handle int and cuid IDs)
-  chunkIndex  Int       @default(0)                    // Which chunk of the source text (0 for single-chunk entities)
-  content     String    @db.Text                       // The raw text that was embedded
-  vector      Unsupported("vector(768)")               // Vertex AI text-embedding-005 output
-  model       String    @default("text-embedding-005") // Embedding model used
-  createdAt   DateTime  @default(now())
+  id         Int                        @id @default(autoincrement())
+  entityType String // "directory_business" | "article" | "client" | "transcript"
+  entityId   String // Polymorphic FK (string to handle int and cuid IDs)
+  chunkIndex Int                        @default(0) // Which chunk of the source text (0 for single-chunk entities)
+  content    String                     @db.Text // The raw text that was embedded
+  vector     Unsupported("vector(768)") // Vertex AI text-embedding-005 output
+  model      String                     @default("text-embedding-005") // Embedding model used
+  createdAt  DateTime                   @default(now())
 
-  loreEntry   LoreEntry?
+  loreEntry LoreEntry?
 
   @@unique([entityType, entityId, chunkIndex])
   @@index([entityType])
@@ -1418,15 +1417,15 @@ model Embedding {
 // Census Bureau ACS 5-Year + County Business Patterns data.
 // Free API, no key needed. Refresh annually.
 model CensusData {
-  id        Int       @id @default(autoincrement())
-  geoType   String                                     // "zip" | "county" | "msa" | "state"
-  geoId     String                                     // FIPS code or ZIP code
-  geoName   String                                     // "Adams County, MS" | "39120"
-  dataset   String                                     // "acs5" | "cbp" | "economic_census"
-  variable  String                                     // ACS variable code e.g. "B19013_001E" (median income)
-  value     Float?                                     // Null = data suppressed by Census (small populations)
+  id        Int      @id @default(autoincrement())
+  geoType   String // "zip" | "county" | "msa" | "state"
+  geoId     String // FIPS code or ZIP code
+  geoName   String // "Adams County, MS" | "39120"
+  dataset   String // "acs5" | "cbp" | "economic_census"
+  variable  String // ACS variable code e.g. "B19013_001E" (median income)
+  value     Float? // Null = data suppressed by Census (small populations)
   year      Int
-  fetchedAt DateTime  @default(now())
+  fetchedAt DateTime @default(now())
 
   @@unique([geoType, geoId, dataset, variable, year])
   @@index([geoId])
@@ -1436,16 +1435,16 @@ model CensusData {
 // BLS LAUS, QCEW, OES + USDA ERS economic data.
 // Free APIs. Refresh monthly (LAUS/QCEW) or annually (OES/USDA).
 model EconomicIndicator {
-  id        Int       @id @default(autoincrement())
-  source    String                                     // "bls_laus" | "bls_qcew" | "bls_oes" | "usda_ers"
-  seriesId  String                                     // BLS series ID e.g. "LAUCN280010000000003"
-  geoType   String                                     // "county" | "msa" | "state"
-  geoId     String                                     // FIPS code
-  geoName   String                                     // "Adams County, MS"
-  period    String                                     // "2025-Q4" | "2025-12" | "2025"
-  indicator String                                     // "unemployment_rate" | "avg_weekly_wage" | "establishments"
+  id        Int      @id @default(autoincrement())
+  source    String // "bls_laus" | "bls_qcew" | "bls_oes" | "usda_ers"
+  seriesId  String // BLS series ID e.g. "LAUCN280010000000003"
+  geoType   String // "county" | "msa" | "state"
+  geoId     String // FIPS code
+  geoName   String // "Adams County, MS"
+  period    String // "2025-Q4" | "2025-12" | "2025"
+  indicator String // "unemployment_rate" | "avg_weekly_wage" | "establishments"
   value     Float
-  fetchedAt DateTime  @default(now())
+  fetchedAt DateTime @default(now())
 
   @@unique([source, seriesId, period])
   @@index([geoId, indicator])
@@ -1457,13 +1456,13 @@ model EconomicIndicator {
 // Processed by /api/cron/process-enrichment-queue every 5 minutes.
 model EnrichmentJob {
   id          Int       @id @default(autoincrement())
-  entityType  String                                   // "directory_business"
-  entityId    String                                   // ID of the entity to enrich
-  jobType     String                                   // "google_places" | "yelp" | "embedding" | "spotlight" | "census"
-  status      String    @default("pending")            // "pending" | "processing" | "completed" | "failed"
+  entityType  String // "directory_business"
+  entityId    String // ID of the entity to enrich
+  jobType     String // "google_places" | "yelp" | "embedding" | "spotlight" | "census"
+  status      String    @default("pending") // "pending" | "processing" | "completed" | "failed"
   attempts    Int       @default(0)
   maxAttempts Int       @default(3)
-  error       String?   @db.Text                       // Error message if failed
+  error       String?   @db.Text // Error message if failed
   createdAt   DateTime  @default(now())
   processedAt DateTime?
 
@@ -1479,13 +1478,13 @@ model EnrichmentJob {
 /// as the single source of truth for business context.
 model AgentContext {
   id          Int       @id @default(autoincrement())
-  domain      String    // "finance", "operations", "strategy", "touring", "tech", "product", "brand"
-  topic       String    // "cap-table", "inn-occupancy", "pipeline-revenue", "pricing"
-  key         String    // unique identifier like "entity.hdi.ownership" or "decision.mbt-pricing"
+  domain      String // "finance", "operations", "strategy", "touring", "tech", "product", "brand"
+  topic       String // "cap-table", "inn-occupancy", "pipeline-revenue", "pricing"
+  key         String // unique identifier like "entity.hdi.ownership" or "decision.mbt-pricing"
   content     String    @db.Text // the actual knowledge (markdown)
-  source      String    // origin: "tax-db/ENTITY_REGISTRY.md", "agent:ledger", "memory:project_cap_table"
+  source      String // origin: "tax-db/ENTITY_REGISTRY.md", "agent:ledger", "memory:project_cap_table"
   confidence  Float     @default(1.0) // 0-1, decays over time for time-sensitive facts
-  agentAuthor String?   // which agent wrote this: "huck", "ledger", "delta-dawn", "rook", "chuck"
+  agentAuthor String? // which agent wrote this: "huck", "ledger", "delta-dawn", "rook", "chuck"
   visibility  String    @default("private") // private | public — controls AI assistant access
   validUntil  DateTime? // TTL for time-sensitive facts (null = permanent)
   createdAt   DateTime  @default(now())
@@ -1502,12 +1501,12 @@ model AgentContext {
 /// Every significant agent action gets recorded here.
 model AgentAction {
   id        Int      @id @default(autoincrement())
-  agent     String   // "huck", "delta-dawn", "ledger", "chuck", "rook"
-  action    String   // "deployed", "fixed-bug", "created-report", "decision", "research"
-  summary   String   // one-line description
+  agent     String // "huck", "delta-dawn", "ledger", "chuck", "rook"
+  action    String // "deployed", "fixed-bug", "created-report", "decision", "research"
+  summary   String // one-line description
   detail    String?  @db.Text // full detail (markdown)
-  domain    String   // which area of the business
-  impact    String?  // "high", "medium", "low"
+  domain    String // which area of the business
+  impact    String? // "high", "medium", "low"
   createdAt DateTime @default(now())
 
   @@index([agent, createdAt])
@@ -1521,27 +1520,27 @@ model AgentAction {
 // ─────────────────────────────────────────────────────────────
 
 model DraftBusiness {
-  id                Int       @id @default(autoincrement())
-  createdByUserId   String?
-  createdBy         User?     @relation(fields: [createdByUserId], references: [id], onDelete: SetNull)
-  clientId          Int?
-  client            Client?   @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  id              Int     @id @default(autoincrement())
+  createdByUserId String?
+  createdBy       User?   @relation(fields: [createdByUserId], references: [id], onDelete: SetNull)
+  clientId        Int?
+  client          Client? @relation(fields: [clientId], references: [id], onDelete: SetNull)
 
   name              String
-  slug              String    @unique
+  slug              String  @unique
   category          String
   city              String
-  state             String    @default("MS")
+  state             String  @default("MS")
   address           String?
   phone             String?
   website           String?
-  description       String    @db.Text
+  description       String  @db.Text
   contactName       String
   contactEmail      String
-  tier              String    @default("free")
+  tier              String  @default("free")
   googleRating      Float?
   googleReviewCount Int?
-  active            Boolean   @default(false)
+  active            Boolean @default(false)
 
   /// Set when promoted to DirectoryBusiness (Phase 1.9+)
   promotedDirectoryBusinessId Int? @unique
@@ -1554,16 +1553,16 @@ model DraftBusiness {
 }
 
 model DraftAction {
-  id              Int      @id @default(autoincrement())
+  id              Int     @id @default(autoincrement())
   createdByUserId String?
-  createdBy       User?    @relation(fields: [createdByUserId], references: [id], onDelete: SetNull)
+  createdBy       User?   @relation(fields: [createdByUserId], references: [id], onDelete: SetNull)
 
-  agent     String
-  action    String
-  summary   String
-  detail    String? @db.Text
-  domain    String
-  impact    String?
+  agent   String
+  action  String
+  summary String
+  detail  String? @db.Text
+  domain  String
+  impact  String?
 
   createdAt DateTime @default(now())
 
@@ -1571,9 +1570,9 @@ model DraftAction {
 }
 
 model DraftContext {
-  id              Int       @id @default(autoincrement())
+  id              Int     @id @default(autoincrement())
   createdByUserId String?
-  createdBy       User?     @relation(fields: [createdByUserId], references: [id], onDelete: SetNull)
+  createdBy       User?   @relation(fields: [createdByUserId], references: [id], onDelete: SetNull)
 
   domain      String
   topic       String
@@ -1595,27 +1594,27 @@ model DraftContext {
 /// Show Event — first-class entity spanning all 11 domains
 /// One show entry triggers the 2:1 multiplier cascade
 model ShowEvent {
-  id              Int       @id @default(autoincrement())
-  title           String    // "Rise Up at the Blues Room"
-  artist          String    // Headliner name
-  venue           String    @default("The Big Muddy Inn - Blues Room")
-  dateTime        DateTime  // When the show happens
-  description     String?   @db.Text
-  ticketUrl       String?   // Stripe or external ticket link
-  ticketPrice     Float?    // Door price
-  posterUrl       String?   // Hero image / poster (GCS URL)
-  status          String    @default("draft") // draft | published | archived | completed
+  id          Int      @id @default(autoincrement())
+  title       String // "Rise Up at the Blues Room"
+  artist      String // Headliner name
+  venue       String   @default("The Big Muddy Inn - Blues Room")
+  dateTime    DateTime // When the show happens
+  description String?  @db.Text
+  ticketUrl   String? // Stripe or external ticket link
+  ticketPrice Float? // Door price
+  posterUrl   String? // Hero image / poster (GCS URL)
+  status      String   @default("draft") // draft | published | archived | completed
 
   // Cross-domain cascade tracking
-  radioEpisodeId  String?   // Links to Radio live session
-  magazineBlurb   String?   @db.Text // Generated magazine content
-  dsdPartnerId    Int?      // Cross-promo partner business
-  cloudbedsCode   String?   // "Blues & Beds" discount code
-  socialCampaign  String?   @db.Text // Generated social posts JSON
-  radioScript     String?   @db.Text // Generated radio promo script
+  radioEpisodeId String? // Links to Radio live session
+  magazineBlurb  String? @db.Text // Generated magazine content
+  dsdPartnerId   Int? // Cross-promo partner business
+  cloudbedsCode  String? // "Blues & Beds" discount code
+  socialCampaign String? @db.Text // Generated social posts JSON
+  radioScript    String? @db.Text // Generated radio promo script
 
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([status, dateTime])
   @@index([artist])
@@ -1624,12 +1623,12 @@ model ShowEvent {
 /// Business decisions with rationale — queryable decision log
 model Decision {
   id           Int      @id @default(autoincrement())
-  title        String   // "MBT pricing set to $99/mo"
+  title        String // "MBT pricing set to $99/mo"
   rationale    String   @db.Text // why this was decided
-  decidedBy    String   // "chase", "chase+tracy", "agent:rook"
-  domain       String   // "pricing", "operations", "strategy", "hiring", "product"
+  decidedBy    String // "chase", "chase+tracy", "agent:rook"
+  domain       String // "pricing", "operations", "strategy", "hiring", "product"
   status       String   @default("active") // "active", "superseded", "reversed"
-  supersededBy Int?     // ID of newer decision that replaces this one
+  supersededBy Int? // ID of newer decision that replaces this one
   evidence     String?  @db.Text // supporting data, links, research
   createdAt    DateTime @default(now())
 
@@ -1640,11 +1639,11 @@ model Decision {
 /// Pending content drafts — generated by agents, approved by humans
 model PendingDraft {
   id          Int       @id @default(autoincrement())
-  channel     String    // "social" | "magazine" | "radio" | "reviews"
+  channel     String // "social" | "magazine" | "radio" | "reviews"
   title       String
   content     String    @db.Text
   status      String    @default("pending") // "pending" | "approved" | "rejected" | "published"
-  sourceType  String    // "show_event" | "business" | "scheduled"
+  sourceType  String // "show_event" | "business" | "scheduled"
   sourceId    String?
   agentAuthor String?
   refinements String?   @db.Text
@@ -1661,11 +1660,11 @@ model PendingDraft {
 // Page-level content overrides from Edit Mode
 model PageEdit {
   id        Int      @id @default(autoincrement())
-  path      String   // URL path, e.g. "/touring" or "/directory/fat-mamas"
-  editId    String   // DOM element ID, e.g. "edit-5" or "img-3"
-  editType  String   // "text" or "image"
+  path      String // URL path, e.g. "/touring" or "/directory/fat-mamas"
+  editId    String // DOM element ID, e.g. "edit-5" or "img-3"
+  editType  String // "text" or "image"
   content   String   @db.Text // new text content or new image URL
-  editedBy  String?  // user email or "anonymous"
+  editedBy  String? // user email or "anonymous"
   active    Boolean  @default(true) // soft-delete: false = reverted
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1680,55 +1679,55 @@ model PageEdit {
 
 model ProductionCampaign {
   id            Int      @id @default(autoincrement())
-  name          String                // "Fits In Your Hand"
-  slug          String   @unique      // "fits-in-your-hand"
-  conceptNumber Int                   // 1-6
-  tagline       String?               // "An entire media ecosystem in a box that fits in your hand"
+  name          String // "Fits In Your Hand"
+  slug          String   @unique // "fits-in-your-hand"
+  conceptNumber Int // 1-6
+  tagline       String? // "An entire media ecosystem in a box that fits in your hand"
   status        String   @default("active") // active | archived
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
-  jobs          ProductionJob[]
+  jobs ProductionJob[]
 
   @@index([status])
 }
 
 model ProductionJob {
-  id              Int      @id @default(autoincrement())
-  campaignId      Int
-  campaign        ProductionCampaign @relation(fields: [campaignId], references: [id])
-  title           String                // "The Box — :15"
-  slug            String   @unique      // "the-box-15"
-  format          String                // :15 | :30 | :60 | 3:00 | 10:00
-  stage           String   @default("script") // script | voiceover | video | review | published
+  id         Int                @id @default(autoincrement())
+  campaignId Int
+  campaign   ProductionCampaign @relation(fields: [campaignId], references: [id])
+  title      String // "The Box — :15"
+  slug       String             @unique // "the-box-15"
+  format     String // :15 | :30 | :60 | 3:00 | 10:00
+  stage      String             @default("script") // script | voiceover | video | review | published
 
   // ── Script Fields ──
-  veoPrompt       String?  @db.Text     // Veo visual generation prompt
-  ttsScript       String?  @db.Text     // Voiceover script for TTS
-  musicDirection  String?  @db.Text     // Lyria / music bed direction
-  textOverlays    String?  @db.Text     // Canva text overlays (JSON array)
-  cta             String?               // Call to action URL or text
+  veoPrompt      String? @db.Text // Veo visual generation prompt
+  ttsScript      String? @db.Text // Voiceover script for TTS
+  musicDirection String? @db.Text // Lyria / music bed direction
+  textOverlays   String? @db.Text // Canva text overlays (JSON array)
+  cta            String? // Call to action URL or text
 
   // ── Voice Settings ──
-  voicePreset     String   @default("chase")   // delta-dawn | catfish-carl | chase | etc.
-  voiceSpeed      Float    @default(1.0)
-  voicePitch      Float    @default(0)
+  voicePreset String @default("chase") // delta-dawn | catfish-carl | chase | etc.
+  voiceSpeed  Float  @default(1.0)
+  voicePitch  Float  @default(0)
 
   // ── Video Settings ──
-  veoQuality      String   @default("draft")   // draft | premium
-  videoDuration   Int      @default(5)          // seconds
+  veoQuality    String @default("draft") // draft | premium
+  videoDuration Int    @default(5) // seconds
 
   // ── Async Generation ──
-  veoOperationId  String?               // Veo operation ID (null when not generating)
+  veoOperationId String? // Veo operation ID (null when not generating)
 
   // ── Approval ──
-  approvalStatus  String   @default("pending")  // pending | approved | revision
-  approvalNotes   String?  @db.Text
+  approvalStatus String  @default("pending") // pending | approved | revision
+  approvalNotes  String? @db.Text
 
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  artifacts       ProductionArtifact[]
+  artifacts ProductionArtifact[]
 
   @@index([campaignId])
   @@index([stage])
@@ -1737,17 +1736,17 @@ model ProductionJob {
 }
 
 model ProductionArtifact {
-  id        Int      @id @default(autoincrement())
+  id        Int           @id @default(autoincrement())
   jobId     Int
   job       ProductionJob @relation(fields: [jobId], references: [id])
-  stage     String        // script | voiceover | video | review | published
-  type      String        // voiceover | video | image | music | assembly
-  gcsUrl    String        // Full GCS public URL
-  mimeType  String        // audio/mpeg | video/mp4 | image/webp | etc.
-  fileSize  Int?          // bytes
-  version   Int    @default(1) // increments on re-generation
-  metadata  String? @db.Text   // JSON: duration, dimensions, model, etc.
-  createdAt DateTime @default(now())
+  stage     String // script | voiceover | video | review | published
+  type      String // voiceover | video | image | music | assembly
+  gcsUrl    String // Full GCS public URL
+  mimeType  String // audio/mpeg | video/mp4 | image/webp | etc.
+  fileSize  Int? // bytes
+  version   Int           @default(1) // increments on re-generation
+  metadata  String?       @db.Text // JSON: duration, dimensions, model, etc.
+  createdAt DateTime      @default(now())
 
   @@index([jobId, stage])
   @@index([jobId, type])
@@ -1760,7 +1759,7 @@ model ProductionArtifact {
 
 model CommunityProfile {
   id               String   @id @default(cuid())
-  userId           String?  // soft FK to User (optional — can exist without internal user)
+  userId           String? // soft FK to User (optional — can exist without internal user)
   email            String?  @unique
   displayName      String
   bio              String?  @db.Text
@@ -1782,12 +1781,12 @@ model CommunityProfile {
 
 model SkillListing {
   id           String   @id @default(cuid())
-  profileId    String   // soft FK to CommunityProfile
+  profileId    String // soft FK to CommunityProfile
   skill        String
   description  String?  @db.Text
-  category     String   // trades | professional | creative | tech | domestic | other
-  availability String?  // weekends | evenings | flexible | by-appointment
-  rateNote     String?  // "trade only" | "negotiable" | etc
+  category     String // trades | professional | creative | tech | domestic | other
+  availability String? // weekends | evenings | flexible | by-appointment
+  rateNote     String? // "trade only" | "negotiable" | etc
   sandbox      Boolean  @default(false)
   createdAt    DateTime @default(now())
 
@@ -1798,12 +1797,12 @@ model SkillListing {
 
 model TaskPost {
   id           String   @id @default(cuid())
-  authorId     String   // soft FK to CommunityProfile
+  authorId     String // soft FK to CommunityProfile
   title        String
   description  String   @db.Text
   skillsNeeded String[]
   status       String   @default("open") // open | claimed | in-progress | done
-  claimedById  String?  // soft FK to CommunityProfile
+  claimedById  String? // soft FK to CommunityProfile
   valueType    String   @default("trade") // trade | cash | credit | volunteer
   valueNote    String?
   city         String
@@ -1818,9 +1817,9 @@ model TaskPost {
 
 model TimeExchange {
   id          String   @id @default(cuid())
-  providerId  String   // soft FK to CommunityProfile (who did the work)
-  receiverId  String   // soft FK to CommunityProfile (who received)
-  taskPostId  String?  // soft FK to TaskPost (optional link)
+  providerId  String // soft FK to CommunityProfile (who did the work)
+  receiverId  String // soft FK to CommunityProfile (who received)
+  taskPostId  String? // soft FK to TaskPost (optional link)
   hours       Float
   skill       String
   description String?  @db.Text
@@ -1834,12 +1833,12 @@ model TimeExchange {
 
 model ToolLibraryItem {
   id           String   @id @default(cuid())
-  ownerId      String   // soft FK to CommunityProfile
+  ownerId      String // soft FK to CommunityProfile
   name         String
   description  String?
-  category     String   // power-tools | hand-tools | kitchen | garden | other
+  category     String // power-tools | hand-tools | kitchen | garden | other
   available    Boolean  @default(true)
-  borrowedById String?  // soft FK to CommunityProfile
+  borrowedById String? // soft FK to CommunityProfile
   city         String
   state        String
   sandbox      Boolean  @default(false)
@@ -1851,7 +1850,7 @@ model ToolLibraryItem {
 
 model ContributedListing {
   id            String   @id @default(cuid())
-  contributorId String   // soft FK to CommunityProfile
+  contributorId String // soft FK to CommunityProfile
   businessName  String
   category      String
   city          String
@@ -1862,7 +1861,7 @@ model ContributedListing {
   description   String   @db.Text
   status        String   @default("pending") // pending | approved | rejected
   reviewNote    String?  @db.Text // AI or human feedback
-  directoryId   Int?     // FK to DirectoryBusiness when approved
+  directoryId   Int? // FK to DirectoryBusiness when approved
   sandbox       Boolean  @default(false)
   createdAt     DateTime @default(now())
 
@@ -1872,10 +1871,10 @@ model ContributedListing {
 
 model ContributorCredit {
   id        String   @id @default(cuid())
-  profileId String   // soft FK to CommunityProfile
+  profileId String // soft FK to CommunityProfile
   amount    Int      @default(1)
-  reason    String   // directory_submission | article_published | skill_verified
-  sourceId  String?  // FK to the thing that earned it
+  reason    String // directory_submission | article_published | skill_verified
+  sourceId  String? // FK to the thing that earned it
   sandbox   Boolean  @default(false)
   createdAt DateTime @default(now())
 
@@ -1888,10 +1887,10 @@ model ContributorCredit {
 
 model LookbookComment {
   id        Int      @id @default(autoincrement())
-  style     String   // e.g. "01-woodcut"
-  image     String   // e.g. "community-gathering"
+  style     String // e.g. "01-woodcut"
+  image     String // e.g. "community-gathering"
   text      String   @db.Text
-  author    String?  // email or name
+  author    String? // email or name
   resolved  Boolean  @default(false)
   createdAt DateTime @default(now())
 
@@ -1906,40 +1905,40 @@ model LookbookComment {
 /// Touring-specific venue data that extends DirectoryBusiness.
 /// Soft FK to DirectoryBusiness via directoryBusinessId (optional).
 model TouringVenue {
-  id                   Int       @id @default(autoincrement())
+  id                   Int                @id @default(autoincrement())
   name                 String
-  slug                 String    @unique
+  slug                 String             @unique
   city                 String
-  state                String    @default("MS")
+  state                String             @default("MS")
   address              String?
   lat                  Float?
   lng                  Float?
-  capacity             Int?                          // Max audience
-  stageWidth           Float?                        // feet
-  stageDepth           Float?                        // feet
-  soundSystem          String?   @db.Text             // PA description
-  backlineAvailable    String?   @db.Text             // "Full backline" | "Drums + bass amp" | "BYO"
-  loadInNotes          String?   @db.Text             // "Street level, double doors, no dock"
-  greenRoom            Boolean   @default(false)
+  capacity             Int? // Max audience
+  stageWidth           Float? // feet
+  stageDepth           Float? // feet
+  soundSystem          String?            @db.Text // PA description
+  backlineAvailable    String?            @db.Text // "Full backline" | "Drums + bass amp" | "BYO"
+  loadInNotes          String?            @db.Text // "Street level, double doors, no dock"
+  greenRoom            Boolean            @default(false)
   greenRoomNotes       String?
-  parkingSpaces        Int?                          // For the Sprinter
-  sprinterAccess       Boolean   @default(true)       // Can a 12-passenger Sprinter park/load?
-  venueType            String    @default("club")     // club | theater | outdoor | house_concert | festival | juke_joint
+  parkingSpaces        Int? // For the Sprinter
+  sprinterAccess       Boolean            @default(true) // Can a 12-passenger Sprinter park/load?
+  venueType            String             @default("club") // club | theater | outdoor | house_concert | festival | juke_joint
   bookingContactName   String?
   bookingContactEmail  String?
   bookingContactPhone  String?
-  typicalGuaranteeLow  Int?                          // cents — low end of typical guarantee
-  typicalGuaranteeHigh Int?                          // cents — high end
-  doorDealTerms        String?                       // "70/30 after $200" | "straight 80/20"
-  seasonalNotes        String?   @db.Text             // "Dead Jan-Feb, peaks Oct"
-  notes                String?   @db.Text             // Internal touring notes
-  isPublic             Boolean   @default(true)       // false = guarantees/contacts hidden from public DB
+  typicalGuaranteeLow  Int? // cents — low end of typical guarantee
+  typicalGuaranteeHigh Int? // cents — high end
+  doorDealTerms        String? // "70/30 after $200" | "straight 80/20"
+  seasonalNotes        String?            @db.Text // "Dead Jan-Feb, peaks Oct"
+  notes                String?            @db.Text // Internal touring notes
+  isPublic             Boolean            @default(true) // false = guarantees/contacts hidden from public DB
   directoryBusinessId  Int?
   directoryBusiness    DirectoryBusiness? @relation(fields: [directoryBusinessId], references: [id], onDelete: SetNull)
-  createdAt            DateTime  @default(now())
-  updatedAt            DateTime  @updatedAt
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
 
-  routeStops           TourRouteStop[]
+  routeStops TourRouteStop[]
 
   @@index([city, state])
   @@index([venueType])
@@ -1950,31 +1949,31 @@ model TouringVenue {
 
 /// Band-friendly accommodations along touring corridors.
 model TouringHotel {
-  id                  Int       @id @default(autoincrement())
+  id                  Int                @id @default(autoincrement())
   name                String
   city                String
-  state               String    @default("MS")
+  state               String             @default("MS")
   address             String?
   lat                 Float?
   lng                 Float?
   phone               String?
   website             String?
-  rateLow             Int?                          // cents per night — low season
-  rateHigh            Int?                          // cents per night — high season
+  rateLow             Int? // cents per night — low season
+  rateHigh            Int? // cents per night — high season
   roomCount           Int?
-  amenities           String[]                      // ["wifi", "parking", "breakfast", "pool", "laundry"]
-  bandFriendly        Boolean   @default(true)       // Late check-in, noise tolerance, etc
-  bandFriendlyNotes   String?   @db.Text
-  sprinterParking     Boolean   @default(false)      // Lot can fit a 12-passenger Sprinter
-  nearbyVenues        Json?                          // [{ venueId: 1, distanceMiles: 0.5 }]
-  notes               String?   @db.Text
-  isPublic            Boolean   @default(true)
+  amenities           String[] // ["wifi", "parking", "breakfast", "pool", "laundry"]
+  bandFriendly        Boolean            @default(true) // Late check-in, noise tolerance, etc
+  bandFriendlyNotes   String?            @db.Text
+  sprinterParking     Boolean            @default(false) // Lot can fit a 12-passenger Sprinter
+  nearbyVenues        Json? // [{ venueId: 1, distanceMiles: 0.5 }]
+  notes               String?            @db.Text
+  isPublic            Boolean            @default(true)
   directoryBusinessId Int?
   directoryBusiness   DirectoryBusiness? @relation(fields: [directoryBusinessId], references: [id], onDelete: SetNull)
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @updatedAt
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
 
-  routeStops          TourRouteStop[]
+  routeStops TourRouteStop[]
 
   @@index([city, state])
   @@index([city, state, isPublic])
@@ -1985,46 +1984,46 @@ model TouringHotel {
 /// Pre-built touring corridors with budget estimates.
 /// A route is a sequence of stops (venue + hotel pairs).
 model TourRoute {
-  id                  Int       @id @default(autoincrement())
-  name                String                         // "Delta Run: Natchez → Clarksdale → Memphis"
-  slug                String    @unique
-  description         String?   @db.Text
-  totalMiles          Float?                         // Total driving distance
-  estimatedDriveHours Float?                         // Total drive time
-  budgetLowCents      Int?                           // Low-end total budget in cents
-  budgetMidCents      Int?                           // Mid-range budget in cents
-  budgetHighCents     Int?                           // High-end budget in cents
-  budgetBreakdown     Json?                          // { fuel, lodging, perDiem, musicians, sound, promo, contingency }
-  revenueEstimate     Json?                          // { door, bar, content, innLift }
-  seasonRecommendation String?                       // "Best: Mar-May, Sep-Nov. Avoid: Jul-Aug (heat)"
-  bandSize            Int       @default(5)          // Musicians + crew for budget calc
-  notes               String?   @db.Text
-  isPublic            Boolean   @default(true)
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @updatedAt
+  id                   Int      @id @default(autoincrement())
+  name                 String // "Delta Run: Natchez → Clarksdale → Memphis"
+  slug                 String   @unique
+  description          String?  @db.Text
+  totalMiles           Float? // Total driving distance
+  estimatedDriveHours  Float? // Total drive time
+  budgetLowCents       Int? // Low-end total budget in cents
+  budgetMidCents       Int? // Mid-range budget in cents
+  budgetHighCents      Int? // High-end budget in cents
+  budgetBreakdown      Json? // { fuel, lodging, perDiem, musicians, sound, promo, contingency }
+  revenueEstimate      Json? // { door, bar, content, innLift }
+  seasonRecommendation String? // "Best: Mar-May, Sep-Nov. Avoid: Jul-Aug (heat)"
+  bandSize             Int      @default(5) // Musicians + crew for budget calc
+  notes                String?  @db.Text
+  isPublic             Boolean  @default(true)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
 
-  stops               TourRouteStop[]
+  stops TourRouteStop[]
 
   @@index([isPublic])
 }
 
 /// Individual stop on a touring route — links venue + hotel + sequence.
 model TourRouteStop {
-  id          Int       @id @default(autoincrement())
-  routeId     Int
-  route       TourRoute     @relation(fields: [routeId], references: [id], onDelete: Cascade)
-  venueId     Int?
-  venue       TouringVenue? @relation(fields: [venueId], references: [id])
-  hotelId     Int?
-  hotel       TouringHotel? @relation(fields: [hotelId], references: [id])
-  stopOrder   Int                                    // 1, 2, 3...
-  city        String
-  state       String    @default("MS")
-  nightsStay  Int       @default(1)                  // Nights at this stop
-  driveFromPrevMiles Float?                          // Miles from previous stop
-  driveFromPrevHours Float?                          // Drive time from previous stop
-  notes       String?   @db.Text
-  createdAt   DateTime  @default(now())
+  id                 Int           @id @default(autoincrement())
+  routeId            Int
+  route              TourRoute     @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  venueId            Int?
+  venue              TouringVenue? @relation(fields: [venueId], references: [id])
+  hotelId            Int?
+  hotel              TouringHotel? @relation(fields: [hotelId], references: [id])
+  stopOrder          Int // 1, 2, 3...
+  city               String
+  state              String        @default("MS")
+  nightsStay         Int           @default(1) // Nights at this stop
+  driveFromPrevMiles Float? // Miles from previous stop
+  driveFromPrevHours Float? // Drive time from previous stop
+  notes              String?       @db.Text
+  createdAt          DateTime      @default(now())
 
   @@unique([routeId, stopOrder])
   @@index([routeId])
@@ -2035,26 +2034,26 @@ model TourRouteStop {
 /// Musician-friendly restaurants along touring corridors.
 /// Late-night spots, per diem-friendly, where bands eat after shows.
 model TouringRestaurant {
-  id                  Int       @id @default(autoincrement())
+  id                  Int                @id @default(autoincrement())
   name                String
   city                String
-  state               String    @default("MS")
+  state               String             @default("MS")
   address             String?
   phone               String?
   website             String?
-  cuisine             String?                          // "BBQ" | "Soul food" | "Cajun" | "Diner" | "Mexican" | etc
-  priceRange          String    @default("$$")         // "$" | "$$" | "$$$"
-  lateNight           Boolean   @default(false)        // Open past 10pm?
-  closingTime         String?                          // "2:00 AM" | "Midnight" | "11:00 PM"
-  musicianFriendly    Boolean   @default(true)         // Large groups, noise tolerant, post-show vibe
-  musicianNotes       String?   @db.Text               // "Free shot for musicians" | "Green room backstage meals" | etc
-  nearbyVenues        Json?                            // [{ venueName: "Ground Zero", walkingMinutes: 5 }]
-  isPublic            Boolean   @default(true)
+  cuisine             String? // "BBQ" | "Soul food" | "Cajun" | "Diner" | "Mexican" | etc
+  priceRange          String             @default("$$") // "$" | "$$" | "$$$"
+  lateNight           Boolean            @default(false) // Open past 10pm?
+  closingTime         String? // "2:00 AM" | "Midnight" | "11:00 PM"
+  musicianFriendly    Boolean            @default(true) // Large groups, noise tolerant, post-show vibe
+  musicianNotes       String?            @db.Text // "Free shot for musicians" | "Green room backstage meals" | etc
+  nearbyVenues        Json? // [{ venueName: "Ground Zero", walkingMinutes: 5 }]
+  isPublic            Boolean            @default(true)
   directoryBusinessId Int?
   directoryBusiness   DirectoryBusiness? @relation(fields: [directoryBusinessId], references: [id], onDelete: SetNull)
   corridorCityId      Int?
-  corridorCity        CorridorCity? @relation(fields: [corridorCityId], references: [id])
-  createdAt           DateTime  @default(now())
+  corridorCity        CorridorCity?      @relation(fields: [corridorCityId], references: [id])
+  createdAt           DateTime           @default(now())
 
   @@index([city, state])
   @@index([city, state, lateNight])
@@ -2066,25 +2065,25 @@ model TouringRestaurant {
 /// Cities along the touring corridor with logistics and context.
 /// The backbone of tour route planning.
 model CorridorCity {
-  id                  Int       @id @default(autoincrement())
-  name                String
-  state               String
-  slug                String    @unique                // "natchez-ms" | "clarksdale-ms" | "memphis-tn"
-  population          Int?
-  role                String    @default("stopover")   // "home_base" | "major_hub" | "talent_supply" | "delta_gateway" | "stopover" | "cultural_landmark"
-  corridorOrder       Int                              // 1=NOLA, 2=Baton Rouge, ... 13=Memphis
-  driveFromPrevMiles  Float?                           // Miles from previous corridor city
-  driveFromPrevHours  Float?                           // Drive time from previous city
-  musicScene          String?   @db.Text               // Overview of local music scene
-  logisticsNotes      String?   @db.Text               // Parking, load-in, local quirks
-  seasonalNotes       String?   @db.Text               // "Dead Jul-Aug" | "Festival season Apr-May"
-  keyContacts         Json?                            // [{ name, role, email, phone }]
-  isPublic            Boolean   @default(true)
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @updatedAt
+  id                 Int      @id @default(autoincrement())
+  name               String
+  state              String
+  slug               String   @unique // "natchez-ms" | "clarksdale-ms" | "memphis-tn"
+  population         Int?
+  role               String   @default("stopover") // "home_base" | "major_hub" | "talent_supply" | "delta_gateway" | "stopover" | "cultural_landmark"
+  corridorOrder      Int // 1=NOLA, 2=Baton Rouge, ... 13=Memphis
+  driveFromPrevMiles Float? // Miles from previous corridor city
+  driveFromPrevHours Float? // Drive time from previous city
+  musicScene         String?  @db.Text // Overview of local music scene
+  logisticsNotes     String?  @db.Text // Parking, load-in, local quirks
+  seasonalNotes      String?  @db.Text // "Dead Jul-Aug" | "Festival season Apr-May"
+  keyContacts        Json? // [{ name, role, email, phone }]
+  isPublic           Boolean  @default(true)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 
-  restaurants         TouringRestaurant[]
-  businesses          DirectoryBusiness[]
+  restaurants TouringRestaurant[]
+  businesses  DirectoryBusiness[]
 
   @@unique([name, state])
   @@index([corridorOrder])
@@ -2113,16 +2112,16 @@ model ConstellationNode {
 }
 
 model ConstellationEdge {
-  id         String   @id @default(cuid())
-  fromType   String
-  fromId     String
-  toType     String
-  toId       String
+  id        String   @id @default(cuid())
+  fromType  String
+  fromId    String
+  toType    String
+  toId      String
   /// directory_link | corridor_city | route_stop_venue | route_stop_hotel | route_sequence
-  relation   String
-  weight     Float    @default(1)
-  metadata   Json?
-  createdAt  DateTime @default(now())
+  relation  String
+  weight    Float    @default(1)
+  metadata  Json?
+  createdAt DateTime @default(now())
 
   @@index([fromType, fromId])
   @@index([toType, toId])
@@ -2145,8 +2144,8 @@ model Brand {
 model StyleGuide {
   id               String   @id @default(cuid())
   name             String
-  persona          String   // e.g. "Tracy", "Amy", "CEO"
-  toneWeight       Float    // e.g. 0.8 to represent intensity of tone
+  persona          String // e.g. "Tracy", "Amy", "CEO"
+  toneWeight       Float // e.g. 0.8 to represent intensity of tone
   forbiddenPhrases String[] // Array of phrases to penalize in checking
   samples          String[] // Few-shot snippets
   jobs             Job[]
@@ -2158,25 +2157,25 @@ model StyleGuide {
 }
 
 model Job {
-  id               String   @id @default(cuid())
-  toolId           String
-  params           Json
-  editorialStatus  String   @default("DRAFT") // DRAFT | AI_READY | HUMAN_REVIEW | LIVE
-  assignedHumanId  String?
-  assignedHuman    User?    @relation(fields: [assignedHumanId], references: [id], onDelete: SetNull)
-  brandId          String?
-  brand            Brand?   @relation(fields: [brandId], references: [id])
-  styleGuideId     String?
-  styleGuide       StyleGuide? @relation(fields: [styleGuideId], references: [id])
+  id                 String        @id @default(cuid())
+  toolId             String
+  params             Json
+  editorialStatus    String        @default("DRAFT") // DRAFT | AI_READY | HUMAN_REVIEW | LIVE
+  assignedHumanId    String?
+  assignedHuman      User?         @relation(fields: [assignedHumanId], references: [id], onDelete: SetNull)
+  brandId            String?
+  brand              Brand?        @relation(fields: [brandId], references: [id])
+  styleGuideId       String?
+  styleGuide         StyleGuide?   @relation(fields: [styleGuideId], references: [id])
   /// AI / producer draft (HTML or plain text — editor normalizes on save)
-  draftContent       String?  @db.Text
+  draftContent       String?       @db.Text
   /// Editor-in-Chief revision (Tracy / Amy lane)
-  humanEditedContent String?  @db.Text
+  humanEditedContent String?       @db.Text
   /// Red Pen (Gemma / fallback) structured notes + suggested fixes
-  redPenNotes        String?  @db.Text
-  visualAssets     VisualAsset[]
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  redPenNotes        String?       @db.Text
+  visualAssets       VisualAsset[]
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
 
   @@index([editorialStatus])
   @@index([assignedHumanId])
@@ -2228,43 +2227,43 @@ model Venue {
 
 /// Scheduled or completed show — headliner is existing talent-pipeline `Artist`.
 model Performance {
-  id                      Int           @id @default(autoincrement())
-  slug                    String?       @unique
-  title                   String?
-  artistId                Int
-  artist                  Artist        @relation(fields: [artistId], references: [id], onDelete: Restrict)
-  venueId                 Int
-  venue                   Venue         @relation(fields: [venueId], references: [id], onDelete: Restrict)
-  mediaSessionId          String?
-  mediaSession            MediaSession? @relation(fields: [mediaSessionId], references: [id], onDelete: SetNull)
-  scheduledAt             DateTime
-  endedAt                 DateTime?
+  id             Int           @id @default(autoincrement())
+  slug           String?       @unique
+  title          String?
+  artistId       Int
+  artist         Artist        @relation(fields: [artistId], references: [id], onDelete: Restrict)
+  venueId        Int
+  venue          Venue         @relation(fields: [venueId], references: [id], onDelete: Restrict)
+  mediaSessionId String?
+  mediaSession   MediaSession? @relation(fields: [mediaSessionId], references: [id], onDelete: SetNull)
+  scheduledAt    DateTime
+  endedAt        DateTime?
   /// scheduled | soundcheck | live | completed | cancelled
-  status                  String        @default("scheduled")
-  posterUrl               String?
-  socialSnippet           String?       @db.Text
-  vipNotes                String?       @db.Text
-  createdAt               DateTime      @default(now())
-  updatedAt               DateTime      @updatedAt
+  status         String        @default("scheduled")
+  posterUrl      String?
+  socialSnippet  String?       @db.Text
+  vipNotes       String?       @db.Text
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  mediaAssets    MediaAsset[]
 
   @@index([venueId, scheduledAt])
   @@index([artistId])
   @@index([status])
   @@index([mediaSessionId])
-  mediaAssets MediaAsset[]
 }
 
 /// Captured audio/video/still tied to a `Performance` (flywheel media output).
 model MediaAsset {
-  id               String       @id @default(cuid())
-  performanceId    Int?
-  performance      Performance? @relation(fields: [performanceId], references: [id], onDelete: SetNull)
-  kind             String       @default("audio") // audio | video | image | transcript
-  url              String
-  mimeType         String?
-  durationSeconds  Int?
-  metadata         Json?
-  createdAt        DateTime     @default(now())
+  id              String       @id @default(cuid())
+  performanceId   Int?
+  performance     Performance? @relation(fields: [performanceId], references: [id], onDelete: SetNull)
+  kind            String       @default("audio") // audio | video | image | transcript
+  url             String
+  mimeType        String?
+  durationSeconds Int?
+  metadata        Json?
+  createdAt       DateTime     @default(now())
 
   @@index([performanceId])
   @@index([kind])
@@ -2290,14 +2289,14 @@ model VisualAsset {
 // ─────────────────────────────────────────────────────────────
 
 model ContributionLog {
-  id         String   @id @default(cuid())
-  userId     String
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  amount     Int
-  reason     String
-  fileType   String?
-  sourceId   String?  // References Lore or VisualAsset ID
-  createdAt  DateTime @default(now())
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount    Int
+  reason    String
+  fileType  String?
+  sourceId  String? // References Lore or VisualAsset ID
+  createdAt DateTime @default(now())
 
   @@index([userId])
 }
@@ -2309,7 +2308,7 @@ model CreditLedger {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   /// Signed delta: positive = earn, negative = burn
   change       Int
-  reason       String   // signing_bonus | daily_burn | lore_submit | admin_adjust | purchase_bypass | barter | contest_entry
+  reason       String // signing_bonus | daily_burn | lore_submit | admin_adjust | purchase_bypass | barter | contest_entry
   balanceAfter Int?
   metadata     Json?
   createdAt    DateTime @default(now())
@@ -2320,21 +2319,21 @@ model CreditLedger {
 
 /// Power-map node (Who's Who). Distinct from sales `Lead` — optimized for graph + Vertex traversal.
 model Entity {
-  id            String   @id @default(cuid())
-  displayName   String
-  industry      String
+  id             String   @id @default(cuid())
+  displayName    String
+  industry       String
   /// 1–10 regional influence heuristic
-  powerRating   Int      @default(5)
-  connections   Json     @default("{}")
-  notes         String?  @db.Text
-  userId        String?
-  user          User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  powerRating    Int      @default(5)
+  connections    Json     @default("{}")
+  notes          String?  @db.Text
+  userId         String?
+  user           User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
   version        Int      @default(1)
   supersededById String?
   supersededBy   Entity?  @relation("EntityVersion", fields: [supersededById], references: [id], onDelete: SetNull)
   superseded     Entity[] @relation("EntityVersion")
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   @@index([industry])
   @@index([powerRating])
@@ -2345,28 +2344,28 @@ model Entity {
 
 /// First-class lore unit for RAG + provenance (parallel to legacy `Lore` contributor table).
 model LoreEntry {
-  id               String    @id @default(cuid())
+  id              String      @id @default(cuid())
   /// raw | vetted | lore_media | clearinghouse | scout
-  namespace        String
-  title            String?
-  body             String    @db.Text
-  sourceUrl        String?
+  namespace       String
+  title           String?
+  body            String      @db.Text
+  sourceUrl       String?
   /// 0–1 model / Vertex uncertainty; low values surface a human review queue
-  confidenceScore  Float?
-  embeddingId      Int?      @unique
-  embedding        Embedding? @relation(fields: [embeddingId], references: [id], onDelete: SetNull)
-  submitterId      String?
-  submitter        User?     @relation(fields: [submitterId], references: [id], onDelete: SetNull)
+  confidenceScore Float?
+  embeddingId     Int?        @unique
+  embedding       Embedding?  @relation(fields: [embeddingId], references: [id], onDelete: SetNull)
+  submitterId     String?
+  submitter       User?       @relation(fields: [submitterId], references: [id], onDelete: SetNull)
   /// When true, exclude PII from city-facing aggregates; still usable for RAG with redacted provenance
-  isAnonymized     Boolean   @default(false)
-  verifiedAt       DateTime?
-  version        Int      @default(1)
-  supersededById String?
-  supersededBy   LoreEntry? @relation("LoreVersion", fields: [supersededById], references: [id], onDelete: SetNull)
-  superseded     LoreEntry[] @relation("LoreVersion")
+  isAnonymized    Boolean     @default(false)
+  verifiedAt      DateTime?
+  version         Int         @default(1)
+  supersededById  String?
+  supersededBy    LoreEntry?  @relation("LoreVersion", fields: [supersededById], references: [id], onDelete: SetNull)
+  superseded      LoreEntry[] @relation("LoreVersion")
 
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([namespace])
   @@index([confidenceScore])
@@ -2379,7 +2378,7 @@ model LoreEntry {
 model AgentTask {
   id          String    @id @default(cuid())
   agent       String
-  missionType String    // scout | harvest | transcribe | embed | other
+  missionType String // scout | harvest | transcribe | embed | other
   status      String    @default("pending") // pending | running | completed | failed | cancelled
   input       Json?
   result      Json?
@@ -2389,23 +2388,23 @@ model AgentTask {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
-  traces      ReasoningTrace[]
+  traces ReasoningTrace[]
 
   @@index([status, missionType])
   @@index([createdAt])
 }
 
 model Lore {
-  id          String   @id @default(cuid())
-  sourceFile  String
-  type        String   // manuals | journals | sops
-  rawText     String   @db.Text
-  verified    Boolean  @default(false) // Vetting Flag
-  isAnonymized Boolean @default(false) // Privacy filter for Government Subsidized heat maps
-  submitterId String?
-  submitter   User?    @relation(fields: [submitterId], references: [id], onDelete: SetNull)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           String   @id @default(cuid())
+  sourceFile   String
+  type         String // manuals | journals | sops
+  rawText      String   @db.Text
+  verified     Boolean  @default(false) // Vetting Flag
+  isAnonymized Boolean  @default(false) // Privacy filter for Government Subsidized heat maps
+  submitterId  String?
+  submitter    User?    @relation(fields: [submitterId], references: [id], onDelete: SetNull)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   @@index([verified])
   @@index([isAnonymized])
@@ -2418,23 +2417,23 @@ model Lore {
 // ─────────────────────────────────────────────────────────────
 
 model Contest {
-  id                String       @id @default(cuid())
-  title             String
-  description       String?      @db.Text
-  rules             Json         @default("{}")
-  startDate         DateTime
-  endDate           DateTime
-  prizePool         Json         @default("{}")
-  entryFeeCredits   Int          @default(0)
+  id              String       @id @default(cuid())
+  title           String
+  description     String?      @db.Text
+  rules           Json         @default("{}")
+  startDate       DateTime
+  endDate         DateTime
+  prizePool       Json         @default("{}")
+  entryFeeCredits Int          @default(0)
   /// image | audio | video | lore
-  submissionType    String       @default("image")
+  submissionType  String       @default("image")
   /// draft | published | closed
-  status            String       @default("draft")
-  organizerId       String?
-  organizer         User?        @relation("ContestOrganizer", fields: [organizerId], references: [id], onDelete: SetNull)
-  submissions       Submission[]
-  createdAt         DateTime     @default(now())
-  updatedAt         DateTime     @updatedAt
+  status          String       @default("draft")
+  organizerId     String?
+  organizer       User?        @relation("ContestOrganizer", fields: [organizerId], references: [id], onDelete: SetNull)
+  submissions     Submission[]
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
 
   @@index([status])
   @@index([status, startDate])
@@ -2468,16 +2467,16 @@ model Submission {
 
 model StudioCRequest {
   id            String    @id @default(cuid())
-  clientBrand   String    // big-muddy | bearsville | dsd | tuthill | magazine
-  clientId      Int?      // FK to Client if DSD merchant
-  requestType   String    // session-recording | promo-video | property-tour | social-clips | bts | documentary
+  clientBrand   String // big-muddy | bearsville | dsd | tuthill | magazine
+  clientId      Int? // FK to Client if DSD merchant
+  requestType   String // session-recording | promo-video | property-tour | social-clips | bts | documentary
   brief         String    @db.Text
-  location      String?   // Shoot location (default: Utopia Studios, Bearsville NY)
+  location      String? // Shoot location (default: Utopia Studios, Bearsville NY)
   preferredDate DateTime?
-  budget        String?   // "included-in-tier" | dollar amount | "quote-requested"
+  budget        String? // "included-in-tier" | dollar amount | "quote-requested"
   status        String    @default("submitted") // submitted | accepted | scheduled | shooting | editing | review | delivered | archived
-  assignedTo    String?   // Crew member name
-  jobId         Int?      // FK to ProductionJob when accepted and converted
+  assignedTo    String? // Crew member name
+  jobId         Int? // FK to ProductionJob when accepted and converted
   notes         String?   @db.Text
   /// Call sheet / session ops: engineer, musicians, equipment, catering, times (JSON)
   callSheet     Json?
@@ -2517,15 +2516,15 @@ model AdCampaign {
   title        String
   sponsorId    String
   sponsor      User     @relation("AdSponsor", fields: [sponsorId], references: [id])
-  budget       Int      // Credits authorized for campaign
+  budget       Int // Credits authorized for campaign
   bidAmount    Int      @default(10) // Credits per impression
   status       String   @default("ACTIVE") // ACTIVE | PAUSED | DEPLETED
-  targetVenues Json?    // Array of venue/business IDs or categories
-  assetUrl     String?  // Reference to VisualAsset
+  targetVenues Json? // Array of venue/business IDs or categories
+  assetUrl     String? // Reference to VisualAsset
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  impressions  ImpressionLog[]
+  impressions ImpressionLog[]
 
   @@index([status])
   @@index([sponsorId])
@@ -2535,8 +2534,8 @@ model ImpressionLog {
   id           String     @id @default(cuid())
   campaignId   String
   campaign     AdCampaign @relation(fields: [campaignId], references: [id])
-  venueHostId  String     // $500 tier Host User ID
-  payoutAmount Int        // Credits shared from impression
+  venueHostId  String // $500 tier Host User ID
+  payoutAmount Int // Credits shared from impression
   displayedAt  DateTime   @default(now())
 
   @@index([campaignId])
@@ -2560,12 +2559,12 @@ model ReasoningTrace {
 }
 
 model Group {
-  id          String   @id @default(cuid())
-  name        String   @unique
+  id          String        @id @default(cuid())
+  name        String        @unique
   description String?
   members     GroupMember[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 }
 
 model GroupMember {
@@ -2581,28 +2580,28 @@ model GroupMember {
 }
 
 model ApiKey {
-  id         String   @id @default(cuid())
-  keyHash    String   @unique
+  id         String    @id @default(cuid())
+  keyHash    String    @unique
   userId     String
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   label      String?
   lastUsedAt DateTime?
-  createdAt  DateTime @default(now())
+  createdAt  DateTime  @default(now())
   expiresAt  DateTime?
 
   @@index([userId])
 }
 
 model PhysicalNode {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  type      String   // SERVER | KIOSK | TV
-  status    String   @default("PENDING") // ONLINE | OFFLINE | PENDING
+  id        String    @id @default(cuid())
+  name      String    @unique
+  type      String // SERVER | KIOSK | TV
+  status    String    @default("PENDING") // ONLINE | OFFLINE | PENDING
   ipAddress String?
   lastSeen  DateTime?
   metadata  Json?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 
   @@index([status])
   @@index([type])
@@ -2611,7 +2610,7 @@ model PhysicalNode {
 model WebhookSubscription {
   id        String   @id @default(cuid())
   url       String
-  event     String   // e.g. "lore.created", "ad.depleted"
+  event     String // e.g. "lore.created", "ad.depleted"
   /// stripe | asana | internal | custom
   provider  String?
   secret    String?
@@ -2629,23 +2628,23 @@ model WebhookSubscription {
 // ══════════════════════════════════════════════════════════════
 
 model ProductFeature {
-  id              Int      @id @default(autoincrement())
-  slug            String   @unique                          // e.g. "business-listing", "magazine-feature"
-  name            String                                     // e.g. "Business Listing Sync"
-  category        String                                     // software | media | creative | operations
-  description     String?  @db.Text                          // what it does for the client
-  competitor      String?                                    // who we replace (e.g. "Yext")
-  competitorPrice Int?                                       // their monthly cost in cents
-  isUnique        Boolean  @default(false)                   // true = moat feature (magazine, radio, photo)
-  status          String   @default("planned")               // planned | building | shipped | deprecated
+  id              Int       @id @default(autoincrement())
+  slug            String    @unique // e.g. "business-listing", "magazine-feature"
+  name            String // e.g. "Business Listing Sync"
+  category        String // software | media | creative | operations
+  description     String?   @db.Text // what it does for the client
+  competitor      String? // who we replace (e.g. "Yext")
+  competitorPrice Int? // their monthly cost in cents
+  isUnique        Boolean   @default(false) // true = moat feature (magazine, radio, photo)
+  status          String    @default("planned") // planned | building | shipped | deprecated
   shippedAt       DateTime?
-  sortOrder       Int      @default(0)
-  tags            String[] @default([])                      // ["core", "media", "moat", "saas-replacement"]
-  metadata        Json?                                      // parity verdict, honest claim, gap analysis
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  sortOrder       Int       @default(0)
+  tags            String[]  @default([]) // ["core", "media", "moat", "saas-replacement"]
+  metadata        Json? // parity verdict, honest claim, gap analysis
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 
-  bundles         BundleFeature[]
+  bundles BundleFeature[]
 
   @@index([category])
   @@index([status])
@@ -2653,33 +2652,33 @@ model ProductFeature {
 
 model ProductBundle {
   id           Int      @id @default(autoincrement())
-  slug         String   @unique                              // e.g. "starter", "media", "restaurant"
+  slug         String   @unique // e.g. "starter", "media", "restaurant"
   name         String
   description  String?  @db.Text
-  market       String   @default("general")                  // general | restaurant | hotel | musician | venue
-  priceMonthly Int?                                          // cents (null = TBD)
-  priceAnnual  Int?                                          // cents (null = TBD)
+  market       String   @default("general") // general | restaurant | hotel | musician | venue
+  priceMonthly Int? // cents (null = TBD)
+  priceAnnual  Int? // cents (null = TBD)
   isActive     Boolean  @default(false)
   sortOrder    Int      @default(0)
-  metadata     Json?                                         // stripe price ID, launch date, notes
+  metadata     Json? // stripe price ID, launch date, notes
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  features     BundleFeature[]
+  features BundleFeature[]
 
   @@index([market])
   @@index([isActive])
 }
 
 model BundleFeature {
-  id        Int      @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   bundleId  Int
   featureId Int
-  limit     String?  // "4/week", "1/year", "3 competitors", null = unlimited
-  notes     String?  // tier-specific notes
+  limit     String? // "4/week", "1/year", "3 competitors", null = unlimited
+  notes     String? // tier-specific notes
 
-  bundle    ProductBundle  @relation(fields: [bundleId], references: [id], onDelete: Cascade)
-  feature   ProductFeature @relation(fields: [featureId], references: [id], onDelete: Cascade)
+  bundle  ProductBundle  @relation(fields: [bundleId], references: [id], onDelete: Cascade)
+  feature ProductFeature @relation(fields: [featureId], references: [id], onDelete: Cascade)
 
   @@unique([bundleId, featureId])
   @@index([bundleId])
@@ -2692,94 +2691,94 @@ model BundleFeature {
 // ══════════════════════════════════════════════════════════════
 
 model BusinessProfile {
-  id          String   @id @default(cuid())
-  namespace   String   // e.g. BEARSVILLE_CREATIVE, DEEP_SOUTH_DIRECTORY
-  name        String
-  address     String?
-  city        String?
-  state       String?
-  zip         String?
-  lat         Float?
-  lng         Float?
-  hoursJson   Json?
-  mapData     Json?
-  ownerId     String?
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String  @id @default(cuid())
+  namespace String // e.g. BEARSVILLE_CREATIVE, DEEP_SOUTH_DIRECTORY
+  name      String
+  address   String?
+  city      String?
+  state     String?
+  zip       String?
+  lat       Float?
+  lng       Float?
+  hoursJson Json?
+  mapData   Json?
+  ownerId   String?
 
-  store       MarketplaceStore?
-  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  store MarketplaceStore?
+
   @@index([namespace])
   @@index([ownerId])
 }
 
 model Vendor {
-  id          String    @id @default(cuid())
-  namespace   String
-  name        String
-  bio         String?   @db.Text
-  userId      String?   // System user ID mapped to this vendor
-  payoutInfo  Json?
-  stores      MarketplaceStore[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id         String             @id @default(cuid())
+  namespace  String
+  name       String
+  bio        String?            @db.Text
+  userId     String? // System user ID mapped to this vendor
+  payoutInfo Json?
+  stores     MarketplaceStore[]
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
 
   @@index([namespace])
 }
 
 model MarketplaceStore {
-  id                String          @id @default(cuid())
+  id                String            @id @default(cuid())
   namespace         String
   name              String
   vendorId          String
-  vendor            Vendor          @relation(fields: [vendorId], references: [id], onDelete: Cascade)
-  businessProfileId String?         @unique
-  businessProfile   BusinessProfile? @relation(fields: [businessProfileId], references: [id], onDelete: SetNull)
-  description       String?         @db.Text
+  vendor            Vendor            @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  businessProfileId String?           @unique
+  businessProfile   BusinessProfile?  @relation(fields: [businessProfileId], references: [id], onDelete: SetNull)
+  description       String?           @db.Text
   supplies          ApprovedSupply[]
   affiliate         AffiliateProgram?
-  createdAt         DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
 
   @@index([namespace])
   @@index([vendorId])
 }
 
 model ApprovedSupply {
-  id          String   @id @default(cuid())
+  id          String           @id @default(cuid())
   storeId     String
   store       MarketplaceStore @relation(fields: [storeId], references: [id], onDelete: Cascade)
-  sku         String   @unique
+  sku         String           @unique
   name        String
   priceCents  Int
-  inventory   Int      @default(0)
-  autoReorder Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  inventory   Int              @default(0)
+  autoReorder Boolean          @default(false)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
 
   @@index([storeId])
 }
 
 model AffiliateProgram {
-  id              String   @id @default(cuid())
-  storeId         String   @unique
-  store           MarketplaceStore @relation(fields: [storeId], references: [id], onDelete: Cascade)
-  commissionRate  Float    // e.g. 0.15 for 15%
-  terms           String?  @db.Text
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id             String           @id @default(cuid())
+  storeId        String           @unique
+  store          MarketplaceStore @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  commissionRate Float // e.g. 0.15 for 15%
+  terms          String?          @db.Text
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
 }
 
 model SocialCampaign {
-  id          String   @id @default(cuid())
-  namespace   String
-  title       String
-  objective   String?
+  id        String         @id @default(cuid())
+  namespace String
+  title     String
+  objective String?
   /// Hootsuite / Editorial Bureau campaign posts (distinct from legacy `SocialPost` tied to `SocialAccount`).
-  posts       CampaignPost[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  posts     CampaignPost[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
 
   @@index([namespace])
 }
@@ -2798,4 +2797,30 @@ model CampaignPost {
 
   @@index([campaignId])
   @@index([status])
+}
+
+/// Guided onboarding progress for new team members (Amy first, Tracy and
+/// future hires later). Powers /admin/onboarding/[role] — a Delta Dawn
+/// chat-led experience that walks them through first-day setup.
+///
+/// Keyed by email (not user id) so it works with session-based auth without
+/// requiring a full User table join. Resumable across sessions — partial
+/// form drafts live in currentTaskState as JSON, auto-saved every ~1.5s
+/// while the user types.
+model OnboardingProgress {
+  id               Int       @id @default(autoincrement())
+  userEmail        String    @unique // keyed by auth session email
+  role             String // "amy" | "tracy" | "future-hire"
+  completedTasks   String[] // ordered list of completed task ids
+  currentTaskId    String? // task the user is actively on (may differ from next-uncompleted if they jumped back)
+  currentTaskState Json? // per-task partial state (form drafts, OAuth in-progress, etc.)
+  notifPrefs       Json? // { email, asana, sms, googleChat } set in task 8
+  lastSeenAt       DateTime  @default(now()) // updated on every page load — powers "welcome back"
+  sessionCount     Int       @default(1) // increments when lastSeenAt is > 1 hour old
+  startedAt        DateTime  @default(now())
+  completedAt      DateTime? // set when all tasks finished
+  updatedAt        DateTime  @updatedAt
+
+  @@index([role])
+  @@index([lastSeenAt])
 }

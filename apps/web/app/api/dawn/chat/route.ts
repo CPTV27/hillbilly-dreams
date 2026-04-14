@@ -3,6 +3,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { MODELS } from '@/lib/ai-models';
 import { getDeltaDawnSystemPromptV2 } from '@/lib/delta-dawn-system-prompt';
 import { VOICE_TOOL_DECLARATIONS, executeVoiceTool } from '@/app/api/voice/tools';
+import { buildAmyOnboardingPrompt } from '@/lib/voice/amy-onboarding-prompt';
+import { auth } from '@/lib/auth';
+import { getOrCreateOnboardingProgress } from '@/lib/onboarding-progress';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -49,7 +52,11 @@ function sse(data: Record<string, unknown>) {
 const MAX_TOOL_ROUNDS = 6;
 
 export async function POST(req: NextRequest) {
-  let body: { messages?: DawnChatMessage[]; tenantId?: string };
+  let body: {
+    messages?: DawnChatMessage[];
+    tenantId?: string;
+    mode?: 'amy-onboarding';
+  };
   try {
     body = await req.json();
   } catch {
@@ -71,7 +78,29 @@ export async function POST(req: NextRequest) {
   }
 
   const tenantId = body.tenantId || 'hdi-owner';
-  const systemInstruction = `${baseSystem}\n\n## Runtime context\nTenant: ${tenantId}\n\nIMPORTANT: When asked about venues, businesses, cities, routes, hotels, restaurants, or anything in the database — ALWAYS use your tools to look up real data. NEVER make up business names, addresses, or details. If a tool returns no results, say so honestly.`;
+  let systemInstruction = `${baseSystem}\n\n## Runtime context\nTenant: ${tenantId}\n\nIMPORTANT: When asked about venues, businesses, cities, routes, hotels, restaurants, or anything in the database — ALWAYS use your tools to look up real data. NEVER make up business names, addresses, or details. If a tool returns no results, say so honestly.`;
+
+  // Amy onboarding mode — extend the system prompt with live progress state
+  // and per-task help context. Delta Dawn becomes Amy's through-line guide.
+  if (body.mode === 'amy-onboarding') {
+    try {
+      const session = await auth();
+      if (session?.user?.email) {
+        const progress = await getOrCreateOnboardingProgress(session.user.email, 'amy');
+        systemInstruction += '\n\n' + buildAmyOnboardingPrompt({
+          completedTasks: progress.completedTasks,
+          currentTaskId: progress.currentTaskId,
+          currentTaskState: progress.currentTaskState as Record<string, unknown> | null,
+          lastSeenAt: progress.lastSeenAt,
+          sessionCount: progress.sessionCount,
+        });
+      }
+    } catch (e) {
+      console.error('[dawn/chat] amy-onboarding extension failed', e);
+      // Non-fatal — fall through to base prompt so chat still works
+    }
+  }
+
   const messages = withPageContext(trimmed);
 
   const encoder = new TextEncoder();

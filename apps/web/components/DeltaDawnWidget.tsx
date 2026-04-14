@@ -5,10 +5,27 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 const STORAGE_KEY = 'delta-dawn-chat-v1';
 
+// Matches [[TASK:some-task-id]] — inline signal from Delta Dawn telling the
+// host page to highlight a specific onboarding task. Markers are stripped
+// from the displayed text before the user sees them.
+const TASK_MARKER_RE = /\[\[TASK:([a-z0-9-]+)\]\]/g;
+
 interface Message {
   role: 'user' | 'dawn';
   text: string;
   page?: string;
+}
+
+interface DeltaDawnWidgetProps {
+  /** Optional mode passed to /api/dawn/chat. When set, the system prompt
+   * gets extended with mode-specific context (e.g. Amy's onboarding progress). */
+  mode?: 'amy-onboarding';
+  /** Called when Delta Dawn emits a [[TASK:...]] marker. The host page
+   * uses this to advance the checklist UI. Fires once per unique marker
+   * per stream. */
+  onMarker?: (taskId: string) => void;
+  /** When true, auto-open the widget on mount. Used by the onboarding page. */
+  autoOpen?: boolean;
 }
 
 function trimHistoryForApi(messages: Message[]): Message[] {
@@ -16,7 +33,27 @@ function trimHistoryForApi(messages: Message[]): Message[] {
   return idx === -1 ? [] : messages.slice(idx);
 }
 
-export default function DeltaDawnWidget() {
+/** Strip all [[TASK:...]] markers from a string. */
+function stripMarkers(text: string): string {
+  return text.replace(TASK_MARKER_RE, '').replace(/\n{3,}/g, '\n\n');
+}
+
+/** Extract unique task ids from the [[TASK:...]] markers in a string. */
+function extractMarkers(text: string): string[] {
+  const ids = new Set<string>();
+  let match: RegExpExecArray | null;
+  TASK_MARKER_RE.lastIndex = 0;
+  while ((match = TASK_MARKER_RE.exec(text)) !== null) {
+    if (match[1]) ids.add(match[1]);
+  }
+  return Array.from(ids);
+}
+
+export default function DeltaDawnWidget({
+  mode,
+  onMarker,
+  autoOpen = false,
+}: DeltaDawnWidgetProps = {}) {
   const pathname = usePathname() || '';
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
@@ -68,12 +105,13 @@ export default function DeltaDawnWidget() {
   }, []);
 
   // Auto-open when the user lands on /dawn — that page is now a branded
-  // landing for the widget, not its own chat UI.
+  // landing for the widget, not its own chat UI. Also honor the explicit
+  // autoOpen prop used by the onboarding page.
   useEffect(() => {
-    if (pathname === '/dawn') {
+    if (pathname === '/dawn' || autoOpen) {
       setOpen(true);
     }
-  }, [pathname]);
+  }, [pathname, autoOpen]);
 
   const send = useCallback(async () => {
     if (!input.trim() || streaming) return;
@@ -86,12 +124,20 @@ export default function DeltaDawnWidget() {
     setMessages((prev) => [...prev, userMsg, { role: 'dawn', text: '', page }]);
     setStreaming(true);
 
+    // Tracks the full dawn-side stream text (including markers) so we can
+    // parse [[TASK:...]] markers and strip them from the displayed text on
+    // each chunk. Markers may arrive split across chunks, so we always
+    // process the accumulated buffer rather than each delta in isolation.
+    let fullDawnText = '';
+    const seenMarkers = new Set<string>();
+
     try {
       const res = await fetch('/api/dawn/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           tenantId: 'hdi-owner',
+          mode,
           messages: historyForApi.map((m) => ({
             role: m.role,
             content: m.text,
@@ -110,12 +156,32 @@ export default function DeltaDawnWidget() {
       let buffer = '';
       let streamError: string | null = null;
 
-      const appendDelta = (delta: string) => {
+      const applyDelta = (delta: string) => {
+        fullDawnText += delta;
+
+        // Scan for any newly-complete markers and emit them once each.
+        const markers = extractMarkers(fullDawnText);
+        for (const id of markers) {
+          if (!seenMarkers.has(id)) {
+            seenMarkers.add(id);
+            try {
+              onMarker?.(id);
+            } catch {
+              /* host handler errors must not break the stream */
+            }
+          }
+        }
+
+        // Display with all markers stripped. Incomplete [[TASK:... fragments
+        // at the tail are kept as-is and will be cleaned up when the rest
+        // arrives, or stripped by the final setMessages below.
+        const display = stripMarkers(fullDawnText);
+
         setMessages((prev) => {
           const next = [...prev];
           const last = next[next.length - 1];
           if (last?.role === 'dawn') {
-            next[next.length - 1] = { ...last, text: last.text + delta, page: last.page || page };
+            next[next.length - 1] = { ...last, text: display, page: last.page || page };
           }
           return next;
         });
@@ -135,11 +201,26 @@ export default function DeltaDawnWidget() {
           try {
             const j = JSON.parse(payload) as { text?: string; error?: string };
             if (j.error) streamError = j.error;
-            if (j.text) appendDelta(j.text);
+            if (j.text) applyDelta(j.text);
           } catch {
             /* ignore malformed chunk */
           }
         }
+      }
+
+      // Final pass: if any half-open marker got left in the tail, clean it
+      // out by re-rendering with strip() (already handled above, but this
+      // covers the edge case where the stream ended mid-marker).
+      if (fullDawnText) {
+        const display = stripMarkers(fullDawnText);
+        setMessages((prev) => {
+          const next = [...prev];
+          const last = next[next.length - 1];
+          if (last?.role === 'dawn') {
+            next[next.length - 1] = { ...last, text: display, page: last.page || page };
+          }
+          return next;
+        });
       }
 
       if (streamError) setLastError(streamError);
@@ -172,7 +253,7 @@ export default function DeltaDawnWidget() {
     } finally {
       setStreaming(false);
     }
-  }, [input, messages, streaming, pathname]);
+  }, [input, messages, streaming, pathname, mode, onMarker]);
 
   return (
     <>

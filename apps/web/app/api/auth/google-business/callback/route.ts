@@ -34,16 +34,29 @@ export async function GET(request: NextRequest) {
   const state = url.searchParams.get('state');
   const err = url.searchParams.get('error');
 
-  if (err) {
-    return NextResponse.redirect(new URL(`/admin/social?gbp_error=${encodeURIComponent(err)}`, base));
-  }
-
+  // Read the onboarding_source cookie to decide where to redirect back to.
+  // If it's "amy", we came from Amy's onboarding page and should return
+  // there instead of the default /admin/social landing.
   const cookieStore = await cookies();
+  const onboardingSource = cookieStore.get('onboarding_source')?.value;
+  cookieStore.delete('onboarding_source');
   const expected = cookieStore.get('gbp_oauth_state')?.value;
   cookieStore.delete('gbp_oauth_state');
 
+  const destBase =
+    onboardingSource === 'amy' ? '/admin/onboarding/amy' : '/admin/social';
+  const destWith = (params: Record<string, string>) => {
+    const u = new URL(destBase, base);
+    for (const [k, v] of Object.entries(params)) u.searchParams.set(k, v);
+    return u;
+  };
+
+  if (err) {
+    return NextResponse.redirect(destWith({ gbp_error: err }));
+  }
+
   if (!code || !state || !expected || state !== expected) {
-    return NextResponse.redirect(new URL('/admin/social?gbp_error=invalid_state', base));
+    return NextResponse.redirect(destWith({ gbp_error: 'invalid_state' }));
   }
 
   try {
@@ -71,7 +84,7 @@ export async function GET(request: NextRequest) {
     if (!tokenRes.ok || !tokenJson.access_token) {
       const msg = tokenJson.error_description || tokenJson.error || 'token_exchange_failed';
       apiLog.error('google-business/callback', 'token exchange failed', { error: msg });
-      return NextResponse.redirect(new URL(`/admin/social?gbp_error=${encodeURIComponent(msg)}`, base));
+      return NextResponse.redirect(destWith({ gbp_error: msg }));
     }
 
     const accessToken = tokenJson.access_token;
@@ -92,7 +105,7 @@ export async function GET(request: NextRequest) {
     if (!accountsRes.ok || !accountsJson.accounts?.length) {
       const msg = accountsJson.error?.message || 'no_gbp_accounts';
       apiLog.warn('google-business/callback', 'no accounts found', { error: msg });
-      return NextResponse.redirect(new URL(`/admin/social?gbp_error=${encodeURIComponent(msg)}`, base));
+      return NextResponse.redirect(destWith({ gbp_error: msg }));
     }
 
     // For each account, fetch locations and create SocialAccount records
@@ -138,13 +151,18 @@ export async function GET(request: NextRequest) {
     }
 
     if (totalLocations === 0) {
-      return NextResponse.redirect(new URL('/admin/social?gbp_error=no_locations', base));
+      return NextResponse.redirect(destWith({ gbp_error: 'no_locations' }));
     }
 
-    apiLog.info('google-business/callback', 'connected locations', { count: totalLocations });
-    return NextResponse.redirect(new URL('/admin/social?gbp_connected=1', base));
+    apiLog.info('google-business/callback', 'connected locations', {
+      count: totalLocations,
+      onboardingSource: onboardingSource ?? null,
+    });
+    return NextResponse.redirect(
+      destWith({ gbp_connected: '1', step: 'connect-gbp', status: 'success' })
+    );
   } catch (e) {
     apiLog.error('google-business/callback', 'handler error', e);
-    return NextResponse.redirect(new URL('/admin/social?gbp_error=callback_failed', base));
+    return NextResponse.redirect(destWith({ gbp_error: 'callback_failed' }));
   }
 }

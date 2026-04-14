@@ -39,6 +39,20 @@ export async function GET(request: NextRequest) {
     path: '/',
   });
 
+  // If the connect was kicked off from Amy's onboarding flow, stash a
+  // marker cookie so the callback redirects back to /admin/onboarding/amy
+  // instead of the default /admin/social page.
+  const onboardingSource = request.nextUrl.searchParams.get('onboarding');
+  if (onboardingSource === 'amy') {
+    cookieStore.set('onboarding_source', 'amy', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 600,
+      path: '/',
+    });
+  }
+
   const url = new URL(GOOGLE_AUTH);
   url.searchParams.set('client_id', clientId);
   url.searchParams.set('redirect_uri', callbackUrl);

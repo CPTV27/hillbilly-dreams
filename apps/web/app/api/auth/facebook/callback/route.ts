@@ -32,16 +32,30 @@ export async function GET(request: NextRequest) {
   const state = url.searchParams.get('state');
   const err = url.searchParams.get('error_description') || url.searchParams.get('error');
 
+  // Read the onboarding_source cookie to decide where to redirect back to.
+  // If it's "amy", we came from Amy's onboarding page and should return
+  // there instead of the default /admin/social landing.
+  const cookieStore = cookies();
+  const onboardingSource = cookieStore.get('onboarding_source')?.value;
+  cookieStore.delete('onboarding_source');
+
+  const destBase =
+    onboardingSource === 'amy' ? '/admin/onboarding/amy' : '/admin/social';
+  const destWith = (params: Record<string, string>) => {
+    const u = new URL(destBase, base);
+    for (const [k, v] of Object.entries(params)) u.searchParams.set(k, v);
+    return u;
+  };
+
   if (err) {
-    return NextResponse.redirect(new URL(`/admin/social?fb_error=${encodeURIComponent(err)}`, base));
+    return NextResponse.redirect(destWith({ fb_error: err }));
   }
 
-  const cookieStore = cookies();
   const expected = cookieStore.get('fb_oauth_state')?.value;
   cookieStore.delete('fb_oauth_state');
 
   if (!code || !state || !expected || state !== expected) {
-    return NextResponse.redirect(new URL('/admin/social?fb_error=invalid_state', base));
+    return NextResponse.redirect(destWith({ fb_error: 'invalid_state' }));
   }
 
   try {
@@ -55,7 +69,7 @@ export async function GET(request: NextRequest) {
     const tokenJson = (await tokenRes.json()) as { access_token?: string; error?: { message?: string } };
     if (!tokenRes.ok || !tokenJson.access_token) {
       const msg = tokenJson.error?.message || 'token_exchange_failed';
-      return NextResponse.redirect(new URL(`/admin/social?fb_error=${encodeURIComponent(msg)}`, base));
+      return NextResponse.redirect(destWith({ fb_error: msg }));
     }
 
     let longToken = tokenJson.access_token;
@@ -80,7 +94,7 @@ export async function GET(request: NextRequest) {
 
     if (!pagesRes.ok || !pagesJson.data?.length) {
       const msg = pagesJson.error?.message || 'no_pages';
-      return NextResponse.redirect(new URL(`/admin/social?fb_error=${encodeURIComponent(msg)}`, base));
+      return NextResponse.redirect(destWith({ fb_error: msg }));
     }
 
     for (const page of pagesJson.data) {
@@ -105,10 +119,15 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    apiLog.info('facebook/callback', 'connected pages', { count: pagesJson.data.length });
-    return NextResponse.redirect(new URL('/admin/social?fb_connected=1', base));
+    apiLog.info('facebook/callback', 'connected pages', {
+      count: pagesJson.data.length,
+      onboardingSource: onboardingSource ?? null,
+    });
+    return NextResponse.redirect(
+      destWith({ fb_connected: '1', step: 'connect-meta', status: 'success' })
+    );
   } catch (e) {
     apiLog.error('facebook/callback', 'handler error', e);
-    return NextResponse.redirect(new URL('/admin/social?fb_error=callback_failed', base));
+    return NextResponse.redirect(destWith({ fb_error: 'callback_failed' }));
   }
 }

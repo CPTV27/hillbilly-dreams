@@ -4,6 +4,7 @@
 // Step-by-step tour of the Big Muddy Command platform
 
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 interface WalkthroughStep {
   title: string;
@@ -79,8 +80,13 @@ const WALKTHROUGH_STEPS: WalkthroughStep[] = [
 ];
 
 export default function Walkthrough() {
+  const searchParams = useSearchParams();
+  const isAmyOnboarding = searchParams?.get('walkthrough') === 'amy';
+  // Only auto-show the tour when explicitly requested via query param.
+  // Previously started visible=true on every admin page load which was
+  // noisy; now it's opt-in via ?walkthrough=amy (or future ?walkthrough=...).
   const [currentStep, setCurrentStep] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(isAmyOnboarding);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const step = WALKTHROUGH_STEPS[currentStep];
@@ -88,9 +94,31 @@ export default function Walkthrough() {
   const isLast = currentStep === WALKTHROUGH_STEPS.length - 1;
   const progress = ((currentStep + 1) / WALKTHROUGH_STEPS.length) * 100;
 
+  // When the walkthrough finishes from Amy's onboarding flow, POST to
+  // /api/onboarding/amy/complete so the checklist advances, then close
+  // the tab so Amy returns to her onboarding page automatically.
+  const finishAmyOnboarding = async () => {
+    try {
+      await fetch('/api/onboarding/amy/complete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ task: 'dashboard-tour' }),
+      });
+    } catch {
+      /* non-fatal — the status poll will catch it on next tick */
+    }
+    // Close the tab if this was opened from the onboarding page
+    if (typeof window !== 'undefined' && window.opener) {
+      window.close();
+    }
+  };
+
   const goNext = () => {
     if (isLast) {
       setIsVisible(false);
+      if (isAmyOnboarding) {
+        void finishAmyOnboarding();
+      }
       return;
     }
     setIsAnimating(true);

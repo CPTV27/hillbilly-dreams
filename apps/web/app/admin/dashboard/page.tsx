@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Walkthrough from './walkthrough';
 
 interface MetricData {
   key: string;
@@ -749,6 +750,8 @@ export default function DashboardPage() {
           .mc-list__action { min-height: 44px; padding: 8px 12px; display: inline-flex; align-items: center; }
         }
       `}</style>
+      {/* Opt-in guided tour — auto-activates only when ?walkthrough=amy is set. */}
+      <Walkthrough />
     </>
   );
 }
