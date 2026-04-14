@@ -278,17 +278,18 @@ export function AmyOnboardingClient({
   // ── Delta Dawn marker handler ──
   const handleDawnMarker = useCallback(
     (taskId: string) => {
-      // When Delta Dawn emits [[TASK:id]], advance the highlight in the
-      // sidebar to match (but don't mark anything complete — that's driven
-      // by actual events). If the marker is for the CURRENT task (e.g.
-      // a transition confirmation), mark it complete immediately.
-      if (taskId === currentTaskId) {
-        void markComplete(taskId);
-      } else {
-        setCurrentTaskId(taskId);
-      }
+      // Markers are navigation hints ONLY — they highlight the sidebar
+      // task Delta Dawn is talking about. They do NOT mark tasks
+      // complete. Completion must come from real events: OAuth callbacks
+      // writing SocialAccount rows, form submissions, the API status
+      // poller finding new Sanity assets, etc.
+      //
+      // Previous version auto-completed when marker matched currentTaskId.
+      // That caused false completions when Amy was just chatting with
+      // Delta Dawn ABOUT the current task without doing it.
+      setCurrentTaskId(taskId);
     },
-    [currentTaskId, markComplete]
+    []
   );
 
   // ── Auto-complete "meet-delta-dawn" after first chat interaction ──

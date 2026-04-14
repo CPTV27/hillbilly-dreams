@@ -249,13 +249,13 @@ export function TracyOnboardingClient({
 
   const handleDawnMarker = useCallback(
     (taskId: string) => {
-      if (taskId === currentTaskId) {
-        void markComplete(taskId);
-      } else {
-        setCurrentTaskId(taskId);
-      }
+      // Markers are navigation hints ONLY — they highlight the sidebar
+      // task Delta Dawn is referencing. They do NOT mark tasks complete.
+      // Completion comes from real events (form submits, OAuth callbacks,
+      // API status polls). See the matching comment in AmyOnboardingClient.
+      setCurrentTaskId(taskId);
     },
-    [currentTaskId, markComplete]
+    []
   );
 
   // Auto-complete meet-delta-dawn on first user chat turn
