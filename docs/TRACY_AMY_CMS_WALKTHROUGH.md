@@ -1,132 +1,153 @@
-# CMS Walkthrough — For Tracy & Amy
+# How to Write a Big Muddy Magazine Article
 
-*How to edit magazine articles, events, and Inn information using Sanity Studio.*
+*A plain-English walkthrough for Tracy and Amy. No tech jargon. If anything here doesn't match what you see on screen, text Chase.*
 
 ---
 
-## Getting Started
+## What you're doing
 
-Open your browser and go to:
+You're writing magazine articles — city guides, feature stories, photo essays, interviews, food pieces, music pieces — for the Big Muddy corridor. The words and photos go into a tool called **Sanity Studio**. Hit Publish and it appears on the magazine website within about a minute.
+
+You never touch code. You never see a server. It's a form with text boxes and a photo picker. If you've used Squarespace, WordPress, or Google Docs, you're already 80% of the way there.
+
+---
+
+## Step 1 — Sign in
+
+Open this URL in your browser:
 
 https://bigmuddytouring.com/studio
 
-You'll see a Sanity login screen. Sign in with your Google account (the same one you use for email). If you've never signed in before, ask Chase to add you as a team member in the Sanity dashboard.
+You'll see a sign-in screen. Click **"Continue with Google"** and sign in with your `@gmail.com` address. The first time, it'll ask Chase to approve you — he only has to do that once. After that, you're in for good.
+
+If you get a "Not authorized" message after signing in, Chase needs to add you to the Sanity project. Text him.
 
 ---
 
-## What You Can Edit
+## Step 2 — Create a new article
 
-| Content Type | What It Is | Example |
-|---|---|---|
-| **Articles** | Magazine pieces — city guides, features, photo essays | "Memphis After Midnight" |
-| **Locations** | Inn, Blues Room, venue info — hours, address, description | "The Big Muddy Inn" |
-| **Events** | Show calendar — upcoming performances, ticket links | "Rise Up Showcase — April 15" |
+Once you're inside Sanity Studio, look at the left sidebar. You'll see three types of content you can create:
 
----
+- **Article** — magazine stories (what you'll use 99% of the time)
+- **Event** — concerts, shows, things on the calendar
+- **Location** — info about the Inn, the Blues Room, venues
 
-## Editing an Article
-
-1. In Sanity Studio, click **Article** in the left sidebar
-2. You'll see a list of all articles. Click one to edit, or click **+ Create** to make a new one
-3. Fill in the fields:
-   - **Title** — the headline
-   - **Slug** — auto-generated from title. This becomes the URL (e.g., `/magazine/memphis-after-midnight`)
-   - **Author** — defaults to "Big Muddy Magazine"
-   - **Category** — pick one: City Guide, Feature, Photo Essay, Interview, Food & Drink, Music
-   - **City** — which corridor city this article covers
-   - **Hero Image** — click to upload a photo. This is the big image at the top of the article. Use real photos, not stock.
-   - **Excerpt** — 1-2 sentence teaser that shows in article lists
-   - **Body** — the main content. Works like a word processor:
-     - Type normally for paragraphs
-     - Use the toolbar for **bold**, *italic*, headings (H2, H3), block quotes
-     - Click the **+** button to add images, pull quotes, or photo galleries
-   - **Published At** — set the date. Articles with no date won't appear publicly.
-4. Click **Publish** (green button, top right)
-5. The website updates automatically within a few seconds (no need to call Chase)
-
-### Tips for Articles
-- **Hero images should be landscape** (wider than tall), at least 1600px wide
-- **Pull quotes** break up long articles nicely — use them for the best sentences
-- **Photo galleries** are great for city guides — show the restaurants, venues, hotels
-- Saving a draft (without publishing) is fine — only published content appears on the website
+Click **Article**, then click the **"+" button** at the top of the list. A new blank article opens.
 
 ---
 
-## Editing a Location (Inn, Blues Room, etc.)
+## Step 3 — Fill in the basics
 
-1. Click **Location** in the left sidebar
-2. Click the location to edit, or **+ Create** for a new one
-3. Fields:
-   - **Name** — "The Big Muddy Inn" or "The Blues Room"
-   - **Type** — Inn, Bar, Venue, or Restaurant
-   - **Hours** — type each day on its own line (e.g., "Monday: 4pm-11pm")
-   - **Address** — street address
-   - **Contact Email** — for guest inquiries
-   - **Phone** — front desk or booking number
-   - **Hero Image** — the main photo of the location
-   - **Description** — rich text, same editor as articles
-4. Click **Publish**
+You'll see a form with fields. Fill them in top to bottom:
 
-### When to Update Locations
-- Hours change seasonally — update when they do
-- Special holiday hours — add a note in the description
-- New menu items, room rates, or event space changes — update the description
+**Title** — the headline of your article. Example: *"Sunday Morning at Biscuits & Blues"*
 
----
+**Slug** — this fills in automatically from the title. Don't mess with it unless it looks weird. This becomes the URL, e.g. `/magazine/sunday-morning-at-biscuits-and-blues`.
 
-## Adding an Event
+**Author** — defaults to "Big Muddy Magazine". You can change it to your name if you want your byline on it: "Tracy Alderson-Allen" or "Amy Allen".
 
-1. Click **Event** in the left sidebar
-2. Click **+ Create**
-3. Fields:
-   - **Title** — "Rise Up Showcase" or "Blues Room Saturday Night"
-   - **Date** — pick the date and time
-   - **Venue** — select from your locations (e.g., "The Blues Room")
-   - **Artist** — type the band/performer name
-   - **Ticket Link** — paste the URL where people buy tickets (Eventbrite, etc.)
-   - **Price** — "$25" or "Free"
-   - **Cover Image** — poster or promo photo for the event
-   - **Description** — details about the show
-   - **Status** — Upcoming, Sold Out, Cancelled, or Completed
-4. Click **Publish**
+**Category** — pick one from the dropdown:
+- **City Guide** — "what to do in Natchez if you have one day"
+- **Feature** — long-form story about a person, place, or thing
+- **Photo Essay** — photos tell the story, text is short
+- **Interview** — Q&A format
+- **Food & Drink** — restaurants, recipes, cocktails, meals
+- **Music** — shows, artists, albums, the scene
 
-### After the Show
-- Change status to **Completed** after the event
-- Don't delete old events — they become part of the archive
+**City** — pick which Mississippi River corridor city this article is about. If it's about multiple cities or none specifically, just pick the biggest one featured.
+
+**Published At** — set this to the day you want the article to go live. You can backdate it or schedule it for the future. If you leave this blank, the article won't show up on the website.
 
 ---
 
-## Things You Should NOT Edit
+## Step 4 — Pick the hero image
 
-- **Directory listings** — those are managed through a separate admin tool, not Sanity
-- **Touring data** (venues, hotels, routes) — managed in the database
-- **Artist profiles** — managed in the database
-- **Anything in the code** — if you see code or developer settings, leave them alone
+The **Hero Image** is the big photo at the top of the article — the one that grabs people.
 
-If you're unsure whether something should be edited in Sanity, ask Chase.
+Click the Hero Image field. You'll see a little menu with options. One of them is **"Big Muddy Photo Library"** — that's the one you want. Click it.
 
----
+A window opens showing thumbnails of every photo Chase has approved for use. You can filter:
+- **Region** — Big Muddy (Mississippi corridor) or Bearsville (Woodstock/Catskills)
+- **City** — narrow it down to Natchez, Memphis, Clarksdale, etc.
+- **Category** — only portraits, only venues, only landscapes
 
-## Common Tasks
+Click any photo. It goes straight into your article. That's it. The caption and credit line come along for the ride automatically.
 
-| Task | How |
-|---|---|
-| Fix a typo in an article | Article → click it → edit → Publish |
-| Update Inn hours | Location → The Big Muddy Inn → edit Hours → Publish |
-| Add tonight's show | Event → + Create → fill in → Publish |
-| Add a new magazine article | Article → + Create → fill in all fields → Publish |
-| Mark a show as sold out | Event → click the show → change Status to "Sold Out" → Publish |
-| Replace a bad photo | Click the image field → remove → upload new → Publish |
+**If the library is empty** or doesn't have what you need, that means Chase hasn't exported those photos yet. Text him the shoot you need ("got anything from the Arrie shoot at the Blues Room?") and he'll sync them over. New photos appear in the picker within a minute.
+
+**If you want to upload a one-off photo** (like a screenshot, or something Tracy took on her phone), click "Upload" instead of "Big Muddy Photo Library". But prefer the library — the quality is consistent and the credits are already correct.
 
 ---
 
-## If Something Goes Wrong
+## Step 5 — Write the excerpt
 
-- **Can't log in** — ask Chase to add your Google account to the Sanity project
-- **Changes not appearing on the website** — wait 60 seconds, then hard refresh (Cmd+Shift+R). If still not showing after 5 minutes, tell Chase — the webhook might need attention.
-- **Accidentally deleted something** — Sanity keeps version history. Click the clock icon (top right when editing a document) to see past versions and restore.
-- **The Studio page is blank or broken** — try a different browser or clear your cache. If still broken, tell Chase.
+The **Excerpt** is a 1-2 sentence teaser that shows up on the magazine home page and in article lists. Think of it as the pitch: why should someone click?
+
+Example: *"The best biscuits on the corridor come out of a tiny Natchez kitchen at 6 AM. Here's who makes them, and why they taste like nothing else."*
+
+Don't overthink it. Two sentences, done.
 
 ---
 
-*This walkthrough covers the basics. Chase will do a live demo when you're ready to start editing. The key thing: you can edit articles, events, and location info without touching code or calling a developer. Just log in, edit, publish.*
+## Step 6 — Write the body
+
+The **Body** is the main content. The editor works like a word processor:
+
+- Type paragraphs normally
+- Highlight text and use the toolbar to make it **bold**, *italic*, or turn it into a heading (H2 for section headings, H3 for sub-headings)
+- Hit Enter for a new paragraph
+
+### Adding a photo inside the article
+
+Click the **"+" button** on the left side of the body editor. A menu opens with these options:
+
+- **Image** — a single photo with its own caption
+- **Photo Gallery** — multiple photos grouped together
+- **Pull Quote** — a big styled quote that breaks up the text
+
+For a single inline photo, click **Image**, then click the image placeholder and pick from the Big Muddy Photo Library (same as the hero).
+
+### Adding a photo gallery (for photo essays or city guides)
+
+Click **"+"**, pick **Photo Gallery**, give it a title like *"Downtown Clarksdale, Friday Night"*, then click the images field and add as many photos as you want from the library. Good galleries have 6-10 photos.
+
+### Adding a pull quote
+
+Click **"+"**, pick **Pull Quote**, type the quote and the attribution. Example: *"You can't fake a 6 AM biscuit." — Regina Charboneau*.
+
+---
+
+## Step 7 — Preview and publish
+
+When you're happy with it, click **Publish** at the top right. The button is green.
+
+Sanity will save the article and push it to the website. Give it about 60 seconds, then visit `https://bigmuddytouring.com/magazine/YOUR-SLUG` to see it live.
+
+If you want to stop and come back later, you don't have to do anything special — Sanity auto-saves your draft. Just close the tab. When you come back and click that article, you'll pick up where you left off.
+
+---
+
+## Quick tips
+
+- **Don't worry about mistakes.** You can edit and re-publish any article anytime. Nothing is final.
+- **Photos before words.** If you're stuck on a blank page, start by picking 8-10 photos. The story usually writes itself around them.
+- **Short paragraphs.** 2-4 sentences each. Magazine readers scroll fast.
+- **One idea per paragraph.** If you're writing "and also" a lot, split it up.
+- **Your voice is the point.** Tracy writes like Tracy, Amy writes like Amy. Don't try to sound like a newspaper. We want personality.
+- **When in doubt, text Chase.** Screenshots help.
+
+---
+
+## What to do if something breaks
+
+**"I can't sign in"** — Chase needs to add you to the Sanity project. Text him your Gmail address.
+
+**"The photo library is empty"** — Chase hasn't run the photo sync yet. Text him.
+
+**"I can't find a photo I know Chase took"** — It hasn't been tagged as approved in Lightroom yet. Text him.
+
+**"I published something by mistake"** — Open the article in Studio, change Published At to a future date, and click Publish again. It disappears from the public site.
+
+**"The website isn't showing my new article"** — Give it 60 seconds and refresh. If it's still not there after a few minutes, text Chase.
+
+**"Studio is white/blank/showing an error"** — Hard-refresh with Cmd+Shift+R. If that doesn't fix it, text Chase.
