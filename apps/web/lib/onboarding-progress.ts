@@ -9,11 +9,49 @@
 // do NOT check admin status.
 
 import { prisma } from '@/lib/prisma';
-import { ONBOARDING_TASKS, TOTAL_TASKS, getNextTask, TASK_IDS } from '@/app/admin/onboarding/amy/tasks';
+import {
+  ONBOARDING_TASKS as AMY_TASKS,
+  TOTAL_TASKS as AMY_TOTAL,
+  getNextTask as getNextAmyTask,
+  TASK_IDS as AMY_TASK_IDS,
+} from '@/app/admin/onboarding/amy/tasks';
+import type { OnboardingTask } from '@/app/admin/onboarding/amy/tasks';
+import {
+  TRACY_ONBOARDING_TASKS,
+  TRACY_TOTAL_TASKS,
+  getTracyNextTask,
+  TRACY_TASK_IDS,
+} from '@/app/admin/onboarding/tracy/tasks';
 import type { OnboardingProgress } from '@prisma/client';
 import type { Prisma } from '@prisma/client';
 
 const SESSION_IDLE_MINUTES = 60;
+
+export type OnboardingRole = 'amy' | 'tracy' | 'future-hire';
+
+/** Look up the task list, validation ids, total count, and next-task fn for a role. */
+function getRoleConfig(role: OnboardingRole): {
+  tasks: OnboardingTask[];
+  taskIds: readonly string[];
+  total: number;
+  getNext: (completedIds: string[]) => OnboardingTask | null;
+} {
+  if (role === 'tracy') {
+    return {
+      tasks: TRACY_ONBOARDING_TASKS,
+      taskIds: TRACY_TASK_IDS,
+      total: TRACY_TOTAL_TASKS,
+      getNext: getTracyNextTask,
+    };
+  }
+  // Amy + future-hire fall back to the Amy task list for now.
+  return {
+    tasks: AMY_TASKS,
+    taskIds: AMY_TASK_IDS,
+    total: AMY_TOTAL,
+    getNext: getNextAmyTask,
+  };
+}
 
 /**
  * Get the user's existing onboarding progress row, or create one with
@@ -22,20 +60,22 @@ const SESSION_IDLE_MINUTES = 60;
  */
 export async function getOrCreateOnboardingProgress(
   userEmail: string,
-  role: 'amy' | 'tracy' | 'future-hire' = 'amy'
+  role: OnboardingRole = 'amy'
 ): Promise<OnboardingProgress> {
   const existing = await prisma.onboardingProgress.findUnique({
     where: { userEmail },
   });
 
+  const cfg = getRoleConfig(role);
+
   if (!existing) {
-    // First visit — create with task 1 active
+    // First visit — create with task 1 of the role's task list active
     return prisma.onboardingProgress.create({
       data: {
         userEmail,
         role,
         completedTasks: [],
-        currentTaskId: ONBOARDING_TASKS[0].id,
+        currentTaskId: cfg.tasks[0]?.id ?? null,
         currentTaskState: {},
         lastSeenAt: new Date(),
         sessionCount: 1,
@@ -67,10 +107,12 @@ export async function getOrCreateOnboardingProgress(
  */
 export async function markTaskComplete(
   userEmail: string,
-  taskId: string
+  taskId: string,
+  role: OnboardingRole = 'amy'
 ): Promise<OnboardingProgress> {
-  if (!(TASK_IDS as readonly string[]).includes(taskId)) {
-    throw new Error(`Unknown onboarding task id: ${taskId}`);
+  const cfg = getRoleConfig(role);
+  if (!cfg.taskIds.includes(taskId)) {
+    throw new Error(`Unknown onboarding task id for role ${role}: ${taskId}`);
   }
 
   const current = await prisma.onboardingProgress.findUnique({
@@ -84,8 +126,8 @@ export async function markTaskComplete(
   if (current.completedTasks.includes(taskId)) return current;
 
   const nextCompleted = [...current.completedTasks, taskId];
-  const isAllDone = nextCompleted.length >= TOTAL_TASKS;
-  const nextTask = getNextTask(nextCompleted);
+  const isAllDone = nextCompleted.length >= cfg.total;
+  const nextTask = cfg.getNext(nextCompleted);
 
   const clearedState = clearTaskState(
     current.currentTaskState as Record<string, unknown> | null,
@@ -135,33 +177,39 @@ export async function saveTaskState(
 }
 
 /**
- * Save notification preferences (task 8). Stored at the top level of
- * notifPrefs, not inside currentTaskState. Auto-marks task 8 complete.
+ * Save notification preferences. Stored at the top level of notifPrefs,
+ * not inside currentTaskState. Auto-marks the 'notification-prefs' task
+ * complete for the given role (both Amy and Tracy have this task).
  */
 export async function saveNotificationPrefs(
   userEmail: string,
-  prefs: { email?: boolean; asana?: boolean; sms?: boolean; googleChat?: boolean }
+  prefs: { email?: boolean; asana?: boolean; sms?: boolean; googleChat?: boolean },
+  role: OnboardingRole = 'amy'
 ): Promise<OnboardingProgress> {
-  const after = await prisma.onboardingProgress.update({
+  await prisma.onboardingProgress.update({
     where: { userEmail },
     data: {
       notifPrefs: prefs,
       lastSeenAt: new Date(),
     },
   });
-  return markTaskComplete(userEmail, 'notification-prefs');
+  return markTaskComplete(userEmail, 'notification-prefs', role);
 }
 
 /**
- * Switch the active task without marking anything complete. Used when
- * Amy clicks a task card in the sidebar to jump around.
+ * Switch the active task without marking anything complete. Used when a
+ * user clicks a task card in the sidebar to jump around.
  */
 export async function setCurrentTask(
   userEmail: string,
-  taskId: string | null
+  taskId: string | null,
+  role: OnboardingRole = 'amy'
 ): Promise<OnboardingProgress> {
-  if (taskId !== null && !(TASK_IDS as readonly string[]).includes(taskId)) {
-    throw new Error(`Unknown onboarding task id: ${taskId}`);
+  if (taskId !== null) {
+    const cfg = getRoleConfig(role);
+    if (!cfg.taskIds.includes(taskId)) {
+      throw new Error(`Unknown onboarding task id for role ${role}: ${taskId}`);
+    }
   }
   return prisma.onboardingProgress.update({
     where: { userEmail },
@@ -170,6 +218,42 @@ export async function setCurrentTask(
       lastSeenAt: new Date(),
     },
   });
+}
+
+// ─── Peer progress (for Tracy's review-amy-progress task) ────────────────────
+
+/**
+ * Read-only peer progress view. Tracy can see Amy's onboarding state
+ * (and vice versa) for the "review-amy-progress" task. Returns just the
+ * safe, non-sensitive fields — no task state blob, no notification prefs.
+ */
+export async function getPeerProgress(peerRole: OnboardingRole): Promise<{
+  completedTasks: string[];
+  currentTaskId: string | null;
+  completedAt: Date | null;
+  lastSeenAt: Date | null;
+  sessionCount: number;
+  totalTasks: number;
+  startedAt: Date | null;
+} | null> {
+  // Look up the most recent progress row for this role. We expect at
+  // most one row per role for today's needs (Amy and Tracy each have one).
+  const row = await prisma.onboardingProgress.findFirst({
+    where: { role: peerRole },
+    orderBy: { lastSeenAt: 'desc' },
+  });
+  if (!row) return null;
+
+  const cfg = getRoleConfig(peerRole);
+  return {
+    completedTasks: row.completedTasks,
+    currentTaskId: row.currentTaskId,
+    completedAt: row.completedAt,
+    lastSeenAt: row.lastSeenAt,
+    sessionCount: row.sessionCount,
+    totalTasks: cfg.total,
+    startedAt: row.startedAt,
+  };
 }
 
 // ─── Internal helpers ────────────────────────────────────────────────────────

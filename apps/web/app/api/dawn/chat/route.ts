@@ -4,8 +4,12 @@ import { MODELS } from '@/lib/ai-models';
 import { getDeltaDawnSystemPromptV2 } from '@/lib/delta-dawn-system-prompt';
 import { VOICE_TOOL_DECLARATIONS, executeVoiceTool } from '@/app/api/voice/tools';
 import { buildAmyOnboardingPrompt } from '@/lib/voice/amy-onboarding-prompt';
+import { buildTracyOnboardingPrompt } from '@/lib/voice/tracy-onboarding-prompt';
 import { auth } from '@/lib/auth';
-import { getOrCreateOnboardingProgress } from '@/lib/onboarding-progress';
+import {
+  getOrCreateOnboardingProgress,
+  getPeerProgress,
+} from '@/lib/onboarding-progress';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -55,7 +59,7 @@ export async function POST(req: NextRequest) {
   let body: {
     messages?: DawnChatMessage[];
     tenantId?: string;
-    mode?: 'amy-onboarding';
+    mode?: 'amy-onboarding' | 'tracy-onboarding';
   };
   try {
     body = await req.json();
@@ -97,6 +101,38 @@ export async function POST(req: NextRequest) {
       }
     } catch (e) {
       console.error('[dawn/chat] amy-onboarding extension failed', e);
+      // Non-fatal — fall through to base prompt so chat still works
+    }
+  }
+
+  // Tracy onboarding mode — same pattern, but with Tracy's task list and
+  // an injected peer-view of Amy's progress so Delta Dawn can speak about
+  // Amy's state during Tracy's review-amy-progress task.
+  if (body.mode === 'tracy-onboarding') {
+    try {
+      const session = await auth();
+      if (session?.user?.email) {
+        const progress = await getOrCreateOnboardingProgress(session.user.email, 'tracy');
+        const amyPeerProgress = await getPeerProgress('amy');
+        systemInstruction += '\n\n' + buildTracyOnboardingPrompt({
+          completedTasks: progress.completedTasks,
+          currentTaskId: progress.currentTaskId,
+          currentTaskState: progress.currentTaskState as Record<string, unknown> | null,
+          lastSeenAt: progress.lastSeenAt,
+          sessionCount: progress.sessionCount,
+          amyPeerProgress: amyPeerProgress
+            ? {
+                completedTasks: amyPeerProgress.completedTasks,
+                currentTaskId: amyPeerProgress.currentTaskId,
+                lastSeenAt: amyPeerProgress.lastSeenAt,
+                totalTasks: amyPeerProgress.totalTasks,
+                completedAt: amyPeerProgress.completedAt,
+              }
+            : null,
+        });
+      }
+    } catch (e) {
+      console.error('[dawn/chat] tracy-onboarding extension failed', e);
       // Non-fatal — fall through to base prompt so chat still works
     }
   }

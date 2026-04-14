@@ -18,8 +18,9 @@ interface Message {
 
 interface DeltaDawnWidgetProps {
   /** Optional mode passed to /api/dawn/chat. When set, the system prompt
-   * gets extended with mode-specific context (e.g. Amy's onboarding progress). */
-  mode?: 'amy-onboarding';
+   * gets extended with mode-specific context (e.g. Amy's or Tracy's
+   * onboarding progress). */
+  mode?: 'amy-onboarding' | 'tracy-onboarding';
   /** Called when Delta Dawn emits a [[TASK:...]] marker. The host page
    * uses this to advance the checklist UI. Fires once per unique marker
    * per stream. */
