@@ -1205,6 +1205,40 @@ On March 21, 2026, Natchez came together to make sure it keeps standing.
 
 *The Pilgrimage Garden Club maintains Stanton Hall as a National Historic Landmark. Learn more at the [Deep South Directory](/directory).*`,
   },
+  {
+    id: 23,
+    title: 'Test — Library Picker Works',
+    slug: 'test-library-picker-works',
+    category: 'photo-essay',
+    city: 'other',
+    author: 'Big Muddy Magazine',
+    status: 'published',
+    excerpt:
+      'Sanity workflow check: hero plus three in-body frames sourced from the Big Muddy Photo Library index (grid derivatives).',
+    heroImage:
+      'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/liberty-ms/untitled-70-of-97-dxo_deepprime-3jpg/a39e08605489-grid.webp',
+    readTime: '2 min read',
+    publishedAt: new Date('2026-04-15').toISOString(),
+    createdAt: new Date('2026-04-15').toISOString(),
+    updatedAt: new Date('2026-04-15').toISOString(),
+    body: `# Test — Library Picker Works
+
+This article exists to prove the Big Muddy Photo Library picker lines up with magazine rendering: one hero frame and three inline frames, all using the grid-sized derivatives from the approved index.
+
+If you can read this on the site, the library index, CDN URLs, and article body pipeline are aligned.
+
+## Frames from the library
+
+![Liberty, MS — library grid still](https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/liberty-ms/untitled-71-of-97-dxo_deepprime-3jpg/b201b53fac5b-grid.webp)
+
+![Liberty, MS — library grid still](https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/liberty-ms/untitled-72-of-97-dxo_deepprime-3jpg/6175278a71bb-grid.webp)
+
+![Liberty, MS — library grid still](https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/liberty-ms/untitled-74-of-97-dxo_deepprime-3jpg/5c40cd3613c2-grid.webp)
+
+---
+
+Editorial note: replace this test entry when the Story Engine Day 1 ship lands.`,
+  },
 ];
 
 // Helper: get article by slug

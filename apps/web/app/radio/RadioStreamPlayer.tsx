@@ -17,13 +17,18 @@ const STREAM_URL =
   process.env.NEXT_PUBLIC_STREAM_URL ||
   'https://stream.bigmuddytouring.com/listen/bigmuddyradio/radio.mp3';
 
-const POLL_MS = 15_000;
+/** AzuraCast public now-playing JSON — polled directly from the stream host. */
+const NOW_PLAYING_URL = 'https://stream.bigmuddytouring.com/api/nowplaying/bigmuddyradio';
+const POLL_MS = 30_000;
 
 type NowPlayingPayload = {
   online: boolean;
   title: string | null;
   artist: string | null;
+  album: string | null;
+  artUrl: string | null;
   listeners: number | null;
+  metaUnavailable: boolean;
 };
 
 function parseScheduleHour(time: string): number {
@@ -64,7 +69,10 @@ export function RadioStreamPlayer() {
     online: false,
     title: null,
     artist: null,
+    album: null,
+    artUrl: null,
     listeners: null,
+    metaUnavailable: true,
   });
   const [clock, setClock] = useState(() => Date.now());
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -75,21 +83,61 @@ export function RadioStreamPlayer() {
   }, []);
 
   const refreshNowPlaying = useCallback(() => {
-    fetch('/api/radio/now-playing')
-      .then((r) => r.json())
-      .then((data: NowPlayingPayload) => {
+    fetch(NOW_PLAYING_URL, { cache: 'no-store' })
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json() as Promise<Record<string, unknown>>;
+      })
+      .then((data) => {
+        const listenersObj = data.listeners as Record<string, unknown> | undefined;
+        const station = data.station as Record<string, unknown> | undefined;
+        const mounts = station?.mounts as Array<Record<string, unknown>> | undefined;
+        const mountListeners = mounts?.[0]?.listeners as Record<string, unknown> | undefined;
+
+        let listeners: number | null = null;
+        const lc = listenersObj?.current;
+        if (typeof lc === 'number' && Number.isFinite(lc)) listeners = lc;
+        else if (typeof lc === 'string') {
+          const n = parseInt(lc, 10);
+          if (Number.isFinite(n)) listeners = n;
+        }
+        if (listeners == null && mountListeners) {
+          const mc = mountListeners.current;
+          if (typeof mc === 'number' && Number.isFinite(mc)) listeners = mc;
+          else if (typeof mc === 'string') {
+            const n = parseInt(mc, 10);
+            if (Number.isFinite(n)) listeners = n;
+          }
+        }
+
+        const np = data.now_playing as Record<string, unknown> | undefined;
+        const song = np?.song as Record<string, unknown> | undefined;
+        const title = typeof song?.title === 'string' ? song.title : null;
+        const artist = typeof song?.artist === 'string' ? song.artist : null;
+        const album = typeof song?.album === 'string' ? song.album : null;
+        const artUrl = typeof song?.art === 'string' ? song.art : null;
+        const isOnline = data.is_online === true;
+
         setNowPlaying({
-          online: Boolean(data.online),
-          title: typeof data.title === 'string' ? data.title : null,
-          artist: typeof data.artist === 'string' ? data.artist : null,
-          listeners:
-            typeof data.listeners === 'number' && Number.isFinite(data.listeners)
-              ? data.listeners
-              : null,
+          online: isOnline,
+          title,
+          artist,
+          album,
+          artUrl,
+          listeners,
+          metaUnavailable: false,
         });
       })
       .catch(() => {
-        setNowPlaying({ online: false, title: null, artist: null, listeners: null });
+        setNowPlaying({
+          online: false,
+          title: null,
+          artist: null,
+          album: null,
+          artUrl: null,
+          listeners: null,
+          metaUnavailable: true,
+        });
       });
   }, []);
 
@@ -102,7 +150,7 @@ export function RadioStreamPlayer() {
   const currentShow = getCurrentShowFromList(shows, new Date(clock));
 
   const trackLabel = useMemo(() => {
-    if (!nowPlaying.online) return null;
+    if (nowPlaying.metaUnavailable) return null;
     const { artist, title } = nowPlaying;
     if (artist && title) return { line1: title, line2: artist };
     if (title) return { line1: title, line2: null };
@@ -190,38 +238,76 @@ export function RadioStreamPlayer() {
 
           <div
             style={{
+              display: 'grid',
+              gridTemplateColumns: nowPlaying.artUrl ? 'minmax(72px, 96px) 1fr' : '1fr',
+              gap: '1rem',
+              alignItems: 'center',
               minHeight: '3.25rem',
               marginBottom: '1.5rem',
+              padding: '0.75rem 0.85rem',
+              borderRadius: '10px',
+              background: 'color-mix(in srgb, var(--surface) 55%, transparent)',
+              border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)',
             }}
           >
-            {trackLabel ? (
-              <>
-                <p
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)',
-                    fontWeight: 600,
-                    margin: '0 0 0.25rem',
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {trackLabel.line1}
+            {nowPlaying.artUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element -- external AzuraCast art URL
+              <img
+                src={nowPlaying.artUrl}
+                alt=""
+                width={96}
+                height={96}
+                style={{
+                  width: '100%',
+                  maxWidth: 96,
+                  aspectRatio: '1',
+                  borderRadius: '8px',
+                  objectFit: 'cover',
+                  background: 'color-mix(in srgb, var(--text) 8%, transparent)',
+                }}
+              />
+            ) : null}
+            <div style={{ minWidth: 0 }}>
+              {nowPlaying.metaUnavailable ? (
+                <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)' }}>
+                  Stream loading…
                 </p>
-                {trackLabel.line2 ? (
-                  <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)' }}>
-                    {trackLabel.line2}
+              ) : trackLabel ? (
+                <>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: 'clamp(1.05rem, 3.2vw, 1.3rem)',
+                      fontWeight: 600,
+                      margin: '0 0 0.25rem',
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {trackLabel.line1}
                   </p>
-                ) : null}
-              </>
-            ) : (
-              <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)' }}>
-                {nowPlaying.online ? 'Waiting for track info…' : 'Stream connecting…'}
-              </p>
-            )}
+                  {trackLabel.line2 ? (
+                    <p style={{ margin: '0 0 0.2rem', fontSize: '0.92rem', color: 'var(--text-muted)' }}>
+                      {trackLabel.line2}
+                    </p>
+                  ) : null}
+                  {nowPlaying.album ? (
+                    <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--text-muted)', opacity: 0.9 }}>
+                      {nowPlaying.album}
+                    </p>
+                  ) : null}
+                </>
+              ) : (
+                <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)' }}>
+                  {nowPlaying.online ? 'Waiting for track info…' : 'Stream connecting…'}
+                </p>
+              )}
+            </div>
           </div>
 
           <p style={{ margin: '0 0 1.25rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-            {nowPlaying.listeners != null ? (
+            {nowPlaying.metaUnavailable ? (
+              <span>Listeners: —</span>
+            ) : nowPlaying.listeners != null ? (
               <>
                 <span style={{ color: 'var(--accent)', fontWeight: 600 }}>
                   {nowPlaying.listeners.toLocaleString()}

@@ -2,24 +2,15 @@
 // Big Muddy Touring — The Hottest Room on the River
 
 import type { Metadata } from 'next';
+import { fetchPhotoIndex, formatPhotoCityLabel } from '@/lib/photo-index';
 
 export const metadata: Metadata = {
   title: 'Big Muddy Touring — We bring the party.',
   description: 'Booking, transport, promotion, the whole show. 13 cities from Memphis to New Orleans. We book your shows, drive you there, put you on the radio, and write about you in the magazine.',
 };
 
-const HOUSE_BAND_PHOTOS = [
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/musician-performing.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-show.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp',
-];
-
-const THEATER_PHOTOS = [
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/juke-joint-saturday.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp',
-];
+const HERO_FALLBACK =
+  'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp';
 
 const CORRIDOR_CITIES = [
   'Memphis', 'Clarksdale', 'Oxford', 'Tupelo', 'Holly Springs',
@@ -27,7 +18,11 @@ const CORRIDOR_CITIES = [
   'Natchez', 'Baton Rouge', 'New Orleans',
 ];
 
-export default function TouringPage() {
+export default async function TouringPage() {
+  const library = await fetchPhotoIndex();
+  const heroPhotos = library.slice(0, 12);
+  const heroBg = heroPhotos[0]?.urls.grid ?? HERO_FALLBACK;
+
   return (
     <main style={{ background: '#0f0f0d', color: '#e8e0d4', minHeight: '100vh' }}>
 
@@ -42,7 +37,7 @@ export default function TouringPage() {
         overflow: 'hidden',
       }}>
         <img
-          src="https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp"
+          src={heroBg}
           alt=""
           style={{
             position: 'absolute',
@@ -95,6 +90,90 @@ export default function TouringPage() {
           </p>
         </div>
       </section>
+
+      {/* ── LIBRARY GRID (latest 12 from /api/photo-library) ── */}
+      {heroPhotos.length > 0 ? (
+        <section
+          style={{
+            padding: 'clamp(24px, 4vw, 48px) clamp(16px, 4vw, 64px)',
+            borderTop: '1px solid rgba(200,148,62,0.12)',
+          }}
+        >
+          <p
+            style={{
+              fontSize: '0.7rem',
+              fontWeight: 700,
+              letterSpacing: '0.25em',
+              textTransform: 'uppercase',
+              color: '#c8943e',
+              margin: '0 0 20px',
+              textAlign: 'center',
+            }}
+          >
+            From the library
+          </p>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 180px), 1fr))',
+              gap: '6px',
+              maxWidth: '1200px',
+              margin: '0 auto',
+            }}
+          >
+            {heroPhotos.map((p) => (
+              <article
+                key={p.hash}
+                style={{
+                  background: 'rgba(255,255,255,0.03)',
+                  borderRadius: '6px',
+                  overflow: 'hidden',
+                  border: '1px solid rgba(200,148,62,0.12)',
+                }}
+              >
+                <div style={{ position: 'relative', aspectRatio: '4/3', width: '100%' }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element -- GCS */}
+                  <img
+                    src={p.urls.grid}
+                    alt={p.caption || p.shoot}
+                    loading="lazy"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                    }}
+                  />
+                </div>
+                <div style={{ padding: '0.5rem 0.55rem 0.65rem' }}>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-body, sans-serif)',
+                      fontSize: '0.68rem',
+                      lineHeight: 1.4,
+                      color: '#d4cec4',
+                      margin: '0 0 0.15rem',
+                    }}
+                  >
+                    {p.caption || p.shoot.replace(/-/g, ' ')}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-body, sans-serif)',
+                      fontSize: '0.62rem',
+                      color: '#7a7268',
+                      margin: 0,
+                    }}
+                  >
+                    {formatPhotoCityLabel(p.city)}
+                    {p.credit ? ` · ${p.credit}` : ''}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {/* ── THE BLUES ROOM ── */}
       <section style={{
@@ -153,94 +232,6 @@ export default function TouringPage() {
               objectFit: 'cover',
             }}
           />
-        </div>
-      </section>
-
-      {/* ── THE HOUSE BAND ── */}
-      <section style={{
-        padding: 'clamp(60px, 10vw, 140px) clamp(24px, 5vw, 80px)',
-        textAlign: 'center',
-      }}>
-        <p style={{
-          fontSize: '0.7rem',
-          fontWeight: 700,
-          letterSpacing: '0.25em',
-          textTransform: 'uppercase',
-          color: '#c8943e',
-          margin: '0 0 16px',
-        }}>
-          The House Band
-        </p>
-        <h2 style={{
-          fontFamily: 'var(--font-display, Georgia, serif)',
-          fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
-          fontWeight: 700,
-          letterSpacing: '-0.02em',
-          margin: '0 0 12px',
-        }}>
-          Every night is different. Same fire.
-        </h2>
-        <p style={{
-          fontSize: '0.95rem',
-          color: '#6b635a',
-          margin: '0 auto 48px',
-          maxWidth: '500px',
-          lineHeight: 1.6,
-        }}>
-          A rotating cast. Blues, soul, country, rock &mdash; whatever walks through the door.
-          No setlists. No safety nets.
-        </p>
-
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '4px',
-          maxWidth: '1200px',
-          margin: '0 auto',
-        }}>
-          {HOUSE_BAND_PHOTOS.map((src, i) => (
-            <div key={i} style={{ position: 'relative', aspectRatio: '3/4', overflow: 'hidden' }}>
-              <img
-                src={src}
-                alt=""
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  filter: 'contrast(1.1) saturate(0.9)',
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── LIVE SHOWS ── */}
-      <section style={{
-        padding: '0 clamp(24px, 5vw, 80px)',
-        marginBottom: 'clamp(60px, 10vw, 140px)',
-      }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '4px',
-          maxWidth: '1200px',
-          margin: '0 auto',
-        }}>
-          {THEATER_PHOTOS.map((src, i) => (
-            <div key={i} style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden' }}>
-              <img
-                src={src}
-                alt=""
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  filter: 'brightness(0.85) contrast(1.1)',
-                }}
-              />
-            </div>
-          ))}
         </div>
       </section>
 
@@ -377,8 +368,6 @@ export default function TouringPage() {
         @media (max-width: 768px) {
           section:nth-of-type(2) { grid-template-columns: 1fr !important; }
           section:nth-of-type(2) > div:last-child { min-height: 300px !important; }
-          section:nth-of-type(3) div[style*="grid-template-columns: repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; }
-          section:nth-of-type(4) div[style*="grid-template-columns: repeat(3"] { grid-template-columns: 1fr !important; }
         }
       `}} />
     </main>

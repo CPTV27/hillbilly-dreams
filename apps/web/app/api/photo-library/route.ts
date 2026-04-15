@@ -10,6 +10,7 @@
 import { NextResponse } from 'next/server';
 import { GCS_BASE_URL } from '@/lib/gcs';
 import { apiLog } from '@/lib/api-logger';
+import type { PhotoIndexEntry } from '@/lib/photo-index';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,7 +19,10 @@ export const dynamic = 'force-dynamic';
 // a minute of `scripts/sync-approved.ts` finishing.
 const REVALIDATE_SECONDS = 60;
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const regionFilter = searchParams.get('region');
+
   const url = `${GCS_BASE_URL}/approved/index.json`;
 
   try {
@@ -41,6 +45,9 @@ export async function GET() {
       );
     }
     const json = await res.json();
+    if (regionFilter && Array.isArray(json?.photos)) {
+      json.photos = (json.photos as PhotoIndexEntry[]).filter((p) => p.region === regionFilter);
+    }
     apiLog.info('photo-library', 'served index', { photoCount: json?.photos?.length ?? 0 });
     return NextResponse.json(json, {
       headers: {

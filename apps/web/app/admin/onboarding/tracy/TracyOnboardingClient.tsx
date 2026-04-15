@@ -292,6 +292,7 @@ export function TracyOnboardingClient({
           completedAt={completedAt}
           userName={userName}
           onReopen={handleReopenFromComplete}
+          variant="tracy"
         />
         <DeltaDawnWidget mode="tracy-onboarding" onMarker={handleDawnMarker} autoOpen />
       </main>

@@ -123,6 +123,40 @@ function renderBody(body: string) {
       return;
     }
 
+    // Markdown image — ![alt](url)
+    const imageLine = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+    if (imageLine) {
+      const alt = imageLine[1];
+      const src = imageLine[2];
+      elements.push(
+        <figure key={i} className="article-body__figure" style={{ margin: '2rem auto', maxWidth: 920 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element -- mixed GCS + legacy paths */}
+          <img
+            src={src}
+            alt={alt}
+            loading="lazy"
+            style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 4 }}
+          />
+        </figure>
+      );
+      return;
+    }
+
+    if (trimmed === '---') {
+      elements.push(
+        <hr
+          key={i}
+          className="article-body__hr"
+          style={{
+            margin: '2.5rem 0',
+            border: 'none',
+            borderTop: '1px solid rgba(255,255,255,0.12)',
+          }}
+        />
+      );
+      return;
+    }
+
     // Paragraph — inline formatting: **bold** and *italic*
     const parts = trimmed.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g);
     const rendered = parts.map((part, j) => {
