@@ -194,6 +194,13 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         </div>
       </aside>
 
+      <nav className="admin-mobile-quick" aria-label="Quick admin navigation">
+        <a href="/admin/dashboard">Dash</a>
+        <a href="/admin/hq">HQ</a>
+        <a href="/admin/social">Social</a>
+        <a href="/admin/events">Events</a>
+      </nav>
+
       {/* Main content */}
       <div className="admin-main">
         <main className="admin-content">
@@ -219,6 +226,47 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           }
           .admin-sidebar {
             display: none;
+          }
+          .admin-content {
+            padding-bottom: calc(var(--space-10) + 52px);
+          }
+        }
+
+        .admin-mobile-quick {
+          display: none;
+        }
+        @media (max-width: 768px) {
+          .admin-mobile-quick {
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            justify-content: space-around;
+            align-items: center;
+            gap: var(--space-1);
+            padding: var(--space-2) var(--space-2) calc(var(--space-2) + env(safe-area-inset-bottom));
+            font-size: var(--text-xs);
+            font-weight: 600;
+          }
+          .admin-mobile-quick a {
+            flex: 1;
+            text-align: center;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+          }
+          .admin-mobile-quick a:hover,
+          .admin-mobile-quick a:focus-visible {
+            color: var(--accent);
+            background: var(--surface-2);
           }
         }
 

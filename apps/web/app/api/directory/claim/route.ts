@@ -9,6 +9,7 @@ export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { directoryClaimSchema, formatZodError } from '@/lib/user-post-validation';
+import { apiLog } from '@/lib/api-logger';
 
 function slugify(name: string): string {
   return name
@@ -63,18 +64,18 @@ export async function GET(request: NextRequest) {
     ) {
       return NextResponse.json({ data: [], _source: 'no-db' });
     }
-    console.error('[GET /api/directory/claim]', e);
+    apiLog.error('GET /api/directory/claim', 'search failed', e);
     return NextResponse.json({ error: 'Search failed.' }, { status: 500 });
   }
 }
 
 // ── POST: create or claim a listing ──────────────────────────────────────────
 
+/** Stripe checkout line items — amounts in cents; keys match directoryClaimSchema paid tiers */
 const TIER_PRICES: Record<string, { amount: number; name: string }> = {
-  'front-porch': { amount: 9900, name: 'Enhanced — $99/month' },
-  'route': { amount: 29900, name: 'The Route — $299/month' },
-  'river-room': { amount: 59900, name: 'River Room — $599/month' },
-  'blues-room': { amount: 120000, name: 'Blues Room — $1,200/month' },
+  route: { amount: 2500, name: 'Essentials — $25/month' },
+  'river-room': { amount: 5000, name: 'Pro — $50/month' },
+  'blues-room': { amount: 25000, name: 'Engine — $250/month' },
 };
 
 interface ClaimBody {
@@ -189,7 +190,14 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const tierInfo = TIER_PRICES[tier] ?? TIER_PRICES['front-porch'];
+    const tierInfo = TIER_PRICES[tier];
+    if (!tierInfo) {
+      apiLog.warn('POST /api/directory/claim', 'unknown paid tier for checkout', { tier });
+      return NextResponse.json(
+        { error: 'This tier is handled through a different signup path.' },
+        { status: 400 },
+      );
+    }
     const Stripe = (await import('stripe' as string)).default;
     const stripe = new Stripe(stripeKey, { apiVersion: '2024-06-20' as unknown });
 
@@ -257,7 +265,7 @@ export async function POST(request: NextRequest) {
         { status: 503 },
       );
     }
-    console.error('[POST /api/directory/claim]', e);
+    apiLog.error('POST /api/directory/claim', 'claim failed', e);
     return NextResponse.json({ error: 'Failed to create listing.' }, { status: 500 });
   }
 }

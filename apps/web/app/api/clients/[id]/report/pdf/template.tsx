@@ -153,17 +153,17 @@ interface ReportProps {
 }
 
 const TIER_LABELS: Record<string, string> = {
-  'front-porch': 'Front Porch (Free)',
-  'route': 'The Listing',
-  'river-room': 'The Works',
-  'blues-room': 'The Engine',
+  'front-porch': 'Free',
+  route: 'Essentials ($25/mo)',
+  'river-room': 'Pro ($50/mo)',
+  'blues-room': 'Engine ($250/mo)',
 };
 
 const TIER_DESCRIPTIONS: Record<string, string> = {
   'front-porch': 'Your business is listed in the Deep South Directory with basic information.',
-  'route': 'Your listing includes enhanced details, review monitoring, and monthly reports.',
-  'river-room': 'Full service: social media management, review monitoring and response assistance, content creation, and detailed analytics.',
-  'blues-room': 'The complete engine: everything in The Works plus custom campaigns, priority support, and revenue attribution tracking.',
+  route: 'Enhanced listing with review monitoring and monthly summaries.',
+  'river-room': 'Steady marketing support: social cadence, reviews, and corridor content priority.',
+  'blues-room': 'Full partnership: on-site photography when scheduled, magazine and touring coordination.',
 };
 
 export function MonthlyReportDocument(props: ReportProps) {

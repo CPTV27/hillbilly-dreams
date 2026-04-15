@@ -60,10 +60,23 @@ export default function SocialDashboard() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0f0f0f', color: '#e8e4de', fontFamily: "'Inter', system-ui", padding: '1.5rem', maxWidth: '900px', margin: '0 auto' }}>
-      <div style={{ borderBottom: '1px solid #2a2725', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#c8943e', margin: '0 0 0.25rem' }}>Social Command Center</h1>
-        <p style={{ fontSize: '0.75rem', color: '#8a8074', margin: 0, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Native publisher · Meta / GBP next</p>
+    <div
+      style={{
+        minHeight: '100vh',
+        background: 'var(--bg)',
+        color: 'var(--text)',
+        fontFamily: 'var(--font-body)',
+        padding: '1.5rem',
+        maxWidth: 'min(900px, 100%)',
+        margin: '0 auto',
+        width: '100%',
+        boxSizing: 'border-box',
+        overflowX: 'hidden',
+      }}
+    >
+      <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
+        <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent)', margin: '0 0 0.25rem' }}>Social Command Center</h1>
+        <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', margin: 0, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Native publisher · Meta / GBP next</p>
       </div>
 
       {/* Connected Accounts */}

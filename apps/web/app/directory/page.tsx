@@ -6,8 +6,11 @@ import Image from 'next/image';
 export const metadata: Metadata = {
   title: 'Deep South Directory — Find locals. Get found.',
   description:
-    'The business directory backed by a media company. Magazine, radio, photography, and a touring circuit — all working for your listing. Starting at free.',
+    'Get found by travelers and locals across the Deep South. Claim a free listing; add paid help when you want magazine, radio, and photo coverage.',
 };
+
+const HERO_GCS =
+  'https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp';
 
 const CATEGORIES = [
   {
@@ -99,105 +102,37 @@ const FEATURED_BUSINESSES = [
   },
 ];
 
-const TESTIMONIALS = [
-  {
-    quote:
-      "We were paying $300 a month to Yelp and seeing nothing from it. Our first month with the Directory, three people mentioned they found us through the listing. That doesn't happen on Yelp.",
-    name: 'Marcus Treadwell',
-    business: "Treadwell's Soul Kitchen",
-    type: 'Restaurant owner',
-    tier: 'Marketing',
-  },
-  {
-    quote:
-      "Guests used to call and ask how to find us. Now they already know our story before they check in. Someone drove from Memphis specifically because they read the magazine piece. That was worth a year of fees.",
-    name: 'Diane Holloway',
-    business: 'Rosewood Cottage B&B',
-    type: 'B&B owner',
-    tier: 'Engine',
-  },
-  {
-    quote:
-      "I don't have time for social media. I have time to cut hair. They just handle it. I look at the report once a month, and my phone rings more than it used to. That's the whole deal for me.",
-    name: 'Calvin Okafor',
-    business: "Calvin's Cuts",
-    type: 'Barbershop owner',
-    tier: 'Marketing',
-  },
-  {
-    quote:
-      "The magazine ran a piece about our store and we had people come in from Jackson that weekend asking for the map in the article. We've been here 22 years and nothing has ever sent people to us like that.",
-    name: 'Patsy Moreau',
-    business: 'River Street Antiques',
-    type: 'Antique store owner',
-    tier: 'Engine',
-  },
-  {
-    quote:
-      "First month my bookings went up about 40%. Some of that was timing, but I've been doing this for eight years and I know when something changed. Having a real listing with photos and reviews made me look like a real business.",
-    name: 'Darnell Fontenot',
-    business: 'Natchez Lantern Tours',
-    type: 'Tour guide',
-    tier: 'Pro',
-  },
-  {
-    quote:
-      "For twenty-five dollars a month it just runs. Google shows the right hours. Your business info syncs automatically. I can focus on the shop.",
-    name: 'Loretta Simmons',
-    business: "Loretta's Flowers & Gifts",
-    type: 'Florist',
-    tier: 'Essentials',
-  },
-];
-
 const HOW_IT_WORKS = [
   {
     step: '01',
-    title: 'We meet',
-    desc: 'We visit your business. Learn what makes you special. No forms, no onboarding call — a real conversation.',
+    title: 'Claim your listing',
+    desc: 'Tell us who you are, where you are, and how people find you today. We handle the setup.',
     image: '/images/dsd/step-meet.webp',
   },
   {
     step: '02',
-    title: 'We listen',
-    desc: 'Tell us your story. We capture your voice so your listing sounds like you — not a software template.',
+    title: 'Add your story',
+    desc: 'Photos, hours, what makes you different — the details travelers and locals actually need.',
     image: '/images/dsd/step-voice.webp',
   },
   {
     step: '03',
-    title: 'We build',
-    desc: "Your listing goes live across major directories including Google and Yelp, synced from one place.",
+    title: 'Get discovered',
+    desc: 'Show up in the Deep South Directory and in the media work we do across the corridor.',
     image: '/images/dsd/step-publish.webp',
   },
-  {
-    step: '04',
-    title: 'We watch',
-    desc: "Reviews, mentions, and competitor moves — we monitor it all and flag anything that needs your attention.",
-    image: '/images/dsd/step-review.webp',
-  },
-  {
-    step: '05',
-    title: 'You grow',
-    desc: "Monthly report card. Real numbers. No jargon. You see exactly what's working and what changed.",
-    image: '/images/dsd/step-results.webp',
-  },
 ];
-
-// Tier names and benefits are canonical; dollar amounts stay off the site until pricing is set.
-// Onboard captures intent via ?tier=free|core|growth|partner
 
 const TIERS = [
   {
     name: 'Free',
-    priceLabel: 'Free',
+    priceLabel: '$0',
     href: '/directory/onboard?tier=free',
     highlight: false,
     features: [
-      'Business listing on the directory',
-      'AI assistant trained on your town',
-      'Start building your profile',
-      'Visible to visitors searching the Deep South',
-      'Listed in the Deep South Directory',
+      'Listing on Deep South Directory',
+      'Map, hours, and contact basics',
+      'Visible to people browsing the region',
     ],
   },
   {
@@ -207,10 +142,8 @@ const TIERS = [
     highlight: false,
     features: [
       'Everything in Free',
-      'Cancel ChatGPT — AI for your business',
-      'Local context — not generic internet answers',
-      'Earn credits by contributing photos/lore',
-      'Credits offset your monthly bill',
+      'Help keeping your details accurate',
+      'Monthly snapshot of views and searches',
     ],
   },
   {
@@ -220,10 +153,8 @@ const TIERS = [
     highlight: false,
     features: [
       'Everything in Essentials',
-      'The network tier',
-      'LinkedIn-style tools for the Deep South',
-      'Visible to other B2B members',
-      'Connect with local vendors and suppliers',
+      'More frequent check-ins on your listing',
+      'Priority when we update corridor-wide content',
     ],
   },
   {
@@ -233,23 +164,19 @@ const TIERS = [
     highlight: false,
     features: [
       'Everything in Pro',
-      'Listings synced to 50+ directories',
-      'Automated social post generation',
-      'Review alerts and AI response drafting',
-      'The digital hygiene autopilot stack',
+      'Social and review help on a steady cadence',
+      'Eligibility for magazine and radio mentions',
     ],
   },
   {
     name: 'Engine',
-    priceLabel: '$250+/mo',
+    priceLabel: '$250/mo',
     href: '/directory/onboard?tier=engine',
     highlight: true,
     features: [
       'Everything in Marketing',
-      'Magazine and radio exposure integration',
-      'On-site photography (Chase Pierson)',
-      'The full media company apparatus',
-      'Requires real-world physical labor',
+      'On-site photography when scheduled',
+      'Direct line to the magazine and touring teams',
     ],
   },
 ];
@@ -272,11 +199,12 @@ export default function DirectoryPage() {
         {/* Background image */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <Image
-            src="/images/dsd/hero-mainstreet.webp"
-            alt="Main Street in the Deep South"
+            src={HERO_GCS}
+            alt="The Mississippi River at Natchez"
             fill
             priority
-            style={{ objectFit: 'cover', objectPosition: 'center 40%' }}
+            sizes="100vw"
+            style={{ objectFit: 'cover', objectPosition: 'center 45%' }}
           />
           {/* Dark gradient overlay — bottom-heavy so text pops */}
           <div
@@ -316,29 +244,29 @@ export default function DirectoryPage() {
               fontFamily: 'var(--font-display)',
               fontSize: 'clamp(2.5rem, 7vw, 4.5rem)',
               fontWeight: 700,
-              color: '#ffffff',
+              color: 'color-mix(in srgb, var(--text-on-dark, #ffffff) 100%, transparent)',
               lineHeight: 1.05,
               letterSpacing: '-0.03em',
               margin: '0 0 1.5rem',
               maxWidth: 760,
             }}
           >
-            Main Street marketing
+            Get found by travelers and locals
             <br />
-            <span style={{ color: 'var(--accent, #c8943e)' }}>for Main Street money.</span>
+            <span style={{ color: 'var(--accent)' }}>in the Deep South.</span>
           </h1>
           <p
             style={{
               fontSize: 'clamp(1rem, 2vw, 1.15rem)',
-              color: 'rgba(255,255,255,0.82)',
+              color: 'color-mix(in srgb, var(--text-on-dark, #ffffff) 82%, transparent)',
               maxWidth: 560,
               lineHeight: 1.65,
               marginBottom: '2.5rem',
             }}
           >
-            Right now, someone in your town is searching for a restaurant, a hotel, or a shop like
-            yours on Google. If your listing has wrong hours, no photos, or zero reviews — they&apos;re
-            picking your competitor. We fix that.
+            When someone looks for a place to eat, stay, or shop along the river corridor, your hours
+            and story should be right — not buried or wrong. We help Main Street businesses show up
+            where people already look.
           </p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <a
@@ -346,23 +274,23 @@ export default function DirectoryPage() {
               style={{
                 display: 'inline-block',
                 padding: '0.85rem 2.25rem',
-                background: 'var(--accent, #c8943e)',
-                color: '#0a0a0a',
+                background: 'var(--accent)',
+                color: 'var(--bg)',
                 textDecoration: 'none',
                 fontWeight: 700,
                 fontSize: '0.9rem',
                 letterSpacing: '0.02em',
               }}
             >
-              Claim Your Listing
+              Claim Your Free Listing
             </a>
             <a
-              href="#why-dsd"
+              href="#how-it-works"
               style={{
                 display: 'inline-block',
                 padding: '0.85rem 2.25rem',
-                border: '1px solid rgba(255,255,255,0.5)',
-                color: '#ffffff',
+                border: '1px solid color-mix(in srgb, var(--text-on-dark, #ffffff) 50%, transparent)',
+                color: 'var(--text-on-dark, #ffffff)',
                 textDecoration: 'none',
                 fontWeight: 600,
                 fontSize: '0.9rem',
@@ -382,7 +310,7 @@ export default function DirectoryPage() {
           maxWidth: 1000,
           margin: '0 auto',
           display: 'grid',
-          gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '4rem',
           alignItems: 'center',
         }}
@@ -416,7 +344,7 @@ export default function DirectoryPage() {
               padding: '0.35rem 0.75rem',
             }}
           >
-            Engine member
+            Member story
           </div>
         </div>
 
@@ -427,7 +355,7 @@ export default function DirectoryPage() {
               fontSize: '0.8rem',
               textTransform: 'uppercase',
               letterSpacing: '0.12em',
-              color: 'var(--accent, #c8943e)',
+              color: 'var(--accent)',
               marginBottom: '0.75rem',
             }}
           >
@@ -444,8 +372,7 @@ export default function DirectoryPage() {
               letterSpacing: '-0.02em',
             }}
           >
-            We&apos;re not a software company. We&apos;re a media company that sells software at
-            software prices.
+            We show up in person before we ask you to show up online.
           </h2>
           <p
             style={{
@@ -456,9 +383,9 @@ export default function DirectoryPage() {
               marginBottom: '2rem',
             }}
           >
-            Every other marketing tool manages what people find when they search for you. We also
-            create the content that makes you worth finding. We own a magazine. A radio station. A
-            photography studio. And a touring circuit that brings audiences through your door.
+            We run a magazine, a radio station, and a touring circuit — so your listing isn&apos;t a
+            box we check once. It&apos;s tied into the same crew that writes the stories and books the
+            rooms.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             {[
@@ -515,8 +442,9 @@ export default function DirectoryPage() {
 
       {/* ── HOW IT WORKS ─────────────────────────────────────── */}
       <section
+        id="how-it-works"
         style={{
-          background: 'rgba(200,148,62,0.05)',
+          background: 'color-mix(in srgb, var(--accent) 5%, transparent)',
           borderTop: '1px solid var(--border)',
           borderBottom: '1px solid var(--border)',
           padding: '5rem 1.5rem',
@@ -528,11 +456,11 @@ export default function DirectoryPage() {
               fontSize: '0.8rem',
               textTransform: 'uppercase',
               letterSpacing: '0.12em',
-              color: 'var(--accent, #c8943e)',
+              color: 'var(--accent)',
               marginBottom: '0.5rem',
             }}
           >
-            The Process
+            How it works
           </p>
           <h2
             style={{
@@ -544,7 +472,7 @@ export default function DirectoryPage() {
               lineHeight: 1.2,
             }}
           >
-            We do the work. You run the business.
+            Claim your listing. Add your story. Get discovered.
           </h2>
           <div
             style={{
@@ -976,109 +904,6 @@ export default function DirectoryPage() {
             >
               Browse all listings &rarr;
             </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ── TESTIMONIALS ─────────────────────────────────────── */}
-      <section
-        style={{
-          background: 'rgba(10,10,10,0.04)',
-          borderTop: '1px solid var(--border)',
-          borderBottom: '1px solid var(--border)',
-          padding: '5rem 1.5rem',
-        }}
-      >
-        <div style={{ maxWidth: 1000, margin: '0 auto' }}>
-          <p
-            style={{
-              fontSize: '0.8rem',
-              textTransform: 'uppercase',
-              letterSpacing: '0.12em',
-              color: 'var(--accent, #c8943e)',
-              marginBottom: '0.5rem',
-            }}
-          >
-            From the Members
-          </p>
-          <h2
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-              fontWeight: 700,
-              color: 'var(--text)',
-              margin: '0 0 3rem',
-              lineHeight: 1.2,
-            }}
-          >
-            Real businesses. Real results.
-          </h2>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '2rem',
-            }}
-          >
-            {TESTIMONIALS.map((t) => (
-              <div
-                key={t.name}
-                style={{
-                  borderTop: '3px solid var(--accent, #c8943e)',
-                  paddingTop: '1.5rem',
-                }}
-              >
-                <p
-                  style={{
-                    fontSize: '0.95rem',
-                    color: 'var(--text)',
-                    lineHeight: 1.7,
-                    opacity: 0.85,
-                    margin: '0 0 1.5rem',
-                    fontStyle: 'italic',
-                  }}
-                >
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-                  <div>
-                    <p
-                      style={{
-                        fontSize: '0.85rem',
-                        fontWeight: 700,
-                        color: 'var(--text)',
-                        margin: '0 0 0.15rem',
-                      }}
-                    >
-                      {t.name}
-                    </p>
-                    <p
-                      style={{
-                        fontSize: '0.75rem',
-                        color: 'var(--text)',
-                        opacity: 0.55,
-                        margin: 0,
-                      }}
-                    >
-                      {t.business} &middot; {t.type}
-                    </p>
-                  </div>
-                  <span
-                    style={{
-                      fontSize: '0.65rem',
-                      fontWeight: 700,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.08em',
-                      color: 'var(--accent, #c8943e)',
-                      border: '1px solid var(--accent, #c8943e)',
-                      padding: '0.2rem 0.6rem',
-                    }}
-                  >
-                    {t.tier}
-                  </span>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
