@@ -1,11 +1,16 @@
 'use client';
 
 import type { CSSProperties } from 'react';
+import { useEffect, useState } from 'react';
+
+import type { PhotoIndexEntry } from '@/lib/photo-index';
 
 export interface OnboardingCompleteScreenProps {
   completedAt: Date;
   userName?: string;
   onReopen: () => void;
+  /** Which onboarding flow — adjusts the share note to Chase */
+  variant?: 'amy' | 'tracy';
 }
 
 function formatRelativeCompleted(completedAt: Date): string {
@@ -101,6 +106,23 @@ const secondaryBtn: CSSProperties = {
   fontFamily: 'inherit',
 };
 
+const shareBtn: CSSProperties = {
+  display: 'inline-block',
+  marginBottom: 16,
+  padding: '12px 22px',
+  fontSize: '0.8125rem',
+  fontWeight: 700,
+  letterSpacing: '0.06em',
+  textTransform: 'uppercase' as const,
+  color: 'var(--bg, #0c0b09)',
+  background: 'var(--accent, #f97316)',
+  border: 'none',
+  borderRadius: 8,
+  cursor: 'pointer',
+  fontFamily: 'inherit',
+  textDecoration: 'none',
+};
+
 const footerNote: CSSProperties = {
   margin: 0,
   fontSize: '0.75rem',
@@ -141,6 +163,7 @@ export function OnboardingCompleteScreen({
   completedAt,
   userName,
   onReopen,
+  variant = 'amy',
 }: OnboardingCompleteScreenProps) {
   const rel = formatRelativeCompleted(completedAt);
   const title =
@@ -148,11 +171,77 @@ export function OnboardingCompleteScreen({
       ? `You're all set, ${userName.trim()}.`
       : "You're all set.";
 
+  const [heroPhoto, setHeroPhoto] = useState<PhotoIndexEntry | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/photo-library', { cache: 'no-store' })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((json: { photos?: PhotoIndexEntry[] } | null) => {
+        if (!json?.photos?.length || cancelled) return;
+        const sorted = [...json.photos].sort((a, b) => {
+          const ta = a.ingestedAt ? Date.parse(a.ingestedAt) : 0;
+          const tb = b.ingestedAt ? Date.parse(b.ingestedAt) : 0;
+          return tb - ta;
+        });
+        setHeroPhoto(sorted[0] ?? null);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const shareSubject = 'I finished onboarding! 🎉';
+  const trimmedName = userName?.trim() || (variant === 'tracy' ? 'Tracy' : 'Amy');
+  const completionDateStr = completedAt.toLocaleDateString(undefined, {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+  const shareBody =
+    `Hi Chase —\n\n` +
+    `${trimmedName} here. I just finished the onboarding checklist on ${completionDateStr}. ` +
+    `Wanted to let you know I'm all set.\n\n` +
+    `— ${trimmedName}\n`;
+
+  const mailto = `mailto:me@chasepierson.tv?subject=${encodeURIComponent(shareSubject)}&body=${encodeURIComponent(shareBody)}`;
+
   return (
     <div style={shell}>
       <div style={inner}>
+        {heroPhoto ? (
+          <div
+            style={{
+              marginBottom: 24,
+              borderRadius: 12,
+              overflow: 'hidden',
+              border: '1px solid var(--card-border-color, rgba(200, 148, 62, 0.25))',
+              maxHeight: 'min(42vh, 320px)',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={heroPhoto.urls.grid}
+              alt={heroPhoto.caption || 'Big Muddy library photograph'}
+              style={{
+                width: '100%',
+                height: '100%',
+                maxHeight: 'min(42vh, 320px)',
+                objectFit: 'cover',
+                display: 'block',
+              }}
+            />
+          </div>
+        ) : null}
+
         <h1 style={headline}>{title}</h1>
         <p style={subhead}>All 9 steps complete — {rel}.</p>
+
+        <a href={mailto} style={{ ...shareBtn, marginBottom: 20 }}>
+          Share this with Chase
+        </a>
 
         <div className="amy-complete-grid" style={grid}>
           {LINKS.map((item) => (
@@ -161,9 +250,7 @@ export function OnboardingCompleteScreen({
               href={item.href}
               className="amy-complete-card"
               style={cardBase}
-              {...(item.external
-                ? { target: '_blank', rel: 'noopener noreferrer' }
-                : {})}
+              {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             >
               <p style={cardTitle}>{item.title}</p>
               <p style={cardDesc}>{item.desc}</p>
