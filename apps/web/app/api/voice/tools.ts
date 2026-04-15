@@ -10,9 +10,28 @@
 //   - executor: async function that queries Prisma + returns data
 
 import { prisma } from '@bigmuddy/database';
-// constellation removed in prune — stub if needed later
+// constellation removed in prune — stubs preserve call-site shapes
 const queryConstellationStats = async () => ({ nodes: 0, edges: 0 });
-const queryConstellationSubgraph = async () => ({ nodes: [], edges: [] });
+const queryConstellationSubgraph = async (
+  _entityType: string,
+  _entityId: string,
+  _depth: number
+): Promise<{
+  ok: boolean;
+  error?: string;
+  notFound?: boolean;
+  root?: unknown;
+  depth: number;
+  nodes: unknown[];
+  edges: unknown[];
+}> => ({
+  ok: false,
+  error: 'constellation pruned',
+  notFound: true,
+  depth: _depth,
+  nodes: [],
+  edges: [],
+});
 
 // ── Tool Declarations (Gemini function calling format) ──────
 

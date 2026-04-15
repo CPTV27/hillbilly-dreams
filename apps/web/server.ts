@@ -12,7 +12,11 @@ import path from 'path';
 import { fileURLToPath, parse } from 'url';
 import next from 'next';
 import { Server as SocketIOServer, type Socket } from 'socket.io';
-import type { SovereignSocketGlobal } from './lib/agent/eventProducer';
+// eventProducer module pruned — inline the type to keep server.ts compiling
+type SovereignSocketGlobal = typeof globalThis & {
+  sovereignIo?: SocketIOServer;
+  ioTemplate?: SocketIOServer;
+};
 
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = process.env.SOVEREIGN_HOST || '0.0.0.0';
