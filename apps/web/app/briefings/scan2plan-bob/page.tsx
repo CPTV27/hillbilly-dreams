@@ -139,7 +139,7 @@ export default function BobBriefingPage() {
           <li style={S.li}>Proposal builder with PDF generation and e-signature</li>
           <li style={S.li}>Full production pipeline &mdash; scan intake through delivery</li>
           <li style={S.li}>Mobile portal for scan techs in the field</li>
-          <li style={S.li}>Real-time QuickBooks integration</li>
+          <li style={S.li}>QuickBooks integration on roadmap</li>
           <li style={S.li}>7 AI agents for pricing, operations, photo analysis, and more</li>
           <li style={S.li}>AI video scoping &mdash; customer walks a space with their phone, AI generates a quote in minutes</li>
         </ul>

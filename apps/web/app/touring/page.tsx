@@ -3,6 +3,7 @@
 
 import type { Metadata } from 'next';
 import { fetchPhotoIndex, formatPhotoCityLabel } from '@/lib/photo-index';
+import { TouringHeroSlideshow } from './TouringHeroSlideshow';
 
 export const metadata: Metadata = {
   title: 'Big Muddy Touring — We bring the party.',
@@ -21,74 +22,57 @@ const CORRIDOR_CITIES = [
 export default async function TouringPage() {
   const library = await fetchPhotoIndex();
   const heroPhotos = library.slice(0, 12);
-  const heroBg = heroPhotos[0]?.urls.grid ?? HERO_FALLBACK;
+  const slideUrls = library.slice(0, 6).map((p) => p.urls.grid);
+  const slideshowUrls =
+    slideUrls.length >= 2
+      ? slideUrls
+      : slideUrls.length === 1
+        ? [slideUrls[0], HERO_FALLBACK]
+        : [HERO_FALLBACK, HERO_FALLBACK];
 
   return (
     <main style={{ background: '#0f0f0d', color: '#e8e0d4', minHeight: '100vh' }}>
 
-      {/* ── HERO ── */}
-      <section style={{
-        position: 'relative',
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-        padding: '0 0 80px',
-        overflow: 'hidden',
-      }}>
-        <img
-          src={heroBg}
-          alt=""
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            opacity: 0.4,
-          }}
-        />
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(to top, #0f0f0d 0%, transparent 50%, rgba(15,15,13,0.3) 100%)',
-        }} />
-        <div style={{ position: 'relative', zIndex: 1, padding: '0 clamp(24px, 5vw, 80px)' }}>
-          <h1 style={{
-            fontFamily: 'var(--font-display, Georgia, serif)',
-            fontSize: 'clamp(2.5rem, 8vw, 6rem)',
-            fontWeight: 800,
-            lineHeight: 0.95,
-            letterSpacing: '-0.03em',
-            color: '#e8e0d4',
-            margin: '0 0 16px',
-            maxWidth: '800px',
-          }}>
-            We bring<br />the party.
-          </h1>
-          <p style={{
-            fontFamily: 'var(--font-body, sans-serif)',
-            fontSize: '1rem',
-            lineHeight: 1.65,
-            color: '#9b9488',
-            margin: '0 0 12px',
-            maxWidth: '520px',
-          }}>
-            We book your shows, drive you there, put you on the radio, write about you in the
-            magazine, release your record, and sell it in the store.
-          </p>
-          <p style={{
-            fontFamily: 'var(--font-body, sans-serif)',
-            fontSize: '0.85rem',
-            fontWeight: 600,
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color: '#c8943e',
-            margin: 0,
-          }}>
-            Memphis to New Orleans &middot; 13 cities &middot; 735 venues
-          </p>
-        </div>
+      {/* ── HERO (6-image slideshow, 8s / 1s crossfade, pause on hover) ── */}
+      <section style={{ position: 'relative' }}>
+        <TouringHeroSlideshow slides={slideshowUrls.slice(0, 6)}>
+          <div style={{ padding: '0 clamp(24px, 5vw, 80px)' }}>
+            <h1 style={{
+              fontFamily: 'var(--font-display, Georgia, serif)',
+              fontSize: 'clamp(2.5rem, 8vw, 6rem)',
+              fontWeight: 800,
+              lineHeight: 0.95,
+              letterSpacing: '-0.03em',
+              color: '#e8e0d4',
+              margin: '0 0 16px',
+              maxWidth: '800px',
+            }}>
+              We bring<br />the party.
+            </h1>
+            <p style={{
+              fontFamily: 'var(--font-body, sans-serif)',
+              fontSize: '1rem',
+              lineHeight: 1.65,
+              color: '#9b9488',
+              margin: '0 0 12px',
+              maxWidth: '520px',
+            }}>
+              We book your shows, drive you there, put you on the radio, write about you in the
+              magazine, release your record, and sell it in the store.
+            </p>
+            <p style={{
+              fontFamily: 'var(--font-body, sans-serif)',
+              fontSize: '0.85rem',
+              fontWeight: 600,
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: '#c8943e',
+              margin: 0,
+            }}>
+              Memphis to New Orleans &middot; 13 cities &middot; 735 venues
+            </p>
+          </div>
+        </TouringHeroSlideshow>
       </section>
 
       {/* ── LIBRARY GRID (latest 12 from /api/photo-library) ── */}

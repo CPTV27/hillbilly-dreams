@@ -10,7 +10,7 @@
 
 /* eslint-disable react/no-unknown-property */
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { AssetSourceComponentProps, AssetFromSource } from 'sanity';
 
 // ─── Types matching scripts/sync-approved.ts ─────────────────────────────────
@@ -134,15 +134,17 @@ const gridStyle: React.CSSProperties = {
   alignContent: 'start',
 };
 
-const cardStyle = (selected: boolean): React.CSSProperties => ({
+const cardStyle = (focused: boolean): React.CSSProperties => ({
   position: 'relative',
   borderRadius: '6px',
   overflow: 'hidden',
   aspectRatio: '1 / 1',
   background: '#0a0a0a',
-  border: `2px solid ${selected ? 'var(--accent, #f97316)' : 'transparent'}`,
+  border: '2px solid transparent',
+  outline: focused ? '2px solid var(--accent, #f97316)' : 'none',
+  outlineOffset: 2,
   cursor: 'pointer',
-  transition: 'transform 0.1s ease, border-color 0.1s ease',
+  transition: 'transform 0.1s ease, outline-color 0.1s ease',
 });
 
 const captionStyle: React.CSSProperties = {
@@ -206,6 +208,7 @@ export function BmmLibrarySource(props: AssetSourceComponentProps) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<Filter>({ region: null, city: null, category: null });
+  const [focusIdx, setFocusIdx] = useState(0);
 
   // Fetch the library index on mount
   useEffect(() => {
@@ -263,30 +266,69 @@ export function BmmLibrarySource(props: AssetSourceComponentProps) {
     };
   }, [index, filter]);
 
-  const handlePhotoClick = (photo: LibraryPhoto) => {
-    // Sanity v3.99 asset sources only support single-select, so pick immediately.
-    const asset: AssetFromSource = {
-      kind: 'url',
-      value: photo.urls.orig,
-      // Partial ImageAsset — Sanity fills the rest when it re-hosts the URL.
-      // Cast because the ImageAsset type is strict and we're intentionally
-      // providing a subset of fields that Studio accepts at runtime.
-      assetDocumentProps: {
-        originalFilename: photo.originalFilename,
-        label: photo.city,
-        title: photo.caption ?? photo.originalFilename,
-        description: photo.subjects.length ? photo.subjects.join(', ') : undefined,
-        creditLine: photo.credit ?? undefined,
-        source: {
-          id: photo.hash,
-          name: 'bmm-library',
-          url: photo.urls.orig,
-        },
-      } as unknown as AssetFromSource['assetDocumentProps'],
+  const handlePhotoClick = useCallback(
+    (photo: LibraryPhoto) => {
+      const asset: AssetFromSource = {
+        kind: 'url',
+        value: photo.urls.orig,
+        assetDocumentProps: {
+          originalFilename: photo.originalFilename,
+          label: photo.city,
+          title: photo.caption ?? photo.originalFilename,
+          description: photo.subjects.length ? photo.subjects.join(', ') : undefined,
+          creditLine: photo.credit ?? undefined,
+          source: {
+            id: photo.hash,
+            name: 'bmm-library',
+            url: photo.urls.orig,
+          },
+        } as unknown as AssetFromSource['assetDocumentProps'],
+      };
+      onSelect([asset]);
+      onClose();
+    },
+    [onSelect, onClose]
+  );
+
+  useEffect(() => {
+    setFocusIdx((i) => {
+      if (filteredPhotos.length === 0) return 0;
+      return Math.min(i, filteredPhotos.length - 1);
+    });
+  }, [filteredPhotos]);
+
+  useEffect(() => {
+    if (loading || error || filteredPhotos.length === 0) return;
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+        return;
+      }
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        setFocusIdx((cur) => {
+          const p = filteredPhotos[cur];
+          if (p) handlePhotoClick(p);
+          return cur;
+        });
+        return;
+      }
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        setFocusIdx((i) => Math.min(i + 1, filteredPhotos.length - 1));
+        return;
+      }
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        setFocusIdx((i) => Math.max(i - 1, 0));
+      }
     };
-    onSelect([asset]);
-    onClose();
-  };
+
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [loading, error, filteredPhotos, onClose, handlePhotoClick]);
 
   // Render
   return (
@@ -397,13 +439,13 @@ export function BmmLibrarySource(props: AssetSourceComponentProps) {
         )}
         {!loading && !error && filteredPhotos.length > 0 && (
           <div style={gridStyle}>
-            {filteredPhotos.map((p) => (
+            {filteredPhotos.map((p, idx) => (
               <div
                 key={p.hash}
-                style={cardStyle(false)}
+                style={cardStyle(focusIdx === idx)}
                 onClick={() => handlePhotoClick(p)}
                 role="button"
-                tabIndex={0}
+                tabIndex={-1}
                 aria-label={p.caption ?? p.originalFilename}
               >
                 <img

@@ -17,3 +17,22 @@
 
 ### Blockers
 - None.
+
+---
+
+## Cursor batch 2 — 2026-04-15
+
+### Done (#7–#16)
+- **Honest claims (DSD)**: `directory/page.tsx` quote + “How it works” + “One subscription” copy; PDF template `river-room` tier line (review assistance wording).
+- **QuickBooks**: `demo/scan2plan/page.tsx`, `briefings/scan2plan-bob/page.tsx` roadmap/dev wording.
+- **Radio player polish**: `RadioStreamPlayer.tsx` — 200ms art fade on URL change, singular/plural listeners, ON AIR pulsing dot (token accent), vinyl-style placeholder behind art, token-only colors.
+- **Touring hero**: `TouringHeroSlideshow.tsx` — 6 library slides, 8s / 1s crossfade, pause on hover; wired from `touring/page.tsx`.
+- **Gallery chips**: `GalleryPageClient.tsx` — unique city chips, client filter, latest-12 from filtered set.
+- **Story Engine admin**: `app/admin/story-engine/page.tsx` + `StoryEngineDemo.tsx` (allow-list gate like other `/admin` pages); `PromptInput` supports controlled mode.
+- **Magazine home**: `magazine/page.tsx` — `fetchPhotoIndex` + deterministic `heroImage` fallback via `article.id % library.length` when hero missing.
+- **Radio home**: `radio/page.tsx` — full-bleed library hero, `RadioStreamPlayer`, mock “Recently played” card (bigmuddyradio / touring `/radio` route).
+- **404 / error**: `app/not-found.tsx` (server, library bg), `app/error.tsx` (client boundary — Next requirement) with brand copy + CTAs.
+- **Sanity picker**: `BmmLibrarySource.tsx` — arrows navigate grid, Enter selects, Escape closes, `var(--accent)` focus outline.
+
+### Notes
+- `bigmuddyradio.com` is consolidated to `bigmuddytouring.com` paths in `domain-routes` comments; refreshed `/radio` page is the live radio landing when hostname rewrites to `/radio`.

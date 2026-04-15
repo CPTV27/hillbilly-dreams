@@ -3,6 +3,7 @@
 // apps/web/app/gallery/GalleryPageClient.tsx
 // Chase Pierson Photography — Venture Gallery (client: filters + print catalog)
 
+import { useMemo, useState } from 'react';
 import { formatPhotoCityLabel, type PhotoIndexEntry } from '@/lib/photo-index';
 import { GALLERY_PRINTS, CATEGORIES } from './gallery-data';
 import GalleryGrid from './GalleryGrid';
@@ -12,7 +13,25 @@ interface Props {
 }
 
 export default function GalleryPageClient({ libraryPhotos }: Props) {
-  const grid = libraryPhotos.slice(0, 12);
+  const cityOptions = useMemo(() => {
+    const s = new Set<string>();
+    for (const p of libraryPhotos) s.add(p.city);
+    return Array.from(s).sort();
+  }, [libraryPhotos]);
+
+  const [cityFilter, setCityFilter] = useState<string | null>(null);
+
+  const grid = useMemo(() => {
+    const sorted = [...libraryPhotos].sort((a, b) => {
+      const ta = a.ingestedAt ? Date.parse(a.ingestedAt) : 0;
+      const tb = b.ingestedAt ? Date.parse(b.ingestedAt) : 0;
+      return tb - ta;
+    });
+    const filtered =
+      cityFilter == null ? sorted : sorted.filter((p) => p.city === cityFilter);
+    return filtered.slice(0, 12);
+  }, [libraryPhotos, cityFilter]);
+
   const featured = GALLERY_PRINTS.filter((p) => p.featured);
 
   return (
@@ -32,6 +51,71 @@ export default function GalleryPageClient({ libraryPhotos }: Props) {
           boxSizing: 'border-box',
         }}
       >
+        {cityOptions.length > 0 ? (
+          <div
+            role="toolbar"
+            aria-label="Filter by city"
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '0.4rem',
+              maxWidth: '1600px',
+              margin: '0 auto 0.85rem',
+              alignItems: 'center',
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => setCityFilter(null)}
+              style={{
+                padding: '0.35rem 0.75rem',
+                borderRadius: '999px',
+                border:
+                  cityFilter === null
+                    ? '1px solid color-mix(in srgb, var(--accent) 65%, transparent)'
+                    : '1px solid color-mix(in srgb, var(--text) 14%, transparent)',
+                background:
+                  cityFilter === null
+                    ? 'color-mix(in srgb, var(--accent) 18%, transparent)'
+                    : 'transparent',
+                color: 'var(--text)',
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.68rem',
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+                cursor: 'pointer',
+              }}
+            >
+              All
+            </button>
+            {cityOptions.map((c) => (
+              <button
+                key={c}
+                type="button"
+                onClick={() => setCityFilter(c)}
+                style={{
+                  padding: '0.35rem 0.75rem',
+                  borderRadius: '999px',
+                  border:
+                    cityFilter === c
+                      ? '1px solid color-mix(in srgb, var(--accent) 65%, transparent)'
+                      : '1px solid color-mix(in srgb, var(--text) 14%, transparent)',
+                  background:
+                    cityFilter === c
+                      ? 'color-mix(in srgb, var(--accent) 18%, transparent)'
+                      : 'transparent',
+                  color: 'var(--text)',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.68rem',
+                  letterSpacing: '0.04em',
+                  cursor: 'pointer',
+                }}
+              >
+                {formatPhotoCityLabel(c)}
+              </button>
+            ))}
+          </div>
+        ) : null}
         <div
           style={{
             display: 'grid',

@@ -480,7 +480,7 @@ export default function Scan2PlanDeck() {
               'Continuous development & security updates',
               'Google Cloud managed architecture',
               '7 Gemini-tuned AI agents',
-              'Real-time QuickBooks Sync',
+              'QuickBooks integration in development',
               'Enterprise-grade RBAC/Security',
               'Multi-entity support by default',
               'Industry-standard Uptime SLA',

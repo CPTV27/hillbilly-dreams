@@ -3,8 +3,10 @@
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import type { Article } from '@bigmuddy/config';
 import { ArticleCard, NewsletterSignup, IllustrationDivider, BLUR_DATA_URL } from '@bigmuddy/ui';
 import { CITY_GUIDE_ARTICLES, DEEP_SOUTH_GUIDE_CITIES, LOUISIANA_CITIES, ARKANSAS_MISSOURI_CITIES } from '@/lib/articles';
+import { fetchPhotoIndex } from '@/lib/photo-index';
 
 export const metadata: Metadata = {
   title: 'Big Muddy Magazine — Real stories. Real photography. The Deep South.',
@@ -51,8 +53,24 @@ async function getArticles(): Promise<typeof CITY_GUIDE_ARTICLES> {
   }
 }
 
+function hydrateArticleHeroes(
+  list: typeof CITY_GUIDE_ARTICLES,
+  library: Awaited<ReturnType<typeof fetchPhotoIndex>>
+): Article[] {
+  const n = Math.max(library.length, 1);
+  return list.map((a) => {
+    const hasHero = a.heroImage != null && String(a.heroImage).trim() !== '';
+    const fallback = library[a.id % n]?.urls.grid;
+    return {
+      ...a,
+      heroImage: hasHero ? a.heroImage : fallback ?? a.heroImage,
+    };
+  });
+}
+
 export default async function MagazineHomepage() {
-  const articles = await getArticles();
+  const [rawArticles, library] = await Promise.all([getArticles(), fetchPhotoIndex()]);
+  const articles = hydrateArticleHeroes(rawArticles, library);
   const [featured, ...grid] = articles;
 
   return (

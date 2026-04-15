@@ -162,7 +162,7 @@ const TIER_LABELS: Record<string, string> = {
 const TIER_DESCRIPTIONS: Record<string, string> = {
   'front-porch': 'Your business is listed in the Deep South Directory with basic information.',
   'route': 'Your listing includes enhanced details, review monitoring, and monthly reports.',
-  'river-room': 'Full service: social media management, AI-powered review responses, content creation, and detailed analytics.',
+  'river-room': 'Full service: social media management, review monitoring and response assistance, content creation, and detailed analytics.',
   'blues-room': 'The complete engine: everything in The Works plus custom campaigns, priority support, and revenue attribution tracking.',
 };
 

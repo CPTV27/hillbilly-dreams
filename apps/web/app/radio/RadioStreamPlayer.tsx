@@ -1,6 +1,18 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type { ReactNode } from 'react';
+
+function formatListenerLine(count: number | null, metaUnavailable: boolean): ReactNode {
+  if (metaUnavailable) return <span>Listeners: —</span>;
+  if (count == null) return <span>Listeners: —</span>;
+  const word = count === 1 ? 'listener' : 'listeners';
+  return (
+    <>
+      <span style={{ color: 'var(--accent)', fontWeight: 600 }}>{count.toLocaleString()}</span> {word}
+    </>
+  );
+}
 
 import type { RadioShowSlot } from '@/config/radio-schedule';
 import { RADIO_SHOWS } from '@/config/radio-schedule';
@@ -75,7 +87,25 @@ export function RadioStreamPlayer() {
     metaUnavailable: true,
   });
   const [clock, setClock] = useState(() => Date.now());
+  const [artVisible, setArtVisible] = useState(true);
+  const [displayArtUrl, setDisplayArtUrl] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    const next = nowPlaying.artUrl;
+    if (next === displayArtUrl) return;
+    if (displayArtUrl == null && next) {
+      setDisplayArtUrl(next);
+      setArtVisible(true);
+      return;
+    }
+    setArtVisible(false);
+    const t = window.setTimeout(() => {
+      setDisplayArtUrl(next);
+      setArtVisible(true);
+    }, 200);
+    return () => window.clearTimeout(t);
+  }, [nowPlaying.artUrl, displayArtUrl]);
 
   useEffect(() => {
     const id = setInterval(() => setClock(Date.now()), 60_000);
@@ -201,11 +231,41 @@ export function RadioStreamPlayer() {
       >
         <div
           style={{
+            position: 'relative',
             textAlign: 'center',
             paddingBottom: 'clamp(1.5rem, 4vw, 2.5rem)',
             borderBottom: '1px solid color-mix(in srgb, var(--text) 12%, transparent)',
           }}
         >
+          {playing ? (
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                fontSize: '0.58rem',
+                fontWeight: 800,
+                letterSpacing: '0.22em',
+                color: 'var(--accent)',
+              }}
+              aria-live="polite"
+            >
+              <span
+                style={{
+                  width: 8,
+                  height: 8,
+                  borderRadius: '50%',
+                  background: 'color-mix(in srgb, var(--accent) 85%, var(--bg))',
+                  boxShadow: '0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent)',
+                  animation: 'bmrOnAirPulse 1.4s ease-in-out infinite',
+                }}
+              />
+              ON AIR
+            </div>
+          ) : null}
           <p
             style={{
               fontFamily: 'var(--font-body)',
@@ -239,7 +299,7 @@ export function RadioStreamPlayer() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: nowPlaying.artUrl ? 'minmax(72px, 96px) 1fr' : '1fr',
+              gridTemplateColumns: displayArtUrl || !nowPlaying.metaUnavailable ? 'minmax(72px, 96px) 1fr' : '1fr',
               gap: '1rem',
               alignItems: 'center',
               minHeight: '3.25rem',
@@ -250,23 +310,48 @@ export function RadioStreamPlayer() {
               border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)',
             }}
           >
-            {nowPlaying.artUrl ? (
-              // eslint-disable-next-line @next/next/no-img-element -- external AzuraCast art URL
-              <img
-                src={nowPlaying.artUrl}
-                alt=""
-                width={96}
-                height={96}
+            {!nowPlaying.metaUnavailable && (
+              <div
                 style={{
+                  position: 'relative',
                   width: '100%',
                   maxWidth: 96,
                   aspectRatio: '1',
                   borderRadius: '8px',
-                  objectFit: 'cover',
-                  background: 'color-mix(in srgb, var(--text) 8%, transparent)',
+                  overflow: 'hidden',
+                  background: `
+                    repeating-conic-gradient(
+                      color-mix(in srgb, var(--text) 14%, transparent) 0% 2deg,
+                      transparent 2deg 4deg
+                    ),
+                    radial-gradient(
+                      circle at 50% 50%,
+                      color-mix(in srgb, var(--text) 18%, var(--bg)) 0%,
+                      var(--bg) 62%
+                    )
+                  `,
                 }}
-              />
-            ) : null}
+              >
+                {displayArtUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element -- external AzuraCast art URL
+                  <img
+                    src={displayArtUrl}
+                    alt=""
+                    width={96}
+                    height={96}
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      opacity: artVisible ? 1 : 0,
+                      transition: 'opacity 200ms ease-out',
+                    }}
+                  />
+                ) : null}
+              </div>
+            )}
             <div style={{ minWidth: 0 }}>
               {nowPlaying.metaUnavailable ? (
                 <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)' }}>
@@ -305,18 +390,7 @@ export function RadioStreamPlayer() {
           </div>
 
           <p style={{ margin: '0 0 1.25rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-            {nowPlaying.metaUnavailable ? (
-              <span>Listeners: —</span>
-            ) : nowPlaying.listeners != null ? (
-              <>
-                <span style={{ color: 'var(--accent)', fontWeight: 600 }}>
-                  {nowPlaying.listeners.toLocaleString()}
-                </span>{' '}
-                listening
-              </>
-            ) : (
-              <span>Listeners: —</span>
-            )}
+            {formatListenerLine(nowPlaying.listeners, nowPlaying.metaUnavailable)}
           </p>
 
           <button
@@ -439,6 +513,20 @@ export function RadioStreamPlayer() {
           The voice of the Mississippi region — live from the river.
         </p>
       </div>
+
+      <style>{`
+        @keyframes bmrOnAirPulse {
+          0%,
+          100% {
+            box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 40%, transparent);
+            opacity: 1;
+          }
+          50% {
+            box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 0%, transparent);
+            opacity: 0.85;
+          }
+        }
+      `}</style>
     </>
   );
 }

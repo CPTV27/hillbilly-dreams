@@ -142,7 +142,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "For twenty-five dollars a month it just runs. Google shows the right hours. My Facebook page posts something every week even when I forget. I can focus on the shop.",
+      "For twenty-five dollars a month it just runs. Google shows the right hours. Your business info syncs automatically. I can focus on the shop.",
     name: 'Loretta Simmons',
     business: "Loretta's Flowers & Gifts",
     type: 'Florist',
@@ -166,7 +166,7 @@ const HOW_IT_WORKS = [
   {
     step: '03',
     title: 'We build',
-    desc: "Your listing goes live across 50+ directories. Google, Yelp, Facebook — all synced from one place.",
+    desc: "Your listing goes live across major directories including Google and Yelp, synced from one place.",
     image: '/images/dsd/step-publish.webp',
   },
   {
@@ -476,7 +476,7 @@ export default function DirectoryPage() {
               },
               {
                 title: 'One subscription. Everything handled.',
-                desc: "Listings synced across Google, Yelp, Facebook, and 50+ directories. Reviews monitored. Social content posted. Monthly report in your inbox.",
+                desc: "Listings synced across Google, Yelp, and major directories. Reviews monitored. Editorial spotlights. Monthly report in your inbox.",
               },
             ].map((bullet) => (
               <div
