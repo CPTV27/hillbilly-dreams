@@ -194,9 +194,9 @@ async function createDefaultSplits(artistId: number, artistName: string) {
     // Default split: 80% artist, 15% label (BMR), 5% platform
     await prisma.split.createMany({
       data: [
-        { trackId: track.id, recipientName: artistName, role: 'artist', percentage: 80 },
-        { trackId: track.id, recipientName: 'Big Muddy Records', role: 'label', percentage: 15 },
-        { trackId: track.id, recipientName: 'Platform', role: 'distributor', percentage: 5 },
+        { trackId: track.id, name: artistName, role: 'artist', sharePercent: 80 },
+        { trackId: track.id, name: 'Big Muddy Records', role: 'label', sharePercent: 15 },
+        { trackId: track.id, name: 'Platform', role: 'distributor', sharePercent: 5 },
       ],
     });
   }
