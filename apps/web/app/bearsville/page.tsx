@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 import { fetchPhotoIndex, formatPhotoCityLabel } from '@/lib/photo-index';
 
 export const metadata: Metadata = {
-  title: 'Bearsville Creative — Hudson Valley media node',
+  title: 'Bearsville Creative — Stories from the Hudson Valley',
   description:
     'Woodstock and Catskills corridor — studio, magazine, and regional story. Summer 2026 activation.',
 };
@@ -110,9 +110,8 @@ export default async function BearsvillePage() {
               maxWidth: '540px',
             }}
           >
-            Studio, magazine, and regional story — the northeast node of the same sovereign media
-            stack that runs the Mississippi corridor. Woodstock and Catskills photography from the
-            Big Muddy library when available.
+            Stories, photography, and radio from Woodstock and the Catskills. A regional media
+            voice for the Hudson Valley.
           </p>
           {hero ? (
             <p style={{ fontSize: '0.78rem', color: 'var(--text-muted, #888)', margin: 0 }}>
@@ -121,9 +120,26 @@ export default async function BearsvillePage() {
             </p>
           ) : (
             <p style={{ fontSize: '0.85rem', color: 'var(--text-muted, #888)', margin: 0 }}>
-              Regional hero photography will appear here as Bearsville shoots land in the library.
+              Bearsville Creative archive
             </p>
           )}
+          <div style={{ marginTop: '1rem' }}>
+            <a
+              href="mailto:hello@bearsvillemediagroup.com?subject=Bearsville%20Creative%20Updates"
+              style={{
+                color: 'var(--accent, #5eead4)',
+                textDecoration: 'none',
+                borderBottom: '1px solid color-mix(in srgb, var(--accent, #5eead4) 55%, transparent)',
+                paddingBottom: '0.15rem',
+                fontSize: '0.78rem',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                fontWeight: 700,
+              }}
+            >
+              Coming Summer 2026 · Follow along
+            </a>
+          </div>
         </div>
       </section>
 
@@ -164,8 +180,8 @@ export default async function BearsvillePage() {
                 margin: 0,
               }}
             >
-              Hudson Valley and Catskills photography lands in the library as the northeast node
-              activates. Until then, this room is reserved.
+              Coming Summer 2026. We&apos;re building the first run of stories and portrait sessions
+              now.
             </p>
           </div>
         </section>

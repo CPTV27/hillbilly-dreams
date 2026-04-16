@@ -36,6 +36,85 @@ export default function GalleryPageClient({ libraryPhotos }: Props) {
 
   return (
     <>
+      <section
+        style={{
+          maxWidth: '1400px',
+          margin: '0 auto',
+          padding: 'clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem) 1.25rem',
+          textAlign: 'center',
+        }}
+      >
+        <p
+          style={{
+            margin: '0 0 0.75rem',
+            fontSize: '0.72rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: 'var(--text-muted)',
+            fontWeight: 600,
+          }}
+        >
+          Venture Gallery
+        </p>
+        <h1
+          style={{
+            margin: '0 0 0.65rem',
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(1.9rem, 4vw, 2.9rem)',
+            fontWeight: 500,
+            letterSpacing: '-0.01em',
+            color: 'var(--text)',
+          }}
+        >
+          Photography from the corridor.
+        </h1>
+        <p
+          style={{
+            margin: '0 auto 1.25rem',
+            maxWidth: 680,
+            fontSize: '0.98rem',
+            lineHeight: 1.6,
+            color: 'var(--text-muted)',
+          }}
+        >
+          The Deep South and Hudson Valley. Prints available. Client deliveries below.
+        </p>
+        <div style={{ display: 'flex', gap: '0.8rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a
+            href="#prints"
+            style={{
+              textDecoration: 'none',
+              border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)',
+              color: 'var(--text)',
+              padding: '0.55rem 1rem',
+              fontSize: '0.78rem',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              borderRadius: 4,
+              fontWeight: 600,
+            }}
+          >
+            Browse Prints
+          </a>
+          <a
+            href="/gallery/apply"
+            style={{
+              textDecoration: 'none',
+              border: '1px solid color-mix(in srgb, var(--accent) 40%, transparent)',
+              color: 'var(--accent)',
+              padding: '0.55rem 1rem',
+              fontSize: '0.78rem',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              borderRadius: 4,
+              fontWeight: 600,
+            }}
+          >
+            Apply to Show
+          </a>
+        </div>
+      </section>
+
       <style>{`
         .featured-card img { transition: transform 0.6s ease; }
         .featured-card:hover img { transform: scale(1.03); }
@@ -308,7 +387,7 @@ export default function GalleryPageClient({ libraryPhotos }: Props) {
             <a
               key={print.id}
               className="featured-card"
-              href={`mailto:chase@hillbillydreamsinc.com?subject=Inquiry: ${print.title}&body=I'm interested in "${print.title}" — please send me availability and sizing options.`}
+              href={`mailto:studio@studiocvideo.com?subject=Inquiry: ${print.title}&body=I'm interested in "${print.title}" — please send me availability and sizing options.`}
               style={{
                 display: 'block',
                 textDecoration: 'none',
@@ -466,7 +545,7 @@ export default function GalleryPageClient({ libraryPhotos }: Props) {
           available on request.
         </p>
         <a
-          href="mailto:chase@hillbillydreamsinc.com?subject=Print Inquiry&body=I'd like to inquire about purchasing a print. Please send me your current availability."
+          href="mailto:studio@studiocvideo.com?subject=Print Inquiry&body=I'd like to inquire about purchasing a print. Please send me your current availability."
           style={{
             display: 'inline-block',
             fontFamily: 'var(--font-body)',

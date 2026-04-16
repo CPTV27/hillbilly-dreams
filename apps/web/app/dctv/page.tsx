@@ -39,8 +39,8 @@ export default function DctvHomePage() {
           marginBottom: '1.5rem',
         }}
       >
-        DCTV is public access television for the Hudson Valley — coverage, training, and community stories. Same sovereign
-        stack as the rest of the network; this site is the public face for carriage, volunteers, and underwriting partners.
+        DCTV is public access television for the Hudson Valley — community coverage, production
+        training, and local stories.
       </p>
       <section style={{ marginTop: '2rem' }}>
         <h2 style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#64748b' }}>
@@ -51,6 +51,24 @@ export default function DctvHomePage() {
           <li>Government and nonprofit coverage</li>
           <li>Regional arts and music segments</li>
         </ul>
+      </section>
+      <section style={{ marginTop: '2.5rem', borderTop: '1px solid #334155', paddingTop: '1.5rem' }}>
+        <h2 style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#64748b' }}>
+          Get Involved
+        </h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', marginTop: '0.8rem' }}>
+          <a href="mailto:studio@studiocvideo.com?subject=DCTV%20Volunteer" style={{ color: 'var(--dctv-accent, #38bdf8)', textDecoration: 'none' }}>
+            Volunteer
+          </a>
+          <span style={{ color: '#64748b' }}>·</span>
+          <a href="mailto:studio@studiocvideo.com?subject=DCTV%20Underwrite" style={{ color: 'var(--dctv-accent, #38bdf8)', textDecoration: 'none' }}>
+            Underwrite
+          </a>
+          <span style={{ color: '#64748b' }}>·</span>
+          <a href="mailto:studio@studiocvideo.com?subject=DCTV%20Story%20Submission" style={{ color: 'var(--dctv-accent, #38bdf8)', textDecoration: 'none' }}>
+            Submit a Story
+          </a>
+        </div>
       </section>
       <p
         id="contact"

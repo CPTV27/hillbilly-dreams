@@ -96,13 +96,75 @@ export default function EntertainmentPage() {
         </div>
       </section>
 
+      {/* CTA STRIP */}
+      <section
+        style={{
+          padding: 'clamp(56px, 10vw, 120px) clamp(24px, 6vw, 80px)',
+          borderTop: '1px solid rgba(200,148,62,0.15)',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gap: '1.25rem',
+        }}
+      >
+        <a
+          href="/touring"
+          style={{
+            textDecoration: 'none',
+            color: '#e8e0d4',
+            border: '1px solid rgba(200,148,62,0.35)',
+            padding: '1.25rem',
+            display: 'block',
+          }}
+        >
+          <p style={{ margin: '0 0 0.45rem', fontSize: '1.05rem', fontWeight: 700 }}>
+            Bring your band to the corridor.
+          </p>
+          <p style={{ margin: 0, color: '#9b9488', fontSize: '0.9rem' }}>
+            Come play with us from Memphis to New Orleans.
+          </p>
+        </a>
+        <a
+          href="/directory/onboard"
+          style={{
+            textDecoration: 'none',
+            color: '#e8e0d4',
+            border: '1px solid rgba(200,148,62,0.35)',
+            padding: '1.25rem',
+            display: 'block',
+          }}
+        >
+          <p style={{ margin: '0 0 0.45rem', fontSize: '1.05rem', fontWeight: 700 }}>
+            Put your venue on the circuit.
+          </p>
+          <p style={{ margin: 0, color: '#9b9488', fontSize: '0.9rem' }}>
+            Get found by artists, travelers, and locals.
+          </p>
+        </a>
+      </section>
+
       {/* CLOSING */}
       <section style={{ height: '60vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
         <img src="/images/dsd/mississippi-sunset.webp" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at center, rgba(10,10,8,0.6) 0%, rgba(10,10,8,0.85) 100%)' }} />
         <div style={{ position: 'relative', zIndex: 1 }}>
           <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2.5rem, 7vw, 5rem)', fontWeight: 800, letterSpacing: '-0.04em', lineHeight: 0.85, margin: '0 0 16px' }}>Natchez, Mississippi.</h2>
-          <p style={{ fontSize: '1rem', color: '#9b9488', margin: 0 }}>On the river. Where it all connects.</p>
+          <p style={{ fontSize: '1rem', color: '#9b9488', margin: '0 0 1rem' }}>Bring your music to the river.</p>
+          <a
+            href="mailto:booking@bigmuddytouring.com"
+            style={{
+              display: 'inline-block',
+              padding: '0.7rem 1.5rem',
+              border: '1px solid #c8943e',
+              color: '#c8943e',
+              textDecoration: 'none',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              fontSize: '0.78rem',
+              fontWeight: 700,
+            }}
+          >
+            Come play with us
+          </a>
         </div>
       </section>
 

@@ -1,8 +1,7 @@
 // apps/web/app/radio/page.tsx
-// Big Muddy Radio — full-bleed library hero + player + recently played (mock)
+// Big Muddy Radio — full-bleed library hero + live stream + show links
 
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { fetchPhotoIndex } from '@/lib/photo-index';
 import { RadioStreamPlayer } from './RadioStreamPlayer';
 
@@ -11,14 +10,6 @@ export const metadata: Metadata = {
   description:
     'Stream Big Muddy Radio live. Song info, listener count, and daily schedule from Natchez, Mississippi.',
 };
-
-const MOCK_RECENT = [
-  { title: 'Station ID — Big Muddy Radio', artist: '—', ago: 'Just now' },
-  { title: 'Hard Luck & Love', artist: 'The Delta Hymn', ago: '18 min ago' },
-  { title: 'River Road', artist: 'Miriam James', ago: '34 min ago' },
-  { title: 'Saturday Night Communion', artist: 'Al Green (tribute set)', ago: '52 min ago' },
-  { title: 'Bluff City Breakdown', artist: 'The Alley Saints', ago: '1 hr ago' },
-] as const;
 
 export default async function RadioListenPage() {
   const library = await fetchPhotoIndex();
@@ -126,46 +117,38 @@ export default async function RadioListenPage() {
             margin: '0 0 1rem',
           }}
         >
-          Recently played
+          What's On
         </h2>
         <div
           style={{
             borderRadius: 10,
             border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)',
             background: 'color-mix(in srgb, var(--surface) 50%, transparent)',
-            overflow: 'hidden',
+            padding: '1rem 1rem 1.15rem',
           }}
         >
-          <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-            {MOCK_RECENT.map((row) => (
-              <li
-                key={row.title}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '0.15rem',
-                  padding: '0.75rem 1rem',
-                  borderBottom: '1px solid color-mix(in srgb, var(--text) 8%, transparent)',
-                }}
-              >
-                <span style={{ fontWeight: 600, fontSize: '0.88rem', color: 'var(--text)' }}>{row.title}</span>
-                <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                  {row.artist} · <span style={{ opacity: 0.85 }}>{row.ago}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
+          <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text)', lineHeight: 1.6 }}>
+            Blues Room sessions every Friday. Open mic. Guest DJs. The corridor&apos;s best, live
+            from Natchez.
+          </p>
+          <a
+            href="/radio/shows"
+            style={{
+              display: 'inline-block',
+              marginTop: '0.9rem',
+              fontSize: '0.76rem',
+              letterSpacing: '0.09em',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              textDecoration: 'none',
+              color: 'var(--accent)',
+              borderBottom: '1px solid color-mix(in srgb, var(--accent) 55%, transparent)',
+              paddingBottom: '0.15rem',
+            }}
+          >
+            Shows & Sessions
+          </a>
         </div>
-        <p style={{ margin: '1.25rem 0 0', fontSize: '0.72rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-          Recently played list is a placeholder for AzuraCast history when wired.{' '}
-          <Link href="/magazine" style={{ color: 'var(--accent)' }}>
-            Magazine
-          </Link>
-          {' · '}
-          <Link href="/touring" style={{ color: 'var(--accent)' }}>
-            Touring
-          </Link>
-        </p>
       </section>
     </div>
   );
