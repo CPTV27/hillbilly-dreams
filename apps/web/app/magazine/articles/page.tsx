@@ -3,15 +3,16 @@
 // bigmuddymagazine.com/articles?category=interview
 
 import type { Metadata } from 'next';
+import type { Article } from '@bigmuddy/config';
 import { ArticleCard } from '@bigmuddy/ui';
-import { CITY_GUIDE_ARTICLES } from '@/lib/articles';
+import { getArticles as fetchArticlesFromSanity } from '@/lib/articles';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Articles — Big Muddy Magazine',
   description: 'Stories, interviews, photo essays, and city guides from the Deep South.',
 };
-
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
 
 const CATEGORY_MAP: Record<string, string> = {
   'city-guide': 'City Guide',
@@ -22,25 +23,8 @@ const CATEGORY_MAP: Record<string, string> = {
   'food-drink': 'Food & Drink',
 };
 
-async function getArticles(category?: string): Promise<typeof CITY_GUIDE_ARTICLES> {
-  try {
-    const params = new URLSearchParams({ status: 'published' });
-    if (category) params.set('category', category);
-    const res = await fetch(`${baseUrl}/api/articles?${params}`, {
-      next: { revalidate: 300 },
-    });
-    if (!res.ok) return filterStatic(category);
-    const data = await res.json();
-    const all = Array.isArray(data) ? data : data.data ?? [];
-    return all.length > 0 ? all : filterStatic(category);
-  } catch {
-    return filterStatic(category);
-  }
-}
-
-function filterStatic(category?: string) {
-  if (!category) return CITY_GUIDE_ARTICLES;
-  return CITY_GUIDE_ARTICLES.filter((a) => a.category === category);
+async function getArticles(category?: string): Promise<Article[]> {
+  return fetchArticlesFromSanity(category);
 }
 
 export default async function ArticlesIndexPage({

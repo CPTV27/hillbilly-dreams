@@ -35,7 +35,6 @@
     "@react-pdf/renderer": "^4.3.2",
     "@react-three/drei": "^9.118.0",
     "@react-three/fiber": "^8.17.10",
-    "@sanity/client": "^7.21.0",
     "@sanity/vision": "^3.99.0",
     "@sentry/nextjs": "^10.46.0",
     "@types/d3": "^7.4.3",
@@ -89,8 +88,10 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
+    "@sanity/client": "^7.21.0",
     "@types/bcryptjs": "^3.0.0",
     "@types/dompurify": "^3.2.0",
+    "dotenv": "^17.4.2",
     "tsx": "^4.19.0"
   }
 }

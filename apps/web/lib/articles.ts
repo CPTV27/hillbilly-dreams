@@ -1241,12 +1241,17 @@ Editorial note: replace this test entry when the Story Engine Day 1 ship lands.`
   },
 ];
 
-// Helper: get article by slug
-export function getArticleBySlug(slug: string): Article | undefined {
+// Helper: get article by slug (sync, static fallback only)
+export function getArticleBySlugSync(slug: string): Article | undefined {
   return CITY_GUIDE_ARTICLES.find((a) => a.slug === slug);
 }
 
-// Helper: get articles by city
+/** @deprecated Use async getArticleBySlug — kept for any callers not yet migrated */
+export function getArticleBySlug(slug: string): Article | undefined {
+  return getArticleBySlugSync(slug);
+}
+
+// Helper: get articles by city (static)
 export function getArticlesByCity(city: string): Article[] {
   return CITY_GUIDE_ARTICLES.filter((a) => a.city === city);
 }
@@ -1265,4 +1270,161 @@ export function getArticlesByRegion(region: 'region' | 'louisiana' | 'arkansas-m
     ? LOUISIANA_CITIES
     : ARKANSAS_MISSOURI_CITIES;
   return CITY_GUIDE_ARTICLES.filter((a) => cityList.includes(a.city as string));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Sanity CMS integration
+// ─────────────────────────────────────────────────────────────────────────────
+
+import { sanityClient } from '@/sanity/lib/client';
+
+// Rename static array for clarity — keep it as the fallback
+export const CITY_GUIDE_ARTICLES_FALLBACK = CITY_GUIDE_ARTICLES;
+
+/** Convert a Sanity string _id to a stable integer for Article.id compatibility */
+function sanityIdToNumber(id: string): number {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) {
+    hash = (hash * 31 + id.charCodeAt(i)) | 0;
+  }
+  return Math.abs(hash);
+}
+
+/** Portable Text block types from Sanity */
+interface PTSpan {
+  _type: 'span';
+  text: string;
+  marks?: string[];
+}
+interface PTBlock {
+  _type: 'block';
+  style?: string;
+  children?: PTSpan[];
+}
+type PTNode = PTBlock | { _type: string };
+
+/**
+ * Converts Sanity Portable Text blocks to a markdown string.
+ * Compatible with the existing renderBody() markdown parser in the article detail page.
+ */
+function portableTextToMarkdown(blocks: PTNode[]): string {
+  if (!Array.isArray(blocks)) return '';
+
+  return blocks
+    .map((block) => {
+      if (block._type !== 'block') return '';
+      const b = block as PTBlock;
+      const text = (b.children ?? [])
+        .map((span) => {
+          let t = span.text ?? '';
+          if (span.marks?.includes('strong')) t = `**${t}**`;
+          if (span.marks?.includes('em')) t = `*${t}*`;
+          return t;
+        })
+        .join('');
+      if (b.style === 'h2') return `## ${text}`;
+      if (b.style === 'h3') return `### ${text}`;
+      if (b.style === 'blockquote') return `> ${text}`;
+      return text;
+    })
+    .filter(Boolean)
+    .join('\n\n');
+}
+
+const ARTICLE_FIELDS = `
+  _id,
+  title,
+  "slug": slug.current,
+  author,
+  category,
+  city,
+  publishedAt,
+  "heroImage": coalesce(heroImage.asset->url, heroImageUrl),
+  excerpt,
+  readTime,
+  body
+`;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapSanityToArticle(doc: any): Article {
+  return {
+    id: sanityIdToNumber(doc._id as string),
+    title: doc.title ?? '',
+    slug: doc.slug ?? '',
+    author: doc.author ?? 'Big Muddy Magazine',
+    category: doc.category ?? 'feature',
+    city: doc.city ?? null,
+    status: 'published',
+    excerpt: doc.excerpt ?? null,
+    heroImage: doc.heroImage ?? null,
+    readTime: doc.readTime ?? null,
+    publishedAt: doc.publishedAt ?? null,
+    createdAt: doc.publishedAt ?? new Date().toISOString(),
+    updatedAt: doc.publishedAt ?? new Date().toISOString(),
+    body: Array.isArray(doc.body) ? portableTextToMarkdown(doc.body as PTNode[]) : (doc.body ?? null),
+  };
+}
+
+/**
+ * Fetch all published articles from Sanity.
+ * Falls back to static array if Sanity returns nothing or errors.
+ */
+export async function getArticles(category?: string, city?: string): Promise<Article[]> {
+  try {
+    let filter = '_type == "article"';
+    if (category) filter += ` && category == "${category}"`;
+    if (city) filter += ` && city == "${city}"`;
+
+    const query = `*[${filter}] | order(publishedAt desc) { ${ARTICLE_FIELDS} }`;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const docs: any[] = await sanityClient.fetch(query);
+
+    if (Array.isArray(docs) && docs.length > 0) {
+      return docs.map(mapSanityToArticle);
+    }
+  } catch (err) {
+    console.warn('[articles] Sanity fetch failed, using static fallback:', err);
+  }
+  // Fallback
+  let fallback = CITY_GUIDE_ARTICLES_FALLBACK;
+  if (category) fallback = fallback.filter((a) => a.category === category);
+  if (city) fallback = fallback.filter((a) => a.city === city);
+  return fallback;
+}
+
+/**
+ * Fetch a single article by slug from Sanity.
+ * Falls back to static data if not found.
+ */
+export async function getArticleBySlugAsync(slug: string): Promise<Article | null> {
+  try {
+    const query = `*[_type == "article" && slug.current == $slug][0] { ${ARTICLE_FIELDS} }`;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const doc: any = await sanityClient.fetch(query, { slug });
+
+    if (doc && doc._id) {
+      return mapSanityToArticle(doc);
+    }
+  } catch (err) {
+    console.warn('[articles] Sanity slug fetch failed, using static fallback:', err);
+  }
+  return getArticleBySlugSync(slug) ?? null;
+}
+
+/**
+ * Return all article slugs for generateStaticParams.
+ * Merges Sanity slugs with static fallback slugs.
+ */
+export async function getArticleSlugs(): Promise<string[]> {
+  try {
+    const query = `*[_type == "article"] { "slug": slug.current }`;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const docs: any[] = await sanityClient.fetch(query);
+    if (Array.isArray(docs) && docs.length > 0) {
+      return docs.map((d) => d.slug as string).filter(Boolean);
+    }
+  } catch {
+    // fall through
+  }
+  return CITY_GUIDE_ARTICLES_FALLBACK.map((a) => a.slug);
 }

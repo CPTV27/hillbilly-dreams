@@ -5,8 +5,10 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import type { Article } from '@bigmuddy/config';
 import { ArticleCard, NewsletterSignup, IllustrationDivider, BLUR_DATA_URL } from '@bigmuddy/ui';
-import { CITY_GUIDE_ARTICLES, DEEP_SOUTH_GUIDE_CITIES, LOUISIANA_CITIES, ARKANSAS_MISSOURI_CITIES } from '@/lib/articles';
+import { CITY_GUIDE_ARTICLES, DEEP_SOUTH_GUIDE_CITIES, LOUISIANA_CITIES, ARKANSAS_MISSOURI_CITIES, getArticles as fetchArticlesFromSanity } from '@/lib/articles';
 import { fetchPhotoIndex } from '@/lib/photo-index';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Big Muddy Magazine — Real stories. Real photography. The Deep South.',
@@ -37,20 +39,8 @@ const REGION_GROUPS = [
   },
 ];
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
-
 async function getArticles(): Promise<typeof CITY_GUIDE_ARTICLES> {
-  try {
-    const res = await fetch(`${baseUrl}/api/articles?status=published`, {
-      next: { revalidate: 300 },
-    });
-    if (!res.ok) return CITY_GUIDE_ARTICLES;
-    const data = await res.json();
-    const all = Array.isArray(data) ? data : data.data ?? [];
-    return all.length > 0 ? all : CITY_GUIDE_ARTICLES;
-  } catch {
-    return CITY_GUIDE_ARTICLES;
-  }
+  return fetchArticlesFromSanity();
 }
 
 function hydrateArticleHeroes(

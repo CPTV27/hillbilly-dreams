@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { BLUR_DATA_URL } from '@bigmuddy/ui';
-import { CITY_GUIDE_ARTICLES, getArticleBySlug } from '@/lib/articles';
+import { CITY_GUIDE_ARTICLES_FALLBACK, getArticleBySlugAsync, getArticleSlugs, getArticles as fetchArticlesFromSanity } from '@/lib/articles';
 import { JsonLd, getArticleSchema } from '@/lib/structured-data';
 import type { Article } from '@bigmuddy/config';
 
@@ -29,7 +29,14 @@ export async function generateStaticParams() {
   } catch {
     // fall through to static
   }
-  return CITY_GUIDE_ARTICLES.map((article) => ({
+  // Fallback: try Sanity directly via lib helper, then static array
+  try {
+    const slugs = await getArticleSlugs();
+    if (slugs.length) return slugs.map((slug: string) => ({ id: slug }));
+  } catch {
+    // fall through to static
+  }
+  return CITY_GUIDE_ARTICLES_FALLBACK.map((article: Article) => ({
     id: article.slug,
   }));
 }
@@ -46,7 +53,14 @@ async function getArticle(slug: string) {
   } catch {
     // fall through to static
   }
-  return getArticleBySlug(slug) ?? null;
+  // Fallback: try Sanity helper directly
+  try {
+    const fromSanity = await getArticleBySlugAsync(slug);
+    if (fromSanity) return fromSanity;
+  } catch {
+    // fall through to static
+  }
+  return CITY_GUIDE_ARTICLES_FALLBACK.find((a: Article) => a.slug === slug) ?? null;
 }
 
 async function getDirectoryListings(city?: string | null) {
@@ -76,7 +90,7 @@ async function getAllArticles(): Promise<Article[]> {
   } catch {
     // fall through to static
   }
-  return CITY_GUIDE_ARTICLES;
+  return CITY_GUIDE_ARTICLES_FALLBACK;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
