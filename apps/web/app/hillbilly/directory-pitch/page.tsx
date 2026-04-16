@@ -219,7 +219,7 @@ export default function DeepSouthPitch() {
             <a href="/measurably-better" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', backgroundColor: colors.sky600, color: colors.white, fontWeight: 700, borderRadius: 12, textDecoration: 'none', fontSize: 16, boxShadow: '0 10px 15px -3px rgba(2, 132, 199, 0.4)' }}>
               Measurably Better Things <ArrowRight size={18} />
             </a>
-            <a href="mailto:chase@hillbillydreamsinc.com?subject=Deep%20South%20Directory%20—%20Claim%20My%20Node" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', backgroundColor: 'transparent', color: colors.white, fontWeight: 600, borderRadius: 12, textDecoration: 'none', fontSize: 16, border: `1px solid ${colors.slate600}` }}>
+            <a href="mailto:hello@deepsouthdirectory.com?subject=Deep%20South%20Directory%20—%20Claim%20My%20Node" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', backgroundColor: 'transparent', color: colors.white, fontWeight: 600, borderRadius: 12, textDecoration: 'none', fontSize: 16, border: `1px solid ${colors.slate600}` }}>
               Contact Us
             </a>
           </div>

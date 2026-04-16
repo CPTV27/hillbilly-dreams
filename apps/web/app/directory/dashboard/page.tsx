@@ -267,7 +267,7 @@ function DashboardContent() {
             textTransform: 'uppercase',
           }}
         >
-          Deep South Directory · hillbillydreamsinc.com
+          Deep South Directory · deepsouthdirectory.com
         </p>
       </section>
 
@@ -606,7 +606,7 @@ function DashboardContent() {
               </p>
             </div>
             <a
-              href="mailto:listings@hillbillydreamsinc.com"
+              href="mailto:hello@deepsouthdirectory.com"
               style={{
                 fontSize: '0.78rem',
                 color: 'var(--accent, #c8943e)',
@@ -628,7 +628,7 @@ function DashboardContent() {
               opacity: 0.35,
             }}
           >
-            To update your listing details, email listings@hillbillydreamsinc.com
+            To update your listing details, email hello@deepsouthdirectory.com
           </p>
         </div>
       </section>
@@ -710,7 +710,7 @@ function DashboardContent() {
               technology arm.
             </p>
             <a
-              href="mailto:licensing@hillbillydreamsinc.com"
+              href="mailto:hello@deepsouthdirectory.com"
               style={{
                 display: 'inline-block',
                 padding: '0.6rem 1.5rem',

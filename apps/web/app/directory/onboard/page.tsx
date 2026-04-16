@@ -123,10 +123,10 @@ const INITIAL_STATE: FormState = {
 };
 
 const TIER_LABELS: Record<string, string> = {
-  free: 'Free',
-  core: 'Core (pricing TBD)',
-  growth: 'Growth (pricing TBD)',
-  partner: 'Partner (pricing TBD)',
+  free: 'Free Listing',
+  core: 'Essentials ($25/mo)',
+  growth: 'Pro ($50/mo)',
+  partner: 'Marketing ($99/mo)',
 };
 
 const LEGACY_TIER_MAP: Record<string, TierIntent> = {
@@ -529,7 +529,7 @@ export default function OnboardPage() {
             type="submit"
             className="onboard-submit"
             disabled={isLoading}
-            aria-busy={isLoading}
+            aria-busy={isLoading ? 'true' : undefined}
           >
             {isLoading ? (
               <>

@@ -93,7 +93,7 @@ export default function GalleryGrid({ prints, categories }: Props) {
             <a
               key={print.id}
               className="gallery-print-card"
-              href={`mailto:chase@hillbillydreamsinc.com?subject=Inquiry: ${encodeURIComponent(print.title)}&body=${encodeURIComponent(`I'm interested in "${print.title}" — please send me availability and sizing options.`)}`}
+              href={`mailto:studio@studiocvideo.com?subject=Inquiry: ${encodeURIComponent(print.title)}&body=${encodeURIComponent(`I'm interested in "${print.title}" — please send me availability and sizing options.`)}`}
             >
               <div
                 style={{

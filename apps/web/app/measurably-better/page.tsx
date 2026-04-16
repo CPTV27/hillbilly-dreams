@@ -61,7 +61,7 @@ export default function MeasurablyBetterHomePage() {
               margin: '0 0 1rem',
             }}
           >
-            Delta Dawn
+            Measurably Better
           </p>
           <h1
             style={{
@@ -84,8 +84,9 @@ export default function MeasurablyBetterHomePage() {
               margin: '0 0 1.75rem',
             }}
           >
-            Ask where to eat, what&apos;s playing, and what&apos;s worth the drive. Plain answers,
-            neighborly tone — the kind of help you&apos;d get at a front porch, not a call center.
+            Meet Delta Dawn — your personal guide to the Deep South. Ask where to eat, what&apos;s
+            playing, and what&apos;s worth the drive. Plain answers, neighborly tone — the kind of
+            help you&apos;d get at a front porch, not a call center.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
             <Link

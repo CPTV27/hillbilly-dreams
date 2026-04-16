@@ -76,7 +76,7 @@ function ConfirmedContent() {
             event tie-ins, and a real audience of travelers and locals already coming to the region.
           </p>
           <a
-            href={`mailto:listings@hillbillydreamsinc.com?subject=Upgrade inquiry from ${encodeURIComponent(businessName)}`}
+            href={`mailto:hello@deepsouthdirectory.com?subject=Upgrade inquiry from ${encodeURIComponent(businessName)}`}
             style={{ color: 'var(--accent, #c8943e)', fontSize: 14, textDecoration: 'none' }}
           >
             Ask about the full ecosystem →

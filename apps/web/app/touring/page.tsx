@@ -344,7 +344,7 @@ export default async function TouringPage() {
           textTransform: 'uppercase',
           margin: 0,
         }}>
-          Big Muddy Touring &middot; Natchez, Mississippi &middot; A Hillbilly Dreams Production
+          Big Muddy Touring &middot; Natchez, Mississippi
         </p>
       </footer>
 

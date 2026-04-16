@@ -1277,7 +1277,7 @@ export default function DirectoryPage() {
               color: 'rgba(255,255,255,0.35)',
             }}
           >
-            listings@hillbillydreamsinc.com
+            hello@deepsouthdirectory.com
           </p>
           <p
             style={{

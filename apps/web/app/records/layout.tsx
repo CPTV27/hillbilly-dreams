@@ -119,7 +119,7 @@ export default function RecordsLayout({
           <a href="https://venturegallery.art" style={{ color: 'var(--accent, #c8943e)' }}>Venture Gallery</a>
         </p>
         <p style={{ marginTop: '0.5rem', fontSize: '0.7rem' }}>
-          <a href="https://hillbillydreamsinc.com" style={{ color: 'var(--accent, #c8943e)' }}>
+          <a href="https://bigmuddytouring.com/hillbilly" style={{ color: 'var(--accent, #c8943e)' }}>
             Hillbilly Dreams Inc
           </a>
         </p>

@@ -50,7 +50,7 @@ const PROPERTIES = [
   {
     section: 'Corporate',
     items: [
-      { name: 'Hillbilly Dreams Inc', url: 'https://hillbillydreamsinc.com', desc: 'Holding company', status: 'live' },
+      { name: 'Hillbilly Dreams Inc', url: 'https://bigmuddytouring.com/hillbilly', desc: 'Holding company', status: 'live' },
     ],
   },
 ];

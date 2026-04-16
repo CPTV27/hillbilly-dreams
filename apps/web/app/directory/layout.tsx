@@ -85,10 +85,7 @@ export default function DirectoryLayout({
           color: 'var(--text-muted)',
           margin: '0 0 0.4rem',
         }}>
-          We build local. The value stays local. &middot;{' '}
-          <a href="https://hillbillydreamsinc.com" style={{ color: 'var(--accent)', textDecoration: 'none' }}>
-            Hillbilly Dreams Inc
-          </a>
+          We build local. The value stays local.
         </p>
         <p style={{
           fontFamily: 'var(--font-body)',
@@ -97,7 +94,7 @@ export default function DirectoryLayout({
           margin: 0,
           opacity: 0.7,
         }}>
-          listings@hillbillydreamsinc.com
+          hello@deepsouthdirectory.com
         </p>
       </footer>
     </div>

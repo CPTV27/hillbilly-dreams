@@ -44,7 +44,7 @@ export function SovereignPiConfigureClient() {
       subject: 'Sovereign Pi — cart',
       body: summary,
     });
-    return `mailto:listings@hillbillydreamsinc.com?${q.toString()}`;
+    return `mailto:hello@deepsouthdirectory.com?${q.toString()}`;
   }, [summary]);
 
   return (

@@ -76,7 +76,7 @@ export default function DisplayModulePage() {
             tools the team uses inside HQ — one stack, not five apps.
           </p>
           <a
-            href="mailto:listings@hillbillydreamsinc.com?subject=Signage%20Network"
+            href="mailto:hello@deepsouthdirectory.com?subject=Signage%20Network"
             style={{ display: 'inline-block', padding: '0.75rem 1.5rem', background: 'var(--accent, #c8943e)', color: '#0a0a0a', textDecoration: 'none', fontWeight: 600, fontSize: '0.88rem' }}
           >
             Email for Signage Network

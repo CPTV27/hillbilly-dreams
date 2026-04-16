@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { label: 'Photography', href: '/gallery' },
   { label: 'Prints', href: '/gallery#prints' },
   { label: 'Guest Artists', href: '/gallery#tracy-alderson-gallery' },
-  { label: 'Inquire', href: 'mailto:chase@hillbillydreamsinc.com?subject=Gallery Inquiry', cta: true },
+  { label: 'Inquire', href: 'mailto:studio@studiocvideo.com?subject=Gallery Inquiry', cta: true },
 ];
 
 export default function GalleryNav() {

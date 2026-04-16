@@ -271,7 +271,7 @@ export default function BrittanyGalleryPage() {
           </div>
           <div style={{ textAlign: 'center' }}>
             <a
-              href={`mailto:chase@hillbillydreamsinc.com?subject=Print Order — Brittany Session&body=Hi Chase,%0A%0AI'd like to order prints of the following photos:%0A%0A${favList.map((p) => p.id).join('%0A')}%0A%0APlease send me sizing and pricing options.%0A%0AThank you!`}
+              href={`mailto:studio@studiocvideo.com?subject=Print Order — Brittany Session&body=Hi there,%0A%0AI'd like to order prints of the following photos:%0A%0A${favList.map((p) => p.id).join('%0A')}%0A%0APlease send me sizing and pricing options.%0A%0AThank you!`}
               style={{
                 display: 'inline-block',
                 fontFamily: 'var(--font-body)',
@@ -331,7 +331,7 @@ export default function BrittanyGalleryPage() {
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <a
-            href="mailto:chase@hillbillydreamsinc.com?subject=Download Request — Brittany Session&body=Hi Chase,%0A%0APlease send me the full-resolution downloads of my gallery. Thank you!"
+            href="mailto:studio@studiocvideo.com?subject=Download Request — Brittany Session&body=Hi there,%0A%0APlease send me the full-resolution downloads of my gallery. Thank you!"
             style={{
               display: 'inline-block',
               fontFamily: 'var(--font-body)',
@@ -347,7 +347,7 @@ export default function BrittanyGalleryPage() {
             Request Downloads
           </a>
           <a
-            href="mailto:chase@hillbillydreamsinc.com?subject=Tip — Brittany Session&body=Hi Chase,%0A%0AHere's a tip for the beautiful photos! [Stripe link coming soon]"
+            href="mailto:studio@studiocvideo.com?subject=Tip — Brittany Session&body=Hi there,%0A%0AHere's a tip for the beautiful photos! [Stripe link coming soon]"
             style={{
               display: 'inline-block',
               fontFamily: 'var(--font-body)',
@@ -551,7 +551,7 @@ export default function BrittanyGalleryPage() {
         </p>
 
         <a
-          href="mailto:chase@hillbillydreamsinc.com?subject=Photo Order — Brittany Session&body=Hi Chase,%0A%0AI'd like to place an order from my gallery. Here are the photos and sizes I'd like:%0A%0A"
+          href="mailto:studio@studiocvideo.com?subject=Photo Order — Brittany Session&body=Hi there,%0A%0AI'd like to place an order from my gallery. Here are the photos and sizes I'd like:%0A%0A"
           style={{
             display: 'inline-block',
             fontFamily: 'var(--font-body)',

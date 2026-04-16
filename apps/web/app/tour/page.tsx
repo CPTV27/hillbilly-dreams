@@ -56,7 +56,7 @@ const CONFIG = {
     hero: 'Welcome to Hillbilly Dreams',
     subtitle: 'A guided tour of everything we built — click each link, look around, come back for the next one.',
     links: [
-      { label: '1. HDI Portfolio', desc: 'The holding company — all our brands on one page', url: 'https://hillbillydreamsinc.com' },
+      { label: '1. HDI Portfolio', desc: 'The holding company — all our brands on one page', url: 'https://bigmuddytouring.com/hillbilly' },
       { label: '2. Deep South Directory', desc: 'What we sell to businesses — 5 tiers, walk-in sales', url: 'https://deepsouthdirectory.com' },
       { label: '3. Big Muddy Touring', desc: 'The flagship — shows, the Inn, the route', url: 'https://bigmuddytouring.com' },
       { label: '4. Big Muddy Magazine', desc: 'Editorial that features DSD businesses and artists', url: 'https://bigmuddymagazine.com' },

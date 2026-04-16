@@ -515,10 +515,10 @@ export default function Scan2PlanDeck() {
               "Tell us what makes sense. We'll get you set up."
             </p>
             <div style={{ fontSize: 24, fontWeight: 600 }}>Chase Pierson</div>
-            <a href="mailto:chase@hillbillydreamsinc.com" style={{ 
+            <a href="mailto:studio@studiocvideo.com" style={{ 
               color: COLORS.blue, textDecoration: 'none', fontSize: 18, marginTop: 8, display: 'block' 
             }}>
-              chase@hillbillydreamsinc.com
+              studio@studiocvideo.com
             </a>
           </div>
         </Section>

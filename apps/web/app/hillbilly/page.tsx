@@ -1,5 +1,5 @@
 // apps/web/app/hillbilly/page.tsx
-// Hillbilly Dreams Inc. — corporate home (hillbillydreamsinc.com)
+// Hillbilly Dreams Inc. — corporate home
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
