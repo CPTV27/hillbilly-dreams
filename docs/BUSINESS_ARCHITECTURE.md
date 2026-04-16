@@ -1,6 +1,6 @@
 # Hillbilly Dreams Inc — Business Architecture
 
-*Canonical reference. Every agent reads this. Every page aligns to this. Updated 2026-04-08.*
+*Canonical reference. Every agent reads this. Every page aligns to this. Updated 2026-04-16.*
 
 ---
 
@@ -41,8 +41,8 @@ MBT is the product. It is a licensed civic-commerce operating system sold to ins
 
 **Role:** Parent company. Contracts, billing, partnerships, IP ownership.
 **Website:** hillbillydreamsinc.com — owner's command center for Chase, Tracy, and Amy. Not a public marketing site.
-**Legal entity:** FarleyPierson LLC (EIN 81-4280721). HDI not yet formally incorporated.
-**Equity:** Chase Pierson, Tracy Alderson-Allen, Amy Alderson-Allen — equal thirds.
+**Legal entity:** Registered LLC. HDI not yet formally incorporated.
+**Equity:** Chase Pierson (CEO/CTO/Showrunner), Tracy Alderson-Allen (equity partner — finance, Inn, magazine), Amy Alderson-Allen (equity partner — Inn, bar, shows, radio/podcast).
 
 ---
 
@@ -70,7 +70,7 @@ This is a program sale, not a tool subscription. Fewer customers, higher trust, 
 |---|---|
 | **Directory** | AI-powered business listings, review monitoring, competitor watch, report cards |
 | **Magazine** | Editorial content pipeline — articles, city guides, photo essays, AI-assisted drafts |
-| **Radio** | Streaming infrastructure — shows, playlists, live sessions, broadcasting |
+| **Radio** | Podcast + curated playlists (Phase 1). 24/7 streaming infrastructure built, activates with first sponsor (Phase 2). |
 | **Records** | Artist services — catalog, sessions, distribution. Artists keep masters. Non-exclusive. |
 | **Touring / Events** | Booking, ticketing, event management, show-to-content pipeline |
 | **Commerce** | Storefront, payments, subscriptions, Stripe Connect for multi-party splits |
@@ -97,9 +97,11 @@ For businesses not part of an institutional program, DSD self-serve tiers remain
 
 | Tier | Price | What You Get |
 |---|---|---|
-| Free | $0 | Basic directory listing |
-| Marketing | $99/mo | AI listing, reviews, social posting, Magazine feature |
-| Engine | $250/mo | Full stack — dedicated account, custom integrations |
+| Free | $0/mo | Basic directory listing |
+| Starter | $25/mo | Enhanced listing, review monitoring, report card |
+| Growth | $50/mo | AI listing, social posting, competitor watch |
+| Marketing | $99/mo | Full AI stack — reviews, Magazine feature, campaigns |
+| Engine | $250/mo | Dedicated account, custom integrations, priority support |
 
 This is the fallback for walk-in businesses. The primary sales motion is institutional.
 
@@ -200,7 +202,7 @@ Natchez is the live case study that proves MBT works before licensing to other m
 ```
 Shows → Recordings → Records releases
   ↓                        ↓
-Magazine features    Radio rotation
+Magazine features    Podcast episodes + playlist rotation
   ↓                        ↓
 Social media posts   Audience growth
   ↓                        ↓
@@ -237,7 +239,7 @@ HDI is becoming the data supply for the corridors it covers. That's the long-ter
 | deepsouthdirectory.com | DSD | Local businesses, tourists | Public participation/commerce layer |
 | bigmuddytouring.com | Big Muddy | Music fans, bands, venues | The touring circuit |
 | bigmuddymagazine.com | Big Muddy | Readers, tourists | Editorial content |
-| bigmuddyradio.com | Big Muddy | Listeners | Streaming radio |
+| bigmuddyradio.com | Big Muddy | Listeners | Podcast + playlists (radio infrastructure built, activates with first sponsor) |
 | bigmuddyentertainment.com | Big Muddy | Industry, talent | Entertainment umbrella |
 | bigmuddyrecordlabel.com | Big Muddy | Artists, music buyers | Record label + store |
 | bearsvillemediagroup.com | Bearsville | Hudson Valley audience | Northeast media imprint |
@@ -259,6 +261,77 @@ Running the system on ourselves before licensing to an external institution:
 | The Big Muddy Inn | The hotel/venue | Full stack — listing, reviews, events, radio |
 
 **Next step:** First institutional pilot. Natchez (city, tourism bureau, or Main Street org) as the first external buyer of the MBT program. Use Big Muddy as the proof case, onboard 20-50 local businesses under the program umbrella.
+
+---
+
+## Revenue Streams
+
+| Stream | Owner | Current | Y1 Target |
+|--------|-------|---------|-----------|
+| Inn (6 rooms) | Amy + Tracy | $3,000/mo | $7,500/mo |
+| Bar | Amy | $2,000/mo | $4,000/mo |
+| Shows / Events | Chase + Amy | $1,500/mo | $4,000/mo |
+| Weddings | Tracy | $0 | $5,000/mo |
+| DSD Subscriptions | Chase | $500/mo | $10,000/mo |
+| Podcast | Chase + Amy | $0 | $2,000/mo |
+| Bundle Packages | Chase | $0 | $5,000/mo |
+| Artist Packages | Chase (via Studio C) | $0 | $3,000/mo |
+| Membership (Club) | Chase | $0 | $1,000/mo |
+
+Podcast revenue model: sponsorship reads ($200-500/episode) + YouTube ad revenue + premium episodes behind membership wall.
+
+---
+
+## Scorecard — Podcast (Phase 1)
+
+| Metric | Target |
+|--------|--------|
+| Primary KPI | Downloads per episode |
+| Secondary | YouTube views |
+| Weekly target | 1 episode published |
+| Monthly target | 500 downloads, 1,000 YouTube views |
+| Owner | Chase (production) + Amy (hosting/talent) |
+
+Phase 2 (24/7 streaming) scorecard activates with first sponsor. KPIs shift to concurrent listeners, play count, SoundExchange compliance.
+
+---
+
+## Operator Map
+
+| Person | Role | Scope |
+|--------|------|-------|
+| Chase Pierson | CEO/CTO/Showrunner | Tech, media, DSD sales (daytime), artist development, production |
+| Tracy Alderson-Allen | Equity Partner | Finance, Inn operations, magazine editorial, wedding coordination |
+| Amy Alderson-Allen | Equity Partner | Inn/bar operations, show hosting, podcast talent, event management |
+| Entertainment Director | OPEN | Revenue partner structure. Books shows, manages talent pipeline. (JP Houston departed April 15) |
+
+---
+
+## Corridor Research Sprint
+
+Weekly cadence across 7 corridor cities: Natchez, Monroe, Jackson, Baton Rouge, St. Francisville, Alexandria, El Dorado.
+
+**Cycle:** Research (venue/business discovery) → Chase review → outreach to venue contacts → booking pipeline.
+
+Corridor partners provide local relationships and institutional credibility. They are collaborators, not employees or equity holders. Not listed on org charts or public pages. Referenced as "corridor partner" in internal docs only.
+
+---
+
+## Radio Strategy — Phased Rollout
+
+**Phase 1 (now):** Big Muddy Radio = podcast + curated playlists
+- Weekly podcast episodes (interviews, live sessions, Blues Room recordings)
+- Curated playlists on Spotify/Apple Music/YouTube
+- YouTube channel for video sessions and audiograms
+- Zero SoundExchange overhead
+
+**Phase 2 (triggered by sponsor or audience):** Flip to 24/7 streaming
+- AzuraCast already configured and SSL live
+- 116 tracks ready in MelodyVault
+- RadioPlayLog schema designed
+- Mac mini stack stays running (OpenBroadcaster :8080, Icecast :8010) for content production and testing
+
+Language rule: Use "podcast + playlists" for Phase 1 public-facing. Use "radio infrastructure built, activates with first sponsor" for internal docs. Never say "radio is dead" or "we pivoted away from radio."
 
 ---
 
