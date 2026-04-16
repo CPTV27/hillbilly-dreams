@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tracy — Your Big Muddy Update</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #1A1613;
+    --mud: #3B2F2F;
+    --terra: #B85042;
+    --gold: #C8943E;
+    --sand: #E7E8D1;
+    --cream: #F5F0EB;
+    --sage: #A7BEAE;
+    --green: #27AE60;
+    --yellow: #F39C12;
+    --red: #C0392B;
+    --mid: #7A7067;
+    --blue: #4A90D9;
+    --radius: 6px;
+    --shadow-sm: 0 1px 3px rgba(26,22,19,0.06), 0 1px 2px rgba(26,22,19,0.04);
+    --shadow-md: 0 4px 16px rgba(26,22,19,0.08), 0 1px 3px rgba(26,22,19,0.06);
+    --shadow-lg: 0 12px 40px rgba(26,22,19,0.10), 0 4px 12px rgba(26,22,19,0.05);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Playfair Display', Georgia, serif; background: var(--cream); color: var(--dark); line-height: 1.6; }
+
+  /* Scroll bar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: rgba(200,148,62,0.3); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(200,148,62,0.5); }
+
+  /* Header */
+  .page-header {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 3.5rem 1.5rem 3rem;
+    text-align: center;
+    position: relative;
+  }
+  .page-header::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 3px;
+    background: var(--gold);
+    margin: 1.5rem auto 0;
+  }
+  .header-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 0.8rem;
+  }
+  .page-header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .page-header h1 span { color: var(--gold); }
+  .header-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--mid);
+    margin-top: 0.6rem;
+  }
+  .header-note {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: rgba(245,240,235,0.75);
+    margin-top: 1rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  /* Sections */
+  .section {
+    padding: 3rem 1.5rem;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .section-alt {
+    background: white;
+  }
+  .section-alt .section {
+    background: white;
+  }
+  .section-dark {
+    background: var(--dark);
+  }
+  .section-dark .section {
+    background: var(--dark);
+  }
+
+  /* Typography */
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 1.2rem;
+    border-left: 3px solid var(--terra);
+    padding-left: 0.9rem;
+    letter-spacing: -0.01em;
+  }
+  h2.on-dark {
+    color: var(--cream);
+    border-left-color: var(--gold);
+  }
+  h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05rem;
+    color: var(--gold);
+    margin-bottom: 0.35rem;
+    font-weight: 700;
+  }
+  .section-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--mid);
+    margin-bottom: 1.5rem;
+    line-height: 1.65;
+  }
+
+  /* Cards */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 1.2rem 0;
+  }
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 1.3rem 1.4rem;
+    box-shadow: var(--shadow-sm);
+    border-left: 3px solid var(--gold);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .card.terra { border-left-color: var(--terra); }
+  .card.sage { border-left-color: var(--sage); }
+  .card p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    color: var(--mid);
+    line-height: 1.65;
+    font-weight: 400;
+    margin-top: 0.2rem;
+  }
+
+  /* Update list */
+  .update-list {
+    list-style: none;
+    margin: 1rem 0;
+  }
+  .update-list li {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--dark);
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(200,148,62,0.12);
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .update-list li:last-child { border-bottom: none; }
+  .update-list li::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0.45rem;
+  }
+
+  /* Task list */
+  .task-list {
+    list-style: none;
+    margin: 1rem 0;
+  }
+  .task-item {
+    background: white;
+    border-radius: var(--radius);
+    padding: 1rem 1.2rem;
+    margin-bottom: 0.7rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    border-left: 3px solid var(--mid);
+    transition: box-shadow 0.2s ease;
+  }
+  .task-item:hover { box-shadow: var(--shadow-md); }
+  .task-item.urgent { border-left-color: var(--red); }
+  .task-item.high { border-left-color: var(--yellow); }
+  .task-item.normal { border-left-color: var(--sage); }
+  .task-item.editorial { border-left-color: var(--gold); }
+  .task-meta { flex: 1; min-width: 0; }
+  .task-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.4;
+  }
+  .task-note {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: var(--mid);
+    margin-top: 0.2rem;
+    line-height: 1.5;
+  }
+  .task-due {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 0.05rem;
+  }
+  .due-overdue { background: var(--red); color: white; }
+  .due-soon { background: var(--yellow); color: white; }
+  .due-normal { background: var(--sage); color: var(--dark); }
+  .due-editorial { background: var(--gold); color: white; }
+
+  /* Revenue table */
+  .rev-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1.2rem 0;
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .rev-table th {
+    background: var(--dark);
+    color: var(--gold);
+    padding: 0.85rem 1.1rem;
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  .rev-table td {
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid rgba(200,148,62,0.1);
+    font-size: 0.88rem;
+    font-weight: 400;
+    background: white;
+    color: var(--dark);
+  }
+  .rev-table tr:last-child td {
+    border-bottom: none;
+    font-weight: 700;
+    background: rgba(200,148,62,0.04);
+  }
+  .rev-table tr:hover td { background: rgba(200,148,62,0.05); }
+  .rev-table .num { color: var(--gold); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .rev-table .num.total { color: var(--terra); font-size: 0.95rem; }
+
+  /* Break-even line */
+  .breakeven-bar {
+    background: var(--terra);
+    color: white;
+    text-align: center;
+    padding: 1rem 1.2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    border-radius: var(--radius);
+    margin: 1rem 0;
+    line-height: 1.5;
+    box-shadow: var(--shadow-sm);
+  }
+  .breakeven-bar strong { font-weight: 700; }
+
+  /* Vignette block */
+  .vignette {
+    background: var(--mud);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    margin: 1.2rem 0;
+    box-shadow: var(--shadow-md);
+    position: relative;
+  }
+  .vignette::before {
+    content: '\201C';
+    position: absolute;
+    top: 0.8rem;
+    left: 1.2rem;
+    font-size: 3rem;
+    color: var(--gold);
+    opacity: 0.3;
+    font-family: 'Playfair Display', Georgia, serif;
+    line-height: 1;
+  }
+  .vignette p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--cream);
+    line-height: 1.75;
+    padding-left: 1rem;
+  }
+  .vignette-coda {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    color: var(--gold);
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(200,148,62,0.2);
+    font-weight: 500;
+    font-style: normal !important;
+    padding-left: 1rem;
+  }
+
+  /* Links section */
+  .link-list {
+    list-style: none;
+    margin: 1rem 0;
+  }
+  .link-list li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(200,148,62,0.12);
+  }
+  .link-list li:last-child { border-bottom: none; }
+  .link-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--mid);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .link-list a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    color: var(--gold);
+    text-decoration: none;
+    word-break: break-all;
+    font-weight: 400;
+    transition: color 0.2s ease;
+  }
+  .link-list a:hover { color: var(--terra); }
+
+  /* Footer */
+  .page-footer {
+    background: var(--dark);
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+  .footer-inner {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .footer-note {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--cream);
+    line-height: 1.65;
+    margin-bottom: 1.2rem;
+  }
+  .footer-powered {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* Fade-in on scroll */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 600px) {
+    .page-header h1 { font-size: 1.9rem; }
+    .card-grid { grid-template-columns: 1fr; }
+    .section { padding: 2.2rem 1.1rem; }
+    .page-header { padding: 2.5rem 1.1rem 2.2rem; }
+    .rev-table th, .rev-table td { padding: 0.7rem 0.85rem; font-size: 0.82rem; }
+    h2 { font-size: 1.3rem; }
+    .task-item { flex-direction: column; gap: 0.5rem; }
+    .task-due { align-self: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="page-header">
+  <div class="header-eyebrow">From Chase &mdash; April 16, 2026</div>
+  <h1>Tracy &mdash; Your <span>Big Muddy</span> Update</h1>
+  <div class="header-date">Week ending April 16, 2026</div>
+  <p class="header-note">Everything you need to know, nothing you don't. Pour a cup of coffee.</p>
+</header>
+
+<!-- THE BIG PICTURE -->
+<div class="fade-in">
+<div class="section">
+  <h2>The Big Picture</h2>
+  <p class="section-intro">Three things to know going into the week.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3>What we are</h3>
+      <p>A music and media company in Natchez. Shows, radio, magazine, record label, and a directory for local businesses. We own the whole thing &mdash; built it ourselves.</p>
+    </div>
+    <div class="card terra">
+      <h3>Where the money comes from</h3>
+      <p>Inn and bar. Shows and weddings. Directory subscriptions from local businesses. Artist packages for touring acts. Year 1 target: $321,000.</p>
+    </div>
+    <div class="card sage">
+      <h3>Your role</h3>
+      <p>Finance. Inn operations. And as of this week &mdash; Editor-in-Chief of Big Muddy Magazine. You decide what ships. This machine was built for you.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- WHAT CHANGED THIS WEEK -->
+<div class="section-alt">
+<div class="fade-in">
+<div class="section">
+  <h2>What Changed This Week</h2>
+  <p class="section-intro">The highlights since we last talked.</p>
+  <ul class="update-list">
+    <li>Radio SSL fixed &mdash; the stream is live and working at stream.bigmuddytouring.com</li>
+    <li>55 tracks ingested to the music library and playing on-air</li>
+    <li>All website copy updated &mdash; pricing is locked ($25 / $50 / $99 / $250 per month for the directory)</li>
+    <li>New pages launched for our partners Tuthill Design and Studio C Video</li>
+    <li>Walk-in tear-sheet is ready for Chase's business pitches on Main Street</li>
+    <li>Miro strategy board populated with the full business map &mdash; link below</li>
+  </ul>
+</div>
+</div>
+</div>
+
+<!-- YOUR TASKS -->
+<div class="fade-in">
+<div class="section">
+  <h2>Your Tasks</h2>
+  <p class="section-intro">These are live in Asana. The ones at the top need you first.</p>
+  <ul class="task-list">
+
+    <li class="task-item urgent">
+      <div class="task-meta">
+        <div class="task-name">File Tuthill Form 1065 &mdash; $440/mo penalty accruing</div>
+        <div class="task-note">Every month we don't file this costs $440. $220 per partner, two partners. This is real money walking out the door. Only action is: file.</div>
+      </div>
+      <span class="task-due due-overdue">OVERDUE</span>
+    </li>
+
+    <li class="task-item high">
+      <div class="task-meta">
+        <div class="task-name">Pick bookkeeping system &mdash; QuickBooks Online or Xero</div>
+        <div class="task-note">We can't produce a real monthly P&L without a system of record. QBO is the default. Just pick one so we can move.</div>
+      </div>
+      <span class="task-due due-soon">Apr 30</span>
+    </li>
+
+    <li class="task-item high">
+      <div class="task-meta">
+        <div class="task-name">Authorize HDI incorporation</div>
+        <div class="task-note">Right now the company is a DBA, not a real entity. Your equal-thirds ownership isn't legally locked until we incorporate. This is the fix. Delaware C-corp or MS LLC &mdash; Chase will brief you on the two options.</div>
+      </div>
+      <span class="task-due due-soon">May 15</span>
+    </li>
+
+    <li class="task-item editorial">
+      <div class="task-meta">
+        <div class="task-name">Review all 5 magazine articles from the road</div>
+        <div class="task-note">Open bigmuddymagazine.com. Read every article. Is it factually right? Does it sound like us? Would you show it to a guest? Your stamp goes on everything we publish. Nothing ships without it.</div>
+      </div>
+      <span class="task-due due-editorial">Apr 17</span>
+    </li>
+
+    <li class="task-item editorial">
+      <div class="task-meta">
+        <div class="task-name">Pick first 2 magazine articles to make fully real</div>
+        <div class="task-note">One session with Chase &mdash; real photos, real copy, real editorial bar. What you approve sets the standard for everything that follows.</div>
+      </div>
+      <span class="task-due due-editorial">Editor queue</span>
+    </li>
+
+  </ul>
+</div>
+</div>
+
+<!-- REVENUE PICTURE -->
+<div class="section-alt">
+<div class="fade-in">
+<div class="section">
+  <h2>The Revenue Picture</h2>
+  <p class="section-intro">Where we are and where we're going.</p>
+  <table class="rev-table">
+    <thead>
+      <tr>
+        <th>Revenue Stream</th>
+        <th>Right Now</th>
+        <th>Year 1 Target</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Inn (6 rooms)</td>
+        <td class="num">$3,000/mo</td>
+        <td class="num">$7,500/mo</td>
+      </tr>
+      <tr>
+        <td>Bar</td>
+        <td class="num">$2,000/mo</td>
+        <td class="num">$4,000/mo</td>
+      </tr>
+      <tr>
+        <td>Shows</td>
+        <td class="num">$1,500/mo</td>
+        <td class="num">$4,000/mo</td>
+      </tr>
+      <tr>
+        <td>Weddings &amp; events</td>
+        <td class="num">$0</td>
+        <td class="num">$5,000/mo</td>
+      </tr>
+      <tr>
+        <td>Directory subscriptions</td>
+        <td class="num">$500/mo</td>
+        <td class="num">$10,000/mo</td>
+      </tr>
+      <tr>
+        <td><strong>Total</strong></td>
+        <td class="num total"><strong>$7,500/mo</strong></td>
+        <td class="num total"><strong>$41,500/mo</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="breakeven-bar">
+    Break-even is <strong>$15,000/month.</strong> We're at $7,500. Halfway there &mdash; before weddings are even open.
+  </div>
+</div>
+</div>
+</div>
+
+<!-- DELTA DAWN -->
+<div class="section-dark">
+<div class="fade-in">
+<div class="section">
+  <h2 class="on-dark">Delta Dawn &mdash; What It Does For You</h2>
+  <p class="section-intro" style="color: var(--mid);">This is what tomorrow looks like when the whole system is running.</p>
+  <div class="vignette">
+    <p>Imagine: you pick up your phone. One app. &ldquo;Good morning, Tracy. You have a 10&nbsp;AM check-in, two reviews to approve, and the magazine draft is ready. 83% occupancy this week. I've written the social post about Friday's show &mdash; approve it over coffee. The contract is ready for signature. Tenth wedding booking this year.&rdquo;</p>
+    <div class="vignette-coda">That's not a fantasy. That's Delta Dawn &mdash; and it's being built for you right now.</div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- LINKS -->
+<div class="section-alt">
+<div class="fade-in">
+<div class="section">
+  <h2>What to Look At</h2>
+  <p class="section-intro">Open any of these from your phone.</p>
+  <ul class="link-list">
+    <li>
+      <span class="link-label">Full review board (internal detail, password: 1966)</span>
+      <a href="/docs/hdi-review-board.html">hdi-review-board.html</a>
+    </li>
+    <li>
+      <span class="link-label">Miro strategy board</span>
+      <a href="https://miro.com/app/board/uXjVGh3N9LQ=/" target="_blank">https://miro.com/app/board/uXjVGh3N9LQ=/</a>
+    </li>
+    <li>
+      <span class="link-label">Deep South Directory</span>
+      <a href="https://deepsouthdirectory.com" target="_blank">https://deepsouthdirectory.com</a>
+    </li>
+    <li>
+      <span class="link-label">Big Muddy Magazine</span>
+      <a href="https://bigmuddymagazine.com" target="_blank">https://bigmuddymagazine.com</a>
+    </li>
+    <li>
+      <span class="link-label">Radio stream</span>
+      <a href="https://stream.bigmuddytouring.com" target="_blank">https://stream.bigmuddytouring.com</a>
+    </li>
+  </ul>
+</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  <div class="footer-inner">
+    <p class="footer-note">Questions? Talk to Chase. Or just ask Delta Dawn &mdash; she'll know soon enough.</p>
+    <div class="footer-powered">Powered by Measurably Better Things</div>
+  </div>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    },
+    { threshold: 0.08 }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
