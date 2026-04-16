@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HDI Business Review — April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #1A1613;
+    --mud: #3B2F2F;
+    --terra: #B85042;
+    --gold: #C8943E;
+    --sand: #E7E8D1;
+    --cream: #F5F0EB;
+    --sage: #A7BEAE;
+    --green: #27AE60;
+    --yellow: #F39C12;
+    --red: #C0392B;
+    --mid: #7A7067;
+    --blue: #4A90D9;
+    --radius: 6px;
+    --shadow-sm: 0 1px 3px rgba(26,22,19,0.06), 0 1px 2px rgba(26,22,19,0.04);
+    --shadow-md: 0 4px 16px rgba(26,22,19,0.08), 0 1px 3px rgba(26,22,19,0.06);
+    --shadow-lg: 0 12px 40px rgba(26,22,19,0.10), 0 4px 12px rgba(26,22,19,0.05);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Playfair Display', Georgia, serif; background: var(--cream); color: var(--dark); line-height: 1.6; }
+
+  /* Nav — glass effect */
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(26,22,19,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 0.6rem 2rem; display: flex; gap: 0.25rem; overflow-x: auto; border-bottom: 1px solid rgba(200,148,62,0.2); }
+  .nav a { color: var(--gold); text-decoration: none; font-size: 0.75rem; font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.02em; white-space: nowrap; padding: 0.35rem 0.7rem; border-radius: 4px; transition: all 0.25s ease; opacity: 0.7; }
+  .nav a:hover { background: rgba(200,148,62,0.12); opacity: 1; }
+  .nav a.active { background: var(--terra); color: white; opacity: 1; }
+
+  main { margin-top: 48px; }
+
+  /* Sections with alternating subtle texture */
+  section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+  section:nth-child(even) { background: white; }
+
+  /* Typography */
+  h1 { font-size: 3rem; color: var(--dark); margin-bottom: 0.5rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+  h1 span { color: var(--terra); }
+  h2 { font-size: 1.6rem; color: var(--dark); margin-bottom: 1.2rem; border-left: 3px solid var(--terra); padding-left: 0.8rem; font-weight: 700; letter-spacing: -0.01em; }
+  h3 { font-size: 1.1rem; color: var(--gold); margin-bottom: 0.4rem; font-weight: 700; }
+  .subtitle { color: var(--mid); font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 400; margin-bottom: 2rem; letter-spacing: 0.01em; }
+  .quote { font-style: italic; color: var(--dark); font-size: 1.25rem; line-height: 1.7; margin: 1.5rem 0; padding: 1.2rem 1.8rem; border-left: 3px solid var(--gold); background: rgba(200,148,62,0.06); border-radius: 0 var(--radius) var(--radius) 0; }
+
+  /* Cards — refined */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin: 1.5rem 0; }
+  .card { background: white; border-radius: var(--radius); padding: 1.4rem 1.5rem; box-shadow: var(--shadow-sm); border-left: 3px solid var(--gold); transition: box-shadow 0.3s ease, transform 0.3s ease; }
+  .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .card.terra { border-left-color: var(--terra); }
+  .card.sage { border-left-color: var(--sage); }
+  .card.green { border-left-color: var(--green); }
+  .card.red { border-left-color: var(--red); }
+  .card.blue { border-left-color: var(--blue); }
+  .card h3 { margin-bottom: 0.3rem; }
+  .card p { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--mid); line-height: 1.6; font-weight: 400; }
+  .card .tag { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 3px; margin-top: 0.5rem; letter-spacing: 0.04em; text-transform: uppercase; }
+  .tag.live { background: var(--green); color: white; }
+  .tag.active { background: var(--gold); color: white; }
+  .tag.new { background: var(--terra); color: white; }
+  .tag.pipeline { background: var(--mid); color: white; }
+  .tag.concept { background: var(--blue); color: white; }
+
+  /* Layer diagram */
+  .layers { display: flex; flex-direction: column; gap: 0.6rem; margin: 1.5rem 0; }
+  .layer { padding: 1.3rem 1.6rem; border-radius: var(--radius); transition: transform 0.3s ease; }
+  .layer:hover { transform: scale(1.005); }
+  .layer.hdi { background: var(--dark); color: var(--cream); }
+  .layer.mbt { background: var(--terra); color: white; }
+  .layer.impl { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  .layer.impl > div { padding: 1.3rem 1.4rem; border-radius: var(--radius); }
+  .layer .label { font-size: 0.65rem; font-family: 'Inter', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.6; }
+  .layer .name { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; }
+  .layer .desc { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 400; opacity: 0.8; margin-top: 0.3rem; }
+
+  /* Flywheel — refined */
+  .flywheel { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.4rem; margin: 2rem 0; }
+  .fly-step { background: var(--dark); color: var(--gold); padding: 0.7rem 1.1rem; border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em; transition: all 0.3s ease; box-shadow: var(--shadow-sm); }
+  .fly-step:hover { background: var(--mud); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .fly-arrow { color: var(--terra); font-size: 1.2rem; display: flex; align-items: center; opacity: 0.5; }
+
+  /* Revenue table — editorial */
+  .rev-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.5rem 0; font-family: 'Inter', sans-serif; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .rev-table th { background: var(--dark); color: var(--gold); padding: 0.9rem 1.2rem; text-align: left; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+  .rev-table td { padding: 0.9rem 1.2rem; border-bottom: 1px solid rgba(200,148,62,0.1); font-size: 0.9rem; font-weight: 400; background: white; }
+  .rev-table tr:last-child td { border-bottom: none; }
+  .rev-table tr:hover td { background: rgba(200,148,62,0.04); }
+  .rev-table .price { color: var(--gold); font-weight: 600; }
+
+  /* Case study */
+  .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+  .case-col { background: white; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); }
+  .case-col .header { padding: 0.9rem 1.2rem; color: white; font-weight: 600; font-family: 'Inter', sans-serif; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .case-col .header.costs { background: var(--red); }
+  .case-col .header.revenue { background: var(--green); }
+  .case-col .items { padding: 1.2rem; font-family: 'Inter', sans-serif; }
+  .case-col .item { display: flex; justify-content: space-between; padding: 0.45rem 0; border-bottom: 1px solid rgba(200,148,62,0.08); font-size: 0.9rem; }
+  .case-col .item:last-child { border-bottom: none; }
+  .case-col .total { display: flex; justify-content: space-between; padding: 0.9rem 1.2rem; font-weight: 600; font-size: 1.05rem; border-top: 2px solid rgba(200,148,62,0.15); background: rgba(200,148,62,0.03); }
+  .profit-bar { background: var(--gold); color: var(--dark); text-align: center; padding: 1.1rem; font-size: 1.2rem; font-weight: 700; border-radius: var(--radius); margin: 1.2rem 0; box-shadow: var(--shadow-md); letter-spacing: -0.01em; }
+
+  /* Sanity Scorecard */
+  .scorecard { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.5rem 0; font-family: 'Inter', sans-serif; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .scorecard th { background: var(--dark); color: var(--gold); padding: 0.8rem 1rem; text-align: center; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+  .scorecard th:first-child { text-align: left; }
+  .scorecard th:last-child { text-align: left; }
+  .scorecard td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(200,148,62,0.08); text-align: center; font-size: 0.85rem; font-weight: 400; background: white; }
+  .scorecard td:first-child { text-align: left; font-weight: 600; }
+  .scorecard td:last-child { text-align: left; color: var(--mid); font-size: 0.82rem; }
+  .scorecard tr:nth-child(even) td { background: rgba(200,148,62,0.03); }
+  .scorecard tr:hover td { background: rgba(200,148,62,0.08); }
+  .dot { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; font-size: 11px; color: white; font-weight: 700; }
+  .dot.g { background: var(--green); }
+  .dot.y { background: var(--yellow); }
+  .dot.r { background: var(--red); }
+
+  /* Meter — smoother */
+  .meter-container { display: flex; align-items: center; gap: 1rem; margin: 0.8rem 0; }
+  .meter { flex: 1; height: 28px; background: rgba(200,148,62,0.1); border-radius: 14px; overflow: hidden; position: relative; }
+  .meter-fill { height: 100%; border-radius: 14px; transition: width 1s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .meter-label { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.85rem; min-width: 100px; text-align: right; color: var(--mid); }
+  .meter-score { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; min-width: 50px; font-size: 1.1rem; }
+
+  /* Brands */
+  .brand-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.7rem; margin: 1.5rem 0; }
+  .brand { display: flex; align-items: center; gap: 0.8rem; padding: 0.85rem 1rem; background: white; border-radius: var(--radius); box-shadow: var(--shadow-sm); transition: box-shadow 0.3s ease, transform 0.3s ease; }
+  .brand:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+  .brand .dot-bar { width: 3px; height: 36px; border-radius: 2px; flex-shrink: 0; }
+  .brand .info .name { font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600; }
+  .brand .info .domain { font-family: 'Inter', sans-serif; font-size: 0.72rem; color: var(--mid); font-weight: 400; }
+  .brand .info .role { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 500; }
+
+  /* Sprint columns */
+  .sprint-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1.5rem 0; }
+  .sprint { background: white; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease; }
+  .sprint:hover { transform: translateY(-3px); }
+  .sprint .head { background: var(--terra); color: white; padding: 0.9rem 1rem; text-align: center; }
+  .sprint .head .week { font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; }
+  .sprint .head .theme { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; }
+  .sprint .tasks { padding: 1.1rem; }
+  .sprint .task { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 400; padding: 0.55rem 0; border-bottom: 1px solid rgba(200,148,62,0.08); line-height: 1.5; }
+  .sprint .task:last-child { border-bottom: none; }
+
+  /* Two columns */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.5rem 0; }
+  .col-list { list-style: none; }
+  .col-list li { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 400; padding: 0.55rem 0; border-bottom: 1px solid rgba(200,148,62,0.08); display: flex; align-items: center; gap: 0.5rem; line-height: 1.5; }
+
+  /* Hero banner for thesis */
+  .hero-banner { position: relative; width: 100%; min-height: 340px; border-radius: var(--radius); overflow: hidden; margin-bottom: 2rem; box-shadow: var(--shadow-lg); display: flex; align-items: flex-end; }
+  .hero-banner img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-banner .hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to top, rgba(26,22,19,0.92) 0%, rgba(26,22,19,0.6) 50%, rgba(26,22,19,0.25) 100%); }
+  .hero-banner .hero-text { position: relative; z-index: 2; padding: 2.5rem; max-width: 700px; }
+  .hero-banner .hero-text h2 { color: var(--gold); border-left-color: var(--gold); font-size: 1.8rem; margin-bottom: 0.6rem; }
+  .hero-banner .hero-text p { color: var(--cream); font-family: 'Inter', sans-serif; font-size: 1.05rem; line-height: 1.7; font-weight: 300; }
+
+  /* Collapsible details — editorial style */
+  details.more { margin: 1.5rem 0; border: 1px solid rgba(200,148,62,0.15); border-radius: var(--radius); background: rgba(255,255,255,0.5); overflow: hidden; transition: box-shadow 0.3s ease; }
+  details.more[open] { box-shadow: var(--shadow-sm); }
+  details.more > summary { cursor: pointer; padding: 0.9rem 1.2rem; font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mid); list-style: none; display: flex; align-items: center; justify-content: space-between; transition: color 0.2s ease; }
+  details.more > summary::-webkit-details-marker { display: none; }
+  details.more > summary::after { content: '+'; font-size: 1.2rem; font-weight: 400; color: var(--gold); transition: transform 0.3s ease; }
+  details.more[open] > summary::after { content: '−'; }
+  details.more > summary:hover { color: var(--terra); }
+  details.more > .inner { padding: 0 1.2rem 1.2rem; }
+
+  /* Fade-in animation for sections */
+  section { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  section.visible { opacity: 1; transform: translateY(0); }
+
+  /* Scroll bar styling */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: rgba(200,148,62,0.3); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(200,148,62,0.5); }
+
+  @media (max-width: 768px) {
+    .case-grid, .two-col, .sprint-grid, .layer.impl { grid-template-columns: 1fr; }
+    h1 { font-size: 2rem; }
+    section { padding: 2.5rem 1.2rem; }
+    .nav { padding: 0.5rem 1rem; }
+    .hero-banner { min-height: 260px; }
+    .hero-banner .hero-text { padding: 1.5rem; }
+    .hero-banner .hero-text h2 { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:var(--dark);display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity 0.5s ease;">
+  <div style="text-align:center;">
+    <div style="font-family:'Inter',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);margin-bottom:0.8rem;">Internal Document</div>
+    <h1 style="color:var(--cream);font-size:1.8rem;margin-bottom:0.3rem;letter-spacing:-0.02em;">Hillbilly Dreams <span style="color:var(--terra);">Inc</span></h1>
+    <div style="width:40px;height:2px;background:var(--gold);margin:1rem auto 1.5rem;"></div>
+    <input id="pw" type="password" placeholder="Password" autofocus style="display:block;margin:0 auto;padding:0.75rem 1.2rem;font-size:1rem;border:1px solid rgba(200,148,62,0.3);background:rgba(59,47,47,0.5);color:var(--cream);border-radius:4px;text-align:center;width:220px;font-family:'Inter',sans-serif;font-weight:400;letter-spacing:0.1em;outline:none;transition:border-color 0.3s ease;" onfocus="this.style.borderColor='rgba(200,148,62,0.6)'" onblur="this.style.borderColor='rgba(200,148,62,0.3)'" onkeydown="if(event.key==='Enter')checkPw()">
+    <button onclick="checkPw()" style="display:block;margin:1rem auto 0;padding:0.55rem 2.2rem;background:var(--terra);color:white;border:none;border-radius:4px;font-size:0.85rem;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;letter-spacing:0.04em;transition:background 0.3s ease,transform 0.15s ease;" onmouseover="this.style.background='#a04538'" onmouseout="this.style.background='var(--terra)'" onmousedown="this.style.transform='scale(0.97)'" onmouseup="this.style.transform='scale(1)'">Enter</button>
+    <p id="pw-err" style="color:var(--terra);margin-top:1rem;font-family:'Inter',sans-serif;font-size:0.8rem;display:none;font-weight:400;">Incorrect password.</p>
+  </div>
+</div>
+<script>
+function checkPw(){
+  var p=document.getElementById('pw').value;
+  if(p==='1966'){
+    var gate=document.getElementById('gate');
+    gate.style.opacity='0';
+    setTimeout(function(){ gate.style.display='none'; document.body.style.overflow='auto'; },500);
+  } else {
+    document.getElementById('pw-err').style.display='block';
+    var input=document.getElementById('pw');
+    input.style.borderColor='var(--terra)';
+    input.value='';
+    setTimeout(function(){ input.style.borderColor='rgba(200,148,62,0.3)'; },1500);
+  }
+}
+document.body.style.overflow='hidden';
+</script>
+
+<nav class="nav" id="nav">
+  <a href="#thesis">Thesis</a>
+  <a href="#operators">Who Operates What</a>
+  <a href="#touring">Touring</a>
+  <a href="#hospitality">Inn + Weddings</a>
+  <a href="#licensed">Licensed IP</a>
+  <a href="#movement">The Movement</a>
+  <a href="#revenue">Revenue</a>
+  <a href="#case-study">Case Study</a>
+  <a href="#decisions">Decisions</a>
+  <a href="#not-doing">Not Doing</a>
+  <a href="#scorecard">Scorecard</a>
+  <a href="#sprints">Next 30 Days</a>
+</nav>
+
+<main>
+
+<!-- TITLE -->
+<section style="background: var(--dark); color: var(--cream); padding: 5rem 2rem 4rem; opacity:1; transform:none;">
+  <div style="font-family:'Inter',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);margin-bottom:1.2rem;">Internal Review / April 15, 2026</div>
+  <h1 style="color: var(--cream); font-size: 3.2rem;">HILLBILLY DREAMS <span>INC</span></h1>
+  <p style="font-family:'Playfair Display',Georgia,serif;color:var(--gold);font-size:1.25rem;font-style:italic;margin:0.5rem 0 0;">Business Architecture Review</p>
+  <div style="width:50px;height:2px;background:var(--terra);margin:1.5rem 0;"></div>
+  <p style="color:var(--cream);font-family:'Inter',sans-serif;font-size:0.95rem;font-weight:300;line-height:1.7;max-width:600px;"><strong style="color:var(--gold);font-weight:600;">Purpose:</strong> Walk the full architecture. Defend the revenue. Find the weak points.</p>
+</section>
+
+<!-- THESIS -->
+<section id="thesis">
+  <div class="hero-banner">
+    <img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp" alt="The Mississippi River at dusk">
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+      <h2 style="border-left: 3px solid var(--gold); padding-left: 0.8rem;">The Thesis</h2>
+      <p>Chase runs a regional music business. The platform that runs it is licensed to others. The music pays the bills. The platform pays the future.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>How We Run It</h3>
+      <p>Four of us: Chase, Tracy, Amy, and Sean Davis (joining now). We run this as a team. Each of us leads the work closest to our strengths, but we move together. When the business grows enough to need more hands, we add them.</p>
+    </div>
+    <div class="card terra">
+      <h3>The 2:1 Multiplier</h3>
+      <p>Every show feeds every revenue stream. A $1,000 show generates $500+ downstream — Inn bookings, bar sales, magazine features, radio rotation, record promotion. Touring is the engine. Hospitality is the flywheel.</p>
+    </div>
+    <div class="card sage">
+      <h3>The Licensing Play</h3>
+      <p>Same platform that runs Big Muddy runs Measurably Better Things. MBT Civic licenses the Deep South Directory to cities, chambers, real estate brokers. We facilitate setup and hand off — partners run it. First target: Paul Green Real Estate + City of Natchez.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE TEAM -->
+<section id="operators">
+  <h2>The Team</h2>
+  <p class="subtitle">Four of us moving together. Each leads the work closest to our strengths. Everybody helps on everything.</p>
+
+  <div class="card-grid">
+    <div class="card terra">
+      <h3>Chase Pierson</h3>
+      <p><strong style="color:var(--terra);">Leads: Touring + Platform + Deals</strong></p>
+      <p>On the road with Sean hydrating venue relationships. Structures the Natchez civic deal. Shoots weddings. Ships code. Connects the dots between music, media, and the technology underneath.</p>
+    </div>
+    <div class="card">
+      <h3>Tracy Alderson-Allen</h3>
+      <p><strong style="color:var(--gold);">Leads: Inn + Finance + Editorial</strong></p>
+      <p>Runs the Big Muddy Inn. Closes wedding inquiries. Edits the Magazine in her voice (AI drafts, she approves). Keeps the books. The operational backbone.</p>
+    </div>
+    <div class="card sage">
+      <h3>Amy Allen</h3>
+      <p><strong style="color:var(--sage);">Leads: Bar + Community + Performance</strong></p>
+      <p>Runs the bar on show nights. Hosts the podcast + Blues Room sessions. Performs with the house band. The energy in the room and on the air.</p>
+    </div>
+    <div class="card blue">
+      <h3>Sean Davis <span style="font-size:0.7rem;color:var(--blue);font-weight:normal">(joining now)</span></h3>
+      <p><strong style="color:var(--blue);">Leads: Relationship hydration + Field research</strong></p>
+      <p>Rides the Sprinter corridor runs with Chase. Owns specific cities (Jackson, Memphis to start). Populates the venue database with the relationships he's building. Grows into booker as the calendar fills.</p>
+    </div>
+  </div>
+
+  <div class="quote">Each of us leads where we're strongest, but we run this as a team — not four separate lanes. When the business grows enough to need more hands, we add them.</div>
+</section>
+
+<!-- BIG MUDDY TOURING -->
+<section id="touring">
+  <h2>Big Muddy Touring</h2>
+  <p class="subtitle">Chase's operator business. The engine every other revenue stream rides on.</p>
+
+  <!-- VENUE DIRECTORY — THE MOAT -->
+  <div class="card terra" style="margin: 1.5rem 0; background: rgba(184,80,66,0.05);">
+    <h3 style="color: var(--terra);">The Moat: Venue Directory + Relationships</h3>
+    <p><strong>bigmuddytouring.com/venues</strong> — our database of every music venue + bar with live music across the Deep South. Kept current by Chase. Backed by real phone numbers and real relationships.</p>
+    <p style="margin-top: 0.8rem;">Bookers don't pay for databases. They pay for <em>relationships</em>. That's what this is. Every corridor city we touch gets added. Every venue owner we meet gets a page. Over time, this becomes the most valuable asset in the business — more valuable than any individual show.</p>
+    <p style="margin-top: 0.8rem; font-family:'Inter',sans-serif; font-size:0.85rem; color:var(--mid);"><em>Feature of bigmuddytouring.com. SEO asset. Booking CRM. Editorial source for the Magazine. Fan-facing "where to hear live music" resource. All one thing.</em></p>
+  </div>
+
+  <!-- THE OPERATING MODEL -->
+  <h3 style="color: var(--dark); margin-top: 2rem; margin-bottom: 1rem; font-size: 1.15rem;">How It Works</h3>
+  <div class="card-grid">
+    <div class="card">
+      <h3>Book</h3>
+      <p>Chase + the open seat (booker) work the corridor. Natchez &rarr; Vicksburg &rarr; Clarksdale &rarr; Memphis &rarr; New Orleans. House band model — we bring the rhythm section, the headliner flies in.</p>
+    </div>
+    <div class="card terra">
+      <h3>Transport</h3>
+      <p>Sprinter van (this week). "Pick you up at the airport, drop you at the Inn." White-glove logistics mean better talent wants to work with us.</p>
+    </div>
+    <div class="card sage">
+      <h3>Promote</h3>
+      <p>Built-in promo department — influencer network per market. Not just booking a band, we get people in the room. That's the difference.</p>
+    </div>
+    <div class="card">
+      <h3>Content</h3>
+      <p>Every show becomes magazine articles, radio rotation, social clips, record label promotion. One show &rarr; 10+ content pieces. That's the 2:1 multiplier.</p>
+    </div>
+  </div>
+
+  <!-- THE AMPLIFIER STACK -->
+  <h3 style="color: var(--dark); margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.15rem;">The Amplifier Stack</h3>
+  <p class="subtitle" style="margin-bottom:1rem;">These aren't separate revenue businesses. They're what makes the touring business credible — and what makes bands want to work with us.</p>
+  <div class="card-grid">
+    <div class="card sage">
+      <h3>Big Muddy Magazine</h3>
+      <p>Tracy edits. Every show gets a feature. Every artist gets a profile. The Inn's marketing channel.</p>
+      <span class="tag active">ACTIVE</span>
+    </div>
+    <div class="card sage">
+      <h3>Big Muddy Podcast + YouTube</h3>
+      <p>Podcast is the networking tool — every corridor artist, venue owner, Deep South storyteller becomes a guest. Amy + Chase host. YouTube is the highest-leverage channel. Spotify + Apple playlists for record label promo. <em>No 24/7 live radio stream — the brand survives, the format changed.</em></p>
+      <span class="tag new">Q2 LAUNCH</span>
+    </div>
+    <div class="card sage">
+      <h3>Big Muddy Records</h3>
+      <p>Artist services. 55 tracks ingested. Non-exclusive deals — artists keep their masters. 50/50 on everything. Playlist promo via the Big Muddy Spotify + Apple presence.</p>
+      <span class="tag active">ACTIVE</span>
+    </div>
+    <div class="card sage">
+      <h3>AI Content Pipeline</h3>
+      <p>Show airs &rarr; auto-transcribed &rarr; article drafted &rarr; audiograms rendered &rarr; scheduled everywhere. Mac mini running 24/7.</p>
+      <span class="tag live">LIVE</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- HOSPITALITY -->
+<section id="hospitality">
+  <h2>Inn + Bar + Weddings</h2>
+  <p class="subtitle">Tracy + Amy's operation. The anchor revenue that rides the back of every show night.</p>
+
+  <div class="card-grid">
+    <div class="card terra">
+      <h3>The Big Muddy Inn</h3>
+      <p>6 rooms. Currently 18% occupancy &rarr; 28% target. Magazine drives bookings. Show nights fill rooms. Weddings are the high-ticket event.</p>
+      <p style="margin-top:0.7rem;"><strong>Y1 target: $7,500/mo</strong> (from $3,000/mo today)</p>
+    </div>
+    <div class="card">
+      <h3>The Bar</h3>
+      <p>Amy runs it on show nights. Walk-ins rest of the week. Live music bar — the energy is the product.</p>
+      <p style="margin-top:0.7rem;"><strong>Y1 target: $4,000/mo</strong> (from $2,000/mo today)</p>
+    </div>
+    <div class="card green">
+      <h3>Weddings — The High-Ticket Event</h3>
+      <p>$14,100 full package: venue + lodging buyout + photography + videography + live music + coordination. A single wedding = 12-17x a regular weekend.</p>
+      <p style="margin-top:0.7rem;"><strong>Y1 target: $5,000/mo</strong> (8 weddings at $10K avg)</p>
+    </div>
+  </div>
+</section>
+
+<!-- LICENSED IP -->
+<section id="licensed">
+  <h2>Licensed IP</h2>
+  <p class="subtitle">Built by HDI. Operated by partners. Chase facilitates setup, then steps out.</p>
+
+  <div class="card blue" style="background: rgba(74,144,217,0.05);">
+    <h3 style="color: var(--blue);">Deep South Directory (via MBT Civic)</h3>
+    <p><strong>Target first deal:</strong> Paul Green Real Estate + City of Natchez — a co-sponsored tourism + marketing platform for Natchez/Adams County.</p>
+    <p style="margin-top: 0.8rem;"><strong>Positioning:</strong> "Put Natchez on the map as the hub of a new regional media paradigm." Not "here's a directory product" — <em>here's a movement, and your city is customer zero.</em></p>
+    <p style="margin-top: 0.8rem;"><strong>Budget:</strong> $5,000 - $10,000/mo combined (city + Paul Green).</p>
+    <p style="margin-top: 0.8rem;"><strong>Our role:</strong> facilitate. 3-5 conversations to structure the deal. Platform is already built. Partners handle sales, customer relationships, and local operations.</p>
+    <p style="margin-top: 0.8rem;"><strong>Revenue model:</strong> licensing fee + potential rev share on added businesses. Not SaaS.</p>
+    <span class="tag pipeline">Q2 DEAL TO CLOSE</span>
+  </div>
+
+  <div class="card" style="border-left-color: var(--mid); margin-top: 1rem;">
+    <h3>MBT Institutional Licensing (inbound only)</h3>
+    <p>Beyond Natchez. Other cities, tourism bureaus, chambers, regional marketers. Documented. Available. Not pursued actively — we're not running a SaaS sales team.</p>
+    <span class="tag concept">INBOUND ONLY</span>
+  </div>
+</section>
+
+<!-- THE MOVEMENT -->
+<section id="movement" style="background: var(--dark); color: var(--cream);">
+  <h2 style="color: var(--gold); border-left-color: var(--gold);">The Movement</h2>
+  <p class="subtitle" style="color: var(--mid);">Outsider Economics + Born Free. The narrative arm. Not revenue — authority.</p>
+
+  <div class="card-grid">
+    <div class="card" style="background: var(--mud); border-left-color: var(--gold); color: var(--cream);">
+      <h3 style="color: var(--gold);">Outsider Economics</h3>
+      <p style="color: var(--sand);"><strong>outsidereconomics.com</strong> — the manifesto. Why regional creative economies matter. Why the same infrastructure that runs Viacom can run Main Street. Ongoing editorial in Chase's voice.</p>
+      <span class="tag active">ACTIVE</span>
+    </div>
+    <div class="card" style="background: var(--mud); border-left-color: var(--terra); color: var(--cream);">
+      <h3 style="color: var(--terra);">Born Free</h3>
+      <p style="color: var(--sand);">Open-source MBT on a Raspberry Pi. Broadcasting, community, your own media stack — no Silicon Valley required. Core is a free GitHub repo.</p>
+      <p style="color: var(--sand); margin-top:0.7rem;"><strong style="color:var(--gold);">Side revenue:</strong> build-to-order kits for preppers, homesteaders, ham radio folks. $450 / $899 / custom. Small upside, not a business. Sean handles fulfillment.</p>
+      <span class="tag new">OPEN SOURCE + BUILD-TO-ORDER</span>
+    </div>
+    <div class="card" style="background: var(--mud); border-left-color: var(--blue); color: var(--cream);">
+      <h3 style="color: var(--blue);">Twitter + TikTok</h3>
+      <p style="color: var(--sand);">The megaphone. Paradigm-shift content performs on these platforms. Chase is the voice. Low-overhead, high-reach.</p>
+      <span class="tag new">Q2 LAUNCH</span>
+    </div>
+  </div>
+
+  <div class="quote" style="border-left-color: var(--gold); background: rgba(200,148,62,0.08); color: var(--cream); margin-top: 2rem;">
+    Nobody else can tell this story from where we're standing. A conversation about rebuilding regional creative economies, broadcast from Natchez, Mississippi, is categorically different from the same conversation broadcast from Brooklyn. That's the moat.
+  </div>
+
+  <div style="background: var(--mud); padding: 1.5rem 1.8rem; border-radius: var(--radius); margin-top: 2rem; border-left: 3px solid var(--sage);">
+    <h3 style="color: var(--sage);">Why This Isn't a Side Project</h3>
+    <p style="color: var(--sand); font-family:'Inter',sans-serif; font-size:0.9rem; line-height:1.7;">The Movement makes every other bet legible:</p>
+    <ul style="color: var(--sand); font-family:'Inter',sans-serif; font-size:0.88rem; line-height:1.9; padding-left:1.2rem; margin-top:0.5rem;">
+      <li><strong style="color:var(--gold);">Touring:</strong> "We're building regional media infrastructure" lands harder with a manifesto behind it</li>
+      <li><strong style="color:var(--gold);">Natchez civic deal:</strong> "Put Natchez on the map as the hub of a new regional media paradigm" — not "here's a directory product"</li>
+      <li><strong style="color:var(--gold);">Inn + weddings:</strong> Cultural weight makes the destination feel like more than a boutique hotel</li>
+      <li><strong style="color:var(--gold);">Twitter + TikTok:</strong> Chase isn't another creator — he's broadcasting from the actual place he's talking about</li>
+    </ul>
+  </div>
+</section>
+
+<!-- BUILT ON -->
+<section style="background: var(--dark); color: var(--gold); padding: 2.5rem 2rem; text-align: center; opacity:1; transform:none;">
+  <div style="font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;opacity:0.5;margin-bottom:1rem;">Built On</div>
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem 2.5rem;font-family:'Inter',sans-serif;font-size:0.95rem;font-weight:500;letter-spacing:0.02em;">
+    <span>Google Cloud</span>
+    <span style="opacity:0.3;">&#8226;</span>
+    <span>Vercel</span>
+    <span style="opacity:0.3;">&#8226;</span>
+    <span>Stripe</span>
+    <span style="opacity:0.3;">&#8226;</span>
+    <span>PostgreSQL</span>
+    <span style="opacity:0.3;">&#8226;</span>
+    <span>Next.js</span>
+    <span style="opacity:0.3;">&#8226;</span>
+    <span>Cloudflare</span>
+    <span style="opacity:0.3;">&#8226;</span>
+    <span>Let's Encrypt</span>
+  </div>
+  <p style="font-family:'Inter',sans-serif;font-size:0.85rem;font-weight:300;color:var(--cream);opacity:0.6;margin-top:1.2rem;">Open source foundation. Enterprise-grade infrastructure. $31/month to run 14 domains.</p>
+</section>
+
+<!-- REVENUE -->
+<section id="revenue">
+  <h2>Revenue</h2>
+  <p class="subtitle">Touring-first. Hospitality as anchor. Civic licensing as upside.</p>
+
+  <table class="rev-table">
+    <thead><tr><th>Stream</th><th>Lead</th><th>Current</th><th>Year 1 Target</th><th>Year 2 Target</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Big Muddy Touring (shows + bookings)</strong></td><td style="font-size:0.82rem;">Chase + Sean</td><td class="price">$1,500/mo</td><td class="price">$10,000/mo</td><td class="price">$20,000/mo</td></tr>
+      <tr><td><strong>Big Muddy Inn</strong></td><td style="font-size:0.82rem;">Tracy + Amy</td><td class="price">$3,000/mo</td><td class="price">$7,500/mo</td><td class="price">$12,000/mo</td></tr>
+      <tr><td><strong>Bar (show nights)</strong></td><td style="font-size:0.82rem;">Amy</td><td class="price">$2,000/mo</td><td class="price">$4,000/mo</td><td class="price">$6,000/mo</td></tr>
+      <tr><td><strong>Weddings</strong></td><td style="font-size:0.82rem;">Tracy + Chase</td><td style="color:var(--mid)">$0</td><td class="price">$5,000/mo (8/yr)</td><td class="price">$16,000/mo (16/yr)</td></tr>
+      <tr><td><strong>MBT Civic — Natchez pilot</strong></td><td style="font-size:0.82rem;">Team (Chase leads)</td><td style="color:var(--mid)">$0</td><td class="price">$7,500/mo</td><td class="price">$15,000/mo (2-3 cities)</td></tr>
+      <tr><td><strong>Podcast + YouTube sponsorship</strong></td><td style="font-size:0.82rem;">Amy + Chase</td><td style="color:var(--mid)">$0</td><td class="price">$3,500/mo</td><td class="price">$12,000/mo</td></tr>
+      <tr><td><strong>Magazine sponsored content</strong></td><td style="font-size:0.82rem;">Tracy</td><td style="color:var(--mid)">$0</td><td class="price">$1,100/mo</td><td class="price">$3,300/mo</td></tr>
+      <tr><td><strong>Photography (freelance)</strong></td><td style="font-size:0.82rem;">Chase</td><td class="price">$500/mo</td><td class="price">$4,000/mo</td><td class="price">$6,000/mo</td></tr>
+      <tr><td><strong>Studio C (40% rev share)</strong></td><td style="font-size:0.82rem;">Miles + Elijah</td><td class="price">varies</td><td class="price">$3,000/mo</td><td class="price">$5,000/mo</td></tr>
+      <tr><td style="color:var(--mid);font-style:italic;">Born Free kits (build-to-order upside)</td><td style="font-size:0.82rem;color:var(--mid);">Sean</td><td style="color:var(--mid)">$0</td><td style="color:var(--mid);font-style:italic;">not forecast</td><td style="color:var(--mid);font-style:italic;">~$1,000/mo if demand</td></tr>
+      <tr style="background:rgba(200,148,62,0.08)"><td><strong style="color:var(--dark);font-size:1rem;">TOTAL</strong></td><td></td><td class="price" style="font-size:1rem;"><strong>$7,000/mo</strong></td><td class="price" style="font-size:1rem;"><strong>$45,600/mo</strong></td><td class="price" style="font-size:1rem;"><strong>$95,300/mo</strong></td></tr>
+    </tbody>
+  </table>
+
+  <!-- Wedding economics — kept, it's the high-ticket proof -->
+  <details class="more">
+    <summary>Wedding economics — $14,100 per package</summary>
+    <div class="inner">
+      <p class="subtitle" style="margin-bottom:1rem;">A single wedding weekend generates 12-17x regular weekend revenue.</p>
+      <table class="rev-table">
+        <thead><tr><th>Component</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr><td>Venue fee (Blues Room + porch)</td><td class="price">$2,500</td></tr>
+          <tr><td>Lodging buyout (6 rooms, 2 nights)</td><td class="price">$3,600</td></tr>
+          <tr><td>Photography (Chase)</td><td class="price">$3,500</td></tr>
+          <tr><td>Videography / content</td><td class="price">$2,000</td></tr>
+          <tr><td>Live music (house band)</td><td class="price">$1,500</td></tr>
+          <tr><td>Day-of coordination</td><td class="price">$1,000</td></tr>
+          <tr style="background:rgba(200,148,62,0.08)"><td><strong style="font-size:1rem;">Full Package</strong></td><td class="price" style="font-size:1rem;"><strong>$14,100</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <details class="more">
+    <summary>Media sponsorship rate card (Podcast + YouTube + Magazine)</summary>
+    <div class="inner">
+      <p class="subtitle" style="margin-bottom:1rem;">Inbound-only rate card — no active sales team. Advertisers ask, we have a price.</p>
+      <table class="rev-table">
+        <thead><tr><th>Stream</th><th>Rate</th><th>Y1 Target</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Podcast — Pre-roll / Mid-roll</strong></td><td class="price">$500-800/episode</td><td class="price">$1,500/mo</td></tr>
+          <tr><td><strong>Podcast — Series Sponsorship</strong></td><td class="price">$2,500+/month</td><td class="price">$1,200/mo</td></tr>
+          <tr><td><strong>YouTube — Integrated brand content</strong></td><td class="price">negotiated</td><td class="price">$500/mo</td></tr>
+          <tr><td><strong>Magazine — Sponsored Content</strong></td><td class="price">$800/piece</td><td class="price">$800/mo</td></tr>
+          <tr><td><strong>Magazine — Newsletter</strong></td><td class="price">$300/issue</td><td class="price">$300/mo</td></tr>
+        </tbody>
+      </table>
+      <p style="font-family:'Inter',sans-serif; font-size:0.85rem; color:var(--mid); margin-top:1rem; font-style:italic;">Playlist promo for Big Muddy Records is bundled free with label artists. No separate rate.</p>
+    </div>
+  </details>
+
+  <!-- THE BIG NUMBER -->
+  <div class="profit-bar" style="margin-top:2.5rem; font-size:2rem; padding:1.8rem 1.2rem; background:linear-gradient(135deg, var(--gold), var(--terra)); color:white; letter-spacing:-0.02em;">
+    $547K Year 1 &rarr; $1.14M Year 2
+  </div>
+  <div style="text-align:center; margin-top:1rem;">
+    <p style="font-family:'Inter',sans-serif; font-size:0.95rem; color:var(--mid); margin-top:0.6rem; font-weight:400;">Current run rate: $84K/year. Break-even: $180K/year. We're on the way.</p>
+  </div>
+</section>
+
+<!-- CASE STUDY -->
+<section id="case-study">
+  <h2>Case Study: Artist Tour Week</h2>
+  <p class="subtitle">Kate Squire Band / Solo + House Band / 3-show week in Natchez corridor</p>
+
+  <!-- 50/50 SPLIT BANNER -->
+  <div class="profit-bar" style="background:var(--dark); color:var(--gold); font-size:1.4rem; letter-spacing:0.04em; margin-bottom:1.5rem;">
+    50/50 SPLIT &mdash; All Revenue Split Equally With the Artist
+  </div>
+  <p style="font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--mid); text-align:center; margin-bottom:2rem; font-weight:400;">Door, merch, streaming, everything. Simple. Transparent. The artist always knows what they're getting.</p>
+
+  <div class="case-grid">
+    <div class="case-col">
+      <div class="header costs">COSTS</div>
+      <div class="items">
+        <div class="item"><span>Artist flight</span><span style="color:var(--red);font-weight:bold">-$400</span></div>
+        <div class="item"><span>House band (3 musicians x 3 nights)</span><span style="color:var(--red);font-weight:bold">-$2,700</span></div>
+        <div class="item"><span>Van / transport</span><span style="color:var(--red);font-weight:bold">-$500</span></div>
+        <div class="item"><span>PA rental / setup</span><span style="color:var(--red);font-weight:bold">-$300</span></div>
+        <div class="item"><span>Lodging (comped at Inn)</span><span style="color:var(--mid)">$0</span></div>
+      </div>
+      <div class="total"><span>TOTAL COSTS</span><span style="color:var(--red)">-$3,900</span></div>
+    </div>
+    <div class="case-col">
+      <div class="header revenue">REVENUE</div>
+      <div class="items">
+        <div class="item"><span>Inn show (50 x $50)</span><span style="color:var(--green);font-weight:bold">+$2,500</span></div>
+        <div class="item"><span>Merch sales</span><span style="color:var(--green);font-weight:bold">+$300</span></div>
+        <div class="item"><span>Bar revenue</span><span style="color:var(--green);font-weight:bold">+$700</span></div>
+        <div class="item"><span>Venue 2</span><span style="color:var(--green);font-weight:bold">+$1,500</span></div>
+        <div class="item"><span>Venue 3</span><span style="color:var(--green);font-weight:bold">+$1,200</span></div>
+        <div class="item"><span>Gospel brunch (20 x $75)</span><span style="color:var(--green);font-weight:bold">+$1,500</span></div>
+      </div>
+      <div class="total"><span>TOTAL REVENUE</span><span style="color:var(--green)">+$7,700</span></div>
+    </div>
+  </div>
+  <div class="profit-bar">NET PROFIT: $3,800 + downstream content (radio, magazine, record promotion)</div>
+</section>
+
+<!-- DECISIONS -->
+<section id="decisions">
+  <h2>Decisions</h2>
+  <p class="subtitle">What we just decided. The moves that define the next 30 days.</p>
+  <div class="card-grid" style="grid-template-columns: 1fr;">
+    <div class="card terra"><h3>1. Touring is the business</h3><p>We're running a music company. Big Muddy Touring is the engine — we book the corridor, run the promo, drive the van. Everything else (Inn, weddings, media, licensing) either feeds touring or rides on it.</p></div>
+    <div class="card"><h3>2. The Venue Directory is our operational moat</h3><p>Lives as a feature of bigmuddytouring.com. Our database + our relationships. Bookers don't pay for databases — they pay for relationships. Chase and Sean hydrate it in person, corridor city by corridor city.</p></div>
+    <div class="card blue"><h3>3. DSD is licensed out via MBT Civic</h3><p>We don't operate DSD. We facilitate one named deal — <strong>Paul Green Real Estate + City of Natchez as co-sponsors</strong> — then step back. Partners run it. Combined budget target: $5-10K/mo. Pitched as a regional tourism + marketing play, not SaaS.</p></div>
+    <div class="card sage"><h3>4. The Movement is the narrative arm</h3><p>Outsider Economics + Born Free, broadcast from Natchez on Twitter + TikTok + YouTube. Not a revenue business — authority. The Deep South origin gives us a story nobody in SF or Brooklyn can tell. Every other bet gets more legible because of it.</p></div>
+    <div class="card"><h3>5. Radio brand pivots to podcast + playlists + YouTube</h3><p>Kill the 24/7 Icecast stream. Keep the Big Muddy Radio brand. Launch the podcast as the networking + guest tool. Spotify + Apple playlists for record label promo. YouTube for the leverage. If warranted later, we grow back into real radio broadcast.</p></div>
+    <div class="card terra"><h3>6. Magazine = Inn marketing channel</h3><p>Tracy edits in her voice. AI drafts, she approves. Every article drives Inn bookings. Doesn't need its own revenue — it IS the marketing budget.</p></div>
+    <div class="card"><h3>7. Sean Davis joins the team now</h3><p>Not an "open seat" or an outside hire. Sean's on the team, starting with the corridor runs — relationship hydration, field research, venue database. Grows into dedicated booker as show calendar fills.</p></div>
+    <div class="card terra"><h3>8. 50/50 with artists on everything</h3><p>Door, merch, streaming, publishing — 50/50. No complicated contracts. Simple enough to explain in one sentence.</p></div>
+  </div>
+</section>
+
+<!-- WHAT WE'RE NOT DOING -->
+<section id="not-doing" style="background: var(--dark); color: var(--cream);">
+  <h2 style="color: var(--gold); border-left-color: var(--gold);">What We're Not Doing</h2>
+  <p class="subtitle" style="color: var(--mid);">Every "no" is a gift to the four things we're doing. Naming what's off the table = leadership.</p>
+
+  <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+    <div class="card" style="background: var(--mud); border-left-color: var(--red); color: var(--cream);">
+      <h3 style="color: var(--red);">DSD walk-in sales</h3>
+      <p style="color: var(--sand);">Not walking Main Street pitching $99/mo subscriptions. DSD is a licensed product, not a sales motion Chase runs.</p>
+    </div>
+    <div class="card" style="background: var(--mud); border-left-color: var(--red); color: var(--cream);">
+      <h3 style="color: var(--red);">Artist Packages ($99/$250/$500)</h3>
+      <p style="color: var(--sand);">3 people can't run a subscription service for dozens of artists. 50/50 on everything replaces it. Cleaner, simpler, scales with shows.</p>
+    </div>
+    <div class="card" style="background: var(--mud); border-left-color: var(--red); color: var(--cream);">
+      <h3 style="color: var(--red);">Bundle Packages</h3>
+      <p style="color: var(--sand);">Those were DSD product bundles — they go with DSD when it's licensed out. Not Chase's product catalog.</p>
+    </div>
+    <div class="card" style="background: var(--mud); border-left-color: var(--red); color: var(--cream);">
+      <h3 style="color: var(--red);">Musician Platform</h3>
+      <p style="color: var(--sand);">"MySpace for Deep South musicians" was a concept. Killed. If it ever ships, a partner builds it.</p>
+    </div>
+    <div class="card" style="background: var(--mud); border-left-color: var(--red); color: var(--cream);">
+      <h3 style="color: var(--red);">Born Free as a hardware business</h3>
+      <p style="color: var(--sand);">Shipping pre-flashed Raspberry Pis to customers isn't the play. Born Free lives as open source on GitHub (see The Movement). If someone wants hardware, a partner ships it.</p>
+    </div>
+    <div class="card" style="background: var(--mud); border-left-color: var(--red); color: var(--cream);">
+      <h3 style="color: var(--red);">Land &amp; Expand — even Marika pilot</h3>
+      <p style="color: var(--sand);">$150K distraction right now. Talk to Marika, don't plan around it. Come back after touring revenue proves.</p>
+    </div>
+    <div class="card" style="background: var(--mud); border-left-color: var(--red); color: var(--cream);">
+      <h3 style="color: var(--red);">MBT enterprise sales outreach</h3>
+      <p style="color: var(--sand);">90-day sales cycles to institutions steal from show bookings. Inbound only. Natchez pilot is the one exception because the budget already exists.</p>
+    </div>
+    <div class="card" style="background: var(--mud); border-left-color: var(--red); color: var(--cream);">
+      <h3 style="color: var(--red);">Bearsville activation beyond domain</h3>
+      <p style="color: var(--sand);">Elijah + Miles keep doing what they're doing. We don't build or staff for it in Q2. Summer 2026 remains the earliest.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCORECARD -->
+<section id="scorecard">
+  <h2>Scorecard</h2>
+  <p class="subtitle">The four bets at top. Supporting cast in the middle. Future at the bottom.</p>
+
+  <h3 style="color: var(--dark); margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.1rem;">The Four Bets</h3>
+  <table class="scorecard">
+    <thead><tr><th style="width:28%">Bet</th><th>Revenue</th><th>Feasibility</th><th>Built?</th><th style="width:40%">One thing to move it</th></tr></thead>
+    <tbody>
+      <tr><td>Big Muddy Touring</td><td><span class="dot g">&#10003;</span></td><td><span class="dot g">&#10003;</span></td><td><span class="dot y">!</span></td><td>Hire the booker. Van operational this week.</td></tr>
+      <tr><td>Big Muddy Inn + Bar</td><td><span class="dot g">&#10003;</span></td><td><span class="dot g">&#10003;</span></td><td><span class="dot g">&#10003;</span></td><td>Magazine drives bookings. 18% &rarr; 28% occupancy.</td></tr>
+      <tr><td>Weddings</td><td><span class="dot g">&#10003;</span></td><td><span class="dot g">&#10003;</span></td><td><span class="dot y">!</span></td><td>First 3 bookings. Landing page + referral kit.</td></tr>
+      <tr><td>MBT Civic — Natchez deal</td><td><span class="dot g">&#10003;</span></td><td><span class="dot y">!</span></td><td><span class="dot y">!</span></td><td>3-5 conversations with Paul Green + City.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color: var(--dark); margin-top: 2rem; margin-bottom: 0.5rem; font-size: 1.1rem;">Supporting Cast (keep running, don't optimize)</h3>
+  <table class="scorecard">
+    <thead><tr><th style="width:28%">Stream</th><th>Revenue</th><th>Feasibility</th><th>Built?</th><th style="width:40%">Status</th></tr></thead>
+    <tbody>
+      <tr><td>Magazine (Inn marketing)</td><td><span class="dot y">!</span></td><td><span class="dot g">&#10003;</span></td><td><span class="dot y">!</span></td><td>Tracy voice profile + cadence.</td></tr>
+      <tr><td>Podcast + YouTube</td><td><span class="dot y">!</span></td><td><span class="dot g">&#10003;</span></td><td><span class="dot r">&#10007;</span></td><td>Kill the 24/7 stream, launch the podcast. Amy + Chase host.</td></tr>
+      <tr><td>Records (artist services)</td><td><span class="dot y">!</span></td><td><span class="dot g">&#10003;</span></td><td><span class="dot g">&#10003;</span></td><td>50/50 with artists. Playlist promo is the distribution.</td></tr>
+      <tr><td>The Movement (Outsider Econ + Born Free)</td><td><span class="dot y">!</span></td><td><span class="dot g">&#10003;</span></td><td><span class="dot y">!</span></td><td>Twitter + TikTok + YouTube. Authority, not revenue.</td></tr>
+      <tr><td>Photography (freelance)</td><td><span class="dot g">&#10003;</span></td><td><span class="dot g">&#10003;</span></td><td><span class="dot g">&#10003;</span></td><td>Rides weddings + touring events.</td></tr>
+      <tr><td>Studio C (40% rev share)</td><td><span class="dot g">&#10003;</span></td><td><span class="dot g">&#10003;</span></td><td><span class="dot g">&#10003;</span></td><td>Miles + Elijah operate. We take rev share.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color: var(--dark); margin-top: 2rem; margin-bottom: 0.5rem; font-size: 1.1rem;">Upside (build-to-order or inbound only)</h3>
+  <table class="scorecard">
+    <thead><tr><th style="width:28%">Stream</th><th>Revenue</th><th>Feasibility</th><th>Built?</th><th style="width:40%">When</th></tr></thead>
+    <tbody>
+      <tr><td>Born Free kits (build-to-order)</td><td><span class="dot y">!</span></td><td><span class="dot g">&#10003;</span></td><td><span class="dot r">&#10007;</span></td><td>Q2 prototype. Sean fulfills. ~$10-15K/yr upside.</td></tr>
+      <tr><td>MBT Institutional (beyond Natchez)</td><td><span class="dot g">&#10003;</span></td><td><span class="dot y">!</span></td><td><span class="dot y">!</span></td><td>Inbound only. Q3+ outbound.</td></tr>
+      <tr><td>Bearsville Creative</td><td><span class="dot y">!</span></td><td><span class="dot g">&#10003;</span></td><td><span class="dot y">!</span></td><td>Summer 2026. Elijah + Miles own it.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="meter-container" style="margin-top:2rem;">
+    <div class="meter-label" style="font-size:1.1rem">FOCUS</div>
+    <div class="meter" style="height:40px"><div class="meter-fill" style="width:78%;background:linear-gradient(90deg,var(--green),var(--gold))"></div></div>
+    <div class="meter-score" style="color:var(--green);font-size:1.3rem">78%</div>
+  </div>
+  <p style="font-family:'Inter',sans-serif;color:var(--mid);margin-top:0.8rem;font-size:0.9rem;">Four bets, four-person team, one facilitated deal, one movement. The business a Martian could understand in 30 seconds.</p>
+</section>
+
+<!-- SPRINTS -->
+<section id="sprints">
+  <h2>Next 30 Days</h2>
+  <p class="subtitle">Every task maps to a bet. Every task has a lead. We all help on everything.</p>
+  <div class="sprint-grid">
+    <div class="sprint">
+      <div class="head"><div class="week">Week 1 (Apr 16-22)</div><div class="theme">Ignition — research + foundation</div></div>
+      <div class="tasks">
+        <div class="task"><strong>Chase + Sean:</strong> TinyFish venue research across 7-8 corridor cities. Output: 100+ venue records, priority-tiered.</div>
+        <div class="task"><strong>Chase + Sean:</strong> Venue Directory v1 live at bigmuddytouring.com/venues.</div>
+        <div class="task"><strong>Chase:</strong> Sprinter van operational + first 3 corridor show dates on the calendar.</div>
+        <div class="task"><strong>Tracy:</strong> Voice profile locked. Magazine cadence set.</div>
+        <div class="task"><strong>Amy:</strong> Podcast format decided. First 3 guests identified.</div>
+      </div>
+    </div>
+    <div class="sprint">
+      <div class="head"><div class="week">Week 2 (Apr 23-29)</div><div class="theme">Natchez pitch + podcast launch</div></div>
+      <div class="tasks">
+        <div class="task"><strong>Team:</strong> Pitch Paul Green + City of Natchez on the DSD co-sponsorship. Tourism/marketing framing.</div>
+        <div class="task"><strong>Amy + Chase:</strong> First podcast episode recorded + published. Guest = a corridor artist or venue owner.</div>
+        <div class="task"><strong>Chase + Tracy:</strong> Wedding landing page live + referral kit.</div>
+        <div class="task"><strong>Chase + Sean:</strong> First corridor road trip — Jackson + Vicksburg in-person visits.</div>
+        <div class="task"><strong>Tracy:</strong> First magazine piece of the new cadence.</div>
+      </div>
+    </div>
+    <div class="sprint">
+      <div class="head"><div class="week">Week 3 (Apr 30 - May 6)</div><div class="theme">Fill rooms + Movement starts</div></div>
+      <div class="tasks">
+        <div class="task"><strong>Chase + Sean:</strong> 2 confirmed shows on the calendar. Promo plan per show.</div>
+        <div class="task"><strong>Tracy:</strong> First wedding inquiry converted to booking.</div>
+        <div class="task"><strong>Team:</strong> Close or advance the Natchez civic deal.</div>
+        <div class="task"><strong>Chase:</strong> Twitter + TikTok accounts live. First 5 Movement posts (Deep South / regional economy / Born Free).</div>
+        <div class="task"><strong>Chase:</strong> Order Born Free Tier 2 prototype parts ($620).</div>
+      </div>
+    </div>
+    <div class="sprint">
+      <div class="head"><div class="week">Week 4 (May 7-13)</div><div class="theme">Prove the multiplier</div></div>
+      <div class="tasks">
+        <div class="task"><strong>Team:</strong> First show weekend run — Inn filled, bar humming, content pipeline live.</div>
+        <div class="task"><strong>Chase:</strong> Born Free v0.1 image baked. GitHub repo public.</div>
+        <div class="task"><strong>Amy + Chase:</strong> Podcast episode 2 + 3 in the can.</div>
+        <div class="task"><strong>Tracy:</strong> Post-show magazine feature + gallery.</div>
+        <div class="task"><strong>Team:</strong> Check the numbers. Adjust for May.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE ASK -->
+<section style="background: var(--dark); color: var(--cream); text-align: center; padding: 6rem 2rem;">
+  <div style="font-family:'Inter',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);margin-bottom:1rem;">The Ask</div>
+  <p style="color: var(--gold); font-size: 2.2rem; font-weight: 700; margin: 0 0 2rem; letter-spacing: -0.02em; font-family:'Playfair Display',Georgia,serif;">Poke holes.</p>
+  <div style="width:40px;height:2px;background:var(--terra);margin:0 auto 2rem;"></div>
+  <p style="font-family: 'Inter', sans-serif; font-size: 1.05rem; line-height: 2.4; color: var(--cream); font-weight: 300; max-width: 500px; margin: 0 auto;">
+    Where does the revenue model break?<br>
+    Where am I overextended?<br>
+    What would you cut?<br>
+    What would you double down on?
+  </p>
+  <p style="color: var(--mid); font-style: italic; margin-top: 3rem; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 400;">We're recording this. We'll analyze it after.</p>
+</section>
+
+</main>
+
+<script>
+// Highlight active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+
+// Scroll reveal — sections fade in as you reach them
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('section').forEach(s => observer.observe(s));
+
+// Animate meters on scroll
+const meterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.meter-fill').forEach(fill => {
+        const w = fill.style.width;
+        fill.style.width = '0%';
+        requestAnimationFrame(() => { requestAnimationFrame(() => { fill.style.width = w; }); });
+      });
+      meterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+const scorecardSection = document.getElementById('scorecard');
+if (scorecardSection) meterObserver.observe(scorecardSection);
+</script>
+</body>
+</html>
