@@ -1,5 +1,6 @@
 # Presentations Index
 
 - `HDI_Business_Review_April_2026.pptx`
-  - Target URL: `gs://bmt-media-bigmuddy/presentations/HDI_Business_Review_April_2026.pptx`
-  - Status: Upload blocked in this session due non-interactive `gsutil` reauthentication requirement.
+  - URL: `gs://bmt-media-bigmuddy/presentations/HDI_Business_Review_April_2026.pptx`
+  - Status: Uploaded 2026-04-16. Local copy removed from the repo.
+  - Size: 676 KiB
