@@ -51,8 +51,8 @@ const SERVICES = [
   {
     num: '06',
     heading: 'SPLIT FAIR',
-    body: '50/50 on door, merch, and streams.',
-    proof: 'No platform tax. No middleman cut. Your work, your money.',
+    body: 'Artist-first deals. Non-exclusive. Terms we\u2019d want if we were the ones on stage.',
+    proof: 'Deal structures vary by artist and project \u2014 built together, not dictated.',
     img: null,
   },
 ] as const;
