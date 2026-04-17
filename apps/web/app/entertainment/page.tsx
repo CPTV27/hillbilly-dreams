@@ -70,7 +70,7 @@ export default function EntertainmentPage() {
         <div style={{ position: 'relative', zIndex: 1, padding: 'clamp(32px, 6vw, 80px)', maxWidth: '650px' }}>
           <p style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c8943e', margin: '0 0 16px' }}>Big Muddy Magazine</p>
           <h2 style={{ fontFamily: 'var(--font-display, Georgia, serif)', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 0.9, letterSpacing: '-0.03em', margin: '0 0 20px' }}>The stories are already here. Somebody has to tell them right.</h2>
-          <p style={{ fontSize: '1rem', lineHeight: 1.6, color: '#9b9488', margin: 0 }}>The music, the food, the architecture, the people. Real editorial. Real photography. Every artist on the corridor gets the feature they deserve.</p>
+          <p style={{ fontSize: '1rem', lineHeight: 1.6, color: '#9b9488', margin: 0 }}>The music, the food, the architecture, the people. Real editorial. Real photography. Stories from the corridor, told the way they actually are.</p>
         </div>
       </section>
 

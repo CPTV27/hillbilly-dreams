@@ -124,10 +124,10 @@ export default function ReaInvitationPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginBottom: '32px' }}>
             {[
               { title: 'The Studios', desc: 'Every studio in the region gets photographed and profiled. The consoles, the rooms, the engineers, the history. Visual coverage you can&rsquo;t get anywhere else.' },
-              { title: 'The Musicians', desc: 'Every artist who comes through the corridor gets the photo treatment. Portraits, sessions, live shots. Real photography, not iPhone snaps.' },
+              { title: 'The Musicians', desc: 'Artists who come through the corridor get the photo treatment. Portraits, sessions, live shots. Real photography, not iPhone snaps.' },
               { title: 'Performance Spaces', desc: 'The Blues Room, the theaters, the juke joints, the bars. Documenting the venues that keep the music alive along the corridor.' },
               { title: 'City Guides', desc: 'Natchez, Clarksdale, Memphis, New Orleans, and every stop in between. The places worth stopping, the food worth eating, the people worth meeting.' },
-              { title: 'The Label Roster', desc: 'Every Big Muddy Records artist gets the magazine treatment. Cover shoots, feature spreads, album stories. The label and the magazine work together.' },
+              { title: 'The Label Roster', desc: 'Big Muddy Records artists get the magazine treatment. Cover shoots, feature spreads, album stories. The label and the magazine work together.' },
               { title: 'The Culture', desc: 'Food, architecture, history, traditions. The stuff that makes the South what it is. Not tourist coverage — lived coverage.' },
             ].map((section, i) => (
               <div key={i} style={{ padding: '20px', borderLeft: '2px solid #c8943e' }}>

@@ -5,8 +5,8 @@ import type { Metadata } from 'next';
 import { IllustrationDivider } from '@bigmuddy/ui';
 
 export const metadata: Metadata = {
-  title: 'Big Muddy Records — Keep your masters. Get the machine.',
-  description: 'Non-exclusive deals. Artists own their masters. Radio play, magazine features, touring bookings, and a corridor of venues — all included.',
+  title: 'Big Muddy Records — Music from the corridor.',
+  description: 'Radio play, magazine features, live sessions, and tour routing through the Deep South. Big Muddy Records puts the full media machine behind the music.',
 };
 
 const ROSTER = [
@@ -154,9 +154,9 @@ export default function RecordsPage() {
             margin: 0,
           }}
         >
-          Keep your masters.
+          Music from the corridor.
           <br />
-          <span style={{ color: 'var(--accent, #c8943e)' }}>Get the machine.</span>
+          <span style={{ color: 'var(--accent, #c8943e)' }}>The machine behind it.</span>
         </h1>
         <p
           style={{
@@ -168,8 +168,8 @@ export default function RecordsPage() {
             marginTop: '2rem',
           }}
         >
-          Recording. Distribution. Radio play. Magazine coverage. A corridor of venues.
-          Non-exclusive deals. You keep your masters. The music just has to be good.
+          Recording. Radio play. Magazine coverage. A corridor of venues from Memphis
+          to New Orleans. The music just has to be good.
         </p>
         <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <a
@@ -185,7 +185,7 @@ export default function RecordsPage() {
               letterSpacing: '0.04em',
             }}
           >
-            Meet the Artists
+            Who We Work With
           </a>
           <a
             href="/records/sessions"
@@ -224,7 +224,7 @@ export default function RecordsPage() {
             marginBottom: '1.5rem',
           }}
         >
-          What you get.
+          What the machine does.
         </h2>
         <div
           style={{
@@ -236,21 +236,18 @@ export default function RecordsPage() {
         >
           <p>
             We already own a radio station, a magazine, a touring circuit, and a photography studio.
-            The label is what happens when you point all of that at an artist instead of a town.
+            Big Muddy Records is what happens when you point all of that at an artist.
           </p>
           <p style={{ marginTop: '1rem' }}>
-            You keep your masters. No multi-album deal — twelve months at a time,
-            walk anytime. Marketing is included: Radio airplay, Magazine features,
-            touring bookings, professional photography. No separate invoices. No recoup.
+            Radio airplay. Magazine features. Touring bookings through the corridor.
+            Professional photography and visual content. The recording is the beginning.
+            The network is what moves it.
           </p>
           <p style={{ marginTop: '1rem' }}>
             The corridor between Memphis and New Orleans produced more American music
             per mile than anywhere on earth. That music is still being made — in living
             rooms in Clarksdale, on front porches in Natchez, in the back of churches
             in Vicksburg. We record it and give it the infrastructure it deserves.
-          </p>
-          <p style={{ marginTop: '1rem', fontStyle: 'italic', color: 'var(--accent, #c8943e)' }}>
-            Artists own their masters. Always. No exceptions.
           </p>
         </div>
       </section>
@@ -309,9 +306,9 @@ export default function RecordsPage() {
             marginBottom: '2.5rem',
           }}
         >
-          Artists own their masters from day one. Marketing is built in — Radio, Magazine,
-          Touring, the Inn. Every brand in the ecosystem amplifies your release without
-          burning your budget on ad spend. Twelve months at a time. No multi-year lock-in.
+          We built the radio station, the magazine, the touring route, and the Inn.
+          Every brand in the ecosystem points at the music. That&apos;s what we put
+          behind the artists we work with.
         </p>
 
         <div
@@ -324,20 +321,20 @@ export default function RecordsPage() {
         >
           {[
             {
-              label: 'You keep your masters',
-              detail: 'Every time. No exceptions. The music belongs to the person who made it.',
+              label: 'Radio airplay',
+              detail: 'Live cuts and pre-release plays on Big Muddy Radio before a release drops.',
             },
             {
-              label: 'No multi-album deal',
-              detail: 'Annual renewal. Walk anytime. We earn your next year.',
+              label: 'Magazine coverage',
+              detail: 'Features, interviews, and photo essays in Big Muddy Magazine — earned media, not ads.',
             },
             {
-              label: 'Marketing included',
-              detail: 'Radio, Magazine, photography, social — all part of the deal, not a separate invoice.',
+              label: 'Touring and venue routing',
+              detail: 'Bookings through the Inn, Bobby J\'s, the Anthologist, and the broader corridor circuit.',
             },
             {
-              label: 'The ecosystem works for you',
-              detail: 'Shows at the Inn, features in the Magazine, airplay on Radio, merch through Venture Gallery.',
+              label: 'The full network',
+              detail: 'Shows, photography, merch through Venture Gallery — the ecosystem works for the music.',
             },
           ].map((item, i) => (
             <div
@@ -439,8 +436,8 @@ export default function RecordsPage() {
             maxWidth: 600,
           }}
         >
-          Big Muddy Records is one part of a larger media operation. When you sign with
-          the label, your release gets amplified across the full network.
+          Big Muddy Records is one part of a larger media operation. Every release moves
+          through the full network — radio, print, live, and online.
         </p>
         <div
           style={{
@@ -689,7 +686,7 @@ export default function RecordsPage() {
         ))}
       </section>
 
-      {/* Submit Music CTA */}
+      {/* Contact */}
       <section
         style={{
           borderTop: '1px solid var(--muted, #333)',
@@ -707,7 +704,7 @@ export default function RecordsPage() {
             marginBottom: '1rem',
           }}
         >
-          Play across the Deep South?
+          Hear something on the radio?
         </h2>
         <p
           style={{
@@ -718,10 +715,8 @@ export default function RecordsPage() {
             marginBottom: '2rem',
           }}
         >
-          We take 2–4 artists per year. If you make music between Memphis and New Orleans
-          — or anywhere the river touches — send us something honest. No demo
-          requirements, no genre restrictions. We&apos;ll tell you straight whether it
-          fits.
+          If you make music between Memphis and New Orleans — or anywhere the river
+          touches — get in touch. The music just has to be good.
         </p>
         <a
           href="mailto:music@bigmuddyrecordlabel.com"
@@ -736,7 +731,7 @@ export default function RecordsPage() {
             letterSpacing: '0.04em',
           }}
         >
-          Submit Your Music
+          Get in Touch
         </a>
         <p
           style={{

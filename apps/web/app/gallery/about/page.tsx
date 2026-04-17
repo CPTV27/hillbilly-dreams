@@ -59,7 +59,7 @@ export default function GalleryAbout() {
             price. We handle the rest. They get paid.
           </p>
           <p style={{ marginBottom: '1rem', fontWeight: 600, color: '#c8943e' }}>
-            Artists keep 70–80% of every sale. That&apos;s the deal. Always.
+            Artists keep the majority of every sale. They set the price. We move the work.
           </p>
           <p>
             Call it a cultural insurgency if you want. We call it common sense.
@@ -90,7 +90,7 @@ export default function GalleryAbout() {
             {
               step: '02',
               title: 'Artist-First Economics',
-              desc: 'Artists keep 70\u201380% of every sale. No consignment. No markups. No middlemen beyond us. They set the price, we move the work.',
+              desc: 'Artists keep the majority of every sale. No hidden fees. No middlemen beyond us. They set the price, we move the work.',
             },
             {
               step: '03',
@@ -176,7 +176,7 @@ export default function GalleryAbout() {
           If you paint it, fire it, weave it, print it, or build it — we want to see it.
         </p>
         <p style={{ color: '#c8943e', fontWeight: 600, fontSize: '0.95rem', marginBottom: '1.5rem' }}>
-          70–80% revenue share. No consignment. No gatekeepers.
+          Artist-first terms. No consignment. No gatekeepers.
         </p>
         <Link
           href="/gallery/apply"

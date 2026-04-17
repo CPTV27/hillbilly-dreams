@@ -342,7 +342,7 @@ export default function HouseBandPage() {
             letterSpacing: '-0.02em',
             margin: '0 0 32px',
           }}>
-            You keep 80%.
+            Corridor players who back the acts coming through.
           </h2>
           <div style={{
             display: 'flex',
@@ -353,19 +353,14 @@ export default function HouseBandPage() {
             color: '#9b9488',
           }}>
             <p style={{ margin: 0 }}>
-              80% to the artist. 15% to the label. 5% platform.
+              A working band rooted in the region. Session players, live backing, the
+              real thing.
             </p>
             <p style={{ margin: 0 }}>
-              We record you on a legendary console with a world-class engineer.
+              We record on a legendary console with a world-class engineer.
               We film it with cinema-quality cameras. We play it on our radio station.
-              We write about you in our magazine. We promote it across every channel
-              we own. And you keep 80%.
-            </p>
-            <p style={{ margin: 0 }}>
-              Most labels take 50%. Most studios charge by the hour and you leave
-              with a hard drive. We give you the session, the content, the distribution,
-              the press, and the touring infrastructure &mdash; and you walk away with
-              four fifths of everything.
+              We write about it in the magazine. The house band is the infrastructure
+              that makes all of it work when an artist comes through the corridor.
             </p>
           </div>
         </div>

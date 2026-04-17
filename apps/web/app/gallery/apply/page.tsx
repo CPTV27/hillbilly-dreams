@@ -190,7 +190,7 @@ export default function GalleryApply() {
           lineHeight: 1.1,
           marginBottom: '0.5rem',
         }}>
-          You keep 70–80%.
+          Artist-first terms.
         </p>
         <p style={{
           fontSize: '1.1rem',

@@ -80,7 +80,7 @@ export default function RecordsArtistsPage() {
           marginBottom: '3rem',
         }}
       >
-        2–4 artists at a time. Deep attention, not volume.
+        The artists we promote. The music coming out of the corridor.
       </p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
@@ -185,18 +185,6 @@ export default function RecordsArtistsPage() {
                   >
                     {artist.upcoming}
                   </p>
-                  <p
-                    style={{
-                      fontSize: '0.75rem',
-                      color: 'var(--fg, #f5f0eb)',
-                      opacity: 0.35,
-                      margin: 0,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.07em',
-                    }}
-                  >
-                    {artist.mastersNote}
-                  </p>
                   {artist.url && (
                     <a
                       href={artist.url}
@@ -234,7 +222,7 @@ export default function RecordsArtistsPage() {
         aria-label="Studio C recording setup"
       />
 
-      {/* Open call */}
+      {/* Contact */}
       <section
         style={{
           marginTop: '4rem',
@@ -250,7 +238,7 @@ export default function RecordsArtistsPage() {
             marginBottom: '0.75rem',
           }}
         >
-          This page should be longer.
+          Make music along the corridor?
         </h3>
         <p
           style={{
@@ -262,9 +250,8 @@ export default function RecordsArtistsPage() {
             marginBottom: '1rem',
           }}
         >
-          We take 2–4 artists per year. If you play music along the Deep South
-          and you want to be on it, send us something. You keep your masters. We handle
-          the rest.
+          We work with a small number of artists at a time. If you play music between
+          Memphis and New Orleans, get in touch.
         </p>
         <a
           href="mailto:music@bigmuddyrecordlabel.com"

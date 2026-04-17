@@ -108,8 +108,8 @@ export default async function MagazineHomepage() {
           textAlign: 'center',
         }}>
           The music, the food, the architecture, the people. Real editorial. Real photography.
-          Every artist on the corridor gets the feature they deserve. Every town gets told
-          the way it actually is. Published from Natchez, Mississippi.
+          The music, the food, the architecture, the people. Stories from the corridor,
+          told the way they actually are. Published from Natchez, Mississippi.
         </p>
       </section>
 

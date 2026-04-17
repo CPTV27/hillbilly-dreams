@@ -402,8 +402,8 @@ export default function ReaPage() {
             margin: 0,
           }}>
             The music, the food, the architecture, the people.
-            Real editorial. Real photography. Every artist on the corridor
-            gets the feature they deserve.
+            Real editorial. Real photography. The stories from the corridor,
+            told the way they actually are.
           </p>
         </div>
       </section>

@@ -106,18 +106,6 @@ export default async function ArtistDetailPage({ params }: Props) {
           >
             {artist.genre} &middot; {artist.city}, {artist.state}
           </p>
-          <p
-            style={{
-              fontSize: '0.75rem',
-              color: 'var(--fg, #f5f0eb)',
-              opacity: 0.35,
-              textTransform: 'uppercase',
-              letterSpacing: '0.07em',
-              margin: '0.25rem 0 0',
-            }}
-          >
-            Masters owned by the artist.
-          </p>
         </div>
       </div>
 
@@ -224,8 +212,8 @@ export default async function ArtistDetailPage({ params }: Props) {
             maxWidth: 500,
           }}
         >
-          Big Muddy Records artists get the full machine — Radio, Magazine, the Inn, the
-          touring route. One retainer, no hidden fees. Artists own their masters. Always.
+          Big Muddy Records puts the full machine behind the artists we work with — Radio,
+          Magazine, the Inn, the touring route.
         </p>
       </section>
     </main>

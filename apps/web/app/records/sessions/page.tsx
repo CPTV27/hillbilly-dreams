@@ -65,9 +65,9 @@ const RECORDING_PHILOSOPHY = [
       "We use minimal processing. If the room sounds good, the recording sounds good. The Blues Room at the Big Muddy Inn was built for this. So was the back of the bus.",
   },
   {
-    principle: 'Own your masters',
+    principle: 'Artists keep their masters',
     detail:
-      "Every artist on Big Muddy Records owns their masters from day one. We license for distribution. The music belongs to the person who made it. No exceptions, no fine print.",
+      "The music belongs to the person who made it. We license for distribution. That\u2019s how it works here.",
   },
   {
     principle: 'Amplify through the network',

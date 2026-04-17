@@ -737,9 +737,8 @@ export default function GalleryPageClient({ libraryPhotos }: Props) {
               margin: '0 auto 2rem',
             }}
           >
-            We carry original work on consignment with artist-first terms. 70&ndash;80% to the
-            maker, always. If you create work that belongs on someone&apos;s wall, we&apos;d like
-            to see it.
+            We carry original work with artist-first terms. If you create work that
+            belongs on someone&apos;s wall, we&apos;d like to see it.
           </p>
           <a
             href="mailto:tracyaldersonallen@gmail.com?subject=Gallery Submission&body=Hi Tracy, I'd like to submit my work for consideration at the Venture Gallery. Here's a link to my portfolio:"
