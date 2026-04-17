@@ -371,13 +371,14 @@ async function processPhoto(
   filePath: string,
   inputRoot: string,
   existingHashes: Set<string>,
-  dryRun: boolean
+  dryRun: boolean,
+  force: boolean
 ): Promise<ProcessResult> {
   try {
     const buffer = fs.readFileSync(filePath);
     const hash = crypto.createHash('sha1').update(buffer).digest('hex').slice(0, 12);
 
-    if (existingHashes.has(hash)) {
+    if (existingHashes.has(hash) && !force) {
       return { status: 'skipped', hash };
     }
 
@@ -403,6 +404,7 @@ async function processPhoto(
       const out = await sharp(buffer)
         .rotate() // respect EXIF orientation
         .resize({ width: cfg.width, height: cfg.width, fit: 'inside', withoutEnlargement: true })
+        .keepMetadata() // preserve EXIF/IPTC/XMP so downstream tools see captions, keywords, GPS
         .webp({ quality: cfg.quality })
         .toBuffer({ resolveWithObject: true });
       sizes[name] = { buffer: out.data, width: out.info.width };
@@ -474,6 +476,7 @@ ARGUMENTS
 
 OPTIONS
   --dry-run         Show what would be uploaded without writing to GCS
+  --force           Re-process + re-upload even if hash already in index (backfill)
   --help            Print this help
 
 EXAMPLE
@@ -497,6 +500,7 @@ async function main(): Promise<void> {
   }
 
   const dryRun = args.includes('--dry-run');
+  const force = args.includes('--force');
   const inputRoot = path.resolve(args.find((a) => !a.startsWith('--')) || '');
 
   if (!fs.existsSync(inputRoot) || !fs.statSync(inputRoot).isDirectory()) {
@@ -531,7 +535,7 @@ async function main(): Promise<void> {
     const f = files[i];
     const rel = path.relative(inputRoot, f);
     process.stdout.write(`  [${i + 1}/${files.length}] ${rel} ... `);
-    const result = await processPhoto(f, inputRoot, existingHashes, dryRun);
+    const result = await processPhoto(f, inputRoot, existingHashes, dryRun, force);
     if (result.status === 'uploaded') {
       uploaded++;
       if (result.entry) newEntries.push(result.entry);
