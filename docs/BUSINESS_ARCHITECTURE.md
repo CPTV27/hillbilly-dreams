@@ -1,12 +1,14 @@
 # Hillbilly Dreams Inc — Business Architecture
 
-*Canonical reference. Every agent reads this. Every page aligns to this. Updated 2026-04-16.*
+*Canonical reference. Every agent reads this. Every page aligns to this. Updated 2026-04-17.*
+
+*April 17 amendments: DSD soft-decoupled from Big Muddy (see `docs/POSITIONING_UPDATE_2026-04-17.md`). Big Muddy Touring operates its own music-industry directory separate from DSD. Two-directory architecture — one moat (Big Muddy Touring circuit), one SEO asset (DSD).*
 
 ---
 
 ## The Structure
 
-MBT is the product. It is a licensed civic-commerce operating system sold to institutions. HDI owns it. The brands are proof markets. DSD is the public layer.
+The brands are proof markets. Big Muddy is the flagship. Within Big Muddy, there is a music-industry directory (venues, musicians, hospitality) that IS part of the moat. DSD is a sibling SEO + local-guide brand operating independently. Both share infrastructure; neither brand is nested under the other.
 
 ```
 ┌───────────────────────────────────────────────────────────┐
@@ -120,19 +122,36 @@ These buyers have budgets, reasons to care, and a need for coordination capacity
 
 ---
 
-## Deep South Directory (DSD) — The Public Participation Layer
+## Deep South Directory (DSD) — Sibling Brand, SEO Asset
 
-**What:** The visible civic layer of MBT. The public map of participants.
+*Soft-decoupled from Big Muddy as of 2026-04-17. See `docs/POSITIONING_UPDATE_2026-04-17.md`.*
+
+**What:** An independent corridor directory and local-guide brand. General-purpose businesses — restaurants, shops, services, any vertical. AI-generated bulk + human field reports + business self-submitted listings.
 **Domain:** deepsouthdirectory.com
-**Role:** Brand-visible, architecturally subordinate to MBT.
+**Role:** Sibling brand. Not part of the Big Muddy moat. Not a module. Infrastructure-shared, brand-independent.
 
 DSD is:
-- The public map of participating businesses
-- The business discovery layer
-- The local proof that the network exists
-- The place where community participation becomes legible
+- A compounding SEO asset targeting commercial corridor searches ("best coffee in natchez," "things to do in clarksdale")
+- A local-guide publication with its own voice (*"three locals who eat out a lot"*), operated informally by Chase, Tracy, and Amy alongside the Inn
+- A self-serve listing product at tiers $0 / $25 / $50 / $99 / $250
+- Content-shared with Big Muddy Touring where useful (cross-links, not nested brand)
 
-DSD is NOT a standalone product. It is the public face of whatever MBT program is running in a given market.
+DSD is NOT:
+- Part of the Big Muddy family footer or navigation
+- A lead-gen funnel for Big Muddy media (that job moves to the Big Muddy Touring directory)
+- A walk-in sales product (the walk-in pitch is now Big Muddy media kit bundles — see `/admin/pulse`)
+- Editorially tone-policed — it has its own voice, distinct from the magazine
+
+### The Big Muddy Touring Directory (separate)
+
+Big Muddy Touring operates its **own** directory — music venues, musicians, music-adjacent hospitality, press contacts — at `bigmuddytouring.com/circuit` (URL TBD). This one IS part of the moat. It feeds publicity packages, tour routing, and the circuit narrative. Shared Prisma model (`DirectoryBusiness`) uses a `scope` field to distinguish `'touring'` vs `'general'`.
+
+### Revenue split
+
+| Directory | Y1 target | Revenue model |
+|---|---|---|
+| DSD (general) | $1–3K/mo | Self-serve subscriptions, passive |
+| Big Muddy Touring directory (music + hospitality) | $3–5K/mo | Publicity packages ($500 Spotlight, $2,500 Album Launch, etc.) |
 
 ---
 
