@@ -2,6 +2,7 @@
 // Big Muddy Touring — We bring the party.
 
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Big Muddy Touring — We bring the party.',
@@ -9,42 +10,50 @@ export const metadata: Metadata = {
     'We book the bands. We drive them there. We put them on the radio. We put them on a record. We book them a room. And we split it fair. 13 cities, Memphis to New Orleans.',
 };
 
+const GCS = 'https://storage.googleapis.com/bmt-media-bigmuddy/touring/approved';
+
 const SERVICES = [
   {
     num: '01',
     heading: 'BOOK',
     body: 'Real venue relationships across the corridor.',
     proof: '26 venues across 13 cities, Memphis to New Orleans.',
+    img: { src: `${GCS}/card-01-book-1600.webp`, srcMobile: `${GCS}/card-01-book-800.webp`, alt: 'Drummer at a Pearl kit in a session atmosphere' },
   },
   {
     num: '02',
     heading: 'TRANSPORT',
     body: 'Sprinter van, gear handling, no rentals required.',
     proof: 'Wrap landing this week. Yours for the run.',
+    img: { src: `${GCS}/card-02-transport-1600.webp`, srcMobile: `${GCS}/card-02-transport-800.webp`, alt: 'Brick sidewalk on a corridor town Main Street' },
   },
   {
     num: '03',
     heading: 'PROMOTE',
     body: 'Through media we own, not platforms we rent.',
     proof: 'Big Muddy Magazine + Big Muddy Radio + corridor social — every show.',
+    img: { src: `${GCS}/card-03-promote-1600.webp`, srcMobile: `${GCS}/card-03-promote-800.webp`, alt: 'Cigar and Balsamics storefront on Main Street' },
   },
   {
     num: '04',
     heading: 'RECORD',
     body: 'Sessions and releases through Big Muddy Records.',
     proof: '55 tracks in the catalog. Non-exclusive deals. You keep your masters.',
+    img: { src: `${GCS}/card-04-record-1600.webp`, srcMobile: `${GCS}/card-04-record-800.webp`, alt: 'Vintage Realistic turntable with vinyl mid-spin' },
   },
   {
     num: '05',
     heading: 'HOUSE',
     body: 'The Big Muddy Inn in Natchez, on the river.',
     proof: '6 rooms. Blues Room. Production base camp.',
+    img: { src: `${GCS}/card-05-house-1600.webp`, srcMobile: `${GCS}/card-05-house-800.webp`, alt: 'Golden urns and glassware at the Inn' },
   },
   {
     num: '06',
     heading: 'SPLIT FAIR',
     body: '50/50 on door, merch, and streams.',
     proof: 'No platform tax. No middleman cut. Your work, your money.',
+    img: null,
   },
 ] as const;
 
@@ -71,21 +80,25 @@ const SESSIONS = [
     title: 'Blues Room — Friday Night Sessions',
     desc: 'Weekly live recordings at the Inn, every Friday.',
     note: 'Arrie Aslin hosts.',
+    img: { src: `${GCS}/card-01-book-1600.webp`, alt: 'Drummer at a Pearl kit in a session atmosphere' },
   },
   {
     title: 'Save the Hall Ball — A Night at Stanton Hall',
     desc: 'Pilgrimage Garden Club fundraiser, March 2026.',
     note: 'Live recording in the magazine archive.',
+    img: { src: `${GCS}/session-ball-1600.webp`, alt: 'Black and white dance floor with chandeliers at the Hall Ball' },
   },
   {
     title: 'Amy Allen — Live at Five',
     desc: 'May 8 at the Big Muddy Inn.',
     note: 'Album showcase.',
+    img: { src: `${GCS}/session-arrival-1600.webp`, alt: 'Gowns arriving at night, event energy' },
   },
   {
     title: 'Studio C Sessions — Utopia, Woodstock NY',
     desc: 'Spring sessions for the corridor catalog.',
     note: 'Tracking now.',
+    img: null,
   },
 ] as const;
 
@@ -119,15 +132,14 @@ export default function TouringPage() {
           overflow: 'hidden',
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp"
-          alt=""
+        <Image
+          src={`${GCS}/hero-1600.webp`}
+          alt="The corridor road, Memphis to New Orleans."
+          fill
+          priority
+          quality={85}
+          sizes="(max-width: 768px) 800px, 1600px"
           style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
             objectFit: 'cover',
             objectPosition: 'center',
           }}
@@ -263,55 +275,89 @@ export default function TouringPage() {
               key={s.num}
               style={{
                 background: bg,
-                padding: 'clamp(28px, 4vw, 48px)',
                 borderBottom: divider,
+                overflow: 'hidden',
               }}
             >
-              <p
-                style={{
-                  fontFamily: 'var(--font-display, Georgia, serif)',
-                  fontSize: '1.6rem',
-                  fontWeight: 800,
-                  color: gold,
-                  margin: '0 0 12px',
-                  letterSpacing: '-0.02em',
-                }}
-              >
-                {s.num}
-              </p>
-              <p
-                style={{
-                  fontSize: '0.65rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.28em',
-                  textTransform: 'uppercase',
-                  color: text,
-                  margin: '0 0 14px',
-                }}
-              >
-                {s.heading}
-              </p>
-              <p
-                style={{
-                  fontSize: '1rem',
-                  lineHeight: 1.55,
-                  color: text,
-                  margin: '0 0 10px',
-                }}
-              >
-                {s.body}
-              </p>
-              <p
-                style={{
-                  fontSize: '0.82rem',
-                  lineHeight: 1.5,
-                  color: muted,
-                  margin: 0,
-                  fontStyle: 'italic',
-                }}
-              >
-                {s.proof}
-              </p>
+              {s.img && (
+                <div
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    height: '180px',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <Image
+                    src={s.img.src}
+                    alt={s.img.alt}
+                    fill
+                    quality={75}
+                    sizes="(max-width: 768px) 800px, 600px"
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                      opacity: 0.72,
+                    }}
+                  />
+                  {/* subtle gold-dark vignette so card feels anchored */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background:
+                        'linear-gradient(to bottom, transparent 40%, rgba(10,10,8,0.55) 100%)',
+                    }}
+                  />
+                </div>
+              )}
+              <div style={{ padding: 'clamp(28px, 4vw, 48px)' }}>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-display, Georgia, serif)',
+                    fontSize: '1.6rem',
+                    fontWeight: 800,
+                    color: gold,
+                    margin: '0 0 12px',
+                    letterSpacing: '-0.02em',
+                  }}
+                >
+                  {s.num}
+                </p>
+                <p
+                  style={{
+                    fontSize: '0.65rem',
+                    fontWeight: 700,
+                    letterSpacing: '0.28em',
+                    textTransform: 'uppercase',
+                    color: text,
+                    margin: '0 0 14px',
+                  }}
+                >
+                  {s.heading}
+                </p>
+                <p
+                  style={{
+                    fontSize: '1rem',
+                    lineHeight: 1.55,
+                    color: text,
+                    margin: '0 0 10px',
+                  }}
+                >
+                  {s.body}
+                </p>
+                <p
+                  style={{
+                    fontSize: '0.82rem',
+                    lineHeight: 1.5,
+                    color: muted,
+                    margin: 0,
+                    fontStyle: 'italic',
+                  }}
+                >
+                  {s.proof}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -531,43 +577,68 @@ export default function TouringPage() {
               key={session.title}
               style={{
                 border: divider,
-                padding: 'clamp(20px, 3vw, 32px)',
                 borderRadius: '2px',
                 background: 'rgba(255,255,255,0.02)',
+                overflow: 'hidden',
               }}
             >
-              <p
-                style={{
-                  fontFamily: 'var(--font-display, Georgia, serif)',
-                  fontSize: 'clamp(1rem, 1.8vw, 1.2rem)',
-                  fontWeight: 700,
-                  lineHeight: 1.2,
-                  color: text,
-                  margin: '0 0 10px',
-                }}
-              >
-                {session.title}
-              </p>
-              <p
-                style={{
-                  fontSize: '0.88rem',
-                  color: muted,
-                  lineHeight: 1.5,
-                  margin: '0 0 10px',
-                }}
-              >
-                {session.desc}
-              </p>
-              <p
-                style={{
-                  fontSize: '0.78rem',
-                  color: gold,
-                  margin: 0,
-                  fontStyle: 'italic',
-                }}
-              >
-                {session.note}
-              </p>
+              {session.img && (
+                <div
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    height: '200px',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <Image
+                    src={session.img.src}
+                    alt={session.img.alt}
+                    fill
+                    quality={75}
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center top',
+                      opacity: 0.85,
+                    }}
+                  />
+                </div>
+              )}
+              <div style={{ padding: 'clamp(20px, 3vw, 32px)' }}>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-display, Georgia, serif)',
+                    fontSize: 'clamp(1rem, 1.8vw, 1.2rem)',
+                    fontWeight: 700,
+                    lineHeight: 1.2,
+                    color: text,
+                    margin: '0 0 10px',
+                  }}
+                >
+                  {session.title}
+                </p>
+                <p
+                  style={{
+                    fontSize: '0.88rem',
+                    color: muted,
+                    lineHeight: 1.5,
+                    margin: '0 0 10px',
+                  }}
+                >
+                  {session.desc}
+                </p>
+                <p
+                  style={{
+                    fontSize: '0.78rem',
+                    color: gold,
+                    margin: 0,
+                    fontStyle: 'italic',
+                  }}
+                >
+                  {session.note}
+                </p>
+              </div>
             </article>
           ))}
         </div>
