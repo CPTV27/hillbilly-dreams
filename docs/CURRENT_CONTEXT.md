@@ -13,9 +13,13 @@
 **Measurably Better Things LLC** (not yet filed) becomes:
 - The holding company
 - The platform (software, directory engine, canonical entity store)
-- The brand customers touch
+- The brand used for broker-tier B2B deals only (not for consumer pages)
 
 **Three-way partnership:** Chase, Tracy, Amy (equal thirds) own MBT.
+
+**Public-facing rule (Chase clarified 2026-04-18 PM):** MBT is NOT being marketed publicly in the near term. Consumer-facing sites stay on their own brands (Big Muddy Inn, Big Muddy Touring, Chase Pierson Photography, Studio C, etc.). MBT branding surfaces only for broker-tier B2B deals — Paul Green Realty, multi-property realtor partnerships, civic/tourism where the client is evaluating a platform, not a consumer brand. For everything else, MBT stays backstage like a holding company.
+
+**Pacing (Chase flagged 2026-04-18 PM):** Do NOT propagate HDI→MBT across every doc right now. The restructure is correct direction but needs to settle. Cos holds the wholesale rename; prior docs stay labeled as-is until Chase says go.
 
 **Vendor layer — NEW:**
 - **Studio C** — production vendor only (photo, video, content, shoots, edit). Also a client of MBT for its own marketing.
