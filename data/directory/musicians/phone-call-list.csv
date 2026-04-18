@@ -1,0 +1,487 @@
+name,city,state,phone,email,website,confidence,next_action,gap_field,gap_category,gap_index,total_gaps_for_record
+Cedric Burnside,Holly Springs,MS,,,https://www.cedricburnside.net,High,Visit cedricburnside.net booking contact page or call Fat Possum Records re: agent inquiry.,fees.typical_show,fees,1,5
+Cedric Burnside,Holly Springs,MS,,,https://www.cedricburnside.net,High,Visit cedricburnside.net booking contact page or call Fat Possum Records re: agent inquiry.,fees.festival_fee,fees,2,5
+Cedric Burnside,Holly Springs,MS,,,https://www.cedricburnside.net,High,Visit cedricburnside.net booking contact page or call Fat Possum Records re: agent inquiry.,booking.booking_phone,booking,3,5
+Cedric Burnside,Holly Springs,MS,,,https://www.cedricburnside.net,High,Visit cedricburnside.net booking contact page or call Fat Possum Records re: agent inquiry.,booking.agent_name,booking,4,5
+Cedric Burnside,Holly Springs,MS,,,https://www.cedricburnside.net,High,Visit cedricburnside.net booking contact page or call Fat Possum Records re: agent inquiry.,booking.agent_agency,booking,5,5
+Kenny Brown,Waterford,MS,,,,Medium,Message Facebook page facebook.com/kennybrownmusic for booking inquiry.,fees.typical_show,fees,1,6
+Kenny Brown,Waterford,MS,,,,Medium,Message Facebook page facebook.com/kennybrownmusic for booking inquiry.,fees.festival_fee,fees,2,6
+Kenny Brown,Waterford,MS,,,,Medium,Message Facebook page facebook.com/kennybrownmusic for booking inquiry.,booking.booking_phone,booking,3,6
+Kenny Brown,Waterford,MS,,,,Medium,Message Facebook page facebook.com/kennybrownmusic for booking inquiry.,booking.booking_email,booking,4,6
+Kenny Brown,Waterford,MS,,,,Medium,Message Facebook page facebook.com/kennybrownmusic for booking inquiry.,origin.birth_year,origin,5,6
+Kenny Brown,Waterford,MS,,,,Medium,Message Facebook page facebook.com/kennybrownmusic for booking inquiry.,work.key_recordings,work,6,6
+Bobby Rush,Jackson,MS,,,https://www.bobbyrushbluesman.com,High,Contact The Kurland Agency via thekurlandagency.com/artist/bobby-rush for booking inquiry.,fees.typical_show,fees,1,5
+Bobby Rush,Jackson,MS,,,https://www.bobbyrushbluesman.com,High,Contact The Kurland Agency via thekurlandagency.com/artist/bobby-rush for booking inquiry.,fees.festival_fee,fees,2,5
+Bobby Rush,Jackson,MS,,,https://www.bobbyrushbluesman.com,High,Contact The Kurland Agency via thekurlandagency.com/artist/bobby-rush for booking inquiry.,booking.booking_phone,booking,3,5
+Bobby Rush,Jackson,MS,,,https://www.bobbyrushbluesman.com,High,Contact The Kurland Agency via thekurlandagency.com/artist/bobby-rush for booking inquiry.,booking.booking_email,booking,4,5
+Bobby Rush,Jackson,MS,,,https://www.bobbyrushbluesman.com,High,Contact The Kurland Agency via thekurlandagency.com/artist/bobby-rush for booking inquiry.,booking.agent_name,booking,5,5
+"Christone ""Kingfish"" Ingram",Clarksdale,MS,,,,Medium,Contact WME or artist management for booking and fee inquiry.,fees.typical_show,fees,1,6
+"Christone ""Kingfish"" Ingram",Clarksdale,MS,,,,Medium,Contact WME or artist management for booking and fee inquiry.,fees.festival_fee,fees,2,6
+"Christone ""Kingfish"" Ingram",Clarksdale,MS,,,,Medium,Contact WME or artist management for booking and fee inquiry.,booking.booking_phone,booking,3,6
+"Christone ""Kingfish"" Ingram",Clarksdale,MS,,,,Medium,Contact WME or artist management for booking and fee inquiry.,booking.booking_email,booking,4,6
+"Christone ""Kingfish"" Ingram",Clarksdale,MS,,,,Medium,Contact WME or artist management for booking and fee inquiry.,booking.agent_name,booking,5,6
+"Christone ""Kingfish"" Ingram",Clarksdale,MS,,,,Medium,Contact WME or artist management for booking and fee inquiry.,work.key_recordings,work,6,6
+"Jimmy ""Duck"" Holmes",Bentonia,MS,,,,High,Message Facebook page facebook.com/jimmyduckholmes for direct booking.,fees.typical_show,fees,1,5
+"Jimmy ""Duck"" Holmes",Bentonia,MS,,,,High,Message Facebook page facebook.com/jimmyduckholmes for direct booking.,fees.festival_fee,fees,2,5
+"Jimmy ""Duck"" Holmes",Bentonia,MS,,,,High,Message Facebook page facebook.com/jimmyduckholmes for direct booking.,booking.booking_phone,booking,3,5
+"Jimmy ""Duck"" Holmes",Bentonia,MS,,,,High,Message Facebook page facebook.com/jimmyduckholmes for direct booking.,booking.booking_email,booking,4,5
+"Jimmy ""Duck"" Holmes",Bentonia,MS,,,,High,Message Facebook page facebook.com/jimmyduckholmes for direct booking.,origin.birth_year,origin,5,5
+Mr. Sipp,McComb,MS,(601) 395-3935,,https://www.mrsipp.net,High,Call Castro Coleman directly at (601) 395-3935 for booking and fee discussion.,fees.typical_show,fees,1,3
+Mr. Sipp,McComb,MS,(601) 395-3935,,https://www.mrsipp.net,High,Call Castro Coleman directly at (601) 395-3935 for booking and fee discussion.,fees.festival_fee,fees,2,3
+Mr. Sipp,McComb,MS,(601) 395-3935,,https://www.mrsipp.net,High,Call Castro Coleman directly at (601) 395-3935 for booking and fee discussion.,booking.booking_email,booking,3,3
+"Anthony ""Big A"" Sherrod",Clarksdale,MS,,,https://www.musicmaker.org/artist/,Medium,Contact Music Maker Foundation via musicmaker.org/artist/ for booking inquiry.,fees.typical_show,fees,1,4
+"Anthony ""Big A"" Sherrod",Clarksdale,MS,,,https://www.musicmaker.org/artist/,Medium,Contact Music Maker Foundation via musicmaker.org/artist/ for booking inquiry.,fees.festival_fee,fees,2,4
+"Anthony ""Big A"" Sherrod",Clarksdale,MS,,,https://www.musicmaker.org/artist/,Medium,Contact Music Maker Foundation via musicmaker.org/artist/ for booking inquiry.,booking.booking_phone,booking,3,4
+"Anthony ""Big A"" Sherrod",Clarksdale,MS,,,https://www.musicmaker.org/artist/,Medium,Contact Music Maker Foundation via musicmaker.org/artist/ for booking inquiry.,booking.booking_email,booking,4,4
+Lucius Spiller,Clarksdale,MS,,,,Medium,Message Facebook page facebook.com/BlueSpiller/ for booking inquiry.,fees.typical_show,fees,1,6
+Lucius Spiller,Clarksdale,MS,,,,Medium,Message Facebook page facebook.com/BlueSpiller/ for booking inquiry.,fees.festival_fee,fees,2,6
+Lucius Spiller,Clarksdale,MS,,,,Medium,Message Facebook page facebook.com/BlueSpiller/ for booking inquiry.,booking.booking_phone,booking,3,6
+Lucius Spiller,Clarksdale,MS,,,,Medium,Message Facebook page facebook.com/BlueSpiller/ for booking inquiry.,booking.booking_email,booking,4,6
+Lucius Spiller,Clarksdale,MS,,,,Medium,Message Facebook page facebook.com/BlueSpiller/ for booking inquiry.,work.key_recordings,work,5,6
+Lucius Spiller,Clarksdale,MS,,,,Medium,Message Facebook page facebook.com/BlueSpiller/ for booking inquiry.,origin.birth_year,origin,6,6
+"Terry ""Harmonica"" Bean",Holly Springs,MS,,,https://www.musicmaker.org/,Medium,Contact Music Maker Foundation via musicmaker.org for Terry Harmonica Bean booking.,fees.typical_show,fees,1,6
+"Terry ""Harmonica"" Bean",Holly Springs,MS,,,https://www.musicmaker.org/,Medium,Contact Music Maker Foundation via musicmaker.org for Terry Harmonica Bean booking.,fees.festival_fee,fees,2,6
+"Terry ""Harmonica"" Bean",Holly Springs,MS,,,https://www.musicmaker.org/,Medium,Contact Music Maker Foundation via musicmaker.org for Terry Harmonica Bean booking.,booking.booking_phone,booking,3,6
+"Terry ""Harmonica"" Bean",Holly Springs,MS,,,https://www.musicmaker.org/,Medium,Contact Music Maker Foundation via musicmaker.org for Terry Harmonica Bean booking.,booking.booking_email,booking,4,6
+"Terry ""Harmonica"" Bean",Holly Springs,MS,,,https://www.musicmaker.org/,Medium,Contact Music Maker Foundation via musicmaker.org for Terry Harmonica Bean booking.,work.key_recordings,work,5,6
+"Terry ""Harmonica"" Bean",Holly Springs,MS,,,https://www.musicmaker.org/,Medium,Contact Music Maker Foundation via musicmaker.org for Terry Harmonica Bean booking.,origin.birth_year,origin,6,6
+Super Chikan,Clarksdale,MS,,,,Medium,Contact Sunflower Fest organizers or Clarksdale music community for Super Chikan booking.,fees.typical_show,fees,1,5
+Super Chikan,Clarksdale,MS,,,,Medium,Contact Sunflower Fest organizers or Clarksdale music community for Super Chikan booking.,fees.festival_fee,fees,2,5
+Super Chikan,Clarksdale,MS,,,,Medium,Contact Sunflower Fest organizers or Clarksdale music community for Super Chikan booking.,booking.booking_phone,booking,3,5
+Super Chikan,Clarksdale,MS,,,,Medium,Contact Sunflower Fest organizers or Clarksdale music community for Super Chikan booking.,booking.booking_email,booking,4,5
+Super Chikan,Clarksdale,MS,,,,Medium,Contact Sunflower Fest organizers or Clarksdale music community for Super Chikan booking.,work.key_recordings,work,5,5
+Heather Crosse,Clarksdale,MS,,booking@groundzerobluesclub.com,,High,Email booking@groundzerobluesclub.com or message facebook.com/HeatherCrosseMusic for booking.,fees.typical_show,fees,1,3
+Heather Crosse,Clarksdale,MS,,booking@groundzerobluesclub.com,,High,Email booking@groundzerobluesclub.com or message facebook.com/HeatherCrosseMusic for booking.,fees.festival_fee,fees,2,3
+Heather Crosse,Clarksdale,MS,,booking@groundzerobluesclub.com,,High,Email booking@groundzerobluesclub.com or message facebook.com/HeatherCrosseMusic for booking.,booking.booking_phone,booking,3,3
+Duwayne Burnside,Holly Springs,MS,,,,Medium,Message Facebook page facebook.com/duwayneburnsidemusic for booking.,fees.typical_show,fees,1,5
+Duwayne Burnside,Holly Springs,MS,,,,Medium,Message Facebook page facebook.com/duwayneburnsidemusic for booking.,fees.festival_fee,fees,2,5
+Duwayne Burnside,Holly Springs,MS,,,,Medium,Message Facebook page facebook.com/duwayneburnsidemusic for booking.,booking.booking_phone,booking,3,5
+Duwayne Burnside,Holly Springs,MS,,,,Medium,Message Facebook page facebook.com/duwayneburnsidemusic for booking.,booking.booking_email,booking,4,5
+Duwayne Burnside,Holly Springs,MS,,,,Medium,Message Facebook page facebook.com/duwayneburnsidemusic for booking.,origin.birth_year,origin,5,5
+Tony Holiday,Memphis,TN,,,,Medium,Message Facebook page facebook.com/tonyholidaymusic for booking inquiry.,fees.typical_show,fees,1,5
+Tony Holiday,Memphis,TN,,,,Medium,Message Facebook page facebook.com/tonyholidaymusic for booking inquiry.,fees.festival_fee,fees,2,5
+Tony Holiday,Memphis,TN,,,,Medium,Message Facebook page facebook.com/tonyholidaymusic for booking inquiry.,booking.booking_phone,booking,3,5
+Tony Holiday,Memphis,TN,,,,Medium,Message Facebook page facebook.com/tonyholidaymusic for booking inquiry.,booking.booking_email,booking,4,5
+Tony Holiday,Memphis,TN,,,,Medium,Message Facebook page facebook.com/tonyholidaymusic for booking inquiry.,work.key_recordings,work,5,5
+R.L. Boyce,Como,MS,,,,Medium,UNKNOWN,legacy.estate_contact,legacy,1,3
+R.L. Boyce,Como,MS,,,,Medium,UNKNOWN,origin.birth_year,origin,2,3
+R.L. Boyce,Como,MS,,,,Medium,UNKNOWN,work.key_recordings,work,3,3
+Valerie June,Memphis,TN,,,https://valeriejune.com,High,Contact via valeriejune.com or Concord Records for booking inquiry.,fees.typical_show,fees,1,5
+Valerie June,Memphis,TN,,,https://valeriejune.com,High,Contact via valeriejune.com or Concord Records for booking inquiry.,fees.festival_fee,fees,2,5
+Valerie June,Memphis,TN,,,https://valeriejune.com,High,Contact via valeriejune.com or Concord Records for booking inquiry.,booking.booking_phone,booking,3,5
+Valerie June,Memphis,TN,,,https://valeriejune.com,High,Contact via valeriejune.com or Concord Records for booking inquiry.,booking.booking_email,booking,4,5
+Valerie June,Memphis,TN,,,https://valeriejune.com,High,Contact via valeriejune.com or Concord Records for booking inquiry.,booking.agent_name,booking,5,5
+Paul Cauthen,Tyler,TX,,,https://paulcauthen.com,Medium,Contact via paulcauthen.com for booking and fee inquiry.,fees.typical_show,fees,1,5
+Paul Cauthen,Tyler,TX,,,https://paulcauthen.com,Medium,Contact via paulcauthen.com for booking and fee inquiry.,fees.festival_fee,fees,2,5
+Paul Cauthen,Tyler,TX,,,https://paulcauthen.com,Medium,Contact via paulcauthen.com for booking and fee inquiry.,booking.booking_phone,booking,3,5
+Paul Cauthen,Tyler,TX,,,https://paulcauthen.com,Medium,Contact via paulcauthen.com for booking and fee inquiry.,booking.booking_email,booking,4,5
+Paul Cauthen,Tyler,TX,,,https://paulcauthen.com,Medium,Contact via paulcauthen.com for booking and fee inquiry.,booking.agent_name,booking,5,5
+Adia Victoria,Nashville,TN,,,https://mn2s.com/booking-agency/talent-roster/adia-victoria/,Medium,Contact MN2S booking agency at mn2s.com/booking-agency/talent-roster/adia-victoria for inquiry.,fees.typical_show,fees,1,6
+Adia Victoria,Nashville,TN,,,https://mn2s.com/booking-agency/talent-roster/adia-victoria/,Medium,Contact MN2S booking agency at mn2s.com/booking-agency/talent-roster/adia-victoria for inquiry.,fees.festival_fee,fees,2,6
+Adia Victoria,Nashville,TN,,,https://mn2s.com/booking-agency/talent-roster/adia-victoria/,Medium,Contact MN2S booking agency at mn2s.com/booking-agency/talent-roster/adia-victoria for inquiry.,booking.booking_phone,booking,3,6
+Adia Victoria,Nashville,TN,,,https://mn2s.com/booking-agency/talent-roster/adia-victoria/,Medium,Contact MN2S booking agency at mn2s.com/booking-agency/talent-roster/adia-victoria for inquiry.,booking.booking_email,booking,4,6
+Adia Victoria,Nashville,TN,,,https://mn2s.com/booking-agency/talent-roster/adia-victoria/,Medium,Contact MN2S booking agency at mn2s.com/booking-agency/talent-roster/adia-victoria for inquiry.,booking.agent_name,booking,5,6
+Adia Victoria,Nashville,TN,,,https://mn2s.com/booking-agency/talent-roster/adia-victoria/,Medium,Contact MN2S booking agency at mn2s.com/booking-agency/talent-roster/adia-victoria for inquiry.,work.key_recordings,work,6,6
+Jamey Johnson,,AL,,,https://jameyjohnson.com,Medium,Contact WME or jameyjohnson.com for booking inquiry.,fees.typical_show,fees,1,5
+Jamey Johnson,,AL,,,https://jameyjohnson.com,Medium,Contact WME or jameyjohnson.com for booking inquiry.,fees.festival_fee,fees,2,5
+Jamey Johnson,,AL,,,https://jameyjohnson.com,Medium,Contact WME or jameyjohnson.com for booking inquiry.,booking.booking_phone,booking,3,5
+Jamey Johnson,,AL,,,https://jameyjohnson.com,Medium,Contact WME or jameyjohnson.com for booking inquiry.,booking.booking_email,booking,4,5
+Jamey Johnson,,AL,,,https://jameyjohnson.com,Medium,Contact WME or jameyjohnson.com for booking inquiry.,booking.agent_name,booking,5,5
+William Bell,Memphis,TN,,,https://williambellmusic.com,Medium,Contact williambellmusic.com to confirm current touring status and booking process.,fees.typical_show,fees,1,6
+William Bell,Memphis,TN,,,https://williambellmusic.com,Medium,Contact williambellmusic.com to confirm current touring status and booking process.,fees.festival_fee,fees,2,6
+William Bell,Memphis,TN,,,https://williambellmusic.com,Medium,Contact williambellmusic.com to confirm current touring status and booking process.,booking.booking_phone,booking,3,6
+William Bell,Memphis,TN,,,https://williambellmusic.com,Medium,Contact williambellmusic.com to confirm current touring status and booking process.,booking.booking_email,booking,4,6
+William Bell,Memphis,TN,,,https://williambellmusic.com,Medium,Contact williambellmusic.com to confirm current touring status and booking process.,booking.agent_name,booking,5,6
+William Bell,Memphis,TN,,,https://williambellmusic.com,Medium,Contact williambellmusic.com to confirm current touring status and booking process.,booking.currently_touring,booking,6,6
+Lucero,Memphis,TN,,acolvin@wmeentertainment.com,https://luceromusic.com,High,Email Andrew Colvin at acolvin@wmeentertainment.com (WME Nashville) re: Lucero booking.,fees.typical_show,fees,1,3
+Lucero,Memphis,TN,,acolvin@wmeentertainment.com,https://luceromusic.com,High,Email Andrew Colvin at acolvin@wmeentertainment.com (WME Nashville) re: Lucero booking.,fees.festival_fee,fees,2,3
+Lucero,Memphis,TN,,acolvin@wmeentertainment.com,https://luceromusic.com,High,Email Andrew Colvin at acolvin@wmeentertainment.com (WME Nashville) re: Lucero booking.,booking.booking_phone,booking,3,3
+North Mississippi Allstars,Memphis,TN,,jknight@teamwass.com,https://www.nmallstars.com,High,Email Joshua Knight at jknight@teamwass.com (Wasserman Music) re: North Mississippi Allstars booking.,fees.typical_show,fees,1,3
+North Mississippi Allstars,Memphis,TN,,jknight@teamwass.com,https://www.nmallstars.com,High,Email Joshua Knight at jknight@teamwass.com (Wasserman Music) re: North Mississippi Allstars booking.,fees.festival_fee,fees,2,3
+North Mississippi Allstars,Memphis,TN,,jknight@teamwass.com,https://www.nmallstars.com,High,Email Joshua Knight at jknight@teamwass.com (Wasserman Music) re: North Mississippi Allstars booking.,booking.booking_phone,booking,3,3
+Marc Broussard,Carencro,LA,,,https://www.marcbroussard.com,Medium,Contact via marcbroussard.com for booking inquiry.,fees.typical_show,fees,1,5
+Marc Broussard,Carencro,LA,,,https://www.marcbroussard.com,Medium,Contact via marcbroussard.com for booking inquiry.,fees.festival_fee,fees,2,5
+Marc Broussard,Carencro,LA,,,https://www.marcbroussard.com,Medium,Contact via marcbroussard.com for booking inquiry.,booking.booking_phone,booking,3,5
+Marc Broussard,Carencro,LA,,,https://www.marcbroussard.com,Medium,Contact via marcbroussard.com for booking inquiry.,booking.booking_email,booking,4,5
+Marc Broussard,Carencro,LA,,,https://www.marcbroussard.com,Medium,Contact via marcbroussard.com for booking inquiry.,booking.agent_name,booking,5,5
+Tank and the Bangas,New Orleans,LA,,,https://tankandthebangas.com,Medium,Contact via tankandthebangas.com for booking inquiry.,fees.typical_show,fees,1,5
+Tank and the Bangas,New Orleans,LA,,,https://tankandthebangas.com,Medium,Contact via tankandthebangas.com for booking inquiry.,fees.festival_fee,fees,2,5
+Tank and the Bangas,New Orleans,LA,,,https://tankandthebangas.com,Medium,Contact via tankandthebangas.com for booking inquiry.,booking.booking_phone,booking,3,5
+Tank and the Bangas,New Orleans,LA,,,https://tankandthebangas.com,Medium,Contact via tankandthebangas.com for booking inquiry.,booking.booking_email,booking,4,5
+Tank and the Bangas,New Orleans,LA,,,https://tankandthebangas.com,Medium,Contact via tankandthebangas.com for booking inquiry.,booking.agent_name,booking,5,5
+Big Freedia,New Orleans,LA,,,https://bigfreedia.com,Medium,Contact via bigfreedia.com for booking inquiry.,fees.typical_show,fees,1,5
+Big Freedia,New Orleans,LA,,,https://bigfreedia.com,Medium,Contact via bigfreedia.com for booking inquiry.,fees.festival_fee,fees,2,5
+Big Freedia,New Orleans,LA,,,https://bigfreedia.com,Medium,Contact via bigfreedia.com for booking inquiry.,booking.booking_phone,booking,3,5
+Big Freedia,New Orleans,LA,,,https://bigfreedia.com,Medium,Contact via bigfreedia.com for booking inquiry.,booking.booking_email,booking,4,5
+Big Freedia,New Orleans,LA,,,https://bigfreedia.com,Medium,Contact via bigfreedia.com for booking inquiry.,booking.agent_name,booking,5,5
+Trombone Shorty & Orleans Avenue,New Orleans,LA,,,https://tromboneshortyfoundation.org,Medium,Contact WME / William Morris for Trombone Shorty booking inquiry.,fees.typical_show,fees,1,5
+Trombone Shorty & Orleans Avenue,New Orleans,LA,,,https://tromboneshortyfoundation.org,Medium,Contact WME / William Morris for Trombone Shorty booking inquiry.,fees.festival_fee,fees,2,5
+Trombone Shorty & Orleans Avenue,New Orleans,LA,,,https://tromboneshortyfoundation.org,Medium,Contact WME / William Morris for Trombone Shorty booking inquiry.,booking.booking_phone,booking,3,5
+Trombone Shorty & Orleans Avenue,New Orleans,LA,,,https://tromboneshortyfoundation.org,Medium,Contact WME / William Morris for Trombone Shorty booking inquiry.,booking.booking_email,booking,4,5
+Trombone Shorty & Orleans Avenue,New Orleans,LA,,,https://tromboneshortyfoundation.org,Medium,Contact WME / William Morris for Trombone Shorty booking inquiry.,booking.agent_name,booking,5,5
+PJ Morton,New Orleans,LA,,,https://pjmorton.com,Medium,Contact via pjmorton.com for booking inquiry.,fees.typical_show,fees,1,5
+PJ Morton,New Orleans,LA,,,https://pjmorton.com,Medium,Contact via pjmorton.com for booking inquiry.,fees.festival_fee,fees,2,5
+PJ Morton,New Orleans,LA,,,https://pjmorton.com,Medium,Contact via pjmorton.com for booking inquiry.,booking.booking_phone,booking,3,5
+PJ Morton,New Orleans,LA,,,https://pjmorton.com,Medium,Contact via pjmorton.com for booking inquiry.,booking.booking_email,booking,4,5
+PJ Morton,New Orleans,LA,,,https://pjmorton.com,Medium,Contact via pjmorton.com for booking inquiry.,booking.agent_name,booking,5,5
+Don Trip,Memphis,TN,,,,Medium,Instagram DM to @mrdontrip for booking inquiry.,fees.typical_show,fees,1,4
+Don Trip,Memphis,TN,,,,Medium,Instagram DM to @mrdontrip for booking inquiry.,fees.festival_fee,fees,2,4
+Don Trip,Memphis,TN,,,,Medium,Instagram DM to @mrdontrip for booking inquiry.,booking.booking_phone,booking,3,4
+Don Trip,Memphis,TN,,,,Medium,Instagram DM to @mrdontrip for booking inquiry.,booking.booking_email,booking,4,4
+Tonina,Los Angeles,CA,,,https://www.saltlickincubator.org/meet-our-artists,Low,Contact Salt Lick Incubator at saltlickincubator.org for Tonina booking.,fees.typical_show,fees,1,6
+Tonina,Los Angeles,CA,,,https://www.saltlickincubator.org/meet-our-artists,Low,Contact Salt Lick Incubator at saltlickincubator.org for Tonina booking.,fees.festival_fee,fees,2,6
+Tonina,Los Angeles,CA,,,https://www.saltlickincubator.org/meet-our-artists,Low,Contact Salt Lick Incubator at saltlickincubator.org for Tonina booking.,booking.booking_phone,booking,3,6
+Tonina,Los Angeles,CA,,,https://www.saltlickincubator.org/meet-our-artists,Low,Contact Salt Lick Incubator at saltlickincubator.org for Tonina booking.,booking.booking_email,booking,4,6
+Tonina,Los Angeles,CA,,,https://www.saltlickincubator.org/meet-our-artists,Low,Contact Salt Lick Incubator at saltlickincubator.org for Tonina booking.,artist.real_name,artist,5,6
+Tonina,Los Angeles,CA,,,https://www.saltlickincubator.org/meet-our-artists,Low,Contact Salt Lick Incubator at saltlickincubator.org for Tonina booking.,work.key_recordings,work,6,6
+Dumpstaphunk,New Orleans,LA,,,https://dumpstaphunk.com,Medium,Contact via dumpstaphunk.com/shows for booking inquiry.,fees.typical_show,fees,1,5
+Dumpstaphunk,New Orleans,LA,,,https://dumpstaphunk.com,Medium,Contact via dumpstaphunk.com/shows for booking inquiry.,fees.festival_fee,fees,2,5
+Dumpstaphunk,New Orleans,LA,,,https://dumpstaphunk.com,Medium,Contact via dumpstaphunk.com/shows for booking inquiry.,booking.booking_phone,booking,3,5
+Dumpstaphunk,New Orleans,LA,,,https://dumpstaphunk.com,Medium,Contact via dumpstaphunk.com/shows for booking inquiry.,booking.booking_email,booking,4,5
+Dumpstaphunk,New Orleans,LA,,,https://dumpstaphunk.com,Medium,Contact via dumpstaphunk.com/shows for booking inquiry.,booking.agent_name,booking,5,5
+Galactic,New Orleans,LA,,,https://galacticfunk.com,Medium,Contact via galacticfunk.com for booking inquiry.,fees.typical_show,fees,1,5
+Galactic,New Orleans,LA,,,https://galacticfunk.com,Medium,Contact via galacticfunk.com for booking inquiry.,fees.festival_fee,fees,2,5
+Galactic,New Orleans,LA,,,https://galacticfunk.com,Medium,Contact via galacticfunk.com for booking inquiry.,booking.booking_phone,booking,3,5
+Galactic,New Orleans,LA,,,https://galacticfunk.com,Medium,Contact via galacticfunk.com for booking inquiry.,booking.booking_email,booking,4,5
+Galactic,New Orleans,LA,,,https://galacticfunk.com,Medium,Contact via galacticfunk.com for booking inquiry.,booking.agent_name,booking,5,5
+Rising Stars Fife and Drum Band,Coldwater,MS,,,https://arts.ms.gov/artist/rising-stars-fife-and-drum-band/,High,Contact Mississippi Arts Commission at arts.ms.gov for Rising Stars Fife and Drum Band booking.,fees.typical_show,fees,1,4
+Rising Stars Fife and Drum Band,Coldwater,MS,,,https://arts.ms.gov/artist/rising-stars-fife-and-drum-band/,High,Contact Mississippi Arts Commission at arts.ms.gov for Rising Stars Fife and Drum Band booking.,fees.festival_fee,fees,2,4
+Rising Stars Fife and Drum Band,Coldwater,MS,,,https://arts.ms.gov/artist/rising-stars-fife-and-drum-band/,High,Contact Mississippi Arts Commission at arts.ms.gov for Rising Stars Fife and Drum Band booking.,booking.booking_phone,booking,3,4
+Rising Stars Fife and Drum Band,Coldwater,MS,,,https://arts.ms.gov/artist/rising-stars-fife-and-drum-band/,High,Contact Mississippi Arts Commission at arts.ms.gov for Rising Stars Fife and Drum Band booking.,booking.booking_email,booking,4,4
+The Como Mamas,Como,MS,,,https://www.musicmaker.org/artist/the-como-mamas-2/,Low,Contact Music Maker Foundation at musicmaker.org/artist/the-como-mamas-2/ to verify active status.,fees.typical_show,fees,1,5
+The Como Mamas,Como,MS,,,https://www.musicmaker.org/artist/the-como-mamas-2/,Low,Contact Music Maker Foundation at musicmaker.org/artist/the-como-mamas-2/ to verify active status.,fees.festival_fee,fees,2,5
+The Como Mamas,Como,MS,,,https://www.musicmaker.org/artist/the-como-mamas-2/,Low,Contact Music Maker Foundation at musicmaker.org/artist/the-como-mamas-2/ to verify active status.,booking.booking_phone,booking,3,5
+The Como Mamas,Como,MS,,,https://www.musicmaker.org/artist/the-como-mamas-2/,Low,Contact Music Maker Foundation at musicmaker.org/artist/the-como-mamas-2/ to verify active status.,booking.booking_email,booking,4,5
+The Como Mamas,Como,MS,,,https://www.musicmaker.org/artist/the-como-mamas-2/,Low,Contact Music Maker Foundation at musicmaker.org/artist/the-como-mamas-2/ to verify active status.,booking.currently_touring,booking,5,5
+Rebirth Brass Band,New Orleans,LA,,,https://rebirthbrassband.com,High,Contact via rebirthbrassband.com for booking inquiry.,fees.typical_show,fees,1,5
+Rebirth Brass Band,New Orleans,LA,,,https://rebirthbrassband.com,High,Contact via rebirthbrassband.com for booking inquiry.,fees.festival_fee,fees,2,5
+Rebirth Brass Band,New Orleans,LA,,,https://rebirthbrassband.com,High,Contact via rebirthbrassband.com for booking inquiry.,booking.booking_phone,booking,3,5
+Rebirth Brass Band,New Orleans,LA,,,https://rebirthbrassband.com,High,Contact via rebirthbrassband.com for booking inquiry.,booking.booking_email,booking,4,5
+Rebirth Brass Band,New Orleans,LA,,,https://rebirthbrassband.com,High,Contact via rebirthbrassband.com for booking inquiry.,booking.agent_name,booking,5,5
+Hot 8 Brass Band,New Orleans,LA,(917) 821-1878,,http://www.hot8brassband.com,High,Call (917) 821-1878 for Hot 8 Brass Band booking inquiry.,fees.typical_show,fees,1,3
+Hot 8 Brass Band,New Orleans,LA,(917) 821-1878,,http://www.hot8brassband.com,High,Call (917) 821-1878 for Hot 8 Brass Band booking inquiry.,fees.festival_fee,fees,2,3
+Hot 8 Brass Band,New Orleans,LA,(917) 821-1878,,http://www.hot8brassband.com,High,Call (917) 821-1878 for Hot 8 Brass Band booking inquiry.,booking.booking_email,booking,3,3
+Kermit Ruffins & the Barbecue Swingers,New Orleans,LA,,info@bluenilelive.com,https://www.kermitslounge.com,High,Email info@bluenilelive.com or visit kermitslounge.com for Kermit Ruffins booking.,fees.typical_show,fees,1,3
+Kermit Ruffins & the Barbecue Swingers,New Orleans,LA,,info@bluenilelive.com,https://www.kermitslounge.com,High,Email info@bluenilelive.com or visit kermitslounge.com for Kermit Ruffins booking.,fees.festival_fee,fees,2,3
+Kermit Ruffins & the Barbecue Swingers,New Orleans,LA,,info@bluenilelive.com,https://www.kermitslounge.com,High,Email info@bluenilelive.com or visit kermitslounge.com for Kermit Ruffins booking.,booking.booking_phone,booking,3,3
+The Soul Rebels,New Orleans,LA,,,https://soulrebels.com,Medium,Contact via soulrebels.com for booking inquiry.,fees.typical_show,fees,1,5
+The Soul Rebels,New Orleans,LA,,,https://soulrebels.com,Medium,Contact via soulrebels.com for booking inquiry.,fees.festival_fee,fees,2,5
+The Soul Rebels,New Orleans,LA,,,https://soulrebels.com,Medium,Contact via soulrebels.com for booking inquiry.,booking.booking_phone,booking,3,5
+The Soul Rebels,New Orleans,LA,,,https://soulrebels.com,Medium,Contact via soulrebels.com for booking inquiry.,booking.booking_email,booking,4,5
+The Soul Rebels,New Orleans,LA,,,https://soulrebels.com,Medium,Contact via soulrebels.com for booking inquiry.,booking.agent_name,booking,5,5
+Preservation Hall Jazz Band,New Orleans,LA,,,https://www.preservationhall.com,Medium,Contact Preservation Hall Foundation via preservationhall.com for booking inquiry.,fees.typical_show,fees,1,5
+Preservation Hall Jazz Band,New Orleans,LA,,,https://www.preservationhall.com,Medium,Contact Preservation Hall Foundation via preservationhall.com for booking inquiry.,fees.festival_fee,fees,2,5
+Preservation Hall Jazz Band,New Orleans,LA,,,https://www.preservationhall.com,Medium,Contact Preservation Hall Foundation via preservationhall.com for booking inquiry.,booking.booking_phone,booking,3,5
+Preservation Hall Jazz Band,New Orleans,LA,,,https://www.preservationhall.com,Medium,Contact Preservation Hall Foundation via preservationhall.com for booking inquiry.,booking.booking_email,booking,4,5
+Preservation Hall Jazz Band,New Orleans,LA,,,https://www.preservationhall.com,Medium,Contact Preservation Hall Foundation via preservationhall.com for booking inquiry.,booking.agent_name,booking,5,5
+Jimbo Mathus,,MS,,,https://www.therealjimbomathus.com,Medium,Contact via therealjimbomathus.com for booking inquiry.,fees.typical_show,fees,1,4
+Jimbo Mathus,,MS,,,https://www.therealjimbomathus.com,Medium,Contact via therealjimbomathus.com for booking inquiry.,fees.festival_fee,fees,2,4
+Jimbo Mathus,,MS,,,https://www.therealjimbomathus.com,Medium,Contact via therealjimbomathus.com for booking inquiry.,booking.booking_phone,booking,3,4
+Jimbo Mathus,,MS,,,https://www.therealjimbomathus.com,Medium,Contact via therealjimbomathus.com for booking inquiry.,booking.booking_email,booking,4,4
+Ivan Neville,New Orleans,LA,,,https://dumpstaphunk.com,Medium,Contact via dumpstaphunk.com for Ivan Neville solo or Dumpstaphunk booking.,fees.typical_show,fees,1,5
+Ivan Neville,New Orleans,LA,,,https://dumpstaphunk.com,Medium,Contact via dumpstaphunk.com for Ivan Neville solo or Dumpstaphunk booking.,fees.festival_fee,fees,2,5
+Ivan Neville,New Orleans,LA,,,https://dumpstaphunk.com,Medium,Contact via dumpstaphunk.com for Ivan Neville solo or Dumpstaphunk booking.,booking.booking_phone,booking,3,5
+Ivan Neville,New Orleans,LA,,,https://dumpstaphunk.com,Medium,Contact via dumpstaphunk.com for Ivan Neville solo or Dumpstaphunk booking.,booking.booking_email,booking,4,5
+Ivan Neville,New Orleans,LA,,,https://dumpstaphunk.com,Medium,Contact via dumpstaphunk.com for Ivan Neville solo or Dumpstaphunk booking.,booking.agent_name,booking,5,5
+"Randy ""19th Street Red"" Cohen",Clarksdale,MS,,roger@cathead.biz,https://www.cathead.biz,Medium,Email Roger Stolle at roger@cathead.biz for Randy 19th Street Red Cohen booking.,fees.typical_show,fees,1,3
+"Randy ""19th Street Red"" Cohen",Clarksdale,MS,,roger@cathead.biz,https://www.cathead.biz,Medium,Email Roger Stolle at roger@cathead.biz for Randy 19th Street Red Cohen booking.,fees.festival_fee,fees,2,3
+"Randy ""19th Street Red"" Cohen",Clarksdale,MS,,roger@cathead.biz,https://www.cathead.biz,Medium,Email Roger Stolle at roger@cathead.biz for Randy 19th Street Red Cohen booking.,booking.booking_phone,booking,3,3
+Tuba Skinny,New Orleans,LA,(763) 999-7700,john@nstarartists.com,http://tubaskinny.com,Medium,Email John Lochen at john@nstarartists.com (Northstar Artists) re: Tuba Skinny booking.,fees.typical_show,fees,1,4
+Tuba Skinny,New Orleans,LA,(763) 999-7700,john@nstarartists.com,http://tubaskinny.com,Medium,Email John Lochen at john@nstarartists.com (Northstar Artists) re: Tuba Skinny booking.,fees.festival_fee,fees,2,4
+Tuba Skinny,New Orleans,LA,(763) 999-7700,john@nstarartists.com,http://tubaskinny.com,Medium,Email John Lochen at john@nstarartists.com (Northstar Artists) re: Tuba Skinny booking.,booking.booking_phone,booking,3,4
+Tuba Skinny,New Orleans,LA,(763) 999-7700,john@nstarartists.com,http://tubaskinny.com,Medium,Email John Lochen at john@nstarartists.com (Northstar Artists) re: Tuba Skinny booking.,work.key_recordings,work,4,4
+Rob Robinson / HeavyDrunk,Natchez,MS,,,https://heavydrunk.com,High,Contact via heavydrunk.com or robrobinsonmusic.com to discuss booking and confirm whether smaller-configuration shows are available for sub-500-cap venues.,fees.typical_show,fees,1,5
+Rob Robinson / HeavyDrunk,Natchez,MS,,,https://heavydrunk.com,High,Contact via heavydrunk.com or robrobinsonmusic.com to discuss booking and confirm whether smaller-configuration shows are available for sub-500-cap venues.,fees.festival_fee,fees,2,5
+Rob Robinson / HeavyDrunk,Natchez,MS,,,https://heavydrunk.com,High,Contact via heavydrunk.com or robrobinsonmusic.com to discuss booking and confirm whether smaller-configuration shows are available for sub-500-cap venues.,booking.booking_phone,booking,3,5
+Rob Robinson / HeavyDrunk,Natchez,MS,,,https://heavydrunk.com,High,Contact via heavydrunk.com or robrobinsonmusic.com to discuss booking and confirm whether smaller-configuration shows are available for sub-500-cap venues.,booking.booking_email,booking,4,5
+Rob Robinson / HeavyDrunk,Natchez,MS,,,https://heavydrunk.com,High,Contact via heavydrunk.com or robrobinsonmusic.com to discuss booking and confirm whether smaller-configuration shows are available for sub-500-cap venues.,booking.agent_name,booking,5,5
+"Sean ""Bad"" Apple",Clarksdale,MS,,,,Low,Visit or call Bad Apple Blues Club in Clarksdale directly for booking inquiry.,artist.real_name,artist,1,6
+"Sean ""Bad"" Apple",Clarksdale,MS,,,,Low,Visit or call Bad Apple Blues Club in Clarksdale directly for booking inquiry.,fees.typical_show,fees,2,6
+"Sean ""Bad"" Apple",Clarksdale,MS,,,,Low,Visit or call Bad Apple Blues Club in Clarksdale directly for booking inquiry.,fees.festival_fee,fees,3,6
+"Sean ""Bad"" Apple",Clarksdale,MS,,,,Low,Visit or call Bad Apple Blues Club in Clarksdale directly for booking inquiry.,booking.booking_phone,booking,4,6
+"Sean ""Bad"" Apple",Clarksdale,MS,,,,Low,Visit or call Bad Apple Blues Club in Clarksdale directly for booking inquiry.,booking.booking_email,booking,5,6
+"Sean ""Bad"" Apple",Clarksdale,MS,,,,Low,Visit or call Bad Apple Blues Club in Clarksdale directly for booking inquiry.,work.key_recordings,work,6,6
+Bill Abel,Clarksdale,MS,,,,Low,Contact Ground Zero Blues Club booking department re: Bill Abel scheduling and contact info.,fees.typical_show,fees,1,5
+Bill Abel,Clarksdale,MS,,,,Low,Contact Ground Zero Blues Club booking department re: Bill Abel scheduling and contact info.,fees.festival_fee,fees,2,5
+Bill Abel,Clarksdale,MS,,,,Low,Contact Ground Zero Blues Club booking department re: Bill Abel scheduling and contact info.,booking.booking_phone,booking,3,5
+Bill Abel,Clarksdale,MS,,,,Low,Contact Ground Zero Blues Club booking department re: Bill Abel scheduling and contact info.,booking.booking_email,booking,4,5
+Bill Abel,Clarksdale,MS,,,,Low,Contact Ground Zero Blues Club booking department re: Bill Abel scheduling and contact info.,work.key_recordings,work,5,5
+Garry Burnside,Holly Springs,MS,,,,Low,Contact via King Biscuit Week organizers or Live From Clarksdale re: Garry Burnside booking.,fees.typical_show,fees,1,5
+Garry Burnside,Holly Springs,MS,,,,Low,Contact via King Biscuit Week organizers or Live From Clarksdale re: Garry Burnside booking.,fees.festival_fee,fees,2,5
+Garry Burnside,Holly Springs,MS,,,,Low,Contact via King Biscuit Week organizers or Live From Clarksdale re: Garry Burnside booking.,booking.booking_phone,booking,3,5
+Garry Burnside,Holly Springs,MS,,,,Low,Contact via King Biscuit Week organizers or Live From Clarksdale re: Garry Burnside booking.,booking.booking_email,booking,4,5
+Garry Burnside,Holly Springs,MS,,,,Low,Contact via King Biscuit Week organizers or Live From Clarksdale re: Garry Burnside booking.,work.key_recordings,work,5,5
+Lightnin' Malcolm,Oxford,MS,,,,Low,Contact King Biscuit Week / Live From Clarksdale organizers re: Lightnin' Malcolm booking info.,artist.real_name,artist,1,6
+Lightnin' Malcolm,Oxford,MS,,,,Low,Contact King Biscuit Week / Live From Clarksdale organizers re: Lightnin' Malcolm booking info.,fees.typical_show,fees,2,6
+Lightnin' Malcolm,Oxford,MS,,,,Low,Contact King Biscuit Week / Live From Clarksdale organizers re: Lightnin' Malcolm booking info.,fees.festival_fee,fees,3,6
+Lightnin' Malcolm,Oxford,MS,,,,Low,Contact King Biscuit Week / Live From Clarksdale organizers re: Lightnin' Malcolm booking info.,booking.booking_phone,booking,4,6
+Lightnin' Malcolm,Oxford,MS,,,,Low,Contact King Biscuit Week / Live From Clarksdale organizers re: Lightnin' Malcolm booking info.,booking.booking_email,booking,5,6
+Lightnin' Malcolm,Oxford,MS,,,,Low,Contact King Biscuit Week / Live From Clarksdale organizers re: Lightnin' Malcolm booking info.,work.key_recordings,work,6,6
+Robert Kimbrough Sr.,Marshall County,MS,,,,Low,Contact Red's Lounge or Live From Clarksdale re: Robert Kimbrough Sr. booking and contact info.,fees.typical_show,fees,1,5
+Robert Kimbrough Sr.,Marshall County,MS,,,,Low,Contact Red's Lounge or Live From Clarksdale re: Robert Kimbrough Sr. booking and contact info.,fees.festival_fee,fees,2,5
+Robert Kimbrough Sr.,Marshall County,MS,,,,Low,Contact Red's Lounge or Live From Clarksdale re: Robert Kimbrough Sr. booking and contact info.,booking.booking_phone,booking,3,5
+Robert Kimbrough Sr.,Marshall County,MS,,,,Low,Contact Red's Lounge or Live From Clarksdale re: Robert Kimbrough Sr. booking and contact info.,booking.booking_email,booking,4,5
+Robert Kimbrough Sr.,Marshall County,MS,,,,Low,Contact Red's Lounge or Live From Clarksdale re: Robert Kimbrough Sr. booking and contact info.,work.key_recordings,work,5,5
+Watermelon Slim,,MS,,,,Low,Contact Rob Robinson via heavydrunk.com for Watermelon Slim contact information.,artist.real_name,artist,1,6
+Watermelon Slim,,MS,,,,Low,Contact Rob Robinson via heavydrunk.com for Watermelon Slim contact information.,fees.typical_show,fees,2,6
+Watermelon Slim,,MS,,,,Low,Contact Rob Robinson via heavydrunk.com for Watermelon Slim contact information.,fees.festival_fee,fees,3,6
+Watermelon Slim,,MS,,,,Low,Contact Rob Robinson via heavydrunk.com for Watermelon Slim contact information.,booking.booking_phone,booking,4,6
+Watermelon Slim,,MS,,,,Low,Contact Rob Robinson via heavydrunk.com for Watermelon Slim contact information.,booking.booking_email,booking,5,6
+Watermelon Slim,,MS,,,,Low,Contact Rob Robinson via heavydrunk.com for Watermelon Slim contact information.,work.key_recordings,work,6,6
+Stud Ford,,MS,,,,Low,Contact King Biscuit Week / Live From Clarksdale organizers re: Stud Ford contact info.,artist.real_name,artist,1,7
+Stud Ford,,MS,,,,Low,Contact King Biscuit Week / Live From Clarksdale organizers re: Stud Ford contact info.,origin.home_city,origin,2,7
+Stud Ford,,MS,,,,Low,Contact King Biscuit Week / Live From Clarksdale organizers re: Stud Ford contact info.,fees.typical_show,fees,3,7
+Stud Ford,,MS,,,,Low,Contact King Biscuit Week / Live From Clarksdale organizers re: Stud Ford contact info.,fees.festival_fee,fees,4,7
+Stud Ford,,MS,,,,Low,Contact King Biscuit Week / Live From Clarksdale organizers re: Stud Ford contact info.,booking.booking_phone,booking,5,7
+Stud Ford,,MS,,,,Low,Contact King Biscuit Week / Live From Clarksdale organizers re: Stud Ford contact info.,booking.booking_email,booking,6,7
+Stud Ford,,MS,,,,Low,Contact King Biscuit Week / Live From Clarksdale organizers re: Stud Ford contact info.,work.key_recordings,work,7,7
+Keith Johnson & Big Muddy Blues Band,,MS,,,,Low,Contact Ground Zero Blues Club or Live From Clarksdale re: Keith Johnson & Big Muddy Blues Band booking.,origin.home_city,origin,1,6
+Keith Johnson & Big Muddy Blues Band,,MS,,,,Low,Contact Ground Zero Blues Club or Live From Clarksdale re: Keith Johnson & Big Muddy Blues Band booking.,fees.typical_show,fees,2,6
+Keith Johnson & Big Muddy Blues Band,,MS,,,,Low,Contact Ground Zero Blues Club or Live From Clarksdale re: Keith Johnson & Big Muddy Blues Band booking.,fees.festival_fee,fees,3,6
+Keith Johnson & Big Muddy Blues Band,,MS,,,,Low,Contact Ground Zero Blues Club or Live From Clarksdale re: Keith Johnson & Big Muddy Blues Band booking.,booking.booking_phone,booking,4,6
+Keith Johnson & Big Muddy Blues Band,,MS,,,,Low,Contact Ground Zero Blues Club or Live From Clarksdale re: Keith Johnson & Big Muddy Blues Band booking.,booking.booking_email,booking,5,6
+Keith Johnson & Big Muddy Blues Band,,MS,,,,Low,Contact Ground Zero Blues Club or Live From Clarksdale re: Keith Johnson & Big Muddy Blues Band booking.,work.key_recordings,work,6,6
+Charley Patton,Dockery Farms,MS,,,https://www.dockeryfarms.org,High,"Contact Dockery Farms Foundation (dockeryfarms.org) re: licensing, programming, or historical partnership.",fees.typical_show,fees,1,3
+Charley Patton,Dockery Farms,MS,,,https://www.dockeryfarms.org,High,"Contact Dockery Farms Foundation (dockeryfarms.org) re: licensing, programming, or historical partnership.",fees.festival_fee,fees,2,3
+Charley Patton,Dockery Farms,MS,,,https://www.dockeryfarms.org,High,"Contact Dockery Farms Foundation (dockeryfarms.org) re: licensing, programming, or historical partnership.",booking.booking_phone,booking,3,3
+Robert Johnson,Hazlehurst,MS,,,https://www.robertjohnsonbluesfoundation.org,High,Contact Robert Johnson Blues Foundation: mjohnson@robertjohnsonbluesfoundation.org or (601) 613-0805 for licensing or programming inquiries.,fees.typical_show,fees,1,3
+Robert Johnson,Hazlehurst,MS,,,https://www.robertjohnsonbluesfoundation.org,High,Contact Robert Johnson Blues Foundation: mjohnson@robertjohnsonbluesfoundation.org or (601) 613-0805 for licensing or programming inquiries.,fees.festival_fee,fees,2,3
+Robert Johnson,Hazlehurst,MS,,,https://www.robertjohnsonbluesfoundation.org,High,Contact Robert Johnson Blues Foundation: mjohnson@robertjohnsonbluesfoundation.org or (601) 613-0805 for licensing or programming inquiries.,booking.booking_phone,booking,3,3
+Son House,Lyon,MS,,,,Medium,Contact Columbia/Legacy Records re: Son House catalog licensing.,fees.typical_show,fees,1,4
+Son House,Lyon,MS,,,,Medium,Contact Columbia/Legacy Records re: Son House catalog licensing.,fees.festival_fee,fees,2,4
+Son House,Lyon,MS,,,,Medium,Contact Columbia/Legacy Records re: Son House catalog licensing.,booking.booking_phone,booking,3,4
+Son House,Lyon,MS,,,,Medium,Contact Columbia/Legacy Records re: Son House catalog licensing.,legacy.estate_contact,legacy,4,4
+Skip James,Bentonia,MS,,,,Medium,Contact Vanguard/Concord re: Skip James catalog licensing.,fees.typical_show,fees,1,4
+Skip James,Bentonia,MS,,,,Medium,Contact Vanguard/Concord re: Skip James catalog licensing.,fees.festival_fee,fees,2,4
+Skip James,Bentonia,MS,,,,Medium,Contact Vanguard/Concord re: Skip James catalog licensing.,booking.booking_phone,booking,3,4
+Skip James,Bentonia,MS,,,,Medium,Contact Vanguard/Concord re: Skip James catalog licensing.,legacy.estate_contact,legacy,4,4
+Mississippi John Hurt,Avalon,MS,,,https://msjohnhurtfoundation.org,High,Contact Mississippi John Hurt Foundation (312-810-1954) re: programming or licensing partnerships.,fees.typical_show,fees,1,3
+Mississippi John Hurt,Avalon,MS,,,https://msjohnhurtfoundation.org,High,Contact Mississippi John Hurt Foundation (312-810-1954) re: programming or licensing partnerships.,fees.festival_fee,fees,2,3
+Mississippi John Hurt,Avalon,MS,,,https://msjohnhurtfoundation.org,High,Contact Mississippi John Hurt Foundation (312-810-1954) re: programming or licensing partnerships.,booking.booking_phone,booking,3,3
+Willie Brown,Clarksdale,MS,,,https://www.dockeryfarms.org,Medium,Contact Dockery Farms Foundation (dockeryfarms.org) re: programming or historical context.,fees.typical_show,fees,1,4
+Willie Brown,Clarksdale,MS,,,https://www.dockeryfarms.org,Medium,Contact Dockery Farms Foundation (dockeryfarms.org) re: programming or historical context.,fees.festival_fee,fees,2,4
+Willie Brown,Clarksdale,MS,,,https://www.dockeryfarms.org,Medium,Contact Dockery Farms Foundation (dockeryfarms.org) re: programming or historical context.,booking.booking_phone,booking,3,4
+Willie Brown,Clarksdale,MS,,,https://www.dockeryfarms.org,Medium,Contact Dockery Farms Foundation (dockeryfarms.org) re: programming or historical context.,legacy.estate_contact,legacy,4,4
+Tommy Johnson,Crystal Springs,MS,,,,Medium,"Contact MS Blues Trail (msbluestrail.org) or Crystal Springs, MS community re: Tommy Johnson heritage programming.",fees.typical_show,fees,1,4
+Tommy Johnson,Crystal Springs,MS,,,,Medium,"Contact MS Blues Trail (msbluestrail.org) or Crystal Springs, MS community re: Tommy Johnson heritage programming.",fees.festival_fee,fees,2,4
+Tommy Johnson,Crystal Springs,MS,,,,Medium,"Contact MS Blues Trail (msbluestrail.org) or Crystal Springs, MS community re: Tommy Johnson heritage programming.",booking.booking_phone,booking,3,4
+Tommy Johnson,Crystal Springs,MS,,,,Medium,"Contact MS Blues Trail (msbluestrail.org) or Crystal Springs, MS community re: Tommy Johnson heritage programming.",legacy.estate_contact,legacy,4,4
+Bukka White,Houston,MS,,,,Medium,Contact MS Blues Trail (msbluestrail.org) re: Bukka White heritage programming in Aberdeen MS.,fees.typical_show,fees,1,4
+Bukka White,Houston,MS,,,,Medium,Contact MS Blues Trail (msbluestrail.org) re: Bukka White heritage programming in Aberdeen MS.,fees.festival_fee,fees,2,4
+Bukka White,Houston,MS,,,,Medium,Contact MS Blues Trail (msbluestrail.org) re: Bukka White heritage programming in Aberdeen MS.,booking.booking_phone,booking,3,4
+Bukka White,Houston,MS,,,,Medium,Contact MS Blues Trail (msbluestrail.org) re: Bukka White heritage programming in Aberdeen MS.,legacy.estate_contact,legacy,4,4
+Bo Carter,Bolton,MS,,,,Medium,Contact Mississippi Encyclopedia (mississippiencyclopedia.org) or Document Records re: Bo Carter heritage research.,fees.typical_show,fees,1,4
+Bo Carter,Bolton,MS,,,,Medium,Contact Mississippi Encyclopedia (mississippiencyclopedia.org) or Document Records re: Bo Carter heritage research.,fees.festival_fee,fees,2,4
+Bo Carter,Bolton,MS,,,,Medium,Contact Mississippi Encyclopedia (mississippiencyclopedia.org) or Document Records re: Bo Carter heritage research.,booking.booking_phone,booking,3,4
+Bo Carter,Bolton,MS,,,,Medium,Contact Mississippi Encyclopedia (mississippiencyclopedia.org) or Document Records re: Bo Carter heritage research.,legacy.estate_contact,legacy,4,4
+Memphis Minnie,Walls,MS,,,,Medium,Contact MS Blues Trail (msbluestrail.org) or Blues Foundation (blues.org) re: Memphis Minnie heritage programming.,fees.typical_show,fees,1,4
+Memphis Minnie,Walls,MS,,,,Medium,Contact MS Blues Trail (msbluestrail.org) or Blues Foundation (blues.org) re: Memphis Minnie heritage programming.,fees.festival_fee,fees,2,4
+Memphis Minnie,Walls,MS,,,,Medium,Contact MS Blues Trail (msbluestrail.org) or Blues Foundation (blues.org) re: Memphis Minnie heritage programming.,booking.booking_phone,booking,3,4
+Memphis Minnie,Walls,MS,,,,Medium,Contact MS Blues Trail (msbluestrail.org) or Blues Foundation (blues.org) re: Memphis Minnie heritage programming.,legacy.estate_contact,legacy,4,4
+Big Bill Broonzy,Scott,MS,,,,Medium,Contact Blues Foundation (blues.org) re: Big Bill Broonzy heritage programming.,fees.typical_show,fees,1,4
+Big Bill Broonzy,Scott,MS,,,,Medium,Contact Blues Foundation (blues.org) re: Big Bill Broonzy heritage programming.,fees.festival_fee,fees,2,4
+Big Bill Broonzy,Scott,MS,,,,Medium,Contact Blues Foundation (blues.org) re: Big Bill Broonzy heritage programming.,booking.booking_phone,booking,3,4
+Big Bill Broonzy,Scott,MS,,,,Medium,Contact Blues Foundation (blues.org) re: Big Bill Broonzy heritage programming.,legacy.estate_contact,legacy,4,4
+Blind Lemon Jefferson,Wortham,TX,,,,Medium,Contact Blues Foundation (blues.org) re: Blind Lemon Jefferson heritage programming.,fees.typical_show,fees,1,4
+Blind Lemon Jefferson,Wortham,TX,,,,Medium,Contact Blues Foundation (blues.org) re: Blind Lemon Jefferson heritage programming.,fees.festival_fee,fees,2,4
+Blind Lemon Jefferson,Wortham,TX,,,,Medium,Contact Blues Foundation (blues.org) re: Blind Lemon Jefferson heritage programming.,booking.booking_phone,booking,3,4
+Blind Lemon Jefferson,Wortham,TX,,,,Medium,Contact Blues Foundation (blues.org) re: Blind Lemon Jefferson heritage programming.,legacy.estate_contact,legacy,4,4
+Lead Belly,Mooringsport,LA,,,https://leadbelly.org,High,Contact Lead Belly Foundation (leadbelly.org) re: heritage programming.,fees.typical_show,fees,1,3
+Lead Belly,Mooringsport,LA,,,https://leadbelly.org,High,Contact Lead Belly Foundation (leadbelly.org) re: heritage programming.,fees.festival_fee,fees,2,3
+Lead Belly,Mooringsport,LA,,,https://leadbelly.org,High,Contact Lead Belly Foundation (leadbelly.org) re: heritage programming.,booking.booking_phone,booking,3,3
+Furry Lewis,Memphis,TN,,,,Medium,Contact Memphis Music Hall of Fame (memphismusichalloffame.com) re: Furry Lewis heritage programming.,fees.typical_show,fees,1,4
+Furry Lewis,Memphis,TN,,,,Medium,Contact Memphis Music Hall of Fame (memphismusichalloffame.com) re: Furry Lewis heritage programming.,fees.festival_fee,fees,2,4
+Furry Lewis,Memphis,TN,,,,Medium,Contact Memphis Music Hall of Fame (memphismusichalloffame.com) re: Furry Lewis heritage programming.,booking.booking_phone,booking,3,4
+Furry Lewis,Memphis,TN,,,,Medium,Contact Memphis Music Hall of Fame (memphismusichalloffame.com) re: Furry Lewis heritage programming.,legacy.estate_contact,legacy,4,4
+Sleepy John Estes,Brownsville,TN,,,,Medium,Contact Tennessee Encyclopedia or Delmark Records re: Sleepy John Estes heritage programming.,fees.typical_show,fees,1,4
+Sleepy John Estes,Brownsville,TN,,,,Medium,Contact Tennessee Encyclopedia or Delmark Records re: Sleepy John Estes heritage programming.,fees.festival_fee,fees,2,4
+Sleepy John Estes,Brownsville,TN,,,,Medium,Contact Tennessee Encyclopedia or Delmark Records re: Sleepy John Estes heritage programming.,booking.booking_phone,booking,3,4
+Sleepy John Estes,Brownsville,TN,,,,Medium,Contact Tennessee Encyclopedia or Delmark Records re: Sleepy John Estes heritage programming.,legacy.estate_contact,legacy,4,4
+Mississippi Fred McDowell,Como,MS,,,,High,Contact Mt. Zion Memorial Fund (mtzionmemorialfund.com) re: heritage programming.,fees.typical_show,fees,1,3
+Mississippi Fred McDowell,Como,MS,,,,High,Contact Mt. Zion Memorial Fund (mtzionmemorialfund.com) re: heritage programming.,fees.festival_fee,fees,2,3
+Mississippi Fred McDowell,Como,MS,,,,High,Contact Mt. Zion Memorial Fund (mtzionmemorialfund.com) re: heritage programming.,booking.booking_phone,booking,3,3
+Muddy Waters,Rolling Fork,MS,,,https://muddywatersfoundation.com,High,Contact Muddy Waters Foundation (muddywatersfoundation.com) re: heritage programming or licensing.,fees.typical_show,fees,1,3
+Muddy Waters,Rolling Fork,MS,,,https://muddywatersfoundation.com,High,Contact Muddy Waters Foundation (muddywatersfoundation.com) re: heritage programming or licensing.,fees.festival_fee,fees,2,3
+Muddy Waters,Rolling Fork,MS,,,https://muddywatersfoundation.com,High,Contact Muddy Waters Foundation (muddywatersfoundation.com) re: heritage programming or licensing.,booking.booking_phone,booking,3,3
+Howlin' Wolf,West Point,MS,,bettye@howlinwolfestate.com,https://howlinwolfestate.com,High,Contact Howlin' Wolf Estate: bettye@howlinwolfestate.com re: licensing or programming.,fees.typical_show,fees,1,3
+Howlin' Wolf,West Point,MS,,bettye@howlinwolfestate.com,https://howlinwolfestate.com,High,Contact Howlin' Wolf Estate: bettye@howlinwolfestate.com re: licensing or programming.,fees.festival_fee,fees,2,3
+Howlin' Wolf,West Point,MS,,bettye@howlinwolfestate.com,https://howlinwolfestate.com,High,Contact Howlin' Wolf Estate: bettye@howlinwolfestate.com re: licensing or programming.,booking.booking_phone,booking,3,3
+B.B. King,Itta Bena,MS,662-887-9539,info@bbkingmuseum.org,https://bbkingmuseum.org,High,Contact B.B. King Museum (info@bbkingmuseum.org / 662-887-9539) re: Club Ebony programming or heritage partnerships.,fees.typical_show,fees,1,2
+B.B. King,Itta Bena,MS,662-887-9539,info@bbkingmuseum.org,https://bbkingmuseum.org,High,Contact B.B. King Museum (info@bbkingmuseum.org / 662-887-9539) re: Club Ebony programming or heritage partnerships.,fees.festival_fee,fees,2,2
+Albert King,Indianola,MS,,,https://www.staxmuseum.com,Medium,Contact Stax Museum (staxmuseum.com) re: Albert King heritage programming.,fees.typical_show,fees,1,4
+Albert King,Indianola,MS,,,https://www.staxmuseum.com,Medium,Contact Stax Museum (staxmuseum.com) re: Albert King heritage programming.,fees.festival_fee,fees,2,4
+Albert King,Indianola,MS,,,https://www.staxmuseum.com,Medium,Contact Stax Museum (staxmuseum.com) re: Albert King heritage programming.,booking.booking_phone,booking,3,4
+Albert King,Indianola,MS,,,https://www.staxmuseum.com,Medium,Contact Stax Museum (staxmuseum.com) re: Albert King heritage programming.,legacy.estate_contact,legacy,4,4
+Little Milton,Greenville,MS,,,,Medium,Contact Stax Museum (staxmuseum.com) re: Little Milton heritage programming.,fees.typical_show,fees,1,4
+Little Milton,Greenville,MS,,,,Medium,Contact Stax Museum (staxmuseum.com) re: Little Milton heritage programming.,fees.festival_fee,fees,2,4
+Little Milton,Greenville,MS,,,,Medium,Contact Stax Museum (staxmuseum.com) re: Little Milton heritage programming.,booking.booking_phone,booking,3,4
+Little Milton,Greenville,MS,,,,Medium,Contact Stax Museum (staxmuseum.com) re: Little Milton heritage programming.,legacy.estate_contact,legacy,4,4
+John Lee Hooker,Clarksdale,MS,,,https://www.johnleehooker.com,High,Contact John Lee Hooker Estate through johnleehooker.com re: licensing or programming.,fees.typical_show,fees,1,4
+John Lee Hooker,Clarksdale,MS,,,https://www.johnleehooker.com,High,Contact John Lee Hooker Estate through johnleehooker.com re: licensing or programming.,fees.festival_fee,fees,2,4
+John Lee Hooker,Clarksdale,MS,,,https://www.johnleehooker.com,High,Contact John Lee Hooker Estate through johnleehooker.com re: licensing or programming.,booking.booking_phone,booking,3,4
+John Lee Hooker,Clarksdale,MS,,,https://www.johnleehooker.com,High,Contact John Lee Hooker Estate through johnleehooker.com re: licensing or programming.,booking.booking_email,booking,4,4
+Junior Parker,Bobo,MS,,,,Medium,Contact MS Blues Trail (msbluestrail.org) re: Junior Parker marker and heritage context.,fees.typical_show,fees,1,4
+Junior Parker,Bobo,MS,,,,Medium,Contact MS Blues Trail (msbluestrail.org) re: Junior Parker marker and heritage context.,fees.festival_fee,fees,2,4
+Junior Parker,Bobo,MS,,,,Medium,Contact MS Blues Trail (msbluestrail.org) re: Junior Parker marker and heritage context.,booking.booking_phone,booking,3,4
+Junior Parker,Bobo,MS,,,,Medium,Contact MS Blues Trail (msbluestrail.org) re: Junior Parker marker and heritage context.,legacy.estate_contact,legacy,4,4
+Elmore James,Richland,MS,,,,Medium,Contact Rock and Roll Hall of Fame (rockhall.com) re: Elmore James heritage programming.,fees.typical_show,fees,1,4
+Elmore James,Richland,MS,,,,Medium,Contact Rock and Roll Hall of Fame (rockhall.com) re: Elmore James heritage programming.,fees.festival_fee,fees,2,4
+Elmore James,Richland,MS,,,,Medium,Contact Rock and Roll Hall of Fame (rockhall.com) re: Elmore James heritage programming.,booking.booking_phone,booking,3,4
+Elmore James,Richland,MS,,,,Medium,Contact Rock and Roll Hall of Fame (rockhall.com) re: Elmore James heritage programming.,legacy.estate_contact,legacy,4,4
+Sonny Boy Williamson II,Glendora,MS,,,,High,Contact King Biscuit Blues Festival (kingbiscuitfestival.com) re: heritage programming and Sonny Boy Williamson II legacy.,fees.typical_show,fees,1,3
+Sonny Boy Williamson II,Glendora,MS,,,,High,Contact King Biscuit Blues Festival (kingbiscuitfestival.com) re: heritage programming and Sonny Boy Williamson II legacy.,fees.festival_fee,fees,2,3
+Sonny Boy Williamson II,Glendora,MS,,,,High,Contact King Biscuit Blues Festival (kingbiscuitfestival.com) re: heritage programming and Sonny Boy Williamson II legacy.,booking.booking_phone,booking,3,3
+Jimmy Reed,Dunleith,MS,,,,Medium,Contact Fantasy/Concord Music re: Jimmy Reed catalog licensing.,fees.typical_show,fees,1,4
+Jimmy Reed,Dunleith,MS,,,,Medium,Contact Fantasy/Concord Music re: Jimmy Reed catalog licensing.,fees.festival_fee,fees,2,4
+Jimmy Reed,Dunleith,MS,,,,Medium,Contact Fantasy/Concord Music re: Jimmy Reed catalog licensing.,booking.booking_phone,booking,3,4
+Jimmy Reed,Dunleith,MS,,,,Medium,Contact Fantasy/Concord Music re: Jimmy Reed catalog licensing.,legacy.estate_contact,legacy,4,4
+Big Mama Thornton,Montgomery,AL,,,,Medium,Contact Fantasy/Concord Music re: Big Mama Thornton catalog and heritage programming.,fees.typical_show,fees,1,4
+Big Mama Thornton,Montgomery,AL,,,,Medium,Contact Fantasy/Concord Music re: Big Mama Thornton catalog and heritage programming.,fees.festival_fee,fees,2,4
+Big Mama Thornton,Montgomery,AL,,,,Medium,Contact Fantasy/Concord Music re: Big Mama Thornton catalog and heritage programming.,booking.booking_phone,booking,3,4
+Big Mama Thornton,Montgomery,AL,,,,Medium,Contact Fantasy/Concord Music re: Big Mama Thornton catalog and heritage programming.,legacy.estate_contact,legacy,4,4
+R.L. Burnside,Harmontown,MS,,,https://fatpossum.com,High,Contact Fat Possum Records (fatpossum.com) re: R.L. Burnside catalog licensing.,fees.typical_show,fees,1,3
+R.L. Burnside,Harmontown,MS,,,https://fatpossum.com,High,Contact Fat Possum Records (fatpossum.com) re: R.L. Burnside catalog licensing.,fees.festival_fee,fees,2,3
+R.L. Burnside,Harmontown,MS,,,https://fatpossum.com,High,Contact Fat Possum Records (fatpossum.com) re: R.L. Burnside catalog licensing.,booking.booking_phone,booking,3,3
+Junior Kimbrough,Hudsonville,MS,,,https://fatpossum.com,High,Contact Fat Possum Records (fatpossum.com) re: Junior Kimbrough catalog licensing or Kimbrough Cotton Patch Festival contacts.,fees.typical_show,fees,1,3
+Junior Kimbrough,Hudsonville,MS,,,https://fatpossum.com,High,Contact Fat Possum Records (fatpossum.com) re: Junior Kimbrough catalog licensing or Kimbrough Cotton Patch Festival contacts.,fees.festival_fee,fees,2,3
+Junior Kimbrough,Hudsonville,MS,,,https://fatpossum.com,High,Contact Fat Possum Records (fatpossum.com) re: Junior Kimbrough catalog licensing or Kimbrough Cotton Patch Festival contacts.,booking.booking_phone,booking,3,3
+T-Model Ford,Greenville,MS,,,,Medium,Contact Fat Possum Records (fatpossum.com) re: T-Model Ford catalog licensing.,fees.typical_show,fees,1,4
+T-Model Ford,Greenville,MS,,,,Medium,Contact Fat Possum Records (fatpossum.com) re: T-Model Ford catalog licensing.,fees.festival_fee,fees,2,4
+T-Model Ford,Greenville,MS,,,,Medium,Contact Fat Possum Records (fatpossum.com) re: T-Model Ford catalog licensing.,booking.booking_phone,booking,3,4
+T-Model Ford,Greenville,MS,,,,Medium,Contact Fat Possum Records (fatpossum.com) re: T-Model Ford catalog licensing.,legacy.estate_contact,legacy,4,4
+Jessie Mae Hemphill,Como,MS,,,,Medium,Contact University of Memphis Blues Archive re: High Water Records catalog and Jessie Mae Hemphill heritage.,fees.typical_show,fees,1,4
+Jessie Mae Hemphill,Como,MS,,,,Medium,Contact University of Memphis Blues Archive re: High Water Records catalog and Jessie Mae Hemphill heritage.,fees.festival_fee,fees,2,4
+Jessie Mae Hemphill,Como,MS,,,,Medium,Contact University of Memphis Blues Archive re: High Water Records catalog and Jessie Mae Hemphill heritage.,booking.booking_phone,booking,3,4
+Jessie Mae Hemphill,Como,MS,,,,Medium,Contact University of Memphis Blues Archive re: High Water Records catalog and Jessie Mae Hemphill heritage.,legacy.estate_contact,legacy,4,4
+Othar Turner,Como,MS,,,https://othaturner.com,Medium,Contact Shardé Thomas via Mississippi Arts Commission (arts.ms.gov) re: Othar Turner legacy and estate.,fees.typical_show,fees,1,4
+Othar Turner,Como,MS,,,https://othaturner.com,Medium,Contact Shardé Thomas via Mississippi Arts Commission (arts.ms.gov) re: Othar Turner legacy and estate.,fees.festival_fee,fees,2,4
+Othar Turner,Como,MS,,,https://othaturner.com,Medium,Contact Shardé Thomas via Mississippi Arts Commission (arts.ms.gov) re: Othar Turner legacy and estate.,booking.booking_phone,booking,3,4
+Othar Turner,Como,MS,,,https://othaturner.com,Medium,Contact Shardé Thomas via Mississippi Arts Commission (arts.ms.gov) re: Othar Turner legacy and estate.,legacy.estate_contact,legacy,4,4
+Asie Payton,Holly Ridge,MS,,,,Low,Contact Fat Possum Records (fatpossum.com) re: Asie Payton catalog and estate.,fees.typical_show,fees,1,4
+Asie Payton,Holly Ridge,MS,,,,Low,Contact Fat Possum Records (fatpossum.com) re: Asie Payton catalog and estate.,fees.festival_fee,fees,2,4
+Asie Payton,Holly Ridge,MS,,,,Low,Contact Fat Possum Records (fatpossum.com) re: Asie Payton catalog and estate.,booking.booking_phone,booking,3,4
+Asie Payton,Holly Ridge,MS,,,,Low,Contact Fat Possum Records (fatpossum.com) re: Asie Payton catalog and estate.,legacy.estate_contact,legacy,4,4
+"Paul ""Wine"" Jones",Jackson,MS,,,,Low,Contact Fat Possum Records (fatpossum.com) re: Paul Wine Jones catalog and estate.,fees.typical_show,fees,1,4
+"Paul ""Wine"" Jones",Jackson,MS,,,,Low,Contact Fat Possum Records (fatpossum.com) re: Paul Wine Jones catalog and estate.,fees.festival_fee,fees,2,4
+"Paul ""Wine"" Jones",Jackson,MS,,,,Low,Contact Fat Possum Records (fatpossum.com) re: Paul Wine Jones catalog and estate.,booking.booking_phone,booking,3,4
+"Paul ""Wine"" Jones",Jackson,MS,,,,Low,Contact Fat Possum Records (fatpossum.com) re: Paul Wine Jones catalog and estate.,legacy.estate_contact,legacy,4,4
+Booker T. Jones,Memphis,TN,,,https://bookert.com,Medium,Contact via bookert.com for booking inquiries.,fees.typical_show,fees,1,4
+Booker T. Jones,Memphis,TN,,,https://bookert.com,Medium,Contact via bookert.com for booking inquiries.,fees.festival_fee,fees,2,4
+Booker T. Jones,Memphis,TN,,,https://bookert.com,Medium,Contact via bookert.com for booking inquiries.,booking.booking_phone,booking,3,4
+Booker T. Jones,Memphis,TN,,,https://bookert.com,Medium,Contact via bookert.com for booking inquiries.,booking.agent_name,booking,4,4
+Mavis Staples,Chicago,IL,,,https://www.mavisstaples.com,Medium,Contact Red Light Management re: Mavis Staples booking.,fees.typical_show,fees,1,4
+Mavis Staples,Chicago,IL,,,https://www.mavisstaples.com,Medium,Contact Red Light Management re: Mavis Staples booking.,fees.festival_fee,fees,2,4
+Mavis Staples,Chicago,IL,,,https://www.mavisstaples.com,Medium,Contact Red Light Management re: Mavis Staples booking.,booking.booking_phone,booking,3,4
+Mavis Staples,Chicago,IL,,,https://www.mavisstaples.com,Medium,Contact Red Light Management re: Mavis Staples booking.,booking.agent_name,booking,4,4
+Steve Cropper,Memphis,TN,,,,High,Contact Soulsville Foundation (soulsvillefoundation.org) re: Steve Cropper estate and licensing.,fees.typical_show,fees,1,3
+Steve Cropper,Memphis,TN,,,,High,Contact Soulsville Foundation (soulsvillefoundation.org) re: Steve Cropper estate and licensing.,fees.festival_fee,fees,2,3
+Steve Cropper,Memphis,TN,,,,High,Contact Soulsville Foundation (soulsvillefoundation.org) re: Steve Cropper estate and licensing.,booking.booking_phone,booking,3,3
+Don Bryant,Memphis,TN,,,,Medium,Contact Soulsville Foundation re: Don Bryant estate and Hi Records licensing.,fees.typical_show,fees,1,4
+Don Bryant,Memphis,TN,,,,Medium,Contact Soulsville Foundation re: Don Bryant estate and Hi Records licensing.,fees.festival_fee,fees,2,4
+Don Bryant,Memphis,TN,,,,Medium,Contact Soulsville Foundation re: Don Bryant estate and Hi Records licensing.,booking.booking_phone,booking,3,4
+Don Bryant,Memphis,TN,,,,Medium,Contact Soulsville Foundation re: Don Bryant estate and Hi Records licensing.,legacy.estate_contact,legacy,4,4
+Eddie Floyd,Montgomery,AL,,,,Low,Contact Soulsville Foundation (soulsvillefoundation.org) to confirm Eddie Floyd current touring status and booking.,fees.typical_show,fees,1,4
+Eddie Floyd,Montgomery,AL,,,,Low,Contact Soulsville Foundation (soulsvillefoundation.org) to confirm Eddie Floyd current touring status and booking.,fees.festival_fee,fees,2,4
+Eddie Floyd,Montgomery,AL,,,,Low,Contact Soulsville Foundation (soulsvillefoundation.org) to confirm Eddie Floyd current touring status and booking.,booking.booking_phone,booking,3,4
+Eddie Floyd,Montgomery,AL,,,,Low,Contact Soulsville Foundation (soulsvillefoundation.org) to confirm Eddie Floyd current touring status and booking.,booking.agent_name,booking,4,4
+Carla Thomas,Memphis,TN,,,,Medium,Contact Soulsville Foundation (soulsvillefoundation.org) re: Carla Thomas appearance requests.,fees.typical_show,fees,1,4
+Carla Thomas,Memphis,TN,,,,Medium,Contact Soulsville Foundation (soulsvillefoundation.org) re: Carla Thomas appearance requests.,fees.festival_fee,fees,2,4
+Carla Thomas,Memphis,TN,,,,Medium,Contact Soulsville Foundation (soulsvillefoundation.org) re: Carla Thomas appearance requests.,booking.booking_phone,booking,3,4
+Carla Thomas,Memphis,TN,,,,Medium,Contact Soulsville Foundation (soulsvillefoundation.org) re: Carla Thomas appearance requests.,booking.agent_name,booking,4,4
+Wayne Jackson,West Memphis,AR,,,,Medium,Contact Soulsville Foundation re: Wayne Jackson / Memphis Horns legacy.,fees.typical_show,fees,1,4
+Wayne Jackson,West Memphis,AR,,,,Medium,Contact Soulsville Foundation re: Wayne Jackson / Memphis Horns legacy.,fees.festival_fee,fees,2,4
+Wayne Jackson,West Memphis,AR,,,,Medium,Contact Soulsville Foundation re: Wayne Jackson / Memphis Horns legacy.,booking.booking_phone,booking,3,4
+Wayne Jackson,West Memphis,AR,,,,Medium,Contact Soulsville Foundation re: Wayne Jackson / Memphis Horns legacy.,legacy.estate_contact,legacy,4,4
+Isaac Hayes,Memphis,TN,,,,High,Contact Soulsville Foundation (soulsvillefoundation.org) re: Isaac Hayes estate and licensing.,fees.typical_show,fees,1,3
+Isaac Hayes,Memphis,TN,,,,High,Contact Soulsville Foundation (soulsvillefoundation.org) re: Isaac Hayes estate and licensing.,fees.festival_fee,fees,2,3
+Isaac Hayes,Memphis,TN,,,,High,Contact Soulsville Foundation (soulsvillefoundation.org) re: Isaac Hayes estate and licensing.,booking.booking_phone,booking,3,3
+David Porter,Memphis,TN,,,,Low,Contact Soulsville Foundation (soulsvillefoundation.org) re: David Porter current availability.,fees.typical_show,fees,1,4
+David Porter,Memphis,TN,,,,Low,Contact Soulsville Foundation (soulsvillefoundation.org) re: David Porter current availability.,fees.festival_fee,fees,2,4
+David Porter,Memphis,TN,,,,Low,Contact Soulsville Foundation (soulsvillefoundation.org) re: David Porter current availability.,booking.booking_phone,booking,3,4
+David Porter,Memphis,TN,,,,Low,Contact Soulsville Foundation (soulsvillefoundation.org) re: David Porter current availability.,booking.agent_name,booking,4,4
+Spooner Oldham,Sheffield,AL,,,,Low,Contact FAME Studios (famestudios.com) re: Spooner Oldham current availability and booking.,fees.typical_show,fees,1,4
+Spooner Oldham,Sheffield,AL,,,,Low,Contact FAME Studios (famestudios.com) re: Spooner Oldham current availability and booking.,fees.festival_fee,fees,2,4
+Spooner Oldham,Sheffield,AL,,,,Low,Contact FAME Studios (famestudios.com) re: Spooner Oldham current availability and booking.,booking.booking_phone,booking,3,4
+Spooner Oldham,Sheffield,AL,,,,Low,Contact FAME Studios (famestudios.com) re: Spooner Oldham current availability and booking.,booking.agent_name,booking,4,4
+David Hood,Sheffield,AL,,,https://famestudios.com/david-hood/,Medium,Contact FAME Studios (famestudios.com) re: David Hood current availability and booking.,fees.typical_show,fees,1,4
+David Hood,Sheffield,AL,,,https://famestudios.com/david-hood/,Medium,Contact FAME Studios (famestudios.com) re: David Hood current availability and booking.,fees.festival_fee,fees,2,4
+David Hood,Sheffield,AL,,,https://famestudios.com/david-hood/,Medium,Contact FAME Studios (famestudios.com) re: David Hood current availability and booking.,booking.booking_phone,booking,3,4
+David Hood,Sheffield,AL,,,https://famestudios.com/david-hood/,Medium,Contact FAME Studios (famestudios.com) re: David Hood current availability and booking.,booking.agent_name,booking,4,4
+Will McFarlane,Coronado,CA,,,,Low,Contact Roots of American Music Trail (UNA: musictrail.una.edu) re: Will McFarlane booking and current status.,fees.typical_show,fees,1,5
+Will McFarlane,Coronado,CA,,,,Low,Contact Roots of American Music Trail (UNA: musictrail.una.edu) re: Will McFarlane booking and current status.,fees.festival_fee,fees,2,5
+Will McFarlane,Coronado,CA,,,,Low,Contact Roots of American Music Trail (UNA: musictrail.una.edu) re: Will McFarlane booking and current status.,booking.booking_phone,booking,3,5
+Will McFarlane,Coronado,CA,,,,Low,Contact Roots of American Music Trail (UNA: musictrail.una.edu) re: Will McFarlane booking and current status.,booking.agent_name,booking,4,5
+Will McFarlane,Coronado,CA,,,,Low,Contact Roots of American Music Trail (UNA: musictrail.una.edu) re: Will McFarlane booking and current status.,legacy.estate_contact,legacy,5,5
+Jimmy Johnson,Sheffield,AL,,,,Medium,Contact Muscle Shoals Sound Studio (muscleshoalssoundstudio.org) re: Jimmy Johnson estate and legacy.,fees.typical_show,fees,1,4
+Jimmy Johnson,Sheffield,AL,,,,Medium,Contact Muscle Shoals Sound Studio (muscleshoalssoundstudio.org) re: Jimmy Johnson estate and legacy.,fees.festival_fee,fees,2,4
+Jimmy Johnson,Sheffield,AL,,,,Medium,Contact Muscle Shoals Sound Studio (muscleshoalssoundstudio.org) re: Jimmy Johnson estate and legacy.,booking.booking_phone,booking,3,4
+Jimmy Johnson,Sheffield,AL,,,,Medium,Contact Muscle Shoals Sound Studio (muscleshoalssoundstudio.org) re: Jimmy Johnson estate and legacy.,legacy.estate_contact,legacy,4,4
+Roger Hawkins,Sheffield,AL,,,,Medium,Contact Muscle Shoals Sound Studio (muscleshoalssoundstudio.org) re: Roger Hawkins estate and legacy.,fees.typical_show,fees,1,4
+Roger Hawkins,Sheffield,AL,,,,Medium,Contact Muscle Shoals Sound Studio (muscleshoalssoundstudio.org) re: Roger Hawkins estate and legacy.,fees.festival_fee,fees,2,4
+Roger Hawkins,Sheffield,AL,,,,Medium,Contact Muscle Shoals Sound Studio (muscleshoalssoundstudio.org) re: Roger Hawkins estate and legacy.,booking.booking_phone,booking,3,4
+Roger Hawkins,Sheffield,AL,,,,Medium,Contact Muscle Shoals Sound Studio (muscleshoalssoundstudio.org) re: Roger Hawkins estate and legacy.,legacy.estate_contact,legacy,4,4
+Jerry Carrigan,Florence,AL,,,,Medium,Contact Alabama Music Hall of Fame (alamhof.org) re: Jerry Carrigan estate and legacy.,fees.typical_show,fees,1,4
+Jerry Carrigan,Florence,AL,,,,Medium,Contact Alabama Music Hall of Fame (alamhof.org) re: Jerry Carrigan estate and legacy.,fees.festival_fee,fees,2,4
+Jerry Carrigan,Florence,AL,,,,Medium,Contact Alabama Music Hall of Fame (alamhof.org) re: Jerry Carrigan estate and legacy.,booking.booking_phone,booking,3,4
+Jerry Carrigan,Florence,AL,,,,Medium,Contact Alabama Music Hall of Fame (alamhof.org) re: Jerry Carrigan estate and legacy.,legacy.estate_contact,legacy,4,4
+Fats Domino,New Orleans,LA,,,,High,Contact Ponderosa Stomp Foundation (ponderosastomp.com) re: Fats Domino estate licensing.,fees.typical_show,fees,1,3
+Fats Domino,New Orleans,LA,,,,High,Contact Ponderosa Stomp Foundation (ponderosastomp.com) re: Fats Domino estate licensing.,fees.festival_fee,fees,2,3
+Fats Domino,New Orleans,LA,,,,High,Contact Ponderosa Stomp Foundation (ponderosastomp.com) re: Fats Domino estate licensing.,booking.booking_phone,booking,3,3
+Allen Toussaint,New Orleans,LA,,,,High,Contact Preservation Hall Foundation (preservationhall.com) re: Allen Toussaint estate and licensing.,fees.typical_show,fees,1,4
+Allen Toussaint,New Orleans,LA,,,,High,Contact Preservation Hall Foundation (preservationhall.com) re: Allen Toussaint estate and licensing.,fees.festival_fee,fees,2,4
+Allen Toussaint,New Orleans,LA,,,,High,Contact Preservation Hall Foundation (preservationhall.com) re: Allen Toussaint estate and licensing.,booking.booking_phone,booking,3,4
+Allen Toussaint,New Orleans,LA,,,,High,Contact Preservation Hall Foundation (preservationhall.com) re: Allen Toussaint estate and licensing.,legacy.estate_contact,legacy,4,4
+Dr. John,New Orleans,LA,,,,High,Contact Rock and Roll Hall of Fame (rockhall.com) or Preservation Hall Foundation (preservationhall.com) re: Dr. John estate licensing.,fees.typical_show,fees,1,4
+Dr. John,New Orleans,LA,,,,High,Contact Rock and Roll Hall of Fame (rockhall.com) or Preservation Hall Foundation (preservationhall.com) re: Dr. John estate licensing.,fees.festival_fee,fees,2,4
+Dr. John,New Orleans,LA,,,,High,Contact Rock and Roll Hall of Fame (rockhall.com) or Preservation Hall Foundation (preservationhall.com) re: Dr. John estate licensing.,booking.booking_phone,booking,3,4
+Dr. John,New Orleans,LA,,,,High,Contact Rock and Roll Hall of Fame (rockhall.com) or Preservation Hall Foundation (preservationhall.com) re: Dr. John estate licensing.,legacy.estate_contact,legacy,4,4
+Ernie K-Doe,New Orleans,LA,,,,High,Contact Ponderosa Stomp Foundation (ponderosastomp.com) re: Ernie K-Doe estate licensing.,fees.typical_show,fees,1,4
+Ernie K-Doe,New Orleans,LA,,,,High,Contact Ponderosa Stomp Foundation (ponderosastomp.com) re: Ernie K-Doe estate licensing.,fees.festival_fee,fees,2,4
+Ernie K-Doe,New Orleans,LA,,,,High,Contact Ponderosa Stomp Foundation (ponderosastomp.com) re: Ernie K-Doe estate licensing.,booking.booking_phone,booking,3,4
+Ernie K-Doe,New Orleans,LA,,,,High,Contact Ponderosa Stomp Foundation (ponderosastomp.com) re: Ernie K-Doe estate licensing.,legacy.estate_contact,legacy,4,4
+Irma Thomas,Ponchatoula,LA,,,https://www.irmathomas.com,Medium,Contact via irmathomas.com for booking inquiries.,fees.typical_show,fees,1,4
+Irma Thomas,Ponchatoula,LA,,,https://www.irmathomas.com,Medium,Contact via irmathomas.com for booking inquiries.,fees.festival_fee,fees,2,4
+Irma Thomas,Ponchatoula,LA,,,https://www.irmathomas.com,Medium,Contact via irmathomas.com for booking inquiries.,booking.booking_phone,booking,3,4
+Irma Thomas,Ponchatoula,LA,,,https://www.irmathomas.com,Medium,Contact via irmathomas.com for booking inquiries.,booking.agent_name,booking,4,4
+Deacon John,New Orleans,LA,,,,Low,Contact New Orleans Musicians Union Local 174-496 re: Deacon John booking.,fees.typical_show,fees,1,4
+Deacon John,New Orleans,LA,,,,Low,Contact New Orleans Musicians Union Local 174-496 re: Deacon John booking.,fees.festival_fee,fees,2,4
+Deacon John,New Orleans,LA,,,,Low,Contact New Orleans Musicians Union Local 174-496 re: Deacon John booking.,booking.booking_phone,booking,3,4
+Deacon John,New Orleans,LA,,,,Low,Contact New Orleans Musicians Union Local 174-496 re: Deacon John booking.,booking.agent_name,booking,4,4
+Aaron Neville,New Orleans,LA,,,https://www.aaronneville.com,Medium,Contact via aaronneville.com for booking inquiries.,fees.typical_show,fees,1,4
+Aaron Neville,New Orleans,LA,,,https://www.aaronneville.com,Medium,Contact via aaronneville.com for booking inquiries.,fees.festival_fee,fees,2,4
+Aaron Neville,New Orleans,LA,,,https://www.aaronneville.com,Medium,Contact via aaronneville.com for booking inquiries.,booking.booking_phone,booking,3,4
+Aaron Neville,New Orleans,LA,,,https://www.aaronneville.com,Medium,Contact via aaronneville.com for booking inquiries.,booking.agent_name,booking,4,4
+Dirty Dozen Brass Band,New Orleans,LA,,,https://www.dirtydozenbrass.com,Medium,Contact via dirtydozenbrass.com for booking inquiries.,fees.typical_show,fees,1,4
+Dirty Dozen Brass Band,New Orleans,LA,,,https://www.dirtydozenbrass.com,Medium,Contact via dirtydozenbrass.com for booking inquiries.,fees.festival_fee,fees,2,4
+Dirty Dozen Brass Band,New Orleans,LA,,,https://www.dirtydozenbrass.com,Medium,Contact via dirtydozenbrass.com for booking inquiries.,booking.booking_phone,booking,3,4
+Dirty Dozen Brass Band,New Orleans,LA,,,https://www.dirtydozenbrass.com,Medium,Contact via dirtydozenbrass.com for booking inquiries.,booking.agent_name,booking,4,4
+Dr. Michael White,New Orleans,LA,,,https://www.drmichaelwhite.com,Medium,Contact Xavier University of Louisiana (xula.edu) or Preservation Hall Foundation (preservationhall.com) re: Dr. Michael White booking.,fees.typical_show,fees,1,4
+Dr. Michael White,New Orleans,LA,,,https://www.drmichaelwhite.com,Medium,Contact Xavier University of Louisiana (xula.edu) or Preservation Hall Foundation (preservationhall.com) re: Dr. Michael White booking.,fees.festival_fee,fees,2,4
+Dr. Michael White,New Orleans,LA,,,https://www.drmichaelwhite.com,Medium,Contact Xavier University of Louisiana (xula.edu) or Preservation Hall Foundation (preservationhall.com) re: Dr. Michael White booking.,booking.booking_phone,booking,3,4
+Dr. Michael White,New Orleans,LA,,,https://www.drmichaelwhite.com,Medium,Contact Xavier University of Louisiana (xula.edu) or Preservation Hall Foundation (preservationhall.com) re: Dr. Michael White booking.,booking.agent_name,booking,4,4
+Charley Pride,Sledge,MS,,,,High,Contact Country Music Hall of Fame (countrymusichalloffame.org) re: Charley Pride estate licensing.,fees.typical_show,fees,1,4
+Charley Pride,Sledge,MS,,,,High,Contact Country Music Hall of Fame (countrymusichalloffame.org) re: Charley Pride estate licensing.,fees.festival_fee,fees,2,4
+Charley Pride,Sledge,MS,,,,High,Contact Country Music Hall of Fame (countrymusichalloffame.org) re: Charley Pride estate licensing.,booking.booking_phone,booking,3,4
+Charley Pride,Sledge,MS,,,,High,Contact Country Music Hall of Fame (countrymusichalloffame.org) re: Charley Pride estate licensing.,legacy.estate_contact,legacy,4,4
+Conway Twitty,Friars Point,MS,,,,Medium,Contact Country Music Hall of Fame (countrymusichalloffame.org) re: Conway Twitty estate licensing.,fees.typical_show,fees,1,4
+Conway Twitty,Friars Point,MS,,,,Medium,Contact Country Music Hall of Fame (countrymusichalloffame.org) re: Conway Twitty estate licensing.,fees.festival_fee,fees,2,4
+Conway Twitty,Friars Point,MS,,,,Medium,Contact Country Music Hall of Fame (countrymusichalloffame.org) re: Conway Twitty estate licensing.,booking.booking_phone,booking,3,4
+Conway Twitty,Friars Point,MS,,,,Medium,Contact Country Music Hall of Fame (countrymusichalloffame.org) re: Conway Twitty estate licensing.,legacy.estate_contact,legacy,4,4
+Jimmy Buffett,Pascagoula,MS,,,,High,Contact Mailboat Records (mailboatrecords.com) re: Jimmy Buffett estate and licensing.,fees.typical_show,fees,1,4
+Jimmy Buffett,Pascagoula,MS,,,,High,Contact Mailboat Records (mailboatrecords.com) re: Jimmy Buffett estate and licensing.,fees.festival_fee,fees,2,4
+Jimmy Buffett,Pascagoula,MS,,,,High,Contact Mailboat Records (mailboatrecords.com) re: Jimmy Buffett estate and licensing.,booking.booking_phone,booking,3,4
+Jimmy Buffett,Pascagoula,MS,,,,High,Contact Mailboat Records (mailboatrecords.com) re: Jimmy Buffett estate and licensing.,legacy.estate_contact,legacy,4,4
+Marty Stuart,Philadelphia,MS,,,https://martystuart.net,Medium,Contact via martystuart.net or Congress of Country Music (congressofcountrymusic.com) for booking.,fees.typical_show,fees,1,4
+Marty Stuart,Philadelphia,MS,,,https://martystuart.net,Medium,Contact via martystuart.net or Congress of Country Music (congressofcountrymusic.com) for booking.,fees.festival_fee,fees,2,4
+Marty Stuart,Philadelphia,MS,,,https://martystuart.net,Medium,Contact via martystuart.net or Congress of Country Music (congressofcountrymusic.com) for booking.,booking.booking_phone,booking,3,4
+Marty Stuart,Philadelphia,MS,,,https://martystuart.net,Medium,Contact via martystuart.net or Congress of Country Music (congressofcountrymusic.com) for booking.,booking.agent_name,booking,4,4
+Tammy Wynette,Itawamba County,MS,,,,High,Contact Country Music Hall of Fame (countrymusichalloffame.org) re: Tammy Wynette estate licensing.,fees.typical_show,fees,1,4
+Tammy Wynette,Itawamba County,MS,,,,High,Contact Country Music Hall of Fame (countrymusichalloffame.org) re: Tammy Wynette estate licensing.,fees.festival_fee,fees,2,4
+Tammy Wynette,Itawamba County,MS,,,,High,Contact Country Music Hall of Fame (countrymusichalloffame.org) re: Tammy Wynette estate licensing.,booking.booking_phone,booking,3,4
+Tammy Wynette,Itawamba County,MS,,,,High,Contact Country Music Hall of Fame (countrymusichalloffame.org) re: Tammy Wynette estate licensing.,legacy.estate_contact,legacy,4,4
+Pops Staples,Winona,MS,,,,High,Contact Red Light Management (via mavisstaples.com) re: Pops Staples / Staple Singers estate and licensing.,fees.typical_show,fees,1,3
+Pops Staples,Winona,MS,,,,High,Contact Red Light Management (via mavisstaples.com) re: Pops Staples / Staple Singers estate and licensing.,fees.festival_fee,fees,2,3
+Pops Staples,Winona,MS,,,,High,Contact Red Light Management (via mavisstaples.com) re: Pops Staples / Staple Singers estate and licensing.,booking.booking_phone,booking,3,3
+Sam Cooke,Clarksdale,MS,,,,High,Contact ABKCO Music and Records (abkco.com) re: Sam Cooke estate licensing.,fees.typical_show,fees,1,3
+Sam Cooke,Clarksdale,MS,,,,High,Contact ABKCO Music and Records (abkco.com) re: Sam Cooke estate licensing.,fees.festival_fee,fees,2,3
+Sam Cooke,Clarksdale,MS,,,,High,Contact ABKCO Music and Records (abkco.com) re: Sam Cooke estate licensing.,booking.booking_phone,booking,3,3

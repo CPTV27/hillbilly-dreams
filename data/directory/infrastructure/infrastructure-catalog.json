@@ -1,0 +1,808 @@
+{
+  "count": 22,
+  "category": "infrastructure",
+  "records": [
+    {
+      "slug": "memphis-tn",
+      "name": "Memphis, TN",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": "info@memphisslimhouse.org",
+      "phone": null,
+      "website": null,
+      "socials": {},
+      "fields": {
+        "address": [
+          "1130 College St, Memphis, TN 38106 (Soulsville USA)",
+          "1350 Concourse Ave (Crosstown Concourse, East Atrium L1), Memphis, TN 38104"
+        ],
+        "phone": [
+          "(901) 590-4591",
+          "901-507-8030"
+        ],
+        "email": "info@memphisslimhouse.org",
+        "website": [
+          "[memphisslimhouse.org](https://memphisslimhouse.org)",
+          "[crosstownarts.org](https://crosstownarts.org)"
+        ],
+        "description": [
+          "Non-profit music hub in the Soulsville neighborhood built on the former home of blues legend Memphis Slim. Offers hourly rehearsal room bookings 7 days a week. Non-members pay $25/hour; members receive discounted access. The Live Room is the primary rehearsal/recording space. Also offers membership perks, career training, and recording studio access. Active as of 2025, website updated June 2025. Strong community-oriented mandate.",
+          "Non-profit contemporary arts organization at Crosstown Concourse with a Shared Art Making space that includes music, digital arts, woodworking, printmaking, and photography. Membership costs $80/month for full access. Musician & Artist Services department also provides dedicated residencies with private studio/practice workspace for selected Memphis-based and visiting artists. Residencies are competitive and free to participants. Not a drop-in commercial rehearsal facility but an important infrastructure node for Memphis creatives. Hours: Mon\u2013Fri 10am\u20136pm (until 8pm Wed). ([crosstownarts.org](https://crosstownarts.org/music/); [choose901.com](https://choose901.com/unlock-your-creativity-at-crosstown-arts-shared-arts-space/))"
+        ],
+        "recent_activity": [
+          "Website shows active booking as of 2025. ([memphisslimhouse.org](https://memphisslimhouse.org))",
+          "Article March 2025 covering Shared Art Space availability."
+        ]
+      },
+      "notes": [
+        "Community Reddit threads from late 2025 note that Hi-Tone had rehearsal space available for lease but was at capacity, and that Minglewood has shut down its practice spaces. Neither should be relied upon as a current rehearsal option without direct verification. ([reddit.com/r/memphis](https://www.reddit.com/r/memphis/comments/1pd8zof/secure_music_practice_spaces/))"
+      ],
+      "sources": [
+        "https://choose901.com/unlock-your-creativity-at-crosstown-arts-shared-arts-space/",
+        "https://crosstownarts.org",
+        "https://crosstownarts.org/music/",
+        "https://memphisslimhouse.org"
+      ],
+      "source_count": 4,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "new-orleans-la",
+      "name": "New Orleans, LA",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": null,
+      "website": null,
+      "socials": {},
+      "fields": {
+        "address": [
+          "3928 Euphrosine St, New Orleans, LA 70125",
+          "2436 Valence St, New Orleans, LA 70115 (Uptown)",
+          "4040 Tulane Ave, New Orleans, LA 70119 (Mid-City)",
+          "929 Euterpe St, New Orleans, LA 70130 (Lower Garden District)"
+        ],
+        "phone": [
+          "504-237-5404",
+          "504-486-2227"
+        ],
+        "website": [
+          "[studio101nola.com](https://studio101nola.com)",
+          "[spreadingthemusic.com](https://www.spreadingthemusic.com/rehearsal-space/)",
+          "[fountainbleauselfstorage.com/location/USA/LA/New-Orleans/fountainbleau-music/](https://www.fountainbleauselfstorage.com/location/USA/LA/New-Orleans/fountainbleau-music/)",
+          "Listed in [nolamusic.biz](https://nolamusic.biz/business-directory/wpbdp_category/rehearsal-spaces/)"
+        ],
+        "description": [
+          "Full recording and rehearsal facility with 24/7 keycard access. Offers walk-up hourly rates, punch cards (20% off for 8-session bundles), monthly co-op packages, and lockout spaces. Co-op rehearsal sessions are 3 hours with a \u00bd-hour load-in and \u00bd-hour load-out free. Recording studio services available via ProTools HD. One of the most musician-focused rehearsal setups in NOLA. ([studio101nola.com](https://studio101nola.com))",
+          "Music education non-profit offering hourly rehearsal rental as a secondary service. Individual rehearsals: $10/hour (piano rooms, string room, drum room). Band rehearsals (2+ members): $20/hour (drum room or practice room 5). Monthly VIP unlimited access: $150\u2013$250/month. Limited to 3-hour max sessions per block. Instruments on-site include Steinway upright piano, Wurlitzer, and Ludwig drum kit. Best for daytime 9am\u20133pm slots. Oriented toward traveling teachers and non-resident musicians. ([spreadingthemusic.com](https://www.spreadingthemusic.com/rehearsal-space/))",
+          "Music rehearsal and recording studios operated inside a self-storage facility on Tulane Avenue, near the French Quarter. Offers rented studio units by size, suitable for lock-out monthly practice. Security personnel on-site from 8pm\u20136am. Appropriate for bands needing dedicated monthly storage-style rehearsal rooms. Listed in the NOLA Music Economy directory. ([fountainbleauselfstorage.com](https://www.fountainbleauselfstorage.com/location/USA/LA/New-Orleans/fountainbleau-music/))",
+          "Rehearsal facility in the Lower Garden District. Listed in the New Orleans Music Economy directory as an active rehearsal space. Status as of late 2024/2025 partially unclear \u2014 Yelp shows it as unclaimed but \"open\" with limited reviews. Verify availability before routing. ([yelp.com](https://www.yelp.com/biz/the-music-shed-new-orleans))"
+        ]
+      },
+      "notes": [
+        "Additional NOLA rehearsal listings per the New Orleans Music Economy directory include:",
+        "**Inner Recess** \u2014 1201 Mazant St, New Orleans, LA 70117",
+        "**NOLA Spaces** \u2014 1719 Toledano St, New Orleans, LA 70115",
+        "**Bernard Productions** \u2014 2919 Toulouse St, New Orleans, LA 70119",
+        "**Funky Nola LLC** \u2014 1700 N Broad St, New Orleans, LA 70119",
+        "These should be verified directly as the directory was last updated 2020. ([nolamusic.biz](https://nolamusic.biz/business-directory/wpbdp_category/rehearsal-spaces/))"
+      ],
+      "sources": [
+        "https://nolamusic.biz/business-directory/wpbdp_category/rehearsal-spaces/",
+        "https://studio101nola.com",
+        "https://www.fountainbleauselfstorage.com/location/USA/LA/New-Orleans/fountainbleau-music/",
+        "https://www.spreadingthemusic.com/rehearsal-space/",
+        "https://www.yelp.com/biz/the-music-shed-new-orleans"
+      ],
+      "source_count": 5,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "baton-rouge-la",
+      "name": "Baton Rouge, LA",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": null,
+      "website": "https://www.brmusicstudios.com",
+      "socials": {
+        "facebook": "https://www.facebook.com/225magazine/posts/baton-rouge-music-studios-new-creative-space-boasts-soundproofed-recording-studi/1397956309001979/"
+      },
+      "fields": {
+        "address": "3809 Government St, Baton Rouge, LA (also second location)",
+        "website": "[brmusicstudios.com](https://www.brmusicstudios.com)",
+        "description": "Music education studio offering lessons in piano, guitar, drums, voice, and more; also has a new creative space (announced Sept 2025 per 225 Magazine) with soundproofed recording studios, practice rooms, lounge areas, and a large event space. Primarily a lesson studio but practice room rental has historically been available. The new facility expansion significantly increases infrastructure capacity. ([brmusicstudios.com](https://www.brmusicstudios.com); [facebook.com/225magazine](https://www.facebook.com/225magazine/posts/baton-rouge-music-studios-new-creative-space-boasts-soundproofed-recording-studi/1397956309001979/))"
+      },
+      "notes": [
+        "For visiting acts without local connections, Peerspace lists approximately 18 recording/rehearsal studios in Baton Rouge averaging $150/hour, searchable at [peerspace.com/venues/baton-rouge--la/recording-studio](https://www.peerspace.com/venues/baton-rouge--la/recording-studio). Useful as a routing tool for one-off bookings. ([peerspace.com](https://www.peerspace.com/venues/baton-rouge--la/recording-studio))"
+      ],
+      "sources": [
+        "https://www.brmusicstudios.com",
+        "https://www.facebook.com/225magazine/posts/baton-rouge-music-studios-new-creative-space-boasts-soundproofed-recording-studi/1397956309001979/"
+      ],
+      "source_count": 2,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "jackson-ms",
+      "name": "Jackson, MS",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": null,
+      "website": null,
+      "socials": {},
+      "fields": {},
+      "notes": [
+        "**Sound Bar Studios** (4919 N State St, Jackson) \u2014 Yelp-listed recording/rehearsal studio; verify current availability. ([yelp.com](https://www.yelp.com/biz/sound-bar-studios-jackson))",
+        "**College and church facilities** \u2014 Mississippi College (Clinton) reportedly has adjustable-acoustic practice rooms accessible to some non-students; direct inquiry required. ([reddit.com/r/jacksonms](https://www.reddit.com/r/jacksonms/comments/1msbp1d/music_rehearsal_spaces/))",
+        "**Malaco Studios** (3023 W Northside Dr, Jackson; 601-982-4522) \u2014 Historic recording studio that may accommodate rehearsal bookings by arrangement. ([malacostudios.com](http://www.malacostudios.com))"
+      ],
+      "sources": [],
+      "source_count": 0,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "oxford-ms",
+      "name": "Oxford, MS",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": null,
+      "website": null,
+      "socials": {},
+      "fields": {},
+      "notes": [],
+      "sources": [],
+      "source_count": 0,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "little-rock-ar",
+      "name": "Little Rock, AR",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": null,
+      "website": null,
+      "socials": {},
+      "fields": {
+        "address": [
+          "Downtown Little Rock, AR",
+          "West Little Rock, AR"
+        ],
+        "website": [
+          "[bfmusicstudio.com](https://www.bfmusicstudio.com)",
+          "[chopspotrecordings.com](https://chopspotrecordings.com)"
+        ],
+        "description": [
+          "Downtown recording studio positioned as a community hub for musicians. Offers recording, mixing, mastering, and production. May accommodate rehearsal bookings; contact directly. Full production capabilities with a range of instruments and outboard gear. ([bfmusicstudio.com](https://www.bfmusicstudio.com))",
+          "Recording studio founded 2020 with 25+ years of engineering experience. Caters to independent artists and bands across genres. Rehearsal bookings by arrangement. ([chopspotrecordings.com](https://chopspotrecordings.com/about-us/))"
+        ]
+      },
+      "notes": [],
+      "sources": [
+        "https://chopspotrecordings.com",
+        "https://chopspotrecordings.com/about-us/",
+        "https://www.bfmusicstudio.com"
+      ],
+      "source_count": 3,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "memphis-tn",
+      "name": "Memphis, TN",
+      "category": "infrastructure",
+      "city": "Memphis",
+      "state": "TN",
+      "email": null,
+      "phone": null,
+      "website": null,
+      "socials": {},
+      "fields": {
+        "phone": [
+          "901-382-2333",
+          "901-861-0500"
+        ],
+        "email": [
+          "info@specialeventrent.com",
+          "service@memphissound.com / installations@memphissound.com"
+        ],
+        "website": [
+          "[specialeventservices.com](https://www.specialeventservices.com) / [specialeventrent.com](https://specialeventrent.com)",
+          "[proshowsystems.com](https://www.proshowsystems.com)",
+          "[memphisstage.com](http://memphisstage.com)"
+        ],
+        "locations": "Nashville, TN; Memphis, TN; Los Angeles, CA (part of Concert Stuff Group / CSG)",
+        "description": [
+          "One of the most prominent production companies in the mid-South and nationally. SES is now part of Concert Stuff Group (CSG), a full end-to-end concert production conglomerate. Provides audio, video, LED, lighting, and staging for concerts, festivals, and tours. Recent clients (2024) include Glass Animals' \"Tour of Earth,\" the Riverfront Revival festival (Hootie and the Blowfish, Tedeschi Trucks Band, Jamey Johnson), and the Concert for Carolina hurricane relief benefit (82,000 attendees, Luke Combs, Eric Church, James Taylor). Operates at major national scale but also has Memphis-region capabilities. Facebook active (@SESRNational). ([specialeventservices.com](https://www.specialeventservices.com))",
+          "Memphis-based production company with 40+ years of experience in audio, video, lighting, and **backline** production. Explicitly listed as \"the premier choice in Audio, Lighting, Video and Backline production.\" Serves concerts, festivals, and corporate events in the Mid-South and nationally. Strong reputation for regional concert and festival work. Contact via website. ([proshowsystems.com](https://www.proshowsystems.com))",
+          "Memphis-based full-service production and event management company. Provides PA/sound systems, backline, staging, lighting, generators, and technical staff. Claims Memphis's \"only complete in-house production facility.\" Serves the full mid-South footprint \u2014 Tennessee, Alabama, Georgia, Louisiana, Missouri, and beyond. Also handles band booking, entertainment, and destination management. PA/audio rental explicitly offered from small systems to full concert PA. ([memphisstage.com](http://memphisstage.com))"
+        ],
+        "location": "Memphis, TN"
+      },
+      "notes": [],
+      "sources": [
+        "http://memphisstage.com",
+        "https://specialeventrent.com",
+        "https://www.proshowsystems.com",
+        "https://www.specialeventservices.com"
+      ],
+      "source_count": 4,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "new-orleans-la",
+      "name": "New Orleans, LA",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": null,
+      "website": null,
+      "socials": {},
+      "fields": {
+        "website": [
+          "[solotech.com](https://solotech.com) / [shop.solotech.com](https://shop.solotech.com)",
+          "[corplighting.com](https://www.corplighting.com/live-sound-system-rentals/)",
+          "[ableaudio.com](http://www.ableaudio.com)"
+        ],
+        "description": [
+          "Large international production company with a New Orleans presence, particularly serving larger touring and festival production. Provides audio, stage, and lighting solutions for large tours and live events, as well as production equipment rental. Studios in Hollywood and Montreal. Strong footprint in Gulf South touring market. ([solotech.com](https://solotech.com/solutions/live-production/professional-studios/))",
+          "New Orleans-based sound system rental company specializing in live concert and festival PA. Carries d&b Soundscape SL-Series (KSL8, KSL12, SL sub, D80 amp). Serves concerts, festivals, theaters, and touring events in the New Orleans area and nationally. Offers same-day service with 24-hour delivery in the Gulf South region. ([corplighting.com](https://www.corplighting.com/live-sound-system-rentals/))",
+          "Louisiana-owned company serving both the New Orleans and Baton Rouge markets. Provides PA systems for live bands (small portable to large-scale), microphone rentals, DJ equipment, and LED lighting/par cans. Occasionally travels into Mississippi and Texas. Good option for smaller club or private event productions on the corridor. ([ableaudio.com](http://www.ableaudio.com/pa-systems-rental.html))"
+        ],
+        "phone": [
+          "Listed on website",
+          "NOLA: 504-324-1103 / Baton Rouge: 225-803-2700"
+        ]
+      },
+      "notes": [],
+      "sources": [
+        "http://www.ableaudio.com",
+        "http://www.ableaudio.com/pa-systems-rental.html",
+        "https://shop.solotech.com",
+        "https://solotech.com",
+        "https://solotech.com/solutions/live-production/professional-studios/",
+        "https://www.corplighting.com/live-sound-system-rentals/"
+      ],
+      "source_count": 6,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "baton-rouge-la",
+      "name": "Baton Rouge, LA",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": null,
+      "website": "https://hartfordrents.com/locations/baton-rouge-la-audio-rental/",
+      "socials": {},
+      "fields": {
+        "phone": [
+          "(225) 296-0123",
+          "888-520-5667"
+        ],
+        "address": "12232 Industriplex Blvd, Suite 9, Baton Rouge, LA 70809",
+        "description": [
+          "BBB-listed Baton Rouge audio/visual production company. Provides audio/visual equipment, production services, and video production. ([bbb.org](https://www.bbb.org/us/la/baton-rouge/category/audio-visual-equipment-rental))",
+          "National equipment rental company with a Southwest distribution center serving Baton Rouge. Offers professional sound system rentals, speaker rentals, microphone rentals, mixers, stage monitors, and teleconferencing equipment. Day, week, month, or longer terms. 24/7 technician support throughout Louisiana. Also serves Memphis (separate distribution). ([hartfordrents.com](https://hartfordrents.com/locations/baton-rouge-la-audio-rental/))"
+        ],
+        "website": "[hartfordrents.com](https://hartfordrents.com/locations/baton-rouge-la-audio-rental/)"
+      },
+      "notes": [],
+      "sources": [
+        "https://hartfordrents.com/locations/baton-rouge-la-audio-rental/",
+        "https://www.bbb.org/us/la/baton-rouge/category/audio-visual-equipment-rental"
+      ],
+      "source_count": 2,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "jackson-ms",
+      "name": "Jackson, MS",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": null,
+      "website": null,
+      "socials": {},
+      "fields": {
+        "website": [
+          "[ameaudio.com/jackson-ms](https://www.ameaudio.com/jackson-ms)",
+          "[soundcomav.com](https://soundcomav.com)",
+          "[memphisdrumshop.com](https://memphisdrumshop.com)",
+          "[rayfransensdrumcenter.com](https://rayfransensdrumcenter.com)"
+        ],
+        "description": [
+          "Supplies audio, stage, lighting, and video equipment for theatre, live music, television, and corporate events in the Jackson, MS market. ([ameaudio.com](https://www.ameaudio.com/jackson-ms))",
+          "Jackson-based AV production company with roots since 1955. Works with live music events, churches, schools, and corporate clients. Local production events company active in the Jackson metro. ([soundcomav.com](https://soundcomav.com/production/))",
+          "BBB-listed Jackson AV and production service. ([bbb.org](https://www.bbb.org/us/la/baton-rouge/category/audio-visual-equipment-rental))",
+          "The corridor's largest and most well-known drum specialty store. Carries the largest regional selection of cymbals, gongs, snare drums, drum sets, and hardware. The task prompt notes prior backline rental history; as of 2025 the website does not prominently advertise backline rental services. Inquire directly for tour/event drum kit rental \u2014 the staff relationship with the regional touring community makes this a viable call. ([memphisdrumshop.com](https://memphisdrumshop.com))",
+          "Described as \"the oldest and largest store in Louisiana dedicated exclusively to drums and drumming.\" Located in Kenner, just west of NOLA. A go-to contact for drum backline sourcing for NOLA-area shows and festivals. Direct inquiry required for rental terms. ([locally.com](https://www.locally.com/store/321770/ray-fransens-drum-center))"
+        ],
+        "phone": [
+          "601-957-5830",
+          "(504) 466-8484"
+        ],
+        "address": [
+          "2310 Highway 80 W, Jackson, MS 39204",
+          "3412 Williams Blvd, Kenner, LA 70065"
+        ]
+      },
+      "notes": [
+        "See full entry above under PA Rental. Explicitly offers backline in addition to audio/video/lighting production. One of the main regional providers for both full production and backline rental in the mid-South. ([proshowsystems.com](https://www.proshowsystems.com))",
+        "See full entry above. Memphis Sound explicitly offers backline rental (B-3 organs, guitar amps, bass amps, keyboards, keyboard amps, drums). Website states: \"We've got \u2014 or can get \u2014 the right gear, from vintage B-3s to the latest, greatest keyboards! Guitar Amps, Bass Amps, Keyboards, Keyboard Amps, Drums, Can Do!\" Serves the corridor south from Memphis to Birmingham, NOLA, Baton Rouge, and St. Louis. ([memphisstage.com/memphis-backline.html](http://memphisstage.com/memphis-backline.html))",
+        "Guitar Center locations in Memphis (multiple), New Orleans, and Baton Rouge all offer backline rental programs through their Guitar Center Pro program. Not a primary recommendation for touring-level backline, but widely accessible as a fallback. Locations: Memphis (Poplar Ave, Wolfchase), New Orleans (Carrollton Ave), Baton Rouge."
+      ],
+      "sources": [
+        "https://memphisdrumshop.com",
+        "https://rayfransensdrumcenter.com",
+        "https://soundcomav.com",
+        "https://soundcomav.com/production/",
+        "https://www.ameaudio.com/jackson-ms",
+        "https://www.bbb.org/us/la/baton-rouge/category/audio-visual-equipment-rental",
+        "https://www.locally.com/store/321770/ray-fransens-drum-center"
+      ],
+      "source_count": 7,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "memphis-tn",
+      "name": "Memphis, TN",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": "901) 323-8888",
+      "website": "https://www.circlemusiccenter.com",
+      "socials": {},
+      "fields": {
+        "website": [
+          "[memphisdrumshop.com](https://memphisdrumshop.com)",
+          "[amromusiconline.com](https://amromusiconline.com)"
+        ],
+        "description": [
+          "Largest drum and percussion specialty retailer on the corridor. Carries the widest regional selection of cymbals (including rare and vintage), gongs, snare drums, hardware, and accessories. Major community hub for Memphis percussionists and regional touring acts. Regularly updated website as of August 2025. Strong purchasing relationships with top cymbal and drum brands. ([memphisdrumshop.com](https://memphisdrumshop.com))",
+          "Founded 1921. One of the largest musical instrument stores in the mid-South and among the largest in the US, per company description. Specializes in school band and orchestra instruments, piano sales and rental, and sheet music. Stocks a wide selection of student and professional instruments. Strong service/repair department. Primary go-to for band instruments, pianos, and school-oriented gear in Memphis. ([amromusiconline.com](https://amromusiconline.com); [yelp.com](https://www.yelp.com/biz/amro-music-stores-memphis))",
+          "Two-location chain under same ownership. Circle Music is near Clark Tower in East Memphis. Offers school band instrument rentals (low monthly rates), flexible upgrade/return plans, and general music retail. Emerged in community discussions (May 2025) as the viable non-Amro option in Memphis. ([circlemusiccenter.com](https://www.circlemusiccenter.com); [reddit.com/r/memphis](https://www.reddit.com/r/memphis/comments/1kra399/music_store_thats_not_amro/))"
+        ],
+        "address": "2918 Poplar Ave, Memphis, TN 38111",
+        "phone": "(901) 323-8888",
+        "hours": "Mon\u2013Fri 10am\u20136pm; Sat 10am\u20134pm",
+        "circle_music_center": "5124 Poplar Ave, Suite 101, Memphis, TN 38117 \u2014 Phone: (901) 937-8484 \u2014 Website: [circlemusiccenter.com](https://www.circlemusiccenter.com)",
+        "lane_music": "Germantown, TN (same ownership as Circle Music)"
+      },
+      "notes": [
+        "**Status: CLOSED** \u2014 Yelp confirmed the business is closed (updated April 2026). Strings & Things was a beloved Memphis institution with community memory dating back to the 1960s\u201370s (original Cooper St. location), but it no longer operates. ([yelp.com/biz/string-n-things-memphis](https://www.yelp.com/biz/string-n-things-memphis))"
+      ],
+      "sources": [
+        "https://amromusiconline.com",
+        "https://memphisdrumshop.com",
+        "https://www.circlemusiccenter.com",
+        "https://www.reddit.com/r/memphis/comments/1kra399/music_store_thats_not_amro/",
+        "https://www.yelp.com/biz/amro-music-stores-memphis"
+      ],
+      "source_count": 5,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "new-orleans-la",
+      "name": "New Orleans, LA",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": null,
+      "website": null,
+      "socials": {
+        "facebook": "https://www.facebook.com/jimmysmusicexchange/"
+      },
+      "fields": {
+        "address": [
+          "3217 Burgundy St, New Orleans, LA 70117 (St. Claude / Bywater)",
+          "421 Frenchmen St, New Orleans, LA 70116 (Marigny / Frenchmen Street)"
+        ],
+        "phone": [
+          "(504) 304-5965",
+          "504-586-1094"
+        ],
+        "website": [
+          "[facebook.com/Webbs-Bywater-Music-Store-LLC-257380575622](https://m.facebook.com/Webbs-Bywater-Music-Store-LLC-257380575622/)",
+          "[louisianamusicfactory.com](https://www.louisianamusicfactory.com)"
+        ],
+        "description": [
+          "Intimate Bywater neighborhood shop run by owner Paul, widely praised for honest dealing, guitar pedal selection, and expert repair work. Community consensus describes it as \"more of a repair shop than a guitar store\" \u2014 but in the best way. Boutique used/vintage gear, quick and skilled repairs. Paul has a \"special ability to restore all kinds of equipment back to life.\" Essential repair resource for working NOLA musicians. ([nolamusic.biz](https://nolamusic.biz/business-directory/webbs-bywater-music/); [yelp.com](https://www.yelp.com/biz/webbs-bywater-music-new-orleans))",
+          "New Orleans used and vintage instrument exchange. Listed in community resources as a NOLA music retail option. Facebook presence active. Verify current location and hours directly before visiting.",
+          "*Note: closed its brick-and-mortar in March 2020 during COVID-19, but subsequently reopened.* Specializes in Louisiana and New Orleans music CDs, vinyl, and local music merchandise \u2014 not instrument gear, but a critical cultural retail node on the Frenchmen Street corridor. Carries the widest selection of Louisiana music recordings in the world. Active in-store performances. ([louisianamusicfactory.com](https://www.louisianamusicfactory.com); closure/reopening history: [offbeat.com](https://www.offbeat.com/news/louisiana-music-factory-closes-its-doors/))"
+        ],
+        "facebook": "[facebook.com/jimmysmusicexchange/](https://www.facebook.com/jimmysmusicexchange/)",
+        "hours": "Thu\u2013Tue 11am\u20136pm; Closed Wednesdays"
+      },
+      "notes": [
+        "See full entry above (backline/drums). Best dedicated drum shop in the greater NOLA area."
+      ],
+      "sources": [
+        "https://m.facebook.com/Webbs-Bywater-Music-Store-LLC-257380575622/",
+        "https://nolamusic.biz/business-directory/webbs-bywater-music/",
+        "https://www.facebook.com/jimmysmusicexchange/",
+        "https://www.louisianamusicfactory.com",
+        "https://www.offbeat.com/news/louisiana-music-factory-closes-its-doors/",
+        "https://www.yelp.com/biz/webbs-bywater-music-new-orleans"
+      ],
+      "source_count": 6,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "jackson-ms",
+      "name": "Jackson, MS",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": null,
+      "website": null,
+      "socials": {},
+      "fields": {},
+      "notes": [
+        "**Status: CLOSED** \u2014 Confirmed closed. The Ridgeland location (888 Avery Blvd N, Ridgeland) closed in July 2016 after 44 years in business per Mississippi Free Press. BBB files also indicate the business is believed out of business. ([mississippifreepress.org](https://www.mississippifreepress.org/freeze-thank-you-jacks-construction-site-just-plain-good-and-morrison-brothers-music/); [bbb.org](https://www.bbb.org/us/ms/jackson/profile/music-store/morrison-brothers-music-pianos-0523-7000190))",
+        "Noted in community discussions as \"highly regarded\" in Jackson's Fondren neighborhood. Verify contact and hours directly.",
+        "National chain with a Jackson, MS location. Useful for general gear needs."
+      ],
+      "sources": [],
+      "source_count": 0,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "oxford-ms",
+      "name": "Oxford, MS",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": "662) 234-0999",
+      "website": "https://tupelomusic.com/rebel-music",
+      "socials": {},
+      "fields": {
+        "address": "1605 Jackson Ave W, Oxford, MS 38655",
+        "phone": "(662) 234-0999",
+        "description": "Independent music store in Oxford offering new and used instruments, instrument repair, and accessories. Sister location to Tupelo Consignment Music in Tupelo, MS. The primary local gear resource for Oxford-area musicians. ([tupelomusic.com/rebel-music](https://tupelomusic.com/rebel-music); [namesandnumbers.com](https://www.namesandnumbers.com/biz/129962/rebel-music))"
+      },
+      "notes": [],
+      "sources": [
+        "https://tupelomusic.com/rebel-music",
+        "https://www.namesandnumbers.com/biz/129962/rebel-music"
+      ],
+      "source_count": 2,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "little-rock-ar",
+      "name": "Little Rock, AR",
+      "category": "infrastructure",
+      "city": "Nashville",
+      "state": "TN",
+      "email": null,
+      "phone": null,
+      "website": "https://www.rosenmusiccompany.com",
+      "socials": {},
+      "fields": {
+        "address": "7509 Cantrell Rd, Suite 103, Little Rock, AR 72207",
+        "phone": [
+          "501-666-0814 / 501-351-8259",
+          "1-866-868-7826 (TOUR VAN)",
+          "(833) 310-3835 / (833) 640-8267"
+        ],
+        "email": [
+          "rosenmusic@aol.com",
+          "musiccitytouringvans@gmail.com"
+        ],
+        "website": [
+          "[rosenmusiccompany.com](https://www.rosenmusiccompany.com)",
+          "[bandago.com](https://www.bandago.com)",
+          "[rentgreenvans.com](https://www.rentgreenvans.com)",
+          "[musiccitytouringvans.com](https://www.musiccitytouringvans.com)"
+        ],
+        "status": "Website states \"Store Has Closed\" but notes items are still available for purchase. Contact via email/phone for status. Family-owned since 1955. ([rosenmusiccompany.com](https://www.rosenmusiccompany.com))",
+        "nearest_locations_to_corridor": "Nashville, TN; Charlotte, NC; Dallas, TX; Miami, FL; Orlando, FL; Austin, TX",
+        "description": [
+          "Founded 2003 by a touring musician. The US's leading specialist tour van rental company. Fleet includes Mercedes-Benz Sprinter (8\u201312 passenger, including Band Van XL with 234 cu ft cargo hold), Ford Transit, and Chevrolet Express 15-passenger vans. Features: LCD screens, game consoles, power outlets, secure cargo storage, tow hitches. One-way rentals between locations available. After-hours drop-off accommodated. 3 day\u2013multi-week rentals. Nashville location serves the corridor's northern gateway; Memphis and NOLA acts commonly pick up from Nashville. ([bandago.com](https://www.bandago.com/use-cases/bands/); [bandago.com/locations/](https://www.bandago.com/locations/))",
+          "Founded 2008 by two touring musicians. Premium 12- and 15-passenger van rentals designed for touring bands. Nashville location explicitly serves acts routing to Memphis, Louisville, and Atlanta. Class 3 tow hitches and 7-pin trailer wiring standard. No substitutions policy \u2014 van reserved is van received. No mileage fees implied on long rentals. Highly rated by touring musicians in community forums. One-way rentals between locations available. ([rentgreenvans.com](https://www.rentgreenvans.com/band-van-rentals/))",
+          "Nashville-based van rental specialist serving touring bands, artists, labels, and event planners. Mercedes Sprinter vans available. 3-day minimum rental, no mileage fees, price matching guarantee, month-long rental discounts. Email-only inquiries. A smaller boutique operation compared to Bandago/Greenvans. ([musiccitytouringvans.com](https://www.musiccitytouringvans.com))"
+        ],
+        "locations": "Nashville, TN; Philadelphia, PA; Richmond, VA; Providence, RI; Boston, MA; Washington, DC",
+        "location": "Nashville, TN"
+      },
+      "notes": [
+        "The primary full-service instrument retailer currently active in Little Rock. Serves general gear needs for the Arkansas market.",
+        "**Turo** \u2014 Peer-to-peer vehicle marketplace with listings in all major corridor cities. Can source passenger vans and cargo vans from private owners. Pricing often competitive for short-term use; no specialist touring-band configurations. ([turo.com](https://turo.com))",
+        "**Enterprise / Budget / National** \u2014 Standard national car rental companies with 12\u201315 passenger van inventory in most corridor cities (Memphis, New Orleans, Baton Rouge, Jackson, Little Rock). No touring band specialization, but reliable as fallback.",
+        "**U-Haul cargo vans** \u2014 Available in all corridor cities. Commonly used for gear-only runs. Trailer rentals ~$20/day. Not for passenger transport."
+      ],
+      "sources": [
+        "https://www.bandago.com",
+        "https://www.bandago.com/locations/",
+        "https://www.bandago.com/use-cases/bands/",
+        "https://www.musiccitytouringvans.com",
+        "https://www.rentgreenvans.com",
+        "https://www.rentgreenvans.com/band-van-rentals/",
+        "https://www.rosenmusiccompany.com"
+      ],
+      "source_count": 7,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "poster-printers",
+      "name": "Poster Printers",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": null,
+      "website": null,
+      "socials": {
+        "instagram": "@nolacommunityprintshop"
+      },
+      "fields": {
+        "address": "224 5th Ave S (inside Country Music Hall of Fame), Nashville, TN 37203",
+        "website": [
+          "[hatchshowprint.com](https://hatchshowprint.com) / [shop.hatchshowprint.com](https://shop.hatchshowprint.com)",
+          "[store.friendlyarcticprinting.com](https://store.friendlyarcticprinting.com) / [@friendlyarcticprinting on Facebook](https://www.facebook.com/friendlyarcticprinting)",
+          "[statusserigraph.com](https://statusserigraph.com)"
+        ],
+        "description": [
+          "Operating since 1879, Hatch is the most historically significant letterpress poster shop in America. Designs and hand-prints letterpress show posters for touring musicians, venues, and brands using a vast archive of wood type and hand-carved imagery. Custom poster orders available for touring acts through the shop's online portal. Located at the Country Music Hall of Fame. Tours available. The gold standard reference for corridor acts wanting an iconic letterpress poster. ([hatchshowprint.com](https://hatchshowprint.com))",
+          "East Nashville-based screen printing shop producing gig posters, show posters, and flat-stock art prints for bands. Active in 2025\u20132026, including CMA Fest 2024 poster and recent Eric Church poster work. Eco-friendly process. Takes custom orders. Strong reputation in the Nashville touring community for quality and responsiveness. ([facebook.com/friendlyarcticprinting](https://www.facebook.com/friendlyarcticprinting/videos/printing-posters-for-ericchurchmusic-nashville-screen-printing-posters-eco-frien/1493508112449705/))",
+          "Limited-edition screen-printed concert poster shop out of Knoxville. Work includes Phish, Grateful Dead-related artists, AC/DC (Nashville 2025), Puscifer (Charlotte 2025). Signed and numbered editions. Primarily an art-print poster model (collector editions) rather than mass-run tour merch. Useful for higher-end corridor venue poster commissions. ([statusserigraph.com](https://statusserigraph.com))",
+          "Non-profit community art space and collective with screen printing and darkroom photography. Located in New Orleans. Open Shop Thursdays 6\u20139:30pm. Not a commercial print shop per se, but a community resource for NOLA musicians seeking DIY or low-cost run posters. Verify capacity for band runs."
+        ],
+        "instagram": "[@nolacommunityprintshop](https://www.instagram.com/nolacommunityprintshop/)"
+      },
+      "notes": [
+        "Referenced in a 2024 Instagram post as the printer for Band of Heathens tour posters (\"TOUR POSTER DESIGNED BY ANDY BIRD PRINTED BY TRISTAR MERCH IN NASHVILLE, TN\"). Active 2024 tour poster printer in the Nashville ecosystem. Verify contact directly."
+      ],
+      "sources": [
+        "https://hatchshowprint.com",
+        "https://shop.hatchshowprint.com",
+        "https://statusserigraph.com",
+        "https://store.friendlyarcticprinting.com",
+        "https://www.facebook.com/friendlyarcticprinting",
+        "https://www.facebook.com/friendlyarcticprinting/videos/printing-posters-for-ericchurchmusic-nashville-screen-printing-posters-eco-frien/1493508112449705/",
+        "https://www.instagram.com/nolacommunityprintshop/"
+      ],
+      "source_count": 7,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "t-shirt-apparel-printers",
+      "name": "T-Shirt / Apparel Printers",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": "brian@colesprinting.com",
+      "phone": null,
+      "website": null,
+      "socials": {},
+      "fields": {
+        "address": [
+          "7125 Riverdale Bend Drive, Memphis, TN 38125",
+          "Wolfchase Galleria, 2760 N Germantown Pkwy, Memphis, TN 38133"
+        ],
+        "email": "brian@colesprinting.com",
+        "website": [
+          "[colesprinting.com](https://colesprinting.com)",
+          "[customoneonline.com](https://customoneonline.com/pages/screen-printing-memphis-tn)",
+          "[solid-merch.com](https://www.solid-merch.com)",
+          "[intrepidartists.com](https://intrepidartists.com)",
+          "[piedmonttalent.com](https://piedmonttalent.com) *(verify current domain)*",
+          "[bluemountainartists.com](https://www.bluemountainartists.com)",
+          "[hmpmusic.com](https://hmpmusic.com)",
+          "[hutchentertainment.com](https://www.hutchentertainment.com)",
+          "[riggsentertainmentllc.com](https://riggsentertainmentllc.com)"
+        ],
+        "hours": "Mon\u2013Fri 10am\u20136pm",
+        "description": [
+          "Memphis-based screen printing shop serving local bands, businesses, and organizations. T-shirts, caps, bags, signs, embroidery, cups, banners, uniforms. Good local option for Memphis-area band merch. ([colesprinting.com](https://colesprinting.com))",
+          "Same-day custom T-shirts and screen printing available in Memphis. No setup fees, rush printing, nationwide shipping. Good for quick-turnaround needs. ([customoneonline.com](https://customoneonline.com/pages/screen-printing-memphis-tn))",
+          "Online band merch specialist for independent musicians and labels. Screen printing starting at 24 units. Ships to all corridor cities. Not regional per se but widely used by indie touring acts for accessible run sizes. ([solid-merch.com](https://www.solid-merch.com/custom-printed-shirts/))",
+          "Founded December 1994 by Rick Booth. Boutique agency with emphasis on quality over quantity, representing blues, blues-rock, funk, soul, jam, roots rock, and zydeco artists for North American and international touring. Roster includes Popa Chubby, Toronzo Cannon, Sugaray Rayford, Selwyn Birchwood, Lil' Ed & The Blues Imperials, Curtis Salgado, John Nemeth, Carolyn Wonderland, Nikki Hill, and more. Major presence in the Southern festival and club circuit. Celebrated 30 years in November 2024. ([intrepidartists.com/about/](https://intrepidartists.com/about/); [pollstar.com](https://news.pollstar.com/2024/11/08/intrepid-artists-marks-30-years-as-agency/))",
+          "Founded 1989 by Steve Hecht. Blues and roots-only agency with 35+ years of operation. Two-time Blues Foundation Keeping the Blues Alive Award winner for Agent/Manager of the Year. Works with promoters from major venues to small Blues Society events. Closely aligned with the Southern and Southeastern club circuit that intersects the Mississippi corridor. ([blues.org](https://blues.org/blues_kba_winner/steve-hecht-piedmont-talent-charlotte-nc/))",
+          "Established booking agency for blues, Americana, and roots artists. Roster has included Alligator Records artists, Tinsley Ellis, Lee Rocker. A notable competitor/sibling agency to Intrepid in the blues roots booking space. Works nationally including Southern touring circuits. ([bluemountainartists.com](https://www.bluemountainartists.com))",
+          "New Orleans live music booking agency operating since 1994. Books jazz bands, brass bands, zydeco/Cajun, gospel, Top 40, blues, classical, and country artists for events, weddings, and corporate clients in the NOLA market. Exclusive bands on roster. Relevant for NOLA event productions needing local talent. ([hmpmusic.com](https://hmpmusic.com))",
+          "Memphis-based full-service booking agency with 25+ years of experience. Specializes in booking national and regional acts for any event. Books talent from Memphis's \"Home of the Blues, Birthplace of Rock N Roll\" base for the mid-South region. ([hutchentertainment.com](https://www.hutchentertainment.com))",
+          "Memphis-based entertainment booking agency with 25+ years of experience. Books local, regional, and national entertainers for private events, corporate, and venues. ([riggsentertainmentllc.com](https://riggsentertainmentllc.com/hire-entertainment-here/))"
+        ],
+        "president": "Rick Booth",
+        "director": "Steve Hecht"
+      },
+      "notes": [],
+      "sources": [
+        "https://blues.org/blues_kba_winner/steve-hecht-piedmont-talent-charlotte-nc/",
+        "https://colesprinting.com",
+        "https://customoneonline.com/pages/screen-printing-memphis-tn",
+        "https://hmpmusic.com",
+        "https://intrepidartists.com",
+        "https://intrepidartists.com/about/",
+        "https://news.pollstar.com/2024/11/08/intrepid-artists-marks-30-years-as-agency/",
+        "https://piedmonttalent.com",
+        "https://riggsentertainmentllc.com",
+        "https://riggsentertainmentllc.com/hire-entertainment-here/",
+        "https://www.bluemountainartists.com",
+        "https://www.hutchentertainment.com",
+        "https://www.solid-merch.com",
+        "https://www.solid-merch.com/custom-printed-shirts/"
+      ],
+      "source_count": 14,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "new-orleans-la",
+      "name": "New Orleans, LA",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": null,
+      "website": null,
+      "socials": {},
+      "fields": {
+        "lead_attorney": "Edgar D. Gankendorff (born Lafayette, LA, 1965; admitted Louisiana bar 1991)",
+        "website": [
+          "[provostylaw.com](https://provostylaw.com)",
+          "[hayes-lawfirm.com](https://hayes-lawfirm.com/entertainment-law/)"
+        ],
+        "description": [
+          "Described as \"the go-to legal resource for the entertainment industry in New Orleans.\" Practice areas include: recording contracts, publishing agreements, copyrights, trademarks, merchandising, royalties, Louisiana film/TV tax credits, entertainment contracts for artists, labels, management companies, studios, distributors, publishers, venues, and art galleries. Also handles intellectual property litigation. Gankendorff was a speaker at the 2026 Louisiana State Bar Association Entertainment Law CLE Seminar (April 2026), confirming active practice. ([provostylaw.com](https://provostylaw.com/practice_areas/entertainment-law/); [lsba.org CLE 2026](https://www.lsba.org/documents/CLE/Diversity/ELAgenda2026.pdf))",
+          "Listed by Best Lawyers in the practice areas of Appellate Practice, Commercial Litigation, Entertainment and Sports Law, and Litigation \u2013 Securities. Recognized since 2023. ([bestlawyers.com](https://www.bestlawyers.com/united-states/louisiana/new-orleans/entertainment-law-music))",
+          "New Orleans entertainment law firm handling copyright, intellectual property, contract drafting and negotiation, breach of contract, and talent representation for musicians, producers, actors, singers, and other entertainment professionals. ([hayes-lawfirm.com](https://hayes-lawfirm.com/entertainment-law/))"
+        ],
+        "firm": "Stone Pigman Walther Wittmann LLC, New Orleans, LA"
+      },
+      "notes": [],
+      "sources": [
+        "https://hayes-lawfirm.com/entertainment-law/",
+        "https://provostylaw.com",
+        "https://provostylaw.com/practice_areas/entertainment-law/",
+        "https://www.bestlawyers.com/united-states/louisiana/new-orleans/entertainment-law-music",
+        "https://www.lsba.org/documents/CLE/Diversity/ELAgenda2026.pdf"
+      ],
+      "source_count": 5,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "memphis-tn",
+      "name": "Memphis, TN",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": "901) 401-1000",
+      "website": "https://wedofamilylaw.com",
+      "socials": {},
+      "fields": {
+        "address": "5050 Poplar Ave, Suite 1520 (15th Floor), Memphis, TN 38157",
+        "phone": "(901) 401-1000",
+        "website": "[wedofamilylaw.com](https://wedofamilylaw.com)",
+        "description": "Memphis attorney licensed in Tennessee. Practice includes entertainment law, business law, family law, and personal injury. Previously of Stokes & Glass, PLLC (I-Bank Tower on Poplar). Multiple community recognition awards (40 Under 40, etc.). One of the few Memphis attorneys who explicitly lists entertainment law as a focus. ([lawyers.justia.com](https://lawyers.justia.com/lawyer/laquita-r-stokes-1487110))"
+      },
+      "notes": [],
+      "sources": [
+        "https://lawyers.justia.com/lawyer/laquita-r-stokes-1487110",
+        "https://wedofamilylaw.com"
+      ],
+      "source_count": 2,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "nashville-tn-serves-the-full-corridor-for-recordingtouring-deal-work",
+      "name": "Nashville, TN (Serves the full corridor for recording/touring deal work)",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": null,
+      "website": null,
+      "socials": {},
+      "fields": {},
+      "notes": [
+        "Entertainment, music, intellectual property, and commercial litigation. Extensive copyright, royalty, and IP litigation experience. Recognized since 2003.",
+        "Music, entertainment, sports, and media. Represents publishing companies, independent record labels, and songwriters who own their copyrights. Licensing, liability, recording agreements, LLC funding deals.",
+        "Publishing companies, record labels, management companies, recording artists, producers, and songwriters. Copyright, trademark, and IP law. Consumer branding.",
+        "Recognized since 2008. Entertainment Law \u2013 Music and commercial/IP litigation.",
+        "Recognized since 2005. Entertainment Law \u2013 Music and commercial litigation.",
+        "Recognized since 2020. Entertainment Law \u2013 Music. Named LawDragon 500 and Best Lawyers in America 2025."
+      ],
+      "sources": [],
+      "source_count": 0,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "jackson-ms",
+      "name": "Jackson, MS",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": "866) 991-2218",
+      "website": "https://www.justia.com/lawyers/entertainment-sports-law/mississippi",
+      "socials": {},
+      "fields": {
+        "address": "395 Edgewood Terrace Drive, Jackson, MS 39206",
+        "phone": "(866) 991-2218",
+        "description": "Listed by Justia as the primary entertainment/sports law attorney in Mississippi. Verify current practice focus for music-specific representation. ([justia.com](https://www.justia.com/lawyers/entertainment-sports-law/mississippi))"
+      },
+      "notes": [],
+      "sources": [
+        "https://www.justia.com/lawyers/entertainment-sports-law/mississippi"
+      ],
+      "source_count": 1,
+      "gaps_count": 0,
+      "gap_fields": []
+    },
+    {
+      "slug": "little-rock-ar",
+      "name": "Little Rock, AR",
+      "category": "infrastructure",
+      "city": null,
+      "state": null,
+      "email": null,
+      "phone": null,
+      "website": null,
+      "socials": {},
+      "fields": {
+        "address": [
+          "200 W. Capitol Ave, Suite 2300, Little Rock, AR 72201",
+          "200 River Market Ave, Suite 500, Little Rock, AR 72201"
+        ],
+        "description": [
+          "One of Arkansas's leading full-service firms. Listed by LawInfo and SuperLawyers for entertainment law in Little Rock. ([lawinfo.com](https://www.lawinfo.com/entertainment-sports-and-leisure/arkansas/little-rock/))",
+          "LawInfo-listed Little Rock entertainment law firm. ([lawinfo.com](https://www.lawinfo.com/entertainment-sports-and-leisure/arkansas/little-rock/))"
+        ]
+      },
+      "notes": [
+        "**Morrison Brothers Music (Jackson)** is confirmed permanently closed since 2016. No replacement independent store with comparable regional reputation has been identified.",
+        "**Strings & Things (Memphis)** is confirmed closed as of April 2026 per Yelp.",
+        "**Rosen Music (Little Rock)** website indicates the store has closed; contact via email/phone to confirm status.",
+        "**Louisiana Music Factory** closed during COVID-19 in 2020 and subsequently reopened; the Frenchmen Street location is currently open but carries music recordings/merchandise, not instruments.",
+        "**Jackson, MS rehearsal infrastructure** is notably underdeveloped; this represents a gap in the corridor.",
+        "**Marigny Opera House** (725 St. Ferdinand St, New Orleans; 504-948-9998) is primarily an event/wedding/performance rental venue, not a band rehearsal space.",
+        "**Bandago** does not have a Memphis or NOLA location; Nashville is the closest node for corridor acts.",
+        "**Clarksdale, MS and Natchez, MS** are named in the corridor scope but have minimal formal music infrastructure (no dedicated rehearsal studios, PA rental companies, or gear shops identified). Acts routing through these markets typically rely on Memphis or NOLA infrastructure. Blues venues in Clarksdale (Ground Zero Blues Club, Shack Up Inn) have some in-house production."
+      ],
+      "sources": [
+        "https://www.lawinfo.com/entertainment-sports-and-leisure/arkansas/little-rock/"
+      ],
+      "source_count": 1,
+      "gaps_count": 0,
+      "gap_fields": []
+    }
+  ]
+}
