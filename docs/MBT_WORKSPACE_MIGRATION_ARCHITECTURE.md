@@ -54,10 +54,11 @@ The personal/business split is important: Chase keeps ChasePierson.TV as his per
 ## Phasing — rough shape
 
 ### Phase 0 — Legal + identity (prerequisite, ~2 weeks)
-- File MBT LLC in New York. Articles, registered agent, EIN, bank account.
-- Operating agreement with explicit IP ownership language (real lawyer).
+- **File MBT LLC in Mississippi** (single-state — NY business routes through Tuthill Design, no foreign-LLC registration needed). Articles, registered agent, EIN, bank account.
+- Operating agreement with explicit IP ownership language (real lawyer). Three equal members: Chase, Tracy, Amy.
 - Register `measurablybetterthings.com` if not owned. Keep `measurablybetter.life` as alias.
 - Decision: which domain is the primary workspace domain? Shorter is usually better.
+- **Parallel: file Big Muddy Touring LLC** (separate entity for vehicle + road performance liability). State and ownership TBD.
 
 ### Phase 1 — MBT Google Workspace (~3 days)
 - Sign up for Google Workspace Business Standard under MBT LLC.

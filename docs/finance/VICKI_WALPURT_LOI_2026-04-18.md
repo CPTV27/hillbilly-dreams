@@ -9,7 +9,7 @@
 **Date:** ____________________
 
 **Between:**
-- **Measurably Better Things LLC** (in formation, New York) — "MBT"
+- **Measurably Better Things LLC** (in formation, Mississippi) — "MBT"
 - **Vicki Walpurt** — "Client"
 
 ---
@@ -75,7 +75,7 @@ MBT commits to best-effort service. No formal SLA at this stage. Critical issues
 
 ## 7 · Assignment and restructure
 
-Client acknowledges MBT LLC is in formation. Upon filing, all rights and obligations under this agreement assign automatically to MBT LLC. Until filing, the agreement is executed under FarleyPierson LLC d/b/a Measurably Better Things.
+Client acknowledges MBT LLC is in formation in Mississippi. MBT does not maintain a New York footprint — Client-facing services in Client's operating region (Upstate NY) are delivered with operational support from Tuthill Design (a NY entity affiliated with MBT). Upon MBT LLC filing, all rights and obligations under this agreement assign automatically to MBT LLC. Until filing, the agreement is executed under FarleyPierson LLC d/b/a Measurably Better Things.
 
 ## 8 · Signatures
 

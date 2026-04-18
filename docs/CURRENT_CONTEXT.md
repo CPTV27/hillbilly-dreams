@@ -10,12 +10,21 @@
 
 **HDI is dead language.** Do not reference Hillbilly Dreams Incorporated in any new document or conversation.
 
-**Measurably Better Things LLC** (not yet filed) becomes:
-- The holding company
+**Measurably Better Things LLC** (not yet filed):
+- **Filing state: Mississippi** (single-state, NOT registering as foreign LLC in NY)
 - The platform (software, directory engine, canonical entity store)
 - The brand used for broker-tier B2B deals only (not for consumer pages)
+- NY business routes through Tuthill Design instead
 
-**Three-way partnership:** Chase, Tracy, Amy (equal thirds) own MBT.
+**Three-way partnership for MBT:** Chase, Tracy, Amy (equal thirds).
+
+**Other in-family entities (each its own ownership):**
+- **Tuthill Design** (NY, may split from Studio C) — Chase 50% / Elijah Tuthill 50%. Real estate media + 3D + design. NY counties + new Natchez branch.
+- **Studio C** (NY + new Natchez branch) — Chase 40% / Other 60% TBD. Concert + event production focus.
+- **Big Muddy Touring LLC** (new, to file separately) — vehicle/touring insurance requires own entity.
+- **FarleyPierson LLC** — legacy shell, kept alive (not dissolved).
+
+Full entity map: `docs/ENTITY_STRUCTURE.md`
 
 **Public-facing rule (Chase clarified 2026-04-18 PM):** MBT is NOT being marketed publicly in the near term. Consumer-facing sites stay on their own brands (Big Muddy Inn, Big Muddy Touring, Chase Pierson Photography, Studio C, etc.). MBT branding surfaces only for broker-tier B2B deals — Paul Green Realty, multi-property realtor partnerships, civic/tourism where the client is evaluating a platform, not a consumer brand. For everything else, MBT stays backstage like a holding company.
 

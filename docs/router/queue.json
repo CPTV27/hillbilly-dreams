@@ -1,7 +1,7 @@
 {
   "_doc": "Hillbilly Dreams agent queue. Read by scripts/router/{next,ship,status,block,unblock}.sh. Each project is self-contained: paste 'prompt' into a fresh Claude/Cursor agent and they have everything they need.",
   "_status_values": "blocked | ready | running | done",
-  "_updated": "2026-04-18T15:45:23",
+  "_updated": "2026-04-18T17:14:35",
   "queue": [
     {
       "id": "P02-hetzner-ssh",
@@ -372,6 +372,54 @@
       "estimated_minutes": 60,
       "depends_on": [],
       "prompt": "Create the canonical PRD template for every Studio C client account. Per docs/PLATFORM_ARCHITECTURE.md, every tenant has a current-state PRD that says:\n\n- What's supported NOW for this tenant (current feature scope)\n- What's been requested as add-on professional services\n- What's been built for this tenant that's reusable for others (capability library)\n\nDeliverable: docs/prds/_TEMPLATE.md with sections:\n- Tenant identity (brand, domain, primary stakeholder, billing)\n- Current scope (CMS schema, content types, integrations live)\n- Pricing (base monthly + add-ons billed)\n- Feature backlog (requested but not yet built)\n- Reusable capabilities exposed (built here, available to other tenants)\n- Next review date\n\nThen instantiate from the template for: Utopia, Big Muddy Inn, Big Muddy Touring, Vicki Wolpert. Each gets a PRD file at docs/prds/<tenant-slug>.md."
+    },
+    {
+      "id": "P37-bmt-llc-formation",
+      "title": "Big Muddy Touring LLC formation (separate entity for vehicle + road liability)",
+      "status": "ready",
+      "owner": "chase+lawyer",
+      "estimated_minutes": 60,
+      "depends_on": [],
+      "prompt": "Per docs/ENTITY_STRUCTURE.md, BMT LLC needs to be a separate entity from MBT, Tuthill Design, and Studio C \u2014 required for vehicle insurance (12-passenger van, eventually Prevost bus) and road-performance / on-tour liability.\n\nDecisions Chase needs to make with lawyer:\n- Filing state (likely Mississippi)\n- Ownership structure (sole owner Chase? Three-way equal with Tracy + Amy? Other?)\n- EIN, bank account, registered agent\n- Operating agreement\n- Coordinate with insurance agent on policy stack (see P38)\n\nDeliverable: filed LLC, operating agreement, bank account opened, EIN issued. Coordinated with MBT LLC formation timing."
+    },
+    {
+      "id": "P38-insurance-flash-radius",
+      "title": "Insurance umbrella covering production + touring (flash radius mapping)",
+      "status": "ready",
+      "owner": "chase+insurance-agent",
+      "estimated_minutes": 90,
+      "depends_on": [],
+      "prompt": "Find an insurance agent who handles BOTH production (Studio C) and touring (Big Muddy Touring LLC) entities. Get them to map the flash radius between the two policies \u2014 where Studio C's production insurance ends and BMT's touring insurance begins.\n\nEdge cases to draw the line on:\n- Studio C team member shoots in-Inn event (Studio C policy)\n- Studio C team member shoots on-the-road BMT show (which?)\n- BMT van transports BMT artists + Studio C crew (vehicle + crew coverage)\n- Studio C-rented camera damaged on the road (equipment policy on which?)\n\nDeliverable: written umbrella policy covering both entities with no coverage gaps. Documented flash radius for ops team to reference."
+    },
+    {
+      "id": "P39-tuthill-natchez-branch",
+      "title": "Tuthill Design \u2014 Natchez branch operations setup",
+      "status": "blocked",
+      "blocked_by": "south-expansion-timing-tbd",
+      "owner": "chase+elijah-tuthill",
+      "estimated_minutes": 240,
+      "depends_on": [],
+      "prompt": "Per docs/ENTITY_STRUCTURE.md, Tuthill Design is opening a Natchez, MS branch (south expansion). Will deliver same service menu as the NY branch:\n- Stills (HDR interior/exterior, drone, twilight, architectural)\n- 3D (Matterport + Zillow tours, floor plans)\n- Video (cinematic property, reels, lifestyle)\n- Design (kitchen/bath/additions, LiDAR + AI renderings \u2014 Scan2Plan bridge)\n\nNew market = Natchez real estate + property service customers. Coordinate with Paul Green Realty if that partnership lands (P32).\n\nNeeds: local equipment kit, ground operator (could overlap with Studio C Natchez branch \u2014 see P40), pricing for southern market, marketing per Tuthill brand standards under MBT platform."
+    },
+    {
+      "id": "P40-studio-c-natchez-branch",
+      "title": "Studio C \u2014 Natchez branch operations setup",
+      "status": "blocked",
+      "blocked_by": "south-expansion-timing-tbd",
+      "owner": "chase+studio-c-co-owner",
+      "estimated_minutes": 240,
+      "depends_on": [],
+      "prompt": "Per docs/ENTITY_STRUCTURE.md, Studio C is opening a Natchez, MS branch. Service menu same as NY:\n- Multicam event production\n- Broadcast-quality live streaming\n- Post production\n- Focus: concerts and events\n\nNatchez market: Big Muddy shows, Inn events, regional concerts, civic events. Strong overlap with Big Muddy Touring's BMT shows.\n\nNeeds: local kit (cameras, audio, streaming hardware), ground operator (could share with Tuthill Natchez branch P39), pricing, partnership with Big Muddy ecosystem for content rights.\n\nCoordinate insurance with P38 \u2014 Studio C southern operations need to be on the same umbrella as northern."
+    },
+    {
+      "id": "P41-tuthill-studio-c-llc-split",
+      "title": "Tuthill Design \u2194 Studio C \u2014 LLC split decision",
+      "status": "blocked",
+      "blocked_by": "trigger-not-yet-met",
+      "owner": "chase",
+      "estimated_minutes": 30,
+      "depends_on": [],
+      "prompt": "Currently Tuthill Design and Studio C share one LLC. Per docs/ENTITY_STRUCTURE.md, splitting into two LLCs is deferred but tracked.\n\nReasons to split eventually:\n- Different ownership (Tuthill 50/50 Chase+Elijah; Studio C 40/60 Chase+TBD)\n- Different liability profiles (real estate vs concert production)\n- Cleaner P&L per business\n- Independent scaling, especially with Natchez branches\n\nTrigger Chase to define:\n- Second non-Chase employee at one of them?\n- Revenue threshold?\n- When Natchez branches generate enough independent activity?\n\nDeliverable: trigger criteria documented, monitored quarterly."
     }
   ]
 }

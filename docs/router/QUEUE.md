@@ -1,8 +1,8 @@
 # Hillbilly Dreams Agent Queue
 
-*Last sync: 2026-04-18T15:45:23*
+*Last sync: 2026-04-18T17:14:35*
 
-Status counts: 5 done · 0 running · 20 ready · 10 blocked · **35 total**
+Status counts: 5 done · 0 running · 22 ready · 13 blocked · **40 total**
 
 ## How to use this
 
@@ -19,7 +19,7 @@ Each project below is **paste-ready** — copy the prompt into a fresh Claude or
 
 ---
 
-## ○ Ready (20)
+## ○ Ready (22)
 
 ### `P04-press-seed` — Press seed → ingest → flip canonical
 
@@ -383,8 +383,47 @@ Then instantiate from the template for: Utopia, Big Muddy Inn, Big Muddy Touring
 ```
 </details>
 
+### `P37-bmt-llc-formation` — Big Muddy Touring LLC formation (separate entity for vehicle + road liability)
 
-## ✕ Blocked (10)
+**Owner:** chase+lawyer · **Est:** ~60 min
+
+<details><summary>Show prompt</summary>
+
+```
+Per docs/ENTITY_STRUCTURE.md, BMT LLC needs to be a separate entity from MBT, Tuthill Design, and Studio C — required for vehicle insurance (12-passenger van, eventually Prevost bus) and road-performance / on-tour liability.
+
+Decisions Chase needs to make with lawyer:
+- Filing state (likely Mississippi)
+- Ownership structure (sole owner Chase? Three-way equal with Tracy + Amy? Other?)
+- EIN, bank account, registered agent
+- Operating agreement
+- Coordinate with insurance agent on policy stack (see P38)
+
+Deliverable: filed LLC, operating agreement, bank account opened, EIN issued. Coordinated with MBT LLC formation timing.
+```
+</details>
+
+### `P38-insurance-flash-radius` — Insurance umbrella covering production + touring (flash radius mapping)
+
+**Owner:** chase+insurance-agent · **Est:** ~90 min
+
+<details><summary>Show prompt</summary>
+
+```
+Find an insurance agent who handles BOTH production (Studio C) and touring (Big Muddy Touring LLC) entities. Get them to map the flash radius between the two policies — where Studio C's production insurance ends and BMT's touring insurance begins.
+
+Edge cases to draw the line on:
+- Studio C team member shoots in-Inn event (Studio C policy)
+- Studio C team member shoots on-the-road BMT show (which?)
+- BMT van transports BMT artists + Studio C crew (vehicle + crew coverage)
+- Studio C-rented camera damaged on the road (equipment policy on which?)
+
+Deliverable: written umbrella policy covering both entities with no coverage gaps. Documented flash radius for ops team to reference.
+```
+</details>
+
+
+## ✕ Blocked (13)
 
 ### `P14-migrate-postiz-notebook` — Migrate Postiz + Open Notebook off mini
 
@@ -425,6 +464,18 @@ Then instantiate from the template for: Utopia, Big Muddy Inn, Big Muddy Touring
 ### `P34-natchez-tourism-magazine` — Natchez Tourism Magazine — 'I ❤️ NY for Mississippi' campaign
 
 **Owner:** agent · **Est:** ~180 min · **Blocked by:** P32-paul-green-realty-prep · **Depends on:** P32-paul-green-realty-prep
+
+### `P39-tuthill-natchez-branch` — Tuthill Design — Natchez branch operations setup
+
+**Owner:** chase+elijah-tuthill · **Est:** ~240 min · **Blocked by:** south-expansion-timing-tbd
+
+### `P40-studio-c-natchez-branch` — Studio C — Natchez branch operations setup
+
+**Owner:** chase+studio-c-co-owner · **Est:** ~240 min · **Blocked by:** south-expansion-timing-tbd
+
+### `P41-tuthill-studio-c-llc-split` — Tuthill Design ↔ Studio C — LLC split decision
+
+**Owner:** chase · **Est:** ~30 min · **Blocked by:** trigger-not-yet-met
 
 
 ## ✓ Done (5)
