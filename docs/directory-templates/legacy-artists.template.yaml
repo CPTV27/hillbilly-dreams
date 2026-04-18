@@ -1,0 +1,149 @@
+# LEGACY ARTIST (DECEASED) RECORD TEMPLATE
+# One file per deceased blues/soul/country/Americana figure with corridor connection.
+# CRITICAL: Only deceased artists. Living artists belong in musician.template.yaml.
+# Fill what you know. Flag unknowns with `UNKNOWN`.
+# Fields marked [required] must be populated before the record goes live.
+# Fields marked [verify] need a phone call confirmation.
+
+# --- IDENTITY ---
+name: ""                                      # [required] Stage / commonly-known name
+slug: ""                                      # Auto-generated
+aliases: []                                   # Other stage names
+real_name: ""                                 # Birth name if different
+status: "deceased"                            # Always deceased for this template
+
+# --- DATES ---
+birth_year: ""                                # [required]
+death_year: ""                                # [required] If unknown, DO NOT FILE — confirm first
+
+# --- LOCATION ---
+primary_location: ""                          # "Mississippi Delta" | "Memphis" | "NOLA"
+birthplace:
+  city: ""                                    # [required]
+  state: ""                                   # [required] Two-letter
+death:
+  city: ""
+  state: ""
+burial_site: ""                               # "Mt. Zion MB Church Cemetery, Money MS"
+
+# --- ARTISTIC PROFILE ---
+genre:
+  primary: ""                                 # [required] delta_blues | hill_country_blues | electric_blues | soul | R&B | country | Americana | rock | hip-hop | jazz | gospel | folk | zydeco | cajun | brass_band | bluegrass
+  secondary: []
+era: ""                                       # "Originator (pre-1960s)" | "Classic (1960s-1980s)" | "Veteran (1980s-2000s)" | "Modern (2000s-2020s)"
+corridor_connection: ""                       # Why this artist belongs in our directory
+bio_short: ""                                 # 1-2 sentences
+bio_long: |
+  Longer narrative bio. Keep it factual.
+
+# --- WORK ---
+work:
+  significant_recordings:
+    - title: ""                               # [required] At least 3 if available
+      year: ""
+      label: ""
+      type: ""                                # single | EP | album | live | compilation | session
+      notes: ""                               # "Recorded at Sun Studio with Sam Phillips"
+    - title: ""
+      year: ""
+      label: ""
+      type: ""
+      notes: ""
+    - title: ""
+      year: ""
+      label: ""
+      type: ""
+      notes: ""
+  recording_career_span: ""                   # "1936-1937" | "1955-1976"
+  notable_collaborators: []
+  notable_compositions: []
+  signature_song: ""
+  cultural_significance: |
+    Free-form. Why does this artist matter to the corridor's story?
+
+# --- ESTATE ---
+estate:
+  estate_contact:
+    name: ""                                  # [verify]
+    email: ""
+    phone: ""
+  estate_executor: ""
+  estate_attorney: ""
+  estate_address: ""
+  estate_website: ""
+  estate_status: ""                           # "Active estate" | "Family-managed" | "Foundation-managed" | "Label-managed" | "In probate" | "No known estate" | "Public domain era"
+
+# --- RIGHTS ---
+rights:
+  rights_holder_org: ""                       # "Sony/ATV" | "Universal Music Publishing" | "Public domain"
+  performing_rights_org: ""                   # BMI | ASCAP | SESAC | GMR | none
+  publisher: ""
+  catalog_owner: ""                           # Who owns the masters / publishing today
+  catalog_ownership_notes: |
+    Free-form. Splits between labels, reverted rights, etc.
+  masters_owner: ""
+  trademark_holder: ""                        # Who owns trademarks on the artist's name
+  likeness_rights_holder: ""                  # Who controls likeness / image use
+
+# --- SYNC LICENSING ---
+sync_licensing:
+  sync_licensing_contact:
+    name: ""
+    email: ""
+  sync_licensing_company: ""
+  sync_typical_turnaround: ""                 # "2-4 weeks" | "Same week for indie"
+  sync_typical_fee_range: ""                  # "$5K-50K for indie film"
+  notable_sync_placements: []                 # Recent film / TV / commercial uses
+
+# --- HERITAGE PROGRAMMING ---
+heritage_programming:
+  foundation_or_museum: ""                    # "B.B. King Museum and Delta Interpretive Center"
+  foundation_website: ""
+  foundation_contact: ""
+  annual_celebrations: []                     # Festivals, birthday celebrations, anniversary tributes
+  scholarship_or_award: ""                    # If a scholarship/award is named for them
+  historical_marker: ""                       # yes | no | pending
+  on_heritage_trail: []                       # ["MS Blues Trail Marker #42", "MS Country Music Trail"]
+  documentary_films: []
+
+# --- SCHOLARSHIP ---
+scholarship:
+  biographer_or_scholar: ""                   # Living scholar who's written the definitive bio
+  biographer_contact: ""
+  notable_books: []                           # ["Searching for Robert Johnson by Peter Guralnick"]
+  notable_documentaries: []
+  archival_holdings: []                       # ["Center for Popular Music, MTSU"]
+
+# --- INFLUENCE ---
+successors_and_influence:
+  notable_successors: []                      # Living artists carrying the torch
+  artists_who_cite_as_influence: []
+  living_collaborators: []                    # Players, producers, family still alive
+  cover_versions_notable: []
+
+# --- PRESS ---
+press:
+  obituaries:
+    - outlet: ""
+      url: ""
+      date: ""
+  retrospective_coverage: []                  # Anniversary pieces, deep dives
+  archival_photo_sources: []                  # Where to license historic photos
+
+# --- OUR OPERATIONAL DATA ---
+notes: |
+  Free-form notes. Have we cleared a sync? Booked a tribute show?
+  Any sensitivities with surviving family?
+
+# --- RESEARCH METADATA ---
+research:
+  researcher: ""                              # Claude agent name or human
+  researched_at: ""                           # ISO date
+  death_confirmed: ""                         # yes (cite obituary in sources) | no — DO NOT FILE if "no"
+  sources:                                    # [required] Cite everything, especially the death obit
+    - url: ""
+      description: ""
+    - url: ""
+      description: ""
+  confidence: ""                              # "High - verified by primary obit + estate contact" | "Medium - multiple online sources" | "Low - one source"
+  gaps_to_resolve: []

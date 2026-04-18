@@ -1,0 +1,147 @@
+# TOURISM SITE / OPERATOR RECORD TEMPLATE
+# One file per tourism asset (museum, trail, marker, tour operator, heritage site).
+# Fill what you know. Flag unknowns with `UNKNOWN`.
+# Fields marked [required] must be populated before the record goes live.
+# Fields marked [verify] need a phone call / in-person confirmation.
+
+# --- IDENTITY ---
+name: ""                                      # [required] Site or operator name
+slug: ""                                      # Auto-generated from name
+aliases: []                                   # Other names locals call it
+site_type: ""                                 # [required] museum | trail | marker | tour_operator | heritage_site | visitor_center | walking_tour | interpretive_center | plantation_tour | juke_joint_experience | civil_rights_site
+status: "active"                              # active | seasonal | dormant | closed | under_renovation | unknown
+
+# --- LOCATION ---
+address:
+  street: ""                                  # [required for fixed sites]
+  city: ""                                    # [required]
+  state: ""                                   # [required] Two-letter (MS, TN, LA, AR, AL)
+  zip: ""
+  lat: null
+  lng: null
+corridor_segment: ""                          # Memphis | Delta | Natchez | River Road | NOLA | Side spur
+
+# --- DESIGNATION ---
+designation:
+  official_designation: ""                    # "Mississippi Blues Trail Marker" | "National Park Service Site" | "MS Civil Rights Trail" | etc.
+  designation_number: ""                      # Marker number if applicable
+  designation_date: ""                        # When inscribed / designated
+  national_register: ""                       # yes | no | nominated | unknown
+  on_heritage_trail: []                       # ["MS Blues Trail", "MS Country Music Trail", "MS Freedom Trail"]
+  state_landmark: ""                          # yes | no | unknown
+
+# --- VISITING ---
+visiting:
+  hours: ""                                   # [verify] "10am-5pm Tue-Sun" | "Sunrise-sunset" | "By appointment"
+  hours_seasonal_notes: ""                    # "Closed Jan-Feb" | "Extended summer hours"
+  closed_days: []                             # ["Mondays", "Major holidays"]
+  admission: ""                               # "Free" | "Paid" | "Donation"
+  admission_adult: ""                         # "$15" | "Free"
+  admission_child: ""
+  admission_senior: ""
+  admission_group: ""                         # Group rate or "by arrangement"
+  reservations_required: ""                   # yes | no | groups_only | recommended | unknown
+  typical_visit_duration: ""                  # "30 min" | "2 hours" | "Half day"
+  best_time_to_visit: ""
+
+# --- ACCESSIBILITY ---
+accessibility:
+  wheelchair_accessible: ""                   # full | partial | no | unknown
+  ada_parking: ""                             # yes | no | unknown
+  hearing_assistance: ""
+  visual_assistance: ""
+  service_animal_policy: ""
+  accessibility_notes: ""
+
+# --- PROGRAMMING ---
+programming:
+  guided_tours_offered: ""                    # yes | no | self_guided_only | by_appointment
+  tour_languages: []                          # ["English", "Spanish"]
+  audio_tour_available: ""                    # yes | no | unknown
+  exhibits_summary: ""
+  permanent_exhibits: []
+  rotating_exhibits: []
+  educational_programs: ""
+  events_calendar_url: ""
+
+# --- PARTNERSHIPS ---
+partnerships:
+  partner_organizations: []                   # ["MS Arts Commission", "Smithsonian affiliate"]
+  affiliated_universities: []
+  funded_by: []
+  corporate_sponsors: []
+  partnership_opportunities: ""               # Free-form: what kind of partnership do they entertain?
+
+# --- CONTACTS ---
+contacts:
+  group_booking_contact:
+    name: ""                                  # [verify]
+    email: ""
+    phone: ""
+  scholar_or_curator_contact:
+    name: ""
+    email: ""
+  press_contact:
+    name: ""
+    email: ""
+  director:
+    name: ""
+    email: ""
+
+# --- FACILITIES ---
+facilities:
+  parking: ""                                 # "Free lot on site" | "Street only" | "Pay garage 1 block"
+  restrooms: ""                               # yes | no | unknown
+  gift_shop: ""                               # yes | no | seasonal
+  cafe_food: ""                               # yes | no | nearby_only
+  wifi: ""                                    # yes | no | unknown
+  photography_policy: ""                      # "Allowed, no flash" | "Not allowed inside" | "By permission"
+
+# --- GENERAL CONTACT ---
+general_contact:
+  email: ""
+  phone: ""                                   # [required for fixed sites]
+  website: ""
+
+# --- SOCIAL ---
+social:
+  instagram: ""
+  facebook: ""
+  tiktok: ""
+  twitter: ""
+  youtube: ""
+
+# --- CULTURAL CONTEXT ---
+cultural_context:
+  significance: |
+    Free-form narrative on why this site matters to the corridor's story.
+  related_artists: []
+  related_events: []
+  related_recordings: []
+  notable_press_coverage: []
+  awards_recognition: []
+
+# --- OPERATING ENTITY ---
+operating_entity: ""                          # "Mississippi Department of Archives & History" | private LLC name | foundation
+nonprofit_501c3: ""                           # yes | no | unknown
+year_established: ""
+
+# --- OUR OPERATIONAL DATA ---
+our_relationship: ""                          # "Never contacted" | "We visited" | "Cold pitch sent" | "Occasional partner" | "Ongoing partner" | "Media partner"
+last_contacted: ""                            # YYYY-MM-DD
+past_collaborations: []
+notes: |
+  Free-form notes. Programming we could co-host? Photo location?
+  Curator who's open to interview?
+
+# --- RESEARCH METADATA ---
+research:
+  researcher: ""                              # Claude agent name or human
+  researched_at: ""                           # ISO date
+  sources:                                    # [required] Cite everything
+    - url: ""
+      description: ""
+    - url: ""
+      description: ""
+  confidence: ""                              # "High - verified by phone" | "Medium - multiple online sources" | "Low - one source"
+  gaps_to_resolve: []                         # List fields that need human follow-up

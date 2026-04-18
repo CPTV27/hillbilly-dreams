@@ -1,0 +1,144 @@
+# TOURING INFRASTRUCTURE / VENDOR RECORD TEMPLATE
+# One file per vendor (rehearsal space, PA rental, backline, van rental,
+# merch, lighting, staging, repair, tour service).
+# Fill what you know. Flag unknowns with `UNKNOWN`.
+# Fields marked [required] must be populated before the record goes live.
+# Fields marked [verify] need a phone call confirmation.
+
+# --- IDENTITY ---
+name: ""                                      # [required] Vendor name
+slug: ""                                      # Auto-generated from name
+aliases: []
+vendor_type: ""                               # [required] rehearsal | pa_rental | backline | van_rental | merch | lighting | staging | repair | tour_service | instrument_repair | truck_rental | trailer_rental
+status: "active"                              # active | dormant | closed | unknown
+
+# --- LOCATION ---
+address:
+  street: ""                                  # [required]
+  city: ""                                    # [required]
+  state: ""                                   # [required] Two-letter (MS, TN, LA, AR, AL)
+  zip: ""
+  lat: null
+  lng: null
+corridor_segment: ""                          # Memphis | Delta | Natchez | River Road | NOLA | Side spur
+
+# --- INVENTORY ---
+inventory:
+  inventory_summary: ""                       # Free-form: what they actually stock
+  signature_gear: []                          # ["L-Acoustics K2 system", "Ampeg SVT classic stack"]
+  brands_carried: []                          # ["Shure", "DPA", "L-Acoustics", "Mesa Boogie"]
+  fleet_size: null                            # For van/sprinter rental: vehicle count
+  largest_system: ""                          # "Line array for 3,000-cap room"
+  smallest_system: ""                         # "Powered pair for 100-cap club"
+  recent_additions: []
+  rental_catalog_url: ""
+
+# --- RATES ---
+rates:
+  day_rates: ""                               # [verify] "$300/day for small PA package"
+  weekly_rates: ""                            # [verify]
+  monthly_rates: ""
+  hourly_rates: ""                            # If applicable (rehearsal rooms)
+  package_pricing: ""                         # "Tour package: PA + lights + engineer = $1,200/day"
+  rate_card_url: ""
+  deposit_required: ""                        # yes | no | unknown
+  deposit_amount: ""                          # "$500" | "50% of rental"
+  insurance_required: ""                      # yes | no | optional
+  damage_waiver_offered: ""                   # yes | no | included | unknown
+
+# --- LOGISTICS ---
+logistics:
+  delivery_offered: ""                        # yes | no | within_radius | by_arrangement
+  delivery_radius: ""                         # "100 miles" | "Memphis metro" | "MS only"
+  delivery_fee: ""                            # "$200 flat" | "Per-mile after 50mi"
+  setup_included: ""                          # yes | no | extra_charge
+  operator_included: ""                       # yes | no | extra_charge
+  operator_day_rate: ""                       # "$250/day"
+  pickup_only: ""                             # yes | no
+  loading_dock: ""                            # yes | no | street_load
+
+# --- AVAILABILITY ---
+availability:
+  hours: ""                                   # "9am-6pm Mon-Fri, Sat by appt"
+  closed_days: []
+  after_hours_support: ""                     # yes | no | premium | emergency_only
+  after_hours_phone: ""                       # [verify] CRITICAL: tour managers need this
+  emergency_response_time: ""                 # "Within 2 hours" | "Same day" | "Next business day"
+  typical_lead_time: ""                       # "2 weeks for big packages" | "Day-of for small stuff"
+  walk_in_friendly: ""                        # yes | no | by_appointment
+
+# --- SERVICES ---
+services:
+  rentals: ""                                 # yes | no — main service?
+  repair: ""                                  # yes | no
+  service_shop: ""                            # yes | no — full mechanic / instrument tech bench?
+  fulfillment: ""                             # For merch vendors: yes | no
+  storage: ""                                 # yes | no — do they offer band gear storage?
+  also_offers: []                             # ["Retail sales", "Lessons", "Recording rentals"]
+  specialties: []                             # ["Vintage tube amp repair", "Hammond B3 specialists"]
+
+# --- CLIENTS ---
+clients:
+  serves_touring_acts: ""                     # yes | no | sometimes
+  serves_local_venues: ""
+  serves_festivals: ""
+  notable_clients_recent: []
+  notable_tours_supported: []
+  client_testimonials_url: ""
+
+# --- CONTACTS ---
+contacts:
+  primary_contact:
+    name: ""                                  # [verify]
+    role: ""                                  # Owner | Rental Mgr | Service Mgr
+    email: ""                                 # [verify]
+    phone: ""                                 # [verify]
+  rental_desk_email: ""
+  service_desk_email: ""
+  accounts_email: ""
+
+# --- BUSINESS ---
+business:
+  payment_methods: []                         # ["Credit card", "Net-30 with credit", "Cash", "Check"]
+  net_terms_available: ""                     # yes | no | with_credit_app
+  credit_card_required: ""                    # yes | no | refundable_hold
+  pricing_tier: ""                            # budget | mid | premium | boutique
+
+# --- GENERAL CONTACT ---
+general_contact:
+  email: ""
+  phone: ""                                   # [required]
+  website: ""
+
+# --- SOCIAL ---
+social:
+  instagram: ""
+  facebook: ""
+  twitter: ""
+  youtube: ""
+  linkedin: ""
+
+# --- HISTORY ---
+year_founded: ""
+owner_or_principal: ""
+
+# --- OUR OPERATIONAL DATA ---
+our_relationship: ""                          # "Never contacted" | "Rented once" | "Occasional" | "Open account" | "Preferred vendor"
+last_contacted: ""                            # YYYY-MM-DD
+past_rentals: []                              # Brief log
+open_account: ""                              # yes | no
+notes: |
+  Free-form notes. Reliability? Will-they-pick-up-the-phone-at-2am score?
+  Who's the actual person to call vs. the front desk?
+
+# --- RESEARCH METADATA ---
+research:
+  researcher: ""
+  researched_at: ""                           # ISO date
+  sources:                                    # [required] Cite everything
+    - url: ""
+      description: ""
+    - url: ""
+      description: ""
+  confidence: ""                              # "High - verified by phone" | "Medium - multiple online sources" | "Low - one source"
+  gaps_to_resolve: []

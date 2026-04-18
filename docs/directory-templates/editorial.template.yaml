@@ -1,0 +1,122 @@
+# EDITORIAL PITCH RECORD TEMPLATE
+# One file per pitch / story angle. For Big Muddy Magazine and freelance placement.
+# Fill what you know. Flag unknowns with `UNKNOWN`.
+# Fields marked [required] must be populated before the pitch goes out.
+
+# --- IDENTITY ---
+headline: ""                                  # [required] Working headline
+slug: ""                                      # Auto-generated
+aliases: []                                   # Alt headlines we tried
+pitch_type: ""                                # [required] feature | profile | investigation | listicle | essay | photo_essay | obituary | service_journalism | reported_review | oral_history
+one_line_summary: ""                          # [required] The pitch in one sentence
+status: "idea"                                # idea | drafted | pitched | accepted | filed | published | killed
+
+# --- THE PITCH ---
+full_lede: |
+  Drafted opening paragraph. The hook. What pulls a reader in.
+nut_graf: |
+  The why-this-matters paragraph. What's the bigger frame?
+angle: ""                                     # The specific angle in 1 sentence
+
+# --- TARGETING ---
+proposed_outlet: ""                           # [required] First-choice outlet
+backup_outlets: []                            # ["Bitter Southerner", "Garden & Gun", "No Depression"]
+proposed_section: ""                          # "Front of book" | "Features well" | "Travel" | "Music"
+word_count_target: null                       # 800 | 1500 | 3000 | 5000+
+geographic_focus: ""                          # "Clarksdale + Memphis" | "Whole corridor" | "Natchez specifically"
+corridor_segment: ""                          # Memphis | Delta | Natchez | River Road | NOLA | Side spur | Whole corridor
+
+# --- WHY NOW ---
+context:
+  why_now: ""                                 # [required] The news peg / urgency
+  news_peg: ""                                # "Last juke joint in Mound Bayou closed last month"
+  news_peg_date: ""                           # ISO date
+  evergreen_or_timely: ""                     # evergreen | timely | tied_to_anniversary | tied_to_news_event
+  cultural_moment: ""
+  related_anniversaries: []                   # ["B.B. King centennial Sept 2025"]
+
+# --- REPORTING PLAN ---
+reporting_plan:
+  key_sources_to_interview:
+    - name: ""                                # [required] At least 3 sources
+      role: ""                                # "Owner of last surviving juke joint"
+      why_essential: ""                       # Why we need them specifically
+      contact_status: ""                      # not_contacted | reached_out | confirmed | declined | unreachable
+    - name: ""
+      role: ""
+      why_essential: ""
+      contact_status: ""
+    - name: ""
+      role: ""
+      why_essential: ""
+      contact_status: ""
+  documents_to_obtain: []                     # Public records, FOIA, archives
+  data_to_request: []                         # State data, industry stats
+  scenes_to_witness: []                       # "Last night at the Blue Front Cafe"
+  travel_required: ""                         # "2 nights Clarksdale + 1 night Memphis"
+  estimated_reporting_time: ""                # "3 weeks reporting + 1 week writing"
+
+# --- COMPETITIVE LANDSCAPE ---
+competitive_landscape:
+  competitive_coverage:                       # Existing recent coverage
+    - outlet: ""
+      headline: ""
+      url: ""
+      date: ""
+      what_they_did: ""
+  prior_coverage_gaps: ""                     # What's been missed
+  what_we_do_differently: ""
+  originality_score: ""                       # high (no prior coverage) | medium (partial coverage, fresh angle) | low (well-covered)
+
+# --- PRODUCTION ---
+production:
+  needs_photography: ""                       # yes | no | stock_only
+  needs_video: ""                             # yes | no
+  needs_audio: ""                             # yes | no — for podcast or web embed?
+  proposed_photographer: ""
+  proposed_designer: ""
+  multimedia_notes: ""
+
+# --- DISTRIBUTION ---
+distribution:
+  pitch_status: ""                            # idea | drafted | pitched | accepted | filed | published | killed
+  pitched_to: []                              # ["Bitter Southerner: April 5, no response yet"]
+  editor_contact:
+    name: ""
+    email: ""
+  pay_range: ""                               # "$1/word" | "$500 flat" | "Speculative"
+  rights_offered: ""                          # "First print + web 90 days" | "All rights" | "FNAR"
+  reprint_strategy: ""                        # "Pitch as Big Muddy Magazine reprint after embargo"
+
+# --- BIG MUDDY FIT ---
+bigmuddy_fit:
+  fits_bigmuddy_voice: ""                     # yes | no | with_edits
+  fits_freelance_only: ""                     # yes — too edgy / too long for BMM | no — works either place
+  why_us: ""                                  # Why is Big Muddy uniquely positioned
+  bigmuddy_lane: ""                           # "Touring" | "Magazine" | "Records" | "Radio" | "Inn" | "Crossover" | "n/a"
+  could_become_series: ""                     # yes | no
+  related_bigmuddy_pieces: []                 # Past coverage to link or build on
+
+# --- RISK ---
+risk:
+  legal_review_needed: ""                     # yes | no | maybe
+  sensitive_subjects: []                      # ["Race", "Civil rights", "Living family of subject"]
+  defamation_exposure: ""                     # low | medium | high
+  safety_considerations: ""                   # "Reporter should not travel solo to X location"
+
+# --- OUR OPERATIONAL DATA ---
+notes: |
+  Free-form notes. What inspired this pitch? Who suggested it?
+  Any internal context the editor needs to know?
+
+# --- RESEARCH METADATA ---
+research:
+  researcher: ""                              # Claude agent name or human
+  researched_at: ""                           # ISO date
+  sources:                                    # [required] Cite everything in the existing landscape
+    - url: ""
+      description: ""
+    - url: ""
+      description: ""
+  confidence: ""                              # "High" | "Medium" | "Low"
+  gaps_to_resolve: []                         # What's missing before pitch can go out
