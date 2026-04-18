@@ -9,10 +9,11 @@
 | | |
 |---|---|
 | **Date** | Saturday, April 18, 2026 |
-| **Time** | _TBD_ |
-| **Location** | _TBD (Inn vs phone)_ |
-| **Attendees** | _TBD (Tracy only, or Tracy + Amy)_ |
-| **Suggested length** | 45 min — 20 walking through artifacts, 20 decisions, 5 next steps |
+| **Time** | Morning, after wake-up and before departure to New Orleans |
+| **Location** | The Inn (in-person) |
+| **Attendees** | Chase, Tracy, Amy, **possibly Rhea** |
+| **Suggested length** | 45–60 min — 25 walking through artifacts, 25 decisions, 10 next steps |
+| **Hard stop** | NOLA departure |
 
 ---
 
@@ -60,8 +61,20 @@ Listed in priority order. Each item has a recommendation; partners decide.
 
 | # | Decision | Recommendation | Rationale |
 |---|---|---|---|
-| C1 | Approve Hetzner photo infrastructure ($70/mo ongoing) | YES | $40 server + $25 storage + ~$5 GCS = backbone for Immich + photo archive + Postiz/Open Notebook |
+| C1 | Approve Hetzner photo infrastructure ($45/mo ongoing) | YES | $40 server + $5 (1 TB volume) + GCS pass-through. Already executed; this is just ratification. |
 | C2 | Synology integration via Tailscale (Elijah sets up) | YES, no $ | Read-only mount — Synology stays untouched |
+
+### D. Rhea engagement — Amy's band development
+
+Rhea is in the room (probably). The deal needs to be defined here so he can leave with focus time scheduled.
+
+| # | Decision | Recommendation | Rationale |
+|---|---|---|---|
+| D1 | **Define scope of engagement** | Write a one-page deliverable list: e.g., 4-week development cycle, X songs arranged, Y rehearsals attended, ends with a Big Muddy showcase or recording session | "Cut him loose" requires the loose to be defined |
+| D2 | Compensation structure | _Chase to propose_ — fixed-fee per cycle, hourly block (like Elijah at $50/hr × 40 hrs = $2K), or revenue share on Amy's first paid show? | Fixed-fee feels right for a defined deliverable |
+| D3 | **Schedule the focus-time block** | After Chase's NY trip and before Amy's show — that's the window where Rhea + Amy + Natchez geography all align | See itinerary section below |
+| D4 | **Order: Austin first, or Amy first?** | _Rhea to decide in the meeting_ — both work, but Amy first means the band-dev block lines up with Chase's NY week (Rhea autonomous in Natchez) | Either is fine; just commit so Amy can plan |
+| D5 | What "done" looks like | Tied to D1 — but propose: deliverable is a 30-min set Amy's band can play live, ready for the Big Muddy show on Chase's return | Forces a concrete end-point |
 
 ---
 
@@ -71,8 +84,9 @@ Listed in priority order. Each item has a recommendation; partners decide.
 |---|---|---|---|
 | Camera/video Wave 1 | $8,750 | — | Or $730/mo for 12 months on B&H financing |
 | Elijah starter block | $2,000 | — | Goes into Q2 P&L; expect 40 hrs over 4 weeks |
+| **Rhea band-dev block** | **TBD (~$2K?)** | — | Per Decision D2 — propose mirroring Elijah's structure |
 | Hetzner photo stack | — | **$45/mo** | Already paid: $40 (CCX23) + $5 (1 TB block volume). GCS bucket continues at usage rate. |
-| **TOTAL ASK TONIGHT** | **$10,750** | **$45/mo** | |
+| **TOTAL ASK TODAY** | **~$12,750** | **$45/mo** | |
 
 > **Note:** Original plan called for a separate 10 TB Hetzner Storage Box at $25/mo (total ~$70/mo). The execution agent used a 1 TB block storage volume on the server itself for $5/mo instead — saves $20/mo, holds the current 1.3 TB archive comfortably. **If the archive grows beyond 1 TB (likely within 6 months), upgrade to the 10 TB Storage Box adds ~$25/mo at that point.**
 
@@ -108,6 +122,21 @@ Listed in priority order. Each item has a recommendation; partners decide.
 
 ---
 
+## Itinerary — next 3 weeks (so partners can plan around it)
+
+| Window | Chase | Rhea | Amy | Notes |
+|---|---|---|---|---|
+| Today (4/18) | Meeting → drive NOLA | Probably in meeting | Inn | Today is the only sync window before everyone scatters |
+| Late this week | NOLA — meeting musicians | Returns to Natchez OR goes to Austin | Inn ops | Rhea path = D4 decision |
+| Next week | NY — few days to a week | Working with Amy in Natchez (if D4 = Amy first) OR Austin | Band development with Rhea | Chase reachable but not in-state |
+| Following week | Maybe Arkansas, then back to Natchez | Wrapping band block | Prepping for show | |
+| Then | **Amy's show** (date?) | Should be at the show | **Performing** | Need date confirmed for #D3 timing |
+| After show | Drive van Natchez → Woodstock for supper | TBD | TBD | Bearsville activation event |
+
+**Implication for the partners:** Chase is mostly mobile for the next 2–3 weeks. Anything that requires his sign-off needs to happen today or get queued for the post-show return. Tracy/Amy should know they hold the day-to-day rudder during this window.
+
+---
+
 ## Risks the partners should hear from us first
 
 1. **Cash burn timing.** $10.7K out the door in late April with the Inn season ramping up. Mitigated by B&H financing on the camera.
@@ -115,7 +144,7 @@ Listed in priority order. Each item has a recommendation; partners decide.
 3. **Print-on-demand revenue is speculative.** No comp set in our portfolio yet. Mitigated by Elijah's $2K being the only at-risk capital; prints sit on someone else's inventory.
 4. **Single-copy archive risk on the Hetzner volume.** Right now the 52K-photo Immich library lives on one Hetzner volume. If it dies, we lose face-recognition + tag work. **Followup queued: nightly rclone offsite backup to GCS** (`P20-storage-box-offsite-backup` in the agent queue). Cost: zero — uses existing GCS bucket.
 5. **Storage will outgrow the 1 TB volume within 6 months.** Plan: upgrade to 10 TB Storage Box ($25/mo) when we cross 800 GB. Currently at ~600 GB after T7 sync completes.
-6. **Tailscale free tier expires ~May 1.** Need to upgrade before that or admin access breaks. ~$5/mo per user. Flagging for budget.
+6. **Tailscale free tier expires ~May 1.** Need to upgrade before that or admin access breaks. ~$5/mo per user. **Critical:** Chase is on the road most of the next 2–3 weeks. Either upgrade before Saturday or pre-authorize Tracy to do it from Bitwarden. If Tailscale goes dark while Chase is in NY, the Hetzner stack becomes hard to administer.
 
 ---
 
@@ -135,11 +164,12 @@ These are on the radar but not for tonight:
 
 | Time | Block |
 |---|---|
-| 0:00–0:05 | Frame: three asks, one prep doc, decisions in writing today |
+| 0:00–0:05 | Frame: four decision groups (A–D), three artifacts, one prep doc, hard stop is NOLA departure |
 | 0:05–0:20 | Walk through artifacts (video budget → photo workflow → directory) |
 | 0:20–0:35 | Decisions A1–C2 (most are yes/recommendation; few need real discussion) |
-| 0:35–0:40 | Risks + cash position frank-talk |
-| 0:40–0:45 | Next 30 days commitments + who's doing what |
+| 0:35–0:50 | **Decision D — Rhea / Amy band development** (this is the live one; pause for real discussion) |
+| 0:50–0:55 | Risks + cash position + Tailscale-while-Chase-travels item |
+| 0:55–1:00 | Itinerary confirm + next 30 days commitments + who's holding the rudder |
 
 ---
 
