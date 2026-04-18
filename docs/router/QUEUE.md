@@ -1,8 +1,8 @@
 # Hillbilly Dreams Agent Queue
 
-*Last sync: 2026-04-18T18:05:04*
+*Last sync: 2026-04-18T18:09:17*
 
-Status counts: 6 done · 0 running · 26 ready · 15 blocked · **47 total**
+Status counts: 7 done · 0 running · 29 ready · 15 blocked · **51 total**
 
 ## How to use this
 
@@ -19,7 +19,7 @@ Each project below is **paste-ready** — copy the prompt into a fresh Claude or
 
 ---
 
-## ○ Ready (26)
+## ○ Ready (29)
 
 ### `P04-press-seed` — Press seed → ingest → flip canonical
 
@@ -422,25 +422,6 @@ Deliverable: written umbrella policy covering both entities with no coverage gap
 ```
 </details>
 
-### `P42-big-muddy-natchez-llc-formation` — Big Muddy Natchez LLC formation (Inn + Magazine subsidiary of MBT)
-
-**Owner:** chase+lawyer · **Est:** ~60 min
-
-<details><summary>Show prompt</summary>
-
-```
-Per docs/ENTITY_STRUCTURE.md, Big Muddy Natchez LLC is a new wholly-owned subsidiary of MBT. Holds the Inn + Big Muddy Magazine.
-
-Decisions Chase needs to make with lawyer:
-- Filing state — Mississippi most likely (Inn is in Natchez)
-- Operating agreement: 100% owned by MBT, but how is governance structured at the subsidiary level? Tracy as managing member since she runs Inn ops?
-- EIN, bank account, registered agent
-- Coordinate with MBT formation timing (likely file MBT first so the parent exists, then file BMNatchez as 100% MBT-owned)
-
-Deliverable: filed LLC, operating agreement, bank account opened, EIN issued.
-```
-</details>
-
 ### `P43-mbt-tuthill-retainer-arithmetic` — MBT ↔ Tuthill retainer arithmetic + monthly burn-rate reporting
 
 **Owner:** chase+tracy · **Est:** ~60 min
@@ -521,6 +502,107 @@ Reference: docs/PRODUCT_TO_PLATFORM_MAPPING.md for the strategic framing.
 ```
 </details>
 
+### `P49-innkeeper-role-definition-and-hire` — Innkeeper role — definition + hire (Tracy stepping back from Inn day-to-day)
+
+**Owner:** chase+tracy · **Est:** ~240 min
+
+<details><summary>Show prompt</summary>
+
+```
+Per 2026-04-18 PM Chase corrections, Tracy is transitioning from Inn day-to-day to MBT executive (portfolio oversight, back office, cross-venture marketing). Amy is loaded with Radio + Records + performing — likely not the answer for Innkeeper.
+
+This creates a real gap. Define and hire Innkeeper BEFORE Tracy's transition begins.
+
+Deliverables:
+1. Innkeeper job description — daily ops, guest experience, dinner program coordination, partner liaison with Studio C events at the Inn, weekly reporting
+2. Compensation model (salary, share of Inn revenue, equity?)
+3. Reporting line — to Chase strategically, to Tracy in MBT exec capacity for back office
+4. Sourcing — local Natchez network, hospitality industry channels
+5. Onboarding plan — Tracy walks through current SOPs over 2-4 week handover
+
+Decision needed by: before Tracy meaningfully reduces Inn time. Suggest target: hired before Chase departs for summer at Bearsville.
+
+Reference: docs/brand-offerings/big-muddy-inn.md operational ownership section.
+```
+</details>
+
+### `P50-external-co-owner-pre-filing-conversations` — External co-owner conversations BEFORE MBT operating agreement filing
+
+**Owner:** chase · **Est:** ~180 min
+
+<details><summary>Show prompt</summary>
+
+```
+Per 2026-04-18 PM Chase corrections — pre-filing prerequisite, relationship work not legal.
+
+Elijah Tuthill (50% Tuthill Design) and Studio C's 60%-holder(s) need to understand what 'Chase's stake rolls into MBT' means for them BEFORE the MBT operating agreement is filed.
+
+Key points to communicate:
+- Chase's personal stake in Tuthill (50%) and Studio C (40%) gets held by MBT instead of personally
+- Tracy and Amy benefit from those production-side stakes through MBT (1/3 each of MBT)
+- Other co-owners' stakes are unchanged
+- Day-to-day operations of Tuthill and Studio C are unchanged
+- Voting / governance / distribution mechanics may need to be re-discussed in those entities' operating agreements
+
+Deliverables:
+1. 1-on-1 conversation with Elijah Tuthill (probably in Bearsville or via call)
+2. 1-on-1 conversation with Studio C's 60%-holder (still TBD per open question — Chase needs to identify and reach out)
+3. Notes from each conversation — concerns raised, agreements made, follow-ups
+4. Any operating agreement language adjustments needed for Tuthill or Studio C
+
+Must complete BEFORE Chase signs MBT operating agreement. Lawyer engaged but won't proceed until these conversations close.
+```
+</details>
+
+### `P51-vicki-vercel-pre-flight` — Vicki May 1 stability — Vercel env var fix MUST close before her onboarding
+
+**Owner:** chase · **Est:** ~15 min
+
+<details><summary>Show prompt</summary>
+
+```
+Per 2026-04-18 PM Chase reframe: what's at stake on Vicki's May 1 onboarding is reference value to the next 10 realtors, not the $500/mo.
+
+The Vercel deploys have been failing since 2026-04-18 noon due to Sanity projectId env var bug. Site is stuck on an older deploy.
+
+5-minute fix at a laptop:
+1. Open https://vercel.com/chase-piersons-projects/hillbilly-dreams/settings/environment-variables
+2. Find NEXT_PUBLIC_SANITY_PROJECT_ID and SANITY_PROJECT_ID for Production scope
+3. Confirm both are exactly '5p7h8glj' (no quotes, no spaces, no uppercase)
+4. Redeploy the latest commit
+
+Verify build turns green at https://vercel.com/chase-piersons-projects/hillbilly-dreams
+
+Then verify /plan loads at https://bigmuddytouring.com/plan and other tenant domains.
+
+Must be green BEFORE Vicki's onboarding starts (target May 1) — she will be the first external customer interacting with the live platform; a broken first impression burns the realtor pipeline.
+```
+</details>
+
+### `P52-farleypierson-llc-shutdown` — FarleyPierson LLC shutdown (lawyer-handled)
+
+**Owner:** chase+lawyer · **Est:** ~90 min
+
+<details><summary>Show prompt</summary>
+
+```
+Per 2026-04-18 PM Chase decision: FarleyPierson LLC is being shut down (reversing the earlier 'kept as legacy shell' assumption).
+
+Lawyer-handled wind-down:
+1. Audit any active contracts under FarleyPierson — migrate to MBT or cancel/expire cleanly
+2. File dissolution paperwork in the LLC's state of formation
+3. Final tax filings (coordinate with accountant)
+4. Close bank accounts (after migrating any recurring debits to MBT bank account)
+5. Cancel any d/b/a registrations
+6. Notify any external parties (vendors, registered agents, etc.)
+7. Retain tax records per IRS retention requirements
+
+Timing: coordinate with MBT LLC formation. Don't dissolve FarleyPierson before MBT exists if FarleyPierson is currently the d/b/a vehicle for any active operations.
+
+Budget: legal + filing fees, expect $X (Chase to confirm with lawyer).
+```
+</details>
+
 
 ## ✕ Blocked (15)
 
@@ -585,7 +667,7 @@ Reference: docs/PRODUCT_TO_PLATFORM_MAPPING.md for the strategic framing.
 **Owner:** patch+agent · **Est:** ~360 min · **Blocked by:** P44-module-api-formalization · **Depends on:** P44-module-api-formalization
 
 
-## ✓ Done (6)
+## ✓ Done (7)
 
 ### `P02-hetzner-ssh` — Unblock Hetzner SSH (Phase 0)
 
@@ -606,6 +688,10 @@ Reference: docs/PRODUCT_TO_PLATFORM_MAPPING.md for the strategic framing.
 ### `P13-hetzner-phase4-immich` — Hetzner Phase 4: Immich
 
 **Owner:** agent · **Est:** ~60 min · **Blocked by:** P12-hetzner-phase3 · **Depends on:** P12-hetzner-phase3 · **Shipped:** 2026-04-18T02:17:28
+
+### `P42-big-muddy-natchez-llc-formation` — Big Muddy Natchez LLC — assignment to MBT (NOT a new filing)
+
+**Owner:** chase+lawyer · **Est:** ~60 min · **Shipped:** 2026-04-18T18:09:17
 
 ### `P47-brand-offerings-monday-prep` — Brand offerings worksheets ready for Monday April 20 partner session
 

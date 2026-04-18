@@ -18,16 +18,16 @@
 
 **Three-way partnership for MBT:** Chase, Tracy, Amy (equal thirds).
 
-**Wholly-owned subsidiaries of MBT (each new — to file):**
-- **Big Muddy Natchez LLC** — holds the Inn + Big Muddy Magazine
-- **Big Muddy Touring LLC** — holds touring, radio, record label, band, mobile performance (separate for vehicle + road insurance)
+**Wholly-owned subsidiaries of MBT:**
+- **Big Muddy Natchez LLC** — already exists (current Inn operating entity); becomes MBT subsidiary on filing via assignment
+- **Big Muddy Touring LLC** — NEW, to file alongside MBT (vehicle + road insurance separation)
 - **Project LLCs** — pattern: spin up per tenant project with meaningful liability exposure
 
 **Affiliates Chase partly owns through MBT (NOT subsidiaries):**
 - **Tuthill Design** (NY) — Chase 50% (held by MBT) / Elijah Tuthill 50%. Real estate media + 3D + design. NY counties + new Natchez branch. **Holds the retainer with MBT** that funds Elijah's cross-entity work.
 - **Studio C** (NY + new Natchez branch) — Chase 40% (held by MBT) / Other 60% TBD. Concert + event production. Vendor + client of MBT.
 
-**FarleyPierson LLC** — legacy shell, kept alive (not dissolved).
+**FarleyPierson LLC** — SHUTTING DOWN (decision 2026-04-18 evening).
 
 Full entity map + retainer flow + open questions: `docs/ENTITY_STRUCTURE.md`
 
@@ -153,6 +153,15 @@ Full architecture: `docs/PLATFORM_ARCHITECTURE.md`
 
 ## Recent decisions (most recent first)
 
+- **2026-04-18 (evening, Chase corrections):**
+  - **Two new LLCs to file** (lawyer engaged): MBT + Big Muddy Touring. Big Muddy Natchez LLC already exists as the current Inn operating entity (NOT a new filing). FarleyPierson LLC SHUTTING DOWN (reversing prior "kept as legacy shell" assumption).
+  - **Tracy role evolution:** stepping back from Inn day-to-day → MBT-level executive (portfolio oversight, back office, cross-venture marketing). Magazine editor role retained.
+  - **Amy expanded scope:** Big Muddy Radio + Big Muddy Records + performing artist.
+  - **NEW question surfaced: Innkeeper role.** Tracy stepping back creates gap. Amy loaded already. Needs naming before Tracy's transition begins.
+  - **Pre-MBT-filing prerequisite:** External co-owner conversations with Elijah Tuthill (50% Tuthill) and Studio C 60%-holder. Must understand what "Chase's stake rolls into MBT" means for them. Relationship work, not legal.
+  - **Single-point-of-failure REVISED DOWN:** Elijah + Miles on backend = technical redundancy. Studio C produces without Chase = production redundancy. Elijah shoots for Tuthill = photo redundancy. Only genuine SPOF: premium Chase Pierson Photography (by design, not a bug).
+  - **Vicki May 1 reframe:** what's at stake is reference value to next 10 realtors, not $500/mo. Vercel env var bug must close before she onboards.
+  - **Finance module:** runs across all entities. Elijah (CS degree) maintains the backend. AI-prepped taxes filed by real accountant.
 - **2026-04-18 (PM, product-to-platform mapping locked):** Define every brand's front-end offering first; back-end modules fall out of those offerings. **13 modules** identified, mapped to existing codebase. Three tiers of MBT economic participation: Tier 1 internal (no rev share) · Tier 2 one-off vendor (no rev share) · **Tier 3 ongoing module-delivered (15-30% to MBT)**. **Refactor, not rebuild** — three moves: (1) formalize module boundaries in existing code, (2) build tenant provisioning pipeline, (3) build prompt-driven Content Creation Module fresh. Don't rebuild Sanity. Don't unify billing pre-MBT-filing. Full doc: `docs/PRODUCT_TO_PLATFORM_MAPPING.md` · plan: `~/.claude/plans/cozy-beaming-minsky.md`. Per-brand worksheets ready for **Monday April 20** session at `docs/brand-offerings/`.
 - **2026-04-18 (partner meeting outcomes):**
   - **Rhea engagement DEFERRED.** No immediate scope. Re-evaluate at Woodstock this summer or back at Big Muddy in the fall. Reason: too much else needs to be done first (platform, Vicki, Paul Green, Studio C operator framework). Rhea wouldn't have the focus time.

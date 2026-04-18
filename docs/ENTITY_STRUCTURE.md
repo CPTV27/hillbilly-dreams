@@ -1,6 +1,26 @@
 # Entity Structure — Hillbilly Dreams ecosystem
 
-*Authoritative map of every legal entity, ownership stake, and inter-entity billing relationship. Latest correction 2026-04-18 PM (late afternoon).*
+*Authoritative map of every legal entity, ownership stake, and inter-entity billing relationship. Latest revisions 2026-04-18 evening (Chase corrections, lawyer engaged).*
+
+---
+
+## Entity count and filing status (LOCKED 2026-04-18 evening)
+
+**Two new LLCs to file** (lawyer engaged):
+1. **Measurably Better Things LLC** (Mississippi)
+2. **Big Muddy Touring LLC** (state TBD with lawyer)
+
+**Existing entities staying:**
+- **Big Muddy Natchez LLC** — already exists as the current Inn operating entity. NOT a new filing. Becomes wholly-owned subsidiary of MBT once MBT files (operating-agreement assignment).
+
+**Existing entities being shut down:**
+- **FarleyPierson LLC** — DECISION MADE: shut down. (Reverses the earlier "kept as legacy shell" assumption.)
+
+**Existing affiliates Chase partly owns:**
+- Tuthill Design (NY) — 50/50 Chase + Elijah Tuthill
+- Studio C (NY) — 40/60 Chase + TBD
+
+
 
 ---
 
@@ -90,15 +110,16 @@ And the production-side affiliates Chase partly owns through MBT:
 | **Wholly-owned subsidiaries** | Big Muddy Natchez LLC · Big Muddy Touring LLC · project LLCs as needed |
 | **Public-facing?** | No — surfaces only for broker-tier B2B deals |
 
-### 2 · Big Muddy Natchez LLC (in formation — TO FILE)
+### 2 · Big Muddy Natchez LLC (ALREADY EXISTS — current Inn operating entity)
 
 | Field | Value |
 |---|---|
-| **Type** | LLC, wholly-owned subsidiary of MBT |
-| **Filing state** | Mississippi (TBD — confirm with Chase) |
-| **Effective ownership** | 100% MBT, which means 1/3 each Chase/Tracy/Amy through the parent |
+| **Type** | LLC, existing as the current Inn operating entity |
+| **Filing state** | Mississippi (existing) |
+| **Becomes** | Wholly-owned subsidiary of MBT once MBT files (operating-agreement assignment, not a new filing) |
+| **Effective ownership post-MBT** | 100% MBT, which means 1/3 each Chase/Tracy/Amy through the parent |
 | **Holds** | The Inn (hospitality) · Big Muddy Magazine (publishing) |
-| **Why separate from MBT** | Hospitality + publishing have different liability + tax profiles than the platform; clean books per business unit |
+| **Action item** | Lawyer documents the assignment from current ownership structure to "wholly owned by MBT" once MBT files |
 
 ### 3 · Big Muddy Touring LLC (status — SEE QUESTION BELOW)
 
@@ -157,14 +178,14 @@ When MBT takes on a tenant project with meaningful liability exposure, spin up a
 
 Tenants that are **purely platform users** (Vicki Walpurt, future realtors, magazine subscribers) probably don't need project LLCs — they're customers of the MBT platform, not joint operations.
 
-### 7 · FarleyPierson LLC (legacy)
+### 7 · FarleyPierson LLC (BEING SHUT DOWN — 2026-04-18 decision)
 
 | Field | Value |
 |---|---|
 | **Type** | Existing LLC, EIN 81-4280721 |
 | **Owner** | Chase (and partner history) |
-| **Role going forward** | Stays alive as legacy shell. Existing contracts, tax history, banking continuity. Does NOT dissolve. |
-| **Operates as** | d/b/a vehicle until MBT LLC files |
+| **Status** | **SHUTTING DOWN.** Decision made 2026-04-18. Reverses the earlier "kept as legacy shell" assumption. |
+| **Wind-down considerations** | Existing contracts (if any) need migration to MBT or cancellation. Tax history retained per IRS records. Bank accounts closed. Lawyer handling. |
 
 ---
 
@@ -225,14 +246,16 @@ BMT operates inside the MBT family but bills as a real entity. Three billing rel
 | # | Question | Status |
 |---|---|---|
 | 1 | Studio C 60% owner — name? | Cos can't determine; needs Chase |
-| 2 | Big Muddy Touring LLC status — filed already or third new filing? | My read = third new filing. Confirm. |
-| 3 | "Elijah" disambiguation — Elijah from Bearsville (photo archive) = Elijah Tuthill (50% Tuthill Design)? | My read = yes. Confirm. |
-| 4 | Big Muddy Natchez LLC filing state — Mississippi? | Likely yes. Confirm. |
-| 5 | FarleyPierson kept alive as legacy shell? | Confirmed effectively. Just want explicit yes. |
-| 6 | Retainer monthly rate + hours volume? | Need numbers from Chase before billing infrastructure can be set up |
+| 2 | ~~Big Muddy Touring LLC status~~ | **RESOLVED:** Two new LLCs to file (MBT + BMT). Lawyer engaged. |
+| 3 | "Elijah" disambiguation — Elijah from Bearsville (photo archive) = Elijah Tuthill? | My read = yes. Confirm. |
+| 4 | ~~Big Muddy Natchez LLC filing state~~ | **RESOLVED:** Already exists. Not a new filing. |
+| 5 | ~~FarleyPierson kept alive?~~ | **RESOLVED:** SHUTTING DOWN. Lawyer handling. |
+| 6 | Retainer monthly rate + hours volume? | Need numbers from Chase. Elijah maintains the backend per Chase 2026-04-18 PM. |
 | 7 | What constitutes "meaningful liability exposure" that triggers a project LLC? | Need Chase's threshold |
 | 8 | LLC split trigger for Tuthill ↔ Studio C? | Deferred but tracked |
 | 9 | Insurance flash radius — agent identified yet? | Action item P38 |
+| 10 | **NEW: Innkeeper role** — Tracy stepping back from Inn day-to-day; Amy loaded with Radio + Records + performing. Who fills the Innkeeper role? | **Open. Surface before Tracy's transition starts.** |
+| 11 | **NEW: External co-owner conversations** — Elijah Tuthill (Tuthill 50%) and Studio C 60%-holder need to understand what "Chase's stake rolls into MBT" means for them. **Must happen BEFORE MBT operating agreement is finalized.** Relationship work, not legal. | **Open. Pre-filing prerequisite.** |
 
 ---
 

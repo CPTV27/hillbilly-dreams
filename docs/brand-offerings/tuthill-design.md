@@ -173,3 +173,4 @@ A real estate media + design studio operating across two corridors — the Hudso
 - Realtor social management — when does this launch as a productized recurring offering? Vicki could be the first paid client of this model.
 - Tuthill ↔ Studio C LLC split — when triggered (P41)
 - Insurance flash radius — Tuthill production policy boundary with Studio C and BMT (P38)
+- **PRE-MBT-FILING REQUIREMENT:** Conversation with Elijah Tuthill about what "Chase's 50% rolls into MBT" means for him. Relationship work, not legal. Must happen before MBT operating agreement finalizes. (P50 in router)

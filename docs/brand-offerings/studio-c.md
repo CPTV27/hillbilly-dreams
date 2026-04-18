@@ -151,3 +151,4 @@ A multicam event and concert production studio — multicam shoot, broadcast-qua
 - Tuthill ↔ Studio C LLC split (P41) — when, on what trigger
 - Insurance flash radius (P38) — Studio C production boundary with Tuthill and BMT
 - Recording Studios summer project (P33) — Studio C provides the video alongside Chase's photography
+- **PRE-MBT-FILING REQUIREMENT:** Conversation with Studio C's 60%-holder(s) about what "Chase's 40% rolls into MBT" means for them. Relationship work, not legal. Must happen before MBT operating agreement finalizes. (P50 in router)

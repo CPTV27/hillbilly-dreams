@@ -113,9 +113,9 @@ A boutique inn in Natchez, Mississippi, where the rooms are made for travelers w
 
 | | |
 |---|---|
-| **Day-to-day operator** | Tracy (Inn ops) · Amy (bar + events) |
+| **Day-to-day operator** | **Innkeeper hire (TBD)** — Tracy stepping back from Inn day-to-day to MBT executive. Amy continues bar + events. |
 | **Cadence with Chase** | Weekly during travel weeks; daily co-located when in Natchez |
-| **Escalation path** | Tracy or Amy → Chase (for media, tech, or strategic) |
+| **Escalation path** | Innkeeper → Chase (for media, tech, or strategic) · Tracy stays involved at MBT executive level |
 
 ---
 
@@ -126,3 +126,4 @@ A boutique inn in Natchez, Mississippi, where the rooms are made for travelers w
 - Blues Room ticketing — DIY (Stripe Checkout against an inventory module) or partner (Eventbrite, DICE)
 - Dinner reservations — DIY in Sanity or OpenTable
 - Airbnb/Booking.com presence — keep, scale back, or push customers to direct?
+- **Innkeeper hire** — Tracy stepping back creates this role. Amy loaded with Radio/Records/Performances and probably not the answer. Define profile and hire before Tracy's transition begins.

@@ -121,7 +121,7 @@ A regional record label releasing artists from the Mississippi corridor — prim
 
 | | |
 |---|---|
-| **Day-to-day** | Chase (A&R + relationships) |
+| **Day-to-day** | **Amy** (per 2026-04-18 evening role evolution — Amy: Radio + Records + performing) with Chase on A&R + relationships |
 | **Production** | Studio C (recording sessions, photo, video) · JP (mixing, current scope: First Arctic) |
 | **Distribution / catalog ops** | TBD — needs an owner before more releases ship |
 | **Cadence with Chase** | Per-release intensive; ongoing maintenance light |

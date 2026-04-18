@@ -111,9 +111,10 @@ An internet radio station broadcasting from the Mississippi corridor — program
 
 | | |
 |---|---|
-| **Programming + engineering** | Chase + Patch (Mac mini stack) |
+| **Day-to-day operator** | **Amy** (per 2026-04-18 evening role evolution — Amy: Radio + Records + performing) |
+| **Programming + engineering** | Amy (programming) + Patch (Mac mini stack) |
 | **On-air voices** | Three distinct: Chase (station-owner / specials) · Tracy · Amy. Voice-routing rule per Humanizer (P27 in router). |
-| **Sponsor sales** | Tracy primarily |
+| **Sponsor sales** | Tracy primarily (Tracy retains cross-venture marketing role even after stepping back from Inn day-to-day) |
 | **Cadence with Chase** | Programming weekly; sponsor pipeline monthly |
 
 ---
