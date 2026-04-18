@@ -1,8 +1,35 @@
-# Current Context — Hillbilly Dreams
+# Current Context — Measurably Better Things (MBT)
 
 *Single source of truth for any AI agent helping Chase. Read this first. Updated as reality changes.*
 
-**Last updated:** 2026-04-18 evening (by Cos — partner meeting outcomes integrated)
+**Last updated:** 2026-04-18 late afternoon (by Cos — MBT restructure absorbed)
+
+---
+
+## ⚠️ ENTITY RESTRUCTURE — 2026-04-18
+
+**HDI is dead language.** Do not reference Hillbilly Dreams Incorporated in any new document or conversation.
+
+**Measurably Better Things LLC** (not yet filed) becomes:
+- The holding company
+- The platform (software, directory engine, canonical entity store)
+- The brand customers touch
+
+**Three-way partnership:** Chase, Tracy, Amy (equal thirds) own MBT.
+
+**Vendor layer — NEW:**
+- **Studio C** — production vendor only (photo, video, content, shoots, edit). Also a client of MBT for its own marketing.
+- **Tuthill Design** — platform operations vendor (SLA, uptime, feature request triage). Separate from Studio C by design.
+
+**Client engagements are with MBT.** MBT subcontracts Studio C + Tuthill for delivery.
+
+**Tier-1 IP:** the directory module + canonical entity store. Board-level decisions only.
+
+**New concept flagged:** Born Free Network = MBT's open-source offering. Governance model TBD.
+
+Full restructure doc: `docs/HANDOFF_MBT_PLATFORM_RESTRUCTURE.md`
+
+---
 
 ---
 
