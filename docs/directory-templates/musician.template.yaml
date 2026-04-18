@@ -7,7 +7,7 @@ slug: ""                                      # Auto-generated
 real_name: ""                                 # For solo artists, if different
 aliases: []
 members: []                                   # Band member names if a band
-status: "active"                              # active | on-hiatus | retired | deceased | unknown
+status: "active"                              # MUST be one of: active | retired_living | hiatus | unknown (deceased belongs in legacy-artists)
 
 # --- BASE + GEOGRAPHY ---
 home_city: ""                                 # [required] Where they're based

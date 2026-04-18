@@ -60,6 +60,11 @@ CATEGORY_CONFIG = {
         "primary_key": "artist",
         "seed_file": "musicians-seed.yaml",
     },
+    "legacy-artists": {
+        "top_key": "legacy_artists",
+        "primary_key": "artist",
+        "seed_file": "legacy-artists-seed.yaml",
+    },
     "festivals": {
         "top_key": "festivals",
         "primary_key": "festival",

@@ -17,6 +17,11 @@ plausible-sounding details.
 
 ===== RESEARCH RULES =====
 
+0. **ELIGIBILITY (CRITICAL):** Only include LIVING or ACTIVE artists. Deceased,
+   retired-deceased, posthumous estate-only entries belong in legacy-artists,
+   NOT here. If a target is deceased, return:
+   `artist: { name: "<name>", status: "belongs_in_legacy_artists" }`
+   and stop.
 1. Use at least 3 independent sources where possible.
 2. Primary sources beat aggregators. Artist's own website/socials > Spotify/
    Bandcamp > Wikipedia > news coverage.
@@ -24,8 +29,9 @@ plausible-sounding details.
    agent contacts, lineup, or discography.
 4. Add any UNKNOWN fields to the `research.gaps_to_resolve` list.
 5. Rate overall confidence: High | Medium | Low with one-sentence reasoning.
-6. For heritage/deceased artists, focus on estate/foundation contacts, living
-   collaborators, and legacy venues — mark `legacy.is_heritage: "yes"`.
+6. For heritage artists who are still living, focus on estate/foundation
+   contacts where applicable, living collaborators, and legacy venues — mark
+   `legacy.is_heritage: "yes"`. Deceased heritage artists go to legacy-artists.
 
 ===== OUTPUT FORMAT =====
 
@@ -126,7 +132,7 @@ sources: []
 
 ===== FIELD NOTES =====
 
-- `status`: active | on_hiatus | retired | deceased | unknown
+- `status`: active | retired_living | hiatus | unknown  (deceased → legacy-artists)
 - `era`: "Emerging (2020s)" | "Established (2000s-2020s)" | "Veteran (1980s-2000s)" |
   "Classic (1960s-1980s)" | "Originator (pre-1960s)" | unknown
 - `primary_genres`: delta_blues, hill_country_blues, electric_blues, soul, R&B,
