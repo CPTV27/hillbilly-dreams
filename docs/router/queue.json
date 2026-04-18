@@ -1,0 +1,191 @@
+{
+  "_doc": "Hillbilly Dreams agent queue. Read by scripts/router/{next,ship,status,block,unblock}.sh. Each project is self-contained: paste 'prompt' into a fresh Claude/Cursor agent and they have everything they need.",
+  "_status_values": "blocked | ready | running | done",
+  "_updated": "2026-04-18T01:34:40",
+  "queue": [
+    {
+      "id": "P02-hetzner-ssh",
+      "title": "Unblock Hetzner SSH (Phase 0)",
+      "status": "blocked",
+      "blocked_by": "chase",
+      "owner": "chase",
+      "estimated_minutes": 5,
+      "depends_on": [],
+      "prompt": "Open https://console.hetzner.cloud \u2192 server bigmuddy-ubuntu-16gb-ash-1 \u2192 Rebuild tab \u2192 Image: Ubuntu 24.04 \u2192 SSH keys: + Add new SSH key (NOT existing 'MacBook Pro SSH'). Paste:\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL3FWdEhw+UJULM6J2Q5VyaVtmkcmTopoNs7rQNn2130 laptop-to-mini\nName: mbp-current-2026-04. Save \u2192 Rebuild \u2192 wait 60s. Then verify locally: ssh root@5.161.61.151 'echo OK'. When OK, mark done with: bash scripts/router/ship P02-hetzner-ssh"
+    },
+    {
+      "id": "P03-hetzner-phase1",
+      "title": "Hetzner Phase 1: Server Foundation",
+      "status": "blocked",
+      "blocked_by": "P02-hetzner-ssh",
+      "owner": "agent",
+      "estimated_minutes": 30,
+      "depends_on": [
+        "P02-hetzner-ssh"
+      ],
+      "prompt": "Read /Users/chasethis/.claude/plans/cozy-beaming-minsky.md. Execute Phase 1 (Server Foundation) verbatim against root@5.161.61.151. After completion, save to Bitwarden: server IPv4, IPv6, Tailscale 100.x IP, SSH command for chase user. DO NOT proceed to Phase 2. Report: tailscale up output, docker --version, ufw status numbered."
+    },
+    {
+      "id": "P04-press-seed",
+      "title": "Press seed \u2192 ingest \u2192 flip canonical",
+      "status": "ready",
+      "owner": "chase+agent",
+      "estimated_minutes": 12,
+      "depends_on": [],
+      "prompt": "STEP 1 (Chase): Open docs/directory-templates/perplexity-press.md. Copy the prompt block (between ===== markers). Paste into Perplexity Deep Research with target: 'Press, podcasts, and music writers covering the Mississippi music corridor (Memphis to New Orleans), 2024-2026, with named contacts and beats'. Save the YAML output to /Users/chasethis/hillbilly-dreams/Perplexity-research/press-seed.yaml.\n\nSTEP 2 (agent): cd /Users/chasethis/hillbilly-dreams && python3 scripts/directory/ingest-seed.py press. Verify count + confidence breakdown. Edit apps/web/lib/directory/catalogs.ts: change press entry from source: 'md' to source: 'yaml'. Commit: 'feat(directory): canonical press catalog from YAML seed (N records)'. Push."
+    },
+    {
+      "id": "P05-studios-seed",
+      "title": "Studios seed \u2192 ingest \u2192 flip canonical",
+      "status": "ready",
+      "owner": "chase+agent",
+      "estimated_minutes": 12,
+      "depends_on": [],
+      "prompt": "STEP 1 (Chase): Open docs/directory-templates/perplexity-studio.md. Copy prompt. Paste into Perplexity Deep Research with target: 'Recording studios \u2014 active and historic \u2014 on the Mississippi music corridor (Memphis to New Orleans), 2024-2026'. Save YAML to /Users/chasethis/hillbilly-dreams/Perplexity-research/studios-seed.yaml.\n\nSTEP 2 (agent): python3 scripts/directory/ingest-seed.py studios. Edit apps/web/lib/directory/catalogs.ts: studios source 'md' \u2192 'yaml'. Commit + push."
+    },
+    {
+      "id": "P06-labels-seed",
+      "title": "Labels seed \u2192 ingest \u2192 flip canonical",
+      "status": "ready",
+      "owner": "chase+agent",
+      "estimated_minutes": 12,
+      "depends_on": [],
+      "prompt": "STEP 1 (Chase): Open docs/directory-templates/perplexity-label.md. Copy prompt. Perplexity target: 'Record labels, music publishers, management companies, booking agencies, entertainment lawyers \u2014 Mississippi music corridor 2024-2026'. Save YAML to /Users/chasethis/hillbilly-dreams/Perplexity-research/labels-seed.yaml.\n\nSTEP 2 (agent): python3 scripts/directory/ingest-seed.py labels. Edit catalogs.ts: labels source 'md' \u2192 'yaml'. Commit + push."
+    },
+    {
+      "id": "P07-legacy-seed",
+      "title": "Legacy-artists seed (deceased migration)",
+      "status": "ready",
+      "owner": "chase+agent",
+      "estimated_minutes": 15,
+      "depends_on": [],
+      "prompt": "STEP 1 (Chase): Open docs/directory-templates/perplexity-legacy.md (created by background agent A). Copy prompt. Perplexity target: 'Deceased blues, soul, country, gospel, and Americana musicians from the Mississippi corridor, with estate contacts, rights holders, and catalog owners'. Tell Perplexity to include the 52 deceased records currently in musicians-seed.yaml \u2014 research them fresh, do not copy. Save YAML to /Users/chasethis/hillbilly-dreams/Perplexity-research/legacy-artists-seed.yaml.\n\nSTEP 2 (agent): python3 scripts/directory/ingest-seed.py legacy-artists. Edit catalogs.ts: legacy-artists source 'md' \u2192 'yaml'. Commit + push."
+    },
+    {
+      "id": "P08-tourism-seed",
+      "title": "Tourism seed \u2192 ingest \u2192 flip canonical",
+      "status": "ready",
+      "owner": "chase+agent",
+      "estimated_minutes": 12,
+      "depends_on": [],
+      "prompt": "STEP 1 (Chase): Open docs/directory-templates/perplexity-tourism.md (created by background agent A). Copy prompt. Perplexity target: 'Music heritage tourism on the Mississippi corridor \u2014 Blues Trail markers, museums (B.B. King, Stax, Sun, Delta Blues, Muddy Waters), juke joint experiences, plantation tours with music context, civil rights sites tied to music history'. Save YAML to /Users/chasethis/hillbilly-dreams/Perplexity-research/tourism-seed.yaml.\n\nSTEP 2 (agent): python3 scripts/directory/ingest-seed.py tourism. Edit catalogs.ts: tourism source 'md' \u2192 'yaml'. Commit + push."
+    },
+    {
+      "id": "P09-infra-seed",
+      "title": "Infrastructure seed \u2192 ingest \u2192 flip canonical",
+      "status": "ready",
+      "owner": "chase+agent",
+      "estimated_minutes": 12,
+      "depends_on": [],
+      "prompt": "STEP 1 (Chase): Open docs/directory-templates/perplexity-infrastructure.md (created by background agent A). Copy prompt. Perplexity target: 'Touring infrastructure for music acts on the Mississippi corridor \u2014 rehearsal spaces, PA rental, backline rental, sprinter van rental, merch fulfillment, instrument repair, tour vehicle service'. Save YAML to /Users/chasethis/hillbilly-dreams/Perplexity-research/infrastructure-seed.yaml.\n\nSTEP 2 (agent): python3 scripts/directory/ingest-seed.py infrastructure. Edit catalogs.ts: infrastructure source 'md' \u2192 'yaml'. Commit + push."
+    },
+    {
+      "id": "P10-editorial-seed",
+      "title": "Editorial seed \u2192 ingest \u2192 flip canonical",
+      "status": "ready",
+      "owner": "chase+agent",
+      "estimated_minutes": 12,
+      "depends_on": [],
+      "prompt": "STEP 1 (Chase): Open docs/directory-templates/perplexity-editorial.md (created by background agent A). Copy prompt. Perplexity target: 'Story angles, pitches, and undercovered narratives in Mississippi corridor music \u2014 for Big Muddy Magazine and freelance placement at Garden & Gun, Oxford American, NPR Music, Rolling Stone, etc.'. Save YAML to /Users/chasethis/hillbilly-dreams/Perplexity-research/editorial-seed.yaml.\n\nSTEP 2 (agent): python3 scripts/directory/ingest-seed.py editorial-pitches. Edit catalogs.ts: editorial-pitches source 'md' \u2192 'yaml'. Commit + push."
+    },
+    {
+      "id": "P11-hetzner-phase2",
+      "title": "Hetzner Phase 2: Traefik + DNS",
+      "status": "blocked",
+      "blocked_by": "P03-hetzner-phase1",
+      "owner": "agent",
+      "estimated_minutes": 30,
+      "depends_on": [
+        "P03-hetzner-phase1"
+      ],
+      "prompt": "Read /Users/chasethis/.claude/plans/cozy-beaming-minsky.md. Execute Phase 2 (Reverse Proxy + DNS). Add Cloudflare A records for immich/postiz/notebook.hillbillydreamsinc.com \u2014 gray cloud only. Stand up Traefik with Let's Encrypt HTTP-01. Verify TLS works against a test container. Email: me@chasepierson.tv. DO NOT proceed to Phase 3 unless TLS verified."
+    },
+    {
+      "id": "P12-hetzner-phase3",
+      "title": "Hetzner Phase 3: Storage Box mount",
+      "status": "blocked",
+      "blocked_by": "P11-hetzner-phase2",
+      "owner": "chase+agent",
+      "estimated_minutes": 25,
+      "depends_on": [
+        "P11-hetzner-phase2"
+      ],
+      "prompt": "STEP 1 (Chase): Order Hetzner Storage Box BX31 (10TB) at https://robot.hetzner.com \u2014 Falkenstein location. Save credentials Hetzner emails to Bitwarden as 'Hetzner Storage Box BX31'. Enable SSH + SMB in the Storage Box dashboard.\n\nSTEP 2 (agent): SSH to bigmuddy-services. Execute Phase 3 of cozy-beaming-minsky.md verbatim. Verify df -h shows ~10TB at /mnt/storage-box. Create photos/{library,external}/ and archives/ subdirs."
+    },
+    {
+      "id": "P13-hetzner-phase4-immich",
+      "title": "Hetzner Phase 4: Immich",
+      "status": "blocked",
+      "blocked_by": "P12-hetzner-phase3",
+      "owner": "agent",
+      "estimated_minutes": 60,
+      "depends_on": [
+        "P12-hetzner-phase3"
+      ],
+      "prompt": "Execute Phase 4 of /Users/chasethis/.claude/plans/cozy-beaming-minsky.md. After up: register first admin user (chase, password from Bitwarden), confirm Immich iOS app push from phone reaches web timeline. Then configure dedup: Settings \u2192 ML \u2192 Duplicate Detection threshold 0.03. Set nightly cron 03:00 server time for Duplicate Detection job. ML concurrency 1-2. Save Immich admin to Bitwarden."
+    },
+    {
+      "id": "P14-migrate-postiz-notebook",
+      "title": "Migrate Postiz + Open Notebook off mini",
+      "status": "blocked",
+      "blocked_by": "P11-hetzner-phase2",
+      "owner": "agent",
+      "estimated_minutes": 60,
+      "depends_on": [
+        "P11-hetzner-phase2"
+      ],
+      "prompt": "Execute Phase 5 of /Users/chasethis/.claude/plans/cozy-beaming-minsky.md. Migrate Postiz (mini:4007) and Open Notebook (mini:5055) to Hetzner. Pattern: dump DB on mini \u2192 docker compose down on mini (DON'T delete data) \u2192 copy compose+.env to /opt/services/<name>/ on Hetzner \u2192 restore DB \u2192 update Cloudflare DNS \u2192 add Traefik labels \u2192 docker compose up -d on Hetzner \u2192 verify in browser. After 48 hours of confirmed working: delete on mini."
+    },
+    {
+      "id": "P15-synology-external",
+      "title": "Synology External Library (Elijah + agent)",
+      "status": "blocked",
+      "blocked_by": "P13-hetzner-phase4-immich",
+      "owner": "elijah+agent",
+      "estimated_minutes": 30,
+      "depends_on": [
+        "P13-hetzner-phase4-immich"
+      ],
+      "prompt": "STEP 1 (Chase): Send Elijah the doc at /Users/chasethis/hillbilly-dreams/docs/ELIJAH_SYNOLOGY_TAILSCALE.md (create from cozy-beaming-minsky.md Phase 6 if not existing). Send Tailscale invite for the chasepierson.tv account.\n\nSTEP 2 (Elijah): Follow the doc. Reply via Signal with Tailscale IP, share name, immich-readonly user + password.\n\nSTEP 3 (agent): SSH to bigmuddy-services. Mount per Phase 6: cifs at 100.x/Photos, ro flag, /mnt/synology-bearsville. Add as External Library in Immich Admin \u2192 Read-Only ON. Trigger initial scan."
+    },
+    {
+      "id": "P16-public-musicians",
+      "title": "Public musician catalog MVP",
+      "status": "ready",
+      "owner": "agent",
+      "estimated_minutes": 120,
+      "depends_on": [],
+      "prompt": "Build public musician catalog at /Users/chasethis/hillbilly-dreams/apps/web/app/musicians/.\n\nPages needed:\n- /musicians \u2014 index. Photo card grid. Filterable by state (drop-down), genre (chips), confidence. Default sort: alphabetical.\n- /musicians/[slug] \u2014 single artist page. Bio, genres, location, links (website/socials), 'Request press kit' button (mailto: for now). Use Big Muddy Magazine aesthetic.\n- /musicians/join \u2014 onboarding form. Fields: name, primary genre, location (state+city), website, instagram, contact email, 'I'm an active artist (not a heritage figure)' checkbox. POST to /api/musicians/join \u2192 write to data/directory/musicians/staging/<slug>.yaml. QR-friendly layout (large fields, no horizontal scroll).\n\nUse the existing data loader at apps/web/lib/directory/catalogs.ts.\nServer Components only where possible. 'use client' only on the join form.\nMatch fonts/colors used by Big Muddy Magazine (Playfair Display + Inter, full-bleed photos, var(--*) tokens \u2014 no hardcoded values).\n\nWhen done: typecheck, commit, push."
+    },
+    {
+      "id": "P17-prisma-migration",
+      "title": "Prisma migration + DB sync",
+      "status": "blocked",
+      "blocked_by": "P04-P10 (need YAML for all 7 placeholder categories first)",
+      "owner": "agent",
+      "estimated_minutes": 90,
+      "depends_on": [
+        "P04-press-seed",
+        "P05-studios-seed",
+        "P06-labels-seed",
+        "P07-legacy-seed",
+        "P08-tourism-seed",
+        "P09-infra-seed",
+        "P10-editorial-seed"
+      ],
+      "prompt": "Add to prisma/schema.prisma DirectoryBusiness model:\n  metadata        Json?\n  confidence      String?\n  sources         String[]\n  lastVerifiedAt  DateTime?\n  category        String   @default(\"business\")\n  fullRecord      Json?\n\nRun: pnpm prisma migrate dev --name directory_metadata\n\nBuild scripts/directory/sync-to-db.py \u2014 reads each data/directory/<cat>/<cat>-catalog.json and upserts into DirectoryBusiness using slug as unique key.\n\nUpdate apps/web/lib/directory/catalogs.ts to read from DB first, fall back to JSON file. Type-check, commit, push."
+    },
+    {
+      "id": "P18-hetzner-phase7",
+      "title": "Hetzner Phase 7: bulk photo source ingestion",
+      "status": "blocked",
+      "blocked_by": "P15-synology-external",
+      "owner": "agent",
+      "estimated_minutes": 180,
+      "depends_on": [
+        "P15-synology-external"
+      ],
+      "prompt": "Execute Phase 7 of /Users/chasethis/.claude/plans/cozy-beaming-minsky.md. Lightroom exports via immich-go from MBP. Mini photo folders via rsync to /mnt/storage-box/photos/external/mini/. GCS approved bucket via rclone nightly cron to /mnt/storage-box/photos/external/gcs-touring-approved/. All as External Libraries except iPhone (which is uploaded library)."
+    }
+  ]
+}
