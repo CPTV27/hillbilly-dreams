@@ -51,7 +51,7 @@ Listed in priority order. Each item has a recommendation; partners decide.
 | # | Decision | Recommendation | Rationale |
 |---|---|---|---|
 | B1 | **Approve Elijah 40-hr block ($2,000)** | YES | Archive is unmanageable without an operator; photos are rotting in folders |
-| B2 | Total photo volume estimate | _Chase to confirm — drives Storage Box sizing_ | BX31 is 10TB, can upgrade if needed |
+| B2 | Total photo volume estimate | **~1.3 TB confirmed** (T7 sync in progress; 52K already on Hetzner from GCS) | 1 TB Hetzner volume covers us for 6 months; upgrade to 10 TB Storage Box ~$25/mo when needed |
 | B3 | Print-on-demand partner | **Bay Photo** for fine-art prints + **Printful** for casual merch | Bay = museum-quality at premium price; Printful = volume t-shirts/mugs at $20-30 margin |
 | B4 | Gallery strategy | **Both** — `chasepierson.tv/gallery` for personal brand + Big Muddy `gallery/` for ecosystem traffic | Cross-link; same backing data |
 | B5 | Pricing tiers | **3 tiers**: $50 / $150 / $500 | Easier for Elijah to apply; matches market for digital / open-edition / signed-print |
@@ -101,7 +101,8 @@ Listed in priority order. Each item has a recommendation; partners decide.
 | "Why not lease?" | Camera bodies depreciate slowly when held 4-5 years; lease costs ~30% more over the same window. Lenses appreciate or hold value. |
 | "Why $50/hr for Elijah?" | Below market for skilled archive curation (typical $65-85). He's in Bearsville so we don't carry overhead. |
 | "Is Elijah reliable?" | _Chase to address — track record from Bearsville Studio work_ |
-| "What's the Bearsville activation timeline?" | Summer 2026 still; this archive work is the groundwork (catalog must exist before Bearsville can sell prints) |
+| "What's the Bearsville activation timeline?" | Chase visits next week to walk the property and set the plan. Active work begins immediately after we close out the Big Muddy items in this meeting. Summer activation still on track. |
+| "What's happening with JP?" | JP's engagement is now scoped: he's delivering mixes from the First Arctic record and making a few New Orleans intros. End of engagement after that — not a permanent role. Info-only; no decision needed. |
 | "Print-on-demand revenue is unproven for us — what's our floor?" | Floor is zero — POD is consignment. Risk is only Elijah's $2K. Upside is 30%+ margins on prints with no inventory. |
 | "Can we delay the Storage Box?" | Yes — Immich works without it for the first 1-2TB. But we'll need it within 30 days as ingest ramps. |
 
@@ -124,8 +125,8 @@ These are on the radar but not for tonight:
 
 - **MBT positioning** — Chase is treating this as his separate open-source project; not a partner decision
 - **DSD pricing changes** — locked April 5, no movement until 30 days of dogfood data
-- **Bearsville site activation** — summer 2026, separate planning session in May
-- **JP Houston deal** — not finalized; not yet in partner-facing materials
+- **Bearsville activation deep planning** — Chase visits next week; partners get the plan after the property walk-through (briefed in passing if asked)
+- **JP Houston extension** — current engagement (First Arctic mixes + NOLA intros) is final scope; no extension being discussed
 - **Asana cleanup / agent infrastructure** — operator-level, no partner decision needed
 
 ---

@@ -1,7 +1,7 @@
 {
   "_doc": "Hillbilly Dreams agent queue. Read by scripts/router/{next,ship,status,block,unblock}.sh. Each project is self-contained: paste 'prompt' into a fresh Claude/Cursor agent and they have everything they need.",
   "_status_values": "blocked | ready | running | done",
-  "_updated": "2026-04-18T02:17:28",
+  "_updated": "2026-04-18T02:32:08",
   "queue": [
     {
       "id": "P02-hetzner-ssh",
@@ -224,7 +224,7 @@
       "owner": "chase",
       "estimated_minutes": 20,
       "depends_on": [],
-      "prompt": "After Tracy/Amy meeting (P19): Log into https://immich.hillbillydreamsinc.com as admin. Administration \u2192 Users \u2192 Create. Create accounts for tracyaldersonallen@gmail.com, amyaldersonallen@gmail.com, jphoustonlives@gmail.com. Email each with: app store link for Immich iOS, server URL, their password, instructions to enable backup. Save passwords to Bitwarden under 'Immich \u2014 Tracy/Amy/JP'."
+      "prompt": "Log into https://immich.hillbillydreamsinc.com as admin (creds in Bitwarden 'Immich \u2014 bigmuddy-services'). Administration \u2192 Users \u2192 Create. Create three accounts:\n- tracyaldersonallen@gmail.com (name: Tracy Alderson-Allen)\n- amyaldersonallen@gmail.com (name: Amy Allen)\n- jphoustonlives@gmail.com (name: JP Houston)\n\nFor each, generate a strong password and save to Bitwarden as 'Immich \u2014 Tracy', 'Immich \u2014 Amy', 'Immich \u2014 JP'.\n\nThen send each one a brief intro email with: server URL, their password, App Store link for Immich iOS app, and a one-line 'enable backup' instruction.\n\nDO NOT send if Chase hasn't first confirmed in the Tracy/Amy meeting that JP gets access (he may not \u2014 current scope is mixes + NOLA intros only)."
     },
     {
       "id": "P22-monitoring",
@@ -243,6 +243,57 @@
       "estimated_minutes": 45,
       "depends_on": [],
       "prompt": "On Hetzner server: 1) Install Watchtower container, schedule weekly 03:00 UTC Sunday, exclude DBs (Postgres + redis). 2) Add Docker log rotation: edit /etc/docker/daemon.json with {\"log-driver\": \"json-file\", \"log-opts\": {\"max-size\": \"50m\", \"max-file\": \"3\"}}, restart docker. 3) Cron at 04:00 UTC first-of-month: docker system prune -af --volumes. Verify NVMe usage drops or stays flat. Commit watchtower compose + cron file to /opt/services/maintenance/."
+    },
+    {
+      "id": "P24-amy-voice-onboarding",
+      "title": "Create Amy voice-onboarding Asana task",
+      "status": "ready",
+      "owner": "agent",
+      "estimated_minutes": 15,
+      "depends_on": [],
+      "prompt": "Per .claude/agents/HANDOFF_TO_COS_VOICE_SYSTEM.md, mirror Tracy's task (Asana ID 1214126060819601 in Big Muddy Magazine GID 1213945999434115).\n\nFor Amy:\n- Assignee: Amy Allen, amyaldersonallen@gmail.com\n- Project: Big Muddy Radio if it exists, else 'Amy \u2014 Inn & Bar Ops' workstream, else create one\n- Title: 'Voice onboarding \u2014 Amy'\n- Body: Same five-channel ask as Tracy's (forwarded emails / Drive folder / pasted comments / voice memo / public links) BUT weight toward voice memos. Lead the ask with: 'Talk into your phone for 10 min about last Saturday's show. That's worth more than a polished essay.'\n- No deadline\n\nUse the Asana MCP tool. Then update this project: status=done, shipped_at=now."
+    },
+    {
+      "id": "P25-voice-ingestion-pipeline",
+      "title": "Voice-sample ingestion pipeline (Tracy + Amy)",
+      "status": "blocked",
+      "blocked_by": "samples-from-Tracy-or-Amy-arrive",
+      "owner": "agent",
+      "estimated_minutes": 90,
+      "depends_on": [],
+      "prompt": "When Tracy or Amy delivers writing/voice samples (per Asana tasks 1214126060819601 and the new Amy task from P24), pipe them through the brand-voice agents:\n\n1. Collect samples: Gmail forwards from her email, Drive shared folder, voice memo MP3s\n2. Run brand-voice:document-analysis on text + brand-voice:conversation-analysis on voice\n3. Generate memory/feedback_tracy_voice.md (or feedback_amy_voice.md) in the same structure as feedback_chase_voice.md\n4. Email Tracy/Amy a draft for sign-off before locking\n5. Update memory/MEMORY.md index"
+    },
+    {
+      "id": "P26-records-entertainment-voice-docs",
+      "title": "Voice docs for Records + Entertainment brands",
+      "status": "blocked",
+      "blocked_by": "voice-owner-named-by-chase",
+      "owner": "chase+agent",
+      "estimated_minutes": 30,
+      "depends_on": [],
+      "prompt": "Per HANDOFF_TO_COS_VOICE_SYSTEM.md, no voice owner is named yet for Big Muddy Records or Big Muddy Entertainment. Until Chase names one, Humanizer defaults them to Chase's voice with the 'soul-and-history register, not features-and-benefits register' override per memory/feedback_chase_voice.md.\n\nWhen Chase names an owner, mirror the Tracy/Amy onboarding task pattern."
+    },
+    {
+      "id": "P27-radio-voice-routing-rule",
+      "title": "Big Muddy Radio voice-routing rule",
+      "status": "blocked",
+      "blocked_by": "amy-and-tracy-voice-docs-locked",
+      "owner": "agent",
+      "estimated_minutes": 30,
+      "depends_on": [
+        "P25-voice-ingestion-pipeline"
+      ],
+      "prompt": "Once Amy + Tracy voice docs exist (alongside Chase's), add a routing rule to memory/feedback_humanizer.md:\n\n'For Big Muddy Radio copy, identify the speaker first. Assign by segment type: hosted segments \u2192 speaker's voice doc; station-level copy (IDs, promos, web descriptions) \u2192 Chase's station-owner voice. Never blend the three voices into a single \"radio voice\" \u2014 sounds like a committee.'\n\nUpdate memory/MEMORY.md."
+    },
+    {
+      "id": "P28-bearsville-activation-planning",
+      "title": "Bearsville activation \u2014 start after Chase property walk-through",
+      "status": "blocked",
+      "blocked_by": "chase-bearsville-visit-next-week",
+      "owner": "chase+agent",
+      "estimated_minutes": 240,
+      "depends_on": [],
+      "prompt": "Chase visits Bearsville next week to walk the property and set the activation plan. Until then, do nothing. After visit, Chase will define scope. Likely first work: site copy refresh on bearsvillemediagroup.com using existing Bearsville Studio Agent (.claude/agents/BEARSVILLE_STUDIO.md), Marika partnership exploration (per project_people_marika.md), Studio C clone-out for the Northeast region. Read project_two_region_model.md and project_bearsville_publishing_model.md before starting."
     }
   ]
 }

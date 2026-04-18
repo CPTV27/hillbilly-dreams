@@ -1,8 +1,8 @@
 # Hillbilly Dreams Agent Queue
 
-*Last sync: 2026-04-18T02:17:28*
+*Last sync: 2026-04-18T02:32:08*
 
-Status counts: 5 done · 0 running · 13 ready · 4 blocked · **22 total**
+Status counts: 5 done · 0 running · 14 ready · 8 blocked · **27 total**
 
 ## How to use this
 
@@ -19,7 +19,7 @@ Each project below is **paste-ready** — copy the prompt into a fresh Claude or
 
 ---
 
-## ○ Ready (13)
+## ○ Ready (14)
 
 ### `P04-press-seed` — Press seed → ingest → flip canonical
 
@@ -202,8 +202,28 @@ On Hetzner server: 1) Install Watchtower container, schedule weekly 03:00 UTC Su
 ```
 </details>
 
+### `P24-amy-voice-onboarding` — Create Amy voice-onboarding Asana task
 
-## ✕ Blocked (4)
+**Owner:** agent · **Est:** ~15 min
+
+<details><summary>Show prompt</summary>
+
+```
+Per .claude/agents/HANDOFF_TO_COS_VOICE_SYSTEM.md, mirror Tracy's task (Asana ID 1214126060819601 in Big Muddy Magazine GID 1213945999434115).
+
+For Amy:
+- Assignee: Amy Allen, amyaldersonallen@gmail.com
+- Project: Big Muddy Radio if it exists, else 'Amy — Inn & Bar Ops' workstream, else create one
+- Title: 'Voice onboarding — Amy'
+- Body: Same five-channel ask as Tracy's (forwarded emails / Drive folder / pasted comments / voice memo / public links) BUT weight toward voice memos. Lead the ask with: 'Talk into your phone for 10 min about last Saturday's show. That's worth more than a polished essay.'
+- No deadline
+
+Use the Asana MCP tool. Then update this project: status=done, shipped_at=now.
+```
+</details>
+
+
+## ✕ Blocked (8)
 
 ### `P14-migrate-postiz-notebook` — Migrate Postiz + Open Notebook off mini
 
@@ -220,6 +240,22 @@ On Hetzner server: 1) Install Watchtower container, schedule weekly 03:00 UTC Su
 ### `P21-team-immich-invites` — Invite Tracy + Amy + JP to Immich + iOS app setup
 
 **Owner:** chase · **Est:** ~20 min · **Blocked by:** decision-from-tracy-amy-meeting
+
+### `P25-voice-ingestion-pipeline` — Voice-sample ingestion pipeline (Tracy + Amy)
+
+**Owner:** agent · **Est:** ~90 min · **Blocked by:** samples-from-Tracy-or-Amy-arrive
+
+### `P26-records-entertainment-voice-docs` — Voice docs for Records + Entertainment brands
+
+**Owner:** chase+agent · **Est:** ~30 min · **Blocked by:** voice-owner-named-by-chase
+
+### `P27-radio-voice-routing-rule` — Big Muddy Radio voice-routing rule
+
+**Owner:** agent · **Est:** ~30 min · **Blocked by:** amy-and-tracy-voice-docs-locked · **Depends on:** P25-voice-ingestion-pipeline
+
+### `P28-bearsville-activation-planning` — Bearsville activation — start after Chase property walk-through
+
+**Owner:** chase+agent · **Est:** ~240 min · **Blocked by:** chase-bearsville-visit-next-week
 
 
 ## ✓ Done (5)
