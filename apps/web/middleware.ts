@@ -104,6 +104,18 @@ export async function middleware(request: NextRequest) {
     return res;
   }
 
+  // Internal-only static HTML dashboards — overview, review board, etc.
+  // Served directly from /public without tenant rewriting.
+  if (
+    pathname === '/overview.html' ||
+    pathname === '/review-board.html' ||
+    pathname.endsWith('.html')
+  ) {
+    const res = NextResponse.next();
+    res.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    return res;
+  }
+
   // Helper: build a rewrite path, avoiding double/trailing slashes
   const rewriteTo = (prefix: string, path: string) => {
     const normalized = path === '/' ? '' : path;
