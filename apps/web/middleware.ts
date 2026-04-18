@@ -95,6 +95,12 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // ── Plan landing page — public, no domain rewriting ──
+  // Single front-door page for partners/agents to view all docs at a glance.
+  if (pathname === '/plan' || pathname.startsWith('/plan/')) {
+    return NextResponse.next();
+  }
+
   // Press mocks — internal-only static HTML under /public/press.
   // Auth gate temporarily disabled so Tracy/Amy can access via direct links.
   // TODO: Re-enable auth after team has accounts. Each file has an internal-only banner.
