@@ -1,7 +1,7 @@
 {
   "_doc": "Hillbilly Dreams agent queue. Read by scripts/router/{next,ship,status,block,unblock}.sh. Each project is self-contained: paste 'prompt' into a fresh Claude/Cursor agent and they have everything they need.",
   "_status_values": "blocked | ready | running | done",
-  "_updated": "2026-04-18T01:34:40",
+  "_updated": "2026-04-18T01:59:35",
   "queue": [
     {
       "id": "P02-hetzner-ssh",
@@ -186,6 +186,18 @@
         "P15-synology-external"
       ],
       "prompt": "Execute Phase 7 of /Users/chasethis/.claude/plans/cozy-beaming-minsky.md. Lightroom exports via immich-go from MBP. Mini photo folders via rsync to /mnt/storage-box/photos/external/mini/. GCS approved bucket via rclone nightly cron to /mnt/storage-box/photos/external/gcs-touring-approved/. All as External Libraries except iPhone (which is uploaded library)."
+    },
+    {
+      "id": "P19-elijah-commerce-pipeline",
+      "title": "Studio C commerce-export pipeline (Immich \u2192 GCS \u2192 Gallery)",
+      "status": "blocked",
+      "blocked_by": "P13-hetzner-phase4-immich",
+      "owner": "agent",
+      "estimated_minutes": 240,
+      "depends_on": [
+        "P13-hetzner-phase4-immich"
+      ],
+      "prompt": "Per docs/STUDIO_C_PHOTO_ARCHIVE_WORKFLOW.md, build the commerce export layer that runs on top of Immich:\n\n1. 4TB drive rsync \u2192 /mnt/storage-box/photos/4tb/ (one-time, 2 hrs)\n2. Lightroom CC scraper using gallery-dl \u2192 /mnt/storage-box/photos/lightroom-cc/ (3 hrs)\n3. Immich webhook \u2192 cron job that reads photos tagged 'ready-for-sale', generates web JPEG + high-res TIFF, uploads to GCS gs://bmt-media-bigmuddy/archive/<slug>/ (1 day)\n4. Gallery site picks up from archive/ bucket \u2014 already exists, just point it at the new path (0.5 day)\n5. Print-on-demand integration with Bay Photo (fine-art) + Printful (merch) \u2014 partner choice from Tracy meeting (2-3 days)\n\nElijah only touches Immich tags. Everything else is automatic.\nReference: docs/STUDIO_C_PHOTO_ARCHIVE_WORKFLOW.md"
     }
   ]
 }

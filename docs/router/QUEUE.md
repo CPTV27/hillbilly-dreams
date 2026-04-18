@@ -1,8 +1,8 @@
 # Hillbilly Dreams Agent Queue
 
-*Last sync: 2026-04-18T01:34:40*
+*Last sync: 2026-04-18T01:59:35*
 
-Status counts: 0 done · 0 running · 8 ready · 9 blocked · **17 total**
+Status counts: 0 done · 0 running · 8 ready · 10 blocked · **18 total**
 
 ## How to use this
 
@@ -135,7 +135,7 @@ When done: typecheck, commit, push.
 </details>
 
 
-## ✕ Blocked (9)
+## ✕ Blocked (10)
 
 ### `P02-hetzner-ssh` — Unblock Hetzner SSH (Phase 0)
 
@@ -172,6 +172,10 @@ When done: typecheck, commit, push.
 ### `P18-hetzner-phase7` — Hetzner Phase 7: bulk photo source ingestion
 
 **Owner:** agent · **Est:** ~180 min · **Blocked by:** P15-synology-external · **Depends on:** P15-synology-external
+
+### `P19-elijah-commerce-pipeline` — Studio C commerce-export pipeline (Immich → GCS → Gallery)
+
+**Owner:** agent · **Est:** ~240 min · **Blocked by:** P13-hetzner-phase4-immich · **Depends on:** P13-hetzner-phase4-immich
 
 
 ---
