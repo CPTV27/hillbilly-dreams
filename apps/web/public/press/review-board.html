@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Muddy — The Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #1A1613;
+    --mud: #3B2F2F;
+    --terra: #B85042;
+    --gold: #C8943E;
+    --sand: #E7E8D1;
+    --cream: #F5F0EB;
+    --paper: #FAF6F1;
+    --sage: #A7BEAE;
+    --green: #27AE60;
+    --yellow: #F39C12;
+    --red: #C0392B;
+    --mid: #7A7067;
+    --body: #3B2F2F;
+    --body-soft: #574A45;
+    --blue: #4A90D9;
+    --rule: rgba(59,47,47,0.12);
+    --gold-soft: rgba(200,148,62,0.08);
+    --radius: 4px;
+    --shadow-sm: 0 1px 3px rgba(26,22,19,0.06), 0 1px 2px rgba(26,22,19,0.04);
+    --shadow-md: 0 4px 18px rgba(26,22,19,0.08), 0 1px 4px rgba(26,22,19,0.05);
+    --shadow-lg: 0 18px 50px rgba(26,22,19,0.12), 0 6px 14px rgba(26,22,19,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--paper); color: var(--body); line-height: 1.7; font-weight: 400; }
+
+  /* ============== TOP NAV ============== */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(26,22,19,0.95);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    padding: 0.55rem 1.6rem;
+    display: flex; gap: 0.15rem; overflow-x: auto;
+    border-bottom: 1px solid rgba(200,148,62,0.18);
+  }
+  .nav a {
+    color: var(--gold); text-decoration: none;
+    font-size: 0.72rem; font-family: 'Inter', sans-serif;
+    font-weight: 500; letter-spacing: 0.04em;
+    white-space: nowrap; padding: 0.35rem 0.7rem;
+    border-radius: 3px; transition: all 0.25s ease; opacity: 0.72;
+  }
+  .nav a:hover { background: rgba(200,148,62,0.12); opacity: 1; }
+  .nav a.active { background: var(--terra); color: white; opacity: 1; }
+  .nav-mark {
+    color: var(--gold); font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 0.82rem; padding: 0.35rem 0.8rem 0.35rem 0;
+    border-right: 1px solid rgba(200,148,62,0.22); margin-right: 0.5rem;
+    flex-shrink: 0; opacity: 0.85;
+  }
+
+  main { margin-top: 44px; }
+
+  /* ============== SECTIONS ============== */
+  section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  section.dark-section { background: var(--dark); color: var(--cream); max-width: none; }
+  section.dark-section .inner { max-width: 1100px; margin: 0 auto; }
+  section.cream-section { background: var(--cream); max-width: none; }
+  section.cream-section .inner { max-width: 1100px; margin: 0 auto; }
+  section.paper-section { background: var(--paper); max-width: none; }
+  section.paper-section .inner { max-width: 1100px; margin: 0 auto; }
+
+  /* ============== TYPOGRAPHY ============== */
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--terra); margin-bottom: 1.1rem;
+  }
+  .eyebrow.gold { color: var(--gold); }
+  .eyebrow.sand { color: var(--sand); }
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900; font-size: clamp(2.6rem, 6vw, 4.6rem);
+    line-height: 0.98; letter-spacing: -0.025em;
+    color: var(--dark); margin-bottom: 1rem;
+  }
+  h1.light { color: var(--cream); }
+  h1 em { font-style: italic; color: var(--terra); font-weight: 700; }
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700; font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.05; letter-spacing: -0.018em;
+    color: var(--dark); margin-bottom: 0.6rem;
+  }
+  h2.light { color: var(--cream); }
+  h2 em { font-style: italic; color: var(--terra); font-weight: 700; }
+  h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700; font-size: 1.4rem;
+    color: var(--dark); margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  h4 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600; font-size: 0.78rem;
+    color: var(--terra); margin-bottom: 0.4rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .deck {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+    line-height: 1.45; color: var(--body-soft); font-style: italic;
+    font-weight: 400; max-width: 640px; margin-bottom: 2.5rem;
+  }
+  .deck.light { color: var(--sand); }
+  p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.02rem; line-height: 1.75;
+    color: var(--body); margin-bottom: 1.2rem;
+    font-weight: 400;
+  }
+  p.lede {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.4rem; line-height: 1.55;
+    color: var(--dark); margin-bottom: 1.8rem;
+    font-weight: 400;
+  }
+  p.lede::first-letter {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900; font-size: 4.2rem;
+    float: left; line-height: 0.85;
+    padding: 0.32rem 0.55rem 0 0;
+    color: var(--terra);
+  }
+  strong { color: var(--dark); font-weight: 600; }
+  em { color: var(--mud); }
+  .body-light p, .body-light { color: var(--cream); }
+  .body-light strong { color: var(--gold); }
+
+  /* ============== PULL QUOTE ============== */
+  .pullquote {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic; font-weight: 400;
+    font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+    line-height: 1.35; color: var(--mud);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 2rem 0; margin: 2.5rem 0;
+    text-align: center;
+  }
+  .pullquote .attr {
+    display: block; font-family: 'Inter', sans-serif;
+    font-style: normal; font-size: 0.74rem;
+    font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--terra);
+    margin-top: 1rem;
+  }
+
+  /* ============== HERO ============== */
+  .hero {
+    position: relative; min-height: 92vh;
+    background: var(--dark); overflow: hidden;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0;
+  }
+  .hero img.bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.55;
+  }
+  .hero .grad {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(26,22,19,0.55) 0%,
+      rgba(26,22,19,0.4) 40%,
+      rgba(26,22,19,0.85) 80%,
+      rgba(26,22,19,0.98) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 4rem 2rem 5rem;
+    max-width: 1100px; margin: 0 auto; width: 100%;
+  }
+  .hero-mark {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 2.2rem;
+  }
+  .hero-mark img {
+    height: 64px; width: auto;
+    border-radius: 6px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  }
+  .hero-mark .mark-text {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold); font-weight: 700;
+    font-size: 1.05rem; letter-spacing: 0.05em;
+  }
+  .hero-mark .mark-sub {
+    display: block; font-family: 'Inter', sans-serif;
+    color: var(--mid); font-weight: 500; font-size: 0.7rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    margin-top: 0.18rem;
+  }
+  .hero h1 { color: var(--cream); margin-bottom: 1.4rem; }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+  .hero .hero-deck {
+    font-family: 'Playfair Display', serif;
+    color: var(--sand); font-style: italic;
+    font-size: clamp(1.25rem, 2vw, 1.65rem);
+    line-height: 1.45; max-width: 720px;
+    font-weight: 400;
+  }
+  .hero .hero-meta {
+    margin-top: 3rem; display: flex; gap: 2.5rem;
+    flex-wrap: wrap; padding-top: 2rem;
+    border-top: 1px solid rgba(200,148,62,0.22);
+    max-width: 720px;
+  }
+  .hero .hero-meta .meta-item {
+    font-family: 'Inter', sans-serif; font-size: 0.72rem;
+    color: var(--gold); font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .hero .hero-meta .meta-item span {
+    display: block; color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 0.95rem;
+    margin-top: 0.25rem; letter-spacing: 0; text-transform: none;
+    font-weight: 400;
+  }
+
+  /* ============== SECTION HERO IMAGE ============== */
+  .section-hero {
+    position: relative; height: 56vh; min-height: 380px;
+    margin: 0 -2rem 3rem;
+    overflow: hidden; border-radius: 0;
+  }
+  .section-hero img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .section-hero .grad {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top,
+      rgba(26,22,19,0.85) 0%,
+      rgba(26,22,19,0.35) 40%,
+      rgba(26,22,19,0.05) 100%);
+  }
+  .section-hero .caption {
+    position: absolute; left: 2rem; bottom: 1.6rem;
+    z-index: 2; max-width: 600px;
+  }
+  .section-hero .caption .label {
+    font-family: 'Inter', sans-serif;
+    color: var(--gold); font-size: 0.7rem;
+    font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+  .section-hero .caption .title {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream); font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700; line-height: 1.1; letter-spacing: -0.015em;
+  }
+  .section-hero .caption .title em { color: var(--gold); font-style: italic; }
+
+  /* ============== CARDS ============== */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin: 2rem 0; }
+  .card-grid.tight { gap: 0.8rem; }
+  .card-grid.three { grid-template-columns: repeat(3, 1fr); }
+  .card {
+    background: white; border-radius: var(--radius);
+    padding: 1.6rem 1.7rem;
+    box-shadow: var(--shadow-sm);
+    border-top: 3px solid var(--gold);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .card.terra { border-top-color: var(--terra); }
+  .card.sage { border-top-color: var(--sage); }
+  .card.green { border-top-color: var(--green); }
+  .card.blue { border-top-color: var(--blue); }
+  .card.dark { background: var(--dark); color: var(--cream); border-top-color: var(--gold); }
+  .card.dark p { color: rgba(245,240,235,0.85); }
+  .card.dark strong { color: var(--gold); }
+  .card.dark h3 { color: var(--cream); }
+  .card .card-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    color: var(--terra); letter-spacing: 0.16em;
+    text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+  .card.dark .card-eyebrow { color: var(--gold); }
+  .card h3 { margin-bottom: 0.6rem; font-size: 1.25rem; }
+  .card p { font-family: 'Inter', sans-serif; font-size: 0.94rem; line-height: 1.65; color: var(--body); }
+  .card p:last-child { margin-bottom: 0; }
+  .card .figure {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900;
+    color: var(--terra); line-height: 1;
+    margin: 0.8rem 0 0.3rem;
+  }
+  .card.dark .figure { color: var(--gold); }
+  .card .figure-sub {
+    font-family: 'Inter', sans-serif; font-size: 0.75rem;
+    color: var(--mid); letter-spacing: 0.06em;
+    text-transform: uppercase; font-weight: 500;
+  }
+
+  /* ============== VERTICAL LAYERS ============== */
+  .verticals {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem; margin: 2rem 0;
+  }
+  .vertical {
+    background: white; border-radius: var(--radius);
+    padding: 2rem 1.8rem; box-shadow: var(--shadow-md);
+    border-top: 5px solid var(--gold);
+    display: flex; flex-direction: column;
+  }
+  .vertical.terra { border-top-color: var(--terra); }
+  .vertical.sage { border-top-color: var(--sage); }
+  .vertical.gold { border-top-color: var(--gold); }
+  .vertical .label {
+    font-family: 'Inter', sans-serif; font-weight: 700;
+    font-size: 0.72rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--terra);
+    margin-bottom: 0.6rem;
+  }
+  .vertical.sage .label { color: var(--sage); }
+  .vertical.gold .label { color: var(--gold); }
+  .vertical h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem; font-weight: 700;
+    color: var(--dark); margin-bottom: 0.5rem;
+    letter-spacing: -0.015em;
+  }
+  .vertical .owner {
+    font-family: 'Inter', sans-serif; font-size: 0.85rem;
+    color: var(--body-soft); font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .vertical .owner strong { color: var(--mud); font-weight: 600; }
+  .vertical .target {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 900;
+    color: var(--terra); margin: 0.5rem 0 0.2rem;
+    line-height: 1;
+  }
+  .vertical.sage .target { color: var(--sage); }
+  .vertical.gold .target { color: var(--gold); }
+  .vertical .target-label {
+    font-family: 'Inter', sans-serif; font-size: 0.7rem;
+    color: var(--mid); letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 600;
+    margin-bottom: 1.2rem;
+  }
+  .vertical .desc {
+    font-family: 'Inter', sans-serif; font-size: 0.92rem;
+    line-height: 1.6; color: var(--body); margin-bottom: 1rem;
+  }
+  .vertical .breakdown {
+    margin-top: auto; padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+  }
+  .vertical .breakdown li {
+    list-style: none; padding: 0.4rem 0;
+    font-family: 'Inter', sans-serif; font-size: 0.85rem;
+    color: var(--body-soft); line-height: 1.5;
+    border-bottom: 1px solid var(--gold-soft);
+  }
+  .vertical .breakdown li:last-child { border-bottom: none; }
+  .vertical .breakdown li strong { color: var(--mud); }
+
+  /* ============== FLYWHEEL ============== */
+  .flywheel {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    align-items: center; gap: 0.5rem; margin: 2rem 0 2.5rem;
+  }
+  .fly-step {
+    background: var(--dark); color: var(--gold);
+    padding: 0.85rem 1.3rem; border-radius: var(--radius);
+    font-family: 'Inter', sans-serif; font-size: 0.82rem;
+    font-weight: 600; letter-spacing: 0.03em;
+    transition: all 0.3s ease; box-shadow: var(--shadow-sm);
+  }
+  .fly-step:hover {
+    background: var(--mud); transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .fly-arrow {
+    color: var(--terra); font-size: 1.3rem;
+    display: flex; align-items: center; opacity: 0.55;
+    font-weight: 700;
+  }
+
+  /* ============== TABLES ============== */
+  .rev-table {
+    width: 100%; border-collapse: separate; border-spacing: 0;
+    margin: 2rem 0; font-family: 'Inter', sans-serif;
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow-sm); background: white;
+  }
+  .rev-table th {
+    background: var(--dark); color: var(--gold);
+    padding: 0.95rem 1.2rem; text-align: left;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .rev-table th.num { text-align: right; }
+  .rev-table td {
+    padding: 0.95rem 1.2rem;
+    border-bottom: 1px solid var(--gold-soft);
+    font-size: 0.92rem; color: var(--body);
+    background: white;
+  }
+  .rev-table td.num {
+    text-align: right;
+    color: var(--terra); font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+  }
+  .rev-table tr:last-child td { border-bottom: none; }
+  .rev-table tr:hover td { background: rgba(200,148,62,0.04); }
+  .rev-table td:first-child {
+    font-weight: 600; color: var(--mud);
+  }
+  .rev-table .total-row td {
+    background: var(--dark); color: var(--gold);
+    font-weight: 700; font-size: 1rem;
+  }
+  .rev-table .total-row td.num {
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+  }
+
+  /* ============== TEAM ============== */
+  .team-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin: 2rem 0;
+  }
+  .partner-card {
+    background: white; border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .partner-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .partner-card .photo-area {
+    height: 220px; background: var(--mud);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-family: 'Playfair Display', serif;
+    font-size: 4.5rem; font-weight: 900; letter-spacing: -0.03em;
+    position: relative; overflow: hidden;
+  }
+  .partner-card .photo-area::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 30%,
+      rgba(200,148,62,0.18) 0%, transparent 60%);
+  }
+  .partner-card.terra .photo-area { background: var(--terra); color: var(--cream); }
+  .partner-card.sage .photo-area { background: var(--sage); color: var(--mud); }
+  .partner-card.gold .photo-area { background: var(--gold); color: var(--dark); }
+  .partner-card .body {
+    padding: 1.5rem 1.6rem;
+  }
+  .partner-card .name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--dark); line-height: 1.1;
+    letter-spacing: -0.01em; margin-bottom: 0.2rem;
+  }
+  .partner-card .title-line {
+    font-family: 'Inter', sans-serif; font-size: 0.78rem;
+    font-weight: 600; color: var(--terra);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .partner-card .role {
+    font-family: 'Inter', sans-serif; font-size: 0.92rem;
+    line-height: 1.6; color: var(--body); margin-bottom: 1rem;
+  }
+  .partner-card .equity {
+    padding-top: 1rem; border-top: 1px solid var(--rule);
+    font-family: 'Inter', sans-serif; font-size: 0.78rem;
+    color: var(--mid); letter-spacing: 0.06em;
+    text-transform: uppercase; font-weight: 600;
+  }
+  .partner-card .equity strong {
+    color: var(--gold); font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700;
+    letter-spacing: 0; text-transform: none;
+  }
+
+  .partners-note {
+    background: var(--cream); border-radius: var(--radius);
+    padding: 1.3rem 1.6rem; margin: 1.5rem 0 0;
+    border-left: 3px solid var(--gold);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.93rem; color: var(--body-soft);
+    line-height: 1.65;
+  }
+  .partners-note strong { color: var(--mud); }
+
+  /* ============== SPRINT GRID ============== */
+  .sprint-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1rem; margin: 2rem 0;
+  }
+  .sprint {
+    background: white; border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease;
+  }
+  .sprint:hover { transform: translateY(-3px); }
+  .sprint .head {
+    background: var(--terra); color: white;
+    padding: 1.1rem 1rem; text-align: center;
+  }
+  .sprint .head .week {
+    font-family: 'Inter', sans-serif; font-size: 0.65rem;
+    font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.16em; opacity: 0.8;
+  }
+  .sprint .head .theme {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    letter-spacing: -0.01em; margin-top: 0.3rem;
+    line-height: 1.15;
+  }
+  .sprint .tasks { padding: 1.2rem; }
+  .sprint .task {
+    font-family: 'Inter', sans-serif; font-size: 0.85rem;
+    font-weight: 400; padding: 0.55rem 0;
+    border-bottom: 1px solid var(--gold-soft);
+    color: var(--body); line-height: 1.5;
+  }
+  .sprint .task:last-child { border-bottom: none; }
+  .sprint .task strong { color: var(--mud); }
+
+  /* ============== PLAN LIST ============== */
+  .plan-list {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem; margin: 2rem 0; list-style: none;
+  }
+  .plan-item {
+    background: white; border-radius: var(--radius);
+    padding: 1.3rem 1.5rem; box-shadow: var(--shadow-sm);
+    border-left: 3px solid var(--terra);
+    font-family: 'Inter', sans-serif;
+  }
+  .plan-item .tag {
+    font-size: 0.65rem; font-weight: 700;
+    color: var(--terra); letter-spacing: 0.16em;
+    text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+  .plan-item .goal {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--dark);
+    font-weight: 700; line-height: 1.35;
+    letter-spacing: -0.005em;
+  }
+
+  /* ============== PACKAGE BLOCKS ============== */
+  .package-section {
+    background: white; border-radius: var(--radius);
+    padding: 1.8rem 2rem; margin: 1.4rem 0;
+    box-shadow: var(--shadow-sm);
+    border-left: 3px solid var(--gold);
+  }
+  .package-section.terra { border-left-color: var(--terra); }
+  .package-section.sage { border-left-color: var(--sage); }
+  .package-section .pkg-head {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--dark); margin-bottom: 0.3rem;
+    letter-spacing: -0.01em;
+  }
+  .package-section .pkg-sub {
+    font-family: 'Inter', sans-serif; font-size: 0.82rem;
+    color: var(--mid); margin-bottom: 1.2rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    font-weight: 600;
+  }
+  .pkg-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem; margin-top: 1rem;
+  }
+  .pkg {
+    background: var(--paper); border-radius: var(--radius);
+    padding: 1.2rem 1.3rem;
+    border: 1px solid var(--rule);
+  }
+  .pkg .pkg-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700;
+    color: var(--mud); margin-bottom: 0.3rem;
+    letter-spacing: -0.01em;
+  }
+  .pkg .pkg-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--terra); margin-bottom: 0.7rem;
+    line-height: 1;
+  }
+  .pkg .pkg-price .pkg-cycle {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem; color: var(--mid);
+    font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .pkg .pkg-includes {
+    font-family: 'Inter', sans-serif; font-size: 0.85rem;
+    color: var(--body); line-height: 1.55;
+  }
+
+  /* ============== STAT BANNER ============== */
+  .stat-banner {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; background: var(--dark); border-radius: var(--radius);
+    overflow: hidden; margin: 2.5rem 0;
+    box-shadow: var(--shadow-lg);
+  }
+  .stat {
+    padding: 2rem 1.5rem; text-align: center;
+    border-right: 1px solid rgba(200,148,62,0.18);
+  }
+  .stat:last-child { border-right: none; }
+  .stat .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 900;
+    color: var(--gold); line-height: 1;
+    letter-spacing: -0.025em;
+  }
+  .stat .stat-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem; color: var(--sand);
+    margin-top: 0.6rem; letter-spacing: 0.14em;
+    text-transform: uppercase; font-weight: 500;
+  }
+
+  /* ============== WHERE WE STAND ============== */
+  .standing-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem; margin: 2rem 0;
+  }
+  .standing {
+    background: white; border-radius: var(--radius);
+    padding: 1.5rem 1.6rem; box-shadow: var(--shadow-sm);
+    border-top: 3px solid var(--gold);
+  }
+  .standing .s-label {
+    font-family: 'Inter', sans-serif; font-size: 0.68rem;
+    font-weight: 700; color: var(--terra);
+    letter-spacing: 0.14em; text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .standing .s-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem; font-weight: 900;
+    color: var(--dark); line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+  }
+  .standing .s-sub {
+    font-family: 'Inter', sans-serif; font-size: 0.82rem;
+    color: var(--body-soft); line-height: 1.5;
+  }
+
+  /* ============== MAGAZINE COLOPHON ============== */
+  .colophon {
+    background: var(--dark); padding: 2.2rem 2rem;
+    text-align: center; color: var(--mid);
+    font-family: 'Inter', sans-serif; font-size: 0.72rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    border-top: 1px solid rgba(200,148,62,0.18);
+  }
+  .colophon span { color: var(--gold); }
+
+  /* Fade-in animation */
+  section.fade { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  section.fade.visible { opacity: 1; transform: translateY(0); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--paper); }
+  ::-webkit-scrollbar-thumb { background: rgba(200,148,62,0.35); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(200,148,62,0.55); }
+
+  @media (max-width: 880px) {
+    .verticals, .team-grid, .stat-banner, .card-grid.three { grid-template-columns: 1fr; }
+    .sprint-grid { grid-template-columns: 1fr 1fr; }
+    .stat { border-right: none; border-bottom: 1px solid rgba(200,148,62,0.18); }
+    .stat:last-child { border-bottom: none; }
+    section { padding: 3rem 1.4rem; }
+    .hero-content { padding: 3rem 1.4rem 4rem; }
+    .section-hero { margin: 0 -1.4rem 2rem; height: 42vh; }
+    .section-hero .caption { left: 1.4rem; bottom: 1.2rem; }
+  }
+  @media (max-width: 540px) {
+    .sprint-grid { grid-template-columns: 1fr; }
+    p.lede::first-letter { font-size: 3.4rem; }
+    .hero-mark img { height: 50px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== PASSWORD GATE ============== -->
+<div id="gate" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:var(--dark);display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity 0.5s ease;">
+  <div style="text-align:center;max-width:340px;padding:0 1.5rem;">
+    <div style="font-family:'Inter',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);margin-bottom:1rem;">Internal Document</div>
+    <h1 style="color:var(--cream);font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;margin-bottom:0.3rem;letter-spacing:-0.02em;line-height:1.05;">Big <em style="color:var(--gold);font-style:italic;">Muddy</em></h1>
+    <p style="color:var(--sand);font-family:'Playfair Display',serif;font-style:italic;font-size:0.95rem;margin-top:0.4rem;">The business.</p>
+    <div style="width:40px;height:2px;background:var(--gold);margin:1.4rem auto;"></div>
+    <input id="pw" type="password" placeholder="Password" autofocus style="display:block;margin:0 auto;padding:0.75rem 1.2rem;font-size:1rem;border:1px solid rgba(200,148,62,0.3);background:rgba(59,47,47,0.5);color:var(--cream);border-radius:4px;text-align:center;width:220px;font-family:'Inter',sans-serif;font-weight:400;letter-spacing:0.1em;outline:none;transition:border-color 0.3s ease;" onfocus="this.style.borderColor='rgba(200,148,62,0.6)'" onblur="this.style.borderColor='rgba(200,148,62,0.3)'" onkeydown="if(event.key==='Enter')checkPw()">
+    <button onclick="checkPw()" style="display:block;margin:1rem auto 0;padding:0.6rem 2.4rem;background:var(--terra);color:white;border:none;border-radius:4px;font-size:0.85rem;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;letter-spacing:0.06em;transition:background 0.3s ease,transform 0.15s ease;text-transform:uppercase;" onmouseover="this.style.background='#a04538'" onmouseout="this.style.background='var(--terra)'" onmousedown="this.style.transform='scale(0.97)'" onmouseup="this.style.transform='scale(1)'">Enter</button>
+    <p id="pw-err" style="color:var(--terra);margin-top:1rem;font-family:'Inter',sans-serif;font-size:0.8rem;display:none;font-weight:400;">Incorrect password.</p>
+  </div>
+</div>
+<script>
+function checkPw(){
+  var p=document.getElementById('pw').value;
+  if(p==='1966'){
+    var gate=document.getElementById('gate');
+    gate.style.opacity='0';
+    setTimeout(function(){ gate.style.display='none'; document.body.style.overflow='auto'; },500);
+  } else {
+    document.getElementById('pw-err').style.display='block';
+    var input=document.getElementById('pw');
+    input.style.borderColor='var(--terra)';
+    input.value='';
+    setTimeout(function(){ input.style.borderColor='rgba(200,148,62,0.3)'; },1500);
+  }
+}
+document.body.style.overflow='hidden';
+</script>
+
+<!-- ============== TOP NAV ============== -->
+<nav class="nav" id="nav">
+  <span class="nav-mark">Big Muddy</span>
+  <a href="#opening">What It Is</a>
+  <a href="#how">How It Works</a>
+  <a href="#hospitality">Hospitality</a>
+  <a href="#entertainment">Entertainment</a>
+  <a href="#marketing">Local Marketing</a>
+  <a href="#money">How It Makes Money</a>
+  <a href="#catalog">The Catalog</a>
+  <a href="#people">The People</a>
+  <a href="#standing">Where We Stand</a>
+  <a href="#plan">The Plan</a>
+  <a href="#sprints">Next 30 Days</a>
+</nav>
+
+<main>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <img class="bg" src="https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp" alt="The Mississippi River">
+  <div class="grad"></div>
+  <div class="hero-content">
+    <div class="hero-mark">
+      <img src="https://storage.googleapis.com/bmt-media-bigmuddy/branding/hdi-logo-rhinestone.jpg" alt="Hillbilly Dreams Inc">
+      <div>
+        <div class="mark-text">Big Muddy</div>
+        <span class="mark-sub">Music &middot; Hospitality &middot; Media</span>
+      </div>
+    </div>
+    <div class="eyebrow gold">The Business Plan</div>
+    <h1>Big <em>Muddy</em>.</h1>
+    <p class="hero-deck">A music and media company in Natchez, Mississippi. An inn, a bar, a stage, a touring van. A magazine, a video podcast, a record label. A directory of every venue between here and Memphis, with a publicity engine running on top.</p>
+    <div class="hero-meta">
+      <div class="meta-item">Filed<span>April 17, 2026</span></div>
+      <div class="meta-item">Company<span>Hillbilly Dreams Inc</span></div>
+      <div class="meta-item">Anchor<span>The Big Muddy Inn, Natchez</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== WHAT IT IS ============== -->
+<section id="opening" class="fade paper-section">
+  <div class="inner">
+    <div class="eyebrow">Plain English</div>
+    <h2>What Big Muddy <em>Is</em>.</h2>
+
+    <p class="lede">Big Muddy is a music and media company in Natchez, Mississippi. We run an inn, book shows across the Mississippi corridor, publish a magazine, produce a video podcast, release records, and sell publicity packages to local businesses.</p>
+
+    <p>Three partners own the company equally: <strong>Chase Pierson</strong>, <strong>Tracy Alderson-Allen</strong>, and <strong>Amy Alderson-Allen</strong>. Hillbilly Dreams Inc is the operating company. The center of gravity is a six-suite inn in downtown Natchez with a bar on the ground floor and a small stage in the back.</p>
+
+    <p>From there it spreads out. A Sprinter van for hauling bands up and down the corridor. A magazine with a print run and a website, publishing profiles, show reviews, and music-industry stories from the region &mdash; venues old and new, bands touring through, interviews with artists, studios, and the historical figures that built the Delta sound. A video podcast produced at the Inn, published across Spotify, SoundCloud, YouTube, and TikTok. A small record label that releases the artists who pass through. And a directory of every music venue, restaurant, bar, and hotel between Natchez and Memphis, with publicity packages sold on top of it.</p>
+
+    <div class="pullquote">
+      A small media company can do for a Main Street what the big ones never bothered to.
+      <span class="attr">The Operating Thesis</span>
+    </div>
+
+    <p>The parts feed each other. A band plays the bar on Friday. The magazine writes about the show on Saturday. The podcast features the band in the next episode &mdash; published to Spotify, SoundCloud, YouTube, and TikTok. The venue listing shows a live-music badge. A tourist books a room at the Inn. The band sells records at the merch table. Weddings come in on the weekends. None of these is a big business on its own. Together they are.</p>
+  </div>
+</section>
+
+<!-- ============== HOW IT WORKS ============== -->
+<section id="how" class="fade cream-section">
+  <div class="inner">
+    <div class="eyebrow">How It Works</div>
+    <h2>Three Verticals, One <em>Company</em>.</h2>
+    <p class="deck">Hospitality is the anchor. Entertainment is the engine. Local Marketing is the leverage. Every dollar the company earns lands in one of these three buckets.</p>
+
+    <div class="verticals">
+      <div class="vertical terra">
+        <div class="label">Hospitality</div>
+        <h3>The Anchor</h3>
+        <div class="target">~$300K</div>
+        <div class="target-label">Year One Revenue</div>
+        <p class="desc">Six suites at The Big Muddy Inn. A bar downstairs with twelve show nights a month. Weddings booked as $14,100 packages. The physical thing a customer walks into.</p>
+        <ul class="breakdown">
+          <li><strong>The Inn</strong> — six suites, lifting from 18% to 28% occupancy</li>
+          <li><strong>The Bar</strong> — twelve show nights a month, high-margin pours</li>
+          <li><strong>Weddings</strong> — eight in Y1, sixteen in Y2, twenty in Y3</li>
+        </ul>
+      </div>
+
+      <div class="vertical sage">
+        <div class="label">Entertainment</div>
+        <h3>The Engine</h3>
+        <div class="target">~$146K</div>
+        <div class="target-label">Year One Revenue</div>
+        <p class="desc">Touring the corridor, publishing the magazine, producing the video podcast, releasing records. We book the shows. The production chain runs out of the building.</p>
+        <ul class="breakdown">
+          <li><strong>Big Muddy Touring</strong> — corridor circuit, Sprinter van on the road this week</li>
+          <li><strong>Magazine + Podcast</strong> — AI drafts, human editors finish, regional music-industry coverage</li>
+          <li><strong>Records</strong> — 50/50 NET splits with artists</li>
+        </ul>
+      </div>
+
+      <div class="vertical gold">
+        <div class="label">Local Marketing</div>
+        <h3>The Leverage</h3>
+        <div class="target">~$110K</div>
+        <div class="target-label">Year One Revenue</div>
+        <p class="desc">The Deep South Directory. Free listings for venues, bars, restaurants, hotels, and musicians. Publicity packages sold on top, paid into our own media.</p>
+        <ul class="breakdown">
+          <li><strong>Free listings</strong> — venues, bars, restaurants, hotels, musicians</li>
+          <li><strong>Publicity packages</strong> — $200 to $3,000 per placement</li>
+          <li><strong>Musician catalog</strong> — thirty by July, a hundred by year-end</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stat-banner">
+      <div class="stat">
+        <div class="stat-value">$672K</div>
+        <div class="stat-label">Year One</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">$1.15M</div>
+        <div class="stat-label">Year Two</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">$1.51M</div>
+        <div class="stat-label">Year Three</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">3</div>
+        <div class="stat-label">Partners</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 3rem; margin-bottom: 0.8rem;">The Flywheel</h3>
+    <p>A Friday show at the Blues Room moves through every part of the company by the following Tuesday. Biscuits &amp; Blues is the walkthrough.</p>
+
+    <div class="flywheel">
+      <div class="fly-step">Friday show</div>
+      <div class="fly-arrow">&rsaquo;</div>
+      <div class="fly-step">Saturday magazine article</div>
+      <div class="fly-arrow">&rsaquo;</div>
+      <div class="fly-step">Sunday podcast episode</div>
+      <div class="fly-arrow">&rsaquo;</div>
+      <div class="fly-step">Monday directory badge</div>
+      <div class="fly-arrow">&rsaquo;</div>
+      <div class="fly-step">Tuesday inn booking</div>
+      <div class="fly-arrow">&rsaquo;</div>
+      <div class="fly-step">Band rebooked</div>
+    </div>
+
+    <p>Regina Charboneau's Natchez institution books a Friday night show with a band on the Big Muddy Touring circuit. The magazine runs a Saturday profile. The band is featured in Sunday's podcast episode &mdash; out across Spotify, SoundCloud, YouTube, and TikTok by Monday morning. The venue listing gets a live-music badge Monday. A tourist reading the magazine books a room at the Inn for the band's return date in June. The band comes back. The cycle runs again.</p>
+
+    <div class="pullquote">
+      A $1,000 show generates roughly $500 downstream in inn bookings, bar revenue, magazine pageviews, radio listener growth, record promotion, directory traffic, and wedding inquiries.
+      <span class="attr">The 2:1 multiplier</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== HOSPITALITY ============== -->
+<section id="hospitality" class="fade paper-section" style="padding: 0;">
+  <div class="section-hero" style="margin: 0;">
+    <img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-blue-suite.webp" alt="A suite at The Big Muddy Inn">
+    <div class="grad"></div>
+    <div class="caption">
+      <div class="label">Vertical One</div>
+      <div class="title">The <em>Anchor</em>.</div>
+    </div>
+  </div>
+  <div class="inner" style="padding: 3rem 2rem 5rem; max-width: 1100px; margin: 0 auto;">
+    <div class="eyebrow">Hospitality</div>
+    <h2>The Inn, the Bar, the Weddings.</h2>
+    <p class="deck">Six suites. A stage downstairs. Twenty weddings a year at full run rate.</p>
+
+    <p><strong>The Big Muddy Inn</strong> is six suites above a bar in downtown Natchez. Each suite sleeps two to four. Occupancy sits at 18% today. The plan lifts it to 28% by year-end, which at a $180 average nightly rate is roughly $120,000 in room revenue.</p>
+
+    <p><strong>The Bar</strong> is the ground-floor room. Twelve show nights a month, local pours, a small kitchen, and the stage at the back. Show-night margins on beer and spirits carry the room. The bar is also where out-of-town musicians end up after their sets, which is where magazine interviews happen.</p>
+
+    <p><strong>Weddings</strong> are the highest-margin line in the building. Each package is $14,100 and books the inn, the bar, the stage, and a full-day photography shoot. Eight in Year One, sixteen in Year Two, twenty in Year Three. Weddings turn a small inn into a real company.</p>
+
+    <div class="card-grid three">
+      <div class="card terra">
+        <div class="card-eyebrow">Inn Rooms</div>
+        <h3>Six Suites</h3>
+        <p>18% occupancy today, climbing to 28%. Average nightly rate holds at $180. That's $120K in Y1, rising to $185K in Y3.</p>
+        <div class="figure">$120K</div>
+        <div class="figure-sub">Year One Rooms</div>
+      </div>
+      <div class="card terra">
+        <div class="card-eyebrow">The Bar</div>
+        <h3>Show Nights</h3>
+        <p>Twelve show nights a month. Local clientele on weeknights, touring-band crowds on weekends. The bar carries the building.</p>
+        <div class="figure">$67K</div>
+        <div class="figure-sub">Year One Bar</div>
+      </div>
+      <div class="card terra">
+        <div class="card-eyebrow">Weddings</div>
+        <h3>$14,100 Packages</h3>
+        <p>Full weekend, full inn, full bar, photography included. Eight the first year. Twenty by Year Three.</p>
+        <div class="figure">$113K</div>
+        <div class="figure-sub">Year One Weddings</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ENTERTAINMENT ============== -->
+<section id="entertainment" class="fade dark-section" style="padding: 0;">
+  <div class="section-hero" style="margin: 0;">
+    <img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp" alt="A live show at the Blues Room">
+    <div class="grad"></div>
+    <div class="caption">
+      <div class="label">Vertical Two</div>
+      <div class="title">The <em>Engine</em>.</div>
+    </div>
+  </div>
+  <div class="inner body-light" style="padding: 3rem 2rem 5rem; max-width: 1100px; margin: 0 auto;">
+    <div class="eyebrow gold">Entertainment</div>
+    <h2 class="light">Touring, Magazine, Radio, <em>Records</em>.</h2>
+    <p class="deck light">The production arm. The Sprinter van is on the road this week. The magazine publishes weekly. The video podcast releases new episodes across Spotify, SoundCloud, YouTube, and TikTok. The label books studio time in Memphis.</p>
+
+    <p><strong>Big Muddy Touring</strong> books shows up and down the Mississippi corridor — Natchez to Vicksburg, Clarksdale, Memphis, and the side routes through Greenville and Helena. We handle the booking work. The Sprinter van hauls artists and gear. Corridor routing pays for itself when the Inn fills on the back end of a tour.</p>
+
+    <p><strong>Big Muddy Magazine</strong> publishes profiles, show reviews, corridor travel features, and music-industry stories from the region &mdash; coverage of the venues that built the Delta sound, bands old and new, interviews with artists, studios, and the historical figures behind the music. AI drafts, human editors finish. Print runs on a quarterly cadence; the website runs weekly. Sponsor placements inside the magazine are a real revenue line.</p>
+
+    <p><strong>Big Muddy Radio</strong> is a video podcast produced at the Inn. Every episode features the musicians we work with &mdash; the artists on the corridor tour, the bands playing the bar, the label roster. New episodes publish to Spotify, SoundCloud, YouTube, and TikTok. When a band signs with us, when a record comes out, when a tour rolls through &mdash; they end up on the podcast, in front of an audience that spans four platforms. The show is how every artist we work with gets showcased. A live linear audio and video format launches in Q4 once the podcast audience is at scale.</p>
+
+    <p><strong>Big Muddy Records</strong> is a small label. Three releases in Year One, all 50/50 NET splits with the artist. The label pays for recording at a Memphis studio and funds the physical release. The artist gets a full promotional push through the magazine, the podcast across Spotify/SoundCloud/YouTube/TikTok, and the touring circuit.</p>
+
+    <div class="card-grid three">
+      <div class="card dark">
+        <div class="card-eyebrow">Touring</div>
+        <h3>Corridor Circuit</h3>
+        <p>Twelve show weeks in Y1 on the Mississippi corridor. Sprinter van plus a small road crew.</p>
+        <div class="figure">$92K</div>
+        <div class="figure-sub">Year One Touring</div>
+      </div>
+      <div class="card dark">
+        <div class="card-eyebrow">Magazine + Podcast</div>
+        <h3>Sponsorships</h3>
+        <p>Advertiser placements across the magazine and podcast. Stacks with publicity packages sold through the directory.</p>
+        <div class="figure">$30K</div>
+        <div class="figure-sub">Year One Sponsorships</div>
+      </div>
+      <div class="card dark">
+        <div class="card-eyebrow">Records</div>
+        <h3>50/50 NET</h3>
+        <p>Three releases in Y1. Artist keeps half. The label funds recording and a promotional push across every Big Muddy channel.</p>
+        <div class="figure">$24K</div>
+        <div class="figure-sub">Year One Records</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== LOCAL MARKETING ============== -->
+<section id="marketing" class="fade paper-section" style="padding: 0;">
+  <div class="section-hero" style="margin: 0;">
+    <img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp" alt="A juke joint interior on the corridor">
+    <div class="grad"></div>
+    <div class="caption">
+      <div class="label">Vertical Three</div>
+      <div class="title">The <em>Leverage</em>.</div>
+    </div>
+  </div>
+  <div class="inner" style="padding: 3rem 2rem 5rem; max-width: 1100px; margin: 0 auto;">
+    <div class="eyebrow">Local Marketing</div>
+    <h2>The Deep South Directory.</h2>
+    <p class="deck">A directory of venues, bars, restaurants, hotels, and musicians across the Mississippi corridor. Free listings for everyone. Publicity packages sold on top. That's the revenue line.</p>
+
+    <p>The Directory is at <strong>deepsouthdirectory.com</strong>. Free listings in five categories pull the audience in — a venue owner lists her room, a musician lists his profile, a restaurant lists its Friday-night jazz. The directory becomes the search layer for the corridor.</p>
+
+    <p>On top of the free listings, we sell publicity packages. A musician wanting a feature in the magazine pays $500 to $3,000 for a spotlight. A venue wanting consistent promotion pays $200 a month for ongoing placement. A hotel running a weekend special pays $250 to $300 a month for dedicated media. A brand sponsoring a tour pays $500 to $1,200 for a press run.</p>
+
+    <p>These packages sell into media the company owns &mdash; the magazine, the podcast and its Spotify/SoundCloud/YouTube/TikTok channels, the directory itself, the Big Muddy Touring tour pages. The audience is real and growing. The placements are traceable. The money is straightforward.</p>
+
+    <div class="pullquote">
+      Publicity packages, paid into our own media.
+      <span class="attr">The revenue line</span>
+    </div>
+
+    <div class="package-section terra">
+      <div class="pkg-head">Musician Spotlights</div>
+      <div class="pkg-sub">For independent artists on the corridor</div>
+      <div class="pkg-grid">
+        <div class="pkg">
+          <div class="pkg-name">Profile Feature</div>
+          <div class="pkg-price">$500</div>
+          <div class="pkg-includes">Magazine profile, one podcast episode feature, social rotation across YouTube and TikTok. One-time.</div>
+        </div>
+        <div class="pkg">
+          <div class="pkg-name">Release Push</div>
+          <div class="pkg-price">$1,500</div>
+          <div class="pkg-includes">Album feature, extended podcast rotation across Spotify, SoundCloud, YouTube, and TikTok, two show placements on corridor tour dates.</div>
+        </div>
+        <div class="pkg">
+          <div class="pkg-name">Full Artist Season</div>
+          <div class="pkg-price">$3,000</div>
+          <div class="pkg-includes">Quarterly magazine coverage, continuous rotation, priority booking on corridor shows.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="package-section">
+      <div class="pkg-head">Venue Packages</div>
+      <div class="pkg-sub">For bars, juke joints, listening rooms</div>
+      <div class="pkg-grid">
+        <div class="pkg">
+          <div class="pkg-name">Venue Monthly</div>
+          <div class="pkg-price">$200<span class="pkg-cycle">/month</span></div>
+          <div class="pkg-includes">Directory pin, weekly show promotion across the magazine and the podcast social channels.</div>
+        </div>
+        <div class="pkg">
+          <div class="pkg-name">Corridor Quarterly</div>
+          <div class="pkg-price">$1,500<span class="pkg-cycle">/quarter</span></div>
+          <div class="pkg-includes">Dedicated magazine feature, four weeks of podcast coverage and cross-platform rotation, booking intro to touring acts.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="package-section sage">
+      <div class="pkg-head">Hospitality Packages</div>
+      <div class="pkg-sub">For inns, hotels, restaurants</div>
+      <div class="pkg-grid">
+        <div class="pkg">
+          <div class="pkg-name">Inn Monthly</div>
+          <div class="pkg-price">$250<span class="pkg-cycle">/month</span></div>
+          <div class="pkg-includes">Directory placement, weekend-special promotion, cross-listing on touring pages.</div>
+        </div>
+        <div class="pkg">
+          <div class="pkg-name">Restaurant Monthly</div>
+          <div class="pkg-price">$300<span class="pkg-cycle">/month</span></div>
+          <div class="pkg-includes">Live-music tie-in placement, magazine food feature rotation, podcast and social feature block.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="package-section">
+      <div class="pkg-head">Press Runs</div>
+      <div class="pkg-sub">For brands sponsoring tours or events</div>
+      <div class="pkg-grid">
+        <div class="pkg">
+          <div class="pkg-name">Single Run</div>
+          <div class="pkg-price">$500</div>
+          <div class="pkg-includes">One press hit across magazine, podcast ecosystem, and directory. Coordinated timing.</div>
+        </div>
+        <div class="pkg">
+          <div class="pkg-name">Full Press Run</div>
+          <div class="pkg-price">$1,200</div>
+          <div class="pkg-includes">Three coordinated hits, multi-channel, with a magazine cover mention.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== HOW IT MAKES MONEY ============== -->
+<section id="money" class="fade cream-section">
+  <div class="inner">
+    <div class="eyebrow">Revenue</div>
+    <h2>How It Makes <em>Money</em>.</h2>
+    <p class="deck">Eleven revenue lines, three years out. Year One lands at $672K. Year Three at $1.51M. Chase's creative work &mdash; photography, video, art, books, and his share of Studio C and Tuthill Design &mdash; flows into Hillbilly Dreams alongside the core verticals. Tracy manages the calendar and the contracts.</p>
+
+    <table class="rev-table">
+      <thead>
+        <tr>
+          <th>Revenue Line</th>
+          <th class="num">Year 1</th>
+          <th class="num">Year 2</th>
+          <th class="num">Year 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Inn rooms</td>
+          <td class="num">$120,000</td>
+          <td class="num">$165,000</td>
+          <td class="num">$185,000</td>
+        </tr>
+        <tr>
+          <td>Bar (show nights)</td>
+          <td class="num">$67,000</td>
+          <td class="num">$95,000</td>
+          <td class="num">$110,000</td>
+        </tr>
+        <tr>
+          <td>Weddings</td>
+          <td class="num">$113,000</td>
+          <td class="num">$226,000</td>
+          <td class="num">$282,000</td>
+        </tr>
+        <tr>
+          <td>Touring (corridor circuit)</td>
+          <td class="num">$92,000</td>
+          <td class="num">$148,000</td>
+          <td class="num">$185,000</td>
+        </tr>
+        <tr>
+          <td>Magazine + Podcast sponsorships</td>
+          <td class="num">$30,000</td>
+          <td class="num">$58,000</td>
+          <td class="num">$85,000</td>
+        </tr>
+        <tr>
+          <td>Records (50/50 NET)</td>
+          <td class="num">$24,000</td>
+          <td class="num">$48,000</td>
+          <td class="num">$72,000</td>
+        </tr>
+        <tr>
+          <td>Photography, art &amp; book sales <span style="opacity:0.7;font-size:0.85em;">(Chase's creative work, managed with Tracy)</span></td>
+          <td class="num">$48,000</td>
+          <td class="num">$72,000</td>
+          <td class="num">$96,000</td>
+        </tr>
+        <tr>
+          <td>Studio C distributions <span style="opacity:0.7;font-size:0.85em;">(40% share &mdash; video + production work)</span></td>
+          <td class="num">$30,000</td>
+          <td class="num">$50,000</td>
+          <td class="num">$80,000</td>
+        </tr>
+        <tr>
+          <td>Tuthill Design pass-throughs</td>
+          <td class="num">$18,000</td>
+          <td class="num">$24,000</td>
+          <td class="num">$30,000</td>
+        </tr>
+        <tr>
+          <td>Publicity packages (DSD)</td>
+          <td class="num">$110,000</td>
+          <td class="num">$220,000</td>
+          <td class="num">$305,000</td>
+        </tr>
+        <tr>
+          <td>Brand sponsorships</td>
+          <td class="num">$20,000</td>
+          <td class="num">$45,000</td>
+          <td class="num">$80,000</td>
+        </tr>
+        <tr class="total-row">
+          <td>HDI Operating Revenue</td>
+          <td class="num">$672,000</td>
+          <td class="num">$1,151,000</td>
+          <td class="num">$1,510,000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The revenue stacks across three distinct funnels. Hospitality brings people into the building. Entertainment turns those people into stories and recordings. Local Marketing sells the reach back to the businesses that benefit from it. Every line compounds on the lines around it.</p>
+  </div>
+</section>
+
+<!-- ============== MUSICIAN CATALOG ============== -->
+<section id="catalog" class="fade paper-section" style="padding: 0;">
+  <div class="section-hero" style="margin: 0;">
+    <img src="https://storage.googleapis.com/bmt-media-bigmuddy/real/musician-performing.webp" alt="A musician performing">
+    <div class="grad"></div>
+    <div class="caption">
+      <div class="label">The Catalog</div>
+      <div class="title">The Internal <em>Directory</em>.</div>
+    </div>
+  </div>
+  <div class="inner" style="padding: 3rem 2rem 5rem; max-width: 1100px; margin: 0 auto;">
+    <div class="eyebrow">The Catalog</div>
+    <h2>Venues, Musicians, <em>Industry Intelligence</em>.</h2>
+    <p class="deck">Our working directory of the music and entertainment industry on the Mississippi corridor. Venues, musicians, press, studios, historical context &mdash; the intelligence Big Muddy runs on.</p>
+
+    <p>The Catalog is an internal operating resource. When a booker needs a Tuesday-night act, the Catalog is where the team looks. When a magazine writer needs a band to profile, it's where they go. When Big Muddy Touring plans a corridor run, the venue data is in here. It's a CRM for the music industry on the corridor, maintained by the people who work the corridor every day.</p>
+
+    <p>Musicians add themselves through a five-minute QR card at a show &mdash; scan, fill out five fields, upload a photo and a track. Those profiles feed our booking, podcast, and magazine work. For the musician, it's a free discovery page. For us, it's an entry in our directory. Over time the Catalog may become a place where musicians network with each other; that's a side benefit, not a separate product we're building.</p>
+
+    <p>The Catalog also holds industry intelligence: venue capacities and contacts, press relationships, studio directories, historical references to the people and places that shaped the Delta sound. It grows as we work the corridor.</p>
+
+    <div class="stat-banner">
+      <div class="stat">
+        <div class="stat-value">Venues</div>
+        <div class="stat-label">Every stage between Natchez and Memphis</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">Musicians</div>
+        <div class="stat-label">Free, perpetual profiles via QR</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">Press</div>
+        <div class="stat-label">Internal Rolodex of corridor media</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">Intel</div>
+        <div class="stat-label">Studios, history, industry context</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== THE PEOPLE ============== -->
+<section id="people" class="fade cream-section">
+  <div class="inner">
+    <div class="eyebrow">The Partners</div>
+    <h2>The <em>People</em>.</h2>
+    <p class="deck">Three equity partners own the company in equal thirds.</p>
+
+    <div class="team-grid">
+      <div class="partner-card">
+        <div class="photo-area">C</div>
+        <div class="body">
+          <div class="name">Chase Pierson</div>
+          <div class="title-line">Equity Partner</div>
+          <p class="role">One of three partners. Works across the whole operation &mdash; the inn, the touring circuit, the magazine, the podcast, the records, the directory. The company runs because the three partners run it together.</p>
+          <div class="equity"><strong>One-third</strong> equity partner</div>
+        </div>
+      </div>
+
+      <div class="partner-card terra">
+        <div class="photo-area">T</div>
+        <div class="body">
+          <div class="name">Tracy Alderson-Allen</div>
+          <div class="title-line">Equity Partner</div>
+          <p class="role">One of three partners. Works across the whole operation &mdash; the inn, the touring circuit, the magazine, the podcast, the records, the directory. The company runs because the three partners run it together.</p>
+          <div class="equity"><strong>One-third</strong> equity partner</div>
+        </div>
+      </div>
+
+      <div class="partner-card sage">
+        <div class="photo-area">A</div>
+        <div class="body">
+          <div class="name">Amy Alderson-Allen</div>
+          <div class="title-line">Equity Partner</div>
+          <p class="role">One of three partners. Works across the whole operation &mdash; the inn, the touring circuit, the magazine, the podcast, the records, the directory. The company runs because the three partners run it together.</p>
+          <div class="equity"><strong>One-third</strong> equity partner</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="partners-note">
+      <strong>Partner businesses.</strong> Studio C Video handles production across the corridor (Chase is a 40% owner). Tuthill Design runs real estate and hospitality media. Bearsville Creative activates the northeast node in summer 2026 from Woodstock, New York.
+    </div>
+  </div>
+</section>
+
+<!-- ============== WHERE WE STAND ============== -->
+<section id="standing" class="fade paper-section">
+  <div class="inner">
+    <div class="eyebrow">Where We Stand</div>
+    <h2>The <em>State</em> of the Business.</h2>
+    <p class="deck">We operate profitably at this scale. The constraint is bandwidth, not capital.</p>
+
+    <div class="standing-grid">
+      <div class="standing">
+        <div class="s-label">Current MRR</div>
+        <div class="s-value">~$7,500</div>
+        <div class="s-sub">Inn, Bar, Shows, Photography</div>
+      </div>
+      <div class="standing">
+        <div class="s-label">Monthly Burn</div>
+        <div class="s-value">~$4,425</div>
+        <div class="s-sub">Drops to ~$3,905 after the vehicle payoff clears in June</div>
+      </div>
+      <div class="standing">
+        <div class="s-label">Net Position</div>
+        <div class="s-value">+$3,000</div>
+        <div class="s-sub">Positive every month</div>
+      </div>
+      <div class="standing">
+        <div class="s-label">Platform Cost</div>
+        <div class="s-value">$31</div>
+        <div class="s-sub">Per month to run 14 domains</div>
+      </div>
+      <div class="standing">
+        <div class="s-label">Cash on Hand</div>
+        <div class="s-value">~$5,800</div>
+        <div class="s-sub">Working capital</div>
+      </div>
+      <div class="standing">
+        <div class="s-label">Receivables</div>
+        <div class="s-value">~$22–28K</div>
+        <div class="s-sub">Outstanding from a prior wind-down</div>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      The company is profitable. The question is how fast to scale the publicity engine.
+      <span class="attr">The current read</span>
+    </div>
+
+    <p>The Inn covers its fixed costs. The Bar covers its own overhead on show nights. Photography pays for itself every time the van rolls. The publicity engine is the lever — every new musician profile and every new directory listing lowers the cost of selling the next publicity package. There is room to run.</p>
+  </div>
+</section>
+
+<!-- ============== THE PLAN — 12 MONTHS ============== -->
+<section id="plan" class="fade cream-section">
+  <div class="inner">
+    <div class="eyebrow">The Plan</div>
+    <h2>The Next <em>Twelve Months</em>.</h2>
+    <p class="deck">Nine things to close by the end of Q4. Each one moves a specific number.</p>
+
+    <ul class="plan-list">
+      <li class="plan-item">
+        <div class="tag">By July</div>
+        <div class="goal">Stand up the Catalog with the first batch of venue records, musician profiles, and press contacts.</div>
+      </li>
+      <li class="plan-item">
+        <div class="tag">By end of Q2</div>
+        <div class="goal">Sell the first ten publicity packages.</div>
+      </li>
+      <li class="plan-item">
+        <div class="tag">By year-end</div>
+        <div class="goal">Land eight weddings at $14,100 each.</div>
+      </li>
+      <li class="plan-item">
+        <div class="tag">By Q4</div>
+        <div class="goal">Lift Inn occupancy from 18% to 28%.</div>
+      </li>
+      <li class="plan-item">
+        <div class="tag">On the road</div>
+        <div class="goal">Run twelve show weeks on the corridor circuit.</div>
+      </li>
+      <li class="plan-item">
+        <div class="tag">By Q3</div>
+        <div class="goal">Launch the venue directory with 100+ venues.</div>
+      </li>
+      <li class="plan-item">
+        <div class="tag">By Q4</div>
+        <div class="goal">Scale the Big Muddy Radio podcast across Spotify, SoundCloud, YouTube, and TikTok. Launch the live linear audio and video format in Q4.</div>
+      </li>
+      <li class="plan-item">
+        <div class="tag">By Q4</div>
+        <div class="goal">Record and release three label artists.</div>
+      </li>
+      <li class="plan-item">
+        <div class="tag">By Q4</div>
+        <div class="goal">Close on a $1M run rate.</div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============== NEXT 30 DAYS ============== -->
+<section id="sprints" class="fade paper-section">
+  <div class="inner">
+    <div class="eyebrow">The Next 30 Days</div>
+    <h2>Four Weeks of <em>Shipping</em>.</h2>
+    <p class="deck">The calendar in front of us. Each week has a named target and three or four concrete things that ship.</p>
+
+    <div class="sprint-grid">
+      <div class="sprint">
+        <div class="head">
+          <div class="week">Week One</div>
+          <div class="theme">Catalog MVP</div>
+        </div>
+        <div class="tasks">
+          <div class="task">Musician catalog MVP <strong>shipped</strong>.</div>
+          <div class="task">Seed five profiles with hand-picked artists.</div>
+          <div class="task">QR card design finalized and printed.</div>
+          <div class="task">Catalog onboarding flow tested end to end.</div>
+        </div>
+      </div>
+
+      <div class="sprint">
+        <div class="head">
+          <div class="week">Week Two</div>
+          <div class="theme">First Sale</div>
+        </div>
+        <div class="tasks">
+          <div class="task">Stripe publicity package catalog <strong>live</strong>.</div>
+          <div class="task">First sale to a friendly artist.</div>
+          <div class="task">Checkout flow wired to the magazine placement.</div>
+          <div class="task">Receipt + fulfillment email sequence live.</div>
+        </div>
+      </div>
+
+      <div class="sprint">
+        <div class="head">
+          <div class="week">Week Three</div>
+          <div class="theme">Venue Directory</div>
+        </div>
+        <div class="tasks">
+          <div class="task">Venue directory v1 <strong>live</strong>.</div>
+          <div class="task">First three corridor shows on the calendar.</div>
+          <div class="task">Ten venue profiles seeded by hand.</div>
+          <div class="task">Venue claim flow tested by a friendly owner.</div>
+        </div>
+      </div>
+
+      <div class="sprint">
+        <div class="head">
+          <div class="week">Week Four</div>
+          <div class="theme">Wedding Inquiry</div>
+        </div>
+        <div class="tasks">
+          <div class="task">Wedding landing page <strong>live</strong>.</div>
+          <div class="task">Referral kit printed and distributed.</div>
+          <div class="task">First wedding inquiry routed end to end.</div>
+          <div class="task">Photography package pricing finalized.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      Ship the catalog. Sell the first package. Open the directory. Book the first wedding. Repeat.
+      <span class="attr">The cadence</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== COLOPHON ============== -->
+<div class="colophon">
+  Big Muddy &middot; <span>Hillbilly Dreams Inc</span> &middot; Natchez, Mississippi &middot; Filed April 17, 2026
+</div>
+
+</main>
+
+<!-- ============== ANIMATIONS + SMOOTH NAV ============== -->
+<script>
+  // Section fade-in on scroll
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('section.fade').forEach(function(s) {
+    observer.observe(s);
+  });
+
+  // Nav active state
+  var navLinks = document.querySelectorAll('.nav a');
+  var sections = Array.from(document.querySelectorAll('section[id]'));
+  function setActive() {
+    var pos = window.scrollY + 150;
+    var current = sections[0] && sections[0].id;
+    sections.forEach(function(s) {
+      if (s.offsetTop <= pos) current = s.id;
+    });
+    navLinks.forEach(function(a) {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+</script>
+
+</body>
+</html>
+</content>
+</invoke>
