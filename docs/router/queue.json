@@ -1,7 +1,7 @@
 {
   "_doc": "Hillbilly Dreams agent queue. Read by scripts/router/{next,ship,status,block,unblock}.sh. Each project is self-contained: paste 'prompt' into a fresh Claude/Cursor agent and they have everything they need.",
   "_status_values": "blocked | ready | running | done",
-  "_updated": "2026-04-18T17:47:42",
+  "_updated": "2026-04-18T18:05:04",
   "queue": [
     {
       "id": "P02-hetzner-ssh",
@@ -438,6 +438,57 @@
       "estimated_minutes": 60,
       "depends_on": [],
       "prompt": "Per docs/ENTITY_STRUCTURE.md, MBT holds a retainer with Tuthill Design that funds Elijah's cross-entity work (MBT + Big Muddy Natchez + Big Muddy Touring).\n\nNeeds defining:\n- Monthly retainer amount\n- Hourly rate within the retainer\n- Hours volume target per month (40? 60? 80?)\n- Allocation conventions \u2014 how Elijah logs hours per child entity (MBT vs BMNatchez vs BMTouring)\n- Burn-rate reporting cadence \u2014 monthly to Tracy minimum, possibly weekly during peak\n- Burst-rate when retainer exhausted mid-month \u2014 premium or pause?\n- Reset cadence \u2014 calendar month? Rolling?\n- Quarterly true-up \u2014 adjust retainer up/down based on actual usage?\n\nDeliverable: retainer agreement template (lives in docs/finance/), burn-rate dashboard plan, monthly review SOP."
+    },
+    {
+      "id": "P44-module-api-formalization",
+      "title": "Module API formalization \u2014 Move 1 of product-to-platform plan",
+      "status": "blocked",
+      "blocked_by": "monday-april-20-brand-offerings-locked",
+      "owner": "patch+agent",
+      "estimated_minutes": 1440,
+      "depends_on": [],
+      "prompt": "Per ~/.claude/plans/cozy-beaming-minsky.md (Move 1) and docs/PRODUCT_TO_PLATFORM_MAPPING.md, formalize the 13 modules as clean packages with defined APIs.\n\nFor each module, create packages/modules/<module-slug>/ with:\n- package.json scoped to @bigmuddy/module-<name>\n- src/index.ts exporting the module's public API surface\n- README.md defining: API, license profile (platform fee %, monthly minimum, scope), reusable capabilities\n- types/ for shared types\n- migration notes for existing callers\n\nPattern reference: existing packages/database/ \u2014 own package.json, scoped types, isolated dependencies.\n\nPriority order (per Move 1):\n1. Directory Module (already most-extracted)\n2. CMS Module (wrap Sanity calls)\n3. Booking Module (consolidate Cloudbeds + future Blues Room ticketing)\n4. Commerce Module (consolidate Stripe + future merch + sponsor slots)\n5. Social Module (formalize the publisher already in lib/)\n6. Finance Module (per-entity P&L is the new ask)\n7-13. Remaining modules\n\nMigrate callers in apps/web/app/, apps/web/lib/, apps/web/app/api/ to import from the new module packages instead of direct Sanity/db/Stripe imports.\n\nPrerequisite: Monday session must lock the brand offerings so each module's required scope is defined."
+    },
+    {
+      "id": "P45-tenant-provisioning-pipeline",
+      "title": "Tenant provisioning pipeline \u2014 Move 2 of product-to-platform plan",
+      "status": "ready",
+      "owner": "patch+agent",
+      "estimated_minutes": 720,
+      "depends_on": [],
+      "prompt": "Per ~/.claude/plans/cozy-beaming-minsky.md (Move 2), build a single-command tenant provisioning pipeline.\n\nGoal: spinning up a new client tenant should be one command, ~10 minutes wall-clock, end-to-end.\n\nWhat it does:\n1. Creates entity record in packages/database (add Tenant model if not present)\n2. Provisions Vercel domain (uses Vercel API)\n3. Bootstraps Sanity project from a template (or activates tenant in shared dataset)\n4. Edits apps/web/config/tenants.ts to add the new tenant\n5. Edits apps/web/config/domain-routes.ts to map domain \u2192 tenant\n6. Activates the right MBT modules for the tenant (per module activation in P44)\n7. Adds tenant to the admin dashboard\n8. Outputs a summary: tenant URL, admin login, modules enabled, billing setup confirmation\n\nFile location: scripts/provision-tenant.sh OR packages/cli/ with subcommands tenant:create, tenant:activate-module, tenant:domain-add\n\nFirst use case: Vicki Walpurt onboarding for May 1 (P30). Acceptance test: provision-tenant.sh vicki-walpurt --domain vickiwalpurt.com --modules directory,social,content-creation,finance succeeds end-to-end.\n\nThis is the highest scale leverage move per the plan. Can run independently of P44 module formalization since current modules can be activated even before they're packaged."
+    },
+    {
+      "id": "P46-content-creation-mvp",
+      "title": "Prompt-driven Content Creation Module MVP \u2014 Move 3 of product-to-platform plan",
+      "status": "ready",
+      "owner": "agent",
+      "estimated_minutes": 600,
+      "depends_on": [],
+      "prompt": "Per ~/.claude/plans/cozy-beaming-minsky.md (Move 3), build the wizard interface that makes the platform feel different from generic SaaS.\n\nUser flow: Tracy clicks 'Write magazine article' \u2192 wizard pulls relevant entities (musicians, venues from corridor directory) and media (Immich CLIP search) \u2192 produces a Sanity draft with bylines + photos already attached.\n\nStarter exists:\n- apps/web/app/api/drafts/generate/route.ts\n- apps/web/app/api/drafts/refine/route.ts\n- apps/web/app/magazine/page.tsx (editorial UI)\n\nWhat to build on top:\n- apps/web/app/admin/create/ \u2014 wizard component (multi-step UI: pick content type \u2192 pick angle \u2192 pull entities \u2192 pull media \u2192 review draft \u2192 save to Sanity)\n- apps/web/lib/content-templates/ \u2014 per-content-type prompt templates (article, social post, listing description, podcast episode, pitch deck section)\n- packages/modules/content-creation/ \u2014 clean module API (when P44 lands)\n- Integration helpers: pull-entities-by-tag, pull-media-by-clip-search, render-template-with-context\n\nAcceptance: Tracy ships at least 2 magazine articles built this way without engineering involvement. End-to-end runs in under 5 minutes for a typical article.\n\nReference: docs/PRODUCT_TO_PLATFORM_MAPPING.md for the strategic framing."
+    },
+    {
+      "id": "P47-brand-offerings-monday-prep",
+      "title": "Brand offerings worksheets ready for Monday April 20 partner session",
+      "status": "done",
+      "shipped_at": "2026-04-18T18:30:00",
+      "owner": "agent",
+      "estimated_minutes": 90,
+      "depends_on": [],
+      "prompt": "DONE 2026-04-18. Pre-populated 8 brand offering worksheets at docs/brand-offerings/ for the Monday April 20 partner session.\n\nFiles created:\n- docs/brand-offerings/_TEMPLATE.md\n- docs/brand-offerings/big-muddy-inn.md\n- docs/brand-offerings/big-muddy-touring.md\n- docs/brand-offerings/big-muddy-magazine.md\n- docs/brand-offerings/big-muddy-records.md\n- docs/brand-offerings/big-muddy-radio.md\n- docs/brand-offerings/chase-pierson-photography.md\n- docs/brand-offerings/tuthill-design.md\n- docs/brand-offerings/studio-c.md\n\nEach worksheet has structure: brand sentence \u2192 tier in platform \u2192 what we sell (offerings with $___ blanks) \u2192 pricing tiers \u2192 modules required \u2192 revenue tier classification \u2192 sales channels \u2192 key metrics \u2192 operational ownership \u2192 open questions.\n\nMonday session output: each worksheet's $___ filled in by Chase + Tracy + Amy (and Elijah Tuthill for Tuthill, Studio C co-owner for Studio C). Output becomes the brief for module work.",
+      "shipped_by": "Cos"
+    },
+    {
+      "id": "P48-module-license-profiles-data-model",
+      "title": "ModuleEngagement + ModuleLicenseProfile data model + Tier 3 billing",
+      "status": "blocked",
+      "blocked_by": "P44-module-api-formalization",
+      "owner": "patch+agent",
+      "estimated_minutes": 360,
+      "depends_on": [
+        "P44-module-api-formalization"
+      ],
+      "prompt": "Per ~/.claude/plans/cozy-beaming-minsky.md and docs/PRODUCT_TO_PLATFORM_MAPPING.md, build the data model and billing logic for Tier 3 module engagements.\n\nPrisma schema additions (packages/database/prisma/schema.prisma):\n- ModuleLicenseProfile: { module, platformFeePercent, monthlyMinimum, scopeDefinition, version }\n- ModuleEngagement: { tenant, vendor, module, licenseProfileVersion, startDate, endDate?, monthlyRevenue, mbtTakePercent, status }\n- RetainerHour: { entity, contributor, hours, taskTag, weekStarting, billable }\n\nUI additions:\n- apps/web/app/admin/finance/ \u2014 per-entity P&L view\n- apps/web/app/admin/finance/engagements/ \u2014 module engagement list with monthly billing math\n- apps/web/app/admin/finance/retainer/ \u2014 retainer burn-rate dashboard (P43)\n\nAcceptance: one Tier 3 engagement (likely Vicki's Upstate Directory + social management once Vicki onboards via P30) recorded end-to-end. Vendor invoice \u2192 client. MBT invoice \u2192 vendor. Retainer hours allocated. Clean audit trail.\n\nDepends on P44 because module APIs need to exist before engagements against them can be tracked cleanly."
     }
   ]
 }

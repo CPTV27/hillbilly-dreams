@@ -1,8 +1,8 @@
 # Hillbilly Dreams Agent Queue
 
-*Last sync: 2026-04-18T17:47:42*
+*Last sync: 2026-04-18T18:05:04*
 
-Status counts: 5 done · 0 running · 24 ready · 13 blocked · **42 total**
+Status counts: 6 done · 0 running · 26 ready · 15 blocked · **47 total**
 
 ## How to use this
 
@@ -19,7 +19,7 @@ Each project below is **paste-ready** — copy the prompt into a fresh Claude or
 
 ---
 
-## ○ Ready (24)
+## ○ Ready (26)
 
 ### `P04-press-seed` — Press seed → ingest → flip canonical
 
@@ -464,8 +464,65 @@ Deliverable: retainer agreement template (lives in docs/finance/), burn-rate das
 ```
 </details>
 
+### `P45-tenant-provisioning-pipeline` — Tenant provisioning pipeline — Move 2 of product-to-platform plan
 
-## ✕ Blocked (13)
+**Owner:** patch+agent · **Est:** ~720 min
+
+<details><summary>Show prompt</summary>
+
+```
+Per ~/.claude/plans/cozy-beaming-minsky.md (Move 2), build a single-command tenant provisioning pipeline.
+
+Goal: spinning up a new client tenant should be one command, ~10 minutes wall-clock, end-to-end.
+
+What it does:
+1. Creates entity record in packages/database (add Tenant model if not present)
+2. Provisions Vercel domain (uses Vercel API)
+3. Bootstraps Sanity project from a template (or activates tenant in shared dataset)
+4. Edits apps/web/config/tenants.ts to add the new tenant
+5. Edits apps/web/config/domain-routes.ts to map domain → tenant
+6. Activates the right MBT modules for the tenant (per module activation in P44)
+7. Adds tenant to the admin dashboard
+8. Outputs a summary: tenant URL, admin login, modules enabled, billing setup confirmation
+
+File location: scripts/provision-tenant.sh OR packages/cli/ with subcommands tenant:create, tenant:activate-module, tenant:domain-add
+
+First use case: Vicki Walpurt onboarding for May 1 (P30). Acceptance test: provision-tenant.sh vicki-walpurt --domain vickiwalpurt.com --modules directory,social,content-creation,finance succeeds end-to-end.
+
+This is the highest scale leverage move per the plan. Can run independently of P44 module formalization since current modules can be activated even before they're packaged.
+```
+</details>
+
+### `P46-content-creation-mvp` — Prompt-driven Content Creation Module MVP — Move 3 of product-to-platform plan
+
+**Owner:** agent · **Est:** ~600 min
+
+<details><summary>Show prompt</summary>
+
+```
+Per ~/.claude/plans/cozy-beaming-minsky.md (Move 3), build the wizard interface that makes the platform feel different from generic SaaS.
+
+User flow: Tracy clicks 'Write magazine article' → wizard pulls relevant entities (musicians, venues from corridor directory) and media (Immich CLIP search) → produces a Sanity draft with bylines + photos already attached.
+
+Starter exists:
+- apps/web/app/api/drafts/generate/route.ts
+- apps/web/app/api/drafts/refine/route.ts
+- apps/web/app/magazine/page.tsx (editorial UI)
+
+What to build on top:
+- apps/web/app/admin/create/ — wizard component (multi-step UI: pick content type → pick angle → pull entities → pull media → review draft → save to Sanity)
+- apps/web/lib/content-templates/ — per-content-type prompt templates (article, social post, listing description, podcast episode, pitch deck section)
+- packages/modules/content-creation/ — clean module API (when P44 lands)
+- Integration helpers: pull-entities-by-tag, pull-media-by-clip-search, render-template-with-context
+
+Acceptance: Tracy ships at least 2 magazine articles built this way without engineering involvement. End-to-end runs in under 5 minutes for a typical article.
+
+Reference: docs/PRODUCT_TO_PLATFORM_MAPPING.md for the strategic framing.
+```
+</details>
+
+
+## ✕ Blocked (15)
 
 ### `P14-migrate-postiz-notebook` — Migrate Postiz + Open Notebook off mini
 
@@ -519,8 +576,16 @@ Deliverable: retainer agreement template (lives in docs/finance/), burn-rate das
 
 **Owner:** chase · **Est:** ~30 min · **Blocked by:** trigger-not-yet-met
 
+### `P44-module-api-formalization` — Module API formalization — Move 1 of product-to-platform plan
 
-## ✓ Done (5)
+**Owner:** patch+agent · **Est:** ~1440 min · **Blocked by:** monday-april-20-brand-offerings-locked
+
+### `P48-module-license-profiles-data-model` — ModuleEngagement + ModuleLicenseProfile data model + Tier 3 billing
+
+**Owner:** patch+agent · **Est:** ~360 min · **Blocked by:** P44-module-api-formalization · **Depends on:** P44-module-api-formalization
+
+
+## ✓ Done (6)
 
 ### `P02-hetzner-ssh` — Unblock Hetzner SSH (Phase 0)
 
@@ -541,6 +606,10 @@ Deliverable: retainer agreement template (lives in docs/finance/), burn-rate das
 ### `P13-hetzner-phase4-immich` — Hetzner Phase 4: Immich
 
 **Owner:** agent · **Est:** ~60 min · **Blocked by:** P12-hetzner-phase3 · **Depends on:** P12-hetzner-phase3 · **Shipped:** 2026-04-18T02:17:28
+
+### `P47-brand-offerings-monday-prep` — Brand offerings worksheets ready for Monday April 20 partner session
+
+**Owner:** agent · **Est:** ~90 min · **Shipped:** 2026-04-18T18:30:00
 
 
 ---

@@ -153,6 +153,7 @@ Full architecture: `docs/PLATFORM_ARCHITECTURE.md`
 
 ## Recent decisions (most recent first)
 
+- **2026-04-18 (PM, product-to-platform mapping locked):** Define every brand's front-end offering first; back-end modules fall out of those offerings. **13 modules** identified, mapped to existing codebase. Three tiers of MBT economic participation: Tier 1 internal (no rev share) · Tier 2 one-off vendor (no rev share) · **Tier 3 ongoing module-delivered (15-30% to MBT)**. **Refactor, not rebuild** — three moves: (1) formalize module boundaries in existing code, (2) build tenant provisioning pipeline, (3) build prompt-driven Content Creation Module fresh. Don't rebuild Sanity. Don't unify billing pre-MBT-filing. Full doc: `docs/PRODUCT_TO_PLATFORM_MAPPING.md` · plan: `~/.claude/plans/cozy-beaming-minsky.md`. Per-brand worksheets ready for **Monday April 20** session at `docs/brand-offerings/`.
 - **2026-04-18 (partner meeting outcomes):**
   - **Rhea engagement DEFERRED.** No immediate scope. Re-evaluate at Woodstock this summer or back at Big Muddy in the fall. Reason: too much else needs to be done first (platform, Vicki, Paul Green, Studio C operator framework). Rhea wouldn't have the focus time.
   - **Amy's May 8 show — Amy + Big Muddy Blues Band.** Same lineup as last night. If a better bass player appears, swap him in. If Rhea is still around and wants to play drums, optional. Otherwise no special prep.
@@ -175,6 +176,40 @@ Full architecture: `docs/PLATFORM_ARCHITECTURE.md`
 - **2026-04-17:** MBT is Chase's separate open-source project, pulled out of HDI business plan.
 - **2026-04-15 (architecture):** 19 decisions from voice memo — Magazine→Inn, Tracy editor, artist packages, minimize custom software.
 - **2026-04-05:** DSD pricing locked — Free / $25 Essentials / $50 Pro / $99 Marketing / $250 Engine.
+
+---
+
+## Module inventory — the 13 modules of MBT
+
+Working backwards from every brand offering, these are the platform modules. Most exist in some form. One is net-new.
+
+| # | Module | Status |
+|---|---|---|
+| 1 | Canonical Entity Store | Partial (459 records seeded, DirectoryBusiness model exists) |
+| 2 | CMS (Sanity) | Exists — fully wired |
+| 3 | Directory Module | Exists — admin UI + public + API live |
+| 4 | Media Gallery (Immich) | Exists (external on Hetzner, 52,892 photos) |
+| 5 | Booking Module | Partial (Cloudbeds for Inn rooms working) |
+| 6 | Commerce Module | Partial (Stripe + DSD subscriptions live) |
+| 7 | Broadcast Module | Partial (radio working; Studio C orchestration off-repo) |
+| 8 | Social Media Module | Partial (publisher + scheduler + Postiz) |
+| 9 | Tour/Calendar Module | Partial (touring page + Sanity schema) |
+| 10 | Finance/Billing Module | Partial (Stripe + revenue metrics; per-entity P&L gap) |
+| 11 | Affiliate/Referral Module | Partial (directory hooks; explicit tracking gap) |
+| 12 | Coordination Layer | Partial (multi-tenant middleware + agent router) |
+| 13 | Prompt-driven Content Creation | Net-new (drafts endpoints exist; wizard unbuilt) |
+
+Full mapping with file paths in `~/.claude/plans/cozy-beaming-minsky.md`.
+
+## MBT economic participation — three tiers
+
+| Tier | When | MBT take |
+|---|---|---|
+| **1 — Internal tooling** | Family brand uses MBT infra for own ops | None — consolidates up via subsidiary ownership |
+| **2 — One-off vendor work** | Single transactional service (Tuthill shoot, Studio C wedding) | None — vendor keeps revenue, infra covered by Tuthill retainer |
+| **3 — Ongoing module-delivered** | Vendor sells recurring service powered by MBT modules (Tuthill social mgmt for realtor, Radio directory placement, Paul Green DSD license) | **15-30% of recurring revenue to MBT** |
+
+Each module gets a license profile (platform fee %, monthly minimum, scope). Tier 3 engagements recorded as "module engagements" in finance system.
 
 ---
 
