@@ -1,0 +1,68 @@
+# FESTIVAL / RECURRING EVENT RECORD TEMPLATE
+
+# --- IDENTITY ---
+name: ""                                      # [required]
+slug: ""
+founded: ""                                   # Year
+status: ""                                    # active | dormant | one-time | cancelled
+
+# --- WHEN + WHERE ---
+dates:
+  typical_month: ""                           # "May" | "Third weekend of October"
+  typical_dates: ""                           # "May 23-25" | "First Fri-Sun in October"
+  next_edition_dates: ""                      # [required if active] "2026-05-23 to 2026-05-25"
+  duration_days: null
+location:
+  city: ""                                    # [required]
+  state: ""                                   # [required]
+  venue: ""                                   # "Downtown district" | "Specific park"
+  multi_venue: null                           # true/false
+corridor_segment: ""
+
+# --- SCALE ---
+attendance:
+  typical: null                               # "10,000 total" | "1,000 per day"
+  paid: null
+  free: null
+stages: null                                  # Number of stages
+ticket_range: ""                              # "$50-150" | "Free" | "By donation"
+
+# --- PROGRAMMING ---
+genres:
+  primary: []                                 # [required]
+  secondary: []
+lineup_tier: ""                               # "Major headliners" | "Regional acts" | "Local only"
+recent_headliners: []
+curation_style: ""                            # "Booked by festival organizer" | "Showcase" | "Open call"
+
+# --- BOOKING ---
+booking_window: ""                            # "Submissions open Oct-Dec for May fest"
+submission_url: ""
+talent_buyer:
+  name: ""
+  email: ""
+  agency: ""
+accepts_direct_submissions: null              # true/false
+typical_fee_range: ""                         # For participating artists
+
+# --- BUSINESS ---
+organizer: ""                                 # Entity running it (nonprofit / foundation / company)
+sponsorship_opportunities: null               # Can a brand sponsor? true/false
+sponsorship_contact: ""
+media_credentials_url: ""                     # For press access
+
+# --- OUR RELATIONSHIP ---
+our_relationship: ""                          # "Never involved" | "Attended" | "Had an act play" | "Media partner"
+our_acts_who_played: []
+notes: |
+  Free-form.
+
+# --- RESEARCH METADATA ---
+research:
+  researcher: ""
+  researched_at: ""
+  sources:
+    - url: ""
+      description: ""
+  confidence: ""
+  gaps_to_resolve: []

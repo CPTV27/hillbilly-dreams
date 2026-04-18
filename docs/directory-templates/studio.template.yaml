@@ -1,0 +1,61 @@
+# RECORDING STUDIO RECORD TEMPLATE
+
+# --- IDENTITY ---
+name: ""                                      # [required]
+slug: ""
+aliases: []
+status: ""                                    # active | dormant | historic-only | closed
+
+# --- LOCATION ---
+address:
+  street: ""
+  city: ""                                    # [required]
+  state: ""                                   # [required]
+  zip: ""
+corridor_segment: ""
+
+# --- TECHNICAL ---
+rooms: []                                     # ["Studio A (large live room)", "Studio B (tracking)", "Mastering suite"]
+gear_highlights: []                           # ["Neve console", "Studer tape machine", "vintage API"]
+specialties: []                               # ["Live tracking", "Analog mixing", "Blues recording"]
+engineers_on_staff: []                        # Notable in-house engineers
+
+# --- BUSINESS ---
+booking:
+  accepts_outside_bookings: null              # true/false
+  contact_email: ""
+  contact_phone: ""
+  website: ""
+  booking_lead_time: ""                       # "2 weeks" | "booked 6 months out"
+rates:
+  day_rate: ""                                # "$800/day"
+  block_rate: ""                              # "$5,000/week"
+  hourly_rate: ""
+  includes_engineer: null                     # true/false
+
+# --- HISTORY ---
+founded: ""
+historical_significance: ""                   # "Where Sam Phillips recorded Elvis" etc.
+notable_recordings: []                        # Albums cut here
+notable_artists_recorded: []                  # Artists who tracked here
+
+# --- TOURS + VISITOR ---
+offers_tours: null                            # true/false
+tour_info: ""
+museum_operation: null                        # Are they a museum now?
+
+# --- OUR RELATIONSHIP ---
+our_relationship: ""                          # "Never worked with" | "Tracked a record" | "Ongoing partner"
+last_session: ""
+notes: |
+  Free-form.
+
+# --- RESEARCH METADATA ---
+research:
+  researcher: ""
+  researched_at: ""
+  sources:
+    - url: ""
+      description: ""
+  confidence: ""
+  gaps_to_resolve: []

@@ -1,0 +1,193 @@
+# VENUE RECORD TEMPLATE
+# One file per venue. Fill what you know. Flag unknowns with `UNKNOWN`.
+# Fields marked [required] must be populated before the record goes live.
+# Fields marked [verify] need a phone call / in-person confirmation.
+
+# --- IDENTITY ---
+name: ""                                      # [required] Full venue name as commonly known
+slug: ""                                      # Auto-generated from name; lowercase-hyphenated
+aliases: []                                   # Other names people call it (e.g., "The Rum Boogie")
+status: "active"                              # active | dormant | closed | unknown
+
+# --- LOCATION ---
+address:
+  street: ""                                  # [required]
+  city: ""                                    # [required]
+  state: ""                                   # [required] Two-letter abbreviation (MS, TN, LA, AR)
+  zip: ""
+  lat: null                                   # Lat/long for map integration
+  lng: null
+  neighborhood: ""                            # "Downtown Clarksdale" / "Crossroads District"
+corridor_segment: ""                          # Memphis | Delta | Natchez | River Road | NOLA | Side spur
+
+# --- PHYSICAL ---
+capacity:
+  standing: null                              # [required] Max standing capacity
+  seated: null                                # If applicable
+  tier: ""                                    # [required] "< 100" | "100-300" | "300-1000" | "1000+"
+venue_type: ""                                # Club | Listening Room | Bar w/ Stage | Theater | Juke Joint | Festival Grounds | Church | House Concert
+indoor_outdoor: ""                            # Indoor | Outdoor | Both
+stage:
+  size: ""                                    # "small corner" | "mid-stage" | "full theater"
+  dimensions: ""                              # "12x8 ft" | "20x15 ft" | "none - floor show"
+  height_off_floor: ""                        # "flat" | "6 inches" | "2 feet"
+  load_in_notes: ""                           # "Side door from street" | "Freight elevator" | "Through the bar"
+  green_room: null                            # true/false
+  parking: ""                                 # "Lot out back" | "Street only" | "Loading zone"
+
+# --- TECHNICAL / PRODUCTION ---
+technical:
+  # Sound
+  pa_system:
+    has_pa: null                              # [required] true/false
+    brand_and_model: ""                       # "JBL EON 15s" | "QSC K12.2 mains, KW181 subs" | "D&B Y-series"
+    main_speakers_count: null
+    subs_count: null
+    monitors_count: null                      # Stage wedges
+    monitor_type: ""                          # "Passive wedges" | "In-ear capable" | "Self-powered wedges"
+    power_rating: ""                          # "2kW total" | "Big enough for 300-cap room"
+    condition: ""                             # "Well-maintained" | "Dated but works" | "Needs new drivers"
+  mixer:
+    has_mixer: null                           # [required] true/false
+    brand_and_model: ""                       # "Yamaha MG16XU" | "Allen & Heath SQ-5" | "Behringer X32"
+    channels: null                            # Total channels
+    analog_or_digital: ""                     # "Analog" | "Digital"
+    recording_capable: null                   # Can do multitrack recording
+    foh_location: ""                          # "Side of stage" | "House position mid-room"
+  microphones:
+    has_mics: null                            # [required] true/false
+    vocal_mics_count: null
+    vocal_mic_models: []                      # ["Shure SM58 x4", "Beta 58A x2"]
+    instrument_mics_count: null
+    instrument_mic_models: []                 # ["SM57 x3", "Beta 52 kick", "Condenser pair for overheads"]
+    wireless_available: null                  # true/false
+    wireless_count: null
+    di_boxes_count: null                      # Direct injection boxes for keys/bass
+  cables_and_stands:
+    xlr_cables_adequate: null                 # "Bring your own" vs "plenty on hand"
+    mic_stands_count: null
+    guitar_stands_count: null
+
+  # Backline
+  backline:
+    drums_provided: null                      # true/false
+    drum_kit_details: ""                      # "4-piece Gretsch, cymbals included" | "BYO cymbals" | "None"
+    bass_amp_provided: null
+    bass_amp_details: ""                      # "Ampeg SVT + 4x10" | "Small combo only"
+    guitar_amps_provided: null
+    guitar_amp_details: ""                    # "Fender Twin, Vox AC30" | "None"
+    keyboards_provided: null
+    keyboard_details: ""                      # "Hammond B3 on site" | "Yamaha stage piano" | "None"
+    other_backline: []                        # ["Harmonica mic", "Accordion stand"]
+
+  # Lighting
+  lighting:
+    has_lighting: null                        # [required] true/false
+    rig_type: ""                              # "House rig, preset scenes" | "Stage wash + movers" | "Basic front light only" | "None (use house lights)"
+    fixture_count: null
+    controllable_scenes: null                 # Can an engineer program scenes?
+    has_lighting_operator: null               # Engineer can run lights during show?
+    haze_or_fog: null
+
+  # Video / Streaming
+  video:
+    livestream_capable: null                  # Can they livestream shows?
+    projection: null                          # true/false
+    projection_details: ""                    # "Rear-projection screen for video art"
+    recording_capable: null                   # Can they record shows (audio or video)?
+    tie_lines_to_recording_room: null         # true/false
+
+  # Power + Infrastructure
+  power:
+    stage_power_amps: null                    # "30A service" | "2x 20A drops"
+    adequate_for_loud_band: null              # true/false
+    generator_backup: null
+
+  # Engineer / Operator
+  staffing:
+    engineer_on_site: null                    # [required] true/false
+    engineer_included_in_rental: null
+    engineer_byo: null                        # Can bands bring their own?
+    tech_contact_name: ""
+    tech_contact_email: ""
+    tech_contact_phone: ""
+
+  # Gear docs
+  stage_plot_url: ""                          # If they publish a stage plot
+  input_list_url: ""                          # If they publish an input list
+  tech_rider_accepts: null                    # Do they accept visiting artists' riders?
+
+# --- SERVICE ---
+bar:
+  has_bar: null                               # [required] true/false
+  type: ""                                    # "Full bar" | "Beer + wine only" | "No alcohol"
+food:
+  serves_food: null                           # [required] true/false
+  kitchen_type: ""                            # "Full kitchen" | "Snacks only" | "Food trucks out front" | "None"
+  menu_style: ""                              # "Southern/soul food" | "BBQ" | "Cajun" | etc.
+age_policy: ""                                # "21+" | "18+" | "All ages" | "Varies by show"
+
+# --- PROGRAMMING ---
+genres:                                       # [required] Primary genres booked here
+  primary: []                                 # ["Blues", "Americana", "Country", "Hip-Hop", "Jazz", "Rock", "Gospel", "Folk"]
+  secondary: []
+booking_style: ""                             # "House band + touring acts" | "Cover bands only" | "Original acts" | "Festival-style"
+show_frequency: ""                            # "Nightly" | "Weekends only" | "Monthly" | "Special events"
+typical_nights: []                            # ["Thu", "Fri", "Sat"]
+door_model: ""                                # "Ticketed" | "Door split" | "Flat guarantee" | "Free w/ tips" | "Cover charge"
+
+# --- FINANCIAL ---
+guarantee:
+  pays_guarantees: null                       # [verify] true/false/sometimes
+  typical_range: ""                           # "$0 (door split)" | "$200-500" | "$500-1,500" | "$1,500-5,000" | "$5,000+"
+  door_split_pct: ""                          # "70/30 to band" | "80/20" | "flat rental" etc.
+rental_option: null                           # Can you rent the venue for a private event? true/false
+rental_price_range: ""                        # "$500-1,500/night"
+
+# --- CONTACT ---
+booking_contact:
+  name: ""                                    # [verify]
+  role: ""                                    # Owner | Talent Buyer | Manager
+  email: ""                                   # [verify] Preferred booking email
+  phone: ""                                   # [verify]
+  preferred_method: ""                        # "Email with EPK" | "Call only" | "Text"
+  response_time: ""                           # "24hr" | "1 week" | "slow" | "unknown"
+general_contact:
+  email: ""
+  phone: ""
+  website: ""
+social:
+  instagram: ""
+  facebook: ""
+  tiktok: ""
+  twitter: ""
+  youtube: ""
+  spotify: ""
+
+# --- HISTORY + CONTEXT ---
+founded: ""                                   # Year or era
+ownership_history: ""                         # "Family-owned since X" | "Changed hands in 2019"
+historical_significance: ""                   # "Hosted Muddy Waters in 1955" | "Site of first Howlin' Wolf recording" etc.
+notable_acts_hosted: []                       # Recent or historic
+notable_recordings: []                        # Live albums recorded here
+
+# --- OUR OPERATIONAL DATA ---
+our_relationship: ""                          # "Never contacted" | "Cold intro" | "Warm relationship" | "Booked us" | "Partner"
+last_contacted: ""                            # YYYY-MM-DD
+last_booked: ""                               # YYYY-MM-DD if we've played there
+rating_for_our_acts: ""                       # "Great fit" | "Good fit, right genre" | "Tough room" | "Passed on us"
+notes: |
+  Free-form notes. What does our experience say about this room?
+  Any gotchas? Loading dock issues? Bartender who'll help you out?
+
+# --- RESEARCH METADATA ---
+research:
+  researcher: ""                              # Claude agent name or human
+  researched_at: ""                           # ISO date
+  sources:                                    # [required] Cite everything
+    - url: ""
+      description: ""
+    - url: ""
+      description: ""
+  confidence: ""                              # "High - verified by phone" | "Medium - multiple online sources" | "Low - one source"
+  gaps_to_resolve: []                         # List fields that need human follow-up

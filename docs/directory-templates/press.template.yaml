@@ -1,0 +1,72 @@
+# PRESS / MEDIA CONTACT RECORD TEMPLATE
+# One file per outlet OR per individual writer. Journalists move around;
+# sometimes the relationship is with the person, sometimes with the publication.
+
+# --- IDENTITY ---
+outlet_name: ""                               # [required] "Memphis Flyer" | "Garden & Gun"
+writer_name: ""                               # [required if contact is person-specific]
+slug: ""
+role: ""                                      # "Music Editor" | "Staff Writer" | "Contributing Editor" | "Freelancer"
+
+# --- CLASSIFICATION ---
+type: ""                                      # [required] Magazine | Alt-Weekly | Newspaper | Podcast | YouTube | TikTok | Substack | Radio | Blog
+tier: ""                                      # "National" | "Regional" | "Local" | "Niche/Enthusiast"
+focus_areas: []                               # [required] ["Americana", "Blues", "Southern Food", "Music Tourism"]
+geographic_coverage: ""                       # "National - covers South" | "MS only" | "Delta region" | etc.
+
+# --- REACH ---
+audience:
+  size_estimate: ""                           # "50k monthly readers" | "10k subscribers"
+  size_tier: ""                               # "1k-10k" | "10k-50k" | "50k-250k" | "250k+"
+  demographic: ""                             # "Music industry" | "Tourists" | "Gen-Z TikTok" | "Older Southern"
+social_reach:
+  instagram_followers: null
+  tiktok_followers: null
+  youtube_subscribers: null
+  substack_subscribers: null
+  podcast_downloads_per_episode: null
+
+# --- CONTACT ---
+contact:
+  email: ""                                   # [required] Pitch address
+  phone: ""
+  website: ""
+  pitch_form_url: ""                          # If they use a pitch form
+  preferred_method: ""                        # "Email with embargo" | "DM on Instagram" | "Pitch form"
+  response_time: ""                           # "24hr" | "1 week" | "never responds" | "unknown"
+social:
+  instagram: ""
+  twitter: ""
+  tiktok: ""
+  linkedin: ""
+
+# --- PITCH STYLE ---
+pitch_preferences: |
+  What they like. "Loves Delta blues scene stories" | "Skeptical of SEO-driven
+  content" | "Prefers audio-first pitches"
+pitch_antipatterns: |
+  What to avoid. "Hates press releases" | "Don't pitch cold on Twitter"
+typical_lead_time: ""                         # "4-6 weeks for print" | "same-day for digital"
+
+# --- TRACK RECORD ---
+recent_coverage: []                           # Recent pieces they've written about our region
+has_covered_us: null                          # true/false
+coverage_of_us: []                            # If yes, links to their pieces about us
+related_beats: []                             # "Also covers food" | "Also covers politics"
+
+# --- OUR RELATIONSHIP ---
+our_relationship: ""                          # "Never pitched" | "Cold-emailed, no response" | "One piece" | "Ongoing relationship"
+last_pitched: ""
+last_response: ""
+relationship_notes: |
+  Free-form. Who introduced us? Any warm connections?
+
+# --- RESEARCH METADATA ---
+research:
+  researcher: ""
+  researched_at: ""
+  sources:
+    - url: ""
+      description: ""
+  confidence: ""
+  gaps_to_resolve: []

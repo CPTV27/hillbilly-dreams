@@ -1,0 +1,56 @@
+# LABEL / MUSIC BUSINESS RECORD TEMPLATE
+
+# --- IDENTITY ---
+name: ""                                      # [required]
+slug: ""
+type: ""                                      # Label | Publisher | Management | Booking Agency | Sync House
+parent_company: ""                            # If sub-label or subsidiary
+status: ""                                    # active | dormant | historic
+
+# --- LOCATION ---
+headquarters:
+  city: ""                                    # [required]
+  state: ""                                   # [required]
+  country: ""
+regional_focus: ""                            # "MS Delta" | "National but Southern-leaning"
+
+# --- ROSTER ---
+roster_size: null                             # Approximate
+roster_highlights: []                         # ["Artist A", "Artist B"]
+signature_genres: []                          # ["Blues", "Americana", "Gospel"]
+notable_releases: []                          # Signature albums
+
+# --- BUSINESS ---
+accepts_submissions: null                     # true/false/"by referral only"
+submission_policy: ""                         # Where/how to submit
+an_r_contacts:                                # Multiple A&R reps possible
+  - name: ""
+    role: ""
+    email: ""
+    focus: ""
+website: ""
+social:
+  instagram: ""
+  twitter: ""
+
+# --- DEAL STRUCTURE (if public) ---
+typical_deal: ""                              # "50/50 partnership" | "Traditional royalty" | "Licensing only"
+term_length: ""                               # "One album" | "Multi-album"
+advance_range: ""                             # "None" | "$5-25k"
+rights_structure: ""                          # "Masters revert after 5 years" | "Label keeps masters"
+
+# --- OUR RELATIONSHIP ---
+our_relationship: ""                          # "Never contacted" | "Our artist is on this label" | "Label partner"
+artists_we_share: []                          # Artists connected to both us and them
+notes: |
+  Free-form.
+
+# --- RESEARCH METADATA ---
+research:
+  researcher: ""
+  researched_at: ""
+  sources:
+    - url: ""
+      description: ""
+  confidence: ""
+  gaps_to_resolve: []

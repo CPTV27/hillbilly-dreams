@@ -1,0 +1,111 @@
+# MUSICIAN / BAND RECORD TEMPLATE
+# One file per artist. Fill what you know. Flag unknowns with `UNKNOWN`.
+
+# --- IDENTITY ---
+name: ""                                      # [required] Stage name / band name
+slug: ""                                      # Auto-generated
+real_name: ""                                 # For solo artists, if different
+aliases: []
+members: []                                   # Band member names if a band
+status: "active"                              # active | on-hiatus | retired | deceased | unknown
+
+# --- BASE + GEOGRAPHY ---
+home_city: ""                                 # [required] Where they're based
+home_state: ""                                # [required]
+corridor_connection: ""                       # Why they matter to us
+touring_radius: ""                            # "Local only" | "Corridor" | "Regional South" | "National" | "International"
+
+# --- GENRE + STYLE ---
+genres:                                       # [required]
+  primary: []                                 # ["Delta Blues", "Americana", "Soul", "Hill Country Blues", etc.]
+  secondary: []
+influences: []                                # ["R.L. Burnside", "Otis Redding", etc.]
+sounds_like: []                               # For discovery/matching
+era: ""                                       # "Emerging (2020s)" | "Established (2000s-2020s)" | "Veteran (pre-2000)" | "Historic"
+
+# --- WORK ---
+key_recordings:                               # Up to 5 signature tracks/albums
+  - title: ""
+    type: ""                                  # "Single" | "Album" | "EP" | "Live"
+    year: ""
+    listen_url: ""                            # Spotify / Bandcamp / SoundCloud
+  - title: ""
+    type: ""
+    year: ""
+    listen_url: ""
+discography_highlights: ""                    # Free-form note
+notable_collaborations: []                    # "Played with X on Y"
+
+# --- LINKS ---
+links:
+  spotify: ""
+  bandcamp: ""
+  soundcloud: ""
+  youtube: ""
+  apple_music: ""
+  website: ""
+social:
+  instagram: ""
+  facebook: ""
+  tiktok: ""
+  twitter: ""
+
+# --- BOOKING ---
+booking:
+  self_booked: null                           # true/false
+  agent: ""                                   # Booking agent name if any
+  agency: ""
+  manager: ""
+  management_company: ""
+  label: ""                                   # Current record label
+  contact:
+    email: ""
+    phone: ""
+    preferred_method: ""
+
+# --- BUSINESS ---
+fee_range:
+  typical_show: ""                            # "$200-500" | "$500-1,500" | "$1,500-5,000" | "$5k+"
+  festival: ""                                # If different
+band_size_for_fees:                           # Fees vary by configuration
+  solo: ""
+  duo: ""
+  full_band: ""
+rider_needs: ""                               # "Basic backline, one-mic setup" | "Full PA"
+availability_notes: ""                        # "Books 3 months out" | "Open calendar" | "Currently off the road"
+
+# --- PHOTO + PRESS ---
+press_photo_url: ""
+epk_url: ""                                   # Electronic Press Kit link
+bio_short: ""                                 # 1-2 sentences
+bio_long: ""                                  # Full bio
+
+# --- HISTORICAL / LEGACY (for heritage artists) ---
+legacy:
+  is_heritage: null                           # true for historic figures
+  birth_year: ""
+  death_year: ""
+  peak_era: ""                                # "Mid-1950s Chess Records era"
+  home_venue: ""                              # Historically associated venue
+  estate_contact: ""                          # For deceased artists
+  foundation: ""                              # If a foundation manages their legacy
+
+# --- OUR RELATIONSHIP ---
+our_relationship: ""                          # "Never contacted" | "Played with us" | "On our label" | "Hosted at the Inn"
+last_contacted: ""
+last_booked: ""
+submitted_music: null                         # true/false (for radio rotation)
+on_big_muddy_records: null                    # true/false
+has_catalog_profile: null                     # true/false (musician has a Catalog profile)
+notes: |
+  Free-form. How's it going to work with them? Any context?
+
+# --- RESEARCH METADATA ---
+research:
+  researcher: ""
+  researched_at: ""
+  sources:
+    - url: ""
+      description: ""
+  confidence: ""
+  gaps_to_resolve: []
