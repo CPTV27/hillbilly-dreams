@@ -18,13 +18,15 @@
 
 ## What changed since the last sync
 
-Three things, all material:
+Four things, all material:
 
 1. **Big Muddy Internal Directory shipped.** 459 records seeded across 10 categories (66 venues, 115 musicians, 39 festivals + 7 placeholder categories awaiting deeper research). Browse UI live at `/admin/directory`. This is the operational backbone for booking, press outreach, and the publicity-package product Tracy and I scoped earlier this week.
 
-2. **Studio C operator hire identified.** Elijah from Bearsville will run the photo archive end-to-end. Clear engagement model ($50/hr, 40-hour starter block = $2,000). Removes the photo-archive bottleneck that's been blocking Chase Pierson Photography sales.
+2. **Photo infrastructure is live.** Hetzner server up at `5.161.61.151`. Immich (the photo DAM) is running with TLS at https://immich.hillbillydreamsinc.com. **52,892 photos already ingested from the GCS bucket**, face detection + CLIP semantic search active, Chase's iPhone backing up automatically. T7 SSD sync from the Mac mini is in flight (~590 GB total, ~10% done, ETA 2.5 days, auto-restarts on drop). Full handoff at `docs/HANDOFF_HETZNER_MEDIA_INFRASTRUCTURE.md`.
 
-3. **Capital expenditure plan for Studio C kit is on the table.** $8.7K in week one, $22–25K full vision over 60 days. Driven by what's needed to deliver Studio C's premium tier and unblock Chase's stills pipeline.
+3. **Studio C operator hire identified.** Elijah from Bearsville will run the photo archive end-to-end on top of the Immich stack. Clear engagement model ($50/hr, 40-hour starter block = $2,000). Removes the photo-archive bottleneck that's been blocking Chase Pierson Photography sales.
+
+4. **Capital expenditure plan for Studio C kit is on the table.** $8.7K in week one, $22–25K full vision over 60 days. Driven by what's needed to deliver Studio C's premium tier and unblock Chase's stills pipeline.
 
 ---
 
@@ -69,8 +71,10 @@ Listed in priority order. Each item has a recommendation; partners decide.
 |---|---|---|---|
 | Camera/video Wave 1 | $8,750 | — | Or $730/mo for 12 months on B&H financing |
 | Elijah starter block | $2,000 | — | Goes into Q2 P&L; expect 40 hrs over 4 weeks |
-| Hetzner photo stack | — | $70/mo | Already paid: $40 (CCX23). New: $25 (Storage Box) + $5 (GCS) |
-| **TOTAL ASK TONIGHT** | **$10,750** | **$70/mo** | |
+| Hetzner photo stack | — | **$45/mo** | Already paid: $40 (CCX23) + $5 (1 TB block volume). GCS bucket continues at usage rate. |
+| **TOTAL ASK TONIGHT** | **$10,750** | **$45/mo** | |
+
+> **Note:** Original plan called for a separate 10 TB Hetzner Storage Box at $25/mo (total ~$70/mo). The execution agent used a 1 TB block storage volume on the server itself for $5/mo instead — saves $20/mo, holds the current 1.3 TB archive comfortably. **If the archive grows beyond 1 TB (likely within 6 months), upgrade to the 10 TB Storage Box adds ~$25/mo at that point.**
 
 **Cash position context:** _Chase to plug current bank balance and pending receivables before walking in. The $10.7K is real, not theoretical._
 
@@ -108,7 +112,9 @@ Listed in priority order. Each item has a recommendation; partners decide.
 1. **Cash burn timing.** $10.7K out the door in late April with the Inn season ramping up. Mitigated by B&H financing on the camera.
 2. **Elijah is remote.** Bearsville is 1,200 miles from Natchez. Mitigated by Tailscale-based Immich access — no physical handoffs needed.
 3. **Print-on-demand revenue is speculative.** No comp set in our portfolio yet. Mitigated by Elijah's $2K being the only at-risk capital; prints sit on someone else's inventory.
-4. **The Hetzner SSH rebuild is still pending.** Trivial, but technically blocks the photo backbone going live. Chase has to do this himself (5 min in console) — flagging so it doesn't slip.
+4. **Single-copy archive risk on the Hetzner volume.** Right now the 52K-photo Immich library lives on one Hetzner volume. If it dies, we lose face-recognition + tag work. **Followup queued: nightly rclone offsite backup to GCS** (`P20-storage-box-offsite-backup` in the agent queue). Cost: zero — uses existing GCS bucket.
+5. **Storage will outgrow the 1 TB volume within 6 months.** Plan: upgrade to 10 TB Storage Box ($25/mo) when we cross 800 GB. Currently at ~600 GB after T7 sync completes.
+6. **Tailscale free tier expires ~May 1.** Need to upgrade before that or admin access breaks. ~$5/mo per user. Flagging for budget.
 
 ---
 

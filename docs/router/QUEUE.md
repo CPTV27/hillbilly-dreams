@@ -1,8 +1,8 @@
 # Hillbilly Dreams Agent Queue
 
-*Last sync: 2026-04-18T01:59:35*
+*Last sync: 2026-04-18T02:17:28*
 
-Status counts: 0 done · 0 running · 8 ready · 10 blocked · **18 total**
+Status counts: 5 done · 0 running · 13 ready · 4 blocked · **22 total**
 
 ## How to use this
 
@@ -19,7 +19,7 @@ Each project below is **paste-ready** — copy the prompt into a fresh Claude or
 
 ---
 
-## ○ Ready (8)
+## ○ Ready (13)
 
 ### `P04-press-seed` — Press seed → ingest → flip canonical
 
@@ -112,6 +112,21 @@ STEP 2 (agent): python3 scripts/directory/ingest-seed.py editorial-pitches. Edit
 ```
 </details>
 
+### `P15-synology-external` — Synology External Library (Elijah + agent)
+
+**Owner:** elijah+agent · **Est:** ~30 min · **Depends on:** P13-hetzner-phase4-immich
+
+<details><summary>Show prompt</summary>
+
+```
+STEP 1 (Chase): Send Elijah the doc at /Users/chasethis/hillbilly-dreams/docs/ELIJAH_SYNOLOGY_TAILSCALE.md (create from cozy-beaming-minsky.md Phase 6 if not existing). Send Tailscale invite for the chasepierson.tv account.
+
+STEP 2 (Elijah): Follow the doc. Reply via Signal with Tailscale IP, share name, immich-readonly user + password.
+
+STEP 3 (agent): SSH to bigmuddy-services. Mount per Phase 6: cifs at 100.x/Photos, ro flag, /mnt/synology-bearsville. Add as External Library in Immich Admin → Read-Only ON. Trigger initial scan.
+```
+</details>
+
 ### `P16-public-musicians` — Public musician catalog MVP
 
 **Owner:** agent · **Est:** ~120 min
@@ -134,36 +149,65 @@ When done: typecheck, commit, push.
 ```
 </details>
 
+### `P19-elijah-commerce-pipeline` — Studio C commerce-export pipeline (Immich → GCS → Gallery)
 
-## ✕ Blocked (10)
+**Owner:** agent · **Est:** ~240 min · **Depends on:** P13-hetzner-phase4-immich
 
-### `P02-hetzner-ssh` — Unblock Hetzner SSH (Phase 0)
+<details><summary>Show prompt</summary>
 
-**Owner:** chase · **Est:** ~5 min · **Blocked by:** chase
+```
+Per docs/STUDIO_C_PHOTO_ARCHIVE_WORKFLOW.md, build the commerce export layer that runs on top of Immich:
 
-### `P03-hetzner-phase1` — Hetzner Phase 1: Server Foundation
+1. 4TB drive rsync → /mnt/storage-box/photos/4tb/ (one-time, 2 hrs)
+2. Lightroom CC scraper using gallery-dl → /mnt/storage-box/photos/lightroom-cc/ (3 hrs)
+3. Immich webhook → cron job that reads photos tagged 'ready-for-sale', generates web JPEG + high-res TIFF, uploads to GCS gs://bmt-media-bigmuddy/archive/<slug>/ (1 day)
+4. Gallery site picks up from archive/ bucket — already exists, just point it at the new path (0.5 day)
+5. Print-on-demand integration with Bay Photo (fine-art) + Printful (merch) — partner choice from Tracy meeting (2-3 days)
 
-**Owner:** agent · **Est:** ~30 min · **Blocked by:** P02-hetzner-ssh · **Depends on:** P02-hetzner-ssh
+Elijah only touches Immich tags. Everything else is automatic.
+Reference: docs/STUDIO_C_PHOTO_ARCHIVE_WORKFLOW.md
+```
+</details>
 
-### `P11-hetzner-phase2` — Hetzner Phase 2: Traefik + DNS
+### `P20-storage-box-offsite-backup` — Hetzner volume → GCS nightly offsite backup
 
-**Owner:** agent · **Est:** ~30 min · **Blocked by:** P03-hetzner-phase1 · **Depends on:** P03-hetzner-phase1
+**Owner:** agent · **Est:** ~60 min
 
-### `P12-hetzner-phase3` — Hetzner Phase 3: Storage Box mount
+<details><summary>Show prompt</summary>
 
-**Owner:** chase+agent · **Est:** ~25 min · **Blocked by:** P11-hetzner-phase2 · **Depends on:** P11-hetzner-phase2
+```
+On Hetzner server (5.161.61.151), set up nightly rclone job that backs up /mnt/storage/photos/library/ → gs://bmt-media-bigmuddy/backups/immich/. Use Bitwarden 'GCS service account' creds. Add weekly Postgres dump (immich DB) to same bucket. Cron at 04:00 UTC. Verify first run. Commit cron file + rclone config to /opt/services/backup/.
+```
+</details>
 
-### `P13-hetzner-phase4-immich` — Hetzner Phase 4: Immich
+### `P22-monitoring` — Uptime monitoring (Healthchecks.io or Uptime Kuma)
 
-**Owner:** agent · **Est:** ~60 min · **Blocked by:** P12-hetzner-phase3 · **Depends on:** P12-hetzner-phase3
+**Owner:** agent · **Est:** ~60 min
+
+<details><summary>Show prompt</summary>
+
+```
+On Hetzner server, install Uptime Kuma container at /opt/services/uptime-kuma/. Wire to Caddy with subdomain status.hillbillydreamsinc.com (gray cloud Cloudflare A record). Add monitors for: Immich (https://immich.hillbillydreamsinc.com), Postiz (when migrated), Open Notebook (when migrated). Notification channel: iMessage to Chase or Slack/email. Save admin to Bitwarden.
+```
+</details>
+
+### `P23-container-updates-and-log-rotation` — Watchtower + log rotation + monthly prune cron
+
+**Owner:** agent · **Est:** ~45 min
+
+<details><summary>Show prompt</summary>
+
+```
+On Hetzner server: 1) Install Watchtower container, schedule weekly 03:00 UTC Sunday, exclude DBs (Postgres + redis). 2) Add Docker log rotation: edit /etc/docker/daemon.json with {"log-driver": "json-file", "log-opts": {"max-size": "50m", "max-file": "3"}}, restart docker. 3) Cron at 04:00 UTC first-of-month: docker system prune -af --volumes. Verify NVMe usage drops or stays flat. Commit watchtower compose + cron file to /opt/services/maintenance/.
+```
+</details>
+
+
+## ✕ Blocked (4)
 
 ### `P14-migrate-postiz-notebook` — Migrate Postiz + Open Notebook off mini
 
 **Owner:** agent · **Est:** ~60 min · **Blocked by:** P11-hetzner-phase2 · **Depends on:** P11-hetzner-phase2
-
-### `P15-synology-external` — Synology External Library (Elijah + agent)
-
-**Owner:** elijah+agent · **Est:** ~30 min · **Blocked by:** P13-hetzner-phase4-immich · **Depends on:** P13-hetzner-phase4-immich
 
 ### `P17-prisma-migration` — Prisma migration + DB sync
 
@@ -173,9 +217,32 @@ When done: typecheck, commit, push.
 
 **Owner:** agent · **Est:** ~180 min · **Blocked by:** P15-synology-external · **Depends on:** P15-synology-external
 
-### `P19-elijah-commerce-pipeline` — Studio C commerce-export pipeline (Immich → GCS → Gallery)
+### `P21-team-immich-invites` — Invite Tracy + Amy + JP to Immich + iOS app setup
 
-**Owner:** agent · **Est:** ~240 min · **Blocked by:** P13-hetzner-phase4-immich · **Depends on:** P13-hetzner-phase4-immich
+**Owner:** chase · **Est:** ~20 min · **Blocked by:** decision-from-tracy-amy-meeting
+
+
+## ✓ Done (5)
+
+### `P02-hetzner-ssh` — Unblock Hetzner SSH (Phase 0)
+
+**Owner:** chase · **Est:** ~5 min · **Blocked by:** chase · **Shipped:** 2026-04-18T02:17:28
+
+### `P03-hetzner-phase1` — Hetzner Phase 1: Server Foundation
+
+**Owner:** agent · **Est:** ~30 min · **Blocked by:** P02-hetzner-ssh · **Depends on:** P02-hetzner-ssh · **Shipped:** 2026-04-18T02:17:28
+
+### `P11-hetzner-phase2` — Hetzner Phase 2: Traefik + DNS
+
+**Owner:** agent · **Est:** ~30 min · **Blocked by:** P03-hetzner-phase1 · **Depends on:** P03-hetzner-phase1 · **Shipped:** 2026-04-18T02:17:28
+
+### `P12-hetzner-phase3` — Hetzner Phase 3: Storage Box mount
+
+**Owner:** chase+agent · **Est:** ~25 min · **Blocked by:** P11-hetzner-phase2 · **Depends on:** P11-hetzner-phase2 · **Shipped:** 2026-04-18T02:17:28
+
+### `P13-hetzner-phase4-immich` — Hetzner Phase 4: Immich
+
+**Owner:** agent · **Est:** ~60 min · **Blocked by:** P12-hetzner-phase3 · **Depends on:** P12-hetzner-phase3 · **Shipped:** 2026-04-18T02:17:28
 
 
 ---

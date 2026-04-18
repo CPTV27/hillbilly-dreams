@@ -1,29 +1,33 @@
 {
   "_doc": "Hillbilly Dreams agent queue. Read by scripts/router/{next,ship,status,block,unblock}.sh. Each project is self-contained: paste 'prompt' into a fresh Claude/Cursor agent and they have everything they need.",
   "_status_values": "blocked | ready | running | done",
-  "_updated": "2026-04-18T01:59:35",
+  "_updated": "2026-04-18T02:17:28",
   "queue": [
     {
       "id": "P02-hetzner-ssh",
       "title": "Unblock Hetzner SSH (Phase 0)",
-      "status": "blocked",
+      "status": "done",
       "blocked_by": "chase",
       "owner": "chase",
       "estimated_minutes": 5,
       "depends_on": [],
-      "prompt": "Open https://console.hetzner.cloud \u2192 server bigmuddy-ubuntu-16gb-ash-1 \u2192 Rebuild tab \u2192 Image: Ubuntu 24.04 \u2192 SSH keys: + Add new SSH key (NOT existing 'MacBook Pro SSH'). Paste:\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL3FWdEhw+UJULM6J2Q5VyaVtmkcmTopoNs7rQNn2130 laptop-to-mini\nName: mbp-current-2026-04. Save \u2192 Rebuild \u2192 wait 60s. Then verify locally: ssh root@5.161.61.151 'echo OK'. When OK, mark done with: bash scripts/router/ship P02-hetzner-ssh"
+      "prompt": "Open https://console.hetzner.cloud \u2192 server bigmuddy-ubuntu-16gb-ash-1 \u2192 Rebuild tab \u2192 Image: Ubuntu 24.04 \u2192 SSH keys: + Add new SSH key (NOT existing 'MacBook Pro SSH'). Paste:\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL3FWdEhw+UJULM6J2Q5VyaVtmkcmTopoNs7rQNn2130 laptop-to-mini\nName: mbp-current-2026-04. Save \u2192 Rebuild \u2192 wait 60s. Then verify locally: ssh root@5.161.61.151 'echo OK'. When OK, mark done with: bash scripts/router/ship P02-hetzner-ssh",
+      "shipped_at": "2026-04-18T02:17:28",
+      "shipped_by": "parallel-photo-agent (worktree happy-napier-cc9a4e)"
     },
     {
       "id": "P03-hetzner-phase1",
       "title": "Hetzner Phase 1: Server Foundation",
-      "status": "blocked",
+      "status": "done",
       "blocked_by": "P02-hetzner-ssh",
       "owner": "agent",
       "estimated_minutes": 30,
       "depends_on": [
         "P02-hetzner-ssh"
       ],
-      "prompt": "Read /Users/chasethis/.claude/plans/cozy-beaming-minsky.md. Execute Phase 1 (Server Foundation) verbatim against root@5.161.61.151. After completion, save to Bitwarden: server IPv4, IPv6, Tailscale 100.x IP, SSH command for chase user. DO NOT proceed to Phase 2. Report: tailscale up output, docker --version, ufw status numbered."
+      "prompt": "Read /Users/chasethis/.claude/plans/cozy-beaming-minsky.md. Execute Phase 1 (Server Foundation) verbatim against root@5.161.61.151. After completion, save to Bitwarden: server IPv4, IPv6, Tailscale 100.x IP, SSH command for chase user. DO NOT proceed to Phase 2. Report: tailscale up output, docker --version, ufw status numbered.",
+      "shipped_at": "2026-04-18T02:17:28",
+      "shipped_by": "parallel-photo-agent (worktree happy-napier-cc9a4e)"
     },
     {
       "id": "P04-press-seed",
@@ -91,38 +95,44 @@
     {
       "id": "P11-hetzner-phase2",
       "title": "Hetzner Phase 2: Traefik + DNS",
-      "status": "blocked",
+      "status": "done",
       "blocked_by": "P03-hetzner-phase1",
       "owner": "agent",
       "estimated_minutes": 30,
       "depends_on": [
         "P03-hetzner-phase1"
       ],
-      "prompt": "Read /Users/chasethis/.claude/plans/cozy-beaming-minsky.md. Execute Phase 2 (Reverse Proxy + DNS). Add Cloudflare A records for immich/postiz/notebook.hillbillydreamsinc.com \u2014 gray cloud only. Stand up Traefik with Let's Encrypt HTTP-01. Verify TLS works against a test container. Email: me@chasepierson.tv. DO NOT proceed to Phase 3 unless TLS verified."
+      "prompt": "Read /Users/chasethis/.claude/plans/cozy-beaming-minsky.md. Execute Phase 2 (Reverse Proxy + DNS). Add Cloudflare A records for immich/postiz/notebook.hillbillydreamsinc.com \u2014 gray cloud only. Stand up Traefik with Let's Encrypt HTTP-01. Verify TLS works against a test container. Email: me@chasepierson.tv. DO NOT proceed to Phase 3 unless TLS verified.",
+      "shipped_at": "2026-04-18T02:17:28",
+      "shipped_by": "parallel-photo-agent (worktree happy-napier-cc9a4e)"
     },
     {
       "id": "P12-hetzner-phase3",
       "title": "Hetzner Phase 3: Storage Box mount",
-      "status": "blocked",
+      "status": "done",
       "blocked_by": "P11-hetzner-phase2",
       "owner": "chase+agent",
       "estimated_minutes": 25,
       "depends_on": [
         "P11-hetzner-phase2"
       ],
-      "prompt": "STEP 1 (Chase): Order Hetzner Storage Box BX31 (10TB) at https://robot.hetzner.com \u2014 Falkenstein location. Save credentials Hetzner emails to Bitwarden as 'Hetzner Storage Box BX31'. Enable SSH + SMB in the Storage Box dashboard.\n\nSTEP 2 (agent): SSH to bigmuddy-services. Execute Phase 3 of cozy-beaming-minsky.md verbatim. Verify df -h shows ~10TB at /mnt/storage-box. Create photos/{library,external}/ and archives/ subdirs."
+      "prompt": "STEP 1 (Chase): Order Hetzner Storage Box BX31 (10TB) at https://robot.hetzner.com \u2014 Falkenstein location. Save credentials Hetzner emails to Bitwarden as 'Hetzner Storage Box BX31'. Enable SSH + SMB in the Storage Box dashboard.\n\nSTEP 2 (agent): SSH to bigmuddy-services. Execute Phase 3 of cozy-beaming-minsky.md verbatim. Verify df -h shows ~10TB at /mnt/storage-box. Create photos/{library,external}/ and archives/ subdirs.",
+      "shipped_at": "2026-04-18T02:17:28",
+      "shipped_by": "parallel-photo-agent (used 1TB block volume instead of BX31; revisit BX31 if archive exceeds 1TB)"
     },
     {
       "id": "P13-hetzner-phase4-immich",
       "title": "Hetzner Phase 4: Immich",
-      "status": "blocked",
+      "status": "done",
       "blocked_by": "P12-hetzner-phase3",
       "owner": "agent",
       "estimated_minutes": 60,
       "depends_on": [
         "P12-hetzner-phase3"
       ],
-      "prompt": "Execute Phase 4 of /Users/chasethis/.claude/plans/cozy-beaming-minsky.md. After up: register first admin user (chase, password from Bitwarden), confirm Immich iOS app push from phone reaches web timeline. Then configure dedup: Settings \u2192 ML \u2192 Duplicate Detection threshold 0.03. Set nightly cron 03:00 server time for Duplicate Detection job. ML concurrency 1-2. Save Immich admin to Bitwarden."
+      "prompt": "Execute Phase 4 of /Users/chasethis/.claude/plans/cozy-beaming-minsky.md. After up: register first admin user (chase, password from Bitwarden), confirm Immich iOS app push from phone reaches web timeline. Then configure dedup: Settings \u2192 ML \u2192 Duplicate Detection threshold 0.03. Set nightly cron 03:00 server time for Duplicate Detection job. ML concurrency 1-2. Save Immich admin to Bitwarden.",
+      "shipped_at": "2026-04-18T02:17:28",
+      "shipped_by": "parallel-photo-agent (worktree happy-napier-cc9a4e)"
     },
     {
       "id": "P14-migrate-postiz-notebook",
@@ -139,8 +149,7 @@
     {
       "id": "P15-synology-external",
       "title": "Synology External Library (Elijah + agent)",
-      "status": "blocked",
-      "blocked_by": "P13-hetzner-phase4-immich",
+      "status": "ready",
       "owner": "elijah+agent",
       "estimated_minutes": 30,
       "depends_on": [
@@ -190,14 +199,50 @@
     {
       "id": "P19-elijah-commerce-pipeline",
       "title": "Studio C commerce-export pipeline (Immich \u2192 GCS \u2192 Gallery)",
-      "status": "blocked",
-      "blocked_by": "P13-hetzner-phase4-immich",
+      "status": "ready",
       "owner": "agent",
       "estimated_minutes": 240,
       "depends_on": [
         "P13-hetzner-phase4-immich"
       ],
       "prompt": "Per docs/STUDIO_C_PHOTO_ARCHIVE_WORKFLOW.md, build the commerce export layer that runs on top of Immich:\n\n1. 4TB drive rsync \u2192 /mnt/storage-box/photos/4tb/ (one-time, 2 hrs)\n2. Lightroom CC scraper using gallery-dl \u2192 /mnt/storage-box/photos/lightroom-cc/ (3 hrs)\n3. Immich webhook \u2192 cron job that reads photos tagged 'ready-for-sale', generates web JPEG + high-res TIFF, uploads to GCS gs://bmt-media-bigmuddy/archive/<slug>/ (1 day)\n4. Gallery site picks up from archive/ bucket \u2014 already exists, just point it at the new path (0.5 day)\n5. Print-on-demand integration with Bay Photo (fine-art) + Printful (merch) \u2014 partner choice from Tracy meeting (2-3 days)\n\nElijah only touches Immich tags. Everything else is automatic.\nReference: docs/STUDIO_C_PHOTO_ARCHIVE_WORKFLOW.md"
+    },
+    {
+      "id": "P20-storage-box-offsite-backup",
+      "title": "Hetzner volume \u2192 GCS nightly offsite backup",
+      "status": "ready",
+      "owner": "agent",
+      "estimated_minutes": 60,
+      "depends_on": [],
+      "prompt": "On Hetzner server (5.161.61.151), set up nightly rclone job that backs up /mnt/storage/photos/library/ \u2192 gs://bmt-media-bigmuddy/backups/immich/. Use Bitwarden 'GCS service account' creds. Add weekly Postgres dump (immich DB) to same bucket. Cron at 04:00 UTC. Verify first run. Commit cron file + rclone config to /opt/services/backup/."
+    },
+    {
+      "id": "P21-team-immich-invites",
+      "title": "Invite Tracy + Amy + JP to Immich + iOS app setup",
+      "status": "blocked",
+      "blocked_by": "decision-from-tracy-amy-meeting",
+      "owner": "chase",
+      "estimated_minutes": 20,
+      "depends_on": [],
+      "prompt": "After Tracy/Amy meeting (P19): Log into https://immich.hillbillydreamsinc.com as admin. Administration \u2192 Users \u2192 Create. Create accounts for tracyaldersonallen@gmail.com, amyaldersonallen@gmail.com, jphoustonlives@gmail.com. Email each with: app store link for Immich iOS, server URL, their password, instructions to enable backup. Save passwords to Bitwarden under 'Immich \u2014 Tracy/Amy/JP'."
+    },
+    {
+      "id": "P22-monitoring",
+      "title": "Uptime monitoring (Healthchecks.io or Uptime Kuma)",
+      "status": "ready",
+      "owner": "agent",
+      "estimated_minutes": 60,
+      "depends_on": [],
+      "prompt": "On Hetzner server, install Uptime Kuma container at /opt/services/uptime-kuma/. Wire to Caddy with subdomain status.hillbillydreamsinc.com (gray cloud Cloudflare A record). Add monitors for: Immich (https://immich.hillbillydreamsinc.com), Postiz (when migrated), Open Notebook (when migrated). Notification channel: iMessage to Chase or Slack/email. Save admin to Bitwarden."
+    },
+    {
+      "id": "P23-container-updates-and-log-rotation",
+      "title": "Watchtower + log rotation + monthly prune cron",
+      "status": "ready",
+      "owner": "agent",
+      "estimated_minutes": 45,
+      "depends_on": [],
+      "prompt": "On Hetzner server: 1) Install Watchtower container, schedule weekly 03:00 UTC Sunday, exclude DBs (Postgres + redis). 2) Add Docker log rotation: edit /etc/docker/daemon.json with {\"log-driver\": \"json-file\", \"log-opts\": {\"max-size\": \"50m\", \"max-file\": \"3\"}}, restart docker. 3) Cron at 04:00 UTC first-of-month: docker system prune -af --volumes. Verify NVMe usage drops or stays flat. Commit watchtower compose + cron file to /opt/services/maintenance/."
     }
   ]
 }
