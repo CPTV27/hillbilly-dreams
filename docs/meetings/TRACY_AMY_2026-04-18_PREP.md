@@ -64,17 +64,15 @@ Listed in priority order. Each item has a recommendation; partners decide.
 | C1 | Approve Hetzner photo infrastructure ($45/mo ongoing) | YES | $40 server + $5 (1 TB volume) + GCS pass-through. Already executed; this is just ratification. |
 | C2 | Synology integration via Tailscale (Elijah sets up) | YES, no $ | Read-only mount — Synology stays untouched |
 
-### D. Rhea engagement — Amy's band development
+### D. Rhea engagement — Amy's band development — **DEFERRED**
 
-Rhea is in the room (probably). The deal needs to be defined here so he can leave with focus time scheduled.
+**Outcome from the meeting (2026-04-18):** No immediate engagement with Rhea. Reasoning: we need to get a bunch of other stuff done first (platform, Vicki, Paul Green, Studio C operator framework) before Rhea would have the focus time for a band-dev cycle.
 
-| # | Decision | Recommendation | Rationale |
-|---|---|---|---|
-| D1 | **Define scope of engagement** | Write a one-page deliverable list: e.g., 4-week development cycle, X songs arranged, Y rehearsals attended, ends with a Big Muddy showcase or recording session | "Cut him loose" requires the loose to be defined |
-| D2 | Compensation structure | _Chase to propose_ — fixed-fee per cycle, hourly block (like Elijah at $50/hr × 40 hrs = $2K), or revenue share on Amy's first paid show? | Fixed-fee feels right for a defined deliverable |
-| D3 | **Schedule the focus-time block** | After Chase's NY trip and before Amy's show — that's the window where Rhea + Amy + Natchez geography all align | See itinerary section below |
-| D4 | **Order: Austin first, or Amy first?** | _Rhea to decide in the meeting_ — both work, but Amy first means the band-dev block lines up with Chase's NY week (Rhea autonomous in Natchez) | Either is fine; just commit so Amy can plan |
-| D5 | What "done" looks like | Tied to D1 — but propose: deliverable is a 30-min set Amy's band can play live, ready for the Big Muddy show on Chase's return | Forces a concrete end-point |
+**Re-evaluate:** summer at Woodstock, OR fall when we're back at Big Muddy.
+
+**For Amy's May 8 show:** Amy plays with the **Big Muddy Blues Band**, same lineup as the show last night. If a better bass player turns up between now and May 8, we swap. If Rhea is still around and wants to play drums, that's optional. Otherwise, we don't worry about it.
+
+D1–D5 are not active items. Do not surface as open threads.
 
 ---
 
@@ -117,6 +115,7 @@ Rhea is in the room (probably). The deal needs to be defined here so he can leav
 | "Is Elijah reliable?" | _Chase to address — track record from Bearsville Studio work_ |
 | "What's the Bearsville activation timeline?" | Chase visits next week to walk the property and set the plan. Active work begins immediately after we close out the Big Muddy items in this meeting. Summer activation still on track. |
 | "What's happening with JP?" | JP's engagement is now scoped: he's delivering mixes from the First Arctic record and making a few New Orleans intros. End of engagement after that — not a permanent role. Info-only; no decision needed. |
+| "What about Amy's band on May 8?" | Same lineup as last night — Amy with the Big Muddy Blues Band. If a better bass player appears, we swap. Rhea optional on drums if she's still around. |
 | "Print-on-demand revenue is unproven for us — what's our floor?" | Floor is zero — POD is consignment. Risk is only Elijah's $2K. Upside is 30%+ margins on prints with no inventory. |
 | "Can we delay the Storage Box?" | Yes — Immich works without it for the first 1-2TB. But we'll need it within 30 days as ingest ramps. |
 
@@ -124,14 +123,16 @@ Rhea is in the room (probably). The deal needs to be defined here so he can leav
 
 ## Itinerary — next 3 weeks (so partners can plan around it)
 
-| Window | Chase | Rhea | Amy | Notes |
-|---|---|---|---|---|
-| Today (4/18) | Meeting → drive NOLA | Probably in meeting | Inn | Today is the only sync window before everyone scatters |
-| Late this week | NOLA — meeting musicians | Returns to Natchez OR goes to Austin | Inn ops | Rhea path = D4 decision |
-| Next week | NY — few days to a week | Working with Amy in Natchez (if D4 = Amy first) OR Austin | Band development with Rhea | Chase reachable but not in-state |
-| Following week | Maybe Arkansas, then back to Natchez | Wrapping band block | Prepping for show | |
-| Then | **Amy's show** (date?) | Should be at the show | **Performing** | Need date confirmed for #D3 timing |
-| After show | Drive van Natchez → Woodstock for supper | TBD | TBD | Bearsville activation event |
+| Window | Chase | Amy | Notes |
+|---|---|---|---|
+| Today (4/18) | Meeting → drive NOLA | Inn | |
+| Late this week | NOLA — meeting musicians | Inn ops | |
+| Next week | NY — few days to a week | Inn ops | Chase reachable but not in-state |
+| Following week | Maybe Arkansas, then back to Natchez | Show prep with Big Muddy Blues Band | |
+| **May 8** | Back for Amy's show | **Performing with Big Muddy Blues Band** | Same lineup as the show last night; bass player swap if a better one appears |
+| After show | Drive van Natchez → Woodstock for supper | TBD | Bearsville activation event |
+
+**Rhea is not in this table.** Rhea engagement deferred — see Decision D above. May reconsider summer (Woodstock) or fall (back at Big Muddy).
 
 **Implication for the partners:** Chase is mostly mobile for the next 2–3 weeks. Anything that requires his sign-off needs to happen today or get queued for the post-show return. Tracy/Amy should know they hold the day-to-day rudder during this window.
 

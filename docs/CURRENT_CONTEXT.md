@@ -2,7 +2,7 @@
 
 *Single source of truth for any AI agent helping Chase. Read this first. Updated as reality changes.*
 
-**Last updated:** 2026-04-18 15:30 CDT (by Cos — added platform architecture, client roster expansion, new products)
+**Last updated:** 2026-04-18 evening (by Cos — partner meeting outcomes integrated)
 
 ---
 
@@ -108,6 +108,10 @@ Full architecture: `docs/PLATFORM_ARCHITECTURE.md`
 
 ## Recent decisions (most recent first)
 
+- **2026-04-18 (partner meeting outcomes):**
+  - **Rhea engagement DEFERRED.** No immediate scope. Re-evaluate at Woodstock this summer or back at Big Muddy in the fall. Reason: too much else needs to be done first (platform, Vicki, Paul Green, Studio C operator framework). Rhea wouldn't have the focus time.
+  - **Amy's May 8 show — Amy + Big Muddy Blues Band.** Same lineup as last night. If a better bass player appears, swap him in. If Rhea is still around and wants to play drums, optional. Otherwise no special prep.
+  - **Elijah onboarding ON HOLD.** Don't send WhatsApp / create Immich account until Chase reviews everything personally first. WhatsApp draft + runbook are staged but not transmitted.
 - **2026-04-18 (driving to NOLA):** Platform architecture locked — three layers: **MBT (platform) ↓ Studio C (operator) ↓ Tenants (clients).** Sanity is the CMS across every property. Studio C runs the middleware per tenant. Build-once-reuse-many. Full doc: `docs/PLATFORM_ARCHITECTURE.md`.
 - **2026-04-18:** Vicki Wolpert onboarding — Upstate NY realtor, **starts May 1**, $500/mo custom service, can add on. Other realtors target $500/mo with $99 intro rate.
 - **2026-04-18:** New product line — **Recording Studios Magazine + Coffee Table Book** — Chase's summer 2026 work at Bearsville. Photography + video of recording studios (Utopia, Clubhouse, David Beren, others). Feeds Utopia/Bearsville channels + Bearsville campus network.
@@ -158,12 +162,13 @@ Full architecture: `docs/PLATFORM_ARCHITECTURE.md`
 | Bucket | One-time | Monthly | Notes |
 |---|---|---|---|
 | Hetzner photo stack | — | $45 | CCX23 + 1 TB volume + GCS |
-| Elijah starter block | $2,000 | — | 40 hrs × $50/hr |
-| Rhea block (TBD today) | ~$2,000 | — | Per partner meeting |
+| Elijah starter block | $2,000 | — | 40 hrs × $50/hr — ON HOLD pending Chase review |
+| ~~Rhea block~~ | — | — | Deferred |
 | Camera Wave 1 | $8,750 | — | Sony a7 V + 70-200 GM II + cards + wireless TX. B&H 12-mo 0% available → $730/mo alt |
 | Camera Phase 1 (next 60d) | $9,650–10,200 | — | Gimbal, 2nd TX, Ronin 4D expansion |
-| **Approved this week** | ~$12,750 | $45 | |
-| **Full Studio C buildout** | ~$22K | $45 | Over 60 days |
+| **Currently in motion** | ~$8,750 | $45 | Camera Wave 1 + infra |
+| **Pending Chase review** | $2,000 | — | Elijah block |
+| **Full Studio C buildout** | ~$20K | $45 | Over 60 days |
 
 ---
 
@@ -191,8 +196,8 @@ Full architecture: `docs/PLATFORM_ARCHITECTURE.md`
 5. **Studio C PRD framework** — one-page-per-client template for what's supported now / feature add-on path — router P36
 6. **Recording Studios Magazine + Coffee Table Book** — Chase's summer Bearsville work — router P33
 7. **Natchez Tourism Magazine** — depends on Paul Green + City alignment first — router P34
-8. **Elijah onboarding** — waiting on his email (Chase via WhatsApp)
-9. **Rhea engagement** — scope + comp + timing (defined in today's partner meeting?)
+8. **Elijah onboarding ON HOLD** — Chase reviewing the runbook + WhatsApp draft + architecture personally before sending anything
+9. ~~Rhea engagement~~ — **deferred** to summer (Woodstock) or fall (Big Muddy). Not active.
 10. **Tailscale free tier expires ~May 1** — upgrade before Chase leaves on NY trip, or pre-authorize Tracy via Bitwarden
 11. **Amy voice-onboarding Asana task** — router P24, needs creating
 12. **Big Muddy Touring site refresh** — tour-bus hero, artist-recruit-ready — router P29
