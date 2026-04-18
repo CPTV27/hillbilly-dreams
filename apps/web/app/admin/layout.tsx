@@ -89,6 +89,7 @@ const NAV_SECTIONS = [
     items: [
       { label: 'Contacts', href: '/contacts', icon: '◻' },
       { label: 'Clients', href: '/clients', icon: '◈' },
+      { label: 'Directory', href: '/directory', icon: '✚' },
     ],
   },
   {
