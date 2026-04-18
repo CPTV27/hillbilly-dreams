@@ -16,7 +16,8 @@ A multicam event and concert production studio — multicam shoot, broadcast-qua
 |---|---|
 | **Tier** | Production B2B |
 | **Parent entity** | Studio C (NY LLC, currently shared with Tuthill Design) |
-| **Owners** | Chase 40% (held by MBT) · Other 60% **TBD (open question)** |
+| **Owners** | Chase 40% (personal — MBT receives the distributions post-restructure but does NOT acquire equity) · Other 60% **TBD (open question)** |
+| **Effect of MBT restructure on Studio C itself** | None. Operations + ownership unchanged. Other 60%-holders unaffected. |
 | **NY footprint** | Bearsville-anchored |
 | **South footprint (NEW)** | Natchez, MS branch opening |
 | **Customer of MBT?** | Yes — uses platform for client mgmt, project tracking, content delivery, marketing |
@@ -151,4 +152,4 @@ A multicam event and concert production studio — multicam shoot, broadcast-qua
 - Tuthill ↔ Studio C LLC split (P41) — when, on what trigger
 - Insurance flash radius (P38) — Studio C production boundary with Tuthill and BMT
 - Recording Studios summer project (P33) — Studio C provides the video alongside Chase's photography
-- **PRE-MBT-FILING REQUIREMENT:** Conversation with Studio C's 60%-holder(s) about what "Chase's 40% rolls into MBT" means for them. Relationship work, not legal. Must happen before MBT operating agreement finalizes. (P50 in router)
+- **Lawyer check (NOT a co-owner conversation):** Review Studio C operating agreement for transfer/assignment clauses to confirm that redirecting Chase's distributions from FarleyPierson → MBT is not a triggered assignment. If it is, courtesy notice to other 60%-holders (formality, not negotiation). (P50 in router)

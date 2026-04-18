@@ -23,9 +23,11 @@
 - **Big Muddy Touring LLC** — NEW, to file alongside MBT (vehicle + road insurance separation)
 - **Project LLCs** — pattern: spin up per tenant project with meaningful liability exposure
 
-**Affiliates Chase partly owns through MBT (NOT subsidiaries):**
-- **Tuthill Design** (NY) — Chase 50% (held by MBT) / Elijah Tuthill 50%. Real estate media + 3D + design. NY counties + new Natchez branch. **Holds the retainer with MBT** that funds Elijah's cross-entity work.
-- **Studio C** (NY + new Natchez branch) — Chase 40% (held by MBT) / Other 60% TBD. Concert + event production. Vendor + client of MBT.
+**Affiliates where Chase holds a personal stake (NOT MBT subsidiaries — equity stays with Chase personally):**
+- **Tuthill Design** (NY) — Chase 50% (personal; MBT receives Chase's distributions post-restructure) / Elijah Tuthill 50%. Real estate media + 3D + design. NY counties + new Natchez branch. **Holds the retainer with MBT** that funds Elijah's cross-entity work.
+- **Studio C** (NY + new Natchez branch) — Chase 40% (personal; MBT receives Chase's distributions post-restructure) / Other 60% TBD. Concert + event production. Vendor + client of MBT.
+
+**Important:** the MBT restructure does not transfer Chase's equity in Tuthill or Studio C. It only redirects where Chase's pass-through distributions flow (currently FarleyPierson → after restructure MBT). Tuthill and Studio C themselves operate exactly as before.
 
 **FarleyPierson LLC** — SHUTTING DOWN (decision 2026-04-18 evening).
 
@@ -153,6 +155,10 @@ Full architecture: `docs/PLATFORM_ARCHITECTURE.md`
 
 ## Recent decisions (most recent first)
 
+- **2026-04-18 (late evening, further Chase corrections):**
+  - **Vicki May 1 is a self-imposed target, not a wall.** Vicki has been waiting years; date is movable. Get launch right, don't rush.
+  - **Chase's stakes in Tuthill (50%) and Studio C (40%) STAY PERSONAL.** MBT does NOT acquire equity in those entities. What changes: Chase's distributions from Tuthill/Studio C currently flow through FarleyPierson; post-restructure they flow to MBT. Tuthill and Studio C themselves are unchanged in ownership or operations. Elijah Tuthill + Studio C 60%-holder are UNAFFECTED.
+  - **Pre-MBT-filing co-owner conversations WALKED BACK.** Reduced to a lawyer check on Tuthill + Studio C operating agreements for transfer/assignment clauses. If a courtesy notice is triggered, it's a formality, not negotiation. P50 reframed accordingly.
 - **2026-04-18 (evening, Chase corrections):**
   - **Two new LLCs to file** (lawyer engaged): MBT + Big Muddy Touring. Big Muddy Natchez LLC already exists as the current Inn operating entity (NOT a new filing). FarleyPierson LLC SHUTTING DOWN (reversing prior "kept as legacy shell" assumption).
   - **Tracy role evolution:** stepping back from Inn day-to-day → MBT-level executive (portfolio oversight, back office, cross-venture marketing). Magazine editor role retained.

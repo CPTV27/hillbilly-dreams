@@ -106,7 +106,7 @@ And the production-side affiliates Chase partly owns through MBT:
 | **NOT** | Registering as foreign LLC in NY |
 | **Owners** | Chase Pierson 1/3 · Tracy Alderson-Allen 1/3 · Amy Allen 1/3 |
 | **Holds DIRECTLY** | Tech platform IP, canonical entity store, directory module, Sanity architecture, Born Free Network code |
-| **Holds AS EQUITY** | 50% of Tuthill Design (Chase's stake) · 40% of Studio C (Chase's stake) |
+| **Receives** | Chase's personal distributions from Tuthill Design (50%) and Studio C (40%) — currently flow through FarleyPierson; redirect to MBT post-restructure. **Equity in those entities stays personal to Chase. MBT does NOT acquire ownership in Tuthill or Studio C.** |
 | **Wholly-owned subsidiaries** | Big Muddy Natchez LLC · Big Muddy Touring LLC · project LLCs as needed |
 | **Public-facing?** | No — surfaces only for broker-tier B2B deals |
 
@@ -148,7 +148,8 @@ If I'm wrong and BMT is already filed under another name (e.g., FarleyPierson d/
 |---|---|
 | **Type** | LLC (currently shared with Studio C — split deferred) |
 | **Filing state** | New York (existing) |
-| **Owners** | Chase Pierson 50% (held by MBT) · Elijah Tuthill 50% |
+| **Owners** | Chase Pierson 50% (personal — MBT receives the distributions post-restructure but does NOT acquire equity) · Elijah Tuthill 50% |
+| **Effect of MBT restructure on Tuthill itself** | None. Operations unchanged. Ownership unchanged. Elijah Tuthill unaffected. Only Chase's distribution path changes (FarleyPierson → MBT). |
 | **NY footprint** | Dutchess · Ulster · Orange · Westchester · Columbia Counties |
 | **South footprint (NEW)** | Natchez, MS branch opening · Arkansas possible next |
 | **Service menu** | Stills (HDR/drone/twilight/architectural) · 3D (Matterport+Zillow tours, floor plans) · Video (cinematic, reels, lifestyle) · Design (LiDAR + AI renderings — Scan2Plan bridge) |
@@ -160,7 +161,8 @@ If I'm wrong and BMT is already filed under another name (e.g., FarleyPierson d/
 |---|---|
 | **Type** | LLC (currently shared with Tuthill — split deferred) |
 | **Filing state** | New York (existing) |
-| **Owners** | Chase Pierson 40% (held by MBT) · Other 60% **TBD (Cos needs Chase to provide)** |
+| **Owners** | Chase Pierson 40% (personal — MBT receives the distributions post-restructure but does NOT acquire equity) · Other 60% **TBD (Cos needs Chase to provide)** |
+| **Effect of MBT restructure on Studio C itself** | None. Operations unchanged. Ownership unchanged. Other 60%-holders unaffected. Only Chase's distribution path changes (FarleyPierson → MBT). |
 | **NY footprint** | Bearsville-anchored |
 | **South footprint (NEW)** | Natchez, MS branch opening |
 | **Service menu** | Multicam event production · Broadcast-quality live streaming · Post production · Focus: concerts and events |
@@ -229,15 +231,16 @@ BMT operates inside the MBT family but bills as a real entity. Three billing rel
 
 ---
 
-## Summary — what's new this update
+## Summary — corrections from late-evening Chase update
 
 | Change | Impact |
 |---|---|
-| **Big Muddy Natchez LLC** is a new entity (Inn + Magazine) | Adds one new filing; updates Big Muddy Inn PRD parent entity |
-| **MBT holds Chase's stakes** in Tuthill (50%) and Studio C (40%) — not Chase personally | Cleaner balance sheet for MBT; Tracy + Amy benefit from Chase's production-side equity through MBT |
+| **Big Muddy Natchez LLC** already exists as Inn operating entity | NOT a new filing. Lawyer documents assignment to MBT subsidiary structure post-MBT-filing. |
+| **Chase's stakes in Tuthill (50%) and Studio C (40%) STAY PERSONAL.** MBT only receives the distributions (currently routed through FarleyPierson). | Tuthill + Studio C ownership unchanged. Elijah Tuthill + Studio C 60%-holder unaffected. The earlier "MBT holds the equity" framing was wrong — corrected. |
 | **Big Muddy Natchez + Big Muddy Touring are wholly-owned subsidiaries of MBT** | Tracy + Amy have indirect 1/3 stakes via MBT, not direct equity in subsidiaries |
 | **Project LLC pattern** introduced | New tool in the toolbox; threshold to invoke TBD |
 | **Retainer with Tuthill** funds Elijah's cross-entity work | Single payment hub; Elijah triages by urgency |
+| **External co-owner conversations** | Walked back to a lawyer check (transfer/assignment clauses in Tuthill + Studio C operating agreements). Courtesy notice only if triggered. NOT a relationship negotiation. |
 
 ---
 
@@ -255,7 +258,7 @@ BMT operates inside the MBT family but bills as a real entity. Three billing rel
 | 8 | LLC split trigger for Tuthill ↔ Studio C? | Deferred but tracked |
 | 9 | Insurance flash radius — agent identified yet? | Action item P38 |
 | 10 | **NEW: Innkeeper role** — Tracy stepping back from Inn day-to-day; Amy loaded with Radio + Records + performing. Who fills the Innkeeper role? | **Open. Surface before Tracy's transition starts.** |
-| 11 | **NEW: External co-owner conversations** — Elijah Tuthill (Tuthill 50%) and Studio C 60%-holder need to understand what "Chase's stake rolls into MBT" means for them. **Must happen BEFORE MBT operating agreement is finalized.** Relationship work, not legal. | **Open. Pre-filing prerequisite.** |
+| 11 | ~~External co-owner conversations~~ | **WALKED BACK 2026-04-18 evening.** Chase's stakes in Tuthill/Studio C stay personal. MBT only redirects pass-through DISTRIBUTIONS (FarleyPierson → MBT). No equity transfer. Co-owners are unaffected. Reduced to: lawyer reviews Tuthill + Studio C operating agreements for transfer/assignment clauses to confirm distribution-redirect isn't a triggered assignment. If it is, courtesy notice to co-owners (formality, not negotiation). |
 
 ---
 

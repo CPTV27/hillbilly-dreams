@@ -1,6 +1,6 @@
 # Hillbilly Dreams Agent Queue
 
-*Last sync: 2026-04-18T18:09:17*
+*Last sync: 2026-04-18T18:12:42*
 
 Status counts: 7 done · 0 running · 29 ready · 15 blocked · **51 total**
 
@@ -526,44 +526,35 @@ Reference: docs/brand-offerings/big-muddy-inn.md operational ownership section.
 ```
 </details>
 
-### `P50-external-co-owner-pre-filing-conversations` — External co-owner conversations BEFORE MBT operating agreement filing
+### `P50-external-co-owner-pre-filing-conversations` — Lawyer check on Tuthill + Studio C operating agreements (transfer/assignment clauses)
 
-**Owner:** chase · **Est:** ~180 min
+**Owner:** lawyer · **Est:** ~30 min
 
 <details><summary>Show prompt</summary>
 
 ```
-Per 2026-04-18 PM Chase corrections — pre-filing prerequisite, relationship work not legal.
+WALKED BACK 2026-04-18 late evening per Chase. The earlier 'pre-MBT-filing relationship conversations with Elijah Tuthill and Studio C 60%-holders' framing was wrong.
 
-Elijah Tuthill (50% Tuthill Design) and Studio C's 60%-holder(s) need to understand what 'Chase's stake rolls into MBT' means for them BEFORE the MBT operating agreement is filed.
+What's actually needed: lawyer reviews Tuthill Design and Studio C operating agreements for transfer/assignment clauses. Confirm that redirecting Chase's personal pass-through distributions from FarleyPierson LLC to MBT LLC does NOT constitute a triggered assignment requiring co-owner consent.
 
-Key points to communicate:
-- Chase's personal stake in Tuthill (50%) and Studio C (40%) gets held by MBT instead of personally
-- Tracy and Amy benefit from those production-side stakes through MBT (1/3 each of MBT)
-- Other co-owners' stakes are unchanged
-- Day-to-day operations of Tuthill and Studio C are unchanged
-- Voting / governance / distribution mechanics may need to be re-discussed in those entities' operating agreements
+If it does NOT trigger anything: proceed silently — co-owners are unaffected because Chase's equity in those entities stays personal.
 
-Deliverables:
-1. 1-on-1 conversation with Elijah Tuthill (probably in Bearsville or via call)
-2. 1-on-1 conversation with Studio C's 60%-holder (still TBD per open question — Chase needs to identify and reach out)
-3. Notes from each conversation — concerns raised, agreements made, follow-ups
-4. Any operating agreement language adjustments needed for Tuthill or Studio C
+If it DOES trigger: send a courtesy notice to Elijah Tuthill and Studio C's other 60%-holders. This is a FORMALITY, not a negotiation. The substantive change is invisible to them — the same person still holds the same equity stake in the same entity, only the upstream pass-through entity changes.
 
-Must complete BEFORE Chase signs MBT operating agreement. Lawyer engaged but won't proceed until these conversations close.
+Coordinate with the lawyer engaged for the MBT + Big Muddy Touring filings.
 ```
 </details>
 
-### `P51-vicki-vercel-pre-flight` — Vicki May 1 stability — Vercel env var fix MUST close before her onboarding
+### `P51-vicki-vercel-pre-flight` — Vercel SANITY_PROJECT_ID env fix — get launch clean for Vicki, no longer a hard wall
 
 **Owner:** chase · **Est:** ~15 min
 
 <details><summary>Show prompt</summary>
 
 ```
-Per 2026-04-18 PM Chase reframe: what's at stake on Vicki's May 1 onboarding is reference value to the next 10 realtors, not the $500/mo.
+Per 2026-04-18 late evening Chase reframe: Vicki's May 1 date is a self-imposed target, not a customer-demanded wall. She has been waiting years; date is movable. Get the launch CLEAN, not rushed.
 
-The Vercel deploys have been failing since 2026-04-18 noon due to Sanity projectId env var bug. Site is stuck on an older deploy.
+Still: Vercel deploys have been failing since 2026-04-18 noon due to Sanity projectId env var bug. Site is stuck on an older deploy. This must close before any external customer interacts with the live platform.
 
 5-minute fix at a laptop:
 1. Open https://vercel.com/chase-piersons-projects/hillbilly-dreams/settings/environment-variables
@@ -575,7 +566,7 @@ Verify build turns green at https://vercel.com/chase-piersons-projects/hillbilly
 
 Then verify /plan loads at https://bigmuddytouring.com/plan and other tenant domains.
 
-Must be green BEFORE Vicki's onboarding starts (target May 1) — she will be the first external customer interacting with the live platform; a broken first impression burns the realtor pipeline.
+Reference value to next 10 realtors is what's at stake on Vicki's onboarding, not the $500/mo. Better to delay her onboarding a week than launch on a broken stack.
 ```
 </details>
 

@@ -16,7 +16,8 @@ A real estate media + design studio operating across two corridors — the Hudso
 |---|---|
 | **Tier** | Production B2B |
 | **Parent entity** | Tuthill Design (NY LLC, currently shared with Studio C) |
-| **Owners** | Chase 50% (held by MBT) · Elijah Tuthill 50% |
+| **Owners** | Chase 50% (personal — MBT receives the distributions post-restructure but does NOT acquire equity) · Elijah Tuthill 50% |
+| **Effect of MBT restructure on Tuthill itself** | None. Operations + ownership unchanged. Elijah Tuthill unaffected. |
 | **NY footprint** | Dutchess · Ulster · Orange · Westchester · Columbia Counties |
 | **South footprint (NEW)** | Natchez, MS branch opening · Arkansas possible next |
 | **Customer of MBT?** | Yes — uses MBT platform for client mgmt, scheduling, portfolio, billing |
@@ -173,4 +174,4 @@ A real estate media + design studio operating across two corridors — the Hudso
 - Realtor social management — when does this launch as a productized recurring offering? Vicki could be the first paid client of this model.
 - Tuthill ↔ Studio C LLC split — when triggered (P41)
 - Insurance flash radius — Tuthill production policy boundary with Studio C and BMT (P38)
-- **PRE-MBT-FILING REQUIREMENT:** Conversation with Elijah Tuthill about what "Chase's 50% rolls into MBT" means for him. Relationship work, not legal. Must happen before MBT operating agreement finalizes. (P50 in router)
+- **Lawyer check (NOT a co-owner conversation):** Review Tuthill operating agreement for transfer/assignment clauses to confirm that redirecting Chase's distributions from FarleyPierson → MBT is not a triggered assignment. If it is, courtesy notice to Elijah Tuthill (formality, not negotiation). (P50 in router)
