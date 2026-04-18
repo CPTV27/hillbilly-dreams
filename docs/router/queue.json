@@ -1,7 +1,7 @@
 {
   "_doc": "Hillbilly Dreams agent queue. Read by scripts/router/{next,ship,status,block,unblock}.sh. Each project is self-contained: paste 'prompt' into a fresh Claude/Cursor agent and they have everything they need.",
   "_status_values": "blocked | ready | running | done",
-  "_updated": "2026-04-18T02:32:08",
+  "_updated": "2026-04-18T13:07:41",
   "queue": [
     {
       "id": "P02-hetzner-ssh",
@@ -294,6 +294,15 @@
       "estimated_minutes": 240,
       "depends_on": [],
       "prompt": "Chase visits Bearsville next week to walk the property and set the activation plan. Until then, do nothing. After visit, Chase will define scope. Likely first work: site copy refresh on bearsvillemediagroup.com using existing Bearsville Studio Agent (.claude/agents/BEARSVILLE_STUDIO.md), Marika partnership exploration (per project_people_marika.md), Studio C clone-out for the Northeast region. Read project_two_region_model.md and project_bearsville_publishing_model.md before starting."
+    },
+    {
+      "id": "P29-bigmuddytouring-tourbus-hero",
+      "title": "Big Muddy Touring \u2014 tour bus hero + artist-recruit-ready",
+      "status": "ready",
+      "owner": "agent",
+      "estimated_minutes": 90,
+      "depends_on": [],
+      "prompt": "Chase wants bigmuddytouring.com 'ready to show to artists we want to recruit.' Execute:\n\n1. Find the best tour bus photo. Search in Immich (https://immich.hillbillydreamsinc.com \u2014 search 'sprinter van' or 'tour bus' in CLIP semantic search) OR search existing GCS bucket gs://bmt-media-bigmuddy/real/ for bus/van photos. Pick the most cinematic one.\n\n2. Make it the hero image on the bigmuddytouring.com homepage. Current homepage lives at apps/web/app/(touring)/page.tsx or similar based on domain-routes.ts. Full-bleed, phone-friendly.\n\n3. Review the homepage copy end-to-end with one question: 'Would an artist we want to recruit read this and want to be part of it?' \u2014 rewrite any sections that sound like a company pitch instead of an invitation.\n\n4. Make sure these are visible and accurate:\n   - What we offer artists (van, booking, media coverage, Inn lodging)\n   - Who we've worked with (if listable)\n   - How to get in touch (one clear CTA)\n   - Proof of execution (photo archive now lives, radio broadcasting, etc.)\n\n5. Verify on mobile first. Deploy. Send Chase the URL when pushed.\n\nConstraint: use var(--*) tokens only, no hardcoded fonts/colors. No tech jargon. Main Street, not Silicon Valley. 'Tracy and Amy are equity partners' rule applies if any About copy mentions them."
     }
   ]
 }

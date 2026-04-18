@@ -1,8 +1,8 @@
 # Hillbilly Dreams Agent Queue
 
-*Last sync: 2026-04-18T02:32:08*
+*Last sync: 2026-04-18T13:07:41*
 
-Status counts: 5 done · 0 running · 14 ready · 8 blocked · **27 total**
+Status counts: 5 done · 0 running · 15 ready · 8 blocked · **28 total**
 
 ## How to use this
 
@@ -19,7 +19,7 @@ Each project below is **paste-ready** — copy the prompt into a fresh Claude or
 
 ---
 
-## ○ Ready (14)
+## ○ Ready (15)
 
 ### `P04-press-seed` — Press seed → ingest → flip canonical
 
@@ -219,6 +219,33 @@ For Amy:
 - No deadline
 
 Use the Asana MCP tool. Then update this project: status=done, shipped_at=now.
+```
+</details>
+
+### `P29-bigmuddytouring-tourbus-hero` — Big Muddy Touring — tour bus hero + artist-recruit-ready
+
+**Owner:** agent · **Est:** ~90 min
+
+<details><summary>Show prompt</summary>
+
+```
+Chase wants bigmuddytouring.com 'ready to show to artists we want to recruit.' Execute:
+
+1. Find the best tour bus photo. Search in Immich (https://immich.hillbillydreamsinc.com — search 'sprinter van' or 'tour bus' in CLIP semantic search) OR search existing GCS bucket gs://bmt-media-bigmuddy/real/ for bus/van photos. Pick the most cinematic one.
+
+2. Make it the hero image on the bigmuddytouring.com homepage. Current homepage lives at apps/web/app/(touring)/page.tsx or similar based on domain-routes.ts. Full-bleed, phone-friendly.
+
+3. Review the homepage copy end-to-end with one question: 'Would an artist we want to recruit read this and want to be part of it?' — rewrite any sections that sound like a company pitch instead of an invitation.
+
+4. Make sure these are visible and accurate:
+   - What we offer artists (van, booking, media coverage, Inn lodging)
+   - Who we've worked with (if listable)
+   - How to get in touch (one clear CTA)
+   - Proof of execution (photo archive now lives, radio broadcasting, etc.)
+
+5. Verify on mobile first. Deploy. Send Chase the URL when pushed.
+
+Constraint: use var(--*) tokens only, no hardcoded fonts/colors. No tech jargon. Main Street, not Silicon Valley. 'Tracy and Amy are equity partners' rule applies if any About copy mentions them.
 ```
 </details>
 
