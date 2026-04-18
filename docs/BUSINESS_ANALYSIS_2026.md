@@ -5,6 +5,22 @@
 
 ---
 
+## ⚡ Material Update — 2026-04-17
+
+Two structural changes since this analysis was written. Treat the corresponding line items below as superseded:
+
+**1. MBT pulled out of HDI entirely.** All "MBT institutional" revenue lines (Y1 $27.5K, Y2 $108K) and "Natchez Tourism Office" pilot are now part of the separate MBT venture — see `docs/MBT_VENTURE_BRIEF.md`. They do not contribute to HDI Y1 plan.
+
+**2. DSD reframed: subscriptions → publicity packages.** The "DSD self-serve" line ($72K Y1 / $180K Y2 / $300K Y3 in this doc) is replaced by publicity package revenue. New target: ~$110K Y1 / ~$220K Y2. Each package is a tangible deliverable (article + radio rotation + social campaign) with a clear deadline, not a forever subscription. Source of truth: the DSD section in `docs/hdi-review-board.html` and the publicity spec at `memory/project_dsd_publicity_spec.md`.
+
+**Adjusted HDI Y1 total: ~$640K** (was ~$321K conservative — increase reflects realistic publicity package pricing + wedding pipeline + photography premium tier + the removal of speculative MBT enterprise revenue from the HDI line).
+
+The detailed pro forma below remains useful for context (cost structure, regional ramp model, pipeline analysis) but the revenue mix is now driven by publicity packages, not directory subscriptions.
+
+---
+
+---
+
 ## Part 1: What We Are (Plain English)
 
 Big Muddy is a music and media company on the Mississippi River. We book shows, run a radio station, publish a magazine, and operate a record label across 13 cities from Memphis to New Orleans. We also run a 6-room inn and a bar in Natchez, Mississippi.
