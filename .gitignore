@@ -114,3 +114,6 @@ docs/creative/*.mov
 *.ai
 # Added by code-review-graph
 .code-review-graph/
+
+# Directory research archive — denormalized MD narratives, kept for reference only
+Perplexity-research/_archive/
