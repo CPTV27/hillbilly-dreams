@@ -10,13 +10,13 @@
 
 Chase: complete these before Elijah starts. ~30 min total.
 
-- [ ] **Get Elijah's email.** _(blocker — fill in when known)_
-- [ ] **Create Elijah's Immich account.** Log in to https://immich.hillbillydreamsinc.com as admin. Administration → Users → Create. Generate strong password. Save to Bitwarden as "Immich — Elijah."
-- [ ] **Send Elijah the welcome packet.** Email with: Immich URL, account, password, App Store link for Immich iOS, this runbook URL on GitHub, the architecture doc URL.
-- [ ] **Install Topaz Photo AI on Elijah's Mac.** License under FarleyPierson account if not already.
-- [ ] **Create Elijah Asana task** in a Studio C / Photo Archive project (or create one). Subscribe Chase + Tracy. Use as the weekly status thread.
+- [ ] **WhatsApp Elijah the intro message** (see `docs/ELIJAH_WHATSAPP_DRAFT.md`). Ask for his email + Topaz install confirmation.
+- [ ] **Once he sends email back: create his Immich account.** Log in to https://immich.hillbillydreamsinc.com as admin. Administration → Users → Create. Generate strong password. Save to Bitwarden as "Immich — Elijah."
+- [ ] **Send him the credentials via WhatsApp** (not email — Chase's preferred channel with Elijah). Include: Immich URL, account, password, App Store link for Immich iOS, runbook URL on GitHub, architecture doc URL.
+- [ ] **Topaz Photo AI** — he installs on his Mac; we cover the license under FarleyPierson (send receipt once purchased).
 - [ ] **Set up payment.** First $2K block (40 hrs × $50/hr) — confirm payment method with Elijah (Venmo, ACH, check). Schedule first payment for net-15 from start.
-- [ ] **One 30-min kickoff call.** Walk through Immich together, share screen, answer questions. Otherwise he'll be guessing.
+- [ ] **One 30-min kickoff call** via whatever Elijah prefers. Walk through Immich together, share screen, answer questions. Otherwise he'll be guessing.
+- [ ] **Create an internal Asana task** to track Elijah's weekly status (subscribe Chase + Tracy). He doesn't need to be in Asana — the task is for Chase/Tracy to watch.
 
 ---
 

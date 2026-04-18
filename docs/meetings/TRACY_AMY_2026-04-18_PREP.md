@@ -40,8 +40,8 @@ Listed in priority order. Each item has a recommendation; partners decide.
 | # | Decision | Recommendation | Rationale |
 |---|---|---|---|
 | A1 | **Approve Wave 1 ($8,750) this week** | YES | Unblocks Chase Pierson Photography revenue + Studio C premium tier |
-| A2 | Sony a7R V vs a7 V (same $3,300) | a7R V | Stills-forward; portrait/print archive is the bigger near-term revenue driver than hybrid video |
-| A3 | Profoto head model (D1/D2/B1X/B10/Pro-11) | _Chase to confirm what's already in the kit_ | Determines flashtube SKU |
+| A2 | Sony a7R V vs a7 V (same $3,300) | **a7 V** — decided by Chase | Hybrid body, better for the video-into-Studio-C path |
+| A3 | Profoto head model | **D2 (likely)** — Chase to double-check in the kit before ordering flashtube | Most common D-series; flashtube SKU is D2-specific |
 | A4 | CF Express card quantity in Wave 1 | 2 cards now | One in body, one on standby; expand at Phase 1 |
 | A5 | Financing vs cash | **B&H 12-month no-interest** | Preserves Q2 cash; payment is ~$730/mo against the kit |
 | A6 | Purchase entity | **FarleyPierson LLC** | Tax-deductible; Chase reimburses if any personal use exceeds 20% |
@@ -90,7 +90,7 @@ Rhea is in the room (probably). The deal needs to be defined here so he can leav
 
 > **Note:** Original plan called for a separate 10 TB Hetzner Storage Box at $25/mo (total ~$70/mo). The execution agent used a 1 TB block storage volume on the server itself for $5/mo instead — saves $20/mo, holds the current 1.3 TB archive comfortably. **If the archive grows beyond 1 TB (likely within 6 months), upgrade to the 10 TB Storage Box adds ~$25/mo at that point.**
 
-**Cash position context:** _Chase to plug current bank balance and pending receivables before walking in. The $10.7K is real, not theoretical._
+**Cash position context:** Chase has a working sense of where we are; partners aren't asking for a formal number this meeting. Skip this slide unless Tracy opens the door.
 
 **Phase 1 + Phase 2 (later asks, NOT tonight):** another $13.8–16.4K in camera/video over the next 60 days, contingent on production bookings justifying the spend.
 
