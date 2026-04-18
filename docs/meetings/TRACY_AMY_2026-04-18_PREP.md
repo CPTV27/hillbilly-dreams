@@ -148,6 +148,22 @@ Rhea is in the room (probably). The deal needs to be defined here so he can leav
 
 ---
 
+## What's left for the team after this meeting
+
+Chase told Tracy: **"We're down to just working on pictures, stories, and words on the front end of the website."** That's the post-meeting workstream, broken into three clean lanes:
+
+| Lane | Owner | What | Source feeds |
+|---|---|---|---|
+| **Pictures** | Elijah | Photo archive triage, AI tag QA, ready-for-sale curation, Topaz enlargements | Immich (already live), Hetzner stack, GCS commerce export to gallery site |
+| **Stories** | Tracy | Magazine editorial — long-form pieces, artist features, Inn/region narrative | Big Muddy Magazine site, voice memos, interview transcripts, the directory of musicians |
+| **Words** | Humanizer + per-brand voice docs | Site copy, page-by-page rewrites, brand voice consistency across touring/magazine/radio/records/entertainment | Chase voice doc (live), Tracy voice doc (Asana task sent), Amy voice doc (P24 in router) |
+
+**These three lanes are how the front-end of the websites comes together.** Pictures supply the visual layer, stories supply the editorial layer, words supply the brand layer. The directory work that shipped this week is the structural backbone underneath all three.
+
+Elijah's runbook for Pictures: `docs/STUDIO_C_ELIJAH_RUNBOOK.md` (Day 1 / Week 1 / ongoing).
+
+---
+
 ## What's NOT on the agenda (intentional)
 
 These are on the radar but not for tonight:
