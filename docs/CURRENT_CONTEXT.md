@@ -2,7 +2,7 @@
 
 *Single source of truth for any AI agent helping Chase. Read this first. Updated as reality changes.*
 
-**Last updated:** 2026-04-18 13:30 CDT (by Cos — Chief of Staff agent)
+**Last updated:** 2026-04-18 15:30 CDT (by Cos — added platform architecture, client roster expansion, new products)
 
 ---
 
@@ -48,6 +48,32 @@ Legal operating entity: FarleyPierson LLC. HDI not yet formally incorporated.
 
 ---
 
+## Client roster
+
+### In-family (we operate on behalf of ourselves)
+Big Muddy Inn · Big Muddy Touring · Big Muddy Records · Big Muddy Radio · Big Muddy Magazine · Big Muddy Entertainment · Chase Pierson Photography · Studio C · Tuthill Design
+
+### Active external clients
+- **Utopia** (recording studio — already onboarded)
+- **Arrie Aslin (BN)** (artist)
+- **Mechanical Bull** (brand/label adjacent)
+
+### Target pipeline (immediate)
+- **Vicki Wolpert** — Upstate NY realtor, starts **May 1**, $500/mo
+- **Clubhouse Studio** — recording studio target
+- **David Beren Studio** — recording studio target (spelling TBD)
+- **The Woods** — different scope than main engagement
+- **Paul Green Realty** — bigger broker account (DSD + Natchez tourism magazine partnership)
+- **City of Natchez** — municipal tourism partnership
+- **Other Upstate realtors** — $500/mo target, $99 intro rate then $300+
+
+### Internal trade
+- **Pete** — landlord, $500/mo trade for rent, renegotiate at year-1 mark (~6 months)
+
+Full architecture: `docs/PLATFORM_ARCHITECTURE.md`
+
+---
+
 ## Specialists (scoped engagements)
 
 | Person | Role | Status | Notes |
@@ -82,6 +108,14 @@ Legal operating entity: FarleyPierson LLC. HDI not yet formally incorporated.
 
 ## Recent decisions (most recent first)
 
+- **2026-04-18 (driving to NOLA):** Platform architecture locked — three layers: **MBT (platform) ↓ Studio C (operator) ↓ Tenants (clients).** Sanity is the CMS across every property. Studio C runs the middleware per tenant. Build-once-reuse-many. Full doc: `docs/PLATFORM_ARCHITECTURE.md`.
+- **2026-04-18:** Vicki Wolpert onboarding — Upstate NY realtor, **starts May 1**, $500/mo custom service, can add on. Other realtors target $500/mo with $99 intro rate.
+- **2026-04-18:** New product line — **Recording Studios Magazine + Coffee Table Book** — Chase's summer 2026 work at Bearsville. Photography + video of recording studios (Utopia, Clubhouse, David Beren, others). Feeds Utopia/Bearsville channels + Bearsville campus network.
+- **2026-04-18:** New product — **Upstate Directory** for Vicki ("Vicki's List") — Athens NY, Catskill, Hudson, Coxsackie. Restaurants, attractions, services, contractors. Research team to dispatch immediately.
+- **2026-04-18:** New product — **Natchez Tourism Magazine** ("I ❤️ NY for Mississippi" campaign) — distinct from Big Muddy Magazine. Carved sponsor slots: top realtor, regional bank, regional insurance, hospital. Target Paul Green Realty + City of Natchez partnership.
+- **2026-04-18:** Chase Pierson Photography rate is **distinct from Tuthill advertised rates** — bookings through Tuthill still pay Chase at his premium rate.
+- **2026-04-18:** Pete (landlord) — current $500/mo trade for rent. Year-1 mark coming up in ~6 months. Will renegotiate as our offering scales.
+- **2026-04-18:** **Monday night (April 20)** — Chase + Amy + Tracy plan front-end story for every property. Output = PRD per tenant. Elijah + Miles work from those PRDs.
 - **2026-04-18 (today):** B locked on photo architecture — Immich on Hetzner + Elijah's commerce-export layer on top (NOT parallel/alternative). $45/mo ongoing.
 - **2026-04-18:** Sony a7 V (not a7R V). Profoto D2 (likely). Cash position not needed for meeting.
 - **2026-04-18:** JP engagement scoped to First Arctic mixes + NOLA intros, then done.
@@ -150,14 +184,20 @@ Legal operating entity: FarleyPierson LLC. HDI not yet formally incorporated.
 
 ## Active open threads (what needs attention)
 
-1. **Partner meeting today** — outcomes will update this file
-2. **Elijah onboarding** — waiting on his email (Chase via WhatsApp)
-3. **Rhea engagement** — scope + comp + timing defined today
-4. **Tailscale free tier expires ~May 1** — upgrade before Chase leaves on NY trip, or pre-authorize Tracy via Bitwarden
-5. **Amy voice-onboarding Asana task** — router P24, needs creating
-6. **Big Muddy Touring site refresh** — tour-bus hero, artist-recruit-ready — router P29
-7. **Bearsville activation planning** — starts after Chase's Bearsville visit next week — router P28
-8. **Storage Box upgrade path** — currently 1 TB volume will fill in ~6 months → 10 TB BX31 at $25/mo
+1. **Vicki Wolpert onboarding (May 1 deadline)** — set up Upstate NY realtor as first external multi-tenant client at $500/mo — router P30
+2. **Upstate Directory research dispatch** — research team for Athens NY / Catskill / Hudson / Coxsackie — restaurants, attractions, services, contractors. Vicki's tenant content — router P31
+3. **Paul Green Realty + City of Natchez meeting** — must happen BEFORE Chase leaves for summer — router P32
+4. **Monday night (April 20) planning session** — Chase + Amy + Tracy work through front-end story per property → produces PRDs — router P35
+5. **Studio C PRD framework** — one-page-per-client template for what's supported now / feature add-on path — router P36
+6. **Recording Studios Magazine + Coffee Table Book** — Chase's summer Bearsville work — router P33
+7. **Natchez Tourism Magazine** — depends on Paul Green + City alignment first — router P34
+8. **Elijah onboarding** — waiting on his email (Chase via WhatsApp)
+9. **Rhea engagement** — scope + comp + timing (defined in today's partner meeting?)
+10. **Tailscale free tier expires ~May 1** — upgrade before Chase leaves on NY trip, or pre-authorize Tracy via Bitwarden
+11. **Amy voice-onboarding Asana task** — router P24, needs creating
+12. **Big Muddy Touring site refresh** — tour-bus hero, artist-recruit-ready — router P29
+13. **Bearsville activation planning** — starts after Chase's Bearsville visit next week — router P28
+14. **Storage Box upgrade path** — currently 1 TB volume will fill in ~6 months → 10 TB BX31 at $25/mo
 
 ---
 

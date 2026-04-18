@@ -1,8 +1,8 @@
 # Hillbilly Dreams Agent Queue
 
-*Last sync: 2026-04-18T13:07:41*
+*Last sync: 2026-04-18T15:45:23*
 
-Status counts: 5 done · 0 running · 15 ready · 8 blocked · **28 total**
+Status counts: 5 done · 0 running · 20 ready · 10 blocked · **35 total**
 
 ## How to use this
 
@@ -19,7 +19,7 @@ Each project below is **paste-ready** — copy the prompt into a fresh Claude or
 
 ---
 
-## ○ Ready (15)
+## ○ Ready (20)
 
 ### `P04-press-seed` — Press seed → ingest → flip canonical
 
@@ -249,8 +249,142 @@ Constraint: use var(--*) tokens only, no hardcoded fonts/colors. No tech jargon.
 ```
 </details>
 
+### `P30-vicki-wolpert-onboarding` — Vicki Wolpert — first external multi-tenant client (May 1 start)
 
-## ✕ Blocked (8)
+**Owner:** chase+agent · **Est:** ~240 min
+
+<details><summary>Show prompt</summary>
+
+```
+Onboard Vicki Wolpert as Upstate NY realtor client at $500/mo custom service, START DATE MAY 1, 2026.
+
+Per docs/PLATFORM_ARCHITECTURE.md, this is the first external multi-tenant client onboarding using the new MBT platform / Studio C operator pattern.
+
+Steps:
+1. Get Vicki's confirmed start date and signed letter of intent (Chase to handle, this agent to draft the LOI)
+2. Define Vicki's domain — does she have a working domain? Tenant prefix in apps/web/config/tenants.ts
+3. Set up Sanity content scope for Vicki's tenant (her brand, her content, her directory pull)
+4. Wire up Cloudflare DNS
+5. Connect Upstate Directory data source (P31 must be at least seeded by then)
+6. Stand up Vicki's PRD per the framework in P36
+7. Send onboarding email + 30-min call to walk her through admin
+8. Set up monthly billing — $500/mo, add-on capable
+
+What she gets in scope: directory of Upstate NY local businesses (Vicki's List), curated for her real-estate clients to reference. Plus: social automation, listing-adjacent content, light marketing tools.
+```
+</details>
+
+### `P31-upstate-directory-research` — Upstate Directory research dispatch (Vicki's List)
+
+**Owner:** agent · **Est:** ~180 min
+
+<details><summary>Show prompt</summary>
+
+```
+Dispatch research for the Upstate NY Directory — same pattern as the Mississippi corridor directory in /data/directory/.
+
+Target region: Athens NY, Catskill, Hudson, Coxsackie (and any other towns within 25 mi of Vicki Wolpert's service area).
+
+Categories Vicki's clients ask about (these define the directory schema):
+- Restaurants (good for guests, good for date nights, good for kids)
+- Attractions (museums, galleries, hikes, farms, breweries, art destinations)
+- Services (HVAC, plumbing, electrical, internet/cable installers, pool, lawn)
+- Contractors (general, kitchen/bath, structural, septic, well)
+- Builders (custom homes, additions)
+- Handymen (Vicki's go-to local fix-it people)
+- Real estate adjacent (inspectors, surveyors, attorneys, mortgage brokers, insurance, stagers)
+- Local recommendations (cleaning services, pet sitters, snow removal)
+
+Use the existing Perplexity prompt pattern from docs/directory-templates/. Adapt the venue.template.yaml structure for general businesses. Output to Perplexity-research/upstate-<category>-seed.yaml. Then run scripts/directory/ingest-seed.py for each category.
+
+First seed needed: restaurants and contractors (Vicki uses those most). Output by May 1 at the latest.
+```
+</details>
+
+### `P32-paul-green-realty-prep` — Paul Green Realty + City of Natchez partnership prep
+
+**Owner:** chase · **Est:** ~60 min
+
+<details><summary>Show prompt</summary>
+
+```
+Prepare a partnership pitch for Paul Green Realty + City of Natchez. This is the bigger-broker tier model.
+
+Deliverable: a 1-page pitch deck or doc Chase can present in a meeting BEFORE he leaves for summer.
+
+The offer:
+- Co-branded Deep South Directory presence (Paul Green Realty as the named real estate sponsor)
+- Natchez Tourism Magazine — 'I ❤️ NY for Mississippi' campaign
+- Top sponsor slots in big categories: real estate (Paul Green), regional bank, regional insurance, hospital
+- Physical circulation + social automation + DSD platform activation for local businesses
+
+Financial frame: tier sizing TBD with Chase. Likely $X,XXX/mo per top sponsor + per-business activation fees.
+
+Meeting must happen before Chase departs for summer. Schedule via Tracy. Save deck to docs/pitches/PAUL_GREEN_REALTY_NATCHEZ.md.
+```
+</details>
+
+### `P35-monday-planning-session` — Monday night planning — front-end story → PRDs
+
+**Owner:** chase+tracy+amy · **Est:** ~180 min
+
+<details><summary>Show prompt</summary>
+
+```
+Scheduled session: Monday April 20 evening, Chase + Amy + Tracy.
+
+Goal: walk through the front-end story for every Big Muddy property + Studio C + Tuthill + Chase Pierson Photography. What does each website say? What story do we tell our customers?
+
+Process:
+1. For each property, write the value prop in one paragraph
+2. List what the website needs to display
+3. Infer what tech capabilities are needed to deliver on those claims
+4. That becomes the PRD per property
+
+Properties to walk through:
+- Big Muddy Inn
+- Big Muddy Touring (also feeds P29 tour-bus hero work)
+- Big Muddy Magazine
+- Big Muddy Radio
+- Big Muddy Records
+- Big Muddy Entertainment
+- Chase Pierson Photography
+- Studio C
+- Tuthill Design
+- Utopia client view
+- Vicki's tenant (new)
+
+Output: docs/prds/<property>.md for each — used by Elijah + Miles to know what to build. Pre-meeting: this agent should draft a one-page worksheet template for the session.
+```
+</details>
+
+### `P36-studio-c-prd-framework` — Studio C — per-client PRD framework
+
+**Owner:** agent · **Est:** ~60 min
+
+<details><summary>Show prompt</summary>
+
+```
+Create the canonical PRD template for every Studio C client account. Per docs/PLATFORM_ARCHITECTURE.md, every tenant has a current-state PRD that says:
+
+- What's supported NOW for this tenant (current feature scope)
+- What's been requested as add-on professional services
+- What's been built for this tenant that's reusable for others (capability library)
+
+Deliverable: docs/prds/_TEMPLATE.md with sections:
+- Tenant identity (brand, domain, primary stakeholder, billing)
+- Current scope (CMS schema, content types, integrations live)
+- Pricing (base monthly + add-ons billed)
+- Feature backlog (requested but not yet built)
+- Reusable capabilities exposed (built here, available to other tenants)
+- Next review date
+
+Then instantiate from the template for: Utopia, Big Muddy Inn, Big Muddy Touring, Vicki Wolpert. Each gets a PRD file at docs/prds/<tenant-slug>.md.
+```
+</details>
+
+
+## ✕ Blocked (10)
 
 ### `P14-migrate-postiz-notebook` — Migrate Postiz + Open Notebook off mini
 
@@ -283,6 +417,14 @@ Constraint: use var(--*) tokens only, no hardcoded fonts/colors. No tech jargon.
 ### `P28-bearsville-activation-planning` — Bearsville activation — start after Chase property walk-through
 
 **Owner:** chase+agent · **Est:** ~240 min · **Blocked by:** chase-bearsville-visit-next-week
+
+### `P33-recording-studios-magazine` — Recording Studios Magazine + Coffee Table Book concept
+
+**Owner:** chase+agent · **Est:** ~360 min · **Blocked by:** summer-bearsville-trip · **Depends on:** P28-bearsville-activation-planning
+
+### `P34-natchez-tourism-magazine` — Natchez Tourism Magazine — 'I ❤️ NY for Mississippi' campaign
+
+**Owner:** agent · **Est:** ~180 min · **Blocked by:** P32-paul-green-realty-prep · **Depends on:** P32-paul-green-realty-prep
 
 
 ## ✓ Done (5)
