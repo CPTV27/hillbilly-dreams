@@ -1,7 +1,7 @@
 {
   "_doc": "Hillbilly Dreams agent queue. Read by scripts/router/{next,ship,status,block,unblock}.sh. Each project is self-contained: paste 'prompt' into a fresh Claude/Cursor agent and they have everything they need.",
   "_status_values": "blocked | ready | running | done",
-  "_updated": "2026-04-18T17:14:35",
+  "_updated": "2026-04-18T17:47:42",
   "queue": [
     {
       "id": "P02-hetzner-ssh",
@@ -420,6 +420,24 @@
       "estimated_minutes": 30,
       "depends_on": [],
       "prompt": "Currently Tuthill Design and Studio C share one LLC. Per docs/ENTITY_STRUCTURE.md, splitting into two LLCs is deferred but tracked.\n\nReasons to split eventually:\n- Different ownership (Tuthill 50/50 Chase+Elijah; Studio C 40/60 Chase+TBD)\n- Different liability profiles (real estate vs concert production)\n- Cleaner P&L per business\n- Independent scaling, especially with Natchez branches\n\nTrigger Chase to define:\n- Second non-Chase employee at one of them?\n- Revenue threshold?\n- When Natchez branches generate enough independent activity?\n\nDeliverable: trigger criteria documented, monitored quarterly."
+    },
+    {
+      "id": "P42-big-muddy-natchez-llc-formation",
+      "title": "Big Muddy Natchez LLC formation (Inn + Magazine subsidiary of MBT)",
+      "status": "ready",
+      "owner": "chase+lawyer",
+      "estimated_minutes": 60,
+      "depends_on": [],
+      "prompt": "Per docs/ENTITY_STRUCTURE.md, Big Muddy Natchez LLC is a new wholly-owned subsidiary of MBT. Holds the Inn + Big Muddy Magazine.\n\nDecisions Chase needs to make with lawyer:\n- Filing state \u2014 Mississippi most likely (Inn is in Natchez)\n- Operating agreement: 100% owned by MBT, but how is governance structured at the subsidiary level? Tracy as managing member since she runs Inn ops?\n- EIN, bank account, registered agent\n- Coordinate with MBT formation timing (likely file MBT first so the parent exists, then file BMNatchez as 100% MBT-owned)\n\nDeliverable: filed LLC, operating agreement, bank account opened, EIN issued."
+    },
+    {
+      "id": "P43-mbt-tuthill-retainer-arithmetic",
+      "title": "MBT \u2194 Tuthill retainer arithmetic + monthly burn-rate reporting",
+      "status": "ready",
+      "owner": "chase+tracy",
+      "estimated_minutes": 60,
+      "depends_on": [],
+      "prompt": "Per docs/ENTITY_STRUCTURE.md, MBT holds a retainer with Tuthill Design that funds Elijah's cross-entity work (MBT + Big Muddy Natchez + Big Muddy Touring).\n\nNeeds defining:\n- Monthly retainer amount\n- Hourly rate within the retainer\n- Hours volume target per month (40? 60? 80?)\n- Allocation conventions \u2014 how Elijah logs hours per child entity (MBT vs BMNatchez vs BMTouring)\n- Burn-rate reporting cadence \u2014 monthly to Tracy minimum, possibly weekly during peak\n- Burst-rate when retainer exhausted mid-month \u2014 premium or pause?\n- Reset cadence \u2014 calendar month? Rolling?\n- Quarterly true-up \u2014 adjust retainer up/down based on actual usage?\n\nDeliverable: retainer agreement template (lives in docs/finance/), burn-rate dashboard plan, monthly review SOP."
     }
   ]
 }

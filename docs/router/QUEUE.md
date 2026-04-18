@@ -1,8 +1,8 @@
 # Hillbilly Dreams Agent Queue
 
-*Last sync: 2026-04-18T17:14:35*
+*Last sync: 2026-04-18T17:47:42*
 
-Status counts: 5 done · 0 running · 22 ready · 13 blocked · **40 total**
+Status counts: 5 done · 0 running · 24 ready · 13 blocked · **42 total**
 
 ## How to use this
 
@@ -19,7 +19,7 @@ Each project below is **paste-ready** — copy the prompt into a fresh Claude or
 
 ---
 
-## ○ Ready (22)
+## ○ Ready (24)
 
 ### `P04-press-seed` — Press seed → ingest → flip canonical
 
@@ -419,6 +419,48 @@ Edge cases to draw the line on:
 - Studio C-rented camera damaged on the road (equipment policy on which?)
 
 Deliverable: written umbrella policy covering both entities with no coverage gaps. Documented flash radius for ops team to reference.
+```
+</details>
+
+### `P42-big-muddy-natchez-llc-formation` — Big Muddy Natchez LLC formation (Inn + Magazine subsidiary of MBT)
+
+**Owner:** chase+lawyer · **Est:** ~60 min
+
+<details><summary>Show prompt</summary>
+
+```
+Per docs/ENTITY_STRUCTURE.md, Big Muddy Natchez LLC is a new wholly-owned subsidiary of MBT. Holds the Inn + Big Muddy Magazine.
+
+Decisions Chase needs to make with lawyer:
+- Filing state — Mississippi most likely (Inn is in Natchez)
+- Operating agreement: 100% owned by MBT, but how is governance structured at the subsidiary level? Tracy as managing member since she runs Inn ops?
+- EIN, bank account, registered agent
+- Coordinate with MBT formation timing (likely file MBT first so the parent exists, then file BMNatchez as 100% MBT-owned)
+
+Deliverable: filed LLC, operating agreement, bank account opened, EIN issued.
+```
+</details>
+
+### `P43-mbt-tuthill-retainer-arithmetic` — MBT ↔ Tuthill retainer arithmetic + monthly burn-rate reporting
+
+**Owner:** chase+tracy · **Est:** ~60 min
+
+<details><summary>Show prompt</summary>
+
+```
+Per docs/ENTITY_STRUCTURE.md, MBT holds a retainer with Tuthill Design that funds Elijah's cross-entity work (MBT + Big Muddy Natchez + Big Muddy Touring).
+
+Needs defining:
+- Monthly retainer amount
+- Hourly rate within the retainer
+- Hours volume target per month (40? 60? 80?)
+- Allocation conventions — how Elijah logs hours per child entity (MBT vs BMNatchez vs BMTouring)
+- Burn-rate reporting cadence — monthly to Tracy minimum, possibly weekly during peak
+- Burst-rate when retainer exhausted mid-month — premium or pause?
+- Reset cadence — calendar month? Rolling?
+- Quarterly true-up — adjust retainer up/down based on actual usage?
+
+Deliverable: retainer agreement template (lives in docs/finance/), burn-rate dashboard plan, monthly review SOP.
 ```
 </details>
 

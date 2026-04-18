@@ -10,12 +10,13 @@
 |---|---|
 | **Tenant slug** | `big-muddy-inn` |
 | **Primary brand name** | Big Muddy Inn |
+| **Parent entity** | **Big Muddy Natchez LLC** (wholly-owned subsidiary of MBT) — sibling to Big Muddy Magazine under same parent |
 | **Primary domain(s)** | *(currently served from bigmuddytouring.com? Dedicated domain TBD)* |
 | **Primary stakeholder** | Tracy Alderson-Allen (Inn ops) |
-| **Billing contact** | MBT (internal) |
-| **Start date** | Pre-existing — under MBT from filing forward |
-| **Contract type** | In-family — no LOI; tracked internally |
-| **Pricing (base)** | Cost-accounted internally, not invoiced |
+| **Billing contact** | Big Muddy Natchez LLC → MBT (internal allocation) |
+| **Start date** | Pre-existing — under Big Muddy Natchez LLC from its filing forward |
+| **Contract type** | In-family — no LOI; tracked internally via the MBT retainer |
+| **Pricing (base)** | Internal allocation through Big Muddy Natchez LLC's share of the retainer |
 | **Status** | active |
 
 ---

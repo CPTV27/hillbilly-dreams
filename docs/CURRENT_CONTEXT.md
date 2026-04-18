@@ -18,13 +18,18 @@
 
 **Three-way partnership for MBT:** Chase, Tracy, Amy (equal thirds).
 
-**Other in-family entities (each its own ownership):**
-- **Tuthill Design** (NY, may split from Studio C) — Chase 50% / Elijah Tuthill 50%. Real estate media + 3D + design. NY counties + new Natchez branch.
-- **Studio C** (NY + new Natchez branch) — Chase 40% / Other 60% TBD. Concert + event production focus.
-- **Big Muddy Touring LLC** (new, to file separately) — vehicle/touring insurance requires own entity.
-- **FarleyPierson LLC** — legacy shell, kept alive (not dissolved).
+**Wholly-owned subsidiaries of MBT (each new — to file):**
+- **Big Muddy Natchez LLC** — holds the Inn + Big Muddy Magazine
+- **Big Muddy Touring LLC** — holds touring, radio, record label, band, mobile performance (separate for vehicle + road insurance)
+- **Project LLCs** — pattern: spin up per tenant project with meaningful liability exposure
 
-Full entity map: `docs/ENTITY_STRUCTURE.md`
+**Affiliates Chase partly owns through MBT (NOT subsidiaries):**
+- **Tuthill Design** (NY) — Chase 50% (held by MBT) / Elijah Tuthill 50%. Real estate media + 3D + design. NY counties + new Natchez branch. **Holds the retainer with MBT** that funds Elijah's cross-entity work.
+- **Studio C** (NY + new Natchez branch) — Chase 40% (held by MBT) / Other 60% TBD. Concert + event production. Vendor + client of MBT.
+
+**FarleyPierson LLC** — legacy shell, kept alive (not dissolved).
+
+Full entity map + retainer flow + open questions: `docs/ENTITY_STRUCTURE.md`
 
 **Public-facing rule (Chase clarified 2026-04-18 PM):** MBT is NOT being marketed publicly in the near term. Consumer-facing sites stay on their own brands (Big Muddy Inn, Big Muddy Touring, Chase Pierson Photography, Studio C, etc.). MBT branding surfaces only for broker-tier B2B deals — Paul Green Realty, multi-property realtor partnerships, civic/tourism where the client is evaluating a platform, not a consumer brand. For everything else, MBT stays backstage like a holding company.
 
