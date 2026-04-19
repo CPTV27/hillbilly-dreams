@@ -46,12 +46,12 @@ A boutique inn in Natchez, Mississippi, where the rooms are made for travelers w
 - **Packaging:** Single-show tickets; possible season pass / membership
 - **Sold via:** Inn page event listings · social posts · walk-in
 
-### Offering 4 — Dinner program
-- **What it is:** Restaurant-quality dinner service, open to public + Inn guests
-- **What's included:** Set menu nights · à la carte nights (TBD)
-- **Price:** $___ per cover, varies by night
-- **Packaging:** Reservations via site, walk-in if seats
-- **Sold via:** Inn site · OpenTable or similar (TBD) · word of mouth
+### Offering 4 — Catering for events (NOT a restaurant)
+- **What it is:** Catered food service for private events and Blues Room shows. **The Inn does not operate a restaurant.** Catering is sourced from third-party providers per event.
+- **What's included:** Coordination with the catering vendor of choice for the event; bar service handled in-house (Amy)
+- **Price:** Pass-through from third-party caterer + coordination fee TBD
+- **Packaging:** Per-event; vendor menu of partner caterers Tracy + Amy curate
+- **Sold via:** Bundled with private events + Blues Room ticketed shows where applicable
 
 ---
 
@@ -124,6 +124,6 @@ A boutique inn in Natchez, Mississippi, where the rooms are made for travelers w
 - Dedicated Inn domain, or remain under bigmuddytouring.com? (Affects SEO long-term and direct-booking conversion)
 - Standard private event packages — define 2-3 tiers Tracy/Amy can quote on the phone vs custom every time
 - Blues Room ticketing — DIY (Stripe Checkout against an inventory module) or partner (Eventbrite, DICE)
-- Dinner reservations — DIY in Sanity or OpenTable
+- Catering vendor menu — which third-party caterers does the Inn pre-vet and recommend? (No in-house restaurant operations.)
 - Airbnb/Booking.com presence — keep, scale back, or push customers to direct?
 - **Innkeeper hire** — Tracy stepping back creates this role. Amy loaded with Radio/Records/Performances and probably not the answer. Define profile and hire before Tracy's transition begins.

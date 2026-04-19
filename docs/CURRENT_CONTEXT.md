@@ -23,11 +23,20 @@
 - **Big Muddy Touring LLC** — NEW, to file alongside MBT (vehicle + road insurance separation)
 - **Project LLCs** — pattern: spin up per tenant project with meaningful liability exposure
 
-**Affiliates where Chase holds a personal stake (NOT MBT subsidiaries — equity stays with Chase personally):**
-- **Tuthill Design** (NY) — Chase 50% (personal; MBT receives Chase's distributions post-restructure) / Elijah Tuthill 50%. Real estate media + 3D + design. NY counties + new Natchez branch. **Holds the retainer with MBT** that funds Elijah's cross-entity work.
-- **Studio C** (NY + new Natchez branch) — Chase 40% (personal; MBT receives Chase's distributions post-restructure) / Other 60% TBD. Concert + event production. Vendor + client of MBT.
+**Affiliate (one LLC, two operating DBAs — Chase holds personal stake; equity stays with Chase):**
+- **Tuthill Design LLC** (NY) — 50/50 LLC ownership Chase + Elijah Tuthill. MBT receives Chase's distributions post-restructure but does NOT acquire equity.
+  - **Two DBA service lines under the one LLC, one insurance umbrella:**
+    - **Tuthill Design** (DBA) — real estate photo, video, 3D, design (LiDAR + AI). NY counties + new Natchez branch.
+    - **Studio C** (DBA) — production for MBT platform work + concert/event production. Bearsville-anchored + new Natchez branch.
+  - **Operating profit split: 40/30/30** — Chase 40% · Elijah Tuthill 30% · Miles 30% (presumed; confirm)
 
-**Important:** the MBT restructure does not transfer Chase's equity in Tuthill or Studio C. It only redirects where Chase's pass-through distributions flow (currently FarleyPierson → after restructure MBT). Tuthill and Studio C themselves operate exactly as before.
+**MBT ↔ Tuthill Design LLC — unified vendor relationship:**
+- ONE vendor relationship with the LLC
+- Paid via **buckets of Studio C hours** (fungible across all platform work — photo archive, platform maintenance, anything else) + per-project Tuthill Design work
+- Studio C internally staffs the bucket: Elijah primarily, Miles as needed, others if scope grows
+- "$50/hr × 40-hr starter block = $2K" is bucket pricing, **not** Elijah's personal rate
+
+**Important:** the MBT restructure does not transfer Chase's equity in the LLC. It only redirects where Chase's pass-through distributions flow (currently FarleyPierson → after restructure MBT). The LLC itself operates exactly as before.
 
 **FarleyPierson LLC** — SHUTTING DOWN (decision 2026-04-18 evening).
 
@@ -37,11 +46,12 @@ Full entity map + retainer flow + open questions: `docs/ENTITY_STRUCTURE.md`
 
 **Pacing (Chase flagged 2026-04-18 PM):** Do NOT propagate HDI→MBT across every doc right now. The restructure is correct direction but needs to settle. Cos holds the wholesale rename; prior docs stay labeled as-is until Chase says go.
 
-**Vendor layer — NEW:**
-- **Studio C** — production vendor only (photo, video, content, shoots, edit). Also a client of MBT for its own marketing.
-- **Tuthill Design** — platform operations vendor (SLA, uptime, feature request triage). Separate from Studio C by design.
+**Vendor layer (corrected 2026-04-18 evening — both are DBAs of one LLC):**
+- **Studio C** (DBA) — production lane: photo, video, content, shoots, edit, multicam, streaming, post. Staffs MBT's platform bucket hours (fungible across photo archive + maintenance + anything else). Also a client of MBT for its own marketing.
+- **Tuthill Design** (DBA) — real estate + design lane: photo, video, 3D tours, floor plans, design (LiDAR + AI).
+- (Earlier "Tuthill = platform operations vendor" framing was wrong; corrected.)
 
-**Client engagements are with MBT.** MBT subcontracts Studio C + Tuthill for delivery.
+**Client engagements are with MBT.** MBT subcontracts the Tuthill Design LLC for delivery via Studio C bucket + per-project Tuthill Design work.
 
 **Tier-1 IP:** the directory module + canonical entity store. Board-level decisions only.
 

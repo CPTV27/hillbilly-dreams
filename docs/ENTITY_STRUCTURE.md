@@ -16,9 +16,19 @@
 **Existing entities being shut down:**
 - **FarleyPierson LLC** — DECISION MADE: shut down. (Reverses the earlier "kept as legacy shell" assumption.)
 
-**Existing affiliates Chase partly owns:**
-- Tuthill Design (NY) — 50/50 Chase + Elijah Tuthill
-- Studio C (NY) — 40/60 Chase + TBD
+**Existing affiliate (one LLC, two operating DBAs):**
+- **Tuthill Design LLC** — 50/50 LLC ownership Chase + Elijah Tuthill
+  - Operates two DBA service lines under one legal entity, one insurance umbrella:
+    - **Tuthill Design** (DBA) — real estate photo, video, 3D, design (LiDAR + AI)
+    - **Studio C** (DBA) — production for MBT platform work + concert/event production
+  - **Operating profit split: 40/30/30** — Chase 40% · Elijah Tuthill 30% · Miles 30% (presumed; confirm with Chase)
+  - Tuthill / Studio C LLC split deferred — they may eventually become two LLCs but operate as DBAs today
+
+**MBT ↔ Tuthill Design LLC — unified vendor relationship:**
+- MBT has ONE vendor relationship with the Tuthill Design LLC
+- Paid via **buckets of Studio C hours** (fungible across all platform work) + per-project Tuthill Design work
+- Studio C internally staffs the bucket — Elijah primarily, Miles as needed, others if scope grows
+- "$50/hr × 40-hr starter block = $2K" is **bucket pricing**, not Elijah's personal rate
 
 
 

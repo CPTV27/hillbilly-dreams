@@ -36,7 +36,7 @@ Each brand keeps its own voice, domain, and customer relationship. None of them 
 
 ### Consumer brands
 
-**Big Muddy Inn.** A boutique inn in Natchez with a working blues stage and a kitchen that takes dinner seriously. *Sells: room nights, Blues Room tickets, private events.*
+**Big Muddy Inn.** A boutique inn in Natchez with a working blues stage. Catering for private events comes from third-party partners — the Inn does not operate a restaurant. *Sells: room nights, Blues Room tickets, private events.*
 
 **Big Muddy Touring.** Bringing artists to the Mississippi corridor — booking, route planning, on-the-ground promotion. *Sells: tour dates, gigs to venues, sponsorships.*
 

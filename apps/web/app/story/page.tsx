@@ -618,7 +618,7 @@ export default function StoryPage() {
 }
 
 const BRANDS = [
-  { name: 'Big Muddy Inn', tier: 'consumer', tierLabel: 'Consumer · Hospitality', line: 'A boutique inn in Natchez with a working blues stage and a kitchen that takes dinner seriously.', revenue: 'Room nights · Blues Room tickets · private events' },
+  { name: 'Big Muddy Inn', tier: 'consumer', tierLabel: 'Consumer · Hospitality', line: 'A boutique inn in Natchez with a working blues stage. Catering for private events from third-party partners (no in-house restaurant).', revenue: 'Room nights · Blues Room tickets · private events' },
   { name: 'Big Muddy Touring', tier: 'consumer', tierLabel: 'Consumer · Music', line: 'Bringing artists to the Mississippi corridor — booking, route planning, on-the-ground promotion.', revenue: 'Tour dates · gigs · sponsorships' },
   { name: 'Big Muddy Records', tier: 'consumer', tierLabel: 'Consumer · Music', line: "Houses Amy Allen's catalog and Mechanical Bull's catalog. Offers a non-exclusive promotion partnership to outside artists. Approved artists can opt into a low monthly fee for full label-style marketing services.", revenue: 'Catalog units (vinyl/digital/streaming/merch) + recurring monthly label services' },
   { name: 'Big Muddy Radio', tier: 'consumer', tierLabel: 'Consumer · Broadcast', line: 'Podcasts + curated playlists on Spotify/Apple/YouTube Music, plus TikTok Live for the live talk-radio feel (TikTok handles music licensing). Linear streaming radio when audience justifies.', revenue: 'Episode + playlist sponsorships · TikTok Live brand presence · future linear inventory' },
