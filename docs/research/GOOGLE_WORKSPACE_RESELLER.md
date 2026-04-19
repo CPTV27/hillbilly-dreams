@@ -1,8 +1,8 @@
 # Google Workspace Reseller Economics
 
-This document calculates the viability of HDI entering the Google Cloud Partner Advantage Program as a registered Workspace Reseller, effectively shifting DSD from an advertising platform into core IT infrastructure.
+This document calculates the viability of MBT entering the Google Cloud Partner Advantage Program as a registered Workspace Reseller, effectively shifting DSD from an advertising platform into core IT infrastructure.
 
-## Can HDI become a Google Workspace Reseller?
+## Can MBT become a Google Workspace Reseller?
 **Yes.** IT MSPs and digital agencies routinely enroll in the Google Cloud Partner Advantage program. The prerequisite is establishing a track record of tech-adjacent billing and committing to a baseline volume of user seats.
 
 ## Unit Economics

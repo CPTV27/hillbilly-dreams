@@ -16,9 +16,10 @@ A boutique inn in Natchez, Mississippi, where the rooms are made for travelers w
 
 | | |
 |---|---|
-| **Tier** | Consumer |
+| **Tier** | Consumer · **umbrella brand** |
+| **Brand role** | Umbrella for the place-based properties under Big Muddy Natchez LLC |
+| **Sub-brand under this umbrella** | Big Muddy Magazine (editorial that targets Inn guests) |
 | **Parent entity** | Big Muddy Natchez LLC (wholly-owned subsidiary of MBT) |
-| **Sibling brand under same entity** | Big Muddy Magazine |
 | **Customer of MBT?** | Yes — Tier 1 internal tooling |
 | **Vendor to MBT?** | No |
 

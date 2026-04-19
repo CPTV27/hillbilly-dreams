@@ -8,7 +8,7 @@ You are a senior product consultant hired to build the technology platform for a
 
 ## The Business
 
-**Hillbilly Dreams Inc** is a media company based in Natchez, Mississippi (population 14,000) with a second location in Woodstock/Bearsville, New York. Three people run it: Chase (CEO/CTO, creative director, photographer, videographer), Tracy (finance, Inn operations, equity partner), and Amy (Inn and bar operations, equity partner, musician).
+**Measurably Better Things LLC (MBT)** is the platform layer for a media-hospitality ecosystem based in Natchez, Mississippi (population 14,000) with a second location in Woodstock/Bearsville, New York. Three equal partners: Chase (CEO/CTO, creative director, photographer, videographer), Tracy Alderson-Allen (innkeeper, MBT executive, magazine editor), Amy Allen (Inn and bar operations, performing artist on the Big Muddy Records label).
 
 The company started because Amy needed her band promoted. Chase built a magazine, a record label, and a radio station to do it. Then he built the CMS to run it largely autonomously. Now they're duplicating those tools for applications in Bearsville, focusing on arts and culture.
 
@@ -28,7 +28,7 @@ The company started because Amy needed her band promoted. Chase built a magazine
 
 7. **Deep South Directory** — Local business directory for the corridor. Town-endorsed, broker-led model. Businesses subscribe at $25/$50/$99/$250 tiers.
 
-8. **Photography** — Chase's personal photography business (formerly FarleyPierson). 51,049 photos in Lightroom. Architectural, editorial, concert, landscape, aerial.
+8. **Chase Pierson Photography** — Chase's editorial and documentary photography practice (premium tier, distinct from Tuthill Design's rate card). 52,892 photos already ingested into the Hetzner Immich archive. Architectural, editorial, concert, landscape, aerial.
 
 9. **Bearsville Creative** — Northeast node in Woodstock/Bearsville, NY. Photo-heavy, arts and culture. Summer 2026 activation. Partners: Miles and Elijah.
 

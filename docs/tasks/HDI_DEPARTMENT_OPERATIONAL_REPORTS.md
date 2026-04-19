@@ -1,7 +1,9 @@
-# HDI Department Operational Reports — Master Dispatch
+# MBT Department Operational Reports — Master Dispatch
 **Requested by:** Chase
 **Date:** 2026-04-10
 **Status:** DISPATCHED — all departments produce reports in parallel
+
+*(Renamed from "HDI Department" 2026-04-18: the holding-company layer is now Measurably Better Things LLC, currently filing. FarleyPierson is winding down. Filename retained to avoid breaking existing links.)*
 
 ---
 
@@ -46,8 +48,8 @@ These don't exist as agents or org units. Each gets a brand-new agent definition
 | # | New Department | Why It Matters | First Task |
 |---|---|---|---|
 | 11 | **Insurance & Risk Management** | No one owns GL, property, auto, liquor, E&O, cyber, workers comp coordination across BMT + Studio C + Inn + MBT. See `PENDING_ISSUES_QUEUE.md` for the full insurance brief Chase requested. | Run the insurance exploration brief; produce coverage-gap heat map |
-| 12 | **Legal & Entity Structure** | FarleyPierson LLC operates everything. HDI not incorporated. Multi-tenant data boundaries need contractual hardening. IP ownership across MBT platform vs Big Muddy content unclear. | Entity structure audit + IP assignment map |
-| 13 | **People & Talent Operations (HR-lite)** | Equity partners (Tracy/Amy) are owners not employees. JP Houston deal not finalized. Vendor contractors (Studio C, Tuthill, JP) need clean agreements. Artist-in-residence (Arrie Aslin) needs contract. | Equity ledger, contractor schedule, artist contract templates |
+| 12 | **Legal & Entity Structure** | MBT LLC filing in progress (replaces FarleyPierson, which is winding down). Two operating subsidiaries: Big Muddy Natchez LLC (existing) holds the Inn + Magazine; Big Muddy Touring LLC (to file) holds Touring + Records + Radio + the band. Tuthill Design LLC is a 50/50 affiliate (Chase + Elijah Tuthill) with two DBAs — Tuthill Design and Studio C. Multi-tenant data boundaries need contractual hardening. IP ownership across MBT platform vs Big Muddy content unclear. | Entity structure audit + IP assignment map |
+| 13 | **People & Talent Operations (HR-lite)** | Three equal partners (Chase, Tracy, Amy) — owners not employees. Studio C engagements are bucket-of-hours purchased from Tuthill Design LLC, not individual contractor relationships with the people inside (Elijah, Miles, etc.). Artist-in-residence (Arrie Aslin) needs contract. | Equity ledger, vendor agreement template, artist contract templates |
 | 14 | **Sales — Deep South Directory (DSD)** | Walk-in sales playbook exists but no agent owns the pipeline, conversion, follow-up. 5 businesses/day target with no CRM mechanics. | Sales forecast, pipeline model, pitch optimization |
 | 15 | **Sales — MBT Enterprise (towns, brokers, banks)** | $10k town kickstart + $1.5k broker pilot needs structured pipeline. Vicki Wolpert is pilot 1. Natchez founding broker TBD. Zero deal flow infrastructure. | Enterprise pipeline spec, pilot scorecards, referral model |
 | 16 | **Customer Success / Post-Sale Ops** | After a town signs $10k, who keeps them happy? After a broker lands, who manages the SLA? This is the "you never think about it again" promise — it has no owner. | SLA definition, health scoring, renewal playbook |
@@ -156,14 +158,14 @@ These don't exist as agents or org units. Each gets a brand-new agent definition
 - Executive / Chief of Staff consolidation
 
 **Final consolidation:**
-- Chief of Staff agent consumes all 26 reports and produces the **HDI State of the Union Q2 2026** — a single board-ready dossier with cross-department dependencies mapped, top 10 risks, top 10 opportunities, and a prioritized action queue for Chase.
+- Chief of Staff agent consumes all 26 reports and produces the **MBT State of the Union Q2 2026** — a single board-ready dossier with cross-department dependencies mapped, top 10 risks, top 10 opportunities, and a prioritized action queue for Chase.
 
 ---
 
 ## Output Location
 
 - Individual reports → `docs/reports/2026-Q2/[dept-slug].md`
-- Consolidated dossier → `docs/reports/2026-Q2/HDI_STATE_OF_UNION.md`
+- Consolidated dossier → `docs/reports/2026-Q2/MBT_STATE_OF_UNION.md`
 - New agent definitions → `.claude/agents/[dept-name].md`
 - Cross-department risk register → `docs/reports/2026-Q2/RISK_REGISTER.md`
 

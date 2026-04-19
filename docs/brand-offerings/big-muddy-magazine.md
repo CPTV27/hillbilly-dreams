@@ -6,7 +6,9 @@
 
 ## 1 · The brand in one sentence
 
-A regional editorial publication covering music, hospitality, and the people who make the Mississippi corridor what it is — features that earn search traffic, drive bookings to the Inn, and frame the artists Big Muddy works with.
+Editorial aimed at the Inn's target guest — travelers drawn to Natchez, Mississippi corridor culture, and hospitality with music in the mix. The traffic engine that drives Inn bookings. Not music-industry or touring coverage.
+
+> **Editorial brief (Apr 18, 2026):** Tracy writes for the person who'd book a room, not for the musician booking a tour date. Cover Natchez restaurants, the river, antebellum architecture, the Blues Room as an experience-for-guests, recipes, weekenders, slow-travel angles. Musicians-as-subjects only when their story sells the place. Music-industry / scene / touring coverage lives on Big Muddy Radio and Big Muddy Touring, not here.
 
 ---
 
@@ -14,9 +16,9 @@ A regional editorial publication covering music, hospitality, and the people who
 
 | | |
 |---|---|
-| **Tier** | Consumer |
+| **Tier** | Consumer · sub-brand |
+| **Brand role** | Sub-brand of **Big Muddy Inn** (umbrella) — both place-based, both target travelers |
 | **Parent entity** | Big Muddy Natchez LLC (wholly-owned subsidiary of MBT) |
-| **Sibling brand under same entity** | Big Muddy Inn |
 | **Customer of MBT?** | Yes — Tier 1 internal tooling |
 | **Vendor to MBT?** | No |
 

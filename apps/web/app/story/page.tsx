@@ -34,16 +34,22 @@ export default function StoryPage() {
           <div className="layer layer-1">
             <p className="layer-label">Tier 1 · What customers see</p>
             <h3>The brands</h3>
-            <p>Each one keeps its own voice, domain, and customer relationship. None of them mention MBT.</p>
-            <div className="brand-list">
-              <span>Big Muddy Inn</span>
-              <span>Big Muddy Touring</span>
-              <span>Big Muddy Records</span>
-              <span>Big Muddy Radio</span>
-              <span>Big Muddy Magazine</span>
-              <span>Chase Pierson Photography</span>
-              <span>Tuthill Design</span>
-              <span>Studio C</span>
+            <p>Each one keeps its own voice, domain, and customer relationship. None of them mention MBT. Two umbrella brands carry adjacent media properties as sub-brands.</p>
+            <div className="brand-tree">
+              <div className="brand-group">
+                <span className="brand-parent">Big Muddy Inn</span>
+                <span className="brand-sub">— Big Muddy Magazine</span>
+              </div>
+              <div className="brand-group">
+                <span className="brand-parent">Big Muddy Touring</span>
+                <span className="brand-sub">— Big Muddy Records</span>
+                <span className="brand-sub">— Big Muddy Radio</span>
+              </div>
+              <div className="brand-group brand-group-standalone">
+                <span>Chase Pierson Photography</span>
+                <span>Tuthill Design</span>
+                <span>Studio C</span>
+              </div>
             </div>
           </div>
           <div className="layer-arrow">↓</div>
@@ -66,11 +72,15 @@ export default function StoryPage() {
       <section>
         <p className="section-num">02</p>
         <h2>The brands, in plain language</h2>
+        <p className="lede-small">
+          Two umbrella brands carry adjacent media properties as sub-brands. The Inn umbrellas the Magazine (both place-based, both target travelers). Touring umbrellas Records and Radio (all music-IP, all mobile). Standalone brands sit on their own.
+        </p>
         <div className="brand-grid">
           {BRANDS.map((b) => (
-            <div key={b.name} className={`brand-card brand-${b.tier}`}>
+            <div key={b.name} className={`brand-card brand-${b.tier} ${b.parent ? 'brand-card-sub' : ''}`}>
               <p className="brand-tier">{b.tierLabel}</p>
               <h3>{b.name}</h3>
+              {b.parent && <p className="brand-parent-note">↳ sub-brand of {b.parent}</p>}
               <p className="brand-line">{b.line}</p>
               <p className="brand-revenue">{b.revenue}</p>
             </div>
@@ -418,6 +428,41 @@ export default function StoryPage() {
           color: #c8a676;
         }
 
+        /* Brand tree (umbrella + sub-brand hierarchy) */
+        .brand-tree {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-top: 12px;
+        }
+        .brand-group {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 6px;
+        }
+        .brand-group span {
+          padding: 4px 10px;
+          background: #252320;
+          border-radius: 4px;
+          font-size: 13px;
+          color: #c8a676;
+        }
+        .brand-group .brand-parent {
+          background: #2f2a23;
+          color: #e8d5a8;
+          font-weight: 600;
+        }
+        .brand-group .brand-sub {
+          background: transparent;
+          color: #a89e8d;
+          padding-left: 4px;
+        }
+        .brand-group-standalone {
+          padding-top: 6px;
+          border-top: 1px dashed #2a2723;
+        }
+
         /* Brand grid */
         .brand-grid {
           display: grid;
@@ -432,6 +477,18 @@ export default function StoryPage() {
         }
         .brand-card.brand-consumer { border-left: 3px solid #d99850; }
         .brand-card.brand-production { border-left: 3px solid #c8a676; }
+        .brand-card.brand-card-sub {
+          margin-left: 24px;
+          background: #14110f;
+          border-left-style: dashed;
+        }
+        .brand-parent-note {
+          color: #a89e8d;
+          font-size: 12px;
+          font-style: italic;
+          margin: 0 0 8px;
+          letter-spacing: 0.02em;
+        }
         .brand-tier {
           color: #6b6254;
           font-size: 10px;
@@ -662,14 +719,14 @@ export default function StoryPage() {
 }
 
 const BRANDS = [
-  { name: 'Big Muddy Inn', tier: 'consumer', tierLabel: 'Consumer · Hospitality', line: 'A boutique inn in Natchez with a working blues stage. Catering for private events from third-party partners (no in-house restaurant).', revenue: 'Room nights · Blues Room tickets · private events' },
-  { name: 'Big Muddy Touring', tier: 'consumer', tierLabel: 'Consumer · Music', line: 'Bringing artists to the Mississippi corridor — booking, route planning, on-the-ground promotion.', revenue: 'Tour dates · gigs · sponsorships' },
-  { name: 'Big Muddy Records', tier: 'consumer', tierLabel: 'Consumer · Music', line: "Houses Amy Allen's catalog and Mechanical Bull's catalog. Offers a non-exclusive promotion partnership to outside artists. Approved artists can opt into a low monthly fee for full label-style marketing services.", revenue: 'Catalog units (vinyl/digital/streaming/merch) + recurring monthly label services' },
-  { name: 'Big Muddy Radio', tier: 'consumer', tierLabel: 'Consumer · Broadcast', line: 'Podcasts + curated playlists on Spotify/Apple/YouTube Music, plus TikTok Live for the live talk-radio feel (TikTok handles music licensing). Linear streaming radio when audience justifies.', revenue: 'Episode + playlist sponsorships · TikTok Live brand presence · future linear inventory' },
-  { name: 'Big Muddy Magazine', tier: 'consumer', tierLabel: 'Consumer · Editorial', line: 'Editorial vehicle covering music, hospitality, and the people on the corridor. Feeds traffic to every other Big Muddy property.', revenue: 'Cross-marketing engine · drives Inn bookings (not a subscription product)' },
-  { name: 'Chase Pierson Photography', tier: 'consumer', tierLabel: 'Consumer · Premium services', line: "Chase's editorial and documentary photography practice. Premium rate, distinct from Tuthill's advertised rates.", revenue: 'Editorial commissions · documentary projects · prints · portraits' },
-  { name: 'Tuthill Design (DBA)', tier: 'production', tierLabel: 'Production B2B · North + South', line: 'Real estate media + 3D + design (LiDAR + AI). Hudson Valley + new Natchez branch. One of two DBAs under Tuthill Design LLC.', revenue: 'Per-property packages · recurring social management for realtors' },
-  { name: 'Studio C (DBA)', tier: 'production', tierLabel: 'Production B2B · North + South', line: 'Production for MBT platform work + concert/event production. Bearsville-anchored + new Natchez branch. Sister DBA under the same Tuthill Design LLC.', revenue: 'Per-event packages · venue retainers · premium cinema · MBT bucket hours for platform work' },
+  { name: 'Big Muddy Inn', tier: 'consumer', tierLabel: 'Consumer · Umbrella · Hospitality', parent: null, line: 'A boutique inn in Natchez with a working blues stage. Catering for private events from third-party partners (no in-house restaurant). Umbrella brand under Big Muddy Natchez LLC.', revenue: 'Room nights · Blues Room tickets · private events' },
+  { name: 'Big Muddy Magazine', tier: 'consumer', tierLabel: 'Consumer · Sub-brand of Inn · Editorial', parent: 'Big Muddy Inn', line: "Editorial aimed at the Inn's target guest — travelers drawn to Natchez, Mississippi corridor culture, hospitality with music in the mix. Traffic engine that drives Inn bookings. Not music-industry or touring coverage. Tracy edits.", revenue: 'Cross-marketing engine · drives Inn bookings (not a subscription product)' },
+  { name: 'Big Muddy Touring', tier: 'consumer', tierLabel: 'Consumer · Umbrella · Music', parent: null, line: 'Bringing artists to the Mississippi corridor — booking, route planning, on-the-ground promotion. Umbrella brand under Big Muddy Touring LLC.', revenue: 'Tour dates · gigs · sponsorships' },
+  { name: 'Big Muddy Records', tier: 'consumer', tierLabel: 'Consumer · Sub-brand of Touring · Music', parent: 'Big Muddy Touring', line: "Houses Amy Allen's catalog and Mechanical Bull's catalog. Offers a non-exclusive promotion partnership to outside artists. Approved artists can opt into a low monthly fee for full label-style marketing services.", revenue: 'Catalog units (vinyl/digital/streaming/merch) + recurring monthly label services' },
+  { name: 'Big Muddy Radio', tier: 'consumer', tierLabel: 'Consumer · Sub-brand of Touring · Broadcast', parent: 'Big Muddy Touring', line: 'Podcasts + curated playlists on Spotify/Apple/YouTube Music, plus TikTok Live for the live talk-radio feel (TikTok handles music licensing). Linear streaming radio when audience justifies. Reaches music-first / scene-first audience — distinct from the Magazine.', revenue: 'Episode + playlist sponsorships · TikTok Live brand presence · future linear inventory' },
+  { name: 'Chase Pierson Photography', tier: 'consumer', tierLabel: 'Consumer · Premium services', parent: null, line: "Chase's editorial and documentary photography practice. Premium rate, distinct from Tuthill's advertised rates.", revenue: 'Editorial commissions · documentary projects · prints · portraits' },
+  { name: 'Tuthill Design (DBA)', tier: 'production', tierLabel: 'Production B2B · North + South', parent: null, line: 'Real estate media + 3D + design (LiDAR + AI). Hudson Valley + new Natchez branch. One of two DBAs under Tuthill Design LLC.', revenue: 'Per-property packages · recurring social management for realtors' },
+  { name: 'Studio C (DBA)', tier: 'production', tierLabel: 'Production B2B · North + South', parent: null, line: 'Production for MBT platform work + concert/event production. Bearsville-anchored + new Natchez branch. Sister DBA under the same Tuthill Design LLC.', revenue: 'Per-event packages · venue retainers · premium cinema · MBT bucket hours for platform work' },
 ];
 
 const AI_ROLES = [

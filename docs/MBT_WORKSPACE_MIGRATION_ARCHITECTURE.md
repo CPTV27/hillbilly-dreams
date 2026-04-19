@@ -1,194 +1,126 @@
-# MBT Workspace Migration — Architecture Sketch
+# MBT Workspace Migration — Architecture (Rewritten 2026-04-18 PM)
 
-*Initial shape of the move from the current HDI-era infrastructure footprint to a clean Measurably Better Things LLC footprint. Not the final playbook — the skeleton to think in.*
-
-*Drafted 2026-04-18 while Chase drove to NOLA. To be refined in collaboration with Claude Chat + Cos as details firm up.*
+*Major rewrite per Chase 2026-04-18: previous draft assumed we'd spin up a brand-new Google Workspace + new GitHub org + new Vercel team under MBT. **We're not doing that.** We're keeping the existing chasepierson.tv Workspace and the existing GitHub/Vercel/Cloudflare/Hetzner accounts in place — what changes is who pays the bills, who has seats, and what the Workspace's primary domain is called.*
 
 ---
 
-## The big move
+## The corrected move
 
-Shut down the Hillbilly Dreams Inc Google Workspace + supporting infrastructure. Stand up a clean Measurably Better Things LLC footprint. Deploy the platform cleanly under the new name once the code is finalized. Build forward from that point — don't keep dragging HDI references along.
+Keep what works. Rename and reseat what needs the MBT name on it. Transition billing from FarleyPierson LLC to MBT LLC once MBT is filed.
 
-This is an **infrastructure rename**, not a feature change. The platform keeps working the way it does. Names, ownership, billing, and identity shift.
+This is **NOT** a wholesale infrastructure migration. The previous architecture sketch implied weeks of cutover work, secret rotation, GitHub org transfer, Cloudflare account transfer, GCS bucket copying, etc. None of that is necessary. We avoid all of it by leaving the technical accounts where they are and only changing the contractual / billing layer.
 
 ---
 
-## Current state (HDI-era footprint, April 2026)
+## What changes
 
-| Layer | Service | Owner / account |
+| Layer | Today | After MBT filing |
 |---|---|---|
-| Google Workspace | hillbillydreamsinc.com (or chasepierson.tv?) | Chase's account |
-| Email | me@chasepierson.tv + per-brand forwarders | Chase's personal / Google Workspace |
-| GitHub | `CPTV27/hillbilly-dreams` | Chase's personal account |
-| Vercel | team `chase-piersons-projects`, project `hillbilly-dreams` | Chase |
-| Cloudflare | ChasePierson.TV account | Chase |
-| Hetzner | bigmuddy-services (`5.161.61.151`) | Chase |
-| GCS | bucket `bmt-media-bigmuddy` | FarleyPierson LLC billing |
-| Sanity | project `5p7h8glj`, dataset `production` | Chase |
-| Bitwarden | single personal vault | Chase |
-| Domains | 14 domains in Cloudflare | Chase |
-| Legal entity | FarleyPierson LLC (EIN 81-4280721) | Chase + partner history |
+| Google Workspace | chasepierson.tv (Chase's account) | **Same Workspace.** Primary domain renamed (chasepierson.tv stays as a verified alias), Tracy + Amy added as paid seats. Billing payment method moves from Chase's personal card to the MBT LLC card. |
+| Email | me@chasepierson.tv + per-brand forwarders | Same primary email. New per-partner addresses (tracy@, amy@) plus functional aliases (billing@, ops@, support@, legal@, noreply@) created inside the same Workspace. |
+| GitHub | `CPTV27/hillbilly-dreams` (Chase's personal account) | **Same repo, same account.** No org transfer. Tracy and Amy added as collaborators if/when they need code access. (Chase remains the GitHub owner — that's a personal GitHub seat, not a corporate liability.) |
+| Vercel | team `chase-piersons-projects` | **Same team, same project.** Payment method moves from Chase's personal card to the MBT LLC card. Add Tracy as a billing contact / member if needed. |
+| Cloudflare | ChasePierson.TV account, all 14 domains | **Same account, same domains.** Payment method moves to MBT LLC card. |
+| Hetzner | bigmuddy-services (`5.161.61.151`) under Chase's account | **Same server, same account.** Payment method moves to MBT LLC card. |
+| GCS | bucket `bmt-media-bigmuddy` | **Same bucket.** GCP billing account migrates to MBT LLC. |
+| Sanity | project `5p7h8glj`, dataset `production` | **Same project, same dataset.** Org payment moves to MBT LLC card. |
+| Bitwarden | Chase's personal vault | **Same vault for personal items.** New MBT Bitwarden organization created for Tracy + Amy + Chase to share business credentials going forward. Personal vault stays Chase's. |
+| Domains | 14 domains in Cloudflare | **Same Cloudflare account.** Domain registration renewals move to MBT LLC payment method. |
+| Legal entity (operating expense payer) | FarleyPierson LLC (winding down) | **MBT LLC** (filing this month). All recurring SaaS subscriptions point to MBT's bank account / card. |
 
-## Target state (MBT-era footprint)
+What does **not** change: account ownership of any cloud service, GitHub org, Vercel team, Cloudflare account, GCS bucket name, Sanity project ID, Hetzner server. Everything stays where it is. Only the credit card on file and the W-9 / business name on the receiving end of the bill changes.
 
-| Layer | Service | Owner / account |
+---
+
+## Why this is the correct move
+
+The previous architecture sketch was conservative and process-heavy — appropriate if MBT had to be built from a clean room. But:
+
+1. **The accounts are already correctly scoped.** Chase has held them in his name from day one, and that has not been a problem. Adding "MBT LLC" as the billing entity is a paperwork exercise inside each provider's billing settings, not an account-level migration.
+2. **GitHub repo transfer would break every deploy.** GitHub Actions secrets, webhook URLs, deploy keys, branch protection rules — all would need redoing. There's no upside given that MBT can simply pay the bill on Chase's account or buy seats for partners.
+3. **Cloudflare transfer would risk DNS continuity** for all 14 domains. We have customers on `deepsouthdirectory.com` and the Inn brand on `bigmuddytouring.com`. Even a 30-second misconfiguration during transfer is a loss we'd never recover.
+4. **GCS bucket name change would require updating every Sanity asset reference and every code path that constructs URLs.** Massive surface area for very little gain.
+5. **Workspace primary-domain rename is a 30-second operation in Google Admin Console.** chasepierson.tv stays as a verified alias, and the Workspace gets a new "MBT" identity for partner-facing email.
+
+---
+
+## What we still need to do
+
+### Step 1 — File MBT LLC (in progress)
+- Mississippi LLC filing, registered agent, EIN, bank account, MBT-issued debit/credit card.
+- Operating agreement: three equal members (Chase, Tracy, Amy).
+- Lawyer-coordinated, MBT and Big Muddy Touring LLC filing in parallel.
+
+### Step 2 — Workspace primary-domain decision and rename (~30 minutes)
+- Pick the primary Workspace domain. Options:
+  - `measurablybetter.life` — short, owned, the consumer AI brand
+  - `measurablybetterthings.com` — long, descriptive, owned
+  - `mbt.life` — if available, cleanest
+- In Google Admin Console: Domains → Add another domain → set as primary. chasepierson.tv stays as a secondary verified domain so existing email keeps working.
+- Tracy and Amy each get a real seat: tracy@<primary>, amy@<primary>. (~$15/mo each on Business Standard.)
+- Functional aliases: billing@, ops@, support@, legal@, noreply@ — routed to the right partner.
+
+### Step 3 — Billing transitions, one provider at a time (~2 hours total)
+For each of: Vercel · Cloudflare · Hetzner · GCP · Sanity · GitHub · Google Workspace · Bitwarden · Domain registrar (Cloudflare Registrar):
+
+1. Open the provider's billing settings.
+2. Add MBT LLC's payment method.
+3. Set as default. Remove Chase's personal card.
+4. Update the billing address / W-9 / business name to MBT LLC.
+
+Each one is independent — can be done in any order, any week. None require downtime.
+
+### Step 4 — Per-partner accounts and Bitwarden org (~1 hour)
+- Tracy + Amy invited to Workspace (Step 2 covers the email seats).
+- New Bitwarden organization "MBT". Chase, Tracy, Amy as admins.
+- Migrate **business** credentials (Stripe, Cloudbeds, social accounts, etc.) from Chase's personal vault into MBT org. Personal credentials stay in Chase's personal vault.
+- Tracy and Amy each invited to the GitHub repo as collaborators (read access at minimum, write if they're going to push commits).
+
+### Step 5 — FarleyPierson wind-down (separate, lawyer-handled)
+- See `docs/router/queue.json` → `P52-farleypierson-llc-shutdown`.
+- Confirm no active SaaS subscriptions still bill the FarleyPierson card before dissolution.
+- Tax/contract migration handled by the accountant + lawyer in parallel.
+
+---
+
+## What this is NOT
+
+- **Not** a GitHub org migration. The repo stays at `CPTV27/hillbilly-dreams`.
+- **Not** a Vercel team migration. Stays at `chase-piersons-projects`.
+- **Not** a Cloudflare account transfer. Stays in the ChasePierson.TV account.
+- **Not** a Hetzner account transfer. Stays in Chase's account.
+- **Not** a GCS bucket rename or copy. Stays as `bmt-media-bigmuddy`.
+- **Not** a Sanity project transfer. Stays at `5p7h8glj`.
+- **Not** a domain transfer. All 14 domains stay where they are.
+- **Not** a deploy infrastructure cutover. The single Next.js app keeps deploying to the same Vercel project across the same 14 hostnames.
+
+The personal/business split that matters most: Chase's chasepierson.tv email keeps working, his photography brand stays his personal practice, his personal Bitwarden vault stays his. The MBT business identity gets layered on top of the existing infrastructure rather than replacing it.
+
+---
+
+## Sequencing with Chase's travel
+
+| Phase | Timing | Blocked on |
 |---|---|---|
-| Legal entity | Measurably Better Things LLC (NY, to be filed) | Chase + Tracy + Amy (equal thirds) |
-| Google Workspace | measurablybetterthings.com (or measurablybetter.life if we want a shorter domain) | MBT LLC |
-| Email | chase@, tracy@, amy@ + billing@, ops@, support@, legal@ | MBT Workspace |
-| GitHub | new org (e.g., `mbt-platform`) | MBT (with Chase, Tracy, Amy as owners) |
-| Vercel | new team `mbt-platform` or `measurably-better-things` | MBT |
-| Cloudflare | new account under ops@mbt email | MBT |
-| Hetzner | existing server rebilled under MBT account | MBT |
-| GCS | new bucket `mbt-media` (or similar) under MBT billing | MBT |
-| Sanity | new org / transferred project under MBT | MBT |
-| Bitwarden | MBT organization (not personal vault) | MBT, Chase + Tracy have admin |
-| Domains | transferred to MBT Cloudflare account | MBT |
-| Personal side | ChasePierson.TV stays Chase's personal (photography brand, personal projects, etc.) | Chase personal |
+| MBT LLC filing | In progress | Lawyer |
+| Workspace primary domain pick | Decide before Chase leaves for summer | Chase |
+| Workspace primary domain rename + Tracy/Amy seats | When MBT card is in hand | MBT card |
+| Billing transitions | Rolling, one provider at a time, anytime | MBT card |
+| Bitwarden MBT org | When MBT card + lawyer-confirmed entity are live | MBT formation |
+| FarleyPierson wind-down | Begins after MBT is operational + billing migrated | MBT operational |
 
-The personal/business split is important: Chase keeps ChasePierson.TV as his personal domain + Google Workspace. MBT gets its own clean account for everything business.
+Nothing here is critical-path against Vicki's May 1 onboarding. Vicki can be set up on the existing infrastructure and the billing identity behind her account changes silently when MBT pays the next Vercel invoice.
 
 ---
 
-## Phasing — rough shape
+## Open questions for Chase
 
-### Phase 0 — Legal + identity (prerequisite, ~2 weeks)
-- **File MBT LLC in Mississippi** (single-state — NY business routes through Tuthill Design, no foreign-LLC registration needed). Articles, registered agent, EIN, bank account.
-- Operating agreement with explicit IP ownership language (real lawyer). Three equal members: Chase, Tracy, Amy.
-- Register `measurablybetterthings.com` if not owned. Keep `measurablybetter.life` as alias.
-- Decision: which domain is the primary workspace domain? Shorter is usually better.
-- **Parallel: file Big Muddy Touring LLC** (separate entity for vehicle + road performance liability). State and ownership TBD.
-
-### Phase 1 — MBT Google Workspace (~3 days)
-- Sign up for Google Workspace Business Standard under MBT LLC.
-- Primary domain = whichever we picked in Phase 0.
-- Create per-partner accounts: chase@, tracy@, amy@.
-- Create functional accounts: billing@, ops@, support@, legal@, noreply@.
-- Set up groups for routing.
-- Bitwarden MBT organization — invite all three partners.
-
-### Phase 2 — GitHub reorg (~1 day)
-- Create MBT GitHub org.
-- Fork/transfer `hillbilly-dreams` → `mbt-platform` under MBT org.
-- Chase, Tracy, Amy as org owners.
-- Migrate GitHub Actions secrets.
-- Old repo: archive (don't delete — commit history matters).
-
-### Phase 3 — Vercel + deploy platform (~2 days)
-- New Vercel team under MBT.
-- Connect new GitHub repo (`mbt-platform/mbt-platform`).
-- Migrate all environment variables.
-- New Vercel project deploys against new repo.
-- Production-equivalent preview URL stands up.
-- Verify a full build succeeds before DNS cutover.
-
-### Phase 4 — Cloudflare + domain transfers (~1 week, uses Cloudflare's existing transfer flow)
-- New Cloudflare account under ops@mbt email.
-- Transfer domains one at a time (Cloudflare allows inter-account transfers for free).
-- **Caution:** Cloudflare transfers have a 60-day lock window after domain registration — check each domain's eligibility.
-- As each domain transfers, DNS records stay intact. Only the account holder changes.
-- Final step per domain: switch A record from old Vercel IP to new.
-
-### Phase 5 — Storage + media (~2 days)
-- New GCS bucket `mbt-media` under MBT billing.
-- Copy (or rsync) from `bmt-media-bigmuddy` → `mbt-media`.
-- Old bucket becomes read-only archive. Don't delete immediately — leave 60 days as rollback window.
-- Update all Sanity references and app env vars.
-- Immich on Hetzner: keep server running, rebill account to MBT.
-
-### Phase 6 — Sanity (~2 days)
-- Create new Sanity project under MBT or transfer existing project to MBT org.
-- Simpler path: new project, export the `production` dataset from the old project, import into new. Saves ownership headaches.
-- Update all references and tokens.
-
-### Phase 7 — Cutover per property (~2 weeks, one property per day)
-- Do NOT cutover all 14 domains at once. Pick lowest-risk first.
-- Suggested order:
-  1. `hillbillydreamsinc.com` (low traffic, test property) — sunset to a redirect
-  2. `bearsvillemediagroup.com` (not yet activated, good low-risk)
-  3. `tuthilldesign.com`
-  4. `studiocvideo.com`
-  5. Big Muddy family (one at a time — touring, magazine, radio, records, entertainment)
-  6. `deepsouthdirectory.com` (primary revenue — last, highest care)
-  7. `measurablybetter.life` + `buycurious.art` + `outsidereconomics.com`
-- For each: DNS cutover, 24-hour soak, verify monitoring, then move to next.
-
-### Phase 8 — Legacy wind-down (~30 days post-cutover)
-- Archive old GitHub repo.
-- Shut down old Vercel team (after 30 days of zero traffic on old deploys).
-- Transfer old Cloudflare account ownership or close it.
-- FarleyPierson LLC: keep operating as the legacy entity (Chase has tax/contract history) — does NOT dissolve. MBT LLC is a new parallel entity.
-- Old GCS bucket: 60 days after migration, archive to Coldline or delete.
-- Old HDI Google Workspace: 90 days for email forwarding, then shut down.
+1. **Primary MBT Workspace domain** — `measurablybetter.life`, `measurablybetterthings.com`, or check `mbt.life` availability?
+2. **Tracy + Amy email handles** — `tracy@<primary>` and `amy@<primary>`, or first-initial-last-name style?
+3. **Bitwarden migration scope** — does Chase want a clean inventory of personal-vs-business secrets before splitting, or just move anything tagged "business" / "MBT" / brand-related into the MBT org as he uses each one?
+4. **Does Tracy need GitHub access at all?** She edits content via Sanity Studio + admin pages. If she never pushes code, skip the GitHub seat — saves a billing line and reduces blast radius.
+5. **Does Vicki onboard on existing setup or wait?** The honest answer is "doesn't matter" — billing transition is invisible to her. She gets onboarded as soon as the launch is clean, regardless of what's on the credit card behind it.
 
 ---
 
-## Critical considerations
-
-### Don't lose history
-- Archive, don't delete. Git history, email archives, GCS media all stay accessible even after accounts migrate.
-- 60-90 day rollback windows at every phase.
-
-### Personal / business split matters
-- Chase's ChasePierson.TV is his personal domain + workspace. Photography brand. Personal projects.
-- MBT is the business. These don't overlap.
-- Avoid a year from now wondering "is this client email in my personal inbox or the business inbox?"
-
-### Per-partner accounts from the start
-- Tracy and Amy each get real MBT accounts from day 1.
-- No "we'll set them up later" — they're equity partners, they need the keys from filing day.
-
-### Secrets rotation as part of the move
-- Any API keys, tokens, webhook secrets rotate during migration.
-- Bitwarden MBT org becomes the canonical vault. Personal Bitwarden vault stays Chase's.
-
-### Billing clarity
-- Every recurring service pays from the MBT bank account after filing.
-- Chase stops reimbursing or fronting infra costs personally.
-- Gives Tracy a clean P&L.
-
-### Timing with Chase's travel
-- Phase 0 (LLC filing) can start immediately, progress asynchronously.
-- Phase 1–2 (Workspace + GitHub) best done before Chase leaves for summer.
-- Phase 3–6 (platform + storage + Sanity) can be run in parallel across summer.
-- Phase 7–8 (cutover + wind-down) in fall when Chase is back and the team is co-located for a few weeks.
-
-### The Outsider Economics angle
-- If OE is the open-source offering, it probably lives under a separate open GitHub org (e.g., `born-free-network`), not in the private MBT org.
-- Decision needed: is OE developed in-the-open from day 1, or extracted from private code later?
-
-### Legacy "hillbillydreamsinc.com" → MBT
-- Safest: permanent 301 redirect to `measurablybetterthings.com` (or wherever the MBT landing lives).
-- If MBT isn't public-facing, redirect to a partner-facing login or a neutral holding page.
-- Don't just let the domain expire — that breaks old email footers, business cards, search results.
-
----
-
-## Open questions for Chase (add answers inline in the Google Doc)
-
-1. **Primary MBT domain** — `measurablybetterthings.com` (long, descriptive) or `measurablybetter.life` (short, memorable, already owned)?
-2. **GitHub org name** — `mbt-platform` or `measurably-better-things` or something else?
-3. **Sanity path** — new project (simpler, migrate dataset) or transfer existing project to MBT org (preserves project ID, breaks less)?
-4. **Phase 7 cutover order** — comfortable with the suggested order, or different?
-5. **Legacy HDI Google Workspace wind-down** — 90 days enough, or longer for email forwarding?
-6. **Sequencing vs Vicki's May 1 start** — does Vicki onboard on the OLD infrastructure and migrate with us, or do we wait until MBT is live so she's the first customer on the clean stack?
-
----
-
-## One practical footnote — the Sanity env bug blocking Vercel deploys
-
-Separate from this migration but landed while investigating today: **all Vercel deploys since lunch have failed** because `projectId` validation throws on the current build. The correct value is `5p7h8glj` (confirmed from local `.env.local`). Chase's 5-minute fix when at a laptop:
-
-1. Open https://vercel.com/chase-piersons-projects/hillbilly-dreams/settings/environment-variables
-2. Find `NEXT_PUBLIC_SANITY_PROJECT_ID` and `SANITY_PROJECT_ID` for Production scope
-3. Confirm both are exactly `5p7h8glj` (no quotes, no spaces, no uppercase)
-4. Redeploy the latest commit
-
-After that deploy turns green, every push I've made since noon lands at once — the `/plan` page, middleware fix, tour-bus update queue, all of it.
-
-**Relevant to the migration:** when we stand up new Vercel under MBT, all env vars get re-entered cleanly. This is a one-time fix now, not something that has to travel with us.
-
----
-
-*Next iteration: flesh out the Phase 0 legal items once MBT LLC filing begins. Refine phases 1–3 with real Google Workspace pricing + GitHub org pricing before any switch flips.*
+*Supersedes the 2026-04-18 morning draft of this document, which assumed a full infrastructure migration to a new MBT-owned everything. That draft has been retained in git history. The corrected approach is in this document.*

@@ -218,13 +218,12 @@
     },
     {
       "id": "P21-team-immich-invites",
-      "title": "Invite Tracy + Amy + JP to Immich + iOS app setup",
-      "status": "blocked",
-      "blocked_by": "decision-from-tracy-amy-meeting",
+      "title": "Invite Tracy + Amy to Immich + iOS app setup",
+      "status": "ready",
       "owner": "chase",
       "estimated_minutes": 20,
       "depends_on": [],
-      "prompt": "Log into https://immich.hillbillydreamsinc.com as admin (creds in Bitwarden 'Immich \u2014 bigmuddy-services'). Administration \u2192 Users \u2192 Create. Create three accounts:\n- tracyaldersonallen@gmail.com (name: Tracy Alderson-Allen)\n- amyaldersonallen@gmail.com (name: Amy Allen)\n- jphoustonlives@gmail.com (name: JP Houston)\n\nFor each, generate a strong password and save to Bitwarden as 'Immich \u2014 Tracy', 'Immich \u2014 Amy', 'Immich \u2014 JP'.\n\nThen send each one a brief intro email with: server URL, their password, App Store link for Immich iOS app, and a one-line 'enable backup' instruction.\n\nDO NOT send if Chase hasn't first confirmed in the Tracy/Amy meeting that JP gets access (he may not \u2014 current scope is mixes + NOLA intros only)."
+      "prompt": "Log into https://immich.hillbillydreamsinc.com as admin (creds in Bitwarden 'Immich \u2014 bigmuddy-services'). Administration \u2192 Users \u2192 Create. Create two accounts:\n- tracyaldersonallen@gmail.com (name: Tracy Alderson-Allen)\n- amyaldersonallen@gmail.com (name: Amy Allen)\n\nFor each, generate a strong password and save to Bitwarden as 'Immich \u2014 Tracy' and 'Immich \u2014 Amy'.\n\nThen send each one a brief intro email with: server URL, their password, App Store link for Immich iOS app, and a one-line 'enable backup' instruction.\n\nNOTE 2026-04-18: JP Houston was dropped from the partner-onboarding list. Current scope with JP is wrapping First Arctic mixes + NOLA introductions only \u2014 he is not on the operational reports and does not need Immich access."
     },
     {
       "id": "P22-monitoring",

@@ -14,9 +14,10 @@ We bring artists to the Mississippi corridor and put them in front of audiences 
 
 | | |
 |---|---|
-| **Tier** | Consumer |
+| **Tier** | Consumer · **umbrella brand** |
+| **Brand role** | Umbrella for everything music-IP and mobile under Big Muddy Touring LLC |
+| **Sub-brands under this umbrella** | Big Muddy Records · Big Muddy Radio · the band |
 | **Parent entity** | Big Muddy Touring LLC (wholly-owned subsidiary of MBT — separate for vehicle + road liability) |
-| **Sibling brands under same entity** | Big Muddy Records · Big Muddy Radio · the band |
 | **Customer of MBT?** | Yes — Tier 1 internal tooling, plus Tier 3 for any external syndication |
 | **Vendor to MBT?** | No |
 

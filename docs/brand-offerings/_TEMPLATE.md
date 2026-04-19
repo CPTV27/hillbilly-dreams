@@ -10,7 +10,7 @@
 
 What this brand IS to the customer, in customer-facing language. No jargon.
 
-> *Example: "A 14-room boutique inn in Natchez, Mississippi, with a working blues stage and a kitchen that takes dinner seriously."*
+> *Example: "A boutique inn in Natchez, Mississippi, with a working blues stage and a porch that catches the morning light."*
 
 ---
 

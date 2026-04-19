@@ -14,9 +14,9 @@ A label with three concentric purposes: (1) house the **Amy Allen** catalog and 
 
 | | |
 |---|---|
-| **Tier** | Consumer (catalog sales) + B2B-to-artists (recurring services) |
+| **Tier** | Consumer · sub-brand (catalog sales) + B2B-to-artists (recurring services) |
+| **Brand role** | Sub-brand of **Big Muddy Touring** (umbrella) — all music-IP brands sit under the Touring umbrella |
 | **Parent entity** | Big Muddy Touring LLC (wholly-owned subsidiary of MBT) |
-| **Sibling brands under same entity** | Big Muddy Touring · Big Muddy Radio · the band |
 | **Customer of MBT?** | Yes — Tier 1 internal · Tier 3 once recurring artist services scale |
 | **Vendor to MBT?** | No |
 

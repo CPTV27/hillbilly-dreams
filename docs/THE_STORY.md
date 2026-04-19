@@ -11,13 +11,13 @@ MBT is what Automattic is to WordPress: anchored on the Mississippi corridor wit
 ## 01 · Three layers, top to bottom
 
 ### Tier 1 — What customers see
-Each brand keeps its own voice, domain, and customer relationship. None of them mention MBT.
+Each brand keeps its own voice, domain, and customer relationship. None of them mention MBT. Two umbrella brands carry adjacent media properties as sub-brands.
 
-- Big Muddy Inn
-- Big Muddy Touring
-- Big Muddy Records
-- Big Muddy Radio
-- Big Muddy Magazine
+- **Big Muddy Inn**
+  - Big Muddy Magazine *(sub-brand)*
+- **Big Muddy Touring**
+  - Big Muddy Records *(sub-brand)*
+  - Big Muddy Radio *(sub-brand)*
 - Chase Pierson Photography
 - Tuthill Design
 - Studio C
@@ -34,17 +34,26 @@ Each brand keeps its own voice, domain, and customer relationship. None of them 
 
 ## 02 · The brands, in plain language
 
-### Consumer brands
+Two umbrella brands carry adjacent media properties as sub-brands. The Inn umbrellas the Magazine (both place-based, both target travelers). Touring umbrellas Records and Radio (all music-IP, all mobile). Standalone brands sit on their own.
 
-**Big Muddy Inn.** A boutique inn in Natchez with a working blues stage. Catering for private events comes from third-party partners — the Inn does not operate a restaurant. *Sells: room nights, Blues Room tickets, private events.*
+### Consumer · place-based (Big Muddy Natchez LLC)
 
-**Big Muddy Touring.** Bringing artists to the Mississippi corridor — booking, route planning, on-the-ground promotion. *Sells: tour dates, gigs to venues, sponsorships.*
+**Big Muddy Inn** *(umbrella).* A boutique inn in Natchez with a working blues stage. Catering for private events comes from third-party partners — the Inn does not operate a restaurant. *Sells: room nights, Blues Room tickets, private events.*
 
-**Big Muddy Records.** Three concentric purposes: (1) house the **Amy Allen** catalog and the **Mechanical Bull** catalog, (2) offer a **non-exclusive promotion partnership** to outside artists who aren't on a label and would benefit from MBT's media structure (no equity grab — we just help them reach audiences), and (3) for artists we approve onto the label proper, add a **low monthly fee** for marketing and label-type services. Recurring revenue, not just unit sales. *Sells: catalog units (vinyl, digital, streaming, merch) + recurring monthly label services.*
+> **Big Muddy Magazine** *(sub-brand of the Inn).* Editorial aimed at the Inn's target guest — travelers drawn to Natchez, Mississippi corridor culture, hospitality with music in the mix. Traffic engine that drives Inn bookings. Not music-industry or touring coverage. Tracy edits.
+> *Cross-marketing engine · drives Inn bookings (not a subscription product).*
 
-**Big Muddy Radio.** Three channels: (1) podcasts and curated playlists on Spotify, Apple Podcasts, YouTube Music; (2) **TikTok Live** for the live talk-radio feel plus music programming — TikTok carries the music licensing umbrella so we don't deal with BMI/ASCAP/SESAC overhead; (3) eventually a linear streaming radio when audience justifies. Built around the artists we book and document. *Sells: episode + playlist sponsorships, TikTok Live brand presence, future linear inventory.*
+### Consumer · mobile / music IP (Big Muddy Touring LLC)
 
-**Big Muddy Magazine.** Editorial vehicle covering music, hospitality, and the people on the corridor. Feeds traffic to every other Big Muddy property. *Cross-marketing engine that drives Inn bookings — not a subscription product.*
+**Big Muddy Touring** *(umbrella).* Bringing artists to the Mississippi corridor — booking, route planning, on-the-ground promotion. Anchors everything that travels. *Sells: tour dates, gigs to venues, sponsorships.*
+
+> **Big Muddy Records** *(sub-brand of Touring).* Three concentric purposes: (1) house the **Amy Allen** catalog and the **Mechanical Bull** catalog, (2) offer a **non-exclusive promotion partnership** to outside artists who aren't on a label and would benefit from MBT's media structure (no equity grab — we just help them reach audiences), and (3) for artists we approve onto the label proper, add a **low monthly fee** for marketing and label-type services. Recurring revenue, not just unit sales.
+> *Sells: catalog units (vinyl, digital, streaming, merch) + recurring monthly label services.*
+
+> **Big Muddy Radio** *(sub-brand of Touring).* Three channels: (1) podcasts and curated playlists on Spotify, Apple Podcasts, YouTube Music; (2) **TikTok Live** for the live talk-radio feel plus music programming — TikTok carries the music licensing umbrella so we don't deal with BMI/ASCAP/SESAC overhead; (3) eventually a linear streaming radio when audience justifies. Built around the artists we book and document. Reaches a music-first / scene-first audience — distinct from the Magazine.
+> *Sells: episode + playlist sponsorships, TikTok Live brand presence, future linear inventory.*
+
+### Consumer · standalone
 
 **Chase Pierson Photography.** Chase's editorial and documentary photography practice. Premium rate, distinct from Tuthill's advertised rates. *Sells: editorial commissions, documentary projects, prints, portraits.*
 
@@ -138,17 +147,31 @@ Three economic patterns for MBT, depending on what the platform is doing.
 
 **Amy Allen** — Big Muddy Radio · Records · Performing Artist. Day-to-day operator for the music side. Programs the radio, runs the record label, performs in the band.
 
-### Specialists and operators
+### Production capacity (vendor)
 
-**Elijah Tuthill** — 50% co-owner of Tuthill Design LLC. Lead on the photo archive work as part of the Studio C team. (MBT buys buckets of Studio C hours; Elijah is the primary staff on the photo lane. He is not an individual hourly contractor.) Onboarding on hold pending Chase review.
+**Studio C team.** MBT buys buckets of Studio C hours from Tuthill Design LLC — fungible across photo archive curation, platform engineering, video production, and event work. The team (Elijah Tuthill on the photo + design lane, Miles on production, others as the bucket draws on them) staffs the hours from inside. MBT has one vendor relationship with the LLC, not individual contractor relationships with the people.
 
-**Miles** — Studio C team. Pulled into platform work as needed. Part of the Tuthill Design LLC operating profit split.
+**Patch** — Technical Director. Always-on infrastructure, builds, deploys. Sits on the MBT side of the line, not Studio C.
 
-**Patch** — Technical Director. Always-on infrastructure, builds, deploys.
+---
 
-**JP Houston** — Wrapping current scope (First Arctic mixes + NOLA introductions). End of engagement after that.
+## 07 · AI layer — defined roles
 
-**Cos** — Chief of Staff agent. Runs the project queue, commits code, fans context across the system.
+A handful of agents do specific, named work across the platform. Each one has a scope, a status, and a place it belongs.
+
+**Chief of Staff (Cos)** — *live.* Orchestrates the project queue, commits code, fans context across documents and sibling agents. The agent Chase talks to when he wants something done.
+
+**Photo Pipeline** — *live.* Auto-ingests photos from iPhone, GCS, Mac mini, and Synology into Immich. Runs face recognition, CLIP semantic search, AI tagging. Exports curated photos to the gallery + print-on-demand pipeline.
+
+**Voice System** — *live.* Maintains a per-brand voice document for each property and a Humanizer filter that runs on every text output. Prevents AI-sounding copy from shipping under any brand.
+
+**Directory Research** — *live.* Dispatches Perplexity deep research, ingests structured YAML, populates the canonical entity store. The 459 corridor records currently in the system came from here.
+
+**Tenant Provisioning** — *building.* Single-command onboarding for new client tenants — creates the entity, provisions the Vercel domain, bootstraps Sanity, activates the right modules. Vicki Wolpert is the first external customer this serves.
+
+**Content Creation** — *building.* "I want to write a magazine article about X" → wizard pulls relevant entities and media, drafts in Sanity, hands back to Tracy for edit. The piece that makes the platform feel different from generic SaaS.
+
+**Outsider Economics governance** — *planned.* The open-source layer of MBT — Chase's separate spare-time effort. Writing and tools for people who want to reimagine the economy on their own terms.
 
 ---
 

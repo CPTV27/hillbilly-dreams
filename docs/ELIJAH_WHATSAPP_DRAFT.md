@@ -54,7 +54,7 @@
 - [ ] He confirmed he'll install Topaz
 - [ ] Immich account created (log in as admin, Administration → Users → Create)
 - [ ] Password saved to Bitwarden as "Immich — Elijah"
-- [ ] Topaz license purchased (FarleyPierson card, save receipt for forwarding)
+- [ ] Topaz license purchased (MBT card post-MBT filing; FarleyPierson card pre-filing — save receipt for forwarding either way)
 
 ---
 

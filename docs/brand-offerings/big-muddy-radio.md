@@ -14,9 +14,10 @@ Big Muddy's audio voice — for now distributed as podcasts and curated playlist
 
 | | |
 |---|---|
-| **Tier** | Consumer (free to listeners) + B2B (sponsorships) |
+| **Tier** | Consumer · sub-brand (free to listeners) + B2B (sponsorships) |
+| **Brand role** | Sub-brand of **Big Muddy Touring** (umbrella) — all music-IP brands sit under the Touring umbrella |
+| **Audience** | Music-first / scene-first / artist-first. **Distinct from the Magazine**, which targets travelers who'd book the Inn. Do not mix audiences. |
 | **Parent entity** | Big Muddy Touring LLC (wholly-owned subsidiary of MBT) |
-| **Sibling brands under same entity** | Big Muddy Touring · Big Muddy Records · the band |
 | **Customer of MBT?** | Yes — Tier 1 internal · Tier 3 once placement deals scale |
 | **Vendor to MBT?** | No |
 

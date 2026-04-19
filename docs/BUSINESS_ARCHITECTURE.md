@@ -161,6 +161,16 @@ Big Muddy Touring operates its **own** directory — music venues, musicians, mu
 **Domains:** bigmuddytouring.com, bigmuddymagazine.com, bigmuddyradio.com, bigmuddyentertainment.com, bigmuddyrecordlabel.com
 **Modules used:** All 9.
 
+**Brand hierarchy (April 18, 2026):** the Big Muddy family organizes into two umbrella brands, each holding adjacent media properties as sub-brands.
+
+- **Big Muddy Inn** *(umbrella, under Big Muddy Natchez LLC)*
+  - Big Muddy Magazine *(sub-brand)* — editorial aimed at the Inn's target guest (travelers / hospitality / Mississippi corridor culture). NOT music-industry coverage. Drives Inn bookings.
+- **Big Muddy Touring** *(umbrella, under Big Muddy Touring LLC — to file)*
+  - Big Muddy Records *(sub-brand)* — Amy's catalog + Mechanical Bull catalog + recurring label services for partner artists.
+  - Big Muddy Radio *(sub-brand)* — podcasts, curated playlists (Spotify/Apple/YouTube Music), TikTok Live programming. Reaches music-first / scene-first audience — distinct from the Magazine.
+
+Two distinct content engines: Magazine targets Inn guests, Radio targets Touring fans. Do not mix.
+
 Big Muddy Touring is the engine:
 - Books bands and venues along the corridor
 - Provides transportation (Sprinter van now, 40-foot sleeper bus coming)

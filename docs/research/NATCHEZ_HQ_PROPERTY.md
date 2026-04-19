@@ -1,6 +1,6 @@
 # Natchez Downtown HQ Property Research
 
-This document outlines the real estate viability for establishing a consolidated Big Muddy / HDI headquarters in downtown Natchez, MS.
+This document outlines the real estate viability for establishing a consolidated Big Muddy / MBT headquarters in downtown Natchez, MS.
 
 **Governance:** Tracy and Amy are **equity partners** in Inn and related operating entities — any live/work or retail lease structure should be reviewed with them as partners, not as a landlord–employee arrangement.
 
