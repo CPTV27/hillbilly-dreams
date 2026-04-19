@@ -45,7 +45,7 @@ Full entity map + retainer flow + open questions: `docs/ENTITY_STRUCTURE.md`
 
 **Tier-1 IP:** the directory module + canonical entity store. Board-level decisions only.
 
-**New concept flagged:** Born Free Network = MBT's open-source offering. Governance model TBD.
+**New concept flagged:** Outsider Economics = MBT's open-source offering. Governance model TBD.
 
 Full restructure doc: `docs/HANDOFF_MBT_PLATFORM_RESTRUCTURE.md`
 
@@ -89,7 +89,7 @@ Legal operating entity: FarleyPierson LLC. HDI not yet formally incorporated.
 |---|---|---|
 | **Chase Pierson** | CEO. Photography · Video · Code · Strategy · Touring bookings | me@chasepierson.tv |
 | **Tracy Alderson-Allen** | Finance · Inn ops · Magazine editor · Holds the rudder when Chase travels | tracyaldersonallen@gmail.com |
-| **Amy Allen** | Inn & Bar ops · Her band (in development with Rhea) | amyaldersonallen@gmail.com |
+| **Amy Allen** | Inn & Bar ops · Her band (in development with Rea) | amyaldersonallen@gmail.com |
 
 **Tracy and Amy are equity partners, never employees.**
 
@@ -108,7 +108,7 @@ Big Muddy Inn · Big Muddy Touring · Big Muddy Records · Big Muddy Radio · Bi
 ### Target pipeline (immediate)
 - **Vicki Wolpert** — Upstate NY realtor, starts **May 1**, $500/mo
 - **Clubhouse Studio** — recording studio target
-- **David Beren Studio** — recording studio target (spelling TBD)
+- **David Baron Studio** — recording studio target (spelling TBD)
 - **The Woods** — different scope than main engagement
 - **Paul Green Realty** — bigger broker account (DSD + Natchez tourism magazine partnership)
 - **City of Natchez** — municipal tourism partnership
@@ -125,7 +125,7 @@ Full architecture: `docs/PLATFORM_ARCHITECTURE.md`
 
 | Person | Role | Status | Notes |
 |---|---|---|---|
-| **Rhea** | Developing Amy's band — ~30-min live-ready set | Engagement being defined today | Wants to go to Austin next week — order (Austin first or Amy-dev first) TBD |
+| **Rea** | Developing Amy's band — ~30-min live-ready set | Engagement being defined today | Wants to go to Austin next week — order (Austin first or Amy-dev first) TBD |
 | **Elijah** (Bearsville) | Photo archive operator on Immich + Topaz | Onboarding this week | $50/hr, 40-hr starter block = $2K |
 | **JP Houston** | First Arctic mixes + NOLA intros | **Wrapping — end of engagement after** | No extension being discussed |
 | **Patch** | Technical Director — infrastructure, builds, deploys | Always-on | MacBook Pro |
@@ -145,9 +145,9 @@ Full architecture: `docs/PLATFORM_ARCHITECTURE.md`
 
 ## Current priorities (this week — April 18 onward)
 
-1. **Partner meeting today** — Chase + Tracy + Amy + maybe Rhea. Pre-NOLA. Prep doc at `docs/meetings/TRACY_AMY_2026-04-18_PREP.md`
+1. **Partner meeting today** — Chase + Tracy + Amy + maybe Rea. Pre-NOLA. Prep doc at `docs/meetings/TRACY_AMY_2026-04-18_PREP.md`
 2. **Elijah onboarding** — WhatsApp intro sent by Chase, get his email, create Immich account
-3. **Rhea engagement defined** — scope, comp, block timing (Austin or Amy-first)
+3. **Rea engagement defined** — scope, comp, block timing (Austin or Amy-first)
 4. **NOLA trip** — Chase driving there today to meet musicians
 5. **Van ready for tour prep** — Big Muddy Touring site updated with tour bus hero (queued as P29)
 
@@ -170,8 +170,8 @@ Full architecture: `docs/PLATFORM_ARCHITECTURE.md`
   - **Finance module:** runs across all entities. Elijah (CS degree) maintains the backend. AI-prepped taxes filed by real accountant.
 - **2026-04-18 (PM, product-to-platform mapping locked):** Define every brand's front-end offering first; back-end modules fall out of those offerings. **13 modules** identified, mapped to existing codebase. Three tiers of MBT economic participation: Tier 1 internal (no rev share) · Tier 2 one-off vendor (no rev share) · **Tier 3 ongoing module-delivered (15-30% to MBT)**. **Refactor, not rebuild** — three moves: (1) formalize module boundaries in existing code, (2) build tenant provisioning pipeline, (3) build prompt-driven Content Creation Module fresh. Don't rebuild Sanity. Don't unify billing pre-MBT-filing. Full doc: `docs/PRODUCT_TO_PLATFORM_MAPPING.md` · plan: `~/.claude/plans/cozy-beaming-minsky.md`. Per-brand worksheets ready for **Monday April 20** session at `docs/brand-offerings/`.
 - **2026-04-18 (partner meeting outcomes):**
-  - **Rhea engagement DEFERRED.** No immediate scope. Re-evaluate at Woodstock this summer or back at Big Muddy in the fall. Reason: too much else needs to be done first (platform, Vicki, Paul Green, Studio C operator framework). Rhea wouldn't have the focus time.
-  - **Amy's May 8 show — Amy + Big Muddy Blues Band.** Same lineup as last night. If a better bass player appears, swap him in. If Rhea is still around and wants to play drums, optional. Otherwise no special prep.
+  - **Rea engagement DEFERRED.** No immediate scope. Re-evaluate at Woodstock this summer or back at Big Muddy in the fall. Reason: too much else needs to be done first (platform, Vicki, Paul Green, Studio C operator framework). Rea wouldn't have the focus time.
+  - **Amy's May 8 show — Amy + Big Muddy Blues Band.** Same lineup as last night. If a better bass player appears, swap him in. If Rea is still around and wants to play drums, optional. Otherwise no special prep.
   - **Elijah onboarding ON HOLD.** Don't send WhatsApp / create Immich account until Chase reviews everything personally first. WhatsApp draft + runbook are staged but not transmitted.
 - **2026-04-18 (driving to NOLA):** Platform architecture locked — three layers: **MBT (platform) ↓ Studio C (operator) ↓ Tenants (clients).** Sanity is the CMS across every property. Studio C runs the middleware per tenant. Build-once-reuse-many. Full doc: `docs/PLATFORM_ARCHITECTURE.md`.
 - **2026-04-18:** Vicki Wolpert onboarding — Upstate NY realtor, **starts May 1**, $500/mo custom service, can add on. Other realtors target $500/mo with $99 intro rate.
@@ -185,7 +185,7 @@ Full architecture: `docs/PLATFORM_ARCHITECTURE.md`
 - **2026-04-18:** Sony a7 V (not a7R V). Profoto D2 (likely). Cash position not needed for meeting.
 - **2026-04-18:** JP engagement scoped to First Arctic mixes + NOLA intros, then done.
 - **2026-04-18:** Elijah confirmed as photo archive operator. $50/hr starter block.
-- **2026-04-18:** Rhea engagement for Amy's band — to be defined today in partner meeting.
+- **2026-04-18:** Rea engagement for Amy's band — to be defined today in partner meeting.
 - **2026-04-17 overnight:** Immich went live on Hetzner with 52,892 photos from GCS ingested. T7 sync (590 GB) in progress, ETA 2 days.
 - **2026-04-17:** Musicians YAML seed is LIVING-only going forward; 52 deceased records will migrate to legacy-artists category when that seed drops.
 - **2026-04-17:** MBT is Chase's separate open-source project, pulled out of HDI business plan.
@@ -258,7 +258,7 @@ Each module gets a license profile (platform fee %, monthly minimum, scope). Tie
 |---|---|---|---|
 | Hetzner photo stack | — | $45 | CCX23 + 1 TB volume + GCS |
 | Elijah starter block | $2,000 | — | 40 hrs × $50/hr — ON HOLD pending Chase review |
-| ~~Rhea block~~ | — | — | Deferred |
+| ~~Rea block~~ | — | — | Deferred |
 | Camera Wave 1 | $8,750 | — | Sony a7 V + 70-200 GM II + cards + wireless TX. B&H 12-mo 0% available → $730/mo alt |
 | Camera Phase 1 (next 60d) | $9,650–10,200 | — | Gimbal, 2nd TX, Ronin 4D expansion |
 | **Currently in motion** | ~$8,750 | $45 | Camera Wave 1 + infra |
@@ -269,10 +269,10 @@ Each module gets a license profile (platform fee %, monthly minimum, scope). Tie
 
 ## Travel schedule — next 3 weeks
 
-| Window | Chase | Rhea | Amy |
+| Window | Chase | Rea | Amy |
 |---|---|---|---|
 | Today (Sat 4/18) | Meeting → drive to NOLA | In meeting OR traveling | Inn |
-| This week | NOLA | Austin OR Natchez (TBD) | Inn + band prep with Rhea |
+| This week | NOLA | Austin OR Natchez (TBD) | Inn + band prep with Rea |
 | Next week | NY (few days to a week) | Working with Amy in Natchez (if Amy-first) | Band development |
 | Following | Maybe Arkansas → back to Natchez | Wrapping | Show prep |
 | Then | Amy's show (date TBD) | At show | Performing |
@@ -292,7 +292,7 @@ Each module gets a license profile (platform fee %, monthly minimum, scope). Tie
 6. **Recording Studios Magazine + Coffee Table Book** — Chase's summer Bearsville work — router P33
 7. **Natchez Tourism Magazine** — depends on Paul Green + City alignment first — router P34
 8. **Elijah onboarding ON HOLD** — Chase reviewing the runbook + WhatsApp draft + architecture personally before sending anything
-9. ~~Rhea engagement~~ — **deferred** to summer (Woodstock) or fall (Big Muddy). Not active.
+9. ~~Rea engagement~~ — **deferred** to summer (Woodstock) or fall (Big Muddy). Not active.
 10. **Tailscale free tier expires ~May 1** — upgrade before Chase leaves on NY trip, or pre-authorize Tracy via Bitwarden
 11. **Amy voice-onboarding Asana task** — router P24, needs creating
 12. **Big Muddy Touring site refresh** — tour-bus hero, artist-recruit-ready — router P29

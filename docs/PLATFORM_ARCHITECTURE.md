@@ -63,7 +63,7 @@ Chase Pierson Photography bookings — even when sourced through Tuthill Design 
 |---|---|---|---|
 | **Vicki Wolpert** | Upstate NY realtor | **Starts May 1** | $500/mo custom, add-on capable |
 | **Clubhouse Studio** | Recording studio | Target — Chase to approach | TBD |
-| **David Beren Studio** | Recording studio | Target — Chase to approach (spelling TBD) | TBD |
+| **David Baron Studio** | Recording studio | Target — Chase to approach (spelling TBD) | TBD |
 | **The Woods** | Existing partner elsewhere | Target — different scope than main eng | TBD |
 | **Paul Green Realty** | Real estate broker | **Meeting before Chase leaves for summer** | Bigger-level broker account — DSD + Natchez tourism magazine |
 | **City of Natchez** | Municipal tourism | Partnership target | Tourism / marketing angle |

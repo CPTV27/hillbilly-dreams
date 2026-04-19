@@ -22,7 +22,7 @@ Hillbilly Dreams Incorporated will not be formed. Measurably Better Things becom
 
 Nothing was filed under HDI and there are no live agreements naming it, so the collapse is clean. No contract substitutions required.
 
-The new one-paragraph story: Measurably Better Things LLC is the platform company. Three-way partnership — Chase, Tracy, Amy. It owns the software, the entity database, and the brand. Studio C is the production vendor. Tuthill Design is the platform operations vendor. Clients include Big Muddy Inn, Big Muddy Touring, Utopia, Vicki Walpurt, Paul Green Realty, the City of Natchez, and others. Born Free Network is MBT’s open-source offering.
+The new one-paragraph story: Measurably Better Things LLC is the platform company. Three-way partnership — Chase, Tracy, Amy. It owns the software, the entity database, and the brand. Studio C is the production vendor. Tuthill Design is the platform operations vendor. Clients include Big Muddy Inn, Big Muddy Touring, Utopia, Vicki Wolpert, Paul Green Realty, the City of Natchez, and others. Outsider Economics is MBT’s open-source offering.
 
 Entity Structure
 
@@ -62,7 +62,7 @@ Studio C (markets video production via the platform)
 
 Big Muddy Ecosystem
 
-Big Muddy Inn, Big Muddy Touring, Big Muddy Records, Big Muddy Radio, Ari Aslin, Mechanical Bull
+Big Muddy Inn, Big Muddy Touring, Big Muddy Records, Big Muddy Radio, Arrie Aslin, Mechanical Bull
 
 Bearsville Cluster
 
@@ -70,13 +70,13 @@ Utopia / Bearsville (active)
 
 Clubhouse Studio (target pickup)
 
-David Berenstain Studio (summer photo subject)
+David Baron Studio (summer photo subject)
 
 The Woods (limited collaboration — already has a partner)
 
 Realtor Vertical
 
-Vicki Walpurt — first paying realtor client, $500/mo, May 1 start
+Vicki Wolpert — first paying realtor client, $500/mo, May 1 start
 
 Paul Green Realty — broker-tier prospect, partner candidate for Deep South Directory
 
@@ -198,9 +198,9 @@ Open a bank account in MBT’s name. Set up QuickBooks under the entity.
 
 IP Language in the Operating Agreement (do not skip)
 
-The agreement must explicitly state that MBT owns the platform IP — the directory engine, the canonical entity database, the Sanity architecture, and the Born Free Network code. Not Chase personally. Not Studio C. Not Tuthill. Easy at formation, painful to fix later.
+The agreement must explicitly state that MBT owns the platform IP — the directory engine, the canonical entity database, the Sanity architecture, and the Outsider Economics code. Not Chase personally. Not Studio C. Not Tuthill. Easy at formation, painful to fix later.
 
-Vicki Walpurt — May 1 Deadline
+Vicki Wolpert — May 1 Deadline
 
 $500/mo, custom service with add-on capacity
 
@@ -218,7 +218,7 @@ Before Chase leaves for summer: meeting with Paul Green Realty (and ideally City
 
 Recording Studio Summer Project
 
-Photo and video coverage of David Berenstain Studio, Clubhouse, Utopia, others
+Photo and video coverage of David Baron Studio, Clubhouse, Utopia, others
 
 Single body of work, multiple distribution targets: Studio C marketing, Utopia/Bearsville channels, Bearsville campus broadcast, Recording Studio Magazine, coffee table book
 
@@ -240,7 +240,7 @@ Directory product placement — are Deep South Directory and Upstate Directory M
 
 Default visibility rule for entity contributions — contributor-private vs. shared commons.
 
-Governance for the Born Free Network as the open-source offering inside a commercial entity — license, contribution model, who maintains.
+Governance for the Outsider Economics as the open-source offering inside a commercial entity — license, contribution model, who maintains.
 
 Staging environment for the platform — confirm whether a separate cloud PC is needed alongside production.
 

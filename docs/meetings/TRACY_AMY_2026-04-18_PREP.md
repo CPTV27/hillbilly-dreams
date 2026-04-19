@@ -64,13 +64,13 @@ Listed in priority order. Each item has a recommendation; partners decide.
 | C1 | Approve Hetzner photo infrastructure ($45/mo ongoing) | YES | $40 server + $5 (1 TB volume) + GCS pass-through. Already executed; this is just ratification. |
 | C2 | Synology integration via Tailscale (Elijah sets up) | YES, no $ | Read-only mount — Synology stays untouched |
 
-### D. Rhea engagement — Amy's band development — **DEFERRED**
+### D. Rea engagement — Amy's band development — **DEFERRED**
 
-**Outcome from the meeting (2026-04-18):** No immediate engagement with Rhea. Reasoning: we need to get a bunch of other stuff done first (platform, Vicki, Paul Green, Studio C operator framework) before Rhea would have the focus time for a band-dev cycle.
+**Outcome from the meeting (2026-04-18):** No immediate engagement with Rea. Reasoning: we need to get a bunch of other stuff done first (platform, Vicki, Paul Green, Studio C operator framework) before Rea would have the focus time for a band-dev cycle.
 
 **Re-evaluate:** summer at Woodstock, OR fall when we're back at Big Muddy.
 
-**For Amy's May 8 show:** Amy plays with the **Big Muddy Blues Band**, same lineup as the show last night. If a better bass player turns up between now and May 8, we swap. If Rhea is still around and wants to play drums, that's optional. Otherwise, we don't worry about it.
+**For Amy's May 8 show:** Amy plays with the **Big Muddy Blues Band**, same lineup as the show last night. If a better bass player turns up between now and May 8, we swap. If Rea is still around and wants to play drums, that's optional. Otherwise, we don't worry about it.
 
 D1–D5 are not active items. Do not surface as open threads.
 
@@ -82,7 +82,7 @@ D1–D5 are not active items. Do not surface as open threads.
 |---|---|---|---|
 | Camera/video Wave 1 | $8,750 | — | Or $730/mo for 12 months on B&H financing |
 | Elijah starter block | $2,000 | — | Goes into Q2 P&L; expect 40 hrs over 4 weeks |
-| **Rhea band-dev block** | **TBD (~$2K?)** | — | Per Decision D2 — propose mirroring Elijah's structure |
+| **Rea band-dev block** | **TBD (~$2K?)** | — | Per Decision D2 — propose mirroring Elijah's structure |
 | Hetzner photo stack | — | **$45/mo** | Already paid: $40 (CCX23) + $5 (1 TB block volume). GCS bucket continues at usage rate. |
 | **TOTAL ASK TODAY** | **~$12,750** | **$45/mo** | |
 
@@ -115,7 +115,7 @@ D1–D5 are not active items. Do not surface as open threads.
 | "Is Elijah reliable?" | _Chase to address — track record from Bearsville Studio work_ |
 | "What's the Bearsville activation timeline?" | Chase visits next week to walk the property and set the plan. Active work begins immediately after we close out the Big Muddy items in this meeting. Summer activation still on track. |
 | "What's happening with JP?" | JP's engagement is now scoped: he's delivering mixes from the First Arctic record and making a few New Orleans intros. End of engagement after that — not a permanent role. Info-only; no decision needed. |
-| "What about Amy's band on May 8?" | Same lineup as last night — Amy with the Big Muddy Blues Band. If a better bass player appears, we swap. Rhea optional on drums if she's still around. |
+| "What about Amy's band on May 8?" | Same lineup as last night — Amy with the Big Muddy Blues Band. If a better bass player appears, we swap. Rea optional on drums if she's still around. |
 | "Print-on-demand revenue is unproven for us — what's our floor?" | Floor is zero — POD is consignment. Risk is only Elijah's $2K. Upside is 30%+ margins on prints with no inventory. |
 | "Can we delay the Storage Box?" | Yes — Immich works without it for the first 1-2TB. But we'll need it within 30 days as ingest ramps. |
 
@@ -132,7 +132,7 @@ D1–D5 are not active items. Do not surface as open threads.
 | **May 8** | Back for Amy's show | **Performing with Big Muddy Blues Band** | Same lineup as the show last night; bass player swap if a better one appears |
 | After show | Drive van Natchez → Woodstock for supper | TBD | Bearsville activation event |
 
-**Rhea is not in this table.** Rhea engagement deferred — see Decision D above. May reconsider summer (Woodstock) or fall (back at Big Muddy).
+**Rea is not in this table.** Rea engagement deferred — see Decision D above. May reconsider summer (Woodstock) or fall (back at Big Muddy).
 
 **Implication for the partners:** Chase is mostly mobile for the next 2–3 weeks. Anything that requires his sign-off needs to happen today or get queued for the post-show return. Tracy/Amy should know they hold the day-to-day rudder during this window.
 
@@ -184,7 +184,7 @@ These are on the radar but not for tonight:
 | 0:00–0:05 | Frame: four decision groups (A–D), three artifacts, one prep doc, hard stop is NOLA departure |
 | 0:05–0:20 | Walk through artifacts (video budget → photo workflow → directory) |
 | 0:20–0:35 | Decisions A1–C2 (most are yes/recommendation; few need real discussion) |
-| 0:35–0:50 | **Decision D — Rhea / Amy band development** (this is the live one; pause for real discussion) |
+| 0:35–0:50 | **Decision D — Rea / Amy band development** (this is the live one; pause for real discussion) |
 | 0:50–0:55 | Risks + cash position + Tailscale-while-Chase-travels item |
 | 0:55–1:00 | Itinerary confirm + next 30 days commitments + who's holding the rudder |
 

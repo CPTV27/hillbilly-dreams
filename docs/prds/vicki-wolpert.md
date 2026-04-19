@@ -1,4 +1,4 @@
-# PRD — Vicki Walpurt
+# PRD — Vicki Wolpert
 
 *First external multi-tenant client on the MBT platform. Target start: May 1, 2026.*
 
@@ -10,10 +10,10 @@
 
 | Field | Value |
 |---|---|
-| **Tenant slug** | `vicki-walpurt` |
-| **Primary brand name** | Vicki Walpurt — Upstate NY Realtor |
+| **Tenant slug** | `vicki-wolpert` |
+| **Primary brand name** | Vicki Wolpert — Upstate NY Realtor |
 | **Primary domain(s)** | *(TBD — confirm Vicki's working domain)* |
-| **Primary stakeholder** | Vicki Walpurt · *(email + phone from Chase)* |
+| **Primary stakeholder** | Vicki Wolpert · *(email + phone from Chase)* |
 | **Billing contact** | Same as stakeholder |
 | **Start date** | 2026-05-01 |
 | **Contract type** | Month-to-month with 30-day notice |

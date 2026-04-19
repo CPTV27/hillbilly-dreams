@@ -23,11 +23,11 @@ Context you need to know:
 - Three equal partners: Chase (me), Tracy, Amy
 - Just finished a partner meeting. Going to dictate what happened.
 - Elijah is onboarding as photo archive operator
-- Rhea is joining to develop Amy's band
+- Rea is joining to develop Amy's band
 - JP is wrapping up (First Arctic mixes + NOLA intros, then done)
 - I'm driving to NOLA now, then NY next week, then back to Natchez, then Woodstock
 
-Your job: listen, draft clean markdown that I can hand to my Chief of Staff agent when I land. Don't ask clarifying questions unless something is truly ambiguous. If I dictate "here's what Tracy said about the Rhea deal," capture it as a bullet list under a heading called "Rhea deal — partner meeting notes." Be concise.
+Your job: listen, draft clean markdown that I can hand to my Chief of Staff agent when I land. Don't ask clarifying questions unless something is truly ambiguous. If I dictate "here's what Tracy said about the Rea deal," capture it as a bullet list under a heading called "Rea deal — partner meeting notes." Be concise.
 
 Output format: every response you give me should be markdown I could paste directly into a GitHub file. No intros, no "Sure, here's..." — just the markdown.
 
@@ -42,7 +42,7 @@ First thing I'll tell you: what happened in the meeting.
 
 *(fill in via voice)*
 
-### Rhea deal — scope / comp / timing
+### Rea deal — scope / comp / timing
 
 *(fill in via voice)*
 
@@ -73,7 +73,7 @@ First thing I'll tell you: what happened in the meeting.
 - Read this file
 - Fan updates into the right files:
   - Meeting decisions → `docs/meetings/TRACY_AMY_2026-04-18_PREP.md` "After the meeting" section
-  - Rhea deal specifics → new file `docs/RHEA_ENGAGEMENT.md`
+  - Rea deal specifics → new file `docs/RHEA_ENGAGEMENT.md`
   - Action items → Asana tasks
   - Queue additions → `docs/router/queue.json`
 - Archive this log to `docs/archive/` with date suffix
@@ -100,7 +100,7 @@ Bookmark these on your phone, all readable without login:
 
 **Option A — voice-to-Claude-to-me:**
 1. Open Claude app on phone
-2. Voice-dictate ("Tracy approved the camera purchase, Amy wants to include Rhea in the Inn supper, we decided to add a new Asana workspace for band development")
+2. Voice-dictate ("Tracy approved the camera purchase, Amy wants to include Rea in the Inn supper, we decided to add a new Asana workspace for band development")
 3. Claude drafts the markdown
 4. When you pull over, open GitHub mobile app, navigate to this file, tap edit, paste the draft, commit
 

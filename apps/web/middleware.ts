@@ -101,6 +101,12 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // ── Story landing page — public, no domain rewriting ──
+  // Visual narrative explaining the whole MBT ecosystem to partners + prospects.
+  if (pathname === '/story' || pathname.startsWith('/story/')) {
+    return NextResponse.next();
+  }
+
   // Press mocks — internal-only static HTML under /public/press.
   // Auth gate temporarily disabled so Tracy/Amy can access via direct links.
   // TODO: Re-enable auth after team has accounts. Each file has an internal-only banner.

@@ -9,7 +9,7 @@
 
 ## What Happened Tonight
 
-Chase recorded two voice memos totaling ~20 minutes that represent a significant restructuring of how the brands relate to each other and how revenue flows. He then requested a full business review package for an internal session with Rhea (trusted friend/sounding board) tonight.
+Chase recorded two voice memos totaling ~20 minutes that represent a significant restructuring of how the brands relate to each other and how revenue flows. He then requested a full business review package for an internal session with Rea (trusted friend/sounding board) tonight.
 
 Simultaneously, the Mac Mini agents completed a major micromedia research session — 150+ tools cataloged, 23 case studies, revenue projections, and a full broadcast infrastructure buildout.
 
@@ -22,7 +22,7 @@ Simultaneously, the Mac Mini agents completed a major micromedia research sessio
 |------|------|
 | `docs/VOICE_MEMO_ANALYSIS_2026-04-15.md` | 19 discrete decisions extracted, analyzed, mapped against codebase |
 | `docs/LAND_AND_EXPAND_CONCEPT.md` | Real estate cooperative concept — 30-100 acres, $1.2M build-out |
-| `docs/HDI_Business_Review_April_2026.pptx` | 17-slide deck for Rhea review |
+| `docs/HDI_Business_Review_April_2026.pptx` | 17-slide deck for Rea review |
 | `docs/hdi-review-board.html` | Interactive HTML dashboard with sanity scorecard (pw: 1966) |
 | `AGENT_LEDGER.md` | Updated with full session log |
 
@@ -30,7 +30,7 @@ Simultaneously, the Mac Mini agents completed a major micromedia research sessio
 | File | Change |
 |------|--------|
 | `project_april15_architecture_decisions.md` | 15 key decisions from voice memo |
-| `project_land_and_expand.md` | Cooperative concept, Born Free, Marika |
+| `project_land_and_expand.md` | Cooperative concept, Outsider Economics, Marika |
 | `project_people_marika.md` | Potential Catskills partner |
 | `project_people_rhea.md` | Friend/sounding board context |
 | `project_operator_split.md` | JP removed, open role added |
@@ -53,7 +53,7 @@ Simultaneously, the Mac Mini agents completed a major micromedia research sessio
 ### STRATEGY
 8. **Minimize custom software.** Lean on Asana, Stripe, Google Calendar. App = database + content engine + public pages.
 9. **Land & Expand is Phase 2+.** Research only. No software builds. $1.2M capital project.
-10. **Born Free** = Raspberry Pi hardware product. Outsider Economics thesis as a product. Sovereign Pi pages exist already.
+10. **Outsider Economics** = Raspberry Pi hardware product. Outsider Economics thesis as a product. Sovereign Pi pages exist already.
 
 ### MAC MINI RESEARCH (needs integration decision)
 11. **Micromedia tool stack proposed:** AzuraCast, Liquidsoap, beets, n8n, faster-whisper, Umami, Listmonk, ComfyUI, Remotion, SRS
@@ -83,7 +83,7 @@ Simultaneously, the Mac Mini agents completed a major micromedia research sessio
 
 ### Gate 4: Land & Expand
 - [ ] Acknowledge as Phase 2+ (no builds, research only)
-- [ ] Approve Born Free as a concept worth researching (hardware BOM, software stack)
+- [ ] Approve Outsider Economics as a concept worth researching (hardware BOM, software stack)
 - [ ] Approve reaching out to Marika (Chase to present — we don't contact her)
 
 ---
@@ -128,7 +128,7 @@ Voice memo says Magazine serves the Inn. Mac Mini research models Magazine as it
 | Brand reorganization (19 decisions) | 65% | Logical but lots of moving parts. Needs clean execution. |
 | Mac Mini research integration | 55% | Great research. Needs filtering — not everything should be adopted. |
 | Land & Expand | 30% | Exciting vision. $1.2M capital. Legal complexity. Phase 2+. |
-| Born Free | 25% | Cool concept. No product yet. Sovereign Pi pages exist. |
+| Outsider Economics | 25% | Cool concept. No product yet. Sovereign Pi pages exist. |
 | **Overall** | **65%** | Ambitious but grounded. The core is solid. Don't let the vision distract from the revenue. |
 
 ---
@@ -169,7 +169,7 @@ Chase reviewed the HTML dashboard and provided 13 additional notes. Full analysi
 - Save all audio files + transcripts for the corpus
 
 ### COS Questions to Address
-1. Do the presentation changes get made tonight (before Rhea) or after?
+1. Do the presentation changes get made tonight (before Rea) or after?
 2. Does the musician community concept get its own product spec, or is it an extension of the existing musician onboarding?
 3. Is the animated explainer a priority or backlog?
 4. How does the influencer network strategy connect to existing Asana workflows?

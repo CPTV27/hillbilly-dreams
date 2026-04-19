@@ -87,7 +87,7 @@ This is the **live, as-built** state. Do not list aspirations here.
 
 | Capability | Built for this tenant | Now reusable by |
 |---|---|---|
-| Example: "Vicki's List" directory view | Vicki Walpurt | Any realtor tenant |
+| Example: "Vicki's List" directory view | Vicki Wolpert | Any realtor tenant |
 | Example: Sponsor-slot module | Paul Green Realty | Any DSD-style directory tenant |
 
 ---

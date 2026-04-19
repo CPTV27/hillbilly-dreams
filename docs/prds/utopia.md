@@ -35,7 +35,7 @@
 
 ### Bearsville campus integration
 - Utopia is part of the Bearsville campus — content loops into Bearsville broadcast network
-- Cross-promotion between Utopia and other Bearsville-cluster clients (Clubhouse Studio, David Berenstain when onboarded)
+- Cross-promotion between Utopia and other Bearsville-cluster clients (Clubhouse Studio, David Baron when onboarded)
 
 ### Broadcast
 - Bearsville campus broadcast network carries Utopia-tied content
@@ -63,11 +63,11 @@
 
 ## 5 · Reusable capabilities exposed
 
-What's built for Utopia that other recording studios (Clubhouse, David Berenstain, future) will also want:
+What's built for Utopia that other recording studios (Clubhouse, David Baron, future) will also want:
 
 | Capability | First built for | Reusable by |
 |---|---|---|
-| Recording-studio site template (rooms, gear, engineers, album credits) | Utopia | Clubhouse, David Berenstain, any studio tenant |
+| Recording-studio site template (rooms, gear, engineers, album credits) | Utopia | Clubhouse, David Baron, any studio tenant |
 | Studio-publication pipeline (shoot → magazine + book) | Utopia | Any studio participating in Recording Studios Magazine |
 | Bearsville campus broadcast integration | Utopia | Any Bearsville-cluster tenant |
 
@@ -77,7 +77,7 @@ What's built for Utopia that other recording studios (Clubhouse, David Berenstai
 
 - **Primary contact cadence:** TBD — set during MBT renewal conversation
 - **Escalation path:** Studio team → Studio C → Chase
-- **Summer focus:** Chase is personally doing recording-studio photography at Bearsville (Utopia + Clubhouse + David Berenstain). Output = Recording Studios Magazine + coffee-table book. Utopia content is core to this.
+- **Summer focus:** Chase is personally doing recording-studio photography at Bearsville (Utopia + Clubhouse + David Baron). Output = Recording Studios Magazine + coffee-table book. Utopia content is core to this.
 
 ---
 

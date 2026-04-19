@@ -154,9 +154,9 @@ The personal/business split is important: Chase keeps ChasePierson.TV as his per
 - Phase 3–6 (platform + storage + Sanity) can be run in parallel across summer.
 - Phase 7–8 (cutover + wind-down) in fall when Chase is back and the team is co-located for a few weeks.
 
-### The Born Free Network angle
-- If BFN is the open-source offering, it probably lives under a separate open GitHub org (e.g., `born-free-network`), not in the private MBT org.
-- Decision needed: is BFN developed in-the-open from day 1, or extracted from private code later?
+### The Outsider Economics angle
+- If OE is the open-source offering, it probably lives under a separate open GitHub org (e.g., `born-free-network`), not in the private MBT org.
+- Decision needed: is OE developed in-the-open from day 1, or extracted from private code later?
 
 ### Legacy "hillbillydreamsinc.com" → MBT
 - Safest: permanent 301 redirect to `measurablybetterthings.com` (or wherever the MBT landing lives).

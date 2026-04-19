@@ -17,7 +17,7 @@ Each item has an **owner** (which agent/tool handles it) and a **priority** (do 
 
 ---
 
-## Priority 1: Do Before Rhea Meeting
+## Priority 1: Do Before Rea Meeting
 
 | # | Item | Owner | Status | Notes |
 |---|------|-------|--------|-------|
@@ -53,7 +53,7 @@ Each item has an **owner** (which agent/tool handles it) and a **priority** (do 
 | # | Item | Owner | Notes |
 |---|------|-------|-------|
 | 17 | Land & Expand site plan rendering | **AG** or **Canva** | Visual layout of the cooperative property |
-| 18 | Born Free hardware spec | **Mac Mini + AG** | Raspberry Pi BOM, software image, case sourcing |
+| 18 | Outsider Economics hardware spec | **Mac Mini + AG** | Raspberry Pi BOM, software image, case sourcing |
 | 19 | Animated explainer video brief | **Primetime** | Remotion or commission — Tracy's day with Delta Dawn |
 | 20 | Google compliance scoring agent | **Primetime** | QA agent for Google best practices |
 | 21 | Public access integration module spec | **AG** | Product spec for public access TV stations |

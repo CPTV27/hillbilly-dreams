@@ -1,4 +1,4 @@
-# Letter of Intent — Vicki Walpurt × Measurably Better Things LLC
+# Letter of Intent — Vicki Wolpert × Measurably Better Things LLC
 
 *Draft · 2026-04-18 · Not yet countersigned*
 
@@ -10,7 +10,7 @@
 
 **Between:**
 - **Measurably Better Things LLC** (in formation, Mississippi) — "MBT"
-- **Vicki Walpurt** — "Client"
+- **Vicki Wolpert** — "Client"
 
 ---
 
@@ -95,7 +95,7 @@ Title: Partner / Authorized Signatory
 
 Date: ____________________
 
-**Vicki Walpurt**
+**Vicki Wolpert**
 
 Signature: ____________________
 

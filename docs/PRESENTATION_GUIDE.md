@@ -1,4 +1,4 @@
-# Presenter's Guide — Tracy + Amy + Rhea Briefing
+# Presenter's Guide — Tracy + Amy + Rea Briefing
 
 *April 16, 2026 — Chase reads this before they arrive*
 
@@ -84,9 +84,9 @@
 
 ---
 
-## If Rhea asks about Studio C
+## If Rea asks about Studio C
 
-Rhea is from Studio C (Bearsville). If she asks:
+Rea is from Studio C (Bearsville). If she asks:
 - "Studio C has its own page now — studiocvideo.com"
 - "Artist packages: $99/$250/$500 per month. Radio rotation, magazine features, photo sessions, recording, video."
 - "Studio C sells the packages. Big Muddy is the distribution."

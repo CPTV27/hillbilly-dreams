@@ -3,7 +3,7 @@
 *Snapshot of everything sitting in `main`'s working tree that hasn't been committed yet. One row per file/group with a recommendation. Chase reviews, we commit what makes sense.*
 
 **State at audit:** 30 modified files + 29 untracked items, ~4,800 lines of net change across all of it.
-**Just committed:** `09327d9 docs(strategy): HDI review board rewrite + Born Free prototype spec` (this session's work)
+**Just committed:** `09327d9 docs(strategy): HDI review board rewrite + Outsider Economics prototype spec` (this session's work)
 
 ---
 
@@ -60,7 +60,7 @@ Session documentation from the 04-15 business architecture review. Real work pro
 | `LAND_AND_EXPAND_CONCEPT.md` | 264 lines | Cooperative community concept — Marika pilot + MS buildout | **COMMIT** |
 | `PRESENTATION_NOTES_2026-04-15.md` | 224 lines | Session notes | **COMMIT** |
 | `TECH_STACK_HANDOFF.md` | 166 lines | Tech stack documentation | **REVIEW** |
-| `PRESENTATION_GUIDE.md` | 107 lines | How to deliver the Rhea pitch | **COMMIT** |
+| `PRESENTATION_GUIDE.md` | 107 lines | How to deliver the Rea pitch | **COMMIT** |
 | `TECH_DEBT_REGISTER_2026-04-15.md` | 97 lines | Debt tracking (created this session) | **COMMIT** |
 | `BIG-MUDDY-MICROMEDIA-PLAN.md` | 747 lines | Micromedia thesis / strategy | **REVIEW** (huge — is this current or superseded?) |
 | `OE_PLATFORM_MAPPING.md` | 44 lines | Outsider Economics platform mapping | **COMMIT** |

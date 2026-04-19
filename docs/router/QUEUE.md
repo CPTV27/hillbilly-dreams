@@ -468,7 +468,7 @@ What it does:
 
 File location: scripts/provision-tenant.sh OR packages/cli/ with subcommands tenant:create, tenant:activate-module, tenant:domain-add
 
-First use case: Vicki Walpurt onboarding for May 1 (P30). Acceptance test: provision-tenant.sh vicki-walpurt --domain vickiwalpurt.com --modules directory,social,content-creation,finance succeeds end-to-end.
+First use case: Vicki Wolpert onboarding for May 1 (P30). Acceptance test: provision-tenant.sh vicki-wolpert --domain vickiwolpert.com --modules directory,social,content-creation,finance succeeds end-to-end.
 
 This is the highest scale leverage move per the plan. Can run independently of P44 module formalization since current modules can be activated even before they're packaged.
 ```

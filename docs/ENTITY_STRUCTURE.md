@@ -37,7 +37,7 @@
                   │  • The tech platform IP         │
                   │  • Canonical entity store       │
                   │  • Directory module             │
-                  │  • Born Free Network code       │
+                  │  • Outsider Economics code       │
                   │                                 │
                   │  Holds Chase's stakes in:       │
                   │  • Tuthill Design 50%           │
@@ -105,7 +105,7 @@ And the production-side affiliates Chase partly owns through MBT:
 | **Filing state** | Mississippi |
 | **NOT** | Registering as foreign LLC in NY |
 | **Owners** | Chase Pierson 1/3 · Tracy Alderson-Allen 1/3 · Amy Allen 1/3 |
-| **Holds DIRECTLY** | Tech platform IP, canonical entity store, directory module, Sanity architecture, Born Free Network code |
+| **Holds DIRECTLY** | Tech platform IP, canonical entity store, directory module, Sanity architecture, Outsider Economics code |
 | **Receives** | Chase's personal distributions from Tuthill Design (50%) and Studio C (40%) — currently flow through FarleyPierson; redirect to MBT post-restructure. **Equity in those entities stays personal to Chase. MBT does NOT acquire ownership in Tuthill or Studio C.** |
 | **Wholly-owned subsidiaries** | Big Muddy Natchez LLC · Big Muddy Touring LLC · project LLCs as needed |
 | **Public-facing?** | No — surfaces only for broker-tier B2B deals |
@@ -178,7 +178,7 @@ When MBT takes on a tenant project with meaningful liability exposure, spin up a
 - Tenants with significant capital assets in their care
 - Tenants whose actions could create third-party harm
 
-Tenants that are **purely platform users** (Vicki Walpurt, future realtors, magazine subscribers) probably don't need project LLCs — they're customers of the MBT platform, not joint operations.
+Tenants that are **purely platform users** (Vicki Wolpert, future realtors, magazine subscribers) probably don't need project LLCs — they're customers of the MBT platform, not joint operations.
 
 ### 7 · FarleyPierson LLC (BEING SHUT DOWN — 2026-04-18 decision)
 

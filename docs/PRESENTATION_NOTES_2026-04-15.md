@@ -1,6 +1,6 @@
 # Presentation Review Notes — April 15, 2026
 **Source:** Chase's voice memo reviewing the HTML dashboard
-**Purpose:** Capture every instruction for integration before the Rhea meeting
+**Purpose:** Capture every instruction for integration before the Rea meeting
 
 ---
 
@@ -13,7 +13,7 @@
 
 **New thesis direction:** We sell **experiences**, enabled by technology that works invisibly. The organization is HOW we deliver it, but the WHAT is experiences — at the Inn, at shows, on radio, in the magazine, in the community.
 
-**Action:** Rewrite the thesis section to lead with the experience angle, not the infrastructure angle. The infrastructure story is for institutional buyers. The experience story is for Tracy, Amy, Rhea, artists, and fans.
+**Action:** Rewrite the thesis section to lead with the experience angle, not the infrastructure angle. The infrastructure story is for institutional buyers. The experience story is for Tracy, Amy, Rea, artists, and fans.
 
 ---
 
