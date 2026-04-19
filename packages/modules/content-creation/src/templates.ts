@@ -184,3 +184,162 @@ export function getTemplate(
   const base = DEFAULT_TEMPLATES[contentType];
   return { ...base, systemPrompt: assembleSystemPrompt(contentType, brand) };
 }
+
+// ── Sanity-first loader with hardcoded fallback ──────────────
+// Tracy edits per-combo templates in Sanity Studio. If the Sanity doc
+// exists + is active, we use its fields (audience, voice rules, forbidden
+// phrases, length, optional system prompt override). If not — or Sanity
+// is unreachable — we fall back to the hardcoded defaults above.
+
+interface SanityContentTemplate {
+  _id: string;
+  contentType: ContentType;
+  brand: Brand;
+  audienceProfile?: string;
+  voiceRules?: string[];
+  requiredSections?: string[];
+  lengthMin?: number;
+  lengthMax?: number;
+  forbiddenPhrases?: string[];
+  systemPrompt?: string;
+  active?: boolean;
+}
+
+// Simple in-memory cache — cleared on cold start. 5-min TTL.
+const cache = new Map<string, { template: ContentTemplate; at: number }>();
+const CACHE_TTL_MS = 5 * 60 * 1000;
+
+function cacheKey(contentType: ContentType, brand: Brand): string {
+  return `${contentType}::${brand}`;
+}
+
+async function fetchSanityTemplate(
+  contentType: ContentType,
+  brand: Brand
+): Promise<SanityContentTemplate | null> {
+  const projectId = (
+    process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ??
+    process.env.SANITY_PROJECT_ID ??
+    ''
+  ).trim();
+  if (!projectId) return null;
+  const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production';
+  const apiVersion = process.env.SANITY_API_VERSION ?? '2024-01-01';
+
+  // GROQ query by deterministic _id (set by the seed script)
+  const docId = `contentTemplate.${contentType}.${brand}`;
+  const query = encodeURIComponent(`*[_id == "${docId}" && active == true][0]`);
+  const url = `https://${projectId}.api.sanity.io/v${apiVersion}/data/query/${dataset}?query=${query}`;
+
+  try {
+    const res = await fetch(url, {
+      // Public read — no auth required for public datasets. If the dataset
+      // is private, pass a read token via SANITY_READ_TOKEN.
+      headers: process.env.SANITY_READ_TOKEN
+        ? { Authorization: `Bearer ${process.env.SANITY_READ_TOKEN}` }
+        : undefined,
+      signal: AbortSignal.timeout(5_000),
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { result?: SanityContentTemplate };
+    return data.result ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Load a template — Sanity-first with hardcoded fallback.
+ *
+ * The wizard calls this per generation. Cached 5 min per (contentType, brand)
+ * combo. Tracy's edits in Studio take effect within 5 minutes of save.
+ */
+export async function loadTemplate(
+  contentType: ContentType,
+  brand: Brand
+): Promise<ContentTemplate> {
+  const key = cacheKey(contentType, brand);
+  const cached = cache.get(key);
+  if (cached && Date.now() - cached.at < CACHE_TTL_MS) {
+    return cached.template;
+  }
+
+  const sanity = await fetchSanityTemplate(contentType, brand);
+  const base = DEFAULT_TEMPLATES[contentType];
+  const voice = voiceRouter.resolveVoiceProfile(brand);
+
+  const template: ContentTemplate = {
+    contentType,
+    audienceProfile: sanity?.audienceProfile ?? base.audienceProfile,
+    voiceRules: sanity?.voiceRules ?? base.voiceRules,
+    requiredSections: sanity?.requiredSections ?? base.requiredSections,
+    lengthTarget: {
+      min: sanity?.lengthMin ?? base.lengthTarget.min,
+      max: sanity?.lengthMax ?? base.lengthTarget.max,
+    },
+    forbiddenPhrases: [
+      ...(sanity?.forbiddenPhrases ?? base.forbiddenPhrases),
+      ...voice.forbiddenPhrases,
+    ],
+    systemPrompt:
+      // If Tracy set a custom prompt in Studio, use it verbatim.
+      // Otherwise assemble from voice + audience + rules.
+      sanity?.systemPrompt && sanity.systemPrompt.trim().length > 0
+        ? sanity.systemPrompt
+        : assembleSystemPromptFrom({
+            voice: voice.systemPromptSegment,
+            audience: sanity?.audienceProfile ?? base.audienceProfile,
+            voiceRules: sanity?.voiceRules ?? base.voiceRules,
+            requiredSections: sanity?.requiredSections ?? base.requiredSections,
+            lengthMin: sanity?.lengthMin ?? base.lengthTarget.min,
+            lengthMax: sanity?.lengthMax ?? base.lengthTarget.max,
+            forbiddenPhrases: [
+              ...(sanity?.forbiddenPhrases ?? base.forbiddenPhrases),
+              ...voice.forbiddenPhrases,
+            ],
+          }),
+  };
+
+  cache.set(key, { template, at: Date.now() });
+  return template;
+}
+
+/** Manually invalidate cache (e.g., Sanity webhook on contentTemplate edit). */
+export function invalidateCache(contentType?: ContentType, brand?: Brand): void {
+  if (contentType && brand) {
+    cache.delete(cacheKey(contentType, brand));
+  } else {
+    cache.clear();
+  }
+}
+
+function assembleSystemPromptFrom(inputs: {
+  voice: string;
+  audience: string;
+  voiceRules: string[];
+  requiredSections: string[];
+  lengthMin: number;
+  lengthMax: number;
+  forbiddenPhrases: string[];
+}): string {
+  return `
+${inputs.voice}
+
+AUDIENCE: ${inputs.audience}
+
+VOICE RULES (do not violate):
+${inputs.voiceRules.map((r) => `- ${r}`).join('\n')}
+
+REQUIRED SECTIONS (must include):
+${inputs.requiredSections.map((s) => `- ${s}`).join('\n')}
+
+LENGTH TARGET: ${inputs.lengthMin}–${inputs.lengthMax} words.
+
+FORBIDDEN PHRASES (regex-blocked on output):
+${inputs.forbiddenPhrases.map((p) => `- "${p}"`).join('\n')}
+
+Entity references MUST be grounded in the provided DirectoryBusiness
+candidates — never invent businesses, musicians, or venues. If you name
+a photo, it must be from the provided asset list.
+`.trim();
+}

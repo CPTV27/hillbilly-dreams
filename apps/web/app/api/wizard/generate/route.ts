@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const template = templates.getTemplate(body.contentType, body.brand);
+  const template = await templates.loadTemplate(body.contentType, body.brand);
 
   // Pack entity + photo context into a user message. Hard ground.
   const entityBlock =

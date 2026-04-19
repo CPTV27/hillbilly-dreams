@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
       }),
     ]);
 
-    const template = templates.getTemplate(body.contentType, body.brand);
+    const template = await templates.loadTemplate(body.contentType, body.brand);
 
     const context: WizardContext = {
       topic: body.topic,

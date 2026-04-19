@@ -31,7 +31,7 @@ export async function GET(
   const brand = (searchParams.get('brand') ?? 'magazine') as Brand;
 
   try {
-    const template = templates.getTemplate(params.type as ContentType, brand);
+    const template = await templates.loadTemplate(params.type as ContentType, brand);
     return NextResponse.json({ data: template });
   } catch (err) {
     console.error('[GET /api/wizard/templates/[type]]', err);
