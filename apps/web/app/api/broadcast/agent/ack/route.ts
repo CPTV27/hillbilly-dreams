@@ -32,13 +32,19 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
   }
 
-  agentProtocol.recordAck({
-    instructionId: parsed.instructionId,
-    success: parsed.success,
-    result: parsed.result,
-    error: parsed.error,
-    completedAt: parsed.completedAt ?? new Date().toISOString(),
-  });
+  try {
+    await agentProtocol.recordAck({
+      instructionId: parsed.instructionId,
+      success: parsed.success,
+      result: parsed.result,
+      error: parsed.error,
+      completedAt: parsed.completedAt ?? new Date().toISOString(),
+    });
+  } catch (err) {
+    console.error('[POST /api/broadcast/agent/ack]', err);
+    const message = err instanceof Error ? err.message : 'Ack failed';
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 
   return NextResponse.json({ data: { recorded: true } });
 }

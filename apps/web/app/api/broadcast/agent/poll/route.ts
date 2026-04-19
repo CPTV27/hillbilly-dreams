@@ -20,8 +20,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
   }
 
-  const instruction = agentProtocol.dequeueNext();
+  const instruction = await agentProtocol.dequeueNext();
+  const pendingAfter = await agentProtocol.pendingCount();
   return NextResponse.json({
-    data: { instruction, pendingAfter: agentProtocol.pendingCount() },
+    data: { instruction, pendingAfter },
   });
 }

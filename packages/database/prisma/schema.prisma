@@ -3360,3 +3360,28 @@ model QuoteRequest {
   @@index([status, createdAt])
   @@index([customerEmail])
 }
+
+/// ─── BROADCAST MODULE — Mac mini agent instruction queue ───
+///
+/// Persistent queue for instructions sent from the MBT server to the
+/// broadcast agent running on the Mac mini. Previously this was in-memory
+/// module state (broken in Vercel's serverless multi-instance env — flagged
+/// CRITICAL #2 in the 2026-04-19 Gemini review).
+model BroadcastAgentInstruction {
+  id            String    @id @default(cuid())
+  type          String // "obs.scene_change" | "ffmpeg.extract_clip" | "gcs.upload" | custom
+  payload       Json
+  status        String    @default("pending") // "pending" | "claimed" | "acked" | "failed"
+  priority      Int       @default(0) // higher = earlier
+  claimedAt     DateTime? // set when the agent dequeues it
+  ackedAt       DateTime? // set when agent posts back to /ack
+  result        Json? // result payload from agent (if any)
+  error         String? // error message if agent failed
+  issuedBy      String? // operator email / "system" / cron name
+  issuedAt      DateTime  @default(now())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([status, priority, issuedAt])
+  @@index([status, claimedAt])
+}
