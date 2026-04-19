@@ -1,0 +1,76 @@
+{
+  "model": "gemini-2.5-flash",
+  "concurrency": 8,
+  "tasks": [
+    {
+      "id": "pricing-copy-inn",
+      "outputPath": "docs/marketing-copy/pricing-page-copy-inn.md",
+      "system": "You are writing pricing page copy for Big Muddy Inn. Output in markdown with labeled sections. No preamble. Tracy's voice.",
+      "prompt": "Write the pricing page copy for Big Muddy Inn. Sections: hero headline (6-10 words), hero sub (1 sentence), tier card copy for each room type (Standard / Premium / Family) with 3-5 bullets + 1-sentence description + what makes each worth the price, mid-page callout (1 short paragraph — why book direct vs OTA), FAQ links, fine-print footer line. Voice: warm, hospitality-forward, no 'unforgettable experience' or 'destination'. Markdown. ~900 words.",
+      "maxTokens": 4000
+    },
+    {
+      "id": "pricing-copy-tuthill",
+      "outputPath": "docs/marketing-copy/pricing-page-copy-tuthill.md",
+      "system": "You are writing pricing page copy for Tuthill Design realtor subscription. Output in markdown. Realtor-respectful.",
+      "prompt": "Write pricing page copy for Tuthill Design's Essentials / Pro / Premium tiers. Hero headline + sub. Tier card copy for each. Mid-page callout (value vs hiring a freelancer). FAQ mini-block (5 Q&A). Fine-print footer. Voice: professional, realtor-respectful, no 'showcase your property'. Markdown. ~1000 words.",
+      "maxTokens": 4000
+    },
+    {
+      "id": "pricing-copy-records",
+      "outputPath": "docs/marketing-copy/pricing-page-copy-records.md",
+      "system": "You are writing pricing page copy for Big Muddy Records' recurring label services. Output in markdown. Artist-friendly indie.",
+      "prompt": "Write pricing page copy for Big Muddy Records' Silver / Gold / Platinum recurring label service tiers. Hero + sub. Per-tier card copy. Mid-page callout (why not a major label). FAQ mini-block (5 Q&A). Fine-print. Voice: artist-friendly, never 'breakthrough artist' or 'industry leader'. Markdown. ~1000 words.",
+      "maxTokens": 4000
+    },
+    {
+      "id": "pricing-copy-radio",
+      "outputPath": "docs/marketing-copy/pricing-page-copy-radio.md",
+      "system": "You are writing pricing page copy for Big Muddy Radio sponsor packages. Output in markdown.",
+      "prompt": "Write pricing page copy for Big Muddy Radio's Single Episode / Monthly / Quarterly / Annual Title sponsor tiers. Hero + sub. Per-tier card copy. Mid-page callout (honest about corridor-scale reach). FAQ mini-block (5 Q&A). Fine-print. Voice: small-station-honest. Markdown. ~900 words.",
+      "maxTokens": 4000
+    },
+    {
+      "id": "pricing-copy-dsd",
+      "outputPath": "docs/marketing-copy/pricing-page-copy-dsd.md",
+      "system": "You are writing pricing page copy for Deep South Directory. Output in markdown.",
+      "prompt": "Write pricing page copy for Deep South Directory Free / Essentials ($25) / Pro ($50) / Marketing ($99) / Engine ($250) tiers. Hero + sub. Per-tier card copy with concrete includes. Mid-page callout (why regional matters). FAQ mini-block. Fine-print. Markdown. ~1100 words.",
+      "maxTokens": 4000
+    },
+    {
+      "id": "meta-descriptions",
+      "outputPath": "docs/marketing-copy/meta-descriptions-per-page.md",
+      "system": "You are writing SEO meta descriptions for every public page. Output in markdown as a table. No preamble.",
+      "prompt": "Write SEO meta descriptions (155-165 chars) + Open Graph titles (60 chars) for these pages. Table format: | Path | OG title | Meta description |. Pages: /, /story, /pricing, /shows, /private-events, /account/subscriptions, /checkout/success, /checkout/cancelled, /admin (gated), /magazine, /radio, /inn, /touring, /records, /cpp, /tuthill, /studio-c, /directory, /deepsouthdirectory (pricing), /bearsville. No marketing fluff. Specific + scannable. Markdown.",
+      "maxTokens": 4000
+    },
+    {
+      "id": "email-subject-lines",
+      "outputPath": "docs/marketing-copy/email-subject-lines.md",
+      "system": "You are writing email subject lines for every transactional + lifecycle email. Output in markdown table. No preamble.",
+      "prompt": "Write subject lines for every email across the MBT platform. 3 variants per email (A/B/C). Table: | Trigger | A | B | C |. Triggers: subscription welcome (per brand), payment failed, subscription cancelled (by customer), subscription past-due reminder, trial ending (3d), annual renewal (14d out), order confirmed, order shipped, order refunded, cart abandoned (24h), private event inquiry received, quote sent, deposit paid, inn pre-arrival (7d), inn check-in day, inn post-stay, ticket purchased (Blues Room), ticket scanned (show reminder 2h before), Vicki-style realtor welcome (week 1, day 7, day 30, day 90), Records artist welcome. Voice: brand-neutral, never 'Don't miss out!', never emojis. Markdown. ~1500 words.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "press-release-template",
+      "outputPath": "docs/marketing-copy/press-release-template.md",
+      "system": "You are writing a press release template for MBT announcements. Output in markdown.",
+      "prompt": "Write a press release template with [BRACKETED] placeholders. Standard AP-style format. Include: headline (8-12 words), dateline, lede (1 paragraph, 5 W's), body (3-4 paragraphs of supporting detail), boilerplate about MBT, media contact section. Also include: 'How to use this template' at top + 3 example fills (Records signs Artist X / Tuthill opens Natchez branch / Magazine launches Issue 1). Markdown. ~2000 words.",
+      "maxTokens": 6000
+    },
+    {
+      "id": "year-end-recap-template",
+      "outputPath": "docs/marketing-copy/year-end-recap-template.md",
+      "system": "You are writing a year-end customer-facing recap template for the Inn and Magazine to send to their subscribers. Output in markdown.",
+      "prompt": "Write a year-end recap email/post template — designed to be sent December to Inn guests + Magazine readers + Records fans. [PLACEHOLDERS] for stats. Format as an editorial piece, not a corporate recap. Tracy's voice. Cover: '2026 in numbers' (guest-facing, not internal — shows hosted, stories told, miles traveled), 'what we loved' (narrative highlights), 'what's coming in 2027' (3-4 bullets), 'thank you' close, CTA (book a return stay / subscribe / buy the book). No 'thankful for our amazing community'. Markdown. ~1500 words.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "sanity-schema-next-batch",
+      "outputPath": "docs/plans/SANITY_SCHEMAS_NEXT_BATCH.md",
+      "system": "You are writing an engineering design doc for the next wave of Sanity schemas. Output in markdown.",
+      "prompt": "Write a design doc for the next wave of Sanity schemas needed. Already shipped: article, location, event, touringPage, contentTemplate. Still needed (describe fields + rationale + relationships): podcastEpisode, showEvent (Blues Room shows published to the public /shows page), pressRelease, yearEndRecap, socialPost (for generating + archiving the published versions), magazineIssue (groups articles into issues), staff (Tracy, Amy, etc. — for Article bylines + About pages), partnerArtist (artists on the Records label — for Records pages), tenantProfile (public-facing tenant bio for /about per brand), faq (reusable FAQ entries that pages pull from). For each: fields, relationships, which pages reference it, whether Tracy / Amy / Chase edits it, how it interacts with the Content Creation Wizard. Markdown. ~2500 words.",
+      "maxTokens": 7000
+    }
+  ]
+}
