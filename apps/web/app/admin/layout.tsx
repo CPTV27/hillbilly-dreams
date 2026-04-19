@@ -107,6 +107,20 @@ const NAV_SECTIONS = [
     ],
   },
   {
+    label: 'MBT Platform',
+    items: [
+      { label: 'Create (Wizard)', href: '/admin/create', icon: '✦' },
+      { label: 'Subscriptions', href: '/admin/subscriptions', icon: '◎' },
+      { label: 'Plans', href: '/admin/plans', icon: '◉' },
+      { label: 'Orders', href: '/admin/orders', icon: '◈' },
+      { label: 'Bookings', href: '/admin/bookings', icon: '◷' },
+      { label: 'Treasury', href: '/admin/treasury', icon: '$' },
+      { label: 'Coordination', href: '/admin/coordination', icon: '⚡' },
+      { label: 'Broadcast', href: '/admin/broadcast', icon: '📡' },
+      { label: 'Podcast', href: '/admin/podcast', icon: '◯' },
+    ],
+  },
+  {
     label: 'Sites',
     items: [
       { label: 'Touring ↗', href: 'https://bigmuddytouring.com', icon: '◻', external: true },
