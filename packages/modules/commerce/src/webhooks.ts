@@ -75,24 +75,31 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
           : session.payment_intent?.id,
     });
 
-    // Order-confirmed email
+    // Order-confirmed email. Resolve brand from the first item's product
+    // (every Product has a brand) so cross-brand tenants like big-muddy
+    // send the right-branded receipt for Records vs Inn vs Touring purchases.
     const order = await orders.get(orderId);
     if (order) {
-      // Fetch product names for the items
-      const itemsWithNames = await Promise.all(
-        (
-          order as typeof order & {
-            items: Array<{ quantity: number; product: { name: string } }>;
-          }
-        ).items.map((i) => ({ name: i.product.name, quantity: i.quantity }))
+      const items = (
+        order as typeof order & {
+          items: Array<{ quantity: number; product: { name: string; brand?: string } }>;
+        }
+      ).items;
+      const itemsWithNames = items.map((i) => ({
+        name: i.product.name,
+        quantity: i.quantity,
+      }));
+      const firstItemBrand = items[0]?.product?.brand;
+      const resolvedBrand = emailBrand(
+        firstItemBrand ?? (order.tenantId === 'big-muddy' ? 'inn' : order.tenantId)
       );
       void emailSend.sendSafe({
-        brand: emailBrand(order.tenantId === 'big-muddy' ? 'inn' : order.tenantId),
+        brand: resolvedBrand,
         to: order.customerEmail,
         email: emailTemplates.orderConfirmed({
           customerName: order.customerName ?? undefined,
           customerEmail: order.customerEmail,
-          brand: emailBrand(order.tenantId === 'big-muddy' ? 'inn' : order.tenantId),
+          brand: resolvedBrand,
           orderId: order.id,
           items: itemsWithNames,
           totalCents: order.totalCents,

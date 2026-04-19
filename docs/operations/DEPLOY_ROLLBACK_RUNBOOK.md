@@ -248,7 +248,9 @@ This section outlines frequently encountered deployment issues on Vercel and the
     *   **Detection:** Vercel build logs will show TypeScript errors related to Prisma types (e.g., `Property 'myNewField' does not exist on type 'MyModel'`) or runtime errors indicating the Prisma Client is not found.
     *   **Fix:**
         1.  Locally, after any `schema.prisma` changes, run: `npx prisma generate`.
-        2.  Ensure the generated client (typically in `node_modules/.prisma/client`) is either committed (if `node_modules` is not gitignored) or, more commonly, ensure your Vercel build command explicitly includes `npx prisma generate` *before* the `next build` step. A common Vercel build command is `pnpm prisma generate && pnpm build`.
+        2.  Ensure the generated client (typically in `node_modules/.prisma/client`) is either committed (if `node_modules` is not gitignored) or, more commonly, ensure your Vercel build command explicitly runs `prisma generate` *before* the `next build` step. **The production build command must also run `prisma migrate deploy`** so new migrations are applied to the live database before traffic hits the new code. The canonical sequence is: `prisma generate && prisma migrate deploy && next build`.
+
+        > Gemini review 2026-04-19 (MEDIUM/Docs): the earlier wording omitted `prisma migrate deploy` from the build command. Without it, Vercel ships new application code against an unmigrated DB and every query against a new column explodes at runtime. Always keep the three-step sequence above.
         3.  Commit and push.
 
 4.  **Vercel Build Memory Exhaustion:**

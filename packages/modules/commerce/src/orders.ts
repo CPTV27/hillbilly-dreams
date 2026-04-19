@@ -6,12 +6,43 @@ import { send as emailSend, templates as emailTemplates } from '@bigmuddy/email'
 import type { Brand as EmailBrand } from '@bigmuddy/email';
 import type { Order, CreateOrderInput, OrderStatus, TenantId } from './types';
 
-function emailBrandFor(tenantId: string): EmailBrand {
-  // big-muddy tenant is the only one with multiple brands; default it to `inn`.
-  // Other tenants map 1:1 to email brand keys.
-  if (tenantId === 'big-muddy') return 'inn';
-  const valid: EmailBrand[] = ['tuthill', 'studio-c', 'dsd', 'mbt'];
-  return (valid.includes(tenantId as EmailBrand) ? tenantId : 'mbt') as EmailBrand;
+const VALID_EMAIL_BRANDS: EmailBrand[] = [
+  'inn',
+  'magazine',
+  'touring',
+  'records',
+  'radio',
+  'cpp',
+  'tuthill',
+  'studio-c',
+  'dsd',
+  'mbt',
+];
+
+/**
+ * Resolve the correct email-brand for outbound customer mail.
+ *
+ * Prefers the brand carried on the order's line items (every Product has
+ * a `brand`), since a `big-muddy` tenant sells across multiple brands
+ * (`inn`, `magazine`, `touring`, `records`, `radio`, `cpp`). Falls back
+ * to mapping the tenantId 1:1 when no item brand is available, and
+ * finally to `mbt` as a neutral sender.
+ *
+ * Gemini review (LOW): previously hardcoded `big-muddy → inn`, which
+ * meant a Records merch purchase sent an Inn-branded receipt.
+ */
+function emailBrandFor(
+  tenantId: string,
+  itemBrand?: string
+): EmailBrand {
+  if (itemBrand && VALID_EMAIL_BRANDS.includes(itemBrand as EmailBrand)) {
+    return itemBrand as EmailBrand;
+  }
+  if (VALID_EMAIL_BRANDS.includes(tenantId as EmailBrand)) {
+    return tenantId as EmailBrand;
+  }
+  if (tenantId === 'big-muddy') return 'inn'; // legacy fallback
+  return 'mbt';
 }
 
 export async function list(opts?: {
@@ -162,10 +193,16 @@ export async function markShipped(
   const updated = await prisma.order.update({
     where: { id },
     data: { status: 'shipped', shippedAt: new Date(), trackingNumber },
+    include: { items: { include: { product: true } } },
   });
 
-  // Shipping notification
-  const brand = emailBrandFor(updated.tenantId);
+  // Shipping notification — use first item's brand for cross-brand tenants
+  const firstItemBrand = (
+    updated as typeof updated & {
+      items?: Array<{ product?: { brand?: string } }>;
+    }
+  ).items?.[0]?.product?.brand;
+  const brand = emailBrandFor(updated.tenantId, firstItemBrand);
   void emailSend.sendSafe({
     brand,
     to: updated.customerEmail,
@@ -189,10 +226,16 @@ export async function refund(id: string, notes?: string): Promise<Order> {
   const updated = await prisma.order.update({
     where: { id },
     data: { status: 'refunded', notes: notes ?? null },
+    include: { items: { include: { product: true } } },
   });
 
-  // Refund notification
-  const brand = emailBrandFor(updated.tenantId);
+  // Refund notification — use first item's brand for cross-brand tenants
+  const firstItemBrand = (
+    updated as typeof updated & {
+      items?: Array<{ product?: { brand?: string } }>;
+    }
+  ).items?.[0]?.product?.brand;
+  const brand = emailBrandFor(updated.tenantId, firstItemBrand);
   void emailSend.sendSafe({
     brand,
     to: updated.customerEmail,
