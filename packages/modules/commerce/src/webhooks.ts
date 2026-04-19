@@ -4,9 +4,20 @@
 
 import Stripe from 'stripe';
 import { prisma } from '@bigmuddy/database';
+import { send as emailSend, templates as emailTemplates } from '@bigmuddy/email';
+import type { Brand as EmailBrand } from '@bigmuddy/email';
 import * as subscriptions from './subscriptions';
 import * as orders from './orders';
 import type { SubscriptionStatus } from './types';
+
+/** Map commerce BrandId to the email module's Brand union. */
+function emailBrand(brand: string): EmailBrand {
+  const valid: EmailBrand[] = [
+    'inn', 'magazine', 'touring', 'records', 'radio',
+    'cpp', 'tuthill', 'studio-c', 'dsd', 'mbt',
+  ];
+  return (valid.includes(brand as EmailBrand) ? brand : 'mbt') as EmailBrand;
+}
 
 /**
  * Verify a Stripe webhook signature and parse the event.
@@ -63,6 +74,34 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
           ? session.payment_intent
           : session.payment_intent?.id,
     });
+
+    // Order-confirmed email
+    const order = await orders.get(orderId);
+    if (order) {
+      // Fetch product names for the items
+      const itemsWithNames = await Promise.all(
+        (
+          order as typeof order & {
+            items: Array<{ quantity: number; product: { name: string } }>;
+          }
+        ).items.map((i) => ({ name: i.product.name, quantity: i.quantity }))
+      );
+      void emailSend.sendSafe({
+        brand: emailBrand(order.tenantId === 'big-muddy' ? 'inn' : order.tenantId),
+        to: order.customerEmail,
+        email: emailTemplates.orderConfirmed({
+          customerName: order.customerName ?? undefined,
+          customerEmail: order.customerEmail,
+          brand: emailBrand(order.tenantId === 'big-muddy' ? 'inn' : order.tenantId),
+          orderId: order.id,
+          items: itemsWithNames,
+          totalCents: order.totalCents,
+          currency: order.currency,
+        }),
+        tags: { event: 'order.paid', orderId: order.id },
+      });
+    }
+
     return {
       handled: true,
       type: 'checkout.session.completed',
@@ -149,6 +188,30 @@ async function handleSubscriptionUpsert(stripeSub: Stripe.Subscription) {
   // record so Finance Module can track the recurring revenue + platform fee.
   await maybeCreateEngagement(created.id, planId);
 
+  // Fire-and-forget welcome email (sendSafe swallows errors; logs to console).
+  const plan = await prisma.plan.findUnique({ where: { id: planId } });
+  if (plan) {
+    void emailSend.sendSafe({
+      brand: emailBrand(plan.brand),
+      to: customerEmail,
+      email: emailTemplates.subscriptionWelcome({
+        customerName,
+        customerEmail,
+        brand: emailBrand(plan.brand),
+        planName: plan.name,
+        priceCents: plan.priceCents,
+        currency: plan.currency,
+        interval: plan.interval,
+        currentPeriodEnd: currentPeriodEnd.toISOString(),
+        trialEndsAt: stripeSub.trial_end
+          ? new Date(stripeSub.trial_end * 1000).toISOString()
+          : undefined,
+        stripeCustomerId: customerId,
+      }),
+      tags: { event: 'subscription.welcome', planId },
+    });
+  }
+
   return {
     handled: true,
     type: 'subscription.created',
@@ -170,6 +233,27 @@ async function handleSubscriptionDeleted(stripeSub: Stripe.Subscription) {
     canceledAt: new Date(),
     cancelAtPeriodEnd: false,
   });
+
+  // Cancellation email
+  const plan = await prisma.plan.findUnique({ where: { id: existing.planId } });
+  if (plan) {
+    void emailSend.sendSafe({
+      brand: emailBrand(plan.brand),
+      to: existing.customerEmail,
+      email: emailTemplates.subscriptionCancelled({
+        customerName: existing.customerName ?? undefined,
+        customerEmail: existing.customerEmail,
+        brand: emailBrand(plan.brand),
+        planName: plan.name,
+        priceCents: plan.priceCents,
+        currency: plan.currency,
+        interval: plan.interval,
+        currentPeriodEnd: existing.currentPeriodEnd.toISOString(),
+      }),
+      tags: { event: 'subscription.cancelled', planId: plan.id },
+    });
+  }
+
   return {
     handled: true,
     type: 'subscription.deleted',
@@ -188,8 +272,6 @@ async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
 }
 
 async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
-  // Hook for dunning + customer notification.
-  // For now, mark the related subscription past_due.
   if (invoice.subscription) {
     const stripeSubId =
       typeof invoice.subscription === 'string'
@@ -198,6 +280,26 @@ async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
     const sub = await subscriptions.getByStripeId(stripeSubId);
     if (sub) {
       await subscriptions.updateStatus(sub.id, { status: 'past_due' });
+
+      // Payment-failed dunning email
+      const plan = await prisma.plan.findUnique({ where: { id: sub.planId } });
+      if (plan) {
+        void emailSend.sendSafe({
+          brand: emailBrand(plan.brand),
+          to: sub.customerEmail,
+          email: emailTemplates.subscriptionPaymentFailed({
+            customerName: sub.customerName ?? undefined,
+            customerEmail: sub.customerEmail,
+            brand: emailBrand(plan.brand),
+            planName: plan.name,
+            priceCents: plan.priceCents,
+            currency: plan.currency,
+            interval: plan.interval,
+            stripeCustomerId: sub.stripeCustomerId ?? undefined,
+          }),
+          tags: { event: 'subscription.payment_failed', planId: plan.id },
+        });
+      }
     }
   }
   return {

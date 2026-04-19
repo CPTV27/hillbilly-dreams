@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@bigmuddy/database": "workspace:*",
+    "@bigmuddy/email": "workspace:*",
     "@prisma/client": "^5.22.0",
     "stripe": "^17.5.0"
   },

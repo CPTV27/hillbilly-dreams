@@ -22,6 +22,7 @@
     "@bigmuddy/config": "workspace:*",
     "@bigmuddy/content-creation": "workspace:*",
     "@bigmuddy/database": "workspace:*",
+    "@bigmuddy/email": "workspace:*",
     "@bigmuddy/events": "workspace:*",
     "@bigmuddy/finance": "workspace:*",
     "@bigmuddy/shared": "workspace:*",

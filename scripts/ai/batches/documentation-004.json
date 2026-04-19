@@ -1,0 +1,76 @@
+{
+  "model": "gemini-2.5-flash",
+  "concurrency": 8,
+  "tasks": [
+    {
+      "id": "landing-copy-inn",
+      "outputPath": "docs/marketing-copy/landing-page-copy-inn.md",
+      "system": "You are writing the homepage copy for Big Muddy Inn's public website. Output in markdown with labeled sections. No preamble. Tracy's voice.",
+      "prompt": "Write the full homepage (above + below fold) copy for bigmuddyinn.com. Sections: hero headline (6-10 words), hero sub (1-2 sentences), primary CTA button text, 3-4 section blocks below the fold (e.g., 'The rooms', 'The Blues Room', 'The porch', 'Why come to Natchez'), each with a 30-60 word blurb + supporting sentence + optional secondary CTA. Close with footer tagline. Voice: warm, Tracy, NEVER 'unforgettable experience', 'must-visit'. Markdown. ~1500 words.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "landing-copy-magazine",
+      "outputPath": "docs/marketing-copy/landing-page-copy-magazine.md",
+      "system": "You are writing homepage copy for Big Muddy Magazine. Output in markdown. Tracy's editor voice.",
+      "prompt": "Write the homepage copy for bigmuddymagazine.com. Editorial homepage — feels like a magazine, not a marketing landing page. Sections: masthead headline (1-line title treatment), deck (1 sentence setting the Magazine's editorial mission), 3 featured-article placeholders with [HEADLINE] + [LEDE], 'About the Magazine' block (2-3 paragraphs — the Inn-targeted editorial brief made public), subscribe-to-the-newsletter CTA (no paid subs), masthead credits footer. Markdown. ~1200 words.",
+      "maxTokens": 4000
+    },
+    {
+      "id": "landing-copy-touring",
+      "outputPath": "docs/marketing-copy/landing-page-copy-touring.md",
+      "system": "You are writing homepage copy for Big Muddy Touring. Output in markdown. Booker-direct voice.",
+      "prompt": "Write the homepage copy for bigmuddytouring.com. Sections: hero (booker-direct, 1-line value prop), 3 blocks: 'For artists' (what Touring does + CTA to artist outreach), 'For venues' (what Touring does + CTA to venue inquiry), 'For fans' (link to /shows + the Blues Room). Mention the corridor. Mention the Sprinter van. Music-industry-facing tone. Markdown. ~1000 words.",
+      "maxTokens": 4000
+    },
+    {
+      "id": "landing-copy-records",
+      "outputPath": "docs/marketing-copy/landing-page-copy-records.md",
+      "system": "You are writing homepage copy for Big Muddy Records. Output in markdown. Artist-friendly indie voice.",
+      "prompt": "Write the homepage copy for bigmuddyrecordlabel.com. Sections: hero (short, honest value prop — never 'breakthrough'), 3 blocks: 'The artists' (current roster link — placeholder), 'The services' (Silver / Gold / Platinum recurring tiers link to /pricing), 'Non-exclusive' (the ownership philosophy in 2 paragraphs — artists keep masters, we help them reach audiences). Close with apply-to-join CTA. Markdown. ~1100 words.",
+      "maxTokens": 4000
+    },
+    {
+      "id": "landing-copy-radio",
+      "outputPath": "docs/marketing-copy/landing-page-copy-radio.md",
+      "system": "You are writing homepage copy for Big Muddy Radio. Output in markdown. Music-first voice.",
+      "prompt": "Write the homepage copy for bigmuddyradio.com. Sections: hero (1-line music-first positioning), 3 blocks: 'Listen' (podcasts + curated playlists on Spotify/Apple/YouTube Music, TikTok Live link), 'Shows' (link to /shows at the Blues Room), 'Sponsor the station' (link to /pricing for sponsor packages). Music-curious tone. Markdown. ~1000 words.",
+      "maxTokens": 4000
+    },
+    {
+      "id": "landing-copy-cpp",
+      "outputPath": "docs/marketing-copy/landing-page-copy-cpp.md",
+      "system": "You are writing the homepage for Chase Pierson Photography. Output in markdown. Photographer's first-person voice.",
+      "prompt": "Write the homepage copy for chasepierson.tv. Photographer's portfolio homepage. Sections: hero (Chase's one-line pitch — never 'capturing moments'), recent work placeholder block (3 projects), 'What I shoot' (editorial, documentary, architectural — selectively), contact + commission CTA. Premium tier voice. Markdown. ~900 words.",
+      "maxTokens": 4000
+    },
+    {
+      "id": "landing-copy-tuthill",
+      "outputPath": "docs/marketing-copy/landing-page-copy-tuthill.md",
+      "system": "You are writing homepage copy for Tuthill Design. Output in markdown. Real-estate-service professional voice.",
+      "prompt": "Write the homepage copy for tuthilldesign.com. Sections: hero (realtor-respectful value prop), 3 blocks: 'What we deliver' (photos + video + 3D + LiDAR — with turnaround times), 'Two markets' (Hudson Valley + Natchez branch opening), 'Pricing' (link to /pricing for Essentials / Pro / Premium), CTA: 'See if we fit your volume' → email / call. NEVER 'showcase your property'. Markdown. ~1000 words.",
+      "maxTokens": 4000
+    },
+    {
+      "id": "landing-copy-studio-c",
+      "outputPath": "docs/marketing-copy/landing-page-copy-studio-c.md",
+      "system": "You are writing homepage copy for Studio C. Output in markdown. Production-floor calm voice.",
+      "prompt": "Write the homepage copy for studiocvideo.com. Sections: hero (production team value prop), 3 blocks: 'What we do' (multicam shoots, broadcast streaming, post — with example turnaround), 'Where we work' (Bearsville + Natchez), 'For MBT' (platform work via bucket hours — mention without overselling), CTA: quote request or per-event package browse. NEVER 'cinematic experience'. Markdown. ~1000 words.",
+      "maxTokens": 4000
+    },
+    {
+      "id": "sanity-schema-podcast-episode",
+      "outputPath": "apps/web/sanity/schemas/podcastEpisode.ts",
+      "system": "You are writing a Sanity v3 schema file in TypeScript. Output the complete .ts file. No preamble. Use defineField / defineType pattern matching the existing schemas in apps/web/sanity/schemas/.",
+      "prompt": "Write the Sanity schema for `podcastEpisode` — editorial side of a podcast episode (title, description, show notes, guest list, transcript). Audio-side fields (duration, size, audioUrl) live in Postgres; this is the CMS face that Tracy/Amy edit.\n\nFields:\n- title (string, required)\n- slug (slug, source: title)\n- show (reference to podcastShow — placeholder; if podcastShow schema doesn't exist yet, use string field `showId`)\n- episodeNumber (number)\n- seasonNumber (number, optional)\n- description (text, required) — shown in podcast apps\n- showNotes (blockContent — rich text)\n- guests (array of objects with name, bio, link)\n- transcript (text, optional)\n- publishedAt (datetime)\n- wizardMeta (object, read-only — populated by Content Creation Wizard)\n\nPreview: title + episodeNumber + publishedAt.\n\nMatch the style of existing schemas (article.ts uses defineField, defineType). Output only the TS file content.",
+      "maxTokens": 4000
+    },
+    {
+      "id": "sanity-schema-magazine-issue",
+      "outputPath": "apps/web/sanity/schemas/magazineIssue.ts",
+      "system": "You are writing a Sanity v3 schema file in TypeScript. Output the complete .ts file. No preamble.",
+      "prompt": "Write the Sanity schema for `magazineIssue` — groups articles into a quarterly magazine issue. Tracy uses this to organize the Inn-targeted Magazine.\n\nFields:\n- title (string, required — e.g., 'Spring 2026')\n- slug (slug, source: title)\n- coverImage (image, hotspot)\n- publishedAt (datetime)\n- deck (text — short description shown on issue landing page)\n- coverStory (reference to article)\n- features (array of references to article)\n- shortForms (array of references to article — departments, quick reads)\n- letterFromEditor (blockContent — Tracy's opening note)\n- contributorCredits (array of objects with name, role, bio)\n\nPreview: title + publishedAt.\n\nMatch style of existing schemas.",
+      "maxTokens": 4000
+    }
+  ]
+}
