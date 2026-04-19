@@ -47,7 +47,7 @@ if (!PROJECT_ID) {
 }
 if (!DRY_RUN && !TOKEN) {
   console.error('ERROR: SANITY_WRITE_TOKEN not set (required unless --dry-run)');
-  console.error('       Get one at https://manage.sanity.io → tokens → Write access');
+  console.error('       Get one at https://manage.sanity.io → tokens → Editor access');
   process.exit(1);
 }
 
@@ -260,7 +260,9 @@ function buildDoc({ contentType, brand }) {
 }
 
 async function upsert(doc) {
-  const url = `https://api.sanity.io/v2024-01-01/data/mutate/${PROJECT_ID}?dataset=${DATASET}`;
+  // Sanity mutate API requires the project-scoped hostname
+  // (NOT the shared api.sanity.io) and path: /data/mutate/<dataset>.
+  const url = `https://${PROJECT_ID}.api.sanity.io/v2024-01-01/data/mutate/${DATASET}`;
   const res = await fetch(url, {
     method: 'POST',
     headers: {

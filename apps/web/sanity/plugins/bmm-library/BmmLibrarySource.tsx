@@ -138,7 +138,11 @@ const cardStyle = (focused: boolean): React.CSSProperties => ({
   position: 'relative',
   borderRadius: '6px',
   overflow: 'hidden',
+  // aspectRatio alone collapses to ~0 inside Sanity Studio's modal grid
+  // because the parent has no resolved height. Pin a real minHeight so
+  // each card always renders as a proper square thumbnail.
   aspectRatio: '1 / 1',
+  minHeight: '180px',
   background: '#0a0a0a',
   border: '2px solid transparent',
   outline: focused ? '2px solid var(--accent, #f97316)' : 'none',

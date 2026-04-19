@@ -108,7 +108,9 @@ const DOCS = [
 ];
 
 async function upsert(doc) {
-  const url = `https://api.sanity.io/v2024-01-01/data/mutate/${PROJECT_ID}?dataset=${DATASET}`;
+  // Sanity mutate API requires the project-scoped hostname
+  // (NOT the shared api.sanity.io) and path: /data/mutate/<dataset>.
+  const url = `https://${PROJECT_ID}.api.sanity.io/v2024-01-01/data/mutate/${DATASET}`;
   const res = await fetch(url, {
     method: 'POST',
     headers: {
