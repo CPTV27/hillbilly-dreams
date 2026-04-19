@@ -1,0 +1,12 @@
+{
+  "name": "broadcast-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "agent.mjs",
+  "scripts": {
+    "start": "node agent.mjs",
+    "start:verbose": "LOG_LEVEL=debug node agent.mjs"
+  },
+  "description": "Mac mini broadcast agent — polls MBT server for OBS / ffmpeg / clip-extraction instructions and executes them locally. Runs on 192.168.4.37."
+}
