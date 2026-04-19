@@ -1,6 +1,8 @@
-# Studio C — Elijah's Runbook
+# Studio C Photo-Archive Runbook (Elijah leads)
 
-*Practical "what to do" guide. Read `docs/STUDIO_C_PHOTO_ARCHIVE_WORKFLOW.md` first for the architecture; this is the day-by-day execution doc.*
+*Practical "what to do" guide for the Studio C team member running the photo archive. Read `docs/STUDIO_C_PHOTO_ARCHIVE_WORKFLOW.md` first for the architecture; this is the day-by-day execution doc.*
+
+*Engagement model: MBT buys buckets of Studio C hours from the Tuthill Design LLC. Elijah is the primary staff on this lane — but the bucket itself is fungible across platform work, and the relationship is MBT ↔ Tuthill Design LLC, not MBT ↔ Elijah personally.*
 
 *Last updated: 2026-04-18*
 

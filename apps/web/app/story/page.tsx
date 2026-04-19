@@ -103,17 +103,15 @@ export default function StoryPage() {
               <p>Holds touring, radio, the record label, the band, and all mobile performance work. Separate entity required for vehicle and road insurance.</p>
             </div>
           </div>
-          <div className="entity-row">
-            <div className="entity entity-affiliate">
-              <h3>Tuthill Design</h3>
-              <p className="meta">NY · existing · Chase 50% / Elijah Tuthill 50%</p>
-              <p>Real estate photo, video, 3D, and design (LiDAR + AI). Hudson Valley counties and a new Natchez branch. Holds the retainer with MBT that funds Elijah's cross-entity work.</p>
-            </div>
-            <div className="entity entity-affiliate">
-              <h3>Studio C</h3>
-              <p className="meta">NY + new Natchez branch · Chase 40% / 60% TBD</p>
-              <p>Concert and event production. Multicam shoots, broadcast-quality streaming, post production. Holds the production insurance umbrella that covers in-family camera work.</p>
-            </div>
+          <div className="entity entity-affiliate">
+            <h3>Tuthill Design LLC · two DBAs under one entity</h3>
+            <p className="meta">NY · existing · 50/50 Chase + Elijah Tuthill (LLC) · 40/30/30 operating split (Chase / Elijah / Miles)</p>
+            <p>One legal entity, one insurance umbrella, two service lines:</p>
+            <ul style={{ margin: '8px 0 12px 18px', color: '#d8cfbe', fontSize: '14px', lineHeight: 1.6 }}>
+              <li><strong>Tuthill Design</strong> (DBA) — real estate photo, video, 3D, design (LiDAR + AI). Hudson Valley + new Natchez branch.</li>
+              <li><strong>Studio C</strong> (DBA) — production for MBT platform work + concert/event production. Bearsville-anchored + new Natchez branch.</li>
+            </ul>
+            <p>MBT has ONE vendor relationship with the LLC, paid via buckets of Studio C hours (fungible across all platform work) + per-project work. Studio C internally staffs the team — Elijah, Miles, others.</p>
           </div>
           <div className="entity entity-legacy">
             <h3>FarleyPierson LLC</h3>
@@ -192,8 +190,12 @@ export default function StoryPage() {
         <h3 className="people-sub">Specialists and operators</h3>
         <div className="people specialists">
           <div className="person small">
-            <h4>Elijah</h4>
-            <p>Photo archive operator. Onboarding on hold pending Chase review of the package.</p>
+            <h4>Elijah Tuthill</h4>
+            <p>50% LLC co-owner of Tuthill Design. Lead on photo archive work as part of the Studio C team. Onboarding on hold pending Chase review.</p>
+          </div>
+          <div className="person small">
+            <h4>Miles</h4>
+            <p>Studio C team. Pulled into platform work as needed. Part of the 40/30/30 operating split.</p>
           </div>
           <div className="person small">
             <h4>Patch</h4>
@@ -622,8 +624,8 @@ const BRANDS = [
   { name: 'Big Muddy Radio', tier: 'consumer', tierLabel: 'Consumer · Broadcast', line: 'Podcasts + curated playlists on Spotify/Apple/YouTube Music, plus TikTok Live for the live talk-radio feel (TikTok handles music licensing). Linear streaming radio when audience justifies.', revenue: 'Episode + playlist sponsorships · TikTok Live brand presence · future linear inventory' },
   { name: 'Big Muddy Magazine', tier: 'consumer', tierLabel: 'Consumer · Editorial', line: 'Editorial vehicle covering music, hospitality, and the people on the corridor. Feeds traffic to every other Big Muddy property.', revenue: 'Cross-marketing engine · drives Inn bookings (not a subscription product)' },
   { name: 'Chase Pierson Photography', tier: 'consumer', tierLabel: 'Consumer · Premium services', line: "Chase's editorial and documentary photography practice. Premium rate, distinct from Tuthill's advertised rates.", revenue: 'Editorial commissions · documentary projects · prints · portraits' },
-  { name: 'Tuthill Design', tier: 'production', tierLabel: 'Production B2B · North + South', line: 'Real estate media and design — photo, video, 3D tours, floor plans, LiDAR + AI renderings. Hudson Valley + Natchez branch opening.', revenue: 'Per-property packages · recurring social management for realtors' },
-  { name: 'Studio C', tier: 'production', tierLabel: 'Production B2B · North + South', line: 'Multicam event production, live streaming, post production. Bearsville-anchored + Natchez branch opening.', revenue: 'Per-event packages · venue retainer relationships · premium cinema tier' },
+  { name: 'Tuthill Design (DBA)', tier: 'production', tierLabel: 'Production B2B · North + South', line: 'Real estate media + 3D + design (LiDAR + AI). Hudson Valley + new Natchez branch. One of two DBAs under Tuthill Design LLC.', revenue: 'Per-property packages · recurring social management for realtors' },
+  { name: 'Studio C (DBA)', tier: 'production', tierLabel: 'Production B2B · North + South', line: 'Production for MBT platform work + concert/event production. Bearsville-anchored + new Natchez branch. Sister DBA under the same Tuthill Design LLC.', revenue: 'Per-event packages · venue retainers · premium cinema · MBT bucket hours for platform work' },
 ];
 
 const MODULES = [

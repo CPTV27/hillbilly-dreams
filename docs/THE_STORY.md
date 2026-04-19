@@ -50,9 +50,9 @@ Each brand keeps its own voice, domain, and customer relationship. None of them 
 
 ### Production B2B brands
 
-**Tuthill Design.** Real estate media and design — photo, video, 3D tours, floor plans, LiDAR + AI renderings. Hudson Valley counties + Natchez branch opening. *Sells: per-property packages, recurring social management for realtors.*
+**Tuthill Design** (DBA under Tuthill Design LLC). Real estate media and design — photo, video, 3D tours, floor plans, LiDAR + AI renderings. Hudson Valley counties + Natchez branch opening. *Sells: per-property packages, recurring social management for realtors.*
 
-**Studio C.** Multicam event production, live streaming, post production. Bearsville-anchored + Natchez branch opening. *Sells: per-event packages, venue retainer relationships, premium cinema tier.*
+**Studio C** (sister DBA under the same Tuthill Design LLC). Production for MBT platform work + concert/event production. Multicam shoots, broadcast streaming, post. Bearsville-anchored + Natchez branch opening. *Sells: per-event packages, venue retainer relationships, premium cinema tier — plus MBT buys buckets of Studio C hours for platform work.*
 
 ---
 
@@ -70,11 +70,16 @@ Three operating LLCs (two new, one existing). Three equal partners. Two producti
 
 **Big Muddy Touring LLC** — TBD state · TO FILE alongside MBT. Holds touring, radio, the record label, the band, and all mobile performance work. Separate entity required for vehicle and road insurance.
 
-### The affiliates (Chase partly owns; MBT only receives distributions)
+### The affiliate (one LLC, two operating DBAs)
 
-**Tuthill Design** — NY · existing · Chase 50% / Elijah Tuthill 50%. Real estate photo, video, 3D, design (LiDAR + AI). Hudson Valley counties and a new Natchez branch. Holds the retainer with MBT that funds Elijah's cross-entity work.
+**Tuthill Design LLC** — NY · existing · 50/50 LLC ownership Chase + Elijah Tuthill. Operating profit split 40/30/30 (Chase / Elijah / Miles). One legal entity, one insurance umbrella, two service lines under DBAs:
 
-**Studio C** — NY + new Natchez branch · Chase 40% / 60% TBD. Concert and event production. Holds the production insurance umbrella that covers in-family camera work.
+- **Tuthill Design** (DBA) — real estate photo, video, 3D, design (LiDAR + AI). Hudson Valley counties + new Natchez branch.
+- **Studio C** (DBA) — production for MBT platform work + concert/event production. Bearsville-anchored + new Natchez branch.
+
+MBT has ONE vendor relationship with the Tuthill Design LLC, paid via **buckets of Studio C hours** (fungible across all platform work) + per-project work. The team — Elijah, Miles, others — staffs the hours from inside.
+
+LLC split between Tuthill Design and Studio C is deferred; they operate as DBAs today and may become two LLCs later. Chase's stake stays personal; MBT only receives Chase's distributions.
 
 ### Legacy
 
@@ -135,7 +140,9 @@ Three economic patterns for MBT, depending on what the platform is doing.
 
 ### Specialists and operators
 
-**Elijah** — Photo archive operator. Onboarding on hold pending Chase review of the package.
+**Elijah Tuthill** — 50% co-owner of Tuthill Design LLC. Lead on the photo archive work as part of the Studio C team. (MBT buys buckets of Studio C hours; Elijah is the primary staff on the photo lane. He is not an individual hourly contractor.) Onboarding on hold pending Chase review.
+
+**Miles** — Studio C team. Pulled into platform work as needed. Part of the Tuthill Design LLC operating profit split.
 
 **Patch** — Technical Director. Always-on infrastructure, builds, deploys.
 

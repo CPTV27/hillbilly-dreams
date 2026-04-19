@@ -15,13 +15,14 @@ A real estate media + design studio operating across two corridors — the Hudso
 | | |
 |---|---|
 | **Tier** | Production B2B |
-| **Parent entity** | Tuthill Design (NY LLC, currently shared with Studio C) |
-| **Owners** | Chase 50% (personal — MBT receives the distributions post-restructure but does NOT acquire equity) · Elijah Tuthill 50% |
-| **Effect of MBT restructure on Tuthill itself** | None. Operations + ownership unchanged. Elijah Tuthill unaffected. |
+| **Parent entity** | **DBA under Tuthill Design LLC** (sister DBA to Studio C service line) |
+| **LLC ownership** | 50/50 Chase + Elijah Tuthill (the LLC itself) |
+| **Operating profit split** | 40/30/30 — Chase 40% / Elijah Tuthill 30% / Miles 30% (presumed; confirm) |
+| **Effect of MBT restructure on the LLC itself** | None. Operations + ownership unchanged. Elijah Tuthill + Miles unaffected. Chase's distributions just route through MBT post-restructure instead of FarleyPierson. |
 | **NY footprint** | Dutchess · Ulster · Orange · Westchester · Columbia Counties |
 | **South footprint (NEW)** | Natchez, MS branch opening · Arkansas possible next |
 | **Customer of MBT?** | Yes — uses MBT platform for client mgmt, scheduling, portfolio, billing |
-| **Vendor to MBT?** | Yes — does production work that MBT brokers; **holds the retainer with MBT** that funds Elijah's cross-entity work |
+| **Vendor to MBT?** | Yes — Tuthill Design DBA does real estate + design work; Studio C DBA staffs MBT's platform bucket hours. **The LLC holds the unified vendor relationship with MBT** — paid via buckets of Studio C hours (fungible across platform work) + per-project Tuthill Design work. |
 
 ---
 

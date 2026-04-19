@@ -1,6 +1,8 @@
 # Studio C — Photo Archive Workflow
 
-*Elijah's runbook for the Chase Pierson Photography archive. Runs on top of the Immich + Hetzner stack locked in `~/.claude/plans/cozy-beaming-minsky.md`. Elijah owns end-to-end; Chase shoots and approves finals.*
+*Studio C photo-archive workflow for the Chase Pierson Photography archive. Runs on top of the Immich + Hetzner stack locked in `~/.claude/plans/cozy-beaming-minsky.md`. Studio C team owns end-to-end (Elijah leads, Miles as needed); Chase shoots and approves finals.*
+
+*Engagement model: MBT buys buckets of Studio C hours from the Tuthill Design LLC. Hours are fungible across platform work — photo archive is one lane. NOT an individual contractor arrangement.*
 
 *Last updated: 2026-04-18*
 
@@ -92,13 +94,16 @@ This is half what I originally scoped because Immich covers the hardest pieces (
 
 ---
 
-## Elijah's engagement
+## The engagement (Studio C bucket, not an individual hire)
 
-- **$50/hr, 40-hour starter block = $2,000**
+- **MBT buys a bucket of Studio C hours from the Tuthill Design LLC.**
+  - Starter bucket: **$50/hr × 40 hours = $2,000** (bucket pricing, not Elijah's personal rate)
+  - Hours are fungible across platform work — photo archive is one lane; platform maintenance and other work pull from the same bucket
+  - Studio C internally staffs the bucket — **Elijah leads photo archive**, Miles pulled in as needed, others if scope grows
 - **Month 1 deliverable:** archive fully ingested, first 500 photos tagged and priced
-- **Month 2+:** ongoing curation, new shoots from Chase flow in via Lightroom/iPhone, sales start
+- **Month 2+:** ongoing curation; new shoots from Chase flow in via Lightroom/iPhone; sales start
 
-Elijah touches only Immich + Topaz. He does not touch GCS, the gallery site, or the print-on-demand API directly — those are automatic downstream of his tags.
+The Studio C team touches only Immich + Topaz for the photo lane. They do not touch GCS, the gallery site, or the print-on-demand API directly — those are automatic downstream of their tags.
 
 ---
 

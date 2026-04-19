@@ -1,6 +1,6 @@
 # Hillbilly Dreams Agent Queue
 
-*Last sync: 2026-04-18T18:12:42*
+*Last sync: 2026-04-18T20:20:50*
 
 Status counts: 7 done · 0 running · 29 ready · 15 blocked · **51 total**
 
@@ -422,26 +422,28 @@ Deliverable: written umbrella policy covering both entities with no coverage gap
 ```
 </details>
 
-### `P43-mbt-tuthill-retainer-arithmetic` — MBT ↔ Tuthill retainer arithmetic + monthly burn-rate reporting
+### `P43-mbt-tuthill-retainer-arithmetic` — MBT ↔ Tuthill Design LLC unified bucket pricing + monthly burn-rate reporting
 
 **Owner:** chase+tracy · **Est:** ~60 min
 
 <details><summary>Show prompt</summary>
 
 ```
-Per docs/ENTITY_STRUCTURE.md, MBT holds a retainer with Tuthill Design that funds Elijah's cross-entity work (MBT + Big Muddy Natchez + Big Muddy Touring).
+Per docs/ENTITY_STRUCTURE.md, MBT has ONE vendor relationship with Tuthill Design LLC. Paid via buckets of fungible Studio C hours (covering all platform work — photo archive, platform maintenance, anything else) plus per-project Tuthill Design work.
+
+Studio C internally staffs the bucket: Elijah leads, Miles as needed, others if scope grows. NOT individual contractor arrangements.
+
+Operating profit split inside the LLC: 40/30/30 — Chase 40 / Elijah Tuthill 30 / Miles 30 (presumed; confirm with Chase).
 
 Needs defining:
-- Monthly retainer amount
-- Hourly rate within the retainer
-- Hours volume target per month (40? 60? 80?)
-- Allocation conventions — how Elijah logs hours per child entity (MBT vs BMNatchez vs BMTouring)
-- Burn-rate reporting cadence — monthly to Tracy minimum, possibly weekly during peak
-- Burst-rate when retainer exhausted mid-month — premium or pause?
-- Reset cadence — calendar month? Rolling?
-- Quarterly true-up — adjust retainer up/down based on actual usage?
+- Bucket size + price ($50/hr × 40 = $2K starter is current default — confirm or adjust)
+- Refill cadence — monthly auto-refill or per-bucket purchase order?
+- Cross-entity allocation — how Studio C logs hours per consuming entity (MBT platform vs BMNatchez vs BMTouring vs an external Studio C client)
+- Burn-rate reporting cadence — monthly to Tracy minimum
+- Burst-rate when bucket exhausted mid-month — premium per hour, or pause and refill?
+- Quarterly true-up — bucket size adjusts up/down based on actual usage?
 
-Deliverable: retainer agreement template (lives in docs/finance/), burn-rate dashboard plan, monthly review SOP.
+Deliverable: bucket pricing agreement template at docs/finance/, burn-rate dashboard plan, monthly review SOP.
 ```
 </details>
 
