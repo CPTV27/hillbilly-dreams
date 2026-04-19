@@ -1,0 +1,12 @@
+Task: bmt-wrap-rear-straight-on-warehouse
+Model: imagen-3.0-generate-001
+Generated: 2026-04-19T23:46:25.687Z
+Aspect: 1:1
+Candidates: 1
+
+--- PROMPT ---
+Photorealistic straight-on rear photograph of a 2014 Ford Transit 350 XLT cargo van — high-roof, extended-length. Camera positioned dead-centered behind the vehicle at a slightly low angle (camera height around 4 feet), at moderate distance (~15 feet). Both rear cargo doors fully visible. The entire body is wrapped in ultra-matte deep black vinyl (#0a0a0a) — completely flat, no shine, no chrome, no specular reflections. The rear cargo doors show three distinct blank cream-colored placeholder zones: (1) a horizontal cream rectangular panel near the top, 3 feet wide by 2 feet tall, centered across the door pair seam; (2) below it, a 4-by-2 grid of small square cream tiles (8 inches each, with 2-inch gutters between them, centered); (3) two square cream tiles in the bottom corners (4 inches each, positioned 12 inches in from the outside edge of each door). ALL cream zones are completely blank smooth ivory panels — NO text, NO letters, NO numbers, NO logos, NO QR codes, no markings of any kind. They are placeholder panels for post-production overlay. Setting: parked in front of a plain corrugated-metal warehouse exterior, neutral grey wall background, even diffuse daylight with no harsh shadows. Clean documentation-quality lighting suitable for verifying wrap layout. Shot on a full-frame DSLR with a 50mm lens at f/8 ISO 200. Sharp focus front-to-back, neutral white balance, minimal color grading.
+
+--- NEGATIVE ---
+text, words, letters, numbers, logos, QR codes, signage, watermarks, Mercedes Sprinter, Dodge ProMaster, glossy paint, chrome bumpers, shiny finish, mirror reflections, harsh sunlight, deep shadows, cinematic moody lighting, golden hour, dusk, nighttime, people, other cars, parking lot stripes, indoor garage, fluorescent lighting, oversaturated, HDR, lens distortion, fisheye, off-axis camera
+
