@@ -3,5 +3,13 @@
   "rules": {
     "react/no-unescaped-entities": "off",
     "@next/next/no-img-element": "warn"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["lib/articles.ts", "sanity/lib/client.ts"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ]
 }

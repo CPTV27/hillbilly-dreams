@@ -7,20 +7,27 @@ import { createClient, type SanityClient } from '@sanity/client';
 let _readClient: SanityClient | null = null;
 let _writeClient: SanityClient | null = null;
 
+// Trim and validate against Sanity's projectId regex (^[a-z0-9-]+$).
+// Env vars from Vercel/CI sometimes carry trailing whitespace or newlines —
+// '5p7h8glj\n' is truthy but fails Sanity validation, which crashes builds.
+const SANITY_PROJECT_ID_RE = /^[a-z0-9-]+$/;
+
 function getProjectId(): string {
-  return (
+  const raw =
     process.env.SANITY_PROJECT_ID ||
     process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ||
-    ''
-  );
+    '';
+  const trimmed = raw.trim();
+  // Only return the value if it passes Sanity's own regex; otherwise treat as missing.
+  return SANITY_PROJECT_ID_RE.test(trimmed) ? trimmed : '';
 }
 
 function getDataset(): string {
-  return (
+  const raw =
     process.env.SANITY_DATASET ||
     process.env.NEXT_PUBLIC_SANITY_DATASET ||
-    'production'
-  );
+    'production';
+  return raw.trim() || 'production';
 }
 
 /**
@@ -57,18 +64,30 @@ export function getSanityWriteClient(): SanityClient | null {
 }
 
 // Backwards-compatible exports via Proxy. Existing code that does
-// `sanityClient.fetch(...)` will get a no-op (undefined) if env is missing
-// rather than crashing at import time.
+// `sanityClient.fetch(...)` will get a safe no-op if env is missing —
+// returning a function that resolves to null/empty array rather than
+// throwing — so that build-time `generateStaticParams` and similar
+// callers can fall back to static data without exploding the build.
+function makeSafeNoop(): unknown {
+  return async () => null;
+}
+
 export const sanityClient = new Proxy({} as SanityClient, {
   get(_t, prop) {
     const c = getSanityClient();
-    return c ? (c as any)[prop] : undefined;
+    if (!c) return makeSafeNoop();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const value = (c as any)[prop];
+    return typeof value === 'function' ? value.bind(c) : value;
   },
 });
 
 export const sanityWriteClient = new Proxy({} as SanityClient, {
   get(_t, prop) {
     const c = getSanityWriteClient();
-    return c ? (c as any)[prop] : undefined;
+    if (!c) return makeSafeNoop();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const value = (c as any)[prop];
+    return typeof value === 'function' ? value.bind(c) : value;
   },
 });

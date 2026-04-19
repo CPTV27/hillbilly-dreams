@@ -1345,7 +1345,6 @@ const ARTICLE_FIELDS = `
   body
 `;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapSanityToArticle(doc: any): Article {
   return {
     id: sanityIdToNumber(doc._id as string),
@@ -1376,8 +1375,7 @@ export async function getArticles(category?: string, city?: string): Promise<Art
     if (city) filter += ` && city == "${city}"`;
 
     const query = `*[${filter}] | order(publishedAt desc) { ${ARTICLE_FIELDS} }`;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const docs: any[] = await sanityClient.fetch(query);
+      const docs: any[] = await sanityClient.fetch(query);
 
     if (Array.isArray(docs) && docs.length > 0) {
       return docs.map(mapSanityToArticle);
@@ -1399,8 +1397,7 @@ export async function getArticles(category?: string, city?: string): Promise<Art
 export async function getArticleBySlugAsync(slug: string): Promise<Article | null> {
   try {
     const query = `*[_type == "article" && slug.current == $slug][0] { ${ARTICLE_FIELDS} }`;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const doc: any = await sanityClient.fetch(query, { slug });
+      const doc: any = await sanityClient.fetch(query, { slug });
 
     if (doc && doc._id) {
       return mapSanityToArticle(doc);
@@ -1418,8 +1415,7 @@ export async function getArticleBySlugAsync(slug: string): Promise<Article | nul
 export async function getArticleSlugs(): Promise<string[]> {
   try {
     const query = `*[_type == "article"] { "slug": slug.current }`;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const docs: any[] = await sanityClient.fetch(query);
+      const docs: any[] = await sanityClient.fetch(query);
     if (Array.isArray(docs) && docs.length > 0) {
       return docs.map((d) => d.slug as string).filter(Boolean);
     }
