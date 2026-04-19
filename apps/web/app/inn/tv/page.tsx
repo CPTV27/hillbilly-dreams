@@ -50,34 +50,34 @@ const CHANNELS = [
 ];
 
 const GALLERY_IMAGES = [
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/04d36e95fe24.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/0012e54eecc9.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/3ea8ea2fa58b.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/012d5deedd36.webp',
   'https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-inn-dusk.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/010e2ae9e8f2.webp',
 ];
 
 const VIDEO_SPOTS = [
   {
     brand: 'Deep South Directory',
     tagline: 'Main Street marketing for Main Street money.',
-    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp',
+    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/04d36e95fe24.webp',
   },
   {
     brand: 'Big Muddy Touring',
     tagline: 'We book the bands. We drive them there. We put them on the radio.',
-    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
+    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/0012e54eecc9.webp',
   },
   {
     brand: 'Big Muddy Magazine',
     tagline: 'Stories from the Deep South.',
-    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp',
+    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/012d5deedd36.webp',
   },
   {
     brand: 'Big Muddy Radio',
     tagline: 'The voice of the Mississippi region.',
-    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp',
+    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/010e2ae9e8f2.webp',
   },
   {
     brand: 'Big Muddy Entertainment',
@@ -87,27 +87,27 @@ const VIDEO_SPOTS = [
   {
     brand: 'Big Muddy Records',
     tagline: 'Artists keep their masters. We keep the system.',
-    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp',
+    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/3ea8ea2fa58b.webp',
   },
   {
     brand: 'Bearsville Creative',
     tagline: 'The northeast node. Woodstock, NY.',
-    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp',
+    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/04d36e95fe24.webp',
   },
   {
     brand: 'Outsider Economics',
     tagline: 'Field manual for building local economies.',
-    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
+    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/0012e54eecc9.webp',
   },
   {
     brand: 'Deep South Directory',
     tagline: 'Your Google listing says you close at 5. We can fix that.',
-    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp',
+    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/012d5deedd36.webp',
   },
   {
     brand: 'Big Muddy Touring',
     tagline: 'Every show has a 2:1 ecosystem multiplier.',
-    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp',
+    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/010e2ae9e8f2.webp',
   },
   {
     brand: 'Big Muddy Radio',
@@ -117,17 +117,17 @@ const VIDEO_SPOTS = [
   {
     brand: 'Big Muddy Records',
     tagline: '$3,000 per release. Not $50,000.',
-    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp',
+    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/3ea8ea2fa58b.webp',
   },
   {
     brand: 'Deep South Directory',
     tagline: 'Three hundred dollars for Birdeye. Ninety-nine for us.',
-    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp',
+    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/04d36e95fe24.webp',
   },
   {
     brand: 'Bearsville Creative',
     tagline: 'Same platform. Different region. Summer 2026.',
-    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
+    bg: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/0012e54eecc9.webp',
   },
 ];
 

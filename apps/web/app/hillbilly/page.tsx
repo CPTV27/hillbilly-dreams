@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const HERO_IMG =
   'https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-inn-dusk.webp';
 const SECOND_IMG =
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp';
+  'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/3ea8ea2fa58b.webp';
 
 const LINKS = [
   { label: 'Big Muddy Touring', href: 'https://bigmuddytouring.com/touring' },

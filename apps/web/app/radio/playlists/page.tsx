@@ -33,7 +33,7 @@ export default async function PlaylistsPage() {
       {/* ── Hero Header ── */}
       <section className="playlists-hero">
         <Image
-          src="https://storage.googleapis.com/bmt-media-bigmuddy/real/record-player.webp"
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/01cdce632e02.webp"
           alt="Vintage record player"
           fill
           priority

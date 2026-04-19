@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const HERO_GCS =
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp';
+  'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/04d36e95fe24.webp';
 
 const CATEGORIES = [
   {

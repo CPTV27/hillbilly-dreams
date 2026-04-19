@@ -128,9 +128,9 @@ export default async function MagazineHomepage() {
       </section>
 
       {/* ── Visual break (scroll — no fixed/parallax; avoids hero bleed-through) ── */}
-      <div className="mag-visual-break" role="img" aria-label="Natchez lounge at night">
+      <div className="mag-visual-break" role="img" aria-label="Natchez at twilight, from the bluff">
         <Image
-          src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-bluff-sunset.webp"
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/0276db0c2a71.webp"
           alt=""
           fill
           sizes="100vw"
@@ -201,10 +201,10 @@ export default async function MagazineHomepage() {
       {/* ── Region Photo Strip ── */}
       <section className="mag-photostrip">
         <div className="mag-photostrip__inner">
-          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/clarksdale-crossroads.webp" alt="Along the Deep South" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover', opacity: 0.7 }} />
-          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/oxford-square.webp" alt="Live oak canopy over Ocean Springs street" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-trace-parkway.webp" alt="Antebellum mansion with iron fence and carriage" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/vicksburg-bluffs.webp" alt="Teal shrimp boat at Ocean Springs marina" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/0012e54eecc9.webp" alt="Save the Hall Ball at Stanton Hall" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover', opacity: 0.7 }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/04d36e95fe24.webp" alt="Natchez evening" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/0ab181d7edc4.webp" alt="Natchez street scene" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/0ba475a34872.webp" alt="Inn morning light" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
         </div>
       </section>
 
@@ -260,10 +260,10 @@ export default async function MagazineHomepage() {
       {/* ── Real Photo Strip ── */}
       <section className="mag-photostrip">
         <div className="mag-photostrip__inner">
-          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/oxford-square.webp" alt="Cafe sidewalk scene in Natchez" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/greenville-levee.webp" alt="Ocean Springs to Natchez region" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover', opacity: 0.7 }} />
-          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/helena-river-levee.webp" alt="Pink azaleas cascading along Natchez sidewalk" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/magazine/jackson-capitol.webp" alt="Brick sidewalk with awnings on Natchez main street" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/silver-street-antiques-business-listing-exterior-only/02f176a93f99.webp" alt="Silver Street antiques storefront" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/12fdde05ff3c.webp" alt="Natchez side street" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover', opacity: 0.7 }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/silver-street-antiques-business-listing-exterior-only/0a44e0fe9946.webp" alt="Silver Street shop interior" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+          <Image src="https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/1b5ee67be06a.webp" alt="Natchez bluff afternoon" width={400} height={300} sizes="25vw" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
         </div>
       </section>
 

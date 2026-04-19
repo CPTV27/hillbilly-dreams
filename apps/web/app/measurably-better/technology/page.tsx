@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const IMG =
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp';
+  'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/0012e54eecc9.webp';
 
 export default function CorridorConnectionPage() {
   return (

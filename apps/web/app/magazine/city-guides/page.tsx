@@ -272,7 +272,7 @@ export default async function CityGuidesPage() {
           content: '';
           position: absolute;
           inset: 0;
-          background-image: url('https://storage.googleapis.com/bmt-media-bigmuddy/magazine/city-guides-hero.webp');
+          background-image: url('https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/3a8f1068383b.webp');
           background-size: cover;
           background-position: right center;
           background-repeat: no-repeat;

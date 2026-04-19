@@ -113,7 +113,7 @@ export const DEMO_ARTISTS: DemoArtist[] = [
     website: 'https://bigmuddytouring.com',
     featured: true,
     workCount: 12,
-    profileImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/musician-performing.webp',
+    profileImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/01b4f03c4156.webp',
   },
   {
     id: 'a5',
@@ -331,7 +331,7 @@ const CHASE_WORKS: DemoArtwork[] = [
     medium: 'Archival pigment print', dimensions: '16 × 24 inches', year: 2026,
     price: 25000, category: 'print', edition: 'Open edition',
     description: 'Live blues performance in the Blues Room at the Big Muddy Inn, Natchez. The harmonica player lit by a single stage spot. Shot on Sony A7ii.',
-    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp'],
+    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/010e2ae9e8f2.webp'],
     tags: ['blues', 'music', 'live', 'natchez', 'big-muddy-inn'], available: true, featured: true,
   },
   {
@@ -340,7 +340,7 @@ const CHASE_WORKS: DemoArtwork[] = [
     medium: 'Archival pigment print', dimensions: '20 × 30 inches', year: 2026,
     price: 35000, category: 'print', edition: 'Limited edition of 50',
     description: 'The full room — band, audience, bar, the energy of a Friday night in the Blues Room. This is what it looks like when the music is right and the room is full.',
-    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp'],
+    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/0012e54eecc9.webp'],
     tags: ['blues', 'music', 'venue', 'natchez', 'documentary'], available: true, featured: true,
   },
   {
@@ -349,7 +349,7 @@ const CHASE_WORKS: DemoArtwork[] = [
     medium: 'Archival pigment print', dimensions: '24 × 36 inches', year: 2026,
     price: 45000, category: 'print', edition: 'Limited edition of 25',
     description: 'The Mississippi at sunset from the Natchez bluff. The light turns the water to copper and the sky to bruise. This is the view that made us stay.',
-    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp'],
+    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/04d36e95fe24.webp'],
     tags: ['landscape', 'river', 'sunset', 'natchez', 'fine-art'], available: true, featured: true,
   },
   {
@@ -358,7 +358,7 @@ const CHASE_WORKS: DemoArtwork[] = [
     medium: 'Archival pigment print', dimensions: '16 × 20 inches', year: 2026,
     price: 20000, category: 'print', edition: 'Open edition',
     description: 'The entrance to the Big Muddy Inn. Andrea Brooks designed every detail — this photo tries to capture what it feels like to walk in for the first time.',
-    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp'],
+    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/3ea8ea2fa58b.webp'],
     tags: ['architecture', 'interior', 'big-muddy-inn', 'natchez'], available: true, featured: false,
   },
   {
@@ -367,7 +367,7 @@ const CHASE_WORKS: DemoArtwork[] = [
     medium: 'Archival pigment print', dimensions: '16 × 24 inches', year: 2025,
     price: 30000, category: 'print', edition: 'Limited edition of 50',
     description: 'The inside of a Delta juke joint. Christmas lights, wood paneling, a bar that\'s seen fifty years of Saturday nights. The kind of place that doesn\'t have a website.',
-    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp'],
+    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/012d5deedd36.webp'],
     tags: ['blues', 'documentary', 'interior', 'delta', 'juke-joint'], available: true, featured: true,
   },
   {
@@ -394,7 +394,7 @@ const CHASE_WORKS: DemoArtwork[] = [
     medium: 'Archival pigment print', dimensions: '11 × 14 inches', year: 2025,
     price: 15000, category: 'print', edition: 'Open edition',
     description: 'A turntable and a stack of records in the Blues Room. The analog life.',
-    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/real/record-player.webp'],
+    images: ['https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/01cdce632e02.webp'],
     tags: ['still-life', 'music', 'vinyl', 'analog'], available: true, featured: false,
   },
 ];

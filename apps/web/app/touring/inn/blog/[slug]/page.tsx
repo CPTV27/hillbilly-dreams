@@ -24,7 +24,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Music',
     date: '2026-03-15',
     readTime: '5 min',
-    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/0012e54eecc9.webp',
   },
   {
     slug: 'six-suites-six-legends',
@@ -34,7 +34,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'The Inn',
     date: '2026-03-10',
     readTime: '7 min',
-    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-blue-suite.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/0276db0c2a71.webp',
   },
   {
     slug: 'bubbles-bites-and-blues',
@@ -44,7 +44,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Experience',
     date: '2026-03-05',
     readTime: '6 min',
-    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/04d36e95fe24.webp',
   },
   {
     slug: 'gas-station-fried-chicken-at-midnight',
@@ -54,7 +54,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Food',
     date: '2026-02-28',
     readTime: '4 min',
-    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/eating-the-delta.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/0ba475a34872.webp',
   },
   {
     slug: 'the-blues-room-sessions',
@@ -64,7 +64,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Music',
     date: '2026-02-20',
     readTime: '5 min',
-    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-show.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/010e2ae9e8f2.webp',
   },
   {
     slug: 'meet-arri-b-aslin',
@@ -74,7 +74,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'People',
     date: '2026-02-15',
     readTime: '6 min',
-    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/musician-performing.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/012d5deedd36.webp',
   },
   {
     slug: 'what-to-do-in-natchez-beyond-the-antebellum',
@@ -84,7 +84,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Travel',
     date: '2026-02-10',
     readTime: '8 min',
-    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-bluff-sunset.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/3a8f1068383b.webp',
   },
   {
     slug: 'how-we-got-here',
@@ -94,7 +94,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'The Inn',
     date: '2026-02-05',
     readTime: '10 min',
-    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp',
+    image: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/3ea8ea2fa58b.webp',
   },
 ];
 

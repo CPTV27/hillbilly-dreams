@@ -29,17 +29,17 @@ const SPECS = [
 
 /** GCS library — same bucket as roadmap / gallery; works when /images/* is not in the deploy bundle */
 const HERO_STUDIO_SRC =
-  'https://storage.googleapis.com/bmt-media-bigmuddy/command/juke-joint.webp';
+  'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/0012e54eecc9.webp';
 
 const USE_CASE_IMAGES = [
   {
     title: 'Restaurant',
-    src: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp',
+    src: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/012d5deedd36.webp',
     alt: 'Warm juke-joint interior — Sovereign Pi can drive menus, listings, and signage',
   },
   {
     title: 'Hotel & inn',
-    src: 'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp',
+    src: 'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/3ea8ea2fa58b.webp',
     alt: 'Hotel lobby and hospitality setting — local AI for guests and operations',
   },
   {

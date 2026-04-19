@@ -36,12 +36,12 @@ const CHANNELS = [
 ];
 
 const GALLERY_IMAGES = [
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/mississippi-river.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/juke-joint-interior.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/04d36e95fe24.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/0012e54eecc9.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/3ea8ea2fa58b.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/012d5deedd36.webp',
   'https://storage.googleapis.com/bmt-media-bigmuddy/touring/touring-inn-dusk.webp',
-  'https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-harmonica.webp',
+  'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/010e2ae9e8f2.webp',
 ];
 
 export default function InRoomTVPage() {

@@ -511,7 +511,7 @@ export default function InnPage() {
             </div>
             <div className="inn-homebase__image">
               <Image
-                src="https://storage.googleapis.com/bmt-media-bigmuddy/real/inn-foyer.webp"
+                src="https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/legacy-starter/3ea8ea2fa58b.webp"
                 alt="The Big Muddy Inn foyer"
                 fill
                 placeholder="blur"

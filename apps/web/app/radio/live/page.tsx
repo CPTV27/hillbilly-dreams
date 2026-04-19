@@ -37,7 +37,7 @@ export default async function LivePage() {
       {/* ── Hero Header ── */}
       <section className="live-hero">
         <Image
-          src="https://storage.googleapis.com/bmt-media-bigmuddy/real/blues-room-live-show.webp"
+          src="https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/natchez/save-the-hall-ball/0012e54eecc9.webp"
           alt="Live performance at the Blues Room"
           fill
           priority
