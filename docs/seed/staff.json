@@ -1,0 +1,93 @@
+
+[
+  {
+    "_id": "staff.chase-pierson",
+    "_type": "staff",
+    "name": "Chase Pierson",
+    "slug": {
+      "_type": "slug",
+      "current": "chase-pierson"
+    },
+    "role": "CEO · Photography · Video · Code · Strategy",
+    "equityStatus": "equity_partner",
+    "brands": ["all"],
+    "shortBio": "Chase drives the overall vision and technical direction, leveraging his expertise across photography, video, code, and strategic development.",
+    "email": "me@chasepierson.tv",
+    "active": true
+  },
+  {
+    "_id": "staff.tracy-alderson-allen",
+    "_type": "staff",
+    "name": "Tracy Alderson-Allen",
+    "slug": {
+      "_type": "slug",
+      "current": "tracy-alderson-allen"
+    },
+    "role": "Innkeeper · MBT Executive · Magazine Editor",
+    "equityStatus": "equity_partner",
+    "brands": ["inn", "magazine"],
+    "shortBio": "Tracy masterfully manages our hospitality ventures and editorial content, ensuring every guest and reader feels truly at home.",
+    "email": "tracy@bigmuddyinn.com",
+    "active": true
+  },
+  {
+    "_id": "staff.amy-allen",
+    "_type": "staff",
+    "name": "Amy Allen",
+    "slug": {
+      "_type": "slug",
+      "current": "amy-allen"
+    },
+    "role": "Radio + Records · Performing Artist",
+    "equityStatus": "equity_partner",
+    "brands": ["radio", "records", "touring"],
+    "shortBio": "Amy brings vibrant energy to our audio projects and live performances, captivating audiences with her unique artistic voice.",
+    "email": "amy@bigmuddyradio.com",
+    "active": true
+  },
+  {
+    "_id": "staff.elijah-tuthill",
+    "_type": "staff",
+    "name": "Elijah Tuthill",
+    "slug": {
+      "_type": "slug",
+      "current": "elijah-tuthill"
+    },
+    "role": "Tuthill Design LLC co-owner",
+    "equityStatus": "team_member",
+    "brands": ["tuthill", "studio-c", "cpp"],
+    "shortBio": "Elijah leads creative design initiatives, bringing distinctive visual solutions to a diverse range of projects.",
+    "email": "elijah@tuthilldesign.com",
+    "active": true
+  },
+  {
+    "_id": "staff.miles",
+    "_type": "staff",
+    "name": "Miles",
+    "slug": {
+      "_type": "slug",
+      "current": "miles"
+    },
+    "role": "Studio C production team member",
+    "equityStatus": "team_member",
+    "brands": ["studio-c", "tuthill"],
+    "shortBio": "Miles is a key player in Studio C's production efforts, ensuring smooth operations and high-quality output.",
+    "email": null,
+    "active": true
+  },
+  {
+    "_id": "staff.cos",
+    "_type": "staff",
+    "name": "Cos",
+    "slug": {
+      "_type": "slug",
+      "current": "cos"
+    },
+    "role": "Chief of Staff (AI agent)",
+    "equityStatus": "team_member",
+    "brands": ["mbt"],
+    "shortBio": "AI Chief of Staff agent. Orchestrates the project queue, commits code, fans context across the system.",
+    "email": null,
+    "active": true
+  }
+]

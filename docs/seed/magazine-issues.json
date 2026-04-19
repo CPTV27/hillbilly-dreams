@@ -1,0 +1,47 @@
+
+[
+  {
+    "_id": "magazineIssue.spring-2026",
+    "_type": "magazineIssue",
+    "title": "Spring 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "spring-2026"
+    },
+    "publishedAt": "2026-05-01T00:00:00Z",
+    "deck": "Welcome to the inaugural edition of Big Muddy Magazine. This issue sets the stage for our exploration of the region's unique culture and natural beauty, designed for our discerning guests."
+  },
+  {
+    "_id": "magazineIssue.summer-2026",
+    "_type": "magazineIssue",
+    "title": "Summer 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "summer-2026"
+    },
+    "publishedAt": null,
+    "deck": "Anticipate our next collection of stories and photography, capturing the spirit of the season. Further details will be provided upon publication."
+  },
+  {
+    "_id": "magazineIssue.fall-2026",
+    "_type": "magazineIssue",
+    "title": "Fall 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "fall-2026"
+    },
+    "publishedAt": null,
+    "deck": "Preparations are underway for our autumn issue. Expect thoughtful narratives and compelling visuals reflecting the changing landscape."
+  },
+  {
+    "_id": "magazineIssue.winter-2026",
+    "_type": "magazineIssue",
+    "title": "Winter 2026",
+    "slug": {
+      "_type": "slug",
+      "current": "winter-2026"
+    },
+    "publishedAt": null,
+    "deck": "Our final issue of the year will offer perspectives on the region's winter character. Content development is in progress."
+  }
+]

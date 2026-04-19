@@ -1,0 +1,54 @@
+{
+  "model": "gemini-2.5-flash",
+  "concurrency": 5,
+  "tasks": [
+    {
+      "id": "seed-plans-retry",
+      "outputPath": "docs/seed/plans.json",
+      "system": "Output ONLY valid JSON array. No markdown fences. No preamble. No trailing commentary.",
+      "prompt": "Generate exactly 17 Plan JSON records. Keep each record compact to fit token budget. Shape: { id, tenantId, brand, slug, name, description, priceCents, currency: 'usd', interval, intervalCount, trialDays, active: true, features (string array max 5 items), platformFeePercent }.\n\nRecords:\n1-3. Records (brand: records, tenantId: big-muddy, feePercent: 20): records-silver $75/mo, records-gold $300/mo, records-platinum $1200/mo\n4-6. Tuthill (brand: tuthill, tenantId: tuthill, feePercent: 25): tuthill-essentials $400/mo, tuthill-pro $1000/mo, tuthill-premium $2500/mo\n7-10. Radio sponsor (brand: radio, tenantId: big-muddy, feePercent: 15): radio-single-episode $200 one_time, radio-monthly $650/mo, radio-quarterly $2100 (interval month, count 3), radio-annual-title $20000 year\n11-15. DSD (brand: dsd, tenantId: big-muddy, feePercent: 0): dsd-free $0 one_time, dsd-essentials $25, dsd-pro $50, dsd-marketing $99, dsd-engine $250\n16. Inn (brand: inn, tenantId: big-muddy, feePercent: 0): inn-weekender-package $450 one_time\n17. Touring (brand: touring, tenantId: big-muddy, feePercent: 20): touring-season-sponsor $3000 year\n\nKeep descriptions to 1 sentence. Features: exactly 3-5 concrete bullets each. Output valid JSON array, nothing else.",
+      "skipHeader": true,
+      "maxTokens": 12000
+    },
+    {
+      "id": "social-inn-retry",
+      "outputPath": "docs/seed/social-calendar/big-muddy-inn-90day.json",
+      "system": "Output ONLY valid JSON array. No markdown fences.",
+      "prompt": "Generate a 30-day (not 90-day) social calendar for Big Muddy Inn. Cadence 3/week = 13 posts. Shape: { id, brand: 'inn', date (ISO), platform, postType, copy, hashtags (max 3), imageDirection (1 sentence), contentCategory }. Voice: docs/voice/big-muddy-inn.md. Dates 2026-05-01 onward. Output valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 10000
+    },
+    {
+      "id": "social-magazine-retry",
+      "outputPath": "docs/seed/social-calendar/big-muddy-magazine-90day.json",
+      "system": "Output ONLY valid JSON array.",
+      "prompt": "30-day social calendar for Big Muddy Magazine. 2/week = 9 posts. Same shape. Magazine voice. Output valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 8000
+    },
+    {
+      "id": "social-radio-retry",
+      "outputPath": "docs/seed/social-calendar/big-muddy-radio-90day.json",
+      "system": "Output ONLY valid JSON array.",
+      "prompt": "30-day social calendar for Big Muddy Radio. Daily IG Story + weekly episode promo = ~35 posts. Same shape. Keep each copy field short (1-2 sentences max). Music-first voice. Output valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 14000
+    },
+    {
+      "id": "social-records-retry",
+      "outputPath": "docs/seed/social-calendar/big-muddy-records-90day.json",
+      "system": "Output ONLY valid JSON array.",
+      "prompt": "30-day social calendar for Big Muddy Records. 2/week = 9 posts. Same shape. Indie label voice. Output valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 8000
+    },
+    {
+      "id": "social-tuthill-retry",
+      "outputPath": "docs/seed/social-calendar/tuthill-design-90day.json",
+      "system": "Output ONLY valid JSON array.",
+      "prompt": "30-day social calendar for Tuthill Design. Daily = 30 posts. Same shape. Keep copy concise. Realtor-respectful voice. Output valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 14000
+    }
+  ]
+}

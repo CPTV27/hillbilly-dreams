@@ -1,0 +1,90 @@
+{
+  "model": "gemini-2.5-flash",
+  "concurrency": 8,
+  "tasks": [
+    {
+      "id": "vicki-follow-up-6month",
+      "outputPath": "docs/partners/vicki-wolpert/06-email-6month-review.md",
+      "system": "Email to a longtime customer now on the MBT platform for 6 months. Output markdown with Subject + Body. Warm, realtor-respectful, never sales-y.",
+      "prompt": "6-month review email from Chase to Vicki Wolpert (KW realtor in Athens, NY). Reference: `docs/onboarding/vicki-wolpert.md`. Tone: checking in as a partner, not selling. Cover: concrete metrics of her last 6 months on the platform [PLACEHOLDER] (listings shot, social posts published, leads attributed), what's worked, what hasn't, soft ask about adding 2 more agents in her brokerage. Schedule a 30-min strategic review call. Markdown. ~350 words.",
+      "maxTokens": 2500
+    },
+    {
+      "id": "vicki-follow-up-1year",
+      "outputPath": "docs/partners/vicki-wolpert/07-email-1year-renewal.md",
+      "system": "Same tone as 6-month.",
+      "prompt": "1-year renewal email to Vicki. Tone: proud of the partnership, honest about ongoing work. Reference year-over-year [METRIC PLACEHOLDERS]. Proposal: renew for year 2, add [value-add or slight tier adjustment]. Thank her for being the first external tenant. Markdown. ~400 words.",
+      "maxTokens": 2500
+    },
+    {
+      "id": "vicki-follow-up-referral",
+      "outputPath": "docs/partners/vicki-wolpert/08-email-referral-ask.md",
+      "system": "Same tone.",
+      "prompt": "Referral ask email to Vicki after 9 months of successful service. Soft, specific: we're looking to onboard 3 more realtors in the Hudson Valley this quarter — any KW or neighboring brokerage colleagues she'd vouch for? Offer: $500 platform credit for every realtor referral that signs. Markdown. ~300 words.",
+      "maxTokens": 2000
+    },
+    {
+      "id": "paul-green-pilot-proposal",
+      "outputPath": "docs/partners/paul-green-realty/pilot-proposal.md",
+      "system": "You are writing a 5-agent pilot proposal for a Natchez real estate brokerage. Output markdown. Broker-respectful, specific, pricing transparent.",
+      "prompt": "Write the Paul Green Realty 5-agent pilot proposal. Sections: cover page / exec summary / the pilot scope (5 agents × 90 days) / what we deliver (production capacity + per-agent dashboard + unified social + listing syndication) / what the brokerage provides (5 agents willing to try it) / pricing (broker license + per-agent monthly + production retainer hours — REAL ranges) / success metrics (listings shot, social engagement, leads attributed) / week-by-week timeline / pilot → full-brokerage path / next steps.\n\nDraw from docs/marketing-copy/paul-green-realty-pitch-onepager.md for voice + facts. Founder pricing emphasized (they're the first broker-tier client). Markdown. ~2500 words.",
+      "maxTokens": 7000
+    },
+    {
+      "id": "paul-green-pre-meeting-email",
+      "outputPath": "docs/partners/paul-green-realty/pre-meeting-email.md",
+      "system": "Email from Chase to Paul Green before the in-person meeting. Subject + Body. Direct, broker-respectful.",
+      "prompt": "Pre-meeting email Chase sends to Paul Green ~48 hours before the in-person pitch. Subject line. Body: confirm meeting time, attach pre-meeting video (docs/video-scripts/paul-green-pre-meeting-2min.md), link to the pilot proposal, ask him to bring 2-3 agents who'd be on the pilot. Markdown. ~200 words.",
+      "maxTokens": 2000
+    },
+    {
+      "id": "paul-green-followup-sequence",
+      "outputPath": "docs/partners/paul-green-realty/post-meeting-followups.md",
+      "system": "3-email follow-up sequence after the pitch meeting. Markdown with labeled emails.",
+      "prompt": "Post-meeting follow-up email sequence:\n1. Same-day thank-you: 1-paragraph summary of what we discussed + link to the proposal + 2-week decision window\n2. Day 7: honest check-in — any concerns from the agents? Any blockers? Offer to get on a call with the agents directly.\n3. Day 14: decision deadline nudge — founder pricing closes, but genuine willingness to extend if they need more time. Alternate path: shrink pilot to 2-3 agents if 5 is too many.\n\nVoice: Chase direct, never sales-y, never 'just following up'. Markdown. ~1500 words total.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "david-baron-invitation",
+      "outputPath": "docs/partners/david-baron/01-invitation-email.md",
+      "system": "Personalized email to a Woodstock producer inviting him into the Bearsville Recording Studios book project. Photographer's voice.",
+      "prompt": "Email from Chase to David Baron (Woodstock producer). Subject + Body. Tone: peer-to-peer, photographer-to-producer. Reference: his studio (Chase wants to photograph it). Offer: half-day shoot at his space, he's a subject in the book + magazine feature + content stream. Ask: 30-min call this week. Attach link to the book pitch (docs/marketing-copy/bearsville-recording-studios-book-pitch.md). Markdown. ~300 words.",
+      "maxTokens": 2000
+    },
+    {
+      "id": "david-baron-prep-checklist",
+      "outputPath": "docs/partners/david-baron/02-shoot-day-prep.md",
+      "system": "Technical prep checklist sent ~7 days before the shoot. Output markdown.",
+      "prompt": "Shoot-day prep checklist for David Baron's studio. Sections: what Chase brings (Sony a7 V + 70-200 GM II + wireless TX per the kit brief) / what we'd like access to (studio, control room, outboard gear, maybe a session mid-shoot if possible) / what David decides (what gear is on / what's off — nothing gets 'staged') / timing (4 hours max) / usage rights (photos for book + Magazine + MBT-Bearsville content stream; master files to David) / post-shoot follow-up. Markdown. ~600 words.",
+      "maxTokens": 3000
+    },
+    {
+      "id": "utopia-studios-invitation",
+      "outputPath": "docs/partners/utopia-studios/01-invitation-email.md",
+      "system": "Same photographer-to-studio tone as David Baron.",
+      "prompt": "Invitation email to Utopia Studios (Bearsville, NY). Address to whoever runs it day-to-day. Same structure as David Baron invitation — shoot offer, book context, 30-min call ask. Markdown. ~300 words.",
+      "maxTokens": 2000
+    },
+    {
+      "id": "clubhouse-studios-invitation",
+      "outputPath": "docs/partners/clubhouse-studios/01-invitation-email.md",
+      "system": "Same tone.",
+      "prompt": "Invitation email to Clubhouse Studios (Bearsville/Woodstock area). Same structure as Utopia/David Baron. Markdown. ~300 words.",
+      "maxTokens": 2000
+    },
+    {
+      "id": "regina-charboneau-checkin",
+      "outputPath": "docs/partners/biscuits-and-blues/01-checkin-email.md",
+      "system": "Email to an existing partner / friend with an honest expanded-scope proposal. Warm, partner-respectful.",
+      "prompt": "Email from Chase to Regina Charboneau (Biscuits & Blues). Subject + Body. She's an existing longtime Big Muddy partner — Inn catering, Blues Room events, media collaborations. Tone: checking in, not pitching. Reference what we've done together. Propose: formalizing some of the informal collaboration via a light DSD listing + occasional Radio promo placement. No aggressive upsell. Markdown. ~400 words.",
+      "maxTokens": 2500
+    },
+    {
+      "id": "dsd-pilot-welcomes",
+      "outputPath": "docs/partners/dsd-pilot-businesses/welcome-per-business-type.md",
+      "system": "5 tailored welcome messages for the first 5 DSD pilot businesses (different business types). Output markdown with labeled sections.",
+      "prompt": "Write 5 custom welcome emails for the first 5 DSD pilot businesses, one per business type:\n1. Independent restaurant (Natchez, MS)\n2. Boutique hotel (Vicksburg, MS)\n3. Music-adjacent retail (record store or instrument shop)\n4. Live venue (small — 100-300 cap)\n5. Local festival or event series\n\nEach email: subject + body + one concrete next step. Tailored language per business type. ~250 words each. Markdown.",
+      "maxTokens": 4000
+    }
+  ]
+}

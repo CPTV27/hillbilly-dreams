@@ -1,0 +1,237 @@
+
+[
+  {
+    "day": 3,
+    "date": "2023-10-03",
+    "platform": "IG Reels",
+    "theme": "Behind-the-Scenes Production",
+    "caption_idea": "Rolling deep into pre-production. It's all in the details before we hit 'record.' From concept to storyboard, laying the groundwork for something epic. #PreProduction #StudioLife #MakingMovies",
+    "visual_idea": "Fast-paced montage of concept art, storyboard sketches, crew huddle, equipment prep, maybe a quick shot of a script being reviewed. Focus on the energy of preparation.",
+    "hashtags": ["#StudioC", "#ProductionFlow", "#BTS", "#FilmMaking", "#CreativeProcess"]
+  },
+  {
+    "day": 5,
+    "date": "2023-10-05",
+    "platform": "IG Feed",
+    "theme": "Client Win",
+    "caption_idea": "Another win on the board! Our latest project for [Client Name] is out, driving serious engagement. When vision meets execution, results speak volumes. Congrats to the whole team! #ClientSuccess #ProjectLaunch #ImpactfulVideo",
+    "visual_idea": "High-quality still image or screenshot from the finished client project, perhaps with a small Studio C logo overlay. Could also be a candid photo of the team celebrating.",
+    "hashtags": ["#StudioC", "#VideoMarketing", "#ClientSpotlight", "#SuccessStory", "#ProductionExcellence"]
+  },
+  {
+    "day": 10,
+    "date": "2023-10-10",
+    "platform": "IG Reels",
+    "theme": "Gear Spotlight",
+    "caption_idea": "Our workhorse on set: The [Specific Camera Model, e.g., ARRI ALEXA Mini LF]. It's not about the gear, it's about the story it helps us tell. But having the right tools? Game changer. #CameraTech #FilmMakersToolbox #DialingItIn",
+    "visual_idea": "Dynamic B-roll of the camera being prepped, rigged, and used on set. Close-ups of its features, quick cuts showing its versatility. Emphasize its role in achieving a specific shot/look.",
+    "hashtags": ["#StudioC", "#GearHead", "#Cinematography", "#ProductionGear", "#TechTuesday"]
+  },
+  {
+    "day": 12,
+    "date": "2023-10-12",
+    "platform": "IG Feed",
+    "theme": "Event Shoots",
+    "caption_idea": "On location, capturing the pulse of [Event Type/Name]. From stage to audience, we ensure no moment is missed. Live events demand precision and agility. #EventCoverage #LiveProduction #OnSite",
+    "visual_idea": "Wide, dynamic shot from a recent event shoot, showing the scale and energy. Could include a subtle shot of Studio C crew in action (from behind, not overly posed).",
+    "hashtags": ["#StudioC", "#EventVideo", "#CorporateEvents", "#LiveStream", "#BehindTheLens"]
+  },
+  {
+    "day": 17,
+    "date": "2023-10-17",
+    "platform": "IG Reels",
+    "theme": "Behind-the-Scenes Production",
+    "caption_idea": "That 'it's a wrap' feeling. Long hours, focused minds, and a whole lot of creative energy. The set breakdown is just as critical as the build. #OnSetLife #ProductionCrew #WrapDay",
+    "visual_idea": "Montage of the final moments on set – packing up gear, crew high-fives, director calling 'wrap,' maybe a quick shot of the empty set. Show the collaborative effort.",
+    "hashtags": ["#StudioC", "#Filming", "#BTS", "#ProductionTeam", "#HardWorkPaysOff"]
+  },
+  {
+    "day": 19,
+    "date": "2023-10-19",
+    "platform": "IG Feed",
+    "theme": "Client Win",
+    "caption_idea": "Proud to showcase the latest from Studio C: a compelling brand story for [Client Industry, e.g., a local startup]. Helping businesses connect with their audience, one frame at a time. #BrandStorytelling #VideoContent #MarketingSuccess",
+    "visual_idea": "A compelling still image or key art from the client's brand story video. Could be a testimonial quote graphic with the video playing in the background.",
+    "hashtags": ["#StudioC", "#BrandedContent", "#ClientLove", "#DigitalMarketing", "#CreativeAgency"]
+  },
+  {
+    "day": 24,
+    "date": "2023-10-24",
+    "platform": "IG Reels",
+    "theme": "Event Shoots",
+    "caption_idea": "Capturing the magic of live performance. From the stage lights to the crowd's reaction, we're there to bottle that energy. Pure adrenaline. #LivePerformance #ConcertVideo #DynamicShots",
+    "visual_idea": "Fast-cut montage of various angles from a live event – close-ups of performers, wide shots of the venue, audience reactions, dynamic camera movements.",
+    "hashtags": ["#StudioC", "#EventVideography", "#MusicVideoProduction", "#ConcertFilming", "#ProductionVibes"]
+  },
+  {
+    "day": 26,
+    "date": "2023-10-26",
+    "platform": "IG Feed",
+    "theme": "Gear Spotlight",
+    "caption_idea": "Sound is half the picture. Our [Specific Audio Gear, e.g., Sennheiser MKH 416] is crucial for capturing crisp, clean dialogue and immersive soundscapes. Don't underestimate the power of good audio. #SoundDesign #AudioGear #ProductionEssentials",
+    "visual_idea": "A clean, well-lit photo of the microphone or audio recorder, perhaps in use on set or in a sound booth. Focus on its quality and importance.",
+    "hashtags": ["#StudioC", "#SoundEngineer", "#AudioProduction", "#FilmMakingTips", "#QualityAudio"]
+  },
+  {
+    "day": 31,
+    "date": "2023-10-31",
+    "platform": "IG Reels",
+    "theme": "Behind-the-Scenes Production",
+    "caption_idea": "Halloween on set! Not just costumes, but crafting the perfect 'mood.' Our lighting crew is dialing in those spooky vibes. #LightingDesign #MoodSetting #SetLife",
+    "visual_idea": "Short, spooky-themed BTS video. Show the lighting crew adjusting gels, haze machines, or creating dramatic shadows. Maybe a crew member in a subtle costume.",
+    "hashtags": ["#StudioC", "#BTS", "#FilmingHalloween", "#ProductionLighting", "#CreativeLighting"]
+  },
+  {
+    "day": 33,
+    "date": "2023-11-02",
+    "platform": "IG Feed",
+    "theme": "Client Win",
+    "caption_idea": "Proud to deliver a powerful testimonial video series for [Client Company]. Authentic stories, expertly told. Nothing beats real voices. #TestimonialVideo #ClientStories #AuthenticContent",
+    "visual_idea": "A compelling still image from one of the testimonial videos, perhaps a split screen showing the interviewee and a relevant product/service. Or a graphic highlighting a key quote.",
+    "hashtags": ["#StudioC", "#VideoMarketing", "#CustomerStories", "#ContentCreation", "#Storytelling"]
+  },
+  {
+    "day": 38,
+    "date": "2023-11-07",
+    "platform": "IG Feed",
+    "theme": "Gear Spotlight",
+    "caption_idea": "The heart of our post-production: [Specific Editing Software, e.g., DaVinci Resolve Studio]. Where raw footage transforms into polished narratives. The edit suite is where the magic truly happens. #PostProduction #EditingSuite #ColorGrading",
+    "visual_idea": "Clean shot of an editing workstation with DaVinci Resolve (or similar) open, showing a complex timeline or color grading interface. Emphasize the craft.",
+    "hashtags": ["#StudioC", "#VideoEditing", "#PostHouse", "#CreativeTools", "#FilmMakingSoftware"]
+  },
+  {
+    "day": 40,
+    "date": "2023-11-09",
+    "platform": "IG Reels",
+    "theme": "Event Shoots",
+    "caption_idea": "From concept to screen, capturing the essence of [Type of Event, e.g., a corporate conference]. Our team thrives on the energy of live events. #CorporateVideo #ConferenceCoverage #EventProfs",
+    "visual_idea": "Energetic montage of a corporate event – speakers on stage, networking, audience engagement, Studio C crew (discreetly) filming. Show the professional atmosphere.",
+    "hashtags": ["#StudioC", "#EventMarketing", "#BusinessEvents", "#LiveCapture", "#ProfessionalVideo"]
+  },
+  {
+    "day": 45,
+    "date": "2023-11-14",
+    "platform": "IG Reels",
+    "theme": "Behind-the-Scenes Production",
+    "caption_idea": "The unsung heroes: our grip and electric team. Moving mountains (of gear) to make the vision a reality. Precision and safety, always. #GripAndElectric #FilmCrew #BehindTheScenes",
+    "visual_idea": "Action shots of grips and gaffers setting up lights, moving dollies, rigging equipment. Show the physical effort and coordination involved.",
+    "hashtags": ["#StudioC", "#SetLife", "#ProductionTeam", "#LightingCrew", "#FilmProduction"]
+  },
+  {
+    "day": 47,
+    "date": "2023-11-16",
+    "platform": "IG Feed",
+    "theme": "Client Win",
+    "caption_idea": "Unveiling a fresh product launch video for [Product Name/Brand]. Crafting compelling visuals that highlight innovation and drive excitement. Ready for takeoff! #ProductLaunch #MarketingVideo #Innovation",
+    "visual_idea": "Sleek, high-production still from the product launch video, showcasing the product in its best light. Or a graphic announcing the video's release.",
+    "hashtags": ["#StudioC", "#CommercialVideo", "#ProductShowcase", "#BrandBuilding", "#CreativeMarketing"]
+  },
+  {
+    "day": 52,
+    "date": "2023-11-21",
+    "platform": "IG Feed",
+    "theme": "Event Shoots",
+    "caption_idea": "Documenting history in the making. Covered [Specific Type of Event, e.g., a groundbreaking ceremony] today. These moments deserve to be preserved with cinematic quality. #HistoricEvents #DocumentaryStyle #PreservingMoments",
+    "visual_idea": "A powerful still image from a more formal or significant event, focusing on key figures or symbolic actions. Emphasize gravitas and importance.",
+    "hashtags": ["#StudioC", "#EventHistory", "#SpecialEvents", "#VisualStorytelling", "#ProfessionalCapture"]
+  },
+  {
+    "day": 54,
+    "date": "2023-11-23",
+    "platform": "IG Reels",
+    "theme": "Gear Spotlight",
+    "caption_idea": "Smooth moves only. Our [Specific Gimbal/Stabilizer, e.g., DJI Ronin] keeps everything buttery, even in the most dynamic shots. Essential for that cinematic feel. #GimbalWork #CameraMovement #StabilizedShot",
+    "visual_idea": "Reel showing the gimbal in action, perhaps a split screen showing shaky footage vs. stabilized footage. Focus on the smooth results it delivers.",
+    "hashtags": ["#StudioC", "#FilmMakingGear", "#CameraOperator", "#SmoothOperator", "#TechThursday"]
+  },
+  {
+    "day": 59,
+    "date": "2023-11-28",
+    "platform": "IG Reels",
+    "theme": "Behind-the-Scenes Production",
+    "caption_idea": "From the director's chair to the monitor. Every frame is scrutinized, every detail perfected. That's the Studio C standard. #DirectorLife #Monitoring #QualityControl",
+    "visual_idea": "Quick cuts showing the director/DP looking at a monitor, reviewing takes, giving feedback. Show the intensity and focus of on-set decision-making.",
+    "hashtags": ["#StudioC", "#FilmingProcess", "#BTS", "#CreativeDirection", "#SetVibes"]
+  },
+  {
+    "day": 61,
+    "date": "2023-11-30",
+    "platform": "IG Feed",
+    "theme": "Client Win",
+    "caption_idea": "Closing out November with another success! Our recent explainer video for [Client Service/Product] is simplifying complex ideas for thousands. Clarity is key. #ExplainerVideo #ComplexMadeSimple #EducationalContent",
+    "visual_idea": "A clean, engaging still from the explainer video, perhaps highlighting an animation or a key visual metaphor used to explain the concept.",
+    "hashtags": ["#StudioC", "#AnimatedVideo", "#SaaSMarketing", "#VideoForBusiness", "#ClearCommunication"]
+  },
+  {
+    "day": 66,
+    "date": "2023-12-05",
+    "platform": "IG Feed",
+    "theme": "Gear Spotlight",
+    "caption_idea": "Powering our vision: [Specific Lighting Kit/LED Panel, e.g., Aputure 600d Pro]. Shaping light, painting scenes. It's all about control and creativity. #LightingGear #CinematicLighting #LightShaping",
+    "visual_idea": "A visually appealing shot of the lighting fixture in action on set, or a close-up highlighting its features. Emphasize how it creates mood and atmosphere.",
+    "hashtags": ["#StudioC", "#FilmLighting", "#GafferLife", "#ProductionTech", "#CreativeTools"]
+  },
+  {
+    "day": 68,
+    "date": "2023-12-07",
+    "platform": "IG Reels",
+    "theme": "Event Shoots",
+    "caption_idea": "The energy of sports, captured. From the roar of the crowd to the intensity of the moment, we bring the action to life. #SportsVideography #ActionShots #GameDay",
+    "visual_idea": "High-energy montage of various sports event shots – slow-motion replays, crowd reactions, close-ups of athletes, dynamic camera moves.",
+    "hashtags": ["#StudioC", "#SportsProduction", "#LiveSports", "#DynamicVideo", "#Adrenaline"]
+  },
+  {
+    "day": 73,
+    "date": "2023-12-12",
+    "platform": "IG Reels",
+    "theme": "Behind-the-Scenes Production",
+    "caption_idea": "In the edit suite, where the story finds its rhythm. Hours of footage, distilled into magic. The craft of post-production never ceases to amaze. #VideoEditing #PostProductionMagic #Storytelling",
+    "visual_idea": "Time-lapse of an editor working, quick cuts showing different stages of the edit (raw footage, cut sequence, color grade, sound mix). Focus on the transformation.",
+    "hashtags": ["#StudioC", "#EditBay", "#FinalCut", "#PostHouse", "#CreativeFlow"]
+  },
+  {
+    "day": 75,
+    "date": "2023-12-14",
+    "platform": "IG Feed",
+    "theme": "Client Win",
+    "caption_idea": "Wrapping up the year strong! Our latest recruitment video for [Company Name] is helping them attract top talent. Invest in your people, invest in your story. #RecruitmentVideo #EmployerBranding #TalentAcquisition",
+    "visual_idea": "An inspiring still from the recruitment video, showing diverse talent or a positive work environment. Could feature a strong quote from an employee.",
+    "hashtags": ["#StudioC", "#HRMarketing", "#CorporateCulture", "#WorkplaceVideo", "#AttractTalent"]
+  },
+  {
+    "day": 80,
+    "date": "2023-12-19",
+    "platform": "IG Feed",
+    "theme": "Event Shoots",
+    "caption_idea": "Festive spirit, captured. Covering [Holiday Event Name] and bringing the joy to screen. Happy holidays from the Studio C crew! #HolidayEvent #FestiveVideo #CommunityEvents",
+    "visual_idea": "Warm, inviting still from a holiday-themed event, showing decorations, happy faces, or a performance. Emphasize the festive atmosphere.",
+    "hashtags": ["#StudioC", "#SeasonalContent", "#EventHighlight", "#JoyfulMoments", "#HolidayProduction"]
+  },
+  {
+    "day": 82,
+    "date": "2023-12-21",
+    "platform": "IG Reels",
+    "theme": "Gear Spotlight",
+    "caption_idea": "Our aerial perspective machine: The [Specific Drone Model, e.g., DJI Inspire 3]. Elevating storytelling, literally. The sky's the limit for cinematic shots. #DroneFilming #AerialCinematography #BirdsEyeView",
+    "visual_idea": "Dynamic shots of the drone taking off, flying, and capturing stunning aerial footage. Show impressive clips from actual drone shoots.",
+    "hashtags": ["#StudioC", "#DronePilot", "#AerialVideo", "#FilmMakingTech", "#POV"]
+  },
+  {
+    "day": 87,
+    "date": "2023-12-26",
+    "platform": "IG Reels",
+    "theme": "Behind-the-Scenes Production",
+    "caption_idea": "Post-holiday grind is real. Straight back into the studio, planning Q1 projects. The whiteboard is our canvas for what's next. #NewProjects #PlanningSession #StudioVibes",
+    "visual_idea": "Quick cuts of team members brainstorming, writing on a whiteboard, sketching ideas, looking at mood boards. Show the start of a new creative cycle.",
+    "hashtags": ["#StudioC", "#CreativeProcess", "#PreProduction", "#TeamWork", "#FutureProjects"]
+  },
+  {
+    "day": 89,
+    "date": "2023-12-28",
+    "platform": "IG Feed",
+    "theme": "Event Shoots",
+    "caption_idea": "Reflecting on a year of incredible events. From intimate gatherings to massive festivals, we've documented it all. What an epic journey! #YearInReview #EventHighlights #MakingMemories",
+    "visual_idea": "A collage or carousel of the best event shots from the past year, or a single powerful image representing the culmination of a year's work. A 'best of' compilation.",
+    "hashtags": ["#StudioC", "#EventRecap", "#ProductionJourney", "#ThanksForTheMemories", "#LookingForward"]
+  }
+]

@@ -1,0 +1,309 @@
+
+[
+  {
+    "day": 1,
+    "platform": "Instagram Story",
+    "type": "Daily Vibe Check",
+    "media_suggestion": "Short video clip with an upbeat, lesser-known track playing. Host gives a thumbs up.",
+    "copy": "Kicking off the month with a killer groove! What's the first track setting your vibe today?",
+    "hashtags": ["#BigMuddyRadio", "#MusicVibes", "#GoodMorningTunes"],
+    "call_to_action": "Tap to share your song!"
+  },
+  {
+    "day": 2,
+    "platform": "Instagram Story",
+    "type": "Music Fact Friday",
+    "media_suggestion": "Static image with a cool music fact overlay. (e.g., 'Did you know the theremin was the first electronic instrument?')",
+    "copy": "Drop some knowledge! What's a wild music fact that blew your mind? Share it with us!",
+    "hashtags": ["#BigMuddyRadio", "#MusicFacts", "#DidYouKnow"],
+    "call_to_action": "Ask me a music question!"
+  },
+  {
+    "day": 3,
+    "platform": "Instagram Story",
+    "type": "Behind the Mic",
+    "media_suggestion": "Boomerang of host tapping the mic or adjusting headphones in the studio.",
+    "copy": "Getting ready to hit the airwaves and unleash some sonic goodness. What tracks are you hoping to hear?",
+    "hashtags": ["#BigMuddyRadio", "#RadioLife", "#BehindTheScenes"],
+    "call_to_action": "Send us your requests!"
+  },
+  {
+    "day": 4,
+    "platform": "Instagram Story",
+    "type": "This or That Poll",
+    "media_suggestion": "Poll sticker: 'Vinyl or Streaming?' with a cool graphic.",
+    "copy": "The ultimate music debate! Where do you stand on the great listening format war?",
+    "hashtags": ["#BigMuddyRadio", "#MusicPoll", "#VinylVsStreaming"],
+    "call_to_action": "Vote now!"
+  },
+  {
+    "day": 5,
+    "platform": "Instagram Story",
+    "type": "New Music Tease",
+    "media_suggestion": "15-second snippet of an unreleased or very new track we'll play soon. Album art on screen.",
+    "copy": "Got something fresh brewing for your ears! This track is about to drop and it's a game-changer.",
+    "hashtags": ["#BigMuddyRadio", "#NewMusic", "#MusicDiscovery"],
+    "call_to_action": "Guess the artist!"
+  },
+  {
+    "day": 6,
+    "platform": "Instagram Story",
+    "type": "Throwback Jam",
+    "media_suggestion": "Short clip from an iconic music video or album cover from a past decade.",
+    "copy": "Taking it back to a classic that still hits hard! What's your go-to throwback anthem?",
+    "hashtags": ["#BigMuddyRadio", "#Throwback", "#ClassicTunes"],
+    "call_to_action": "Which era next?"
+  },
+  {
+    "day": 7,
+    "platform": "Instagram Story",
+    "type": "Listener Q&A",
+    "media_suggestion": "Question sticker: 'Ask me anything about music!'",
+    "copy": "Your chance to pick our brains about all things music! Send in your burning questions.",
+    "hashtags": ["#BigMuddyRadio", "#AskMeAnything", "#MusicTalk"],
+    "call_to_action": "Submit your question!"
+  },
+  {
+    "day": 7,
+    "platform": "Instagram Feed",
+    "type": "Weekly Episode Promo",
+    "media_suggestion": "Dynamic graphic featuring episode guests/topics, or a short video montage of highlights.",
+    "copy": "New episode alert! This week, we're diving deep into the sounds of the Big Muddy, featuring exclusive interviews and fresh tracks. Don't miss the sonic journey!",
+    "hashtags": ["#BigMuddyRadio", "#NewEpisode", "#PodcastLife", "#MusicDiscovery", "#TuneIn"],
+    "call_to_action": "Link in bio to listen now!"
+  },
+  {
+    "day": 8,
+    "platform": "Instagram Story",
+    "type": "Daily Vibe Check",
+    "media_suggestion": "A scenic outdoor shot with a chill, ambient track playing.",
+    "copy": "Soaking up the good vibes and even better tunes today. What's your perfect Sunday soundtrack?",
+    "hashtags": ["#BigMuddyRadio", "#SundayVibes", "#ChillMusic"],
+    "call_to_action": "Share your chill track!"
+  },
+  {
+    "day": 9,
+    "platform": "Instagram Story",
+    "type": "Music History Moment",
+    "media_suggestion": "Image of a legendary artist or historical music event.",
+    "copy": "A nod to the legends who shaped the soundscape we love today. Who's your all-time music hero?",
+    "hashtags": ["#BigMuddyRadio", "#MusicHistory", "#Legends"],
+    "call_to_action": "Tell us your hero!"
+  },
+  {
+    "day": 10,
+    "platform": "Instagram Story",
+    "type": "Studio Sneak Peek",
+    "media_suggestion": "Quick pan shot of the studio, focusing on interesting equipment or records.",
+    "copy": "Getting the gear prepped for another epic show. The magic happens right here!",
+    "hashtags": ["#BigMuddyRadio", "#StudioLife", "#GearHead"],
+    "call_to_action": "What's your favorite instrument?"
+  },
+  {
+    "day": 11,
+    "platform": "Instagram Story",
+    "type": "Music Mood Poll",
+    "media_suggestion": "Poll sticker: 'Workout Playlist or Chill Ambient?'",
+    "copy": "What's dictating your music choice today? Are you powering up or winding down?",
+    "hashtags": ["#BigMuddyRadio", "#MusicMood", "#PlaylistGoals"],
+    "call_to_action": "Cast your vote!"
+  },
+  {
+    "day": 12,
+    "platform": "Instagram Story",
+    "type": "Upcoming Segment Tease",
+    "media_suggestion": "Short video of host hinting at an exciting segment or guest for tomorrow's show.",
+    "copy": "You won't want to miss tomorrow's deep dive into [genre/artist]! Get ready for some serious sonic exploration.",
+    "hashtags": ["#BigMuddyRadio", "#ComingSoon", "#MusicSegment"],
+    "call_to_action": "Set a reminder!"
+  },
+  {
+    "day": 13,
+    "platform": "Instagram Story",
+    "type": "Fan Favorite Friday",
+    "media_suggestion": "Graphic asking for listener's favorite song played on Big Muddy Radio this week.",
+    "copy": "We played some bangers this week! Which track stole your heart and earned a spot on repeat?",
+    "hashtags": ["#BigMuddyRadio", "#FanFavorite", "#WeekendVibes"],
+    "call_to_action": "DM us your pick!"
+  },
+  {
+    "day": 14,
+    "platform": "Instagram Story",
+    "type": "Music Challenge",
+    "media_suggestion": "Text overlay: 'Describe your favorite album in 3 emojis!'",
+    "copy": "Let's get creative! Can you sum up your all-time favorite album using just three emojis?",
+    "hashtags": ["#BigMuddyRadio", "#MusicChallenge", "#EmojiMusic"],
+    "call_to_action": "Show us your emojis!"
+  },
+  {
+    "day": 14,
+    "platform": "Instagram Feed",
+    "type": "Weekly Episode Promo",
+    "media_suggestion": "Eye-catching graphic with episode title and key discussion points, or a short audio clip.",
+    "copy": "Tune in for this week's fresh episode, packed with genre-bending tracks and insights from emerging artists. Your weekend soundtrack starts here!",
+    "hashtags": ["#BigMuddyRadio", "#NewRelease", "#MusicPodcast", "#WeekendListening"],
+    "call_to_action": "Link in bio to listen!"
+  },
+  {
+    "day": 15,
+    "platform": "Instagram Story",
+    "type": "Daily Vibe Check",
+    "media_suggestion": "Close-up of a spinning vinyl record with a soulful track playing.",
+    "copy": "That crackle and warmth of vinyl just hits different. What's spinning on your turntable today?",
+    "hashtags": ["#BigMuddyRadio", "#VinylLover", "#SoulfulSounds"],
+    "call_to_action": "Share your vinyl!"
+  },
+  {
+    "day": 16,
+    "platform": "Instagram Story",
+    "type": "Artist Spotlight",
+    "media_suggestion": "Image of an up-and-coming artist or a lesser-known gem. Short bio text.",
+    "copy": "Shining a light on an artist whose sound is truly captivating. Get ready to discover your new obsession!",
+    "hashtags": ["#BigMuddyRadio", "#ArtistDiscovery", "#NewTalent"],
+    "call_to_action": "Follow their sound!"
+  },
+  {
+    "day": 17,
+    "platform": "Instagram Story",
+    "type": "Gear Talk",
+    "media_suggestion": "Photo of a vintage microphone or a unique studio instrument.",
+    "copy": "Geeking out over some classic studio gear today! What's an instrument you'd love to learn?",
+    "hashtags": ["#BigMuddyRadio", "#MusicGear", "#StudioTech"],
+    "call_to_action": "Tell us your dream instrument!"
+  },
+  {
+    "day": 18,
+    "platform": "Instagram Story",
+    "type": "Question Sticker",
+    "media_suggestion": "Question sticker: 'What song always gets you dancing?'",
+    "copy": "Need a pick-me-up? Share that one track that instantly gets your feet moving and spirits lifted!",
+    "hashtags": ["#BigMuddyRadio", "#DanceAnthem", "#GoodVibes"],
+    "call_to_action": "Share your dance track!"
+  },
+  {
+    "day": 19,
+    "platform": "Instagram Story",
+    "type": "Playlist Share",
+    "media_suggestion": "Screenshot of a curated Big Muddy Radio playlist on a streaming service.",
+    "copy": "We've crafted the perfect playlist for your [mood/activity]! Dive into these hand-picked tunes.",
+    "hashtags": ["#BigMuddyRadio", "#PlaylistGoals", "#CuratedMusic"],
+    "call_to_action": "Swipe up to listen!"
+  },
+  {
+    "day": 20,
+    "platform": "Instagram Story",
+    "type": "Unsung Hero Track",
+    "media_suggestion": "Album art of a deep cut or B-side that deserves more love.",
+    "copy": "Every album has that hidden gem! What's an 'unsung hero' track you think everyone should hear?",
+    "hashtags": ["#BigMuddyRadio", "#DeepCuts", "#HiddenGems"],
+    "call_to_action": "Reveal your gem!"
+  },
+  {
+    "day": 21,
+    "platform": "Instagram Story",
+    "type": "Listener Shoutout",
+    "media_suggestion": "Graphic with a listener's name/handle and their requested song playing.",
+    "copy": "Big shoutout to [Listener's Name] for the awesome request! We love hearing what tracks move you.",
+    "hashtags": ["#BigMuddyRadio", "#ListenerLove", "#MusicCommunity"],
+    "call_to_action": "Send us your requests!"
+  },
+  {
+    "day": 21,
+    "platform": "Instagram Feed",
+    "type": "Weekly Episode Promo",
+    "media_suggestion": "Vertical video clip of the host excitedly introducing the new episode, with music playing.",
+    "copy": "Ready for another sonic adventure? Our latest episode is live, featuring incredible stories and the freshest tracks. Get ready to turn up the volume!",
+    "hashtags": ["#BigMuddyRadio", "#NewPodcast", "#MustListen", "#MusicJourney"],
+    "call_to_action": "Tap the link in bio to explore!"
+  },
+  {
+    "day": 22,
+    "platform": "Instagram Story",
+    "type": "Daily Vibe Check",
+    "media_suggestion": "An abstract, colorful animation with a dreamy, atmospheric track.",
+    "copy": "Lost in the music and the moment today. What's the most immersive track you know?",
+    "hashtags": ["#BigMuddyRadio", "#ImmersiveSound", "#MusicEscape"],
+    "call_to_action": "What's your escape song?"
+  },
+  {
+    "day": 23,
+    "platform": "Instagram Story",
+    "type": "Genre Deep Dive",
+    "media_suggestion": "Graphic with 'Exploring [Genre]' and a montage of artists from that genre.",
+    "copy": "Today, we're taking a deep dive into the roots and sounds of [Genre]. What makes this genre special to you?",
+    "hashtags": ["#BigMuddyRadio", "#GenreFocus", "#MusicEducation"],
+    "call_to_action": "What genre next?"
+  },
+  {
+    "day": 24,
+    "platform": "Instagram Story",
+    "type": "Behind the Music",
+    "media_suggestion": "Short documentary-style clip about a song's creation or a band's process.",
+    "copy": "Ever wonder about the stories behind your favorite songs? We're pulling back the curtain today!",
+    "hashtags": ["#BigMuddyRadio", "#StoryBehindTheSong", "#MusicProcess"],
+    "call_to_action": "What song's story do you love?"
+  },
+  {
+    "day": 25,
+    "platform": "Instagram Story",
+    "type": "Music Trivia",
+    "media_suggestion": "Quiz sticker with a multiple-choice music trivia question.",
+    "copy": "Test your music knowledge! Can you ace this Big Muddy Radio trivia challenge?",
+    "hashtags": ["#BigMuddyRadio", "#MusicTrivia", "#QuizTime"],
+    "call_to_action": "Play now!"
+  },
+  {
+    "day": 26,
+    "platform": "Instagram Story",
+    "type": "Fresh Finds Friday",
+    "media_suggestion": "Carousel of new album art covers from recent releases.",
+    "copy": "Friday means fresh tunes! We've got a stack of new releases you need to hear this weekend.",
+    "hashtags": ["#BigMuddyRadio", "#NewMusicFriday", "#WeekendTunes"],
+    "call_to_action": "Swipe to discover!"
+  },
+  {
+    "day": 27,
+    "platform": "Instagram Story",
+    "type": "Live Session Tease",
+    "media_suggestion": "Short, shaky video clip of an artist soundchecking for a live session.",
+    "copy": "Something special is brewing in the studio! Get ready for an exclusive live session coming your way soon.",
+    "hashtags": ["#BigMuddyRadio", "#LiveMusic", "#ExclusiveContent"],
+    "call_to_action": "Who do you want to see live?"
+  },
+  {
+    "day": 28,
+    "platform": "Instagram Story",
+    "type": "Weekend Warm-up",
+    "media_suggestion": "Upbeat, energetic track playing over a graphic encouraging weekend fun.",
+    "copy": "The weekend is HERE! Crank up the volume and let the good times roll with this ultimate warm-up track.",
+    "hashtags": ["#BigMuddyRadio", "#WeekendVibes", "#PartyAnthem"],
+    "call_to_action": "What's your weekend jam?"
+  },
+  {
+    "day": 28,
+    "platform": "Instagram Feed",
+    "type": "Weekly Episode Promo",
+    "media_suggestion": "Short, punchy video with fast cuts of music clips and text overlays of episode highlights.",
+    "copy": "Don't miss the latest sonic journey from Big Muddy Radio! Our new episode is packed with rhythm, soul, and everything in between. Tune in for your weekly dose of musical bliss!",
+    "hashtags": ["#BigMuddyRadio", "#PodcastDrop", "#MusicLover", "#NewSounds"],
+    "call_to_action": "Click the link in bio to listen!"
+  },
+  {
+    "day": 29,
+    "platform": "Instagram Story",
+    "type": "Daily Vibe Check",
+    "media_suggestion": "Time-lapse video of a sunrise or sunset with an inspiring, cinematic track.",
+    "copy": "Embracing the beauty of the day with a soundtrack that moves the soul. What song inspires you?",
+    "hashtags": ["#BigMuddyRadio", "#Inspiration", "#MusicForThought"],
+    "call_to_action": "Share your inspiring track!"
+  },
+  {
+    "day": 30,
+    "platform": "Instagram Story",
+    "type": "Month Recap / Look Ahead",
+    "media_suggestion": "Carousel of top songs/artists played this month, or a 'What's coming next?' graphic.",
+    "copy": "What a month of incredible music! We've loved sharing these sounds with you and can't wait for what's next. Stay tuned for more!",
+    "hashtags": ["#BigMuddyRadio", "#MonthInReview", "#MusicCommunity", "#StayTuned"],
+    "call_to_action": "What was your favorite moment?"
+  }
+]

@@ -1,0 +1,143 @@
+
+[
+  {
+    "_id": "showEvent.tracy-lake-trio-live-at-the-blues-room",
+    "_type": "showEvent",
+    "title": "Tracy Lake Trio — Live at the Blues Room",
+    "slug": {
+      "current": "tracy-lake-trio-live-at-the-blues-room"
+    },
+    "startsAt": "2026-04-25T20:00:00-05:00",
+    "endsAt": "2026-04-25T22:00:00-05:00",
+    "priceCents": 2500,
+    "status": "upcoming",
+    "blurb": "Experience the soulful sounds of the Tracy Lake Trio as they bring their unique blend of blues and R&B to our stage.",
+    "resourceId": null
+  },
+  {
+    "_id": "showEvent.delta-shuffle-two-sets",
+    "_type": "showEvent",
+    "title": "Delta Shuffle — Two Sets",
+    "slug": {
+      "current": "delta-shuffle-two-sets"
+    },
+    "startsAt": "2026-05-01T20:00:00-05:00",
+    "endsAt": "2026-05-01T22:00:00-05:00",
+    "priceCents": 3000,
+    "status": "upcoming",
+    "blurb": "Delta Shuffle delivers an authentic, foot-stomping blues experience with two full sets of their high-energy performance.",
+    "resourceId": null
+  },
+  {
+    "_id": "showEvent.memphis-pauline-and-the-currents",
+    "_type": "showEvent",
+    "title": "Memphis Pauline & the Currents",
+    "slug": {
+      "current": "memphis-pauline-and-the-currents"
+    },
+    "startsAt": "2026-05-09T20:00:00-05:00",
+    "endsAt": "2026-05-09T22:00:00-05:00",
+    "priceCents": 2200,
+    "status": "upcoming",
+    "blurb": "Memphis Pauline's powerful vocals and the tight rhythms of The Currents promise a night of unforgettable blues and soul.",
+    "resourceId": null
+  },
+  {
+    "_id": "showEvent.the-blue-note-band-a-night-of-rb",
+    "_type": "showEvent",
+    "title": "The Blue Note Band — A Night of R&B",
+    "slug": {
+      "current": "the-blue-note-band-a-night-of-rb"
+    },
+    "startsAt": "2026-05-15T20:00:00-05:00",
+    "endsAt": "2026-05-15T22:00:00-05:00",
+    "priceCents": 2800,
+    "status": "upcoming",
+    "blurb": "Join us for an evening with The Blue Note Band, serving up smooth R&B grooves and classic blues tunes that will move your soul.",
+    "resourceId": null
+  },
+  {
+    "_id": "showEvent.crossroads-collective-classic-blues",
+    "_type": "showEvent",
+    "title": "Crossroads Collective — Classic Blues",
+    "slug": {
+      "current": "crossroads-collective-classic-blues"
+    },
+    "startsAt": "2026-05-23T20:00:00-05:00",
+    "endsAt": "2026-05-23T22:00:00-05:00",
+    "priceCents": 2600,
+    "status": "upcoming",
+    "blurb": "Crossroads Collective delivers a masterclass in classic blues, honoring the legends with their raw and passionate performance.",
+    "resourceId": null
+  },
+  {
+    "_id": "showEvent.harmonica-harry-and-the-rhythm-kings",
+    "_type": "showEvent",
+    "title": "Harmonica Harry & the Rhythm Kings",
+    "slug": {
+      "current": "harmonica-harry-and-the-rhythm-kings"
+    },
+    "startsAt": "2026-05-29T20:00:00-05:00",
+    "endsAt": "2026-05-29T22:00:00-05:00",
+    "priceCents": 3200,
+    "status": "upcoming",
+    "blurb": "Get ready for an electrifying show as Harmonica Harry and the Rhythm Kings tear up the stage with their incredible blues prowess.",
+    "resourceId": null
+  },
+  {
+    "_id": "showEvent.sweet-lorettas-soul-revue",
+    "_type": "showEvent",
+    "title": "Sweet Loretta's Soul Revue",
+    "slug": {
+      "current": "sweet-lorettas-soul-revue"
+    },
+    "startsAt": "2026-06-06T20:00:00-05:00",
+    "endsAt": "2026-06-06T22:00:00-05:00",
+    "priceCents": 2900,
+    "status": "upcoming",
+    "blurb": "Sweet Loretta's powerful voice and her Soul Revue band will transport you to a golden era of rhythm and blues.",
+    "resourceId": null
+  },
+  {
+    "_id": "showEvent.muddy-waters-tribute-night",
+    "_type": "showEvent",
+    "title": "Muddy Waters Tribute Night",
+    "slug": {
+      "current": "muddy-waters-tribute-night"
+    },
+    "startsAt": "2026-06-12T20:00:00-05:00",
+    "endsAt": "2026-06-12T22:00:00-05:00",
+    "priceCents": 3500,
+    "status": "upcoming",
+    "blurb": "A special tribute night dedicated to the legendary Muddy Waters, performed by a collective of local blues masters.",
+    "resourceId": null
+  },
+  {
+    "_id": "showEvent.chicago-blues-experience",
+    "_type": "showEvent",
+    "title": "Chicago Blues Experience",
+    "slug": {
+      "current": "chicago-blues-experience"
+    },
+    "startsAt": "2026-06-20T20:00:00-05:00",
+    "endsAt": "2026-06-20T22:00:00-05:00",
+    "priceCents": 2700,
+    "status": "upcoming",
+    "blurb": "Immerse yourself in the raw energy of the Chicago Blues Experience, delivering gritty and authentic sounds straight from the Windy City.",
+    "resourceId": null
+  },
+  {
+    "_id": "showEvent.juke-joint-jesters",
+    "_type": "showEvent",
+    "title": "Juke Joint Jesters",
+    "slug": {
+      "current": "juke-joint-jesters"
+    },
+    "startsAt": "2026-06-26T20:00:00-05:00",
+    "endsAt": "2026-06-26T22:00:00-05:00",
+    "priceCents": 2300,
+    "status": "upcoming",
+    "blurb": "The Juke Joint Jesters bring their infectious rhythms and playful blues to the stage for a night of pure, unadulterated fun.",
+    "resourceId": null
+  }
+]

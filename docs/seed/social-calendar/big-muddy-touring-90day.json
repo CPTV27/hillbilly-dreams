@@ -1,0 +1,120 @@
+
+[
+  {
+    "week": 1,
+    "date": "2024-07-01",
+    "platforms": ["Instagram", "X"],
+    "content_type": "Show Announcement",
+    "theme": "New Tour Dates",
+    "caption": "Announcing a fresh run of dates! Big Muddy Touring is thrilled to hit the road with [Artist Name]. Efficiency and exceptional logistics guaranteed. Dates & tickets in bio/link. #TourLife #LiveMusic #ArtistManagement #BigMuddyTouring",
+    "visual_idea": "Professional tour graphic featuring artist, key dates, and Big Muddy Touring logo. High-res photo for IG, condensed version for X."
+  },
+  {
+    "week": 2,
+    "date": "2024-07-08",
+    "platforms": ["Instagram", "TikTok"],
+    "content_type": "Behind-the-Scenes",
+    "theme": "Sprinter Van Life / Travel Logistics",
+    "caption": "Miles for smiles, and meticulous planning. Our Sprinter is more than just transport; it's a mobile command center. Fueling up for another smooth leg of the tour. #TourLogistics #RoadWarrior #BTS #BigMuddyTouring #TouringFleet",
+    "visual_idea": "Short, dynamic video showcasing the Sprinter van interior (organized gear, comfortable seating) and a scenic road shot. Photo for IG."
+  },
+  {
+    "week": 3,
+    "date": "2024-07-15",
+    "platforms": ["Instagram", "X"],
+    "content_type": "Artist Spotlight",
+    "theme": "Highlighting Roster Talent",
+    "caption": "Artist Spotlight: [Artist Name]! We pride ourselves on partnering with exceptional talent. [Artist Name]'s dedication to their craft is inspiring, and we're honored to facilitate their live experience. #ArtistSpotlight #MusicIndustry #BigMuddyTouring #TalentPartnership",
+    "visual_idea": "High-quality performance photo or professional headshot of [Artist Name]. Carousel on IG with a short bio, link on X."
+  },
+  {
+    "week": 4,
+    "date": "2024-07-22",
+    "platforms": ["TikTok", "Instagram"],
+    "content_type": "Corridor Scene",
+    "theme": "Venue Prep / Load-in",
+    "caption": "The calm before the storm. Load-in complete, soundcheck underway. Precision is paramount. Ready to make some magic happen tonight at [Venue Name]! #BackstageLife #VenueVibes #TouringCrew #BigMuddyTouring #ProductionReady",
+    "visual_idea": "Fast-paced time-lapse video of load-in or a wide shot of an empty stage/venue from backstage, showing technical setup. Photo for IG."
+  },
+  {
+    "week": 5,
+    "date": "2024-07-29",
+    "platforms": ["X", "Instagram"],
+    "content_type": "Show Announcement",
+    "theme": "Expanded Tour Leg",
+    "caption": "Just added! An additional string of dates for [Artist Name]! We're expanding the run into [Region/Cities], bringing more live music to fans. Secure your tickets now! Link in bio. #TourUpdate #LiveMusicTour #BigMuddyTouring #NewDates",
+    "visual_idea": "Updated tour graphic with new dates highlighted. Quick text announcement for X, detailed graphic for IG."
+  },
+  {
+    "week": 6,
+    "date": "2024-08-05",
+    "platforms": ["Instagram", "TikTok"],
+    "content_type": "Behind-the-Scenes",
+    "theme": "Vehicle Maintenance / Reliability",
+    "caption": "A well-oiled machine. Regular maintenance checks keep our fleet rolling smoothly, ensuring reliability and minimizing downtime. Efficiency is key when covering thousands of miles. #TouringLogistics #RoadReady #BigMuddyTouring #FleetManagement #PreventativeMaintenance",
+    "visual_idea": "Short video/photo of the Sprinter undergoing a check-up or a close-up of a well-maintained engine/tire. Emphasize professionalism."
+  },
+  {
+    "week": 7,
+    "date": "2024-08-12",
+    "platforms": ["Instagram", "X"],
+    "content_type": "Artist Spotlight",
+    "theme": "Deep Dive into Artist's Craft",
+    "caption": "Diving deeper into the artistry of [Another Artist Name]! From their meticulous sound design to their captivating stage presence, they embody what live music is all about. We handle the logistics so they can focus on the performance. #ArtistFeature #BigMuddyRoster #TouringPartner #CreativeProcess",
+    "visual_idea": "Video montage of [Another Artist Name] performing, or a candid shot during a soundcheck/rehearsal. Link to their music/website on X."
+  },
+  {
+    "week": 8,
+    "date": "2024-08-19",
+    "platforms": ["TikTok", "Instagram"],
+    "content_type": "Corridor Scene",
+    "theme": "Post-Show Load-out",
+    "caption": "That's a wrap! Another successful show in the books. Now, the organized chaos of load-out. Efficient and precise, every time, ensuring we're ready for the next city. #LoadOut #PostShow #TourLife #BigMuddyTouring #OperationalExcellence",
+    "visual_idea": "Fast-forward video of the crew efficiently packing up gear backstage. Photo for IG showcasing organized equipment."
+  },
+  {
+    "week": 9,
+    "date": "2024-08-26",
+    "platforms": ["X", "Instagram"],
+    "content_type": "Show Announcement",
+    "theme": "Festival Appearance / Major Event",
+    "caption": "Big news! [Artist Name] is confirmed for [Festival Name]! We're proud to support their presence at major events. Don't miss this one. Full details on our site. #FestivalSeason #TouringNews #BigMuddyTouring #MajorEvent",
+    "visual_idea": "Festival lineup poster featuring [Artist Name]. Custom graphic for IG, quick announcement with link for X."
+  },
+  {
+    "week": 10,
+    "date": "2024-09-02",
+    "platforms": ["Instagram", "TikTok"],
+    "content_type": "Behind-the-Scenes",
+    "theme": "Scenic Travel / Road Experience",
+    "caption": "Chasing the horizon. Some incredible views on the drive to [Next City]. The journey is just as much a part of the show – we ensure it's comfortable and productive. #ScenicRoute #TourTravel #BigMuddyTouring #OnTheRoad #Logistics",
+    "visual_idea": "Cinematic video clip of the Sprinter driving through a beautiful landscape (mountains, coast, open plains). High-quality photo for IG."
+  },
+  {
+    "week": 11,
+    "date": "2024-09-09",
+    "platforms": ["Instagram", "X"],
+    "content_type": "Artist Spotlight",
+    "theme": "Client Testimonial / Partnership Value",
+    "caption": "\"Big Muddy Touring makes the impossible possible, allowing us to focus on the performance.\" - [Artist Name]. We thrive on building strong partnerships and making touring seamless. #ClientTestimonial #ArtistPartnership #BigMuddyTouring #ValueProposition",
+    "visual_idea": "Graphic with a compelling quote from a client artist, alongside a photo of the artist. Share as text on X with a link to a case study if available."
+  },
+  {
+    "week": 12,
+    "date": "2024-09-16",
+    "platforms": ["TikTok", "Instagram"],
+    "content_type": "Corridor Scene",
+    "theme": "Soundcheck / Technical Setup",
+    "caption": "Dialing it in. Precision during soundcheck ensures an unforgettable experience for the audience, and a smooth night for the crew. Every detail matters for a flawless show. #Soundcheck #TechLife #TourProduction #BigMuddyTouring #AudioVisual",
+    "visual_idea": "Quick video showing snippets of soundcheck (mic checks, instrument tuning, lighting cues). Detailed photo of the mixing board or stage setup for IG."
+  },
+  {
+    "week": 13,
+    "date": "2024-09-23",
+    "platforms": ["X", "Instagram"],
+    "content_type": "General Touring Insight",
+    "theme": "Reflecting on Touring Success / Industry Expertise",
+    "caption": "90 days, countless miles, endless dedication. Reflecting on the hard work, planning, and problem-solving that goes into every successful tour. What's your biggest touring lesson learned? #TouringInsights #IndustryTalk #BigMuddyTouring #RoadTested #LogisticsExpert",
+    "visual_idea": "A graphic with a relevant statistic about touring (e.g., 'X miles covered') or a compilation of small tour moments. Thought-provoking text for X."
+  }
+]

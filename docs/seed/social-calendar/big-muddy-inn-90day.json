@@ -1,0 +1,145 @@
+[
+  {
+    "id": 1,
+    "brand": "inn",
+    "date": "2026-05-01",
+    "platform": "Instagram",
+    "postType": "Image Post",
+    "copy": "Welcome to your home away from home! Step into the cozy embrace of Big Muddy Inn, where rustic charm meets modern comfort. We're ready to make your escape unforgettable.",
+    "hashtags": ["#BigMuddyInn", "#CozyEscape", "#RusticCharm"],
+    "imageDirection": "A warm, inviting shot of the inn's exterior or front porch, perhaps with a welcoming light on.",
+    "contentCategory": "Welcome/Inn Vibe"
+  },
+  {
+    "id": 2,
+    "brand": "inn",
+    "date": "2026-05-03",
+    "platform": "Facebook",
+    "postType": "Image Post",
+    "copy": "Wake up to the aroma of a delicious, homemade breakfast at Big Muddy Inn. Freshly brewed coffee, local ingredients, and a sunny start to your day. What's your favorite breakfast treat?",
+    "hashtags": ["#InnBreakfast", "#LocalEats", "#GoodMorning"],
+    "imageDirection": "A beautifully plated breakfast spread (pancakes, fruit, coffee) on a rustic wooden table.",
+    "contentCategory": "Dining/Amenities"
+  },
+  {
+    "id": 3,
+    "brand": "inn",
+    "date": "2026-05-05",
+    "platform": "Instagram",
+    "postType": "Image Post",
+    "copy": "Adventure awaits just beyond our doors! Explore the natural beauty and local gems surrounding Big Muddy Inn. From hiking trails to charming shops, there's always something new to discover.",
+    "hashtags": ["#ExploreLocal", "#NatureEscape", "#BigMuddyAdventures"],
+    "imageDirection": "A scenic shot of a nearby natural landmark or a charming street in the local town.",
+    "contentCategory": "Local Attractions"
+  },
+  {
+    "id": 4,
+    "brand": "inn",
+    "date": "2026-05-08",
+    "platform": "Facebook",
+    "postType": "Image Post",
+    "copy": "After a day of exploring, retreat to the comfort of your room at Big Muddy Inn. Plush bedding, thoughtful touches, and a peaceful atmosphere ensure a restful night's sleep. Sweet dreams!",
+    "hashtags": ["#ComfortZone", "#InnLife", "#RelaxAndUnwind"],
+    "imageDirection": "A beautifully made bed in one of the inn's inviting guest rooms, perhaps with a book and a warm drink on the nightstand.",
+    "contentCategory": "Amenities/Rooms"
+  },
+  {
+    "id": 5,
+    "brand": "inn",
+    "date": "2026-05-10",
+    "platform": "Instagram",
+    "postType": "Image Post",
+    "copy": "Gather 'round! Our cozy common areas are perfect for unwinding with a good book or sharing stories with loved ones. The crackling fireplace is just waiting for you.",
+    "hashtags": ["#InnVibes", "#CozyNook", "#CommunitySpace"],
+    "imageDirection": "A warm, inviting shot of the inn's common living room, possibly with a lit fireplace and comfortable armchairs.",
+    "contentCategory": "Amenities/Common Areas"
+  },
+  {
+    "id": 6,
+    "brand": "inn",
+    "date": "2026-05-12",
+    "platform": "Instagram",
+    "postType": "Image Post",
+    "copy": "Breathe in the fresh air and reconnect with nature during your stay. Our surroundings offer serene views and peaceful moments, perfect for a digital detox.",
+    "hashtags": ["#NatureLover", "#InnGetaway", "#PeacefulEscape"],
+    "imageDirection": "A serene landscape shot taken from the inn's property or nearby, showcasing lush greenery or a sunset.",
+    "contentCategory": "Nature/Outdoors"
+  },
+  {
+    "id": 7,
+    "brand": "inn",
+    "date": "2026-05-15",
+    "platform": "Facebook",
+    "postType": "Image Post",
+    "copy": "Every corner of Big Muddy Inn tells a story. We cherish the history woven into our walls, blending timeless charm with modern hospitality. Come make your own memories here.",
+    "hashtags": ["#InnHistory", "#TimelessCharm", "#Storytelling"],
+    "imageDirection": "A black and white photo of the inn from an older era, or a detail shot of a historical architectural feature.",
+    "contentCategory": "Inn History/Charm"
+  },
+  {
+    "id": 8,
+    "brand": "inn",
+    "date": "2026-05-17",
+    "platform": "Instagram",
+    "postType": "Image Post",
+    "copy": "We love supporting our local community! Ask us for recommendations on the best local shops, artisan crafts, or hidden culinary gems. Experience the authentic taste of our town.",
+    "hashtags": ["#SupportLocal", "#LocalLove", "#BigMuddyCommunity"],
+    "imageDirection": "A photo of a charming local shop, a locally made product, or a friendly local artisan.",
+    "contentCategory": "Local Focus/Community"
+  },
+  {
+    "id": 9,
+    "brand": "inn",
+    "date": "2026-05-19",
+    "platform": "Facebook",
+    "postType": "Image Post",
+    "copy": "Your ultimate relaxation starts here. What's your favorite way to unwind at Big Muddy Inn? Is it a quiet morning coffee on the porch or an evening by the fire?",
+    "hashtags": ["#Relaxation", "#InnExperience", "#Unwind"],
+    "imageDirection": "A guest (or model) relaxing on the porch with a cup of coffee, or by a window with a book.",
+    "contentCategory": "Guest Experience/Relaxation"
+  },
+  {
+    "id": 10,
+    "brand": "inn",
+    "date": "2026-05-22",
+    "platform": "Instagram",
+    "postType": "Image Post",
+    "copy": "May at Big Muddy Inn brings vibrant greens and blooming beauty. Our gardens are coming alive, inviting you to stroll and enjoy the season's splendor.",
+    "hashtags": ["#SpringVibes", "#InnGardens", "#SeasonalBeauty"],
+    "imageDirection": "A beautiful shot of the inn's garden or grounds, showing spring flowers or lush greenery.",
+    "contentCategory": "Seasonal/Nature"
+  },
+  {
+    "id": 11,
+    "brand": "inn",
+    "date": "2026-05-24",
+    "platform": "Facebook",
+    "postType": "Image Post",
+    "copy": "Dreaming of an escape? Let Big Muddy Inn be your sanctuary. Our doors are always open for those seeking comfort, charm, and a touch of rustic elegance.",
+    "hashtags": ["#DreamGetaway", "#BookYourStay", "#InnSanctuary"],
+    "imageDirection": "A wide shot of the inn's inviting exterior, perhaps with a 'Welcome' sign visible.",
+    "contentCategory": "Call to Action/Inn Vibe"
+  },
+  {
+    "id": 12,
+    "brand": "inn",
+    "date": "2026-05-26",
+    "platform": "Instagram",
+    "postType": "Image Post",
+    "copy": "As twilight settles, Big Muddy Inn transforms into a haven of soft lights and peaceful ambiance. Perfect for quiet evenings and making lasting memories.",
+    "hashtags": ["#EveningVibes", "#InnAmbiance", "#PeacefulNights"],
+    "imageDirection": "The inn's exterior or common area at dusk, with warm lights glowing from windows.",
+    "contentCategory": "Inn Vibe/Ambiance"
+  },
+  {
+    "id": 13,
+    "brand": "inn",
+    "date": "2026-05-29",
+    "platform": "Facebook",
+    "postType": "Image Post",
+    "copy": "It's always hard to say goodbye, but we love sending our guests off with refreshed spirits and cherished memories. We can't wait to welcome you back to Big Muddy Inn soon!",
+    "hashtags": ["#UntilNextTime", "#InnMemories", "#BigMuddyHospitality"],
+    "imageDirection": "A warm, friendly shot of a staff member waving goodbye from the inn's porch, or a serene shot of the inn at sunrise.",
+    "contentCategory": "Guest Experience/Farewell"
+  }
+]

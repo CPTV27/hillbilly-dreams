@@ -1,0 +1,62 @@
+{
+  "model": "gemini-2.5-flash",
+  "concurrency": 8,
+  "tasks": [
+    {
+      "id": "hydration-inn",
+      "outputPath": "docs/hydration-guides/big-muddy-inn.md",
+      "system": "You are writing a pragmatic integration guide for merging Gemini-generated homepage copy into existing React components. Output markdown with labeled sections + code blocks showing insertion points.",
+      "prompt": "Write a section-by-section integration guide for hydrating bigmuddyinn.com's homepage with the copy in docs/marketing-copy/landing-page-copy-inn.md.\n\nStructure:\n1. Identify likely target .tsx files (the repo has a (big-muddy) route group; the Inn may render from apps/web/app/inn/ or apps/web/app/(big-muddy)/inn/). The guide should describe: if a file exists at path X, here's what changes; if it doesn't exist, here's the new file to create with the copy pre-inserted.\n2. Per section (hero, below-fold blocks): which .tsx file, which component, what string replaces what.\n3. Photo slot recommendations — for each image area, suggest an Immich CLIP search query Chase runs to pick the right photo.\n4. Alt text for every image slot.\n5. Verification steps: hit the URL, check that copy renders, check mobile layout.\n\nMarkdown. ~1200 words.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "hydration-magazine",
+      "outputPath": "docs/hydration-guides/big-muddy-magazine.md",
+      "system": "Same structure.",
+      "prompt": "Integration guide for bigmuddymagazine.com, using docs/marketing-copy/landing-page-copy-magazine.md. Target .tsx file likely at apps/web/app/magazine/page.tsx (confirm during hydration). Masthead + deck + 3 featured-article slots + About the Magazine block + newsletter-signup CTA. Markdown. ~1000 words.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "hydration-touring",
+      "outputPath": "docs/hydration-guides/big-muddy-touring.md",
+      "system": "Same structure.",
+      "prompt": "Integration guide for bigmuddytouring.com using docs/marketing-copy/landing-page-copy-touring.md. Hero + 3 blocks (For artists / For venues / For fans). Likely at apps/web/app/touring/ or apps/web/app/(big-muddy)/ root. Note: this domain is also the 'default' MBT hostname so routing is important. Markdown. ~1000 words.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "hydration-records",
+      "outputPath": "docs/hydration-guides/big-muddy-records.md",
+      "system": "Same structure.",
+      "prompt": "Integration guide for bigmuddyrecordlabel.com using docs/marketing-copy/landing-page-copy-records.md. Hero + 3 blocks (The artists / The services / Non-exclusive). Likely new file creation needed. Markdown. ~1000 words.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "hydration-radio",
+      "outputPath": "docs/hydration-guides/big-muddy-radio.md",
+      "system": "Same structure.",
+      "prompt": "Integration guide for bigmuddyradio.com using docs/marketing-copy/landing-page-copy-radio.md. Hero + 3 blocks (Listen / Shows / Sponsor). Existing apps/web/app/radio/page.tsx may already exist — guide should check first. Markdown. ~1000 words.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "hydration-cpp",
+      "outputPath": "docs/hydration-guides/chase-pierson-photography.md",
+      "system": "Same structure.",
+      "prompt": "Integration guide for chasepierson.tv using docs/marketing-copy/landing-page-copy-cpp.md. Photographer portfolio homepage. Hero + recent-work block + What I shoot + contact/commission CTA. Markdown. ~1000 words.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "hydration-tuthill",
+      "outputPath": "docs/hydration-guides/tuthill-design.md",
+      "system": "Same structure.",
+      "prompt": "Integration guide for tuthilldesign.com using docs/marketing-copy/landing-page-copy-tuthill.md. Hero + 3 blocks (What we deliver / Two markets / Pricing). Likely at apps/web/app/(tuthill)/ route group. Markdown. ~1000 words.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "hydration-studio-c",
+      "outputPath": "docs/hydration-guides/studio-c.md",
+      "system": "Same structure.",
+      "prompt": "Integration guide for studiocvideo.com using docs/marketing-copy/landing-page-copy-studio-c.md. Hero + 3 blocks (What we do / Where we work / For MBT). Markdown. ~1000 words.",
+      "maxTokens": 5000
+    }
+  ]
+}

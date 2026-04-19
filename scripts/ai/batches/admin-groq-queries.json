@@ -1,0 +1,41 @@
+{
+  "model": "gemini-2.5-flash",
+  "concurrency": 8,
+  "tasks": [
+    {
+      "id": "admin-queries-spec",
+      "outputPath": "docs/plans/admin-queries-page-spec.md",
+      "system": "You are writing an engineering design doc for a new admin page. Output markdown. Concrete, with code samples.",
+      "prompt": "Write the design doc for a new /admin/queries page — a dropdown UI letting Tracy/Amy/Chase run the most common GROQ queries against Sanity + Prisma queries against Postgres, without writing code.\n\nCover:\n1. UX: 2 dropdowns (data source: Sanity/Postgres; then predefined query by category).\n2. Data source 1 — Sanity: 15 curated GROQ queries covering each schema (listArticles, listArticlesByAuthor, listFAQsByBrand, listStaffActive, listUpcomingShowEvents, etc.). Each with a name, description, GROQ.\n3. Data source 2 — Postgres: 10 curated Prisma queries (activeSubscriptions, mrrByTenant, dead-letter-events, upcoming-resources, etc.).\n4. Implementation: React page at apps/web/app/admin/queries/page.tsx + API route at /api/admin/queries/run that executes the selected query and returns JSON. Admin-gated.\n5. Safety: queries are read-only; param validation before execution; rate-limit 10/min/user.\n6. Export: JSON download + CSV download for each result set.\n\nMarkdown. ~2500 words with code samples.",
+      "maxTokens": 7000
+    },
+    {
+      "id": "groq-queries-tracy",
+      "outputPath": "docs/seed/groq-queries-tracy.md",
+      "system": "You are writing the GROQ query cheatsheet Tracy uses daily. Output markdown with labeled query blocks.",
+      "prompt": "Tracy's top-10 most-common GROQ queries to have saved in the admin queries page. Name + description + query each.\n\nExamples:\n- Most recent 10 articles\n- Articles published this month\n- Articles missing cover image\n- Upcoming show events next 30 days\n- Draft articles waiting for my review\n- FAQ entries by brand (Inn)\n- Articles with wizardMeta (AI-drafted)\n- Issues in progress\n- Contributors missing bio\n- Photos in gallery without alt text\n\nMarkdown. ~1500 words.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "groq-queries-amy",
+      "outputPath": "docs/seed/groq-queries-amy.md",
+      "system": "Same for Amy.",
+      "prompt": "Amy's top-10 GROQ queries. Example: podcast episodes missing description, upcoming Blues Room shows, partnerArtists by tier, recent radio-tagged articles, sponsor log (from Plans), TikTok Live schedule, etc. Markdown. ~1500 words.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "prisma-queries-chase",
+      "outputPath": "docs/seed/prisma-queries-chase.md",
+      "system": "Prisma query cheatsheet for Chase. Output markdown.",
+      "prompt": "Chase's top-15 Prisma queries for a weekly platform review. Example: MRR by tenant, recent new subscribers, past_due subs, bucket hours this month, pending quotes, Stripe balance placeholder, recent orders, top ModuleEngagements by revenue, dead-letter events, new DirectoryBusiness signups, etc. Each: query name, description, Prisma code. Markdown. ~2000 words.",
+      "maxTokens": 6000
+    },
+    {
+      "id": "dashboard-widget-queries",
+      "outputPath": "docs/seed/dashboard-widget-queries.md",
+      "system": "Queries for the future /admin dashboard home widgets. Output markdown.",
+      "prompt": "For the future admin dashboard home (replaces the current /admin → /ops redirect), what should be on it? List 10 dashboard widgets + the queries that power them. Examples: MRR card, upcoming shows list, wizard drafts this week, unread quotes, dead-letter count. Each widget: name, what it shows, the query/Prisma function, refresh cadence. Markdown. ~2000 words.",
+      "maxTokens": 6000
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+[
+  {
+    "id": "tuthill-placeholder-1",
+    "brand": "tuthill",
+    "date": "2026-05-01T09:00:00Z",
+    "platform": "instagram",
+    "postType": "feed",
+    "copy": "[PLACEHOLDER — the 30-day Tuthill calendar regenerated 2026-04-19 got truncated mid-generation. Regenerate via scripts/ai/batches/seed-retry.json task social-tuthill-retry with maxTokens: 20000.]",
+    "hashtags": [],
+    "imageDirection": "TBD",
+    "contentCategory": "placeholder"
+  }
+]

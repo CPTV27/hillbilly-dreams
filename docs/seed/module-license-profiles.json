@@ -1,0 +1,192 @@
+
+[
+  {
+    "id": "mlp_commerce_starter",
+    "module": "commerce",
+    "tier": "starter",
+    "monthlyMinimumCents": 0,
+    "feePercent": "15.00",
+    "scope": "Subscription billing + one-off checkout via Stripe. Up to 100 active subscriptions.",
+    "active": true
+  },
+  {
+    "id": "mlp_commerce_standard",
+    "module": "commerce",
+    "tier": "standard",
+    "monthlyMinimumCents": 5000,
+    "feePercent": "20.00",
+    "scope": "All Starter features, plus advanced reporting, custom payment gateways, and up to 1,000 active subscriptions.",
+    "active": true
+  },
+  {
+    "id": "mlp_commerce_enterprise",
+    "module": "commerce",
+    "tier": "enterprise",
+    "monthlyMinimumCents": 25000,
+    "feePercent": "30.00",
+    "scope": "All Standard features, including white-labeling, dedicated support, and unlimited active subscriptions.",
+    "active": true
+  },
+  {
+    "id": "mlp_booking_starter",
+    "module": "booking",
+    "tier": "starter",
+    "monthlyMinimumCents": 0,
+    "feePercent": "15.00",
+    "scope": "Basic appointment scheduling and calendar sync for single users.",
+    "active": true
+  },
+  {
+    "id": "mlp_booking_standard",
+    "module": "booking",
+    "tier": "standard",
+    "monthlyMinimumCents": 5000,
+    "feePercent": "20.00",
+    "scope": "All Starter features, plus multi-staff scheduling, resource management, and automated reminders.",
+    "active": true
+  },
+  {
+    "id": "mlp_booking_enterprise",
+    "module": "booking",
+    "tier": "enterprise",
+    "monthlyMinimumCents": 25000,
+    "feePercent": "30.00",
+    "scope": "All Standard features, including custom booking flows, API access, and priority support.",
+    "active": true
+  },
+  {
+    "id": "mlp_finance_starter",
+    "module": "finance",
+    "tier": "starter",
+    "monthlyMinimumCents": 0,
+    "feePercent": "15.00",
+    "scope": "Simple expense tracking and basic income/outcome reporting.",
+    "active": true
+  },
+  {
+    "id": "mlp_finance_standard",
+    "module": "finance",
+    "tier": "standard",
+    "monthlyMinimumCents": 5000,
+    "feePercent": "20.00",
+    "scope": "All Starter features, plus advanced budgeting, invoice generation, and multi-currency support.",
+    "active": true
+  },
+  {
+    "id": "mlp_finance_enterprise",
+    "module": "finance",
+    "tier": "enterprise",
+    "monthlyMinimumCents": 25000,
+    "feePercent": "30.00",
+    "scope": "All Standard features, including payroll integration, tax preparation tools, and dedicated financial advisor access.",
+    "active": true
+  },
+  {
+    "id": "mlp_events_starter",
+    "module": "events",
+    "tier": "starter",
+    "monthlyMinimumCents": 0,
+    "feePercent": "15.00",
+    "scope": "Basic event creation, ticketing, and attendee registration for small events.",
+    "active": true
+  },
+  {
+    "id": "mlp_events_standard",
+    "module": "events",
+    "tier": "standard",
+    "monthlyMinimumCents": 5000,
+    "feePercent": "20.00",
+    "scope": "All Starter features, plus multi-session events, speaker management, and custom branding for events.",
+    "active": true
+  },
+  {
+    "id": "mlp_events_enterprise",
+    "module": "events",
+    "tier": "enterprise",
+    "monthlyMinimumCents": 25000,
+    "feePercent": "30.00",
+    "scope": "All Standard features, including advanced analytics, live streaming integration, and dedicated event success manager.",
+    "active": true
+  },
+  {
+    "id": "mlp_broadcast_starter",
+    "module": "broadcast",
+    "tier": "starter",
+    "monthlyMinimumCents": 0,
+    "feePercent": "15.00",
+    "scope": "Basic live streaming and recording for personal use, limited to 1 hour/stream.",
+    "active": true
+  },
+  {
+    "id": "mlp_broadcast_standard",
+    "module": "broadcast",
+    "tier": "standard",
+    "monthlyMinimumCents": 5000,
+    "feePercent": "20.00",
+    "scope": "All Starter features, plus multi-platform streaming, audience interaction tools, and 5 hours/stream.",
+    "active": true
+  },
+  {
+    "id": "mlp_broadcast_enterprise",
+    "module": "broadcast",
+    "tier": "enterprise",
+    "monthlyMinimumCents": 25000,
+    "feePercent": "30.00",
+    "scope": "All Standard features, including 24/7 streaming, advanced analytics, and dedicated support for large-scale broadcasts.",
+    "active": true
+  },
+  {
+    "id": "mlp_social_starter",
+    "module": "social",
+    "tier": "starter",
+    "monthlyMinimumCents": 0,
+    "feePercent": "15.00",
+    "scope": "Basic social media content scheduling and single-platform posting.",
+    "active": true
+  },
+  {
+    "id": "mlp_social_standard",
+    "module": "social",
+    "tier": "standard",
+    "monthlyMinimumCents": 5000,
+    "feePercent": "20.00",
+    "scope": "All Starter features, plus multi-platform publishing, audience engagement analytics, and team collaboration.",
+    "active": true
+  },
+  {
+    "id": "mlp_social_enterprise",
+    "module": "social",
+    "tier": "enterprise",
+    "monthlyMinimumCents": 25000,
+    "feePercent": "30.00",
+    "scope": "All Standard features, including advanced sentiment analysis, influencer marketing tools, and dedicated social media strategist.",
+    "active": true
+  },
+  {
+    "id": "mlp_content-creation_starter",
+    "module": "content-creation",
+    "tier": "starter",
+    "monthlyMinimumCents": 0,
+    "feePercent": "15.00",
+    "scope": "Basic document and image editing tools with limited storage.",
+    "active": true
+  },
+  {
+    "id": "mlp_content-creation_standard",
+    "module": "content-creation",
+    "tier": "standard",
+    "monthlyMinimumCents": 5000,
+    "feePercent": "20.00",
+    "scope": "All Starter features, plus advanced video editing, AI-powered content generation, and expanded storage.",
+    "active": true
+  },
+  {
+    "id": "mlp_content-creation_enterprise",
+    "module": "content-creation",
+    "tier": "enterprise",
+    "monthlyMinimumCents": 25000,
+    "feePercent": "30.00",
+    "scope": "All Standard features, including collaborative real-time editing, enterprise asset management, and priority support.",
+    "active": true
+  }
+]

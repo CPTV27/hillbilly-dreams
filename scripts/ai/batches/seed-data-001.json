@@ -1,0 +1,70 @@
+{
+  "model": "gemini-2.5-flash",
+  "concurrency": 8,
+  "tasks": [
+    {
+      "id": "seed-podcast-shows",
+      "outputPath": "docs/seed/podcast-shows.json",
+      "system": "You are writing a JSON file that seeds the Sanity podcastShow documents. Output ONLY a valid JSON array of PodcastShow records. No markdown fences. No preamble.",
+      "prompt": "Generate 6 PodcastShow JSON records to seed on launch day. Fields per record match the Prisma PodcastShow model: { _id, _type: 'podcastShow', slug, title, description, brand, authorName, authorEmail, artworkUrl, category, language, explicit }. Use deterministic _id = 'podcastShow.' + slug so re-running the seed is idempotent.\n\nShows to generate:\n1. 'Delta Dawn' — flagship Big Muddy Radio weekly talk show (Amy hosts). Brand: radio. Mississippi corridor music + interviews.\n2. 'Blues Room Live' — recorded-at-the-Blues-Room series (archive of Inn shows). Brand: radio. Live recordings.\n3. 'Big Muddy Highlights' — clip compilation from TikTok Live segments (Block 4 pipeline's destination). Brand: radio.\n4. 'The Front Porch' — Tracy's travel/hospitality podcast (Inn-guest-oriented). Brand: magazine. Companion to the Magazine.\n5. 'On the Road' — Big Muddy Touring's behind-the-scenes from the Sprinter van. Brand: touring. Booker + artist POV.\n6. 'The Record' — Big Muddy Records label-services artist interviews. Brand: records. Amy hosts.\n\nauthorEmail: amy@bigmuddyradio.com (radio), editor@bigmuddymagazine.com (magazine), booking@bigmuddytouring.com (touring), label@bigmuddyrecordlabel.com (records).\n\nartworkUrl: use placeholder https://cdn.sanity.io/images/5p7h8glj/production/<slug>-cover.jpg.\n\ncategory: Apple Podcasts iTunes category — Music (for radio/records/touring), Society & Culture (for magazine/Front Porch).\n\nOutput the JSON array directly. No wrapping text. Valid JSON parseable by JSON.parse.",
+      "skipHeader": true,
+      "maxTokens": 4000
+    },
+    {
+      "id": "seed-plans",
+      "outputPath": "docs/seed/plans.json",
+      "system": "You are writing a JSON file that seeds Plan records for the @bigmuddy/commerce module. Output ONLY valid JSON array. No markdown fences.",
+      "prompt": "Generate 17 Plan JSON records ready for import. Shape matches the Prisma Plan model: { id (cuid-style placeholder `pl_` + slug), tenantId, brand, slug, name, description, priceCents, currency: 'usd', interval, intervalCount, trialDays, active: true, features (string[]), metadata (optional), platformFeePercent }.\n\nPlans to generate:\n\nBig Muddy Records (brand: 'records', tenantId: 'big-muddy', platformFeePercent: 20):\n- 'records-silver' — $75/mo (priceCents: 7500), 3 features\n- 'records-gold' — $300/mo, 5 features\n- 'records-platinum' — $1200/mo, 7 features\n\nTuthill Design (brand: 'tuthill', tenantId: 'tuthill', platformFeePercent: 25):\n- 'tuthill-essentials' — $400/mo (priceCents: 40000), 4 features\n- 'tuthill-pro' — $1000/mo, 6 features\n- 'tuthill-premium' — $2500/mo, 8 features\n\nBig Muddy Radio sponsor (brand: 'radio', tenantId: 'big-muddy', platformFeePercent: 15):\n- 'radio-single-episode' — $200 one_time, 3 features\n- 'radio-monthly' — $650/mo, 5 features\n- 'radio-quarterly' — $2100 every 3 months (interval: month, intervalCount: 3), 7 features\n- 'radio-annual-title' — $20000 yearly (interval: year), 9 features\n\nDeep South Directory (brand: 'dsd', tenantId: 'big-muddy', platformFeePercent: 0 = internal tooling):\n- 'dsd-free' — $0 one_time\n- 'dsd-essentials' — $25/mo\n- 'dsd-pro' — $50/mo\n- 'dsd-marketing' — $99/mo\n- 'dsd-engine' — $250/mo\n\nBig Muddy Inn direct booking (brand: 'inn', tenantId: 'big-muddy', platformFeePercent: 0):\n- 'inn-weekender-package' — $450 one_time (2-night Fri-Sun package)\n\nBig Muddy Touring band sponsorship (brand: 'touring', tenantId: 'big-muddy', platformFeePercent: 20):\n- 'touring-season-sponsor' — $3000 yearly\n\nFor each plan: features array with 3-9 concrete bullets matching the tier's value. Voice per brand per docs/voice/.\n\nOutput valid JSON array, no wrapping.",
+      "skipHeader": true,
+      "maxTokens": 8000
+    },
+    {
+      "id": "seed-staff",
+      "outputPath": "docs/seed/staff.json",
+      "system": "You are writing a JSON file that seeds Sanity staff documents. Output ONLY valid JSON array.",
+      "prompt": "Generate 6 Sanity staff JSON records. Shape: { _id: 'staff.<slug>', _type: 'staff', name, slug: { current: '<slug>' }, role, equityStatus, brands (array), shortBio, email, active: true }.\n\nRecords:\n1. Chase Pierson — CEO · Photography · Video · Code · Strategy. equity_partner. brands: all. shortBio 1-sentence. email me@chasepierson.tv.\n2. Tracy Alderson-Allen — Innkeeper · MBT Executive · Magazine Editor. equity_partner. brands: inn, magazine. email tracy@bigmuddyinn.com.\n3. Amy Allen — Radio + Records · Performing Artist. equity_partner. brands: radio, records, touring. email amy@bigmuddyradio.com.\n4. Elijah Tuthill — Tuthill Design LLC co-owner. team_member. brands: tuthill, studio-c, cpp. email elijah@tuthilldesign.com.\n5. Miles — Studio C production team member. team_member. brands: studio-c, tuthill.\n6. Cos — Chief of Staff (AI agent). team_member. brands: [mbt]. shortBio: 'AI Chief of Staff agent. Orchestrates the project queue, commits code, fans context across the system.'\n\nBios in docs/voice-appropriate tones. Never AI-sounding.\n\nOutput valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 4000
+    },
+    {
+      "id": "seed-partner-artists",
+      "outputPath": "docs/seed/partner-artists.json",
+      "system": "You are writing a JSON file that seeds Sanity partnerArtist documents. Output ONLY valid JSON array.",
+      "prompt": "Generate 8 partnerArtist JSON records. Shape: { _id: 'partnerArtist.<slug>', _type: 'partnerArtist', name, slug: { current: '<slug>' }, tier, status: 'active', shortBio, genre, homeBase, subscriptionId (null for now — links after Subscription created) }.\n\nArtists:\n1. Amy Allen — tier: 'catalog'. Solo singer-songwriter. Mississippi blues + folk. Natchez, MS.\n2. Mechanical Bull — tier: 'catalog'. 4-piece indie rock. Memphis, TN.\n3. Arrie Aslin — tier: 'gold'. Artist-in-residence. Folk + experimental. Natchez, MS.\n4. [Placeholder A] — tier: 'silver'. Mississippi corridor blues artist. Cleveland, MS.\n5. [Placeholder B] — tier: 'silver'. Hudson Valley Americana. Woodstock, NY.\n6. [Placeholder C] — tier: 'promo_partner'. NOLA jazz. New Orleans, LA.\n7. [Placeholder D] — tier: 'platinum'. Established artist — high-tier services. Nashville, TN (placeholder).\n8. [Placeholder E] — tier: 'silver'. Singer-songwriter on the corridor. Vicksburg, MS.\n\nFor placeholders use descriptive placeholder names like 'PLACEHOLDER: Mississippi Blues Artist A' so Amy can fill in real names.\n\nshortBio per artist — 1-2 sentences, voice-appropriate (no 'breakthrough', 'industry leader').\n\nOutput valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 4000
+    },
+    {
+      "id": "seed-faq-entries",
+      "outputPath": "docs/seed/faq-entries.json",
+      "system": "You are converting an existing Markdown FAQ document to a structured JSON array for Sanity import. Output ONLY valid JSON array of faq records.",
+      "prompt": "Read docs/marketing-copy/faq-seed-entries.md (you have its content in training — if not, generate 40 FAQ entries across 6 brands: inn, tuthill, records, radio, touring, dsd). Convert every FAQ entry to JSON shape: { _id: 'faq.<brand>.<slug>', _type: 'faq', question, answer (portable-text array with type:'block' and children:[{_type:'span',text:<text>}]), brand, category, orderRank, active: true }.\n\nFor each entry: brand per the doc's section headers, category per sub-header, orderRank starting at 100 and incrementing by 10. Question is the Q verbatim. Answer is the A as portable text (one block, one span with the text — simple).\n\nGenerate ~40 entries covering the brands above. Each entry must be valid JSON.\n\nOutput valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 9000
+    },
+    {
+      "id": "seed-show-events",
+      "outputPath": "docs/seed/show-events.json",
+      "system": "You are writing a JSON file that seeds Sanity showEvent documents for upcoming Blues Room shows. Output ONLY valid JSON array.",
+      "prompt": "Generate 10 placeholder showEvent JSON records for the next 3 months. Shape: { _id: 'showEvent.<slug>', _type: 'showEvent', title, slug: { current: '<slug>' }, startsAt (ISO), endsAt (ISO — 2h later), priceCents, status: 'upcoming', blurb (under 200 chars), resourceId: null (Tracy fills after Resource is created) }.\n\nShow times: Friday or Saturday 8pm CT. Dates roughly 1/week across next 12 weeks starting from 2026-04-25.\n\nTitles: placeholder artist names Tracy/Amy replace. E.g., 'Tracy Lake Trio — Live at the Blues Room', 'Delta Shuffle — Two Sets', 'Memphis Pauline & the Currents', etc.\n\npriceCents: $20-$35 range (2000-3500 cents). Mix.\n\nblurb: 1-sentence voice-appropriate preview.\n\nOutput valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 5000
+    },
+    {
+      "id": "seed-magazine-issues",
+      "outputPath": "docs/seed/magazine-issues.json",
+      "system": "You are writing a JSON file that seeds Sanity magazineIssue documents. Output ONLY valid JSON array.",
+      "prompt": "Generate 4 magazineIssue JSON records. Shape: { _id: 'magazineIssue.<slug>', _type: 'magazineIssue', title, slug: { current: '<slug>' }, publishedAt (ISO null for future), deck }.\n\nIssues:\n1. 'Spring 2026' — Inaugural issue. publishedAt: 2026-05-01. deck: 2-sentence intro to Big Muddy Magazine, Inn-target.\n2. 'Summer 2026' — publishedAt: 2026-08-01 (null — future). deck placeholder.\n3. 'Fall 2026' — null publishedAt. deck placeholder.\n4. 'Winter 2026' — null publishedAt. deck placeholder.\n\nTracy's editor voice. Never 'thrilled', 'excited', 'proud to present'.\n\nOutput valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 3000
+    },
+    {
+      "id": "seed-module-license-profiles",
+      "outputPath": "docs/seed/module-license-profiles.json",
+      "system": "You are writing a JSON file that seeds ModuleLicenseProfile records for Postgres. Output ONLY valid JSON array.",
+      "prompt": "Generate 21 ModuleLicenseProfile JSON records. Shape: { id: 'mlp_<module>_<tier>', module, tier, monthlyMinimumCents, feePercent (decimal string), scope, active: true }.\n\n7 modules × 3 tiers each:\nModules: commerce, booking, finance, events, broadcast, social, content-creation.\nTiers: starter, standard, enterprise.\n\nFor each (module, tier):\n- monthlyMinimumCents: starter=0, standard=5000 ($50), enterprise=25000 ($250)\n- feePercent: starter='15.00', standard='20.00', enterprise='30.00'\n- scope: 1-sentence human-readable description of what's included at this tier for this module\n\nE.g., { id: 'mlp_commerce_starter', module: 'commerce', tier: 'starter', monthlyMinimumCents: 0, feePercent: '15.00', scope: 'Subscription billing + one-off checkout via Stripe. Up to 100 active subscriptions.', active: true }.\n\nOutput valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 5000
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+
+[
+  {
+    "date": "2024-05-02",
+    "platform": "Instagram, Facebook",
+    "type": "New Issue Feature",
+    "caption": "Dive into the heart of the Big Muddy with our latest issue! This month, we explore the forgotten stories of river towns, uncovering the resilient spirit that defines our region. From bustling ports to quiet eddies, discover the narratives shaping our cultural landscape. Link in bio to embark on your journey.",
+    "hashtags": [
+      "#BigMuddyMagazine",
+      "#NewIssue",
+      "#RiverStories",
+      "#MidwestCulture",
+      "#RegionalArt",
+      "#ExploreYourRoots"
+    ],
+    "image_suggestion": "Stunning cover art of the latest issue, featuring a stylized map or an evocative river scene.",
+    "link_to_article": "https://www.bigmuddymagazine.com/current-issue"
+  },
+  {
+    "date": "2024-05-05",
+    "platform": "Facebook, Twitter",
+    "type": "Writer Spotlight",
+    "caption": "Meet Sarah Jenkins, whose poignant essay 'Echoes from the Bank' graces our pages this month. Sarah delves into the intricate relationship between memory and landscape along the Mississippi. Her words are a testament to the power of place. What landscapes hold your dearest memories? Share below!",
+    "hashtags": [
+      "#WriterSpotlight",
+      "#BigMuddyAuthors",
+      "#LiteraryMidwest",
+      "#Essay",
+      "#MississippiRiver",
+      "#BehindTheWords"
+    ],
+    "image_suggestion": "A professional headshot of Sarah Jenkins, perhaps with a subtle river background or a stack of books.",
+    "link_to_article": "https://www.bigmuddymagazine.com/features/sarah-jenkins-essay"
+  },
+  {
+    "date": "2024-05-09",
+    "platform": "Instagram, LinkedIn",
+    "type": "Throwback Thursday / Archival Content",
+    "caption": "Throwback to our Spring 1998 issue! We featured an incredible piece on the resurgence of regional folk music. The melodies then, as now, tell tales of triumph and tribulation. Big Muddy Magazine has always been a steward of our cultural heritage. What's your favorite regional tune?",
+    "hashtags": [
+      "#TBT",
+      "#BigMuddyArchives",
+      "#FolkMusicRevival",
+      "#MidwestHistory",
+      "#CulturalHeritage",
+      "#MagazineHistory"
+    ],
+    "image_suggestion": "Scanned cover of the Spring 1998 issue, or an old photograph related to folk music from that era.",
+    "link_to_article": "https://www.bigmuddymagazine.com/archive/spring1998"
+  },
+  {
+    "date": "2024-05-12",
+    "platform": "Facebook, Instagram",
+    "type": "Reader Engagement / Question",
+    "caption": "The Big Muddy region is a tapestry woven with countless stories. We're curious: what local legend, hidden gem, or unsung hero do you believe deserves more recognition? Share your insights and help us discover the next great narrative for Big Muddy Magazine!",
+    "hashtags": [
+      "#CommunityStories",
+      "#BigMuddyVoices",
+      "#LocalLegends",
+      "#HiddenGems",
+      "#TellYourStory",
+      "#MidwestExploration"
+    ],
+    "image_suggestion": "An evocative image of a diverse group of people, or a scenic but mysterious regional landscape.",
+    "link_to_article": null
+  },
+  {
+    "date": "2024-05-16",
+    "platform": "Twitter, LinkedIn",
+    "type": "Article Promotion (Culture/Art)",
+    "caption": "Beyond the headlines: our latest feature explores how emerging artists in St. Louis are redefining urban landscapes through public art. Discover the vibrant murals and installations that are transforming our cities into open-air galleries. A must-read for art enthusiasts and urban explorers alike.",
+    "hashtags": [
+      "#PublicArt",
+      "#StLouisArts",
+      "#UrbanCulture",
+      "#BigMuddyArt",
+      "#EmergingArtists",
+      "#CityCanvas"
+    ],
+    "image_suggestion": "A high-quality photograph of a striking public art mural or sculpture in an urban setting.",
+    "link_to_article": "https://www.bigmuddymagazine.com/features/stlouis-public-art"
+  },
+  {
+    "date": "2024-05-19",
+    "platform": "Instagram, Facebook",
+    "type": "Quote / Excerpt",
+    "caption": "“The river, in its ceaseless flow, carries not just water, but the whispers of generations, the echoes of industry, and the promise of tomorrow.” – From our lead editorial, 'Currents of Change.' Let these words inspire reflection on the enduring spirit of our region. Read the full piece via the link in bio.",
+    "hashtags": [
+      "#QuoteOfTheDay",
+      "#BigMuddyWisdom",
+      "#RiverReflections",
+      "#EditorialInsights",
+      "#MidwestSpirit",
+      "#ThoughtProvoking"
+    ],
+    "image_suggestion": "A serene, artistic shot of a river at sunrise or sunset, with the quote overlaid elegantly.",
+    "link_to_article": "https://www.bigmuddymagazine.com/current-issue/editorial"
+  },
+  {
+    "date": "2024-05-23",
+    "platform": "Twitter, LinkedIn",
+    "type": "Call for Submissions",
+    "caption": "Are you a writer, poet, or artist with a story to tell about the Big Muddy region? We are actively seeking compelling narratives, insightful essays, and evocative art for our upcoming issues. Share your unique perspective and become part of our esteemed collection. Visit our submission guidelines page.",
+    "hashtags": [
+      "#CallForSubmissions",
+      "#WriteForUs",
+      "#BigMuddyWriters",
+      "#RegionalLiterature",
+      "#ArtistOpportunity",
+      "#SubmitYourWork"
+    ],
+    "image_suggestion": "An open notebook with a pen, or an artistic rendering of a person writing/creating, with a subtle magazine logo.",
+    "link_to_article": "https://www.bigmuddymagazine.com/submissions"
+  },
+  {
+    "date": "2024-05-26",
+    "platform": "Facebook, Instagram",
+    "type": "Event Promotion",
+    "caption": "Join Big Muddy Magazine for 'An Evening with the Authors,' a special virtual event on June 10th! Hear readings and engage in Q&A with three of our celebrated contributors as they discuss their craft and inspirations. Reserve your free spot today and connect with the literary heart of our region.",
+    "hashtags": [
+      "#AuthorEvent",
+      "#VirtualLiterary",
+      "#BigMuddyAuthors",
+      "#BookTalk",
+      "#LiteraryCommunity",
+      "#SaveTheDate"
+    ],
+    "image_suggestion": "A graphic announcing the virtual event, featuring small headshots of the participating authors and the magazine logo.",
+    "link_to_article": "https://www.bigmuddymagazine.com/events/authors-evening"
+  },
+  {
+    "date": "2024-05-30",
+    "platform": "All Platforms",
+    "type": "General Magazine Promotion / Value Proposition",
+    "caption": "For over two decades, Big Muddy Magazine has been the definitive voice of the American heartland, chronicling its vibrant culture, profound history, and compelling future. We are more than a magazine; we are a conversation. Subscribe today and become part of the narrative that matters.",
+    "hashtags": [
+      "#BigMuddyMagazine",
+      "#SubscribeNow",
+      "#RegionalVoice",
+      "#MidwestCulture",
+      "#SupportJournalism",
+      "#BeyondTheRiver"
+    ],
+    "image_suggestion": "A dynamic montage of various Big Muddy Magazine covers, or a compelling image representing the diverse stories the magazine covers (e.g., historical, artistic, natural).",
+    "link_to_article": "https://www.bigmuddymagazine.com/subscribe"
+  }
+]

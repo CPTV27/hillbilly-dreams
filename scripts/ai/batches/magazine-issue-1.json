@@ -1,0 +1,104 @@
+{
+  "model": "gemini-2.5-flash",
+  "concurrency": 8,
+  "tasks": [
+    {
+      "id": "mag1-letter-from-editor",
+      "outputPath": "docs/magazine-issues/spring-2026/00-letter-from-editor.md",
+      "system": "You are Tracy Alderson-Allen writing the inaugural letter from the editor of Big Muddy Magazine. Output in markdown. No preamble. Warm, southern-not-folksy, never 'thrilled' / 'proud to present'.",
+      "prompt": "Write the 500-word letter from the editor for Big Muddy Magazine's Spring 2026 inaugural issue. Target reader: a traveler considering a stay at Big Muddy Inn. Introduce the Magazine's editorial mission: this is a travel/hospitality publication for Inn guests, not a music-industry rag. Cover Natchez, the river, hospitality, music as it relates to a guest's stay. Tracy's voice per docs/voice/big-muddy-magazine.md. Output the letter as markdown with a title 'Letter from the editor — Spring 2026'.",
+      "maxTokens": 3000
+    },
+    {
+      "id": "mag1-cover-story",
+      "outputPath": "docs/magazine-issues/spring-2026/01-cover-story.md",
+      "system": "You are a travel writer for Big Muddy Magazine. Output markdown. No preamble. Tracy's editor brief — Inn-target reader, never music-industry-facing.",
+      "prompt": "Write the 2000-word Spring 2026 cover story. Topic: 'The Night the Blues Room Filled Up — How the Inn Discovered It Had a Working Music Venue'. Narrative piece — a specific Friday night in the past year when the room filled with travelers + locals, what that revealed about the Inn, how Tracy + Amy figured out the Blues Room worked as a venue not just a side room.\n\nStructure: opening hook (a single moment — the song, the light, a guest's face), place-establishing paragraph (what the room looked like before/after), central anecdote with a real-feeling character, practical takeaway (how to experience this as a guest), CTA back to booking.\n\nInclude 2-3 [PHOTO: caption] slots. Include 1-2 pull quotes marked with > blockquotes.\n\nVoice: docs/voice/big-muddy-magazine.md. NEVER 'unforgettable experience', 'hidden gem', 'must-visit'.",
+      "maxTokens": 6000
+    },
+    {
+      "id": "mag1-feature-1",
+      "outputPath": "docs/magazine-issues/spring-2026/02-feature-natchez-rhythms.md",
+      "system": "Same as cover story — Magazine voice, Inn-target reader.",
+      "prompt": "Write a 1500-word feature. Topic: 'Natchez at Dawn — What You Can Do Before Anyone Else Is Awake'. Slow-travel weekender piece — five specific morning rhythms a guest can do at the Inn: the porch at 6am, the river walk, the antebellum-district jog, breakfast-with-Tracy, the coffee shop that opens at 6:30. Concrete. Sensory. Practical takeaway: a 'First Morning' itinerary.\n\nInclude [PHOTO:] slots. 1 pull quote. Close with Inn booking CTA.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "mag1-feature-2",
+      "outputPath": "docs/magazine-issues/spring-2026/03-feature-river.md",
+      "system": "Same brief.",
+      "prompt": "Write a 1500-word feature. Topic: 'The River and the Inn: A Short History of the Porch Light'. The Inn's porch faces the Mississippi — the history of the view, why people have been sitting on this kind of porch for 200 years, what the river looks like from here at different times of day/year. Anchored in place, not sentimental. Include a practical 'best view windows' table.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "mag1-feature-3",
+      "outputPath": "docs/magazine-issues/spring-2026/04-feature-dinner-in-natchez.md",
+      "system": "Same brief.",
+      "prompt": "Write a 1500-word feature. Topic: 'Dinner in Natchez, Without the Tourist Traps'. Tracy's honest recommendations for what to eat in Natchez, where, what to avoid. 5-7 specific places with short honest blurbs. 'Best for first night' / 'Best for anniversary' / 'Best for lunch without reservations' framing. References the Inn's catering-from-third-parties-not-a-restaurant model up front so readers understand the relationship.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "mag1-feature-4",
+      "outputPath": "docs/magazine-issues/spring-2026/05-feature-corridor-weekenders.md",
+      "system": "Same brief.",
+      "prompt": "Write a 1500-word feature. Topic: 'Five Weekenders Along the Mississippi Corridor — Natchez, Memphis, Vicksburg, NOLA, Greenwood'. For a traveler staying at the Inn who wants a longer trip — 5 day-trip or overnight ideas from Natchez as the base. Each weekender: 2 paragraphs, concrete places, rough driving distances, what makes each worth it. Inn stays as the anchor.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "mag1-short-form-1",
+      "outputPath": "docs/magazine-issues/spring-2026/06-short-porch-light.md",
+      "system": "Same brief, short-form.",
+      "prompt": "600-word short-form piece. Topic: 'The Porch Light at 7pm'. A single specific moment at the Inn — the porch, the light, what Tracy does at that hour, why guests gather there. Vignette, not reporting.",
+      "maxTokens": 3000
+    },
+    {
+      "id": "mag1-short-form-2",
+      "outputPath": "docs/magazine-issues/spring-2026/07-short-catering-partners.md",
+      "system": "Same brief, short-form.",
+      "prompt": "600-word short-form piece. Topic: 'Who Feeds the Inn — A Quick Tour of Our Catering Partners'. The 4-5 local caterers the Inn works with for private events. Short profile each. Makes the 'no in-house restaurant' model feel like a feature not a gap.",
+      "maxTokens": 3000
+    },
+    {
+      "id": "mag1-short-form-3",
+      "outputPath": "docs/magazine-issues/spring-2026/08-short-antebellum-walking.md",
+      "system": "Same brief, short-form.",
+      "prompt": "700-word short-form piece. Topic: 'A 45-Minute Antebellum Walk from the Inn'. Turn-by-turn self-guided walk a guest can do in 45 minutes. 6-8 stops with 1-sentence descriptions each. Light on history-lesson, heavy on what's worth looking at.",
+      "maxTokens": 3000
+    },
+    {
+      "id": "mag1-short-form-4",
+      "outputPath": "docs/magazine-issues/spring-2026/09-short-records-picks.md",
+      "system": "Same brief, short-form — but leans toward guests curious about the music adjacent to the Inn.",
+      "prompt": "600-word short-form piece. Topic: 'Five Records from the Corridor to Listen to Before Your Stay'. Amy's pick of 5 Mississippi corridor artists (including one Big Muddy Records artist) with 2-sentence blurbs each. For an Inn guest preparing for a visit. Not for music industry insiders.",
+      "maxTokens": 3000
+    },
+    {
+      "id": "mag1-short-form-5",
+      "outputPath": "docs/magazine-issues/spring-2026/10-short-what-to-pack.md",
+      "system": "Same brief, short-form.",
+      "prompt": "500-word short-form piece. Topic: 'What to Pack for Two Nights in Natchez'. Tracy's actual packing advice for a typical Inn guest. Weather-honest. Concrete.",
+      "maxTokens": 3000
+    },
+    {
+      "id": "mag1-short-form-6",
+      "outputPath": "docs/magazine-issues/spring-2026/11-short-the-bar.md",
+      "system": "Same brief, short-form.",
+      "prompt": "600-word short-form piece. Topic: 'Amy's Bar — What's On and Why'. Amy runs the bar at the Inn. What's pouring, what's local, what pairs with a Blues Room night, what's always available. First-person Amy-voice short-form.",
+      "maxTokens": 3000
+    },
+    {
+      "id": "mag1-contributor-bios",
+      "outputPath": "docs/magazine-issues/spring-2026/90-contributors-masthead.md",
+      "system": "You are writing the masthead + contributor bios page. Output markdown. No preamble.",
+      "prompt": "Write the Spring 2026 issue masthead + contributor bios page:\n\n- Masthead (role / name):\n  Editor — Tracy Alderson-Allen\n  Publisher — MBT LLC\n  Contributing photographer — Chase Pierson\n  Bar — Amy Allen (contributed 'Amy's Bar')\n  Contributors — [Placeholder freelance bios — 3 bios, 1-2 sentences each]\n\n- Contributor bios (for each of the 3 placeholders): name as 'CONTRIBUTOR A/B/C', role, 1-sentence bio, optional email for pitches.\n\nMarkdown.",
+      "maxTokens": 2000
+    },
+    {
+      "id": "mag1-seo-meta-per-article",
+      "outputPath": "docs/magazine-issues/spring-2026/91-seo-meta-per-article.md",
+      "system": "Output markdown table with SEO meta per article. No preamble.",
+      "prompt": "For every article in Spring 2026 (14 articles — cover + 4 features + 6 short-forms + letter from editor + contributors + masthead), write a row in a markdown table with columns: File / OG title (60 chars) / Meta description (155-165 chars). Scannable, specific, no 'Discover' or 'Explore'.\n\nFile names: 00-letter-from-editor.md through 11-short-the-bar.md, plus 90-contributors-masthead.md.\n\nTitles reflect actual article content we just generated. Keep tight. Markdown.",
+      "maxTokens": 2500
+    }
+  ]
+}

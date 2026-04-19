@@ -1,0 +1,70 @@
+{
+  "model": "gemini-2.5-flash",
+  "concurrency": 8,
+  "tasks": [
+    {
+      "id": "social-inn-90day",
+      "outputPath": "docs/seed/social-calendar/big-muddy-inn-90day.json",
+      "system": "You are writing a 90-day social media calendar as a JSON array. Output ONLY valid JSON — no markdown fence, no preamble.",
+      "prompt": "Generate a 90-day social post calendar for Big Muddy Inn. Shape per entry: { id, brand: 'inn', date (ISO), platform, postType, copy, hashtags (array, max 3), imageDirection (1 sentence), contentCategory }.\n\nCadence: 3 posts/week across IG feed + IG Story + Facebook. Target: travelers / hospitality-curious.\n\n90 days × 3/week = ~40 posts. Split: 40% editorial (porch moments, river, Natchez slice-of-life), 30% events/shows (Blues Room, private events), 20% guest highlights / reviews, 10% platform-launch.\n\nVoice: Inn voice per docs/voice/big-muddy-inn.md. NEVER 'Don't miss out!', 'unforgettable'. Date range start 2026-05-01.\n\nOutput valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 9000
+    },
+    {
+      "id": "social-magazine-90day",
+      "outputPath": "docs/seed/social-calendar/big-muddy-magazine-90day.json",
+      "system": "Same JSON format.",
+      "prompt": "90-day social calendar for Big Muddy Magazine. Cadence: 2 posts/week (IG + FB). ~26 posts. Mix: article pullquotes, behind-the-scenes editorial, issue-release promo, contributor features. Inn-guest audience. Tracy's voice. Output valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 7000
+    },
+    {
+      "id": "social-touring-90day",
+      "outputPath": "docs/seed/social-calendar/big-muddy-touring-90day.json",
+      "system": "Same JSON format.",
+      "prompt": "90-day social calendar for Big Muddy Touring. Cadence: weekly. ~13 posts. IG + TikTok + X. Mix: show announcements, artist spotlights, corridor scene, behind-the-scenes from the Sprinter van. Industry-facing. Output valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 6000
+    },
+    {
+      "id": "social-records-90day",
+      "outputPath": "docs/seed/social-calendar/big-muddy-records-90day.json",
+      "system": "Same JSON format.",
+      "prompt": "90-day social calendar for Big Muddy Records. Cadence: 2 posts/week. ~26 posts. IG + TikTok + X. Mix: artist releases, catalog spotlights, sync-licensing wins, non-exclusive-label philosophy posts. Artist-friendly indie voice. Output valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 7000
+    },
+    {
+      "id": "social-radio-90day",
+      "outputPath": "docs/seed/social-calendar/big-muddy-radio-90day.json",
+      "system": "Same JSON format.",
+      "prompt": "90-day social calendar for Big Muddy Radio. Cadence: daily playlist promo (IG Story) + weekly episode promo (IG feed + TikTok). ~90+ entries (most are lightweight IG Story). Music-first voice. Output valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 10000
+    },
+    {
+      "id": "social-cpp-90day",
+      "outputPath": "docs/seed/social-calendar/chase-pierson-photography-90day.json",
+      "system": "Same JSON format.",
+      "prompt": "90-day social calendar for Chase Pierson Photography. Cadence: weekly. ~13 posts. IG feed primarily, occasional IG Story. Mix: recent commissions, documentary outtakes, architectural details, print drops. Photographer's first-person voice, never 'capturing moments'. Output valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 6000
+    },
+    {
+      "id": "social-tuthill-90day",
+      "outputPath": "docs/seed/social-calendar/tuthill-design-90day.json",
+      "system": "Same JSON format.",
+      "prompt": "90-day social calendar for Tuthill Design. Cadence: daily (realtors need frequent social). ~90 posts. Mostly IG feed + FB. Mix: listing shots, before-after, behind-the-scenes from shoots, realtor testimonials (placeholder). Professional/realtor-respectful voice. Output valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 10000
+    },
+    {
+      "id": "social-studio-c-90day",
+      "outputPath": "docs/seed/social-calendar/studio-c-90day.json",
+      "system": "Same JSON format.",
+      "prompt": "90-day social calendar for Studio C. Cadence: 2 posts/week. ~26 posts. IG feed + IG Reels (production B-roll is strong there). Mix: event shoots, behind-the-scenes production, gear spotlights (without gear-fetish), client wins. Production-floor voice. Output valid JSON array.",
+      "skipHeader": true,
+      "maxTokens": 7000
+    }
+  ]
+}

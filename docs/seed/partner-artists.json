@@ -1,0 +1,115 @@
+
+[
+  {
+    "_id": "partnerArtist.amy-allen",
+    "_type": "partnerArtist",
+    "name": "Amy Allen",
+    "slug": {
+      "current": "amy-allen"
+    },
+    "tier": "catalog",
+    "status": "active",
+    "shortBio": "Amy Allen is a solo singer-songwriter known for her soulful blend of Mississippi blues and folk traditions. Her music often reflects the rich cultural tapestry of her Southern roots.",
+    "genre": "Mississippi blues, folk",
+    "homeBase": "Natchez, MS",
+    "subscriptionId": null
+  },
+  {
+    "_id": "partnerArtist.mechanical-bull",
+    "_type": "partnerArtist",
+    "name": "Mechanical Bull",
+    "slug": {
+      "current": "mechanical-bull"
+    },
+    "tier": "catalog",
+    "status": "active",
+    "shortBio": "Mechanical Bull is a dynamic four-piece indie rock band from Memphis, known for their energetic live performances and catchy, guitar-driven anthems. Their sound captures the raw spirit of the Bluff City.",
+    "genre": "Indie rock",
+    "homeBase": "Memphis, TN",
+    "subscriptionId": null
+  },
+  {
+    "_id": "partnerArtist.arrie-aslin",
+    "_type": "partnerArtist",
+    "name": "Arrie Aslin",
+    "slug": {
+      "current": "arrie-aslin"
+    },
+    "tier": "gold",
+    "status": "active",
+    "shortBio": "Arrie Aslin is an artist-in-residence exploring the intersections of traditional folk and experimental soundscapes. Hailing from Natchez, her work pushes boundaries while staying grounded in Southern storytelling.",
+    "genre": "Folk, experimental",
+    "homeBase": "Natchez, MS",
+    "subscriptionId": null
+  },
+  {
+    "_id": "partnerArtist.placeholder-mississippi-blues-artist-a",
+    "_type": "partnerArtist",
+    "name": "PLACEHOLDER: Mississippi Blues Artist A",
+    "slug": {
+      "current": "placeholder-mississippi-blues-artist-a"
+    },
+    "tier": "silver",
+    "status": "active",
+    "shortBio": "This artist is a compelling voice in the Mississippi corridor blues scene, carrying forward the rich traditions of the Delta. Their performances are steeped in the raw emotion and history of the genre.",
+    "genre": "Mississippi corridor blues",
+    "homeBase": "Cleveland, MS",
+    "subscriptionId": null
+  },
+  {
+    "_id": "partnerArtist.placeholder-hudson-valley-americana-artist-b",
+    "_type": "partnerArtist",
+    "name": "PLACEHOLDER: Hudson Valley Americana Artist B",
+    "slug": {
+      "current": "placeholder-hudson-valley-americana-artist-b"
+    },
+    "tier": "silver",
+    "status": "active",
+    "shortBio": "Hailing from the scenic Hudson Valley, this artist crafts heartfelt Americana music that blends folk storytelling with roots-rock sensibilities. Their songs paint vivid pictures of life in upstate New York.",
+    "genre": "Americana",
+    "homeBase": "Woodstock, NY",
+    "subscriptionId": null
+  },
+  {
+    "_id": "partnerArtist.placeholder-nola-jazz-artist-c",
+    "_type": "partnerArtist",
+    "name": "PLACEHOLDER: NOLA Jazz Artist C",
+    "slug": {
+      "current": "placeholder-nola-jazz-artist-c"
+    },
+    "tier": "promo_partner",
+    "status": "active",
+    "shortBio": "This New Orleans-based artist delivers an authentic taste of NOLA jazz, infusing traditional sounds with their unique contemporary flair. Their music embodies the vibrant spirit of the Crescent City.",
+    "genre": "New Orleans jazz",
+    "homeBase": "New Orleans, LA",
+    "subscriptionId": null
+  },
+  {
+    "_id": "partnerArtist.placeholder-platinum-tier-artist-d",
+    "_type": "partnerArtist",
+    "name": "PLACEHOLDER: Platinum Tier Artist D",
+    "slug": {
+      "current": "placeholder-platinum-tier-artist-d"
+    },
+    "tier": "platinum",
+    "status": "active",
+    "shortBio": "An established artist within our platinum tier, this musician is known for their significant contributions and high-quality artistic output. Based in Nashville, they represent a pinnacle of musical artistry.",
+    "genre": "Country, Singer-songwriter",
+    "homeBase": "Nashville, TN",
+    "subscriptionId": null
+  },
+  {
+    "_id": "partnerArtist.placeholder-corridor-singer-songwriter-e",
+    "_type": "partnerArtist",
+    "name": "PLACEHOLDER: Corridor Singer-Songwriter E",
+    "slug": {
+      "current": "placeholder-corridor-singer-songwriter-e"
+    },
+    "tier": "silver",
+    "status": "active",
+    "shortBio": "This singer-songwriter, based in Vicksburg, offers poignant narratives and melodic tunes often inspired by the Mississippi corridor. Their work is a heartfelt reflection of their Southern surroundings.",
+    "genre": "Singer-songwriter",
+    "homeBase": "Vicksburg, MS",
+    "subscriptionId": null
+  }
+]
