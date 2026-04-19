@@ -2,7 +2,17 @@
 // One-off Order creation + lifecycle.
 
 import { prisma } from '@bigmuddy/database';
+import { send as emailSend, templates as emailTemplates } from '@bigmuddy/email';
+import type { Brand as EmailBrand } from '@bigmuddy/email';
 import type { Order, CreateOrderInput, OrderStatus, TenantId } from './types';
+
+function emailBrandFor(tenantId: string): EmailBrand {
+  // big-muddy tenant is the only one with multiple brands; default it to `inn`.
+  // Other tenants map 1:1 to email brand keys.
+  if (tenantId === 'big-muddy') return 'inn';
+  const valid: EmailBrand[] = ['tuthill', 'studio-c', 'dsd', 'mbt'];
+  return (valid.includes(tenantId as EmailBrand) ? tenantId : 'mbt') as EmailBrand;
+}
 
 export async function list(opts?: {
   tenantId?: TenantId;
@@ -135,15 +145,54 @@ export async function markShipped(
   id: string,
   trackingNumber: string
 ): Promise<Order> {
-  return prisma.order.update({
+  const updated = await prisma.order.update({
     where: { id },
     data: { status: 'shipped', shippedAt: new Date(), trackingNumber },
   });
+
+  // Shipping notification
+  const brand = emailBrandFor(updated.tenantId);
+  void emailSend.sendSafe({
+    brand,
+    to: updated.customerEmail,
+    email: emailTemplates.orderShipped({
+      customerName: updated.customerName ?? undefined,
+      customerEmail: updated.customerEmail,
+      brand,
+      orderId: updated.id,
+      items: [],
+      totalCents: updated.totalCents,
+      currency: updated.currency,
+      trackingNumber,
+    }),
+    tags: { event: 'order.shipped', orderId: updated.id },
+  });
+
+  return updated;
 }
 
 export async function refund(id: string, notes?: string): Promise<Order> {
-  return prisma.order.update({
+  const updated = await prisma.order.update({
     where: { id },
     data: { status: 'refunded', notes: notes ?? null },
   });
+
+  // Refund notification
+  const brand = emailBrandFor(updated.tenantId);
+  void emailSend.sendSafe({
+    brand,
+    to: updated.customerEmail,
+    email: emailTemplates.orderRefunded({
+      customerName: updated.customerName ?? undefined,
+      customerEmail: updated.customerEmail,
+      brand,
+      orderId: updated.id,
+      items: [],
+      totalCents: updated.totalCents,
+      currency: updated.currency,
+    }),
+    tags: { event: 'order.refunded', orderId: updated.id },
+  });
+
+  return updated;
 }
