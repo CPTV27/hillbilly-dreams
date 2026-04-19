@@ -107,6 +107,21 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // ── Commerce + Booking public surfaces — no domain rewriting ──
+  // These pages work from ANY brand hostname (they read tenant/brand from query).
+  // Without this bypass the tenant-rewrite middleware routes to /(tenant)/pricing
+  // which doesn't exist, returning 404.
+  const PUBLIC_BYPASS_PATHS = [
+    '/pricing',
+    '/shows',
+    '/private-events',
+    '/account/',
+    '/checkout/',
+  ];
+  if (PUBLIC_BYPASS_PATHS.some((p) => pathname === p.replace(/\/$/, '') || pathname.startsWith(p))) {
+    return NextResponse.next();
+  }
+
   // Press mocks — internal-only static HTML under /public/press.
   // Auth gate temporarily disabled so Tracy/Amy can access via direct links.
   // TODO: Re-enable auth after team has accounts. Each file has an internal-only banner.
