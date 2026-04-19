@@ -40,9 +40,9 @@ Each brand keeps its own voice, domain, and customer relationship. None of them 
 
 **Big Muddy Touring.** Bringing artists to the Mississippi corridor — booking, route planning, on-the-ground promotion. *Sells: tour dates, gigs to venues, sponsorships.*
 
-**Big Muddy Records.** A regional record label releasing artists from the corridor. First Arctic record currently in mix. *Sells: vinyl, digital, streaming, merch.*
+**Big Muddy Records.** Three concentric purposes: (1) house the **Amy Allen** catalog and the **Mechanical Bull** catalog, (2) offer a **non-exclusive promotion partnership** to outside artists who aren't on a label and would benefit from MBT's media structure (no equity grab — we just help them reach audiences), and (3) for artists we approve onto the label proper, add a **low monthly fee** for marketing and label-type services. Recurring revenue, not just unit sales. *Sells: catalog units (vinyl, digital, streaming, merch) + recurring monthly label services.*
 
-**Big Muddy Radio.** Internet radio station with three on-air voices and a programming grid built around the artists we book. *Sells: sponsorships, directory placements, underwriting.*
+**Big Muddy Radio.** For now: podcasts and curated playlists distributed across the platforms people actually listen on (Spotify, Apple Podcasts, YouTube Music, etc.). Built around the artists we book and document. May grow into linear streaming radio later. *Sells: sponsorships on shows + future linear-radio inventory.*
 
 **Big Muddy Magazine.** Editorial vehicle covering music, hospitality, and the people on the corridor. Feeds traffic to every other Big Muddy property. *Cross-marketing engine that drives Inn bookings — not a subscription product.*
 

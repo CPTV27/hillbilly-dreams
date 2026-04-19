@@ -1,12 +1,12 @@
 # Brand Offering — Big Muddy Radio
 
-*Pre-populated draft for Monday April 20 partner session.*
+*Pre-populated draft for Monday April 20 partner session. Reframed 2026-04-18 evening per Chase: podcasts + playlists on other platforms first; linear radio possibly later.*
 
 ---
 
 ## 1 · The brand in one sentence
 
-An internet radio station broadcasting from the Mississippi corridor — programming the music we book, document, and release, with three on-air voices (Chase, Tracy, Amy) plus syndicated specials.
+Big Muddy's audio voice — for now distributed as podcasts and curated playlists on the platforms people already listen on (Spotify, Apple Podcasts, YouTube Music, etc.), built around the artists we book, document, and release. May grow into linear streaming radio later.
 
 ---
 
@@ -14,42 +14,48 @@ An internet radio station broadcasting from the Mississippi corridor — program
 
 | | |
 |---|---|
-| **Tier** | Consumer (free to listeners) + B2B (sponsorships + directory placements) |
+| **Tier** | Consumer (free to listeners) + B2B (sponsorships) |
 | **Parent entity** | Big Muddy Touring LLC (wholly-owned subsidiary of MBT) |
 | **Sibling brands under same entity** | Big Muddy Touring · Big Muddy Records · the band |
-| **Customer of MBT?** | Yes — Tier 1 internal · Tier 3 once directory placements scale |
+| **Customer of MBT?** | Yes — Tier 1 internal · Tier 3 once placement deals scale |
 | **Vendor to MBT?** | No |
 
 ---
 
 ## 3 · What we sell
 
-### Offering 1 — Free listening
-- **What it is:** 24/7 streaming station + on-demand show archive
-- **What's included:** Whole programming grid · web player · mobile-friendly
-- **Price:** $0
-- **Packaging:** Free; monetized through sponsorships + directory placements
-- **Sold via:** bigmuddyradio.com · web player on Touring + Inn + Magazine sites
+### Offering 1 — Free listening (podcasts + playlists)
+- **What it is:** Episodic shows + curated playlists distributed where listeners are
+- **What's included:** Hosted shows · interview episodes · curated artist playlists · season archives
+- **Price:** $0 to listeners
+- **Distribution:** Spotify, Apple Podcasts, YouTube Music, Amazon Music, podcast catchers
+- **Sold via:** Each platform's discovery + cross-promotion from family brands
 
-### Offering 2 — Show sponsorships
-- **What it is:** Brand sponsors a specific show or block
+### Offering 2 — Show / episode sponsorships
+- **What it is:** Brand sponsors a specific show, segment, or season
 - **What's included:** Pre-roll mention · live mention from host · web placement on show page · social cross-post
-- **Price:** $___ per show / per month
-- **Packaging:** Per-show or per-block (e.g., morning, drive-time, weekend)
-- **Sold via:** Direct outreach (Tracy) to regional brands
+- **Price:** $___ per episode / per season / per show
+- **Packaging:** Per-show or per-block (morning, drive-time, weekend playlist series)
+- **Sold via:** Direct outreach (Tracy + Chase) to regional brands
 
-### Offering 3 — Directory placements (Tier 3 hook)
-- **What it is:** Local business gets recurring on-air mention + web directory placement + social shoutouts
-- **What's included:** N mentions per week · listing in Big Muddy Radio "local hands" directory · monthly social spotlight
-- **Price:** $___/month entry · $___/month premium
-- **Packaging:** Monthly recurring
-- **Sold via:** Walk-in (DSD-style sales pitch) · partner channels
+### Offering 3 — Playlist sponsorships
+- **What it is:** Brand sponsors a curated playlist
+- **What's included:** Playlist named after sponsor or co-branded · refresh cadence · social posts on update
+- **Price:** $___ /quarter
+- **Packaging:** Quarterly recurring
+- **Sold via:** Direct (Tracy)
 
-### Offering 4 — Underwriting / station-level support
+### Offering 4 — Future: linear streaming radio
+- **What it is:** When/if the audience justifies it, spin up a 24/7 streaming station via the existing Mac mini OpenBroadcaster + Icecast infrastructure
+- **What's included:** Live programming + automated playlists between hosted shows + sponsor reads
+- **Price:** TBD — likely a richer sponsor inventory model
+- **Packaging:** Future
+- **Sold via:** Future direct sales
+
+### Offering 5 — Underwriting / station-level support (when linear launches)
 - **What it is:** Larger-tier brand presence across the whole station
 - **What's included:** Station ID mentions · web header · tour van wrap · signage at Inn/Blues Room shows
-- **Price:** $___/quarter or $___/year
-- **Packaging:** Annual primarily
+- **Price:** $___ /quarter or $___ /year
 - **Sold via:** Direct (Chase + Tracy)
 
 ---
@@ -58,11 +64,10 @@ An internet radio station broadcasting from the Mississippi corridor — program
 
 | Item | Price |
 |---|---|
-| Show sponsorship | $___/mo |
-| Directory placement (entry) | $___/mo |
-| Directory placement (premium) | $___/mo |
-| Station underwriting (per quarter) | $___/qtr |
-| Station underwriting (annual) | $___/yr |
+| Episode sponsorship | $___ per episode |
+| Playlist sponsorship | $___/quarter |
+| Show / season sponsorship | $___/season |
+| Linear underwriting (future) | $___/quarter |
 
 ---
 
@@ -70,10 +75,11 @@ An internet radio station broadcasting from the Mississippi corridor — program
 
 | Offering | Modules used | Module-specific requirement |
 |---|---|---|
-| Streaming | Broadcast | Mac mini OpenBroadcaster + Icecast (live). Currently working. |
-| Sponsorships | Commerce, CMS, Broadcast | Sponsor inventory (per-show), live read script management, billing |
-| Directory placements | Directory, Commerce, Broadcast, Coordination | Placement inventory, automated mention scheduling, monthly billing |
-| Underwriting | Commerce, CMS | Sales tracking, contract storage, recognition placement (web + on-air) |
+| Podcast publishing | Broadcast (podcast mode), Coordination, CMS | Per-episode metadata in Sanity, RSS feed generation, distribution to all major directories |
+| Playlist curation + publishing | Broadcast (playlist mode), Coordination | Playlist updater (Spotify API + Apple Music API + YouTube Music) |
+| Sponsorships | Commerce, CMS, Broadcast | Sponsor inventory per show + per playlist, live read script management, billing |
+| Linear streaming (future) | Broadcast (streaming mode) | Mac mini OpenBroadcaster + Icecast already exists — flip on when ready |
+| Underwriting | Commerce, CMS | Sales tracking, contract storage, recognition placement |
 
 ---
 
@@ -82,16 +88,15 @@ An internet radio station broadcasting from the Mississippi corridor — program
 | Offering | MBT tier | MBT take |
 |---|---|---|
 | Sponsorships, underwriting (in-family operations) | Tier 1 | None |
-| Directory placements (recurring, module-driven) | **Tier 3** | 15-30% (the directory module is doing the work) |
+| Future: licensing podcast-distribution module to other regional networks | Tier 3 | 15-30% |
 
 ---
 
 ## 7 · Sales channels
 
-- **Direct:** Web players on family brand sites · station site · social
-- **Cross-sell:** Magazine articles → "as heard on Big Muddy Radio" · Touring shows broadcast live → station listeners → ticket sales
-- **Sponsor outreach:** Tracy direct + future sales rep
-- **Partner:** Streaming platform syndication (TuneIn, Radio Garden, etc.)
+- **Listener acquisition:** Spotify / Apple Podcasts / YouTube Music discovery + cross-promotion from Magazine, Inn, Touring sites
+- **Sponsor sales:** Direct (Tracy + Chase) to regional brands
+- **Cross-sell from family brands:** Magazine articles → "as heard on Big Muddy Radio podcast" · Touring shows captured → episode
 
 ---
 
@@ -99,11 +104,12 @@ An internet radio station broadcasting from the Mississippi corridor — program
 
 | Metric | Current | 12-month target |
 |---|---|---|
-| Concurrent listeners (peak) | ___ | ___ |
-| Monthly unique listeners | ___ | ___ |
-| Show sponsors active | ___ | ___ |
-| Directory placements active | ___ | ___ |
-| Underwriting revenue | $___/yr | $___/yr |
+| Active podcast shows | ___ | ___ |
+| Episodes per month | ___ | ___ |
+| Total downloads/streams per month | ___ | ___ |
+| Active playlists | ___ | ___ |
+| Sponsors active | ___ | ___ |
+| Linear-radio decision date | TBD | ___ |
 
 ---
 
@@ -112,18 +118,17 @@ An internet radio station broadcasting from the Mississippi corridor — program
 | | |
 |---|---|
 | **Day-to-day operator** | **Amy** (per 2026-04-18 evening role evolution — Amy: Radio + Records + performing) |
-| **Programming + engineering** | Amy (programming) + Patch (Mac mini stack) |
-| **On-air voices** | Three distinct: Chase (station-owner / specials) · Tracy · Amy. Voice-routing rule per Humanizer (P27 in router). |
-| **Sponsor sales** | Tracy primarily (Tracy retains cross-venture marketing role even after stepping back from Inn day-to-day) |
-| **Cadence with Chase** | Programming weekly; sponsor pipeline monthly |
+| **Programming + production** | Amy + Chase + Tracy (three host voices). Voice-routing rule per Humanizer (P27 in router). |
+| **Engineering** | Patch (Mac mini stack stays available for the future linear pivot) |
+| **Sponsor sales** | Tracy primarily (cross-venture marketing role) |
 
 ---
 
 ## 10 · Open questions and decisions needed
 
-- Programming grid — what's the actual schedule? Live vs automated split?
-- Streaming distribution beyond own player — TuneIn, Radio Garden, others?
-- Live broadcast from Blues Room shows — how often? Production cost vs audience?
-- Sponsor inventory pricing — needs market validation
-- Directory placement vs DSD — same platform feature, different sales motion?
-- Music licensing (BMI/ASCAP) — currently compliant?
+- **First podcast show titles + cadence** — what shows are we launching with? Weekly? Biweekly?
+- **Playlist categories** — what playlists do we curate? "Big Muddy Booked This Week"? "Mississippi Corridor New Releases"? "Inn Late Night"?
+- Distribution platforms — DistroKid for podcasts? Direct Spotify for Podcasters? Buzzsprout? Transistor?
+- Linear-radio trigger — what audience size or sponsor revenue justifies turning on the 24/7 stream?
+- Music licensing for sponsored playlists — most platforms handle this, but verify per use case
+- Cross-promotion plan with Big Muddy Records releases (label drops → episode coverage)
