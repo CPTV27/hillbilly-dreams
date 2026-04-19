@@ -109,3 +109,27 @@ export async function setStripeIds(
     },
   });
 }
+
+/**
+ * Attach Stripe Price + Product IDs ONLY if they are currently null.
+ *
+ * First-writer-wins semantics for concurrent checkouts — see
+ * `checkout.createSubscriptionCheckout`. Returns the update count (1 if
+ * this caller won the race, 0 if another caller already set the ids).
+ *
+ * Combined with Stripe idempotency keys, this eliminates the orphan-price
+ * race identified in the 2026-04-19 Gemini review (#8).
+ */
+export async function setStripeIdsIfMissing(
+  id: string,
+  ids: { stripePriceId: string; stripeProductId: string }
+): Promise<{ updated: number }> {
+  const result = await prisma.plan.updateMany({
+    where: { id, stripePriceId: null },
+    data: {
+      stripePriceId: ids.stripePriceId,
+      stripeProductId: ids.stripeProductId,
+    },
+  });
+  return { updated: result.count };
+}

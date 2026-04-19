@@ -269,8 +269,32 @@ export async function middleware(request: NextRequest) {
   }
 
   // ── Default fallback ──
-  // Handles the primary domain, Firebase hosted.app domain,
-  // and any unmatched hostname that isn't admin.
+  // Handles known dev/preview hosts (localhost, Vercel preview URLs) AND
+  // any unmatched production hostname. Gemini review #10 flagged the
+  // previous behaviour — silently serving touring content for ANY unknown
+  // host — as misleading. We now distinguish:
+  //   (a) known dev/preview hosts → fall back silently (expected)
+  //   (b) unknown production hostnames → fall back BUT log a warning and
+  //       set an X-Fallback-Route header so ops can detect misrouted domains
+  const DEV_PREVIEW_PATTERNS = [
+    'localhost',
+    '127.0.0.1',
+    '0.0.0.0',
+    '.vercel.app',
+    '.local',
+  ];
+  const isDevOrPreview = DEV_PREVIEW_PATTERNS.some((p) => hostname.includes(p));
+  if (!isDevOrPreview) {
+    // Unknown production hostname — fall back to touring but flag it.
+    console.warn(
+      `[middleware] Unknown hostname "${hostname}" falling back to ${BMT_DEFAULT_ROUTE_GROUP}. ` +
+        `Add a DomainRoute entry in config/domain-routes.ts if this host should serve different content.`
+    );
+    const response = rewriteTo(BMT_DEFAULT_ROUTE_GROUP, pathname);
+    response.headers.set('X-Fallback-Route', `unknown-host:${hostname}`);
+    response.headers.set('X-Resolved-Route-Group', BMT_DEFAULT_ROUTE_GROUP);
+    return response;
+  }
   return rewriteTo(BMT_DEFAULT_ROUTE_GROUP, pathname);
 }
 

@@ -27,6 +27,18 @@
     {
       "path": "/api/cron/reviews-sync",
       "schedule": "37 * * * *"
+    },
+    {
+      "path": "/api/events/worker",
+      "schedule": "* * * * *"
+    },
+    {
+      "path": "/api/cron/podcast-sync",
+      "schedule": "7 * * * *"
+    },
+    {
+      "path": "/api/booking/cron/expire-holds",
+      "schedule": "*/10 * * * *"
     }
   ]
 }

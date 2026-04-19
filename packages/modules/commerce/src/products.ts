@@ -24,8 +24,21 @@ export async function list(opts?: {
   });
 }
 
-export async function get(id: string): Promise<Product | null> {
-  return prisma.product.findUnique({ where: { id } });
+/**
+ * Fetch a product by id.
+ *
+ * Pass `tenantId` from any API handler that accepts `id` from untrusted
+ * input. Returns `null` when the product belongs to a different tenant,
+ * preventing cross-tenant access via guessed/brute-forced ids (IDOR).
+ */
+export async function get(
+  id: string,
+  tenantId?: TenantId
+): Promise<Product | null> {
+  const product = await prisma.product.findUnique({ where: { id } });
+  if (!product) return null;
+  if (tenantId && product.tenantId !== tenantId) return null;
+  return product;
 }
 
 export async function getBySlug(
@@ -86,20 +99,33 @@ export async function update(
 }
 
 /**
- * Decrement inventory level by qty. Returns null if product is not
- * inventory-tracked or if the decrement would push below zero.
+ * Atomically decrement inventory level by qty. Returns null if the
+ * decrement would push below zero (oversell). Uses a raw SQL UPDATE
+ * with a WHERE check so the "enough stock" decision and the decrement
+ * happen in a single row lock — no check-then-act race.
+ *
+ * No-op (returns the row) for products that don't track inventory.
  */
 export async function decrementInventory(
   id: string,
   qty: number
 ): Promise<Product | null> {
+  if (qty <= 0) return null;
+
+  // Short-circuit for non-tracked products: read, return as-is.
   const product = await prisma.product.findUnique({ where: { id } });
   if (!product) return null;
-  if (!product.trackInventory) return product; // no-op for non-tracked
-  if (product.inventoryLevel === null) return product;
-  if (product.inventoryLevel - qty < 0) return null;
-  return prisma.product.update({
-    where: { id },
-    data: { inventoryLevel: { decrement: qty } },
-  });
+  if (!product.trackInventory || product.inventoryLevel === null) return product;
+
+  // Tracked path: atomic decrement-if-enough.
+  const affected = await prisma.$executeRaw`
+    UPDATE "Product"
+    SET "inventoryLevel" = "inventoryLevel" - ${qty}
+    WHERE id = ${id}
+      AND "trackInventory" = true
+      AND "inventoryLevel" IS NOT NULL
+      AND "inventoryLevel" - ${qty} >= 0
+  `;
+  if (affected === 0) return null;
+  return prisma.product.findUnique({ where: { id } });
 }

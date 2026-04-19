@@ -33,11 +33,29 @@ export async function list(opts?: {
   });
 }
 
-export async function get(id: string): Promise<Subscription | null> {
-  return prisma.subscription.findUnique({
+/**
+ * Fetch a subscription by id.
+ *
+ * **Tenant scoping (CRITICAL for IDOR protection):**
+ * Always pass `tenantId` from any API handler that receives the `id` from
+ * an untrusted source (URL params, request body). When `tenantId` is provided,
+ * this returns `null` for subscriptions that belong to a different tenant —
+ * preventing cross-tenant access via brute-forced or guessed ids.
+ *
+ * Only omit `tenantId` from trusted internal callers (Stripe webhook handlers,
+ * admin-console lookups that already enforce tenant context upstream).
+ */
+export async function get(
+  id: string,
+  tenantId?: TenantId
+): Promise<Subscription | null> {
+  const sub = await prisma.subscription.findUnique({
     where: { id },
     include: { plan: true, engagement: true },
   });
+  if (!sub) return null;
+  if (tenantId && sub.tenantId !== tenantId) return null;
+  return sub;
 }
 
 export async function getByStripeId(

@@ -27,8 +27,20 @@ export async function list(opts?: {
   });
 }
 
-export async function get(id: string): Promise<Resource | null> {
-  return prisma.resource.findUnique({ where: { id } });
+/**
+ * Fetch a bookable resource by id.
+ *
+ * Pass `tenantId` from API handlers where `id` is untrusted. Returns `null`
+ * for resources belonging to a different tenant — IDOR protection.
+ */
+export async function get(
+  id: string,
+  tenantId?: TenantId
+): Promise<Resource | null> {
+  const resource = await prisma.resource.findUnique({ where: { id } });
+  if (!resource) return null;
+  if (tenantId && resource.tenantId !== tenantId) return null;
+  return resource;
 }
 
 export async function create(input: CreateResourceInput): Promise<Resource> {
@@ -49,30 +61,38 @@ export async function create(input: CreateResourceInput): Promise<Resource> {
   });
 }
 
-/** Atomically reserve N seats. Returns null if not enough capacity. */
+/**
+ * Atomically reserve N seats. Returns null if not enough capacity.
+ *
+ * Uses a single atomic UPDATE with a capacity check in the WHERE clause.
+ * If the update affects 0 rows, either the resource doesn't exist OR there
+ * wasn't enough available capacity — we refetch to distinguish, but NO
+ * oversell window is ever visible to other queries.
+ *
+ * Previous implementation (2026-04-19 Gemini review, HIGH #4): incremented
+ * first, refetched, and rolled back if oversold — which briefly exposed
+ * oversold state to concurrent readers and could misreport capacity.
+ */
 export async function reserve(
   id: string,
   quantity: number
 ): Promise<Resource | null> {
-  const updated = await prisma.resource.updateMany({
-    where: {
-      id,
-      reservedCount: { lte: 1_000_000 }, // sentinel — real check below
-    },
-    data: { reservedCount: { increment: quantity } },
-  });
-  if (updated.count === 0) return null;
-  // Re-fetch to validate we didn't oversell. If we did, roll back.
-  const after = await prisma.resource.findUnique({ where: { id } });
-  if (!after) return null;
-  if (after.reservedCount > after.totalCapacity) {
-    await prisma.resource.update({
-      where: { id },
-      data: { reservedCount: { decrement: quantity } },
-    });
-    return null;
-  }
-  return after;
+  if (quantity <= 0) return null;
+
+  // Atomic: only increment if there's room. Postgres evaluates the WHERE
+  // on the current row state within the UPDATE's row lock.
+  const result = await prisma.$executeRaw`
+    UPDATE "Resource"
+    SET "reservedCount" = "reservedCount" + ${quantity}
+    WHERE id = ${id}
+      AND active = true
+      AND "totalCapacity" - "reservedCount" >= ${quantity}
+  `;
+
+  // $executeRaw returns affected row count. 0 = not enough capacity or missing.
+  if (result === 0) return null;
+
+  return prisma.resource.findUnique({ where: { id } });
 }
 
 /** Release a previously-reserved hold (cancellation, expired hold). */

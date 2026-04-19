@@ -28,11 +28,25 @@ export async function list(opts?: {
   });
 }
 
-export async function get(id: string): Promise<Booking | null> {
-  return prisma.booking.findUnique({
+/**
+ * Fetch a booking by id.
+ *
+ * Pass `tenantId` from API handlers where `id` comes from untrusted input.
+ * Returns `null` when the booking belongs to a different tenant, closing
+ * the IDOR gap where a guessed id could reveal or mutate another tenant's
+ * reservation.
+ */
+export async function get(
+  id: string,
+  tenantId?: TenantId
+): Promise<Booking | null> {
+  const booking = await prisma.booking.findUnique({
     where: { id },
     include: { resource: true },
   });
+  if (!booking) return null;
+  if (tenantId && booking.tenantId !== tenantId) return null;
+  return booking;
 }
 
 /**

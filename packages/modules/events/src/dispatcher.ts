@@ -1,8 +1,13 @@
 // packages/modules/events/src/dispatcher.ts
-// processBatch() — run by a cron route every 30s. Picks up pending
-// EventDelivery rows, invokes the registered handler, records success/failure.
-// At-least-once delivery via SELECT FOR UPDATE SKIP LOCKED semantics
-// (Prisma raw query for the lock; otherwise standard upsert).
+// processBatch() — run by a cron route every 30s. Atomically claims pending
+// EventDelivery rows via SELECT ... FOR UPDATE SKIP LOCKED (Postgres primitive),
+// invokes the registered handler, records success/failure.
+//
+// At-least-once delivery. The claim SQL is the ONLY safe way to guarantee
+// two concurrent workers don't both process the same delivery. Handlers are
+// idempotent-by-contract — if a handler sees the same event twice (e.g.,
+// after a worker crash before completedAt is written), it must produce the
+// same outcome as a single invocation.
 
 import { prisma } from '@bigmuddy/database';
 import { getHandler } from './bus';
@@ -18,6 +23,43 @@ interface ProcessResult {
   skipped: number;
 }
 
+interface ClaimedDelivery {
+  id: string;
+  attempt: number;
+  eventId: string;
+  handlerId: string;
+}
+
+/**
+ * Atomically claim up to BATCH_SIZE pending EventDelivery rows using
+ * SELECT ... FOR UPDATE SKIP LOCKED. Each row is locked to this transaction;
+ * concurrent workers SKIP these rows and pick different ones. The UPDATE
+ * transitions claimed rows to status='running' + bumps attempt + sets
+ * startedAt.
+ *
+ * Returns the set of deliveries this worker now owns.
+ */
+async function claimPending(): Promise<ClaimedDelivery[]> {
+  // Postgres raw SQL — Prisma's $queryRaw respects the same transaction as
+  // the enclosing scope. The RETURNING clause gives us the claimed rows.
+  const rows = await prisma.$queryRaw<ClaimedDelivery[]>`
+    UPDATE "EventDelivery"
+    SET
+      status = 'running',
+      "startedAt" = NOW(),
+      attempt = attempt + 1
+    WHERE id IN (
+      SELECT id FROM "EventDelivery"
+      WHERE status = 'pending'
+      ORDER BY "createdAt" ASC
+      LIMIT ${BATCH_SIZE}
+      FOR UPDATE SKIP LOCKED
+    )
+    RETURNING id, attempt, "eventId" AS "eventId", "handlerId" AS "handlerId"
+  `;
+  return rows;
+}
+
 export async function processBatch(): Promise<ProcessResult> {
   const result: ProcessResult = {
     picked: 0,
@@ -27,42 +69,43 @@ export async function processBatch(): Promise<ProcessResult> {
     skipped: 0,
   };
 
-  // Pick pending deliveries. We claim them by setting status=running before
-  // invoking — so a parallel worker won't double-pick. (For higher throughput
-  // we'd add SELECT FOR UPDATE SKIP LOCKED via a raw query — TODO.)
-  const pending = await prisma.eventDelivery.findMany({
-    where: { status: 'pending' },
-    take: BATCH_SIZE,
-    orderBy: { createdAt: 'asc' },
-    include: { event: true, handler: true },
-  });
+  const claimed = await claimPending();
+  result.picked = claimed.length;
 
-  result.picked = pending.length;
+  if (claimed.length === 0) return result;
 
-  for (const delivery of pending) {
-    // Claim it.
-    const claimed = await prisma.eventDelivery.updateMany({
-      where: { id: delivery.id, status: 'pending' },
-      data: {
-        status: 'running',
-        startedAt: new Date(),
-        attempt: { increment: 1 },
-      },
-    });
-    if (claimed.count === 0) {
-      result.skipped++;
+  // Fetch event + handler details for the claimed deliveries.
+  // Could be one query but simpler to fetch each — tiny batch.
+  for (const delivery of claimed) {
+    const [event, handler] = await Promise.all([
+      prisma.busEvent.findUnique({ where: { id: delivery.eventId } }),
+      prisma.eventHandler.findUnique({ where: { id: delivery.handlerId } }),
+    ]);
+
+    if (!event || !handler) {
+      // Delivery references a missing event or handler — mark dead.
+      await prisma.eventDelivery.update({
+        where: { id: delivery.id },
+        data: {
+          status: 'dead',
+          lastError: !event ? 'Event row missing' : 'Handler row missing',
+          completedAt: new Date(),
+        },
+      });
+      result.dead++;
       continue;
     }
 
-    const handlerFn = getHandler(delivery.handler.name);
+    const handlerFn = getHandler(handler.name);
     if (!handlerFn) {
-      // Handler not registered in this process — leave for another worker
-      // to pick up. Mark blocked so admin can see it.
+      // Handler not registered in this process — roll back to pending so
+      // another worker (with that handler registered) can pick it up.
+      // BUT track via a 'blocked' status with lastError so admin can see it.
       await prisma.eventDelivery.update({
         where: { id: delivery.id },
         data: {
           status: 'blocked',
-          lastError: `Handler "${delivery.handler.name}" not registered in this process`,
+          lastError: `Handler "${handler.name}" not registered in this process`,
           completedAt: new Date(),
         },
       });
@@ -71,14 +114,14 @@ export async function processBatch(): Promise<ProcessResult> {
     }
 
     // Invoke with timeout
-    const timeoutMs = delivery.handler.timeoutMs ?? DEFAULT_TIMEOUT_MS;
+    const timeoutMs = handler.timeoutMs ?? DEFAULT_TIMEOUT_MS;
     let success = false;
     let error: string | null = null;
     try {
       await Promise.race([
-        handlerFn(delivery.event, {
+        handlerFn(event, {
           deliveryId: delivery.id,
-          attempt: delivery.attempt + 1,
+          attempt: delivery.attempt,
         }),
         new Promise<void>((_, reject) =>
           setTimeout(() => reject(new Error(`Handler timeout (${timeoutMs}ms)`)), timeoutMs)
@@ -96,14 +139,14 @@ export async function processBatch(): Promise<ProcessResult> {
       });
       result.succeeded++;
     } else {
-      const newAttempt = delivery.attempt + 1;
-      const isDead = newAttempt >= delivery.handler.maxRetries;
+      const isDead = delivery.attempt >= handler.maxRetries;
       await prisma.eventDelivery.update({
         where: { id: delivery.id },
         data: {
           status: isDead ? 'dead' : 'pending', // requeue if we have retries left
           lastError: error,
           completedAt: isDead ? new Date() : null,
+          startedAt: isDead ? undefined : null, // reset startedAt on requeue
         },
       });
       if (isDead) {

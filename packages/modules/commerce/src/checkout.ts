@@ -37,34 +37,53 @@ export async function createSubscriptionCheckout(input: {
   if (!plan.active) throw new Error(`Plan is not active: ${input.planId}`);
 
   // Lazy-create Stripe Product + Price if not yet synced.
+  //
+  // Atomicity (Gemini review #8): two concurrent checkouts for a plan with
+  // no stripePriceId could both create a duplicate Stripe Product + Price,
+  // orphaning one. We mitigate with:
+  //   1. Stripe idempotency keys derived from the plan id — duplicate calls
+  //      return the SAME Stripe Product/Price instead of creating new ones.
+  //   2. Re-read the plan after creation so the DB-side persisted value
+  //      wins if another concurrent caller already saved its ids.
   let stripePriceId = plan.stripePriceId;
   if (!stripePriceId) {
-    const product = await stripe.products.create({
-      name: plan.name,
-      description: plan.description,
-      metadata: {
-        platform_plan_id: plan.id,
-        tenant_id: plan.tenantId,
-        brand: plan.brand,
+    const product = await stripe.products.create(
+      {
+        name: plan.name,
+        description: plan.description,
+        metadata: {
+          platform_plan_id: plan.id,
+          tenant_id: plan.tenantId,
+          brand: plan.brand,
+        },
       },
-    });
-    const price = await stripe.prices.create({
-      product: product.id,
-      unit_amount: plan.priceCents,
-      currency: plan.currency,
-      recurring:
-        plan.interval === 'one_time'
-          ? undefined
-          : {
-              interval: plan.interval as 'month' | 'year',
-              interval_count: plan.intervalCount,
-            },
-    });
-    await plans.setStripeIds(plan.id, {
+      { idempotencyKey: `plan-product-${plan.id}` }
+    );
+    const price = await stripe.prices.create(
+      {
+        product: product.id,
+        unit_amount: plan.priceCents,
+        currency: plan.currency,
+        recurring:
+          plan.interval === 'one_time'
+            ? undefined
+            : {
+                interval: plan.interval as 'month' | 'year',
+                interval_count: plan.intervalCount,
+              },
+      },
+      { idempotencyKey: `plan-price-${plan.id}-${plan.priceCents}-${plan.currency}` }
+    );
+    // First-writer-wins: only persist if stripePriceId is still null. If a
+    // concurrent request already persisted, re-read and use that value
+    // (Stripe idempotency guaranteed the product/price we created is the
+    // same logical object, so either is correct).
+    await plans.setStripeIdsIfMissing(plan.id, {
       stripePriceId: price.id,
       stripeProductId: product.id,
     });
-    stripePriceId = price.id;
+    const refreshed = await plans.get(plan.id);
+    stripePriceId = refreshed?.stripePriceId ?? price.id;
   }
 
   const trialPeriodDays = input.trialDays ?? plan.trialDays;
@@ -118,39 +137,48 @@ export async function createOrderCheckout(input: {
   }
 
   // Build line items from order — lazy-sync Stripe Product/Price as needed.
+  // Same race-condition mitigation as createSubscriptionCheckout: Stripe
+  // idempotency keys + first-writer-wins DB persist.
   const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
   for (const item of order.items) {
     const product = item.product;
     let stripePriceId = product.stripePriceId;
     if (!stripePriceId) {
-      const stripeProduct = await stripe.products.create({
-        name: product.name,
-        description: product.description,
-        images: product.imageUrls.length > 0 ? product.imageUrls : undefined,
-        shippable: product.shippable,
-        metadata: {
-          platform_product_id: product.id,
-          tenant_id: product.tenantId,
-          brand: product.brand,
+      const stripeProduct = await stripe.products.create(
+        {
+          name: product.name,
+          description: product.description,
+          images: product.imageUrls.length > 0 ? product.imageUrls : undefined,
+          shippable: product.shippable,
+          metadata: {
+            platform_product_id: product.id,
+            tenant_id: product.tenantId,
+            brand: product.brand,
+          },
         },
-      });
-      const stripePrice = await stripe.prices.create({
-        product: stripeProduct.id,
-        unit_amount: product.priceCents,
-        currency: product.currency,
-      });
-      await products.update(product.id, {
-        // Note: this won't persist stripeIds — would need a setStripeIds method.
-      });
-      // Persist stripe IDs back to the Product row directly.
-      await prisma.product.update({
-        where: { id: product.id },
+        { idempotencyKey: `product-product-${product.id}` }
+      );
+      const stripePrice = await stripe.prices.create(
+        {
+          product: stripeProduct.id,
+          unit_amount: product.priceCents,
+          currency: product.currency,
+        },
+        {
+          idempotencyKey: `product-price-${product.id}-${product.priceCents}-${product.currency}`,
+        }
+      );
+      // First-writer-wins. If a concurrent caller already stored the ids,
+      // we pick them up on re-read below.
+      await prisma.product.updateMany({
+        where: { id: product.id, stripePriceId: null },
         data: {
           stripePriceId: stripePrice.id,
           stripeProductId: stripeProduct.id,
         },
       });
-      stripePriceId = stripePrice.id;
+      const refreshed = await products.get(product.id);
+      stripePriceId = refreshed?.stripePriceId ?? stripePrice.id;
     }
     lineItems.push({ price: stripePriceId, quantity: item.quantity });
   }

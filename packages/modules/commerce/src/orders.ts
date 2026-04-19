@@ -30,11 +30,25 @@ export async function list(opts?: {
   });
 }
 
-export async function get(id: string): Promise<Order | null> {
-  return prisma.order.findUnique({
+/**
+ * Fetch an order by id.
+ *
+ * Pass `tenantId` whenever `id` comes from untrusted input (API URL params,
+ * request bodies). Returns `null` for orders owned by a different tenant,
+ * closing the IDOR vector where a guessed order id would expose another
+ * tenant's customer data.
+ */
+export async function get(
+  id: string,
+  tenantId?: TenantId
+): Promise<Order | null> {
+  const order = await prisma.order.findUnique({
     where: { id },
     include: { items: { include: { product: true } } },
   });
+  if (!order) return null;
+  if (tenantId && order.tenantId !== tenantId) return null;
+  return order;
 }
 
 /**
