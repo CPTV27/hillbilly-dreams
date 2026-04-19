@@ -10,6 +10,7 @@ import staff from './staff';
 import partnerArtist from './partnerArtist';
 import pressRelease from './pressRelease';
 import faq from './faq';
+import pageContent from './pageContent';
 
 export const schemaTypes = [
   article,
@@ -24,4 +25,5 @@ export const schemaTypes = [
   partnerArtist,
   pressRelease,
   faq,
+  pageContent,
 ];

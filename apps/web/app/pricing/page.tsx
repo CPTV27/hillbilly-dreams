@@ -42,6 +42,12 @@ function PricingInner() {
   const brand = searchParams.get('brand') ?? undefined;
 
   const [plans, setPlans] = useState<Plan[]>([]);
+  const [pageContent, setPageContent] = useState<{
+    heroEyebrow?: string;
+    heroHeadline?: string;
+    heroSub?: string;
+    footerNote?: string;
+  } | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [email, setEmail] = useState('');
@@ -51,13 +57,23 @@ function PricingInner() {
     setLoading(true);
     setError(null);
     try {
+      // Fetch plans + page content in parallel
       const params = new URLSearchParams();
       if (tenantId) params.set('tenantId', tenantId);
       if (brand) params.set('brand', brand);
-      const res = await fetch(`/api/commerce/plans?${params}`);
-      if (!res.ok) throw new Error(`Failed: ${res.status}`);
-      const json = await res.json();
+      const pcParams = new URLSearchParams({ slug: 'pricing' });
+      if (brand) pcParams.set('brand', brand);
+      const [plansRes, contentRes] = await Promise.all([
+        fetch(`/api/commerce/plans?${params}`),
+        fetch(`/api/page-content?${pcParams}`).catch(() => null),
+      ]);
+      if (!plansRes.ok) throw new Error(`Failed: ${plansRes.status}`);
+      const json = await plansRes.json();
       setPlans(json.data ?? []);
+      if (contentRes?.ok) {
+        const contentJson = await contentRes.json();
+        setPageContent(contentJson.data ?? null);
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Fetch failed');
     } finally {
@@ -103,12 +119,17 @@ function PricingInner() {
   return (
     <div style={{ padding: '40px 24px', maxWidth: '1100px', margin: '0 auto' }}>
       <header style={{ marginBottom: '32px', textAlign: 'center' }}>
+        {pageContent?.heroEyebrow && (
+          <p style={{ color: 'var(--text-muted, #6b6254)', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', margin: '0 0 8px' }}>
+            {pageContent.heroEyebrow}
+          </p>
+        )}
         <h1 style={{ fontSize: '36px', margin: '0 0 8px', fontFamily: 'var(--font-display)' }}>
-          Pricing
+          {pageContent?.heroHeadline ?? 'Pricing'}
         </h1>
-        {brand && (
-          <p style={{ color: 'var(--text-muted, #888)', margin: 0, fontSize: '15px', textTransform: 'capitalize' }}>
-            {brand.replace('-', ' ')} · month-to-month · cancel anytime
+        {(pageContent?.heroSub || brand) && (
+          <p style={{ color: 'var(--text-muted, #888)', margin: 0, fontSize: '15px', textTransform: pageContent?.heroSub ? 'none' : 'capitalize' }}>
+            {pageContent?.heroSub ?? `${brand?.replace('-', ' ')} · month-to-month · cancel anytime`}
           </p>
         )}
       </header>
@@ -200,11 +221,15 @@ function PricingInner() {
           textAlign: 'center',
         }}
       >
-        <p style={{ color: 'var(--text-muted, #6b6254)', fontSize: '12px', margin: 0 }}>
-          Secure payments by Stripe · Cancel anytime from your account · Questions?{' '}
-          <a href="mailto:billing@bigmuddyinn.com" style={{ color: 'var(--accent, #c8a676)' }}>
-            billing@
-          </a>
+        <p style={{ color: 'var(--text-muted, #6b6254)', fontSize: '12px', margin: 0, whiteSpace: 'pre-line' }}>
+          {pageContent?.footerNote ?? (
+            <>
+              Secure payments by Stripe · Cancel anytime from your account · Questions?{' '}
+              <a href="mailto:billing@bigmuddyinn.com" style={{ color: 'var(--accent, #c8a676)' }}>
+                billing@
+              </a>
+            </>
+          )}
         </p>
       </footer>
     </div>
