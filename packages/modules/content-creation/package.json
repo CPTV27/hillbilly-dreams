@@ -1,0 +1,21 @@
+{
+  "name": "@bigmuddy/content-creation",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./entity-resolver": "./src/entity-resolver.ts",
+    "./immich-client": "./src/immich-client.ts",
+    "./templates": "./src/templates.ts",
+    "./sanity-writer": "./src/sanity-writer.ts",
+    "./types": "./src/types.ts"
+  },
+  "scripts": { "typecheck": "tsc --noEmit" },
+  "dependencies": {
+    "@bigmuddy/database": "workspace:*",
+    "@bigmuddy/social": "workspace:*",
+    "@prisma/client": "^5.22.0"
+  },
+  "devDependencies": { "typescript": "^5.5.0" }
+}

@@ -140,12 +140,18 @@ importers:
       '@bigmuddy/booking':
         specifier: workspace:*
         version: link:../../packages/modules/booking
+      '@bigmuddy/broadcast':
+        specifier: workspace:*
+        version: link:../../packages/modules/broadcast
       '@bigmuddy/commerce':
         specifier: workspace:*
         version: link:../../packages/modules/commerce
       '@bigmuddy/config':
         specifier: workspace:*
         version: link:../../packages/config
+      '@bigmuddy/content-creation':
+        specifier: workspace:*
+        version: link:../../packages/modules/content-creation
       '@bigmuddy/database':
         specifier: workspace:*
         version: link:../../packages/database
@@ -158,6 +164,9 @@ importers:
       '@bigmuddy/shared':
         specifier: workspace:*
         version: link:../../packages/shared
+      '@bigmuddy/social':
+        specifier: workspace:*
+        version: link:../../packages/modules/social
       '@bigmuddy/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -427,6 +436,19 @@ importers:
         specifier: ^5.5.0
         version: 5.6.3
 
+  packages/modules/broadcast:
+    dependencies:
+      '@bigmuddy/database':
+        specifier: workspace:*
+        version: link:../../database
+      '@prisma/client':
+        specifier: ^5.22.0
+        version: 5.22.0(prisma@5.22.0)
+    devDependencies:
+      typescript:
+        specifier: ^5.5.0
+        version: 5.6.3
+
   packages/modules/commerce:
     dependencies:
       '@bigmuddy/database':
@@ -438,6 +460,22 @@ importers:
       stripe:
         specifier: ^17.5.0
         version: 17.7.0
+    devDependencies:
+      typescript:
+        specifier: ^5.5.0
+        version: 5.6.3
+
+  packages/modules/content-creation:
+    dependencies:
+      '@bigmuddy/database':
+        specifier: workspace:*
+        version: link:../../database
+      '@bigmuddy/social':
+        specifier: workspace:*
+        version: link:../social
+      '@prisma/client':
+        specifier: ^5.22.0
+        version: 5.22.0(prisma@5.22.0)
     devDependencies:
       typescript:
         specifier: ^5.5.0
@@ -457,6 +495,19 @@ importers:
         version: 5.6.3
 
   packages/modules/finance:
+    dependencies:
+      '@bigmuddy/database':
+        specifier: workspace:*
+        version: link:../../database
+      '@prisma/client':
+        specifier: ^5.22.0
+        version: 5.22.0(prisma@5.22.0)
+    devDependencies:
+      typescript:
+        specifier: ^5.5.0
+        version: 5.6.3
+
+  packages/modules/social:
     dependencies:
       '@bigmuddy/database':
         specifier: workspace:*
