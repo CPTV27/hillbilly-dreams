@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
-    "@types/node": "^25.5.2",
+    "@types/node": "^20.19.39",
     "checkly": "^7.7.0",
     "chokidar": "^4.0.0",
     "fast-xml-parser": "^4.3.6",
