@@ -1,0 +1,55 @@
+{
+  "model": "gemini-2.5-flash",
+  "concurrency": 8,
+  "tasks": [
+    {
+      "id": "internal-alerts-slack",
+      "outputPath": "docs/marketing-copy/internal-alerts-slack.md",
+      "system": "You are writing internal Slack/Discord alert message templates. Output in markdown. Concise, no marketing language, designed to fire from webhooks.",
+      "prompt": "Write Slack/Discord alert message templates for every internal notification the platform fires. Format: labeled section per trigger + the message body with {{placeholders}}. Use Slack Block Kit-style markdown (bold + emoji-prefix) where helpful.\n\nTriggers:\n- New subscription activated → #mbt-revenue channel\n- Subscription past due → #mbt-revenue (urgent tag)\n- Subscription cancelled → #mbt-revenue\n- Order paid → #mbt-orders\n- Order shipped → #mbt-orders\n- Quote submitted (private event) → #inn-ops (Tracy urgent)\n- New artist application to Records → #records\n- New broadcast scheduled → #broadcast\n- Broadcast went live → #broadcast (all hands)\n- Broadcast ended → #broadcast\n- Dead-letter event appeared → #ops (engineer on-call)\n- Tenant provisioned → #mbt-ops\n- Cron job failed (any) → #ops\n- New Sanity content published (Tracy hits Publish) → #content\n- Wizard draft saved → #content (Tracy)\n- New FAQ submitted for review → #content\n- Immich storage > 80% → #ops\n- Stripe dispute opened → #mbt-revenue urgent\n- Mac mini broadcast agent offline for >5min → #ops urgent\n\nFor each: channel, urgency level, message template with placeholders, suggested action buttons (if any).\n\nMarkdown. ~2000 words.",
+      "maxTokens": 6000
+    },
+    {
+      "id": "launch-posts-all-brands",
+      "outputPath": "docs/marketing-copy/launch-posts-all-brands.md",
+      "system": "You are writing social media launch posts announcing the MBT platform across every brand's social account. Output in markdown with labeled platform sections. No preamble.",
+      "prompt": "Write social media launch posts for each brand announcing the MBT platform is live (or each brand's new subscription/product offering). Per-brand + per-platform. Platforms: Instagram feed, Instagram Story (3 frames), TikTok caption, X/Twitter, Facebook. 5-8 posts per brand.\n\nBrands: Inn, Magazine, Touring, Records, Radio, Chase Pierson Photography, Tuthill Design, Studio C.\n\nFor each post: platform, post type, copy (character-limited per platform), hashtags (3 max), CTA, any image/video direction brackets.\n\nVoice rules per brand from docs/voice/. Never 'exciting announcement', 'thrilled to launch', emojis unless platform demands, 'Don't miss out!'.\n\nMarkdown. ~4000 words.",
+      "maxTokens": 10000
+    },
+    {
+      "id": "faq-seed-entries",
+      "outputPath": "docs/marketing-copy/faq-seed-entries.md",
+      "system": "You are writing Sanity-ready FAQ seed data. Output in markdown with a structured format per entry that can be easily parsed for Sanity import. No preamble.",
+      "prompt": "Write the 50 most-important FAQ entries that should exist on launch day across all brands. Format each as:\n\n```\n### [Brand] — [Category] — [Question]\n_orderRank: [number]_\n[Answer body in plain prose]\n\n---\n```\n\nPick 6-8 per brand covering the categories from the per-brand FAQs in docs/customer-faqs/*.md. Prioritize questions real customers actually ask:\n\nInn: Booking, rooms, dining, Blues Room, Natchez, accessibility\nTuthill: Pricing, turnaround, what's included, cancellation, markets\nRecords: Masters, exclusivity, distribution, royalties, application\nRadio: Reach, packages, reporting, exclusivity\nTouring: Booking flow, venues, transportation, non-exclusivity\nDSD: Free vs paid, listing edits, reviews, SEO\nInn + Magazine: cross-referenced (what's the Magazine about if I'm staying at the Inn?)\n\nAnswers: 2-4 sentences each. Voice matches the brand. No marketing fluff.\n\nMarkdown. ~4000 words.",
+      "maxTokens": 10000
+    },
+    {
+      "id": "press-release-mbt-launch",
+      "outputPath": "docs/marketing-copy/press-release-mbt-launch.md",
+      "system": "You are writing a real press release announcing the MBT platform is operational. Output in markdown, AP-style. Chase's voice.",
+      "prompt": "Write the press release announcing the MBT platform is live. Target publications: Mississippi Business Journal, Hudson Valley One, local Natchez press, music-industry trades where relevant.\n\nAP-style format. Headline (8-12 words), dateline, lede (5 W's), 3-4 body paragraphs, about boilerplate, media contact section.\n\nKey points: MBT (Measurably Better Things LLC) operates a platform across music-hospitality-media properties; three equal partners; Mississippi corridor + Hudson Valley node; 7 modules; what it does for small businesses (Tuthill realtor services, DSD); first broker-tier client in pipeline (don't name Paul Green unless quoted).\n\nVoice: Chase. NEVER 'groundbreaking', 'innovative', 'comprehensive solution'. Specific numbers where useful.\n\nMarkdown. ~1500 words.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "one-pager-for-investors",
+      "outputPath": "docs/marketing-copy/one-pager-investors.md",
+      "system": "You are writing a one-pager for MBT targeting angel / small-VC investors. Output in markdown. Specific, number-anchored, Chase's voice.",
+      "prompt": "Write a one-pager for MBT targeting angel investors / small-check VCs. Single page when printed. Sections:\n\n1. Headline (10 words — what MBT is in one sentence)\n2. The thesis (2-3 sentences — why now, why this, why us)\n3. The three layers diagram (ASCII or described — HDI / MBT / Implementations)\n4. The metrics (with placeholders Chase fills in from real data): MRR, active subscribers, tenants onboarded, bucket-hours consumed, content units published/month\n5. The three concentric revenue motions (internal tooling / vendor one-off / Tier 3 recurring platform fee 15-30%)\n6. The moat (Mississippi corridor + content engine + tenant-provisioning speed + the brand family)\n7. The team (Chase + Tracy + Amy — one line each)\n8. The ask (funding range + use of funds)\n9. Contact\n\nMarkdown. ~1200 words (intentionally dense). [PLACEHOLDERS] for numbers Chase fills in.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "groq-queries-cheatsheet",
+      "outputPath": "docs/operations/GROQ_QUERIES_CHEATSHEET.md",
+      "system": "You are writing a GROQ (Sanity query language) cheatsheet for engineers. Output in markdown with code blocks.",
+      "prompt": "Write a cheatsheet of the most-used GROQ queries for the MBT Sanity project. Cover the schemas we have: article, location, event, touringPage, contentTemplate, podcastEpisode, magazineIssue, showEvent, staff, partnerArtist, pressRelease, faq.\n\nFor each schema, provide 3-5 common queries:\n- List all published, ordered by date\n- Get single by slug\n- Related queries (articles by staff member; episodes by show; FAQs by brand/category; etc.)\n\nAlso cover: drafts vs published handling (drafts.* prefix), image asset URLs + transformations, references resolution (->), filtering by reference array (in), portable text resolution.\n\nMarkdown. ~2500 words.",
+      "maxTokens": 8000
+    },
+    {
+      "id": "investor-update-template",
+      "outputPath": "docs/operator-guides/investor-update-template.md",
+      "system": "You are writing a quarterly investor update email template. Output in markdown. Specific, number-anchored, no corporate-fluff.",
+      "prompt": "Write the quarterly investor update email template (first one would be Q2 2026). Sections:\n\n- Subject line (3 variants — something like 'MBT Q2 2026 update')\n- Opening paragraph — 1 sentence headline takeaway\n- Numbers table (MRR, customers, Tier 3 engagements, churn, bucket hours consumed, revenue, runway)\n- Wins this quarter (3-5 bullets with specifics — no vague 'good momentum')\n- Losses / misses this quarter (3-5 bullets — honest about what didn't work)\n- What shipped (modules + features + brand work)\n- Pipeline (named brokers / realtors / artists / partners — placeholders)\n- The next quarter — top 3 priorities with owners + deadlines\n- Asks — what we need from investors (intros, feedback, follow-on)\n- Sign-off (Chase + Tracy + Amy)\n\nAll fields with [PLACEHOLDERS]. Voice: direct, specific, no BS. NEVER 'exciting', 'thrilled', 'tremendous momentum'.\n\nMarkdown. ~2000 words.",
+      "maxTokens": 6000
+    }
+  ]
+}
