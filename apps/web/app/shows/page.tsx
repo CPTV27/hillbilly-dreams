@@ -48,6 +48,12 @@ function formatShowTime(iso: string | null): string {
 
 function ShowsInner() {
   const [resources, setResources] = useState<Resource[]>([]);
+  const [pageContent, setPageContent] = useState<{
+    heroEyebrow?: string;
+    heroHeadline?: string;
+    heroSub?: string;
+    footerNote?: string;
+  } | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [purchaseTarget, setPurchaseTarget] = useState<Resource | null>(null);
@@ -60,12 +66,17 @@ function ShowsInner() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(
-        '/api/booking/resources?type=blues_room_ticket&upcomingOnly=true'
-      );
-      if (!res.ok) throw new Error(`Failed: ${res.status}`);
-      const json = await res.json();
+      const [resRes, contentRes] = await Promise.all([
+        fetch('/api/booking/resources?type=blues_room_ticket&upcomingOnly=true'),
+        fetch('/api/page-content?slug=shows').catch(() => null),
+      ]);
+      if (!resRes.ok) throw new Error(`Failed: ${resRes.status}`);
+      const json = await resRes.json();
       setResources(json.data ?? []);
+      if (contentRes?.ok) {
+        const contentJson = await contentRes.json();
+        setPageContent(contentJson.data ?? null);
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to load');
     } finally {
@@ -119,11 +130,16 @@ function ShowsInner() {
   return (
     <div style={{ padding: '40px 24px', maxWidth: '1100px', margin: '0 auto' }}>
       <header style={{ marginBottom: '32px', textAlign: 'center' }}>
+        {pageContent?.heroEyebrow && (
+          <p style={{ color: 'var(--text-muted, #6b6254)', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', margin: '0 0 8px' }}>
+            {pageContent.heroEyebrow}
+          </p>
+        )}
         <h1 style={{ fontSize: '36px', margin: '0 0 8px', fontFamily: 'var(--font-display)' }}>
-          Blues Room — upcoming shows
+          {pageContent?.heroHeadline ?? 'Blues Room — upcoming shows'}
         </h1>
         <p style={{ color: 'var(--text-muted, #888)', margin: 0, fontSize: '15px' }}>
-          The working music venue inside Big Muddy Inn.
+          {pageContent?.heroSub ?? 'The working music venue inside Big Muddy Inn.'}
         </p>
       </header>
 

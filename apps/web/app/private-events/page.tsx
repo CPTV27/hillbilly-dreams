@@ -5,7 +5,7 @@
 // which creates a QuoteRequest in 'submitted' status. Tracy reviews
 // from /admin/bookings and generates a quote.
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 type EventType = 'wedding' | 'retreat' | 'dinner' | 'corporate' | 'other';
 
@@ -29,9 +29,22 @@ export default function PrivateEventsPage() {
     description: '',
     budget: '',
   });
+  const [pageContent, setPageContent] = useState<{
+    heroEyebrow?: string;
+    heroHeadline?: string;
+    heroSub?: string;
+    footerNote?: string;
+  } | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch('/api/page-content?slug=private-events')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => setPageContent(j?.data ?? null))
+      .catch(() => {});
+  }, []);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -98,13 +111,16 @@ export default function PrivateEventsPage() {
   return (
     <div style={{ padding: '40px 24px', maxWidth: '640px', margin: '0 auto' }}>
       <header style={{ marginBottom: '24px' }}>
+        {pageContent?.heroEyebrow && (
+          <p style={{ color: 'var(--text-muted, #6b6254)', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', margin: '0 0 6px' }}>
+            {pageContent.heroEyebrow}
+          </p>
+        )}
         <h1 style={{ fontSize: '32px', margin: '0 0 8px', fontFamily: 'var(--font-display)' }}>
-          Private events at the Inn
+          {pageContent?.heroHeadline ?? 'Private events at the Inn'}
         </h1>
-        <p style={{ color: 'var(--text-muted, #a89e8d)', margin: 0, fontSize: '15px', lineHeight: 1.6 }}>
-          Whole-Inn rentals for weddings, retreats, dinners, and milestone gatherings.
-          Tell us what you&rsquo;re imagining and we&rsquo;ll come back with a real proposal —
-          not a templated quote.
+        <p style={{ color: 'var(--text-muted, #a89e8d)', margin: 0, fontSize: '15px', lineHeight: 1.6, whiteSpace: 'pre-line' }}>
+          {pageContent?.heroSub ?? `Whole-Inn rentals for weddings, retreats, dinners, and milestone gatherings. Tell us what you're imagining and we'll come back with a real proposal — not a templated quote.`}
         </p>
       </header>
 
