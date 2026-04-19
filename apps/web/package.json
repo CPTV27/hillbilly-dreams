@@ -16,6 +16,7 @@
     "@anthropic-ai/sdk": "^0.78.0",
     "@auth/core": "^0.34.3",
     "@auth/prisma-adapter": "^2.11.1",
+    "@bigmuddy/commerce": "workspace:*",
     "@bigmuddy/config": "workspace:*",
     "@bigmuddy/database": "workspace:*",
     "@bigmuddy/shared": "workspace:*",
