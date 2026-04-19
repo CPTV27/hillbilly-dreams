@@ -1,0 +1,20 @@
+{
+  "name": "@bigmuddy/booking",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./resources": "./src/resources.ts",
+    "./bookings": "./src/bookings.ts",
+    "./tickets": "./src/tickets.ts",
+    "./quotes": "./src/quotes.ts",
+    "./types": "./src/types.ts"
+  },
+  "scripts": { "typecheck": "tsc --noEmit" },
+  "dependencies": {
+    "@bigmuddy/database": "workspace:*",
+    "@prisma/client": "^5.22.0"
+  },
+  "devDependencies": { "typescript": "^5.5.0" }
+}

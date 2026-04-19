@@ -137,6 +137,9 @@ importers:
       '@auth/prisma-adapter':
         specifier: ^2.11.1
         version: 2.11.1(@prisma/client@5.22.0(prisma@5.22.0))
+      '@bigmuddy/booking':
+        specifier: workspace:*
+        version: link:../../packages/modules/booking
       '@bigmuddy/commerce':
         specifier: workspace:*
         version: link:../../packages/modules/commerce
@@ -146,6 +149,12 @@ importers:
       '@bigmuddy/database':
         specifier: workspace:*
         version: link:../../packages/database
+      '@bigmuddy/events':
+        specifier: workspace:*
+        version: link:../../packages/modules/events
+      '@bigmuddy/finance':
+        specifier: workspace:*
+        version: link:../../packages/modules/finance
       '@bigmuddy/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -405,6 +414,19 @@ importers:
         specifier: ^5.4.0
         version: 5.9.3
 
+  packages/modules/booking:
+    dependencies:
+      '@bigmuddy/database':
+        specifier: workspace:*
+        version: link:../../database
+      '@prisma/client':
+        specifier: ^5.22.0
+        version: 5.22.0(prisma@5.22.0)
+    devDependencies:
+      typescript:
+        specifier: ^5.5.0
+        version: 5.6.3
+
   packages/modules/commerce:
     dependencies:
       '@bigmuddy/database':
@@ -416,6 +438,32 @@ importers:
       stripe:
         specifier: ^17.5.0
         version: 17.7.0
+    devDependencies:
+      typescript:
+        specifier: ^5.5.0
+        version: 5.6.3
+
+  packages/modules/events:
+    dependencies:
+      '@bigmuddy/database':
+        specifier: workspace:*
+        version: link:../../database
+      '@prisma/client':
+        specifier: ^5.22.0
+        version: 5.22.0(prisma@5.22.0)
+    devDependencies:
+      typescript:
+        specifier: ^5.5.0
+        version: 5.6.3
+
+  packages/modules/finance:
+    dependencies:
+      '@bigmuddy/database':
+        specifier: workspace:*
+        version: link:../../database
+      '@prisma/client':
+        specifier: ^5.22.0
+        version: 5.22.0(prisma@5.22.0)
     devDependencies:
       typescript:
         specifier: ^5.5.0
