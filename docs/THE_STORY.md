@@ -152,7 +152,7 @@ Three economic patterns for MBT, depending on what the platform is doing.
 
 ---
 
-## 07 · What is live, what is queued
+## 08 · What is live, what is queued
 
 ### Live now
 
@@ -184,13 +184,13 @@ Three economic patterns for MBT, depending on what the platform is doing.
 
 ---
 
-## 08 · Outsider Economics — the open-source layer
+## 09 · Outsider Economics — the open-source layer
 
 Inside MBT but separate from the commercial work, Chase maintains an open-source project called Outsider Economics. Tools and writing for people who want to reimagine the economy on their own terms. A spare-time effort, deliberately not commercial, but useful infrastructure that the rest of the platform can pull from.
 
 ---
 
-## 09 · Where this goes
+## 10 · Where this goes
 
 The next 30 days lock the front-end story per brand and start formalizing the module boundaries that turn the existing infrastructure into a real product. Vicki's onboarding becomes the proof point for the next ten realtors. Chase's summer at Bearsville produces the Recording Studios book and a content stream that runs across every channel. The Paul Green Realty conversation, if it lands, opens the broker-tier playbook.
 

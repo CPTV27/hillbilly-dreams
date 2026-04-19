@@ -187,34 +187,41 @@ export default function StoryPage() {
             <p>Day-to-day operator for the music side. Programs the radio, runs the record label, performs in the band. Bar-side ops at the Inn continue as before.</p>
           </div>
         </div>
-        <h3 className="people-sub">Specialists and operators</h3>
-        <div className="people specialists">
+
+        <h3 className="people-sub">Production capacity (vendor)</h3>
+        <div className="people specialists" style={{ gridTemplateColumns: '1fr 1fr' }}>
           <div className="person small">
-            <h4>Elijah Tuthill</h4>
-            <p>50% LLC co-owner of Tuthill Design. Lead on photo archive work as part of the Studio C team. Onboarding on hold pending Chase review.</p>
-          </div>
-          <div className="person small">
-            <h4>Miles</h4>
-            <p>Studio C team. Pulled into platform work as needed. Part of the 40/30/30 operating split.</p>
+            <h4>Studio C team — via Tuthill Design LLC</h4>
+            <p>MBT purchases buckets of Studio C hours from the LLC. Hours are fungible across all platform work — photo archive, platform maintenance, anything else. Studio C internally staffs the bucket. Not individual contractor arrangements.</p>
           </div>
           <div className="person small">
             <h4>Patch</h4>
             <p>Technical Director. Always-on infrastructure, builds, deploys.</p>
           </div>
-          <div className="person small">
-            <h4>JP Houston</h4>
-            <p>Wrapping current scope (First Arctic mixes + NOLA introductions). End of engagement after that.</p>
-          </div>
-          <div className="person small">
-            <h4>Cos</h4>
-            <p>Chief of Staff agent. Runs the project queue, commits code, fans context across the system.</p>
-          </div>
+        </div>
+      </section>
+
+      {/* AI LAYER */}
+      <section>
+        <p className="section-num">07</p>
+        <h2>The AI layer — defined roles</h2>
+        <p className="lede-small">A small, named set of agents that do specific work. Each has a defined scope, a clear status, and a place in the broader platform. Not a generic "AI assistant" — these are the operators that keep the system moving.</p>
+        <div className="ai-grid">
+          {AI_ROLES.map((a) => (
+            <div key={a.name} className={`ai-card ai-${a.status}`}>
+              <div className="ai-row">
+                <h3>{a.name}</h3>
+                <span className="ai-status">{a.statusLabel}</span>
+              </div>
+              <p className="ai-scope">{a.scope}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* WHAT'S LIVE NOW */}
       <section>
-        <p className="section-num">07</p>
+        <p className="section-num">08</p>
         <h2>What is live, what is queued</h2>
         <div className="status-board">
           <div className="status-col">
@@ -256,7 +263,7 @@ export default function StoryPage() {
 
       {/* THE OPEN-SOURCE LAYER */}
       <section>
-        <p className="section-num">08</p>
+        <p className="section-num">09</p>
         <h2>Outsider Economics — the open-source layer</h2>
         <p>
           Inside MBT but separate from the commercial work, Chase maintains an open-source project called Outsider Economics. Tools and writing for people who want to reimagine the economy on their own terms. A spare-time effort, deliberately not commercial, but useful infrastructure that the rest of the platform can pull from.
@@ -265,7 +272,7 @@ export default function StoryPage() {
 
       {/* WHERE THIS GOES */}
       <section>
-        <p className="section-num">09</p>
+        <p className="section-num">10</p>
         <h2>Where this goes</h2>
         <p className="lede-small">
           The next 30 days lock the front-end story per brand and start formalizing the module boundaries that turn the existing infrastructure into a real product. Vicki's onboarding becomes the proof point for the next ten realtors. Chase's summer at Bearsville produces the Recording Studios book and a content stream that runs across every channel. The Paul Green Realty conversation, if it lands, opens the broker-tier playbook. Quiet holding company, loud consumer brands, one shared spine.
@@ -606,6 +613,43 @@ export default function StoryPage() {
         }
         footer p { margin: 0 0 6px; }
 
+        /* AI layer */
+        .ai-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+          gap: 12px;
+        }
+        .ai-card {
+          padding: 18px 20px;
+          background: #191715;
+          border: 1px solid #2a2723;
+          border-radius: 8px;
+        }
+        .ai-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          gap: 10px;
+          margin-bottom: 8px;
+        }
+        .ai-card h3 { font-size: 15px; margin: 0; }
+        .ai-status {
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          padding: 2px 8px;
+          border-radius: 4px;
+          flex-shrink: 0;
+        }
+        .ai-card.ai-live { border-left: 3px solid #7fa86a; }
+        .ai-card.ai-live .ai-status { background: rgba(127, 168, 106, 0.15); color: #7fa86a; }
+        .ai-card.ai-building { border-left: 3px solid #d99850; }
+        .ai-card.ai-building .ai-status { background: rgba(217, 152, 80, 0.15); color: #d99850; }
+        .ai-card.ai-planned { border-left: 3px solid #6b6254; opacity: 0.85; }
+        .ai-card.ai-planned .ai-status { background: rgba(107, 98, 84, 0.2); color: #a89e8d; }
+        .ai-scope { color: #d8cfbe; font-size: 13px; line-height: 1.55; margin: 0; }
+
         @media (max-width: 720px) {
           .story { padding: 32px 16px 64px; }
           h1 { font-size: 40px; }
@@ -626,6 +670,16 @@ const BRANDS = [
   { name: 'Chase Pierson Photography', tier: 'consumer', tierLabel: 'Consumer · Premium services', line: "Chase's editorial and documentary photography practice. Premium rate, distinct from Tuthill's advertised rates.", revenue: 'Editorial commissions · documentary projects · prints · portraits' },
   { name: 'Tuthill Design (DBA)', tier: 'production', tierLabel: 'Production B2B · North + South', line: 'Real estate media + 3D + design (LiDAR + AI). Hudson Valley + new Natchez branch. One of two DBAs under Tuthill Design LLC.', revenue: 'Per-property packages · recurring social management for realtors' },
   { name: 'Studio C (DBA)', tier: 'production', tierLabel: 'Production B2B · North + South', line: 'Production for MBT platform work + concert/event production. Bearsville-anchored + new Natchez branch. Sister DBA under the same Tuthill Design LLC.', revenue: 'Per-event packages · venue retainers · premium cinema · MBT bucket hours for platform work' },
+];
+
+const AI_ROLES = [
+  { name: 'Chief of Staff (Cos)', status: 'live', statusLabel: 'live', scope: "Orchestrates the project queue, commits code, fans context across documents and sibling agents. The agent Chase talks to when he wants something done." },
+  { name: 'Photo Pipeline', status: 'live', statusLabel: 'live', scope: 'Auto-ingests photos from iPhone, GCS, Mac mini, and Synology into Immich. Runs face recognition, CLIP semantic search, AI tagging. Exports curated photos to the gallery + print-on-demand pipeline.' },
+  { name: 'Voice System', status: 'live', statusLabel: 'live', scope: 'Maintains a per-brand voice document for each property and a Humanizer filter that runs on every text output. Prevents AI-sounding copy from shipping under any brand.' },
+  { name: 'Directory Research', status: 'live', statusLabel: 'live', scope: 'Dispatches Perplexity deep research, ingests structured YAML, populates the canonical entity store. The 459 corridor records currently in the system came from here.' },
+  { name: 'Tenant Provisioning', status: 'building', statusLabel: 'building', scope: 'Single-command onboarding for new client tenants — creates the entity, provisions the Vercel domain, bootstraps Sanity, activates the right modules. Vicki Wolpert is the first external customer this serves.' },
+  { name: 'Content Creation', status: 'building', statusLabel: 'building', scope: '"I want to write a magazine article about X" → wizard pulls relevant entities and media, drafts in Sanity, hands back to Tracy for edit. The piece that makes the platform feel different from generic SaaS.' },
+  { name: 'Outsider Economics governance', status: 'planned', statusLabel: 'planned', scope: "The open-source layer of MBT — Chase's separate spare-time effort. Writing and tools for people who want to reimagine the economy on their own terms." },
 ];
 
 const MODULES = [
