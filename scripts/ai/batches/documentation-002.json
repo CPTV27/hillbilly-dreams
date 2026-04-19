@@ -1,0 +1,125 @@
+{
+  "model": "gemini-2.5-flash",
+  "concurrency": 8,
+  "tasks": [
+    {
+      "id": "video-script-vicki-onboarding",
+      "outputPath": "docs/video-scripts/vicki-onboarding-90sec.md",
+      "system": "You are writing a personalized 90-second welcome video script for Vicki Wolpert. Output in markdown with VO + [VISUAL: ...]. Chase's voice — warm, peer-to-peer, longtime collaborator.",
+      "prompt": "Write a **90-second personalized welcome video** for Vicki Wolpert (KW realtor in Athens, NY) — the first external multi-tenant client on MBT. Chase records this once and sends with the welcome email.\n\nFormat: 16:9, Chase talking-head with Bearsville exterior B-roll + a few of Vicki's prior listings (with permission), ~225 words VO.\n\nArc:\n1. 'Vicki, you've been a Tuthill + CPP customer for years.'\n2. 'Today's the day we hand you a real system instead of ad-hoc shoots.'\n3. Quick walkthrough of what's in the dashboard\n4. The team behind it (mention by name: content coordinator, Studio C team)\n5. The cadence — weekly check-ins, monthly reviews\n6. 'Text me directly if anything is broken'\n\nMarkdown. ~700 words.",
+      "maxTokens": 4000
+    },
+    {
+      "id": "video-script-paul-green-pre-meeting",
+      "outputPath": "docs/video-scripts/paul-green-pre-meeting-2min.md",
+      "system": "You are writing a 2-minute video Chase sends to Paul Green Realty before the in-person broker-tier pitch meeting. Output in markdown with VO + [VISUAL: ...]. Broker-respectful, no franchisor fluff.",
+      "prompt": "Write a **2-minute pre-meeting video** for Paul Green Realty (largest brokerage in Natchez, 30-80 agents). Chase sends this 48 hours before the in-person pitch meeting so the broker arrives already familiar with the platform.\n\nFormat: 16:9, mostly Chase talking-head + screen recordings of the platform, ~300 words VO.\n\nArc:\n1. 'Thanks for the time on Thursday. Here's what we'll cover.'\n2. The problem — what brokerages currently spend per agent on disconnected tools\n3. The MBT platform — one demo screen recording, 30 sec\n4. What the brokerage gets vs what each agent gets\n5. Pricing range — broker license + per-agent + production retainer (give realistic ranges)\n6. The Mississippi corridor angle — Natchez branch of Studio C / Tuthill\n7. 'See you Thursday. Bring 2-3 agents who'd be the pilot.'\n\nVoice: Chase, broker-respectful, NEVER 'industry-leading' / 'best-in-class' / 'turnkey solution'. Markdown. ~900 words.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "video-script-bearsville-book-pitch",
+      "outputPath": "docs/video-scripts/bearsville-book-pitch-2min.md",
+      "system": "You are writing a 2-minute pitch video for the Bearsville Recording Studios book project. Used to invite specific studios + producers to participate. Output in markdown with VO + [VISUAL: ...]. Photographer's voice — Chase.",
+      "prompt": "Write a **2-minute pitch video** for the Bearsville Recording Studios coffee-table book project. Sent to David Baron and other Bearsville-area studio owners + producers as the formal invitation to participate.\n\nFormat: 16:9, mostly Chase talking-head + Bearsville exterior B-roll + sample studio photos from prior projects, ~300 words VO.\n\nArc:\n1. 'Bearsville has a sound. The rooms shape it. I want to photograph the rooms before they change.'\n2. What the project is — coffee-table book + Big Muddy Magazine feature + content stream\n3. The visual approach — large-format-feel digital, room-as-instrument, ambient over staged, you-working-not-posed\n4. What I'm asking — half-day shoot at your studio, willingness to be a subject\n5. What you get — author credit, master files of all photos of your space, mention in distribution + content stream, dedicated chapter\n6. Timeline — June-August 2026 shoot window, book ships fall 2026\n7. 'Reply if you're in. Two minutes of my time on a follow-up call answers everything.'\n\nVoice: Chase Pierson Photography. NEVER 'capturing magic' / 'iconic' / 'legendary'. Markdown. ~900 words.",
+      "maxTokens": 5000
+    },
+    {
+      "id": "video-script-treasury-monday",
+      "outputPath": "docs/video-scripts/treasury-monday-morning-3min.md",
+      "system": "You are writing a 3-minute internal video — the Monday-morning Treasury review walkthrough. Output in markdown with screen-recording cues + VO. Chase's voice. Operator-direct.",
+      "prompt": "Write a **3-minute screen-recording walkthrough** of the weekly Monday-morning Treasury review. Chase records this once, Tracy + the accountant follow the same checklist every Monday going forward.\n\nFormat: 16:9, screen-record of `/admin/treasury` + commentary, ~450 words VO.\n\nArc:\n1. Open Treasury, glance at top three cards: MRR, churn, bucket hours. What's a healthy number for each.\n2. MRR by tenant — week-over-week, look for surprises (sub up = good; sub down = investigate)\n3. Tier 3 engagements — which are active, which are new this week, any churned\n4. Bucket hours — current month consumption per consuming entity. Are we tracking to under or over the bucket?\n5. Per-entity P&L — pick one entity per week to deep-dive (rotate)\n6. Any red flags — past_due subscriptions, dead-letter events, incident postmortems pending\n7. End-of-review action — text Chase any anomalies, otherwise the review is done\n\nMarkdown. ~1300 words including click cues.",
+      "maxTokens": 6000
+    },
+    {
+      "id": "internal-doc-team-communication-norms",
+      "outputPath": "docs/operator-guides/team-communication-norms.md",
+      "system": "You are writing the internal team communication norms doc. Output in markdown. Direct, no corporate-policy boilerplate.",
+      "prompt": "Write the **MBT team communication norms** doc — for everyone on the team (Chase, Tracy, Amy, Studio C team, future hires) so we don't burn time on coordination overhead.\n\nCover:\n\n1. **The channels** — what to use when:\n   - Text (iMessage) — time-sensitive, day-of issues, quick yes/no\n   - Slack — async ops, team-wide visibility, links/files\n   - Email — external partners, documentation trail, anything HR/legal\n   - Asana — project tracking, anything multi-week\n   - Phone call — strategic, conflict, anything high-stakes\n\n2. **Response time expectations**:\n   - Text → 1 hour during waking hours\n   - Slack → same business day\n   - Email → 1 business day\n   - Asana update → next standup\n\n3. **Standup cadence** — weekly Monday 9am CT, async-friendly via shared doc\n\n4. **Escalation rules** — when does a peer-level question become a 'text Chase' question? Concrete heuristic: if a customer is currently impacted, escalate now.\n\n5. **Decision-making norms** — disagreement-then-commit principle. Equity partners get vetoes on partner-level decisions. Operational decisions stay with whoever owns the area.\n\n6. **Documentation norms** — if you decide something that affects others, write it down (Asana note, doc edit, Slack pin). 'It's in my head' = it's lost.\n\n7. **Permission norms** — equity partners trust each other to act in good faith without pre-approval. Default = ship the small thing, ask first on the big thing.\n\n8. **Disagreement norms** — say it directly, in the channel, with the data. No back-channel grumbling.\n\n9. **Out-of-office norms** — let the team know 24+ hours in advance. Don't expect responses while on vacation.\n\n10. **What NOT to do** — long Slack threads (move to a doc), middle-of-night texts (use scheduled send), surprise calendar invites without context\n\nMarkdown. Honest, specific. ~2000 words.",
+      "maxTokens": 6000
+    },
+    {
+      "id": "internal-doc-weekly-rituals",
+      "outputPath": "docs/operator-guides/weekly-rituals.md",
+      "system": "You are writing the internal team weekly rhythm doc — what gets done when. Output in markdown. Direct.",
+      "prompt": "Write the **MBT weekly rituals** doc — the recurring rhythm of the team week.\n\nFormat: day-by-day. Each day lists who does what, with check-in/output cadence.\n\nMonday morning:\n- 9am CT standup (Chase + Tracy + Amy)\n- Treasury review (Chase + Tracy walk through dashboard)\n- Magazine editorial planning (Tracy)\n- Radio episode planning (Amy)\n- Studio C team standup (Elijah + Miles + others)\n- Active customer review (Vicki + future tenants)\n\nMonday afternoon - Friday:\n- Daily ops as appropriate\n- Tracy: Inn day-to-day + 1 magazine article via wizard + 1 Sanity publish\n- Amy: Radio production + bar at Inn + Records artist outreach\n- Chase: pitch meetings + strategic + code/deploys + photography commissions\n\nFriday afternoon:\n- Recap + metrics check\n- Tracy: weekly performance report draft\n- Amy: weekly content + engagement summary\n- Chase: pipeline review + any partner outreach\n\nMonthly:\n- First Monday of month: full team review (3 hr block)\n- 15th: invoice + payroll close\n- Last Friday: monthly customer review calls (Vicki, etc.)\n\nQuarterly:\n- Q-end strategy session (Chase + Tracy + Amy, full day)\n- Customer renewal conversations\n- Pricing review\n\nAnnually:\n- Year-end retreat\n- Cap table review\n- Insurance renewal\n\nVoice: direct, prescriptive. Markdown. ~2000 words.",
+      "maxTokens": 6000
+    },
+    {
+      "id": "tech-doc-api-reference-commerce",
+      "outputPath": "docs/api-reference/commerce.md",
+      "system": "You are writing developer API reference for the @bigmuddy/commerce module. Output in markdown. Reference-grade. TypeScript signatures.",
+      "prompt": "Write the **@bigmuddy/commerce API reference**.\n\nFor each public export, include:\n- Function/type signature (TypeScript)\n- Description (1-2 sentences)\n- Parameters (table)\n- Return value\n- Example usage (code block)\n- Throws (when applicable)\n\nCover: plans (list, get, getBySlug, create, update, deactivate, setStripeIds), subscriptions (list, get, getByStripeId, create, updateStatus, cancelAtPeriodEnd, cancelImmediately, bulkChangePlan, getMRR), products (list, get, getBySlug, create, update, decrementInventory), orders (list, get, create, markPaid, markFulfilled, markShipped, refund), checkout (createSubscriptionCheckout, createOrderCheckout, createCustomerPortal), webhooks (verifyAndParse, handle).\n\nAlso document the types: Plan, Subscription, Product, Order, OrderItem, PlanInterval, SubscriptionStatus, OrderStatus, TenantId, BrandId, CreatePlanInput, CreateSubscriptionInput, CreateProductInput, CreateOrderInput.\n\nAt the top: import patterns, env var requirements, common usage workflow.\n\nMarkdown. ~3500 words.",
+      "maxTokens": 9000
+    },
+    {
+      "id": "tech-doc-api-reference-booking",
+      "outputPath": "docs/api-reference/booking.md",
+      "system": "You are writing developer API reference for the @bigmuddy/booking module. Output in markdown. Reference-grade.",
+      "prompt": "Write the **@bigmuddy/booking API reference**.\n\nCover: resources (list, get, create, reserve, release, deactivate), bookings (list, get, placeHold, confirm, checkIn, markNoShow, cancel, expireOldHolds, attachStripeCheckout), tickets (list, get, getByCode, create, issueBatch, scan, refund, voidTicket), quotes (list, get, submit, startReview, generateQuote, acceptQuote, recordDepositPaid, decline, abandon).\n\nDocument types: Resource, Booking, Ticket, QuoteRequest, ResourceType, BookingStatus, TicketStatus, QuoteStatus, EventType, CreateResourceInput, CreateBookingInput, CreateTicketInput, CreateQuoteRequestInput.\n\nMarkdown. ~3000 words.",
+      "maxTokens": 8000
+    },
+    {
+      "id": "tech-doc-api-reference-finance",
+      "outputPath": "docs/api-reference/finance.md",
+      "system": "You are writing developer API reference for the @bigmuddy/finance module. Output in markdown.",
+      "prompt": "Write the **@bigmuddy/finance API reference**.\n\nCover: engagements (list, get, create, pause, resume, end, calculateMonthlyPlatformFee), buckets (list, logHours, getMonthSummary, bucketMonthFor), mrr (getCurrentMRR, get30DayChurnRate, getCohortRetention), pnl (getPnL).\n\nDocument types: ModuleEngagement, ModuleLicenseProfile, RetainerHour, EntityId, EngagementStatus, CreateEngagementInput, LogBucketHoursInput, PnLLine, EntityPnL, MRRBreakdown.\n\nMarkdown. ~2500 words.",
+      "maxTokens": 7000
+    },
+    {
+      "id": "tech-doc-api-reference-events",
+      "outputPath": "docs/api-reference/events.md",
+      "system": "You are writing developer API reference for the @bigmuddy/events module. Output in markdown.",
+      "prompt": "Write the **@bigmuddy/events API reference**.\n\nCover: bus (getHandler, setHandler, hasHandler, listHandlerNames), publish (publish), register (register, registerMany), dispatcher (processBatch, replayDeadLetter), isolation (isAllowedDelivery), pgboss-adapter (getBoss, enqueueDelivery, startWorker, stopBoss).\n\nDocument types: BusEvent, EventHandler, EventDelivery, DeliveryStatus, TenantScope, EventType, PublishInput, RegisterInput, HandlerFn, HandlerContext.\n\nInclude a 'How to add a handler' section + the multi-tenant isolation contract + the at-least-once delivery contract + the idempotency requirement on handlers.\n\nMarkdown. ~3000 words.",
+      "maxTokens": 8000
+    },
+    {
+      "id": "tech-doc-api-reference-broadcast",
+      "outputPath": "docs/api-reference/broadcast.md",
+      "system": "You are writing developer API reference for the @bigmuddy/broadcast module. Output in markdown.",
+      "prompt": "Write the **@bigmuddy/broadcast API reference**.\n\nCover: podcast (listShows, getShow, getShowBySlug, createShow, setShowBuzzsproutId, listEpisodes, getEpisode, createEpisode, setEpisodeBuzzsproutId, publishEpisode, pendingBuzzsproutSync), broadcasts (list, get, schedule, markLive, markEnded, abort), clips (list, get, ingest, enrich, recordPublished, reject, listForRepublish), buzzsprout (createEpisode, listEpisodes, updateEpisode), rss (buildRssXml), agentProtocol (signRequest, verifyRequest, enqueue, dequeueNext, recordAck, getAck, pendingCount).\n\nDocument types: PodcastShow, PodcastEpisode, LiveBroadcast, BroadcastClip, Brand, BroadcastStatus, ClipStatus, AgentInstruction, AgentAck, plus all Create*Input.\n\nMarkdown. ~3000 words.",
+      "maxTokens": 8000
+    },
+    {
+      "id": "tech-doc-api-reference-social",
+      "outputPath": "docs/api-reference/social.md",
+      "system": "You are writing developer API reference for the @bigmuddy/social module. Output in markdown.",
+      "prompt": "Write the **@bigmuddy/social API reference**.\n\nCover: voiceRouter (resolveVoiceProfile, assertCompatible, findForbidden), publisher (publish).\n\nDocument types: Platform, Brand, VoiceProfile, PublishInput, PublishResult.\n\nInclude a 'Cross-brand contamination guards' section explaining the assertCompatible() hard-fail and the per-brand incompatibleWith arrays. Include the per-brand voice profile reference (extract from the voice-router.ts source).\n\nMarkdown. ~2500 words.",
+      "maxTokens": 7000
+    },
+    {
+      "id": "tech-doc-api-reference-content-creation",
+      "outputPath": "docs/api-reference/content-creation.md",
+      "system": "You are writing developer API reference for the @bigmuddy/content-creation module. Output in markdown.",
+      "prompt": "Write the **@bigmuddy/content-creation API reference**.\n\nCover: entityResolver (resolveEntities, ExtractorFn, SearchTerms), immichClient (searchPhotos, getAsset), templates (assembleSystemPrompt, getTemplate), sanityWriter (saveDraft).\n\nDocument types: ContentType, Brand, EntityCandidate, PhotoCandidate, WizardContext, ContentTemplate, GeneratedDraft, SaveDraftInput.\n\nInclude: env var requirements (IMMICH_API_KEY, SANITY_WRITE_TOKEN), the two-stage entity resolution flow, the visibility-gate on DirectoryBusiness, the Sanity drafts.{id} convention, the brand-voice template merge order (base voice + brand profile + content rules + length + forbidden phrases).\n\nMarkdown. ~2800 words.",
+      "maxTokens": 7000
+    },
+    {
+      "id": "internal-doc-monthly-board-update-template",
+      "outputPath": "docs/operator-guides/monthly-board-update-template.md",
+      "system": "You are writing the monthly board update template — for the three equity partners' monthly partnership review. Output in markdown.",
+      "prompt": "Write the **monthly equity-partner update template** — Chase fills this out the first Monday of every month for Tracy + Amy.\n\nFormat: structured markdown template with placeholders [BRACKETED] for the operator to fill in.\n\nSections:\n\n1. **Headline number for the month** — single most-important metric (e.g., 'MRR up 12% MoM' or 'closed first broker-tier client')\n2. **MRR + cohort snapshot** — total MRR, by tenant, by brand. Net new + churned.\n3. **Bucket hours consumed** — by entity, vs budget\n4. **Tier 3 engagements** — new, retained, churned\n5. **Per-entity P&L summary** — net for each of MBT / Big Muddy Natchez / Big Muddy Touring / Tuthill Design\n6. **Customer wins of the month** — names + brief\n7. **Customer losses of the month** — names + reasons\n8. **Product shipped this month** — major releases / new modules / features\n9. **Operations** — Inn occupancy, shows hosted, articles published, episodes shipped\n10. **People** — new hires, departures, role changes\n11. **Risks + asks** — what could derail us next month, what we need from each other\n12. **Next month's priorities** — top 3 with owners\n\nVoice: direct, no corporate-fluff, peer-to-peer with equity partners. Markdown template ~1800 words including all placeholders + brief explanation of each section.",
+      "maxTokens": 6000
+    },
+    {
+      "id": "customer-doc-refund-policy",
+      "outputPath": "docs/legal/REFUND_POLICY_DRAFT.md",
+      "system": "You are writing a DRAFT refund policy. Output in markdown. Plain English. NOTE: Mark clearly at top as DRAFT for legal review.",
+      "prompt": "Write a **DRAFT refund + cancellation policy** covering all MBT subscription products + one-off purchases.\n\nMUST start with: '> **DRAFT — REQUIRES LEGAL REVIEW BEFORE PUBLICATION.**'\n\nCover:\n\n**Subscriptions** (DSD, Records label services, Tuthill realtor packages, Radio sponsor packages):\n- Cancel anytime, no contract\n- Cancel-at-period-end is the default (customer keeps access until billing period ends)\n- No refund for the current period (industry standard, except where noted below)\n- Notable exception: documented service failure on our side gets a pro-rated refund\n\n**One-off orders** (merch, prints, books, tickets):\n- Tickets: refundable up to 24 hours before show, after that no refund (transferrable instead)\n- Physical merch: 14-day return window if unopened\n- Digital downloads: no refund (industry standard)\n\n**Inn bookings** (direct):\n- Free cancellation up to 7 days before stay\n- 50% refund 3-7 days before\n- No refund within 3 days, except for documented emergencies\n- OTA bookings follow OTA policy\n\n**Quote-to-deposit private events**:\n- Deposit refundable up to 30 days before event\n- 50% within 14-30 days\n- Non-refundable within 14 days\n\n**How to request a refund**:\n- Self-serve via Stripe Customer Portal (subscriptions)\n- Email billing@ for everything else\n- 5 business day processing time\n\n**Disputes**:\n- Contact us first before chargeback\n- Stripe dispute process if unresolved\n\nPlain English. Markdown. ~2000 words.",
+      "maxTokens": 6000
+    },
+    {
+      "id": "internal-doc-prompt-engineering-guide",
+      "outputPath": "docs/operator-guides/prompt-engineering-guide.md",
+      "system": "You are writing an internal prompt engineering guide for the team. Output in markdown. Concrete, with examples.",
+      "prompt": "Write the **MBT prompt engineering guide** — for anyone on the team who interacts with AI tools (the Wizard, manual Gemini batches, Claude Code agents).\n\nCover:\n\n1. **The voice firewall** — every brand has a voice profile in `docs/voice/`. Always reference it. Never let an AI pick voice freely.\n2. **The Humanizer rule** — every AI text output runs through the forbidden-phrases check. List of universally forbidden phrases (extends per-brand): leverage, synergy, unlock, elevate, transform, journey, cutting-edge, seamless, unparalleled, etc.\n3. **Concrete > vague topics** — 'the Blues Room shows in May, Tracy Lake Trio Friday' beats 'music coverage'.\n4. **Entity grounding** — always pull real entities from the directory. Never let the AI invent businesses or musicians.\n5. **Photo grounding** — always pull real assets from Immich. Never let the AI 'imagine' a photo description.\n6. **Length targets** — every content type has a target. Force the AI to respect it.\n7. **Few-shot examples** — when output drifts, attach 2 example drafts that match the desired voice.\n8. **The Gemini batch dispatcher** — `scripts/ai/gemini-batch.mjs` — when to use, batch size norms, output path conventions, voice + format enforcement in system prompts.\n9. **The Wizard** — when to use vs manual Gemini batch (Wizard for Sanity-published content, batch for everything else).\n10. **Common prompt failures + fixes** — generic AI-blog tone (force forbidden-phrases list); fictional entities (force entity-grounded prompt); wrong length (force min/max); wrong voice (specify brand profile).\n\nMarkdown with example prompts. ~2500 words.",
+      "maxTokens": 7000
+    },
+    {
+      "id": "tech-doc-mac-mini-services-inventory",
+      "outputPath": "docs/operations/MAC_MINI_SERVICES_INVENTORY.md",
+      "system": "You are writing a complete inventory of services running on the Mac mini. Output in markdown. Reference-grade.",
+      "prompt": "Write the **Mac mini services inventory** — every service running on `192.168.4.37` (ClawdBOT user), what each does, ports, credentials, restart procedure.\n\nServices to cover:\n\n1. **OpenBroadcaster** — port 8080, http://192.168.4.37:8080, admin/bigmuddy2026, used for radio scheduling\n2. **Icecast** — port 8010, http://192.168.4.37:8010, streaming server for Big Muddy Radio\n3. **Plex** — port 32400, http://192.168.4.37:32400, media server\n4. **Postiz** — port 4007, http://192.168.4.37:4007, social media scheduler\n5. **Open Notebook** — port 5055, http://192.168.4.37:5055, knowledge management\n6. **OBS Studio** — local app + WebSocket plugin on port 4455 (TBD), used by broadcast agent for TikTok Live scene control\n7. **broadcast-agent** (NEW — Phase C Block 4) — Node service polling MBT server every 30s for OBS / ffmpeg / clip-upload instructions, runs as launchd agent\n\nFor each service:\n- What it does (1 sentence)\n- Port + URL\n- Credentials location (Bitwarden item name)\n- How to restart (concrete command)\n- How to check it's healthy (concrete check)\n- Logs location\n- Common failures + fixes\n\nAlso include:\n- SSH access pattern: `ssh -i ~/.ssh/id_mini ClawdBOT@192.168.4.37`\n- Backup strategy for each service's data\n- Boot-time persistence (launchd plists for each)\n- Network requirements (must be on LAN with the MacBook for some workflows; must have internet for cron-driven services)\n\nMarkdown. ~2500 words.",
+      "maxTokens": 7000
+    }
+  ]
+}
