@@ -45,14 +45,22 @@ Big Muddy's audio voice — for now distributed as podcasts and curated playlist
 - **Packaging:** Quarterly recurring
 - **Sold via:** Direct (Tracy)
 
-### Offering 4 — Future: linear streaming radio
+### Offering 4 — TikTok Live (NEW — live radio feel without licensing overhead)
+- **What it is:** Regular live broadcasts on TikTok Live mixing talk-radio segments + music programming
+- **Why TikTok:** the platform carries music licensing through its own rights deals — no BMI/ASCAP/SESAC overhead for us
+- **What's included:** Hosted live segments · audience interaction · music selections during the live · clip extraction for re-use as short-form content
+- **Distribution:** TikTok Live (synchronous) + clipped highlights re-published as TikTok posts + cross-posted to IG Reels + cross-promoted on the asynchronous podcast feed
+- **Sold via:** Brand presence within the live (sponsor mentions, branded segments) — pricing TBD
+- **Why it works:** gets the "live radio" interactive feel right now, builds an audience habit, no licensing complexity, content recycled into other formats
+
+### Offering 5 — Future: linear streaming radio
 - **What it is:** When/if the audience justifies it, spin up a 24/7 streaming station via the existing Mac mini OpenBroadcaster + Icecast infrastructure
 - **What's included:** Live programming + automated playlists between hosted shows + sponsor reads
 - **Price:** TBD — likely a richer sponsor inventory model
 - **Packaging:** Future
 - **Sold via:** Future direct sales
 
-### Offering 5 — Underwriting / station-level support (when linear launches)
+### Offering 6 — Underwriting / station-level support (when linear launches)
 - **What it is:** Larger-tier brand presence across the whole station
 - **What's included:** Station ID mentions · web header · tour van wrap · signage at Inn/Blues Room shows
 - **Price:** $___ /quarter or $___ /year
@@ -67,6 +75,7 @@ Big Muddy's audio voice — for now distributed as podcasts and curated playlist
 | Episode sponsorship | $___ per episode |
 | Playlist sponsorship | $___/quarter |
 | Show / season sponsorship | $___/season |
+| TikTok Live brand presence | $___ per stream OR $___/month for recurring |
 | Linear underwriting (future) | $___/quarter |
 
 ---
@@ -77,7 +86,8 @@ Big Muddy's audio voice — for now distributed as podcasts and curated playlist
 |---|---|---|
 | Podcast publishing | Broadcast (podcast mode), Coordination, CMS | Per-episode metadata in Sanity, RSS feed generation, distribution to all major directories |
 | Playlist curation + publishing | Broadcast (playlist mode), Coordination | Playlist updater (Spotify API + Apple Music API + YouTube Music) |
-| Sponsorships | Commerce, CMS, Broadcast | Sponsor inventory per show + per playlist, live read script management, billing |
+| **TikTok Live** | **Broadcast (TikTok mode), Social, Coordination** | **Live stream orchestration · clip extraction pipeline · cross-platform re-publish (IG Reels + podcast highlights)** |
+| Sponsorships | Commerce, CMS, Broadcast | Sponsor inventory per show + per playlist + per TikTok Live stream, live read script management, billing |
 | Linear streaming (future) | Broadcast (streaming mode) | Mac mini OpenBroadcaster + Icecast already exists — flip on when ready |
 | Underwriting | Commerce, CMS | Sales tracking, contract storage, recognition placement |
 
@@ -129,6 +139,8 @@ Big Muddy's audio voice — for now distributed as podcasts and curated playlist
 - **First podcast show titles + cadence** — what shows are we launching with? Weekly? Biweekly?
 - **Playlist categories** — what playlists do we curate? "Big Muddy Booked This Week"? "Mississippi Corridor New Releases"? "Inn Late Night"?
 - Distribution platforms — DistroKid for podcasts? Direct Spotify for Podcasters? Buzzsprout? Transistor?
+- **TikTok Live cadence** — daily? a few times a week? scheduled time slot for audience-habit?
+- **TikTok Live host rotation** — Chase / Tracy / Amy each take a regular slot?
 - Linear-radio trigger — what audience size or sponsor revenue justifies turning on the 24/7 stream?
 - Music licensing for sponsored playlists — most platforms handle this, but verify per use case
 - Cross-promotion plan with Big Muddy Records releases (label drops → episode coverage)
