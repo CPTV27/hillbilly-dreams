@@ -37,9 +37,8 @@ export default function StoryPage() {
           them with shared infrastructure and shared audiences, cost less, and live well.
         </p>
         <p className="lede-secondary">
-          Three partners. Two regions. One shared spine. Net break-even at $173k (after the
-          Scan2Plan royalty offset); first profit at $250k; baseline target $330k; quality of
-          life as the ceiling.
+          Three partners. Two regions. One shared spine. Break-even floor around $200k; first
+          real profit at $250k; baseline target $330k; quality of life as the ceiling.
         </p>
       </header>
 
@@ -172,19 +171,19 @@ export default function StoryPage() {
         </p>
         <div className="finance">
           <div className="finance-row finance-floor">
-            <p className="finance-label">Break-even floor (net)</p>
-            <p className="finance-value">$173k</p>
-            <p className="finance-note">Ecosystem revenue needed to cover all costs after Chase&rsquo;s ~$18k/yr Scan2Plan royalty offset. Gross ecosystem costs are $191k; $18k of that is covered by passive royalty income. Itemized below.</p>
+            <p className="finance-label">Break-even floor</p>
+            <p className="finance-value">~$200k</p>
+            <p className="finance-note">The point at which the ecosystem covers its own costs — Inn operations, shared platform, partner retainers, and the ecosystem&rsquo;s portion of Chase&rsquo;s operating setup, less a small passive royalty that offsets his draw. Exact line items stay inside the business.</p>
           </div>
           <div className="finance-row finance-profit">
-            <p className="finance-label">First profit milestone</p>
+            <p className="finance-label">First real profit</p>
             <p className="finance-value">$250k</p>
-            <p className="finance-note">$77k above the net floor. The first point where the ecosystem isn&rsquo;t just surviving — the partners have real margin, reserves start accruing, and the next interesting project becomes fundable.</p>
+            <p className="finance-note">~$50k above the floor. The first point where the ecosystem isn&rsquo;t just surviving — partners have real margin, reserves start accruing, and the next interesting project becomes fundable.</p>
           </div>
           <div className="finance-row finance-base">
             <p className="finance-label">Baseline target</p>
             <p className="finance-value">$330k</p>
-            <p className="finance-note">The realistic Y1 number. $157k of profit above the net floor, redeployed across growth, partner distributions, and touring investment.</p>
+            <p className="finance-note">The realistic Y1 number. ~$130k of profit above the floor, redeployed across growth, partner distributions, and touring investment.</p>
           </div>
           <div className="finance-row finance-stretch">
             <p className="finance-label">Stretch (with art sales + stock activation)</p>
@@ -197,58 +196,14 @@ export default function StoryPage() {
             <p className="finance-note">Modest, sustainable, no fundraise required. Y1 $330k → Y2 $413k → Y3 $516k → Y4 $645k → Y5 $806k.</p>
           </div>
         </div>
-        <div className="breakeven-detail">
-          <p className="breakeven-heading">How the floor is built</p>
-          <table className="breakeven-table">
-            <tbody>
-              <tr>
-                <td>Big Muddy Inn — mortgage, utilities, Chandra&rsquo;s cleaning at $20 per room, Hospitality Coordinator at $20 per check-in</td>
-                <td>$125,000</td>
-              </tr>
-              <tr>
-                <td>MBT software + AI subscription stack ($1k/mo)</td>
-                <td>$12,000</td>
-              </tr>
-              <tr>
-                <td>Studio C services ($1k/mo)</td>
-                <td>$12,000</td>
-              </tr>
-              <tr>
-                <td>Chase&rsquo;s Bearsville Cottage ($1k/mo)</td>
-                <td>$12,000</td>
-              </tr>
-              <tr>
-                <td>Chase&rsquo;s aggregate bills — internet, cell, tax repayment, etc. ($500/mo)</td>
-                <td>$6,000</td>
-              </tr>
-              <tr>
-                <td>Chase&rsquo;s living expenses ($2k/mo)</td>
-                <td>$24,000</td>
-              </tr>
-              <tr className="breakeven-subtotal">
-                <td>Gross ecosystem costs</td>
-                <td>$191,000</td>
-              </tr>
-              <tr className="breakeven-offset">
-                <td>Less: Chase&rsquo;s 2% Scan2Plan royalty (~$1,500/mo+, passive income that reduces ecosystem draw)</td>
-                <td>− $18,000</td>
-              </tr>
-              <tr className="breakeven-total">
-                <td>Net ecosystem break-even (revenue the ecosystem itself must generate)</td>
-                <td>$173,000</td>
-              </tr>
-            </tbody>
-          </table>
-          <p className="breakeven-note">
-            Tracy&rsquo;s and Amy&rsquo;s personal costs aren&rsquo;t on this list because they draw
-            from Inn distributions, not from ecosystem revenue. Touring, marketing, and reserves
-            aren&rsquo;t here either — those are investments we make out of revenue above the floor,
-            not costs we owe just to keep the lights on. Chase&rsquo;s Scan2Plan royalty is passive
-            income retained from the 2022–2026 partnership; it lands in his account regardless of
-            what the ecosystem does, so it offsets the portion of his personal costs the ecosystem
-            would otherwise have to cover.
-          </p>
-        </div>
+        <p className="finance-footnote">
+          The floor isn&rsquo;t an abstraction — it&rsquo;s built from actual operating costs across
+          the Inn, the shared technology platform, partner services, and a small amount of passive
+          income that offsets ecosystem draw. We keep the line-item breakdown inside the business
+          out of respect for the Inn&rsquo;s financial privacy. Partners, counsel, and accountants
+          see the full itemization. What the public sees is the shape: a real floor, a real
+          milestone, a real target, and a ceiling we refuse to trade for more money.
+        </p>
         <blockquote className="chase-quote">
           Break-even is the minimum, and a real success on its own. Above it we work for actual
           profit. What we won&rsquo;t trade for more profit is the quality of life that made us
@@ -348,8 +303,8 @@ export default function StoryPage() {
         <h2>How it gets done — people + AI agents</h2>
         <p className="section-lede">
           The platform runs on a combination of the three partners, partner studios, a small roster
-          of AI agents, and two per-event hospitality contractors — Chandra on cleaning at $20 per
-          room and a Hospitality Coordinator at $20 per check-in. Each AI agent has a defined scope
+          of AI agents, and per-event hospitality contractors (cleaning + guest arrivals — variable
+          cost that scales with bookings, not salaried overhead). Each AI agent has a defined scope
           and a quarterly output-based audit — ship or deprecate.
         </p>
         <div className="agents">
@@ -668,63 +623,15 @@ export default function StoryPage() {
           line-height: 1.55;
           margin: 0;
         }
-        .breakeven-detail {
-          margin: 32px 0 0;
-          padding: 24px 28px;
+        .finance-footnote {
+          margin: 24px 0 0;
+          padding: 18px 24px;
           background: var(--surface-2);
           border-radius: 4px;
           border-left: 3px solid var(--amber);
-        }
-        .breakeven-heading {
-          font-family: -apple-system, system-ui, sans-serif;
-          font-size: 12px;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-          color: var(--text-muted);
-          margin: 0 0 16px;
-        }
-        .breakeven-table {
-          width: 100%;
-          border-collapse: collapse;
-          font-size: 15px;
-          line-height: 1.5;
-        }
-        .breakeven-table td {
-          padding: 10px 0;
-          border-bottom: 1px solid var(--border);
-          vertical-align: top;
-        }
-        .breakeven-table td:last-child {
-          font-family: Georgia, serif;
-          font-variant-numeric: tabular-nums;
-          text-align: right;
-          padding-left: 24px;
-          white-space: nowrap;
-        }
-        .breakeven-subtotal td {
-          border-top: 1px solid var(--text);
-          border-bottom: none;
-          padding-top: 12px;
-          font-weight: 600;
-          color: var(--text-muted);
-        }
-        .breakeven-offset td {
-          border-bottom: none;
-          padding-top: 6px;
-          font-style: italic;
-          color: var(--text-muted);
-        }
-        .breakeven-total td {
-          border-top: 2px solid var(--text);
-          border-bottom: none;
-          padding-top: 14px;
-          font-weight: 700;
-        }
-        .breakeven-note {
-          font-size: 13px;
+          font-size: 14px;
           line-height: 1.6;
           color: var(--text-muted);
-          margin: 16px 0 0;
           font-style: italic;
         }
         .chase-quote {
@@ -994,6 +901,6 @@ const AGENTS = [
   { name: 'Delta Dawn — Team Assistant', status: 'live', statusLabel: 'live', scope: 'Tracy + Amy onboarding support, CMS how-tos, monthly "what shipped" reports, photo auto-tagging. The team\'s natural-language surface.' },
   { name: 'Claude Design 2', status: 'building', statusLabel: 'building', scope: 'Visual asset generation, brand consistency checks, voice doc formatting, social image templates. Owns the design-system layer.' },
   { name: 'Gemini batches', status: 'live', statusLabel: 'live', scope: 'First-draft Magazine content, SEO metadata, social captions, transcript cleanup, image generation via Imagen 3. Bulk creative throughput.' },
-  { name: 'Hospitality Coordinator', status: 'live', statusLabel: 'live', scope: 'Per-event human contractor at $20 per check-in. Greets guests, confirms the room is ready, helps guests settle in. Variable cost that scales with bookings, not a salaried line item.' },
-  { name: 'Chandra — Cleaning', status: 'live', statusLabel: 'live', scope: 'Per-event human contractor at $20 per room cleaning. Already running. The cleaning line alongside the Coordinator line is the full non-fixed Inn labor cost.' },
+  { name: 'Hospitality Coordinator', status: 'live', statusLabel: 'live', scope: 'Per-event human contractor paid per check-in. Greets guests, confirms the room is ready, helps guests settle in. Variable cost that scales with bookings, not a salaried line item.' },
+  { name: 'Housekeeping contractor', status: 'live', statusLabel: 'live', scope: 'Per-event human contractor paid per room cleaning. Already running. Scales with occupancy; no fixed overhead.' },
 ];

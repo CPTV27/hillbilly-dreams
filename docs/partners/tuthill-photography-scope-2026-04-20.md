@@ -38,7 +38,33 @@ Both tiers are bookable from the same Tuthill Design Photography surface. The cl
 
 ---
 
-## 3. Revenue flow (framework — exact splits TBD with Miles)
+## 3. The baseline retainer — confirmed with Elijah + Miles 2026-04-20 PM
+
+Separate from the photography service line's booking math, MBT has locked a **$1,000/month bucket of hours at $50/hr = 20 hrs/month** with both Studio C Video and Tuthill Design. Each studio gets its own $1k/mo retainer against production + marketing work. Pattern matches the "another Utopia-type account" framing Chase has been using with Elijah.
+
+**What the retainer covers:**
+- Production work for Big Muddy brands (Inn video, Magazine assets, Blues Room documentation, touring EPK cuts, Amy's records + radio visuals on the Studio C side)
+- Design work for Big Muddy brands (brand systems, print, collateral, logo refinements, the Sprinter wrap on the Tuthill side)
+- Elijah's ride-along during the Fiverr Cloudbeds rebuild (inside the Studio C bucket — this is how he learns the PMS well enough to become the Inn's Tier-1 support)
+- Per-event promotional asset production for the partner studios' own outbound marketing
+
+**What's outside the retainer (separate engagements):**
+- Tuthill Design Photography shoots — billed per-shoot at the tiered rates below, not against the retainer bucket
+- Studio C video productions that exceed the bucket (e.g. a full-day wedding video shoot) — billed as project work
+- Major brand refreshes or multi-deliverable campaigns — scoped and priced separately
+
+**How hours get tracked:**
+- Each studio keeps a simple shared hours log (Google Sheet or similar)
+- Monthly true-up: hours used, hours banked, hours overflow
+- Unused hours roll at most one month forward; then reset
+- Overflow above 20 hrs/mo is billed at the same $50/hr rate as the retainer
+- MBT reviews the backlog monthly with Elijah + Miles and adjusts priorities
+
+**Ecosystem cost basis:** $1k/mo × 2 studios = $24k/yr total, matching the "Studio C services $12k/yr" + "(implicit partner studio services)" lines already carried in the break-even math. (The break-even table's "Studio C services" line now covers both Studio C and Tuthill Design retainers, renamed on next revision.)
+
+---
+
+## 4. Photography service-line revenue flow (framework — exact splits TBD with Miles)
 
 ### When the client books the Tuthill standard tier AND the assigned shooter is NOT Chase:
 - Client pays Tuthill Design
@@ -69,7 +95,7 @@ These are placeholders. Real numbers depend on the Hudson Valley vs. Deep South 
 
 ---
 
-## 4. Geographic strategy
+## 5. Geographic strategy
 
 ### Hudson Valley (May–October peak)
 - Primary corridor: Woodstock, Kingston, New Paltz, Hudson, Rhinebeck, Beacon
@@ -96,7 +122,7 @@ One team, two regions, near-full-year utilization. That's the shape.
 
 ---
 
-## 5. Marketing push — first 90 days
+## 6. Marketing push — first 90 days
 
 **Channels:**
 
@@ -122,7 +148,7 @@ One team, two regions, near-full-year utilization. That's the shape.
 
 ---
 
-## 6. Operational workflow
+## 7. Operational workflow
 
 **Intake** (any channel):
 1. Client lands on Tuthill Design Photography booking page or contacts Tracy
@@ -149,7 +175,7 @@ One team, two regions, near-full-year utilization. That's the shape.
 
 ---
 
-## 7. What Tuthill Design (Miles) needs to agree to
+## 8. What Tuthill Design (Miles) needs to agree to
 
 Before this ships, Chase and Miles have a 30-minute alignment call covering:
 
@@ -164,7 +190,7 @@ The partner-studios-pitch already frames the larger relationship. This call is t
 
 ---
 
-## 8. Chase Pierson Photography (CPP) — scope, refined
+## 9. Chase Pierson Photography (CPP) — scope, refined
 
 Under the new split, CPP is **everything non-real-estate**:
 
@@ -182,7 +208,7 @@ CPP keeps its brand, its gallery, its existing marketing surface, and its client
 
 ---
 
-## 9. Entity-structure decision for CPP (recommendation)
+## 10. Entity-structure decision for CPP (recommendation)
 
 **Three options on the table:**
 
@@ -205,7 +231,7 @@ Why:
 
 ---
 
-## 10. What this changes in the existing docs
+## 11. What this changes in the existing docs
 
 - **THE_THESIS.md** — portfolio section gets a Tuthill Design Photography line; CPP line gets refined to "non-RE only"; entity-structure note updated from "FarleyPierson TBD" to "close + DBA from MBT (pending counsel)"
 - **90_DAY_PLAN.md** — Week 1 photography re-engagement splits into two outreach tracks (Tuthill RE vs. CPP non-RE); the $100k CPP revenue line needs to be re-cast as "photography revenue" spanning Tuthill RE + CPP non-RE
@@ -215,7 +241,7 @@ Why:
 
 ---
 
-## 11. Open decisions for Chase
+## 12. Open decisions for Chase
 
 1. Approve Option 2 (FarleyPierson close + DBA from MBT) — or go with Option 1 (rename)?
 2. Lock the tier pricing (illustrative in Section 3 — need real numbers for Tuthill standard + Chase-premium across property-size brackets)

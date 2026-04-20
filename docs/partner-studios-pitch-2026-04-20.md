@@ -82,17 +82,19 @@ I want to be careful not to describe your contribution as if it's something I'm 
 
 ---
 
-## Commercial structure (TBD — the conversation, not the pitch)
+## Commercial structure — confirmed 2026-04-20
 
-I'm not proposing a specific deal in this document. The shape of what we agree to could range across several models:
+The base layer is now locked with Elijah + Miles:
 
-- **Revenue share on MBT-originated work.** Tracy sells it; you deliver it; we split.
-- **Ongoing retainer + project billing.** Predictable monthly minimum + per-project upsizes.
-- **Licensing / services package.** MBT licenses brand + platform access to your studio for your independent clients.
-- **Equity stake in a holding structure** — if we want to make it truly aligned and longer-term.
-- **Combination of the above** — probably.
+**$1,000/month retainer bucket = 20 hours at $50/hr**, one per studio (Studio C and Tuthill Design each get their own bucket). Work against the bucket covers production and marketing for the Big Muddy brands + support tasks inside the ecosystem. Overflow bills at the same $50/hr rate. Unused hours roll one month forward and then reset. This is the "another Utopia-type account" model — familiar, simple, no lock-in.
 
-We'll design that together in the actual conversation. I want you to see the shape of the thing before we negotiate the mechanics.
+**On top of that base, additional structures scale as volume justifies:**
+- **Per-shoot photography billing inside Tuthill Design Photography** (the new real-estate service line) — two-tier: Tuthill standard rate or Chase-premium tier. Not billed against the retainer bucket.
+- **Project billing for large one-off work** (full-day wedding video, multi-deliverable brand refreshes, commercial campaigns) — scoped and priced separately, not drawn from the bucket.
+- **Revenue share on MBT-originated service sales** where the partner studio is the fulfiller — for example, Tuthill Photography leads Tracy sources from her biz dev.
+- **Future layers possible:** licensing/services package, deeper equity relationship if we want it — left on the table as real options, not committed to.
+
+Full scope for the Tuthill Photography launch lives in `docs/partners/tuthill-photography-scope-2026-04-20.md`. The remaining conversation is about tier pricing, shooter pool recruitment, and any edges the $1k/mo bucket doesn't cover — not about whether the base structure works.
 
 ---
 

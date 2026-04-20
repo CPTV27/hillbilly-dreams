@@ -2,9 +2,9 @@
 
 **Operating tier document.** Sits alongside `docs/THE_THESIS.md` as canonical state. The thesis says WHAT we are. This says WHAT WE DO for the next 90 days.
 
-**Purpose:** Hit the leading indicator of $60k cumulative revenue by July 31 — which puts us on pace for the $330k Y1 baseline and comfortably above the $191k break-even floor.
+**Purpose:** Hit the leading indicator of $60k cumulative revenue by July 31 — which puts us on pace for the $330k Y1 baseline and comfortably above the $185k net break-even floor.
 
-**Probability of $330k Y1 baseline if executed as written:** ~65% (external AI review framework, originally calibrated against the $250k framing that preceded the QuickBooks-grounded $191k floor). Probability of clearing the $191k floor is meaningfully higher (~85%).
+**Probability of $330k Y1 baseline if executed as written:** ~65% (external AI review framework, originally calibrated against the $250k framing that preceded the QuickBooks-grounded $185k net floor). Probability of clearing the $185k net floor is meaningfully higher (~85%).
 
 **Distribution:** Chase, Tracy, Amy, JP. Print + Google Drive. Open to AI agents (Cos, Patch, Delta Dawn) for daily reference.
 
@@ -42,14 +42,14 @@ What "no new strategic surface" means in practice:
 ## 2 — Y1 Revenue Math (corrected — including photography re-cut 2026-04-19 evening)
 
 **Y1 financial ladder:**
-- **Gross ecosystem costs: $191k.** Itemized from QuickBooks — $125k Inn + $24k platform + $42k Chase housing/bills/living.
+- **Gross ecosystem costs: $203k.** Itemized from QuickBooks — $125k Inn + $24k platform + $42k Chase housing/bills/living.
 - **Less Chase's Scan2Plan royalty: −$18k.** The 2% royalty retained from the dissolved S2PX partnership averages ~$1,500/mo of passive income. It lands regardless of what the ecosystem does, so it directly offsets the portion of Chase's personal costs the ecosystem would otherwise have to cover.
-- **Net break-even floor: $173k.** Revenue the ecosystem itself must generate for full coverage.
-- **First profit milestone: $250k.** $77k above the net floor. First real margin — partners have cushion, reserves start accruing, the next interesting project becomes fundable.
-- **Baseline target: $330k.** $157k of real profit above the net floor. The realistic Y1 shape.
+- **Net break-even floor: $185k.** Revenue the ecosystem itself must generate for full coverage.
+- **First profit milestone: $250k.** $65k above the net floor. First real margin — partners have cushion, reserves start accruing, the next interesting project becomes fundable.
+- **Baseline target: $330k.** $145k of real profit above the net floor. The realistic Y1 shape.
 - **Stretch: $390–395k.** Art sales + stock activation.
 
-**Y1 actual goal:** real profit. We want to be profitable, not just at break-even. Above $173k, every dollar is real profit. $250k is the first waypoint that matters; $330k is the shape we work for.
+**Y1 actual goal:** real profit. We want to be profitable, not just at break-even. Above $185k, every dollar is real profit. $250k is the first waypoint that matters; $330k is the shape we work for.
 
 **The ceiling is quality of life, not a revenue cap.** At the point where additional profit requires sacrificing the partners' quality of life, we stop pushing harder. That line matters more than the next million dollars.
 
@@ -70,7 +70,7 @@ The baseline $330k scenario below represents the realistic operating target — 
 | **Studio C + Tuthill projects** | $35k | Existing partner studio project flow. **Studio C now offers video services in addition to photography** — expanding the addressable market alongside the Natchez geographic expansion. Counter-seasonal pattern matches CPP. |
 | **B2B Directory engagements (Vicki + Paul Green)** | $30k | $15k each, upfront fee. |
 | **Magazine sponsorship (inbound only — don't chase)** | $5k | Take what walks in; do not spend Tracy's BizDev hours on this. |
-| **Baseline Y1 total** | **$330k** | $139k above the $191k break-even floor. |
+| **Baseline Y1 total** | **$330k** | $145k above the $185k net break-even floor. |
 
 ### Stretch — $390–395k (if we activate the upsides)
 
@@ -80,7 +80,7 @@ The baseline $330k scenario below represents the realistic operating target — 
 | **Mississippi stock footage** | $10–15k | Deliberate shooting strategy + Adobe Stock / Getty / specialty platform workflow. AI-assisted keywording + uploads (Cos / Delta Dawn). |
 | **Stretch total** | **$390–395k** | Real upside if both activate by Q3. |
 
-**Implication for the probability commitment:** The 65% Y1 probability was originally set against a $250k threshold. The real break-even floor is now $191k. Probability of clearing the $191k floor is meaningfully higher (~85%). Probability of hitting the $330k baseline remains ~65%. The spirit of the plan changes accordingly — the goal isn't surviving to a number, it's choosing how much profit to generate above a floor we're highly likely to clear.
+**Implication for the probability commitment:** The 65% Y1 probability was originally set against a $250k threshold. The real break-even floor is now $185k. Probability of clearing the $185k net floor is meaningfully higher (~85%). Probability of hitting the $330k baseline remains ~65%. The spirit of the plan changes accordingly — the goal isn't surviving to a number, it's choosing how much profit to generate above a floor we're highly likely to clear.
 
 **Leading indicator at end of July:** $80k cumulative (was $60k under the old mix). This reflects photography revenue contributing earlier and steadier than the wedding-package revenue.
 
@@ -102,17 +102,18 @@ A full Q3 risk map gets written at the Week 12 retrospective (July 28-31) when t
 |---|---|
 | Big Muddy Inn — mortgage, utilities, Chandra at $20/room cleaning, Hospitality Coordinator at $20/check-in (variable labor, scales with bookings) | $125,000 |
 | MBT software + AI subscription stack ($1k/mo) | $12,000 |
-| Studio C services ($1k/mo) | $12,000 |
+| Studio C retainer bucket ($1k/mo × 20 hrs @ $50/hr) | $12,000 |
+| Tuthill Design retainer bucket ($1k/mo × 20 hrs @ $50/hr) | $12,000 |
 | Chase's Bearsville Cottage ($1k/mo) | $12,000 |
 | Chase's aggregate bills — internet, cell, tax repayment ($500/mo) | $6,000 |
 | Chase's living expenses ($2k/mo) | $24,000 |
-| **Gross ecosystem costs** | **$191,000** |
+| **Gross ecosystem costs** | **$203,000** |
 | Less: Chase's 2% Scan2Plan royalty (~$1,500/mo+, passive income that offsets his draw on the ecosystem) | **− $18,000** |
-| **Net ecosystem break-even** | **$173,000** |
+| **Net ecosystem break-even** | **$185,000** |
 
 **What's NOT on this list** (intentionally): Tracy's and Amy's personal costs — they draw from Inn distributions, not from ecosystem revenue. Touring, marketing, and reserves — those are investments we make out of revenue above the floor, not costs we owe just to keep the lights on.
 
-**Net at $173k revenue:** roughly $0. Ecosystem covers ecosystem. Above $173k every dollar is real profit, redeployed across touring investment, marketing, reserves, partner distributions, and quality of life. At the $330k baseline target that's $157k of real profit to work with.
+**Net at $185k revenue:** roughly $0. Ecosystem covers ecosystem. Above $185k every dollar is real profit, redeployed across touring investment, marketing, reserves, partner distributions, and quality of life. At the $330k baseline target that's $145k of real profit to work with.
 
 ---
 
@@ -191,7 +192,7 @@ Summary the 90-day plan needs to carry:
 | **11** | Jul 15–21 | $5k | Solicit 10 new Inn reviews from past guests; Cloudbeds automation verified | Operationalize what worked: one-page playbook for repeating wedding sale + Directory sale | Amy + house band record one studio session for Records distribution | — | Sunday Sit + Wed Health | Reviews not landing → Amy asks at checkout in person |
 | **12** | Jul 22–31 | $5k | Q1 retrospective + Q2 plan (Aug–Oct); third wedding/retreat sold | **Chase takes 3-day off-grid break Wed–Fri.** Platform must run 72 hours without intervention. | Acts as backup for Chase decisions during off-grid; Tracy + Amy manage all guest issues | Patch + Delta Dawn handle anything that breaks | Friday Facts (Chase joins remote) | Catastrophic break during Chase's break → he returns to a punch list, not a fire; document what required intervention |
 
-**End-of-July leading indicator: $60k cumulative.** Hitting that = on pace for the $330k baseline and comfortably above the $191k break-even floor. Below $50k = serious mid-quarter recalibration.
+**End-of-July leading indicator: $60k cumulative.** Hitting that = on pace for the $330k baseline and comfortably above the $185k net break-even floor. Below $50k = serious mid-quarter recalibration.
 
 ---
 
@@ -472,7 +473,7 @@ If a tempting initiative arises in this 90-day window, ask: "Is it on this list?
 
 ## 16 — The Probability Commitment
 
-**If we execute this 90-day plan as written, probability of hitting the $330k Y1 baseline ≈ 65%. Probability of clearing the $191k break-even floor ≈ 85%.**
+**If we execute this 90-day plan as written, probability of hitting the $330k Y1 baseline ≈ 65%. Probability of clearing the $185k net break-even floor ≈ 85%.**
 
 Why not higher: Natchez tourism is up but lodging spend was slightly down in 2024 even as visitation rose. Execution quality matters more than the macro tailwind. Vicki's deal could slip. Wedding-package sales cycle could stretch beyond Y1 fiscal close.
 
@@ -489,7 +490,7 @@ Why not lower: The Inn + corridor traffic + 13-point convergent strategic playbo
 
 The next ninety days, we run one play. Tracy sells the wedding and private-retreat package and carries biz dev across the ecosystem. Chase closes two B2B Directory engagements — Vicki Wolpert in Woodstock and Paul Green in Natchez. Amy runs the Inn and plays as Arrie Aslin. Chandra continues the per-room cleaning at $20 a room; we name a Hospitality Coordinator at $20 per check-in so arrivals and settle-in are handled without pulling Tracy or Amy into same-week operations.
 
-Everything else — touring as a business, magazine ad sales, the record label, the radio station, the second region — moves because it's who we are, not because we are hunting its revenue this year. The honest ecosystem break-even is $191k, built from the QuickBooks numbers. $250k is the first profit milestone. $330k is the baseline — $139k of real profit above the floor if we hit the shape. The leading indicator is cumulative revenue at the end of July: $60k keeps us on pace.
+Everything else — touring as a business, magazine ad sales, the record label, the radio station, the second region — moves because it's who we are, not because we are hunting its revenue this year. The honest ecosystem break-even is $185k net ($203k gross, less $18k Scan2Plan royalty), built from the QuickBooks numbers. $250k is the first profit milestone. $330k is the baseline — $145k of real profit above the floor if we hit the shape. The leading indicator is cumulative revenue at the end of July: $60k keeps us on pace.
 
 That's the framing. Then walk them through the operational tools.
 

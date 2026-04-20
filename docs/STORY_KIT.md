@@ -38,11 +38,11 @@ Pick the right length for the context.
 >
 > **Year-1 financial ladder:**
 > - Fiscal year starts May 1, 2026.
-> - **Gross ecosystem costs:** $191k itemized ($125k Inn + $24k platform + $42k Chase housing/bills/living).
+> - **Gross ecosystem costs:** $203k itemized ($125k Inn + $12k MBT software/AI + $12k Studio C retainer + $12k Tuthill Design retainer + $42k Chase housing/bills/living).
 > - **Less Scan2Plan royalty:** Chase's 2% royalty from the dissolved S2PX partnership averages ~$1,500/mo = ~$18k/yr of passive income that offsets his personal-cost draw on the ecosystem.
-> - **Net break-even floor:** $173k — the revenue the ecosystem itself must generate.
-> - **First profit milestone:** $250k. $77k above the net floor. Real margin; partners have cushion; reserves start accruing.
-> - **Baseline target:** $330k. $157k of real profit above the net floor. The realistic Y1 shape.
+> - **Net break-even floor:** $185k — the revenue the ecosystem itself must generate.
+> - **First profit milestone:** $250k. $65k above the net floor. Real margin; partners have cushion; reserves start accruing.
+> - **Baseline target:** $330k. $145k of real profit above the net floor. The realistic Y1 shape.
 > - **Stretch:** $390–395k with art sales + stock photography activation.
 > - 25% YoY growth target from the $330k baseline: Y1 $330k → Y2 $413k → Y3 $516k → Y4 $645k → Y5 $806k.
 > - Break-even is a success of its own. Profit is the goal. The ceiling is quality of life — not every extra million is worth the attention it costs.
