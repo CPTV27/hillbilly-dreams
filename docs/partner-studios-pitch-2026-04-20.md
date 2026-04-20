@@ -88,6 +88,8 @@ The base layer is now locked with Elijah + Miles:
 
 **$1,000/month retainer bucket = 20 hours at $50/hr**, one per studio (Studio C and Tuthill Design each get their own bucket). Work against the bucket covers production and marketing for the Big Muddy brands + support tasks inside the ecosystem. Overflow bills at the same $50/hr rate. Unused hours roll one month forward and then reset. This is the "another Utopia-type account" model — familiar, simple, no lock-in.
 
+**Start date: April 1, 2026 (backdated).** The April ramp-up work — scope docs, coordination, Cloudbeds setup prep, pricing alignment, Sprinter wrap (including the Studio C logo on the back of the Big Muddy Mobile), 90-day plan alignment — counts against April's 20-hour bucket. Each studio gets the full month's allocation for the setup phase even though we formalized mid-month. May 1 forward, the cadence runs clean.
+
 **On top of that base, additional structures scale as volume justifies:**
 - **Per-shoot photography billing inside Tuthill Design Photography** (the new real-estate service line) — two-tier: Tuthill standard rate or Chase-premium tier. Not billed against the retainer bucket.
 - **Project billing for large one-off work** (full-day wedding video, multi-deliverable brand refreshes, commercial campaigns) — scoped and priced separately, not drawn from the bucket.

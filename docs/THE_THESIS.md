@@ -164,7 +164,7 @@ The public-facing /story page rounds to "approximately $200k" for the break-even
 | Less: Chase's 2% Scan2Plan royalty (~$1,500/mo+, passive income) | **− $18,000** |
 | **Net ecosystem break-even (revenue the ecosystem must generate)** | **$185,000** |
 
-**About the partner retainers:** Studio C and Tuthill Design each carry a $1,000/month retainer bucket = 20 hours at $50/hr, confirmed with Elijah and Miles 2026-04-20 PM. Pattern is the "another Utopia-type account" model Elijah already knows. Overflow bills at the same $50/hr rate. Full scope in `docs/partners/tuthill-photography-scope-2026-04-20.md` §3.
+**About the partner retainers:** Studio C and Tuthill Design each carry a $1,000/month retainer bucket = 20 hours at $50/hr, confirmed with Elijah and Miles 2026-04-20 PM. Backdated start date: **April 1, 2026** — the April ramp-up work (scope docs, coordination, Sprinter wrap with Studio C logo, Cloudbeds prep) counts against April's bucket even though we formalized mid-month. Pattern is the "another Utopia-type account" model Elijah already knows. Overflow bills at the same $50/hr rate. Full scope in `docs/partners/tuthill-photography-scope-2026-04-20.md` §3.
 
 **About the Scan2Plan royalty:** Chase retained a 2% royalty on Scan2Plan sales when the Owen Bush partnership dissolved on 2026-03-25. Average payout is $1,500/mo or higher, which makes it roughly $18k/yr of passive income. It lands in Chase's account regardless of what the ecosystem does, so it directly offsets the portion of his personal costs ($42k/yr total) the ecosystem would otherwise have to cover. Netting it out lowers the ecosystem-revenue floor from $203k to $185k.
 

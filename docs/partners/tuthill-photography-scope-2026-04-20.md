@@ -42,6 +42,8 @@ Both tiers are bookable from the same Tuthill Design Photography surface. The cl
 
 Separate from the photography service line's booking math, MBT has locked a **$1,000/month bucket of hours at $50/hr = 20 hrs/month** with both Studio C Video and Tuthill Design. Each studio gets its own $1k/mo retainer against production + marketing work. Pattern matches the "another Utopia-type account" framing Chase has been using with Elijah.
 
+**Start date: April 1, 2026** (backdated). The ramp-up and setup work already happening in April — scope docs, coordination calls, Cloudbeds onboarding prep, photography-tier pricing discussions, Sprinter wrap specs including the Studio C logo, 90-day plan alignment — all legitimately draws against April's 20-hour allocation. Each studio has a full 20-hour bucket available for April even though we formalized on April 20; the setup-phase work that's been happening is the work the retainer is paying for. May 1 forward, the monthly cadence runs clean.
+
 **What the retainer covers:**
 - Production work for Big Muddy brands (Inn video, Magazine assets, Blues Room documentation, touring EPK cuts, Amy's records + radio visuals on the Studio C side)
 - Design work for Big Muddy brands (brand systems, print, collateral, logo refinements, the Sprinter wrap on the Tuthill side)
