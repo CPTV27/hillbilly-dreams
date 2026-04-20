@@ -1,5 +1,7 @@
 # MBT / Big Muddy — Strategic Review Brief
 
+> **Historical snapshot.** This brief was the input to the external AI review on 2026-04-20 AM. The financial numbers in it (especially the $250k Y1 break-even framing) were subsequently refined against actual QuickBooks line items the same afternoon. **The canonical break-even is now $191k; the baseline target is $330k.** See `docs/THE_THESIS.md` for current numbers. This file is preserved unchanged so the reviewers' context stays intact and their analysis stays legible.
+
 **Purpose:** External AI analysis focused on **maximizing strategic effectiveness** against the canonical thesis. NOT a defense of the existing plan — a search for the highest-leverage next moves.
 
 **Prepared:** April 20, 2026

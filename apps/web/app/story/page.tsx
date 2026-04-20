@@ -37,7 +37,7 @@ export default function StoryPage() {
           them with shared infrastructure and shared audiences, cost less, and live well.
         </p>
         <p className="lede-secondary">
-          Three partners. Two regions. One shared spine. Break-even floor at $250k; real
+          Three partners. Two regions. One shared spine. Break-even floor at $191k; real
           profit as the goal; quality of life as the ceiling.
         </p>
       </header>
@@ -172,13 +172,13 @@ export default function StoryPage() {
         <div className="finance">
           <div className="finance-row finance-floor">
             <p className="finance-label">Break-even minimum</p>
-            <p className="finance-value">$250k</p>
-            <p className="finance-note">Ecosystem run-rate ≈ $296k after the planned ops hire. The floor is where the ecosystem covers itself on its own steam.</p>
+            <p className="finance-value">$191k</p>
+            <p className="finance-note">The floor is where the ecosystem covers itself on its own steam. Built from QuickBooks reality, not a round number.</p>
           </div>
           <div className="finance-row finance-base">
             <p className="finance-label">Baseline target</p>
             <p className="finance-value">$330k</p>
-            <p className="finance-note">The realistic Y1 number. Profit above break-even is real and goes back into growth + lifestyle + the next interesting project.</p>
+            <p className="finance-note">The realistic Y1 number. That&rsquo;s $139k of profit above break-even, redeployed across growth, partner distributions, and the next interesting project.</p>
           </div>
           <div className="finance-row finance-stretch">
             <p className="finance-label">Stretch (with art sales + stock activation)</p>
@@ -190,6 +190,47 @@ export default function StoryPage() {
             <p className="finance-value">$610k</p>
             <p className="finance-note">Modest, sustainable, no fundraise required. Y1 → Y2 $313k → Y3 $391k → Y4 $488k → Y5 $610k.</p>
           </div>
+        </div>
+        <div className="breakeven-detail">
+          <p className="breakeven-heading">How the $191k floor is built</p>
+          <table className="breakeven-table">
+            <tbody>
+              <tr>
+                <td>Big Muddy Inn — mortgage, utilities, Chandra&rsquo;s cleaning at $20 per room, Hospitality Coordinator at $20 per check-in</td>
+                <td>$125,000</td>
+              </tr>
+              <tr>
+                <td>MBT software + AI subscription stack ($1k/mo)</td>
+                <td>$12,000</td>
+              </tr>
+              <tr>
+                <td>Studio C services ($1k/mo)</td>
+                <td>$12,000</td>
+              </tr>
+              <tr>
+                <td>Chase&rsquo;s Bearsville Cottage ($1k/mo)</td>
+                <td>$12,000</td>
+              </tr>
+              <tr>
+                <td>Chase&rsquo;s aggregate bills — internet, cell, tax repayment, etc. ($500/mo)</td>
+                <td>$6,000</td>
+              </tr>
+              <tr>
+                <td>Chase&rsquo;s living expenses ($2k/mo)</td>
+                <td>$24,000</td>
+              </tr>
+              <tr className="breakeven-total">
+                <td>Ecosystem break-even</td>
+                <td>$191,000</td>
+              </tr>
+            </tbody>
+          </table>
+          <p className="breakeven-note">
+            Tracy&rsquo;s and Amy&rsquo;s personal costs aren&rsquo;t on this list because they draw
+            from Inn distributions, not from ecosystem revenue. Touring, marketing, and reserves
+            aren&rsquo;t here either — those are investments we make out of revenue above the floor,
+            not costs we owe just to keep the lights on.
+          </p>
         </div>
         <blockquote className="chase-quote">
           Break-even is the minimum, and a real success on its own. Above it we work for actual
@@ -282,36 +323,15 @@ export default function StoryPage() {
         </p>
       </section>
 
-      {/* ───────── 09 · NOT BUILDING ───────── */}
+      {/* ───────── 09 · AI AGENTS ───────── */}
       <section>
         <p className="section-num">09</p>
-        <h2>What we&apos;re not building this year</h2>
-        <p className="section-lede">
-          Focus compounds. Below is our explicit Y1 refusal list. If any tempting idea arises that
-          sits on this list, we defer it.
-        </p>
-        <ul className="not-building">
-          <li>Standalone Deep South Directory subscription product — it&apos;s a capability, not a SaaS</li>
-          <li>Records-of-the-month subscription — margin is brutal, premature</li>
-          <li>AI Inn concierge chatbot — dilutes the Mississippi-Martha-Stewart boutique brand</li>
-          <li>Stripe Connect auto-payouts — manual works for Y1 volume</li>
-          <li>Records / Radio as Y1 revenue lines — support Amy, not paying products yet</li>
-          <li>Magazine sponsorship chasing — inbound only; don&apos;t burn Tracy&apos;s BizDev hours</li>
-          <li>Touring as a Y1 revenue target — Amy still plays, just not a revenue line to hit</li>
-          <li>A third region before Bearsville proves itself</li>
-          <li>Per-tenant GCS buckets, PgBoss, magic-link auth, Jest tests — not load-bearing for Y1 revenue</li>
-          <li>Fundraise, acquisition, SaaS-multiple framing of any part of the business</li>
-        </ul>
-      </section>
-
-      {/* ───────── 10 · AI AGENTS ───────── */}
-      <section>
-        <p className="section-num">10</p>
         <h2>How it gets done — people + AI agents</h2>
         <p className="section-lede">
           The platform runs on a combination of the three partners, partner studios, a small roster
-          of AI agents, and a planned $35k part-time Inn operations hire. Each agent has a defined
-          scope and a quarterly output-based audit — ship or deprecate.
+          of AI agents, and two per-event hospitality contractors — Chandra on cleaning at $20 per
+          room and a Hospitality Coordinator at $20 per check-in. Each AI agent has a defined scope
+          and a quarterly output-based audit — ship or deprecate.
         </p>
         <div className="agents">
           {AGENTS.map((a) => (
@@ -628,6 +648,52 @@ export default function StoryPage() {
           line-height: 1.55;
           margin: 0;
         }
+        .breakeven-detail {
+          margin: 32px 0 0;
+          padding: 24px 28px;
+          background: var(--surface-2);
+          border-radius: 4px;
+          border-left: 3px solid var(--amber);
+        }
+        .breakeven-heading {
+          font-family: -apple-system, system-ui, sans-serif;
+          font-size: 12px;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: var(--text-muted);
+          margin: 0 0 16px;
+        }
+        .breakeven-table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 15px;
+          line-height: 1.5;
+        }
+        .breakeven-table td {
+          padding: 10px 0;
+          border-bottom: 1px solid var(--border);
+          vertical-align: top;
+        }
+        .breakeven-table td:last-child {
+          font-family: Georgia, serif;
+          font-variant-numeric: tabular-nums;
+          text-align: right;
+          padding-left: 24px;
+          white-space: nowrap;
+        }
+        .breakeven-total td {
+          border-top: 2px solid var(--text);
+          border-bottom: none;
+          padding-top: 14px;
+          font-weight: 700;
+        }
+        .breakeven-note {
+          font-size: 13px;
+          line-height: 1.6;
+          color: var(--text-muted);
+          margin: 16px 0 0;
+          font-style: italic;
+        }
         .chase-quote {
           margin: 0;
           padding: 24px 32px;
@@ -735,21 +801,7 @@ export default function StoryPage() {
           margin: 0;
         }
 
-        /* 09 · NOT BUILDING */
-        .not-building {
-          font-size: 15px;
-          line-height: 1.7;
-          columns: 2;
-          column-gap: 32px;
-          padding-left: 20px;
-          margin: 0;
-        }
-        .not-building li {
-          break-inside: avoid;
-          margin-bottom: 8px;
-        }
-
-        /* 10 · AI AGENTS */
+        /* 09 · AI AGENTS */
         .agents {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -835,7 +887,7 @@ export default function StoryPage() {
             gap: 6px;
           }
           .finance-value { font-size: 24px; }
-          .not-building { columns: 1; }
+          .breakeven-table { font-size: 14px; }
         }
       `}</style>
     </div>
@@ -908,5 +960,6 @@ const AGENTS = [
   { name: 'Delta Dawn — Team Assistant', status: 'live', statusLabel: 'live', scope: 'Tracy + Amy onboarding support, CMS how-tos, monthly "what shipped" reports, photo auto-tagging. The team\'s natural-language surface.' },
   { name: 'Claude Design 2', status: 'building', statusLabel: 'building', scope: 'Visual asset generation, brand consistency checks, voice doc formatting, social image templates. Owns the design-system layer.' },
   { name: 'Gemini batches', status: 'live', statusLabel: 'live', scope: 'First-draft Magazine content, SEO metadata, social captions, transcript cleanup, image generation via Imagen 3. Bulk creative throughput.' },
-  { name: 'Inn Operations Manager', status: 'planned', statusLabel: 'planned', scope: 'Part-time human hire ($35k/yr) covering housekeeping coordination, breakfast backup, Blues Room setup, guest services fallback. Hires by May 31 pending cash-flow checkpoint.' },
+  { name: 'Hospitality Coordinator', status: 'live', statusLabel: 'live', scope: 'Per-event human contractor at $20 per check-in. Greets guests, confirms the room is ready, helps guests settle in. Variable cost that scales with bookings, not a salaried line item.' },
+  { name: 'Chandra — Cleaning', status: 'live', statusLabel: 'live', scope: 'Per-event human contractor at $20 per room cleaning. Already running. The cleaning line alongside the Coordinator line is the full non-fixed Inn labor cost.' },
 ];

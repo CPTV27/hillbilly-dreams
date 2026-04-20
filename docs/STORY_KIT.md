@@ -37,9 +37,10 @@ Pick the right length for the context.
 > - Automates operational chores (Cloudbeds API for Inn, AI Wizard for content, CMS for non-technical partners) so the partners aren't stuck in day-to-day
 >
 > **Year-1 financial shape:**
-> - Fiscal year starts May 1, 2026. Break-even minimum: $250k (ecosystem covers itself). Realistic baseline: $330k. Real upside with art sales + stock photography activation: $390–395k.
-> - 25% YoY growth target through Y5.
+> - Fiscal year starts May 1, 2026. Break-even floor: $191k (built from QuickBooks: $125k Inn + $24k platform + $42k Chase housing/bills/living). Baseline target: $330k (that's $139k of real profit above break-even). Stretch with art sales + stock photography activation: $390–395k.
+> - 25% YoY growth target from the $330k baseline: Y1 $330k → Y2 $413k → Y3 $516k → Y4 $645k → Y5 $806k.
 > - Break-even is a success of its own. Profit is the goal. The ceiling is quality of life — not every extra million is worth the attention it costs.
+> - Hospitality labor is per-event, not salaried: Chandra at $20 per room cleaning and a Hospitality Coordinator at $20 per check-in. Variable cost that scales with bookings.
 >
 > **Geographic seasonality:**
 > - NY peak season May–October → team works upstate (photography + Studio C)
@@ -141,7 +142,7 @@ Anyone writing content / bios / pitches must NOT use these framings. If they app
 ❌ **"10× growth" / "hypergrowth" / "blitzscale"** — contradicts the quality-of-life ceiling
 ❌ **"HDI" as a current umbrella brand** — HDI is conceptual holding layer only, not formally incorporated; use MBT for platform, Big Muddy for consumer ecosystem
 ❌ **"Amy as an abandoned singer"** — voice-to-text error from an earlier draft; correct framing is "a singer with a band who performs as Arrie Aslin"
-❌ **"Break-even at $250k = we stop worrying"** — undersells the actual stance. Correct: "break-even is the minimum; profit is the goal; quality of life is the ceiling"
+❌ **"Break-even at $250k / $191k = we stop worrying"** — undersells the actual stance. Correct: "break-even is the minimum; profit is the goal; quality of life is the ceiling." Also: the honest break-even is $191k, not $250k; the $250k number was a round-number placeholder retired once the QuickBooks lines were itemized 2026-04-20.
 ❌ **"Chase runs 9 modules / CTO / hands-on"** — frames him as a tech founder rather than an experienced operator with a portfolio. He built the platform; he doesn't ARE the platform.
 ❌ **"Tracy and Amy are employees"** — they are equity partners, always.
 ❌ **"FarleyPierson LLC" as an active operating entity in anything customer-facing** — the name is being retired.

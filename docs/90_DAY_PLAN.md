@@ -2,9 +2,9 @@
 
 **Operating tier document.** Sits alongside `docs/THE_THESIS.md` as canonical state. The thesis says WHAT we are. This says WHAT WE DO for the next 90 days.
 
-**Purpose:** Hit the leading indicator of $60k cumulative revenue by July 31 — which puts us on pace for $250k Y1 and validates the model.
+**Purpose:** Hit the leading indicator of $60k cumulative revenue by July 31 — which puts us on pace for the $330k Y1 baseline and comfortably above the $191k break-even floor.
 
-**Probability of $250k Y1 if executed as written:** 65% (committed by 2 of 5 external AI reviewers; not refuted by the other 3).
+**Probability of $330k Y1 baseline if executed as written:** ~65% (external AI review framework, originally calibrated against the $250k framing that preceded the QuickBooks-grounded $191k floor). Probability of clearing the $191k floor is meaningfully higher (~85%).
 
 **Distribution:** Chase, Tracy, Amy, JP. Print + Google Drive. Open to AI agents (Cos, Patch, Delta Dawn) for daily reference.
 
@@ -41,9 +41,9 @@ What "no new strategic surface" means in practice:
 
 ## 2 — Y1 Revenue Math (corrected — including photography re-cut 2026-04-19 evening)
 
-**Y1 break-even minimum:** $250,000 across all channels (May 2026 – April 2027). Hitting it = ecosystem covers itself = the floor of success.
+**Y1 break-even floor:** $191,000 across all channels (May 2026 – April 2027). Built from the QuickBooks line items — $125k Inn + $24k platform + $42k Chase housing/bills/living. Hitting it = ecosystem covers itself on its own steam.
 
-**Y1 actual goal:** real profit. We want to be profitable, not just at break-even. Above $250k, every dollar is real profit — and we actively work to generate it.
+**Y1 actual goal:** real profit. We want to be profitable, not just at break-even. Above $191k, every dollar is real profit. The baseline target is $330k — which means $139k of real profit above break-even if we hit the shape.
 
 **The ceiling is quality of life, not a revenue cap.** At the point where additional profit requires sacrificing the partners' quality of life, we stop pushing harder. That line matters more than the next million dollars.
 
@@ -64,7 +64,7 @@ The baseline $330k scenario below represents the realistic operating target — 
 | **Studio C + Tuthill projects** | $35k | Existing partner studio project flow. **Studio C now offers video services in addition to photography** — expanding the addressable market alongside the Natchez geographic expansion. Counter-seasonal pattern matches CPP. |
 | **B2B Directory engagements (Vicki + Paul Green)** | $30k | $15k each, upfront fee. |
 | **Magazine sponsorship (inbound only — don't chase)** | $5k | Take what walks in; do not spend Tracy's BizDev hours on this. |
-| **Baseline Y1 total** | **$330k** | $80k above the $250k threshold. |
+| **Baseline Y1 total** | **$330k** | $139k above the $191k break-even floor. |
 
 ### Stretch — $390–395k (if we activate the upsides)
 
@@ -74,7 +74,7 @@ The baseline $330k scenario below represents the realistic operating target — 
 | **Mississippi stock footage** | $10–15k | Deliberate shooting strategy + Adobe Stock / Getty / specialty platform workflow. AI-assisted keywording + uploads (Cos / Delta Dawn). |
 | **Stretch total** | **$390–395k** | Real upside if both activate by Q3. |
 
-**Implication for the probability commitment:** The 65% Y1 probability was set against the $250k threshold. At the $330k baseline, probability of clearing $250k rises to ~80-85%. That changes the *spirit* of the plan — the goal isn't surviving to $250k, it's choosing how much further past it to push.
+**Implication for the probability commitment:** The 65% Y1 probability was originally set against a $250k threshold. The real break-even floor is now $191k. Probability of clearing the $191k floor is meaningfully higher (~85%). Probability of hitting the $330k baseline remains ~65%. The spirit of the plan changes accordingly — the goal isn't surviving to a number, it's choosing how much profit to generate above a floor we're highly likely to clear.
 
 **Leading indicator at end of July:** $80k cumulative (was $60k under the old mix). This reflects photography revenue contributing earlier and steadier than the wedding-package revenue.
 
@@ -90,40 +90,44 @@ Three simultaneous shifts hit in Q3: geographic (team moves NY → Natchez), rev
 
 A full Q3 risk map gets written at the Week 12 retrospective (July 28-31) when there's real Q2 data to anchor it. Don't pre-write it now — it'd be planning fiction.
 
-**Y1 cost structure (revised):**
+**Y1 ecosystem break-even (revised from QuickBooks reality):**
 
-| Line | Annual run-rate |
+| Line | Annual |
 |---|---|
-| Inn property + payroll + utilities | $180k |
-| **Part-time Inn ops manager (NEW — Y1 budget line)** | **$35k** |
-| Platform infra (Vercel, Sanity, Neon, GCS, AI APIs, Resend, Stripe fees) | $8k |
-| Touring (van, fuel, lodging, band guarantees) | $25k |
-| Marketing | $24k |
-| Reserves (10%) | $24k |
-| **Total run-rate** | **~$296k** |
+| Big Muddy Inn — mortgage, utilities, Chandra at $20/room cleaning, Hospitality Coordinator at $20/check-in (variable labor, scales with bookings) | $125,000 |
+| MBT software + AI subscription stack ($1k/mo) | $12,000 |
+| Studio C services ($1k/mo) | $12,000 |
+| Chase's Bearsville Cottage ($1k/mo) | $12,000 |
+| Chase's aggregate bills — internet, cell, tax repayment ($500/mo) | $6,000 |
+| Chase's living expenses ($2k/mo) | $24,000 |
+| **Ecosystem break-even** | **$191,000** |
 
-**Net at $250k revenue:** roughly $0. This is the thesis in math form: ecosystem covers ecosystem. Above $250k = upside / time / next thing.
+**What's NOT on this list** (intentionally): Tracy's and Amy's personal costs — they draw from Inn distributions, not from ecosystem revenue. Touring, marketing, and reserves — those are investments we make out of revenue above the floor, not costs we owe just to keep the lights on.
+
+**Net at $191k revenue:** roughly $0. Ecosystem covers ecosystem. Above $191k every dollar is real profit, redeployed across touring investment, marketing, reserves, partner distributions, and quality of life. At the $330k baseline target that's $139k of real profit to work with.
 
 ---
 
-## 3 — The Hire to Make This Quarter
+## 3 — Hospitality Labor: Two Contractors, Per-Event
 
-**Position:** Part-time Inn Operations Manager
-**Compensation:** ~$35k/year (~25 hrs/week)
-**Where:** Local Natchez
-**Hire by:** End of May 2026
-**Reports to:** Tracy (operationally) + Amy (day-of)
+No salaried Inn ops manager. The real operational labor model is two per-event contractors, paid by the unit of work they actually do — so labor cost tracks revenue instead of sitting on the balance sheet as a fixed drag.
 
-**Job covers:**
-- Housekeeping coordination + room turnover
-- Breakfast service backup when Amy is on tour or recording
-- Blues Room physical setup + breakdown
-- Guest services fallback when Tracy is editing
-- Cloudbeds same-week pricing/availability adjustments under Amy's direction
+**Chandra — Cleaning contractor**
+- **Already live.**
+- $20 per room cleaning.
+- Turns rooms between stays.
 
-**Why this hire is the unfashionable lever:** Right now Tracy and Amy's time is "priced at $0/hr" because they're doing ops they shouldn't. Every hour Amy restocks the bar is an hour she's not building Arrie Aslin. Every hour Tracy does room turnover is an hour she's not closing Paul Green. The $35k converts two equity partners into revenue generators. **This is escape from "buying ourselves a job," not buying one.**
+**Hospitality Coordinator — Guest-arrival contractor**
+- $20 per check-in.
+- Confirms the room is actually ready.
+- Meets the guest and helps them settle in.
+- Variable cost: scales with bookings, zero cost on low-occupancy weeks.
 
-**Action:** Tracy posts the role first week of May. Word-of-mouth via Inn regulars + local network preferred over Indeed/Craigslist (community fit matters).
+**Why this is the right shape (not a salaried hire):** A $35k salaried ops manager would be a fixed cost regardless of occupancy. The per-event contractor model keeps Tracy and Amy out of same-week turnover work (which is what the hire was meant to solve) without loading a fixed line onto the cost structure. At 500 check-ins + 500 cleanings per year, the blended labor cost is roughly $20k — variable, not fixed, and covered inside the Inn's own revenue basis before we count anything else.
+
+**What Tracy and Amy get back:** the hours that would otherwise go to room turnover and guest arrivals. Every hour Amy isn't handing keys to a guest is an hour she can be building Arrie Aslin. Every hour Tracy isn't coordinating housekeeping is an hour she can be closing Paul Green.
+
+**Action:** Hospitality Coordinator posting opens Week 1. Chandra already operating. No single hire deadline — the model starts the moment the Coordinator is named.
 
 ---
 
@@ -134,7 +138,7 @@ A full Q3 risk map gets written at the Week 12 retrospective (July 28-31) when t
 | **1** | May 1–7 | $3k | Wedding/retreat one-pager + landing page; CRM stand-up (Attio free tier); post Inn-ops manager job; **photography re-engagement campaign — Tracy emails ~30 past CPP + Studio C clients with "Chase is back to shooting; what's coming up?" template** | Sanity invites for T+A; verify 18 contacts; email Lynsey Gilbert + Vicki Wolpert Monday AM; **Sunday list-build session: dump every past photography client (CPP + Studio C, Natchez + NY + elsewhere) into the CRM from invoices/email/Instagram** (~2 hrs); coordinate with Elijah on Studio C client list | Blues Room summer calendar (6 dates); Sanity onboarding | Cos: provenance schema add (half-day); Patch: deploy verify | Sunday Sit + Wed Health | Chase stuck in NY → Delta Dawn auto-onboards Tracy/Amy via pre-recorded videos; photography re-engagement is async-friendly (Tracy emails) |
 | **2** | May 8–14 | $4k | Memorial Day whole-Inn rental sales push; Magazine Issue 2 published | Vicki proposal sent (5-min Loom demo); Paul Green proposal sent | First Blues Room show of season | Cos: Event Bus cascade #1 (Inn booking → Magazine draft) | Friday Facts | Tracy overloaded → Amy formally takes all same-week Inn ops; Tracy keeps editorial + biz dev only |
 | **3** | May 15–21 | $4k | First B2B pitch meeting (Tracy leads, Chase joins via Zoom for tech) | Studio C project delivered | Inn occupancy 50% trailing 7 days | Cos: Event Bus cascade #2 (show event → cross-brand) | Sunday Sit + Wed Health | First photography close ($5k) or Memorial Day rental sale ($12k) |
-| **4** | May 22–31 | $4k | Memorial Day whole-Inn rental sold; first photography close ($5k); **Inn ops hire decision: if cumulative revenue ≥ $15k, hire by May 31. If < $15k, defer hire to June 15 to avoid burn ahead of revenue.** | Vicki Wolpert pitch held | Memorial Day weekend executes flawlessly | Cos: One-Click Publish webhook (Tracy drafts auto-promote via Playwright diff) | Friday Facts + **CASH FLOW CHECKPOINT** | Cumulative revenue < $15k by May 31 → ops hire deferred to June 15; Tracy/Amy split same-week ops in the meantime |
+| **4** | May 22–31 | $4k | Memorial Day whole-Inn rental sold; first photography close ($5k); **Hospitality Coordinator named + on-call by May 31** (per-event, no salary); Chandra's cleaning model reconfirmed | Vicki Wolpert pitch held | Memorial Day weekend executes flawlessly | Cos: One-Click Publish webhook (Tracy drafts auto-promote via Playwright diff) | Friday Facts + **CASH FLOW CHECKPOINT** | Coordinator not yet named by May 31 → Tracy handles arrivals personally until someone is identified through Inn-regular network |
 | **5** | Jun 1–7 | $5k | Cloudbeds summer pricing locked; Magazine Issue 3 drafted | Bearsville JV kickoff IF Vicki signed (else slip); civic-partner Directory demo | Blues Room → 2x/week (Fri+Sat) | Cos: Event Bus cascade #3 (photo upload → auto-tag + distribute) | Sunday Sit + Wed Health | Bearsville distracts → cap Chase at 10 hrs/wk; Tracy doesn't touch Bearsville biz dev until July |
 | **6** | Jun 8–14 | $7k | First wedding deposit collected ($12k) | **Vicki Wolpert directory engagement closed ($15k upfront)** | Amy records first podcast pilot | Patch: provenance model in production schema | Friday Facts | Wedding deposit slips → tighten the package one-pager; rerun outreach with sharper offer |
 | **7** | Jun 15–21 | $7k | Second wedding outreach to wedding planners + corporate retreat coordinators | Magazine sponsorship inbound only — answer in <3 hrs if it lands; don't chase | First Blues Room recorded session published as podcast pilot | Patch: visual diff webhook in production | Sunday Sit + Wed Health | Magazine sponsorship absent → confirmed: NOT a Y1 revenue line; reframe to Tracy as content marketing only |
@@ -144,7 +148,7 @@ A full Q3 risk map gets written at the Week 12 retrospective (July 28-31) when t
 | **11** | Jul 15–21 | $5k | Solicit 10 new Inn reviews from past guests; Cloudbeds automation verified | Operationalize what worked: one-page playbook for repeating wedding sale + Directory sale | Amy + house band record one studio session for Records distribution | — | Sunday Sit + Wed Health | Reviews not landing → Amy asks at checkout in person |
 | **12** | Jul 22–31 | $5k | Q1 retrospective + Q2 plan (Aug–Oct); third wedding/retreat sold | **Chase takes 3-day off-grid break Wed–Fri.** Platform must run 72 hours without intervention. | Acts as backup for Chase decisions during off-grid; Tracy + Amy manage all guest issues | Patch + Delta Dawn handle anything that breaks | Friday Facts (Chase joins remote) | Catastrophic break during Chase's break → he returns to a punch list, not a fire; document what required intervention |
 
-**End-of-July leading indicator: $60k cumulative.** Hitting that = on pace for $250k. Below $50k = serious mid-quarter recalibration.
+**End-of-July leading indicator: $60k cumulative.** Hitting that = on pace for the $330k baseline and comfortably above the $191k break-even floor. Below $50k = serious mid-quarter recalibration.
 
 ---
 
@@ -425,7 +429,7 @@ If a tempting initiative arises in this 90-day window, ask: "Is it on this list?
 
 ## 16 — The Probability Commitment
 
-**If we execute this 90-day plan as written, probability of hitting $250k Y1 = 65%.**
+**If we execute this 90-day plan as written, probability of hitting the $330k Y1 baseline ≈ 65%. Probability of clearing the $191k break-even floor ≈ 85%.**
 
 Why not higher: Natchez tourism is up but lodging spend was slightly down in 2024 even as visitation rose. Execution quality matters more than the macro tailwind. Vicki's deal could slip. Wedding-package sales cycle could stretch beyond Y1 fiscal close.
 
@@ -440,9 +444,9 @@ Why not lower: The Inn + corridor traffic + 13-point convergent strategic playbo
 
 ## 17 — What Tomorrow's Onboarding Says (the one paragraph)
 
-The next ninety days, we run one play. Tracy sells the wedding and private-retreat package and carries biz dev across the ecosystem. Chase closes two B2B Directory engagements — Vicki Wolpert in Woodstock and Paul Green in Natchez. Amy runs the Inn and plays as Arrie Aslin. We hire a part-time Inn ops manager so none of us is buried in same-week operations.
+The next ninety days, we run one play. Tracy sells the wedding and private-retreat package and carries biz dev across the ecosystem. Chase closes two B2B Directory engagements — Vicki Wolpert in Woodstock and Paul Green in Natchez. Amy runs the Inn and plays as Arrie Aslin. Chandra continues the per-room cleaning at $20 a room; we name a Hospitality Coordinator at $20 per check-in so arrivals and settle-in are handled without pulling Tracy or Amy into same-week operations.
 
-Everything else — touring as a business, magazine ad sales, the record label, the radio station, the second region — moves because it's who we are, not because we are hunting its revenue this year. If we execute this shape, we hit $250k for the fiscal year. The leading indicator is cumulative revenue at the end of July: $60k keeps us on pace.
+Everything else — touring as a business, magazine ad sales, the record label, the radio station, the second region — moves because it's who we are, not because we are hunting its revenue this year. The honest ecosystem break-even is $191k, built from the QuickBooks numbers. The baseline target is $330k — which means $139k of real profit above break-even if we hit the shape. The leading indicator is cumulative revenue at the end of July: $60k keeps us on pace.
 
 That's the framing. Then walk them through the operational tools.
 

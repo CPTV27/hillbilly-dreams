@@ -78,10 +78,13 @@ mindmap
         hillbillydreamsinc.com<br/>holding domain
 
     Financials
-      Y1 May 2026 to Apr 2027<br/><br/>$250,000 across all channels
-      25% YoY growth target<br/>Y1 $250k<br/>Y2 $313k<br/>Y3 $391k<br/>Y4 $488k<br/>Y5 $610k
-      Run-rate ~$250-260k/yr<br/>$250k = ecosystem covers itself
-      Above $250k = upside<br/>subsidizes next thing<br/>or buys back time
+      Y1 May 2026 to Apr 2027
+      Break-even floor $191k<br/>built from QuickBooks lines
+      Baseline target $330k<br/>$139k profit above floor
+      Stretch $390-395k<br/>art sales + stock activation
+      25% YoY growth target<br/>Y1 $330k<br/>Y2 $413k<br/>Y3 $516k<br/>Y4 $645k<br/>Y5 $806k
+      Above $191k = ecosystem<br/>covers itself
+      Above $330k = real margin<br/>reinvested or partners paid
 
     Lifestyle goal
       Tour bus that runs on time
@@ -141,7 +144,7 @@ flowchart TB
     end
 
     subgraph MONEY["ECOSYSTEM POOL"]
-        Pool[All revenue flows in here<br/>Y1 target $250k<br/>+25% YoY<br/>Costs paid out from here<br/>Surplus subsidizes next thing]
+        Pool[All revenue flows in here<br/>Y1 floor $191k<br/>Y1 baseline $330k<br/>+25% YoY<br/>Costs paid out from here<br/>Surplus subsidizes next thing]
     end
 
     %% Tracy operates
@@ -230,24 +233,25 @@ flowchart TB
 
 ---
 
-## Diagram 4 — Y1 Revenue: Where $250k Could Come From
+## Diagram 4 — Y1 Revenue: Where $330k Baseline Could Come From
 
-NOT a target per line. Just a "where we'd look first" decomposition.
+NOT a target per line. Just a "where we'd look first" decomposition of the $330k baseline.
 
 ```mermaid
-pie title Y1 Revenue Mix Hypothesis ($250k target, May 2026 - Apr 2027)
-    "Big Muddy Inn (rooms, breakfast, Blues Room)" : 130
+pie title Y1 Revenue Mix Hypothesis ($330k baseline, May 2026 - Apr 2027)
+    "Big Muddy Inn (rooms, breakfast, Blues Room)" : 150
+    "Chase Pierson Photography (Tracy biz dev)" : 100
     "Tuthill + Studio C projects" : 45
-    "Big Muddy Touring (booking + door + van)" : 20
-    "Chase Pierson Photography (Tracy biz dev)" : 25
     "B2B engagements (Vicki + 1-2 others)" : 20
+    "Big Muddy Touring (booking + door + van)" : 10
     "Big Muddy Magazine (sponsorships)" : 5
-    "Big Muddy Radio + Records (Q4 sponsor pkgs)" : 5
 ```
 
-The slices add to $250k. They're a hypothesis of where revenue COULD come from — not commitments per line. If the Inn does $180k and Touring is $0, that's still $250k if other lines move. The point is the ecosystem total, not the per-brand splits.
+The slices add to $330k. They're a hypothesis of where revenue COULD come from — not commitments per line. If the Inn does $180k and Touring is $0, we can still hit baseline if other lines move. The point is the ecosystem total, not the per-brand splits.
 
-(Compare to the older brief's pro forma which targeted $510k — that was aspirational and is now retired. $250k is the canonical Y1 target per Chase 2026-04-19.)
+The honest break-even floor is $191k. The $330k baseline is what we work for. Spread between them ($139k) is real profit.
+
+(Compare to the older brief's pro forma which targeted $510k / $760k — that was aspirational and is now retired. The $191k floor and $330k baseline are the real numbers per Chase 2026-04-20.)
 
 ---
 
@@ -261,14 +265,14 @@ Before we proceed with downstream cleanup (re-cutting the pro forma, re-aligning
 | 2 | Tracy operates the Inn + edits the Magazine + does BizDev/sales/management for Chase Pierson Photography. | |
 | 3 | Amy is a singer with a band (performs as Arrie Aslin), and Touring + Records + Radio exist primarily to support her career, with ancillary lift for other corridor bands. | |
 | 4 | The FarleyPierson name is being retired regardless. The LLC will either be renamed (TBD) or closed. | |
-| 5 | The Inn's metric is "maximize revenue, with CFP as the threshold above which we stop worrying." NOT "settle for break-even." | |
-| 6 | Y1 target is $250k across all channels, fiscal year May 1, 2026 → April 30, 2027. | |
-| 7 | Out-year target is 25% YoY growth ($250k → $313k → $391k → $488k → $610k). | |
+| 5 | The Inn's metric is "maximize revenue" — break-even is the floor, profit is the goal, quality of life is the ceiling. NOT "settle for break-even." | |
+| 6 | Y1 ecosystem break-even floor is **$191k**, built from QuickBooks reality: $125k Inn + $24k platform + $42k Chase housing/bills/living. Baseline target is **$330k**. Stretch is $390–395k. Fiscal year May 1, 2026 → April 30, 2027. | |
+| 7 | Out-year target is 25% YoY growth from the $330k baseline: Y1 $330k → Y2 $413k → Y3 $516k → Y4 $645k → Y5 $806k. | |
 | 8 | The Directory is a CAPABILITY that ships inside B2B engagements (Big Muddy Magazine, Bearsville, Vicki). NOT a $25/$50/$99/$250 SaaS product. | |
 | 9 | Bearsville Creative is the same model in a second region (JV with floor-and-share), not a clone-of-the-platform sold to a third party. | |
 | 10 | The lifestyle goal is a tour bus that runs on time, the right bands booked, the Inn running itself, and a lighter workload — NOT a unicorn exit. | |
 | 11 | MBT (the platform) is the operating layer of the ecosystem. NOT a B2B SaaS startup chasing a SaaS multiple. | |
-| 12 | Run-rate is roughly $250-260k/year, so $250k revenue = ecosystem covers itself = "threshold of not worrying" for the whole ecosystem. | |
+| 12 | Ecosystem break-even is $191k/yr by QuickBooks math (see The Thesis financial section). Hitting $191k = ecosystem covers itself; $330k = $139k of real profit to redeploy. | |
 
 If any row is N (or "yes, but…"), tell me which one + the correction. I'll patch THE_THESIS.md and re-render this map. Then we proceed with downstream cleanup.
 

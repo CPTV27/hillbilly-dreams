@@ -133,15 +133,36 @@ The metric stack:
 
 ### The real Y1 financial target
 
-**$250,000 in total revenue across all channels.** Fiscal year starts **May 1, 2026** and runs through April 30, 2027.
+Fiscal year starts **May 1, 2026** and runs through April 30, 2027.
 
-That number is the canonical Y1 goal. It supersedes any earlier number you might find in older docs (the brief, the onboarding pro forma, memory files all carried $510k base / $760k stretch — those were aspirational and wrong). $250k is the real bar, set by Chase 2026-04-19.
+- **Break-even floor: $191,000** — the honest ecosystem break-even, built from QuickBooks reality (detailed below).
+- **Baseline target: $330,000** — the realistic Y1 number the ecosystem can actually produce. $139k of real profit above break-even.
+- **Stretch: $390–395,000** — if the photography art sales layer and Mississippi stock footage pipeline both land.
 
-### Why $250k
+These numbers supersede every older figure you might find in older docs (the brief, the onboarding pro forma, memory files all carried $510k base / $760k stretch — those were aspirational and wrong). The original retraction landed Chase at $250k on 2026-04-19. The itemized drill-down on 2026-04-20 produced the real floor of $191k.
 
-$250k is the break-even number — the minimum threshold of success. Run-rate costs are roughly $250-260k/year. Hitting $250k means the ecosystem covers itself on its own steam.
+### How the $191k break-even is built
 
-**We actually want to be profitable, not just break even.** Break-even is the floor we commit to hit; profit is the real goal. Above $250k, every dollar is real profit — and we will work to generate it.
+| Line | Annual |
+|---|---|
+| Big Muddy Inn — mortgage, utilities, Chandra at $20/room cleaning, Hospitality Coordinator at $20/check-in | $125,000 |
+| MBT software + AI subscription stack ($1k/mo) | $12,000 |
+| Studio C services ($1k/mo) | $12,000 |
+| Chase's Bearsville Cottage ($1k/mo) | $12,000 |
+| Chase's aggregate bills — internet, cell, tax repayment ($500/mo) | $6,000 |
+| Chase's living expenses ($2k/mo) | $24,000 |
+| **Ecosystem break-even** | **$191,000** |
+
+**What is intentionally NOT on this list:**
+- **Tracy's and Amy's personal costs.** They draw from Inn distributions, not from ecosystem revenue. They're equity partners, not line items.
+- **Touring, marketing, reserves.** Those are investments the ecosystem makes out of revenue *above* the floor, not fixed costs we owe just to keep the lights on.
+- **A salaried Inn ops manager.** The per-event hospitality labor model (Chandra @ $20/room, Hospitality Coordinator @ $20/check-in) is variable, scales with bookings, and is covered inside the Inn's own revenue basis before any other ecosystem cost is counted.
+
+### Why $191k matters as the floor
+
+Hitting $191k means the ecosystem covers itself on its own steam. The money comes in through the brands, and every committed cost at the platform + partner level is paid. Below that, someone is subsidizing the ecosystem from outside. At $191k that subsidy goes to zero.
+
+**We actually want to be profitable, not just break even.** $191k is the floor we commit to hit; $330k is the baseline we work for. Above $191k, every dollar is real profit — redeployed across touring, marketing, reserves, partner distributions, and quality of life.
 
 **The ceiling is quality of life, not revenue.** At the point where making more money requires sacrificing the life the partners are here to live, we stop pushing harder for money. That's the whole reason we're structured this way. Not every extra million is worth the attention it costs.
 
@@ -149,21 +170,21 @@ $250k is the break-even number — the minimum threshold of success. Run-rate co
 
 **25% year-over-year revenue growth** is the target after Y1.
 
-| Year | Period | Revenue target |
-|------|--------|----------------|
-| Y1 | May 2026 – Apr 2027 | **$250,000** |
-| Y2 | May 2027 – Apr 2028 | $312,500 |
-| Y3 | May 2028 – Apr 2029 | $390,625 |
-| Y4 | May 2029 – Apr 2030 | $488,281 |
-| Y5 | May 2030 – Apr 2031 | $610,352 |
+| Year | Period | Revenue target | Profit over break-even |
+|------|--------|----------------|-------------------------|
+| Y1 | May 2026 – Apr 2027 | **$330,000 baseline** (floor $191k) | $139k |
+| Y2 | May 2027 – Apr 2028 | $412,500 | +25% from Y1 baseline |
+| Y3 | May 2028 – Apr 2029 | $515,625 | |
+| Y4 | May 2029 – Apr 2030 | $644,531 | |
+| Y5 | May 2030 – Apr 2031 | $805,664 | |
 
 25% YoY is intentionally modest — sustainable, doesn't require a fundraise, doesn't require burning out, doesn't force chase-the-unicorn decisions that betray the thesis. If the ecosystem outperforms, that's upside (more time, more cushion, more interesting projects); if it underperforms, the floor is ecosystem-covers-ecosystem so we're never in distress.
 
 ### What the existing onboarding pro forma still covers
 
-The detailed monthly tables in `docs/onboarding-2026-04-20/01-business-case-and-pro-forma.md` are useful as a spread of where revenue COULD come from across the brands, but the totals there ($510k base / $760k stretch) are not the targets. They're projections of upside. The bar is $250k. If we hit $250k, we're succeeding even if no individual line hits its line-item projection.
+The detailed monthly tables in `docs/onboarding-2026-04-20/01-business-case-and-pro-forma.md` are useful as a spread of where revenue COULD come from across the brands, but the totals there ($510k base / $760k stretch) are not the targets. They're projections of upside. The bar is **$191k break-even, $330k baseline.** If we hit $330k, we've got $139k of real profit; if we hit anywhere between $191k and $330k, the ecosystem is still solvent and we're still succeeding — just with less margin above the floor.
 
-**Action:** the pro forma gets re-cut post-onboarding into a portfolio model anchored to $250k Y1 ecosystem-level target, with the existing per-brand monthly tables retained as "where it could come from" rather than "what each must hit."
+**Action:** the pro forma gets re-cut post-onboarding into a portfolio model anchored to the $191k floor / $330k baseline, with the existing per-brand monthly tables retained as "where it could come from" rather than "what each must hit."
 
 ---
 

@@ -179,7 +179,7 @@ applications will be declined.
 
 ## Integration with 90-Day Plan
 
-The Fiverr engagement runs during Weeks 2–5 (May 8 – May 31). No budget impact on the Y1 cost structure — $1,500 fits inside the existing operations line. Completion before the Inn ops manager comes online means Cloudbeds is cleanly configured by the time the ops hire starts running day-to-day.
+The Fiverr engagement runs during Weeks 2–5 (May 8 – May 31). No budget impact on the Y1 cost structure — $1,500 fits inside the existing operations line. Completion before the Hospitality Coordinator is named means the Cloudbeds setup is clean by the time the per-event check-in model kicks in, and Chandra's cleaning cadence has a reliable PMS state to sync against.
 
 ---
 
