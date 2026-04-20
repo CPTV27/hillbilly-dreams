@@ -79,12 +79,13 @@ mindmap
 
     Financials
       Y1 May 2026 to Apr 2027
-      Break-even floor $191k<br/>built from QuickBooks lines
-      Baseline target $330k<br/>$139k profit above floor
+      Gross ecosystem costs $191k<br/>QuickBooks lines itemized
+      Less Scan2Plan royalty<br/>~$1,500/mo = -$18k/yr<br/>passive income offset
+      Net break-even floor $173k
+      First profit milestone $250k<br/>$77k above net floor
+      Baseline target $330k<br/>$157k profit above net floor
       Stretch $390-395k<br/>art sales + stock activation
-      25% YoY growth target<br/>Y1 $330k<br/>Y2 $413k<br/>Y3 $516k<br/>Y4 $645k<br/>Y5 $806k
-      Above $191k = ecosystem<br/>covers itself
-      Above $330k = real margin<br/>reinvested or partners paid
+      25% YoY from baseline<br/>Y1 $330k<br/>Y2 $413k<br/>Y3 $516k<br/>Y4 $645k<br/>Y5 $806k
 
     Lifestyle goal
       Tour bus that runs on time
@@ -144,7 +145,7 @@ flowchart TB
     end
 
     subgraph MONEY["ECOSYSTEM POOL"]
-        Pool[All revenue flows in here<br/>Y1 floor $191k<br/>Y1 baseline $330k<br/>+25% YoY<br/>Costs paid out from here<br/>Surplus subsidizes next thing]
+        Pool[All revenue flows in here<br/>Net break-even $173k<br/>First profit $250k<br/>Baseline $330k<br/>+25% YoY<br/>Costs paid out from here<br/>Surplus subsidizes next thing]
     end
 
     %% Tracy operates
@@ -266,13 +267,13 @@ Before we proceed with downstream cleanup (re-cutting the pro forma, re-aligning
 | 3 | Amy is a singer with a band (performs as Arrie Aslin), and Touring + Records + Radio exist primarily to support her career, with ancillary lift for other corridor bands. | |
 | 4 | The FarleyPierson name is being retired regardless. The LLC will either be renamed (TBD) or closed. | |
 | 5 | The Inn's metric is "maximize revenue" — break-even is the floor, profit is the goal, quality of life is the ceiling. NOT "settle for break-even." | |
-| 6 | Y1 ecosystem break-even floor is **$191k**, built from QuickBooks reality: $125k Inn + $24k platform + $42k Chase housing/bills/living. Baseline target is **$330k**. Stretch is $390–395k. Fiscal year May 1, 2026 → April 30, 2027. | |
+| 6 | Y1 gross ecosystem costs are **$191k** (QuickBooks: $125k Inn + $24k platform + $42k Chase housing/bills/living). Chase's 2% Scan2Plan royalty adds ~$18k of passive income, putting the **net ecosystem break-even at $173k**. First profit milestone **$250k**. Baseline **$330k**. Stretch **$390–395k**. Fiscal year May 1, 2026 → April 30, 2027. | |
 | 7 | Out-year target is 25% YoY growth from the $330k baseline: Y1 $330k → Y2 $413k → Y3 $516k → Y4 $645k → Y5 $806k. | |
 | 8 | The Directory is a CAPABILITY that ships inside B2B engagements (Big Muddy Magazine, Bearsville, Vicki). NOT a $25/$50/$99/$250 SaaS product. | |
 | 9 | Bearsville Creative is the same model in a second region (JV with floor-and-share), not a clone-of-the-platform sold to a third party. | |
 | 10 | The lifestyle goal is a tour bus that runs on time, the right bands booked, the Inn running itself, and a lighter workload — NOT a unicorn exit. | |
 | 11 | MBT (the platform) is the operating layer of the ecosystem. NOT a B2B SaaS startup chasing a SaaS multiple. | |
-| 12 | Ecosystem break-even is $191k/yr by QuickBooks math (see The Thesis financial section). Hitting $191k = ecosystem covers itself; $330k = $139k of real profit to redeploy. | |
+| 12 | Gross ecosystem costs are $191k; net break-even after the $18k Scan2Plan royalty offset is $173k. Hitting $173k = ecosystem covers itself; $250k = first real profit (~$77k); $330k = $157k of real profit to redeploy. | |
 
 If any row is N (or "yes, but…"), tell me which one + the correction. I'll patch THE_THESIS.md and re-render this map. Then we proceed with downstream cleanup.
 

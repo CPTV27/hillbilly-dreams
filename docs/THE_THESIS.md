@@ -131,17 +131,19 @@ The metric stack:
 
 ## What this means for the pro forma
 
-### The real Y1 financial target
+### The real Y1 financial ladder
 
 Fiscal year starts **May 1, 2026** and runs through April 30, 2027.
 
-- **Break-even floor: $191,000** — the honest ecosystem break-even, built from QuickBooks reality (detailed below).
-- **Baseline target: $330,000** — the realistic Y1 number the ecosystem can actually produce. $139k of real profit above break-even.
+- **Net break-even floor: $173,000** — ecosystem revenue needed to cover all costs after Chase's $18k/yr Scan2Plan royalty offset. This is the number the ecosystem itself must produce.
+- **Gross break-even: $191,000** — total ecosystem costs itemized below. $18k is already covered by Chase's passive royalty; the ecosystem covers the other $173k.
+- **First profit milestone: $250,000** — $77k above the net floor. The first point where the ecosystem isn't just surviving: partners have real margin, reserves start accruing, the next interesting project becomes fundable.
+- **Baseline target: $330,000** — the realistic Y1 number the ecosystem can actually produce. $157k of real profit above the net floor.
 - **Stretch: $390–395,000** — if the photography art sales layer and Mississippi stock footage pipeline both land.
 
-These numbers supersede every older figure you might find in older docs (the brief, the onboarding pro forma, memory files all carried $510k base / $760k stretch — those were aspirational and wrong). The original retraction landed Chase at $250k on 2026-04-19. The itemized drill-down on 2026-04-20 produced the real floor of $191k.
+These numbers supersede every older figure you might find in older docs (the brief, the onboarding pro forma, memory files all carried $510k base / $760k stretch — those were aspirational and wrong). The original retraction landed Chase at $250k on 2026-04-19. The QuickBooks drill-down on 2026-04-20 put gross costs at $191k and repositioned $250k from "break-even" to "first real profit." Folding in the Scan2Plan royalty on 2026-04-20 PM puts the true ecosystem-revenue floor at $173k.
 
-### How the $191k break-even is built
+### How the floor is built
 
 | Line | Annual |
 |---|---|
@@ -151,18 +153,24 @@ These numbers supersede every older figure you might find in older docs (the bri
 | Chase's Bearsville Cottage ($1k/mo) | $12,000 |
 | Chase's aggregate bills — internet, cell, tax repayment ($500/mo) | $6,000 |
 | Chase's living expenses ($2k/mo) | $24,000 |
-| **Ecosystem break-even** | **$191,000** |
+| **Gross ecosystem costs** | **$191,000** |
+| Less: Chase's 2% Scan2Plan royalty (~$1,500/mo+, passive income) | **− $18,000** |
+| **Net ecosystem break-even (revenue the ecosystem must generate)** | **$173,000** |
+
+**About the Scan2Plan royalty:** Chase retained a 2% royalty on Scan2Plan sales when the Owen Bush partnership dissolved on 2026-03-25. Average payout is $1,500/mo or higher, which makes it roughly $18k/yr of passive income. It lands in Chase's account regardless of what the ecosystem does, so it directly offsets the portion of his personal costs ($42k/yr total) the ecosystem would otherwise have to cover. Netting it out lowers the ecosystem-revenue floor from $191k to $173k.
 
 **What is intentionally NOT on this list:**
 - **Tracy's and Amy's personal costs.** They draw from Inn distributions, not from ecosystem revenue. They're equity partners, not line items.
 - **Touring, marketing, reserves.** Those are investments the ecosystem makes out of revenue *above* the floor, not fixed costs we owe just to keep the lights on.
 - **A salaried Inn ops manager.** The per-event hospitality labor model (Chandra @ $20/room, Hospitality Coordinator @ $20/check-in) is variable, scales with bookings, and is covered inside the Inn's own revenue basis before any other ecosystem cost is counted.
 
-### Why $191k matters as the floor
+### Why the floor matters, and why $250k still matters
 
-Hitting $191k means the ecosystem covers itself on its own steam. The money comes in through the brands, and every committed cost at the platform + partner level is paid. Below that, someone is subsidizing the ecosystem from outside. At $191k that subsidy goes to zero.
+Hitting $173k means the ecosystem covers itself on its own steam (after the royalty offset). The money comes in through the brands, and every committed cost at the platform + partner level is paid. Below that, Chase is subsidizing the ecosystem from outside. At $173k that subsidy goes to zero.
 
-**We actually want to be profitable, not just break even.** $191k is the floor we commit to hit; $330k is the baseline we work for. Above $191k, every dollar is real profit — redeployed across touring, marketing, reserves, partner distributions, and quality of life.
+Hitting $250k means the ecosystem is actually profitable — $77k of real margin above the net floor. That's the first point where the conversation stops being "can we keep the lights on" and starts being "what do we do with the surplus." It's a round, meaningful waypoint on the way to the $330k baseline.
+
+**We actually want to be profitable, not just break even.** $173k is the floor we commit to hit; $250k is the first milestone of real profit; $330k is the baseline we work for. Above $173k, every dollar is real profit — redeployed across touring, marketing, reserves, partner distributions, and quality of life.
 
 **The ceiling is quality of life, not revenue.** At the point where making more money requires sacrificing the life the partners are here to live, we stop pushing harder for money. That's the whole reason we're structured this way. Not every extra million is worth the attention it costs.
 

@@ -36,8 +36,14 @@ Pick the right length for the context.
 > - Pools revenue across the ecosystem so strong months subsidize slow ones
 > - Automates operational chores (Cloudbeds API for Inn, AI Wizard for content, CMS for non-technical partners) so the partners aren't stuck in day-to-day
 >
-> **Year-1 financial shape:**
-> - Fiscal year starts May 1, 2026. Break-even floor: $191k (built from QuickBooks: $125k Inn + $24k platform + $42k Chase housing/bills/living). Baseline target: $330k (that's $139k of real profit above break-even). Stretch with art sales + stock photography activation: $390–395k.
+> **Year-1 financial ladder:**
+> - Fiscal year starts May 1, 2026.
+> - **Gross ecosystem costs:** $191k itemized ($125k Inn + $24k platform + $42k Chase housing/bills/living).
+> - **Less Scan2Plan royalty:** Chase's 2% royalty from the dissolved S2PX partnership averages ~$1,500/mo = ~$18k/yr of passive income that offsets his personal-cost draw on the ecosystem.
+> - **Net break-even floor:** $173k — the revenue the ecosystem itself must generate.
+> - **First profit milestone:** $250k. $77k above the net floor. Real margin; partners have cushion; reserves start accruing.
+> - **Baseline target:** $330k. $157k of real profit above the net floor. The realistic Y1 shape.
+> - **Stretch:** $390–395k with art sales + stock photography activation.
 > - 25% YoY growth target from the $330k baseline: Y1 $330k → Y2 $413k → Y3 $516k → Y4 $645k → Y5 $806k.
 > - Break-even is a success of its own. Profit is the goal. The ceiling is quality of life — not every extra million is worth the attention it costs.
 > - Hospitality labor is per-event, not salaried: Chandra at $20 per room cleaning and a Hospitality Coordinator at $20 per check-in. Variable cost that scales with bookings.

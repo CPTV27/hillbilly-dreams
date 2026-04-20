@@ -41,9 +41,15 @@ What "no new strategic surface" means in practice:
 
 ## 2 — Y1 Revenue Math (corrected — including photography re-cut 2026-04-19 evening)
 
-**Y1 break-even floor:** $191,000 across all channels (May 2026 – April 2027). Built from the QuickBooks line items — $125k Inn + $24k platform + $42k Chase housing/bills/living. Hitting it = ecosystem covers itself on its own steam.
+**Y1 financial ladder:**
+- **Gross ecosystem costs: $191k.** Itemized from QuickBooks — $125k Inn + $24k platform + $42k Chase housing/bills/living.
+- **Less Chase's Scan2Plan royalty: −$18k.** The 2% royalty retained from the dissolved S2PX partnership averages ~$1,500/mo of passive income. It lands regardless of what the ecosystem does, so it directly offsets the portion of Chase's personal costs the ecosystem would otherwise have to cover.
+- **Net break-even floor: $173k.** Revenue the ecosystem itself must generate for full coverage.
+- **First profit milestone: $250k.** $77k above the net floor. First real margin — partners have cushion, reserves start accruing, the next interesting project becomes fundable.
+- **Baseline target: $330k.** $157k of real profit above the net floor. The realistic Y1 shape.
+- **Stretch: $390–395k.** Art sales + stock activation.
 
-**Y1 actual goal:** real profit. We want to be profitable, not just at break-even. Above $191k, every dollar is real profit. The baseline target is $330k — which means $139k of real profit above break-even if we hit the shape.
+**Y1 actual goal:** real profit. We want to be profitable, not just at break-even. Above $173k, every dollar is real profit. $250k is the first waypoint that matters; $330k is the shape we work for.
 
 **The ceiling is quality of life, not a revenue cap.** At the point where additional profit requires sacrificing the partners' quality of life, we stop pushing harder. That line matters more than the next million dollars.
 
@@ -90,7 +96,7 @@ Three simultaneous shifts hit in Q3: geographic (team moves NY → Natchez), rev
 
 A full Q3 risk map gets written at the Week 12 retrospective (July 28-31) when there's real Q2 data to anchor it. Don't pre-write it now — it'd be planning fiction.
 
-**Y1 ecosystem break-even (revised from QuickBooks reality):**
+**Y1 ecosystem break-even (QuickBooks reality, net of Scan2Plan royalty):**
 
 | Line | Annual |
 |---|---|
@@ -100,11 +106,13 @@ A full Q3 risk map gets written at the Week 12 retrospective (July 28-31) when t
 | Chase's Bearsville Cottage ($1k/mo) | $12,000 |
 | Chase's aggregate bills — internet, cell, tax repayment ($500/mo) | $6,000 |
 | Chase's living expenses ($2k/mo) | $24,000 |
-| **Ecosystem break-even** | **$191,000** |
+| **Gross ecosystem costs** | **$191,000** |
+| Less: Chase's 2% Scan2Plan royalty (~$1,500/mo+, passive income that offsets his draw on the ecosystem) | **− $18,000** |
+| **Net ecosystem break-even** | **$173,000** |
 
 **What's NOT on this list** (intentionally): Tracy's and Amy's personal costs — they draw from Inn distributions, not from ecosystem revenue. Touring, marketing, and reserves — those are investments we make out of revenue above the floor, not costs we owe just to keep the lights on.
 
-**Net at $191k revenue:** roughly $0. Ecosystem covers ecosystem. Above $191k every dollar is real profit, redeployed across touring investment, marketing, reserves, partner distributions, and quality of life. At the $330k baseline target that's $139k of real profit to work with.
+**Net at $173k revenue:** roughly $0. Ecosystem covers ecosystem. Above $173k every dollar is real profit, redeployed across touring investment, marketing, reserves, partner distributions, and quality of life. At the $330k baseline target that's $157k of real profit to work with.
 
 ---
 
@@ -446,7 +454,7 @@ Why not lower: The Inn + corridor traffic + 13-point convergent strategic playbo
 
 The next ninety days, we run one play. Tracy sells the wedding and private-retreat package and carries biz dev across the ecosystem. Chase closes two B2B Directory engagements — Vicki Wolpert in Woodstock and Paul Green in Natchez. Amy runs the Inn and plays as Arrie Aslin. Chandra continues the per-room cleaning at $20 a room; we name a Hospitality Coordinator at $20 per check-in so arrivals and settle-in are handled without pulling Tracy or Amy into same-week operations.
 
-Everything else — touring as a business, magazine ad sales, the record label, the radio station, the second region — moves because it's who we are, not because we are hunting its revenue this year. The honest ecosystem break-even is $191k, built from the QuickBooks numbers. The baseline target is $330k — which means $139k of real profit above break-even if we hit the shape. The leading indicator is cumulative revenue at the end of July: $60k keeps us on pace.
+Everything else — touring as a business, magazine ad sales, the record label, the radio station, the second region — moves because it's who we are, not because we are hunting its revenue this year. The honest ecosystem break-even is $191k, built from the QuickBooks numbers. $250k is the first profit milestone. $330k is the baseline — $139k of real profit above the floor if we hit the shape. The leading indicator is cumulative revenue at the end of July: $60k keeps us on pace.
 
 That's the framing. Then walk them through the operational tools.
 

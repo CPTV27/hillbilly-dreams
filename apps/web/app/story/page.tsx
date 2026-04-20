@@ -37,8 +37,9 @@ export default function StoryPage() {
           them with shared infrastructure and shared audiences, cost less, and live well.
         </p>
         <p className="lede-secondary">
-          Three partners. Two regions. One shared spine. Break-even floor at $191k; real
-          profit as the goal; quality of life as the ceiling.
+          Three partners. Two regions. One shared spine. Net break-even at $173k (after the
+          Scan2Plan royalty offset); first profit at $250k; baseline target $330k; quality of
+          life as the ceiling.
         </p>
       </header>
 
@@ -171,14 +172,19 @@ export default function StoryPage() {
         </p>
         <div className="finance">
           <div className="finance-row finance-floor">
-            <p className="finance-label">Break-even minimum</p>
-            <p className="finance-value">$191k</p>
-            <p className="finance-note">The floor is where the ecosystem covers itself on its own steam. Built from QuickBooks reality, not a round number.</p>
+            <p className="finance-label">Break-even floor (net)</p>
+            <p className="finance-value">$173k</p>
+            <p className="finance-note">Ecosystem revenue needed to cover all costs after Chase&rsquo;s ~$18k/yr Scan2Plan royalty offset. Gross ecosystem costs are $191k; $18k of that is covered by passive royalty income. Itemized below.</p>
+          </div>
+          <div className="finance-row finance-profit">
+            <p className="finance-label">First profit milestone</p>
+            <p className="finance-value">$250k</p>
+            <p className="finance-note">$77k above the net floor. The first point where the ecosystem isn&rsquo;t just surviving — the partners have real margin, reserves start accruing, and the next interesting project becomes fundable.</p>
           </div>
           <div className="finance-row finance-base">
             <p className="finance-label">Baseline target</p>
             <p className="finance-value">$330k</p>
-            <p className="finance-note">The realistic Y1 number. That&rsquo;s $139k of profit above break-even, redeployed across growth, partner distributions, and the next interesting project.</p>
+            <p className="finance-note">The realistic Y1 number. $157k of profit above the net floor, redeployed across growth, partner distributions, and touring investment.</p>
           </div>
           <div className="finance-row finance-stretch">
             <p className="finance-label">Stretch (with art sales + stock activation)</p>
@@ -186,13 +192,13 @@ export default function StoryPage() {
             <p className="finance-note">Real upside if the photography art sales layer + the Mississippi stock footage pipeline both land.</p>
           </div>
           <div className="finance-row finance-growth">
-            <p className="finance-label">Y5 target at 25% YoY</p>
-            <p className="finance-value">$610k</p>
-            <p className="finance-note">Modest, sustainable, no fundraise required. Y1 → Y2 $313k → Y3 $391k → Y4 $488k → Y5 $610k.</p>
+            <p className="finance-label">Y5 target at 25% YoY from baseline</p>
+            <p className="finance-value">$806k</p>
+            <p className="finance-note">Modest, sustainable, no fundraise required. Y1 $330k → Y2 $413k → Y3 $516k → Y4 $645k → Y5 $806k.</p>
           </div>
         </div>
         <div className="breakeven-detail">
-          <p className="breakeven-heading">How the $191k floor is built</p>
+          <p className="breakeven-heading">How the floor is built</p>
           <table className="breakeven-table">
             <tbody>
               <tr>
@@ -219,9 +225,17 @@ export default function StoryPage() {
                 <td>Chase&rsquo;s living expenses ($2k/mo)</td>
                 <td>$24,000</td>
               </tr>
-              <tr className="breakeven-total">
-                <td>Ecosystem break-even</td>
+              <tr className="breakeven-subtotal">
+                <td>Gross ecosystem costs</td>
                 <td>$191,000</td>
+              </tr>
+              <tr className="breakeven-offset">
+                <td>Less: Chase&rsquo;s 2% Scan2Plan royalty (~$1,500/mo+, passive income that reduces ecosystem draw)</td>
+                <td>− $18,000</td>
+              </tr>
+              <tr className="breakeven-total">
+                <td>Net ecosystem break-even (revenue the ecosystem itself must generate)</td>
+                <td>$173,000</td>
               </tr>
             </tbody>
           </table>
@@ -229,7 +243,10 @@ export default function StoryPage() {
             Tracy&rsquo;s and Amy&rsquo;s personal costs aren&rsquo;t on this list because they draw
             from Inn distributions, not from ecosystem revenue. Touring, marketing, and reserves
             aren&rsquo;t here either — those are investments we make out of revenue above the floor,
-            not costs we owe just to keep the lights on.
+            not costs we owe just to keep the lights on. Chase&rsquo;s Scan2Plan royalty is passive
+            income retained from the 2022–2026 partnership; it lands in his account regardless of
+            what the ecosystem does, so it offsets the portion of his personal costs the ecosystem
+            would otherwise have to cover.
           </p>
         </div>
         <blockquote className="chase-quote">
@@ -625,6 +642,7 @@ export default function StoryPage() {
           border-radius: 4px;
         }
         .finance-floor { border-left: 3px solid var(--amber); }
+        .finance-profit { border-left: 3px solid var(--copper, #c87b3a); }
         .finance-base { border-left: 3px solid var(--green); }
         .finance-stretch { border-left: 3px solid var(--gold); }
         .finance-growth { border-left: 3px solid #4a6da8; }
@@ -680,6 +698,19 @@ export default function StoryPage() {
           text-align: right;
           padding-left: 24px;
           white-space: nowrap;
+        }
+        .breakeven-subtotal td {
+          border-top: 1px solid var(--text);
+          border-bottom: none;
+          padding-top: 12px;
+          font-weight: 600;
+          color: var(--text-muted);
+        }
+        .breakeven-offset td {
+          border-bottom: none;
+          padding-top: 6px;
+          font-style: italic;
+          color: var(--text-muted);
         }
         .breakeven-total td {
           border-top: 2px solid var(--text);
