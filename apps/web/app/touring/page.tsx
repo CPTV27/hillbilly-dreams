@@ -310,16 +310,85 @@ export default async function TouringPage() {
     >
 
       {/* ── HERO ───────────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          position: 'relative',
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'flex-end',
-          overflow: 'hidden',
-        }}
-      >
+      {/*
+        Mobile-responsive hero. Inline <style> block scopes the responsive
+        rules — App Router doesn't ship styled-jsx, but a vanilla <style>
+        element works fine and keeps all hero CSS in one file.
+      */}
+      <style>{`
+        .bmt-hero {
+          position: relative;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          overflow: hidden;
+        }
+        .bmt-hero__overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, #0a0a08 0%, rgba(10,10,8,0.65) 35%, rgba(10,10,8,0.1) 70%, transparent 100%);
+        }
+        .bmt-hero__copy {
+          position: relative;
+          z-index: 1;
+          padding: clamp(48px, 8vw, 100px) clamp(24px, 5vw, 80px);
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          text-align: right;
+        }
+        .bmt-hero__eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; margin: 0 0 20px; }
+        .bmt-hero__title {
+          font-family: var(--font-display, Georgia, serif);
+          font-size: clamp(3.5rem, 10vw, 7.5rem);
+          font-weight: 800;
+          line-height: 0.88;
+          letter-spacing: -0.04em;
+          margin: 0 0 28px;
+          max-width: 700px;
+        }
+        .bmt-hero__subhead {
+          font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+          line-height: 1.65;
+          color: rgba(232,224,212,0.75);
+          max-width: 540px;
+          margin: 0 0 36px;
+          white-space: pre-line;
+        }
+        .bmt-hero__ctas { display: flex; gap: 16px; flex-wrap: wrap; justify-content: flex-end; }
+
+        @media (max-width: 768px) {
+          .bmt-hero {
+            min-height: auto;
+          }
+          /* Stronger bottom gradient on mobile so text is readable over any image */
+          .bmt-hero__overlay {
+            background: linear-gradient(to top, #0a0a08 0%, rgba(10,10,8,0.92) 30%, rgba(10,10,8,0.55) 60%, rgba(10,10,8,0.15) 100%);
+          }
+          .bmt-hero__copy {
+            /* Left-align on mobile — right-align reads poorly on narrow screens with long copy */
+            align-items: flex-start;
+            text-align: left;
+            padding: 32px 20px 40px;
+            min-height: 88vh;
+            justify-content: flex-end;
+          }
+          .bmt-hero__title {
+            font-size: clamp(2.25rem, 9vw, 3.25rem);
+            line-height: 1;
+            margin: 0 0 20px;
+            max-width: 100%;
+          }
+          .bmt-hero__subhead {
+            font-size: 1rem;
+            margin: 0 0 28px;
+            max-width: 100%;
+          }
+          .bmt-hero__ctas { justify-content: flex-start; }
+        }
+      `}</style>
+      <section className="bmt-hero">
         <Image
           src={heroImageUrl}
           alt="The corridor road, Memphis to New Orleans."
@@ -329,63 +398,18 @@ export default async function TouringPage() {
           sizes="(max-width: 768px) 800px, 1600px"
           style={{ objectFit: 'cover', objectPosition: 'center' }}
         />
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background:
-              'linear-gradient(to top, #0a0a08 0%, rgba(10,10,8,0.65) 35%, rgba(10,10,8,0.1) 70%, transparent 100%)',
-          }}
-        />
-        <div
-          style={{
-            position: 'relative',
-            zIndex: 1,
-            padding: 'clamp(48px, 8vw, 100px) clamp(24px, 5vw, 80px)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-end',
-            textAlign: 'right',
-          }}
-        >
-          <p
-            style={{
-              fontSize: '0.65rem',
-              fontWeight: 700,
-              letterSpacing: '0.3em',
-              textTransform: 'uppercase',
-              color: gold,
-              margin: '0 0 20px',
-            }}
-          >
+        <div className="bmt-hero__overlay" />
+        <div className="bmt-hero__copy">
+          <p className="bmt-hero__eyebrow" style={{ color: gold }}>
             {heroEyebrow}
           </p>
-          <h1
-            style={{
-              fontFamily: 'var(--font-display, Georgia, serif)',
-              fontSize: 'clamp(3.5rem, 10vw, 7.5rem)',
-              fontWeight: 800,
-              lineHeight: 0.88,
-              letterSpacing: '-0.04em',
-              margin: '0 0 28px',
-              maxWidth: '700px',
-            }}
-          >
+          <h1 className="bmt-hero__title">
             {splitBars(heroHeadline)}
           </h1>
-          <p
-            style={{
-              fontSize: 'clamp(0.95rem, 1.6vw, 1.15rem)',
-              lineHeight: 1.65,
-              color: 'rgba(232,224,212,0.75)',
-              maxWidth: '540px',
-              margin: '0 0 36px',
-              whiteSpace: 'pre-line',
-            }}
-          >
+          <p className="bmt-hero__subhead">
             {heroSubhead}
           </p>
-          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+          <div className="bmt-hero__ctas">
             {primaryCta?.label && primaryCta?.href && (
               <a
                 href={primaryCta.href}
