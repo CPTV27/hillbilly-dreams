@@ -52,8 +52,28 @@ The exit goal is **not** building a unicorn. It is having a rich, exciting life 
 
 **Plus:** operating-layer role on the MBT platform (build, architecture decisions, technical direction) — but that's the platform, not his headline identity.
 
-### Tuthill Design
-- Partner studio. Gets amplified by being inside the ecosystem (directed work, brand association). Not a third-party SaaS customer.
+### Partner studios — Studio C Video + Tuthill Design
+
+These are **not third-party SaaS customers and not acquisition targets.** They are existing creative production companies being amplified inside the ecosystem the same way Tracy's Inn and Amy's singing career are amplified.
+
+**What MBT does FOR Studio C + Tuthill:**
+
+1. **New market expansion.** MBT brings Natchez + the Deep South corridor as a net-new market. Tracy's BizDev role extends to both partner studios. They get leads they wouldn't have earned on their own.
+2. **New customers.** The Big Muddy ecosystem (Inn, Magazine, Touring, Records, Radio, Blues Room) continuously generates creative work that needs production. Studio C shoots Blues Room recordings, wedding package hero content, Magazine visuals. Tuthill handles brand assets, print pieces, logos.
+3. **Shared platform resources.** Sanity CMS, GCS photo library, AI tooling, brand voice systems, sales pipelines — infrastructure they don't have to build themselves. This is load-bearing for their ability to scale.
+4. **MBT is a paying customer of theirs.** The platform + the brands buy ongoing video + design work. This is a real revenue line for them, not a favor.
+5. **Tracy + Amy as extended team members.** Tracy does BizDev + sales for photography AND video services. Amy brings artist-in-residence + Inn hospitality into content that Studio C shoots. They're not just Big Muddy partners — they're part of the team helping Studio C and Tuthill grow.
+
+**What Studio C + Tuthill bring TO the ecosystem:**
+
+- Existing client bases (NY-heavy; some crossover into Deep South opportunity)
+- Production capacity that Big Muddy brands can't economically build in-house
+- Creative quality that amplifies every customer-facing touchpoint
+- Partnership equity in the model, not just vendor relationships
+
+**The framing in the partner conversation:** MBT isn't "selling" Studio C or Tuthill a platform. They're being invited to share the amplification ecosystem Chase is already in. The deal is mutual amplification — MBT helps them grow, they strengthen MBT's output quality, both benefit from shared sales and infrastructure.
+
+**Commercial structure TBD and conversation-specific.** Options range from revenue share on MBT-originated deals, to licensing / retainer structures, to equity positions in a future holding entity. The framing above is the positioning; the structure is the negotiation.
 
 ---
 
