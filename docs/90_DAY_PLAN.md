@@ -21,6 +21,22 @@ Five independent AIs converged on the same playbook. These decisions are LOCKED 
 
 If something during the 90 days tempts a deviation from the above four — pause, ask "does this serve the wedding-package, the Vicki deal, or the load-bearing tech?" If no to all three, defer.
 
+### The Hard Rule: No New Strategic Surfaces
+
+**Until ONE of the following has happened, no new strategic surface gets opened. None.**
+
+- Event #1 is sold AND executed (deposit collected, weekend hosted)
+- OR first B2B Directory pilot is signed (Vicki or Paul Green, paper signed, deposit invoiced)
+
+What "no new strategic surface" means in practice:
+- No new revenue line, no new partner relationship type, no new geographic expansion push
+- No platform feature beyond the load-bearing tech exceptions in Section 11
+- No new content category for Magazine
+- No exploration of records subscription, AI concierge, or anything on the kill list
+- Bearsville activation stays at the 10 hrs/week Chase cap and platform-handoff-to-Elijah work — no JV expansion negotiations
+
+**Why:** New ideas creep in when the closed-loop work is hard. The plan only earns the right to expand once one closed loop has actually closed.
+
 ---
 
 ## 2 — Y1 Revenue Math (corrected — including photography re-cut 2026-04-19 evening)
@@ -57,6 +73,16 @@ If something during the 90 days tempts a deviation from the above four — pause
 **Leading indicator at end of July:** $80k cumulative (was $60k under the old mix). This reflects photography revenue contributing earlier and steadier than the wedding-package revenue.
 
 **Seasonality framing for Q2 (May–July) specifically:** This 90-day window is **NY-photography-dominant** for Chase + team. Tracy's Natchez Photography BizDev is groundwork (relationship building, content, pipeline) for the Natchez photography ramp that begins October when the team shifts hemispheres. Most of the $80k cumulative July target is NY-shooting revenue + Inn pre-season bookings + Vicki Wolpert + early wedding deposits. Natchez-photography revenue contributes meaningfully starting Q3, peaks Q4-Q1.
+
+**Q3 Transition Risk + Q2 Mitigations (Aug–Oct is the highest-coordination-risk window of Y1):**
+
+Three simultaneous shifts hit in Q3: geographic (team moves NY → Natchez), revenue mix (photography pivots from NY commissions to Deep South commissions + stock + art), operational (Inn enters Oct–Mar peak season). To not arrive at Aug 1 starting from zero, the following Q2-side prep is folded into the weekly grid above:
+
+- **By August 1 (end of Week 13, falls just outside this 90-day window):** Tracy has 2–3 Deep South photography prospects warmed — not closed, but in real conversation — so September isn't starting cold. **Embedded in:** Tracy's Tuesday/Thursday BizDev hours throughout June + July include Deep South photography outreach alongside Vicki/Paul Green outreach.
+- **By September 1:** Inn fall marketing must be live + bookings already in for Oct/Nov. **Embedded in:** Magazine pipeline (3 Tracy-voice pieces by July 31) + wedding package landing page (Week 1) + Visit Natchez relationship (Week 1 outreach to Lynsey Gilbert) + booking package outreach to wedding planners (Weeks 7-10).
+- **By September 15:** Bearsville platform handoff to Elijah + Miles complete so Chase isn't debugging Northern infrastructure while prepping Southern peak season. **Embedded in:** Cos + Patch own the Bearsville platform setup during Q2; Chase caps at 10 hrs/week as already noted in Week 5 row.
+
+A full Q3 risk map gets written at the Week 12 retrospective (July 28-31) when there's real Q2 data to anchor it. Don't pre-write it now — it'd be planning fiction.
 
 **Y1 cost structure (revised):**
 
@@ -102,7 +128,7 @@ If something during the 90 days tempts a deviation from the above four — pause
 | **1** | May 1–7 | $3k | Wedding/retreat one-pager + landing page; CRM stand-up (Attio free tier); post Inn-ops manager job; **photography re-engagement campaign — Tracy emails ~30 past CPP + Studio C clients with "Chase is back to shooting; what's coming up?" template** | Sanity invites for T+A; verify 18 contacts; email Lynsey Gilbert + Vicki Wolpert Monday AM; **Sunday list-build session: dump every past photography client (CPP + Studio C, Natchez + NY + elsewhere) into the CRM from invoices/email/Instagram** (~2 hrs); coordinate with Elijah on Studio C client list | Blues Room summer calendar (6 dates); Sanity onboarding | Cos: provenance schema add (half-day); Patch: deploy verify | Sunday Sit + Wed Health | Chase stuck in NY → Delta Dawn auto-onboards Tracy/Amy via pre-recorded videos; photography re-engagement is async-friendly (Tracy emails) |
 | **2** | May 8–14 | $4k | Memorial Day whole-Inn rental sales push; Magazine Issue 2 published | Vicki proposal sent (5-min Loom demo); Paul Green proposal sent | First Blues Room show of season | Cos: Event Bus cascade #1 (Inn booking → Magazine draft) | Friday Facts | Tracy overloaded → Amy formally takes all same-week Inn ops; Tracy keeps editorial + biz dev only |
 | **3** | May 15–21 | $4k | First B2B pitch meeting (Tracy leads, Chase joins via Zoom for tech) | Studio C project delivered | Inn occupancy 50% trailing 7 days | Cos: Event Bus cascade #2 (show event → cross-brand) | Sunday Sit + Wed Health | First photography close ($5k) or Memorial Day rental sale ($12k) |
-| **4** | May 22–31 | $4k | Memorial Day whole-Inn rental sold; first photography close ($5k); Inn ops manager hired | Vicki Wolpert pitch held | Memorial Day weekend executes flawlessly | Cos: One-Click Publish webhook (Tracy drafts auto-promote via Playwright diff) | Friday Facts | Inn ops hire delayed → Tracy/Amy split same-week ops 50/50 until next month |
+| **4** | May 22–31 | $4k | Memorial Day whole-Inn rental sold; first photography close ($5k); **Inn ops hire decision: if cumulative revenue ≥ $15k, hire by May 31. If < $15k, defer hire to June 15 to avoid burn ahead of revenue.** | Vicki Wolpert pitch held | Memorial Day weekend executes flawlessly | Cos: One-Click Publish webhook (Tracy drafts auto-promote via Playwright diff) | Friday Facts + **CASH FLOW CHECKPOINT** | Cumulative revenue < $15k by May 31 → ops hire deferred to June 15; Tracy/Amy split same-week ops in the meantime |
 | **5** | Jun 1–7 | $5k | Cloudbeds summer pricing locked; Magazine Issue 3 drafted | Bearsville JV kickoff IF Vicki signed (else slip); civic-partner Directory demo | Blues Room → 2x/week (Fri+Sat) | Cos: Event Bus cascade #3 (photo upload → auto-tag + distribute) | Sunday Sit + Wed Health | Bearsville distracts → cap Chase at 10 hrs/wk; Tracy doesn't touch Bearsville biz dev until July |
 | **6** | Jun 8–14 | $7k | First wedding deposit collected ($12k) | **Vicki Wolpert directory engagement closed ($15k upfront)** | Amy records first podcast pilot | Patch: provenance model in production schema | Friday Facts | Wedding deposit slips → tighten the package one-pager; rerun outreach with sharper offer |
 | **7** | Jun 15–21 | $7k | Second wedding outreach to wedding planners + corporate retreat coordinators | Magazine sponsorship inbound only — answer in <3 hrs if it lands; don't chase | First Blues Room recorded session published as podcast pilot | Patch: visual diff webhook in production | Sunday Sit + Wed Health | Magazine sponsorship absent → confirmed: NOT a Y1 revenue line; reframe to Tracy as content marketing only |
@@ -150,6 +176,11 @@ If something during the 90 days tempts a deviation from the above four — pause
 ### Weekly
 
 - **Sunday 18:00 — The Sunday Sit (30 min, async if Chase is in NY).** Three rotating questions: (1) What did we sell this week? (Tracy reports $) (2) What did we ship? (Chase reports platform + creative) (3) What's next week's constraint? (Amy reports ops bottleneck)
+  - **The Weekly Scoreboard — three numbers only, posted by Tracy in Slack before the Sit:**
+    1. **Cash collected this week** ($)
+    2. **Pipeline value, next 30 days** ($ at probability-weighted)
+    3. **Confirmed events count** (signed deposits, booked dates)
+  - No dashboards. No complexity. If those three numbers move week over week, the business works. If they stall, the Sit becomes a recovery conversation.
 - **Wednesday 12:00 — Hump Day Health (15 min, async Slack).** Each partner posts one color: 🟢 (good) / 🟡 (carrying something I shouldn't) / 🔴 (about to break — handoff by Friday). Any 🔴 → Friday becomes recovery planning.
 - **Friday 16:00 — Friday Facts (30 min).** Cloudbeds occupancy vs target. Magazine articles published. B2B pipeline (Tracy shows CRM). One "what we learned" in shared log. Ritual: Chase reads Delta Dawn's "what shipped" digest aloud. Ends with: "Next week we chase ___."
 
@@ -223,7 +254,17 @@ Everything else: delegate to a partner, an AI agent, or a contractor. If Chase f
 
 **Rule:** If an AI can do it at 80% quality in 2 minutes, the partner does NOT do it manually. Ever.
 
-**Quarterly audit (Q4 2026):** Each agent gets a "what shipped via me" report from Delta Dawn. Cut any that haven't earned their keep. Until then, keep the roster.
+**Quarterly audit — output-based survival.** Each agent must demonstrate **at least one shipped artifact per quarter that a partner did not have to rewrite.** Not "generated content." Not "drafted a doc." One artifact that went live without human intervention beyond approval. Two consecutive failed quarters = deprecate the agent.
+
+| Agent | Q1 Pass criteria (by July 31, 2026) |
+|---|---|
+| **Cos** | Shipped the 90-day plan + at least one partner-facing brief without Chase rewrite |
+| **Patch** | Zero production bugs attributed to untested deploys; all infra alerts resolved without Chase intervention |
+| **Claude Design 2** | Design system adopted by ≥2 brands; no "I'll just tweak this in Figma" from Chase |
+| **Delta Dawn** | Tracy + Amy onboarded to Sanity without Chase support tickets; monthly "what shipped" report generated |
+| **Gemini batches** | ≥30K tokens of content generated AND >50% published with Tracy doing only edit-not-rewrite |
+
+The roster is a tool, not a team. Treat it like software: ship or deprecate.
 
 ---
 
