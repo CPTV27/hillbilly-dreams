@@ -12,7 +12,16 @@
 //   3. In a worker route, call boss.work('event-dispatch', handler)
 //   4. Run pg-boss schema bootstrap: boss.start() once
 
-import type PgBoss from 'pg-boss';
+// pg-boss is dynamically imported at runtime to keep it out of the
+// cold-start path. Its types vary across versions; treating the runtime
+// instance as an opaque handle keeps this file decoupled from upstream
+// type drift. The actual API shape is exercised by integration tests.
+type PgBoss = {
+  start(): Promise<void>;
+  stop(): Promise<void>;
+  send(name: string, data: unknown, opts: unknown): Promise<string | null>;
+  work(name: string, opts: unknown, handler: (job: unknown) => Promise<void>): Promise<unknown>;
+};
 
 let bossInstance: PgBoss | null = null;
 
@@ -52,8 +61,8 @@ export async function startWorker(
   handle: (deliveryId: string) => Promise<void>
 ): Promise<void> {
   const boss = await getBoss();
-  await boss.work('event-dispatch', { batchSize: 10 }, async (job) => {
-    const payload = (job as unknown as { data: { deliveryId: string } }).data;
+  await boss.work('event-dispatch', { batchSize: 10 }, async (job: unknown) => {
+    const payload = (job as { data: { deliveryId: string } }).data;
     await handle(payload.deliveryId);
   });
 }

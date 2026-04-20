@@ -68,5 +68,5 @@ export async function getAsset(assetId: string): Promise<ImmichAsset | null> {
     signal: AbortSignal.timeout(5000),
   });
   if (!res.ok) return null;
-  return res.json();
+  return (await res.json()) as ImmichAsset;
 }

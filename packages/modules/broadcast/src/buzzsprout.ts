@@ -65,7 +65,7 @@ export async function listEpisodes(podcastId: string): Promise<BuzzsproutEpisode
     signal: AbortSignal.timeout(30_000),
   });
   if (!res.ok) throw new Error(`Buzzsprout listEpisodes ${res.status}`);
-  return res.json();
+  return (await res.json()) as BuzzsproutEpisode[];
 }
 
 export async function updateEpisode(
