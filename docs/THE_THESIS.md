@@ -25,7 +25,7 @@ The exit goal is **not** building a unicorn. It is having a rich, exciting life 
 ## The existing businesses being amplified
 
 ### Tracy Alderson-Allen
-- **Big Muddy Inn** — already operating. **We try to maximize revenue** — push occupancy, push ADR, push whole-Inn rentals + Blues Room ticket sales. **Cash flow positive is the threshold above which we stop worrying about it.** Below CFP we have to focus on it. Above CFP we can focus on other parts of the portfolio. Profit is even better. The point is not "settle for break-even"; the point is "once we're in the safe zone, we can spend our attention elsewhere."
+- **Big Muddy Inn** — already operating. **Break-even is the minimum threshold of success. Profit is the goal.** We push occupancy, ADR, whole-Inn rentals, Blues Room ticket sales, private events — all of it — to be genuinely profitable, not just covering costs. **But there's a ceiling:** we won't sacrifice quality of life to make an extra million dollars. At the point where additional profit requires burning out, we stop pushing. Between break-even and that ceiling is where we work hardest.
 - **Big Muddy Magazine** — Tracy's editorial vehicle. The framing is "Mississippi Martha Stewart" — she gets a real platform for her voice. The Magazine's job is twofold: market the Inn AND give Tracy editorial reach. Not optimized for ad revenue.
 - **Business development + sales for Chase Pierson Photography** — Tracy is taking on the BizDev/sales/management for the photography business. Real role, real revenue line, named here so it doesn't get lost.
 
@@ -35,13 +35,22 @@ The exit goal is **not** building a unicorn. It is having a rich, exciting life 
 - **Inn + bar day-of operations** — also her domain.
 
 ### Chase Pierson
-- **FarleyPierson** — the **name is being retired** either way. Two options on the table:
-  1. Keep the underlying NY LLC, change its name to something new (TBD).
+
+**Who he is (the right framing for bios, press, partner decks):**
+
+> Business executive + media executive + photographer, with a portfolio of existing production companies he's bringing into the ecosystem to leverage and amplify.
+
+**Not:** "CEO/CTO/Showrunner" — that's startup-tech shorthand and undersells the actual portfolio. The accurate framing is an experienced operator with multiple live businesses being amplified by shared infrastructure.
+
+**The existing portfolio he brings:**
+- **Chase Pierson Photography** — established photography business, 6-year $100k+/yr track record, expanding into Natchez + the Deep South via Tracy's biz dev.
+- **Studio C Video** — video production company (now offering video services alongside photography). Elijah came on as a partner last year. Counter-seasonal with CPP (NY peak May–Oct, Natchez peak Oct–April).
+- **FarleyPierson** — the **name is being retired.** Two options:
+  1. Keep the underlying NY LLC, rename it (TBD).
   2. Close the LLC entirely.
-  Whichever happens, "FarleyPierson" is going away as an active brand. Any older doc that lists FarleyPierson as a current operating entity needs updating once the decision is made.
-- **Studio C Video** — partner studio that benefits from being inside this ecosystem (gets directed work, editorial coverage, brand alignment)
-- **Chase Pierson Photography** — Chase's personal photography business expanding its market into Natchez and the Deep South via Tracy's biz dev
-- **Plus:** CTO/showrunner of the platform itself
+- **Future partner studios** (Tuthill Design, others) — joining the ecosystem on similar amplify-don't-acquire terms.
+
+**Plus:** operating-layer role on the MBT platform (build, architecture decisions, technical direction) — but that's the platform, not his headline identity.
 
 ### Tuthill Design
 - Partner studio. Gets amplified by being inside the ecosystem (directed work, brand association). Not a third-party SaaS customer.
@@ -87,11 +96,11 @@ The relationship structure is JV (per the earlier convo with Gemini), not licens
 
 > "Drive around in a tour bus, on time, play awesome shows, bring awesome bands down here, have the inn run itself, reduce the workload, get cash flow positive."
 
-> "As long as it's cash flow positive, we're in really good shape with everything else. If it's making profit, that's even better. But we don't want to have to spend much time running that."
+> "We do want to be profitable. Break-even is the minimum — that's a success of its own. But we do want to be profitable. We're just not going to sacrifice quality of life to make an extra million dollars."
 
 The metric stack:
 
-1. **Inn: try to maximize revenue. CFP is the threshold above which we stop worrying.** We're not "settling for break-even" — we push occupancy, ADR, whole-Inn rentals, ticket sales as hard as we reasonably can. CFP is just the point where we don't have to worry about it anymore and can put attention elsewhere. Profit is upside, not the goal.
+1. **Inn: we genuinely want profit. Break-even is the minimum (success). Above break-even we keep pushing — occupancy, ADR, whole-Inn rentals, tickets — because profit matters. The ceiling is quality of life: when pushing harder requires sacrificing the actual life the partners want to live, we stop pushing there and put attention elsewhere. Between break-even (floor) and the lifestyle ceiling is where the work happens.**
 2. **Touring: Amy plays + other bands tour + the corridor music economy lifts.** Not a touring agency P&L target.
 3. **Magazine: Tracy has a platform + Inn pipeline gets fed.** Not an ad-revenue target.
 4. **Records / Radio: Amy gets a label + ancillary revenue from merch / records / sponsor packages.** Pre-revenue Y1 is fine.
@@ -110,7 +119,11 @@ That number is the canonical Y1 goal. It supersedes any earlier number you might
 
 ### Why $250k
 
-It's not a low-ball — it's the honest number that makes the ecosystem cover itself. Run-rate costs are roughly $250-260k/year (Inn ops + payroll + platform infra + touring costs + reserves). Hit $250k and the ecosystem is at break-even on its own steam. That's the threshold-of-not-worrying for the WHOLE ecosystem, the same way CFP is for the Inn alone. Above $250k, every dollar is upside that subsidizes the next thing or buys back time.
+$250k is the break-even number — the minimum threshold of success. Run-rate costs are roughly $250-260k/year. Hitting $250k means the ecosystem covers itself on its own steam.
+
+**We actually want to be profitable, not just break even.** Break-even is the floor we commit to hit; profit is the real goal. Above $250k, every dollar is real profit — and we will work to generate it.
+
+**The ceiling is quality of life, not revenue.** At the point where making more money requires sacrificing the life the partners are here to live, we stop pushing harder for money. That's the whole reason we're structured this way. Not every extra million is worth the attention it costs.
 
 ### Growth targets (out years)
 

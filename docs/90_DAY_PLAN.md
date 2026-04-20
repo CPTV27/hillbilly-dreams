@@ -41,7 +41,13 @@ What "no new strategic surface" means in practice:
 
 ## 2 — Y1 Revenue Math (corrected — including photography re-cut 2026-04-19 evening)
 
-**Y1 threshold:** $250,000 across all channels (May 2026 – April 2027). Hitting it = ecosystem covers itself = stop worrying. Above it = upside that buys back time, subsidizes the next thing, or funds the lifestyle.
+**Y1 break-even minimum:** $250,000 across all channels (May 2026 – April 2027). Hitting it = ecosystem covers itself = the floor of success.
+
+**Y1 actual goal:** real profit. We want to be profitable, not just at break-even. Above $250k, every dollar is real profit — and we actively work to generate it.
+
+**The ceiling is quality of life, not a revenue cap.** At the point where additional profit requires sacrificing the partners' quality of life, we stop pushing harder. That line matters more than the next million dollars.
+
+The baseline $330k scenario below represents the realistic operating target — meaningfully profitable, without requiring the partners to grind. The $390-395k stretch is upside if the art-sales and stock photography lines activate. Both are inside the lifestyle ceiling.
 
 **Where the revenue comes from (revised + expanded):**
 
