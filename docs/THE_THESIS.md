@@ -25,17 +25,17 @@ The exit goal is **not** building a unicorn. It is having a rich, exciting life 
 ## The existing businesses being amplified
 
 ### Tracy Alderson-Allen
-- **Big Muddy Inn** — already operating. The bar for the Inn is **cash flow positive**. Once positive, the platform's job there is done; everything else is leverage.
+- **Big Muddy Inn** — already operating. **We try to maximize revenue** — push occupancy, push ADR, push whole-Inn rentals + Blues Room ticket sales. **Cash flow positive is the threshold above which we stop worrying about it.** Below CFP we have to focus on it. Above CFP we can focus on other parts of the portfolio. Profit is even better. The point is not "settle for break-even"; the point is "once we're in the safe zone, we can spend our attention elsewhere."
 - **Big Muddy Magazine** — Tracy's editorial vehicle. The framing is "Mississippi Martha Stewart" — she gets a real platform for her voice. The Magazine's job is twofold: market the Inn AND give Tracy editorial reach. Not optimized for ad revenue.
 - **Business development + sales for Chase Pierson Photography** — Tracy is taking on the BizDev/sales/management for the photography business. Real role, real revenue line, named here so it doesn't get lost.
 
 ### Amy Allen
-- **Amy is an abandoned singer** with serious chops. Big Muddy Touring + Big Muddy Records + Big Muddy Radio exist primarily to **support her career** — give her a band, a label, a distribution channel.
+- **Amy is a singer with a band.** She performs publicly as Arrie Aslin (artist-in-residence at the Inn). Big Muddy Touring + Big Muddy Records + Big Muddy Radio exist primarily to **support her career** — give her tour infrastructure, a label, a distribution channel.
 - **Ancillary effect:** the same infrastructure that supports Amy can support OTHER bands touring through the corridor. That generates additional revenue (booking fees, room nights at the Inn, merch margin, record sales) and incidentally lifts the music economy of the Deep South.
 - **Inn + bar day-of operations** — also her domain.
 
 ### Chase Pierson
-- **FarleyPierson LLC** — existing business
+- **FarleyPierson** — the NAME stays. The entity itself is being either shut down or restructured (TBD); if we keep it as an operating LLC, it stays a New York LLC. Earlier framing of "wind-down on lawyer track" is incomplete — the decision is shut-down vs restructure, not just shut-down.
 - **Studio C Video** — partner studio that benefits from being inside this ecosystem (gets directed work, editorial coverage, brand alignment)
 - **Chase Pierson Photography** — Chase's personal photography business expanding its market into Natchez and the Deep South via Tracy's biz dev
 - **Plus:** CTO/showrunner of the platform itself
@@ -88,7 +88,7 @@ The relationship structure is JV (per the earlier convo with Gemini), not licens
 
 The metric stack:
 
-1. **Inn: cash flow positive.** Not maximum revenue. Not maximum occupancy. Just CFP. Once there, leverage exhausted.
+1. **Inn: try to maximize revenue. CFP is the threshold above which we stop worrying.** We're not "settling for break-even" — we push occupancy, ADR, whole-Inn rentals, ticket sales as hard as we reasonably can. CFP is just the point where we don't have to worry about it anymore and can put attention elsewhere. Profit is upside, not the goal.
 2. **Touring: Amy plays + other bands tour + the corridor music economy lifts.** Not a touring agency P&L target.
 3. **Magazine: Tracy has a platform + Inn pipeline gets fed.** Not an ad-revenue target.
 4. **Records / Radio: Amy gets a label + ancillary revenue from merch / records / sponsor packages.** Pre-revenue Y1 is fine.
@@ -99,12 +99,35 @@ The metric stack:
 
 ## What this means for the pro forma
 
-The previous pro forma (`docs/onboarding-2026-04-20/01-business-case-and-pro-forma.md`) was modeled as 9 standalone businesses with individual P&L targets totaling $510k base / $760k stretch. That framing is **partially right + significantly wrong:**
+### The real Y1 financial target
 
-- **Right:** the dollar amounts are reasonable starting estimates.
-- **Wrong:** treating each line item as a business to optimize. The Inn's job is CFP, not max-rev. The Magazine's job is editorial reach + Inn pipeline, not ad-rev. The Directory line is wrong (was modeled as $106k of walk-in subscriptions; should be 1-3 B2B engagements + internal use of the module).
+**$250,000 in total revenue across all channels.** Fiscal year starts **May 1, 2026** and runs through April 30, 2027.
 
-**Action:** the pro forma needs a re-cut as a portfolio model with ecosystem-level metrics, not standalone-business metrics. Tomorrow-after-onboarding task. Tracy + Amy don't need this re-cut for tomorrow — the existing pro forma is directionally fine for the onboarding conversation.
+That number is the canonical Y1 goal. It supersedes any earlier number you might find in older docs (the brief, the onboarding pro forma, memory files all carried $510k base / $760k stretch — those were aspirational and wrong). $250k is the real bar, set by Chase 2026-04-19.
+
+### Why $250k
+
+It's not a low-ball — it's the honest number that makes the ecosystem cover itself. Run-rate costs are roughly $250-260k/year (Inn ops + payroll + platform infra + touring costs + reserves). Hit $250k and the ecosystem is at break-even on its own steam. That's the threshold-of-not-worrying for the WHOLE ecosystem, the same way CFP is for the Inn alone. Above $250k, every dollar is upside that subsidizes the next thing or buys back time.
+
+### Growth targets (out years)
+
+**25% year-over-year revenue growth** is the target after Y1.
+
+| Year | Period | Revenue target |
+|------|--------|----------------|
+| Y1 | May 2026 – Apr 2027 | **$250,000** |
+| Y2 | May 2027 – Apr 2028 | $312,500 |
+| Y3 | May 2028 – Apr 2029 | $390,625 |
+| Y4 | May 2029 – Apr 2030 | $488,281 |
+| Y5 | May 2030 – Apr 2031 | $610,352 |
+
+25% YoY is intentionally modest — sustainable, doesn't require a fundraise, doesn't require burning out, doesn't force chase-the-unicorn decisions that betray the thesis. If the ecosystem outperforms, that's upside (more time, more cushion, more interesting projects); if it underperforms, the floor is ecosystem-covers-ecosystem so we're never in distress.
+
+### What the existing onboarding pro forma still covers
+
+The detailed monthly tables in `docs/onboarding-2026-04-20/01-business-case-and-pro-forma.md` are useful as a spread of where revenue COULD come from across the brands, but the totals there ($510k base / $760k stretch) are not the targets. They're projections of upside. The bar is $250k. If we hit $250k, we're succeeding even if no individual line hits its line-item projection.
+
+**Action:** the pro forma gets re-cut post-onboarding into a portfolio model anchored to $250k Y1 ecosystem-level target, with the existing per-brand monthly tables retained as "where it could come from" rather than "what each must hit."
 
 ---
 
@@ -112,7 +135,7 @@ The previous pro forma (`docs/onboarding-2026-04-20/01-business-case-and-pro-for
 
 Don't strip out the existing onboarding docs. They're 90% right. Just frame the conversation with this thesis up front:
 
-> "We're not building 9 separate startups. We're amplifying the businesses we already run — your Inn, your singing career, my photography, our partner studios — with shared technology and shared brand. The platform's job is to make the whole thing cost less and bring in more leads to each of you. Cash-flow-positive Inn is the floor. Everything else is upside that subsidizes the next thing."
+> "We're not building 9 separate startups. We're amplifying the businesses we already run — your Inn, your singing career, my photography, our partner studios — with shared technology and shared brand. The platform's job is to make the whole thing cost less and bring in more leads to each of you. We push the Inn revenue as hard as we can; cash-flow-positive is just the threshold above which we don't have to worry about it. Everything else gets the same energy — work to maximize it, but the ecosystem covers the ecosystem."
 
 That's the lens. Then walk them through the Sanity Studio, the admin tools, the cheat sheet — as the operational interface for that thesis.
 
