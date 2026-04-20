@@ -24,7 +24,7 @@ Skip the Cloudbeds Certified Consultant Partner Network. Every certified firm fl
 - Rate plan build (BAR, advance purchase, LOS-based, package rates)
 - Policy setup (cancellation, deposit, no-show, incidentals, pet/damage fees)
 - Stay restrictions (min-LOS peak dates, CTA, cutoffs)
-- OTA channel audit + reconnect (Booking.com, Expedia, Airbnb, Google)
+- OTA channel audit + reconnect (Booking.com, Expedia, Airbnb, Google Hotel Ads). **Vrbo is explicitly out of scope** per `vrbo-position-2026-04-20.md` — wrong product for a 6-room shared-space boutique.
 - Basic KPI dashboard (RevPAR, ADR, occupancy, pace, channel mix)
 - 1–2 live training sessions with Tracy (recorded)
 - Written handoff doc
@@ -49,7 +49,7 @@ Skip the Cloudbeds Certified Consultant Partner Network. Every certified firm fl
 
 **Target:** complete at $500. We believe the scope is achievable at this rate by a competent Fiverr Pro specialist or an ex-Cloudbeds Onboarding Coach.
 
-**Payment:** 50% of base on kickoff ($250), 50% on handoff ($250). Reserve deployed only if scope genuinely expands (e.g., the VRBO dispute below requires more than 2 hours, or additional OTAs come online) and with Tracy's written sign-off on each release.
+**Payment:** 50% of base on kickoff ($250), 50% on handoff ($250). Reserve deployed only if scope genuinely expands (e.g., Google Hotel Ads setup requires more than 2 hours, a Tier-2 OTA like TripAdvisor comes online, or the direct-booking funnel audit reveals config work) and with Tracy's written sign-off on each release.
 
 **Walk above $1,500.** The ceiling is firm. Cloudbeds configuration is commodity work; paying strategy rates for technician tasks defeats the purpose.
 
@@ -125,7 +125,8 @@ WHAT WE NEED YOU TO DO
 - Rebuild rate plans (BAR, advance purchase, LOS-based, packages)
 - Configure stay restrictions (min-LOS, CTA, cutoffs)
 - Set up policies: cancellation, deposit, no-show, incidentals, fees
-- Audit and reconnect OTA channels: Booking.com, Expedia, Airbnb, Google
+- Audit and reconnect OTA channels: Booking.com, Expedia, Airbnb, Google Hotel Ads
+- Vrbo is NOT in scope — wrong product type for this property
 - Build a basic reporting dashboard (RevPAR, ADR, occupancy, pace)
 - One or two live training sessions with our innkeeper (recorded)
 - Written handoff document
@@ -199,21 +200,21 @@ The Fiverr engagement runs during Weeks 2–5 (May 8 – May 31). No budget impa
 
 ---
 
-## Appendix — Active VRBO Integration Issue (2026-04-20)
+## Appendix — VRBO Integration Dispute: MOOT (superseded 2026-04-20 PM)
 
-**Problem:** VRBO integration with Cloudbeds stuck. VRBO claims the Cloudbeds listing was started as a Canadian listing, requiring full re-onboarding. Cloudbeds disputes this.
+The active VRBO/Cloudbeds "Canadian listing" dispute described in the earlier draft of this doc is now **moot**.
 
-**Chase's immediate action plan (this week, before hiring the consultant):**
+Per `vrbo-position-2026-04-20.md`, Big Muddy Inn is skipping VRBO entirely. VRBO is a Tier 4 channel — wrong product type for a 6-room shared-space boutique hotel. The review cross-contamination risk alone makes it a net-negative channel.
 
-1. Call VRBO Partner Support (not general help line). Escalate to **Partner Account Manager.**
-2. Opening frame: "My listing was incorrectly flagged as Canadian during initial setup. The property is and always has been in Natchez, MS. Cloudbeds confirms their record is correct. I need VRBO's country code corrected WITHOUT re-onboarding the listing."
-3. Demand a 3-way call with Cloudbeds + VRBO engineers so they can reconcile their records live instead of pointing at each other asynchronously.
-4. If VRBO insists on re-onboarding: push for (a) reason the prior listing can't be grandfathered into US jurisdiction, (b) a data-migration path that preserves reviews + booking history.
-5. Document every rep name, badge/ID, escalation case number.
-6. Expected resolution: 1–3 business days with proper partner escalation. 2–4 weeks if forced to full re-onboarding (push back).
+**Action on the existing broken VRBO listing:**
 
-**If not resolved on Chase's call:**
+- Do NOT spend consultant hours reconciling the dispute.
+- Disconnect the VRBO channel from Cloudbeds (leave it dormant in the VRBO platform or remove the listing entirely — Tracy/Chase to decide based on whether there's any residual review equity worth preserving for a future whole-inn buyout SKU).
+- No 3-way calls with VRBO Partner Support.
+- No escalations.
 
-Add to the Fiverr gig post "Current setup question": *"We have an unresolved VRBO integration dispute — the channel manager claims our Cloudbeds listing was created as a Canadian listing; Cloudbeds disputes. Describe how you'd approach this."* Candidates who've seen this pattern answer crisply. That screens out weak applicants on the first message.
+**If we later decide to ship a whole-inn buyout SKU (Phase 2):**
 
-**Expected consultant cost to resolve:** 2–4 hours of the $1,000 engagement. No budget impact.
+That SKU — and only that SKU — is VRBO-compatible. At that point we'd either resurrect the existing listing (if still dormant) or create a fresh one dedicated to the whole-property buyout product.
+
+**Expected consultant cost to resolve:** $0. Scope removed.

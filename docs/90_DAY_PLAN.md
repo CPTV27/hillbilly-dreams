@@ -139,6 +139,41 @@ No salaried Inn ops manager. The real operational labor model is two per-event c
 
 ---
 
+## 3.5 — Big Muddy Inn OTA + Yield Strategy (added 2026-04-20 PM)
+
+Full detail in two companion papers:
+- `docs/partners/vrbo-position-2026-04-20.md` — why Vrbo is out of scope
+- `docs/partners/channel-yield-strategy-2026-04-20.md` — the full Tier 1–4 channel matrix + demand-gen recommendations
+
+Summary the 90-day plan needs to carry:
+
+**Phase 1 OTA channels (live and optimized during this 90 days):**
+- Direct booking via MBT platform (primary; funnel instrumentation needs audit)
+- Google Hotel Ads (NEW — added to Fiverr gig scope replacing the abandoned Vrbo slot)
+- Airbnb (rebuild via Fiverr gig)
+- Booking.com (rebuild via Fiverr gig)
+- Expedia / Hotels.com (rebuild via Fiverr gig)
+- TripAdvisor (claim + review sync — not in Fiverr gig but low-cost)
+
+**Explicitly deferred / skipped:**
+- **Vrbo** — wrong product for a 6-room shared-space boutique. Position paper committed. The existing Canadian-listing dispute is moot; disconnect the listing rather than litigating it. Re-enters the plan only if a whole-inn buyout SKU ships (Phase 2).
+- **HomeAway, Hostelworld, Agoda** — skip
+
+**Highest-yield non-OTA investments (ranked), to layer in during Q2–Q3:**
+1. Google Hotel Ads setup + 90 days of spend ($2–3k)
+2. Direct-booking funnel audit + conversion fixes ($1k, in Fiverr gig scope)
+3. Past-guest email program (Klaviyo-class setup + 3 flows, $1k + $50/mo)
+4. PR outreach package ($2k)
+5. TripAdvisor claim + photo refresh ($500)
+6. Creator hosting program (comp stays, 2–3 creators, ~$1.5k in amenities)
+7. Magazine content acceleration (Tracy + 1 freelance writer for 6 months, $3–5k)
+
+**The flywheel thesis:** OTAs are distribution. The Magazine is the real moat — the only channel a competitor can't clone by opening an OTA account. Shift lens from "which OTAs should we be on" to "which investments produce the most direct bookings per dollar."
+
+**Phase 2 product decision required (Tracy + Amy):** whole-inn buyout SKU (all 6 rooms + Blues Room, sold as one unit at $2–5k/night for weddings, retreats, corporate offsites, tour buyouts). If yes, this unlocks Vrbo as a distribution channel for that SKU only, plus becomes a primary vehicle for Mr & Mrs Smith / Tablet / travel-advisor relationships in Phase 3.
+
+---
+
 ## 4 — The 90-Day Weekly Grid
 
 | Week | Dates | Revenue goal | Tracy | Chase | Amy | Cos / Patch | Cadence ritual | Failure mode + recovery |
