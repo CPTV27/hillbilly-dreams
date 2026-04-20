@@ -24,6 +24,12 @@ What I want to explore with you is whether Studio C and Tuthill Design plug into
 
 Five concrete things MBT brings to you if we formalize this:
 
+### 0. The bigger thing first — Big Muddy markets YOU, full-brand
+
+Before anything else: the partnership isn't one-way. MBT and Big Muddy don't just pull you into our ecosystem to deliver services — **we drive marketing and promotion for Studio C Video and Tuthill Design as whole brands, not just for the service lines we're launching together.** Everything Big Muddy is building (Magazine readership, Radio audience, show-goer funnel, social channels, Tracy's biz dev network, Deep South corridor partners) becomes a distribution layer for your own work. If Studio C closes a commercial video gig in Kingston next fall, that came in partly because Big Muddy Magazine, Big Muddy Radio, and the corridor social presence have been promoting Studio C as a production company for months. Same for Tuthill.
+
+That's the real amplification. The Tuthill Design Photography service line is one concrete piece of it. The rest is the ongoing marketing engine running in your favor, continuously, at no cost to you.
+
 ### 1. New market expansion — Natchez + the Deep South
 
 Tracy is the BizDev lead across the ecosystem. Her role expands to include opening doors in the Deep South corridor for Studio C video work and Tuthill design work — the same way she's opening doors for Chase Pierson Photography. You get leads you wouldn't have earned from an NY-based operation alone.
@@ -35,7 +41,8 @@ Tracy is the BizDev lead across the ecosystem. Her role expands to include openi
 The Big Muddy brands generate continuous creative work that needs production:
 
 - **Studio C:** Blues Room live recording, Magazine hero content, wedding package hero video, Inn brand films, touring act EPKs, Amy's records and radio visuals.
-- **Tuthill:** Brand assets for every Big Muddy surface, print pieces (magazine print runs, show posters, wedding collateral), logo + identity refinements, the wrap on the Sprinter van.
+- **Tuthill Design:** Brand assets for every Big Muddy surface, print pieces (magazine print runs, show posters, wedding collateral), logo + identity refinements, the wrap on the Sprinter van.
+- **Tuthill Design Photography (NEW — launching 2026-04-20):** A full real-estate photography service line under the Tuthill Design brand, marketed by MBT across two regions (Hudson Valley + Deep South). Two-tier booking: Tuthill Design standard rate (any Tuthill-assigned photographer) and a Chase Pierson premium tier (Chase personally, higher rate). This gives Tuthill a scalable, counter-seasonal photography revenue line that doesn't require Chase for every shoot, while giving Chase a named-premium channel inside Tuthill where his eye commands a real premium. Full scope: `docs/partners/tuthill-photography-scope-2026-04-20.md`.
 
 This isn't hypothetical — it's the volume of work the ecosystem is already generating and currently buying piecemeal. Formalized, it becomes a predictable revenue line for both studios.
 

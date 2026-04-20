@@ -127,9 +127,10 @@ Use these exactly. Do not invent alternative framings.
 | **Big Muddy Touring** | The booking + tour management + transport arm for corridor music, anchored by Amy Allen's house band with ancillary capacity for visiting artists. |
 | **Big Muddy Records** | The record label arm (early stage) primarily releasing Amy Allen's catalog and corridor-adjacent artists. |
 | **Big Muddy Radio** | Internet radio + podcast network (pre-launch Q4 2026) featuring corridor music + Amy's shows + editorial content. |
-| **Chase Pierson Photography** | Chase's established photography business (6-year track record), expanding from New York into the Natchez + Deep South market. |
-| **Studio C Video** | Production company alongside Chase Pierson Photography. Partnered with Elijah Davis. Offers video services in addition to photography. Counter-seasonal: NY peak May–Oct, Natchez peak Oct–Apr. |
-| **Tuthill Design** | Partner design studio amplified inside the MBT ecosystem. Brand + print + graphic work for Big Muddy brands and shared clients. |
+| **Chase Pierson Photography (CPP)** | Chase's established photography business (6-year track record), expanding from New York into the Natchez + Deep South market. **Scope as of 2026-04-20: non-real-estate only** — portraits, events (incl. weddings), editorial, fine art + gallery print sales, brand, travel, Blues Room + Studio C documentation. To run as a DBA under MBT (FarleyPierson LLC closing). |
+| **Tuthill Design Photography** | NEW service line under Tuthill Design, launched 2026-04-20. **Real-estate photography** in Hudson Valley + Deep South, two-tier booking: Tuthill Design standard rate (any Tuthill shooter) or Chase-premium tier (Chase personally, higher rate). MBT markets, Tuthill delivers. All real-estate work routes here — CPP is out of RE. |
+| **Studio C Video** | Production company alongside Chase Pierson Photography. Partnered with Elijah Davis. Offers video services in addition to photography. Counter-seasonal: NY peak May–Oct, Natchez peak Oct–Apr. Also the planned Tier-1 support layer for Big Muddy Inn Cloudbeds operations. **Marketed as a full brand by MBT / Big Muddy** — Magazine, Radio, social, and Tracy's biz dev drive Studio C's whole-company pipeline, not just the Big-Muddy-internal work. |
+| **Tuthill Design** | Partner design studio amplified inside the MBT ecosystem. Brand + print + graphic work for Big Muddy brands and shared clients. Now also the operating home for Tuthill Design Photography. **Marketed as a full brand by MBT / Big Muddy** — Magazine, Radio, social, and Tracy's biz dev drive Tuthill's whole-studio pipeline, not just the Big-Muddy-internal work. |
 | **Bearsville Creative** | The Northern hemisphere of the ecosystem — Woodstock NY node activating summer 2026. Not a new product; the same model in a second region. |
 | **Deep South Directory (`deepsouthdirectory.com`)** | A demonstration instance of the Directory module deployed inside an MBT-branded site. NOT a standalone SaaS product. |
 | **Outsider Economics** | Editorial side-project + philosophical backbone. The "why" that makes the "what" (the directory module, the ecosystem, the amplification model) legible. |
@@ -151,7 +152,8 @@ Anyone writing content / bios / pitches must NOT use these framings. If they app
 ❌ **"Break-even at $250k / $191k = we stop worrying"** — undersells the actual stance. Correct: "break-even is the minimum; profit is the goal; quality of life is the ceiling." Also: the honest break-even is $191k, not $250k; the $250k number was a round-number placeholder retired once the QuickBooks lines were itemized 2026-04-20.
 ❌ **"Chase runs 9 modules / CTO / hands-on"** — frames him as a tech founder rather than an experienced operator with a portfolio. He built the platform; he doesn't ARE the platform.
 ❌ **"Tracy and Amy are employees"** — they are equity partners, always.
-❌ **"FarleyPierson LLC" as an active operating entity in anything customer-facing** — the name is being retired.
+❌ **"FarleyPierson LLC" as an active operating entity in anything customer-facing** — the name is being retired. The recommended path (pending counsel, 2026-04-20) is to close the LLC entirely and run Chase Pierson Photography as a DBA under MBT.
+❌ **"Chase Pierson Photography does real estate"** — no longer true as of 2026-04-20. RE work routes to Tuthill Design Photography (two-tier: Tuthill standard or Chase-premium). CPP is non-RE only.
 
 ---
 

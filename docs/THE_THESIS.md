@@ -43,12 +43,12 @@ The exit goal is **not** building a unicorn. It is having a rich, exciting life 
 **Not:** "CEO/CTO/Showrunner" — that's startup-tech shorthand and undersells the actual portfolio. The accurate framing is an experienced operator with multiple live businesses being amplified by shared infrastructure.
 
 **The existing portfolio he brings:**
-- **Chase Pierson Photography** — established photography business, 6-year $100k+/yr track record, expanding into Natchez + the Deep South via Tracy's biz dev.
-- **Studio C Video** — video production company (now offering video services alongside photography). Elijah came on as a partner last year. Counter-seasonal with CPP (NY peak May–Oct, Natchez peak Oct–April).
-- **FarleyPierson** — the **name is being retired.** Two options:
-  1. Keep the underlying NY LLC, rename it (TBD).
-  2. Close the LLC entirely.
-- **Future partner studios** (Tuthill Design, others) — joining the ecosystem on similar amplify-don't-acquire terms.
+- **Chase Pierson Photography (CPP)** — established photography business, 6-year $100k+/yr track record. Refined scope as of 2026-04-20: **non-real-estate work only** — portraits, events (including weddings), editorial, fine art + gallery print sales, brand/commercial, travel/place, Blues Room + Studio C documentation. Real-estate listing work moves to Tuthill Design Photography (see below). Expanding into Natchez + the Deep South via Tracy's biz dev.
+- **Tuthill Design Photography** — NEW service line under Tuthill Design, launching 2026-04-20. Real-estate photography in two regions (Hudson Valley + Deep South), two-tier booking: Tuthill Design standard rate (any Tuthill photographer) or Chase Pierson premium tier (Chase personally, higher rate). MBT markets, Tuthill delivers. Counter-seasonal across regions. Full scope: `docs/partners/tuthill-photography-scope-2026-04-20.md`.
+- **Big Muddy markets Studio C AND Tuthill Design, full-brand.** This is explicit: MBT / Big Muddy drives marketing and promotion for Studio C Video (not just the new Tuthill Photography service line, but Studio C's full production capability) AND Tuthill Design (not just Photography, but Tuthill's design work as a whole). Both partner studios get their brand amplified by the Big Muddy audience, Magazine, social channels, and Tracy's biz dev — same way the Big Muddy brands get amplified. This is the "partner-amplification" thesis in concrete form: the partnership isn't one-way. Big Muddy is the marketing engine for all three production studios in the ecosystem (CPP, Studio C, Tuthill).
+- **Studio C Video** — video production company (now offering video services alongside photography). Elijah came on as a partner last year. Counter-seasonal with CPP (NY peak May–Oct, Natchez peak Oct–April). Also the planned Tier-1 support layer for Big Muddy Inn Cloudbeds operations (per Tracy's ask for a human support contact).
+- **FarleyPierson LLC** — name is being retired. **Recommended path (pending counsel):** close the NY LLC entirely. Run CPP as a **DBA under MBT** (same entity pattern that would cover Big Muddy Touring, Big Muddy Magazine, etc.). Simplest admin; MBT becomes the single operating entity with multiple DBAs.
+- **Future partner studios** — joining the ecosystem on similar amplify-don't-acquire terms.
 
 **Plus:** operating-layer role on the MBT platform (build, architecture decisions, technical direction) — but that's the platform, not his headline identity.
 
@@ -124,7 +124,7 @@ The metric stack:
 2. **Touring: Amy plays + other bands tour + the corridor music economy lifts.** Not a touring agency P&L target.
 3. **Magazine: Tracy has a platform + Inn pipeline gets fed.** Not an ad-revenue target.
 4. **Records / Radio: Amy gets a label + ancillary revenue from merch / records / sponsor packages.** Pre-revenue Y1 is fine.
-5. **Photography (CPP) + Studio C + Tuthill: get amplified into a new market.** New leads from Tracy's biz dev. (FarleyPierson the name is being retired — see Chase Pierson section above for the LLC restructure-or-close decision.)
+5. **Photography (CPP non-RE + Tuthill Design Photography RE) + Studio C + Tuthill Design: get amplified into two markets.** New leads from Tracy's biz dev. Photography work now splits cleanly: Tuthill Design Photography handles all real-estate, CPP handles everything else. FarleyPierson LLC closes; CPP runs as a DBA of MBT.
 6. **MBT platform: keeps the rest of the costs low.** Saves us money is more important than makes us money.
 
 ---

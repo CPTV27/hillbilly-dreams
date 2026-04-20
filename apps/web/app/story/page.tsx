@@ -290,7 +290,9 @@ export default function StoryPage() {
           <div className="studios-col">
             <h3>What MBT does for them</h3>
             <ol>
-              <li><strong>New market expansion</strong> — Tracy's BizDev opens Natchez + Deep South for their work</li>
+              <li><strong>Full-brand marketing + promotion</strong> — Magazine, Radio, social, and Tracy&rsquo;s biz dev drive Studio C&rsquo;s and Tuthill&rsquo;s whole-studio pipelines, not just the Big-Muddy-internal work. Everything the Big Muddy audience touches becomes a distribution layer for the partner studios.</li>
+              <li><strong>New market expansion</strong> — Tracy&rsquo;s BizDev opens Natchez + Deep South for their work</li>
+              <li><strong>New service lines inside the partner brand</strong> — e.g. Tuthill Design Photography (launched 2026-04-20), RE-only, two-tier booking, MBT markets + Tuthill delivers</li>
               <li><strong>New customers via Big Muddy</strong> — Inn, Magazine, Touring, weddings all need production</li>
               <li><strong>Platform resources</strong> — CMS, photo library, AI tooling, sales pipelines shared at zero marginal cost</li>
               <li><strong>MBT is a paying customer</strong> — ongoing video + design work invoiced like any client relationship</li>
@@ -975,12 +977,13 @@ const PLATFORM_PIECES = [
 ];
 
 const PORTFOLIO = [
-  { name: 'Chase Pierson Photography', tier: 'consumer', tierLabel: 'Chase · Photography', line: '6-year $100k+/yr established business re-activating after platform-build pause. Counter-seasonal with Studio C.', role: 'Biggest Y1 revenue line. Tracy does BizDev + sales.' },
+  { name: 'Chase Pierson Photography', tier: 'consumer', tierLabel: 'Chase · Photography (non-RE)', line: '6-year $100k+/yr established business re-activating after platform-build pause. As of 2026-04-20, scope is non-real-estate only: portraits, events, editorial, fine art, brand, travel. Counter-seasonal with Studio C. To run as a DBA under MBT (FarleyPierson LLC closing).', role: 'Non-RE photography revenue. Tracy does BizDev + sales.' },
+  { name: 'Tuthill Design Photography', tier: 'production', tierLabel: 'Partner · RE Photography', line: 'NEW service line under Tuthill Design, launching 2026-04-20. Real estate photography in Hudson Valley + Deep South. Two-tier booking: Tuthill standard rate (any Tuthill shooter) or Chase-premium tier (Chase personally, higher rate). MBT markets, Tuthill delivers.', role: 'Captures all real-estate photography demand the ecosystem generates. Scales beyond Chase as bottleneck.' },
   { name: 'Big Muddy Inn', tier: 'consumer', tierLabel: 'Tracy + Amy · Hospitality', line: '6 rooms + 50-seat Blues Room venue in Natchez. Breakfast service + catering from third-party partners. Peak Oct–March.', role: 'Anchor brand. Hospitality peak complements photography off-season.' },
   { name: 'Big Muddy Magazine', tier: 'consumer', tierLabel: 'Tracy · Editorial', line: 'Editorial publication in Tracy\'s "Mississippi Martha Stewart" voice — for travelers considering the Inn. Not ad-driven.', role: 'Content marketing engine for the Inn. Not a Y1 revenue line.' },
   { name: 'Amy Allen / Arrie Aslin', tier: 'consumer', tierLabel: 'Amy · Music', line: 'Working singer with a band. Artist-in-residence at the Inn. Touring + Records + Radio exist to support her.', role: 'The performing artist whose existence anchors the music infrastructure.' },
   { name: 'Studio C Video', tier: 'production', tierLabel: 'Chase + Elijah · Production', line: 'Production company alongside Chase Pierson Photography. Adds video services. Counter-seasonal: NY May–Oct, Natchez Oct–Apr.', role: 'Creative production capacity for Big Muddy brands + partner expansion.' },
-  { name: 'Tuthill Design', tier: 'production', tierLabel: 'Partner Studio · Design', line: 'Design studio amplified inside the ecosystem on partnership terms. Brand + print + graphic work for Big Muddy and shared clients.', role: 'Partner-studio amplification model (see Section 07).' },
+  { name: 'Tuthill Design', tier: 'production', tierLabel: 'Partner Studio · Design', line: 'Design studio amplified inside the ecosystem on partnership terms. Brand + print + graphic work for Big Muddy and shared clients. Now also the home of Tuthill Design Photography (real-estate service line).', role: 'Partner-studio amplification model (see Section 07).' },
   { name: 'Big Muddy Touring', tier: 'consumer', tierLabel: 'Amy-centered · Booking', line: 'Corridor music booking + transport + tour management. Centered on Amy\'s house band, ancillary for visiting artists.', role: 'Not a Y1 revenue target. Amy plays because that\'s who she is.' },
   { name: 'Big Muddy Records + Radio', tier: 'consumer', tierLabel: 'Amy-centered · Catalog + Broadcast', line: 'Record label for corridor artists + internet radio station (Q4 2026 launch). Supports Amy\'s catalog.', role: 'Pre-revenue Y1. Sponsor packages possible late Q4.' },
 ];
