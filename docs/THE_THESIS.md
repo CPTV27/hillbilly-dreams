@@ -35,7 +35,10 @@ The exit goal is **not** building a unicorn. It is having a rich, exciting life 
 - **Inn + bar day-of operations** — also her domain.
 
 ### Chase Pierson
-- **FarleyPierson** — the NAME stays. The entity itself is being either shut down or restructured (TBD); if we keep it as an operating LLC, it stays a New York LLC. Earlier framing of "wind-down on lawyer track" is incomplete — the decision is shut-down vs restructure, not just shut-down.
+- **FarleyPierson** — the **name is being retired** either way. Two options on the table:
+  1. Keep the underlying NY LLC, change its name to something new (TBD).
+  2. Close the LLC entirely.
+  Whichever happens, "FarleyPierson" is going away as an active brand. Any older doc that lists FarleyPierson as a current operating entity needs updating once the decision is made.
 - **Studio C Video** — partner studio that benefits from being inside this ecosystem (gets directed work, editorial coverage, brand alignment)
 - **Chase Pierson Photography** — Chase's personal photography business expanding its market into Natchez and the Deep South via Tracy's biz dev
 - **Plus:** CTO/showrunner of the platform itself
@@ -92,7 +95,7 @@ The metric stack:
 2. **Touring: Amy plays + other bands tour + the corridor music economy lifts.** Not a touring agency P&L target.
 3. **Magazine: Tracy has a platform + Inn pipeline gets fed.** Not an ad-revenue target.
 4. **Records / Radio: Amy gets a label + ancillary revenue from merch / records / sponsor packages.** Pre-revenue Y1 is fine.
-5. **Photography (CPP) + Studio C + Tuthill + FarleyPierson: get amplified into a new market.** New leads from Tracy's biz dev.
+5. **Photography (CPP) + Studio C + Tuthill: get amplified into a new market.** New leads from Tracy's biz dev. (FarleyPierson the name is being retired — see Chase Pierson section above for the LLC restructure-or-close decision.)
 6. **MBT platform: keeps the rest of the costs low.** Saves us money is more important than makes us money.
 
 ---

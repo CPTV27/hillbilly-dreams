@@ -21,7 +21,7 @@
 
 Hillbilly Dreams Inc — a media-hospitality ecosystem anchored in Natchez, Mississippi. One Next.js codebase, one Vercel deployment, multiple brands across two regions (Deep South + Hudson Valley/Catskills).
 
-**Legal operating entity:** FarleyPierson LLC (EIN 81-4280721) is being either restructured or shut down (TBD). The name is being kept regardless. If retained as an operating LLC it stays a New York LLC. HDI not yet formally incorporated. MBT (Measurably Better Things LLC) is the platform-tier operating entity.
+**Legal operating entity:** FarleyPierson LLC (EIN 81-4280721) — the FarleyPierson NAME is being retired. Two options TBD: (1) keep the underlying NY LLC and rename it, or (2) close it entirely. MBT (Measurably Better Things LLC) is the platform-tier operating entity. HDI not yet formally incorporated.
 
 ---
 
