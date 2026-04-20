@@ -33,13 +33,13 @@ If something during the 90 days tempts a deviation from the above four — pause
 
 | Channel | Y1 estimate | Notes |
 |---|---|---|
-| **Chase Pierson Photography — services** | **$100k** | **Validated 6-year track record at this ecosystem-level revenue.** Last 6 months were a pause while Chase built the platform. Y1 is a re-activation year. Now distributed across more people: Elijah came on as a partner last year, Studio C was set up as a separate entity. Tracy is doing BizDev / market expansion for BOTH CPP and Studio C in Natchez. Chase's personal take is less than $100k — the $100k is the CPP-brand revenue line, with work and dollars distributed to Elijah + contributors + the partnership structure. Studio C Video has its own separate revenue line below; do not double-count. Realistic range $80-120k depending on re-engagement of past clients (~30% have moved on, ~40% return on outreach, ~30% need active re-engagement) plus net-new Natchez market growth. Earned, not on autopilot — but track record gives confidence. |
+| **Chase Pierson Photography — services** | **$100k** | **Validated 6-year track record at this revenue level — Chase's PAST personal take was \$100k+ solo.** Y1 is the first year working with partners: Elijah came on last year, Studio C was set up as a separate entity adding video services. Same ecosystem-level revenue (~\$100k+), now distributed across more people. Chase's personal take per year is less than \$100k now; the line below is the CPP-brand-level revenue. Studio C Video has its own separate revenue line; do not double-count. **Geographic seasonality:** Chase + team work upstate NY May–October (NY peak season), shift to Natchez October–April (slow season up north, peak hospitality season here). Tracy's BizDev role expands the Natchez market for both CPP and Studio C ahead of the seasonal shift. Realistic Y1 range \$80–120k depending on re-engagement of past NY clients (~30% have moved on, ~40% return on outreach, ~30% need active re-engagement) plus net-new Natchez market growth. **Earned, not on autopilot — but the track record gives confidence.** |
 | **Big Muddy Inn — rooms** | $75k | $180–200 ADR × ~400 room-nights. STR market reality: $207 ADR × 40% occupancy is the ambient benchmark; we beat that with the boutique premium but not by enormous margin. |
 | **Big Muddy Inn — F&B (breakfast + bar)** | $22k | Breakfast service + Blues Room bar revenue. |
 | **Big Muddy Inn — Blues Room tickets** | $18k | Amy's residency + 4–6 corridor guest acts. |
 | **Wedding / retreat packages (3 events)** | $45k | $15k average per package, full-property buyout, 1–2 nights. Load-bearing for the Inn slice. |
 | **Inn subtotal** | $160k | |
-| **Studio C + Tuthill projects** | $35k | Existing partner studio project flow. |
+| **Studio C + Tuthill projects** | $35k | Existing partner studio project flow. **Studio C now offers video services in addition to photography** — expanding the addressable market alongside the Natchez geographic expansion. Counter-seasonal pattern matches CPP. |
 | **B2B Directory engagements (Vicki + Paul Green)** | $30k | $15k each, upfront fee. |
 | **Magazine sponsorship (inbound only — don't chase)** | $5k | Take what walks in; do not spend Tracy's BizDev hours on this. |
 | **Baseline Y1 total** | **$330k** | $80k above the $250k threshold. |
@@ -55,6 +55,8 @@ If something during the 90 days tempts a deviation from the above four — pause
 **Implication for the probability commitment:** The 65% Y1 probability was set against the $250k threshold. At the $330k baseline, probability of clearing $250k rises to ~80-85%. That changes the *spirit* of the plan — the goal isn't surviving to $250k, it's choosing how much further past it to push.
 
 **Leading indicator at end of July:** $80k cumulative (was $60k under the old mix). This reflects photography revenue contributing earlier and steadier than the wedding-package revenue.
+
+**Seasonality framing for Q2 (May–July) specifically:** This 90-day window is **NY-photography-dominant** for Chase + team. Tracy's Natchez Photography BizDev is groundwork (relationship building, content, pipeline) for the Natchez photography ramp that begins October when the team shifts hemispheres. Most of the $80k cumulative July target is NY-shooting revenue + Inn pre-season bookings + Vicki Wolpert + early wedding deposits. Natchez-photography revenue contributes meaningfully starting Q3, peaks Q4-Q1.
 
 **Y1 cost structure (revised):**
 
