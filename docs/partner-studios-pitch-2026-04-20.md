@@ -86,9 +86,19 @@ I want to be careful not to describe your contribution as if it's something I'm 
 
 The base layer is now locked with Elijah + Miles:
 
-**$1,000/month retainer bucket = 20 hours at $50/hr**, one per studio (Studio C and Tuthill Design each get their own bucket). Work against the bucket covers production and marketing for the Big Muddy brands + support tasks inside the ecosystem. Overflow bills at the same $50/hr rate. Unused hours roll one month forward and then reset. This is the "another Utopia-type account" model — familiar, simple, no lock-in.
+**$500/month is the engagement floor** — same as the existing Utopia account. One $500/mo account = 10 hours at $50/hr, pre-classified at the billing level to a single brand or project scope so expense tracking stays clean. Clients can stack multiple $500/mo accounts as their scopes expand.
 
-**Start date: April 1, 2026 (backdated).** The April ramp-up work — scope docs, coordination, Cloudbeds setup prep, pricing alignment, Sprinter wrap (including the Studio C logo on the back of the Big Muddy Mobile), 90-day plan alignment — counts against April's 20-hour bucket. Each studio gets the full month's allocation for the setup phase even though we formalized mid-month. May 1 forward, the cadence runs clean.
+**The Big Muddy retainer with each partner studio is TWO $500/mo accounts:**
+- **$500/mo for Big Muddy Touring** (10 hrs, `TOUR` classification)
+- **$500/mo for Big Muddy Inn + Big Muddy Magazine** (10 hrs, `INN` + `MAG` classification)
+
+Total into each partner studio: $1,000/mo = 20 hrs. Across both studios: $2,000/mo = $24k/yr into partner studios.
+
+**Overflow** above the combined 20 hrs per studio bills at the same $50/hr rate. Unused hours in either account roll one month forward and then reset.
+
+**Why the two-account structure** (vs. a single $1k/mo bucket)? Because classification happens at the billing level, not post-hoc. When Big Muddy Touring LLC spins out (proposed separate entity for road liability), it already has clean expense history — the TOUR account line is its P&L from day one. See `docs/ecosystem-classification-taxonomy-2026-04-20.md` for the full classification framework applied across the ecosystem.
+
+**Start date: April 1, 2026 (backdated).** The April ramp-up work — scope docs, coordination, Cloudbeds setup prep, pricing alignment, Sprinter wrap (including the Studio C logo on the back of the Big Muddy Mobile), 90-day plan alignment — counts against April's account buckets. Each studio gets the full April allocation across both accounts for the setup phase even though we formalized mid-month. May 1 forward, the cadence runs clean.
 
 **On top of that base, additional structures scale as volume justifies:**
 - **Per-shoot photography billing inside Tuthill Design Photography** (the new real-estate service line) — two-tier: Tuthill standard rate or Chase-premium tier. Not billed against the retainer bucket.

@@ -42,9 +42,31 @@ Both tiers are bookable from the same Tuthill Design Photography surface. The cl
 
 ## 3. The baseline retainer — confirmed with Elijah + Miles 2026-04-20 PM
 
-Separate from the photography service line's booking math, MBT has locked a **$1,000/month bucket of hours at $50/hr = 20 hrs/month** with both Studio C Video and Tuthill Design. Each studio gets its own $1k/mo retainer against production + marketing work. Pattern matches the "another Utopia-type account" framing Chase has been using with Elijah.
+**$500/month is the floor for any engagement** in this model — same pattern as the existing Utopia account. One $500/mo account = 10 hours at $50/hr, billed as a single classified engagement against one brand or project. Clients can stack additional $500/mo accounts as they take on more brands or project scopes.
 
-**Start date: April 1, 2026** (backdated). The ramp-up and setup work already happening in April — scope docs, coordination calls, Cloudbeds onboarding prep, photography-tier pricing discussions, Sprinter wrap specs including the Studio C logo, 90-day plan alignment — all legitimately draws against April's 20-hour allocation. Each studio has a full 20-hour bucket available for April even though we formalized on April 20; the setup-phase work that's been happening is the work the retainer is paying for. May 1 forward, the monthly cadence runs clean.
+**The current Big Muddy engagement with each partner studio is TWO $500/month accounts** (total $1,000/month per studio, 20 hours at $50/hr), each classified at the billing level so there's no post-hoc allocation mess:
+
+| Account | Monthly | Hours | Classification | Work scope |
+|---|---|---|---|---|
+| **Big Muddy Touring** | $500 | 10 hrs | `TOUR` | Sprinter van ops + wrap, artist EPKs, touring content, road-side ops, Blues Room promo when it's a touring show rather than an Inn show |
+| **Big Muddy Inn + Magazine** | $500 | 10 hrs | `INN` + `MAG` | Inn marketing + content + listing work, Magazine editorial/design/publishing support, in-house event documentation, Inn-side Blues Room ops |
+
+Each partner studio (Studio C Video + Tuthill Design) runs this same two-account structure, so:
+- Studio C Video → $500 TOUR account + $500 INN/MAG account = $1,000/mo
+- Tuthill Design → $500 TOUR account + $500 INN/MAG account = $1,000/mo
+- Ecosystem total into partner studios = $2,000/mo = $24k/yr (unchanged; what changes is the internal billing structure)
+
+**Start date: April 1, 2026** (backdated). The ramp-up and setup work already happening in April — scope docs, coordination calls, Cloudbeds onboarding prep, photography-tier pricing discussions, Sprinter wrap specs including the Studio C logo, 90-day plan alignment — all legitimately draws against April's allocations (split across TOUR + INN/MAG as appropriate). Each studio has both April buckets available even though we formalized on April 20; the setup-phase work that's been happening is the work the retainer is paying for. May 1 forward, the monthly cadence runs clean.
+
+**Why this structure matters (vs. a single $1k/mo bucket with post-hoc allocation):**
+1. **Expense tracking is clean at the billing level.** No reconciliation debate about which hours were TOUR vs INN at month-end — it's pre-classified when the work starts.
+2. **Big Muddy Touring LLC** (when it spins out) already has clean expense history to inherit — the TOUR account line is its P&L from day one.
+3. **Hours overflow is contained by classification.** If TOUR work balloons in a month while INN is light, we can see the imbalance and decide whether to (a) authorize overflow on the TOUR side only, (b) reallocate one INN hour to TOUR, or (c) defer TOUR work.
+4. **Pricing and client signalling.** The $500/mo floor matches Utopia and creates a clean unit for future engagements — Vicki's first engagement is $500/mo, and she can add accounts as her needs expand.
+
+**Overflow:** each account's own hours roll one month forward and then reset. Overflow above the combined 20 hours (for either studio in aggregate) bills at the same $50/hr rate, with classification still captured per work unit.
+
+**Hours tracking:** two shared Google Sheets per studio, one per account. Columns: date, who, hours, brief description. The classification is implicit in the account (all entries in the TOUR sheet are already coded TOUR). See `docs/ecosystem-classification-taxonomy-2026-04-20.md` for the full code list — relevant here: `TOUR`, `INN`, `MAG`, `BLUES`, `EVENTS`. `MBT-PLATFORM` work (e.g., Elijah's Cloudbeds ride-along) draws against the INN/MAG account since the PMS is Inn-specific.
 
 **What the retainer covers:**
 - Production work for Big Muddy brands (Inn video, Magazine assets, Blues Room documentation, touring EPK cuts, Amy's records + radio visuals on the Studio C side)
