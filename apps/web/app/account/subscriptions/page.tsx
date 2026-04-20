@@ -9,7 +9,7 @@
 // magic link flow lands, the page accepts email + Stripe customer ID from query params
 // OR falls back to the Stripe Customer Portal which handles its own auth.
 
-import { useState, useCallback, Suspense } from 'react';
+import { useState, useCallback, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 interface Subscription {
@@ -56,9 +56,22 @@ function SubscriptionsInner() {
   const [email, setEmail] = useState(queryEmail);
   const [looked, setLooked] = useState(false);
   const [subs, setSubs] = useState<Subscription[]>([]);
+  const [pageContent, setPageContent] = useState<{
+    heroEyebrow?: string;
+    heroHeadline?: string;
+    heroSub?: string;
+    footerNote?: string;
+  } | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [portalInFlight, setPortalInFlight] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/page-content?slug=account/subscriptions')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => setPageContent(j?.data ?? null))
+      .catch(() => {});
+  }, []);
 
   const lookup = useCallback(async () => {
     if (!email.trim() || !email.includes('@')) {
@@ -111,11 +124,16 @@ function SubscriptionsInner() {
   return (
     <div style={{ padding: '40px 24px', maxWidth: '760px', margin: '0 auto' }}>
       <header style={{ marginBottom: '32px' }}>
+        {pageContent?.heroEyebrow && (
+          <p style={{ color: 'var(--text-muted, #6b6254)', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', margin: '0 0 6px' }}>
+            {pageContent.heroEyebrow}
+          </p>
+        )}
         <h1 style={{ fontSize: '28px', margin: '0 0 8px', fontFamily: 'var(--font-display)' }}>
-          Your subscriptions
+          {pageContent?.heroHeadline ?? 'Your subscriptions'}
         </h1>
         <p style={{ color: 'var(--text-muted, #888)', margin: 0, fontSize: '14px' }}>
-          Manage billing, update your payment method, or cancel anytime.
+          {pageContent?.heroSub ?? 'Manage billing, update your payment method, or cancel anytime.'}
         </p>
       </header>
 
