@@ -12,6 +12,8 @@
 
 A new service line inside Tuthill Design: **real estate photography**, marketed and sold under the Tuthill Design brand, with distribution in two regions — the Hudson Valley and the Deep South (Natchez corridor + Blues Highway).
 
+**Context note on Tuthill Design's existing book of business:** In parallel with launching the photography service line, Tuthill Design is also the contractual counterparty to **Scan2Plan** as of 2026-04-20 PM (Chase + Elijah + Miles brought the account in together, billed as Tuthill for collective bargaining and insurance alignment). Full scope of that restructure is in `docs/partners/scan2plan-tuthill-account-2026-04-20.md`. Tuthill Design also holds the **production insurance policy** that covers all production work across the ecosystem — photography, video, on-location shoots. Photography bookings under this scope are covered by that policy.
+
 It's operationally distinct from **Chase Pierson Photography (CPP)**, which keeps everything that isn't real estate — portraits, events, editorial, fine art, brand photography, Big Muddy Magazine work, Blues Room show documentation, travel/place photography.
 
 The split in one line: **RE = Tuthill. Non-RE = CPP.**

@@ -77,6 +77,18 @@ Two reasons:
 
 ---
 
+## Scan2Plan receivable — Tuthill Design A/R, not Chase-personal
+
+Separate from the Tracy+Amy investment ledger and the Chase-personal pass-through ledger below, there is one more major receivable the ecosystem needs to track:
+
+**Scan2Plan owes $26,000 in accumulated royalties/fees** as of 2026-04-20. Under the 2026-04-20 PM restructure, Scan2Plan is contractually a client of **Tuthill Design** (not a Chase-personal royalty relationship), so the $26k is properly an A/R on Tuthill Design's books. The continuing ~$1,500/mo payment stream also flows to Tuthill, with distributions out to Chase + Elijah + Miles per a distribution policy TBD with Miles.
+
+Full account scope: `docs/partners/scan2plan-tuthill-account-2026-04-20.md`.
+
+Implication for this doc: the "Chase's ~$18k/yr Scan2Plan royalty" offset previously cited in the break-even math now flows to Chase as a distribution from Tuthill Design. Same approximate dollar outcome for Chase, but mechanically an ecosystem-internal flow (Tuthill → Chase) rather than external passive income. The $26k historical receivable is Tuthill's to collect; accountant should confirm no double-counting if any of it was previously declared as Chase-personal income.
+
+---
+
 ## Chase's personal-account outlays since leaving Natchez
 
 Chase has been spending from his personal account for ecosystem work since he was last physically in Natchez. These need to be recognized from an accounting standpoint as **ecosystem expenses with Chase as creditor**, with any revenue that came in through the same personal account treated as **ecosystem income** (not Chase's personal income).
