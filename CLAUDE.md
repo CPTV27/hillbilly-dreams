@@ -43,8 +43,8 @@ Four internal clients: Big Muddy Touring, Big Muddy Magazine, Biscuits & Blues (
 **Priority 1 — Big Muddy Touring**
 The entertainment engine. Book bands, provide transport (Sprinter van this week), promote shows through the media company. Shows feed every other module (2:1 multiplier).
 
-**Priority 2 — Deep South Directory (DSD)**
-Business marketing product. Dogfooding on our own properties + Regina, then external sales later this month.
+**Priority 2 — Directory module (B2B engagements only)**
+The Directory is an entity-based module built on the shared MBT platform. It ships as part of B2B client engagements — Big Muddy Magazine uses it for hospitality listings, Bearsville Creative uses it for studios/production resources, Vicki Wolpert gets her own real-estate-focused directory, etc. NOT a standalone $25/mo SaaS to Main Street SMBs. NOT walk-in sales. B2B only, per-engagement deal sizing. The "DSD walk-in / tiered subscription" framing is DEPRECATED 2026-04-20.
 
 **Priority 3 — Bearsville Creative**
 Northeast node (Woodstock, NY). Summer 2026 activation.
@@ -63,7 +63,7 @@ Northeast node (Woodstock, NY). Summer 2026 activation.
 | bigmuddyradio.com | Big Muddy Radio | Active |
 | bigmuddyentertainment.com | Big Muddy Entertainment | Active |
 | bigmuddyrecordlabel.com | Big Muddy Records | Active — we own this one |
-| deepsouthdirectory.com | Deep South Directory | Active — primary revenue |
+| deepsouthdirectory.com | Deep South Directory | Active — demo of the Directory module; NOT sold as a standalone $/mo product |
 | outsidereconomics.com | Outsider Economics | Active — editorial |
 | hillbillydreamsinc.com | HDI Corporate | Active — sparse |
 | tuthilldesign.com | Tuthill Design | Active — partner |
@@ -120,19 +120,17 @@ Northeast node (Woodstock, NY). Summer 2026 activation.
 
 ---
 
-## DSD Pricing (LOCKED — April 5, 2026)
+## Directory Module — B2B Engagements Only (updated 2026-04-20)
 
-| Tier | Price | Name |
-|------|-------|------|
-| Free | $0 | Free |
-| Essentials | $25/mo | Essentials |
-| Pro | $50/mo | Pro |
-| Marketing | $99/mo | Marketing |
-| Engine | $250/mo | Engine |
+The Directory is an entity-based module in the MBT platform. It ships as part of B2B client engagements — NOT as a standalone consumer/SMB subscription product.
 
-Walk-in pitch: lead with value and the region. Never claim features not yet shipped.
+- **NOT sold as $25/$50/$99/$250 tiered monthly SaaS.** The previous tier table (locked Apr 5, now deprecated) described a walk-in SMB sales motion we are not running.
+- **NOT walk-in sales to Main Street.** Do not pitch "Deep South Directory" as a product to individual businesses.
+- **IS shipped inside B2B engagements.** Big Muddy Magazine gets a hospitality directory. Bearsville Creative gets a studios+production-resources directory. Vicki Wolpert gets a Woodstock broker directory. Etc.
+- **Revenue model:** Per-engagement project + hosting/licensing fees, not per-subscriber.
+- **Stripe payment links** named `STRIPE_PAYMENT_LINK_ESSENTIALS` etc. are deprecated; leave them in Vercel env for now but no new customers flow through them.
 
-Stripe payment links in Vercel — `STRIPE_PAYMENT_LINK_ESSENTIALS`, `STRIPE_PAYMENT_LINK_PRO`, `STRIPE_PAYMENT_LINK_MARKETING`, `STRIPE_PAYMENT_LINK_ENGINE`.
+Canonical spec file: TBD — will live at `docs/DIRECTORY_MODULE_SPEC.md` once the entity-based model is fully documented.
 
 ---
 
