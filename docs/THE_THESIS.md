@@ -112,11 +112,11 @@ The relationship structure is JV (per the earlier convo with Gemini), not licens
 
 ---
 
-## What success looks like (in Chase's words)
+## What success looks like
 
-> "Drive around in a tour bus, on time, play awesome shows, bring awesome bands down here, have the inn run itself, reduce the workload, get cash flow positive."
+A tour bus that runs on time. Great shows, with the right bands. An Inn that runs itself. Less work, more margin, real cash flow.
 
-> "We do want to be profitable. Break-even is the minimum — that's a success of its own. But we do want to be profitable. We're just not going to sacrifice quality of life to make an extra million dollars."
+Break-even is the minimum and is itself a success. Above it we work for real profit. The one thing we will not trade for another million dollars is the quality of life that made us want to build this in the first place.
 
 The metric stack:
 

@@ -84,11 +84,10 @@ mindmap
       Above $250k = upside<br/>subsidizes next thing<br/>or buys back time
 
     Lifestyle goal
-      Drive around in a tour bus
-      On time play awesome shows
-      Bring awesome bands down here
-      Have the inn run itself
-      Reduce workload<br/>get cash flow positive
+      Tour bus that runs on time
+      Right bands booked<br/>great shows
+      Inn runs itself
+      Less workload<br/>cash-flow positive
       NOT buying ourselves a job
       NOT a unicorn exit
 
@@ -267,7 +266,7 @@ Before we proceed with downstream cleanup (re-cutting the pro forma, re-aligning
 | 7 | Out-year target is 25% YoY growth ($250k → $313k → $391k → $488k → $610k). | |
 | 8 | The Directory is a CAPABILITY that ships inside B2B engagements (Big Muddy Magazine, Bearsville, Vicki). NOT a $25/$50/$99/$250 SaaS product. | |
 | 9 | Bearsville Creative is the same model in a second region (JV with floor-and-share), not a clone-of-the-platform sold to a third party. | |
-| 10 | The lifestyle goal is "drive a tour bus, play awesome shows, have the inn run itself, reduce workload" — NOT a unicorn exit. | |
+| 10 | The lifestyle goal is a tour bus that runs on time, the right bands booked, the Inn running itself, and a lighter workload — NOT a unicorn exit. | |
 | 11 | MBT (the platform) is the operating layer of the ecosystem. NOT a B2B SaaS startup chasing a SaaS multiple. | |
 | 12 | Run-rate is roughly $250-260k/year, so $250k revenue = ecosystem covers itself = "threshold of not worrying" for the whole ecosystem. | |
 

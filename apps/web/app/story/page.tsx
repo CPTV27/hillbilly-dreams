@@ -192,10 +192,9 @@ export default function StoryPage() {
           </div>
         </div>
         <blockquote className="chase-quote">
-          "We do want to be profitable. Break-even is the minimum — that's a success of its own.
-          But we do want to be profitable. We're just not going to sacrifice quality of life to
-          make an extra million dollars."
-          <cite>— Chase, April 2026</cite>
+          Break-even is the minimum, and a real success on its own. Above it we work for actual
+          profit. What we won&rsquo;t trade for more profit is the quality of life that made us
+          build this in the first place.
         </blockquote>
       </section>
 

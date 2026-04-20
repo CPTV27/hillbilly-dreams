@@ -48,8 +48,7 @@ Bearsville Creative is the **same model in a second region** (Woodstock NY), act
 
 ### What success looks like
 
-> "Drive around in a tour bus, on time, play awesome shows, bring awesome bands down here, have the inn run itself, reduce the workload."
-> — Chase, 2026-04-19
+A tour bus that runs on time. Great shows, with the right bands. An Inn that runs itself. Less work, more margin, real cash flow.
 
 **NOT** a unicorn. **NOT** a SaaS multiple. **NOT** a fundraise.
 **IS** a group of three partners running something they're proud of, with the ecosystem doing more of the heavy lifting than any one person does.

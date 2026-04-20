@@ -57,19 +57,23 @@ See `docs/THE_THESIS.md` (6K words, canonical).
 
 ---
 
-## Section 2 — Approved Quotes (Chase's words, verbatim)
+## Section 2 — Canonical Statements of Principle
 
-Use these verbatim in press, decks, partner docs. Don't paraphrase them into something blander.
+These are the written form of the thesis in its most compressed, shippable shape. They are **not quotes** — they're canonical statements the ecosystem operates by. Use them in press, decks, partner docs, website copy, bios. The voice is Chase's (direct, plain-spoken, no marketing sheen) but the words are polished for print.
 
-> "We're not building a vertically-integrated startup. We're amplifying existing businesses that we already run, with shared technology and shared brand."
+> This isn't a vertically-integrated startup. It's existing businesses — run independently for years — amplified by shared technology and shared brand.
 
-> "We do want to be profitable. Break-even is the minimum — that's a success of its own. But we do want to be profitable. We're just not going to sacrifice quality of life to make an extra million dollars."
+> Break-even is the minimum, and a real success on its own. Above it we work for actual profit. What we won't trade for more profit is the quality of life that made us build this in the first place.
 
-> "Drive around in a tour bus, on time, play awesome shows, bring awesome bands down here, have the inn run itself, reduce the workload."
+> The platform's job is simple: make each business cost less to run, and bring more leads to every one of us.
 
-> "The platform's job is to make the whole thing cost less and bring in more leads to each of us."
+> The goal isn't to build ourselves a job. It's a life that leaves room for the work that made us interesting in the first place.
 
-> "We have to earn it, but we've been good about that." (On the photography revenue track record.)
+> The photography line isn't aspirational. It's a six-year track record, earned every year, being re-activated in a new market.
+
+### Why these are not quotations
+
+Chase thinks in dictation — voice memos, long sentences, digressions. The written statements above preserve the *meaning* and the *voice*, but are shaped for print rather than transcribed from thinking-out-loud. Treat them as canonical, not as citations.
 
 ---
 

@@ -440,7 +440,9 @@ Why not lower: The Inn + corridor traffic + 13-point convergent strategic playbo
 
 ## 17 — What Tomorrow's Onboarding Says (the one paragraph)
 
-> "External AI review converged on one play. The next 90 days we focus on selling the wedding/retreat package and closing 2 B2B Directory deals (Vicki + Paul Green). Tracy owns wedding sales + biz dev. Chase owns B2B technical sales. Amy keeps the Inn running and Arrie Aslin performing. We're hiring a part-time Inn ops manager so neither of you stays trapped in same-week ops. Everything else — touring as a business, magazine ad sales, records, radio, second-region — happens because it's who we are, not because we're chasing its revenue this year. Probability of hitting $250k Y1 if we execute this: 65%. If we end July at $60k cumulative, we're on track."
+The next ninety days, we run one play. Tracy sells the wedding and private-retreat package and carries biz dev across the ecosystem. Chase closes two B2B Directory engagements — Vicki Wolpert in Woodstock and Paul Green in Natchez. Amy runs the Inn and plays as Arrie Aslin. We hire a part-time Inn ops manager so none of us is buried in same-week operations.
+
+Everything else — touring as a business, magazine ad sales, the record label, the radio station, the second region — moves because it's who we are, not because we are hunting its revenue this year. If we execute this shape, we hit $250k for the fiscal year. The leading indicator is cumulative revenue at the end of July: $60k keeps us on pace.
 
 That's the framing. Then walk them through the operational tools.
 
