@@ -5,12 +5,15 @@
 ```
 1. git pull origin main          ← You may be in a stale worktree
 2. git branch                    ← Confirm you're on main or know which branch
-3. ls docs/BUSINESS_ARCHITECTURE.md   ← If this file doesn't exist, you're not current
-4. Read docs/BUSINESS_ARCHITECTURE.md ← Source of truth for the entire business
-5. Read .claude/agents/HANDOFF_COS_TO_PATCH.md ← Capabilities audit, gaps, priorities
+3. Read docs/THE_THESIS.md       ← THE canonical mental model — wins over every other doc
+4. ls docs/BUSINESS_ARCHITECTURE.md   ← If this file doesn't exist, you're not current
+5. Read docs/BUSINESS_ARCHITECTURE.md ← Detailed business architecture
+6. Read .claude/agents/HANDOFF_COS_TO_PATCH.md ← Capabilities audit, gaps, priorities
 ```
 
-**If step 3 fails, STOP.** Run `git pull origin main` again. Do not proceed with stale files.
+**If step 3 fails or step 4 fails, STOP.** Run `git pull origin main` again. Do not proceed with stale files.
+
+**Critical rule:** If anything in this CLAUDE.md, the BUSINESS_ARCHITECTURE doc, the memory files, or any AI-generated report contradicts `docs/THE_THESIS.md` — THE_THESIS wins. Captured 2026-04-19 in Chase's voice. The canonical mental model.
 
 ---
 
