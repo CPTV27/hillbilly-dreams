@@ -77,7 +77,8 @@ One parent identity. One billing relationship for cloud storage. One place to lo
 | **Canva Teams** | Teams | ~$30 [verify] | Chase, Tracy, Amy, Miles, Elijah (5 seats) | MBT-PLATFORM | Brand templates, social graphics, print for all brands |
 | **Adobe Photography Plan** | Photography (Lightroom + Photoshop) | $10 | Chase | CPP | Photo-only plan. For CPP non-RE work + Inn photography. Lightroom Creative Cloud gets cleaned up to just the curated library we use (Action Item 7c below). |
 | **Bitwarden Family** | Family | ~$3 | Chase + team on shared items | MBT-PLATFORM | Password + credential vault. Canonical per CLAUDE.md. |
-| **chasepierson.tv subtotal** | | **~$293–323/mo** | | | |
+| **Spotify Family (6 accounts)** | Family | $17 | Chase, Amy, Tracy + 3 future team seats | MBT-PLATFORM | Personal music + Amy's Arrie Aslin listening research + in-car + home office. Six seats covers the current team with room to grow. |
+| **chasepierson.tv subtotal** | | **~$310–340/mo** | | | |
 
 ### B. Studio C Video — video production stack
 
@@ -137,6 +138,19 @@ One Google Cloud project owns every GCP resource for the ecosystem — billing r
 
 **MBT Platform total (C.1 + C.2 + main C table) = ~$190–330/mo**
 
+### C.3 Big Muddy Records label operations (added 2026-04-20)
+
+All under Big Muddy Records brand; paid via MBT credit card; classified `TOUR` in the 8-code taxonomy (Records currently bundled with Touring until Records has its own entity + P&L).
+
+| Subscription | Plan / tier | Monthly | Users | Classification | Notes |
+|---|---|---|---|---|---|
+| **DistroKid Label tier** | Label ($139/yr) | ~$12 | Big Muddy Records account; handles all signed + distributed artists | TOUR (records sub-line) | Distributes to Spotify, Apple Music, Tidal, Amazon Music, YouTube Music, Deezer, etc. Handles mechanical licensing through Mechanical Licensing Collective (MLC). Unlimited artists under one account. Current roster: **Chase Pierson, Mechanical Bull, Kate Squire, + future signings.** |
+| **SoundCloud For Artists Pro Unlimited** | Pro Unlimited ($99/yr or $12/mo) | $12 | Big Muddy Records main profile + individual artist profiles | TOUR (records sub-line) | Big Muddy Records' SoundCloud presence + per-artist profiles. Unlimited uploads, monetization, advanced analytics. SoundCloud matches the blues/indie corridor discovery thesis. |
+| **Songtrust** (optional, per-artist decision) | Annual | ~$10/mo ($100/yr one-time per artist) | Each artist who writes original material + wants publishing royalty collection | TOUR (records sub-line) | Publishing royalty collection (mechanical + sync + performance) globally. Only activate for artists writing originals who want global publishing royalty admin. Decide per-artist. |
+| **Records subtotal** | | **~$24/mo** (+$10/mo per Songtrust artist if activated) | | | |
+
+---
+
 ### D. Big Muddy Inn — Inn-operational tools (NOT MBT stack)
 
 | Subscription | Plan / tier | Monthly | Users | Classification | Notes |
@@ -159,14 +173,15 @@ One Google Cloud project owns every GCP resource for the ecosystem — billing r
 
 | Bucket | Monthly range |
 |---|---|
-| A. chasepierson.tv identity + AI stack | ~$293–323 |
+| A. chasepierson.tv identity + AI stack (incl. Spotify Family) | ~$310–340 |
 | B. Studio C production stack (incl. CapCut Team 3 seats) | ~$125–170 |
 | C. MBT platform infrastructure (non-GCP) | ~$140–230 |
 | C.1 Google Cloud services | ~$50–100 |
 | C.2 Self-hosted services (Mac mini) | $0 |
-| **Total MBT-paid subscription stack** | **~$608–822/mo** |
+| C.3 Big Muddy Records label ops (DistroKid Label + SoundCloud Pro) | ~$24 |
+| **Total MBT-paid subscription stack** | **~$649–864/mo** |
 
-**The hard cap is $1,000/mo.** Actual estimated at **~$610–820/mo** (after adding CapCut Team 3 seats), which leaves **~$180–390/mo of headroom** for:
+**The hard cap is $1,000/mo.** Actual estimated at **~$650–865/mo** (after adding CapCut Team 3 seats + Spotify Family + Big Muddy Records label ops), which leaves **~$135–350/mo of headroom** for:
 - ChatGPT API spikes above the $50 cap (if we lift the cap)
 - Perplexity API usage variance
 - Vertex AI generation variance (Gemini + Imagen)
@@ -229,6 +244,9 @@ Who gets access to what (post-consolidation):
 | Google Cloud project (chasepierson.tv) | Admin / billing | — | — | — | Developer (read/deploy) |
 | Postiz (self-hosted social scheduler) | Admin | Editor | Editor | Editor (brand kit) | Editor |
 | CapCut Team (3 seats) | Admin / seat 1 | Seat 3 | — | — | Seat 2 |
+| Spotify Family (6 accounts) | Account owner | Member | Member | (future) | (future) |
+| DistroKid Label (Big Muddy Records) | Admin | — | Artist (Arrie Aslin) | — | Producer access |
+| SoundCloud For Artists Pro | Admin | — | Artist (Arrie Aslin) | — | Producer access |
 
 ---
 
@@ -312,10 +330,28 @@ Who gets access to what (post-consolidation):
 
 | Item | Owner | By when |
 |---|---|---|
+| Sign up for Spotify Family under chasepierson.tv account; invite Amy + Tracy | Chase | This week |
+| Add Amy + Tracy to Chase's existing personal YouTube Premium Family (stays on Chase's personal billing for now; migrate to MBT when the "nothing personal" sweep completes) | Chase | This week |
+| Create Big Muddy Records DistroKid Label account; add first three artists (Chase Pierson, Mechanical Bull, Kate Squire) | Chase + Amy | Week 1 |
+| Create Big Muddy Records SoundCloud For Artists Pro account; add artist profiles | Chase + Amy | Week 1 |
+| Decide per-artist whether to activate Songtrust for publishing royalty collection | Chase + each artist | Rolling |
 | Pick + activate Klaviyo-class email marketing platform (Loops is probably cheapest for our volume) | Chase + Tracy | Before end of Week 3 of the 90-day plan |
 | Pick + activate meeting recording + transcription (Otter or Fireflies) | Chase | Before next partner meeting |
 | Verify Postiz coverage of needed social platforms (IG, TikTok, FB, LinkedIn Company, X, YouTube) | Elijah (as social scheduler operator) | Week 1 |
 | If Postiz gaps exist, pick a hosted replacement (Buffer / Later) within budget | Chase | Week 2 |
+
+### 6h-def. Deferred (on the backlog, not adding now)
+
+| Item | Reason for deferral |
+|---|---|
+| OpenPhone per-brand numbers | Revisit when the Hospitality Coordinator comes online (May 31) — real operational need will crystallize then |
+| E-signature (Dropbox Sign / DocuSign) | Wait until the first wedding contract, Vicki engagement, or partner agreement genuinely needs e-sign. Until then, email confirmations and PDF attachments cover it. |
+| Backblaze computer backup | GCS bucket already serves the backup role for ecosystem photo library. Chase's personal workstation files are separate — revisit if photo catalog risk surfaces |
+| Premium credit cards (Amex Plat, Chase Sapphire Reserve) | Only justified if business travel volume grows past ~6 trips/yr |
+| Editorial subscriptions (NYT, Atlantic, Oxford American, etc.) | Nice-to-haves. Add individually if a specific research need arises. |
+| Commercial music license for Inn public spaces (Soundtrack Your Brand, Cloud Cover) | Risk is real but enforcement unlikely at our scale; revisit if we host a sponsored event where licensing matters |
+| Stock music (Epidemic Sound, Artlist) | Activate when Studio C production volume justifies (probably Q3) |
+| Photo Mechanic Plus | Nice workflow lift for CPP, not essential; add if Chase's shoot volume makes Lightroom culling a bottleneck |
 
 ### 6i. Reconcile the $1k/mo hard cap after 60 days
 
