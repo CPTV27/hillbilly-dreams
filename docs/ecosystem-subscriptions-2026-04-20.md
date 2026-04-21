@@ -78,7 +78,9 @@ One parent identity. One billing relationship for cloud storage. One place to lo
 | **Adobe Photography Plan** | Photography (Lightroom + Photoshop) | $10 | Chase | CPP | Photo-only plan. For CPP non-RE work + Inn photography. Lightroom Creative Cloud gets cleaned up to just the curated library we use (Action Item 7c below). |
 | **Bitwarden Family** | Family | ~$3 | Chase + team on shared items | MBT-PLATFORM | Password + credential vault. Canonical per CLAUDE.md. |
 | **Spotify Family (6 accounts)** | Family | $17 | Chase, Amy, Tracy + 3 future team seats | MBT-PLATFORM | Personal music + Amy's Arrie Aslin listening research + in-car + home office. Six seats covers the current team with room to grow. |
-| **chasepierson.tv subtotal** | | **~$310–340/mo** | | | |
+| **Claude Pro — Tracy** | Pro monthly | $20 | Tracy (authenticated to tracyaldersonallen@gmail.com) | MBT-PLATFORM | Tracy's personal AI assistant. Gmail MCP + Asana MCP + Google Drive MCP connected to HER accounts. Enables her to run the Gmail subscription audit, review her own inbox, process her own tasks, and have a working conversational assistant routed through Asana. MBT pays; account is under her email. |
+| **Claude Pro — Amy** | Pro monthly | $20 | Amy (authenticated to amyaldersonallen@gmail.com) | MBT-PLATFORM | Amy's personal AI assistant. Same pattern as Tracy's. Gmail + Asana + Drive MCPs on her accounts. Helps her run Blues Room show comms, Arrie Aslin logistics, podcast production prep. MBT pays; account is under her email. |
+| **chasepierson.tv subtotal** | | **~$350–380/mo** | | | |
 
 ### B. Studio C Video — video production stack
 
@@ -173,15 +175,15 @@ All under Big Muddy Records brand; paid via MBT credit card; classified `TOUR` i
 
 | Bucket | Monthly range |
 |---|---|
-| A. chasepierson.tv identity + AI stack (incl. Spotify Family) | ~$310–340 |
+| A. chasepierson.tv identity + AI stack (incl. Spotify Family + Claude Pro × 2 for Tracy & Amy) | ~$350–380 |
 | B. Studio C production stack (incl. CapCut Team 3 seats) | ~$125–170 |
 | C. MBT platform infrastructure (non-GCP) | ~$140–230 |
 | C.1 Google Cloud services | ~$50–100 |
 | C.2 Self-hosted services (Mac mini) | $0 |
 | C.3 Big Muddy Records label ops (DistroKid Label + SoundCloud Pro) | ~$24 |
-| **Total MBT-paid subscription stack** | **~$649–864/mo** |
+| **Total MBT-paid subscription stack** | **~$689–904/mo** |
 
-**The hard cap is $1,000/mo.** Actual estimated at **~$650–865/mo** (after adding CapCut Team 3 seats + Spotify Family + Big Muddy Records label ops), which leaves **~$135–350/mo of headroom** for:
+**The hard cap is $1,000/mo.** Actual estimated at **~$690–905/mo** (after adding CapCut Team 3 seats + Spotify Family + Big Muddy Records label ops + Claude Pro × 2 for Tracy & Amy), which leaves **~$95–310/mo of headroom** for:
 - ChatGPT API spikes above the $50 cap (if we lift the cap)
 - Perplexity API usage variance
 - Vertex AI generation variance (Gemini + Imagen)
@@ -247,6 +249,9 @@ Who gets access to what (post-consolidation):
 | Spotify Family (6 accounts) | Account owner | Member | Member | (future) | (future) |
 | DistroKid Label (Big Muddy Records) | Admin | — | Artist (Arrie Aslin) | — | Producer access |
 | SoundCloud For Artists Pro | Admin | — | Artist (Arrie Aslin) | — | Producer access |
+| Claude Pro — Tracy's personal agent | — | Sole user (her email) | — | — | — |
+| Claude Pro — Amy's personal agent | — | — | Sole user (her email) | — | — |
+| Claude Max — Chase | Sole user | — | — | — | — |
 
 ---
 
