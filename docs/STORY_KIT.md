@@ -26,7 +26,7 @@ Pick the right length for the context.
 > **What we're not:** a vertically-integrated startup chasing scale or a SaaS multiple. Not a fundraise. Not an acquisition play.
 >
 > **The businesses being amplified:**
-> - Chase Pierson's existing portfolio — Chase Pierson Photography (6-year $100k+/yr track record), Studio C Video (video production company, Elijah as partner), partner studios like Tuthill Design
+> - Chase Pierson's existing portfolio — Chase Pierson Photography (6-year $100k+/yr track record), Studio C Video (video production company, Miles as partner), partner studios like Tuthill Design (Elijah)
 > - Tracy Alderson-Allen's Big Muddy Inn (6 rooms + 50-seat Blues Room) + Big Muddy Magazine (her "Mississippi Martha Stewart" editorial voice) + BizDev for Chase Pierson Photography
 > - Amy Allen's singing career (performs as Arrie Aslin, Inn artist-in-residence) — Big Muddy Touring + Big Muddy Records + Big Muddy Radio exist primarily to support her, with ancillary lift for other corridor bands
 >
@@ -94,7 +94,7 @@ Pull these verbatim. Don't re-draft from memory — the Chase bio specifically h
 
 ### Chase Pierson — medium (120 words, for partner decks, press)
 
-> Chase Pierson is a business and media executive, photographer, and platform operator with 25 years in broadcast production. He launched Democracy Now! on television, worked directly with Oscar-nominated director Jon Alpert at DCTV (building three broadcast studios and the globally-broadcasting CyberCar), and has shot for HBO, PBS, NHK, Netflix, and ITVS. He runs Chase Pierson Photography (6-year $100k+/yr track record) and Studio C Video (production company, partnered with Elijah Davis), and operates the MBT platform — a shared technology and brand layer amplifying his portfolio alongside the Big Muddy ecosystem (Natchez Inn, Magazine, Touring, Records, Radio). Based between upstate New York and Natchez, Mississippi.
+> Chase Pierson is a business and media executive, photographer, and platform operator with 25 years in broadcast production. He launched Democracy Now! on television, worked directly with Oscar-nominated director Jon Alpert at DCTV (building three broadcast studios and the globally-broadcasting CyberCar), and has shot for HBO, PBS, NHK, Netflix, and ITVS. He runs Chase Pierson Photography (6-year $100k+/yr track record) and Studio C Video (production company, partnered with Miles Dubois), and operates the MBT platform — a shared technology and brand layer amplifying his portfolio alongside the Big Muddy ecosystem (Natchez Inn, Magazine, Touring, Records, Radio). Based between upstate New York and Natchez, Mississippi.
 
 ### Chase Pierson — long (for extended profiles)
 
@@ -108,9 +108,13 @@ Pull these verbatim. Don't re-draft from memory — the Chase bio specifically h
 
 > Amy Allen is a working singer (performs as Arrie Aslin), artist-in-residence at the Big Muddy Inn, and co-owner of the Inn operation. An equity partner in the Big Muddy holding. Big Muddy Touring, Records, and Radio exist primarily to support her career, with ancillary lift for other corridor bands.
 
-### Elijah Davis — short (for Studio C materials)
+### Miles Dubois — short (for Studio C materials)
 
-> Elijah Davis is a partner in Studio C Video, the production company alongside Chase Pierson Photography. Based in the Hudson Valley.
+> Miles Dubois is a partner in Studio C Video, the production company alongside Chase Pierson Photography. Based in the Hudson Valley.
+
+### Elijah Davis — short (for Tuthill Design materials)
+
+> Elijah Davis is the operator of Tuthill Design, the design + real estate media studio that anchors the Hudson Valley node of the ecosystem. Tuthill Design Photography launches under his watch in 2026.
 
 ---
 
@@ -129,8 +133,8 @@ Use these exactly. Do not invent alternative framings.
 | **Big Muddy Radio** | Internet radio + podcast network (pre-launch Q4 2026) featuring corridor music + Amy's shows + editorial content. |
 | **Chase Pierson Photography (CPP)** | Chase's established photography business (6-year track record), expanding from New York into the Natchez + Deep South market. **Scope as of 2026-04-20: non-real-estate only** — portraits, events (incl. weddings), editorial, fine art + gallery print sales, brand, travel, Blues Room + Studio C documentation. To run as a DBA under MBT (FarleyPierson LLC closing). |
 | **Tuthill Design Photography** | NEW service line under Tuthill Design, launched 2026-04-20. **Real-estate photography** in Hudson Valley + Deep South, two-tier booking: Tuthill Design standard rate (any Tuthill shooter) or Chase-premium tier (Chase personally, higher rate). MBT markets, Tuthill delivers. All real-estate work routes here — CPP is out of RE. |
-| **Studio C Video** | Production company alongside Chase Pierson Photography. Partnered with Elijah Davis. Offers video services in addition to photography. Counter-seasonal: NY peak May–Oct, Natchez peak Oct–Apr. Also the planned Tier-1 support layer for Big Muddy Inn Cloudbeds operations. **Marketed as a full brand by MBT / Big Muddy** — Magazine, Radio, social, and Tracy's biz dev drive Studio C's whole-company pipeline, not just the Big-Muddy-internal work. |
-| **Tuthill Design** | Partner design studio amplified inside the MBT ecosystem. Brand + print + graphic work for Big Muddy brands and shared clients. Now also the operating home for Tuthill Design Photography. **Marketed as a full brand by MBT / Big Muddy** — Magazine, Radio, social, and Tracy's biz dev drive Tuthill's whole-studio pipeline, not just the Big-Muddy-internal work. |
+| **Studio C Video** | Production company alongside Chase Pierson Photography. Partnered with Miles Dubois. Offers video services in addition to photography. Counter-seasonal: NY peak May–Oct, Natchez peak Oct–Apr. Also the planned Tier-1 support layer for Big Muddy Inn Cloudbeds operations. **Marketed as a full brand by MBT / Big Muddy** — Magazine, Radio, social, and Tracy's biz dev drive Studio C's whole-company pipeline, not just the Big-Muddy-internal work. |
+| **Tuthill Design** | Partner design studio amplified inside the MBT ecosystem, operated by Elijah Davis. Brand + print + graphic work for Big Muddy brands and shared clients. Now also the operating home for Tuthill Design Photography. **Marketed as a full brand by MBT / Big Muddy** — Magazine, Radio, social, and Tracy's biz dev drive Tuthill's whole-studio pipeline, not just the Big-Muddy-internal work. |
 | **Bearsville Creative** | The Northern hemisphere of the ecosystem — Woodstock NY node activating summer 2026. Not a new product; the same model in a second region. |
 | **Deep South Directory (`deepsouthdirectory.com`)** | A demonstration instance of the Directory module deployed inside an MBT-branded site. NOT a standalone SaaS product. |
 | **Outsider Economics** | Editorial side-project + philosophical backbone. The "why" that makes the "what" (the directory module, the ecosystem, the amplification model) legible. |

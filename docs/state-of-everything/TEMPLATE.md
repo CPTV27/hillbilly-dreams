@@ -120,11 +120,11 @@
 - Focus:
 - Open P0:
 
-### Elijah Davis (Studio C)
+### Miles Dubois (Studio C)
 - Focus (within $500/mo INN/MAG + $500/mo TOUR accounts):
 - Open P0:
 
-### Miles Dubois (Tuthill Design)
+### Elijah Davis (Tuthill Design)
 - Focus:
 - Open P0:
 

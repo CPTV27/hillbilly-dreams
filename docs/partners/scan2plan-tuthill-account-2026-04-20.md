@@ -2,7 +2,7 @@
 
 **Effective:** April 20, 2026 (clarified / retroactively structured)
 **Billing entity:** Tuthill Design
-**Principals who brought the account in:** Chase Pierson, Elijah Davis (Studio C Video), Miles Dubios (Tuthill Design)
+**Principals who brought the account in:** Chase Pierson, Miles Dubois (Studio C Video), Elijah Davis (Tuthill Design)
 **Insurance holder for production:** Tuthill Design
 **Status:** Internal — for partner + counsel + accountant reference.
 
@@ -52,7 +52,7 @@ Average Scan2Plan royalty payout (per Chase, 2026-04-20): **~$1,500/month or mor
 
 ---
 
-## 4. Distribution policy among the three principals (TBD with Miles)
+## 4. Distribution policy among the three principals (TBD with Elijah)
 
 Chase + Elijah + Miles all brought the Scan2Plan account into Tuthill. How Tuthill Design splits the Scan2Plan revenue between them needs a written policy. Three common models, in order of cleanest:
 
@@ -73,7 +73,7 @@ Chase + Elijah + Miles all brought the Scan2Plan account into Tuthill. How Tuthi
 
 **Recommended:** Model A with a documented exception clause — if the nature of the Scan2Plan work shifts materially (e.g., one person starts doing 80% of the actual delivery), the split can be renegotiated. Simple baseline, clear trigger for change.
 
-**Decision owner:** Chase + Miles, with Elijah in the loop. Needs to be documented in the Tuthill Design partnership / account register before the first post-restructure payment arrives.
+**Decision owner:** Chase + Elijah, with Miles in the loop. Needs to be documented in the Tuthill Design partnership / account register before the first post-restructure payment arrives.
 
 ---
 
@@ -94,7 +94,7 @@ What "production work" covers (pending verification of actual policy language):
 
 1. Get the actual Tuthill Design production policy document + declarations page
 2. Read the "covered activities" + "covered insureds" language carefully
-3. Confirm it covers: Chase shooting for CPP, Chase shooting for Tuthill Photography, Elijah shooting for Studio C, all three shooting for Scan2Plan
+3. Confirm it covers: Chase shooting for CPP, Chase shooting for Tuthill Photography, Miles shooting for Studio C, all three shooting for Scan2Plan
 4. Confirm whether it covers the people (named insureds) or the entity (Tuthill) — matters for Scan2Plan work where Chase might be the actual shooter but Tuthill is the billing entity
 5. If gaps exist, plan for a rider or a unified policy at the next renewal — which aligns with the anchor task already assigned to that department ("exploring a unified policy covering all operating entities")
 
@@ -114,8 +114,8 @@ What "production work" covers (pending verification of actual policy language):
 | Item | Owner | By when |
 |---|---|---|
 | Retroactively assign the $26k Scan2Plan receivable from Chase-personal to Tuthill Design (written instrument if needed) | Chase + counsel | Next counsel engagement |
-| Update Scan2Plan's vendor record so future payments route to Tuthill Design | Chase / Miles | Before first post-restructure payment |
-| Document Tuthill's distribution policy for Scan2Plan revenue across the three principals | Miles + Chase (Elijah in loop) | Before first post-restructure payment |
+| Update Scan2Plan's vendor record so future payments route to Tuthill Design | Chase / Elijah | Before first post-restructure payment |
+| Document Tuthill's distribution policy for Scan2Plan revenue across the three principals | Elijah + Chase (Miles in loop) | Before first post-restructure payment |
 | Pull Tuthill's production insurance policy and confirm covered activities | Insurance & Risk Management dept | Next 30 days |
 | Reconcile historical royalty income — was any of the $26k already declared as Chase-personal income? Correct if so. | Chase + accountant | Next accountant engagement |
 | Update `tax-db/chase_finance.db` opportunities table to mark Scan2Plan as a Tuthill account, not a Chase-direct relationship | Chase | When next running the finance db refresh |

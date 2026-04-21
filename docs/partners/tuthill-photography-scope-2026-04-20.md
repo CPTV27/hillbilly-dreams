@@ -90,7 +90,7 @@ Each partner studio (Studio C Video + Tuthill Design) runs this same two-account
 
 ---
 
-## 4. Photography service-line revenue flow (framework — exact splits TBD with Miles)
+## 4. Photography service-line revenue flow (framework — exact splits TBD with Elijah)
 
 ### When the client books the Tuthill standard tier AND the assigned shooter is NOT Chase:
 - Client pays Tuthill Design
@@ -109,7 +109,7 @@ Each partner studio (Studio C Video + Tuthill Design) runs this same two-account
 - Tuthill keeps a coordination/delivery fee (smaller absolute margin; the premium belongs to Chase)
 - MBT receives the marketing-operator fee
 
-### Illustrative numbers (to be locked with Miles):
+### Illustrative numbers (to be locked with Elijah):
 
 | Tier | Client pays | Tuthill keeps | Chase paid | MBT marketing fee |
 |---|---|---|---|---|
@@ -117,7 +117,7 @@ Each partner studio (Studio C Video + Tuthill Design) runs this same two-account
 | Tuthill standard (Chase shoots) | $800 | $300 | $400 | $100 |
 | Chase-premium tier | $1,500 | $300 | $1,100 | $100 |
 
-These are placeholders. Real numbers depend on the Hudson Valley vs. Deep South market, deliverable package (photos + drone + twilight?), and whatever Miles and Chase agree is fair.
+These are placeholders. Real numbers depend on the Hudson Valley vs. Deep South market, deliverable package (photos + drone + twilight?), and whatever Elijah and Chase agree is fair.
 
 ---
 
@@ -158,7 +158,7 @@ One team, two regions, near-full-year utilization. That's the shape.
 | Tuthill Design portfolio page (web) | Service catalog + booking surface | MBT |
 | Deep South Directory (as applicable) | Directory listing for RE services | MBT |
 | Big Muddy Magazine | Editorial coverage of notable properties | Tracy |
-| Studio C Video cross-pollination | Video walkthrough upsell bundle | Elijah |
+| Studio C Video cross-pollination | Video walkthrough upsell bundle | Miles |
 | Paul Green Realty pilot | First 5-agent package | Chase + Tracy |
 | Vicki Wolpert referrals | Cross-region agent referrals | Vicki |
 
@@ -196,16 +196,16 @@ One team, two regions, near-full-year utilization. That's the shape.
 
 **Studio C Video upsell:**
 - At booking or at delivery, customer offered video walkthrough add-on
-- Elijah / Studio C fulfills
+- Miles / Studio C fulfills
 - Creates a natural Tuthill + Studio C bundle under the partner-amplification thesis
 
 ---
 
-## 8. What Tuthill Design (Miles) needs to agree to
+## 8. What Tuthill Design (Elijah) needs to agree to
 
-Before this ships, Chase and Miles have a 30-minute alignment call covering:
+Before this ships, Chase and Elijah have a 30-minute alignment call covering:
 
-1. **Brand use** — Tuthill Design Photography is a Tuthill-branded service; does Miles approve the brand-extension and the two-tier pricing model?
+1. **Brand use** — Tuthill Design Photography is a Tuthill-branded service; does Elijah approve the brand-extension and the two-tier pricing model?
 2. **Operational ownership** — who owns shooter assignment, editing workflow, client delivery? Tuthill or MBT?
 3. **Revenue share splits** — exact percentages on each tier; MBT marketing-operator fee structure
 4. **Shooter pool** — does Tuthill recruit standard-tier photographers, or does MBT handle it?
@@ -262,7 +262,7 @@ Why:
 - **THE_THESIS.md** — portfolio section gets a Tuthill Design Photography line; CPP line gets refined to "non-RE only"; entity-structure note updated from "FarleyPierson TBD" to "close + DBA from MBT (pending counsel)"
 - **90_DAY_PLAN.md** — Week 1 photography re-engagement splits into two outreach tracks (Tuthill RE vs. CPP non-RE); the $100k CPP revenue line needs to be re-cast as "photography revenue" spanning Tuthill RE + CPP non-RE
 - **STORY_KIT.md** — brand descriptions add Tuthill Design Photography; CPP brand description refined to non-RE
-- **partner-studios-pitch-2026-04-20.md** — Tuthill Design gets an explicit product-level scope (photography service line) to anchor the conversation with Miles
+- **partner-studios-pitch-2026-04-20.md** — Tuthill Design gets an explicit product-level scope (photography service line) to anchor the conversation with Elijah
 - **/story page** — portfolio section reflects the split
 
 ---
@@ -271,8 +271,8 @@ Why:
 
 1. Approve Option 2 (FarleyPierson close + DBA from MBT) — or go with Option 1 (rename)?
 2. Lock the tier pricing (illustrative in Section 3 — need real numbers for Tuthill standard + Chase-premium across property-size brackets)
-3. Miles alignment call — scheduled when?
-4. Standard-tier shooter pool — who recruits? (Recommend Miles/Tuthill since it's their brand + workflow)
+3. Elijah alignment call — scheduled when?
+4. Standard-tier shooter pool — who recruits? (Recommend Elijah/Tuthill since it's their brand + workflow)
 5. MBT marketing-operator fee — flat per shoot, percentage of booking, or retainer? (Recommend percentage tied to the Tuthill side so it scales with volume without burdening the operator fee when volume is low)
 
 ---
