@@ -85,7 +85,8 @@ One parent identity. One billing relationship for cloud storage. One place to lo
 |---|---|---|---|---|---|
 | **Adobe Creative Cloud (full)** | All Apps | ~$60 | Elijah (primary), Chase (secondary) | STUDIO-C | Premiere, After Effects, Audition, Photoshop, Lightroom — full suite for video production |
 | **Restream.io** | Standard or higher [verify tier + price] | ~$20–49 | Studio C workspace; used across all brand channels | STUDIO-C | **MIGRATION: currently on Big Muddy account. Cancel there + start a new account on Studio C.** Paid by MBT card; distributed to all brand streaming needs. |
-| **Studio C subtotal** | | **~$80–109/mo** | | | |
+| **CapCut Team (3 seats)** | Team / Business tier | ~$45–60 [verify exact tier + price] | **3 named users: Chase · Amy · Elijah (Studio C)** — each with their own login, one billing account | STUDIO-C | Quick-cut video editing for social + Arrie Aslin content + Inn/Magazine video + Studio C productions. Each user gets an individual seat under one team account so they can collaborate without sharing logins. **MIGRATION: existing CapCut Pro is billed through Chase's personal Apple ID (chasethis@gmail) — cancel that entirely. Create new CapCut Team account under business email (capcut@chasepierson.tv or me@chasepierson.tv), add 3 seats for Chase/Amy/Elijah, pay via MBT card.** |
+| **Studio C subtotal** | | **~$125–170/mo** | | | |
 
 ### C. MBT Platform Infrastructure — the tech backbone
 
@@ -159,13 +160,13 @@ One Google Cloud project owns every GCP resource for the ecosystem — billing r
 | Bucket | Monthly range |
 |---|---|
 | A. chasepierson.tv identity + AI stack | ~$293–323 |
-| B. Studio C production stack | ~$80–109 |
+| B. Studio C production stack (incl. CapCut Team 3 seats) | ~$125–170 |
 | C. MBT platform infrastructure (non-GCP) | ~$140–230 |
 | C.1 Google Cloud services | ~$50–100 |
 | C.2 Self-hosted services (Mac mini) | $0 |
-| **Total MBT-paid subscription stack** | **~$563–762/mo** |
+| **Total MBT-paid subscription stack** | **~$608–822/mo** |
 
-**The hard cap is $1,000/mo.** Actual estimated at **~$560–760/mo**, which leaves **~$240–440/mo of headroom** for:
+**The hard cap is $1,000/mo.** Actual estimated at **~$610–820/mo** (after adding CapCut Team 3 seats), which leaves **~$180–390/mo of headroom** for:
 - ChatGPT API spikes above the $50 cap (if we lift the cap)
 - Perplexity API usage variance
 - Vertex AI generation variance (Gemini + Imagen)
@@ -227,6 +228,7 @@ Who gets access to what (post-consolidation):
 | Immich (self-hosted photo library on Mac mini) | Admin | Viewer | Viewer | Viewer | Admin (Mac mini operator) |
 | Google Cloud project (chasepierson.tv) | Admin / billing | — | — | — | Developer (read/deploy) |
 | Postiz (self-hosted social scheduler) | Admin | Editor | Editor | Editor (brand kit) | Editor |
+| CapCut Team (3 seats) | Admin / seat 1 | Seat 3 | — | — | Seat 2 |
 
 ---
 
@@ -258,6 +260,17 @@ Who gets access to what (post-consolidation):
 | Cancel existing Restream.io account (currently under Big Muddy) | Chase | This week |
 | Create new Restream.io account under Studio C Video; MBT card for billing | Chase + Elijah | Same week |
 | Re-add brand streaming destinations (YouTube, Facebook, etc. for all Big Muddy brand channels) | Elijah | Week 1 of new account |
+
+### 6c-bis. CapCut Team migration
+
+| Item | Owner | By when |
+|---|---|---|
+| Cancel existing CapCut Pro subscription on Chase's personal Apple ID (chasethis@gmail) | Chase | This week |
+| Verify CapCut Team / Business tier pricing for 3 seats (CapCut Commerce Pro or equivalent) | Chase | Before creating new account |
+| Create new CapCut Team account under business email (capcut@chasepierson.tv or me@chasepierson.tv) | Chase | This week |
+| Add 3 named seats: Chase, Amy, Elijah (Studio C) | Chase | Same session |
+| Pay via MBT credit card | Chase | Same session |
+| Each user gets their own login + can collaborate on shared projects | Chase | Sign-up flow |
 
 ### 6d. Adobe split
 
