@@ -90,22 +90,40 @@ Northeast node (Woodstock, NY). Summer 2026 activation.
 
 ---
 
-## Machines
+## Machines + Production Services
 
-| Machine | IP | User | SSH | Role |
-|---------|----|----|-----|------|
-| MacBook Pro | local | chasethis | — | Dev, code, deployment |
-| Mac mini | 192.168.4.37 | ClawdBOT | `ssh -i ~/.ssh/id_mini ClawdBOT@192.168.4.37` | Broadcasting, Plex, services |
+**Canonical reference:** `docs/CANONICAL_INFRASTRUCTURE_2026-04-20.md`. Nothing ships without an entry there + a Bitwarden item.
 
-## Key Services (Mac Mini)
+### Personal workstations
 
-| Service | Port | URL |
-|---------|------|-----|
-| OpenBroadcaster | 8080 | http://192.168.4.37:8080 (admin/bigmuddy2026) |
-| Icecast | 8010 | http://192.168.4.37:8010 |
-| Plex | 32400 | http://192.168.4.37:32400 |
-| Postiz | 4007 | http://192.168.4.37:4007 |
-| Open Notebook | 5055 | http://192.168.4.37:5055 |
+| Machine | IP | User | Role |
+|---|---|---|---|
+| MacBook Pro | local | chasethis | Chase's dev + code + deployment machine |
+| Mac mini | 192.168.4.37 | ClawdBOT | Personal workstation only — **not a services host** (2026-04-20). Powering off during Chase's NY drive. Zero business workloads depend on it. |
+
+### Production services hosts
+
+| Host | Plan | Public endpoint | Purpose | Credentials |
+|---|---|---|---|---|
+| **Hetzner CCX23 `bigmuddy-services`** | 4 vCPU / 16 GB / 160 GB NVMe, Ashburn VA, $39.99/mo | 5.161.61.151 · Tailscale `bigmuddy-services` (100.89.173.28) | Immich + Caddy (running); Postiz + Open Notebook (planned) | BW: `Hetzner - bigmuddy-services` (ID `48bb42a1-3c26-4778-8f5e-b42f015697ec`) |
+| **DigitalOcean droplet `bigmuddy-radio`** | — | 206.189.200.208 · stream.bigmuddytouring.com | AzuraCast — Big Muddy Radio streaming (SSL currently broken, needs Let's Encrypt) | BW: `AzuraCast — Big Muddy Radio Admin` + `DigitalOcean — bigmuddy-radio droplet` |
+
+### Cloud services (managed — no server to maintain)
+
+| Service | Usage | Credentials |
+|---|---|---|
+| Vercel (chasepierson.tv org, Pro) | Next.js app + 14 brand domains | BW: `Vercel Pro Token - Chase Piersons Projects` |
+| Neon Postgres (HDI Production) | Primary app DB | BW: `Neon Postgres — HDI Production Database` |
+| Sanity (project 5p7h8glj) | CMS for Magazine + brand sites | BW: `Sanity` |
+| Cloudflare (DNS + Email Routing + 2 API tokens) | All domain DNS, email forwarding for deprecated workspaces | BW: `Cloudflare API Token (...)` entries |
+| GCP `bigmuddy-ff651` (HDI Sovereign) | Vertex AI (Gemini + Imagen), GCS `bmt-media-bigmuddy`, Cloud SQL `sovereign-db-primary` (pgvector 0.8.1) | BW: `Google OAuth — HDI` + `Gemini API Key (...)` |
+| Resend | Transactional email | BW: (via subs doc) |
+| Buzzsprout | Podcast hosting | BW: (via subs doc) |
+| GitHub (CPTV27) | `hillbilly-dreams` + `measurably-better-things` repos | BW: `GitHub PAT — Antigravity MCP` |
+
+### Shared agent integrations
+
+Delta Dawn is not just a name — four GChat webhooks (Agent Desk/Huck, Chuck, Delta Dawn, Ledger) live in Bitwarden alongside Delta Dawn's read-only Cloudbeds API key + Siri voice key. Full inventory in `docs/CANONICAL_INFRASTRUCTURE_2026-04-20.md` §4.
 
 ---
 
