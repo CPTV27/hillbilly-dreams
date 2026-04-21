@@ -1,9 +1,9 @@
 # Studio C — Brand Identity Guidelines
 
 **Spec version:** 2026-04-21
-**Brand owner:** Tuthill Design LLC (Studio C — production DBA; Elijah Davis, operator)
+**Brand owner:** Tuthill Design LLC (Studio C — production DBA; Miles Dubois, operator)
 **Voice doc:** `docs/voice/studio-c.md`
-**Designer:** Elijah Davis + Miles Dubois + Chase Pierson (in-house — executed in Figma + Canva Team; Elijah drives since Studio C is his operating brand)
+**Designer:** Miles Dubois + Elijah Davis + Chase Pierson (in-house — executed in Figma + Canva Team; Miles drives since Studio C is his operating brand)
 **Template reference:** Rosemary Hallmark Creative / The Big Muddy Inn + Blues Room, March 2023
 
 > **Positioning premise from the voice doc:** *"Direct & action-oriented, prepared & proactive, technically proficient, confident & capable, reliable & collaborative."* Studio C is the **production arm** — broadcast, events, concert-capture, multi-cam, live-stream, post-production. The identity is technical, rigorous, unmistakably professional, and visually reads as "control room."
@@ -141,11 +141,11 @@ studio-c-deliverable-slate/
 ## 12. Designer contact
 
 ```
-BRAND PACKAGE CREATED BY ELIJAH DAVIS + MILES DUBOIS + CHASE PIERSON
+BRAND PACKAGE CREATED BY MILES DUBOIS + ELIJAH DAVIS + CHASE PIERSON
 STUDIO C · HILLBILLY DREAMS INC.
 LAST UPDATED [YYYY-MM]
 
-Operator:          Elijah Davis
+Operator:          Miles Dubois
 DBA of:            Tuthill Design LLC
 Location:          Bearsville, New York (production base) + Natchez, Mississippi (Southern-hemisphere branch opening 2026)
 Web:               studiocvideo.com

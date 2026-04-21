@@ -14,7 +14,7 @@ One specification doc per brand, modeled after Rosemary Hallmark Creative's Big 
 2. Give **Chase + the HDI team** a clean brief each brand's visual execution tracks against — built in Canva, Figma, or Illustrator in-house, not outsourced.
 3. Keep every brand inside the family coherent — same structural template, same level of discipline — without flattening what makes each one distinct.
 
-**Designer: we are.** Chase has the visual eye (he's a working photographer, he's been running the visual direction for every HDI property since day one, he has Canva Team + Figma access, and he's the person whose taste the family tracks to). Rosemary Hallmark Creative's existing Big Muddy Inn guideline is the structural exemplar we copy — not a retainer we re-engage. Tuthill Design (Miles) and Studio C (Elijah) consult when their own brands come up, but the execution is in-house.
+**Designer: we are.** Chase has the visual eye (he's a working photographer, he's been running the visual direction for every HDI property since day one, he has Canva Team + Figma access, and he's the person whose taste the family tracks to). Rosemary Hallmark Creative's existing Big Muddy Inn guideline is the structural exemplar we copy — not a retainer we re-engage. Tuthill Design (Elijah) and Studio C (Miles) consult when their own brands come up, but the execution is in-house.
 
 Every spec follows the same 11-section structure from the Big Muddy template:
 
@@ -41,8 +41,8 @@ Every spec follows the same 11-section structure from the Big Muddy template:
 | [big-muddy-radio-brand-guidelines-2026-04-21.md](./big-muddy-radio-brand-guidelines-2026-04-21.md) | Big Muddy Radio | Always-on audio layer. Curated corridor music + Arrie Aslin's show. | `docs/voice/big-muddy-radio.md` |
 | [big-muddy-magazine-brand-guidelines-2026-04-21.md](./big-muddy-magazine-brand-guidelines-2026-04-21.md) | Big Muddy Magazine | Heritage journal that sells rooms at the Inn. Tracy is editor. | `docs/voice/big-muddy-magazine.md` |
 | [chase-pierson-photography-brand-guidelines-2026-04-21.md](./chase-pierson-photography-brand-guidelines-2026-04-21.md) | Chase Pierson Photography | Premium editorial + documentary photography. Chase's personal brand. | `docs/voice/chase-pierson-photography.md` |
-| [tuthill-design-brand-guidelines-2026-04-21.md](./tuthill-design-brand-guidelines-2026-04-21.md) | Tuthill Design | Miles's real estate media + design house. Northern-hemisphere anchor. | `docs/voice/tuthill-design.md` |
-| [studio-c-brand-guidelines-2026-04-21.md](./studio-c-brand-guidelines-2026-04-21.md) | Studio C | Elijah's production arm of Tuthill. Broadcast, events, MBT production. | `docs/voice/studio-c.md` |
+| [tuthill-design-brand-guidelines-2026-04-21.md](./tuthill-design-brand-guidelines-2026-04-21.md) | Tuthill Design | Elijah's real estate media + design house. Northern-hemisphere anchor. | `docs/voice/tuthill-design.md` |
+| [studio-c-brand-guidelines-2026-04-21.md](./studio-c-brand-guidelines-2026-04-21.md) | Studio C | Miles's production arm of Tuthill. Broadcast, events, MBT production. | `docs/voice/studio-c.md` |
 | [utopia-brand-guidelines-2026-04-21.md](./utopia-brand-guidelines-2026-04-21.md) | Utopia | The recording studio at Bearsville. Todd Rundgren's legacy room Chase photographs. | New (Bearsville studio lineage) |
 
 ## The existing Big Muddy Inn + Blues Room guideline
@@ -73,7 +73,7 @@ CHASE PIERSON PHOTOGRAPHY — the photographer who made all the Big Muddy imager
 
 TUTHILL DESIGN ───── STUDIO C ───── UTOPIA
 (RE media house)   (production arm)  (recording studio client)
-  Northern-hemisphere partner brands; Miles + Elijah operate these.
+  Northern-hemisphere partner brands; Elijah + Miles operate these.
 ```
 
 ---
@@ -145,8 +145,8 @@ Not all eight brands are equal in urgency. Sequenced by what's blocking revenue 
 | **3** | **Big Muddy Radio** | Needed for the player redesign at `bigmuddyradio.com`, podcast cover art for Arrie's show, and the station swag. Paired with Phase 4 of the AzuraCast runbook. | 1 day |
 | **4** | **Big Muddy Magazine** | Tracy is editor; the brand needs to exist before Issue 1 ships. Inherits the entire Inn palette so execution is largely masthead + layout decisions, not new color work. | 1.5 days |
 | **5** | **Chase Pierson Photography** | Already has de-facto execution on `chasepierson.tv`. This is a **cleanup pass** more than a new build — lock the minimal wordmark + align existing site to the spec. | 0.5 day |
-| **6** | **Studio C** | Elijah's brand. Execute *with* Elijah, not for him. Can wait until he's set up in NY and active in the production pipeline. | 1 day (with Elijah) |
-| **7** | **Tuthill Design** | Miles's brand. Execute *with* Miles. He may already have his own visual direction; we align to what he has, we don't impose. | 1 day (with Miles) |
+| **6** | **Studio C** | Miles's brand. Execute *with* Miles, not for him. Can wait until he's set up in NY and active in the production pipeline. | 1 day (with Miles) |
+| **7** | **Tuthill Design** | Elijah's brand. Execute *with* Elijah. He may already have his own visual direction; we align to what he has, we don't impose. | 1 day (with Elijah) |
 | **8** | **Utopia** | Tied to the Chase Pierson Studios book project, which is months out. Not on the critical path. | 1 day (when book approaches) |
 
 **Total DIY effort across all 8:** ~8–10 focused work days spread over 6–8 weeks. That's 2 days of brand work per working week, leaving the rest of each week for revenue, ops, and the 90-day plan.

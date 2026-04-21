@@ -139,7 +139,7 @@ CREATED BY CHASE PIERSON · HILLBILLY DREAMS INC.
 LAST UPDATED [YYYY-MM]
 
 Book project lead:     Chase Pierson  me@chasepierson.tv
-Partner consult:       Miles Dubois · Tuthill Design (Hudson Valley design context)
+Partner consult:       Elijah Davis · Tuthill Design (Hudson Valley design context)
 Studio client:         Utopia Studios, Bearsville, New York
 Contact at Utopia:     [per invitation letter — TBD]
 Related agents:        Bearsville Studio Agent (narrative), Gallery Director (print sales), CPP (photography)

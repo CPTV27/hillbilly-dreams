@@ -1,9 +1,9 @@
 # Tuthill Design — Brand Identity Guidelines
 
 **Spec version:** 2026-04-21
-**Brand owner:** Tuthill Design LLC (Miles Dubois — operator)
+**Brand owner:** Tuthill Design LLC (Elijah Davis — operator)
 **Voice doc:** `docs/voice/tuthill-design.md`
-**Designer:** Miles Dubois + Chase Pierson (in-house — executed in Figma + Canva Team; Miles drives since it's his own brand)
+**Designer:** Elijah Davis + Chase Pierson (in-house — executed in Figma + Canva Team; Elijah drives since it's his own brand)
 **Template reference:** Rosemary Hallmark Creative / The Big Muddy Inn + Blues Room, March 2023
 
 > **Positioning premise from the voice doc:** *"Efficient, transparent, empathetic, competent, direct. Tuthill Design is the reliable, efficient partner for real estate media and design."* Tuthill is the **Northern-hemisphere anchor brand** — based in Bearsville / Hudson Valley, serving Woodstock-area real estate professionals and extending into the Big Muddy ecosystem as the design + photography partner for the corridor.
@@ -143,7 +143,7 @@ BRAND PACKAGE CREATED BY MILES DUBOIS + CHASE PIERSON
 TUTHILL DESIGN · HILLBILLY DREAMS INC.
 LAST UPDATED [YYYY-MM]
 
-Principal:     Miles Dubois
+Principal:     Elijah Davis
 Studio:        Tuthill Design LLC
 Location:      Bearsville / Woodstock, New York
 Web:           tuthilldesign.com
