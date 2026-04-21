@@ -1,0 +1,89 @@
+Service,Category,Plan,Monthly (USD),Annual (USD),Billing Email,Billing Method,Status,Owner,Recommendation,Classification Code,Notes
+Claude Max 5x,AI,Max tier,124.99,1500,chasethis@gmail.com,Apple (iOS in-app),Active,Personal-bill,MIGRATE to MBT direct,MBT-PLATFORM,"Cancel Apple subscription, re-sub at claude.ai directly on chasepierson.tv with MBT card"
+Perplexity Pro,AI,Pro annual,16.67,200,chasethis@gmail.com,Apple,VERIFY (canceled twice per Gmail),Personal-bill,VERIFY status + migrate if active,MBT-PLATFORM,"Gmail shows cancellation emails Nov 2025 and again after; confirm if currently active"
+ChatGPT API,AI,Pay-as-you-go (cap $50),50,600,me@chasepierson.tv,OpenAI direct,Active,MBT,KEEP (cap at $50),MBT-PLATFORM,Hard monthly cap per subs doc
+OpenRouter,AI,Pay-as-you-go,57,684,me@chasepierson.tv,Stripe direct,Active,MBT,KEEP,MBT-PLATFORM,AI gateway for multiple providers
+xAI API (Grok),AI,Pay-as-you-go,,,me@chasepierson.tv,Stripe direct (under FarleyPierson),Active,Legacy-entity,MIGRATE billing entity name (FarleyPierson retiring),MBT-PLATFORM,Variable usage
+Hugging Face,AI,Recurring,,,me@chasepierson.tv,Stripe direct,Active,MBT,KEEP,MBT-PLATFORM,Estimate monthly from last invoice
+Moonshot AI (Kimi),AI,Monthly,,,me@chasepierson.tv,Stripe direct,Active,MBT,KEEP,MBT-PLATFORM,Renews ~12th of month
+TinyFish,AI,Monthly,15,180,me@chasepierson.tv,Stripe direct,Active,MBT,KEEP,MBT-PLATFORM,Web automation
+Suno,AI,Recurring,,,me@chasepierson.tv,Stripe direct,Active,MBT,KEEP,MBT-PLATFORM,AI music generation
+Runway AI Pro,AI,Pro,,,me@chasepierson.tv,Runway direct,Active,MBT,KEEP (classify as STUDIO-C),STUDIO-C,Video AI
+ElevenLabs,AI,Pay-as-you-go,25,300,me@chasepierson.tv,Stripe direct,Active,MBT,KEEP,MBT-PLATFORM,Voice synthesis
+GitHub Copilot Pro,Dev,Annual,10,100,me@chasepierson.tv,GitHub direct,Active,MBT,KEEP,MBT-PLATFORM,Paid annually
+GitHub Developer Plan,Dev,Annual,4,48,me@chasepierson.tv,GitHub direct,Active,MBT,KEEP,MBT-PLATFORM,
+GitHub Actions overages,Dev,Pay-as-you-go,,,me@chasepierson.tv,GitHub direct,Active,MBT,MONITOR (keep under usage cap),MBT-PLATFORM,$11.84 one-off charge in April
+Replit Core,Dev,$25.99/mo via Apple + $7-15/mo Stripe,26,312,chasethis@gmail.com + me@chasepierson.tv + chase@scan2plan.io,Apple + Stripe (multiple),Active (duplicate billing),Personal-bill + MBT,CONSOLIDATE (cancel Apple subscription + Scan2Plan one),MBT-PLATFORM,Pick ONE account under me@chasepierson.tv
+Vercel,Platform,Pro,20,240,me@chasepierson.tv,Stripe direct,Active,MBT,KEEP,MBT-PLATFORM,Hosting
+Cloudflare,Platform,Multiple domains Pro,20,240,me@chasepierson.tv,Stripe direct,Active,MBT,KEEP,MBT-PLATFORM,Multiple invoices monthly for separate domains
+Miro,Platform,Business/Team tier,,,me@chasepierson.tv,Stripe direct,Active,MBT,KEEP (verify tier),MBT-PLATFORM,Collaboration boards; recent Prototypes trial
+Netlify Pro,Platform,Pro + credits,20,240,me@chasepierson.tv,Netlify direct,Active,MBT,EVALUATE (Studio C projects use this; may consolidate to Vercel),MBT-PLATFORM,Studio C team running credits up to suspension
+Railway Corporation,Platform,Pay-as-you-go,,,me@chasepierson.tv,Stripe direct,Active,MBT,EVALUATE (redundant with Vercel?),MBT-PLATFORM,App hosting
+Sentry,Platform,Free (post-trial),0,0,me@chasepierson.tv,Stripe direct,Free tier,MBT,KEEP FREE (upgrade only if observability need),MBT-PLATFORM,Trial ended Apr 6
+CodeRabbit,Platform,Free (post-trial),0,0,me@chasepierson.tv,Stripe direct,Free tier,MBT,KEEP FREE,MBT-PLATFORM,Trial ended Apr 5
+Checkly,Platform,Hobby free,0,0,me@chasepierson.tv,Stripe direct,Free tier,MBT,KEEP FREE,MBT-PLATFORM,Trial converted to free Hobby
+Obsidian Sync,Productivity,Personal,,,me@chasepierson.tv,Stripe direct,Active,MBT,KEEP,MBT-PLATFORM,Knowledge mgmt; $1.84 + $50 charges Mar 2026
+Asana,Productivity,Various tiers,72.85,874,me@chasepierson.tv,Asana direct,Active,MBT,KEEP,MBT-PLATFORM,Task mgmt; monthly cost varies by plan
+Google Workspace (chasepierson.tv),Productivity,Ultra,35,420,me@chasepierson.tv,Google Payments,Active,MBT,KEEP (parent identity),MBT-PLATFORM,Master identity per consolidation plan
+Google Workspace (hillbillydreamsinc.com),Productivity,AI Ultra Access trial,0,0,me@chasepierson.tv,Google Payments,Trial (started Mar 23),Legacy,CANCEL TRIAL,MBT-PLATFORM,Deprecate per consolidation plan
+Google Workspace (daytimetv.us via FarleyPierson),Productivity,Business Standard,,,chase@farleypierson.com,Tranquility.net,Active,Legacy,CANCEL,MBT-PLATFORM,FarleyPierson retiring
+Google Cloud Platform (CPTV project),Cloud,Pay-as-you-go (cap $25),25,300,me@chasepierson.tv,Google Cloud,Active (overran 150% in April = ~$38),MBT,RAISE CAP to $50 or enforce tighter,MBT-PLATFORM,Vertex AI + GCS + Logging
+Google Cloud Platform (Scan2plan DEv Ops1),Cloud,Pay-as-you-go (cap $100),100,1200,chase@scan2plan.io,Google Cloud,Active (running 150% = ~$385 in Apr),Legacy-scan2plan,MIGRATE to chasepierson.tv project + shut down Scan2Plan branding,MBT-PLATFORM,Overrun $385 in April alone — investigate usage
+Google Developer Program premium,Dev,One-time,,,chase@scan2plan.io,Google Payments,Active,MBT,KEEP,MBT-PLATFORM,Verify annual/one-off
+Apple iCloud+ 2TB,Storage,Monthly,9.99,120,chasethis@gmail.com,Apple,Active,Personal-bill,CANCEL (Google Ultra already gives 2TB),—,Duplicate with Google Drive
+AppleCare+ with Theft and Loss,Insurance,Annual renewal,,,chasethis@gmail.com,Apple,Active,Personal,KEEP Personal,—,Device protection
+CapCut Pro (Apple),Design,$19.99/mo,19.99,240,chasethis@gmail.com,Apple,Active,Personal-bill,CANCEL + replace with CapCut Team 3-seat,STUDIO-C,See subs doc for Team migration plan
+Final Cut Pro for iPad,Design,Annual,4,49,chasethis@gmail.com,Apple (Family),Expiring,Personal-bill,MIGRATE to MBT (Studio C),STUDIO-C,Used for mobile video
+Camera for OBS Studio,Design,Annual,1.58,18.99,chasethis@gmail.com,Apple (Family),Active,Personal-bill,MIGRATE to MBT,STUDIO-C,Cheap; used with OpenBroadcaster
+Spotify Premium,Media,Previously Premium,0,0,chasethis@gmail.com,Spotify direct,Canceled Dec 2025,Canceled,RE-SUBSCRIBE as Spotify Family under chasepierson.tv,MBT-PLATFORM,See subs doc C.3 — now in plan
+YouTube Premium,Media,Family (Chase's personal),,,chasethis@gmail.com,Google Play,VERIFY (payment failed Nov),Personal-bill,ADD Amy + Tracy as family members; migrate billing to MBT later,—,Stays on personal for now
+Squarespace (primary account),Website,Annual (auto-renew Apr 17 2026),,,me@chasepierson.tv,Squarespace direct,Active,Legacy,CANCEL (or migrate sites to MBT Next.js),—,Multiple sites under one account
+Squarespace Tuthill Design,Website,Suspended then reactivated,,,me@chasepierson.tv,Squarespace direct,Active,Legacy-Tuthill,TUTHILL DECISION (keep or migrate),—,Currently live as tuthilldesign.com
+Squarespace Hudson Virtual Tours,Website,Subscription,,,chasethis@gmail.com,Squarespace direct,Suspended,Personal-legacy,CANCEL,—,hudsonvirtualtours.com — old project
+Squarespace ardentstudiostestsite,Website,Canceled (disputed payment),,,me@chasepierson.tv,—,Canceled,—,—,—,Already gone
+Squarespace bigmuddy-rhctest,Website,Email Campaigns activated Mar 2026,,,me@chasepierson.tv,Squarespace direct,Active,Legacy,EVALUATE (migrate to MBT platform),—,Test site
+GoDaddy domains,Domains,Various annual renewals,,,chasethis@gmail.com,GoDaddy direct,Active,MBT (if ecosystem domains),CONSOLIDATE to Cloudflare Registrar,—,Migrate ecosystem domains from GoDaddy to Cloudflare for cost + consistency
+1Password Annual,Security,Annual,,,me@chasepierson.tv,1Password direct,Active,MBT,CANCEL (duplicate with Bitwarden),—,CLAUDE.md says Bitwarden canonical
+Bitwarden Teams,Security,Teams trial,0,0 (trial),admin@hillbillydreamsinc.com,Bitwarden direct,Trial,MBT,ACTIVATE PAID ($3/user × 5 seats = $15/mo),MBT-PLATFORM,Canonical password manager
+Evernote,Productivity,Annual,11.70,140.39,chasethis@gmail.com,Evernote direct,Active,Personal-bill,CANCEL (replaced by Sanity + Drive + Obsidian),—,Legacy note tool
+Envato Elements,Design,Annual,,,chasethis@gmail.com,Envato direct,Failed payments (auto-canceling),Personal-bill,LET CANCEL,—,Design assets; already failing
+Shade Inc,Unknown,$25/mo,25,300,chasethis@gmail.com,Shade direct,Failed payment,Personal-bill,INVESTIGATE (what is this?),—,Payment failed Apr 19; verify what service this is before canceling
+PlushCare,Health,$19.99/mo,19.99,240,chasethis@gmail.com,PlushCare direct,Payment failed Nov,Personal,CANCEL,—,Virtual primary care
+Mad Muscles,Fitness,Workout plan,,,chasethis@gmail.com,Mad Muscles direct,Expiring,Personal,LET EXPIRE,—,
+Leica LUX Pro (Family),Photo,$6.99/mo (Family),6.99,84,chasethis@gmail.com,Apple (Family),Expiring,Personal,LET EXPIRE or migrate if used for CPP,—,Leica camera app
+Polycam Pro Yearly,Scan,Expired,0,0,chasethis@gmail.com,Apple,Expired,Legacy-Scan2Plan,LET DIE,—,Scan2Plan-era tool
+KIRI Engine,Scan,Expiring,,,chasethis@gmail.com,Apple,Expiring,Legacy-Scan2Plan,LET EXPIRE,—,Scan2Plan-era tool
+Parsec,Remote,Previously active,,,me@chasepierson.tv,Parsec direct,Expired Nov 2025,Legacy,—,—,Already gone
+Mozilla Monitor Plus,Privacy,Canceled Dec 2025,0,0,me@chasepierson.tv,Mozilla direct,Canceled,Legacy,—,—,Already gone
+Spotify Family (NEW — to add),Media,Family (6 accounts),17,204,me@chasepierson.tv (to create),MBT card (to set up),To activate,MBT,ACTIVATE,MBT-PLATFORM,Per subs doc C.3 addition
+DistroKid Label (NEW — to add),Records,Label tier,12,139,me@chasepierson.tv (to create),MBT card,To activate,MBT,ACTIVATE,TOUR,Big Muddy Records distribution for Chase Pierson + Mechanical Bull + Kate Squire + future artists
+SoundCloud For Artists Pro Unlimited (NEW — to add),Records,Pro Unlimited,12,99,me@chasepierson.tv (to create),MBT card,To activate,MBT,ACTIVATE,TOUR,Big Muddy Records SoundCloud presence
+Songtrust (optional per-artist),Records,Per-artist annual,10,100,Per-artist,Songtrust direct,To evaluate,MBT,EVALUATE per artist,TOUR,Publishing royalty collection
+CapCut Team 3-seat (NEW — to add),Design,Team (3 users),52,624,me@chasepierson.tv (to create),MBT card,To activate,MBT,ACTIVATE + cancel Apple CapCut Pro,STUDIO-C,Chase + Amy + Elijah
+GoHighLevel,Marketing,Subscription,,,chase@scan2plan.io,GoHighLevel direct,Active (promo emails),Legacy-scan2plan,EVALUATE (Miles may want to keep; otherwise cancel),—,Marketing automation
+Read.ai,Productivity,Trial ended,0,0,chase@scan2plan.io,Read.ai direct,Trial ended,Legacy,DO NOT UPGRADE,—,Meeting AI
+Beehiiv,Newsletter,Trial,0,0,me@chasepierson.tv,Beehiiv direct,Trial ended,MBT,VERIFY status; may be KEEP if used,MBT-PLATFORM,Newsletter platform
+Shopify,Ecommerce,Trial offer,0,0,me@chasepierson.tv,Shopify direct,Not active,—,SKIP,—,Old test site pitching reactivation
+Harbor Freight INSIDE TRACK CLUB,Shopping,Membership,,,chasethis@gmail.com,Harbor Freight direct,Active,Personal,KEEP Personal or migrate to Inn if Inn supplies,—,Tools + discounts
+Spectrum Internet (home),Utility,$50/mo autopay,50,600,chasethis@gmail.com,Spectrum direct,Active,Personal,KEEP Personal,—,Catskills house internet (part of Chase's $500/mo aggregate bills)
+AT&T Wireless,Utility,Monthly plan,~100,1200,chasethis@gmail.com,AT&T direct,Active (payment issue Nov 30),Personal,KEEP Personal,—,Cell phone
+GEICO Auto Insurance,Insurance,Auto Pay,169.52,2034,me@chasepierson.tv,GEICO direct,Active (payment declined once),Personal,KEEP Personal,—,Auto insurance — $169.52/mo
+Paraco Gas,Utility,Per usage,,,chasethis@gmail.com,Paraco direct,Active,Personal,KEEP Personal,—,Catskills house propane
+Central Hudson Electric,Utility,Monthly bill,,6896,chasethis@gmail.com,Central Hudson direct,OVERDUE ($6896 due Apr 24),Personal,URGENT: Resolve the arrears,—,"Huge balance at 379 SICKLER RD — investigate and resolve"
+Bridgecrest Car Payment,Finance,$520/mo,520,6240,chasethis@gmail.com,Bridgecrest direct,Past due (repeatedly),Personal,GET CURRENT,—,Car loan
+Pair Networks (katiehalper.com),Hosting,Domain + hosting,,,chasethis@gmail.com,Pair direct,Active (renewal failed),Client-Katie-Halper,CLIENT BILLS (forward to Katie),—,Belongs to her
+Hometap,Finance,Annual insurance renewal,,,chasethis@gmail.com,Hometap direct,Renewal notice,Personal,KEEP Personal,—,Home equity product for NY house
+Experian membership,Credit,Monitoring,,,chasethis@gmail.com,Experian direct,Active,Personal,EVALUATE (keep for CIBIL monitoring),—,Credit monitoring
+SoFi Plus membership,Finance,Banking tier,0,0,chasethis@gmail.com,SoFi direct,Active (changing),Personal,—,—,Not a paid subscription
+Buzzsprout,Podcast,Standard,18,216,me@chasepierson.tv,Buzzsprout direct,Active,MBT,KEEP,MBT-PLATFORM,Podcast hosting
+Sanity CMS,Platform,Team or Growth,~50,600,me@chasepierson.tv,Sanity direct,Active,MBT,VERIFY plan tier,MBT-PLATFORM,CMS for all brands
+Neon Postgres,Platform,Launch or Scale,19,228,me@chasepierson.tv,Neon direct,Active,MBT,KEEP,MBT-PLATFORM,Primary DB
+Resend,Platform,Pro,20,240,me@chasepierson.tv,Resend direct,Active,MBT,KEEP,MBT-PLATFORM,Transactional email
+Attio CRM,Platform,Free tier,0,0,me@chasepierson.tv,Attio direct,Free,MBT,KEEP FREE,MBT-PLATFORM,CRM
+Adobe Photography,Design,Lightroom + Photoshop,9.99,120,me@chasepierson.tv,Adobe direct,Active,MBT,KEEP,CPP,Chase photo work
+Adobe Creative Cloud Full,Design,All Apps,59.99,720,Studio C email (TBD),Adobe direct,Active,Studio-C,KEEP,STUDIO-C,Elijah primary
+Restream.io (to migrate),Video,Standard or higher,30,360,TBD (Studio C),Restream direct,To migrate from Big Muddy,Studio-C,MIGRATE account to Studio C,STUDIO-C,Per subs doc — cancel current + new
+Canva Teams,Design,Teams,~30,360,me@chasepierson.tv (to set up),Canva direct,To activate,MBT,ACTIVATE,MBT-PLATFORM,5 team seats
+Bitwarden Family,Security,Family,3.33,40,me@chasepierson.tv,Bitwarden direct,Active,MBT,KEEP,MBT-PLATFORM,Shared vault
+Cloudbeds,Hospitality,PMS,~400,4800,bigmuddyinn account,Cloudbeds direct,Active,Inn,KEEP (Inn-specific),INN,Property mgmt system
+Twilio SMS,Platform,Pay-as-you-go,~10,120,me@chasepierson.tv (TBD),Twilio direct,Maybe,Inn,VERIFY (used for Inn booking SMS?),INN,Check if active
