@@ -3,7 +3,7 @@
 **Spec version:** 2026-04-21
 **Brand owner:** Tuthill Design LLC (Studio C — production DBA; Elijah Davis, operator)
 **Voice doc:** `docs/voice/studio-c.md`
-**Intended designer:** Miles Dubois + Elijah Davis (in-house — sister DBA to Tuthill Design, visually related but distinct)
+**Designer:** Elijah Davis + Miles Dubois + Chase Pierson (in-house — executed in Figma + Canva Team; Elijah drives since Studio C is his operating brand)
 **Template reference:** Rosemary Hallmark Creative / The Big Muddy Inn + Blues Room, March 2023
 
 > **Positioning premise from the voice doc:** *"Direct & action-oriented, prepared & proactive, technically proficient, confident & capable, reliable & collaborative."* Studio C is the **production arm** — broadcast, events, concert-capture, multi-cam, live-stream, post-production. The identity is technical, rigorous, unmistakably professional, and visually reads as "control room."
@@ -18,7 +18,7 @@
 - Below that: `PRODUCTION · BROADCAST · POST` in Signal Gray small caps.
 - A horizontal Signal Amber rule across the lower quarter — like a waveform envelope.
 - Bottom-left: `BRAND IDENTITY GUIDELINES`
-- Bottom-right: `BY TUTHILL DESIGN · STUDIO C`
+- Bottom-right: `BY STUDIO C · HILLBILLY DREAMS INC.`
 
 ## 2. Table of contents
 
@@ -141,7 +141,8 @@ studio-c-deliverable-slate/
 ## 12. Designer contact
 
 ```
-BRAND PACKAGE CREATED BY TUTHILL DESIGN · STUDIO C
+BRAND PACKAGE CREATED BY ELIJAH DAVIS + MILES DUBOIS + CHASE PIERSON
+STUDIO C · HILLBILLY DREAMS INC.
 LAST UPDATED [YYYY-MM]
 
 Operator:          Elijah Davis

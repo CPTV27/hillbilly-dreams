@@ -3,7 +3,7 @@
 **Spec version:** 2026-04-21
 **Brand owner:** Amy Allen (equity partner, Hillbilly Dreams / Big Muddy)
 **Stage name, canonical spelling:** Arrie Aslin (NEVER Ari, Arri, Aslan, or Ari B. Aslan — enforced per `CLAUDE.md`)
-**Intended designer:** Tuthill Design (Miles) or Rosemary Hallmark Creative, TBD
+**Designer:** Chase Pierson + Amy Allen (in-house — executed in Figma + Canva Team)
 **Template reference:** Rosemary Hallmark Creative / The Big Muddy Inn + Blues Room, March 2023
 
 ---
@@ -14,7 +14,7 @@
 - Primary mark: "Arrie Aslin" wordmark in **Nathan-style connected script** (display), cream, centered, large.
 - Subline directly below wordmark: `SINGER · NATCHEZ · BIG MUDDY RECORDS` in tight small-caps sans, cream.
 - Bottom-left small text: `BRAND IDENTITY GUIDELINES`
-- Bottom-right small text: `BY [DESIGNER CREDIT TBD]`
+- Bottom-right small text: `BY HILLBILLY DREAMS INC.`
 - Optional photographic motif: silhouetted mic stand tinted in brand-family magenta in one corner, sparse.
 
 ## 2. Table of contents
@@ -144,9 +144,10 @@ Use rule matches Rosemary's: SVG for web first, PNG fallback; EPS for any print 
 ## 12. Designer contact
 
 ```
-BRAND PACKAGE CREATED BY [DESIGNER TBD]
+BRAND PACKAGE CREATED BY CHASE PIERSON + AMY ALLEN
+HILLBILLY DREAMS INC. · NATCHEZ, MS
 LAST UPDATED [YYYY-MM]
-[DESIGNER EMAIL]  |  [DESIGNER WEBSITE]
+me@chasepierson.tv
 
 Artist management:  Tracy Alderson-Allen
                     tracy@thebigmuddyinn.com

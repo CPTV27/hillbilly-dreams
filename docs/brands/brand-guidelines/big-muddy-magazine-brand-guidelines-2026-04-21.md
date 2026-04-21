@@ -3,7 +3,7 @@
 **Spec version:** 2026-04-21
 **Brand owner:** Hillbilly Dreams Inc. (Big Muddy Magazine — editor: Tracy Alderson-Allen)
 **Voice doc:** `docs/voice/big-muddy-magazine.md` (Tracy-reviewed, final sign-off required on everything published)
-**Intended designer:** Rosemary Hallmark Creative (re-engagement — already produced the Inn guideline this extends)
+**Designer:** Chase Pierson + Tracy Alderson-Allen (in-house — executed in Figma + Canva Team; inherits the entire existing Rosemary Hallmark Creative Inn guideline palette without modification)
 **Template reference:** Rosemary Hallmark Creative / The Big Muddy Inn + Blues Room, March 2023
 
 > **Editorial premise, verbatim from the voice doc:** *"This magazine exists to sell rooms at Big Muddy Inn. Period."* The magazine is a **heritage journal** in the Garden & Gun / Oxford American tradition — long-form, photo-first, slow, observational. The guideline below reflects that discipline.
@@ -17,7 +17,7 @@
 - A full-width hero photograph (Chase Pierson original, approved/ only) printed with a gentle Indigo Deep duotone wash, 60% of page height, positioned below the masthead.
 - Issue metadata: `VOLUME I · ISSUE 01 · SPRING 2026 · NATCHEZ · MISSISSIPPI` set in Citrus Gothic small caps along a bottom-edge bar.
 - Bottom-left of the inside spread: `BRAND IDENTITY GUIDELINES`
-- Bottom-right: `BY ROSEMARY HALLMARK CREATIVE`
+- Bottom-right: `BY HILLBILLY DREAMS INC.`
 
 ## 2. Table of contents
 
@@ -140,14 +140,18 @@ bmm-issue-sigil-template/
 ## 12. Designer contact
 
 ```
-BRAND PACKAGE CREATED BY ROSEMARY HALLMARK CREATIVE
+BRAND PACKAGE CREATED BY CHASE PIERSON + TRACY ALDERSON-ALLEN
+HILLBILLY DREAMS INC. · NATCHEZ, MS
 LAST UPDATED [YYYY-MM]
-creative@rosemaryhallmark.com  |  www.rosemaryhallmark.com
+me@chasepierson.tv  |  tracy@thebigmuddyinn.com
 
 Editor:           Tracy Alderson-Allen  tracy@thebigmuddyinn.com
 Contributing ed:  Chase Pierson (photography + features)
 Contributing ed:  Amy Allen (music + artist profiles)
 Publisher:        Hillbilly Dreams Inc., Natchez, Mississippi
+
+Palette + masthead foundation inherited from the existing
+Big Muddy Inn + Blues Room guideline (Rosemary Hallmark Creative, 2023).
 ```
 
 ---

@@ -8,11 +8,13 @@
 
 ## What this folder is
 
-One specification doc per brand, modeled after Rosemary Hallmark Creative's Big Muddy guideline PDF. Each doc is a **written spec a designer can execute** — not a finished visual PDF. The intent is:
+One specification doc per brand, modeled after Rosemary Hallmark Creative's Big Muddy guideline PDF. Each doc is a **written spec we execute ourselves** — not a finished visual PDF (yet). The intent is:
 
 1. Lock canonical positioning, palette, typography, and logo direction for each brand so agents and designers stop re-inventing.
-2. Hand Tuthill Design + Rosemary (or whichever designer) a clean brief they can turn into a finished 18-page PDF per brand.
+2. Give **Chase + the HDI team** a clean brief each brand's visual execution tracks against — built in Canva, Figma, or Illustrator in-house, not outsourced.
 3. Keep every brand inside the family coherent — same structural template, same level of discipline — without flattening what makes each one distinct.
+
+**Designer: we are.** Chase has the visual eye (he's a working photographer, he's been running the visual direction for every HDI property since day one, he has Canva Team + Figma access, and he's the person whose taste the family tracks to). Rosemary Hallmark Creative's existing Big Muddy Inn guideline is the structural exemplar we copy — not a retainer we re-engage. Tuthill Design (Miles) and Studio C (Elijah) consult when their own brands come up, but the execution is in-house.
 
 Every spec follows the same 11-section structure from the Big Muddy template:
 
@@ -86,25 +88,77 @@ TUTHILL DESIGN ───── STUDIO C ───── UTOPIA
 
 ---
 
-## How to execute these into finished visual guideline PDFs
+## How to execute these ourselves
 
-1. Pick a brand.
-2. Read the spec end to end.
-3. Pull the voice doc from `docs/voice/` for tone context.
-4. Pull photography from `gs://bmt-media-bigmuddy/approved/` matching the brand.
-5. Open the Rosemary Hallmark PDF side by side for layout reference.
-6. Execute in InDesign or Figma. 8.5" × 11" landscape (matching Rosemary's format), ~18 pages per brand.
-7. Export final PDF + .indd/.fig source files. Store in `gs://bmt-media-bigmuddy/brand-guidelines/<brand>/` with the spec `.md` file alongside.
-8. Update the relevant Sanity `brand` document so the website uses the same palette + typography tokens.
+Per-brand process, walkable in a single work session each:
+
+1. **Pick one brand.** Don't try to do all eight at once — you'll blur them.
+2. **Read the spec end to end** and the matching voice doc in `docs/voice/`.
+3. **Pull reference photography** from `gs://bmt-media-bigmuddy/approved/` (must have `/approved/` in the URL — that's the "real Chase photo" guarantee from CLAUDE.md).
+4. **Open the Rosemary Hallmark PDF** (`/Users/chasethis/Downloads/Big Muddy - Brand Guidelines.pdf`) side by side. It's the structural reference — match its layout rhythm even where colors and type differ.
+5. **Build the logo first in Figma** (or Illustrator). Lock the wordmark, monogram, and primary mark before touching the guideline PDF — everything downstream references these files.
+6. **Assemble the guideline PDF in Canva** (Canva Team subscription is already paid — per `docs/ecosystem-subscriptions-2026-04-20.md`). Use the Rosemary PDF as a template: 8.5" × 11" landscape, ~18 pages per brand. Canva handles typography, exporting, versioning, and brand-kit color locking.
+7. **Export final PDF + source files.** Store in `gs://bmt-media-bigmuddy/brand-guidelines/<brand>/` with the spec `.md` alongside. Canva keeps its own source; export an editable `.canva` share link into Bitwarden as the backup.
+8. **Update the Sanity `brand` document** so the relevant website uses the same palette + typography tokens — the specs reference CSS custom properties that the Next.js app already supports (`var(--brand-*)`, `var(--font-*)`).
+
+## Tooling
+
+| Task | Tool | Why |
+|------|------|-----|
+| Logo marks (wordmarks, monograms) | **Figma** (free for Chase) | Vector, shareable URL, easy iteration. Illustrator is fine if preferred. |
+| Guideline PDF layout | **Canva Team** (already paid) | 18-page template fits Canva's document format; brand kits lock colors; export to print-quality PDF |
+| Moodboards / palette exploration | **Figma + Pinterest** | Fastest iteration; no cost |
+| AI-assisted logo concepts | **Claude + Midjourney / Vertex Imagen** (HDI has credit) | Use for *direction only* — final marks are vector-drawn by hand, not AI-generated |
+| Photography | **Chase's own library** (`gs://bmt-media-bigmuddy/approved/`) | No stock, no AI humans, per CLAUDE.md |
+| Font licensing | **Google Fonts** (free) first, paid only where Google doesn't cover | See substitution table below |
+| Version control | **This repo** (`docs/brands/brand-guidelines/`) for specs; **GCS** for visual source files | Markdown is the canonical brief; PDFs and source files are artifacts |
+
+## Free-font substitution table (Google Fonts — all free, all web-licensed)
+
+The specs name some paid typefaces (Nathan, Citrus Gothic, Graphik, Söhne, Canela, GT America, Input Mono) because they match the Rosemary PDF lineage. For DIY execution, use these free Google Fonts substitutions — they're close enough to hold the family look without the licensing bill:
+
+| Spec'd typeface | Role | Free Google Fonts substitute |
+|---|---|---|
+| **Nathan** (script) | Big Muddy family wordmark accent | **Yellowtail** (warm), **Sacramento** (thin), or **Allura** (formal) |
+| **Citrus Gothic** (condensed sans) | Big Muddy headline | **Oswald Bold** or **Barlow Condensed Black** |
+| **Abril Fatface** | Magazine masthead + drop caps | **Abril Fatface** (already Google Fonts, free) |
+| **Montserrat** | Body across Big Muddy family | **Montserrat** (already Google Fonts, free) |
+| **GT America** / **Söhne** | CPP + Utopia body | **Inter** (the closest free analog, used everywhere) |
+| **GT America Mono** / **Söhne Mono** / **Input Mono** | CPP + Studio C + Utopia technical | **JetBrains Mono** or **IBM Plex Mono** |
+| **Söhne Breit** | Studio C display | **Bricolage Grotesque** or **Inter Display** |
+| **Graphik** | Tuthill Design whole system | **Inter** or **Manrope** |
+| **Canela** | Utopia + editorial serifs | **Playfair Display** or **Cormorant Garamond** |
+| **Butler** | Utopia alt | **Playfair Display** |
+
+Web layer already uses Google Fonts via `next/font` per the existing stack, so this substitution also aligns the brand-guideline PDFs with what actually renders on the sites. No font drift between print and web.
 
 ---
 
-## Open questions for Chase to answer before execution
+## Execution roadmap — which brand first, and why
 
-1. **Who executes the PDFs?** Options: re-engage Rosemary Hallmark Creative (she owns the family look already), hand to Tuthill Design (Miles), or AI-assisted in Canva / Figma then human polish. My recommendation: re-engage Rosemary for 3 of the 4 Big Muddy family brands (Touring, Radio, Magazine) since they're extensions of her existing work; Tuthill Design handles its own guideline + Studio C's + Chase Pierson Photography; Utopia is a client-facing piece Chase produces himself because he's making the book.
-2. **Budget?** Rosemary's fee for the original Big Muddy guideline is not in Bitwarden as a line item. Re-engagement quote needed.
-3. **Final domain choice for Arrie Aslin** — arrieaslin.com (recommended) or arrieaslinmusic.com. Affects the guideline's contact/URL page.
-4. **Logo files** for brands that don't have them yet (Big Muddy Touring, Big Muddy Radio, Big Muddy Magazine, Chase Pierson Photography, Tuthill Design wordmark, Studio C wordmark, Utopia wordmark, Arrie Aslin wordmark). The specs describe direction; designer produces the actual marks.
+Not all eight brands are equal in urgency. Sequenced by what's blocking revenue or the 90-day plan:
+
+| Order | Brand | Why this one next | Time estimate |
+|---|---|---|---|
+| **1** | **Big Muddy Touring** | The Sprinter van wrap is queued and the road asset is the most visible public-facing brand moment of Q2. Simplest lockup (Asphalt Black + Highway Sodium + BMT monogram). Do this first. | 1 focused work day |
+| **2** | **Arrie Aslin** | Blocking Amy's website (`arrieaslin.com`), any Big Muddy Records release artwork, and her radio-show podcast cover art. Borrows heavily from the existing Inn palette so it moves fast. | 1 day |
+| **3** | **Big Muddy Radio** | Needed for the player redesign at `bigmuddyradio.com`, podcast cover art for Arrie's show, and the station swag. Paired with Phase 4 of the AzuraCast runbook. | 1 day |
+| **4** | **Big Muddy Magazine** | Tracy is editor; the brand needs to exist before Issue 1 ships. Inherits the entire Inn palette so execution is largely masthead + layout decisions, not new color work. | 1.5 days |
+| **5** | **Chase Pierson Photography** | Already has de-facto execution on `chasepierson.tv`. This is a **cleanup pass** more than a new build — lock the minimal wordmark + align existing site to the spec. | 0.5 day |
+| **6** | **Studio C** | Elijah's brand. Execute *with* Elijah, not for him. Can wait until he's set up in NY and active in the production pipeline. | 1 day (with Elijah) |
+| **7** | **Tuthill Design** | Miles's brand. Execute *with* Miles. He may already have his own visual direction; we align to what he has, we don't impose. | 1 day (with Miles) |
+| **8** | **Utopia** | Tied to the Chase Pierson Studios book project, which is months out. Not on the critical path. | 1 day (when book approaches) |
+
+**Total DIY effort across all 8:** ~8–10 focused work days spread over 6–8 weeks. That's 2 days of brand work per working week, leaving the rest of each week for revenue, ops, and the 90-day plan.
+
+---
+
+## Open questions (now scoped to DIY reality)
+
+1. **Logo files** for brands that don't have them yet. Chase draws them in Figma as the first step of each brand's sprint. Wordmarks are low-complexity (type-setting + tracking); monograms need one round of sketch iteration; signet/badge marks like Studio C's `C` or Big Muddy Radio's Tower need 2–3 rounds.
+2. **Final domain choice for Arrie Aslin** — `arrieaslin.com` availability check still pending. Do this before the Arrie Aslin sprint starts.
+3. **Canva Team brand kits** — set up one brand kit per brand inside Canva Team so colors and fonts lock per document. Takes ~10 minutes per brand at the top of its sprint.
+4. **Nathan font license.** The original Rosemary guideline uses Nathan for the `Big Muddy` script wordmark. If we're keeping the Inn's existing wordmark (we should — it's already in print on signage), we either (a) use Yellowtail as a free substitute for all *new* Big Muddy family script and live with the slight mismatch, or (b) buy a one-time Nathan desktop license (~$40–80 from the foundry) once and reuse across Touring, Radio, Magazine, Arrie Aslin. Recommend (b) — the license is cheap and family coherence is worth it.
 
 ---
 

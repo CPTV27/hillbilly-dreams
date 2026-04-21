@@ -3,7 +3,7 @@
 **Spec version:** 2026-04-21
 **Brand owner:** Hillbilly Dreams Inc. (Big Muddy Radio — AzuraCast @ `stream.bigmuddytouring.com`)
 **Voice doc:** `docs/voice/big-muddy-radio.md`
-**Intended designer:** Rosemary Hallmark Creative (re-engagement)
+**Designer:** Chase Pierson (in-house — executed in Figma + Canva Team; Big Muddy family coherent with the existing Rosemary Hallmark Creative Inn guideline)
 **Template reference:** Rosemary Hallmark Creative / The Big Muddy Inn + Blues Room, March 2023
 
 ---
@@ -15,7 +15,7 @@
 - Below: `RADIO` in Citrus Gothic Black, letter-spaced wide, cream, with a single Highway Sodium-style arc above it (stylized radio wave).
 - Optional motif: a halftone black-and-white photo of an analog mixing console or tube radio in the background, lightly burned in.
 - Bottom-left: `BRAND IDENTITY GUIDELINES`
-- Bottom-right: `BY ROSEMARY HALLMARK CREATIVE`
+- Bottom-right: `BY HILLBILLY DREAMS INC.`
 
 ## 2. Table of contents
 
@@ -125,9 +125,10 @@ big-muddy-radio-on-air-mark/
 ## 12. Designer contact
 
 ```
-BRAND PACKAGE CREATED BY ROSEMARY HALLMARK CREATIVE (planned re-engagement)
+BRAND PACKAGE CREATED BY CHASE PIERSON
+HILLBILLY DREAMS INC. · NATCHEZ, MS
 LAST UPDATED [YYYY-MM]
-creative@rosemaryhallmark.com  |  www.rosemaryhallmark.com
+me@chasepierson.tv
 
 Programming lead:  Amy Allen (Arrie Aslin's show + rotation curation)
 Technical ops:     Chase Pierson / Patch — AzuraCast on DigitalOcean

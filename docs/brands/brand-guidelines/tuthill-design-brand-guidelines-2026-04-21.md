@@ -3,7 +3,7 @@
 **Spec version:** 2026-04-21
 **Brand owner:** Tuthill Design LLC (Miles Dubois — operator)
 **Voice doc:** `docs/voice/tuthill-design.md`
-**Intended designer:** Miles Dubois (in-house — this is his own house)
+**Designer:** Miles Dubois + Chase Pierson (in-house — executed in Figma + Canva Team; Miles drives since it's his own brand)
 **Template reference:** Rosemary Hallmark Creative / The Big Muddy Inn + Blues Room, March 2023
 
 > **Positioning premise from the voice doc:** *"Efficient, transparent, empathetic, competent, direct. Tuthill Design is the reliable, efficient partner for real estate media and design."* Tuthill is the **Northern-hemisphere anchor brand** — based in Bearsville / Hudson Valley, serving Woodstock-area real estate professionals and extending into the Big Muddy ecosystem as the design + photography partner for the corridor.
@@ -17,7 +17,7 @@
 - `DESIGN` directly below, letter-spaced wide, Sage Mist, same weight but smaller (60% of the `TUTHILL` size).
 - Thin Brick Coral hairline rule between `TUTHILL` and `DESIGN`.
 - Bottom-left: `BRAND IDENTITY GUIDELINES`
-- Bottom-right: `BY MILES DUBOIS · TUTHILL DESIGN`
+- Bottom-right: `BY TUTHILL DESIGN · HILLBILLY DREAMS INC.`
 - Optional motif: a clean architectural floor-plan line drawing (single-weight Sage Mist) in the lower-right quadrant, subtle, technical, professional.
 
 ## 2. Table of contents
@@ -139,7 +139,8 @@ partner-mark-templates/
 ## 12. Designer contact
 
 ```
-BRAND PACKAGE CREATED BY MILES DUBOIS · TUTHILL DESIGN
+BRAND PACKAGE CREATED BY MILES DUBOIS + CHASE PIERSON
+TUTHILL DESIGN · HILLBILLY DREAMS INC.
 LAST UPDATED [YYYY-MM]
 
 Principal:     Miles Dubois

@@ -3,7 +3,7 @@
 **Spec version:** 2026-04-21
 **Brand owner:** Hillbilly Dreams Inc. (operating as Big Muddy Touring LLC, filing in progress)
 **Voice doc:** `docs/voice/big-muddy-touring.md`
-**Intended designer:** Rosemary Hallmark Creative (re-engagement) or Tuthill Design
+**Designer:** Chase Pierson (in-house — executed in Figma + Canva Team; Big Muddy family coherent with the existing Rosemary Hallmark Creative Inn guideline)
 **Template reference:** Rosemary Hallmark Creative / The Big Muddy Inn + Blues Room, March 2023
 
 ---
@@ -15,7 +15,7 @@
 - Directly below, `TOURING` set in a heavy condensed sans (Citrus Gothic Black or similar), letter-spaced wide, cream, acting as a banner.
 - Hairline horizontal rule in **Highway Sodium** (see §5) under the `TOURING` lockup.
 - Bottom-left: `BRAND IDENTITY GUIDELINES`
-- Bottom-right: `BY ROSEMARY HALLMARK CREATIVE` (if re-engaged) or `BY TUTHILL DESIGN`
+- Bottom-right: `BY HILLBILLY DREAMS INC.`
 - Optional motif: a silhouette of a Sprinter van in Highway Sodium lower left, small, hinting at the road.
 
 ## 2. Table of contents
@@ -133,9 +133,10 @@ bmt-pennant/
 ## 12. Designer contact
 
 ```
-BRAND PACKAGE CREATED BY [ROSEMARY HALLMARK CREATIVE / TUTHILL DESIGN — TBD]
+BRAND PACKAGE CREATED BY CHASE PIERSON
+HILLBILLY DREAMS INC. · NATCHEZ, MS
 LAST UPDATED [YYYY-MM]
-[DESIGNER EMAIL]  |  [DESIGNER WEBSITE]
+me@chasepierson.tv
 
 Booking:       booking@bigmuddytouring.com
 Road manager:  [JP Houston — deal not finalized, do not name publicly]

@@ -3,7 +3,7 @@
 **Spec version:** 2026-04-21
 **Brand owner:** Utopia Studios (Bearsville, New York — independent client of Chase Pierson Photography, Studio C, and Tuthill Design)
 **Voice context:** No standalone voice doc yet — pull from `.claude/agents/BEARSVILLE_STUDIO_AGENT.md` and the Bearsville pivot memory
-**Intended designer:** Utopia's own design team + Chase Pierson (photo direction for the Bearsville Studios book project)
+**Designer:** Chase Pierson (in-house visual brief for the book project — executed in Figma + Canva Team; Utopia's own team authors the ultimate Utopia identity if and when they choose to refresh it)
 **Template reference:** Rosemary Hallmark Creative / The Big Muddy Inn + Blues Room, March 2023
 
 > **Positioning premise:** Utopia is the **historic recording studio at Bearsville** — the room where Todd Rundgren built his own cathedral, where The Band recorded, where a specific kind of American music history lives. This guideline is the **Chase-authored design brief for the Utopia photography book project** — it establishes how Utopia should be presented inside Chase's upcoming monograph and in any Chase/Studio C/Tuthill collateral that references it.
@@ -20,7 +20,7 @@
 - A single horizontal hairline rule between `UTOPIA` and the subline, Brass Highlight, 1pt.
 - Optional motif: the outline of the Bearsville main building (a classic modernist wooden studio exterior) in fine Brass Highlight line weight, lower right, subtle.
 - Bottom-left: `VISUAL GUIDELINES FOR THE BEARSVILLE STUDIOS BOOK PROJECT`
-- Bottom-right: `BY CHASE PIERSON + TUTHILL DESIGN`
+- Bottom-right: `BY CHASE PIERSON · HILLBILLY DREAMS INC.`
 
 ## 2. Table of contents
 
@@ -135,11 +135,11 @@ utopia-session-stamp/
 
 ```
 VISUAL GUIDELINES FOR THE BEARSVILLE STUDIOS BOOK PROJECT
-CREATED BY CHASE PIERSON + TUTHILL DESIGN (Miles Dubois)
+CREATED BY CHASE PIERSON · HILLBILLY DREAMS INC.
 LAST UPDATED [YYYY-MM]
 
 Book project lead:     Chase Pierson  me@chasepierson.tv
-Book project partner:  Miles Dubois · Tuthill Design
+Partner consult:       Miles Dubois · Tuthill Design (Hudson Valley design context)
 Studio client:         Utopia Studios, Bearsville, New York
 Contact at Utopia:     [per invitation letter — TBD]
 Related agents:        Bearsville Studio Agent (narrative), Gallery Director (print sales), CPP (photography)

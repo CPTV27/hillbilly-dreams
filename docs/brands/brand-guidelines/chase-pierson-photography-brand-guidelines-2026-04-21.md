@@ -3,7 +3,7 @@
 **Spec version:** 2026-04-21
 **Brand owner:** Chase Pierson (individual practitioner brand)
 **Voice doc:** `docs/voice/chase-pierson-photography.md`
-**Intended designer:** Chase + Tuthill Design (minimal, in-house execution — this brand is consciously modest)
+**Designer:** Chase Pierson (in-house, this is his own brand — executed in Figma; Tuthill Design consults on any co-branded Hudson Valley pieces)
 **Template reference:** Rosemary Hallmark Creative / The Big Muddy Inn + Blues Room, March 2023
 
 > **Positioning premise from the voice doc:** *"Unsentimental. Observational. Tactile. The image is the primary statement. My words support its existence, not interpret it."* This guideline reflects that — the identity is as close to zero-design as it can be while still being a system. The photography is the brand; the mark gets out of the way.
@@ -139,7 +139,7 @@ No JPGs unless specifically required by a vendor (catalogs, art fair kits). The 
 ## 12. Designer contact
 
 ```
-BRAND PACKAGE CREATED BY CHASE PIERSON + TUTHILL DESIGN (Miles Dubois)
+BRAND PACKAGE CREATED BY CHASE PIERSON
 LAST UPDATED [YYYY-MM]
 
 Practitioner:    Chase Pierson
