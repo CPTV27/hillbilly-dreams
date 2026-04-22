@@ -10,6 +10,9 @@
 //   - executor: async function that queries Prisma + returns data
 
 import { prisma } from '@bigmuddy/database';
+import sharp from 'sharp';
+import { generateImage } from '@/lib/imagen';
+import { uploadToGCS } from '@/lib/gcs';
 // constellation removed in prune — stubs preserve call-site shapes
 const queryConstellationStats = async () => ({ nodes: 0, edges: 0 });
 const queryConstellationSubgraph = async (
@@ -163,6 +166,38 @@ export const VOICE_TOOL_DECLARATIONS: Record<string, unknown>[] = [
       },
     },
   },
+  {
+    name: 'generate_image',
+    description:
+      'Generate an image via Vertex AI Imagen 3 and save it to GCS. Use for branded mockups where typography must render legibly — vehicle wraps, apparel, signage, album covers, packaging, posters with visible text. Also use for photoreal scene renders. Do NOT use for editorial illustrations that should be text-free (use the creative hub for those). Returns a public URL the user can open or share. One call = one image; do not loop unless the user explicitly asks for variations.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        prompt: {
+          type: 'STRING',
+          description:
+            'Full descriptive prompt. Include subject, setting, lighting, style, and any typography/branding to render. Be explicit about fonts (e.g. "tall condensed all-caps sans-serif") and colors (e.g. "burnt orange on matte black"). Max ~900 characters.',
+        },
+        aspect_ratio: {
+          type: 'STRING',
+          description: 'One of 1:1, 16:9, 4:3, 3:4, 9:16. Default 16:9. Use 9:16 for posters, 1:1 for social, 16:9 for vehicles and wide scenes.',
+        },
+        album: {
+          type: 'STRING',
+          description: 'GCS album/folder name, default "dawn-generated". Use short kebab-case (e.g. "van-wrap-mockups", "album-covers", "merch-mockups").',
+        },
+        allow_text: {
+          type: 'BOOLEAN',
+          description: 'Default true. Set false to suppress any lettering in the output (use for text-free editorial illustrations).',
+        },
+        style: {
+          type: 'STRING',
+          description: 'Either "photoreal" (default, for mockups, vehicles, apparel on real products) or "illustration" (for flat graphics, editorial art).',
+        },
+      },
+      required: ['prompt'],
+    },
+  },
 ];
 
 export const VOICE_TOOLS_CONFIG = [{
@@ -196,6 +231,8 @@ export async function executeVoiceTool(
       return listTourRoutes(args);
     case 'search_directory_listings':
       return searchDirectoryListings(args);
+    case 'generate_image':
+      return generateImageTool(args);
     default:
       return { error: `Unknown tool: ${name}` };
   }
@@ -490,6 +527,81 @@ async function searchDirectoryListings(args: Record<string, unknown>) {
   } catch (e) {
     console.error('[voice/tools] searchDirectoryListings error', e);
     return { error: 'Could not search directory listings.' };
+  }
+}
+
+type AspectRatio = '1:1' | '16:9' | '4:3' | '3:4' | '9:16';
+const VALID_ASPECTS: AspectRatio[] = ['1:1', '16:9', '4:3', '3:4', '9:16'];
+
+function slugifyPrompt(prompt: string): string {
+  return prompt
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60) || 'image';
+}
+
+async function generateImageTool(args: Record<string, unknown>) {
+  const prompt = (args.prompt as string)?.trim();
+  if (!prompt) return { error: 'prompt is required' };
+  if (prompt.length > 1000) return { error: 'prompt too long (max 1000 chars)' };
+
+  const rawAspect = (args.aspect_ratio as string) || '16:9';
+  const aspectRatio: AspectRatio = VALID_ASPECTS.includes(rawAspect as AspectRatio)
+    ? (rawAspect as AspectRatio)
+    : '16:9';
+
+  const album = ((args.album as string) || 'dawn-generated')
+    .toLowerCase()
+    .replace(/[^\w-]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 40) || 'dawn-generated';
+
+  const allowText = args.allow_text !== false;
+  const style = ((args.style as string) || 'photoreal').toLowerCase();
+  const allowPhotoreal = style !== 'illustration';
+
+  const negatives: string[] = ['watermark'];
+  if (!allowText) negatives.push('text', 'words', 'letters');
+  if (!allowPhotoreal) negatives.push('photorealistic', '3d render', 'stock photo');
+  const negativePrompt = negatives.join(', ');
+
+  try {
+    const [pngBuffer] = await generateImage(prompt, {
+      negativePrompt,
+      aspectRatio,
+      sampleCount: 1,
+    });
+
+    const webpBuffer = await sharp(pngBuffer).webp({ quality: 85 }).toBuffer();
+
+    const slug = slugifyPrompt(prompt);
+    const timestamp = Date.now();
+    const path = `${album}/${slug}-${timestamp}.webp`;
+
+    const url = await uploadToGCS(webpBuffer, path, 'image/webp');
+
+    return {
+      url,
+      path,
+      album,
+      aspectRatio,
+      size: webpBuffer.length,
+      prompt,
+    };
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : 'image generation failed';
+    console.error('[voice/tools] generateImageTool error', e);
+    if (msg.includes('safety') || msg.includes('blocked')) {
+      return { error: 'Prompt was blocked by the safety filter. Rephrase and try again.' };
+    }
+    if (msg.includes('quota') || msg.includes('429')) {
+      return { error: 'Imagen rate limit hit. Try again in a minute.' };
+    }
+    return { error: `Image generation failed: ${msg}` };
   }
 }
 
