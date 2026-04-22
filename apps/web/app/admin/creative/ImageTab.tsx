@@ -4,10 +4,27 @@ import { useState } from 'react';
 
 /* eslint-disable @next/next/no-img-element */
 
-const PRESETS = [
+type Preset = {
+  id: string;
+  label: string;
+  aspect: string | null;
+  allowText?: boolean;
+  allowPhotoreal?: boolean;
+  hint?: string;
+};
+
+const PRESETS: Preset[] = [
   { id: 'poster', label: 'Poster', aspect: '9:16' },
   { id: 'social', label: 'Social Graphic', aspect: '1:1' },
   { id: 'illustration', label: 'Illustration', aspect: '16:9' },
+  {
+    id: 'mockup',
+    label: 'Branded Mockup',
+    aspect: '16:9',
+    allowText: true,
+    allowPhotoreal: true,
+    hint: 'Text & typography allowed — vehicle wraps, signage, apparel, album covers, packaging.',
+  },
   { id: 'enhance', label: 'Photo Enhancement', aspect: null },
 ];
 
@@ -41,9 +58,21 @@ export function ImageTab({ quality }: { quality: 'draft' | 'premium' }) {
     setGenerating(true);
     setResult(null);
 
+    const activePreset = PRESETS.find(p => p.id === preset);
+    const allowText = activePreset?.allowText ?? false;
+    const allowPhotoreal = activePreset?.allowPhotoreal ?? false;
+
     const styleModifiers = activePills.map(p => STYLE_PILLS[p]).filter(Boolean).join(', ');
-    const fullPrompt = styleModifiers ? `${prompt}. ${styleModifiers} — no text no words no letters` : `${prompt} — no text no words no letters`;
-    const aspectRatio = PRESETS.find(p => p.id === preset)?.aspect || '16:9';
+    const textSuppression = allowText ? '' : ' — no text no words no letters';
+    const fullPrompt = styleModifiers
+      ? `${prompt}. ${styleModifiers}${textSuppression}`
+      : `${prompt}${textSuppression}`;
+    const aspectRatio = activePreset?.aspect || '16:9';
+
+    const negatives = ['watermark'];
+    if (!allowText) negatives.push('text', 'words', 'letters');
+    if (!allowPhotoreal) negatives.push('photorealistic', '3d render', 'stock photo');
+    const negativePrompt = negatives.join(', ');
 
     try {
       const res = await fetch('/api/media/generate', {
@@ -52,7 +81,7 @@ export function ImageTab({ quality }: { quality: 'draft' | 'premium' }) {
         body: JSON.stringify({
           prompt: fullPrompt,
           album: 'creative-hub',
-          negativePrompt: 'photorealistic, 3d render, stock photo, text, words, letters, watermark',
+          negativePrompt,
           aspectRatio,
         }),
       });
@@ -77,6 +106,11 @@ export function ImageTab({ quality }: { quality: 'draft' | 'premium' }) {
             </button>
           ))}
         </div>
+        {PRESETS.find(p => p.id === preset)?.hint && (
+          <div style={{ fontSize: '0.75rem', color: '#8a8074', marginTop: '0.5rem' }}>
+            {PRESETS.find(p => p.id === preset)?.hint}
+          </div>
+        )}
       </div>
 
       {preset !== 'enhance' ? (
