@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What They're Building Out at the Hollow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --rule: #d8d8d8;
+      --muted: #6a6a6a;
+      --paper: #ffffff;
+      --serif-display: 'Playfair Display', 'Times New Roman', Times, serif;
+      --serif-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      background: var(--paper);
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: var(--serif-body);
+      font-size: 19px;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 64px 28px 96px;
+    }
+
+    .topstrap {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 14px;
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .topstrap .section { font-weight: 700; color: var(--ink); }
+    .topstrap .date { font-weight: 400; }
+
+    h1.headline {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 46px;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin: 0 0 18px;
+      color: var(--ink);
+    }
+
+    .dek {
+      font-family: var(--serif-body);
+      font-style: italic;
+      font-size: 21px;
+      line-height: 1.45;
+      color: #2a2a2a;
+      margin: 0 0 32px;
+      font-weight: 400;
+    }
+
+    .byline {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .byline .author { color: var(--ink); font-weight: 700; }
+
+    .dateline {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    article p {
+      margin: 0 0 22px;
+    }
+
+    article p:first-of-type::first-letter {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 78px;
+      line-height: 0.82;
+      float: left;
+      padding: 8px 12px 0 0;
+      color: var(--ink);
+    }
+
+    .divider {
+      text-align: center;
+      letter-spacing: 0.6em;
+      color: var(--muted);
+      margin: 28px 0 28px;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    .pullquote {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-style: italic;
+      font-size: 26px;
+      line-height: 1.3;
+      color: var(--ink);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 22px 0;
+      margin: 32px 0;
+      text-align: left;
+    }
+
+    .credit {
+      font-family: var(--sans);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 56px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 540px) {
+      .page { padding: 36px 20px 64px; }
+      h1.headline { font-size: 34px; }
+      .dek { font-size: 18px; }
+      body { font-size: 17px; }
+      article p:first-of-type::first-letter { font-size: 60px; }
+      .pullquote { font-size: 21px; }
+    }
+
+    @media print {
+      body { font-size: 12pt; }
+      .page { padding: 0; max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topstrap">
+      <span class="section">Feature</span>
+      <span class="date">April 14, 2026</span>
+    </div>
+
+    <h1 class="headline">What They're Building Out at the Hollow</h1>
+
+    <p class="dek">Twenty miles east of Natchez, an eighteen-acre experiment is asking what happens when working musicians stop renting their lives and start owning the place they live them.</p>
+
+    <div class="byline">By <span class="author">Carrie Dicks</span></div>
+    <div class="dateline">Adams County, Mississippi</div>
+
+    <article>
+      <p>The road to the Hollow is the kind that doesn't get paved because nobody who lives down it has ever asked. It cuts off the highway between Natchez and Liberty, runs past two trailer churches and a hand-painted sign for boiled peanuts, then drops into a stand of pine where the light goes yellow and slow.</p>
+
+      <p>A hundred yards back from the gravel turnaround, you can hear what the place is before you can see it. Somebody is tuning a snare drum the way people used to tune snare drums — not for a click track, not for a producer, but because the shop is full of sawdust and the snare needs to be tuned and the easiest way to tune a snare is to play it.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>The Hollow occupies eighteen acres of mixed pine and creek bottom in Adams County, just outside the limit where Natchez stops being Natchez. It is not a commune. It is not a development in the sense the word usually means. There is no gate, no clubhouse, no pickleball court.</p>
+
+      <p>What it is, if you have to define it in a sentence, is a small group of people who decided that the way most rural land in the South gets used — sit on it, mow it, watch it appreciate, sell it — was a strange use for land in a region that produced more music per square mile than any other in the country.</p>
+
+      <p>So they built houses on it. Five of them so far. None bigger than a thousand square feet. Each with its own porch, its own water hookup, its own rocking chair that nobody bought, the chair just <em>appeared</em> one day on the porch the way certain things do down here. The houses are arranged loosely around a central pole barn that does triple duty: a workshop, a rehearsal space, and on Friday nights a dance hall that holds about thirty people if everybody breathes shallow.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>The premise is straightforward enough to fit on the back of a napkin. Most working musicians — the road-tired bass players, the session drummers, the touring engineers, the songwriters who've been writing for other people's records since the Bush administration — spend their entire careers renting. They rent the apartment. They rent the storage unit for their gear. They rent the bus. They rent the rehearsal space. They rent the studio time. And then one day they stop being able to tour, and they look up and discover that thirty years of working in music has produced a checking account, a pile of receipts, and no piece of ground anywhere with their name on it.</p>
+
+      <p>The Hollow is built on the idea that this is not a law of nature. It's a market failure.</p>
+
+      <div class="pullquote">"Most musicians I know never owned anything. Not a house, not a plot, not a porch. They rented their whole life and then they died."</div>
+
+      <div class="divider">• • •</div>
+
+      <p>The way you become a resident is not by writing a check. Or rather, not only by writing a check. The structure was put together by a small Mississippi LLC that owns the land and the buildings, with the residents as members. To join the founding circle, you trade what you have for what you don't.</p>
+
+      <p>One resident traded a paid-off house in another town. Another traded years of hospitality experience and a five-year commitment to plan and run the eventual guest operation, papered as labor against equity over a vest. A third traded a combination of cash and on-property work — running the rehearsal calendar, keeping the PA functional, cooking on Friday nights. Founding shares are capped. After the founding circle closes, additional residents come in as renters with access to the shared facilities but no equity in the land.</p>
+
+      <p>Profits from the eventual guest operation get split across the membership. Decisions are made at a Sunday breakfast that is technically a board meeting and practically the only board meeting any of them have ever wanted to attend.</p>
+
+      <p>The phrase that comes up, in different words, from almost everybody who lives there: <em>we didn't want roommates. Roommates are when you live in the same house with people you don't choose. This is when you live in the same place with people you do.</em></p>
+
+      <div class="divider">• • •</div>
+
+      <p>The hospitality side is coming. The plan is small — eight units, maybe ten — and the kind of place where you stay for three days because somebody you've never met invites you to a porch supper. There will be a garden, run by people who know the names of seven kinds of okra. There will be a pole barn that has shows on Friday. There will probably be a dog.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>Twenty miles east of Natchez is not, in any obvious sense, where anybody would expect this kind of project to take root. The Mississippi River corridor is famous for music, but its institutional music infrastructure runs through New Orleans on one end and Memphis on the other. Natchez has a handful of venues, an Inn that books a few nights a month, a couple of festivals. It does not have, and has never had, a recording studio of national reputation.</p>
+
+      <p>What it does have is a price. Land here costs a fraction of what it costs in Asheville or Nashville. The county is permissive about agricultural-zoned outbuildings. Power and water are reachable from the main road without a project. And the closest blues musicians of national reputation are a half-tank of gas away, on the same highway that put Robert Johnson in the back of every musicology textbook ever written.</p>
+
+      <p>The math, in other words, has been sitting there the entire time. The Hollow is what happens when somebody actually does it.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>I leave on a Tuesday afternoon. The light is the yellow Mississippi pine light that doesn't show up in photographs. Somebody is playing a piano somewhere in the pole barn, badly, the way somebody plays who is just sitting down for the first time after a long day.</p>
+
+      <p>The thing about the Hollow that you can't quite put into a magazine article is the thing the residents themselves have the hardest time articulating: it is not, in any conventional sense, a project. It is not trying to scale. It is not trying to disrupt anything. It is, instead, the slow and almost embarrassing return of an old idea — that a small group of people, with a small amount of land, and a clear sense of what they wanted out of a life, could build something together that lasted longer than any of them and was nicer to live in than what most of them had.</p>
+
+      <p>Asked what they would tell another musician thinking about the same kind of move, one of the founders, standing on a porch at the end of the day, said it like this:</p>
+
+      <p>"Bring your own snare. We've got the rest of the room."</p>
+
+      <p class="credit">The Hollow does not currently take public guest reservations; the first booking window is anticipated for fall 2026.</p>
+    </article>
+  </div>
+</body>
+</html>

@@ -14,7 +14,7 @@
 
 *Twenty miles east of Natchez, a former blues drummer and a Hudson Valley transplant are doing something stranger than a commune and quieter than a real-estate play. They're calling it home.*
 
-**By Tracy Alderson** — *Big Muddy Touring Magazine*
+**By Carrie Dicks**
 
 ---
 

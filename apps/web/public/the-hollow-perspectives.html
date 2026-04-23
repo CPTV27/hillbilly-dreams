@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>The Hollow — A Quiet Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --rule: #d8d8d8;
+      --muted: #6a6a6a;
+      --paper: #ffffff;
+      --serif-display: 'Playfair Display', 'Times New Roman', Times, serif;
+      --serif-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      background: var(--paper);
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      font-family: var(--serif-body);
+    }
+
+    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+    body { scroll-snap-type: y mandatory; }
+
+    .slide {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 64px 28px;
+      scroll-snap-align: start;
+      position: relative;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .slide-inner {
+      max-width: 640px;
+      width: 100%;
+    }
+
+    .strap {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+      font-weight: 700;
+    }
+
+    .strap .pipe { color: var(--rule); margin: 0 10px; }
+
+    h1 {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 78px;
+      line-height: 0.98;
+      letter-spacing: -0.015em;
+      margin: 0 0 24px;
+      color: var(--ink);
+    }
+
+    h2 {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 42px;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin: 0 0 22px;
+      color: var(--ink);
+    }
+
+    h3 {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-style: italic;
+      font-size: 28px;
+      line-height: 1.2;
+      margin: 0 0 18px;
+      color: var(--ink);
+    }
+
+    .dek {
+      font-family: var(--serif-body);
+      font-style: italic;
+      font-size: 22px;
+      line-height: 1.45;
+      color: #2a2a2a;
+      margin: 0 0 28px;
+    }
+
+    p {
+      font-size: 19px;
+      line-height: 1.7;
+      margin: 0 0 18px;
+    }
+
+    .small {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .trade {
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--rule);
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .trade strong { color: var(--ink); font-weight: 700; }
+
+    .num {
+      position: absolute;
+      bottom: 22px;
+      right: 28px;
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .pull {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-style: italic;
+      font-size: 30px;
+      line-height: 1.3;
+      color: var(--ink);
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      padding: 26px 0;
+      margin: 18px 0 0;
+    }
+
+    .signoff {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-style: italic;
+      font-size: 36px;
+      line-height: 1.25;
+      color: var(--ink);
+      margin: 0 0 24px;
+    }
+
+    .nav-hint {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 36px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 52px; }
+      h2 { font-size: 32px; }
+      h3 { font-size: 22px; }
+      .dek { font-size: 18px; }
+      p { font-size: 17px; }
+      .pull { font-size: 22px; }
+      .signoff { font-size: 26px; }
+      .slide { padding: 48px 22px; }
+    }
+
+    @media print {
+      html, body { scroll-snap-type: none; }
+      .slide { min-height: auto; page-break-after: always; border-bottom: none; padding: 48px 32px; }
+      .num { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. COVER -->
+  <section class="slide">
+    <div class="slide-inner" style="text-align: center;">
+      <div class="strap">An Invitation <span class="pipe">·</span> Adams County, Mississippi</div>
+      <h1>The Hollow</h1>
+      <p class="dek" style="text-align: center;">Eighteen acres. A pole barn. A cooperative for working musicians who are tired of renting their own lives.</p>
+      <p class="small nav-hint">Scroll</p>
+    </div>
+    <div class="num">01 / 11</div>
+  </section>
+
+  <!-- 2. THE PREMISE -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">The Premise</div>
+      <p>Most working musicians spend their entire careers renting. They rent the apartment. They rent the storage unit for their gear. They rent the bus. They rent the rehearsal space. They rent the studio time.</p>
+      <p>And then one day they stop being able to tour, and they look up and discover that thirty years of working in music has produced a checking account, a pile of receipts, and no piece of ground anywhere with their name on it.</p>
+      <p class="pull">The Hollow is built on the idea that this is not a law of nature. It's a market failure.</p>
+    </div>
+    <div class="num">02 / 11</div>
+  </section>
+
+  <!-- 3. WHAT IT IS -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">What It Is</div>
+      <h2>Eighteen acres of pine and creek bottom.</h2>
+      <p>Twenty miles east of Natchez, just outside the limit where Natchez stops being Natchez. Five tiny houses, none larger than a thousand square feet, arranged loosely around a central pole barn that does triple duty: a workshop, a rehearsal space, and on Friday nights a dance hall that holds about thirty people if everybody breathes shallow.</p>
+      <p>It is not a commune. It is not a development in the sense the word usually means. There is no gate, no clubhouse, no pickleball court. There is a garden coming. There is a piano in the pole barn. There is, almost always, a dog.</p>
+    </div>
+    <div class="num">03 / 11</div>
+  </section>
+
+  <!-- 4. HOW RESIDENCY WORKS -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">How Residency Works</div>
+      <h2>You trade what you have for what you don't.</h2>
+      <p>The structure is a small Mississippi LLC that owns the land and the buildings, with the residents as members. The founding circle is capped — once it closes, additional residents come in as renters with access to the shared facilities but no equity in the land.</p>
+      <p>To join the founding circle, you bring some combination of cash, a paid-off asset, or a five-year role at the property — running the rehearsal calendar, planning the guest operation, keeping the PA functional, cooking on Friday nights. Profits from the eventual guest operation get split across the membership.</p>
+      <p>Decisions are made at a Sunday breakfast that is technically a board meeting and practically the only board meeting any of them have ever wanted to attend.</p>
+    </div>
+    <div class="num">04 / 11</div>
+  </section>
+
+  <!-- 5. PERSPECTIVE: TOURING MUSICIAN -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">Perspective One</div>
+      <h3>If you've been on the road for thirty years.</h3>
+      <p>You stopped finding the bus romantic in your forties. The hotels blur. The per diems shrink. The merch table is somebody else's job now. You still play because you love it, but the math of the road has stopped working — too many miles for too little stage time, too many young people sleeping in shifts on a sleeper coach you no longer fit comfortably in.</p>
+      <p>The Hollow is the place to land without quitting. A small house with a porch. A pole barn rehearsal space twelve steps away. A dance hall on Friday night with thirty good listeners. Drive when you want, stay when you want, sleep in your own bed when you're done.</p>
+      <div class="trade"><strong>What you might bring in:</strong> A paid-off house from somewhere else, or cash, or both. A five-year role anchoring the Friday-night room.</div>
+    </div>
+    <div class="num">05 / 11</div>
+  </section>
+
+  <!-- 6. PERSPECTIVE: STUDIO ENGINEER -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">Perspective Two</div>
+      <h3>If you've spent your life making other people's records sound good.</h3>
+      <p>You've never owned a console room. You've rented hourly studios, slept on the floor of a friend's project space, learned every preamp made between 1972 and 2009. You don't need a glossy commercial room. You need a small, quiet, sealed space, one that smells like wood and not like commercial carpet, where nobody is billing you by the half hour.</p>
+      <p>The Hollow's pole barn has a control room going in this fall. Sessions are cooperative — you keep most of the rate, the property gets a share. The room is yours to tune. Bring whatever's in your closet.</p>
+      <div class="trade"><strong>What you might bring in:</strong> Cash and the responsibility for the room — gear maintenance, session logistics, the running tune of the place.</div>
+    </div>
+    <div class="num">06 / 11</div>
+  </section>
+
+  <!-- 7. PERSPECTIVE: SONGWRITER -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">Perspective Three</div>
+      <h3>If you write better when nobody is asking you to.</h3>
+      <p>You've spent enough years in writing rooms with hired-gun co-writers and country-radio briefs to know that the best things you've written happened when nobody was watching. You don't need a Music Row office. You need a porch, a coffee pot, a kitchen table, a quiet hour between dawn and the heat of the day, and a community that doesn't ask you what you're working on until you bring it up.</p>
+      <p>The Hollow has all of that. The garden runs without you if you want it to. The pole barn has a piano nobody is using before noon. There's a creek you can walk to.</p>
+      <div class="trade"><strong>What you might bring in:</strong> Cash and the published voice of the place — newsletter, occasional liner notes, residency journals.</div>
+    </div>
+    <div class="num">07 / 11</div>
+  </section>
+
+  <!-- 8. PERSPECTIVE: PRODUCTION / ROAD MANAGER -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">Perspective Four</div>
+      <h3>If you ran the show.</h3>
+      <p>You've managed buses, festivals, mixers, vendors, advances, settlements, and the kind of ten-tour-cycles-in-a-row Type-A workload that nobody on stage notices until something breaks. You're past the point of wanting to do that for somebody else's headliner. You'd still do it for the right room, at the right scale, on your own land.</p>
+      <p>The Hollow needs a person like you. Friday-night shows, guest operations, the rehearsal calendar, the weekly cadence of a small place that wants to keep working without scaling into a brand. You'd run it the way you've always run things, except this time you'd own a piece of the building.</p>
+      <div class="trade"><strong>What you might bring in:</strong> Cash and an operational lead role — five-year vest against equity, with full authority over how the place actually runs day to day.</div>
+    </div>
+    <div class="num">08 / 11</div>
+  </section>
+
+  <!-- 9. PERSPECTIVE: PHOTOGRAPHER / JOURNALIST -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">Perspective Five</div>
+      <h3>If you've documented other people's scenes for too long.</h3>
+      <p>You've spent a career on the road with bands, in the wings of theaters, in green rooms, in the back of rented vans. You've made the photographs. You've written the captions. You've watched a hundred small scenes flicker into being and then dissolve. You've never had one of your own to live in.</p>
+      <p>The Hollow is a small, real scene that wants to be documented from the inside. The published voice of the place — magazine, podcast, photographs — runs through whoever wants to run it. The work is the proof of the work.</p>
+      <div class="trade"><strong>What you might bring in:</strong> Cash and the archive of the place — the photographs, the long-form writing, the record of how it actually was.</div>
+    </div>
+    <div class="num">09 / 11</div>
+  </section>
+
+  <!-- 10. WHY MISSISSIPPI -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">Why Here</div>
+      <h2>The math has been sitting there the entire time.</h2>
+      <p>Twenty miles east of Natchez is not, in any obvious sense, where anybody would expect this kind of project to take root. The Mississippi River corridor is famous for music, but its institutional infrastructure runs through New Orleans on one end and Memphis on the other.</p>
+      <p>What this stretch has is a price. Land here costs a fraction of what it costs in Asheville or Nashville. The county is permissive about agricultural-zoned outbuildings. Power and water are reachable from the main road without a project. And the closest blues musicians of national reputation are a half-tank of gas away, on the same highway that put Robert Johnson in the back of every musicology textbook ever written.</p>
+      <p>The Hollow is what happens when somebody actually does it.</p>
+    </div>
+    <div class="num">10 / 11</div>
+  </section>
+
+  <!-- 11. CLOSING -->
+  <section class="slide">
+    <div class="slide-inner" style="text-align: center;">
+      <div class="strap">An Invitation</div>
+      <p class="signoff">"Bring your own snare.<br />We've got the rest of the room."</p>
+      <p class="small">The Hollow does not currently take public guest reservations.<br />The first booking window is anticipated for fall 2026.<br /><br />Founding circle is small and forming now.</p>
+    </div>
+    <div class="num">11 / 11</div>
+  </section>
+
+</body>
+</html>
