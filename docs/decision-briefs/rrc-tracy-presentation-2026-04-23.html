@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>RRC — A Business Plan for Tracy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --rule: #d8d8d8;
+      --muted: #6a6a6a;
+      --paper: #ffffff;
+      --accent: #8a4a1a;
+      --serif-display: 'Playfair Display', 'Times New Roman', Times, serif;
+      --serif-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      background: var(--paper);
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      font-family: var(--serif-body);
+    }
+
+    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+    body { scroll-snap-type: y mandatory; }
+
+    .slide {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 64px 28px;
+      scroll-snap-align: start;
+      position: relative;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .slide-inner { max-width: 720px; width: 100%; }
+
+    .strap {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+      font-weight: 700;
+    }
+
+    .strap .pipe { color: var(--rule); margin: 0 10px; }
+
+    h1 {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 64px;
+      line-height: 0.98;
+      letter-spacing: -0.015em;
+      margin: 0 0 24px;
+      color: var(--ink);
+    }
+
+    h2 {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 38px;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin: 0 0 22px;
+      color: var(--ink);
+    }
+
+    h3 {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-style: italic;
+      font-size: 26px;
+      line-height: 1.2;
+      margin: 0 0 18px;
+      color: var(--ink);
+    }
+
+    .dek {
+      font-family: var(--serif-body);
+      font-style: italic;
+      font-size: 22px;
+      line-height: 1.45;
+      color: #2a2a2a;
+      margin: 0 0 28px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.65;
+      margin: 0 0 16px;
+    }
+
+    .small { font-size: 15px; color: var(--muted); line-height: 1.55; }
+
+    .num {
+      position: absolute;
+      bottom: 22px;
+      right: 28px;
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .nav-hint {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 36px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 20px;
+      font-size: 16px;
+    }
+
+    table th, table td {
+      text-align: left;
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+
+    table th {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    table td.num-cell, table th.num-cell {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      font-family: var(--sans);
+    }
+
+    table tr.total td {
+      border-top: 1px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      font-weight: 700;
+      font-family: var(--sans);
+    }
+
+    table tr.gap td {
+      color: var(--accent);
+      font-weight: 700;
+      font-family: var(--sans);
+    }
+
+    .tier {
+      border-top: 1px solid var(--rule);
+      padding: 14px 0 10px;
+    }
+    .tier:last-child { border-bottom: 1px solid var(--rule); }
+    .tier-label {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .tier-name {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-size: 21px;
+      margin-bottom: 6px;
+    }
+    .tier-body { font-size: 16px; line-height: 1.55; color: #333; }
+
+    .ask {
+      border: 1px solid var(--ink);
+      padding: 18px 22px;
+      margin: 14px 0;
+    }
+    .ask-num {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .ask-headline {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    .ask-body { font-size: 16px; line-height: 1.55; color: #333; }
+
+    .pull {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-style: italic;
+      font-size: 28px;
+      line-height: 1.3;
+      color: var(--ink);
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      padding: 24px 0;
+      margin: 18px 0 0;
+    }
+
+    .signoff {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-style: italic;
+      font-size: 36px;
+      line-height: 1.25;
+      color: var(--ink);
+      margin: 0 0 24px;
+    }
+
+    @media (max-width: 720px) {
+      h1 { font-size: 44px; }
+      h2 { font-size: 28px; }
+      h3 { font-size: 22px; }
+      .dek { font-size: 18px; }
+      p { font-size: 16px; }
+      .pull { font-size: 22px; }
+      .signoff { font-size: 26px; }
+      .slide { padding: 48px 22px; }
+      table { font-size: 14px; }
+      table th, table td { padding: 8px 10px; }
+    }
+
+    @media print {
+      html, body { scroll-snap-type: none; }
+      .slide { min-height: auto; page-break-after: always; border-bottom: none; padding: 36px 32px; }
+      .num { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. COVER -->
+  <section class="slide">
+    <div class="slide-inner" style="text-align: center;">
+      <div class="strap">For Tracy <span class="pipe">·</span> April 23, 2026 <span class="pipe">·</span> Draft v1</div>
+      <h1>The Rockstar Retirement Community</h1>
+      <p class="dek" style="text-align: center;">A 5-year business plan. Phase 1 starts in May. Three signoffs needed from you by end of meeting.</p>
+      <p class="small nav-hint">Scroll</p>
+    </div>
+    <div class="num">01 / 16</div>
+  </section>
+
+  <!-- 2. WHY THIS EXISTS -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">The Opportunity</div>
+      <h2>Most people who spend a lifetime making things never own anything.</h2>
+      <p>The working creative class — touring musicians, road crew, session players, photographers, writers, engineers, the people who actually make the things — spend entire careers renting. By 55+ they have a checking account, a pile of receipts, and no piece of ground anywhere with their name on it.</p>
+      <p>There is no existing answer at any scale. The retirement industry serves people with W-2 401(k)s. Co-living is for 20-somethings. RV parks aren't it. The "creative retirement community" doesn't exist.</p>
+      <p class="pull">If we build it once, in the right place, the same model runs in the Catskills, then Asheville, then anywhere with cheap land and a creative diaspora.</p>
+    </div>
+    <div class="num">02 / 16</div>
+  </section>
+
+  <!-- 3. WHAT IT IS -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">The Property</div>
+      <h2>Eighteen acres, 20 minutes east of Natchez.</h2>
+      <p>Existing house. New barndominium with workshop, recording studio, and Chase's apartment. 5–15 small units arranged loosely around a central pole barn that does triple duty: workshop, rehearsal space, Friday-night dance hall.</p>
+      <p>Garden along the south side. Solar with battery. Well water. Starlink mesh. A dog kennel. A pool or pond. The kind of road in that's just bad enough to keep most people from finding it.</p>
+      <p class="small">Holding entity: <strong>Big Muddy Land Co. LLC</strong> (to be formed). Parent: <strong>MBT (Measurably Better Things LLC)</strong>. Equity partners: Chase, Tracy, Amy.</p>
+    </div>
+    <div class="num">03 / 16</div>
+  </section>
+
+  <!-- 4. FOUR MEMBERSHIP TIERS -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">How People Join</div>
+      <h2>Four tiers. One cap.</h2>
+      <div class="tier">
+        <div class="tier-label">Tier 1</div>
+        <div class="tier-name">Resident Members</div>
+        <div class="tier-body">Own their unit. Live full-time. $1,200/mo HOA includes lot lease, utilities, internet, garden, shop access.</div>
+      </div>
+      <div class="tier">
+        <div class="tier-label">Tier 2</div>
+        <div class="tier-name">Associate Members</div>
+        <div class="tier-body">Own their unit. 60 days/yr personal use. We run the rental program for the other 305 days. 60/40 split owner/RRC. Most owners opt in.</div>
+      </div>
+      <div class="tier">
+        <div class="tier-label">Tier 3</div>
+        <div class="tier-name">Working Residents</div>
+        <div class="tier-body">Short-term artist residencies. Rent only — $900/mo. Use the units we retain for the program.</div>
+      </div>
+      <div class="tier">
+        <div class="tier-label">Tier 4</div>
+        <div class="tier-name">Founding Circle</div>
+        <div class="tier-body">Capped at 10. $35K cash <em>or</em> a 5-year vested role at the property. Equity stake in the land + buildings. The first ten people who built it.</div>
+      </div>
+    </div>
+    <div class="num">04 / 16</div>
+  </section>
+
+  <!-- 5. TWO-PROPERTY CYCLE -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">Follow the Sun</div>
+      <h2>Mississippi in winter. Catskills in summer.</h2>
+      <p>Mississippi handles October through April — when the pine smells like cold smoke and the Inn does its best business. Catskills handles May through September — when MS gets brutal and the Hudson Valley creative network is at full volume.</p>
+      <p>One membership. One ledger. Two pieces of ground. Residents pack twice a year and live where the weather is good.</p>
+      <p class="small"><strong>Important:</strong> Catskills is in the pitch we're using to talk to potential founders, but the financial model we're discussing tonight is <em>Mississippi only</em>. Catskills is Phase 3 — separate plan, separate capex, probably 2027–2028. Don't commit to it tonight.</p>
+    </div>
+    <div class="num">05 / 16</div>
+  </section>
+
+  <!-- 6. ECOSYSTEM FIT -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">Why Big Muddy Builds This</div>
+      <h2>The infrastructure spine for everything else.</h2>
+      <p><strong>RRC = housing</strong> for the touring artists, studio talent, magazine writers, and Inn staff we're trying to keep close.</p>
+      <p><strong>RRC = customer acquisition</strong> for MBT, the Inn, the studio, and Big Muddy Touring. Every founder + member is a node in the network.</p>
+      <p><strong>Big Muddy Magazine = inbound funnel</strong> for the RRC. The Tracy-edited features write themselves into customer flow.</p>
+      <p><strong>House band</strong> = both Big Muddy Touring revenue and RRC entertainment. Same artist roster, two business uses.</p>
+      <p>The four properties — RRC, Inn, Studio C, Tuthill — operate as one connected system. RRC is the piece that finally gives the system a place to live.</p>
+    </div>
+    <div class="num">06 / 16</div>
+  </section>
+
+  <!-- 7. UNIT ECONOMICS -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">Per-Unit Economics</div>
+      <h2>$31K to build. $100K to sell. $110K if financed.</h2>
+      <table>
+        <thead>
+          <tr><th>Line item</th><th class="num-cell">Amount</th><th class="num-cell">% of price</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Total cost per unit</td><td class="num-cell">$31,000</td><td class="num-cell">31%</td></tr>
+          <tr><td>Sale price</td><td class="num-cell">$100,000</td><td class="num-cell">100%</td></tr>
+          <tr><td>Cash sale margin</td><td class="num-cell">$69,000</td><td class="num-cell">69%</td></tr>
+          <tr><td>Financed sale margin (10yr @ 8%, $10K down)</td><td class="num-cell">$110,034</td><td class="num-cell">78%</td></tr>
+          <tr><td>Internal rental yield (Working Resident at $900/mo, 90% occ)</td><td class="num-cell">$9,720/yr</td><td class="num-cell">31% on cost</td></tr>
+        </tbody>
+      </table>
+      <p class="small">Financing assumption: 70% of buyers choose the seller-financed path ($1,092/mo for 120 months). The financing income is the single largest recurring cash stream after Y3.</p>
+    </div>
+    <div class="num">07 / 16</div>
+  </section>
+
+  <!-- 8. PHASE 1 CAPEX -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">Phase 1 Capex</div>
+      <h2>$627K to open the door.</h2>
+      <table>
+        <thead><tr><th>Bucket</th><th class="num-cell">Cost</th><th class="num-cell">% of total</th></tr></thead>
+        <tbody>
+          <tr><td>Land + closing + contingency</td><td class="num-cell">$207,500</td><td class="num-cell">33%</td></tr>
+          <tr><td>Barndo + workshop + studio + apartment</td><td class="num-cell">$235,424</td><td class="num-cell">38%</td></tr>
+          <tr><td>Site dev (driveway, septic, well, solar, garden, fencing, kennel, pool/pond, Starlink)</td><td class="num-cell">$160,500</td><td class="num-cell">26%</td></tr>
+          <tr><td>First model unit</td><td class="num-cell">$23,500</td><td class="num-cell">4%</td></tr>
+          <tr class="total"><td>Phase 1 grand total</td><td class="num-cell">$626,924</td><td class="num-cell">100%</td></tr>
+        </tbody>
+      </table>
+      <p class="small">12% contingency built into the barndo number. Site dev numbers assume Chase's tractor + bartered labor where possible.</p>
+    </div>
+    <div class="num">08 / 16</div>
+  </section>
+
+  <!-- 9. FUNDING GAP -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">Funding Stack</div>
+      <h2>$430K committed. $197K still to find.</h2>
+      <table>
+        <thead><tr><th>Source</th><th class="num-cell">Amount</th><th class="num-cell">Status</th></tr></thead>
+        <tbody>
+          <tr><td>Chicken's Muscle Shoals house (Tracy buys, proceeds to RRC)</td><td class="num-cell">$180,000</td><td class="num-cell">Conditional</td></tr>
+          <tr><td>MBT equity contribution</td><td class="num-cell">$120,000</td><td class="num-cell">Pending Tracy</td></tr>
+          <tr><td>Founder buy-ins Y1 (2 × $35K)</td><td class="num-cell">$70,000</td><td class="num-cell">Pre-sold</td></tr>
+          <tr><td>Rural MS construction loan (~30% LTV, community bank)</td><td class="num-cell">$60,000</td><td class="num-cell">Achievable</td></tr>
+          <tr><td>Ardent settlement (toggled BASE, not in stack)</td><td class="num-cell">$0</td><td class="num-cell">Optional upside</td></tr>
+          <tr class="total"><td>Subtotal committed</td><td class="num-cell">$430,000</td><td class="num-cell">—</td></tr>
+          <tr class="gap"><td>Gap to Phase 1 capex</td><td class="num-cell">($196,924)</td><td class="num-cell">Open</td></tr>
+        </tbody>
+      </table>
+      <p class="small"><strong>Two of the four sources are conditional:</strong> the Muscle Shoals buy depends on Chicken accepting the offer (May conversation), and the founder buy-ins depend on closing two cash founders by December. The MBT equity is the only certain piece if you greenlight it.</p>
+    </div>
+    <div class="num">09 / 16</div>
+  </section>
+
+  <!-- 10. CLOSE THE GAP -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">Closing $197K</div>
+      <h2>Three honest paths.</h2>
+      <p><strong>Path A — More founder buy-ins.</strong> Add 4 cash founders in Y1 instead of 2. +$140K. Risk: founder pace is the hardest variable in the model.</p>
+      <p><strong>Path B — Larger construction loan.</strong> Push from $60K to $250K (~50% LTV against the land + barndo). +$190K. Risk: more debt service in Y1, when EBITDA is already negative.</p>
+      <p><strong>Path C — Ardent settlement.</strong> $300K gross × 67% net of fees × 33% Chase share = $66K. If we apply Tracy + Amy thirds back to MBT, the full net of $200K could close the gap. Risk: 6–18+ month timing, not yet confirmed.</p>
+      <p class="pull">Realistic mix: A + B. Aim for 3 cash founders ($105K), $100K construction loan. Leave Ardent as upside, not a load-bearing assumption.</p>
+    </div>
+    <div class="num">10 / 16</div>
+  </section>
+
+  <!-- 11. FIVE-YEAR PICTURE -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">Revenue + EBITDA + Cash</div>
+      <h2>The five-year arc.</h2>
+      <table>
+        <thead>
+          <tr><th>$</th><th class="num-cell">Y1</th><th class="num-cell">Y2</th><th class="num-cell">Y3</th><th class="num-cell">Y4</th><th class="num-cell">Y5</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Net revenue</td><td class="num-cell">$84K</td><td class="num-cell">$251K</td><td class="num-cell">$324K</td><td class="num-cell">$499K</td><td class="num-cell">$695K</td></tr>
+          <tr><td>EBITDA</td><td class="num-cell">($4K)</td><td class="num-cell">$140K</td><td class="num-cell">$191K</td><td class="num-cell">$336K</td><td class="num-cell">$508K</td></tr>
+          <tr><td>Cumulative cash</td><td class="num-cell">($662K)</td><td class="num-cell">($708K)</td><td class="num-cell">($827K)</td><td class="num-cell">($862K)</td><td class="num-cell">($664K)</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Headline:</strong> Project does not pay back its own capital in 5 years on the base case. EBITDA turns positive in Y2. Cash turns positive in Y6 — Y7 at the latest.</p>
+      <p class="small">Cumulative cash is negative because we keep building units faster than we sell them ($1.2M of unit-build capex stacked on the $627K Phase 1). If we slow the build to match sales pace, breakeven moves earlier but total enterprise value compounds slower.</p>
+    </div>
+    <div class="num">11 / 16</div>
+  </section>
+
+  <!-- 12. TOP RISKS -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">What Could Break This</div>
+      <h2>Three risks matter most.</h2>
+      <p><strong>Risk 1: HOPA 55+ qualification doesn't hold.</strong> The whole model assumes Housing for Older Persons Act compliance. If Adams County zoning or the HOPA structure can't be made to work on agricultural-zoned land, we pivot to a mixed-age cooperative — different liability, different marketing, different exit. <em>Needs legal sign-off before Phase 1 close.</em></p>
+      <p><strong>Risk 2: Chicken says no.</strong> $180K of the funding stack is the Muscle Shoals house. If Chicken doesn't accept, the gap goes from $197K to $377K, and the Y1 sweat-founder slot is empty. Pitch artifacts deployed; conversation in Natchez in May.</p>
+      <p><strong>Risk 3: Build cost overrun.</strong> 12% contingency. If we hit 30% (real risk in rural MS construction with material price volatility), Phase 1 goes from $627K to $700K+. Mitigation: regional sourcing, in-house labor, phasing the pool/pond to Y2.</p>
+    </div>
+    <div class="num">12 / 16</div>
+  </section>
+
+  <!-- 13. TRACY'S ASKS -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">What I'm Asking From You</div>
+      <h2>Three concrete decisions.</h2>
+      <div class="ask">
+        <div class="ask-num">Ask 1</div>
+        <div class="ask-headline">$120K MBT equity contribution.</div>
+        <div class="ask-body">Phase 1 timing — needed at land close (target July 2026). Capital call on the partnership. Documented in the MBT operating agreement.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-num">Ask 2</div>
+        <div class="ask-headline">Buy Chicken's Muscle Shoals house — $180K.</div>
+        <div class="ask-body">Conditional on Chicken accepting (May conversation). Net proceeds fund RRC; you hold the house as a personal asset. We refinance/rent/sell on your timeline.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-num">Ask 3</div>
+        <div class="ask-headline">Approve the construction loan path.</div>
+        <div class="ask-body">$60–100K, community bank (likely Concordia Bank or Trustmark), ~30–50% LTV against the land + barndo. Need your sign-off as MBT finance lead before we engage the bank.</div>
+      </div>
+      <p class="small"><strong>Total capital ask from you: $300K across two transactions, plus debt approval.</strong> Both transactions are reversible until executed; both are time-sensitive against a July land close.</p>
+    </div>
+    <div class="num">13 / 16</div>
+  </section>
+
+  <!-- 14. YEAR ONE CALENDAR -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">Year One Calendar</div>
+      <h2>April 2026 → December 2026.</h2>
+      <table>
+        <thead><tr><th>Month</th><th>Milestone</th></tr></thead>
+        <tbody>
+          <tr><td>April</td><td>Counsel engaged. CPA consult. Land search.</td></tr>
+          <tr><td>May</td><td>Three-partner conversation in person. Chicken pitch in Natchez.</td></tr>
+          <tr><td>June</td><td>MBT operating agreement executed. Big Muddy Land Co. LLC formed. Offer in on parcel.</td></tr>
+          <tr><td>July</td><td>Land close (60-day target). Barndo ordered. Slab poured.</td></tr>
+          <tr><td>Aug–Sep</td><td>Barndo erected. Apartment finish. Solar. Workshop set up.</td></tr>
+          <tr><td>October</td><td>Chase moves into barndo. Kate moves to existing farmhouse.</td></tr>
+          <tr><td>November</td><td>Model tiny unit framing begins. Co-op entity formalized.</td></tr>
+          <tr><td>December</td><td>Model unit complete. First two founder buy-ins close.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="num">14 / 16</div>
+  </section>
+
+  <!-- 15. OPEN DECISIONS -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="strap">Before We Move</div>
+      <h2>Five things to resolve.</h2>
+      <p><strong>1. Pick counsel.</strong> HOPA 55+ research + MBT operating agreement + Big Muddy Land Co. formation. Not yet engaged. Need a recommendation by end of April.</p>
+      <p><strong>2. Pick CPA.</strong> Passive royalty structure on financing income, Ardent characterization, MBT-as-holding tax posture. Tracy to recommend.</p>
+      <p><strong>3. Confirm HOPA viability.</strong> Counsel's first deliverable. Without it, the 55+ pitch can't go to founders.</p>
+      <p><strong>4. Three-way alignment.</strong> Tonight is round one with you. Same conversation needs to happen with Amy. Schedule before May.</p>
+      <p><strong>5. Catskills second property.</strong> The pitch promises it; the model doesn't fund it. Phase 3 plan needed before we put it in writing to founders.</p>
+    </div>
+    <div class="num">15 / 16</div>
+  </section>
+
+  <!-- 16. CLOSING -->
+  <section class="slide">
+    <div class="slide-inner" style="text-align: center;">
+      <div class="strap">By End Of Meeting</div>
+      <p class="signoff">"Three signoffs.<br />One scheduling decision."</p>
+      <p style="text-align: left; max-width: 480px; margin: 0 auto;">
+        <strong>1.</strong> Yes / no / yes-pending on the $300K capital ask.<br /><br />
+        <strong>2.</strong> Yes / no on the construction loan path.<br /><br />
+        <strong>3.</strong> Yes / no on engaging counsel by end of April.<br /><br />
+        <strong>4.</strong> Schedule the three-partner alignment conversation with Amy.
+      </p>
+      <p class="small" style="margin-top: 36px;">Anything you want to push back on, change, or take time to think about — that's the point of tonight.</p>
+    </div>
+    <div class="num">16 / 16</div>
+  </section>
+
+</body>
+</html>
