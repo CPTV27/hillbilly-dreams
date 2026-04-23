@@ -48,7 +48,7 @@
     "@types/node": "^25.5.2",
     "checkly": "^7.7.0",
     "chokidar": "^4.0.0",
-    "fast-xml-parser": "^4.3.6",
+    "fast-xml-parser": "^5.7.0",
     "jiti": "^2.6.1",
     "tsx": "^4.19.0"
   }
