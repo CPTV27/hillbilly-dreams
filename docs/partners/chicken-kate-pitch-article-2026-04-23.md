@@ -1,6 +1,22 @@
 # Pitch Article — For Kate + Chicken (Reverse-Sell Tool)
 
-**Status:** Reverse-sell asset. Reads as a finished Big Muddy Touring magazine feature about a community that already exists. Chase shares it with Kate + Chicken in person, lets it land, *then* reveals he's the one building it.
+> **STATUS 2026-04-23 1:35am — SUPERSEDED.** This markdown is the original draft from earlier in the night with named characters (Wes/Delia), Hudson Valley fingerprints, and a music-industry framing. **The deliverable is the HTML at `chicken-kate-pitch-article-2026-04-23.html` and the deck at `chicken-kate-pitch-deck-2026-04-23.html`** — both have been heavily reframed in five passes, ending with Chase's directive: "It's just cool people who would rather unplug from the grid, grow their own food, live an independent life centered around the arts and not around bullshit, and have a community of people, but also still have their own space and be able to go back and forth, follow the sun." The HTML versions:
+>   - drop all named characters (concept-only framing)
+>   - drop all Hudson Valley specifics (just "the Catskills" / "upstate NY", no town, no person)
+>   - broaden from "working musicians" to "people who'd rather build a life than buy one"
+>   - center the two-property cycle (winter MS → summer Catskills) as a value prop
+>   - byline is Carrie Dicks
+>   - five "perspective" slides in the deck are now lifestyle archetypes (unplug, grow, hands, desk, community+privacy) instead of music-industry roles
+>
+> Live URLs:
+>   - https://bigmuddytouring.com/the-hollow.html
+>   - https://bigmuddytouring.com/the-hollow-perspectives.html
+>
+> The CoS notes at the bottom of this file are PRESERVED as the design rationale that led to the HTML. Don't re-edit the article body below — it's the archive.
+
+---
+
+**Original Status:** Reverse-sell asset. Reads as a finished Big Muddy Touring magazine feature about a community that already exists. Chase shares it with Kate + Chicken in person, lets it land, *then* reveals he's the one building it.
 **Voice:** Big Muddy Touring magazine — Tracy Alderson byline. NYT-feature register, photographic detail, no pitch language, no AI tells.
 **Names used inside the fiction:**
 - **Wes** = Chicken (established, real first name OK in fiction)
