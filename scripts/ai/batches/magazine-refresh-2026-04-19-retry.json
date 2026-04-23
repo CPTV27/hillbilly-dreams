@@ -1,0 +1,30 @@
+{
+  "model": "gemini-2.5-flash",
+  "concurrency": 3,
+  "tasks": [
+    {
+      "id": "mag-r-breakfast-is-a-verb",
+      "outputPath": "docs/magazine-refresh-2026-04-19/03-breakfast-is-a-verb.json",
+      "system": "You are Tracy Alderson-Allen, editor of Big Muddy Magazine and co-operator of Big Muddy Inn. Voice rules: warm, slow, observational, tactile, kitchen-side. DO use: linen, hearth, biscuit, lard, cast iron, screen door, river fog, porch. DO NOT use: vibe, immersive, curated, scene. Output a single valid JSON object only, NO markdown fences, NO commentary.",
+      "prompt": "Write a 700-900 word first-person essay about breakfast at the Inn. Tracy in the kitchen at 6:15am. Specific: the biscuit dough rest time, the way the gas burner sounds at that hour, the regular guests, the one-time guests, what gets served and why. The piece is intimate, not a recipe column — but mention one technique tip in passing (cold butter, not warm). End with the moment the dining room fills.\n\nReturn JSON:\n{\n  \"title\": \"<headline>\",\n  \"slug\": \"<kebab-case>\",\n  \"category\": \"food-drink\",\n  \"city\": \"natchez\",\n  \"author\": \"Tracy Alderson-Allen\",\n  \"excerpt\": \"<200 chars>\",\n  \"readTime\": \"<5 min read>\",\n  \"lede\": \"<opener>\",\n  \"sections\": [{\"heading\": \"\", \"paragraphs\": [\"<p>\"]}],\n  \"pullQuote\": {\"text\": \"<line>\", \"attribution\": \"\"},\n  \"photoBrief\": \"<biscuits on a tray, morning light through screen door>\",\n  \"photoPool\": \"legacy-starter\"\n}",
+      "maxTokens": 12000,
+      "temperature": 0.78
+    },
+    {
+      "id": "mag-r-silver-street-antiques",
+      "outputPath": "docs/magazine-refresh-2026-04-19/05-silver-street-antiques.json",
+      "system": "You are Tracy Alderson-Allen, editor of Big Muddy Magazine. Voice: warm, slow, observational, generous. Output a single valid JSON object only, NO markdown fences.",
+      "prompt": "Write a 900-1100 word piece on Silver Street and the antique dealers who keep Natchez's material history intact and circulating. Walk the street: the storefronts, the way light falls on dusty mahogany, the haggling style, the regulars vs the tourists. Profile one or two specific shop characters (composites OK — name them like 'the woman at the corner shop' if needed) and what they sell, what they refuse to sell, why. End with the kind of object someone walks out with that they did not know they wanted.\n\nReturn JSON:\n{\n  \"title\": \"<headline>\",\n  \"slug\": \"<kebab>\",\n  \"category\": \"feature\",\n  \"city\": \"natchez\",\n  \"author\": \"Tracy Alderson-Allen\",\n  \"excerpt\": \"<200 chars>\",\n  \"readTime\": \"<6 min read>\",\n  \"lede\": \"<opener>\",\n  \"sections\": [{\"heading\": \"\", \"paragraphs\": [\"<p>\"]}],\n  \"pullQuote\": {\"text\": \"<line>\", \"attribution\": \"\"},\n  \"photoBrief\": \"<storefront on Silver Street, mahogany interior, dealer at counter>\",\n  \"photoPool\": \"silver-street-antiques-business-listing-exterior-only\"\n}",
+      "maxTokens": 12000,
+      "temperature": 0.75
+    },
+    {
+      "id": "mag-r-corridor-week-itinerary",
+      "outputPath": "docs/magazine-refresh-2026-04-19/09-corridor-week-itinerary.json",
+      "system": "You are Tracy Alderson-Allen writing a real-traveler itinerary for Big Muddy Magazine. Voice: practical, detailed, generous, anti-bullshit. Output a single valid JSON object only, NO markdown fences.",
+      "prompt": "Write a 1500-1800 word seven-day road-trip itinerary using Natchez (Big Muddy Inn) as the hub for two return-trips along the lower Mississippi corridor. Specific drive times, where to eat lunch, real recommended overnight stops if guests want to bookend with a night in Clarksdale or NOLA, what to skip. Day 1: arrive Natchez. Days 2-3: Clarksdale loop. Day 4: rest day in Natchez. Days 5-6: NOLA loop with a stop in St. Francisville. Day 7: departure breakfast at the Inn. Be honest about what makes corridor driving good (river roads) and what doesn't (some interstate stretches). End with one sentence about what they'll remember a year later.\n\nReturn JSON:\n{\n  \"title\": \"<headline>\",\n  \"slug\": \"<kebab>\",\n  \"category\": \"city-guide\",\n  \"city\": \"natchez\",\n  \"author\": \"Tracy Alderson-Allen\",\n  \"excerpt\": \"<200 chars>\",\n  \"readTime\": \"<10 min read>\",\n  \"lede\": \"<opener>\",\n  \"sections\": [{\"heading\": \"Day 1\", \"paragraphs\": [\"<p>\"]}, {\"heading\": \"Days 2-3\", \"paragraphs\": [\"<p>\"]}, {\"heading\": \"Day 4\", \"paragraphs\": [\"<p>\"]}, {\"heading\": \"Days 5-6\", \"paragraphs\": [\"<p>\"]}, {\"heading\": \"Day 7\", \"paragraphs\": [\"<p>\"]}],\n  \"pullQuote\": {\"text\": \"<line>\", \"attribution\": \"\"},\n  \"photoBrief\": \"<Natchez departure morning, packed car at the Inn, corridor signs>\",\n  \"photoPool\": \"legacy-starter\"\n}",
+      "maxTokens": 14000,
+      "temperature": 0.72
+    }
+  ]
+}

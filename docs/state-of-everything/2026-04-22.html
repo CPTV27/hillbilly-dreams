@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>State of Everything — April 22, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #FFFFFF;
+  --ink: #111111;
+  --body: #1A1A1A;
+  --muted: #555555;
+  --rule: #DDDDDD;
+  --rule-strong: #222222;
+  --accent: #A03E1F;
+  --soft: #FAFAF8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--body);
+  font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.masthead {
+  padding: 48px 24px 32px;
+  border-bottom: 3px double var(--rule-strong);
+  text-align: center;
+}
+
+.masthead .kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.masthead h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(36px, 7vw, 56px);
+  letter-spacing: -0.02em;
+  line-height: 1.0;
+  color: var(--ink);
+}
+
+.masthead h1 em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.masthead .subtitle {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--muted);
+  margin-top: 14px;
+}
+
+.masthead .date {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+  display: inline-block;
+  padding-left: 36px;
+  padding-right: 36px;
+  text-transform: uppercase;
+}
+
+main { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+section {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+section:last-of-type { border-bottom: none; }
+
+.label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 38px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin-bottom: 24px;
+  color: var(--ink);
+}
+
+h2 em { font-style: italic; font-weight: 400; }
+
+h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.005em;
+  margin-top: 32px;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+
+p {
+  margin-bottom: 18px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--body);
+}
+
+ul {
+  margin-bottom: 18px;
+  padding-left: 24px;
+  list-style-type: none;
+}
+
+ul li {
+  position: relative;
+  margin-bottom: 12px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--body);
+  padding-left: 4px;
+}
+
+ul li::before {
+  content: "·";
+  position: absolute;
+  left: -16px;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1;
+  top: 2px;
+}
+
+ul li strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.note {
+  background: var(--soft);
+  padding: 22px 26px;
+  border-left: 3px solid var(--accent);
+  margin: 28px 0;
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  font-style: italic;
+}
+
+.note strong {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+footer {
+  padding: 56px 24px 44px;
+  text-align: center;
+  border-top: 3px double var(--rule-strong);
+}
+
+footer .mark {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 28px;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+footer .lede {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+footer .fine {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  ul li { font-size: 16px; }
+  section { padding: 36px 0; }
+}
+
+@media print {
+  section { break-inside: avoid; }
+  body { font-size: 12pt; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="kicker">State of Everything</div>
+  <h1>April <em>Twenty-Second</em></h1>
+  <div class="subtitle">A snapshot from a planning day</div>
+  <div class="date">Wednesday &nbsp;·&nbsp; 2026</div>
+</header>
+
+<main>
+
+  <section id="today">
+    <div class="label">Today</div>
+    <h2>What <em>happened</em></h2>
+
+    <p>A pipe burst in the Bearsville house early in the day. Whether the place is livable is unclear. The morning's logistics turned into an afternoon of long voice memos from the road — thinking out loud about what kind of restructure a forced exit might enable.</p>
+
+    <p>Nothing was decided. A lot was sketched.</p>
+
+    <h3>The threads that came up</h3>
+
+    <ul>
+      <li><strong>A personal restructure.</strong> Bearsville lease exit (decided by end of day — summer in Woodstock continues via a rental and friends bridging the gap; Chase's recording-studio gear moves south). Finances centralized through MBT, debt on a paydown schedule, the truck transferring to Tracy as the last payment lands. Lease exit committed; the rest sketched, not papered.</li>
+      <li><strong>Role reallocation.</strong> Chase moving toward creator, production manager, and artist-management work. Tracy on the Inn and the magazine. Amy on records, radio, and her touring schedule. Elijah running Tuthill day-to-day. Studio C as the production muscle. Sketched, not finalized.</li>
+      <li><strong>Tuthill structure clarified.</strong> A 50/50 LLC with Elijah, with Studio C operating as a DBA underneath. An earlier voice memo about a 25% / franchise-fee model was earlier-stage thinking; the later doc supersedes it.</li>
+      <li><strong>The magazine as Tracy's voice.</strong> Big Muddy Magazine is Tracy Alderson's editorial voice, not Chase's. Tracy decides when issues ship. Chase contributes to ecosystem content broadly but is not the magazine's primary author. Harper Lane stays as the reporter byline; the Editor's Note is Tracy's, not Chase's.</li>
+      <li><strong>The Natchez tiny house community</strong> — working title <em>"The"</em>. Paired with a small manufacturing operation. A roughly $415,000 Phase 1 envelope. Anchored on a barndominium with workshop bays, plus a first model unit. Tracy will finance Phase 1 from her bankroll. Recruitment strategy uses the magazine. Property search is open — looking at what's on the market in the Natchez area.</li>
+      <li><strong>The Ritz Theater.</strong> Promoted from "parked" to active. A real business plan goes together first; once it makes sense on paper, Chase decides who to approach. The magazine article still serves as air cover.</li>
+      <li><strong>Healthcare math.</strong> The shape of NY Essential Plan thresholds will affect what kind of MBT compensation structure makes sense. A real conversation for the CPA, not for tonight.</li>
+    </ul>
+
+    <h3>Artifacts produced today</h3>
+
+    <ul>
+      <li>Big Muddy Magazine Vol. 1 Spring 2026 — six pieces drafted in NYT/Atlantic editorial style (Fraunces and Inter, white-on-black), framed as a notebook issue with the Editor's Note disclosing the aspirational-as-current voice</li>
+      <li>Brand guideline correction — the touring vehicle changed from Sprinter van to 2015 Ford Transit 350 High Roof LWB</li>
+      <li>A handoff document summarizing the day's thinking for any agent picking the thread up later</li>
+      <li>A handful of internal sketch documents — Tuthill structure thinking, comp-target sketch, magazine review notes — drafts, not decision packages</li>
+    </ul>
+
+    <div class="note"><strong>Important framing.</strong> Tonight's documents are raw thinking material, not finalized decisions. They are working notes. Nothing in them obligates anyone — Chase, Tracy, Amy, Elijah, or anyone else — to anything.</div>
+  </section>
+
+  <section id="position">
+    <div class="label">Where We Stand</div>
+    <h2>The current <em>position</em></h2>
+
+    <h3>The architecture (stable)</h3>
+    <ul>
+      <li><strong>Three layers.</strong> HDI (the holding company), MBT (the technology platform), and Big Muddy (the consumer-facing implementations).</li>
+      <li><strong>Three equal partners</strong> at MBT — Chase, Tracy, and Amy.</li>
+      <li><strong>One codebase, one deployment.</strong> Next.js on Vercel, multi-tenant middleware, Sanity CMS, fourteen brand domains.</li>
+      <li><strong>The shared platform.</strong> Modules built once and reused across every property — entity registry, photo archive, hospitality booking, podcast pipeline, payments, AI routing.</li>
+    </ul>
+
+    <h3>The brands (active)</h3>
+    <ul>
+      <li><strong>Big Muddy Touring</strong> — the entertainment engine. Bands, transport, promotion.</li>
+      <li><strong>Big Muddy Magazine</strong> — Chase's voice engine. Editorial publishing for the corridor.</li>
+      <li><strong>Big Muddy Radio + Records</strong> — Amy's lanes. Streaming, label services, podcast.</li>
+      <li><strong>The Big Muddy Inn</strong> — the Natchez anchor. Six rooms, a stage in the back parlor, a residential block off the bluff.</li>
+      <li><strong>Studio C</strong> — production. Bearsville-anchored, with a Natchez branch on the horizon. Chase's personal recording-studio gear moves south as part of the lease exit; Studio C's Bearsville footprint stays put.</li>
+      <li><strong>Tuthill Design</strong> — real estate photography, video, 3D, LiDAR with AI. Fifty-fifty with Elijah.</li>
+      <li><strong>Chase Pierson Photography</strong> — editorial and documentary, the premium tier.</li>
+    </ul>
+
+    <h3>The phase (current)</h3>
+    <p>Internal dogfood. Four internal clients are running on the platform — Big Muddy Touring, Big Muddy Magazine, Biscuits &amp; Blues with Regina Charboneau, and the Big Muddy Inn. External sales are not yet a focus. The work right now is making the platform live up to itself before anyone else is invited to use it.</p>
+  </section>
+
+  <section id="open">
+    <div class="label">Open</div>
+    <h2>What is still <em>up in the air</em></h2>
+
+    <p>These are real questions, not rhetorical ones. Each gets answered through actual conversation — with Tracy, with Amy, with the CPA, with Elijah, with a lawyer — not through more solo drafting at the kitchen table.</p>
+
+    <ul>
+      <li>Which entity pays Chase a salary (MBT, the NY LLC, or another) for tax and benefits eligibility — and how much, with the rest of the value he generates retained inside the company</li>
+      <li>How Tracy's financing of the housing community Phase 1 gets structured</li>
+      <li>What the project actually gets named — current working title is <em>"The"</em></li>
+      <li>Which Natchez-area property the community lands on</li>
+      <li>What the Ritz Theater business plan reveals once it's drafted</li>
+      <li>The site for the Natchez tiny house property</li>
+      <li>Whether the magazine ships its first issue in this notebook framing or holds for a more polished Vol. 1</li>
+      <li>Whether a deep-pocket partner surfaces for the Ritz Theater plan as it develops</li>
+      <li>The exact criteria for what comes through Tuthill day-to-day vs. what reaches Chase personally</li>
+    </ul>
+  </section>
+
+  <section id="anchored">
+    <div class="label">Anchored</div>
+    <h2>What is <em>not changing</em></h2>
+
+    <ul>
+      <li><strong>The three-way partnership.</strong> Chase, Tracy, Amy at MBT. Equal.</li>
+      <li><strong>The Hudson Valley anchor.</strong> Bearsville house gone, but the summer in Woodstock continues — a rental plus friends to bridge the gap. Studio C stays in Bearsville. Summer programming continues.</li>
+      <li><strong>The Mississippi corridor as the primary operating ground.</strong> The Natchez Inn, the eventual touring circuit, the new tiny house land.</li>
+      <li><strong>Honest-claims discipline.</strong> Nothing public claims a feature that doesn't ship. The magazine's aspirational framing is the one explicit exception, disclosed in its Editor's Note.</li>
+      <li><strong>The work itself.</strong> Producing things, hosting people, putting bands on stages, writing what the river is telling us.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="mark">State of <em>Everything</em></div>
+  <div class="lede">A planning-day snapshot. Not a plan.</div>
+  <div class="fine">Hillbilly Dreams Inc. &nbsp;·&nbsp; 2026-04-22</div>
+</footer>
+
+</body>
+</html>

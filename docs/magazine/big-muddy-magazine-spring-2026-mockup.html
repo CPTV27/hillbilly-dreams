@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<!--
+  Big Muddy Magazine — Spring 2026 Vol. 1 mockup
+  Dictated by Chase 2026-04-22 from the road.
+  THIS FILE IS THE RAW DICTATION CAPTURE — do not link to it from production.
+  Known issues to fix before publishing (see docs/magazine/REVIEW-2026-04-22.md):
+    1. CSS custom properties use EN DASHES (–bg) instead of double hyphens (--bg) — variables will not resolve.
+    2. Universal selector written as `- { ... }` instead of `* { ... }` — reset rule does not apply.
+    3. Font names wrapped in smart quotes (‘Fraunces’) instead of straight quotes ('Fraunces') — will fall back to system serif in some browsers.
+    4. Article body is wrapped in fenced code blocks (```) instead of being inline HTML — will render as literal backticks.
+  Editorial issues are flagged in the review doc, not here.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Muddy Magazine — Spring 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+–bg: #FFFFFF;
+–ink: #111111;
+–body: #1A1A1A;
+–muted: #555555;
+–rule: #DDDDDD;
+–rule-strong: #222222;
+–accent: #A03E1F;
+}
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–bg);
+color: var(–body);
+font-family: ‘Fraunces’, Georgia, ‘Times New Roman’, serif;
+font-size: 19px;
+line-height: 1.65;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
+.masthead {
+padding: 36px 24px 28px;
+border-bottom: 3px double var(–rule-strong);
+text-align: center;
+}
+
+.masthead .kicker {
+font-family: ‘Inter’, sans-serif;
+font-weight: 600;
+font-size: 10px;
+letter-spacing: 0.25em;
+color: var(–muted);
+text-transform: uppercase;
+margin-bottom: 14px;
+}
+
+.masthead h1 {
+font-family: ‘Fraunces’, serif;
+font-weight: 900;
+font-size: clamp(40px, 9vw, 72px);
+letter-spacing: -0.025em;
+line-height: 0.95;
+color: var(–ink);
+}
+
+.masthead h1 em {
+font-style: italic;
+font-weight: 400;
+}
+
+.masthead .tagline {
+font-family: ‘Fraunces’, serif;
+font-style: italic;
+font-size: 16px;
+color: var(–muted);
+margin-top: 12px;
+}
+
+.masthead .issue {
+font-family: ‘Inter’, sans-serif;
+font-weight: 500;
+font-size: 11px;
+letter-spacing: 0.18em;
+color: var(–muted);
+margin-top: 18px;
+padding-top: 14px;
+border-top: 1px solid var(–rule);
+display: inline-block;
+padding-left: 36px;
+padding-right: 36px;
+text-transform: uppercase;
+}
+
+nav.toc {
+background: #FFFFFF;
+border-bottom: 1px solid var(–rule);
+padding: 18px 24px;
+display: flex;
+gap: 24px;
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+scrollbar-width: none;
+justify-content: center;
+flex-wrap: wrap;
+}
+
+nav.toc::-webkit-scrollbar { display: none; }
+
+nav.toc a {
+font-family: ‘Inter’, sans-serif;
+font-weight: 600;
+font-size: 11px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–ink);
+text-decoration: none;
+white-space: nowrap;
+border-bottom: 2px solid transparent;
+padding-bottom: 3px;
+transition: border-color 0.2s;
+}
+
+nav.toc a:hover { border-bottom-color: var(–accent); }
+
+main { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+article {
+padding: 64px 0;
+border-bottom: 1px solid var(–rule);
+}
+
+article:last-of-type { border-bottom: none; }
+
+.section-label {
+font-family: ‘Inter’, sans-serif;
+font-weight: 700;
+font-size: 11px;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+color: var(–accent);
+margin-bottom: 24px;
+}
+
+article h2 {
+font-family: ‘Fraunces’, serif;
+font-weight: 700;
+font-size: clamp(32px, 5.5vw, 46px);
+line-height: 1.08;
+letter-spacing: -0.018em;
+margin-bottom: 18px;
+color: var(–ink);
+}
+
+article h2 em {
+font-style: italic;
+font-weight: 400;
+}
+
+.dek {
+font-family: ‘Fraunces’, serif;
+font-weight: 400;
+font-style: italic;
+font-size: 21px;
+line-height: 1.45;
+color: #333333;
+margin-bottom: 28px;
+padding-bottom: 24px;
+border-bottom: 1px solid var(–rule);
+}
+
+.byline {
+font-family: ‘Inter’, sans-serif;
+font-weight: 500;
+font-size: 11px;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: var(–muted);
+margin-bottom: 36px;
+}
+
+.byline .author { color: var(–ink); font-weight: 700; }
+
+article p {
+margin-bottom: 22px;
+font-size: 19px;
+line-height: 1.7;
+color: var(–body);
+}
+
+article p:first-of-type::first-letter {
+font-family: ‘Fraunces’, serif;
+font-weight: 700;
+font-size: 62px;
+float: left;
+line-height: 0.88;
+margin-right: 10px;
+margin-top: 8px;
+color: var(–ink);
+}
+
+.pullquote {
+margin: 40px 0;
+padding: 24px 0;
+border-top: 2px solid var(–ink);
+border-bottom: 2px solid var(–ink);
+font-family: ‘Fraunces’, serif;
+font-style: italic;
+font-weight: 400;
+font-size: 24px;
+line-height: 1.38;
+text-align: center;
+color: var(–ink);
+}
+
+.divider {
+text-align: center;
+margin: 36px 0;
+color: var(–muted);
+letter-spacing: 0.8em;
+font-size: 14px;
+}
+
+.endnote {
+font-family: ‘Fraunces’, serif;
+font-style: italic;
+font-size: 15px;
+color: var(–muted);
+margin-top: 36px;
+padding-top: 22px;
+border-top: 1px solid var(–rule);
+line-height: 1.5;
+}
+
+.stat-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 20px;
+margin: 36px 0;
+padding: 28px;
+background: #FAFAF8;
+border-top: 1px solid var(–rule);
+border-bottom: 1px solid var(–rule);
+}
+
+.stat {
+border-left: 3px solid var(–accent);
+padding-left: 14px;
+}
+
+.stat-value {
+font-family: ‘Fraunces’, serif;
+font-weight: 700;
+font-size: 26px;
+line-height: 1.1;
+color: var(–ink);
+}
+
+.stat-label {
+font-family: ‘Inter’, sans-serif;
+font-weight: 500;
+font-size: 11px;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: var(–muted);
+margin-top: 6px;
+}
+
+footer {
+padding: 56px 24px 40px;
+text-align: center;
+border-top: 3px double var(–rule-strong);
+background: #FFFFFF;
+}
+
+footer .mark {
+font-family: ‘Fraunces’, serif;
+font-weight: 900;
+font-style: italic;
+font-size: 32px;
+color: var(–ink);
+margin-bottom: 14px;
+}
+
+footer .lede {
+font-family: ‘Fraunces’, serif;
+font-style: italic;
+font-size: 15px;
+color: var(–muted);
+max-width: 440px;
+margin: 0 auto 22px;
+line-height: 1.55;
+}
+
+footer .fine {
+font-family: ‘Inter’, sans-serif;
+font-weight: 500;
+font-size: 10px;
+letter-spacing: 0.18em;
+color: var(–muted);
+text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+.stat-grid { grid-template-columns: 1fr; }
+body { font-size: 18px; }
+article p { font-size: 18px; }
+}
+</style>
+
+</head>
+<body>
+
+<header class="masthead">
+  <div class="kicker">Along the Corridor</div>
+  <h1>Big Muddy <em>Magazine</em></h1>
+  <div class="tagline">Dispatches from the river and the road</div>
+  <div class="issue">Vol. 1 &nbsp;·&nbsp; Spring 2026</div>
+</header>
+
+<nav class="toc">
+  <a href="#hollow">Persimmon Hollow</a>
+  <a href="#ritz">The Ritz</a>
+  <a href="#inn">The Inn</a>
+  <a href="#bus">The Tour Bus</a>
+  <a href="#studio">Studio C</a>
+  <a href="#what">Editor's Note</a>
+</nav>
+
+<main>
+
+  <article id="hollow">
+    <div class="section-label">Places</div>
+    <h2>The Folks <em>Across the River</em></h2>
+    <div class="dek">A recording studio, a garden, and a quiet revolution in rural Louisiana. This summer, they're ready for a few more hands.</div>
+    <div class="byline"><span class="author">By Harper Lane</span> &nbsp;·&nbsp; Concordia Parish, La.</div>
+
+```
+<p>The gravel driveway curves through live oaks, Spanish moss hanging like smoke. Jack Morrow's property sits fifteen miles south of Natchez, just across the river in Louisiana — ten acres of what used to be nothing much. Now it's becoming something deliberate.</p>
+
+<p>"We weren't trying to build a community," Jack says, walking past raised beds thick with tomatoes and okra. He's wearing work pants and a faded blue shirt and the kind of easy stance that comes from having nowhere particular to be. "We were just trying to build a place we wanted to live."</p>
+
+<p>That was three years ago. What started as one man, a tractor, and an idea — to disappear from the noise, build a recording studio, grow food — has quietly grown into a functioning artistic compound. A barndominium. A tracking room. A garden that feeds eight. Three cottages. A handful of people who came for a visit and stayed.</p>
+
+<p>And now, after three years of careful, unhurried development, Persimmon Hollow is moving into its next chapter.</p>
+
+<p>"We're closing on the adjacent parcel this summer," Jack says, almost reluctantly. "Another twenty acres. We didn't go looking for it. The neighbor came to us."</p>
+
+<div class="stat-grid">
+  <div class="stat">
+    <div class="stat-value">10 acres</div>
+    <div class="stat-label">Current footprint</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">+20 acres</div>
+    <div class="stat-label">Closing this summer</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">5 founders</div>
+    <div class="stat-label">With land equity</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">4 or 5 more</div>
+    <div class="stat-label">Second founding circle</div>
+  </div>
+</div>
+
+<p>The main structure is the barndominium — open kitchen, long pine table, a stone hearth at one end. Behind it, down a short hallway, a tracking room that surprised me. A console that's clearly been loved for decades. A drum kit set up under a single warm light. The kind of space where records don't so much get <em>made</em> as they get <em>allowed</em> to happen.</p>
+
+<p>"The internet comes through a single antenna," says Delia Weaver, who moved to the Hollow two years ago after burning out as a session vocalist in Nashville. Her hands are in the dirt when we talk. "Everything runs through one local network. You can make calls over it. You can get to the world if you need to. But the default is offline. You forget about your phone after about three days."</p>
+
+<div class="pullquote">
+  "The Venn diagram of plays well, gardens gladly, and doesn't mind making a bed for a stranger is smaller than you'd think. But those are our people."
+</div>
+
+<p>The Hollow also has a footprint in town. Jack and the founders operate a small bed-and-breakfast on one of Natchez's quieter residential blocks — six rooms, no restaurant, the kind of place where guests come for the river and the music and the stillness. The B&amp;B is where the community's income steadies out, and where residents rotate in as housekeepers, breakfast cooks, and hosts.</p>
+
+<p>"It's not glamorous work," Delia says, standing up and brushing her hands on her jeans. "But it's steady, and it puts you face to face with people who are looking for something. A lot of our best residents first came to us as guests."</p>
+
+<p>What the founders are looking for now, with the new land closing this summer, is specific. A house band. Musicians who'll also feed the chickens, fix a fence, take a housekeeping shift at the Inn when things are full up.</p>
+
+<p>"We're walking the new parcel with a handful of folks we already know and trust," Jack says. "By fall, we'll have our people."</p>
+
+<div class="divider">· · ·</div>
+
+<p>The garden produces year-round. There are chickens, bees, fruit trees that are just now hitting their stride. On Friday nights, someone cooks. On Saturday mornings, there's usually music coming from the tracking room — not performances, just people working.</p>
+
+<p>No one here is trying to change the world. That's the point.</p>
+
+<p>"I spent fifteen years chasing a record deal," Delia says. "Out here, I just sing. I teach. I cook breakfast for a nice couple from Memphis. I grow vegetables. It's the least ambitious thing I've ever done, and it's the most satisfying."</p>
+
+<p>Jack is quiet for a moment, looking out past the existing structures toward the tree line that marks the new parcel.</p>
+
+<p>"We're looking for a good drummer right now. Someone who wants to stop working the way people work. Someone who'd be just as happy pulling weeds or flipping a mattress as tracking a song."</p>
+
+<p>He pauses. "If you know somebody like that, tell them we're moving quickly."</p>
+
+<div class="endnote">Persimmon Hollow does not advertise. Inquiries reach the founders through word of mouth — which, Jack would tell you, is how it ought to be.</div>
+```
+
+  </article>
+
+  <article id="ritz">
+    <div class="section-label">Places</div>
+    <h2>The Ritz <em>Wants Back In</em></h2>
+    <div class="dek">The old theater has been dark for decades. A small group of local developers thinks Natchez is ready to let it sing again — not as a movie house, but as something rarer.</div>
+    <div class="byline"><span class="author">By Harper Lane</span> &nbsp;·&nbsp; Natchez, Miss.</div>
+
+```
+<p>Walk down Main Street on a Tuesday afternoon and you'd be forgiven for not noticing it. The marquee is gone. The ticket booth is boarded. A faded vertical sign — RITZ — hangs crookedly above the sidewalk, held in place more by memory than by hardware.</p>
+
+<p>But step back across the street, tilt your head, and the bones come into focus. Art deco lines. A proud, high facade. A building that was, once, the place where Natchez gathered on a Saturday night.</p>
+
+<p>A handful of people in town are betting it can be that again. Not as a movie theater. As something rarer.</p>
+
+<p>"We don't need another screen," says one of the developers involved in the early conversations, who asked not to be named while the project is still taking shape. "Natchez needs a room. A real one. A place where a band can sound like themselves, where a record can actually get made, where somebody from out of town walks in and says — <em>oh, this is why I came to Mississippi.</em>"</p>
+
+<div class="pullquote">
+  "Natchez needs a room. A real one. A place where a band can sound like themselves."
+</div>
+
+<p>The plan, as it's been described to me in three separate conversations over the past month, is ambitious but deliberately unhurried. Restore the Ritz to a working performance venue and full-fledged recording studio — a room with great bones, treated properly, wired for tracking, with a control room built into what used to be the balcony.</p>
+
+<p>The scale is what makes it interesting. A room that seats two hundred and fifty when you put the chairs in. A stage big enough for a full band and a horn section. A mezzanine that becomes engineering space.</p>
+
+<p>"You can do things in a room like the Ritz that you cannot do in a studio built from scratch," says a local architect who's been consulted on the preliminary drawings. "The volume. The wood. The way the sound settles. Modern studios spend a fortune trying to fake what that building already has."</p>
+
+<div class="divider">· · ·</div>
+
+<p>The business model, as I understand it, is three-legged. A recording studio, booked through the year. A modest concert and listening-room calendar — intimate shows, album release nights, the occasional taping for public radio. And a civic layer: daytime programming for Natchez schoolkids, summer workshops, space for local gatherings that don't have another home.</p>
+
+<p>"It can't just be a business," the developer says. "Not in a building like that. The building is the town's. We're the ones raising the money and doing the work, but the building belongs to Natchez, and the programming has to reflect that."</p>
+
+<p>The financial case is being made quietly and carefully. Mississippi historic tax credits. Possible participation from the city. A private capital stack still being assembled. The developers I spoke to were clear that the project does not move without a deep-pocketed partner or meaningful civic support. They are not, in their words, "taking this on casually."</p>
+
+<p>"We could rush it," the architect tells me. "But then you'd end up with a half-finished dream and a building that's worse off than when we found it. That's not acceptable."</p>
+
+<div class="divider">· · ·</div>
+
+<p>The people involved are cagey — deliberately so. They don't want a ribbon-cutting before they have a signed permit. They don't want to raise the town's expectations and then have to explain a delay.</p>
+
+<p>But in private, they talk about who might record there. About the producers who'd fly in for a week at a time. About the young artists in town who've never set foot in a real studio because the nearest one is in Memphis or New Orleans.</p>
+
+<p>The group expects to say more publicly by late summer. Until then, they'd prefer to keep their heads down and the drawings on the drafting table.</p>
+
+<p>Fair enough. But I'll be watching.</p>
+
+<div class="endnote">The Ritz Theater is located on Main Street in downtown Natchez. It is not currently open to the public.</div>
+```
+
+  </article>
+
+  <article id="inn">
+    <div class="section-label">Rooms</div>
+    <h2>The Big Muddy <em>Inn</em></h2>
+    <div class="dek">Six rooms, a stage, and the Mississippi two blocks south. A small Natchez hotel built around intimacy, proximity, and stillness.</div>
+    <div class="byline"><span class="author">By Harper Lane</span> &nbsp;·&nbsp; Natchez, Miss.</div>
+
+```
+<p>The Inn sits on one of Natchez's quieter residential blocks. Not on the main drag. Not on a postcard. Just a block away from the bluff, a block from the river, a block from where the town turns itself into something private again.</p>
+
+<p>Six rooms. No restaurant. A stage in the back parlor that hosts working musicians who pass through town — sometimes announced, often not. Guests who stay here are the kind who travel with a book and a notebook and very little hurry.</p>
+
+<p>There is no pool. There is no conference center. There is no continental breakfast with a toaster nobody has cleaned. There is coffee, good coffee, and whatever the kitchen felt like making that morning.</p>
+
+<div class="pullquote">
+  Intimacy. Proximity. Stillness.
+</div>
+
+<p>The Inn's innkeeper, Tracy, runs the place with a working musician's rhythm — mornings at the stove, afternoons in the garden, evenings in the parlor. Guests tell her about their trips, and often, by checkout, they tell her about their lives.</p>
+
+<p>"People come here and they sleep," Tracy says. "That's the best compliment I can get. They actually sleep."</p>
+
+<div class="endnote">The Big Muddy Inn is open for booking year-round. Stage programming is posted on the bulletin board in the parlor.</div>
+```
+
+  </article>
+
+  <article id="bus">
+    <div class="section-label">Circuit</div>
+    <h2>On the Road <em>and Off the Map</em></h2>
+    <div class="dek">A converted Prevost bus, a six-city route along the river, and a touring model built for artists who'd rather work than chase.</div>
+    <div class="byline"><span class="author">By Harper Lane</span> &nbsp;·&nbsp; Somewhere between Vicksburg and Memphis</div>
+
+```
+<p>The bus is matte black. On the side, in burnished gold serif letters, it reads BIG MUDDY TOURING. Below that, in a smaller mono typeface: <em>The Snowbird Circuit — NOLA · Natchez · Clarksdale · Memphis · Nashville · Chicago.</em></p>
+
+<p>It's a Prevost. Bought used, wrapped properly, fitted out inside with eight bunks, a back lounge, and enough road cases for a full rhythm section plus horns. It runs October through April, when the musicians who use it are happy to be anywhere south of Columbus, Ohio.</p>
+
+<p>The Snowbird Circuit isn't a franchise. It's a route. Six rooms along a corridor that shares a river, shares a musical history, and shares a tolerance for musicians who don't want to be told what to play. The bus moves between them on a rhythm that the bookers set and the drivers keep.</p>
+
+<p>"We're not trying to be a big touring company," says the operator, who also declined to be named. "We're trying to make it possible for a handful of really good bands to work a route they already love, and get paid like adults."</p>
+
+<div class="divider">· · ·</div>
+
+<p>The bus also hauls backline. It also pulls a trailer. It also — on the right Saturday night — pulls up outside Persimmon Hollow with a PA in the back and turns a pasture into a venue.</p>
+
+<p>That's the part nobody advertises.</p>
+
+<div class="endnote">Big Muddy Touring books the Snowbird Circuit through a small roster of partner venues. Artists interested in the route are encouraged to send a tape the old-fashioned way.</div>
+```
+
+  </article>
+
+  <article id="studio">
+    <div class="section-label">Trade</div>
+    <h2>Studio C</h2>
+    <div class="dek">A multicam production outfit working out of Bearsville, New York, and a new branch opening in Natchez this year. Built for musicians, built for rooms, built for the way things actually sound when you give them space.</div>
+    <div class="byline"><span class="author">By Harper Lane</span> &nbsp;·&nbsp; Bearsville, N.Y. / Natchez, Miss.</div>
+
+```
+<p>Studio C isn't a studio in the room sense. It's a production operation — cameras, microphones, editors, a director of photography who knows his way around both a Hasselblad and an Alexa. It films things. Live performances. Interviews. The small documentary work that makes artists look like themselves instead of like a LinkedIn profile.</p>
+
+<p>The Bearsville branch has been running for years. The Natchez branch opens this summer, based out of the Big Muddy ecosystem — with a production schedule that splits cleanly between platform work for Big Muddy Media (the Inn, the magazine, the radio side) and commissioned work for outside clients.</p>
+
+<p>"We're not competing with Nashville production houses on volume," the founder says. "We're doing the work that the artist actually remembers ten years later."</p>
+
+<div class="pullquote">
+  "The work the artist actually remembers ten years later."
+</div>
+
+<p>Much of the Natchez calendar this year is already accounted for. A documentary on the Blues Room. Short films on the Snowbird Circuit venues. A long-form piece on Persimmon Hollow that will air only when the people out there decide they want it to.</p>
+
+<p>"We're not in a hurry," the founder says. "The whole point of the work is that it's not in a hurry."</p>
+
+<div class="endnote">Studio C operates out of Bearsville, New York, and Natchez, Mississippi. Inquiries are handled through the Big Muddy Inn front desk.</div>
+```
+
+  </article>
+
+  <article id="what">
+    <div class="section-label">Editor's Note</div>
+    <h2>What <em>This Is</em></h2>
+    <div class="byline"><span class="author">By The Editors</span></div>
+
+```
+<p>Big Muddy Magazine writes from the river. From Natchez, where we keep the Inn. From Bearsville, where we keep the cameras. From the stretches of highway between Memphis and New Orleans where the music still decides what time it is.</p>
+
+<p>Some of what we print is news. Some of it is what the river is telling us, which is a different kind of true. We don't separate the two too carefully. We trust our readers to know the difference.</p>
+
+<p>The pieces in this issue cover what's being built along the corridor this year. A small artistic community in Concordia Parish. A theater restoration being talked about quietly in Natchez. The Inn. The bus. The production house.</p>
+
+<p>Some of what you just read is already real. Some of it is close enough to real that writing it down is how we make sure it stays on course. The people on these pages are building, and the magazine is the notebook.</p>
+
+<p>If any of it pulls at you, the way a good notebook entry can, come find us. The Inn is always open.</p>
+
+<div class="endnote">Big Muddy Magazine is published by Big Muddy Media, a division of Measurably Better Things.</div>
+```
+
+  </article>
+
+</main>
+
+<footer>
+  <div class="mark">Big Muddy <em>Media</em></div>
+  <div class="lede">The river has its own editorial calendar. We're just trying to keep up.</div>
+  <div class="fine">Measurably Better Things &nbsp;·&nbsp; Spring 2026</div>
+</footer>
+
+</body>
+</html>

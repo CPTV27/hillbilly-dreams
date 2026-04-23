@@ -1239,6 +1239,233 @@ If you can read this on the site, the library index, CDN URLs, and article body 
 
 Editorial note: replace this test entry when the Story Engine Day 1 ship lands.`,
   },
+  {
+    id: 24,
+    title: 'A Note from the Editor: On the Year Ahead',
+    slug: 'a-note-from-the-editor-on-the-year-ahead',
+    category: 'feature',
+    city: 'natchez',
+    author: 'Tracy Alderson',
+    status: 'published',
+    excerpt:
+      'Most of the articles in this magazine do not come with a byline. That is on purpose. The magazine speaks in a single voice, which is the voice of a small editorial operation that has learned to write in unison.',
+    heroImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-bluff-sunset.webp',
+    readTime: '4 min read',
+    publishedAt: new Date('2026-04-23T05:00:00Z').toISOString(),
+    createdAt: new Date('2026-04-23T05:00:00Z').toISOString(),
+    updatedAt: new Date('2026-04-23T05:00:00Z').toISOString(),
+    body: `# A Note from the Editor: On the Year Ahead
+
+This is Tracy Alderson, writing from the back office in Natchez. Most of the articles in this magazine do not come with a byline. That is on purpose. The magazine speaks in a single voice, which is the voice of a small editorial operation that has learned to write in unison.
+
+A few of you have asked what to expect from this publication in the year ahead, so I want to use this space to answer.
+
+## What this magazine is
+
+Big Muddy Magazine is a small, regular publication of long-form writing about the Mississippi corridor and, beginning sometime this summer, the Hudson Valley and the Catskills. The two regions are linked, in our case, by a touring company that runs musicians between them, and by a body of photography that makes the link visible.
+
+The magazine is editorial. It does not run advertising. It does not run sponsored content. It does not run press releases. It runs writing about places, people, food, music, and the small businesses that hold each town together.
+
+## What we are working on this year
+
+A few subjects are going to come up repeatedly through the year. I want to name them here so you know what to expect.
+
+The first is a continued, slow build-out of city guides. We have eighteen of them in print, covering the corridor from Memphis to New Orleans and out into Louisiana and Arkansas. The next ones are smaller towns: the kind of places that do not get city guides written about them but should.
+
+The second is a series of pieces about what we are calling, with affection, the **Big Muddy Rockstar Retirement Community**. This is a small cooperative housing project for working musicians that we are putting together over the next twelve to eighteen months. We will write about it openly, including the mistakes we make. The first piece in that series is in this issue.
+
+The third is hospitality coverage of the Mississippi corridor that does not assume the reader has been to any of these places. There are a great many guides to Charleston and Asheville. There are very few honest guides to Natchez and Helena.
+
+The fourth, beginning later in the year, is a parallel coverage track from upstate New York. The geography is different. The dishes are different. The musicians, in many cases, are the same.
+
+## What we are not
+
+We are not a tourism board. We are not a chamber of commerce. We are not a real-estate listings sheet. When a place is not very good, we do not write about it. When a place is good but in a way that the broader internet has not noticed yet, we write about it.
+
+If something we cover changes — closes, raises prices, switches owners, loses the cook who made it worth visiting — we will update the article rather than leave the reader holding outdated information. This is one of the small kindnesses available to a publication that owns its own platform.
+
+## How to read along
+
+The magazine publishes new articles when they are ready. Subscribe to the newsletter and they will come to your inbox; visit the site and they will be in the index. There is no schedule, in the sense of a release calendar. There is a rhythm.
+
+If you have something you would like us to write about, the best way to get our attention is to send a paper letter to the Big Muddy Inn in Natchez. We open all of them.
+
+— TA`,
+  },
+  {
+    id: 25,
+    title: "What We're Building at the Rockstar Retirement Community",
+    slug: 'what-were-building-at-the-rockstar-retirement-community',
+    category: 'feature',
+    city: 'natchez',
+    author: 'Tracy Alderson',
+    status: 'published',
+    excerpt:
+      "There is a guitar case in the back of a car somewhere on Highway 61 right now, and the man driving it is sixty-two years old, has played four nights a week in some form for forty-one years, and does not own a house.",
+    heroImage:
+      'https://storage.googleapis.com/bmt-media-bigmuddy/approved/big-muddy/liberty-ms/untitled-72-of-97-dxo_deepprime-3jpg/6175278a71bb-grid.webp',
+    readTime: '7 min read',
+    publishedAt: new Date('2026-04-23T04:00:00Z').toISOString(),
+    createdAt: new Date('2026-04-23T04:00:00Z').toISOString(),
+    updatedAt: new Date('2026-04-23T04:00:00Z').toISOString(),
+    body: `# What We're Building at the Rockstar Retirement Community
+
+There is a guitar case in the back of a car somewhere on Highway 61 right now, and the man driving it is sixty-two years old, has played four nights a week in some form for forty-one years, and does not own a house. His name is not important. There are dozens of him. There may be hundreds.
+
+This is not a profile of one of them. This is a note about a thing we are building, in our slow and unhurried way, that exists for them.
+
+We are calling it the **Big Muddy Rockstar Retirement Community**. The name is half a joke and half not.
+
+## The premise
+
+Most working musicians of modest means never own anything. They rent their whole life. They tour, they record, they teach, they sit in. They build a body of work that fills three streaming services and four shelves of vinyl, and at the end of it they have a small apartment, a back catalog, and whatever instruments they did not have to sell.
+
+This is not a tragedy. It is just an arrangement. The arrangement has held for the better part of a century, in part because the alternative — owning a house — requires the kind of capital that performance income does not produce on a reliable schedule.
+
+We think there is a different arrangement available, in a couple of specific corners of the country, for a small number of people willing to live unconventionally.
+
+## The shape of the thing
+
+The shape is a small piece of land — twenty acres, give or take — outside a town small enough that the price per acre still makes sense, and close enough to a music economy that the people who live on the land can keep working. In our case the first parcel is being scouted in the rural parts of Adams County, Mississippi, twenty or so miles from the Big Muddy Inn in downtown Natchez.
+
+The first structure is the simplest one we can put up that a person can live in: a pole barn, with utilities, a slab, a kitchen, a bathroom, and enough open volume that a snare drum sounds like a snare drum. We are calling that one the workshop, and it doubles as the first residence for whichever member moves down first.
+
+The next structures are a small number of cottage-sized homes — under a thousand square feet each, each with a porch — arranged loosely around the workshop. Each one has its own utilities. Each one is independent. None of them is shared. We are not building a commune.
+
+A garden goes in on the south side of the property and feeds the residents and a small guest table that we expect will eventually run a few weekends a season. There is no clubhouse. There is no gate.
+
+## The economics, in plain terms
+
+The cooperative form is a small Mississippi LLC that owns the land and the structures. Residents become members of the LLC. The way you become a member is by trading what you have — a house in another state, a vested term of work, cash, or some combination — for an equity share that is documented and real.
+
+Profits from the future guest operation, when there is one, get divided across the membership. Decisions get made at a Sunday breakfast that happens to also be the official board meeting.
+
+We are not the first people to try this kind of thing. We will not be the last. We are, however, trying to do it on land in a region whose dollars-per-acre still permit the math to work. That is the practical reason it is happening near Natchez first, rather than near Asheville or Nashville or — and we say this with affection — the Hudson Valley.
+
+## The Catskills site
+
+There is a second site we are scouting, in Greene County, New York. The thinking is that the two sites become a corridor: residents and guests can rotate between Mississippi in the cool months and the Catskills in the warm ones. That site is earlier than the Mississippi one. We do not have a parcel. We have a target geography, a friend in the area we trust, and an intention.
+
+If the rhythm works, what we will have is a small group of people — mostly working musicians — who own equity in two small pieces of land in two parts of the country, and a touring infrastructure (Big Muddy Touring's existing one) that connects the two.
+
+## What we are not claiming
+
+We are not claiming this is built. The Mississippi parcel is being identified now. The pole barn has not been raised. The first residences have not been framed.
+
+We are also not claiming this is a venture-scale opportunity. It is the opposite. It is a small thing, deliberately small, designed to be nice to live in for the people who live there, and not optimized for anything else.
+
+What we are claiming is that it is in motion, and that the next time we write about it in this magazine the language will be a notch more concrete.
+
+## Who this is for
+
+If you are a working musician of any age, you already know whether the description above sounds like a place you would want to spend a winter. We will say more in subsequent issues. The first round of inquiries is being handled the old-fashioned way: letters at the Big Muddy Inn, conversations at the bar, the sort of word-of-mouth that has always been how these things actually move.
+
+Bring your own snare. We will take care of the rest of the room.`,
+  },
+  {
+    id: 26,
+    title: 'Why Two Regions: The Mississippi-Catskills Corridor',
+    slug: 'why-two-regions-the-mississippi-catskills-corridor',
+    category: 'feature',
+    city: 'other',
+    author: 'Tracy Alderson',
+    status: 'published',
+    excerpt:
+      'People sometimes ask why the same small organization is doing work both in Natchez, Mississippi, and four hundred miles north of New York City. The short answer is that the two regions look more alike than they look different, once you look at them carefully.',
+    heroImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/helena-river-levee.webp',
+    readTime: '5 min read',
+    publishedAt: new Date('2026-04-23T03:00:00Z').toISOString(),
+    createdAt: new Date('2026-04-23T03:00:00Z').toISOString(),
+    updatedAt: new Date('2026-04-23T03:00:00Z').toISOString(),
+    body: `# Why Two Regions: The Mississippi-Catskills Corridor
+
+People sometimes ask why the same small organization is doing work both in Natchez, Mississippi, and four hundred miles north of New York City. The short answer is that the two regions look more alike than they look different, once you look at them carefully.
+
+## The Mississippi side
+
+The Big Muddy organization started in Natchez. The town sits on the high bluffs above the river, halfway between Memphis and New Orleans, and it was built — like most river towns of its vintage — on cotton and on the music that the cotton economy produced. The infrastructure of that music economy, broadly speaking, is still here. There are venues. There are inns. There are festivals. There is, three hours up the road, a recording corridor that runs from Muscle Shoals through Memphis into Clarksdale.
+
+What the Mississippi side does not have, in any quantity, is the kind of cool-month density of music tourism that you find in, say, Asheville. October through March in Natchez is gentle. The shoulder seasons here are real and long.
+
+## The Catskills side
+
+The northern equivalent of this is the part of upstate New York that runs along the Hudson and into the Catskills. Greene County, in particular, is a region whose dollars-per-acre still permit the kind of small-land projects that an organization like ours can actually fund. The landscape is different. The musicians, in many cases, are the same musicians; there is a long history of people moving between the Delta and the Hudson Valley, and Levon Helm, to name only one, sat at the geographic and emotional center of that movement for decades.
+
+The Catskills warm-month season runs roughly opposite the Mississippi cool-month season. In other words: the two regions, considered together, give a small operation something close to a year-round rhythm.
+
+## The corridor
+
+The word we use for the route between them is **corridor**. It is not a marketing word. It is the word the organization uses internally to describe the practical fact that artists, photographers, equipment, and audiences travel between these two places, and that the magazine, the touring company, and (eventually) the cooperative housing project are designed to support the travel.
+
+You can drive between Natchez and East Durham, New York, in twenty-two hours. The trip is two and a half days at a comfortable pace, with one stop in either Asheville or Roanoke. Plenty of musicians have done it. Some of them have done it with us.
+
+## What is built and what is not
+
+On the Mississippi side, the infrastructure is real. The Big Muddy Inn is open and bookable. Big Muddy Touring runs shows. The magazine you are reading publishes from there.
+
+On the Catskills side, almost none of it is built yet. We are scouting land. We have a friend in the area whose own farm has been operating for ten years and who knows the local everything. We have a sense of which towns we are interested in. We do not, at this writing, have a parcel. We will write about the search openly, in subsequent issues, including the parts that do not work.
+
+## Why it matters
+
+The reason for telling the story this way — two regions, one corridor — rather than as two separate projects in two separate publications, is that the connection is the interesting part. There is something quietly important about a small organization that works across a thousand miles of geography by being patient about it, and that funds itself with a small inn, a small touring operation, and a small magazine, rather than with a large round of capital.
+
+If you live in either of these regions and find yourself moving between them, write to us. The corridor is more useful when more people know about it.`,
+  },
+  {
+    id: 27,
+    title: 'Behind the Magazine: How Big Muddy Makes This',
+    slug: 'behind-the-magazine-how-big-muddy-makes-this',
+    category: 'feature',
+    city: 'natchez',
+    author: 'Tracy Alderson',
+    status: 'published',
+    excerpt:
+      'The simplest description of how this magazine gets made is the truest one. A photograph happens. A sentence follows it. That is the order, and it has not changed since the first issue.',
+    heroImage: 'https://storage.googleapis.com/bmt-media-bigmuddy/magazine/natchez-trace-parkway.webp',
+    readTime: '5 min read',
+    publishedAt: new Date('2026-04-23T02:00:00Z').toISOString(),
+    createdAt: new Date('2026-04-23T02:00:00Z').toISOString(),
+    updatedAt: new Date('2026-04-23T02:00:00Z').toISOString(),
+    body: `# Behind the Magazine: How Big Muddy Makes This
+
+The simplest description of how this magazine gets made is the truest one. A photograph happens. A sentence follows it. That is the order, and it has not changed since the first issue.
+
+What follows is a brief, plainly told account of the back office that turns a photograph and a sentence into a publication. It is not a brochure. We are writing it because a few people have asked, and because the way a small magazine handles its plumbing is, in a small way, an editorial decision.
+
+## The photo library
+
+Chase Pierson has been making photographs across the Mississippi corridor and the Hudson Valley for several years. The library that feeds this magazine is, at the time of writing, six hundred and four frames — every one of them shot by him, every one of them indexed by location, every one of them tagged for whether it has cleared the editor's review for use in publication.
+
+The library lives in object storage in the cloud. Each frame has a stable URL. When a story needs a hero image, the editor opens a picker that shows the available frames for that geography and selects one. The story then carries the URL forward. This is the simplest and least clever part of the system, and it is the part that does the most work.
+
+## The CMS
+
+The body of every article is written in a CMS that lives in someone's browser. The CMS is Sanity. It is a fine piece of software. It does what it is supposed to do, which is to keep the editor's hands on a keyboard rather than on a deployment script.
+
+A static fallback list of articles also lives in the codebase, in plain TypeScript, so that if the CMS is unreachable the magazine still renders. Belts and suspenders.
+
+## The server
+
+The website is built and served on Vercel. A second machine, a Hetzner box in Ashburn, Virginia, runs the photo-sorting application and a web server in front of it. There is no laptop or mini in someone's living room doing production work. The Mac mini in Natchez is for writing.
+
+## The tenant model
+
+This same codebase, the one that produces this magazine, also produces twelve other websites for the Big Muddy family of brands and a small number of partner studios. They share routing, components, design tokens, and an approach to AI model use that is centralized in one file rather than scattered across the codebase. When we want to swap a model — say, when the next generation of Gemini comes out — we change the line and every brand benefits.
+
+This is not the part of the platform we sell. It is the part that lets us keep the doors open while we figure out what we sell.
+
+## Photography first
+
+There is a rule, inherited from how Chase shoots and observed by everyone who works on the platform, that says: real photographs of real people in real places, not generated images. The library is of physical frames captured at physical locations, and the URLs that feed the website carry a literal marker — the word **approved** in the path — so that we can verify, programmatically, that what we are showing is photography rather than something a machine made up.
+
+This rule is more boring than it sounds. It is also load-bearing. The internet is going to produce a great deal of generated imagery in the next few years. Magazines that hold a line on real photographs will be the ones whose readers can still trust what they are looking at.
+
+## The voice
+
+The editorial voice of this magazine is Tracy Alderson's. The photographs are Chase Pierson's. The platform is shared. The agreement between the three of these things is what makes the magazine a magazine and not a website.
+
+That is most of how this gets made. The rest is paying attention.`,
+  },
 ];
 
 // Helper: get article by slug (sync, static fallback only)

@@ -16,7 +16,7 @@
 - Hairline horizontal rule in **Highway Sodium** (see §5) under the `TOURING` lockup.
 - Bottom-left: `BRAND IDENTITY GUIDELINES`
 - Bottom-right: `BY HILLBILLY DREAMS INC.`
-- Optional motif: a silhouette of a Sprinter van in Highway Sodium lower left, small, hinting at the road.
+- Optional motif: a silhouette of a **2015 Ford Transit 350 High Roof LWB** in Highway Sodium lower left, small, hinting at the road.
 
 ## 2. Table of contents
 
@@ -29,11 +29,8 @@
 08  Submark + Brand Marks
 09  Patterns
 10  Logo Filetypes
-11  Application Examples — Tour Poster
-12  Application Examples — Van Wrap
-13  Application Examples — Offer Sheet
-14  Application Examples — Backstage Laminate
-15  Designer Contact
+11  Application Examples
+12  Designer Contact
 ```
 
 ## 3. Primary logo
@@ -124,7 +121,17 @@ bmt-pennant/
 ## 11. Application examples (sketches for the finished PDF)
 
 1. **Tour poster (11×17 letterpress):** Pattern A Highway Stripe ground, wordmark top-center, headliner in Citrus Gothic Black 90pt, routing in Montserrat SemiBold two-column, Highway Sodium footer bar with venue contact.
-2. **Sprinter van wrap:** Asphalt Black body, wordmark full-width on both sides, BMT monogram on rear double doors in Highway Sodium, Corridor mark on rear bumper line. Full spec lives in `docs/VAN_WRAP_SPEC.md`.
+2. **2015 Ford Transit 350 High Roof LWB van wrap (Oxford White over-painted to Asphalt Black, lower body two-tone Load-In Gray preserved):** Four surfaces, four jobs. Locked via Canva iteration with Chase 2026-04-21 — this is the production spec handed to Tuthill for the Illustrator build.
+   - **Front fascia:** `BIG MUDDY` wordmark in Citrus Gothic Black, Cloud Dancer cream, set above the Ford oval grille emblem. No `TOURING` line on the front — keeps the face readable from a block away in approach traffic.
+   - **Driver + passenger sides (typography-only, no photography):** full-bleed Asphalt Black ground above the two-tone break, Load-In Gray rocker below. Primary lockup `BIG MUDDY` over `TOURING` in chunky Clarendon-family slab serif (NOT Citrus Gothic on the sides — Clarendon reads more roadhouse-marquee at distance), cream, locked-up tight, dropped low into the panel so the high-roof negative space stays clean. Tagline `ARTIST TRANSPORT · NATCHEZ, MS` in Citrus Gothic small caps below, letter-spaced wide, Highway Sodium hairline underline rule.
+   - **Rear cargo doors (4-mark 2×2 ecosystem grid):** top-left `ARRIE ASLIN` (Nathan script wordmark, cream on Asphalt Black) · top-right `BIG MUDDY RECORDS` (roundel seal, Burnished Amber on Asphalt Black, placeholder — see §11.2a blocking items below). Bottom-left `THE BIG MUDDY INN` (handwritten "Inn & Blues Room" script, cream on Asphalt Black) · bottom-right `STUDIO C` (circular monogram roundel, cream on Asphalt Black, source file in Chase's Google Drive) with `VIDEO PRODUCTION SERVICES` subline in Citrus Gothic small caps, letter-spaced wide, cream, directly beneath the roundel. Identical bounding-box footprint per quadrant. Highway Sodium hairline cross-rules dividing the four. The grid is the back of the van — no other type, no photography, no map. The four marks tell a vertical story: one artist, one label, one home, one studio.
+   - **Passenger-side rear quarter:** Corridor mark (`NATCHEZ · MEMPHIS · CLARKSDALE · NEW ORLEANS · MEMPHIS · NASHVILLE`) in single-line Citrus Gothic small caps, Highway Sodium, runs along the lower body line. ⚠ Confirm with Chase before Illustrator build — not visible on current Canva layout; may have been dropped in favor of a cleaner rear quarter.
+   - **Window perforation (rear hatch + rear quarter glass):** through-window vinyl in Asphalt Black with Highway Sodium pinholes — keeps interior visibility for the driver, presents solid black to the street.
+   - **Blocking dependencies before Illustrator file ships to the wrap shop:**
+     - Big Muddy Records roundel seal needs a proper design pass (current oval is placeholder) — direction TBD, Stax/Volt/Chess/Sun-Records heritage reference.
+     - Studio C wordmark sourced from Chase's Google Drive → dropped into `apps/web/public/images/processed/big-muddy/`.
+     - Visual unification pass — four marks currently sit in four different styles (Nathan script / roundel seal / handwritten script / monogram roundel). Either deliberate hierarchy with one hero mark, or one visual system across all four. Chase to call.
+   - Full production spec, panel measurements, and bleed allowances live in `docs/VAN_WRAP_SPEC.md`. Production file (Illustrator .ai with crop + registration marks on the wrap-shop's 2015 Ford Transit 350 High Roof LWB line drawing) is being built by Tuthill (Elijah).
 3. **Offer sheet (letter size, digital):** cream ground, wordmark top-left, Citrus Gothic section heads ("OFFER," "BILLING," "TECH," "SETTLEMENT"), Montserrat body, Highway Sodium underline on section heads, Load-In Gray footer with contact.
 4. **Backstage laminate (3×4):** Asphalt Black background, wordmark top, `BACKSTAGE` in Citrus Gothic Black centered, Highway Sodium chevron `⟩` underneath, printed access dates on reverse.
 5. **Web home hero:** full-bleed performance photo tinted Asphalt Black duotone, wordmark overlaid upper-left in cream, `BIG MUDDY TOURING` set as page title, Highway Sodium CTA button "Book a show."

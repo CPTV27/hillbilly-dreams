@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Hollow — Phase 1 Proforma — Working Scenario, 2026-04-22</title>
+<style>
+  :root {
+    --ink: #111;
+    --paper: #fff;
+    --rule: #d6cfc4;
+    --soft: #f6f2ea;
+    --accent: #A03E1F;
+    --muted: #6a6a6a;
+    --on: #1f6b3f;
+    --off: #8a8a8a;
+    --gap: #B33A1A;
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--serif);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    padding: 40px 24px 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  header.mast {
+    border-top: 4px double var(--ink);
+    border-bottom: 4px double var(--ink);
+    padding: 18px 0;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  .mast .kicker {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .mast h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .mast .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  section { margin-bottom: 40px; }
+  h2 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 6px;
+  }
+  h3 {
+    font-family: var(--sans);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    margin: 18px 0 8px 0;
+  }
+  p { margin-bottom: 14px; font-size: 16px; }
+  .lede {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.5;
+    color: #2a2a2a;
+    margin-bottom: 18px;
+  }
+
+  /* Toggle */
+  .toggle-bar {
+    background: var(--soft);
+    border: 1px solid var(--rule);
+    padding: 18px 20px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .toggle-label {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+  }
+  .toggle-button {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .toggle-button:hover { background: var(--ink); color: var(--paper); }
+  .toggle-state {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .toggle-state.on { color: var(--on); }
+  .toggle-state.off { color: var(--off); }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 20px 0;
+    font-family: var(--sans);
+    font-size: 14px;
+  }
+  th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    border-bottom: 2px solid var(--ink);
+    padding: 10px 8px;
+  }
+  th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td {
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  tr.total td {
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    font-weight: 600;
+    font-size: 15px;
+  }
+  tr.toggleable td.amount-on { color: var(--on); }
+  tr.toggleable.off td.amount-on { color: var(--off); text-decoration: line-through; }
+  .gap-cell { color: var(--gap); font-weight: 600; }
+  .surplus-cell { color: var(--on); font-weight: 600; }
+
+  /* Footnotes */
+  .footnote {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    padding: 10px 14px;
+    border-left: 3px solid var(--rule);
+    margin: 8px 0 16px 0;
+    background: #faf8f4;
+  }
+  .footnote strong { color: var(--ink); }
+
+  ul { margin: 8px 0 16px 22px; font-size: 15px; }
+  li { margin-bottom: 6px; }
+
+  .colophon {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .scenario-summary {
+    background: var(--soft);
+    padding: 18px 22px;
+    margin: 16px 0;
+    border-left: 4px solid var(--accent);
+  }
+  .scenario-summary .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-family: var(--sans);
+    font-size: 14px;
+  }
+  .scenario-summary .row.headline {
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 8px;
+    border-top: 1px solid var(--rule);
+    padding-top: 10px;
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 24px 14px 60px; }
+    .mast h1 { font-size: 26px; }
+    table { font-size: 13px; }
+    th, td { padding: 8px 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="kicker">Working Scenario · Not a Commitment</div>
+  <h1>The Hollow — Phase 1 Proforma</h1>
+  <div class="subtitle">A funding model with an Ardent-settlement toggle. April 22, 2026.</div>
+</header>
+
+<section>
+  <p class="lede">This is a planning model, not a budget. Numbers are flagged as <em>captured</em>, <em>assumption</em>, or <em>placeholder</em>. Operating projections are illustrative — the kind of thing a partnership would react to, not the kind of thing you'd take to a bank. Toggle the Ardent litigation settlement on or off to see how the funding stack changes.</p>
+</section>
+
+<div class="toggle-bar">
+  <div>
+    <div class="toggle-label">Ardent settlement</div>
+    <div style="font-family: var(--sans); font-size: 12px; color: var(--muted); margin-top: 4px;">
+      Currently: <span class="toggle-state on" id="state-label">ON · $300,000 included</span>
+    </div>
+  </div>
+  <button class="toggle-button" id="toggle-btn" onclick="toggleArdent()">Toggle Off</button>
+</div>
+
+<section>
+  <h2>Sources of funds</h2>
+  <table id="sources-table">
+    <thead>
+      <tr>
+        <th>Source</th>
+        <th>Status</th>
+        <th class="num">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="toggleable" id="ardent-row">
+        <td>Ardent settlement <em>(gross — see calibration note below)</em></td>
+        <td>Contingent — litigation outcome</td>
+        <td class="num amount-on">$300,000</td>
+      </tr>
+      <tr>
+        <td>Chicken's Muscle Shoals house (Tracy buys)</td>
+        <td>Concept — needs Tracy + Chicken</td>
+        <td class="num">$180,000</td>
+      </tr>
+      <tr>
+        <td>MBT equity contribution</td>
+        <td>Concept — needs partnership vote</td>
+        <td class="num">$120,000</td>
+      </tr>
+      <tr>
+        <td>Founder buy-ins Y1 (2 × $35,000)</td>
+        <td>Concept — founders not yet identified</td>
+        <td class="num">$70,000</td>
+      </tr>
+      <tr>
+        <td>Rural MS/LA construction loan</td>
+        <td>Concept — source TBD</td>
+        <td class="num">$60,000</td>
+      </tr>
+      <tr class="total">
+        <td colspan="2">Total sources</td>
+        <td class="num" id="total-sources">$730,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="border-left:4px solid var(--gap); background:#fdf6f3; padding:18px 22px; margin:22px 0; font-size:0.94rem;">
+    <strong style="color:var(--gap); display:block; margin-bottom:8px;">⚠ Calibration note on the Ardent line</strong>
+    <p style="margin:0 0 10px 0;">The $300,000 above is the <em>gross</em> headline number from the original pasted analysis. A second pasted analysis (the "v2" paste, captured later the same evening in the Ardent brief) walked the math down significantly. <strong>The amount Chase personally receives is almost certainly far less than $300K.</strong></p>
+    <p style="margin:0 0 10px 0;">Three drivers:</p>
+    <ul style="margin:0 0 10px 18px; padding:0;">
+      <li><strong>Plaintiff structure.</strong> If Tracy and Amy are co-plaintiffs, the settlement gets split three ways before anything else happens. $300K → $100K each.</li>
+      <li><strong>Legal fees.</strong> Roughly 33% to counsel on a contingency-style settlement.</li>
+      <li><strong>Tax characterization.</strong> If the proceeds are damages on a personal return, federal + state tax could be ~35%.</li>
+    </ul>
+    <p style="margin:0 0 10px 0;">Conservative path (3-way split → 33% legal → 35% tax on personal damages): <strong>Chase nets roughly $43,000.</strong> Aggressive path (sole plaintiff → entity-routed → favorable characterization): Chase or MBT could see $200K+.</p>
+    <p style="margin:0;">The "Ardent ON" toggle below still shows the gross $300K landing in the Phase 1 stack — that's the optimistic ceiling, not the expected case. <em>This proforma should not be read as "if Ardent settles, Phase 1 funds itself."</em> The honest read is: even in a favorable Ardent outcome, additional funding sources are likely still required. The recommended posture remains <em>treat Ardent as contingent upside, not base funding</em>.</p>
+  </div>
+
+  <div class="footnote">
+    <strong>Notes on sources.</strong> The Ardent figure is captured from an external analysis pasted by Chase 2026-04-22 evening; see <code>docs/decision-briefs/ardent-settlement-funding-scenario-2026-04-22.md</code> for the full analysis and caveats. The Chicken house, MBT equity, founder buy-ins, and construction loan are all conceptual — none are papered. Tracy's bankroll being the financing source for Phase 1 is in the canonical record (<code>HANDOFF_FROM_CHASE_2026-04-22.md §14</code>); the specific instruments used to deploy that bankroll (her buying Chicken's house, an MBT equity contribution, etc.) are still options on the table.
+  </div>
+</section>
+
+<section>
+  <h2>Uses of funds — Phase 1 build (~$627K)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Line item</th>
+        <th>Status</th>
+        <th class="num">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Land acquisition (10–15 acres, Adams Co. MS)</td><td>Placeholder</td><td class="num">$150,000</td></tr>
+      <tr><td>Barndominium with workshop bays</td><td>Placeholder</td><td class="num">$200,000</td></tr>
+      <tr><td>First model tiny unit (~400 sqft)</td><td>Placeholder</td><td class="num">$30,000</td></tr>
+      <tr><td>Site work — well, septic, electrical, road, grading</td><td>Placeholder</td><td class="num">$75,000</td></tr>
+      <tr><td>Solar + battery system</td><td>Placeholder</td><td class="num">$35,000</td></tr>
+      <tr><td>Recording studio buildout (control room + treatment)</td><td>Placeholder</td><td class="num">$40,000</td></tr>
+      <tr><td>Soft costs — permits, design, surveys, legal</td><td>Placeholder</td><td class="num">$35,000</td></tr>
+      <tr><td>Contingency (~10%)</td><td>Placeholder</td><td class="num">$62,000</td></tr>
+      <tr class="total">
+        <td colspan="2">Total Phase 1 uses</td>
+        <td class="num">$627,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footnote">
+    <strong>The $415K vs $627K reconciliation.</strong> The handoff doc and the comprehensive business plan use $415K as the Phase 1 envelope. The pasted Ardent analysis uses $627K. The difference plausibly reflects scope: $415K may be land + barndo + first model unit only, while $627K covers full Phase 1 including site work, solar, studio buildout, soft costs, and contingency. <strong>Chase still needs to confirm which envelope is the operating number.</strong> This proforma uses $627K because that's the only number with a (placeholder) line-item breakdown. If $415K is the right envelope, several lines come out (likely site work, solar, and studio buildout get deferred to Phase 2).
+  </div>
+</section>
+
+<section>
+  <h2>Scenario summary</h2>
+
+  <div class="scenario-summary">
+    <div class="row"><span>Total sources</span><span id="sum-sources">$730,000</span></div>
+    <div class="row"><span>Phase 1 uses</span><span>$627,000</span></div>
+    <div class="row headline"><span id="sum-label">Surplus to operating reserve</span><span id="sum-result" class="surplus-cell">$103,000</span></div>
+  </div>
+
+  <div id="ardent-on-notes">
+    <h3>What the surplus unlocks (Ardent ON)</h3>
+    <ul>
+      <li><strong>Option A — Buffer.</strong> Hold the $103K as cost-overrun and weather-delay reserve. Safest play.</li>
+      <li><strong>Option B — Accelerate Y2 builds.</strong> Use the surplus to put up 2–3 additional tiny units immediately after the barndo completes, getting to operating cash flow faster.</li>
+      <li><strong>Option C — Drop the construction loan.</strong> Net surplus after dropping the $60K loan = $43K. Debt-free operation, no bank covenants. The pasted analysis flagged this as probably the right move. <em>Note: this $43K is a Phase 1 surplus number, unrelated to (and coincidentally identical to) the ~$43K conservative-case net Chase might personally receive from Ardent. Do not double-count them.</em></li>
+      <li><strong>Option D — Kate's farmhouse upgrade.</strong> Chunk ~$50K into immediate roof / HVAC / paint to make the move-in smooth. Trust signal.</li>
+    </ul>
+  </div>
+
+  <div id="ardent-off-notes" style="display:none;">
+    <h3>What changes if Ardent doesn't land (Ardent OFF)</h3>
+    <ul>
+      <li><strong>Funding gap: <span class="gap-cell">$197,000</span>.</strong> Phase 1 cannot fully fund as scoped without Ardent (or a substitute source).</li>
+      <li><strong>Lever 1 — More debt.</strong> Grow the construction loan from $60K to ~$257K. Adds debt service and bank covenants.</li>
+      <li><strong>Lever 2 — More founder buy-ins.</strong> Add ~5–6 more founder buy-ins at $35K each. Requires identifying and recruiting those people in Y1.</li>
+      <li><strong>Lever 3 — Scope reduction.</strong> Defer studio buildout (-$40K), solar (-$35K), and full site work (-$40K) into Phase 2. Get the barndo + first unit + minimal infrastructure in. ~$115K of deferrable scope; still leaves an ~$80K gap.</li>
+      <li><strong>Lever 4 — Tracy's bankroll absorbs more.</strong> Tracy's bankroll is the canonical financing source per the handoff; the $180K (Chicken's house) + $120K (MBT equity) + $300K (Ardent-as-substitute-bridge) could conceivably all come from her if she wants to take that exposure. That's a partnership conversation, not a model decision.</li>
+      <li><strong>Recommended posture.</strong> Per the pasted analysis: <em>treat Ardent as contingent upside, not base funding</em>. Run Phase 1 on a fundable stack. If Ardent lands, deploy it to retire debt + accelerate Y2.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Operating projection — illustrative</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Line</th>
+        <th class="num">Year 1</th>
+        <th class="num">Year 2</th>
+        <th class="num">Year 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Tiny-unit rents (renters, not founders)</td><td class="num">$0</td><td class="num">$21,600</td><td class="num">$43,200</td></tr>
+      <tr><td>Studio income (community share at 30%)</td><td class="num">$3,000</td><td class="num">$12,000</td><td class="num">$18,000</td></tr>
+      <tr><td>Manufacturing / workshop revenue</td><td class="num">$0</td><td class="num">$20,000</td><td class="num">$50,000</td></tr>
+      <tr class="total"><td>Operating revenue</td><td class="num">$3,000</td><td class="num">$53,600</td><td class="num">$111,200</td></tr>
+      <tr><td>Operating expenses (taxes, insurance, utilities, maintenance)</td><td class="num">$24,000</td><td class="num">$36,000</td><td class="num">$48,000</td></tr>
+      <tr class="total"><td>Operating result</td><td class="num">−$21,000</td><td class="num">$17,600</td><td class="num">$63,200</td></tr>
+      <tr><td>Y2/Y3 capex (additional tiny units, 2 per year)</td><td class="num">$0</td><td class="num">$50,000</td><td class="num">$50,000</td></tr>
+      <tr class="total"><td>Cash impact</td><td class="num">−$21,000</td><td class="num">−$32,400</td><td class="num">$13,200</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footnote">
+    <strong>Operating assumptions are placeholders.</strong> Tiny-unit rents assumed at $900/mo, with 2 renter units online in Y2 and 4 in Y3 (founder units don't pay rent — they hold equity). Studio income assumes 20 / 80 / 120 commercial-session days at $500/day with the community taking 30% (the 70/30 split is from the writer prompt, not a binding agreement). Manufacturing revenue is a complete guess — a real number requires Chase + Tracy to scope what the workshop bays actually produce. Operating expenses scale roughly with units online. None of this represents a forecast — it represents the order-of-magnitude shape of operating economics if the founder + renter + studio + workshop model holds.
+  </div>
+</section>
+
+<section>
+  <h2>Cash position — end of year</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Position</th>
+        <th class="num">After Phase 1</th>
+        <th class="num">End Y1</th>
+        <th class="num">End Y2</th>
+        <th class="num">End Y3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="cash-ardent-on">
+        <td><strong>Ardent ON</strong></td>
+        <td class="num">$103,000</td>
+        <td class="num">$82,000</td>
+        <td class="num">$49,600</td>
+        <td class="num">$62,800</td>
+      </tr>
+      <tr id="cash-ardent-off">
+        <td><strong>Ardent OFF (no mitigation)</strong></td>
+        <td class="num gap-cell">−$197,000</td>
+        <td class="num gap-cell">−$218,000</td>
+        <td class="num gap-cell">−$250,400</td>
+        <td class="num gap-cell">−$237,200</td>
+      </tr>
+      <tr id="cash-ardent-off-mitigated">
+        <td><strong>Ardent OFF (with $115K scope cuts + larger loan)</strong></td>
+        <td class="num">~$0</td>
+        <td class="num gap-cell">−$21,000</td>
+        <td class="num gap-cell">−$53,400</td>
+        <td class="num gap-cell">−$40,200</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footnote">
+    <strong>What this is saying.</strong> With Ardent ON the model breaks even on cash by Y3 and is operationally positive by Y2. With Ardent OFF and no mitigation, the project is structurally unfundable. With Ardent OFF and the recommended mitigations (defer scope + grow loan), Phase 1 just barely funds and the project carries a debt overhang that operating cash flow eats slowly. None of these scenarios show the project becoming a profit center quickly — that's not what the Hollow is. It's a creation infrastructure with modest operating economics.
+  </div>
+</section>
+
+<section>
+  <h2>What this proforma is not</h2>
+  <ul>
+    <li>It is not a forecast.</li>
+    <li>It is not a basis for any commitment to Tracy, Chicken, founders, or a property.</li>
+    <li>It is not validated against an actual property survey, build estimate, or zoning check.</li>
+    <li>It does not include any income from the Theater plan, the Inn, Tuthill, the magazine, Big Muddy Touring, or any other line of MBT business — those are separate proformas to build later.</li>
+    <li>It does not include Chase's salary, partner distributions, or income tax.</li>
+    <li>It does not model what happens if the Ardent settlement lands net of significant tax (the pasted analysis flagged a possible $120–140K tax bite on $300K) — see the calibration note in the Sources section above.</li>
+    <li>The Ardent ON scenario uses gross $300K. The v2 calibration (captured in <code>docs/decision-briefs/ardent-settlement-funding-scenario-2026-04-22.md</code>) shows Chase's personal net could be as low as ~$43K conservative, ~$200K aggressive. A future version of this proforma should add a third toggle state for "Ardent (net to Chase, conservative)" once the actual claim structure and characterization are known.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>What needs to happen to harden these numbers</h2>
+  <ul>
+    <li>Confirm the Phase 1 envelope: $415K, $627K, or some other number with line items.</li>
+    <li>Get a real Phase 1 line-item budget from a builder who has walked a candidate property.</li>
+    <li>Identify the actual attorney on the Ardent matter (the paste's "Alexa" is hallucinated per Chase) and get a probability + timing read on settlement.</li>
+    <li>CPA conversation on the tax characterization of any Ardent proceeds and whether they can route to MBT before personal.</li>
+    <li>Tracy + Chase + Amy partnership conversation on how Tracy's bankroll actually deploys (Chicken's house? MBT equity? direct loan? combination?).</li>
+    <li>Tracy + Chicken conversation on the Muscle Shoals house transaction.</li>
+    <li>Founder identification and the actual buy-in commitment.</li>
+    <li>Real numbers for tiny-unit rents in the Natchez area, studio session day-rates, and what the workshop actually manufactures.</li>
+  </ul>
+</section>
+
+<div class="colophon">
+  Working scenario. Not a forecast. Not a commitment. Captured 2026-04-22 by Chief of Staff. Will be revised every time the underlying numbers move.
+</div>
+
+</div>
+
+<script>
+  let ardentOn = true;
+
+  function toggleArdent() {
+    ardentOn = !ardentOn;
+    const stateLabel = document.getElementById('state-label');
+    const toggleBtn = document.getElementById('toggle-btn');
+    const ardentRow = document.getElementById('ardent-row');
+    const totalSources = document.getElementById('total-sources');
+    const sumSources = document.getElementById('sum-sources');
+    const sumLabel = document.getElementById('sum-label');
+    const sumResult = document.getElementById('sum-result');
+    const onNotes = document.getElementById('ardent-on-notes');
+    const offNotes = document.getElementById('ardent-off-notes');
+
+    if (ardentOn) {
+      stateLabel.textContent = 'ON · $300,000 included';
+      stateLabel.className = 'toggle-state on';
+      toggleBtn.textContent = 'Toggle Off';
+      ardentRow.classList.remove('off');
+      totalSources.textContent = '$730,000';
+      sumSources.textContent = '$730,000';
+      sumLabel.textContent = 'Surplus to operating reserve';
+      sumResult.textContent = '$103,000';
+      sumResult.className = 'surplus-cell';
+      onNotes.style.display = 'block';
+      offNotes.style.display = 'none';
+    } else {
+      stateLabel.textContent = 'OFF · $300,000 removed';
+      stateLabel.className = 'toggle-state off';
+      toggleBtn.textContent = 'Toggle On';
+      ardentRow.classList.add('off');
+      totalSources.textContent = '$430,000';
+      sumSources.textContent = '$430,000';
+      sumLabel.textContent = 'Funding gap';
+      sumResult.textContent = '−$197,000';
+      sumResult.className = 'gap-cell';
+      onNotes.style.display = 'none';
+      offNotes.style.display = 'block';
+    }
+  }
+</script>
+
+</body>
+</html>

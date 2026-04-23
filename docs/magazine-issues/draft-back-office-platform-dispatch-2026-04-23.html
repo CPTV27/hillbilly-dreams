@@ -1,0 +1,228 @@
+<!--
+  STATUS: DRAFT — pasted by Chase 2026-04-23 from external AI.
+  NOT PROMOTED. Drift annotations live at: draft-back-office-platform-dispatch-2026-04-23-DRIFT.md
+  DO NOT publish without reconciliation pass.
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Machine Behind the Magazine — Big Muddy Magazine</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #fff; color: #111; line-height: 1.65; font-size: 17px; -webkit-font-smoothing: antialiased; }
+.masthead { border-bottom: 1px solid #000; padding: 20px 40px 16px; display: flex; justify-content: space-between; align-items: baseline; }
+.masthead-brand { font-family: 'Fraunces', serif; font-weight: 800; font-size: 22px; letter-spacing: -0.02em; }
+.masthead-section { font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: #666; }
+.masthead-date { font-size: 12px; color: #666; }
+.article { max-width: 720px; margin: 0 auto; padding: 60px 28px 80px; }
+.kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #a03e1f; font-weight: 600; margin-bottom: 18px; }
+h1 { font-family: 'Fraunces', serif; font-weight: 700; font-size: 46px; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 20px; color: #000; }
+.subhead { font-family: 'Fraunces', serif; font-weight: 300; font-style: italic; font-size: 22px; line-height: 1.35; color: #444; margin-bottom: 30px; }
+.byline { font-size: 13px; color: #666; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #e5e5e5; }
+.byline strong { color: #111; }
+p { font-family: 'Fraunces', serif; font-size: 19px; line-height: 1.6; margin-bottom: 20px; color: #1a1a1a; }
+.lede::first-letter { font-family: 'Fraunces', serif; font-size: 72px; font-weight: 800; float: left; line-height: 0.85; margin: 8px 10px 0 0; color: #000; }
+h2 { font-family: 'Fraunces', serif; font-weight: 700; font-size: 26px; margin-top: 44px; margin-bottom: 16px; color: #000; letter-spacing: -0.01em; }
+h3 { font-family: 'Inter', sans-serif; font-size: 13px; text-transform: uppercase; letter-spacing: 0.15em; margin-top: 36px; margin-bottom: 14px; color: #a03e1f; font-weight: 600; }
+.pullquote { font-family: 'Fraunces', serif; font-size: 28px; line-height: 1.3; font-weight: 500; color: #000; border-left: 3px solid #a03e1f; padding: 8px 0 8px 24px; margin: 36px 0; letter-spacing: -0.01em; }
+.sidebar { background: #f7f5f0; border: 1px solid #e5e0d5; padding: 24px 28px; margin: 36px 0; font-family: 'Inter', sans-serif; }
+.sidebar-title { font-family: 'Inter', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: #a03e1f; font-weight: 600; margin-bottom: 14px; }
+.sidebar h4 { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; margin-bottom: 10px; color: #000; }
+.sidebar p { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.55; margin-bottom: 10px; color: #333; }
+.sidebar ul { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; padding-left: 18px; color: #333; }
+.sidebar li { margin-bottom: 6px; }
+.sidebar code { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: #eae5d8; padding: 2px 6px; border-radius: 2px; color: #a03e1f; }
+.stack { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: #e5e5e5; margin: 30px 0; border: 1px solid #e5e5e5; }
+.stack-cell { background: #fff; padding: 18px 20px; }
+.stack-label { font-family: 'Inter', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: #666; margin-bottom: 6px; }
+.stack-value { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; color: #000; }
+.stack-detail { font-family: 'Inter', sans-serif; font-size: 13px; color: #555; margin-top: 4px; line-height: 1.4; }
+.module-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 28px 0; }
+.module { border: 1px solid #e5e5e5; padding: 14px 16px; background: #fafafa; }
+.module-number { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #a03e1f; margin-bottom: 4px; }
+.module-name { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #000; margin-bottom: 4px; }
+.module-desc { font-family: 'Inter', sans-serif; font-size: 12px; color: #555; line-height: 1.4; }
+.checklist { margin: 24px 0; padding: 0; list-style: none; }
+.checklist li { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.55; padding: 10px 0 10px 28px; border-bottom: 1px solid #eee; position: relative; color: #222; }
+.checklist li::before { content: ""; position: absolute; left: 0; top: 14px; width: 14px; height: 14px; border: 1.5px solid #a03e1f; border-radius: 2px; }
+.checklist li.done::before { background: #a03e1f; }
+.checklist li.done { color: #666; text-decoration: line-through; text-decoration-color: #999; }
+.footer { max-width: 720px; margin: 0 auto; padding: 40px 28px 60px; border-top: 1px solid #e5e5e5; font-family: 'Inter', sans-serif; font-size: 13px; color: #666; text-align: center; }
+code.inline { font-family: 'JetBrains Mono', monospace; font-size: 15px; background: #f0ede5; padding: 1px 6px; border-radius: 2px; color: #a03e1f; }
+@media (max-width: 640px) { h1 { font-size: 34px; } .subhead { font-size: 18px; } p { font-size: 17px; } .pullquote { font-size: 22px; } .module-grid { grid-template-columns: 1fr; } .stack { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-brand">Big Muddy Magazine</div>
+  <div class="masthead-section">Dispatch &middot; The Back Office</div>
+  <div class="masthead-date">Spring 2026</div>
+</div>
+
+<article class="article">
+
+  <div class="kicker">The Back Office &middot; Issue 01</div>
+
+  <h1>The Machine Behind the Magazine</h1>
+
+  <p class="subhead">A working brief on the Big Muddy platform — what's built, what's shipping, and what the shop floor looks like when you open the lid.</p>
+
+  <p class="byline">By the Editors &middot; <strong>Engineering note for Tuthill Design + Studio C</strong> &middot; 12 min read</p>
+
+  <p class="lede">Most magazines are ink and paper and a staff who go home at night. This one is different. Big Muddy Magazine is one property inside a family of them — an inn on the bluff in Natchez, a touring operation running the corridor, a record label, a radio station, a growing editorial practice — and all of it runs off a single piece of software that nobody outside the shop ever sees. This is a dispatch about that software. What it does. Where it lives. And what still has to happen before we can truly say it's finished.</p>
+
+  <p>The short version: one codebase powers fourteen domains. It's a Next.js monorepo with a Sanity CMS backend, a Postgres entity store, and a catalog of thirteen shared modules that every property in the family draws on. When Tracy updates the Inn's availability, that flows through the same Postgres table that tells the Magazine which Blues Room show to preview this weekend. When Amy releases a new track on Big Muddy Records, the same event hooks notify the radio server, the mailing list, and the merch store. One brain. Many faces.</p>
+
+  <p>This is a deliberate choice. A lot of small-media operations end up with a stitched quilt of WordPress installs, Squarespace sites, Mailchimp accounts, Cloudbeds property managers, Stripe dashboards, and a Dropbox folder full of photos that nobody can find. We built against that future. The shop is small. The infrastructure is large. This is how it stays sane.</p>
+
+  <h2>The Stack</h2>
+
+  <p>Before anything else, the bones:</p>
+
+  <div class="stack">
+    <div class="stack-cell"><div class="stack-label">Frontend</div><div class="stack-value">Next.js 14 App Router</div><div class="stack-detail">One codebase, fourteen domains, multi-tenant middleware.</div></div>
+    <div class="stack-cell"><div class="stack-label">Content</div><div class="stack-value">Sanity CMS</div><div class="stack-detail">Headless, structured. All editorial authored here.</div></div>
+    <div class="stack-cell"><div class="stack-label">Database</div><div class="stack-value">Postgres + Prisma</div><div class="stack-detail">Canonical entity store. People, places, events, works.</div></div>
+    <div class="stack-cell"><div class="stack-label">Hosting</div><div class="stack-value">Vercel</div><div class="stack-detail">Preview deploys on every push. Production on main.</div></div>
+    <div class="stack-cell"><div class="stack-label">Payments</div><div class="stack-value">Stripe</div><div class="stack-detail">Inn bookings, merch, label, subscriptions.</div></div>
+    <div class="stack-cell"><div class="stack-label">Lodging</div><div class="stack-value">Cloudbeds</div><div class="stack-detail">Property management. Channel manager to the OTAs.</div></div>
+    <div class="stack-cell"><div class="stack-label">Radio</div><div class="stack-value">Icecast + OpenBroadcaster</div><div class="stack-detail">24/7 stream. Automated failover.</div></div>
+    <div class="stack-cell"><div class="stack-label">Photo archive</div><div class="stack-value">Hetzner Immich</div><div class="stack-detail">52,000 photos. Self-hosted. Single source of truth.</div></div>
+    <div class="stack-cell"><div class="stack-label">Storage</div><div class="stack-value">GCS + Cloudflare R2</div><div class="stack-detail">Operational and platform-facing, respectively.</div></div>
+    <div class="stack-cell"><div class="stack-label">Secrets</div><div class="stack-value">Bitwarden</div><div class="stack-detail">If a credential isn't in there, it doesn't exist.</div></div>
+  </div>
+
+  <p>There is also an AI routing layer — <code class="inline">lib/ai-models.ts</code> — that sends reasoning tasks to Gemini 2.5 Pro and everything else to Claude Sonnet. It falls through automatically on error. When an editor drafts a headline in Sanity and asks for three alternatives, that's this file doing the work, invisibly.</p>
+
+  <h2>The Thirteen Modules</h2>
+
+  <p>Every brand in the family draws on the same set of building blocks. This is the part that matters most to get right — because when a new property comes online (the land company, the cooperative, the next sub-brand), it should be a matter of composition, not construction.</p>
+
+  <div class="module-grid">
+    <div class="module"><div class="module-number">01</div><div class="module-name">Auth</div><div class="module-desc">Unified login across every property.</div></div>
+    <div class="module"><div class="module-number">02</div><div class="module-name">People</div><div class="module-desc">Canonical entity. Artists, staff, members, guests.</div></div>
+    <div class="module"><div class="module-number">03</div><div class="module-name">Places</div><div class="module-desc">Canonical entity. Venues, rooms, properties.</div></div>
+    <div class="module"><div class="module-number">04</div><div class="module-name">Events</div><div class="module-desc">Shows, sessions, bookings. One source.</div></div>
+    <div class="module"><div class="module-number">05</div><div class="module-name">Media</div><div class="module-desc">Photo, video, audio. Immich + R2 backing.</div></div>
+    <div class="module"><div class="module-number">06</div><div class="module-name">Commerce</div><div class="module-desc">Stripe wrapper for all payment flows.</div></div>
+    <div class="module"><div class="module-number">07</div><div class="module-name">Bookings</div><div class="module-desc">Cloudbeds integration for the Inn.</div></div>
+    <div class="module"><div class="module-number">08</div><div class="module-name">Content</div><div class="module-desc">Sanity CMS abstraction, cached and served.</div></div>
+    <div class="module"><div class="module-number">09</div><div class="module-name">Radio</div><div class="module-desc">Icecast integration, playlists, show scheduling.</div></div>
+    <div class="module"><div class="module-number">10</div><div class="module-name">Mail</div><div class="module-desc">Transactional and newsletter sending.</div></div>
+    <div class="module"><div class="module-number">11</div><div class="module-name">Search</div><div class="module-desc">Across people, places, events, content.</div></div>
+    <div class="module"><div class="module-number">12</div><div class="module-name">Analytics</div><div class="module-desc">Unified event tracking across all fourteen domains.</div></div>
+    <div class="module"><div class="module-number">13</div><div class="module-name">AI</div><div class="module-desc">Model routing, prompt templates, generation logs.</div></div>
+  </div>
+
+  <p>If you're building something new for this operation — a new feature inside Sanity, a new page on one of the properties, a new integration with an external service — the first question is always: does a module already do this? Nine times out of ten, the answer is yes, and the job is composition. The tenth time, the right move is to add it to the module library, not to bolt it onto one property and call it done.</p>
+
+  <div class="pullquote">One brain. Many faces. The shop is small. The infrastructure is large. This is how it stays sane.</div>
+
+  <h2>Studio C as the Visual Arm</h2>
+
+  <p>The platform runs on code, but it publishes on pictures. Every property in the Big Muddy family is, at bottom, a visual one. The Inn sells a feeling — the Blues Room glow, the bluff at dusk, a coffee cup on the porch at seven in the morning. Records sells a sound, but the album art and the session photography is how anyone finds the sound in the first place. The Magazine is self-evidently visual. Radio has a visual identity now too — the TikTok Live shows are image-forward, the Spotify canvases matter.</p>
+
+  <p>All of this production work comes out of Studio C.</p>
+
+  <p>Studio C is a DBA inside Tuthill Design LLC. It runs on a monthly contract with MBT for platform media work: shoots, edits, multicam capture, session documentation. That contract started April first of this year. The deal is simple — MBT buys buckets of Studio C hours every month, those hours get allocated against the platform's visual calendar, and what comes out the other side lives in the Immich archive with proper metadata, tagged to property and project and date. Available forever. Reusable across any surface.</p>
+
+  <p>This is not how most shops do it. Most shops hire a freelance photographer when they need photos, the photos end up on someone's hard drive, and six months later when the Magazine wants a shot of the Blues Room at capacity, nobody can find anything. We built against that too. If a photograph exists in our world, it's in Immich. If it isn't, it doesn't count.</p>
+
+  <div class="sidebar">
+    <div class="sidebar-title">Studio C &times; MBT &middot; The Monthly</div>
+    <h4>What the hours are for</h4>
+    <ul>
+      <li>Shoots for Magazine features — Inn, Blues Room, artists, food, landscapes</li>
+      <li>Multicam concert capture — Blues Room shows become Radio video content</li>
+      <li>Artist sessions — Records label work, EPKs, music videos</li>
+      <li>Behind-the-scenes documentary — property work, build-outs, tour footage</li>
+      <li>Platform marketing assets — the evergreen library across all fourteen domains</li>
+    </ul>
+  </div>
+
+  <p>There is also Tuthill Design proper — the real estate photography, video, 3D, and LiDAR practice. That runs in its own lane, mostly in the Hudson Valley, with a growing Natchez branch. Tuthill Design is not on a recurring monthly engagement with MBT; occasional one-off photo work, yes, but the two lanes stay clean. Studio C is the MBT engagement. Tuthill Design is Tuthill Design.</p>
+
+  <h3>What Studio C needs from the engineering side</h3>
+
+  <p>To keep the monthly engagement running clean, a few things have to be in place:</p>
+
+  <ul class="checklist">
+    <li class="done">Monthly rate card locked for MBT work</li>
+    <li class="done">April 2026 hours budget committed</li>
+    <li class="done">Delivery pipeline to Immich established</li>
+    <li>Monthly scheduling calendar published thirty days out</li>
+    <li>Hours burn dashboard — budgeted vs used, visible to both sides</li>
+    <li>Delivery metadata standard confirmed and enforced</li>
+    <li>Invoice template with clean line items, monthly cadence</li>
+    <li>Overage approval workflow — what happens when a shoot runs long</li>
+  </ul>
+
+  <p>None of this is hard. Most of it is a Google Sheet or a Notion page and a conversation. But none of it is optional, either. The difference between a production pipeline that scales and one that becomes a monthly scramble is exactly this list.</p>
+
+  <h2>The Gaps</h2>
+
+  <p>A magazine is supposed to be honest. Here is where the platform stands, openly, as we go to press.</p>
+
+  <h3>What's shipping</h3>
+
+  <ul class="checklist">
+    <li class="done">Multi-tenant middleware, fourteen domains routed</li>
+    <li class="done">Sanity CMS authoring environment, all editors onboarded</li>
+    <li class="done">Postgres entity store with the core schemas</li>
+    <li class="done">Immich photo archive, 52,000 photos imported and searchable</li>
+    <li class="done">Stripe payments live for the Inn and merch</li>
+    <li class="done">Icecast stream for Big Muddy Radio, basic playlist rotation</li>
+    <li class="done">AI routing layer, Gemini primary, Claude fallback</li>
+    <li class="done">Studio C monthly contract signed and active</li>
+  </ul>
+
+  <h3>What's still in flight</h3>
+
+  <ul class="checklist">
+    <li>Cloudbeds channel manager — partially connected, OTAs not all routing clean</li>
+    <li>Icecast 24/7 production hardening with automated failover</li>
+    <li>Stripe Connect for Records label — paying artists through the platform</li>
+    <li>Magazine Vol. 1 deployment to <code class="inline">bigmuddymedia.com/magazine/spring-2026</code> as a real Next.js route (currently standalone HTML)</li>
+    <li>Multi-tenant middleware edge cases — a few domains still 404-ing on specific paths</li>
+    <li>Immich ingestion automation — watched folders, auto-tagging by shoot metadata</li>
+    <li>Studio C scheduling calendar, hours dashboard, overage workflow</li>
+    <li>Monthly invoicing automation between Tuthill Design LLC and MBT</li>
+  </ul>
+
+  <p>None of these are blockers for the Magazine itself — Vol. 01 is in your hands right now, and Vol. 02 is already in planning. But they're the difference between a platform that works for the people running it today and a platform that can add a property without breaking a sweat. That's where we're headed.</p>
+
+  <div class="pullquote">If a photograph exists in our world, it's in Immich. If it isn't, it doesn't count.</div>
+
+  <h2>What It Looks Like From the Shop Floor</h2>
+
+  <p>On a given Tuesday, the platform is a MacBook Pro in Bearsville and a Mac mini quietly humming on a shelf at 192.168.4.37. The mini runs OpenBroadcaster, which runs Icecast, which is what you hear if you tune in to Big Muddy Radio on a Sunday afternoon. It also runs Plex, which holds every live recording we've made in the Blues Room, and Postiz, which schedules the social posts, and Open Notebook, which holds the knowledge base. The MacBook Pro is where Chase writes, where the deploys happen, where the Sanity drafts get reviewed. Everything is version-controlled. Everything is backed up. Everything is in Bitwarden if it's a secret, and everything is in Immich if it's an image.</p>
+
+  <p>The goal of all of this is not impressive software. The goal is a small shop that can publish a Magazine, run an Inn, book a tour, release a record, air a radio show, and catch a multicam session without anybody losing track of anything. It's infrastructure in the old sense — the roads and the wiring that let the town work, rather than the thing anyone comes to town to see.</p>
+
+  <p>What the town is there to see is the room at the end of the day when the lights come up and the band is warming up. That's the work. This is the machine that keeps the work possible.</p>
+
+  <div class="sidebar">
+    <div class="sidebar-title">For the record</div>
+    <p><strong>Codebase:</strong> one Next.js monorepo, fourteen domains</p>
+    <p><strong>Content system:</strong> Sanity, all authoring flows through here</p>
+    <p><strong>Canonical data:</strong> Postgres via Prisma, thirteen shared modules</p>
+    <p><strong>Photo archive:</strong> 52,000 images on Hetzner Immich</p>
+    <p><strong>Media production:</strong> Studio C on monthly contract, started April 1, 2026</p>
+    <p><strong>Hosting:</strong> Vercel, preview on every push, production on <code>main</code></p>
+    <p><strong>Source of truth:</strong> Bitwarden for secrets, Immich for images, GitHub (CPTV27) for code</p>
+  </div>
+
+</article>
+
+<div class="footer">
+  Big Muddy Magazine &middot; Spring 2026 &middot; Vol. 01 &middot; Natchez, Mississippi<br>
+  <em>The Back Office</em> is an occasional column on the machinery behind the work.
+</div>
+
+</body>
+</html>
