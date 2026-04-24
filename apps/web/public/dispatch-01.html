@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Big Muddy — Dispatch No. 01 — Spring 2026</title>
+  <meta name="description" content="An entertainment, hospitality, and media ecosystem anchored in Natchez, Mississippi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------------------------------------------------------------
+       Iron & Earth — palette + base
+       --------------------------------------------------------------- */
+    :root {
+      --rust: #a03e1f;
+      --rust-deep: #7a2d14;
+      --cream: #fafaf7;
+      --cream-warm: #f3eee3;
+      --charcoal: #1a1a1a;
+      --ink: #2a2520;
+      --forest: #2d4a3e;
+      --gold: #c8943e;
+      --gold-deep: #8e6520;
+      --rule: #d6cdb8;
+      --muted: #6a615a;
+
+      --serif: 'Fraunces', 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      background: var(--cream);
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    img { display: block; max-width: 100%; height: auto; }
+
+    /* ---------------------------------------------------------------
+       Page frame — each .page is one brochure spread
+       --------------------------------------------------------------- */
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 48px 96px;
+      min-height: 100vh;
+      position: relative;
+      page-break-after: always;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .page:last-of-type { border-bottom: none; }
+
+    .pagemark {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 18px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .pagemark .left { font-weight: 700; color: var(--rust); }
+    .pagemark .right { font-weight: 400; }
+
+    /* ---------------------------------------------------------------
+       Typography
+       --------------------------------------------------------------- */
+    h1, h2, h3, h4 {
+      font-family: var(--serif);
+      color: var(--charcoal);
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    h1.giant {
+      font-size: 86px;
+      line-height: 0.92;
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      color: var(--cream);
+    }
+
+    h2.section-head {
+      font-size: 52px;
+      line-height: 1.02;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    h3.subhead {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 36px;
+    }
+
+    p { margin: 0 0 20px; }
+
+    em { font-style: italic; }
+
+    .lede {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 22px;
+      line-height: 1.4;
+      color: var(--ink);
+      margin: 0 0 36px;
+    }
+
+    .small {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ---------------------------------------------------------------
+       Page 1 — Cover
+       --------------------------------------------------------------- */
+    .cover {
+      background: linear-gradient(180deg, rgba(122, 45, 20, 0.55) 0%, rgba(26, 26, 26, 0.85) 100%),
+                  url('/images/corridor/natchez-bluff-river-view.webp') center/cover no-repeat;
+      color: var(--cream);
+      padding: 56px 48px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cover .top {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(250, 250, 247, 0.3);
+      padding-bottom: 16px;
+    }
+
+    .cover .lockup {
+      max-width: 600px;
+    }
+
+    .cover .lockup .issue {
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .cover .lockup h1 {
+      margin-bottom: 22px;
+    }
+
+    .cover .lockup .tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 22px;
+      line-height: 1.35;
+      color: var(--cream);
+      max-width: 520px;
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .cover .bottom {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 247, 0.7);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: 16px;
+      border-top: 1px solid rgba(250, 250, 247, 0.3);
+    }
+
+    /* ---------------------------------------------------------------
+       Editor's Letter
+       --------------------------------------------------------------- */
+    .letter {
+      background: var(--cream-warm);
+    }
+
+    .letter .from {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--rust);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .letter .salute {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 28px;
+      line-height: 1.2;
+      color: var(--charcoal);
+      margin-bottom: 32px;
+    }
+
+    .letter .body p {
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .letter .body p:first-of-type::first-letter {
+      font-family: var(--serif);
+      font-weight: 900;
+      font-size: 76px;
+      line-height: 0.85;
+      float: left;
+      padding: 6px 12px 0 0;
+      color: var(--rust);
+    }
+
+    .signoff {
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .signoff .name {
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* ---------------------------------------------------------------
+       Route map
+       --------------------------------------------------------------- */
+    .route .map-wrap {
+      background: var(--cream-warm);
+      border: 1px solid var(--rule);
+      padding: 36px 28px;
+      margin-top: 18px;
+    }
+
+    .route ol.cities {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .route ol.cities li {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--charcoal);
+      padding: 14px 0;
+      border-bottom: 1px dashed var(--rule);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .route ol.cities li:last-child { border-bottom: none; }
+
+    .route ol.cities li .city {
+      font-family: var(--serif);
+      font-weight: 700;
+    }
+
+    .route ol.cities li .meta {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .route .legend {
+      margin-top: 22px;
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      line-height: 1.55;
+    }
+
+    /* ---------------------------------------------------------------
+       Photo bands (Inn, Blues Room, Touring, Acres)
+       --------------------------------------------------------------- */
+    .photo-band {
+      margin: 0 -48px 36px;
+      position: relative;
+      overflow: hidden;
+      background: var(--charcoal);
+    }
+
+    .photo-band img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .photo-band .caption {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 48px 0;
+      font-weight: 500;
+    }
+
+    .photo-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin: 0 -48px 36px;
+    }
+
+    .photo-grid-2 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 4/5;
+    }
+
+    /* ---------------------------------------------------------------
+       Sidebar fact block
+       --------------------------------------------------------------- */
+    .factbox {
+      background: var(--cream-warm);
+      border-left: 4px solid var(--rust);
+      padding: 22px 26px;
+      margin: 28px 0;
+    }
+
+    .factbox h4 {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rust);
+      font-weight: 700;
+      margin: 0 0 12px;
+    }
+
+    .factbox dl {
+      margin: 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 8px 18px;
+    }
+
+    .factbox dt {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .factbox dd {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--charcoal);
+      margin: 0;
+      font-weight: 500;
+    }
+
+    /* ---------------------------------------------------------------
+       Pull quote
+       --------------------------------------------------------------- */
+    .pullquote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 28px;
+      line-height: 1.3;
+      color: var(--rust-deep);
+      border-top: 2px solid var(--rust);
+      border-bottom: 2px solid var(--rust);
+      padding: 26px 0;
+      margin: 36px 0;
+      font-weight: 600;
+    }
+
+    /* ---------------------------------------------------------------
+       Three-column media layer
+       --------------------------------------------------------------- */
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-top: 28px;
+    }
+
+    @media (min-width: 720px) {
+      .three-col { grid-template-columns: 1fr 1fr 1fr; gap: 22px; }
+    }
+
+    .col {
+      background: var(--cream-warm);
+      padding: 24px 22px;
+      border-top: 4px solid var(--rust);
+    }
+
+    .col.green { border-top-color: var(--forest); }
+    .col.gold { border-top-color: var(--gold); }
+
+    .col h4 {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .col .kicker {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .col p {
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--ink);
+      margin: 0 0 12px;
+    }
+
+    .col .stat {
+      font-family: var(--serif);
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--rust);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .col.green .stat { color: var(--forest); }
+    .col.gold .stat { color: var(--gold-deep); }
+
+    /* ---------------------------------------------------------------
+       Outsider Economics — six principles grid
+       --------------------------------------------------------------- */
+    .principles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 32px;
+    }
+
+    .principle {
+      border-top: 2px solid var(--charcoal);
+      padding: 16px 0 4px;
+    }
+
+    .principle .num {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--rust);
+      margin-bottom: 6px;
+    }
+
+    .principle h4 {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+
+    .principle p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    .booknote {
+      margin-top: 36px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .booknote strong { color: var(--charcoal); font-weight: 700; }
+
+    /* ---------------------------------------------------------------
+       Coalition / portrait grid
+       --------------------------------------------------------------- */
+    .portrait-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 28px;
+    }
+
+    .portrait-grid div {
+      aspect-ratio: 3/4;
+      background: var(--cream-warm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portrait-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(50%) contrast(1.05);
+    }
+
+    .portrait-grid .placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      padding: 6px;
+    }
+
+    /* ---------------------------------------------------------------
+       Calendar
+       --------------------------------------------------------------- */
+    .calendar {
+      margin-top: 28px;
+    }
+
+    .cal-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 24px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+    }
+
+    .cal-row .when {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rust);
+    }
+
+    .cal-row .what {
+      font-family: var(--serif);
+      font-size: 19px;
+      color: var(--charcoal);
+      font-weight: 600;
+      letter-spacing: -0.005em;
+    }
+
+    .cal-row .what .where {
+      display: block;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ---------------------------------------------------------------
+       Back cover
+       --------------------------------------------------------------- */
+    .back {
+      background: var(--charcoal);
+      color: var(--cream);
+      padding: 56px 48px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .back .manifesto {
+      font-family: var(--serif);
+      font-size: 26px;
+      line-height: 1.45;
+      font-weight: 500;
+      color: var(--cream);
+      max-width: 540px;
+    }
+
+    .back .manifesto em {
+      color: var(--gold);
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .back .urls {
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      line-height: 2;
+      font-weight: 600;
+    }
+
+    .back .urls .addr {
+      display: block;
+      margin-top: 18px;
+      color: rgba(250, 250, 247, 0.7);
+      font-weight: 400;
+      letter-spacing: 0.18em;
+    }
+
+    .back .endmark {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-top: 1px solid rgba(200, 148, 62, 0.3);
+      padding-top: 14px;
+      margin-top: 0;
+    }
+
+    /* ---------------------------------------------------------------
+       Mobile
+       --------------------------------------------------------------- */
+    @media (max-width: 640px) {
+      .page { padding: 36px 22px 56px; }
+      .cover, .back { padding: 36px 22px; }
+      h1.giant { font-size: 56px; }
+      h2.section-head { font-size: 36px; }
+      .cover .lockup .tagline { font-size: 18px; }
+      .photo-band { margin-left: -22px; margin-right: -22px; }
+      .photo-grid-2 { margin-left: -22px; margin-right: -22px; }
+      .photo-grid-2 { grid-template-columns: 1fr; }
+      .three-col { grid-template-columns: 1fr; }
+      .principles { grid-template-columns: 1fr; }
+      .portrait-grid { grid-template-columns: repeat(3, 1fr); }
+      .pullquote { font-size: 22px; }
+      .letter .salute { font-size: 22px; }
+      .cal-row { grid-template-columns: 1fr; gap: 4px; }
+    }
+
+    /* ---------------------------------------------------------------
+       Print — 8.5×11
+       --------------------------------------------------------------- */
+    @media print {
+      body { background: white; }
+      .page { padding: 0.5in; min-height: auto; max-width: 100%; border: none; }
+      .cover, .back { padding: 0.5in; min-height: 10in; }
+      h1.giant { font-size: 64pt; }
+      h2.section-head { font-size: 32pt; }
+      .photo-band { margin: 0 0 0.25in; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       PAGE 1 — COVER
+       ============================================================ -->
+  <section class="page cover">
+    <div class="top">
+      <span>Big Muddy</span>
+      <span>Issue 01 · Spring 2026</span>
+    </div>
+    <div class="lockup">
+      <p class="issue">Dispatch No. 01</p>
+      <h1 class="giant">Big&nbsp;Muddy.</h1>
+      <p class="tagline">An entertainment, hospitality, and media ecosystem anchored in Natchez, Mississippi.</p>
+    </div>
+    <div class="bottom">
+      <span>bigmuddytouring.com</span>
+      <span>411 N Commerce Street · Natchez, MS</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PAGE 2 — EDITOR'S LETTER
+       ============================================================ -->
+  <section class="page letter">
+    <div class="pagemark">
+      <span class="left">Dispatch · 02</span>
+      <span class="right">From the corridor</span>
+    </div>
+
+    <p class="from">A note from Natchez</p>
+    <p class="salute">The river is still moving.<br>So are the rooms beside it.</p>
+
+    <div class="body">
+      <p>The Mississippi corridor between Memphis and New Orleans contains one of the densest catalogs of American music ever produced inside a single geography. The blues was invented here. Soul was assembled here. Rock and roll passed through on its way to the rest of the world. The rooms where this happened are mostly still standing. The musicians who can still play it are mostly still alive. The audience that wants to hear it has never gone anywhere.</p>
+
+      <p>What has been missing is the connective tissue. The Nashville model — own the venue, own the label, own the route, own the press, capture the margin where it occurs — was perfected in one city but never applied to a corridor. Big Muddy is what happens when a small group of operators decides to build it.</p>
+
+      <p>Six suites in Natchez with a music venue inside. A Sprinter van and a route. A non-exclusive label that lets artists keep their masters. A 24/7 radio stream from the room itself. A magazine that covers every show. Coming next: a creative village on land outside town for the people who do this work for a living and have, until now, had nowhere to put down a porch.</p>
+
+      <p>This dispatch is the first time the whole thing has been in one document. The pages that follow are the route, the rooms, the people, the principles, and what's on the calendar. The work is already underway. The invitation, if you want one, is at the back.</p>
+    </div>
+
+    <div class="signoff">
+      <span class="name">— Big Muddy</span>
+      Natchez, Mississippi · Spring 2026
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PAGE 3 — THE ROUTE
+       ============================================================ -->
+  <section class="page route">
+    <div class="pagemark">
+      <span class="left">Dispatch · 03</span>
+      <span class="right">The Route</span>
+    </div>
+
+    <h2 class="section-head">The Route.</h2>
+    <p class="lede">Memphis to New Orleans. Thirteen cities. Twenty-six venues. One ecosystem.</p>
+
+    <div class="map-wrap">
+      <!-- IMAGEN PROMPT (when ready):
+           "Hand-drawn watercolor map of the Mississippi River corridor,
+            Memphis to New Orleans, marked with 13 small star icons at city
+            stops. Warm cream paper, rust orange ink, faint topographic
+            texture. Field-guide aesthetic, vintage USGS energy, no text."
+      -->
+      <ol class="cities">
+        <li><span class="city">Memphis</span><span class="meta">Tennessee · Mile 0</span></li>
+        <li><span class="city">Tunica</span><span class="meta">Mississippi</span></li>
+        <li><span class="city">Helena</span><span class="meta">Arkansas</span></li>
+        <li><span class="city">Clarksdale</span><span class="meta">Mississippi</span></li>
+        <li><span class="city">Greenville</span><span class="meta">Mississippi</span></li>
+        <li><span class="city">Indianola</span><span class="meta">Mississippi</span></li>
+        <li><span class="city">Yazoo City</span><span class="meta">Mississippi</span></li>
+        <li><span class="city">Vicksburg</span><span class="meta">Mississippi</span></li>
+        <li><span class="city">Natchez</span><span class="meta">Mississippi · Base camp</span></li>
+        <li><span class="city">St. Francisville</span><span class="meta">Louisiana</span></li>
+        <li><span class="city">Baton Rouge</span><span class="meta">Louisiana</span></li>
+        <li><span class="city">Lafayette</span><span class="meta">Louisiana</span></li>
+        <li><span class="city">New Orleans</span><span class="meta">Louisiana · Mile 410</span></li>
+      </ol>
+    </div>
+
+    <p class="legend">Twenty-six venues are in active rotation across the route as of Spring 2026. The Inn at Natchez sits roughly at the corridor's midpoint and serves as the production base camp for every show north and south.</p>
+  </section>
+
+  <!-- ============================================================
+       PAGE 4 — THE INN
+       ============================================================ -->
+  <section class="page">
+    <div class="pagemark">
+      <span class="left">Dispatch · 04</span>
+      <span class="right">The Inn</span>
+    </div>
+
+    <h2 class="section-head">The Inn.</h2>
+    <p class="lede">A red brick building three blocks off the Mississippi. Six suites upstairs. A music room downstairs.</p>
+
+    <div class="photo-band">
+      <img src="/images/corridor/inn-hallway-gathering.webp" alt="Big Muddy Inn — interior gathering space, warm light, guests at a table" />
+      <p class="caption">The Inn — interior, evening</p>
+    </div>
+
+    <p>Tracy Alderson-Allen runs the front of the house. Touring acts use the building as a base camp. Staying guests find themselves at the Friday Night Sessions whether they planned to or not. The bar pours through the back wall of the venue, so the show is always in the room.</p>
+
+    <div class="factbox">
+      <h4>The Inn — Spec Sheet</h4>
+      <dl>
+        <dt>Address</dt><dd>411 N Commerce Street, Natchez, Mississippi</dd>
+        <dt>Suites</dt><dd>Six</dd>
+        <dt>Music room</dt><dd>The Blues Room — capacity ~30 standing</dd>
+        <dt>Innkeeper</dt><dd>Tracy Alderson-Allen</dd>
+        <dt>Bar &amp; hospitality</dt><dd>Amy Allen</dd>
+        <dt>Function</dt><dd>Production base camp for the corridor</dd>
+      </dl>
+    </div>
+
+    <p class="pullquote">Hospitality with a stage in it.</p>
+  </section>
+
+  <!-- ============================================================
+       PAGE 5 — THE BLUES ROOM
+       ============================================================ -->
+  <section class="page">
+    <div class="pagemark">
+      <span class="left">Dispatch · 05</span>
+      <span class="right">The Blues Room</span>
+    </div>
+
+    <h2 class="section-head">The Blues Room.</h2>
+    <p class="lede">The room holds about thirty standing. The PA is the kind that gets out of the way.</p>
+
+    <div class="photo-grid-2">
+      <img src="/images/corridor/guitarist-chandelier-venue.webp" alt="Guitarist under a chandelier in the Blues Room" />
+      <img src="/images/corridor/drummer-pearl-kit.webp" alt="Drummer at a Pearl kit in the Blues Room" />
+    </div>
+
+    <p>The house band, on most nights, is Robert "Chicken" Burke and Adam Widoff. Chicken's catalog runs through Duke &amp; The King, Toshi Reagon's BIGLovely, and a stack of George Clinton sessions. Widoff played guitar for Lenny Kravitz and made his own records under Mechanical Bull. They have been playing together for thirty years.</p>
+
+    <p>Friday Night Sessions are weekly. The room is hosted by Arrie Aslin. Every set is recorded straight off the board. Some of them become records.</p>
+
+    <div class="factbox">
+      <h4>Friday Night Sessions</h4>
+      <dl>
+        <dt>House band</dt><dd>Chicken Burke · Adam Widoff</dd>
+        <dt>Host</dt><dd>Arrie Aslin</dd>
+        <dt>Cadence</dt><dd>Weekly · Friday evenings</dd>
+        <dt>Recording</dt><dd>Live to multitrack · feeds the label and the radio stream</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PAGE 6 — TOURING
+       ============================================================ -->
+  <section class="page">
+    <div class="pagemark">
+      <span class="left">Dispatch · 06</span>
+      <span class="right">Touring</span>
+    </div>
+
+    <h2 class="section-head">Touring.</h2>
+    <p class="lede">A Sprinter van. A trailer. A PA we trust. A route we know.</p>
+
+    <div class="photo-band">
+      <img src="/images/corridor/street-musician-guitar.webp" alt="Street musician with a guitar, downtown Natchez" />
+      <p class="caption">On the street outside the venue · Natchez</p>
+    </div>
+
+    <p>We book the venues, drive the gear, advance the show, run the audience, and split the fair. Six things, in order:</p>
+
+    <div class="three-col">
+      <div class="col">
+        <div class="kicker">01</div>
+        <h4>Book.</h4>
+        <p>Twenty-six venues in active rotation. Shows confirmed end-to-end without an agent in the middle.</p>
+      </div>
+      <div class="col green">
+        <div class="kicker">02</div>
+        <h4>Transport.</h4>
+        <p>Sprinter, trailer, PA. The van is wrapped in the brand and parks at the load-in.</p>
+      </div>
+      <div class="col gold">
+        <div class="kicker">03</div>
+        <h4>Promote.</h4>
+        <p>Every show gets a feature in the magazine, a profile on the radio, and a post on the route.</p>
+      </div>
+      <div class="col gold">
+        <div class="kicker">04</div>
+        <h4>Record.</h4>
+        <p>Live multitrack at the Blues Room. Field recording on the road. Catalog-grade by default.</p>
+      </div>
+      <div class="col">
+        <div class="kicker">05</div>
+        <h4>House.</h4>
+        <p>Six suites upstairs at the Inn. Touring acts sleep where the show happens.</p>
+      </div>
+      <div class="col green">
+        <div class="kicker">06</div>
+        <h4>Split fair.</h4>
+        <p>Non-exclusive deals. Artists keep their masters. Terms we'd want if we were the ones on stage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PAGE 7 — RECORDS + RADIO + MAGAZINE
+       ============================================================ -->
+  <section class="page">
+    <div class="pagemark">
+      <span class="left">Dispatch · 07</span>
+      <span class="right">The Media Layer</span>
+    </div>
+
+    <h2 class="section-head">The Media Layer.</h2>
+    <p class="lede">Three properties built out of the same room. Records, radio, magazine — same musicians, three formats.</p>
+
+    <div class="three-col">
+      <div class="col">
+        <div class="kicker">Records</div>
+        <p class="stat">55</p>
+        <h4>Tracks in catalog.</h4>
+        <p>Non-exclusive. Artists keep their masters. We cover the recording, the mix, the master, and the distribution. Releases continue under whatever label arrangement the artist is already in.</p>
+        <p><em>bigmuddyrecordlabel.com</em></p>
+      </div>
+      <div class="col green">
+        <div class="kicker">Radio</div>
+        <p class="stat">24/7</p>
+        <h4>From the room itself.</h4>
+        <p>Streaming live from the Blues Room when the room is live. Curated programming the rest of the day. No algorithms. The room is the playlist.</p>
+        <p><em>bigmuddyradio.com</em></p>
+      </div>
+      <div class="col gold">
+        <div class="kicker">Magazine</div>
+        <p class="stat">∞</p>
+        <h4>Long-form, slow cadence.</h4>
+        <p>Every show in the corridor gets a feature. Every artist on the route gets a profile. Print quarterly. Digital weekly. Editorial-led, never promotional.</p>
+        <p><em>bigmuddymagazine.com</em></p>
+      </div>
+    </div>
+
+    <p class="pullquote">The room is the studio. The studio is the radio station. The radio station is the magazine.</p>
+  </section>
+
+  <!-- ============================================================
+       PAGE 8 — BIG MUDDY ACRES
+       ============================================================ -->
+  <section class="page">
+    <div class="pagemark">
+      <span class="left">Dispatch · 08</span>
+      <span class="right">Big Muddy Acres</span>
+    </div>
+
+    <h2 class="section-head">Big Muddy Acres.</h2>
+    <p class="lede">A creative village on land outside Natchez. The first phase breaks ground this fall.</p>
+
+    <div class="photo-band">
+      <img src="/images/corridor/fire-pit-gathering.webp" alt="Fire pit gathering at the proposed site for Big Muddy Acres" />
+      <p class="caption">On the land · early site walk</p>
+    </div>
+
+    <p>At the center: the Mechanical Bull Pole Barn for the Arts. Workshop. Dance hall. Recording space. Around it: tiny houses for the people who make the work. Musicians, producers, photographers, writers, builders, growers. A garden along the south side. A water hookup at every porch. A coop you can hear from any of them.</p>
+
+    <p>Run as a live demonstration of the principles in <em>Outsider Economics</em>. Coordination, community, federation — applied to a piece of ground. Founding-circle membership is small and closes after a finite number of houses are built; everyone else who wants in comes through the guest program after Phase 1 opens.</p>
+
+    <div class="factbox">
+      <h4>Phase 1 — Targets</h4>
+      <dl>
+        <dt>Land</dt><dd>~18 acres · Adams County, Mississippi</dd>
+        <dt>Houses</dt><dd>5 founding · 1,000 sq ft or less, each</dd>
+        <dt>Center</dt><dd>The Mechanical Bull Pole Barn for the Arts</dd>
+        <dt>Power</dt><dd>Solar primary · generator backup</dd>
+        <dt>Water</dt><dd>Well · garden along south face</dd>
+        <dt>Groundbreaking</dt><dd>Fall 2026 (target)</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PAGE 9 — OUTSIDER ECONOMICS
+       ============================================================ -->
+  <section class="page">
+    <div class="pagemark">
+      <span class="left">Dispatch · 09</span>
+      <span class="right">The Operating Manual</span>
+    </div>
+
+    <h2 class="section-head">Outsider Economics.</h2>
+    <p class="lede">Six principles. One book. Every decision the ecosystem makes runs through them.</p>
+
+    <div class="principles">
+      <div class="principle">
+        <div class="num">01</div>
+        <h4>Community Is the Currency</h4>
+        <p>Trust transacts faster than money. Build the relationships first; everything else priced afterward.</p>
+      </div>
+      <div class="principle">
+        <div class="num">02</div>
+        <h4>The Extraction Trap</h4>
+        <p>Watch what leaves a place and where it goes. The leak, not the income, is the variable that matters.</p>
+      </div>
+      <div class="principle">
+        <div class="num">03</div>
+        <h4>The Coordination Premium</h4>
+        <p>Working together is the cheapest leverage. Most economic gain inside a small place is unrealized coordination.</p>
+      </div>
+      <div class="principle">
+        <div class="num">04</div>
+        <h4>Time as Currency</h4>
+        <p>Hours are what you actually have. Spend them as if the rate were public.</p>
+      </div>
+      <div class="principle">
+        <div class="num">05</div>
+        <h4>Federation over Scale</h4>
+        <p>Many small things, loosely coordinated, beat one big thing trying to be all of them.</p>
+      </div>
+      <div class="principle">
+        <div class="num">06</div>
+        <h4>The Task Board</h4>
+        <p>Make the work visible. Anything that can't fit on the board doesn't get done.</p>
+      </div>
+    </div>
+
+    <p class="booknote"><strong>Outsider Economics — A Field Manual for Independent Economic Systems.</strong><br>Available on Amazon. Weekly dispatch on Substack at <em>outsidereconomics.substack.com</em>. Full archive: <em>outsidereconomics.com</em>.</p>
+  </section>
+
+  <!-- ============================================================
+       PAGE 10 — WHO BUILDS THIS
+       ============================================================ -->
+  <section class="page">
+    <div class="pagemark">
+      <span class="left">Dispatch · 10</span>
+      <span class="right">The Coalition</span>
+    </div>
+
+    <h2 class="section-head">Who builds this.</h2>
+    <p class="lede">This is not a startup. It is a coalition of working professionals who decided to point their careers at one corridor at the same time.</p>
+
+    <p>Musicians and producers. Innkeepers and photographers. Writers, builders, growers, radio programmers, a sound engineer, a cook. People with thirty-year track records who run their own books and bring their own gear.</p>
+
+    <p>Tracy Alderson-Allen runs the Inn and the books. Amy Allen runs hospitality and the bar. Chase Pierson runs the systems and the shows. The rest of the room is the people listed above, mostly without names on the page, doing the work.</p>
+
+    <div class="portrait-grid">
+      <div><img src="/images/arrie-aslin/ta-c2-228-of-955.webp" alt="" /></div>
+      <div><img src="/images/arrie-aslin/ta-c2-303-of-951.webp" alt="" /></div>
+      <div><img src="/images/portraits/klshoot3-500-of-538.webp" alt="" /></div>
+      <div><img src="/images/arrie-aslin/ta-c2-384-of-934.webp" alt="" /></div>
+      <div><img src="/images/arrie-aslin/ta-c2-148-of-959.webp" alt="" /></div>
+      <div><img src="/images/arrie-aslin/ta-c2-207-of-955.webp" alt="" /></div>
+      <div><img src="/images/arrie-aslin/ta-c2-229-of-955.webp" alt="" /></div>
+      <div><img src="/images/arrie-aslin/ta-c2-230-of-955.webp" alt="" /></div>
+    </div>
+
+    <p class="booknote">The portraits above are a sampling. The full coalition is roughly two dozen working professionals across the corridor and the Hudson Valley. Names appear in features on a per-show, per-record basis — never on a roster page.</p>
+  </section>
+
+  <!-- ============================================================
+       PAGE 11 — THE YEAR AHEAD
+       ============================================================ -->
+  <section class="page">
+    <div class="pagemark">
+      <span class="left">Dispatch · 11</span>
+      <span class="right">The Year Ahead</span>
+    </div>
+
+    <h2 class="section-head">Calendar.</h2>
+    <p class="lede">What is on the books for 2026. No hype. No wishlist. Things that are scheduled.</p>
+
+    <div class="calendar">
+      <div class="cal-row">
+        <div class="when">Apr 27</div>
+        <div class="what">Dispatch No. 01 — public launch.<span class="where">Print + digital</span></div>
+      </div>
+      <div class="cal-row">
+        <div class="when">May 8</div>
+        <div class="what">Amy Allen — live at the Inn.<span class="where">The Blues Room · Natchez</span></div>
+      </div>
+      <div class="cal-row">
+        <div class="when">Weekly</div>
+        <div class="what">Friday Night Sessions.<span class="where">The Blues Room · hosted by Arrie Aslin</span></div>
+      </div>
+      <div class="cal-row">
+        <div class="when">Spring–Sum</div>
+        <div class="what">Pilgrimage season programming.<span class="where">Natchez · multi-venue</span></div>
+      </div>
+      <div class="cal-row">
+        <div class="when">Summer</div>
+        <div class="what">Studio C Sessions at Utopia.<span class="where">Woodstock, NY · partner studio</span></div>
+      </div>
+      <div class="cal-row">
+        <div class="when">Fall</div>
+        <div class="what">Big Muddy Acres — Phase 1 groundbreaking.<span class="where">Adams County · target Q4</span></div>
+      </div>
+    </div>
+
+    <p class="booknote">Show calendar updated continuously at <em>bigmuddytouring.com/shows</em>. Subscribe to the magazine at <em>bigmuddymagazine.com</em> for the long-form covering each show.</p>
+  </section>
+
+  <!-- ============================================================
+       PAGE 12 — BACK COVER
+       ============================================================ -->
+  <section class="page back">
+    <div>
+      <p class="endmark">— Coda —</p>
+    </div>
+
+    <div class="manifesto">
+      <p>We are not trying to scale.</p>
+      <p>We are trying to put a <em>door</em> on the room where it happens.</p>
+      <p>The room is in <em>Natchez</em>.<br>
+         The route runs from <em>Memphis to New Orleans</em>.<br>
+         The people who do this work<br>
+         are already here.</p>
+      <p style="margin-top: 36px;">Bring something you know how to make.<br>
+         <em>We have got the rest of the room.</em></p>
+    </div>
+
+    <div class="urls">
+      bigmuddytouring.com<br>
+      outsidereconomics.com<br>
+      <span class="addr">411 N Commerce Street · Natchez, Mississippi</span>
+    </div>
+  </section>
+
+</body>
+</html>
