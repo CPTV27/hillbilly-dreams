@@ -170,7 +170,7 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     id: 'hillbilly',
     name: 'Hillbilly Dreams Inc.',
     shortName: 'Hillbilly Dreams',
-    tagline: 'The parent company behind the Big Muddy ecosystem',
+    tagline: 'An entertainment, hospitality, and media ecosystem anchored in Natchez, Mississippi.',
     domain: 'hillbillydreamsinc.com',
     localDomain: 'hillbillydreamsinc.local',
     description:

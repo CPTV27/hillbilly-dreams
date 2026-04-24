@@ -85,9 +85,9 @@ export default function AboutPage() {
             <div className="about-work__card">
               <h3 className="about-work__card-title">Big Muddy Touring</h3>
               <p className="about-work__card-desc">
-                A media-hospitality company anchored in Natchez, Mississippi. A boutique inn,
-                a touring circuit down the Mississippi, and a network of venues and artists
-                that runs on the same principles as this book.
+                An entertainment, hospitality, and media ecosystem anchored in Natchez, Mississippi.
+                A boutique inn, a touring circuit down the Mississippi, and a network of venues and
+                artists that runs on the same principles as this book.
               </p>
               <a href="https://bigmuddytouring.com" className="about-work__link" target="_blank" rel="noopener noreferrer">
                 bigmuddytouring.com

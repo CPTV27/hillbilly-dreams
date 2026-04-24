@@ -8,7 +8,7 @@ import { PoweredByFooter } from '@/components/PoweredByFooter';
 export const metadata: Metadata = {
   title: 'Hillbilly Dreams Inc.',
   description:
-    'A media company anchored in Natchez, Mississippi — shows, magazine, radio, and a directory that helps Main Street get found.',
+    'An entertainment, hospitality, and media ecosystem anchored in Natchez, Mississippi.',
 };
 
 const HERO_IMG =
@@ -95,7 +95,7 @@ export default function HillbillyDreamsPage() {
               margin: 0,
             }}
           >
-            We&apos;re a media company anchored in Natchez. We run shows, publish a magazine, operate
+            We&apos;re an entertainment, hospitality, and media ecosystem anchored in Natchez. We run shows, publish a magazine, operate
             a radio station, and help Main Street businesses get found — the old-fashioned way, with
             stories and presence, not buzzwords.
           </p>

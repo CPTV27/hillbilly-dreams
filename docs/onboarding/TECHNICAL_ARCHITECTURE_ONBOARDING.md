@@ -8,7 +8,7 @@
 
 ## 1. The Big Picture
 
-Hillbilly Dreams Inc (HDI) is a media-hospitality ecosystem. One codebase, one Vercel deployment, 14 domains. Total infrastructure cost: **$167/month**.
+Hillbilly Dreams Inc (HDI) is an entertainment, hospitality, and media ecosystem anchored in Natchez, Mississippi. One codebase, one Vercel deployment, 14 domains. Total infrastructure cost: **$167/month**.
 
 **Three layers:**
 - **HDI** = holding company (backstage, minimal public presence)

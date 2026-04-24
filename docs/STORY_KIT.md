@@ -125,7 +125,7 @@ Use these exactly. Do not invent alternative framings.
 | Brand | Standard one-line description |
 |---|---|
 | **MBT (Measurably Better Things LLC)** | The shared technology + brand platform amplifying a portfolio of existing businesses. |
-| **Big Muddy** | The flagship implementation of the MBT platform — an ecosystem of media + hospitality + music businesses anchored in Natchez, Mississippi. |
+| **Big Muddy** | The flagship implementation of the MBT platform — an entertainment, hospitality, and media ecosystem anchored in Natchez, Mississippi. |
 | **Big Muddy Inn** | A 6-room boutique inn with an adjoining 50-seat live-music venue (the Blues Room) in historic downtown Natchez, Mississippi. |
 | **Big Muddy Magazine** | The editorial publication for travelers considering the Inn. Tracy Alderson-Allen's voice. Not an ad-driven magazine — content-driven. |
 | **Big Muddy Touring** | The booking + tour management + transport arm for corridor music, anchored by Amy Allen's house band with ancillary capacity for visiting artists. |
