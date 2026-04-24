@@ -99,8 +99,7 @@ export function Footer({ brand }: FooterProps) {
             </span>
           </div>
           <p className="bm-footer__about">
-            A media-hospitality ecosystem anchored in Natchez, Mississippi. 
-            Four brands. One river. One codebase.
+            An entertainment, hospitality, and media ecosystem anchored in Natchez, Mississippi.
           </p>
         </div>
 
