@@ -249,6 +249,42 @@ Ordered by priority, not size.
 - Studio C is the lead production capability there; Tuthill supports design.
 - Lower priority than Natchez Q2 work, but on the radar.
 
+### 5.7 Platform finance + subscription management (added 2026-04-24)
+
+Elijah owns the operational finance layer for the entire digital footprint. Chase oversees; Tracy stays the equity-partner finance lead and MBT card holder.
+
+**What Elijah owns:**
+
+- All recurring subscriptions across the digital footprint (Vercel, Neon, Sanity, Cloudflare, GCP, Resend, Buzzsprout, Hetzner, DigitalOcean, Stripe, Attio, GitHub, Bitwarden, Apple Developer, Canva, Google Workspace, ElevenLabs, Anthropic / OpenAI / Gemini API, etc.). Inventory + cap-tracking baseline lives at `docs/ecosystem-subscriptions-2026-04-20.md` (~$500–700/mo today, $1,000/mo hard cap).
+- Card-on-file consolidation onto Tracy's MBT business card as subscriptions come up for renewal (per the MBT Workspace migration plan at `~/.claude/plans/cozy-beaming-minsky.md`). No new business signups on Chase's personal card going forward.
+- QuickBooks integration — connect bank + MBT card feeds, map subscriptions to chart-of-accounts categories, reconcile monthly.
+- Basic accounting hygiene — categorization, vendor records, 1099 tracking for contractors (Miles, Elijah himself, JP if/when his deal lands, any future subs).
+- Monthly reporting cadence — P&L, subscription-spend snapshot vs cap, cash-position summary, anomaly flags. Delivered by the 5th of each month for the prior month.
+- Anomaly surveillance — flag any subscription that bills above expected, any vendor charging a card that should have been retired, any new charge on a card that didn't go through the provisioning flow.
+
+**What Chase oversees (not delegates):**
+
+- QuickBooks Chart of Accounts structure + any change to the categorization scheme.
+- Approval on any new subscription over $50/mo before it gets provisioned.
+- Final read on the monthly report before it goes to Tracy.
+- Any conversation with the CPA or counsel that touches the platform-finance numbers.
+
+**The automation goal:**
+
+By Q3 2026, the monthly close should be *mostly* hands-off — bank + card feeds auto-syncing into QuickBooks, transactions auto-categorized via rules, the monthly report auto-generated and dropped into a shared folder by the 5th. Elijah's job becomes exception handling + period-close review, not data entry. Chase's job becomes reading the report, not running it.
+
+**Where this connects:**
+
+- `docs/ecosystem-subscriptions-2026-04-20.md` — current subscription inventory + cap.
+- `~/.claude/plans/cozy-beaming-minsky.md` — MBT Workspace + billing-card consolidation plan.
+- Tracy's role: she remains the equity-partner finance principal — bank-account operator, MBT card primary, LLC filer, signer on big decisions. Elijah is the operational hand on the platform-spend side, not the entity-finance side.
+
+**Cadence + handoffs:**
+
+- Monthly close: by the 5th of each month.
+- Quarterly: a 30-min sit-down between Chase, Tracy, and Elijah to review the rolling 90-day spend, the cap headroom, and any subscription up for renewal in the next quarter.
+- Ad-hoc: any anomaly Elijah flags, Chase reads same-day.
+
 ---
 
 ## 6. Gaps that have to close before we go live
