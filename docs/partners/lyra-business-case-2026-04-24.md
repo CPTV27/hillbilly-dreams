@@ -4,7 +4,7 @@
 **Author:** Chase Pierson
 **Audience:** Tracy Alderson-Allen
 **Status:** Draft for Tracy review — target Tue/Wed week of Apr 27
-**Companion:** Doc 2 (Technical Design for Nick + Margaret) — held for post-greenlight
+**Companion:** Doc 2 (Technical Design for Nick + Margaret) — **HELD. Does not draft, send, or surface until Chase AND Tracy have both reviewed Doc 1 and explicitly cleared the next step. No outreach to Margaret or Nick before that gate.** (Updated 2026-04-25.)
 **Companion:** `docs/decision-briefs/measurably-better-things-llc-formation-plan-2026-04-21.md` (MBT formation track Tracy is running)
 
 ---
