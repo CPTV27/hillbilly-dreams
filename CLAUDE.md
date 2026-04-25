@@ -21,7 +21,9 @@
 
 Hillbilly Dreams Inc — an entertainment, hospitality, and media ecosystem anchored in Natchez, Mississippi. One Next.js codebase, one Vercel deployment, multiple brands across two regions (Deep South + Hudson Valley/Catskills).
 
-**Legal operating entity:** FarleyPierson LLC (EIN 81-4280721) — the FarleyPierson NAME is being retired. Two options TBD: (1) keep the underlying NY LLC and rename it, or (2) close it entirely. MBT (Measurably Better Things LLC) is the platform-tier operating entity. HDI not yet formally incorporated.
+**Legal operating entity (locked 2026-04-24):** Measurably Better Things LLC (Mississippi, formation in progress, Tracy filing fresh). Replaces FarleyPierson LLC (EIN 81-4280721, NY) which closes once MBT is formed and contracts/Stripe/vendors migrate. Founder contribution structure (33/33/33 Chase/Tracy/Amy at MBT): Chase contributes S2PX IP + personal Lyra (LYRAI) co-founder equity; Tracy contributes capital + finance ops; Amy contributes hospitality ops. a2natchez LLC (the Inn) = Tracy + Amy only — Chase economics flow via MBT-as-agency-fee, not the a2natchez cap table. Big Muddy Touring + Big Muddy Records + other operating brands = DBAs under MBT until $150K revenue or outside-equity trigger fires.
+
+**HDI = dead language as of 2026-04-18 — do not use in new docs or new code.** Existing references on cleanup pass after Asana Zero Day 1 backup (Phase 5 of `~/.claude/plans/cozy-beaming-minsky.md`). Formation plan: `docs/decision-briefs/measurably-better-things-llc-formation-plan-2026-04-21.md`. FarleyPierson closure plan: `docs/partners/tuthill-photography-scope-2026-04-20.md` §10. Lyra business case: `docs/partners/lyra-business-case-2026-04-24.md`.
 
 ---
 
