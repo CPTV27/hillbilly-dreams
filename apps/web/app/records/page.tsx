@@ -21,15 +21,15 @@ const ROSTER = [
     name: 'Amy Allen',
     genre: 'Soul / Blues / Storytelling',
     description:
-      'Songs that carry the weight of the region — the Rhythm Nightclub Fire, the river towns, the people who stayed.',
-    status: 'Active',
+      'Solo catalog by the artist now also fronting Arrie Aslin. Songs that carry the weight of the region — the Rhythm Nightclub Fire, the river towns, the people who stayed.',
+    status: 'Active catalog',
   },
   {
     name: 'Amy Scruggs',
     genre: 'Blues / Soul / Roots',
     description:
-      'Mississippi-born, Deep South-raised. Amy Scruggs sings the kind of blues that doesn\'t ask permission — raw, lived-in, the real thing.',
-    status: 'Active',
+      'Early-career catalog by the same artist (also performs as Amy Allen and now fronts Arrie Aslin). Mississippi-born, Deep South-raised — the kind of blues that doesn\'t ask permission.',
+    status: 'Catalog — same artist',
   },
   {
     name: 'Kate Skwire',
@@ -46,11 +46,11 @@ const ROSTER = [
     status: 'Active',
   },
   {
-    name: 'Arrie Aslin & Rise Up',
-    genre: 'Americana / Parlor Folk / Blues',
+    name: 'Arrie Aslin',
+    genre: 'Roots / Country / Blues — band project',
     description:
-      'Artist-in-Residence at the Big Muddy Inn. Arrie hosts the Blues Room sessions, curates the American Parlor Songbook, and fronts Rise Up — the house band that turns a Tuesday night into something people drive two hours for.',
-    status: 'Active',
+      'Band project led by Amy Allen, channeling Arkansas roots and the Levon Helm tradition. Genre-spanning recording campaign with rotating producers — each song made in a different studio with different players, building catalog and relationships across markets. Lives at the Big Muddy Inn as the house band Rise Up — Tuesday night Blues Room residency, American Parlor Songbook, the kind of room people drive two hours for.',
+    status: 'Active — first single in production',
   },
 ];
 
