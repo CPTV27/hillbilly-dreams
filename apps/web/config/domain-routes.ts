@@ -58,9 +58,11 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
   { pattern: 'buycurious', routeGroup: 'gallery' },
   { pattern: 'buycuriousart', routeGroup: 'gallery' },
   { pattern: 'venturegallery', routeGroup: 'gallery' },
-  // Consolidated to bigmuddytouring.com via Cloudflare Bulk Redirects (April 2026).
-  // Content lives at /records and /entertainment paths on bigmuddytouring.com.
-  // { pattern: 'bigmuddyrecordlabel', routeGroup: 'records' },
+  // bigmuddyrecordlabel.com — re-activated 2026-04-28 to host Big Muddy Records
+  // public site + Melody Vault internal control panels. Owned domain, now mapped
+  // directly to /records route group (instead of Cloudflare-redirecting to /records
+  // on bigmuddytouring.com).
+  { pattern: 'bigmuddyrecordlabel', routeGroup: 'records' },
   // { pattern: 'bigmuddyentertainment', routeGroup: 'entertainment' },
   { pattern: 'studiocvideo', routeGroup: 'studioc' },
   { pattern: 'tuthilldesign', routeGroup: 'tuthill' },
