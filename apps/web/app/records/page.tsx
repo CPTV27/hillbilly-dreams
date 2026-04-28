@@ -686,6 +686,125 @@ export default function RecordsPage() {
         ))}
       </section>
 
+      {/* Melody Vault — the marketing OS */}
+      <section
+        id="melody-vault"
+        style={{
+          borderTop: '1px solid var(--muted, #333)',
+          padding: '4rem 1.5rem',
+          maxWidth: 1000,
+          margin: '0 auto',
+        }}
+      >
+        <p
+          style={{
+            fontSize: '0.85rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            color: 'var(--accent, #c8943e)',
+            marginBottom: '0.5rem',
+          }}
+        >
+          Melody Vault
+        </p>
+        <h2
+          style={{
+            fontSize: '2rem',
+            fontWeight: 700,
+            color: 'var(--fg, #f5f0eb)',
+            marginBottom: '1rem',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          The marketing OS inside the label.
+        </h2>
+        <p
+          style={{
+            fontSize: '0.95rem',
+            color: 'var(--fg, #f5f0eb)',
+            opacity: 0.75,
+            lineHeight: 1.7,
+            maxWidth: 720,
+            marginBottom: '2rem',
+          }}
+        >
+          Every artist on the roster gets a Vault — strategy doc, audience plan,
+          marketing calendar, EPK collection, and visibility into what the label
+          is doing for them. Artists fill it out; staff work from it. No black box.
+        </p>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '0',
+            border: '1px solid var(--muted, #333)',
+            marginBottom: '2rem',
+          }}
+        >
+          {[
+            { label: 'Audience Identification', detail: 'Who actually listens, where, and what else they follow.' },
+            { label: 'Targeting & Channel Mix', detail: 'Per-release plan: radio, magazine, paid, owned, live.' },
+            { label: 'Marketing Calendar', detail: 'Day -30 → Day +30 milestones, by channel, per artist.' },
+            { label: 'EPK & Content Collection', detail: 'Bio, photos, masters, video, one-sheet — tracked to a checklist.' },
+          ].map((item, i, arr) => (
+            <div
+              key={item.label}
+              style={{
+                padding: '1.4rem 1.5rem',
+                borderRight: i < arr.length - 1 ? '1px solid var(--muted, #333)' : 'none',
+              }}
+            >
+              <p style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent, #c8943e)', margin: '0 0 0.5rem' }}>
+                {item.label}
+              </p>
+              <p style={{ fontSize: '0.8rem', opacity: 0.7, lineHeight: 1.55, margin: 0 }}>
+                {item.detail}
+              </p>
+            </div>
+          ))}
+        </div>
+        <p style={{ fontSize: '0.78rem', opacity: 0.55, lineHeight: 1.6, maxWidth: 720, margin: '0 0 1.5rem' }}>
+          Honest claims: Vault ships today with strategy docs, marketing calendars, and EPK
+          collection on real artists. Catalog metadata, splits readiness, sync prep, and
+          royalty reporting are on the roadmap — they live as status cards in the Vault, not
+          as fake features.
+        </p>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <a
+            href="/records/vault"
+            style={{
+              display: 'inline-block',
+              padding: '0.75rem 1.6rem',
+              background: 'var(--accent, #c8943e)',
+              color: '#0a0a0a',
+              textDecoration: 'none',
+              fontWeight: 700,
+              fontSize: '0.85rem',
+              letterSpacing: '0.04em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Enter Vault →
+          </a>
+          <a
+            href="/records/vault/onboarding"
+            style={{
+              display: 'inline-block',
+              padding: '0.75rem 1.6rem',
+              border: '1px solid var(--accent, #c8943e)',
+              color: 'var(--accent, #c8943e)',
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: '0.85rem',
+              letterSpacing: '0.04em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Artist Onboarding
+          </a>
+        </div>
+      </section>
+
       {/* Contact */}
       <section
         style={{

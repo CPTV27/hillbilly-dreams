@@ -79,6 +79,7 @@ export default function RecordsLayout({
               { label: 'Artists', href: '/records/artists' },
               { label: 'Releases', href: '/records/releases' },
               { label: 'Sessions', href: '/records/sessions' },
+              { label: 'Melody Vault', href: '/records/vault' },
               { label: 'Radio', href: 'https://bigmuddyradio.com' },
             ].map((link) => (
               <a
