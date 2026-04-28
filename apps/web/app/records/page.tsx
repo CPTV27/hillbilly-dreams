@@ -202,6 +202,21 @@ export default function RecordsPage() {
           >
             Live Sessions
           </a>
+          <a
+            href="https://bigmuddyrecordlabel.com"
+            style={{
+              display: 'inline-block',
+              padding: '0.75rem 2rem',
+              border: '1px solid var(--accent, #c8943e)',
+              color: 'var(--accent, #c8943e)',
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: '0.9rem',
+              letterSpacing: '0.04em',
+            }}
+          >
+            Artist platform →
+          </a>
         </div>
       </section>
 
