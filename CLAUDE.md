@@ -9,6 +9,7 @@
 4. ls docs/BUSINESS_ARCHITECTURE.md   ← If this file doesn't exist, you're not current
 5. Read docs/BUSINESS_ARCHITECTURE.md ← Detailed business architecture
 6. Read .claude/agents/HANDOFF_COS_TO_PATCH.md ← Capabilities audit, gaps, priorities
+7. Read docs/voice/admin-documentation-voice.md ← Canonical voice for ALL admin docs, Asana tasks, emails, memos, status updates, decision briefs. Re-read before drafting any of those.
 ```
 
 **If step 3 fails or step 4 fails, STOP.** Run `git pull origin main` again. Do not proceed with stale files.
