@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>S2PX as Lyra's Operating Layer — Technical Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,400&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f4ec;
+    --ink: #1a1a1a;
+    --rule: #d8d2c4;
+    --gold: #8b6914;
+    --muted: #555;
+    --have: #2d6a4f;
+    --build: #c97b1f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Serif 4', Georgia, serif; background: var(--paper); color: var(--ink); line-height: 1.65; }
+  a { color: var(--gold); text-underline-offset: 3px; }
+  a:hover { color: var(--ink); }
+  .display { font-family: 'Playfair Display', serif; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.88em; }
+
+  article { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
+
+  .kicker { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 24px; }
+  h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5.5vw, 50px); font-weight: 800; line-height: 1.0; letter-spacing: -0.015em; margin-bottom: 14px; }
+  .deck { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(18px, 2.4vw, 22px); line-height: 1.4; color: var(--muted); margin-bottom: 32px; }
+  .byline { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #888; margin-bottom: 36px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+
+  h2 { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; margin: 48px 0 14px; line-height: 1.2; }
+  h2 .num { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.7em; color: var(--gold); margin-right: 10px; vertical-align: 6px; }
+  h3 { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 700; margin: 24px 0 8px; }
+
+  p { margin-bottom: 18px; font-size: 17px; line-height: 1.65; }
+
+  .have, .build { display: inline-block; padding: 1px 8px; border-radius: 3px; font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: white; vertical-align: 2px; margin-right: 6px; }
+  .have { background: var(--have); }
+  .build { background: var(--build); }
+
+  ul { margin-left: 22px; margin-bottom: 18px; }
+  ul li { margin-bottom: 8px; line-height: 1.55; }
+
+  .stack { background: white; border: 1px solid var(--rule); padding: 20px 24px; border-radius: 4px; margin: 20px 0 28px; }
+  .stack h4 { font-family: 'Inter', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 10px; }
+  .stack code { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #333; background: #f3efe3; padding: 1px 6px; border-radius: 2px; }
+  .stack p { margin-bottom: 8px; font-size: 14px; }
+
+  .pipeline { background: #fdfbf3; border: 1px dashed #c9b475; padding: 18px 22px; margin: 16px 0 28px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.7; }
+  .pipeline .arrow { color: var(--gold); font-weight: 700; margin: 0 6px; }
+
+  blockquote { border-left: 3px solid var(--gold); padding: 6px 22px; margin: 24px 0; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; color: #333; line-height: 1.4; }
+
+  .table { width: 100%; border-collapse: collapse; margin: 16px 0 28px; background: white; border: 1px solid var(--rule); }
+  .table th, .table td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--rule); font-size: 14px; vertical-align: top; }
+  .table th { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #777; background: var(--paper); font-weight: 600; }
+  .table tr:last-child td { border-bottom: none; }
+
+  .footer { margin-top: 52px; padding-top: 26px; border-top: 1px solid var(--rule); font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); }
+  .footer a { display: block; margin: 6px 0; }
+</style>
+</head>
+<body>
+
+<article>
+
+<div class="kicker">Internal · Lyra ↔ Big Muddy / MBT · 2026-04-30</div>
+<h1 class="display">S2PX as Lyra's operating layer</h1>
+<p class="deck">The platform underneath, the audio layer on top — written for Margaret, Nick, and Mason ahead of today's meeting at EMPAC. What's already built, what we'd build for Lyra specifically, and how the EMPAC capture pipeline runs end-to-end.</p>
+<div class="byline">Chase Pierson · Big Muddy / Measurably Better Things</div>
+
+<h2><span class="num">01</span>What S2PX is today</h2>
+
+<p>S2PX is a B2B operating system for 3D-scanning + BIM companies, in production at <span class="mono">s2px.web.app</span> with staging and sandbox tiers. <strong>567+ projects</strong> are in the catalog as of this month. Multi-tenant from day one, AI-first, production-grade infrastructure, currently being prepped to absorb additional customers from the AEC vertical (Twinner is the anchor at $134K/yr).</p>
+
+<div class="stack">
+  <h4>Stack</h4>
+  <p><code>client/src/</code> — React 19 + Vite 6 SPA · Tailwind CSS 4</p>
+  <p><code>server/</code> — Express API on Cloud Run (us-east4)</p>
+  <p><code>shared/</code> — Drizzle ORM (61 tables across db / pricing / strategy schemas), framework-agnostic engine</p>
+  <p><code>AI</code> — 7 Gemini agents via the Google GenAI SDK, server-side only</p>
+  <p><code>Storage</code> — Cloud SQL Postgres + GCS buckets per tenant</p>
+  <p><code>Auth</code> — Firebase Auth (multi-environment shared)</p>
+</div>
+
+<p>What's relevant to Lyra: the platform exists, runs production traffic today, and was designed multi-tenant from the first commit. Adding Lyra as a tenant means provisioning a Cloud SQL schema, a GCS bucket, and a domain — not building infrastructure from scratch.</p>
+
+<h2><span class="num">02</span>The capture pipeline (how a room becomes data)</h2>
+
+<p>S2PX accepts spatial data through three input methods today, plus a fourth we just locked.</p>
+
+<div class="pipeline">
+  CAPTURE  <span class="arrow">→</span>  INGEST  <span class="arrow">→</span>  PROCESS  <span class="arrow">→</span>  STORE  <span class="arrow">→</span>  CUSTOMER PORTAL  <span class="arrow">→</span>  API / EXPORT
+</div>
+
+<table class="table">
+  <tr><th>Method</th><th>Status</th><th>Best for</th></tr>
+  <tr><td><strong>Polycam LiDAR app</strong> (iPhone Pro)</td><td><span class="have">Built</span></td><td>Highest geometric fidelity per minute of capture. <code>.obj</code> + <code>.mtl</code> + textures.</td></tr>
+  <tr><td><strong>Image-set photogrammetry</strong> (DSLR / mirrorless)</td><td><span class="have">Built</span></td><td>Highest texture fidelity. Sony A7 stills, etc. Polycam Web image-mode upload routes through to the same ingest.</td></tr>
+  <tr><td><strong>Direct mesh upload</strong> (RealityCapture, Blender, etc.)</td><td><span class="have">Built</span></td><td>Customers with existing pipelines. <code>.glb</code>, <code>.usdz</code>, <code>.ply</code>, <code>.obj</code> — all accepted.</td></tr>
+  <tr><td><strong>Phone-video walkthrough</strong> (any iPhone)</td><td><span class="build">Connecting</span></td><td>The new thing — see §05. Lowest customer friction, highest TAM.</td></tr>
+</table>
+
+<h3>Ingest mechanics</h3>
+<ul>
+  <li>Hot-folder watcher OR direct upload via the customer portal</li>
+  <li>S2PX registers a <code>Scan</code> record with: project, room, capture date, GPS, file paths, capture method, capture conditions metadata</li>
+  <li>Job queue dispatches downstream processors</li>
+</ul>
+
+<h3>Mesh post-processing (today)</h3>
+<ul>
+  <li>Decimation (auto if mesh &gt; 50MB, with quality-preserving normals)</li>
+  <li>Hole-fill, normal recomputation</li>
+  <li>Texture atlas optimization for real-time engines</li>
+  <li>Multi-format export: OBJ, GLB, USDZ, PLY for Unity / Unreal / web viewers</li>
+</ul>
+
+<h2><span class="num">03</span>What S2PX does with spatial data — already</h2>
+
+<p>Once a scan lands, the customer portal provides:</p>
+
+<ul>
+  <li><strong>3D viewer in-browser</strong> — Three.js based, runs on phone or desktop, no plugin</li>
+  <li><strong>Annotation overlay</strong> — pin notes to mesh coordinates, share with collaborators</li>
+  <li><strong>Asset registry</strong> — every scan tied to a project, every project to a customer, every customer to a tenant</li>
+  <li><strong>BIM annotation export</strong> — for AEC customers, scan deliverables route into Revit / Rhino workflows</li>
+  <li><strong>API access</strong> — REST endpoints at <code>/api/scans</code>, <code>/api/scans/:id/mesh</code>, <code>/api/scans/:id/textures</code>, <code>/api/projects/:id/scans</code>. Authenticated via tenant API keys.</li>
+</ul>
+
+<p>The API layer is the integration surface for Lyra. Lyra's services don't have to live inside S2PX — they can live anywhere, talk to S2PX over HTTPS, and read/write through the REST endpoints. Same way Lyra would talk to any other operating-platform vendor, except this one was built by people who've been on the customer side.</p>
+
+<h2><span class="num">04</span>What we'd build for Lyra — the audio layer</h2>
+
+<p>This is the honest part. <strong>S2PX has no acoustic processing today.</strong> Every gram of audio capability in the Lyra integration is either Lyra's existing IP (LMIR database, the Acoustic Architect agent, Mason's analysis stack) or new code we'd write to bridge between S2PX's existing pipeline and Lyra's existing services.</p>
+
+<p>The build is small in scope, large in value:</p>
+
+<ul>
+  <li><span class="build">Build</span> <strong>Spatial-audio extraction service.</strong> Yesterday's iPhone walkthroughs at EMPAC contain 4-channel APAC (Apple Positional Audio Codec) tracks embedded with the video frames — full ambisonic-style room capture, no separate rig. We need a small service that demuxes the APAC track from the .MOV, normalizes it, hands it to Lyra's LMIR fingerprint service.</li>
+  <li><span class="build">Connect</span> <strong>LMIR fingerprint integration.</strong> S2PX job queue calls Lyra's LMIR API on every new scan that has audio attached. Result lands back in the Scan record as <code>acoustic_profile</code>.</li>
+  <li><span class="build">Connect</span> <strong>RT60 + frequency response analysis.</strong> Same pattern — call Lyra's analysis service, store result on the Scan record.</li>
+  <li><span class="build">Build</span> <strong>Customer portal: acoustic overlay.</strong> The 3D viewer learns to render Lyra's acoustic visualization (heat maps, propagation cones, whatever Mason's spec calls for) on top of the mesh.</li>
+  <li><span class="build">Build</span> <strong>Spatial-audio export.</strong> Customer can download the room's acoustic signature as an ambisonic file Unity / Wwise / FMOD can ingest directly.</li>
+</ul>
+
+<p>Estimated build scope: <strong>2–4 weeks of focused engineering</strong>, sequenced as: spatial-audio extraction first (so we have the raw input), then LMIR integration (so we have Lyra's analysis output), then portal overlay (so customers see it), then export (so customers can use it).</p>
+
+<p>None of it is research. All of it is plumbing — well-understood plumbing — between two systems that already exist.</p>
+
+<h2><span class="num">05</span>The Lyra Walkthrough product (the new flow)</h2>
+
+<blockquote>One phone capture = mesh + room acoustic profile, in one shot, no separate rig.</blockquote>
+
+<p>Locked yesterday once we realized the iPhone Pro's video already includes 4-channel positional audio. The customer flow becomes:</p>
+
+<ol style="margin-left: 22px; margin-bottom: 24px;">
+  <li>Customer shoots a 1–3 minute phone-camera walkthrough of their space</li>
+  <li>Uploads via the S2PX portal (or a Lyra-branded surface that hits the same API)</li>
+  <li>Cloud pipeline extracts video frames → Polycam Web for mesh; demuxes APAC audio → Lyra LMIR service for acoustic profile</li>
+  <li>Customer portal shows: "Your scan is processing. ETA 2-4 hours" → email when done with mesh + acoustic-profile viewer link</li>
+  <li>Both deliverables sit on the same Scan record. One bill, one thread, one source of truth.</li>
+</ol>
+
+<p>This is what makes Lyra accessible to customers without specialized hardware — no LiDAR phone required, no dedicated acoustic mic rig. Any iPhone Pro user becomes a potential acoustic-twin client. The TAM expansion is roughly 10× compared to LiDAR-only.</p>
+
+<p>The branding decision (Lyra Walkthrough? Lyra Capture? Lyra Snap?) is one of the things to discuss today.</p>
+
+<h2><span class="num">06</span>Where Lyra's IP sits in this stack</h2>
+
+<p>Clean separation. Lyra owns everything that's specifically acoustic. S2PX owns the operating layer underneath. Same platform, two brand surfaces, one engineering team supporting both.</p>
+
+<table class="table">
+  <tr><th>Layer</th><th>Owner</th><th>Why</th></tr>
+  <tr><td>LMIR acoustic fingerprint database</td><td><strong>Lyra</strong></td><td>Lyra's defensible IP, Stony Brook research lineage</td></tr>
+  <tr><td>Acoustic Architect agent (Mason)</td><td><strong>Lyra</strong></td><td>Mason's IP, the analytical brain</td></tr>
+  <tr><td>RT60 / frequency response / spatial-audio pipelines</td><td><strong>Lyra</strong></td><td>Acoustic-specific, Lyra customers depend on it</td></tr>
+  <tr><td>Cultural-preservation deliverables</td><td><strong>Lyra</strong></td><td>Margaret's grant pipeline + academic positioning</td></tr>
+  <tr><td>Customer authentication, billing, multi-tenant routing</td><td>S2PX</td><td>Already built, scales to Lyra without modification</td></tr>
+  <tr><td>Scan / project / asset metadata schema</td><td>S2PX</td><td>Already built, applies to any spatial data type</td></tr>
+  <tr><td>Mesh post-processing, viewer, export pipelines</td><td>S2PX</td><td>Already built, Lyra reuses without writing it</td></tr>
+  <tr><td>Job queue, AI-agent orchestration, customer portals</td><td>S2PX</td><td>Already built, Lyra integrates via the API</td></tr>
+</table>
+
+<h2><span class="num">07</span>What's running for EMPAC right now</h2>
+
+<p>Three rooms have full-pipeline data as of yesterday + this morning:</p>
+
+<table class="table">
+  <tr><th>Room</th><th>LiDAR mesh (Polycam)</th><th>Sony A7 stills (today)</th><th>iPhone walkthrough video</th></tr>
+  <tr><td><strong>Red Theater</strong></td><td>✓ 130 MB</td><td>✓ 39 photos</td><td>✓ 1m56s with 4-ch APAC audio</td></tr>
+  <tr><td><strong>Studio 2</strong></td><td>✓ 52 MB</td><td>✓ 47 photos</td><td>✓ with 4-ch APAC audio</td></tr>
+  <tr><td><strong>Studio 1</strong></td><td>✓ 10 MB</td><td>—</td><td>✓ with 4-ch APAC audio</td></tr>
+  <tr><td>(bonus) Anechoic Chamber</td><td>—</td><td>52 photos</td><td>—</td></tr>
+  <tr><td>(bonus) Concert Hall lobby</td><td>—</td><td>14 photos</td><td>—</td></tr>
+</table>
+
+<p>The three Polycam LiDAR meshes are zipped and ready for Nick to drop into Unity — sending the link separately. The Sony A7 stills are queued for Polycam Web image-mode upload right now; they'll generate higher-fidelity meshes that overlay the LiDAR for texture detail. Audio extraction from the .MOV files is queued behind the mesh upload — first .wav files for Lyra's LMIR test land tomorrow.</p>
+
+<h2><span class="num">08</span>What today's meeting decides</h2>
+
+<p>Three things, in order of how much they unblock the next steps:</p>
+
+<ol style="margin-left: 22px;">
+  <li><strong>Architectural buy-in.</strong> Does Nick agree S2PX-as-the-operating-layer + Lyra-on-top is the right shape? If yes, the build sequence in §04 is the engineering plan. If no, what's the alternative?</li>
+  <li><strong>Lyra Walkthrough product naming + commitment.</strong> Are we shipping the phone-video flow as a Lyra-branded customer surface? If yes, we need a name today (or by Friday).</li>
+  <li><strong>EMPAC pipeline cadence.</strong> Today was opportunistic. Going forward, when do we capture, when does Margaret review, when does Nick demo? Worth scheduling a recurring monthly visit while the academic year is in session.</li>
+</ol>
+
+<div class="footer">
+  <p>Companion reads (public):</p>
+  <a href="https://bigmuddytouring.com/the-case/">The Big Muddy / MBT business case →</a>
+  <a href="https://bigmuddytouring.com/explain/">Tokenomics in 5 minutes →</a>
+  <a href="https://bigmuddytouring.com/studio-c/">Studio C — the operating service company →</a>
+  <p style="margin-top:20px; font-size:12px; color:#999;">Internal-only · noindex · written for Margaret + Nick + Mason ahead of the 2026-04-30 EMPAC meeting</p>
+</div>
+
+</article>
+
+</body>
+</html>
