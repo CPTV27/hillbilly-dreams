@@ -73,7 +73,8 @@ HillbillyDreams-Vault/
 HDXContextSeeding/
 hillbilly-dreams-inc/
 big-muddy-content/
-mechanical-bull/
+# mechanical-bull/   # removed 2026-04-30 — was over-broad, was hiding /artists/mechanical-bull/ artist page. Specific patterns now narrow it to only the audio archive folders.
+voice-training/mechanical-bull-archive/songs/from-soundcloud/mechanical-bull/
 Media Production/
 S2PX/
 postiz-app/

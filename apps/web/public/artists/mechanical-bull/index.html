@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Mechanical Bull — Big Muddy Records Artist Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,700&family=Source+Serif+4:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #fbf8f1;
+    --ink: #1a1614;
+    --rule: #d4c8b4;
+    --accent: #8b1a1a;
+    --gold: #b8860b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 18px;
+  }
+  .display { font-family: 'Playfair Display', serif; }
+  .sans { font-family: 'Inter', -apple-system, sans-serif; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #ede5d3; }
+  ::-webkit-scrollbar-thumb { background: var(--ink); border-radius: 4px; }
+
+  /* Header */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(251, 248, 241, 0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+    padding: 12px 24px;
+    font-family: 'Inter', sans-serif;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav .crumb { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: #6b6157; font-weight: 600; }
+
+  /* Hero */
+  .hero { padding: 96px 32px 64px; text-align: center; max-width: 880px; margin: 0 auto; }
+  .hero .kicker { font-family: 'Inter', sans-serif; font-size: 0.85rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 20px; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: 6rem; font-weight: 800; line-height: 0.95; margin: 0 0 16px; letter-spacing: -0.02em; }
+  .hero .tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.5rem; color: #6b6157; max-width: 640px; margin: 0 auto 40px; }
+  .hero .meta { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #8b8579; letter-spacing: 0.05em; }
+
+  /* Section common */
+  section { padding: 64px 32px; max-width: 760px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  h2 { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; line-height: 1.05; margin: 0 0 28px; letter-spacing: -0.01em; }
+  h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; margin: 32px 0 12px; }
+  p { margin: 0 0 1.2em; }
+  p.lead { font-size: 1.35rem; line-height: 1.5; color: #2a2520; font-family: 'Source Serif 4', serif; }
+  p.lead::first-letter {
+    float: left;
+    font-family: 'Playfair Display', serif;
+    font-size: 5.5rem;
+    line-height: 0.85;
+    padding: 6px 12px 0 0;
+    color: var(--accent);
+    font-weight: 800;
+  }
+  blockquote { border-left: 4px solid var(--accent); padding: 8px 24px; margin: 32px 0; font-style: italic; font-size: 1.2rem; color: #3a3530; background: #fef9f0; }
+  blockquote cite { display: block; font-size: 0.85rem; font-style: normal; color: #6b6157; margin-top: 12px; font-family: 'Inter', sans-serif; }
+
+  /* Divider */
+  .divider { text-align: center; margin: 48px 0; font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.4em; color: var(--gold); }
+  .divider::before { content: '— '; }
+  .divider::after { content: ' —'; }
+
+  /* Album cards */
+  .album-strip { background: #f5ede0; padding: 64px 32px; }
+  .album-strip-inner { max-width: 1080px; margin: 0 auto; }
+  .album-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 40px; }
+  @media (max-width: 720px) { .album-grid { grid-template-columns: 1fr; } }
+  .album-card { background: white; padding: 28px; border: 1px solid var(--rule); }
+  .album-card .year { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.15em; color: var(--accent); font-weight: 700; }
+  .album-card .title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; margin: 4px 0 16px; line-height: 1.05; font-style: italic; }
+  .album-card ol { margin-left: 18px; padding-left: 0; font-size: 0.95rem; line-height: 1.5; }
+  .album-card li { margin-bottom: 4px; }
+  .album-card .album-meta { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #6b6157; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--rule); }
+
+  /* Press grid */
+  .press-strip { background: #1a1614; color: #f5ede0; padding: 80px 32px; }
+  .press-inner { max-width: 920px; margin: 0 auto; }
+  .press-strip h2 { color: white; }
+  .press-strip .section-label { color: var(--gold); }
+  .press-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 28px; margin-top: 40px; }
+  .press-card { background: rgba(255,255,255,0.05); border-left: 3px solid var(--gold); padding: 20px 24px; }
+  .press-card .pub { font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 8px; }
+  .press-card .quote { font-family: 'Source Serif 4', serif; font-size: 1rem; font-style: italic; }
+  .press-card .author { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #aaa; margin-top: 12px; }
+
+  /* Placement table */
+  .placements { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 0.95rem; }
+  .placements th { text-align: left; padding: 12px 16px; background: var(--ink); color: white; font-family: 'Inter', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .placements td { padding: 14px 16px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .placements tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
+
+  /* Band lineup */
+  .lineup { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-top: 24px; }
+  .member { background: white; padding: 20px; border: 1px solid var(--rule); }
+  .member .name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 4px; }
+  .member .role { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
+  .member .bio { font-size: 0.88rem; color: #4a4540; line-height: 1.45; }
+
+  /* Footer */
+  footer { padding: 64px 32px; border-top: 3px double var(--rule); text-align: center; color: #6b6157; font-family: 'Inter', sans-serif; font-size: 0.85rem; }
+  footer .label { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 12px; }
+
+  a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  a:hover { color: var(--gold); }
+
+  @media (max-width: 720px) {
+    .hero h1 { font-size: 3.5rem; }
+    h2 { font-size: 2rem; }
+    section, .album-strip, .press-strip { padding-left: 20px; padding-right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="crumb">Big Muddy Records · Artist Roster</span>
+  <span class="crumb mono" style="font-size:0.7rem">EST. 2007</span>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="kicker">An Indie-Country Honky-Tonk Outfit · Woodstock, NY · 2007 — present</div>
+  <h1 class="display">Mechanical Bull</h1>
+  <p class="tagline">Tragically humorous country songs, written from the ashes of a first marriage by a preacher's son who grew up moving every few years and kept moving as an adult.</p>
+  <div class="meta">2 albums · 40+ original songs · 4 film placements · CMT broadcast · UK + New Caledonia + Switzerland airplay</div>
+</header>
+
+<!-- LEAD STORY -->
+<section>
+  <div class="section-label">The Story</div>
+  <h2>The preacher's son, the gruff growl, and the catalog they built between Woodstock and the world</h2>
+
+  <p class="lead">Chase Pierson grew up the son of a preacher who moved his family every few years, whenever the good lord told him to go. Chase kept the wandering up as an adult — Boston as an ambulance crew chief, Texas as a mechanic and tow-truck driver, Kansas as an appliance repairman — before settling in Woodstock, New York, where he gave married life a try and walked out six years later with a daughter and a notebook full of country songs.</p>
+
+  <p>He took those songs to the producer Adam Widoff (Lenny Kravitz, Mercury Rev, Kate Pierson, David Torn) and started recording them in the studios above the Catskills. By the time the first album was done, there was a full band: Avalon Peacock — daughter of the legendary composer Annette Peacock — on vocals and drums. David Malachowski on guitar. Chris Zaloom on pedal steel and dobro. George Quinn on bass and mandolin. J-Bird Bowman behind the kit. The keyboardist John Medeski sat in for an organ part on one of the tracks.</p>
+
+  <p>The first record came out in February 2007 on Woodstock MusicWorks. It was called <em>All Hat No Cattle</em> — also catalogued as <em>Songs to Get Divorced To</em>, which became the more familiar title once the music started getting picked up for film. The second record, <em>A Million Yesterdays</em>, dropped November 1, 2007, with a press push run by The Planetary Group out of Boston.</p>
+
+  <p>Within a year the catalog was getting played on a Trust AM 1278 country show in the UK, on Radio New Caledonia in the South Pacific, and in living rooms across the Hudson Valley. Within two years, four songs were licensed to a movie called <em>Lonely Street</em>. A year after that, an original Pierson/Widoff co-write became the end-credit song for <em>As Good As Dead</em>, and Chase's "Amtrack" and "Narrow Escape" landed on CMT's Can You Duet — performed by Avalon and her duet partner Ryan, Chase writing both.</p>
+
+  <p>Then Chase got pulled into the next thing — a media-production company called Sound + Vision Syndicate, then a series of recording and distribution platforms, then the long arc that eventually became Big Muddy Touring + the Measurably Better Things group operating out of Natchez, Mississippi in 2026. The Mechanical Bull catalog never went away. It still runs on Spotify and Apple Music. Royalties still arrive. The recordings still hold up.</p>
+
+  <p>This page is the archive — the receipts, the placements, the lineup, the press. The catalog is being formally re-released through Big Muddy Records in 2026 alongside Chase's newer work and the rest of the roster.</p>
+</section>
+
+<div class="divider">Albums</div>
+
+<!-- ALBUMS -->
+<div class="album-strip">
+  <div class="album-strip-inner">
+    <div class="section-label" style="text-align:center">Discography</div>
+    <h2 class="display" style="text-align:center; max-width:680px; margin:0 auto;">Two records, recorded above the Catskills, distributed worldwide via CD Baby starting day one.</h2>
+
+    <div class="album-grid">
+
+      <div class="album-card">
+        <div class="year">2007 · February 21 · Woodstock MusicWorks</div>
+        <div class="title">All Hat No Cattle <br><span style="font-style:normal; font-size:1.1rem; color:#6b6157">a.k.a. Songs to Get Divorced To</span></div>
+        <ol>
+          <li>Waiting for the Beer</li>
+          <li>Putting Out Fires (with Gasoline)</li>
+          <li>My Baby's Just a 6pack Away</li>
+          <li>Funny Thing About Luck</li>
+          <li>Hennessey</li>
+          <li>Box of Wine</li>
+          <li>Another Beautiful Day</li>
+          <li>Videostore Girl</li>
+          <li>Paul Elijah</li>
+          <li>Old Friend</li>
+          <li>Don't Call Me Baby</li>
+          <li>House That Ain't a Home</li>
+          <li>Alright</li>
+        </ol>
+        <div class="album-meta">CD Baby permanent: <span class="mono">cdbaby.com/cd/mechanicalbull</span> · BMI Publisher: Chase Pierson Music Publishing #1115275 · 4 tracks licensed to <em>Lonely Street</em> (2009)</div>
+      </div>
+
+      <div class="album-card">
+        <div class="year">2007 · November 1 · Woodstock MusicWorks</div>
+        <div class="title">A Million Yesterdays</div>
+        <ol>
+          <li>Dreaming Days</li>
+          <li>Crazy Lady</li>
+          <li>Debts</li>
+          <li>The End</li>
+          <li>Find a Home</li>
+          <li>Left Turn in Jersey</li>
+          <li>Million Yesterdays</li>
+          <li>Desert Air</li>
+          <li>Goodbye Woodstock</li>
+          <li>Lukewarm Coffee</li>
+        </ol>
+        <div class="album-meta">John Medeski on B3 organ for "Lukewarm Coffee" · "Lukewarm Coffee" licensed to a 2010 untitled film · "Desert Air" aired on Radio New Caledonia 2009 · Press campaign run by The Planetary Group, Boston</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- BAND -->
+<section>
+  <div class="section-label">The Band</div>
+  <h2>Six pieces above the Catskills, plus one keyboard legend</h2>
+  <p>Mechanical Bull was a six-piece country folk band recorded and produced in the Woodstock-Saugerties studio circuit. Chase wrote almost all the songs and shared lead vocals with Avalon Peacock — whose voice the press kept calling "angelic, yet dark" against Chase's "gruff growl." Adam Widoff produced, played most of the instruments not played by other band members, and co-wrote on several tracks.</p>
+
+  <div class="lineup">
+    <div class="member">
+      <div class="name">Chase Pierson</div>
+      <div class="role">Vocals · Guitar · Songwriter</div>
+      <div class="bio">Wrote most of the catalog. BMI #1220623. Born preacher's son; spent the years before Woodstock as an ambulance crew chief in Boston, mechanic in Texas, appliance repairman in Kansas.</div>
+    </div>
+    <div class="member">
+      <div class="name">Avalon Peacock</div>
+      <div class="role">Vocals · Drums</div>
+      <div class="bio">Daughter of legendary composer Annette Peacock. Has performed with George Clinton and Coheed and Cambria. The dark-edged counterpart to Chase's gruff growl.</div>
+    </div>
+    <div class="member">
+      <div class="name">Adam Widoff</div>
+      <div class="role">Producer · Multi-instrumentalist · Co-writer</div>
+      <div class="bio">Has recorded and performed with Lenny Kravitz, Toshi Reagon, David Torn, Kate Pierson, Mercury Rev. When not playing music, writes angry manifestos warning about the dangers of technology. Lupot Music (BMI).</div>
+    </div>
+    <div class="member">
+      <div class="name">David Malachowski</div>
+      <div class="role">Guitar</div>
+      <div class="bio">Legendary beyond Woodstock. Has played with Shania Twain, Savoy Brown, Commander Cody and his Lost Planet Airmen, Janie Fricke, Garth Hudson and the Crowmatix. Also a music reviewer for the Daily Freeman.</div>
+    </div>
+    <div class="member">
+      <div class="name">Chris Zaloom</div>
+      <div class="role">Pedal Steel · Dobro · Telecaster</div>
+      <div class="bio">Local guitar legend out of Stoney Clove. Slinky steel work and bendy dobro lines defined the band's twang.</div>
+    </div>
+    <div class="member">
+      <div class="name">George Quinn</div>
+      <div class="role">Bass · Guitar · Mandolin</div>
+      <div class="bio">Has played and recorded with John Herald, Vassar Clements, Bill Monroe, Jerry Douglas and many more. Founding member of the Sing Sing Bluegrass Reform band — ask his parole officer.</div>
+    </div>
+    <div class="member">
+      <div class="name">J-Bird Bowman</div>
+      <div class="role">Drums · Vocals</div>
+      <div class="bio">Also occasionally charming and handsome. Sometimes credited as Jason Bowman.</div>
+    </div>
+    <div class="member">
+      <div class="name">John Medeski</div>
+      <div class="role">B3 Organ · Guest, "Lukewarm Coffee"</div>
+      <div class="bio">Of Medeski Martin & Wood. Sat in for one track on <em>A Million Yesterdays</em>; the recording remains the standout sonic moment of that album.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">Press</div>
+
+<!-- PRESS -->
+<div class="press-strip">
+  <div class="press-inner">
+    <div class="section-label">What They Said</div>
+    <h2>Genuine reviews, in print and online, from the 2007 — 2008 release cycle</h2>
+
+    <div class="press-grid">
+
+      <div class="press-card">
+        <div class="pub">Trust AM 1278 · UK</div>
+        <div class="quote">"Out of the hundreds of albums being released into the country music market it is not very often that one stands out as being totally different. One such album is Mechanical Bull. Chase Pierson is a genius — you will not have heard anything so original for a long, long time!"</div>
+        <div class="author">— John Morris, on-air country host</div>
+      </div>
+
+      <div class="press-card">
+        <div class="pub">Daily News · McKeesport, PA</div>
+        <div class="quote">A Million Yesterdays received a four out of four star review.</div>
+        <div class="author">— Jeffrey Sisk, January 10, 2008</div>
+      </div>
+
+      <div class="press-card">
+        <div class="pub">Metro Spirit · Augusta, GA</div>
+        <div class="quote">Print review appeared January 23, 2008. Chase Pierson did a live podcast interview to accompany the print piece.</div>
+        <div class="author">Music section</div>
+      </div>
+
+      <div class="press-card">
+        <div class="pub">Cable & Tweed</div>
+        <div class="quote">Album review posted February 3, 2008, with two MP3 embeds. The first national music blog to cover the record at length.</div>
+        <div class="author">Cable & Tweed staff</div>
+      </div>
+
+      <div class="press-card">
+        <div class="pub">AndMoreAgain</div>
+        <div class="quote">Featured review of A Million Yesterdays.</div>
+        <div class="author">— Kathy Fennessy, January 19, 2008</div>
+      </div>
+
+      <div class="press-card">
+        <div class="pub">Charlotte Observer</div>
+        <div class="quote">"I really like the record."</div>
+        <div class="author">— Courtney Devores (passed on review only because it landed too late in her cycle)</div>
+      </div>
+
+      <div class="press-card">
+        <div class="pub">Ulster County Press</div>
+        <div class="quote">Full feature article in the October 31, 2007 issue, pages B1 and B2.</div>
+        <div class="author">— Andrew Hickey</div>
+      </div>
+
+      <div class="press-card">
+        <div class="pub">All Music Guide</div>
+        <div class="quote">Artist page, album info, album art, and bio updated to include <em>A Million Yesterdays</em>.</div>
+        <div class="author">AllMusic editorial</div>
+      </div>
+
+    </div>
+
+    <p style="font-family: 'Inter', sans-serif; color: #aaa; font-size: 0.85rem; margin-top: 40px; text-align:center; max-width:600px; margin-left:auto; margin-right:auto;">Press campaign run by Christine Ernest and Becca Rosenthal at The Planetary Group · Boston · 2007 — 2008. The campaign hit every major NYC publication (Times, Voice, Time Out, Daily News, Onion, NY Magazine, etc.) plus the regional Hudson Valley press circuit.</p>
+  </div>
+</div>
+
+<!-- PLACEMENTS -->
+<section>
+  <div class="section-label">Film, TV, Sync</div>
+  <h2>Where the songs ended up</h2>
+
+  <table class="placements">
+    <thead>
+      <tr><th>Year</th><th>Production</th><th>Track(s) used</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2009</td>
+        <td><strong>Lonely Street</strong> (movie · IMDB tt0464096)</td>
+        <td>4 tracks from <em>All Hat No Cattle</em>, including "Putting Out Fires (with Gasoline)" (BMI #9963122) and "Hennessey" (BMI #9963134)</td>
+        <td>Music supervisor: Ross Elliot</td>
+      </tr>
+      <tr>
+        <td>2009</td>
+        <td><strong>Can You Duet</strong> (CMT · IMDB tt1138001)</td>
+        <td>"Amtrack" (BMI #10591034) — finals · "Narrow Escape" (BMI #10591033) — semi-finals</td>
+        <td>Both Chase Pierson originals, performed by Ryan and Avalon Peacock as a duet</td>
+      </tr>
+      <tr>
+        <td>2010</td>
+        <td><strong>As Good As Dead</strong> (movie · IMDB tt1294136)</td>
+        <td>"Eye for an Eye" (Pierson + Widoff co-write · BMI #10353362) — original end-credit song</td>
+        <td>Music supervisor: Ross Elliot</td>
+      </tr>
+      <tr>
+        <td>2010</td>
+        <td>Untitled film</td>
+        <td>"Lukewarm Coffee" from <em>A Million Yesterdays</em> (BMI #9963117)</td>
+        <td>Sync license; film title not surfaced — pending Perplexity Deep Research pass</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- INTERNATIONAL -->
+<section>
+  <div class="section-label">International Airplay</div>
+  <h2>Where the songs got heard</h2>
+
+  <p>The Mechanical Bull catalog had a verifiable international footprint by 2010, beyond the US distribution rails (Spotify, Apple iTunes, Amazon MP3, Napster, Last.fm, Xbox Music, etc.) that CD Baby ran through:</p>
+
+  <ul style="margin-left: 24px;">
+    <li><strong>United Kingdom</strong> — John Morris, Trust AM 1278 country show. Quoted Chase as "a genius" in the standard press copy.</li>
+    <li><strong>New Caledonia</strong> — Julie Riso show on RFO Radio Nouvelle-Calédonie. Played "Desert Air" in September 2009, late-night country block (1:50 AM NY time, prime overnight country slot in the Pacific).</li>
+    <li><strong>Switzerland</strong> — Conny & Reto Winkler invited Mechanical Bull to play in Kleingurmels in January 2010. (Chase noted at the time he was in Europe twice that year.)</li>
+  </ul>
+</section>
+
+<!-- LIVE -->
+<section>
+  <div class="section-label">Live</div>
+  <h2>The Hudson Valley + NYC honky-tonk circuit, 2007 — 2010</h2>
+
+  <p>Mechanical Bull lived on the small-room country/Americana circuit. Their NY runs included Hank's Saloon (Brooklyn — closed 2018), Rodeo Bar (Manhattan, 27th & 3rd — closed 2014), the Cutting Room, Knitting Factory. Upstate they played Marion's in Woodstock, Pig Bar in Saugerties, Rosendale Mountain Stage (sharing bills with Stoney Clove Lane), and Bearsville Theater. Two of those venues are now gone — the small-honky-tonk circuit got hollowed out in the 2010s. The catalog outlasted the rooms.</p>
+</section>
+
+<!-- LISTEN -->
+<section>
+  <div class="section-label">Listen</div>
+  <h2>The catalog, available now</h2>
+
+  <p>The full Mechanical Bull catalog streams on Spotify, Apple Music, Amazon Music, and YouTube Music. Direct links:</p>
+
+  <ul style="margin-left:24px;">
+    <li><strong>SoundCloud:</strong> <a href="https://soundcloud.com/chase-pierson">https://soundcloud.com/chase-pierson</a> — both albums plus standalone tracks (Solitary Man, Eye for an Eye, You're Fast and I'm Slow, Debts)</li>
+    <li><strong>CD Baby permanent URL:</strong> <a href="https://cdbaby.com/cd/mechanicalbull">cdbaby.com/cd/mechanicalbull</a> (the original 2007 distribution rail)</li>
+    <li><strong>Can You Duet TV performances:</strong>
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=TyrNo8XzRd8">Amtrack (American Track) · finals</a></li>
+        <li><a href="https://www.youtube.com/watch?v=BnfaPa4l8Ck">Narrow Escape · semi-finals</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <p style="margin-top:32px;">A formal Big Muddy Records re-release with remastered audio + liner-note essays + new artwork is in development for late 2026.</p>
+</section>
+
+<!-- QUOTE -->
+<section style="text-align:center; padding: 80px 32px; background:#f5ede0;">
+  <blockquote style="border-left: none; background: none; font-size: 1.6rem; line-height: 1.4; padding: 0; margin:0 auto; max-width: 720px; font-style: italic; font-family: 'Playfair Display', serif;">
+    "Almost all of the songs reflect Chase's past. Growing up the son of a preacher, Chase moved from town to town every few years, whenever the good lord told his Dad to go. After leaving home he kept wandering around. He finally settled down in Woodstock, NY where he gave married life a go and after 6 years he emerged with a great kid and tons of material for writing country songs."
+    <cite style="text-align:center; margin-top:24px;">— Mechanical Bull press release, 2007</cite>
+  </blockquote>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="label">Big Muddy Records</div>
+  <p>Mechanical Bull artist page · compiled from the Big Muddy archive · 2026-04-30</p>
+  <p style="margin-top:8px; color:#aaa;">Underlying source files in <span class="mono">voice-training/mechanical-bull-archive/INDEX.md</span></p>
+  <p style="margin-top:24px;"><a href="/songbook/">View the chord-chart songbook (48 songs) →</a></p>
+</footer>
+
+</body>
+</html>
