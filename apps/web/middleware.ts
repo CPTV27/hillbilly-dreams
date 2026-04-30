@@ -119,6 +119,12 @@ export async function middleware(request: NextRequest) {
     '/checkout/',
     '/chat',
     '/chat/',
+    '/walkthrough/',
+    '/big-muddy-acres/',
+    '/studio-c/',
+    '/tokenomics/',
+    '/the-case/',
+    '/inverted-intelligence/',
   ];
   if (PUBLIC_BYPASS_PATHS.some((p) => pathname === p.replace(/\/$/, '') || pathname.startsWith(p))) {
     return NextResponse.next();

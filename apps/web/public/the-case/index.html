@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>The Case for Measurably Better Things</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --rule: #d8d8d8;
+      --muted: #6a6a6a;
+      --paper: #ffffff;
+      --serif-display: 'Playfair Display', 'Times New Roman', Times, serif;
+      --serif-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      background: var(--paper);
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: var(--serif-body);
+      font-size: 19px;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 28px 96px;
+    }
+
+    .topstrap {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 14px;
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .topstrap .section { font-weight: 700; color: var(--ink); }
+    .topstrap .date { font-weight: 400; }
+
+    h1.headline {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 60px;
+      line-height: 1.04;
+      letter-spacing: -0.015em;
+      margin: 0 0 18px;
+      color: var(--ink);
+    }
+
+    .dek {
+      font-family: var(--serif-body);
+      font-style: italic;
+      font-size: 22px;
+      line-height: 1.45;
+      color: #2a2a2a;
+      margin: 0 0 32px;
+      font-weight: 400;
+    }
+
+    .byline {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .byline .author { color: var(--ink); font-weight: 700; }
+
+    .dateline {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    article p { margin: 0 0 22px; }
+
+    article p:first-of-type::first-letter {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 78px;
+      line-height: 0.82;
+      float: left;
+      padding: 8px 12px 0 0;
+      color: var(--ink);
+    }
+
+    h2.section-head {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin: 44px 0 18px;
+      color: var(--ink);
+    }
+
+    h3.kicker {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      margin: 36px 0 6px;
+    }
+
+    .divider {
+      text-align: center;
+      letter-spacing: 0.6em;
+      color: var(--muted);
+      margin: 28px 0 28px;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    .pullquote {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-style: italic;
+      font-size: 28px;
+      line-height: 1.3;
+      color: var(--ink);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 24px 0;
+      margin: 36px 0;
+      text-align: left;
+    }
+
+    figure.full {
+      margin: 40px -80px;
+    }
+
+    figure.full img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    figure.full figcaption {
+      font-family: var(--sans);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+      padding: 12px 80px 0;
+    }
+
+    figure.full figcaption .attribution {
+      font-style: normal;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 4px;
+      color: #909090;
+    }
+
+    .price-table {
+      font-family: var(--sans);
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0 32px;
+      font-size: 14px;
+    }
+
+    .price-table th, .price-table td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+
+    .price-table th {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .price-table .tier {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--ink);
+    }
+
+    .price-table .tier .price {
+      display: block;
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .price-table .target { background: #f6f4ef; }
+
+    .price-table .target .tier::after {
+      content: "TARGET";
+      display: inline-block;
+      margin-left: 8px;
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      background: var(--ink);
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 2px;
+      vertical-align: middle;
+    }
+
+    .ledger {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.55;
+      background: #f6f4ef;
+      border-left: 3px solid var(--ink);
+      padding: 18px 22px;
+      margin: 32px 0;
+    }
+
+    .ledger .label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .ledger ul { margin: 8px 0 0; padding-left: 18px; }
+    .ledger li { margin-bottom: 6px; }
+    .ledger strong { color: var(--ink); }
+
+    a.inline {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 3px;
+    }
+
+    a.inline:hover { text-decoration-color: var(--ink); }
+
+    .cta-block {
+      margin: 48px 0 0;
+      padding: 28px 0 0;
+      border-top: 1px solid var(--ink);
+      font-family: var(--sans);
+    }
+
+    .cta-block .cta-label {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .cta-block .cta-line {
+      font-family: var(--serif-body);
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    .cta-block a.try {
+      display: inline-block;
+      margin-top: 14px;
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 3px;
+    }
+
+    .cta-block a.try:hover { color: var(--muted); border-bottom-color: var(--muted); }
+
+    .footer {
+      font-family: var(--sans);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 56px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 880px) {
+      figure.full { margin: 36px 0; }
+      figure.full figcaption { padding: 12px 0 0; }
+    }
+
+    @media (max-width: 540px) {
+      .page { padding: 36px 20px 64px; }
+      h1.headline { font-size: 40px; }
+      .dek { font-size: 18px; }
+      body { font-size: 17px; }
+      article p:first-of-type::first-letter { font-size: 60px; }
+      .pullquote { font-size: 22px; }
+      .ledger { padding: 14px 16px; }
+      h2.section-head { font-size: 24px; }
+      .price-table { font-size: 13px; }
+      .price-table th, .price-table td { padding: 10px 8px; }
+    }
+
+    @media print {
+      body { font-size: 12pt; }
+      .page { padding: 0; max-width: 100%; }
+      figure.full { margin: 24px 0; page-break-inside: avoid; }
+      .pullquote { page-break-inside: avoid; }
+      .price-table { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="topstrap">
+      <span class="section">The Case · Measurably Better Things</span>
+      <span class="date">April 2026</span>
+    </div>
+
+    <h1 class="headline">The Case for Measurably Better Things</h1>
+
+    <p class="dek">A small Mississippi software company decided that the right way to price artificial intelligence was to put a human on the other end of it. Then they tested the theory on themselves.</p>
+
+    <div class="byline">By <span class="author">The Editors</span></div>
+    <div class="dateline">Natchez, Mississippi</div>
+
+    <article>
+
+      <p>It is past eleven on a Tuesday and the woman who runs an inn on the bluff above the Mississippi River is staring at her phone. A guest has called from a car outside Vicksburg to ask whether the property can hold a small wedding the second weekend of October. The bride wants the founders' suite. The groom wants the porch. The mother of the bride has follow-up questions about a vegan menu, a sound permit, and the cancellation policy. The innkeeper has been on her feet since six in the morning. She does not want to cross-reference a rate sheet or remember whether the city requires an amplification permit before ten p.m. on a Saturday. She wants to answer the guest, and she wants to be in bed by midnight.</p>
+
+      <p>She opens a chat. She types four sentences in plain English. The chat checks her calendar, looks up her own pricing, drafts the contract, flags the sound-permit question, and offers to reach the city clerk in the morning on her behalf. It does this in about ninety seconds. She reads the draft, makes one edit, sends it. The guest replies before she has put the phone down. The fee for the entire exchange is forty-two cents.</p>
+
+      <p>This is the product. The company that makes it is called Measurably Better Things.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">What this is</h2>
+
+      <p>Measurably Better Things sells a chat. You sign up. You ask it anything you would ask a competent assistant who happens to know your business. It answers what it can — most things, most of the time, because it has been trained on your own data and it remembers. When it can't, it hands the question to a person at a small operating company in Natchez called Studio C, who answers it for you. You see one screen. You pay one bill. The price of the AI work and the price of the human work appear side by side in real time, so you always know what you are spending and on what.</p>
+
+      <p>That is the entire product. There is no dashboard to learn. No setup wizard beyond a short onboarding. No ticketing system, no portal, no separate sign-in for the support team. The chat is the surface. Everything else is plumbing.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">Why this matters now</h2>
+
+      <p>For two centuries, the things humans did better than machines were the things you charged a premium for. Analysis was expensive; assembly was cheap. The premium lived in cognition. That trade is inverting. A frontier model can now draft a contract, summarize an earnings call, and pass a medical board exam — all for less than a vending-machine coffee. What the model cannot do is the part that requires a person to be there. You cannot AI your way into being present at a closing, or into looking a vendor in the eye and telling them no, or into knowing the new line cook needs a ride home tonight because his car is in the shop. The premium is moving toward the things only humans can do.</p>
+
+      <p>Most software companies have not yet repriced for this. They sell the model layer at twenty dollars a month and treat the human layer as something you call about when the chatbot fails. Measurably Better Things has the order reversed. Software is cheap because software is now cheap. Human work is expensive because human work is what's left.</p>
+
+      <p>The model is called Inverted Intelligence inside the company. Same chat, two meters: software tokens at the going rate of the underlying model, human tokens at the rate of a fractional senior operator. The customer sees both. The customer pays for both. The customer learns, on a single screen, what the actual cost of getting things done in 2026 looks like.</p>
+
+      <div class="divider">• • •</div>
+
+      <figure class="full">
+        <img src="/big-muddy-acres/renderings/bma-pull-barn-exterior-wide-01.png" alt="A pole barn at golden hour, set into a clearing of pine trees, the long gravel approach lit by a low sun" />
+        <figcaption>Big Muddy Acres, Adams County, Mississippi. The recording studio at the center of the property is also the proof case for the company's chat product — the people who run it use it every day to manage the inn, the touring company, the magazine, the radio station, and the property itself.<span class="attribution">Architectural rendering · Big Muddy</span></figcaption>
+      </figure>
+
+      <h2 class="section-head">The product, in motion</h2>
+
+      <p>A new customer arrives at the website on a Tuesday afternoon. She owns a small hospitality business in a corridor town somewhere — say, a bed-and-breakfast with eight rooms, or a venue with a kitchen. She signs up for the standard tier at twenty dollars a month. The onboarding is twenty minutes. She uploads what she has — a guest list, a booking calendar, last quarter's invoices, a folder of photographs, a working draft of next year's pricing. The chat reads it. The chat asks three clarifying questions. The chat says it is ready.</p>
+
+      <p>For the next two weeks she uses it the way she would use a sober assistant who never sleeps. She drafts emails. She runs numbers. She asks the chat to compare last October's bookings against this October's pace and flag anything anomalous. She asks it to summarize the new state lodging tax rule that went into effect in March. Every interaction is metered. Most cost less than a quarter. By the end of the second week she has spent about eight dollars on top of her subscription. The running total sits at the top of the screen.</p>
+
+      <p>Then a guest cancels a wedding two weeks out. The deposit is non-refundable, but the bride is in tears, and the customer does not have time to write the four emails it will take to negotiate a partial refund, hold the date for the next inquiry, update the calendar, and notify the caterer. She types: <em>"I need help getting through this cancellation gracefully — can someone handle the back-and-forth?"</em> The chat tells her, in plain English, that this will escalate to a human at Studio C, that the human's time is metered at a higher rate than the AI's, and that the estimated cost is between fifteen and forty dollars. It asks her to confirm. She does. Within four minutes a person is in the chat, asking the two questions she did not anticipate. By the next morning the wedding has been rescheduled, the deposit reapplied, and the caterer notified. The line item on her bill is twenty-three dollars and fifty cents. The wedding she would otherwise have lost is back on her books for May.</p>
+
+      <p>This is the upgrade moment. By the end of the month she has moved from Standard to the Service tier — a hundred dollars, with thirty minutes of human time included and the human layer always one message away. She does not move because of a marketing campaign. She moves because she has used the human layer once and now she wants it on tap.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">What it costs</h2>
+
+      <p>Pricing is the part of the product that most companies fudge. Measurably Better Things does not. There are six tiers, and each one exists for a specific kind of customer.</p>
+
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>What you get</th>
+            <th>Who it's for</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tier">Free<span class="price">$0</span></td>
+            <td>The chat with the cheap, fast models. Limited specialist routing. No human layer.</td>
+            <td>Anyone curious enough to type something into a box.</td>
+          </tr>
+          <tr>
+            <td class="tier">Standard<span class="price">$20 / month</span></td>
+            <td>The chat with the standard models. The full router across thirty-plus specialist agents. Human help available pay-as-you-go.</td>
+            <td>Individual users and sole operators.</td>
+          </tr>
+          <tr class="target">
+            <td class="tier">Service<span class="price">$100 / month</span></td>
+            <td>Premium models. Full router. Thirty minutes of human time included monthly. The human service layer is always one message away.</td>
+            <td>Small business owners, founders, single-property operators — the people who would otherwise be hiring their first part-time ops person.</td>
+          </tr>
+          <tr>
+            <td class="tier">Operator<span class="price">$200 / month</span></td>
+            <td>Premium models. One to two hours of human time included. Custom dashboards built on demand.</td>
+            <td>Small teams and multi-property operators.</td>
+          </tr>
+          <tr>
+            <td class="tier">Business<span class="price">$500 / month</span></td>
+            <td>Premium and tuned models. Workspace customization. Four to six hours of human time included.</td>
+            <td>Growing businesses and small agencies.</td>
+          </tr>
+          <tr>
+            <td class="tier">Enterprise<span class="price">Custom</span></td>
+            <td>Dedicated infrastructure. Private specialist agents. A named service team with a service-level agreement.</td>
+            <td>Larger customers and platform partners.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>The hundred-dollar Service tier is the one the company is built around. It sits in a price band that most consumer software companies have refused to enter. ChatGPT costs twenty dollars. Claude costs twenty dollars. Gemini Advanced costs twenty dollars. Each gives you exactly one model. None gives you a human. The Service tier costs five times that and gives you both. The argument for the upgrade is simple: a single thirty-minute escalation a month, handled by someone who actually finishes the task, is worth more to a working operator than a hundred extra messages to a chatbot.</p>
+
+      <p>The twenty-dollar Standard tier exists to hold the line. If the consumer market expects to pay twenty for an AI subscription, the company will charge twenty — but the customer will get the multi-agent router and a working escalation path, not just a single model behind a chat window. The free tier exists as a funnel. Most features are visible-but-locked, and every wall the user hits points to twenty.</p>
+
+      <p>The custom-build tier — the one without a fixed price — is the most interesting line. Customers who want the chat to live somewhere other than the company's website (a Slack channel, a Notion sidebar, a white-labeled portal their own customers use) can have it. The build cost is itself measured in human tokens. A small custom is a few thousand. A full white-labeled portal is many more. The customer sees the estimate before approving, watches the meter run during construction, and pays at the end. There is no separate engineering retainer. Engineering is just another kind of human work, billed on the same rail as everything else.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">Where the money actually comes from</h2>
+
+      <p>Underneath the tiers is a single billing primitive: the token. Software tokens measure what the model does. Human tokens measure what a person does. They have different prices but live on the same ledger, in the same chat, on the same invoice. Software tokens price near pass-through plus a thin margin, because frontier model APIs are now a commodity. Human tokens price at a multiple — the rate of a senior operator, fractionalized. The customer sees the ratio every time they use the product, and learns fast what kinds of problems the chat can solve for two cents and what kinds require thirty dollars of a person's attention.</p>
+
+      <div class="pullquote">"Software is cheap. Humans are the premium. We bill them differently because they are."</div>
+
+      <p>This is the framing no competitor has named. Anthropic does not sell human time. OpenAI does not sell human time. The big consulting firms sell human time but do not sell software, except as a retainer add-on with no transparent rate. Measurably Better Things is the first to put both meters on the same screen. The thesis is that this is the right structure for the inverted regime that is coming. Software will keep getting cheaper. Humans will not. The companies that priced the relationship correctly first will be the ones with a defensible business when the model layer becomes a free utility.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">Who runs this</h2>
+
+      <p>Studio C is the operating company behind the product. It is not a holding company, not a brand, not a marketing label. It is the team that picks up the phone when the chat hands off, sends the contract, makes the call to the city clerk, builds the custom dashboard, and signs the SLA on the enterprise tier. The team is small by design. Most of what would be a forty-person operations department at a conventional software company is handled by the chat itself, by a roster of specialist software agents, or by a curated subcontractor network the customer never has to manage. The customer sees one chat, gets one bill, holds one company accountable.</p>
+
+      <figure class="full">
+        <img src="/big-muddy-acres/renderings/bma-pull-barn-interior-mixing-03.png" alt="Interior of a recording studio inside a pole barn — mixing console, monitors, a Hammond organ on the back wall, kitchen visible through the doorway" />
+        <figcaption>Inside the studio at Big Muddy Acres. Studio C — the operating company that runs the Measurably Better Things product — takes its name from the rooms where the work actually happens.<span class="attribution">Architectural rendering · Big Muddy</span></figcaption>
+      </figure>
+
+      <p>This is the hard part to copy. Standing up a chatbot is now trivial — a college student with a credit card can do it in a weekend. Standing up a chatbot whose escalations are picked up by a competent human team that resolves the actual problem is much harder, because it requires the company to build an operations practice as a peer to the engineering practice. Most AI startups are unwilling to do this. Measurably Better Things is willing because the operations team is the moat.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">The proof — Big Muddy</h2>
+
+      <p>The company's first customer is itself. Measurably Better Things was built to run a small Mississippi entertainment ecosystem the founders already operated — an inn on the river bluff in Natchez, a touring booking company, a quarterly magazine, a small record label, a streaming radio station, and a working photography practice. It is not a side project. It is a real operating business with real revenue, real cash flow, and real seasonal pressure. The mid-scenario forecast for the twelve months ending April 2027 is two hundred and eighty-three thousand dollars in consolidated revenue, with the inn carrying the year and the photography line second.</p>
+
+      <p>The argument for using the ecosystem as the first customer is operational, not promotional. If the chat cannot help the innkeeper rebook a wedding, it will not help the broker rewrite a listing. If the human escalation path takes six hours to close a ticket internally, it will take six hours externally, and no marketing will paper over that. The product is being beaten on by people who depend on it for their rent. Every workflow that survives gets shipped to the next customer. Every workflow that doesn't gets fixed before anyone outside the company sees it.</p>
+
+      <p>The same ecosystem is where the cash-flow engine for the company's physical expansion lives. Big Muddy Acres is a fifty-site recreational vehicle park and tiny-house community on a parcel of Adams County land outside the Natchez city limit. The parcel is being optioned now. Phase one — the RV pads, a shared bathhouse, a starter septic, and the Mechanical Bull Pull Barn that doubles as a recording studio and Friday-night music room — runs between nine hundred and fifty thousand and one-and-six-tenths million dollars all in. At full occupancy the RV side alone generates three hundred thousand dollars a year. The studio at the center of the property is the recording studio. The recording studio is also Studio C.</p>
+
+      <div class="divider">• • •</div>
+
+      <figure class="full">
+        <img src="/big-muddy-acres/renderings/bma-aerial-site-04.png" alt="Aerial site plan rendering of Big Muddy Acres — RV pads along a north loop, the pull barn at center, tiny home cluster on a south rise, and lagoon and bathhouse behind the tree line" />
+        <figcaption>The site plan in rough — RV pads along the north loop, the studio barn at center, a future tiny-home cluster on the south rise, the lagoon and bathhouse tucked behind the tree line.<span class="attribution">Architectural rendering · Big Muddy</span></figcaption>
+      </figure>
+
+      <h2 class="section-head">The unlock — Chicken Burke</h2>
+
+      <p>The first artist deal at the property is also the first time the company will trade equity in real estate for a record. Robert "Chicken" Burke is a producer working with the small label. The standard arrangement would be a cash advance against the album — fifty thousand dollars, paid over the production cycle, recoupable against royalties that may or may not arrive. The proposed arrangement is different. The label values the record at fifty thousand dollars. Burke takes that value as either a full tiny house or a meaningful equity share at Big Muddy Acres. He becomes the first resident artist of the property. When he is at the house, he is at the house. When he is on the road, the house generates rental income that flows back to him.</p>
+
+      <p>The trade solves two problems that were in the notebook for months. The label needed a way to sign artists without cash it does not yet have. The property needed a marketing event powerful enough to get its first wave of attention. A musician trading a record for a tiny house is a story that runs in music press, real-estate press, alt-economics press, and lifestyle press at the same time. The trade is the press campaign. The press campaign sells the next ten residencies. The residencies populate the property. The property funds the next phase. The two business lines collapse into one.</p>
+
+      <p>This is not a charity model. Burke is signing because the math works for him. A cash advance disappears. A tiny house on appreciating Mississippi land does not. He becomes a resident of a community of people he wants to live next to, in a place where the climate does not freeze and the cost of living is a fraction of any major city's. The label gets a record without a check. The property gets a story. The story gets the next record.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">What ships next</h2>
+
+      <p>The pilot rollout starts in Natchez this summer. The chat is being put in front of the people the company already knows — innkeepers, touring artists, magazine readers, the small commercial landlords on the bluff. The Service tier is what's being pushed; the cohort is small enough to learn what kinds of escalations actually come in. A second cohort opens in the Hudson Valley after that, around a small creative network the company has been quietly building near Woodstock. The two pilot regions cover the customer profile the company most wants to understand: working operators in places that are not Silicon Valley, who need real help and have a real budget, but who are not large enough to hire a full-time ops person and not small enough to make do with a free chatbot.</p>
+
+      <p>Alongside the pilots, the company is launching an editorial program built around the same thesis. <em>Inverted Intelligence</em> is a weekly radio show — long-form conversations with operators, founders, and researchers seeing the inversion in their own work. The companion ad campaign runs as short video and static type cards. An AI voice cheerfully explains how to do something complicated in "ten easy steps." A person stares at the screen. A type card appears: <em>"You don't have a clue where to begin. We do. We do the rest."</em> The first three are shot with civilian friends, not actors. The campaign is the product positioning in compressed form. AI tells you. We do it.</p>
+
+      <p>The first cohort metrics decide when the company goes wide. The two numbers being watched are the conversion rate from Standard to Service, and the six-month retention rate of Service customers. If both come in above the internal threshold, the rollout opens to the broader Mississippi corridor and the Hudson Valley network by year-end, with vertical deployments — for scanning companies, for real-estate brokers, for civic Main Street programs — entering the pipeline shortly after.</p>
+
+      <div class="divider">• • •</div>
+
+      <figure class="full">
+        <img src="/big-muddy-acres/renderings/bma-property-vista-porch-06.png" alt="The view from a porch across the property at golden hour, pine trees in soft sun, gravel path in the foreground" />
+        <figcaption>The view from the south porch at the end of a working day. The product the company sells is the chat. The product the company has built around the chat is everything else.<span class="attribution">Architectural rendering · Big Muddy</span></figcaption>
+      </figure>
+
+      <h2 class="section-head">If any of this resonates</h2>
+
+      <p>There are three ways into Measurably Better Things, and they are different conversations depending on who is reading.</p>
+
+      <div class="ledger">
+        <div class="label">Three doors</div>
+        <ul>
+          <li><strong>If you operate a business</strong> — try the Standard tier at twenty dollars a month and see whether it earns the upgrade to Service. The whole point is that the chat should pay for itself by the time you are done with the second week. If it does not, the meter on the screen will tell you so.</li>
+          <li><strong>If you build or invest</strong> — the company is raising capital to accelerate the chat product roadmap and to fund the first phase of Big Muddy Acres, the Mississippi cash-flow engine that anchors the operating company. The mid-scenario operating business is at $283,000 in year-one revenue with a clear ladder to the seven-figure number. Talk to Tracy Alderson-Allen, who runs finance.</li>
+          <li><strong>If you cover this kind of thing</strong> — the Chicken Burke trade and the Inverted Intelligence thesis are both stories the company is glad to talk about on the record. The pricing model is the lede. The Mississippi setting is the texture.</li>
+        </ul>
+      </div>
+
+      <div class="cta-block">
+        <div class="cta-label">The chat is open</div>
+        <div class="cta-line">If reading about the product is one thing and using it is another, the standard tier is twenty dollars a month, no commitment. The chat is the engine. The bill is what you spend.</div>
+        <a class="try" href="/chat">Try the chat →</a>
+      </div>
+
+      <p class="footer">Measurably Better Things · Operated by Studio C · Natchez, Mississippi</p>
+    </article>
+  </div>
+</body>
+</html>

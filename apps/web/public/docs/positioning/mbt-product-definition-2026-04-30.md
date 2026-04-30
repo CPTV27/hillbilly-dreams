@@ -70,6 +70,80 @@ The whole product is metered in TOKENS. Same unit, two prices:
 
 **Onboarding fee:** flat-rate setup to ingest data + build the customer's chat persona. Recoverable cost OR capitalizable depending on how Tracy structures it. Bundled into Operator+ tiers, paid separately for Standard upgrades that need data ingestion.
 
+## Human-token rate scales DOWN as tier scales UP (added 2026-04-30 evening)
+
+The higher your monthly tier, the cheaper your human-tokens beyond the included allocation. Customers paying for more access get a better deal on the labor itself.
+
+| Tier | Monthly | Human-token rate (ops) | Human-token rate (specialist) | Effective discount vs Standard |
+|---|---|---|---|---|
+| Free | $0 | n/a (no human service) | n/a | — |
+| Standard | $20 | $5.00/min | $10.00/min | baseline |
+| Service | $100 | $4.50/min | $9.00/min | 10% off |
+| Operator | $200 | $4.00/min | $8.00/min | 20% off |
+| Business | $500 | $3.50/min | $7.00/min | 30% off |
+| Enterprise | custom | $2.50–$3.50/min | $5.00–$7.00/min | up to 50% off, contract-dependent |
+
+The bigger your monthly commitment, the more you signal you'll actually use human work — and the better we can plan the team's capacity. Customers reap the savings.
+
+## Annual prepay = 20% off (added 2026-04-30 evening)
+
+Pay for the year upfront, save 20% on the monthly subscription line. The human-token rate on usage beyond allocation is unchanged (annual customers already get the lower per-tier rate from the table above).
+
+Math examples:
+- Standard ($20/mo) → annual $192 (vs $240) → save $48/year
+- Service ($100/mo) → annual $960 (vs $1,200) → save $240/year
+- Business ($500/mo) → annual $4,800 (vs $6,000) → save $1,200/year
+
+For Studio C, annual prepay is operationally cleaner — predictable cash, fewer churn cycles, easier to staff against. For the customer, it's a real discount that costs nothing if they were going to stay anyway.
+
+## Modular add-ons — On Demand Everything (added 2026-04-30 evening)
+
+The base tier subscription buys the chat door. Customers add capability modules as they need them. Each module = a focused capability with its own monthly fee, often bundled with included human-tokens for the work that module needs.
+
+**Marketing tagline:** *"Pay for what you need. Have all your problems solved."* — On Demand Everything.
+
+### Module pricing tiers
+
+| Module class | Monthly add | Includes | Examples |
+|---|---|---|---|
+| **Light modules** | +$20/mo | Chat capability + occasional automation | Email triage, reminders sync, calendar coordination, link-in-bio, custom prompts |
+| **Standard modules** | +$50–100/mo | Chat capability + ~1 hr/mo human-tokens for the module's work | Bookkeeping ingest, customer support triage, lead-gen automation, social posting, weekly reporting |
+| **Specialized modules** | +$200–500/mo | Chat capability + 3-8 hr/mo human-tokens + dedicated specialist on the queue | Video production, podcast editing, brand identity refresh, sales pipeline ops, recruiting screen, content engine |
+| **High-touch modules** | +$500–2,000/mo | Chat capability + 10+ hr/mo human-tokens + dedicated multi-skill team rotation | Full social media management, ongoing PR, agency-of-record, custom ML model maintenance, dedicated CSM |
+
+Why specialized modules cost more: they require humans with rare skills. A video production module needs editors, colorists, sound designers — that's not $5/min ops work, that's $10-15/min specialist work, plus equipment + software costs. The customer pays the real cost of the capability + Studio C's margin.
+
+### Sample module catalog (illustrative — populated as modules ship)
+
+- **Lead Gen** ($50/mo) — outbound email + qualifying chat + handoff to your sales workflow
+- **Social Media** ($100/mo) — scheduled posts + engagement responses across 3 platforms
+- **Bookkeeping** ($75/mo) — receipt categorization, monthly P&L, expense reports
+- **Customer Support** ($100/mo) — first-line ticket triage + escalation routing
+- **Content Engine** ($200/mo) — weekly blog post + newsletter + repurposed clips
+- **Video Production** ($500/mo) — 4 short-form videos + thumbnails + posting
+- **Podcast Production** ($300/mo) — edit + master + show notes + clip generation per episode
+- **Recruiting** ($200/mo) — job posts + initial screening + scheduling
+- **Inventory** ($75/mo) — stock alerts + reorder triggers + supplier comms
+- **Analytics** ($100/mo) — auto-generated weekly + monthly reports
+- **Brand Identity Refresh** (one-time $1,500-5,000 + $50/mo for ongoing tweaks)
+- **PR / Press** ($500-1,500/mo) — pitch list + outreach + responses
+
+### Why modules instead of one giant tier
+
+Customers don't want to pay for things they don't use. A solo operator at the $100 Service tier might add Bookkeeping + Social Media for an extra $175/mo and skip everything else. A small business at Operator might add Content Engine + Customer Support + Lead Gen.
+
+The chat is always the front door. Modules just expand what the chat can DO behind the scenes. From the customer's perspective: "I need this." → "We have a module for that. Activate it?"
+
+### How customers shop modules
+
+In the chat:
+- Customer: *"Can you help me with my Instagram?"*
+- Chat: *"You don't have the Social Media module activated. It's $100/mo and includes 3-platform scheduled posts + engagement responses. Want me to turn it on?"*
+- Customer: *"Yes."*
+- Chat: *"Activated. Tell me your handles and what kind of content you want to run."*
+
+No procurement cycle. No sales call. No 30-day trial that turns into a 12-month contract. Just pay for what you need, the moment you need it. Pause when you don't.
+
 ## Interface choice — the customer picks where the chat lives (added 2026-04-30)
 
 The chat is the engine. The interface is configurable per tier. Customers don't have to switch tools — we meet them where they already work.
