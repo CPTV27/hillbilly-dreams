@@ -115,7 +115,7 @@ Tell one person. The kind of person you'd actually call if you needed an honest 
 
 If you have a question you want answered on the air, send it. The address is going up on the show page this week.
 
-Episode One drops next Wednesday. Chicken Burke. The tiny house deal. The first signing. You're going to want to hear it.
+Episode One — if it lands — drops next Wednesday. A conversation with Chicken Burke about a trade neither of us has ever heard a label propose before. Whether he says yes or no, the conversation is the show. You're going to want to hear it.
 
 Inverted Intelligence. We named the trend. We priced for it first.
 
