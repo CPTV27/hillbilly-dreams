@@ -2,6 +2,31 @@
 
 *Captured 2026-04-30 evening. Every line that landed during tonight's session, organized by use. The brand voice you reach for first.*
 
+## Top-line sales principle (locked 2026-04-30 evening by Chase)
+
+> **It is what it is. We don't have to sell it. We just say what it is and show examples.**
+
+No pitch. No "RECOMMENDED" badges. No upsell pressure. State the model, show worked examples, let the customer pick. If they ask "which one?", ask back "how much extra stuff do you need a month?" and surface the tier that matches their answer.
+
+The math sells itself: heavy users get a per-unit discount (bigger plans = cheaper per token of human work) AND a 20% annual prepay discount on top. Stacked discounts that reward intensity. Most SaaS doesn't do this honestly. Chase has been looking for it for a year. We built it.
+
+## Top-line operating principle (locked 2026-04-30 evening by Chase)
+
+> **Do the best quality of everything, always.**
+
+When choosing between "fast and adequate" vs "slower and excellent," excellent is the default unless explicitly told otherwise. This applies to:
+
+- Voice clones (Pro Voice Clone over Instant, even if it takes 6 hrs to train)
+- TTS models (eleven_multilingual_v2 over eleven_turbo for shipped audio)
+- PDF generation (full Senate-style print stylesheet, not bare HTML print)
+- Imagery (Imagen 3 renderings or real photography over stock)
+- Vendors (best-fit for quality, not lowest price; e.g. n8n self-hosted over a cheaper managed alternative if quality requires it)
+- Page typography (magazine template polish, not "looks fine on mobile" minimum)
+- Audio production (proper b-roll montage video, not just a static MP3)
+- Copy (Chase voice + the four anchor lines, not generic)
+
+This is the meta-rule. Every other rule below serves it.
+
 ## The four anchor lines (lock these — they propagate everywhere)
 
 1. **"AI tells you. We do the rest."** — The campaign tagline. Goes on every ad, every landing page footer, every social bio.
@@ -28,10 +53,22 @@ The variable is the [VERB + OBJECT]. The rest stays verbatim. "Ten easy steps" i
 - *"Better than ChatGPT. Same price. Multi-agent routing across 30+ specialists."*
 - *"They give you one model. We give you a router."*
 
-### $100 Service (the target sell)
+### $100 Service (the "real human in the loop" tier)
 - *"Talk to a human when you need to. Software when you don't."*
 - *"$100 a month. Includes 30 minutes of a real person's time."*
 - *"The price point where the chat hits a wall and a human picks up."*
+
+### Sales rule: NO STEERING (locked 2026-04-30)
+> *"It should be for every customer. We shouldn't be trying to steer them towards one or the other. Which one do you want? If you want a little, just get the $99. If you eat a lot, get the big one, because it's cheaper."*
+
+The chat asks **how much extra stuff they need each month**. The customer answers. The math picks the tier:
+- A little → $20 Standard
+- A real human in the loop → $100 Service
+- Heavy use → Operator / Business (bigger plans = cheaper per-unit human-token rate)
+- Big team → Enterprise
+
+No "RECOMMENDED" badge. No upsell pressure. The honest line:
+> *"If you don't know how much you'll use, start at $20. Move up when you hit the wall. Bigger plans cost less per unit of work — heavy users save money by going bigger, not smaller."*
 
 ### $200+ Operator / Business / Enterprise
 - *"Custom dashboards. Workspace your way. Real bandwidth."*

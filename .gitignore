@@ -117,3 +117,14 @@ docs/creative/*.mov
 
 # Directory research archive — denormalized MD narratives, kept for reference only
 Perplexity-research/_archive/
+
+# Mechanical Bull voice-training archive — audio + zips stay local + Drive-backed only
+voice-training/mechanical-bull-archive/songs/from-soundcloud/
+voice-training/mechanical-bull-archive/songs/songs-bundle.zip
+voice-training/mechanical-bull-archive/songs/*.mp3
+voice-training/mechanical-bull-archive/songs/songs-bundle/
+voice-training/mechanical-bull-archive/press-clippings/*.pdf
+voice-training/mechanical-bull-archive/documents/*.pdf
+
+# Stray dispatch image screenshots in repo root
+/dispatch-*.png

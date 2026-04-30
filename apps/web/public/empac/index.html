@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>EMPAC Meeting Briefing — 2026-04-30 | Big Muddy x Lyra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  :root {
+    --brand-50:#f6f7f9;
+    --brand-100:#eceef2;
+    --brand-800:#1e293b;
+    --brand-900:#0f172a;
+  }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--brand-50); color: var(--brand-900); line-height: 1.6; }
+  .display { font-family: 'Playfair Display', serif; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--brand-100); }
+  ::-webkit-scrollbar-thumb { background: var(--brand-800); border-radius: 4px; }
+  .pull { background: linear-gradient(180deg, #fef9c3 0%, #fef3c7 100%); border-left: 4px solid #ca8a04; }
+  .ascii { font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.3; white-space: pre; overflow-x: auto; background: #0f172a; color: #e2e8f0; padding: 1.25rem; border-radius: 8px; }
+  table { border-collapse: collapse; width: 100%; }
+  th { text-align: left; font-weight: 600; padding: 0.75rem; background: var(--brand-100); border-bottom: 2px solid var(--brand-800); }
+  td { padding: 0.75rem; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+  tr:hover td { background: #fef9c3; }
+  code { background: #f1f5f9; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+  pre.codeblock { background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<!-- Sticky top bar -->
+<div class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+  <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
+    <div>
+      <div class="text-xs uppercase tracking-wider text-gray-500">Internal — Meeting Brief</div>
+      <div class="font-semibold text-sm">EMPAC × Lyra · 2026-04-30 evening · for tomorrow AM</div>
+    </div>
+    <a href="/empac/briefing.md" class="text-xs px-3 py-1.5 bg-gray-900 text-white rounded hover:bg-gray-700">View raw .md</a>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="max-w-4xl mx-auto px-6 pt-12 pb-8">
+  <div class="text-xs uppercase tracking-widest text-amber-700 font-semibold mb-3">Tomorrow's meeting · Margaret · Nick · Mason · Dennis</div>
+  <h1 class="display text-5xl md:text-6xl font-bold leading-tight mb-6">EMPAC Meeting Briefing</h1>
+  <p class="text-xl text-gray-700 mb-8 leading-relaxed">Three rooms scanned today. The S2PX-as-Lyra-OS pitch. The capture process. The Concert Hall gap. The new product idea Chase locked tonight: <strong>video walkthrough → 3D mesh + spatial audio</strong>, in one phone capture, branded as a Lyra surface.</p>
+
+  <div class="pull p-6 rounded-lg mb-8">
+    <div class="text-xs uppercase tracking-wider text-amber-800 font-bold mb-2">TL;DR — say it like this if anyone asks</div>
+    <p class="text-lg italic text-gray-800 leading-relaxed">"Lyra is the acoustic-twin platform. We capture rooms with phone LiDAR + audio. S2PX is the operating system underneath — the same backbone already shipping for AEC firms. Today we scanned three rooms at EMPAC. The meshes are clean, the audio is captured. Nick gets the spatial data tonight, we drop it into the demo tomorrow. The big concert hall didn't get scanned — we have phone video from last June we can run through Polycam Web or Luma to reconstruct it."</p>
+  </div>
+</section>
+
+<!-- Section 1 -->
+<section class="max-w-4xl mx-auto px-6 py-8 border-t border-gray-200">
+  <div class="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Section 1</div>
+  <h2 class="display text-3xl font-bold mb-4">The S2PX origin story (cover for Lyra)</h2>
+
+  <p class="mb-4"><strong>S2PX = Scan2Plan OS X.</strong> Built starting late 2024. Originally a partnership between Chase and Owen Bush — Owen ran the AEC service business, Chase built the platform. Partnership dissolved 2026-03-25; IP is now clean to Chase, contributed to Measurably Better Things LLC (Tracy filing in Mississippi).</p>
+
+  <p class="mb-4"><strong>What it does in one sentence:</strong> end-to-end OS for 3D-scanning and BIM companies — lead intake → CEO scoping → margin-protected proposals → QuickBooks sync → production pipeline → field ops → financial intelligence. Multi-tenant. AI-first. 567+ projects through the catalog. 61 Drizzle tables. 7 Gemini agents on production.</p>
+
+  <p class="mb-4"><strong>Why this matters for Lyra:</strong></p>
+  <ul class="list-disc pl-6 mb-4 space-y-2">
+    <li>The platform already exists. 18+ months of engineering Lyra would otherwise have to do from scratch — already done.</li>
+    <li>Lyra licenses S2PX as the operating layer. Lyra's IP — the LMIR acoustic database, Mason's Acoustic Architect agent, Margaret's Stony Brook validation work — sits on top.</li>
+    <li>One platform, two brand surfaces, one engineering team.</li>
+  </ul>
+
+  <div class="pull p-4 rounded mt-6">
+    <strong>What you can say:</strong> "S2PX is the IP I built. It's clean — single-owner, single-licensor. Lyra integrates with one party, not three." That's the thing investors care about.
+  </div>
+  <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded mt-3">
+    <strong>What you don't volunteer:</strong> Twinner specifics (Owen's parallel rights). Just say "S2PX is clean" if asked, no further detail.
+  </div>
+</section>
+
+<!-- Section 2 -->
+<section class="max-w-4xl mx-auto px-6 py-8 border-t border-gray-200">
+  <div class="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Section 2</div>
+  <h2 class="display text-3xl font-bold mb-4">How Lyra integrates with S2PX</h2>
+
+  <pre class="ascii">┌─────────────────────────────────────────────────────────┐
+│                  CAPTURE LAYER                          │
+│       Phone LiDAR (Polycam) + ambisonic audio           │
+│    Geometry mesh + textures + 4-channel spatial WAV     │
+└────────────────────────┬────────────────────────────────┘
+                         │
+                         ▼
+┌─────────────────────────────────────────────────────────┐
+│                  S2PX (the OS underneath)               │
+│  Project / scan metadata · Asset storage · Multi-tenant │
+│  Job queue · Gemini agents · Auth · Billing · Portals   │
+│  REST API + admin console                               │
+└────────────────────────┬────────────────────────────────┘
+                         │
+                         ▼
+┌─────────────────────────────────────────────────────────┐
+│                  LYRA (the acoustic layer)              │
+│  LMIR fingerprint DB · Acoustic Architect agent         │
+│  RT60 / freq response / spatial audio export (Nick)     │
+│  Cultural-preservation deliverables (Margaret)          │
+│  Customer-facing acoustic reports + BIM annotations     │
+└─────────────────────────────────────────────────────────┘</pre>
+
+  <h3 class="font-semibold text-lg mt-6 mb-3">Translation table — what S2PX has, what Lyra reuses it as</h3>
+  <table>
+    <thead><tr><th>Big Muddy / S2PX has</th><th>Lyra reuses it as</th></tr></thead>
+    <tbody>
+      <tr><td>Multi-tenant domain routing</td><td>lyrai.io + scan2plan.io + per-client portals</td></tr>
+      <tr><td>Project / scan metadata schema</td><td>Acoustic-scan registry</td></tr>
+      <tr><td>Asset storage (GCS bucket)</td><td>Mesh + audio + LMIR fingerprint store</td></tr>
+      <tr><td>Gemini agent stack</td><td>Acoustic Architect + report generator</td></tr>
+      <tr><td>Hot-folder ingest</td><td>Polycam / phone-export drop zone</td></tr>
+      <tr><td>GPS shot list (/snap)</td><td>Scan list — locations needing capture</td></tr>
+      <tr><td>Admin dashboard</td><td>Lyra ops — active scans, deliverables, clients</td></tr>
+      <tr><td>Billing + customer portal</td><td>Lyra's first-touch + invoicing surface</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pull p-4 rounded mt-6">
+    <strong>What you tell Nick directly:</strong> "You're inheriting a platform that already does 80% of what Lyra needs. The 20% is the acoustic IP — that's all yours. You don't have to build user accounts, billing, multi-tenant routing, or job queues. You build the parts only Lyra can build."
+  </div>
+</section>
+
+<!-- Section 3 -->
+<section class="max-w-4xl mx-auto px-6 py-8 border-t border-gray-200">
+  <div class="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Section 3</div>
+  <h2 class="display text-3xl font-bold mb-4">The capture process — how a room becomes data</h2>
+
+  <h3 class="font-semibold text-lg mt-4 mb-2">Field capture (today's actions, ~10 min/room)</h3>
+  <ol class="list-decimal pl-6 mb-4 space-y-1">
+    <li>iPhone Pro + Polycam app. Walk the room, sweep ceiling-floor-walls. Output: <code>.obj</code> mesh + <code>.mtl</code> + <code>textures/</code></li>
+    <li>Phone-camera capture video (the <code>.MOV</code> files) — recording the human-eye reference for the mesh</li>
+    <li>Ambisonic audio capture — sweeps + impulse responses + ambient room recording. <em>(Or, with iPhone 14 Pro+, the 4-channel spatial audio is already baked into the .MOV — no separate rig needed.)</em></li>
+    <li>Metadata: room name, date, capture conditions (HVAC on/off, audience present/absent)</li>
+  </ol>
+
+  <h3 class="font-semibold text-lg mt-6 mb-2">Cloud ingest (what S2PX does next)</h3>
+  <ol class="list-decimal pl-6 mb-4 space-y-1">
+    <li>Hot-folder drop or direct upload to S2PX bucket</li>
+    <li>S2PX registers a Scan record (project, room, capture date, GPS, paths)</li>
+    <li>Mesh post-processing (decimation if &gt;50MB, normal recompute, hole-fill)</li>
+    <li>Audio post-processing (peak normalize, noise-floor characterize, IR convolution)</li>
+    <li>Lyra layer: LMIR fingerprint computed, RT60 + frequency response logged, spatial-audio export rendered</li>
+    <li>Customer portal updates: scan available for review, acoustic report generated, BIM annotations queued</li>
+  </ol>
+</section>
+
+<!-- Section 4 -->
+<section class="max-w-4xl mx-auto px-6 py-8 border-t border-gray-200">
+  <div class="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Section 4 — Today's captures</div>
+  <h2 class="display text-3xl font-bold mb-4">What we have, ready right now</h2>
+
+  <p class="mb-4 text-gray-700">All three scans on Chase's MacBook in <code>~/Desktop/EMPAC/</code>. Captured 2026-04-29 ~17:00 EDT. Total package: ~210 MB.</p>
+
+  <table>
+    <thead><tr><th>Room</th><th>OBJ size</th><th>Textures</th><th>Capture video</th><th>Path</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Red Theater</strong></td><td>130 MB</td><td>7 JPGs</td><td>RedTheater.MOV + RedTheater2.MOV</td><td class="mono text-xs">~/Desktop/EMPAC/RedTheater/4_29_2026/</td></tr>
+      <tr><td><strong>Studio 2</strong></td><td>52 MB</td><td>5 JPGs</td><td>Studio2.MOV</td><td class="mono text-xs">~/Desktop/EMPAC/Studio2/4_29_2026 (1)/</td></tr>
+      <tr><td><strong>Studio 1</strong></td><td>10 MB</td><td>3 JPGs</td><td>Studio1.MOV</td><td class="mono text-xs">~/Desktop/EMPAC/Studio1/4_29_2026 (2)/</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Section 5 -->
+<section class="max-w-4xl mx-auto px-6 py-8 border-t border-gray-200 bg-amber-50">
+  <div class="text-xs uppercase tracking-widest text-amber-800 font-semibold mb-2">Section 5 — Concert Hall gap</div>
+  <h2 class="display text-3xl font-bold mb-4">The big theater didn't get scanned today</h2>
+
+  <p class="mb-4">EMPAC has multiple rooms (Concert Hall, Theater, Studio 1, Studio 2, Anechoic, Goodman). Concert Hall = 1,200 seats, the famous wood-paneled one. Not captured this trip.</p>
+
+  <h3 class="font-semibold text-lg mt-6 mb-3">June 2025 videos in iCloud — I checked the previews</h3>
+  <p class="mb-3">4 videos at EMPAC GPS coords from 6/12-6/14. I extracted preview frames to <code>~/Desktop/EMPAC/identify-videos/</code>. My read of each:</p>
+
+  <table>
+    <thead><tr><th>Video</th><th>Looks like</th><th>Useful for Concert Hall?</th></tr></thead>
+    <tbody>
+      <tr><td class="mono text-xs">79926AE6 · 6/13 · 89s</td><td><strong>Anechoic chamber</strong> (foam wedges, 4 walls)</td><td>No, but baseline data</td></tr>
+      <tr><td class="mono text-xs">386ACFA4 · 6/12 · 50s</td><td><strong>Diffuser-walled studio</strong>, light grid above</td><td>No</td></tr>
+      <tr><td class="mono text-xs">3F7457A2 · 6/14 · 32s</td><td><strong>Tablet showing 3D scan rendering</strong> — prior scan data on someone's device</td><td>No, but ASK NICK if scan data exists</td></tr>
+      <tr><td class="mono text-xs">9CDFE58C · 6/13 · 25s</td><td><strong>Sunny studio with windows + Faro/Leica scanner on tripod</strong></td><td>No</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pull p-4 rounded mt-6">
+    <strong>None of the June videos show the Concert Hall.</strong> Reconstruction-from-video for that room needs a different source.
+  </div>
+
+  <h3 class="font-semibold text-lg mt-6 mb-3">Two paths for Concert Hall</h3>
+  <p><strong>Path A — online photo/video photogrammetry.</strong> EMPAC Concert Hall is heavily documented online. RPI media gallery + EMPAC press kit + architecture blogs (Davis Brody Bond designed it). Pull 30-60 high-res photos tonight, upload to Polycam Web (we already pay for it), Luma AI in parallel as backup. Either tool returns mesh by morning.</p>
+  <p class="mt-3"><strong>Path B — honest framing.</strong> "Concert Hall didn't get captured today; we'll demo with the three rooms that did. Concert Hall on the next visit." True, doesn't oversell.</p>
+</section>
+
+<!-- Section 5b — NEW PRODUCT IDEA -->
+<section class="max-w-4xl mx-auto px-6 py-8 border-t border-gray-200 bg-indigo-50">
+  <div class="text-xs uppercase tracking-widest text-indigo-700 font-semibold mb-2">Section 5b — Locked tonight by Chase</div>
+  <h2 class="display text-3xl font-bold mb-4">Test the video → mesh path TONIGHT. Ship as a Lyra-branded S2PX feature TOMORROW.</h2>
+
+  <p class="mb-4">Chase's call: if video → mesh works clean enough, the customer onboarding flow simplifies massively. Customer shoots a phone-camera walkthrough, uploads, S2PX runs Lyra pipeline, mesh + acoustic profile come back. <strong>No LiDAR phone required. No Polycam app install. Just a video.</strong></p>
+
+  <div class="pull p-5 rounded mb-6">
+    <strong>The unexpected jackpot — the videos already contain spatial audio.</strong>
+    <p class="mt-2">RedTheater.MOV (1m 56s, 181 MB) contains: 1920×1080 HEVC video at 30 fps · stereo AAC audio · <strong>4-channel APAC (Apple Positional Audio Codec) at 392 kbps</strong> — iPhone 14 Pro+ ambisonic-style capture. <strong>One phone walkthrough = both halves of the Lyra workflow.</strong> Mesh from video frames, room acoustic profile from the spatial audio track that's already baked in.</p>
+  </div>
+
+  <h3 class="font-semibold text-lg mt-6 mb-3">Test plan tonight (built-in A/B)</h3>
+  <p class="mb-4">Each EMPAC room has BOTH the Polycam LiDAR mesh AND a phone-camera video. Run videos through video-photogrammetry tonight. Compare to LiDAR ground truth tomorrow.</p>
+
+  <table>
+    <thead><tr><th>Step</th><th>Tool</th><th>What it tests</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>Polycam Web</strong> (already paying)</td><td>Whether existing customer pipeline accepts video</td></tr>
+      <tr><td>2</td><td><strong>Luma AI</strong> (free tier)</td><td>Gaussian-splatting quality on indoor architecture</td></tr>
+      <tr><td>3 (fallback)</td><td><strong>KIRI Engine</strong> or RealityCapture</td><td>Backup paths if 1+2 fail</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="font-semibold text-lg mt-6 mb-3">Step-by-step for Chase tonight</h3>
+  <ol class="list-decimal pl-6 mb-4 space-y-2">
+    <li>Open <a href="https://poly.cam" class="text-indigo-700 underline">https://poly.cam</a>, log in as <code>lyrai-shared@proton.me</code> (credentials in Lyrai exec text thread)</li>
+    <li>Upload → Video → drag <code>~/Desktop/EMPAC/RedTheater/RedTheater.MOV</code> (best stress test — large mesh, well-lit, complex)</li>
+    <li>Submit. Get the share URL when processing completes.</li>
+    <li>Second tab: <a href="https://lumalabs.ai/dashboard" class="text-indigo-700 underline">https://lumalabs.ai/dashboard</a>, drag the same MOV. Submit.</li>
+    <li>Both processing runs are background jobs. Check status in the morning.</li>
+  </ol>
+
+  <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded mt-4">
+    <strong>I already prepped a frame set as backup:</strong> 233 frames at 1920×1080 extracted from RedTheater.MOV at 2 fps, total 9.6 MB at <code>~/Desktop/EMPAC/RedTheater/frames-for-polycam/</code>. If Polycam Web wants images instead of video, drag this folder.
+  </div>
+
+  <h3 class="font-semibold text-lg mt-6 mb-3">If it works — branding for tomorrow</h3>
+  <p class="mb-3">Chase: "Put Lyra's name on it." Naming options to pick from in the moment:</p>
+  <ul class="list-disc pl-6 mb-4 space-y-1">
+    <li><strong>Lyra Walkthrough</strong> — most descriptive, lowest friction</li>
+    <li><strong>Lyra Capture</strong> — generic, room for both LiDAR + video paths</li>
+    <li><strong>Lyra Phone</strong> — emphasizes the no-special-equipment angle</li>
+    <li><strong>Lyra Snap</strong> — cute, customer-facing, easy to say</li>
+  </ul>
+
+  <div class="pull p-5 rounded mt-6">
+    <strong>The pitch line for tomorrow if the test lands:</strong>
+    <p class="text-lg italic mt-2">"The customer doesn't need LiDAR. The customer doesn't need an audio rig. The customer just needs a recent iPhone and a 2-minute video walk through their space. We get the geometry from the video frames and the room's acoustic signature from the spatial-audio track that's already baked in. One capture, both deliverables."</p>
+  </div>
+</section>
+
+<!-- Section 6 -->
+<section class="max-w-4xl mx-auto px-6 py-8 border-t border-gray-200">
+  <div class="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Section 6</div>
+  <h2 class="display text-3xl font-bold mb-4">Handoff package for Nick — what to send tonight</h2>
+
+  <pre class="codeblock">cd ~/Desktop
+zip -r empac-scans-2026-04-29.zip EMPAC/RedTheater EMPAC/Studio1 EMPAC/Studio2 \
+  -x '*.DS_Store'
+ls -lh empac-scans-2026-04-29.zip</pre>
+
+  <p class="mt-4 text-gray-700">~200 MB zip. Drop on Drive link or send via Wetransfer.</p>
+
+  <h3 class="font-semibold text-lg mt-6 mb-3">Send-along note for Nick (paste into iMessage)</h3>
+  <div class="bg-gray-100 p-4 rounded text-sm font-mono whitespace-pre-line">Nick — three rooms scanned today, all in this zip:
+- Red Theater (large mesh, full main-floor coverage)
+- Studio 2 (mid-size, full coverage)
+- Studio 1 (smallest, full coverage)
+
+Each folder has a .obj + .mtl + textures/ subfolder. Standard Polycam export. Open in Blender to verify alignment before drop into Unity.
+
+Audio for each room is coming separately tonight — running through pre-processing first. The .MOV files in each folder also contain 4-channel APAC spatial audio if you want to extract directly.
+
+Concert Hall didn't get scanned today. We're attempting a photogrammetric reconstruction from existing video tonight via Polycam Web. If it lands clean I'll send it before morning.</div>
+</section>
+
+<!-- Section 7 -->
+<section class="max-w-4xl mx-auto px-6 py-8 border-t border-gray-200">
+  <div class="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Section 7</div>
+  <h2 class="display text-3xl font-bold mb-4">Open questions to flag in the meeting</h2>
+
+  <ol class="list-decimal pl-6 space-y-3">
+    <li><strong>License fee structure.</strong> Tracy + Chase aligned on Option B (license + revenue share). Confirm Lyra side is open before sending Doc 2.</li>
+    <li><strong>Founder equity transfer feasibility.</strong> Does Lyra's OA permit Chase's founder shares to flow to MBT? Standard but needs Margaret + Lyra counsel to confirm.</li>
+    <li><strong>Mobile LiDAR app ownership.</strong> If the capture app is its own IP layer (vs. wrapping Polycam SDK), it needs its own contribution path before deal closes.</li>
+    <li><strong>MBT formation timing.</strong> Tracy's MS filing in flight. Realistic gate: MBT formed within 4-8 weeks, Lyra paperwork follows.</li>
+    <li><strong>Demo cadence going forward.</strong> Today was opportunistic. If shipping demos every 2-3 weeks, schedule a recurring monthly visit while academic year is in session.</li>
+  </ol>
+</section>
+
+<!-- Section 8 -->
+<section class="max-w-4xl mx-auto px-6 py-8 border-t border-gray-200 bg-gray-900 text-white">
+  <div class="text-xs uppercase tracking-widest text-amber-400 font-semibold mb-2">Section 8 — Tonight's order of operations</div>
+  <h2 class="display text-3xl font-bold mb-4 text-white">Do these tonight, in this order</h2>
+
+  <ol class="list-decimal pl-6 space-y-3 text-gray-200">
+    <li><strong class="text-white">Zip + send the EMPAC scans to Nick</strong> (5 min)</li>
+    <li><strong class="text-white">Locate the audio files for the three rooms</strong> — surface, normalize, append to Drive (30 min). Or: use the spatial audio embedded in the .MOV files, no separate files needed.</li>
+    <li><strong class="text-white">Upload RedTheater.MOV to Polycam Web</strong> for video → mesh test (15 min upload + overnight processing)</li>
+    <li><strong class="text-white">Upload same MOV to Luma AI</strong> as parallel backup</li>
+    <li><strong class="text-white">Optional: Concert Hall photogrammetry from online photos</strong> (Polycam Web image-set upload of 30-60 EMPAC press photos)</li>
+    <li><strong class="text-white">Sleep.</strong> Tomorrow's meeting needs you sharp.</li>
+  </ol>
+</section>
+
+<!-- Section 10 -->
+<section class="max-w-4xl mx-auto px-6 py-8 border-t border-gray-200">
+  <div class="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Section 10</div>
+  <h2 class="display text-3xl font-bold mb-4">Things NOT to commit to in this meeting</h2>
+
+  <ul class="list-disc pl-6 space-y-2 text-gray-700">
+    <li>Don't quote a specific license fee dollar amount yet (Tracy hasn't signed off)</li>
+    <li>Don't promise feature roadmap items beyond what's in S2PX today</li>
+    <li>Don't talk about other Lyra-style verticals MBT might pursue (game audio, AR/VR, etc.) — strategic, not on agenda</li>
+    <li>Don't mention Owen / partnership-dissolution detail unless directly asked, and only at high level if so</li>
+  </ul>
+</section>
+
+<footer class="max-w-4xl mx-auto px-6 py-12 text-center text-sm text-gray-500 border-t border-gray-200">
+  <p>Drafted by Cos · 2026-04-30 evening · for Chase before tomorrow AM</p>
+  <p class="mt-2">Source: <code>docs/partners/empac-meeting-briefing-2026-04-30.md</code></p>
+</footer>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

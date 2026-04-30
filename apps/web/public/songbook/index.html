@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Mechanical Bull Songbook — Chord Charts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #fdfbf6;
+    --ink: #1a1a1a;
+    --rule: #d4c8b4;
+    --accent: #8b1a1a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.4;
+  }
+  .display { font-family: 'Playfair Display', serif; }
+  .chord { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--accent); }
+  .container { max-width: 1080px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+  header { text-align: center; padding: 4rem 1rem 2rem; border-bottom: 3px double var(--rule); margin-bottom: 3rem; }
+  header h1 { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 800; margin: 0 0 0.5rem; line-height: 1; }
+  header .subtitle { font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase; color: #6b6157; font-weight: 600; }
+  header .meta { font-size: 0.85rem; color: #6b6157; margin-top: 1rem; font-style: italic; }
+
+  .album-divider {
+    text-align: center;
+    margin: 3rem 0 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(180deg, transparent 0%, #f5ede0 50%, transparent 100%);
+  }
+  .album-divider .label { font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .album-divider h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; margin: 0.25rem 0 0; font-style: italic; }
+  .album-divider .album-meta { font-size: 0.85rem; color: #6b6157; margin-top: 0.5rem; }
+
+  .songs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .song-card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    page-break-inside: avoid;
+  }
+  .song-card .number { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #a89b85; font-weight: 600; letter-spacing: 0.1em; }
+  .song-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin: 0.1rem 0 0.5rem; line-height: 1.1; }
+  .song-card .key { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; padding: 2px 8px; background: #f5ede0; border-radius: 3px; color: var(--accent); font-weight: 700; margin-bottom: 0.75rem; }
+  .song-card .section-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: #6b6157; font-weight: 600; margin-top: 0.75rem; margin-bottom: 0.25rem; }
+  .song-card .progression { font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 600; color: var(--accent); letter-spacing: 0.05em; padding: 4px 0; }
+  .song-card .lyrics-tba { font-size: 0.75rem; color: #a89b85; font-style: italic; margin-top: 0.5rem; }
+  .song-card .notes { font-size: 0.8rem; color: #6b6157; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed var(--rule); }
+
+  footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; border-top: 3px double var(--rule); color: #6b6157; font-size: 0.85rem; }
+
+  @media print {
+    body { background: white; }
+    .song-card { box-shadow: none; border-color: #999; }
+    .album-divider { background: none; border-top: 2px solid #999; border-bottom: 2px solid #999; padding: 1rem; }
+    header { padding: 1rem; }
+    header h1 { font-size: 2.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 2.5rem; }
+    .album-divider h2 { font-size: 1.75rem; }
+    .songs-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="subtitle">A Chord Chart Songbook</div>
+  <h1 class="display">Mechanical Bull</h1>
+  <div class="meta">48 songs · Chase Pierson · 2007 – present · Sourced from Chase's set list email, 2008-09-18</div>
+</header>
+
+<main class="container">
+
+<!-- ALBUM 1 -->
+<div class="album-divider">
+  <div class="label">Album One</div>
+  <h2>All Hat No Cattle</h2>
+  <div class="album-meta">11 tracks · sometimes catalogued as <em>Songs to Get Divorced To</em></div>
+</div>
+
+<div class="songs-grid">
+
+<div class="song-card">
+  <div class="number">A1.01</div>
+  <h3>Waitin' for the Beer</h3>
+  <div class="key">Key of C</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">C   G   F</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A1.02</div>
+  <h3>Putting Out Fires</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">G   C   G   A   D</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A1.03</div>
+  <h3>6 Pack</h3>
+  <div class="key">Key of C</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">C   F   C   G</div>
+  <div class="notes">Released as "My Baby's Just A 6pack Away"</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A1.04</div>
+  <h3>Hennessey</h3>
+  <div class="key">Key of D</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">D   A   D   G</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A1.05</div>
+  <h3>Box of Wine</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">G   C   G   D</div>
+  <div class="section-label">Chorus / B section</div>
+  <div class="progression">G   Em   D</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A1.06</div>
+  <h3>Videostore Girl</h3>
+  <div class="key">Key of C</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">C   F   C   G</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A1.07</div>
+  <h3>Paul Elijah</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">G   C   G   C   G</div>
+  <div class="section-label">Resolve</div>
+  <div class="progression">D</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A1.08</div>
+  <h3>Don't Call Me Baby</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">G   D   G   C   D</div>
+  <div class="section-label">Chorus</div>
+  <div class="progression">Em   D</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A1.09</div>
+  <h3>House That Ain't a Home</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">G   C   G   C   G</div>
+  <div class="section-label">Resolve</div>
+  <div class="progression">D</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A1.10</div>
+  <h3>Alright</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">G   C   D</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A1.11</div>
+  <h3>Old Friend</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">G   D   C</div>
+  <div class="section-label">Bridge / B-section</div>
+  <div class="progression">C   Bm   Am   C   G</div>
+</div>
+
+</div>
+
+<!-- ALBUM 2 -->
+<div class="album-divider">
+  <div class="label">Album Two</div>
+  <h2>A Million Yesterdays</h2>
+  <div class="album-meta">10 tracks · 2007</div>
+</div>
+
+<div class="songs-grid">
+
+<div class="song-card">
+  <div class="number">A2.01</div>
+  <h3>Dreaming Days</h3>
+  <div class="key">Key of C / Am</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">C   Am   F   G</div>
+  <div class="section-label">Chorus</div>
+  <div class="progression">Am   Em7   F   G</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A2.02</div>
+  <h3>Crazy Lady</h3>
+  <div class="key">Key of D</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">D   C   G</div>
+  <div class="section-label">Chorus</div>
+  <div class="progression">C   G   F   G</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A2.03</div>
+  <h3>Debts</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">G   D   G   C   D</div>
+  <div class="section-label">Chorus</div>
+  <div class="progression">G   Em   C   D</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A2.04</div>
+  <h3>The End</h3>
+  <div class="key">Key of C</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">C   G   F</div>
+  <div class="section-label">Bridge</div>
+  <div class="progression">Am   G   F   ·   Am   F   G</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A2.05</div>
+  <h3>Find a Home</h3>
+  <div class="key">Key of D</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">D   Em   G   D   G   A</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A2.06</div>
+  <h3>Left Turn in Jersey</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">G   C   D</div>
+  <div class="section-label">Chorus</div>
+  <div class="progression">G   C   A   D</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A2.07</div>
+  <h3>Million Yesterdays</h3>
+  <div class="key">Key TBA</div>
+  <div class="lyrics-tba">Chord chart pending — track exists, chords not in source email</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A2.08</div>
+  <h3>Desert Air</h3>
+  <div class="key">Key TBA</div>
+  <div class="lyrics-tba">Chord chart pending</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A2.09</div>
+  <h3>Goodbye Woodstock</h3>
+  <div class="key">Key TBA</div>
+  <div class="lyrics-tba">Chord chart pending</div>
+</div>
+
+<div class="song-card">
+  <div class="number">A2.10</div>
+  <h3>Lukewarm Coffee</h3>
+  <div class="key">Key TBA</div>
+  <div class="lyrics-tba">Chord chart pending</div>
+</div>
+
+</div>
+
+<!-- OTHER MB -->
+<div class="album-divider">
+  <div class="label">Section Three</div>
+  <h2>Other Mechanical Bull Songs</h2>
+  <div class="album-meta">19 tracks · unreleased / b-sides / live-only</div>
+</div>
+
+<div class="songs-grid">
+
+<div class="song-card">
+  <div class="number">MB.01</div>
+  <h3>Waitin' for a Train</h3>
+  <div class="key">Key of D</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">D   G   D   A</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.02</div>
+  <h3>CHICKS</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">G   D   G   C   G</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.03</div>
+  <h3>Just Like a Dog</h3>
+  <div class="key">Key of C</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">C   F   C</div>
+  <div class="section-label">Bridge</div>
+  <div class="progression">A   D   G</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.04</div>
+  <h3>Marriage Is Gay</h3>
+  <div class="key">Key of C</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">C   F   G</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.05</div>
+  <h3>Don't Buy the Cow</h3>
+  <div class="key">Key of C</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">C   G   F</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.06</div>
+  <h3>Feels Like Truth</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">G   C   G   D</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.07</div>
+  <h3>JESUS LAND</h3>
+  <div class="key">Key of D</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">D   A   E</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.08</div>
+  <h3>Do I Still Have to Listen to You?</h3>
+  <div class="key">Key of D</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">D   A   G   D</div>
+  <div class="section-label">Bridge</div>
+  <div class="progression">G   D   Bm   A   D</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.09</div>
+  <h3>2 Little Ladies</h3>
+  <div class="key">Key of C</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">C   G   C   G</div>
+  <div class="section-label">Chorus</div>
+  <div class="progression">F   G   C   F</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.10</div>
+  <h3>Diapers and Beercans</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">G   D   C</div>
+  <div class="section-label">Bridge</div>
+  <div class="progression">C   G   C   D</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.11</div>
+  <h3>Life</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">G   D   Em   C   G   D   C   G</div>
+  <div class="section-label">Chorus</div>
+  <div class="progression">Em   C   G   D   Em   C   D</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.12</div>
+  <h3>Intake Form</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">G   D   C   D</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.13</div>
+  <h3>Sadness Slowly</h3>
+  <div class="key">Key TBA</div>
+  <div class="lyrics-tba">Chord chart pending — recording exists on SoundCloud</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.14</div>
+  <h3>Big Gay Cowboy</h3>
+  <div class="key">Key TBA</div>
+  <div class="lyrics-tba">Chord chart pending</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.15</div>
+  <h3>Amtrack</h3>
+  <div class="key">Key of Am</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">Am   C   G   D</div>
+  <div class="notes">Aka "American Track" — semi-finals, Can You Duet (CMT)</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.16</div>
+  <h3>Feelings</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">G   D   G   C   D   G</div>
+  <div class="section-label">Bridge</div>
+  <div class="progression">Bm   C   Am</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.17</div>
+  <h3>Hope</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">G   D   C</div>
+  <div class="notes">"Hope is a stubborn old friend"</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.18</div>
+  <h3>One More Time</h3>
+  <div class="key">Key TBA</div>
+  <div class="lyrics-tba">Chord chart pending</div>
+</div>
+
+<div class="song-card">
+  <div class="number">MB.19</div>
+  <h3>Absent Mom</h3>
+  <div class="key">Key TBA</div>
+  <div class="lyrics-tba">Chord chart pending</div>
+</div>
+
+</div>
+
+<!-- COVERS -->
+<div class="album-divider">
+  <div class="label">Section Four</div>
+  <h2>Covers</h2>
+  <div class="album-meta">8 tracks · live set staples</div>
+</div>
+
+<div class="songs-grid">
+
+<div class="song-card">
+  <div class="number">CV.01</div>
+  <h3>Shake a Hand</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">G   C   D</div>
+</div>
+
+<div class="song-card">
+  <div class="number">CV.02</div>
+  <h3>Peaceful Easy Feeling</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">G   C   Am   D</div>
+  <div class="notes">Eagles cover</div>
+</div>
+
+<div class="song-card">
+  <div class="number">CV.03</div>
+  <h3>Bring It On Home to Me</h3>
+  <div class="key">Key of G</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">G   C   F</div>
+  <div class="notes">Sam Cooke cover</div>
+</div>
+
+<div class="song-card">
+  <div class="number">CV.04</div>
+  <h3>Working Man Blues</h3>
+  <div class="key">Key of C</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">C   F   G</div>
+  <div class="notes">Merle Haggard cover</div>
+</div>
+
+<div class="song-card">
+  <div class="number">CV.05</div>
+  <h3>Highway Patrol</h3>
+  <div class="key">Key TBA</div>
+  <div class="lyrics-tba">Chord chart pending</div>
+</div>
+
+<div class="song-card">
+  <div class="number">CV.06</div>
+  <h3>Soulshine</h3>
+  <div class="key">Key of C</div>
+  <div class="section-label">Verse</div>
+  <div class="progression">C   G   F</div>
+  <div class="section-label">Bridge</div>
+  <div class="progression">F   C   Am   F   G   C</div>
+  <div class="notes">Allman Brothers cover</div>
+</div>
+
+<div class="song-card">
+  <div class="number">CV.07</div>
+  <h3>Don't Come Home a Drinking</h3>
+  <div class="key">Key of C</div>
+  <div class="section-label">Progression</div>
+  <div class="progression">C   F   D   G</div>
+  <div class="notes">Loretta Lynn cover</div>
+</div>
+
+<div class="song-card">
+  <div class="number">CV.08</div>
+  <h3>One's on the Way</h3>
+  <div class="key">Key TBA</div>
+  <div class="lyrics-tba">Chord chart pending</div>
+  <div class="notes">Loretta Lynn cover</div>
+</div>
+
+</div>
+
+</main>
+
+<footer>
+  <p>Source: Chase Pierson set-list email, 2008-09-18 to mechanicalbullpen@gmail.com</p>
+  <p>Compiled by Cos · 2026-04-30 evening · 48 songs · 38 with chord charts · 10 pending</p>
+  <p>Print to letter-size paper for a portable songbook · Press <kbd>⌘P</kbd> / <kbd>Ctrl+P</kbd></p>
+</footer>
+
+</body>
+</html>

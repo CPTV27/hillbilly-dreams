@@ -60,11 +60,22 @@ The whole product is metered in TOKENS. Same unit, two prices:
 | **Business** | $500/mo | Premium + custom-tuned | Full registry + custom routing rules | 4-6 hrs human-tokens + workspace customization | Full onboarding included | Growing businesses, agencies |
 | **Enterprise** | Custom | Premium + dedicated infra | Full registry + private specialists | Dedicated service team, SLA, volume discount | White-glove onboarding | Large customers, B2B platform deals |
 
-**The $100 tier is the target sell.** Above the $20 software-only ceiling that ChatGPT/Claude/Gemini all sit at. Below the $200+ where customers expect dedicated humans. The sweet spot where you get **a router across specialist agents AND access to a human when you need one**. Competitors don't offer "talk to a human" at any consumer price — we make it the headline of the $100 tier.
+**No steering. The customer picks. We explain the math.** (Locked 2026-04-30 evening per Chase: "It should be for every customer. We shouldn't be trying to steer them towards one or the other. Be like, 'Which one do you want?' If you want a little, just get the $99. If you eat a lot, get the big one, because it's cheaper.")
 
-**The $20 tier holds the line.** ChatGPT is $20/mo. Claude is $20/mo. Gemini Advanced is $20/mo. They all give you ONE model. Standard ($20/mo MBT) gives you the multi-agent router. Same price, dramatically more capability. Drives upgrade pressure to $100 once a user realizes they want to talk to a human.
+When a prospect signs up, the chat asks **how much extra stuff they need each month** — not "do you want our $100 tier?" The customer answers honestly, the chat surfaces the tier that matches the answer, and the math speaks for itself:
 
-**The Free tier is the funnel.** Stripped-down chat, cheap models, limited router access. Most features visible-but-locked. Every wall the user hits points to Standard ($20) or Service ($100).
+- **Need a little a month?** → Standard $20 fits (full router + standard models, no human service included; pay per escalation)
+- **Need a real human in the loop?** → Service $100 (premium models + 30 min human-tokens included)
+- **Use it heavily and want a better per-token rate?** → Operator $200 or Business $500 (bigger plans = cheaper per-unit human-token rate; the math literally rewards heavier usage)
+- **Big team, custom needs?** → Enterprise
+
+The honest sales line: *"If you don't know how much you'll use, start at $20. Move up when you hit the wall. Bigger plans cost less per unit of work — so heavy users save money by going bigger, not smaller."*
+
+**No "RECOMMENDED" badge on the $100 tier in the UI.** No upsell pressure. Just the question, the math, and the customer's answer.
+
+**The $20 tier still holds the line on the consumer software ceiling.** ChatGPT is $20/mo. Claude is $20/mo. Gemini Advanced is $20/mo. They all give you ONE model. Standard ($20/mo MBT) gives you the multi-agent router. Same price, more capability. We don't need to push it — the comparison does that for us.
+
+**The Free tier is still the funnel.** Stripped-down chat, cheap models, limited router access. Most features visible-but-locked. The customer self-promotes when they're ready.
 
 **Industry-metric scaling:** model quality, token cap, specialist count, human-token allocation, custom dashboards, multi-tenant isolation, SLA, support response time. Same playbook as every modern SaaS — we just have an additional axis (human-tokens) the others don't.
 
@@ -95,6 +106,33 @@ Math examples:
 - Business ($500/mo) → annual $4,800 (vs $6,000) → save $1,200/year
 
 For Studio C, annual prepay is operationally cleaner — predictable cash, fewer churn cycles, easier to staff against. For the customer, it's a real discount that costs nothing if they were going to stay anyway.
+
+## The stacked discount math (locked 2026-04-30)
+
+Heavy users stack TWO discounts simultaneously:
+
+1. **Tier-based per-unit discount** — bigger plans get cheaper per-minute human-token rates (Business pays $3.50/min ops vs Standard's $5/min — 30% off per unit of work)
+2. **Annual prepay discount** — pay 12 months upfront, save 20% on the subscription line
+
+Combined example — Business customer paying annually:
+- Monthly subscription: $500 × 12 = $6,000/yr → minus 20% prepay = **$4,800/yr** (saves $1,200)
+- Human-token usage at $3.50/min ops vs Standard's $5/min = **30% cheaper per unit of human work**
+- Plus the bigger included human-token allocation (4-6 hrs vs Standard's 0)
+
+**Net result:** the customer who actually uses MBT a lot pays less per unit of value than the one dabbling at Standard. The economics reward intensity. There's no "loyalty tier" theater — just stacked math.
+
+Chase has been looking for a SaaS pricing model that does this honestly for a year. Most "annual discount" pricing flattens into a single line item. Most "tier discount" pricing only applies to the subscription, not the variable usage. Stacking both — and making both visible to the customer in the chat meter — is the differentiator.
+
+## The sales rule, reinforced
+
+> **"It is what it is. We don't have to sell it. We just say what it is and show examples."**
+
+The chat doesn't pitch. The pricing page doesn't pitch. The Studio C service page doesn't pitch. We:
+1. State the model (tiers, modules, token meter, stacked discount)
+2. Show worked examples (see /docs/positioning/token-pricing-examples — 25 tasks with real software-token + human-token math + comparisons to freelancer alternatives)
+3. Let the customer pick what fits their need
+
+If a customer asks the chat "which tier should I get?", the chat asks back: *"How much extra stuff do you need each month? A little or a lot?"* Then surfaces the tier that matches. If they don't know, recommend Standard ($20) and tell them they can move up the moment they hit a wall — heavy users save money by going bigger, not smaller.
 
 ## Modular add-ons — On Demand Everything (added 2026-04-30 evening)
 
