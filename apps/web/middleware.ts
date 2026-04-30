@@ -107,6 +107,14 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // ── Whiteboards — internal meeting boards, no domain rewriting ──
+  // Brand-neutral big-screen pages for partner meetings, planning sessions.
+  if (pathname === '/whiteboard' || pathname.startsWith('/whiteboard/')) {
+    const res = NextResponse.next();
+    res.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    return res;
+  }
+
   // ── Commerce + Booking public surfaces — no domain rewriting ──
   // These pages work from ANY brand hostname (they read tenant/brand from query).
   // Without this bypass the tenant-rewrite middleware routes to /(tenant)/pricing
