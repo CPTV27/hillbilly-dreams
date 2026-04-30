@@ -79,6 +79,7 @@ Northeast node (Woodstock, NY). Summer 2026 activation.
 | bearsvillemedia.com | Bearsville (alias) | Redirects to above |
 | measurablybetter.life | MBT | Active — consumer AI + platform overview |
 | buycurious.art | Gallery/Storefront | Active — routes to gallery |
+| invertedintelligence.fm | Inverted Intelligence (radio show + MBT marketing) | Registered 2026-04-30 — DNS pending |
 
 ---
 
@@ -109,7 +110,7 @@ Northeast node (Woodstock, NY). Summer 2026 activation.
 
 | Host | Plan | Public endpoint | Purpose | Credentials |
 |---|---|---|---|---|
-| **Hetzner CCX23 `bigmuddy-services`** | 4 vCPU / 16 GB / 160 GB NVMe, Ashburn VA, $39.99/mo | 5.161.61.151 · Tailscale `bigmuddy-services` (100.89.173.28) | Immich + Caddy (running); Postiz + Open Notebook (planned) | BW: `Hetzner - bigmuddy-services` (ID `48bb42a1-3c26-4778-8f5e-b42f015697ec`) |
+| **Hetzner CCX23 `bigmuddy-services`** | 4 vCPU / 16 GB / 160 GB NVMe, Ashburn VA, $39.99/mo | 5.161.61.151 · Tailscale `bigmuddy-services` (100.89.173.28) | Immich + Caddy (running); Postiz + Open Notebook (planned) | BW: `Hetzner - bigmuddy-services` (ID `48bb42a1-3c26-4778-8f5e-b42f015697ec`) · **SSH:** `ssh -i ~/.ssh/id_hetzner chase@5.161.61.151` — user is `chase` NOT `root` (root attempts trigger fail2ban) |
 | **DigitalOcean droplet `bigmuddy-radio`** | — | 206.189.200.208 · stream.bigmuddytouring.com | AzuraCast — Big Muddy Radio streaming (SSL currently broken, needs Let's Encrypt) | BW: `AzuraCast — Big Muddy Radio Admin` + `DigitalOcean — bigmuddy-radio droplet` |
 
 ### Cloud services (managed — no server to maintain)
@@ -138,10 +139,10 @@ Delta Dawn is not just a name — four GChat webhooks (Agent Desk/Huck, Chuck, D
 | Chase Pierson | CEO, CTO, Showrunner | me@chasepierson.tv |
 | Tracy Alderson-Allen | Finance & Inn ops (equity partner) | tracyaldersonallen@gmail.com |
 | Amy Allen | Inn & Bar Ops (equity partner) | amyaldersonallen@gmail.com |
-| JP Houston | Shows & Programming | jphoustonlives@gmail.com |
 
 **Tracy and Amy are equity partners — never refer to them as employees.**
-**JP's deal is not finalized — do not name him on public-facing pages.**
+
+**JP Houston is NOT part of the plan as of 2026-04-30.** He is a contractor delivering mixes (good ones). Possible future collaboration in some other capacity (his own show, etc.) but not pairing directly with Amy and not in the Team table. Do not frame him as a partner, programmer, or shows-and-programming role anywhere. Amy owns Blues Room programming.
 
 ---
 

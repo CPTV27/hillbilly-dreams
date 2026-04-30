@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Studio C — Big Muddy Acres Briefing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink:#121212; --rule:#d8d8d8; --muted:#6a6a6a; --paper:#fff; --warm:#f5efe6;
+      --serif-display:'Playfair Display',serif; --serif-body:'Source Serif 4',Georgia,serif;
+      --sans:'Inter',-apple-system,sans-serif; }
+    *{box-sizing:border-box} html,body{background:var(--paper);color:var(--ink);margin:0;padding:0;-webkit-font-smoothing:antialiased}
+    body{font-family:var(--serif-body);font-size:18px;line-height:1.65}
+    .page{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+    .topstrap{font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+      border-bottom:1px solid var(--rule);padding-bottom:14px;margin-bottom:32px;display:flex;justify-content:space-between;align-items:center}
+    .topstrap a{color:var(--muted);text-decoration:none}
+    .topstrap a:hover{color:var(--ink)}
+    h1{font-family:var(--serif-display);font-weight:900;font-size:42px;line-height:1.08;letter-spacing:-.01em;margin:0 0 14px}
+    h2{font-family:var(--serif-display);font-weight:700;font-size:24px;margin:36px 0 12px;line-height:1.25}
+    h3{font-family:var(--sans);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;margin:28px 0 10px;color:var(--muted)}
+    p{margin:0 0 16px}
+    ul,ol{margin:0 0 18px;padding-left:24px} li{margin-bottom:6px}
+    blockquote{border-left:3px solid var(--ink);padding-left:18px;margin:18px 0;font-style:italic;color:#444}
+    code{font-family:'SF Mono',Menlo,monospace;font-size:14px;background:var(--warm);padding:2px 6px;border-radius:2px}
+    pre{background:var(--warm);padding:14px;border-radius:2px;overflow-x:auto;font-size:13px}
+    table{border-collapse:collapse;width:100%;margin:18px 0;font-size:14px}
+    th,td{border:1px solid var(--rule);padding:8px 10px;text-align:left}
+    th{background:var(--warm);font-family:var(--sans);font-weight:700}
+    hr{border:0;border-top:1px solid var(--rule);margin:36px 0}
+    .footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--rule);font-family:var(--sans);font-size:12px;color:var(--muted);line-height:1.6}
+    .pdf-link{display:inline-block;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--ink);border:1px solid var(--ink);padding:6px 12px;text-decoration:none;margin-top:12px}
+    .pdf-link:hover{background:var(--ink);color:var(--paper)}
+    @media print{body{font-size:11pt}.page{padding:0;max-width:100%}.topstrap,.pdf-link{display:none}}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topstrap">
+      <a href="/big-muddy-acres/">← Briefing index</a>
+      <span>April 30, 2026</span>
+    </div>
+    <h1 id="studio-c--business-plan">Studio C — Business Plan</h1>
+<p><em>Drafted 2026-04-29 for the Tracy + Amy partner walkthrough.</em>
+<em>Voice per <code>docs/voice/admin-documentation-voice.md</code>. Lead
+with action. Truth over polish.</em></p>
+<p><strong>Positioning lock (2026-04-29):</strong> Studio C is the
+administrative and implementation vendor that supports MBT (the
+platform). Studio C is <strong>not</strong> "the production arm of
+Tuthill Design LLC" — that framing is retired. Tuthill Design is real
+estate photography only, separate lane. Some older docs
+(<code>docs/voice/studio-c.md</code> line 10,
+<code>apps/web/config/tenants.ts</code> line 63) still carry the old
+framing; those are the cleanup queue, not the source of truth.</p>
+<hr />
+<h2 id="1-what-it-is">1. What it is</h2>
+<p>Provide the human hands behind the Glass Engine — the production,
+build, and ops work that turns MBT platform decisions into shipped
+video, code, content, and event delivery. Studio C is the vendor MBT
+hires to do the work; everyone else in the ecosystem (Big Muddy,
+Bearsville, future clients) gets that work routed through MBT, not
+directly through Studio C.</p>
+<h2 id="2-whats-working-today">2. What's working today</h2>
+<ul>
+<li>Retainer is live. $1,000/month bucket = 20 hours at $50/hr,
+backdated to April 1, 2026. Confirmed with Elijah and Miles 2026-04-20
+PM.</li>
+<li>Existing Utopia account is the proof-of-concept for the engagement
+model. The new MBT relationship runs on the same shape.</li>
+<li>Scan2Plan is now contractually a client of Tuthill Design
+(re-structured 2026-04-20), not Studio C — clean separation already in
+motion.</li>
+<li>Sprinter wrap with Studio C logo shipped April. The brand surface is
+real and visible.</li>
+<li>Counter-seasonal capacity: NY peak May–Oct, Natchez peak Oct–April.
+Studio C can keep both regions covered without seasonal idle.</li>
+<li>Tier-1 Cloudbeds support layer for Big Muddy Inn — planned,
+contracted as part of the retainer scope per Tracy's ask for a human
+support contact.</li>
+</ul>
+<h2 id="3-the-economics">3. The economics</h2>
+<p><strong>Revenue today:</strong></p>
+<ul>
+<li><span
+class="math inline">1, 000/<em>m</em><em>o</em><em>n</em><em>t</em><em>h</em><em>M</em><em>B</em><em>T</em><em>r</em><em>e</em><em>t</em><em>a</em><em>i</em><em>n</em><em>e</em><em>r</em>(</span>12,000/year
+baseline).</li>
+<li>Existing Utopia account at $500/month or equivalent (per
+<code>docs/partner-studios-pitch-2026-04-20.md</code>).</li>
+<li>Overflow billing at $50/hr above the retainer cap.</li>
+</ul>
+<p><strong>Costs we cover:</strong> $0 from the MBT side beyond the
+retainer dollar. Studio C carries its own labor, gear, insurance, and
+overhead.</p>
+<p><strong>12-month targets:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Y1 Plan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MBT retainer</td>
+<td>$12,000 (20 hrs/mo committed)</td>
+</tr>
+<tr>
+<td>MBT overflow</td>
+<td><span class="math inline">6, 000–</span>18,000 (12–36 hrs/mo at
+$50/hr, depends on AEO + Sanity build velocity)</td>
+</tr>
+<tr>
+<td>Inn Cloudbeds support</td>
+<td>$6,000 (5 hrs/mo at $50 + on-call premium)</td>
+</tr>
+<tr>
+<td>Other ecosystem brands billed via MBT</td>
+<td><span class="math inline">0–</span>12,000 (Big Muddy Touring video,
+Magazine layout, Bearsville bridge work)</td>
+</tr>
+<tr>
+<td><strong>Total Y1 from MBT-routed work</strong></td>
+<td><strong><span
+class="math inline">24, 000–</span>48,000</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Honest unknown: overflow volume depends entirely on how fast we ship
+the AEO bundle, the Sanity <code>answerPage</code> schema, and the Patch
+task queue. If the platform stays in spec-mode, the floor holds. If we
+ship aggressively, overflow doubles.</p>
+<h2 id="4-the-customer">4. The customer</h2>
+<p><strong>Customer = MBT.</strong> Single counterparty. Single invoice
+cycle. Single point of contact (Chase as MBT principal, Elijah + Miles
+on the Studio C side).</p>
+<p>The downstream consumers of the work — Big Muddy Inn, Big Muddy
+Touring, Big Muddy Magazine, Bearsville, future clients — are MBT's
+customers, not Studio C's. This matters for billing clarity, for entity
+boundaries, and for partner trust. Tracy and Amy don't manage Elijah or
+Miles; Chase (as MBT) does.</p>
+<h2 id="5-the-12-month-plan">5. The 12-month plan</h2>
+<table>
+<thead>
+<tr>
+<th>Quarter</th>
+<th>Ship</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q2 2026</td>
+<td>Lock the retainer-as-bucket model. Backdated April 1 invoicing.
+First overflow invoice if AEO build runs hot. Sprinter wrap
+maintained.</td>
+</tr>
+<tr>
+<td>Q3 2026</td>
+<td>Cloudbeds Tier-1 support live for Inn. First Bearsville-region
+overflow billed through MBT. Quarterly utilization review with
+Elijah.</td>
+</tr>
+<tr>
+<td>Q4 2026</td>
+<td>Decide retainer rate adjustment for 2027 based on actual 9-month
+utilization. Add a second retainer bucket if any single brand
+consistently consumes &gt;15 hrs/mo.</td>
+</tr>
+<tr>
+<td>Q1 2027</td>
+<td>Annual handshake. Renew or restructure based on Y1 data.</td>
+</tr>
+</tbody>
+</table>
+<p>Saturday meeting context (per WPC tasks): the standing S2PX/Studio C
+cadence on Saturdays is where Elijah, Miles, and Chase reconcile the
+week's hours, queue the next week's work, and surface anything that
+needs the retainer renegotiated. Cos posts the agenda Friday EOD; Chase
+walks it Saturday morning.</p>
+<h2 id="6-what-we-need-to-make-it-happen">6. What we need to make it
+happen</h2>
+<ul>
+<li>One invoice per month from Studio C → MBT, line-itemed by brand or
+project so the cost lands cleanly on the right P&amp;L. (Same shape as
+the Utopia invoice Elijah already runs.)</li>
+<li>Time tracking that matches the bucket. Doesn't have to be fancy — a
+shared spreadsheet works. Pre-classified to brand at log time, not at
+billing time.</li>
+<li>A clear escalation path: overflow over 10 hrs in a week needs a
+quick text to Chase before it gets billed, not a surprise on the
+invoice.</li>
+<li>The S2PX Saturday meeting kept on the calendar, weekly, no skipping.
+That meeting is the relationship.</li>
+<li>Update <code>docs/voice/studio-c.md</code> line 10 and
+<code>apps/web/config/tenants.ts</code> line 63 to remove the
+"production arm of Tuthill Design" framing — already on the cleanup
+queue per the 2026-04-29 audit.</li>
+</ul>
+<h2 id="7-the-risk">7. The risk</h2>
+<p><strong>Biggest risk:</strong> scope creep without bucket discipline.
+If the retainer dollar gets treated as "Studio C is on call for
+anything," the hours blow past 20 inside three weeks and someone is
+upset. The bucket model only works if both sides log against it honestly
+and renegotiate when the number is wrong.</p>
+<p><strong>Second risk:</strong> the Tuthill / Studio C entity question.
+Older docs say Studio C is a DBA of Tuthill Design LLC. The 2026-04-29
+lock says they're separate (Studio C = MBT vendor, Tuthill = real estate
+photo only). If that separation is not formalized in writing with Elijah
++ Miles, the next contract dispute will be about it. <strong>Action:
+confirm the entity structure with the partners in the next Saturday
+meeting.</strong></p>
+<p><strong>Third risk:</strong> Elijah or Miles burns out on a
+brand-volatility quarter. The fix is the bucket — they get paid the same
+$1,000 whether they log 20 hours or 0, which means the retainer is also
+their cushion against our chaos.</p>
+<p><strong>Fourth risk:</strong> geographic split (NY + Natchez) becomes
+coordination overhead. Mitigated by counter-seasonality; if it stops
+being counter-seasonal in any year, revisit the staffing model.</p>
+<h2 id="8-why-it-matters-to-the-ecosystem">8. Why it matters to the
+ecosystem</h2>
+<p>Studio C is the only reason MBT can ship at the speed the platform
+demands without putting that load on Chase, Tracy, or Amy. The retainer
+turns a partnership into a contract — predictable cost, predictable
+capacity, no awkward favors.</p>
+<p>It also closes the loop on a real gap: every other brand in the
+ecosystem (Inn, Touring, Magazine, Bearsville) needs production hands at
+unpredictable moments, and we cannot afford to staff each one. By
+routing all of that demand through MBT → Studio C, we get one vendor
+relationship instead of five, and Studio C gets a steady book instead of
+feast-or-famine.</p>
+<p>The Tuthill separation matters too. Real estate photography is a
+different sales motion, a different client type, a different insurance
+footprint. Keeping Studio C and Tuthill as clean lanes — both partner
+studios, neither subordinate to the other — is what makes the
+partner-amplification thesis work without entity confusion.</p>
+<hr />
+<p><em>Vendor: Studio C (Elijah + Miles). Customer: MBT (Chase as
+principal). Cadence: monthly invoice + weekly Saturday meeting. Floor:
+$1,000/month retainer, backdated April 1, 2026.</em></p>
+
+    <div class="footer">
+      <p>Big Muddy Acres briefing · Confidential — Hillbilly Dreams / Measurably Better Things</p>
+      <p><a class="pdf-link" href="/big-muddy-acres/pdfs/plan-studio-c.pdf">Download PDF</a></p>
+    </div>
+  </div>
+</body>
+</html>

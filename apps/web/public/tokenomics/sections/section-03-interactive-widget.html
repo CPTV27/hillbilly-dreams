@@ -1,0 +1,550 @@
+<!-- Approach 03 · Interactive Widget · By Frontend Specialist -->
+<section class="approach approach-widget" id="approach-widget">
+  <style>
+    #approach-widget {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      background: #0a0a0a;
+      color: #e8e8e8;
+      padding: 48px 24px;
+      box-sizing: border-box;
+    }
+
+    #approach-widget .widget-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    #approach-widget .widget-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 32px;
+    }
+
+    #approach-widget .widget-headline {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #f0f0f0;
+      margin: 0 0 8px;
+    }
+
+    #approach-widget .widget-sub {
+      font-size: 15px;
+      color: #888;
+      margin: 0 0 48px;
+      line-height: 1.6;
+    }
+
+    /* Sliders */
+    #approach-widget .widget-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    #approach-widget .widget-control {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #approach-widget .widget-control-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    #approach-widget .widget-control-label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #ccc;
+      text-transform: uppercase;
+    }
+
+    #approach-widget .widget-control-value {
+      font-size: 13px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: #f0f0f0;
+      min-width: 80px;
+      text-align: right;
+    }
+
+    #approach-widget input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 4px;
+      border-radius: 2px;
+      background: #222;
+      outline: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    #approach-widget input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #f0f0f0;
+      cursor: pointer;
+      transition: transform 0.1s, background 0.2s;
+    }
+
+    #approach-widget input[type="range"]::-webkit-slider-thumb:active {
+      transform: scale(1.2);
+    }
+
+    #approach-widget input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border: none;
+      border-radius: 50%;
+      background: #f0f0f0;
+      cursor: pointer;
+    }
+
+    /* Toggle */
+    #approach-widget .widget-toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #approach-widget .widget-toggle-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    #approach-widget .widget-toggle {
+      position: relative;
+      width: 48px;
+      height: 26px;
+    }
+
+    #approach-widget .widget-toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      position: absolute;
+    }
+
+    #approach-widget .widget-toggle-track {
+      position: absolute;
+      inset: 0;
+      background: #222;
+      border-radius: 13px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    #approach-widget .widget-toggle input:checked + .widget-toggle-track {
+      background: #e85d00;
+    }
+
+    #approach-widget .widget-toggle-track::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #f0f0f0;
+      transition: transform 0.2s;
+    }
+
+    #approach-widget .widget-toggle input:checked + .widget-toggle-track::after {
+      transform: translateX(22px);
+    }
+
+    #approach-widget .widget-toggle-label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #ccc;
+      text-transform: uppercase;
+    }
+
+    #approach-widget .widget-toggle-state {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f0f0f0;
+    }
+
+    /* Meters */
+    #approach-widget .widget-meters {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 480px) {
+      #approach-widget .widget-meters {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    #approach-widget .widget-meter {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #approach-widget .widget-meter-type {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    #approach-widget .widget-meter-cost {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      margin-bottom: 16px;
+      transition: color 0.3s;
+    }
+
+    #approach-widget .widget-meter--software .widget-meter-cost {
+      color: #4ade80;
+    }
+
+    #approach-widget .widget-meter--human .widget-meter-cost {
+      color: #e85d00;
+    }
+
+    #approach-widget .widget-meter-bar-track {
+      height: 6px;
+      background: #1e1e1e;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    #approach-widget .widget-meter-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0%;
+    }
+
+    #approach-widget .widget-meter--software .widget-meter-bar-fill {
+      background: #4ade80;
+    }
+
+    #approach-widget .widget-meter--human .widget-meter-bar-fill {
+      background: #e85d00;
+    }
+
+    #approach-widget .widget-meter-desc {
+      font-size: 11px;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    /* Total */
+    #approach-widget .widget-total {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    #approach-widget .widget-total-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    #approach-widget .widget-total-amount {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      color: #f0f0f0;
+      transition: color 0.3s;
+      line-height: 1;
+    }
+
+    #approach-widget .widget-total-amount.widget-total--spiked {
+      color: #e85d00;
+    }
+
+    #approach-widget .widget-note {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #444;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* Slider track fill via CSS custom property */
+    #approach-widget input[type="range"] {
+      --pct: 0%;
+      background: linear-gradient(
+        to right,
+        #f0f0f0 0%,
+        #f0f0f0 var(--pct),
+        #222 var(--pct),
+        #222 100%
+      );
+    }
+  </style>
+
+  <div class="widget-inner">
+    <p class="widget-label">Approach 03 &middot; Interactive Widget &middot; By Frontend Specialist</p>
+
+    <h2 class="widget-headline">Move the sliders. See what an answer costs.</h2>
+    <p class="widget-sub">Most chats stay in software-token range. Hard problems pull in humans. The meter shows you both.</p>
+
+    <div class="widget-controls">
+
+      <!-- Complexity slider -->
+      <div class="widget-control">
+        <div class="widget-control-header">
+          <span class="widget-control-label">Question Complexity</span>
+          <span class="widget-control-value" id="widget-complexity-val">5 / 10</span>
+        </div>
+        <input
+          type="range"
+          id="widget-complexity"
+          min="1"
+          max="10"
+          value="5"
+          step="1"
+          aria-label="Question complexity from 1 to 10"
+        />
+      </div>
+
+      <!-- Human toggle -->
+      <div class="widget-control">
+        <div class="widget-toggle-row">
+          <div class="widget-toggle-wrap">
+            <label class="widget-toggle" for="widget-human-toggle">
+              <input type="checkbox" id="widget-human-toggle" aria-label="Need a human escalation" />
+              <span class="widget-toggle-track" aria-hidden="true"></span>
+            </label>
+            <span class="widget-toggle-label">Escalate to Human?</span>
+          </div>
+          <span class="widget-toggle-state" id="widget-human-state">No</span>
+        </div>
+      </div>
+
+      <!-- Time slider (only active when human is on) -->
+      <div class="widget-control" id="widget-time-control" aria-hidden="false">
+        <div class="widget-control-header">
+          <span class="widget-control-label">Human Time</span>
+          <span class="widget-control-value" id="widget-time-val">5 min</span>
+        </div>
+        <input
+          type="range"
+          id="widget-time"
+          min="1"
+          max="30"
+          value="5"
+          step="1"
+          aria-label="Human time in minutes from 1 to 30"
+        />
+      </div>
+
+    </div>
+
+    <!-- Meters -->
+    <div class="widget-meters">
+
+      <div class="widget-meter widget-meter--software">
+        <div class="widget-meter-type">Software Tokens</div>
+        <div class="widget-meter-cost" id="widget-sw-cost">$0.05</div>
+        <div class="widget-meter-bar-track">
+          <div class="widget-meter-bar-fill" id="widget-sw-bar"></div>
+        </div>
+        <div class="widget-meter-desc" id="widget-sw-desc">~500 tokens &middot; $0.0001 / token</div>
+      </div>
+
+      <div class="widget-meter widget-meter--human">
+        <div class="widget-meter-type">Human Tokens</div>
+        <div class="widget-meter-cost" id="widget-hu-cost">$0.00</div>
+        <div class="widget-meter-bar-track">
+          <div class="widget-meter-bar-fill" id="widget-hu-bar"></div>
+        </div>
+        <div class="widget-meter-desc" id="widget-hu-desc">No escalation &middot; $5.00 / min</div>
+      </div>
+
+    </div>
+
+    <!-- Total -->
+    <div class="widget-total">
+      <span class="widget-total-label">Total cost this answer</span>
+      <span class="widget-total-amount" id="widget-total">$0.05</span>
+    </div>
+
+    <p class="widget-note">Illustrative rates. Software: ~$0.0001/token. Human: ~$5.00/min Studio C team time.</p>
+  </div>
+
+  <script>
+    (function () {
+      // --- Config ---
+      var SW_TOKEN_COST = 0.0001;   // per token
+      var HU_MIN_COST   = 5.00;    // per human minute
+
+      // Complexity multipliers: complexity 1 → ~100 tokens, 10 → ~5000 tokens
+      function tokensFromComplexity(c) {
+        return Math.round(100 * Math.pow(c, 1.8));
+      }
+
+      // --- Element refs ---
+      var complexitySlider = document.getElementById("widget-complexity");
+      var complexityVal    = document.getElementById("widget-complexity-val");
+      var humanToggle      = document.getElementById("widget-human-toggle");
+      var humanState       = document.getElementById("widget-human-state");
+      var timeControl      = document.getElementById("widget-time-control");
+      var timeSlider       = document.getElementById("widget-time");
+      var timeVal          = document.getElementById("widget-time-val");
+
+      var swCost  = document.getElementById("widget-sw-cost");
+      var swBar   = document.getElementById("widget-sw-bar");
+      var swDesc  = document.getElementById("widget-sw-desc");
+      var huCost  = document.getElementById("widget-hu-cost");
+      var huBar   = document.getElementById("widget-hu-bar");
+      var huDesc  = document.getElementById("widget-hu-desc");
+      var total   = document.getElementById("widget-total");
+
+      // --- Formatting ---
+      function fmt(n) {
+        if (n < 0.01) return "$0.00";
+        if (n < 1)    return "$" + n.toFixed(2);
+        if (n < 100)  return "$" + n.toFixed(2);
+        return "$" + n.toFixed(0);
+      }
+
+      function fmtTokens(n) {
+        if (n >= 1000) return (n / 1000).toFixed(1) + "k tokens";
+        return n + " tokens";
+      }
+
+      // --- Animated counter ---
+      var animHandles = {};
+      function animateTo(el, targetNum, isTotal) {
+        var key = el.id;
+        if (animHandles[key]) cancelAnimationFrame(animHandles[key]);
+
+        var startText = el.textContent.replace(/[^0-9.]/g, "");
+        var from = parseFloat(startText) || 0;
+        var to   = targetNum;
+        if (Math.abs(from - to) < 0.001) { el.textContent = fmt(to); return; }
+
+        var startTime = null;
+        var duration  = 320;
+
+        function step(ts) {
+          if (!startTime) startTime = ts;
+          var progress = Math.min((ts - startTime) / duration, 1);
+          var ease = 1 - Math.pow(1 - progress, 3);
+          var current = from + (to - from) * ease;
+          el.textContent = fmt(current);
+          if (progress < 1) {
+            animHandles[key] = requestAnimationFrame(step);
+          } else {
+            el.textContent = fmt(to);
+          }
+        }
+
+        animHandles[key] = requestAnimationFrame(step);
+      }
+
+      // --- Slider track fill ---
+      function updateTrack(input) {
+        var min = parseFloat(input.min);
+        var max = parseFloat(input.max);
+        var val = parseFloat(input.value);
+        var pct = ((val - min) / (max - min) * 100).toFixed(1) + "%";
+        input.style.setProperty("--pct", pct);
+      }
+
+      // --- Compute & render ---
+      function render() {
+        var complexity   = parseInt(complexitySlider.value, 10);
+        var needsHuman   = humanToggle.checked;
+        var minutes      = parseInt(timeSlider.value, 10);
+
+        // Update display values
+        complexityVal.textContent = complexity + " / 10";
+        humanState.textContent    = needsHuman ? "Yes" : "No";
+        timeVal.textContent       = minutes + " min";
+
+        // Time control opacity
+        timeControl.style.opacity    = needsHuman ? "1" : "0.35";
+        timeControl.style.pointerEvents = needsHuman ? "auto" : "none";
+
+        // Software cost
+        var tokens   = tokensFromComplexity(complexity);
+        var swAmount = tokens * SW_TOKEN_COST;
+
+        // Human cost
+        var huAmount = needsHuman ? minutes * HU_MIN_COST : 0;
+
+        // Total
+        var totalAmount = swAmount + huAmount;
+
+        // Software bar: max out at $1 for visual purposes (complexity 10 = ~$0.45)
+        var swPct = Math.min((swAmount / 0.50) * 100, 100);
+        swBar.style.width = swPct + "%";
+
+        // Human bar: max out at $150 ($30/min * 30 min... wait, $5 * 30 = $150)
+        var huPct = needsHuman ? Math.min((huAmount / 150) * 100, 100) : 0;
+        huBar.style.width = huPct + "%";
+
+        // Text
+        swDesc.textContent = fmtTokens(tokens) + " · $0.0001 / token";
+        huDesc.textContent = needsHuman
+          ? minutes + " min · $5.00 / min"
+          : "No escalation · $5.00 / min";
+
+        // Animate numbers
+        animateTo(swCost, swAmount);
+        animateTo(huCost, huAmount);
+        animateTo(total,  totalAmount);
+
+        // Total color spike
+        if (needsHuman) {
+          total.classList.add("widget-total--spiked");
+        } else {
+          total.classList.remove("widget-total--spiked");
+        }
+
+        // Update slider tracks
+        updateTrack(complexitySlider);
+        updateTrack(timeSlider);
+      }
+
+      // --- Event listeners ---
+      complexitySlider.addEventListener("input", render);
+      humanToggle.addEventListener("change", render);
+      timeSlider.addEventListener("input", render);
+
+      // --- Init ---
+      render();
+    })();
+  </script>
+</section>

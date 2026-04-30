@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Big Muddy Acres — Briefing for Tracy + Amy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --rule: #d8d8d8;
+      --muted: #6a6a6a;
+      --paper: #ffffff;
+      --serif-display: 'Playfair Display', 'Times New Roman', Times, serif;
+      --serif-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      background: var(--paper);
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: var(--serif-body);
+      font-size: 19px;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 64px 28px 96px;
+    }
+
+    .backlink {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 28px;
+    }
+
+    .backlink:hover { color: var(--ink); }
+
+    .topstrap {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 14px;
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .topstrap .section { font-weight: 700; color: var(--ink); }
+    .topstrap .date { font-weight: 400; }
+
+    h1.headline {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 1.04;
+      letter-spacing: -0.015em;
+      margin: 0 0 18px;
+      color: var(--ink);
+    }
+
+    .dek {
+      font-family: var(--serif-body);
+      font-style: italic;
+      font-size: 22px;
+      line-height: 1.45;
+      color: #2a2a2a;
+      margin: 0 0 32px;
+      font-weight: 400;
+    }
+
+    .byline {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .byline .author { color: var(--ink); font-weight: 700; }
+
+    .dateline {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    article p {
+      margin: 0 0 22px;
+    }
+
+    article p:first-of-type::first-letter {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 78px;
+      line-height: 0.82;
+      float: left;
+      padding: 8px 12px 0 0;
+      color: var(--ink);
+    }
+
+    .divider {
+      text-align: center;
+      letter-spacing: 0.6em;
+      color: var(--muted);
+      margin: 28px 0 28px;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    .pullquote {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-style: italic;
+      font-size: 26px;
+      line-height: 1.3;
+      color: var(--ink);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 22px 0;
+      margin: 32px 0;
+      text-align: left;
+    }
+
+    figure.full {
+      margin: 40px -80px;
+    }
+
+    figure.full img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    figure.full figcaption {
+      font-family: var(--sans);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+      padding: 12px 80px 0;
+    }
+
+    figure.full figcaption .attribution {
+      font-style: normal;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 4px;
+      color: #909090;
+    }
+
+    .ledger {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.5;
+      background: #f6f4ef;
+      border-left: 3px solid var(--ink);
+      padding: 18px 22px;
+      margin: 28px 0;
+    }
+
+    .ledger .label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .ledger ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+
+    .ledger li {
+      margin-bottom: 4px;
+    }
+
+    a.inline {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 3px;
+    }
+
+    a.inline:hover { text-decoration-color: var(--ink); }
+
+    .credit {
+      font-family: var(--sans);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 56px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      line-height: 1.55;
+    }
+
+    .footer-actions {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 40px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-actions a {
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+    }
+
+    .footer-actions a:hover { color: var(--muted); border-bottom-color: var(--muted); }
+
+    @media (max-width: 880px) {
+      figure.full { margin: 36px 0; }
+      figure.full figcaption { padding: 12px 0 0; }
+    }
+
+    @media (max-width: 540px) {
+      .page { padding: 36px 20px 64px; }
+      h1.headline { font-size: 38px; }
+      .dek { font-size: 18px; }
+      body { font-size: 17px; }
+      article p:first-of-type::first-letter { font-size: 60px; }
+      .pullquote { font-size: 21px; }
+      .ledger { padding: 14px 16px; }
+    }
+
+    @media print {
+      body { font-size: 12pt; }
+      .page { padding: 0; max-width: 100%; }
+      figure.full { margin: 24px 0; page-break-inside: avoid; }
+      .pullquote { page-break-inside: avoid; }
+      .backlink, .footer-actions { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="/big-muddy-acres/" class="backlink">← Big Muddy Acres index</a>
+
+    <div class="topstrap">
+      <span class="section">Big Muddy Acres · Briefing for Tracy + Amy</span>
+      <span class="date">April 30, 2026</span>
+    </div>
+
+    <h1 class="headline">Big Muddy Acres</h1>
+
+    <p class="dek">A rockstar retirement community on Mississippi land that doesn't freeze — fifty RV pads paying the bills, a pull barn full of instruments, and a ten-year plan to make the rest of the property look like the kind of place we already know how to run.</p>
+
+    <div class="byline">By <span class="author">Chase Pierson</span></div>
+    <div class="dateline">Adams County, Mississippi</div>
+
+    <article>
+      <p>The whole story is this. Most people who spent a lifetime making music end up with a stack of records, a folder of clippings, a bad knee, and a rented apartment. The trade was good — the work was good — but the trade didn't include a porch. Big Muddy Acres is the porch. It is a piece of Mississippi land we put under one ownership entity, with RV sites paying the mortgage from year one, a pull barn that doubles as a recording studio and a Friday-night room, and a slow build-out of small homes for the people we'd actually want to live next to. The whole thing sits inside the ecosystem we already run — Inn, Touring, Magazine, Records — so we are not standing up a separate business. We are turning the field next door into the part of the business that owns the field.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>The land is in Adams County, outside the Natchez city limit. We are not naming the parcel here because the option is still moving. What matters is the climate. Mississippi does not hard-freeze. That is not a flourish — it is an engineering line item. You trench utilities at twelve to eighteen inches instead of thirty-six. You skip the heat-tape, the freeze-proof spigots, the protected pump house. You run greywater year-round. The civils on a fifty-site park come in fifteen to twenty percent under the same build in a place with a real winter. You spec for hurricane wind and respect clay soil, but Adams County is far enough inland that the wind zone is moderate, and clay is exactly the soil a wastewater lagoon wants underneath it. The county declines IRC enforcement outside the city limit — one state health department review on the septic plan instead of a long municipal back-and-forth. The land doesn't stop you. That is most of why it is the right land.</p>
+
+      <div class="divider">• • •</div>
+
+      <figure class="full">
+        <img src="/big-muddy-acres/renderings/bma-pull-barn-exterior-wide-01.png" alt="The Mechanical Bull Pull Barn at Big Muddy Acres, exterior wide shot at golden hour" />
+        <figcaption>The Mechanical Bull Pull Barn, designed to read as a working agricultural building from the road and a small recording compound from the inside.<span class="attribution">Architectural rendering · Big Muddy</span></figcaption>
+      </figure>
+
+      <p>The center of the property is a building we are calling the Mechanical Bull Pull Barn. From the road it looks like what it is: a pole barn, peaked metal roof, a long covered porch on the south face, two roll-up doors big enough to back a truck through. Inside, the barn does three jobs. The main span is a tracking room — control desk on the back wall, vocal booth in the corner, mic lines run to a live area we can reset between a five-piece band and a single songwriter at a piano. The east end is a kitchen and a long communal table, because every room people keep coming back to has a table in it. The west end is a workshop with a roll-around bench and the kind of mid-grade tools you don't have to be precious about. Friday nights the live area becomes the show. One building doing the work of three. That is the only way the math works for a property this size.</p>
+
+      <figure class="full">
+        <img src="/big-muddy-acres/renderings/bma-pull-barn-interior-mixing-03.png" alt="Interior of the Pull Barn showing the mixing console, instruments, and live tracking area" />
+        <figcaption>The interior — console, monitors, a Hammond on the back wall, a kitchen visible through the doorway. We are spec'ing for a single 40-foot container conversion as the iso booth and a small tracking room add-on in year two.<span class="attribution">Architectural rendering · Big Muddy</span></figcaption>
+      </figure>
+
+      <figure class="full">
+        <img src="/big-muddy-acres/renderings/bma-pull-barn-exterior-entry-02.png" alt="Pull Barn entry at dusk, lights warming up under the porch overhang" />
+        <figcaption>Entry at dusk. The porch lights come up about a half hour before the show — bands load in through the roll-up door on the east end while the audience comes in around the side.<span class="attribution">Architectural rendering · Big Muddy</span></figcaption>
+      </figure>
+
+      <p>Three groups of people live and pass through Big Muddy Acres. The residents — working musicians, engineers, studio cats, road managers we already know, people who spent thirty or forty years building catalog and never bought a house. The RV community — full-timers and seasonal travelers who park for a month or six at the monthly rate, plug into the network, sit in on a session if they want, ignore us if they don't. The visitors — bands routed through Natchez on the touring circuit, friends of friends, the people who come for a Friday show and stay through Sunday breakfast. The whole place is built so those three groups overlap without crowding each other.</p>
+
+      <div class="pullquote">"Most of the people I know who actually made records never owned the room they made them in. Big Muddy Acres is the room, and a piece of land underneath it, and a porch on the front."</div>
+
+      <div class="divider">• • •</div>
+
+      <p>The cash flow engine is fifty RV sites at $500 a month. Those numbers are not aspirational — they are the median for a serviced monthly site in our region with full hookups, internet, bathhouse and laundry. Fifty sites at $500 is $25,000 a month gross, $300,000 a year at full occupancy. Capital cost per site, fully amortized including the shared infrastructure, lands between $18,000 and $32,000 — that is the eco-tech research band, and it is honest. The high end assumes we run the lagoon, the shared solar, smart submetering, the Cloudbeds extension, the modular bathhouse, and the full mesh wifi build. Payback on the RV-allocable portion at full occupancy is three and a half to five years. That is the part of the business that funds everything else.</p>
+
+      <figure class="full">
+        <img src="/big-muddy-acres/renderings/bma-aerial-site-04.png" alt="Aerial site plan rendering of Big Muddy Acres showing RV pads, the pull barn, tiny home cluster, and the property layout" />
+        <figcaption>The site plan in rough — RV pads along the north loop, the Pull Barn at center, the tiny home cluster on the south rise, the lagoon and bathhouse tucked behind the tree line. Acreage and layout will move once the survey lands.<span class="attribution">Architectural rendering · Big Muddy</span></figcaption>
+      </figure>
+
+      <p>The build-out comes after the RV cash flow is real. Phase two is the cluster of small homes — a mix of park-model RVs, tiny houses on wheels, and a few proper ADUs on permanent foundations. Pad and utilities runs $45,000 to $85,000 per home. The home itself, depending on whether it is a $40,000 park model or a $200,000 fully built ADU, lands the all-in number at $90,000 to $200,000 per resident structure. The cooperative housing piece — how residents come into the project — is the question we still have to answer in writing. The Hollow sketches one version: the Mississippi LLC owns the land and buildings, the founding circle joins by trading what they have for what they don't, the rest come in as renters with access to shared facilities and no equity in the land. We don't have to settle that this week. We have to settle it before any resident moves in.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>None of this lives in a vacuum. Touring already routes bands through Natchez. The Inn already takes overflow guests. The Magazine already covers the artists who would be the residents. The Records label already releases music made in the kind of room the Pull Barn is going to be. What becomes possible when the Acres exist is a circuit — a band gets booked through Touring, plays the Friday show at the Pull Barn, sleeps in the Inn or the visiting-player cottage, records demos Saturday and Sunday, leaves a track on the Records schedule, and the Magazine has the story written before they pull out Monday morning. We do not need to invent a single new business to make that happen. We need to build the room.</p>
+
+      <p>Outside the property, the network extends to the venues and studios up and down the Blues Highway we have been quietly mapping. Natchez is the anchor. Greenville, Cleveland, Clarksdale, Memphis on one end. Baton Rouge, Lafayette, New Orleans on the other. The performance circuit does not require us to own those rooms — it requires us to be the booking and routing partner bands trust to put together a real run. The Acres is the home base. The circuit is the network.</p>
+
+      <div class="divider">• • •</div>
+
+      <figure class="full">
+        <img src="/big-muddy-acres/renderings/bma-pull-barn-kitchen-05.png" alt="Pull Barn kitchen interior with long communal table" />
+        <figcaption>The kitchen at the east end of the Pull Barn — designed for thirty seats at the long table, scalable to a hundred on the porch when the show ends.<span class="attribution">Architectural rendering · Big Muddy</span></figcaption>
+      </figure>
+
+      <p>The economics behind any of this are what we have been calling, in the editorial, the Outsider Economy. Most of the touring artists we work with do not live on streaming pennies — they live on a trade. The gig pays a fee, the gig comes with a meal and a place to sleep, the engineer takes a backline credit instead of a check, the photographer trades the shoot for a print run. The whole circuit runs on goods-and-services exchanges the conventional music industry does not measure and the IRS does not have a category for. Big Muddy Acres is built for that economy. Residents pay in trade as much as cash. Visiting bands swap a session for a porch night. We have been writing about this for the past eighteen months at <a href="https://outsidereconomics.com" class="inline">outsidereconomics.com</a> — the Acres is the physical version of the editorial thesis.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>The numbers, summarized. Phase one capital, all-in for fifty RV sites, the Pull Barn, the lagoon, the bathhouse, shared solar, mesh wifi, four glamping platforms, and soft costs, lands in the $950,000 to $1.6 million band. The lower end is the build with most of the site work in-house and solar staged into years two and three. The upper end is fully hired-out, built to spec from day one. Gross revenue at full occupancy on the RV side alone is $300,000 a year. Glamping, studio bookings, and Friday show ticketing push the year-three top line higher — but this briefing only counts contracted monthly RV income, because that is the part we can sign before we close.</p>
+
+      <p>The ecosystem forecast shows Big Muddy Acres at zero contribution in year one. Year one is the build year. The first dollar arrives in year two, conservatively Q4 2026 if site work starts now. Year two contribution at twenty to thirty live RV sites, ramping through the year, lands in the $120,000 to $180,000 band. Year three at full occupancy is the $300,000 number. None of this assumes the studio or the shows are paying their own freight yet. Those are upside.</p>
+
+      <div class="divider">• • •</div>
+
+      <figure class="full">
+        <img src="/big-muddy-acres/renderings/bma-property-vista-porch-06.png" alt="View from the porch across the property at golden hour" />
+        <figcaption>The view from the south porch at the end of a working day. Most of what makes a place worth coming back to is not a thing we will build — it is a thing we will leave alone.<span class="attribution">Architectural rendering · Big Muddy</span></figcaption>
+      </figure>
+
+      <p>The partners. Chase runs the build, the brand, the studio side. Tracy runs finance and entity work, same as the Inn — Big Muddy Acres sits inside the MBT structure, with the cooperative housing piece handled by a separate Mississippi LLC nested underneath. Amy runs the hospitality operation when the visitor side comes online — front of house, the Friday night show flow, the kitchen at the long table, the same instincts that make the Inn run. JP's role is shows and programming, deal pending. Elijah and Miles are the Studio C admin vendor on the MBT platform side — not on the BMA cap table, but the recording-side ops go through them.</p>
+
+      <p>The customers. The first cohort is the easiest to underwrite — the full-time RV community is national, online, and starved for monthly sites with internet and a working community. The second is the Mississippi corridor musicians who already pass through Natchez on the routes we book. The third is the retirement-age creative — people who finished a long career in a city, don't want a Florida condo, and would rather rent a small home next to a working studio than a townhouse next to a strip mall. The named prospects get filled in by hand on the working draft. They are real people. They are why we are doing this.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>The path. Year one is site work and Phase one cap-ex — clearing, the lagoon permit, the well, the bathhouse, the Pull Barn shell, the first eight to ten RV pads. Year two is the rest of the RV pads, the studio fit-out, the first two glamping platforms, and the first paying residents. Year three is the small-home cluster, the second bathhouse, the expanded studio, and the network expansion to the second BMA-style property — the Catskills sister site, the same two-property follow-the-sun model we sketched in the Hollow draft. None of those years has to hit on schedule. All of them have to hit in order.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>What "doing nothing" looks like is the version we can start without writing the big check. Clear five acres. Pour eight to ten RV pads with permeable paving over a compacted base — the cheapest pad in the eco research, the one that solves the Mississippi clay drainage and load problems in the same product. Run a single utility drop from the road, trench at twelve inches because we are in Mississippi, set up eight pedestals and a manifold for water and sewer. Build a simple bathhouse — two unisex full baths and a laundry, off a Conestoga prefab or equivalent. Plumb to a starter septic we upsize to the lagoon when we add the rest of the sites. Starlink Business Priority on the bathhouse roof. Total capital, generous, lands in the $180,000 to $260,000 band. Eight sites at $500 is $4,000 a month gross. It does not pay for itself in year one. It puts us in the ground. It gets the entity, the permits, the soil reports, the relationship with Adams County health, the operational pattern. Everything else is incremental.</p>
+
+      <div class="ledger">
+        <div class="label">Minimum-viable activation — what we can start now</div>
+        <ul>
+          <li>Clear and grade five acres (~$25,000–$45,000)</li>
+          <li>Eight to ten permeable RV pads (~$20,000–$35,000)</li>
+          <li>Power, water, sewer trunk + eight pedestals (~$60,000–$90,000)</li>
+          <li>Modular bathhouse + laundry (~$45,000–$65,000)</li>
+          <li>Starter septic, sized for upgrade (~$25,000–$35,000)</li>
+          <li>Starlink Business + a simple gate (~$5,000)</li>
+          <li><strong>All-in: $180,000–$275,000.</strong> Revenue of ~$4,000/mo gross at full occupancy of phase zero.</li>
+        </ul>
+      </div>
+
+      <div class="divider">• • •</div>
+
+      <p>The ask is not a check. The ask is a sign-off — confirmation that Big Muddy Acres is the next big-picture move for the ecosystem after the Inn is stable and Touring is contributing real revenue. We are not asking to break ground this quarter. We are asking permission to spend the next sixty days running the option on the parcel, getting soil reports, getting an engineering quote on the lagoon, and putting a real budget against the minimum-viable activation. Each of us commits something. Chase commits the architectural and brand work, the MBT platform integration, the studio fit-out spec. Tracy commits the entity formation, the cooperative LLC structure, the financing strategy. Amy commits the hospitality playbook, the visitor-side ops design, the kitchen plan. JP, when the deal is final, commits the show calendar and the touring routing into the Friday night room. Nobody commits a dollar this week. Everybody commits a yes.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>The honest version of why this is the right next move is short. We already run an Inn. We already run a touring company. We already publish a magazine and a small label. We already work with the people who would live on this land. What we do not have is a piece of ground we own outright, engineered for the community we have spent five years writing about. Big Muddy Acres is that piece of ground. It is not guaranteed. It is not on a schedule that can't slip. It is the version of the next ten years I want to spend the next ten years on.</p>
+
+      <p>Read it through. Mark it up. Bring it to breakfast Friday and we'll work through what you each want to commit to and what you want me to take off the page. The numbers will move. The land will get its name. The plan, in shape, is what we are signing off on this week.</p>
+
+      <p class="credit">All cap-ex bands and infrastructure costs in this briefing pull from the eco-tech research dated April 29, 2026, on file at /docs/research/big-muddy-acres-eco-tech-infrastructure-2026-04-29.md. The forecast tie-in pulls from the 12-month ecosystem model dated the same week. Renderings are architectural studies for the team conversation — not final design.</p>
+
+      <div class="footer-actions">
+        <a href="/big-muddy-acres/pdfs/big-muddy-acres.pdf">Download PDF</a>
+        <a href="/big-muddy-acres/">Back to index</a>
+        <a href="/big-muddy-acres/forecast.html">12-month forecast</a>
+      </div>
+    </article>
+  </div>
+</body>
+</html>

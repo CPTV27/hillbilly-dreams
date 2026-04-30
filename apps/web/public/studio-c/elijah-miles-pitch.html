@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>The Plan — For Elijah and Miles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --rule: #d8d8d8;
+      --muted: #6a6a6a;
+      --paper: #ffffff;
+      --highlight: #f6f4ef;
+      --accent: #121212;
+      --serif-display: 'Playfair Display', 'Times New Roman', Times, serif;
+      --serif-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      background: var(--paper);
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: var(--serif-body);
+      font-size: 19px;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 28px 96px;
+    }
+
+    .topstrap {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 14px;
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .topstrap .section { font-weight: 700; color: var(--ink); }
+    .topstrap .date { font-weight: 400; }
+
+    h1.headline {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 1.04;
+      letter-spacing: -0.015em;
+      margin: 0 0 18px;
+      color: var(--ink);
+    }
+
+    .dek {
+      font-family: var(--serif-body);
+      font-style: italic;
+      font-size: 22px;
+      line-height: 1.45;
+      color: #2a2a2a;
+      margin: 0 0 32px;
+      font-weight: 400;
+    }
+
+    .byline {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .byline .author { color: var(--ink); font-weight: 700; }
+
+    .dateline {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    article p { margin: 0 0 22px; }
+
+    article p:first-of-type::first-letter {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 78px;
+      line-height: 0.82;
+      float: left;
+      padding: 8px 12px 0 0;
+      color: var(--ink);
+    }
+
+    h2.section-head {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 1.2;
+      letter-spacing: -0.005em;
+      margin: 44px 0 14px;
+      color: var(--ink);
+    }
+
+    h3.sub-head {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin: 28px 0 10px;
+    }
+
+    .divider {
+      text-align: center;
+      letter-spacing: 0.6em;
+      color: var(--muted);
+      margin: 28px 0 28px;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    .pullquote {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-style: italic;
+      font-size: 26px;
+      line-height: 1.3;
+      color: var(--ink);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 22px 0;
+      margin: 32px 0;
+      text-align: left;
+    }
+
+    .ledger {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.55;
+      background: var(--highlight);
+      border-left: 3px solid var(--ink);
+      padding: 18px 22px;
+      margin: 28px 0;
+    }
+
+    .ledger .label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .ledger ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+
+    .ledger li { margin-bottom: 6px; }
+
+    .role-card {
+      border: 1px solid var(--rule);
+      padding: 24px 26px;
+      margin: 18px 0;
+      background: var(--paper);
+    }
+
+    .role-card .role-title {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 26px;
+      line-height: 1.15;
+      margin: 0 0 4px;
+      color: var(--ink);
+    }
+
+    .role-card .role-tagline {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .role-card p { margin: 0 0 12px; font-size: 17px; line-height: 1.55; }
+    .role-card p:last-child { margin-bottom: 0; }
+
+    a.inline {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 3px;
+    }
+
+    a.inline:hover { text-decoration-color: var(--ink); }
+
+    /* Pricing / math table */
+    .pricing-wrap {
+      margin: 24px 0 32px;
+      overflow-x: auto;
+    }
+
+    table.pricing {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    table.pricing thead th {
+      text-align: left;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--ink);
+      vertical-align: bottom;
+    }
+
+    table.pricing tbody td {
+      padding: 12px 12px;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+
+    table.pricing tbody tr.target {
+      background: var(--highlight);
+    }
+
+    table.pricing tbody tr.target td {
+      border-bottom: 1px solid #c9c2af;
+    }
+
+    table.pricing .tier {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--ink);
+    }
+
+    table.pricing .price {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    table.pricing .target-tag {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 3px 8px;
+      margin-left: 6px;
+      border-radius: 2px;
+      vertical-align: middle;
+      font-weight: 700;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 28px;
+    }
+
+    .checklist li {
+      padding: 12px 0 12px 32px;
+      position: relative;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--serif-body);
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+
+    .checklist li::before {
+      content: "□";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .vendor-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0;
+      margin: 18px 0 28px;
+      border-top: 1px solid var(--rule);
+      border-left: 1px solid var(--rule);
+    }
+
+    .vendor-grid .cat {
+      font-family: var(--sans);
+      font-size: 13px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--rule);
+      border-right: 1px solid var(--rule);
+      background: var(--paper);
+    }
+
+    .vendor-grid .cat strong {
+      display: block;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .vendor-grid .cat span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .credit {
+      font-family: var(--sans);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 56px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      line-height: 1.55;
+    }
+
+    .footer-meta {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 36px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      line-height: 1.7;
+    }
+
+    .footer-meta .label {
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 10px;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .footer-meta .block { margin-bottom: 16px; }
+
+    .stamp {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--rule);
+      padding: 6px 10px;
+      display: inline-block;
+      margin-top: 6px;
+    }
+
+    @media (max-width: 540px) {
+      .page { padding: 36px 20px 64px; }
+      h1.headline { font-size: 38px; }
+      .dek { font-size: 18px; }
+      h2.section-head { font-size: 24px; }
+      body { font-size: 17px; }
+      article p:first-of-type::first-letter { font-size: 60px; }
+      .pullquote { font-size: 21px; }
+      .vendor-grid { grid-template-columns: 1fr; }
+      .role-card .role-title { font-size: 22px; }
+      table.pricing { font-size: 12px; }
+      table.pricing thead th, table.pricing tbody td { padding: 10px 8px; }
+      table.pricing .tier, table.pricing .price { font-size: 14px; }
+    }
+
+    @media print {
+      body { font-size: 11pt; }
+      .page { padding: 0; max-width: 100%; }
+      .pullquote, .ledger, table.pricing, .role-card { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topstrap">
+      <span class="section">Studio C · Internal Plan · Confidential</span>
+      <span class="date">April 30, 2026</span>
+    </div>
+
+    <h1 class="headline">The Plan</h1>
+
+    <p class="dek">For Elijah and Miles. Here is what we are selling, how we are going to do it, what your jobs are, and what we need to ship Monday. We are not pitching anymore. We are running.</p>
+
+    <div class="byline">From <span class="author">Chase</span> · To Elijah and Miles</div>
+    <div class="dateline">Natchez, Mississippi</div>
+
+    <article>
+      <p>We have spent six months building the pieces. The chat works. The router works. The agents work. The Inn proves it works on a real business. The infrastructure is in. What we have not done is sell it. Starting now, we sell it. The two of you are the operating company behind the product. I am behind the marketing, the strategy, and the keys to the platform. Tracy is behind the books and the Inn. We have everything we need to put this in front of customers. The plan below is what each of us does next.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">What we are selling</h2>
+
+      <p>Measurably Better Things is a chatbot-first hybrid SaaS plus service. Customer signs up, we ingest their data, they get a chat that knows their business, and behind that chat is us. Software answers what software can answer. When it cannot, the request escalates to a human on our team. Same chat, two meters: software tokens for the AI work, human tokens for our work, billed at a much higher rate because that is where the real value is.</p>
+
+      <p>Six tiers. Free for the funnel, $20 Standard for the people who would otherwise buy ChatGPT, $100 Service as the target sell, $200 Operator and $500 Business above that, Enterprise as custom. The $100 tier is the one we push. It is the only consumer-priced AI product on the market that includes thirty minutes of human help every month. Nobody else offers that. The whole pricing model is built around the gap.</p>
+
+      <h2 class="section-head">Why now</h2>
+
+      <p>The trend is called Inverted Intelligence. As AI gets cheaper and better at the cognitive work, the value of human work inverts: showing up, holding accountability, making the judgment call, picking up the phone — those become the premium layer. Most software companies are still pricing humans at $50 to $200 an hour and software at $20 a month. They have it backward. We priced for the inverted regime first. Software cheap, humans expensive, same chat surface for both. The marketing window is now: be the people who name the trend, not the people who explain it three years later.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">Your roles</h2>
+
+      <div class="role-card">
+        <p class="role-title">Elijah — Chief of Staff</p>
+        <p class="role-tagline">New role. Operations and the network behind the chat.</p>
+        <p>You own the day-to-day of the operating company. When an escalation hits the chat, you are the person who routes it — to Miles, to a vendor, to me, to whoever is right. You decide. You log the time so the human-token billing is honest. You handle vendor coordination, hiring the outside resources roster, and the operational decisions that need to happen while I am in motion between Natchez and Woodstock and the next thing.</p>
+        <p>The first work is building the roster — the network of vetted outside resources we route customer asks to. We cannot make the "we do the rest" promise without it. More on that below.</p>
+      </div>
+
+      <div class="role-card">
+        <p class="role-title">Miles — Production</p>
+        <p class="role-tagline">The deliverables side. The hands on the wheel.</p>
+        <p>You own what gets made. Whatever the customer asks for that requires a human producing something — a video edit, a deck, a written piece, a dashboard, a working setup — you either make it or route it to someone who does. You are the person we point to when a customer says "did the thing actually happen." It happened because Miles either did it or signed off on whoever did.</p>
+        <p>Reps over polish for the first ten deliverables. We learn the shape of what customers ask for, and we standardize from there. The first five customers will teach us more than six months of planning would.</p>
+      </div>
+
+      <div class="pullquote">"Software answers cost software-token rates. Human answers cost human-token rates. The customer sees both meters. We see both meters. Everyone knows what the human work is worth."</div>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">What we already have</h2>
+
+      <p>This is the infrastructure that is already standing. Nothing here is hypothetical. It is the ground we build the marketing on.</p>
+
+      <div class="ledger">
+        <div class="label">In production today</div>
+        <ul>
+          <li>The chat MVP at <strong>/chat</strong> — live tonight</li>
+          <li>The router that dispatches to ten specialist agents (thirty-plus in the registry, ten exposed)</li>
+          <li>Open Notebook backend — deploys on Hetzner this week as the data layer</li>
+          <li>Asana operating system running the internal coordination, transitioning to native task storage later</li>
+          <li>Local always-on web server for our own ops</li>
+          <li>Senate-style PDF generation for proposals and deliverables</li>
+          <li>Imagen 3 rendering pipeline for any image work</li>
+          <li>The Big Muddy Inn as the proof case — we run our own ops on this stack, every day</li>
+          <li>Chase Pierson Photography revenue stream funding the build, no outside money</li>
+          <li>Forecast: $283k year one, mid scenario</li>
+        </ul>
+      </div>
+
+      <p>The reason to enumerate that is not to celebrate it. It is to say: nothing about the product story requires hand-waving. We can demo every line.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">What we need immediately — Elijah's first work</h2>
+
+      <p>The "we do the rest" promise is only as real as the network behind it. Customer asks for something we cannot do in-house, we either route it to a Fiverr specialist, a freelancer we already trust, or a vendor we have on retainer. We mark up, we bill via human tokens, the customer sees one team. That whole loop falls apart if we do not have the roster ready before the first customer shows up.</p>
+
+      <p>Elijah's two-week target: fifty vetted vendors across ten categories. Three to five per category. Each one has an SLA in writing, a price agreement, and a sample deliverable on file. No "we will figure it out when a customer asks." Built before the customer asks.</p>
+
+      <h3 class="sub-head">Categories — three to five vendors each</h3>
+
+      <div class="vendor-grid">
+        <div class="cat"><strong>Design</strong><span>Logos, decks, social graphics, light brand work</span></div>
+        <div class="cat"><strong>Copywriting</strong><span>Web copy, sales pages, email sequences, ad copy</span></div>
+        <div class="cat"><strong>Video editing</strong><span>Short-form social, podcast cutdowns, reels</span></div>
+        <div class="cat"><strong>Web dev</strong><span>Landing pages, site fixes, integration work</span></div>
+        <div class="cat"><strong>Accounting</strong><span>Bookkeeping support, monthly close, 1099s</span></div>
+        <div class="cat"><strong>Legal review</strong><span>Contract review, NDA, formation help</span></div>
+        <div class="cat"><strong>PR</strong><span>Local press, podcast booking, media outreach</span></div>
+        <div class="cat"><strong>Social content</strong><span>Posting cadence, Reels production, captions</span></div>
+        <div class="cat"><strong>Virtual assistance</strong><span>Inbox, scheduling, research, data entry</span></div>
+        <div class="cat"><strong>Scanning + 3D / photo retouching</strong><span>S2PX-adjacent vertical work, image cleanup</span></div>
+      </div>
+
+      <p>Mix of Fiverr (fast, cheap, good for one-off), the freelancer network we already know (better trust, higher rates), and one or two specialist firms per category for the bigger jobs. Vetting is: a paid sample task before we put them on the roster. We do not put a vendor in front of a customer who we have not paid for one piece of work first.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">Marketing — go hard</h2>
+
+      <p>The product cannot sell itself yet because nobody knows it exists. The marketing is the lever. Three plays running in parallel.</p>
+
+      <h3 class="sub-head">One — Inverted Intelligence radio show</h3>
+      <p>Weekly, recorded at Big Muddy, hosted by me. Thirty-minute essay format with rotating guests — operators, founders, people seeing the inversion in their own work. Listener questions read on air. Tracy and Amy report from the Inn on what humans actually do that AI cannot. The show is the marketing — listeners self-select into the thesis, then convert. Eight episodes by end of summer.</p>
+
+      <h3 class="sub-head">Two — "AI tells you. We do the rest." campaign</h3>
+      <p>The TikTok and Reels and Shorts campaign. Locked single-script template, ten ad concepts ready, infinite topic swaps after that. Real boomer, real Gen Z, iPhone, kitchen lighting, fifteen seconds, one card at the end: "or just text Studio C." The humor is the gap between what AI tells you to do and what you can actually execute. The ads do not explain the product. They land the gap. Two to three ads per week for eight weeks. Either of you on camera as we go.</p>
+
+      <h3 class="sub-head">Three — Social and editorial</h3>
+      <p>Claim the handles for Inverted Intelligence and Studio C across Instagram, X, Threads, TikTok, YouTube. Big Muddy Magazine runs a weekly editorial tying the radio show, the ad campaign, and the product together. One thesis, three surfaces, repeated until the language becomes recognizable.</p>
+
+      <p>Pilot is Natchez first — Tracy, Amy, Inn guests, Big Muddy Touring artists, Magazine readers — then Woodstock through the Bearsville network, then wide once cohort metrics confirm.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">The pricing math</h2>
+
+      <p>Why this scales by marketing volume rather than enterprise sales motion.</p>
+
+      <div class="pricing-wrap">
+        <table class="pricing">
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>Price</th>
+              <th>Net per user (rough)</th>
+              <th>Per cohort of 100 free signups</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tier">Free</td>
+              <td class="price">$0</td>
+              <td>Lead-gen</td>
+              <td>100 signups</td>
+            </tr>
+            <tr>
+              <td class="tier">Standard</td>
+              <td class="price">$20/mo</td>
+              <td>~$15</td>
+              <td>30 convert → $450/mo</td>
+            </tr>
+            <tr class="target">
+              <td class="tier">Service<span class="target-tag">Target</span></td>
+              <td class="price">$100/mo</td>
+              <td>~$60–80</td>
+              <td>15 convert → $1,050/mo (mid)</td>
+            </tr>
+            <tr>
+              <td class="tier">Operator</td>
+              <td class="price">$200/mo</td>
+              <td>Higher</td>
+              <td>3 convert → $600/mo</td>
+            </tr>
+            <tr>
+              <td class="tier">Business</td>
+              <td class="price">$500/mo</td>
+              <td>Much higher</td>
+              <td>1 convert → $500/mo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>That is roughly $2,500 per month of recurring revenue per cohort of one hundred free signups, at maturity. Marketing volume drives the funnel. Six cohorts and we are at $15k a month recurring without selling a single enterprise seat. Twenty cohorts and the math gets interesting. The whole point of the model is that we win by getting the funnel humming, not by chasing twenty $5,000-a-month logos.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">What the audit caught — being honest</h2>
+
+      <p>The battle-readiness audit ran on the stack last week. A few real gaps. None of them stop the marketing from running, but they stop the billing from being clean. Honest list:</p>
+
+      <div class="ledger">
+        <div class="label">Open before Natchez ship</div>
+        <ul>
+          <li><strong>Stripe metering</strong> — token billing not wired yet. One to two weeks of work.</li>
+          <li><strong>Pricing page</strong> — not published anywhere customer-facing yet. One day.</li>
+          <li><strong>ASANA_PAT</strong> missing from production env. Five minutes.</li>
+          <li><strong>Big Muddy context loader</strong> uses process.cwd, breaks on Vercel. Needs a fix before deploy.</li>
+          <li><strong>Realistic ship date for Natchez pilot:</strong> May 22. Three weeks.</li>
+        </ul>
+      </div>
+
+      <p>None of this is a surprise. It is on me to clear those before Natchez goes live. The marketing can run in parallel — radio show recording, ad shoots, social handle claims, vendor roster build — none of it depends on Stripe being wired.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">What we need from you Monday</h2>
+
+      <ul class="checklist">
+        <li><strong>Elijah —</strong> start the vendor roster. Fifty vendors, ten categories, two-week target. Use the category list above. Paid sample task before anyone goes on the roster.</li>
+        <li><strong>Elijah —</strong> own the daily ops of the chat. When an escalation lands, you route it, log the time, close the loop. We need the time tracking honest from day one or the human-token billing is not real.</li>
+        <li><strong>Miles —</strong> ship the first five deliverables for the first five customers. Reps over polish. We standardize after we see the shape of what gets asked.</li>
+        <li><strong>Both of you —</strong> agree to be the public face of Studio C in the marketing. Interviews, AMAs, behind-the-scenes content for the radio show and the ads. The brand is people, and the people are us.</li>
+        <li><strong>Both of you —</strong> track time meticulously. Every escalation, every deliverable, every vendor handoff. The whole pricing model rests on knowing what the human side actually costs.</li>
+      </ul>
+
+      <h2 class="section-head">What "selling a shit ton" looks like by August</h2>
+
+      <ul class="checklist">
+        <li>Ten paying customers across all tiers. Mostly $100 Service, with one or two each at $200 and $500.</li>
+        <li>Eight episodes of the Inverted Intelligence radio show in the can.</li>
+        <li>Thirty-plus TikToks live, one million-plus views in aggregate across the campaign.</li>
+        <li>First three Studio C testimonial videos shot — real customers, real reactions.</li>
+        <li>Studio C revenue line in the forecast climbing from zero to $5k a month by August.</li>
+        <li>Clear data on which tier converts best, which channel drives signups cheapest, which kind of customer stays past month three.</li>
+      </ul>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">Last thing</h2>
+
+      <p>You are partners on this, not contractors. The reason it is structured the way it is — Chief of Staff, Production, the marketing campaign, the radio show, the cohort math — is that we are building a thing that runs without me being the bottleneck. My job is to keep building the platform, keep telling the story, and keep the funnel full. Your job is to make sure that when a customer arrives, the chat answers, the human picks up, and the deliverable ships. That loop closing reliably is the entire product.</p>
+
+      <p>We have everything we need. Let us go sell a shit ton of these things.</p>
+
+      <p class="credit">Companion docs on file: MBT Product Definition (/docs/positioning/mbt-product-definition-2026-04-30.md), Inverted Intelligence (/docs/positioning/inverted-intelligence-2026-04-30.md), AI Tells You / We Do The Rest campaign (/docs/marketing/ai-tells-you-we-do-it-campaign-2026-04-30.md), Studio C public service page (/studio-c). All numbers in this plan are directional pending the Stripe metering build and the first cohort of paying customers.</p>
+
+      <div class="footer-meta">
+        <div class="block">
+          <span class="label">From</span>
+          Chase Pierson · me@chasepierson.tv
+        </div>
+        <div class="block">
+          <span class="label">To</span>
+          Elijah Tuttle · Miles
+        </div>
+        <div class="block">
+          <span class="label">Status</span>
+          <span class="stamp">Internal · Working Plan</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</body>
+</html>

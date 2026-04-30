@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Tokenomics — 10 Approaches · Initial Template Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --rule: #e5e5e5;
+      --muted: #6a6a6a;
+      --paper: #ffffff;
+      --warm: #f5efe6;
+      --accent: #b8731c;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      background: #f8f6f2; color: var(--ink); margin: 0; padding: 0;
+      font-family: 'Inter', -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .topbar {
+      position: sticky; top: 0; background: var(--ink); color: var(--paper);
+      padding: 14px 28px; display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; z-index: 100;
+    }
+    .topbar a { color: var(--paper); text-decoration: none; margin-left: 18px; }
+    .topbar a:hover { color: var(--accent); }
+    .topbar .brand { font-weight: 700; }
+    .topbar .meta { color: #aaa; }
+
+    .hero {
+      max-width: 1100px; margin: 0 auto; padding: 64px 28px 32px;
+    }
+    .hero .kicker {
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 900;
+      line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 16px;
+    }
+    .hero .dek {
+      font-size: 18px; color: #444; max-width: 720px; line-height: 1.55; margin: 0 0 24px;
+      font-family: 'Inter', sans-serif;
+    }
+    .hero .stats {
+      font-size: 13px; color: var(--muted); display: flex; gap: 28px; flex-wrap: wrap;
+    }
+    .hero .stats strong { color: var(--ink); font-weight: 700; }
+
+    /* Approach navigation */
+    .nav {
+      position: sticky; top: 44px; background: var(--paper); border-bottom: 1px solid var(--rule);
+      padding: 14px 28px; z-index: 90; overflow-x: auto;
+    }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 8px; flex-wrap: wrap; }
+    .nav a {
+      display: inline-block; padding: 6px 12px; border: 1px solid var(--rule);
+      border-radius: 4px; font-size: 12px; font-weight: 600; color: var(--ink);
+      text-decoration: none; transition: background 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+    .nav a:hover { background: var(--warm); border-color: var(--accent); }
+    .nav a .num { color: var(--accent); font-weight: 900; margin-right: 4px; }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 0 28px 80px; }
+
+    .approach-block {
+      margin-top: 48px; border: 1px solid var(--rule); background: var(--paper);
+      border-radius: 8px; overflow: hidden;
+    }
+    .approach-header {
+      padding: 18px 24px; border-bottom: 1px solid var(--rule); background: var(--paper);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .approach-header h2 {
+      font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700;
+      margin: 0; letter-spacing: 0.04em;
+    }
+    .approach-header h2 .num {
+      color: var(--accent); font-family: 'Playfair Display', serif;
+      font-weight: 900; font-size: 22px; margin-right: 10px;
+    }
+    .approach-header .badge {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); padding: 4px 10px; background: var(--warm);
+      border-radius: 3px;
+    }
+    .approach-frame {
+      width: 100%; border: 0; background: var(--paper);
+      min-height: 480px;
+    }
+
+    .footer {
+      max-width: 1100px; margin: 80px auto 0; padding: 28px;
+      border-top: 1px solid var(--rule);
+      font-size: 12px; color: var(--muted); text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">Tokenomics · 10 Approaches</div>
+    <div class="meta">localhost:8888/tokenomics · April 30, 2026 ·
+      <a href="/">← Dashboard</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="kicker">Initial template library · 10 different art directions · Same concept</div>
+    <h1>Ten ways to explain tokenomics</h1>
+    <p class="dek">Same concept — software tokens cheap, human tokens expensive, same chat meters both — explained ten different ways. Each approach is a self-contained design starting point. Chase reviews, picks the best for the consumer pricing page, and the rest become the template library customers choose from when they sign up for their workspace.</p>
+    <div class="stats">
+      <span><strong>10</strong> approaches</span>
+      <span><strong>10</strong> sub-agents dispatched in parallel</span>
+      <span><strong>10</strong> isolated CSS namespaces (no bleed)</span>
+      <span><strong>1</strong> page to compare them all</span>
+    </div>
+  </div>
+
+  <div class="nav">
+    <div class="nav-inner">
+      <a href="#approach-01"><span class="num">01</span>Magazine Narrative</a>
+      <a href="#approach-02"><span class="num">02</span>Visual Manifesto</a>
+      <a href="#approach-03"><span class="num">03</span>Interactive Widget</a>
+      <a href="#approach-04"><span class="num">04</span>Pure Numbers</a>
+      <a href="#approach-05"><span class="num">05</span>Heritage Journal</a>
+      <a href="#approach-06"><span class="num">06</span>Punchy Social</a>
+      <a href="#approach-07"><span class="num">07</span>Show Business</a>
+      <a href="#approach-08"><span class="num">08</span>Honest Cut</a>
+      <a href="#approach-09"><span class="num">09</span>Enterprise Sell Sheet</a>
+      <a href="#approach-10"><span class="num">10</span>Wildcard</a>
+    </div>
+  </div>
+
+  <main>
+    <div class="approach-block" id="approach-01">
+      <div class="approach-header"><h2><span class="num">01</span>Magazine Narrative</h2><span class="badge">Bearsville Studio</span></div>
+      <iframe class="approach-frame" src="/tokenomics/sections/section-01-magazine-narrative.html" loading="lazy"></iframe>
+    </div>
+    <div class="approach-block" id="approach-02">
+      <div class="approach-header"><h2><span class="num">02</span>Visual Manifesto</h2><span class="badge">North Star</span></div>
+      <iframe class="approach-frame" src="/tokenomics/sections/section-02-visual-manifesto.html" loading="lazy"></iframe>
+    </div>
+    <div class="approach-block" id="approach-03">
+      <div class="approach-header"><h2><span class="num">03</span>Interactive Widget</h2><span class="badge">Frontend</span></div>
+      <iframe class="approach-frame" src="/tokenomics/sections/section-03-interactive-widget.html" loading="lazy"></iframe>
+    </div>
+    <div class="approach-block" id="approach-04">
+      <div class="approach-header"><h2><span class="num">04</span>Pure Numbers</h2><span class="badge">Finance Director</span></div>
+      <iframe class="approach-frame" src="/tokenomics/sections/section-04-pure-numbers.html" loading="lazy"></iframe>
+    </div>
+    <div class="approach-block" id="approach-05">
+      <div class="approach-header"><h2><span class="num">05</span>Heritage Journal</h2><span class="badge">Vesper</span></div>
+      <iframe class="approach-frame" src="/tokenomics/sections/section-05-heritage-journal.html" loading="lazy"></iframe>
+    </div>
+    <div class="approach-block" id="approach-06">
+      <div class="approach-header"><h2><span class="num">06</span>Punchy Social Copy</h2><span class="badge">Brand Voice</span></div>
+      <iframe class="approach-frame" src="/tokenomics/sections/section-06-social-punchy.html" loading="lazy"></iframe>
+    </div>
+    <div class="approach-block" id="approach-07">
+      <div class="approach-header"><h2><span class="num">07</span>Show Business Analogy</h2><span class="badge">R&amp;D Touring</span></div>
+      <iframe class="approach-frame" src="/tokenomics/sections/section-07-show-business.html" loading="lazy"></iframe>
+    </div>
+    <div class="approach-block" id="approach-08">
+      <div class="approach-header"><h2><span class="num">08</span>Honest Cut</h2><span class="badge">QA</span></div>
+      <iframe class="approach-frame" src="/tokenomics/sections/section-08-honest-cut.html" loading="lazy"></iframe>
+    </div>
+    <div class="approach-block" id="approach-09">
+      <div class="approach-header"><h2><span class="num">09</span>Enterprise Sell Sheet</h2><span class="badge">MBT Enterprise Sales</span></div>
+      <iframe class="approach-frame" src="/tokenomics/sections/section-09-enterprise-sell-sheet.html" loading="lazy"></iframe>
+    </div>
+    <div class="approach-block" id="approach-10">
+      <div class="approach-header"><h2><span class="num">10</span>Wildcard</h2><span class="badge">General Purpose</span></div>
+      <iframe class="approach-frame" src="/tokenomics/sections/section-10-wildcard.html" loading="lazy"></iframe>
+    </div>
+  </main>
+
+  <div class="footer">
+    Tokenomics — 10 approaches · Initial template library for MBT workspace customization · April 30, 2026<br>
+    Each iframe is independent. Pick a winner. The rest become template options for customer onboarding.
+  </div>
+
+  <script>
+    // Auto-resize iframes to fit their content height
+    function resizeFrame(f) {
+      try {
+        const h = f.contentDocument.body.scrollHeight;
+        f.style.height = (h + 20) + 'px';
+      } catch (e) {}
+    }
+    document.querySelectorAll('iframe.approach-frame').forEach(f => {
+      f.addEventListener('load', () => {
+        resizeFrame(f);
+        // Re-check after a beat for any deferred content
+        setTimeout(() => resizeFrame(f), 500);
+      });
+    });
+    // Re-check on window resize
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('iframe.approach-frame').forEach(resizeFrame);
+    });
+  </script>
+</body>
+</html>

@@ -357,6 +357,7 @@ Who gets access to what (post-consolidation):
 | Commercial music license for Inn public spaces (Soundtrack Your Brand, Cloud Cover) | Risk is real but enforcement unlikely at our scale; revisit if we host a sponsored event where licensing matters |
 | Stock music (Epidemic Sound, Artlist) | Activate when Studio C production volume justifies (probably Q3) |
 | Photo Mechanic Plus | Nice workflow lift for CPP, not essential; add if Chase's shoot volume makes Lightroom culling a bottleneck |
+| OpenAI Codex (~$200/mo cloud agent) | **Decision 2026-04-23: skip until May 1.** Lane overlap with Claude Code (already does multi-file refactors + parallel agent threads). Codex's real edge is async/cloud sandboxing — useful but not Apr 27 launch-critical. **Pilot criteria when revisited:** single workflow only (overnight content generation / repo audit / data enrichment), must save ≥5 hr/week, run fully unattended, output requires <10% manual correction. Misses any → kill within 30 days. Owner: Chase. Revisit: May 1, 2026. |
 
 ### 6i. Reconcile the $1k/mo hard cap after 60 days
 

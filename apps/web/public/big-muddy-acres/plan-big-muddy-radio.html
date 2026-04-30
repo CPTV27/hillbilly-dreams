@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Big Muddy Radio — Big Muddy Acres Briefing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink:#121212; --rule:#d8d8d8; --muted:#6a6a6a; --paper:#fff; --warm:#f5efe6;
+      --serif-display:'Playfair Display',serif; --serif-body:'Source Serif 4',Georgia,serif;
+      --sans:'Inter',-apple-system,sans-serif; }
+    *{box-sizing:border-box} html,body{background:var(--paper);color:var(--ink);margin:0;padding:0;-webkit-font-smoothing:antialiased}
+    body{font-family:var(--serif-body);font-size:18px;line-height:1.65}
+    .page{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+    .topstrap{font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+      border-bottom:1px solid var(--rule);padding-bottom:14px;margin-bottom:32px;display:flex;justify-content:space-between;align-items:center}
+    .topstrap a{color:var(--muted);text-decoration:none}
+    .topstrap a:hover{color:var(--ink)}
+    h1{font-family:var(--serif-display);font-weight:900;font-size:42px;line-height:1.08;letter-spacing:-.01em;margin:0 0 14px}
+    h2{font-family:var(--serif-display);font-weight:700;font-size:24px;margin:36px 0 12px;line-height:1.25}
+    h3{font-family:var(--sans);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;margin:28px 0 10px;color:var(--muted)}
+    p{margin:0 0 16px}
+    ul,ol{margin:0 0 18px;padding-left:24px} li{margin-bottom:6px}
+    blockquote{border-left:3px solid var(--ink);padding-left:18px;margin:18px 0;font-style:italic;color:#444}
+    code{font-family:'SF Mono',Menlo,monospace;font-size:14px;background:var(--warm);padding:2px 6px;border-radius:2px}
+    pre{background:var(--warm);padding:14px;border-radius:2px;overflow-x:auto;font-size:13px}
+    table{border-collapse:collapse;width:100%;margin:18px 0;font-size:14px}
+    th,td{border:1px solid var(--rule);padding:8px 10px;text-align:left}
+    th{background:var(--warm);font-family:var(--sans);font-weight:700}
+    hr{border:0;border-top:1px solid var(--rule);margin:36px 0}
+    .footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--rule);font-family:var(--sans);font-size:12px;color:var(--muted);line-height:1.6}
+    .pdf-link{display:inline-block;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--ink);border:1px solid var(--ink);padding:6px 12px;text-decoration:none;margin-top:12px}
+    .pdf-link:hover{background:var(--ink);color:var(--paper)}
+    @media print{body{font-size:11pt}.page{padding:0;max-width:100%}.topstrap,.pdf-link{display:none}}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topstrap">
+      <a href="/big-muddy-acres/">← Briefing index</a>
+      <span>April 30, 2026</span>
+    </div>
+    <h1 id="plan--big-muddy-radio">Plan — Big Muddy Radio</h1>
+<p>Owner: Chase Pierson Status: Live but broken. Pre-revenue. Last
+updated: 2026-04-29</p>
+<hr />
+<h2 id="what-it-is">What it is</h2>
+<p>Big Muddy Radio is a 24/7 internet radio station streaming
+Mississippi-corridor music, interviews, and ambient programming at
+stream.bigmuddytouring.com. Currently running AzuraCast on a
+DigitalOcean droplet (<code>bigmuddy-radio</code>, 206.189.200.208) with
+SSL broken — operational blocker we need to fix this quarter.</p>
+<hr />
+<h2 id="whats-working-today">What's working today</h2>
+<p>Some things, mostly the boring parts.</p>
+<ul>
+<li>AzuraCast install is up and serving audio.</li>
+<li>DigitalOcean droplet is paid and stable.</li>
+<li>Stream URL is live but currently HTTP-only because Let's Encrypt
+cert expired/never renewed.</li>
+<li>Bitwarden has the AzuraCast admin credentials.</li>
+<li>A starter rotation exists from Chase's library.</li>
+</ul>
+<p>What's NOT working:</p>
+<ul>
+<li>SSL is broken — browsers throw warnings, embeds fail on HTTPS
+sites.</li>
+<li>No regular programming schedule.</li>
+<li>No live shows.</li>
+<li>No interview content.</li>
+<li>No listeners (because nobody's been told it exists).</li>
+<li>No revenue. No ad inventory. No sponsor list.</li>
+</ul>
+<p>The station exists in the same way a dark restaurant with the lights
+on exists. Open in theory. Empty in practice.</p>
+<hr />
+<h2 id="the-economics">The economics</h2>
+<p>Radio is a 12–24 month brand and audience play. Year 1 revenue
+forecast: <strong>$0</strong>.</p>
+<p>Year 1 cost:</p>
+<ul>
+<li>DigitalOcean droplet: ~$24/mo = $288/yr</li>
+<li>AzuraCast: free (open source)</li>
+<li>SoundExchange / SESAC / BMI / ASCAP statutory licensing for
+non-original music: ~<span class="math inline">500–</span>1,500/yr
+depending on listener count</li>
+<li>Domain (already owned via stream.bigmuddytouring.com subdomain):
+$0</li>
+<li>Talent: in-house only — Arrie hosts, Chase produces</li>
+</ul>
+<p>Total Year 1 spend: ~<span class="math inline">800–</span>1,800.
+Manageable.</p>
+<p>Year 2+ revenue model (when it starts):</p>
+<ul>
+<li>Local sponsor reads (Inn, Touring, Magazine, Records — internal
+first, then external)</li>
+<li>Pre-roll ads via programmatic audio network (only at scale — minimum
+1,000 monthly listeners)</li>
+<li>Sponsored programming blocks (e.g. "Adams County Tourism Hour")</li>
+<li>Listener support / membership (slow build)</li>
+</ul>
+<p>Don't model ad revenue until we hit ~1,000 unique monthly listeners.
+Probably late 2027.</p>
+<hr />
+<h2 id="the-customer">The customer</h2>
+<p>Three audience layers:</p>
+<ol type="1">
+<li><strong>The Big Muddy ecosystem audience first.</strong> Inn guests,
+show attendees, Magazine readers, Touring fans. Captive and warm.</li>
+<li><strong>Mississippi-corridor music listeners.</strong> Blues,
+Americana, gospel, country fans within driving distance of the corridor.
+Geographic + genre overlap.</li>
+<li><strong>Out-of-region music nerds.</strong> People who care about
+regional scenes. NPR-adjacent. Slow but loyal.</li>
+</ol>
+<p>Not competing with terrestrial radio. Not competing with Spotify.
+Competing with silence in coffee shops, hotel lobbies, and people's home
+offices who want a real human-curated stream.</p>
+<hr />
+<h2 id="the-12-month-plan">The 12-month plan</h2>
+<p><strong>Q2 2026 (May–Jun) — Stop being broken</strong></p>
+<ul>
+<li>Fix SSL: install certbot, renew cert, set up auto-renewal on the
+droplet</li>
+<li>Verify HTTPS embeds work on bigmuddytouring.com and
+bigmuddymagazine.com</li>
+<li>Document the fix in CANONICAL_INFRASTRUCTURE so it doesn't happen
+again</li>
+<li>Build a real rotation: 100+ tracks across blues, Americana, corridor
+artists</li>
+</ul>
+<p><strong>Q3 2026 (Jul–Sep) — Add programming</strong></p>
+<ul>
+<li>Arrie hosts a weekly 1-hour show (pre-recorded, dropped in
+rotation)</li>
+<li>First 5 artist interviews recorded at the Inn</li>
+<li>Add to Big Muddy Radio app on TuneIn / Radio Garden / Streema
+directories</li>
+<li>Embed the player on every Big Muddy property footer</li>
+</ul>
+<p><strong>Q4 2026 (Oct–Dec) — Build audience</strong></p>
+<ul>
+<li>Promote via Magazine: weekly "now playing" column</li>
+<li>Promote at shows: QR code on every Touring tour banner</li>
+<li>First sponsor read trial: Inn promotes itself on Radio (free,
+internal proof)</li>
+<li>Hit 100 monthly unique listeners</li>
+</ul>
+<p><strong>Q1 2027 (Jan–Mar) — Decide on monetization path</strong></p>
+<ul>
+<li>Target: 250+ monthly uniques</li>
+<li>If yes, pitch first external local sponsor at $50/month read</li>
+<li>If no, hold — keep running, costs are low</li>
+</ul>
+<hr />
+<h2 id="what-we-need-to-make-it-happen">What we need to make it
+happen</h2>
+<p><strong>People</strong></p>
+<ul>
+<li>Chase: technical operator, programming director (until we hand it
+off)</li>
+<li>Arrie: show host, interview talent (per arri-content-planner
+skill)</li>
+<li>Tracy: nothing in Q2; sponsor contract drafting in Q4 if we get
+there</li>
+</ul>
+<p><strong>Money</strong></p>
+<ul>
+<li>~$1,500 for the year. Comes out of MBT operating budget.</li>
+</ul>
+<p><strong>Tools</strong></p>
+<ul>
+<li>AzuraCast (already running)</li>
+<li>Audio interface + 2 mics for interviews at the Inn (already
+owned)</li>
+<li>Embed player code (one-time dev task, Patch handles)</li>
+</ul>
+<p><strong>Infrastructure</strong></p>
+<ul>
+<li>Fix: SSL cert (this week)</li>
+<li>Add: TuneIn / Radio Garden directory listings (Q3)</li>
+<li>Add: Embed player on all Big Muddy properties (Q3)</li>
+</ul>
+<hr />
+<h2 id="the-risk">The risk</h2>
+<ol type="1">
+<li><strong>SSL stays broken.</strong> As long as it does, we look
+incompetent and embeds don't work. This is the #1 blocker. Fix it.</li>
+<li><strong>Nobody listens.</strong> Radio without listeners is a hobby.
+We mitigate by being honest — it IS a hobby in 2026 and that's fine,
+because the brand value of "Big Muddy has its own radio station" exceeds
+the cost.</li>
+<li><strong>Statutory licensing surprises.</strong> If we grow too fast
+without proper SoundExchange registration, we get a back-bill. Register
+now, before we have listeners, when fees are minimum.</li>
+<li><strong>Talent dependency on Arrie.</strong> If Arrie burns out or
+moves, programming dies. Mitigate by building rotation that runs 24/7
+without live shows.</li>
+</ol>
+<hr />
+<h2 id="why-it-matters-to-the-ecosystem">Why it matters to the
+ecosystem</h2>
+<p>Radio is the connective tissue. It plays the records, promotes the
+shows, interviews the artists, and runs in the background of every Big
+Muddy property.</p>
+<ul>
+<li><strong>Records uses it.</strong> Every Big Muddy Records release
+goes into rotation immediately. Free promotion to a captive
+audience.</li>
+<li><strong>Touring uses it.</strong> Pre-show interviews with bands.
+"Here's the opening act tonight, on at 9." Cross-promo without ad
+spend.</li>
+<li><strong>Magazine uses it.</strong> Editorial pairs with audio: "Read
+the interview, hear the song." Drives time-on-page.</li>
+<li><strong>Inn uses it.</strong> Lobby and bar default to Big Muddy
+Radio. Guests hear the brand 24/7.</li>
+<li><strong>MBT uses it.</strong> Demonstrable proof that "Powered by
+MBT" runs an actual media stack. When pitching B2B clients, "we run our
+own radio station" is a credibility line that competitors can't
+match.</li>
+</ul>
+<p>The station is also a recruiting tool. Artists who get interviewed on
+Big Muddy Radio remember it. Artists who hear themselves in Inn lobby
+playback remember it. That's roster pipeline for Touring and
+Records.</p>
+<p>Cost is rounding error. Brand value compounds.</p>
+<hr />
+<h2 id="decision-needed">Decision needed</h2>
+<p>Approval to spend ~4 hours of Patch time fixing SSL this week.
+Everything else is on the existing plan.</p>
+
+    <div class="footer">
+      <p>Big Muddy Acres briefing · Confidential — Hillbilly Dreams / Measurably Better Things</p>
+      <p><a class="pdf-link" href="/big-muddy-acres/pdfs/plan-big-muddy-radio.pdf">Download PDF</a></p>
+    </div>
+  </div>
+</body>
+</html>

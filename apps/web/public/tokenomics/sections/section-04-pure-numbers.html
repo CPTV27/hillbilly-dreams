@@ -1,0 +1,380 @@
+<section id="approach-numbers" class="approach approach-numbers">
+  <style>
+    .approach-numbers {
+      background: #fafaf7;
+      color: #1a1a1a;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      border-top: 1px solid #e8e6df;
+      border-bottom: 1px solid #e8e6df;
+    }
+    .numbers-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+    .numbers-label {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #8a8676;
+      margin: 0 0 28px 0;
+    }
+    .numbers-h1 {
+      font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+      font-size: 38px;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin: 0 0 12px 0;
+      color: #111;
+    }
+    .numbers-sub {
+      font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.5;
+      color: #4a4838;
+      margin: 0 0 40px 0;
+      font-style: italic;
+    }
+    .numbers-section-h {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      margin: 40px 0 14px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #1a1a1a;
+    }
+    .numbers-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 0 8px 0;
+      font-size: 14px;
+    }
+    .numbers-table th {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6a6858;
+      text-align: left;
+      padding: 10px 12px 10px 0;
+      border-bottom: 1px solid #d8d5c8;
+      vertical-align: bottom;
+    }
+    .numbers-table th.numbers-right { text-align: right; padding-right: 0; padding-left: 12px; }
+    .numbers-table td {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      color: #1a1a1a;
+      padding: 12px 12px 12px 0;
+      border-bottom: 1px solid #ececdf;
+      vertical-align: top;
+      line-height: 1.4;
+    }
+    .numbers-table td.numbers-right { text-align: right; padding-right: 0; padding-left: 12px; }
+    .numbers-table tr:last-child td { border-bottom: none; }
+    .numbers-mono {
+      font-family: 'SF Mono', Menlo, Consolas, 'Roboto Mono', monospace;
+      font-variant-numeric: tabular-nums;
+      font-size: 13px;
+      color: #1a1a1a;
+    }
+    .numbers-mono-big {
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-variant-numeric: tabular-nums;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    .numbers-muted {
+      color: #8a8676;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 12px;
+    }
+    .numbers-tag {
+      display: inline-block;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+      background: #1a1a1a;
+      color: #fafaf7;
+      vertical-align: middle;
+      margin-left: 6px;
+    }
+    .numbers-tag-soft {
+      background: #e8e6df;
+      color: #4a4838;
+    }
+    .numbers-callout {
+      margin: 44px 0 8px 0;
+      padding: 28px 28px;
+      background: #1a1a1a;
+      color: #fafaf7;
+      border-radius: 4px;
+    }
+    .numbers-callout-ratio {
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-variant-numeric: tabular-nums;
+      font-size: 56px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px 0;
+      color: #fafaf7;
+    }
+    .numbers-callout-label {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #8a8676;
+      margin: 0 0 14px 0;
+    }
+    .numbers-callout-line {
+      font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+      font-size: 19px;
+      line-height: 1.45;
+      color: #fafaf7;
+      margin: 0;
+      max-width: 620px;
+    }
+    .numbers-context {
+      font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+      font-size: 16px;
+      line-height: 1.55;
+      color: #4a4838;
+      margin: 16px 0 0 0;
+      max-width: 720px;
+    }
+    .numbers-foot {
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px solid #e8e6df;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 12px;
+      color: #8a8676;
+      line-height: 1.5;
+    }
+    @media (max-width: 640px) {
+      .numbers-h1 { font-size: 30px; }
+      .numbers-callout-ratio { font-size: 44px; }
+      .numbers-table { font-size: 13px; }
+      .numbers-table th, .numbers-table td { padding: 10px 8px 10px 0; }
+      .numbers-table th.numbers-right, .numbers-table td.numbers-right { padding-left: 8px; }
+      .numbers-mono { font-size: 12px; }
+    }
+  </style>
+
+  <div class="numbers-wrap">
+    <p class="numbers-label">Approach 04 &middot; Pure Numbers &middot; By Finance Director</p>
+
+    <h2 class="numbers-h1">Two kinds of tokens. One bill.</h2>
+    <p class="numbers-sub">Software answers cost pennies. Human answers cost dollars. Both come through the same chat.</p>
+
+    <h3 class="numbers-section-h">Token rates</h3>
+    <table class="numbers-table">
+      <thead>
+        <tr>
+          <th style="width:30%">Token</th>
+          <th style="width:38%">Unit</th>
+          <th class="numbers-right" style="width:32%">Customer rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Software <span class="numbers-tag numbers-tag-soft">LLM</span></td>
+          <td>1,000 tokens (~750 words in/out)</td>
+          <td class="numbers-right"><span class="numbers-mono-big">$0.02</span></td>
+        </tr>
+        <tr>
+          <td>Software &middot; premium model</td>
+          <td>1,000 tokens (Opus / GPT-5 class)</td>
+          <td class="numbers-right"><span class="numbers-mono-big">$0.10</span></td>
+        </tr>
+        <tr>
+          <td>Human <span class="numbers-tag">SERVICE</span></td>
+          <td>1 minute of service-team time</td>
+          <td class="numbers-right"><span class="numbers-mono-big">$5.00</span></td>
+        </tr>
+        <tr>
+          <td>Human &middot; specialist</td>
+          <td>1 minute (legal, finance, dev)</td>
+          <td class="numbers-right"><span class="numbers-mono-big">$10.00</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="numbers-muted">Software rates are pass-through plus margin. Human rates reflect $300/hr fractional ops &mdash; what would otherwise cost a $150K/yr hire.</p>
+
+    <h3 class="numbers-section-h">Sample questions, what each one costs</h3>
+    <table class="numbers-table">
+      <thead>
+        <tr>
+          <th style="width:50%">The customer asks&hellip;</th>
+          <th style="width:22%">Resolved by</th>
+          <th class="numbers-right" style="width:28%">Cost to customer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>&ldquo;What's the weather in Natchez?&rdquo;</td>
+          <td>Software</td>
+          <td class="numbers-right"><span class="numbers-mono">$0.001</span></td>
+        </tr>
+        <tr>
+          <td>&ldquo;Summarize my last 10 guest reviews.&rdquo;</td>
+          <td>Software</td>
+          <td class="numbers-right"><span class="numbers-mono">$0.08</span></td>
+        </tr>
+        <tr>
+          <td>&ldquo;Draft a listing description for 412 Main St.&rdquo;</td>
+          <td>Software</td>
+          <td class="numbers-right"><span class="numbers-mono">$0.15</span></td>
+        </tr>
+        <tr>
+          <td>&ldquo;Build me a P&amp;L dashboard from my QuickBooks.&rdquo;</td>
+          <td>Software</td>
+          <td class="numbers-right"><span class="numbers-mono">$1.20</span></td>
+        </tr>
+        <tr>
+          <td>&ldquo;Cancel my Adobe subscription, I keep getting charged.&rdquo;</td>
+          <td>Human (8 min)</td>
+          <td class="numbers-right"><span class="numbers-mono">$40</span></td>
+        </tr>
+        <tr>
+          <td>&ldquo;File my LLC formation in Mississippi.&rdquo;</td>
+          <td>Human (45 min)</td>
+          <td class="numbers-right"><span class="numbers-mono">$225</span></td>
+        </tr>
+        <tr>
+          <td>&ldquo;Negotiate this vendor contract before I sign it.&rdquo;</td>
+          <td>Specialist (60 min)</td>
+          <td class="numbers-right"><span class="numbers-mono">$600</span></td>
+        </tr>
+        <tr>
+          <td>&ldquo;Run my Q3 books and prep for taxes.&rdquo;</td>
+          <td>Specialist (4 hrs)</td>
+          <td class="numbers-right"><span class="numbers-mono">$2,400</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="numbers-muted">Every escalation logs time. Every line item shows on the bill. The token meter is always on screen.</p>
+
+    <div class="numbers-callout">
+      <p class="numbers-callout-label">The ratio</p>
+      <p class="numbers-callout-ratio">~500&times;</p>
+      <p class="numbers-callout-line">Human tokens cost about 500&times; what software tokens cost. They're worth it when they are.</p>
+    </div>
+
+    <p class="numbers-context">Math: 1 minute of human time at $5.00 vs. 1,000 software tokens at $0.02 &mdash; a single human-minute buys what 250,000 software tokens buy. Specialists at $10/min push the ratio to 500&times;. The chat decides which one you need; you decide if the answer is worth the rate.</p>
+
+    <h3 class="numbers-section-h">Monthly tiers &mdash; what you get for the flat fee</h3>
+    <table class="numbers-table">
+      <thead>
+        <tr>
+          <th style="width:18%">Tier</th>
+          <th class="numbers-right" style="width:14%">Price</th>
+          <th style="width:24%">Models</th>
+          <th style="width:22%">Human tokens incl.</th>
+          <th style="width:22%">For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Free</td>
+          <td class="numbers-right"><span class="numbers-mono">$0</span></td>
+          <td>Cheap / fast</td>
+          <td>None</td>
+          <td>Tire-kickers</td>
+        </tr>
+        <tr>
+          <td>Standard</td>
+          <td class="numbers-right"><span class="numbers-mono">$20</span></td>
+          <td>Sonnet, GPT-4o, Gemini Pro</td>
+          <td>None &mdash; pay-per-use</td>
+          <td>Solo operators</td>
+        </tr>
+        <tr>
+          <td>Service <span class="numbers-tag">TARGET</span></td>
+          <td class="numbers-right"><span class="numbers-mono-big">$100</span></td>
+          <td>Standard + premium</td>
+          <td>30 min ($150 value)</td>
+          <td>Small biz owners</td>
+        </tr>
+        <tr>
+          <td>Operator</td>
+          <td class="numbers-right"><span class="numbers-mono">$200</span></td>
+          <td>Premium</td>
+          <td>1&ndash;2 hrs ($300&ndash;$600)</td>
+          <td>Multi-property</td>
+        </tr>
+        <tr>
+          <td>Business</td>
+          <td class="numbers-right"><span class="numbers-mono">$500</span></td>
+          <td>Premium + custom</td>
+          <td>4&ndash;6 hrs ($1,200&ndash;$1,800)</td>
+          <td>Growing teams</td>
+        </tr>
+        <tr>
+          <td>Enterprise</td>
+          <td class="numbers-right"><span class="numbers-mono">Custom</span></td>
+          <td>Dedicated infra</td>
+          <td>Dedicated team + SLA</td>
+          <td>Large customers</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="numbers-muted">Overages bill at the per-token rates above. Caps and alerts available. No surprise bills.</p>
+
+    <h3 class="numbers-section-h">What it replaces &mdash; for context</h3>
+    <table class="numbers-table">
+      <thead>
+        <tr>
+          <th style="width:55%">If you instead hired&hellip;</th>
+          <th class="numbers-right" style="width:22%">Per month</th>
+          <th class="numbers-right" style="width:23%">Per year</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Full-time ops manager ($150K salary loaded)</td>
+          <td class="numbers-right"><span class="numbers-mono">$15,000</span></td>
+          <td class="numbers-right"><span class="numbers-mono">$180,000</span></td>
+        </tr>
+        <tr>
+          <td>Bookkeeper ($75/hr, 20 hrs/mo)</td>
+          <td class="numbers-right"><span class="numbers-mono">$1,500</span></td>
+          <td class="numbers-right"><span class="numbers-mono">$18,000</span></td>
+        </tr>
+        <tr>
+          <td>Marketing agency retainer (mid-tier)</td>
+          <td class="numbers-right"><span class="numbers-mono">$3,500</span></td>
+          <td class="numbers-right"><span class="numbers-mono">$42,000</span></td>
+        </tr>
+        <tr>
+          <td>ChatGPT + Claude + Gemini (3 seats, no humans)</td>
+          <td class="numbers-right"><span class="numbers-mono">$60</span></td>
+          <td class="numbers-right"><span class="numbers-mono">$720</span></td>
+        </tr>
+        <tr>
+          <td><strong>MBT Service tier ($100 + ~2 hrs human-tokens)</strong></td>
+          <td class="numbers-right"><span class="numbers-mono-big">$700</span></td>
+          <td class="numbers-right"><span class="numbers-mono-big">$8,400</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="numbers-context">A typical Service customer using 30 min included plus ~90 min in overages lands around $700/month. That's 5% of a full-time hire and 20% of an agency &mdash; with software answering the easy 90% for pennies, and humans showing up for the 10% that actually moves the needle.</p>
+
+    <p class="numbers-foot">Numbers locked 2026-04-30 from <span class="numbers-mono">docs/positioning/mbt-product-definition-2026-04-30.md</span>. Token rates illustrative within the locked tier framework. Customer pays for the answer, not the path.</p>
+  </div>
+</section>

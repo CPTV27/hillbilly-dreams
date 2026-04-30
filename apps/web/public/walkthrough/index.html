@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>The Whole Story · April 30, 2026 · Cos Walkthrough</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --rule: #d8d8d8;
+      --muted: #6a6a6a;
+      --paper: #ffffff;
+      --warm: #f5efe6;
+      --accent: #b8731c;
+      --serif-display: 'Playfair Display', Georgia, serif;
+      --serif-body: 'Source Serif 4', Georgia, serif;
+      --sans: 'Inter', -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      background: var(--paper); color: var(--ink); margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased; scroll-behavior: smooth;
+    }
+    body { font-family: var(--serif-body); font-size: 18px; line-height: 1.65; }
+
+    /* Top progress bar */
+    .progress {
+      position: fixed; top: 0; left: 0; right: 0; height: 3px;
+      background: transparent; z-index: 200;
+    }
+    .progress-fill {
+      height: 100%; background: var(--accent); width: 0;
+      transition: width 0.1s;
+    }
+
+    /* Sticky chapter nav */
+    .chapter-nav {
+      position: sticky; top: 0; background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule); z-index: 100;
+      padding: 12px 24px; overflow-x: auto;
+    }
+    .chapter-nav-inner {
+      max-width: 920px; margin: 0 auto; display: flex; gap: 4px;
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.05em;
+    }
+    .chapter-nav a {
+      color: var(--muted); text-decoration: none; padding: 4px 10px;
+      border-radius: 3px; white-space: nowrap; font-weight: 600;
+    }
+    .chapter-nav a:hover { color: var(--ink); background: var(--warm); }
+    .chapter-nav a.active { color: var(--paper); background: var(--ink); }
+
+    /* Cover */
+    .cover {
+      max-width: 920px; margin: 0 auto; padding: 96px 28px 48px;
+      text-align: center; border-bottom: 1px solid var(--rule);
+    }
+    .cover .kicker {
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 24px;
+    }
+    .cover h1 {
+      font-family: var(--serif-display); font-weight: 900;
+      font-size: clamp(48px, 8vw, 88px); line-height: 1.0;
+      letter-spacing: -0.025em; margin: 0 0 24px;
+    }
+    .cover .dek {
+      font-family: var(--serif-body); font-style: italic;
+      font-size: clamp(18px, 2.4vw, 24px); line-height: 1.5;
+      color: #2a2a2a; max-width: 720px; margin: 0 auto 36px;
+    }
+    .cover .meta {
+      font-family: var(--sans); font-size: 12px; color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    main { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
+
+    /* Chapter section */
+    section.chapter {
+      padding: 48px 0; border-bottom: 1px solid var(--rule);
+      scroll-margin-top: 70px;
+    }
+    section.chapter:last-of-type { border-bottom: 0; }
+
+    .chapter-num {
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--accent); font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .chapter h2 {
+      font-family: var(--serif-display); font-weight: 900;
+      font-size: clamp(32px, 4.5vw, 44px); line-height: 1.1;
+      letter-spacing: -0.015em; margin: 0 0 14px;
+    }
+    .chapter .lede {
+      font-family: var(--serif-body); font-style: italic; font-size: 19px;
+      line-height: 1.55; color: #333; margin: 0 0 28px;
+    }
+    .chapter p { margin: 0 0 18px; }
+    .chapter p strong { color: var(--ink); font-weight: 600; }
+
+    /* Artifact card */
+    .artifact {
+      border: 1px solid var(--rule); padding: 22px 24px; margin: 24px 0 28px;
+      background: var(--warm); border-radius: 4px;
+    }
+    .artifact .artifact-label {
+      font-family: var(--sans); font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--accent); font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .artifact .artifact-title {
+      font-family: var(--sans); font-size: 16px; font-weight: 700;
+      color: var(--ink); margin-bottom: 6px;
+    }
+    .artifact p {
+      font-family: var(--serif-body); font-size: 15px; color: #444;
+      margin: 0 0 12px; line-height: 1.5;
+    }
+    .artifact .links {
+      display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px;
+    }
+    .artifact a {
+      font-family: var(--sans); font-size: 12px; font-weight: 600;
+      letter-spacing: 0.04em; color: var(--ink); text-decoration: none;
+      border: 1px solid var(--ink); padding: 6px 14px; border-radius: 3px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .artifact a:hover { background: var(--ink); color: var(--paper); }
+    .artifact a.pdf { border-color: var(--muted); color: var(--muted); }
+    .artifact a.pdf:hover { background: var(--muted); color: var(--paper); }
+
+    .pull-quote {
+      font-family: var(--serif-display); font-style: italic; font-weight: 700;
+      font-size: 24px; line-height: 1.35; color: var(--ink);
+      border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+      padding: 24px 0; margin: 28px 0;
+    }
+    .pull-quote .who {
+      display: block; font-family: var(--sans); font-style: normal;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted); margin-top: 12px;
+    }
+
+    .image-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0;
+    }
+    .image-grid img {
+      width: 100%; aspect-ratio: 16/9; object-fit: cover;
+      border: 1px solid var(--rule);
+    }
+    @media (max-width: 640px) { .image-grid { grid-template-columns: 1fr; } }
+
+    .checklist {
+      background: var(--warm); padding: 20px 24px; margin: 24px 0;
+      border-left: 3px solid var(--accent);
+    }
+    .checklist h4 {
+      font-family: var(--sans); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent);
+      margin: 0 0 12px;
+    }
+    .checklist ul { margin: 0; padding-left: 20px; font-size: 15px; }
+    .checklist li { margin-bottom: 6px; line-height: 1.45; }
+
+    .stat-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+      margin: 24px 0; padding: 20px 0; border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .stat .num {
+      font-family: var(--serif-display); font-weight: 900;
+      font-size: 36px; color: var(--ink); line-height: 1;
+    }
+    .stat .label {
+      font-family: var(--sans); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+      margin-top: 6px;
+    }
+    @media (max-width: 640px) { .stat-grid { grid-template-columns: 1fr; } }
+
+    .closer {
+      max-width: 720px; margin: 64px auto 0; padding: 48px 24px 80px;
+      text-align: center; border-top: 2px solid var(--ink);
+    }
+    .closer h3 {
+      font-family: var(--serif-display); font-weight: 900;
+      font-size: 32px; margin: 0 0 16px; line-height: 1.15;
+    }
+    .closer .sub {
+      font-family: var(--serif-body); font-style: italic; font-size: 18px;
+      color: #444; max-width: 620px; margin: 0 auto 28px;
+    }
+    .closer .nav-links {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      margin-top: 18px;
+    }
+    .closer .nav-links a {
+      font-family: var(--sans); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.08em; color: var(--paper); background: var(--ink);
+      text-decoration: none; padding: 12px 20px; border-radius: 3px;
+    }
+    .closer .nav-links a:hover { background: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="progress"><div class="progress-fill" id="progress"></div></div>
+
+  <nav class="chapter-nav">
+    <div class="chapter-nav-inner">
+      <a href="#ch01">01 · Begin</a>
+      <a href="#ch02">02 · Acres</a>
+      <a href="#ch03">03 · Studio</a>
+      <a href="#ch04">04 · Forecast</a>
+      <a href="#ch05">05 · Briefing</a>
+      <a href="#ch06">06 · MBT</a>
+      <a href="#ch07">07 · Chat</a>
+      <a href="#ch08">08 · Inverted Intel</a>
+      <a href="#ch09">09 · Tokenomics</a>
+      <a href="#ch10">10 · Campaign</a>
+      <a href="#ch11">11 · Artist Equity</a>
+      <a href="#ch12">12 · Audit</a>
+      <a href="#ch13">13 · Studio C</a>
+      <a href="#ch14">14 · Pitch</a>
+      <a href="#ch15">15 · Architecture</a>
+      <a href="#ch16">16 · Next</a>
+    </div>
+  </nav>
+
+  <header class="cover">
+    <div class="kicker">A Cos Walkthrough · One Sitting · April 29-30, 2026</div>
+    <h1>The Whole Story</h1>
+    <p class="dek">In one night we went from "Tracy's panicking about cash flow" to "we just struck gold." Here's everything that happened, in story order, with a clickable artifact at every step. Read top to bottom and you'll see the same picture Chase saw.</p>
+    <div class="meta">↓ Scroll · 16 chapters · ~12 min read</div>
+  </header>
+
+  <main>
+
+    <!-- CH 01 -->
+    <section class="chapter" id="ch01">
+      <div class="chapter-num">Chapter 01 · Where we started</div>
+      <h2>Tracy was panicking and the docs were drifting</h2>
+      <p class="lede">The session opened with two real problems — one human, one structural. Tracy couldn't see where the cash was supposed to come from. The codebase was carrying month-old stale framing.</p>
+
+      <p>Yesterday's full audit landed first thing: the docs and the code disagreed about who Studio C was, what MBT did, whether Tuthill was part of the platform. Battle-readiness for any customer-facing launch: <strong>RED</strong>. The realistic ship date kept slipping.</p>
+
+      <p>The Weekly Partner Commitments (WPC) system existed. The Cos ingestion rule existed. The voice docs existed. What was missing: a single picture everyone could point at and agree on.</p>
+
+      <div class="artifact">
+        <div class="artifact-label">Artifact · Yesterday's audit (511 lines)</div>
+        <div class="artifact-title">Full Codebase + Docs Audit — 2026-04-29</div>
+        <p>Risk register, system map, 7-day action plan. Top critical: answerPage Sanity schema not implemented, /answers/[slug] route doesn't exist, Studio C positioned wrong in 2 canonical files, deprecated DSD onboarding still teaching the wrong sales motion.</p>
+        <div class="links">
+          <a href="/docs/audits/full-audit-2026-04-29.md">Read</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH 02 -->
+    <section class="chapter" id="ch02">
+      <div class="chapter-num">Chapter 02 · The big-picture win</div>
+      <h2>Big Muddy Acres — A Rockstar Retirement Community</h2>
+      <p class="lede">Chase's framing: a unified land, community, and creative anchor in Mississippi. Built around the studio. RV sites at $500/month as the immediate cash-flow engine. Tiny homes as the build-out.</p>
+
+      <p>The candidate concepts that had been floating in the repo — The Hollow musician cooperative, the Persimmon Hollow / RRC plan, the Land & Expand tiny house community, the two-property cycle — collapsed into one thing. Big Muddy Acres absorbed all of them.</p>
+
+      <p>Mississippi advantage: no freeze. Above-ground PVC water lines work year-round. RV cap-ex per site drops 15-20% versus cold-climate parks. Hurricane risk is moderate inland; Adams County avoids the gulf-six wind zone. Clay soil is perfect for lagoon sewage systems — often without a liner.</p>
+
+      <div class="stat-grid">
+        <div class="stat"><div class="num">$18-32K</div><div class="label">Cap-ex per RV site (all-in)</div></div>
+        <div class="stat"><div class="num">$300K</div><div class="label">Year revenue at 50 sites</div></div>
+        <div class="stat"><div class="num">3.5-5 yr</div><div class="label">Payback on RV portion</div></div>
+      </div>
+
+      <div class="artifact">
+        <div class="artifact-label">Artifact · The centerpiece scroll-deck</div>
+        <div class="artifact-title">Big Muddy Acres — A Rockstar Retirement Community (2,692 words)</div>
+        <p>Full magazine-style story. 14 sections. Six pole-barn renderings embedded. The piece you walk Tracy + Amy through.</p>
+        <div class="links">
+          <a href="/big-muddy-acres/big-muddy-acres.html">Read</a>
+          <a class="pdf" href="/big-muddy-acres/pdfs/big-muddy-acres.pdf">PDF</a>
+        </div>
+      </div>
+
+      <div class="artifact">
+        <div class="artifact-label">Artifact · Eco-tech research</div>
+        <div class="artifact-title">Big Muddy Acres Eco-Tech Infrastructure (40+ vendors)</div>
+        <p>Real prices. Mississippi-specific. Smart submetering, lagoon systems, solar microgrids, RV park management platforms.</p>
+        <div class="links">
+          <a href="/docs/research/big-muddy-acres-eco-tech-infrastructure-2026-04-29.md">Read</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH 03 -->
+    <section class="chapter" id="ch03">
+      <div class="chapter-num">Chapter 03 · The creative anchor</div>
+      <h2>The Mechanical Bull Pull Barn</h2>
+      <p class="lede">Pole-frame studio. Industrial-minimal finish. Big windows. Mixing console, instruments, oriental rugs. Two small bedrooms, a bath, a kitchen, the rest wide open.</p>
+
+      <p>Chase described the building. Vertex AI Imagen 3 generated six photorealistic renderings tonight via REST API directly from the laptop. Exterior wide, exterior entry, interior mixing, aerial site plan, kitchen, golden-hour vista from the porch. They embed throughout the BMA scroll-deck.</p>
+
+      <div class="image-grid">
+        <img src="/big-muddy-acres/renderings/bma-pull-barn-exterior-wide-01.png" alt="Pull barn exterior wide" loading="lazy" />
+        <img src="/big-muddy-acres/renderings/bma-pull-barn-interior-mixing-03.png" alt="Mixing console interior" loading="lazy" />
+        <img src="/big-muddy-acres/renderings/bma-aerial-site-04.png" alt="Aerial site plan" loading="lazy" />
+        <img src="/big-muddy-acres/renderings/bma-property-vista-porch-06.png" alt="Property vista from porch" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- CH 04 -->
+    <section class="chapter" id="ch04">
+      <div class="chapter-num">Chapter 04 · The schedule that kills the panic</div>
+      <h2>The 12-month forecast</h2>
+      <p class="lede">Tracy panicked because there was no schedule. Without a forecast, every silence felt like failure. Finance Director ran the numbers tonight.</p>
+
+      <p>Y1 mid-scenario: <strong>$283K</strong>. Inn carries $150K. Photography $59K. Touring $32K. Studio C $16.5K. Records, Radio, BMA = $0 (honest). Music revenue is a 12-month-out problem; Inn + Photography carry the period.</p>
+
+      <p>Panic threshold rules: green within 20% of mid; yellow at 20-35% miss for 2 consecutive months; red at 35%+ or cash below 60-day Inn operating cost. The schedule tells everyone when to actually worry — and when to stay the course.</p>
+
+      <div class="artifact">
+        <div class="artifact-label">Artifact · Three-scenario forecast</div>
+        <div class="artifact-title">12-Month Forecast — May 2026 to April 2027</div>
+        <p>Month-by-month, per business unit, three scenarios (high/mid/low). Panic threshold rules. Top 3 forecast risks. Available as JSON for future dashboard ingestion.</p>
+        <div class="links">
+          <a href="/big-muddy-acres/forecast.html">Read</a>
+          <a class="pdf" href="/big-muddy-acres/pdfs/forecast.pdf">PDF</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH 05 -->
+    <section class="chapter" id="ch05">
+      <div class="chapter-num">Chapter 05 · The whole picture, in one place</div>
+      <h2>The Big Muddy Acres briefing</h2>
+      <p class="lede">Index of every plan, every PDF, every piece you'd hand Tracy + Amy on the call.</p>
+
+      <p>Seven business plans drafted in parallel by sub-agents (Inn, Touring, Magazine, Studio C, Records, Radio, Photography) — ~7,500 words total. Pandoc converted them to HTML. Chrome headless generated Senate-style PDFs. The touring destinations map (35 towns, 4 tiers) joined the set.</p>
+
+      <div class="artifact">
+        <div class="artifact-label">Artifact · The hub</div>
+        <div class="artifact-title">BMA Briefing Index — Tomorrow's Call</div>
+        <p>10 cards. Every business plan, the forecast, the centerpiece scroll-deck, the touring map. PDF download next to every page.</p>
+        <div class="links">
+          <a href="/big-muddy-acres/">Open</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH 06 -->
+    <section class="chapter" id="ch06">
+      <div class="chapter-num">Chapter 06 · The product locked</div>
+      <h2>MBT — SaaS + Service hybrid, billed in tokens</h2>
+      <p class="lede">Chase locked it in one sitting. MBT is a chatbot-first hybrid. Software tokens for AI work. Human tokens for the team work AI can't do. Same chat meters both.</p>
+
+      <p>The pieces fell into place: Studio C IS the operating company that runs MBT. Open Notebook is the data layer. The 30+ specialist agents are the routing intelligence. The 6-tier pricing — Free, $20 Standard, <strong>$100 Service (the target sell)</strong>, $200 Operator, $500 Business, Enterprise — covers the whole audience from tire-kicker to enterprise contract.</p>
+
+      <p>The $100 tier is the killer. ChatGPT, Claude, Gemini are all $20/mo. The MBT $100 tier adds premium models AND access to a human when the chat hits a wall. No competitor offers human-on-call at any consumer price.</p>
+
+      <div class="pull-quote">
+        Software is cheap. Humans are the premium. We bill them differently because they are.
+        <span class="who">— The MBT pricing tagline</span>
+      </div>
+
+      <div class="artifact">
+        <div class="artifact-label">Artifact · The locked product spec</div>
+        <div class="artifact-title">MBT Product Definition — SaaS + Service</div>
+        <p>The full spec. 6-tier pricing table. Token model. Studio C as operating company. Vertical deployments (S2PX absorbed as scanning vertical). Interface choice (web / terminal / Apple Notes / ClickUp / custom). Custom builds also token-billed.</p>
+        <div class="links">
+          <a href="/docs/positioning/mbt-product-definition-2026-04-30.md">Read</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH 07 -->
+    <section class="chapter" id="ch07">
+      <div class="chapter-num">Chapter 07 · The chat shipped</div>
+      <h2>Studio C Chat — Live tonight</h2>
+      <p class="lede">vercel-plugin:ai-architect built the MVP in one session. Then upgraded it with the router. Both shipped.</p>
+
+      <p>Streaming Anthropic Sonnet. Loads the full Big Muddy context (CLAUDE.md + thesis + product def + forecast + AEO answer blocks). Creates Asana tasks via the <code>create_task</code> tool when escalation is needed. The router upgrade added 10 specialists — Patch, Finance Director, Gallery Director, Bearsville Studio, R&D Touring, Mac Mini Photo Lab, North Star, QA Agent, Insurance & Risk, Cos as catch-all.</p>
+
+      <p>Test query: <em>"The build is failing in CI — what would you check first?"</em> The router picks Patch and renders a specialist card with an accent border that streams Patch's debugging steps inline.</p>
+
+      <div class="checklist">
+        <h4>To use it tonight</h4>
+        <ul>
+          <li>Run: <code>cd /Users/chasethis/hillbilly-dreams/apps/web && pnpm dev</code></li>
+          <li>Open: <strong>http://localhost:3000/chat</strong></li>
+          <li>Add <code>ASANA_PAT</code> to <code>.env.local</code> for escalation to fire</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CH 08 -->
+    <section class="chapter" id="ch08">
+      <div class="chapter-num">Chapter 08 · Naming the trend</div>
+      <h2>Inverted Intelligence</h2>
+      <p class="lede">As AI gets better at the cognitive work humans were valued for, the value of human work inverts. The things only humans can do — show up, take accountability, hold a room — become the premium layer. We priced for it first.</p>
+
+      <p>The thesis became the brand. The brand became a radio show. The radio show becomes the marketing. Customers self-select into the thesis, then convert.</p>
+
+      <p>Chase registered <strong>invertedintelligence.fm</strong> within the hour of locking the concept. CLAUDE.md updated to 15 active domains. Domain points to a coming-soon page once DNS propagates.</p>
+
+      <div class="artifact">
+        <div class="artifact-label">Artifact · The brand thesis</div>
+        <div class="artifact-title">Inverted Intelligence — Concept + Pilot Plan</div>
+        <p>Full thesis. Radio show format. Marketing narrative across surfaces. Pilot strategy: Natchez first, Woodstock second, then wide. The MBT token model is the product expression of the thesis.</p>
+        <div class="links">
+          <a href="/docs/positioning/inverted-intelligence-2026-04-30.md">Read</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH 09 -->
+    <section class="chapter" id="ch09">
+      <div class="chapter-num">Chapter 09 · Ten ways to explain it</div>
+      <h2>Tokenomics — 10 design approaches, 1 master page</h2>
+      <p class="lede">Chase wanted the same concept explained ten different ways — different art directions, not different colors. Ten sub-agents went off at the same time. Each came back with a fully different visual language.</p>
+
+      <p>Magazine narrative. Visual manifesto. Interactive widget with sliders + live meters. Pure-numbers comparison tables. Heritage journal with drop cap and ornamental rules. Punchy social copy in card grid. Show-business analogy (Tuesday cover vs. Friday headliner). Honest no-marketing cut. Enterprise sell-sheet. Wildcard "Cost Oracle" carnival fortune-teller.</p>
+
+      <p>Each one's CSS is namespaced so they can sit on the same page without bleeding into each other. Iframes hold them apart on the master comparison page. They become the initial template library — customers picking a workspace style at signup choose from these 10.</p>
+
+      <div class="artifact">
+        <div class="artifact-label">Artifact · The 10-approach showcase</div>
+        <div class="artifact-title">Tokenomics — Initial Template Library</div>
+        <p>Ten sections, ten art directions, one comparison page. The eventual workspace template gallery for MBT customers.</p>
+        <div class="links">
+          <a href="/tokenomics/">Open</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH 10 -->
+    <section class="chapter" id="ch10">
+      <div class="chapter-num">Chapter 10 · The campaign</div>
+      <h2>"AI Tells You. We Do the Rest."</h2>
+      <p class="lede">Boomer-meets-AI ad campaign. Single repeatable script template. Twenty topical swaps. The boomer is bewildered, the Gen Z is exasperated, the AI is the antagonist, Studio C is the relief.</p>
+
+      <div class="pull-quote">
+        AI: "I just told you exactly how to set up a web server and start your own podcast. Ten easy steps."<br>
+        [Person stares.]<br>
+        Card: "You don't have a clue where to begin. We do. We do the rest."
+        <span class="who">— The master script (every ad uses this)</span>
+      </div>
+
+      <p>Production: shoot on iPhone, real boomer + real Gen Z (no actors), 15-30 second cuts for TikTok / Reels / Shorts, static image variants for IG and X. The "Ten Easy Steps" running gag holds the brand together across infinite topical variations.</p>
+
+      <div class="artifact">
+        <div class="artifact-label">Artifact · Campaign brief</div>
+        <div class="artifact-title">"AI Tells You. We Do the Rest." — Full Campaign</div>
+        <p>Master script. 20 topical swaps. Voice rules. Production notes. Distribution plan. Recommended first 3 to shoot.</p>
+        <div class="links">
+          <a href="/docs/marketing/ai-tells-you-we-do-it-campaign-2026-04-30.md">Read</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH 11 -->
+    <section class="chapter" id="ch11">
+      <div class="chapter-num">Chapter 11 · The unlock</div>
+      <h2>The Artist Equity Model — Tiny Houses for Records</h2>
+      <p class="lede">Two prior business lines that each had a "but how does it actually work" question. Big Muddy Records: how do we sign artists without cash? Big Muddy Acres: how do we get the first marketing attention? Each solves the other's problem.</p>
+
+      <p>The first deal: Robert "Chicken" Burke produces a record. We value the record at <strong>$50,000</strong>. Instead of a cash advance, he gets a tiny house (or meaningful share) at Big Muddy Acres. He becomes the first resident-artist. The press around the trade — covered in music press AND real-estate press AND alt-economics press AND lifestyle press — IS the marketing campaign.</p>
+
+      <p>Land math: Adams County rural land at $1,500-$3,500/acre. 100 acres = $150-$350K, well within the Phase 1 capital band. Enough land for the full 5-year vision is less than 25% of Phase 1 capital.</p>
+
+      <div class="checklist">
+        <h4>The 5 decisions only Chase can make</h4>
+        <ul>
+          <li>Chicken — does he want this deal? (Saturday meeting timing)</li>
+          <li>Land — specific parcel in mind, or scout needed?</li>
+          <li>Entity — who holds the land (MBT, a2natchez, new SPV)?</li>
+          <li>Acquisition — close before pilot or lease + option first?</li>
+          <li>Press timing — is Chicken willing to be the cover story?</li>
+        </ul>
+      </div>
+
+      <div class="artifact">
+        <div class="artifact-label">Artifact · The strategic doc</div>
+        <div class="artifact-title">Artist Equity Model — Tiny Houses for Records</div>
+        <p>Concept locked. First deal scoped. PR angles to shop. Cascade plan across BMA + Records + Inverted Intelligence + Outsider Economics + the campaign.</p>
+        <div class="links">
+          <a href="/docs/positioning/artist-equity-model-2026-04-30.md">Read</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH 12 -->
+    <section class="chapter" id="ch12">
+      <div class="chapter-num">Chapter 12 · The hard truths</div>
+      <h2>Battle-readiness audit — Currently RED</h2>
+      <p class="lede">Chief of Staff agent ran the audit. Honest verdict: the chat MVP is a demo, not a product a Natchez customer can sign up for, pay for, and use without Chase / Cos / Patch in the loop.</p>
+
+      <p>Realistic ship-to-Natchez date: <strong>Friday May 22 (3 weeks).</strong> Three highest-leverage gaps: (1) wire ASANA_PAT, (2) build the token meter and Stripe metering, (3) publish the pricing page + Inverted Intelligence narrative on a customer-facing surface.</p>
+
+      <p>Critical bugs the audit caught: <code>apps/web/lib/big-muddy-context.ts</code> reads <code>process.cwd()</code> — works locally, breaks in Vercel Production. No rate limiting on <code>/api/chat</code>. Open Notebook backend referenced as Mac mini @ 192.168.4.37, but the Mac mini is OFF.</p>
+
+      <div class="artifact">
+        <div class="artifact-label">Artifact · The audit (3,200 words)</div>
+        <div class="artifact-title">Battle-Readiness Audit — 7 Objectives, Red/Yellow/Green</div>
+        <p>Per-objective assessment. Critical path. What can ship in parallel. The Studio C role decision is the gating prerequisite — Chase must lock it by Monday May 4.</p>
+        <div class="links">
+          <a href="/docs/audits/battle-readiness-2026-04-30.md">Read</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH 13 -->
+    <section class="chapter" id="ch13">
+      <div class="chapter-num">Chapter 13 · The face of the company</div>
+      <h2>Studio C — Service Page</h2>
+      <p class="lede">Studio C uses MBT as the tech wrapper, plus all LLMs, plus the full software suite, plus know-how, plus a subcontractor network (Fiverr + relationships). Routing IS the value. AI helps the routing decision. Customer never sees the layered fulfillment.</p>
+
+      <div class="artifact">
+        <div class="artifact-label">Artifact · Internal service page (1,180 words)</div>
+        <div class="artifact-title">Studio C — How the Service Works</div>
+        <p>Above-the-fold value prop. The model (software → agents → humans). The fulfillment stack honestly named. Pricing table with $100 Service highlighted as recommended. How to start. What Studio C is not.</p>
+        <div class="links">
+          <a href="/studio-c/">Open</a>
+          <a class="pdf" href="/studio-c/pdfs/studio-c-service.pdf">PDF</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH 14 -->
+    <section class="chapter" id="ch14">
+      <div class="chapter-num">Chapter 14 · The team conversation</div>
+      <h2>Pitch to Elijah + Miles</h2>
+      <p class="lede">Bearsville Studio Agent drafted the internal pitch. Elijah becomes Chief of Staff. Miles is Production. They immediately develop the outside resources roster — 50 vetted vendors across 10 categories within 2 weeks.</p>
+
+      <div class="pull-quote">
+        Software answers cost software-token rates. Human answers cost human-token rates. The customer sees both meters. We see both meters. Everyone knows what the human work is worth.
+        <span class="who">— From the Elijah/Miles pitch</span>
+      </div>
+
+      <div class="artifact">
+        <div class="artifact-label">Artifact · Internal pitch (~2,050 words)</div>
+        <div class="artifact-title">The Pitch to Elijah + Miles</div>
+        <p>What we're selling. Why now. Their roles. What we have today. What we need immediately. Marketing plan. The math. Battle-readiness honest cut. What we need from them starting Monday.</p>
+        <div class="links">
+          <a href="/studio-c/elijah-miles-pitch.html">Read</a>
+          <a class="pdf" href="/studio-c/pdfs/elijah-miles-pitch.pdf">PDF</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH 15 -->
+    <section class="chapter" id="ch15">
+      <div class="chapter-num">Chapter 15 · The next layer</div>
+      <h2>Navigation architecture deep analysis</h2>
+      <p class="lede">North Star agent ran the architectural assessment. Three urgent recommendations.</p>
+
+      <p><strong>One:</strong> collapse 9+ bespoke layouts into a single <code>EcosystemFrame</code> component with three variants — Reader, Operator, Conversation. <strong>Two:</strong> tenant-scope the middleware pass-through paths (today every domain serves every path — <code>outsidereconomics.com/records</code> silently renders Records). <strong>Three:</strong> bind the chat to its tenant — <code>/chat</code> hardcodes "Big Muddy" but the bypass is global; a Bearsville user sees the wrong brand.</p>
+
+      <p><strong>Verdict on chat-as-nav:</strong> Chat IS the primary navigation in 18 months. Ship today as the <em>dominant secondary</em> — every reader surface gets a prominent chat icon, static nav stays for SEO/AEO and first-touch. Defense in depth.</p>
+
+      <div class="artifact">
+        <div class="artifact-label">Artifact · Architectural analysis</div>
+        <div class="artifact-title">Navigation Architecture Deep Analysis</div>
+        <p>Current state map. Identified problems with file paths. Architectural recommendations. Migration path. Conventions doc. The chat-as-nav verdict. Open questions for Chase.</p>
+        <div class="links">
+          <a href="/docs/architecture/nav-architecture-analysis-2026-04-30.md">Read</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH 16 -->
+    <section class="chapter" id="ch16">
+      <div class="chapter-num">Chapter 16 · What ships next</div>
+      <h2>The list, in order</h2>
+      <p class="lede">Realistic ship-to-Natchez: May 22. Here's what closes between now and then, in the order they have to close.</p>
+
+      <div class="checklist">
+        <h4>Critical path (must close before launch)</h4>
+        <ul>
+          <li>Chase decides Studio C role lock by <strong>Monday May 4</strong> (gating)</li>
+          <li>Chase confirms Chicken deal by <strong>Sunday May 4</strong></li>
+          <li>Wire ASANA_PAT (5 min)</li>
+          <li>Fix big-muddy-context.ts (Vercel Production bug)</li>
+          <li>Build token meter + Stripe metering (1-2 weeks)</li>
+          <li>Publish pricing page + Inverted Intelligence narrative on at least one customer surface</li>
+          <li>Tracy structures the entity for land hold + artist equity (1 week)</li>
+          <li>Bind chat to its tenant (architectural fix)</li>
+        </ul>
+      </div>
+
+      <div class="checklist">
+        <h4>In parallel (can ship alongside)</h4>
+        <ul>
+          <li>Patch crawlability + llms.txt cleanup (1 day)</li>
+          <li>Onboarding bundle DEPRECATED banner (Cos)</li>
+          <li>Generate canonical .env.example for Elijah/Miles bootstrap</li>
+          <li>Open Notebook deploy on Hetzner (1 hour now SSH works)</li>
+          <li>Scout land + start tiny house design</li>
+          <li>Press kit drafted for Chicken deal</li>
+          <li>Inverted Intelligence Episode 1 recorded with Chicken</li>
+          <li>Apple Notes + Reminders integrations (week of May 5)</li>
+        </ul>
+      </div>
+
+      <div class="checklist">
+        <h4>The standing surfaces (live now)</h4>
+        <ul>
+          <li><a href="/chat">Studio C Chat</a> — live with router + 10 specialists (Anthropic Sonnet streaming)</li>
+          <li><a href="/big-muddy-acres/">Big Muddy Acres briefing</a> — full deliverable for partner call</li>
+          <li><a href="/studio-c/">Studio C service page</a> — internal positioning page</li>
+          <li><a href="/tokenomics/">Tokenomics — 10 approaches</a> — initial template library</li>
+          <li><a href="/">Local dashboard</a> — everything in one place</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="closer">
+    <h3>That's the whole story.</h3>
+    <p class="sub">Every piece talks to every other piece. The chat needs the router needs the specialists needs the tokens needs the human service layer needs Studio C as the operating company needs the Inverted Intelligence narrative needs the campaign needs the brand needs the customer flow. None of it is a one-off. It coheres.</p>
+    <div class="nav-links">
+      <a href="/">← Back to dashboard</a>
+      <a href="/chat">Try the chat →</a>
+      <a href="/big-muddy-acres/">BMA briefing →</a>
+    </div>
+  </div>
+
+  <script>
+    // Progress bar tied to scroll
+    const fill = document.getElementById('progress');
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = (scrollTop / height) * 100;
+      fill.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateProgress);
+    updateProgress();
+
+    // Active chapter in nav
+    const sections = document.querySelectorAll('section.chapter');
+    const navLinks = document.querySelectorAll('.chapter-nav a');
+    function updateActive() {
+      let current = '';
+      sections.forEach(s => {
+        const top = s.getBoundingClientRect().top;
+        if (top < 120) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', updateActive);
+  </script>
+</body>
+</html>

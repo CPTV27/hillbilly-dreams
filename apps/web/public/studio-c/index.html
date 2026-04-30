@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Studio C — The Operating Company Behind MBT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --rule: #d8d8d8;
+      --muted: #6a6a6a;
+      --paper: #ffffff;
+      --highlight: #f6f4ef;
+      --accent: #121212;
+      --serif-display: 'Playfair Display', 'Times New Roman', Times, serif;
+      --serif-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      background: var(--paper);
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: var(--serif-body);
+      font-size: 19px;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 64px 28px 96px;
+    }
+
+    .topstrap {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 14px;
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .topstrap .section { font-weight: 700; color: var(--ink); }
+    .topstrap .date { font-weight: 400; }
+
+    h1.headline {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 1.04;
+      letter-spacing: -0.015em;
+      margin: 0 0 18px;
+      color: var(--ink);
+    }
+
+    .dek {
+      font-family: var(--serif-body);
+      font-style: italic;
+      font-size: 22px;
+      line-height: 1.45;
+      color: #2a2a2a;
+      margin: 0 0 32px;
+      font-weight: 400;
+    }
+
+    .byline {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .byline .author { color: var(--ink); font-weight: 700; }
+
+    .dateline {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    article p { margin: 0 0 22px; }
+
+    article p:first-of-type::first-letter {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 78px;
+      line-height: 0.82;
+      float: left;
+      padding: 8px 12px 0 0;
+      color: var(--ink);
+    }
+
+    h2.section-head {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 1.2;
+      letter-spacing: -0.005em;
+      margin: 44px 0 14px;
+      color: var(--ink);
+    }
+
+    h3.sub-head {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin: 28px 0 10px;
+    }
+
+    .divider {
+      text-align: center;
+      letter-spacing: 0.6em;
+      color: var(--muted);
+      margin: 28px 0 28px;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    .pullquote {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-style: italic;
+      font-size: 26px;
+      line-height: 1.3;
+      color: var(--ink);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 22px 0;
+      margin: 32px 0;
+      text-align: left;
+    }
+
+    figure.full {
+      margin: 40px -80px;
+    }
+
+    figure.full img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    figure.full figcaption {
+      font-family: var(--sans);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+      padding: 12px 80px 0;
+    }
+
+    figure.full figcaption .attribution {
+      font-style: normal;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 4px;
+      color: #909090;
+    }
+
+    .ledger {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.55;
+      background: var(--highlight);
+      border-left: 3px solid var(--ink);
+      padding: 18px 22px;
+      margin: 28px 0;
+    }
+
+    .ledger .label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .ledger ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+
+    .ledger li { margin-bottom: 6px; }
+
+    a.inline {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 3px;
+    }
+
+    a.inline:hover { text-decoration-color: var(--ink); }
+
+    /* Pricing table */
+    .pricing-wrap {
+      margin: 28px 0 36px;
+      overflow-x: auto;
+    }
+
+    table.pricing {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    table.pricing thead th {
+      text-align: left;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--ink);
+      vertical-align: bottom;
+    }
+
+    table.pricing tbody td {
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+
+    table.pricing tbody tr.target {
+      background: var(--highlight);
+    }
+
+    table.pricing tbody tr.target td {
+      border-bottom: 1px solid #c9c2af;
+    }
+
+    table.pricing .tier {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--ink);
+    }
+
+    table.pricing .price {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    table.pricing .target-tag {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 3px 8px;
+      margin-left: 6px;
+      border-radius: 2px;
+      vertical-align: middle;
+      font-weight: 700;
+    }
+
+    .three-step {
+      counter-reset: step;
+      padding: 0;
+      margin: 24px 0 32px;
+      list-style: none;
+    }
+
+    .three-step li {
+      counter-increment: step;
+      padding: 18px 0 18px 60px;
+      position: relative;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--serif-body);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .three-step li:last-child { border-bottom: none; }
+
+    .three-step li::before {
+      content: counter(step, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 18px;
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 28px;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .three-step .step-label {
+      display: block;
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .credit {
+      font-family: var(--sans);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 56px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      line-height: 1.55;
+    }
+
+    .footer-meta {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 36px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      line-height: 1.7;
+    }
+
+    .footer-meta .label {
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 10px;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .footer-meta .block {
+      margin-bottom: 16px;
+    }
+
+    .footer-actions {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-actions a {
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+    }
+
+    .footer-actions a:hover { color: var(--muted); border-bottom-color: var(--muted); }
+
+    @media (max-width: 880px) {
+      figure.full { margin: 36px 0; }
+      figure.full figcaption { padding: 12px 0 0; }
+    }
+
+    @media (max-width: 540px) {
+      .page { padding: 36px 20px 64px; }
+      h1.headline { font-size: 38px; }
+      .dek { font-size: 18px; }
+      h2.section-head { font-size: 24px; }
+      body { font-size: 17px; }
+      article p:first-of-type::first-letter { font-size: 60px; }
+      .pullquote { font-size: 21px; }
+      table.pricing { font-size: 12px; }
+      table.pricing thead th, table.pricing tbody td { padding: 10px 8px; }
+      table.pricing .tier, table.pricing .price { font-size: 15px; }
+    }
+
+    @media print {
+      body { font-size: 11pt; }
+      .page { padding: 0; max-width: 100%; }
+      figure.full { margin: 18px 0; page-break-inside: avoid; }
+      .pullquote, .ledger, table.pricing { page-break-inside: avoid; }
+      .footer-actions { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topstrap">
+      <span class="section">Studio C · The Operating Company Behind MBT</span>
+      <span class="date">April 30, 2026</span>
+    </div>
+
+    <h1 class="headline">Studio C</h1>
+
+    <p class="dek">You ask. We answer — or someone we hire does. Studio C is the team that runs Measurably Better Things: one chat, one bill, one accountable group of people behind every request you send.</p>
+
+    <div class="byline">By <span class="author">Studio C</span></div>
+    <div class="dateline">Natchez, Mississippi</div>
+
+    <article>
+      <p>Studio C is the operating company behind the Measurably Better Things product. The customer signs up for MBT — a chat, their data, a meter — and Studio C is the team that makes the chat answer, makes the data current, and picks up the phone when the chat hits a wall. That is the entire shape of what we sell. The product is a chat with your data inside it. The company is the people who keep that chat useful.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">The service</h2>
+
+      <p>You sign up for MBT and you get a chat that knows your business. We ingest your data on the way in — calendars, sales records, customer lists, contracts, whatever you have — and stand it up behind a chat interface that runs against the major large language models. You ask the chat for what you need. Most of the time it answers in seconds. When it can't, the request escalates to a person on the Studio C team. That person resolves it directly, or routes it to someone we have on retainer who can. You see the work, you see the meter, you pay one rate.</p>
+
+      <p>What you get is not a software seat. It is a working relationship with a team that has the tech wrapper, the model access, the software suite, the in-house experience, and the subcontractor network to handle anything an operator-scale business throws at it. You are not learning a new tool every quarter. You are talking to the same chat, and behind that chat, the same team.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">The model</h2>
+
+      <p>Three layers, in order. Software first. Agents second. Humans third. Vendors-of-vendors never visible.</p>
+
+      <h3 class="sub-head">Software first</h3>
+      <p>The chat answers from your data and the LLMs. That covers most of what gets asked — pulling a number, drafting a reply, summarizing a thread, generating a list, writing a piece of copy, working through a calculation. If software can do it, software does it, at software-token rates.</p>
+
+      <h3 class="sub-head">Agents second</h3>
+      <p>When the question is bigger than a single answer, the chat routes to a specialist agent — a researcher, a writer, a coder, a planner. Thirty-plus specialists in the registry, each one sharper at its job than a general-purpose chatbot. Same chat surface. Same meter. Still software-token rates until a human takes the case.</p>
+
+      <h3 class="sub-head">Humans third</h3>
+      <p>If the request needs a person — a phone call, a vendor coordination, a deliverable that has to be hand-built, a judgment call — it escalates to the Studio C team. We resolve it ourselves or we route it out to a subcontractor we know. We have Fiverr. We have relationships. We have the buying power of a working agency. Whatever we pay, we mark up, and the cost lands on your meter as human tokens. You see one bill. You hear from one team.</p>
+
+      <div class="pullquote">"Same chat. Software answers cost software-token rates. Human answers cost human-token rates. You see both meters in real time."</div>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">The fulfillment stack, honestly</h2>
+
+      <p>This part is on the front of the brand on purpose. We are not selling a black box. The transparency is the product.</p>
+
+      <ul>
+        <li><strong>The tech wrapper.</strong> A chat surface, a multi-agent router, an Open Notebook backend that holds your data. Built and maintained by Studio C on the MBT platform.</li>
+        <li><strong>The models.</strong> Claude, OpenAI, Gemini, and the smaller open-weight models for cheaper work. We pick the right one per request. You do not have to know which.</li>
+        <li><strong>The software suite.</strong> Whatever tools the team has standing — accounting, scheduling, design, code, analytics. The chat handles the routing. You do not buy seats in tools you will not use.</li>
+        <li><strong>The know-how.</strong> The team's accumulated experience running ops, hospitality, touring, media, and software for the Big Muddy ecosystem. Five years of receipts.</li>
+        <li><strong>The subcontractors.</strong> Fiverr for fast specialty work. Trusted contractors for recurring needs. Photographers, editors, developers, vendors — priced, marked up, billed back through the meter.</li>
+      </ul>
+
+      <p>You never have to find a vendor, vet a quote, manage a contractor, or chase a deliverable. You ask the chat. We resolve it. The meter shows you what it cost.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">Pricing</h2>
+
+      <p>Token-based. Same unit, two prices. Software tokens are what the LLMs cost, plus a small margin. Human tokens are what the team's time costs at a premium rate — because one escalation can resolve a five-figure problem in thirty minutes. The meter is always visible inside the chat. No surprise bills. Caps and alerts available.</p>
+
+      <div class="pricing-wrap">
+        <table class="pricing">
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>Price</th>
+              <th>What's in it</th>
+              <th>Who it's for</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tier">Free</td>
+              <td class="price">$0</td>
+              <td>Cheap, fast models. A handful of specialists exposed. No human service layer.</td>
+              <td>Try it before you buy it.</td>
+            </tr>
+            <tr>
+              <td class="tier">Standard</td>
+              <td class="price">$20<span style="font-weight:400;font-size:12px;color:var(--muted);"> /mo</span></td>
+              <td>Standard models — Sonnet, GPT-4o, Gemini Pro. Full registry of specialists. Pay per escalation if you need a human.</td>
+              <td>Individuals, sole operators. Costs the same as ChatGPT. Does dramatically more.</td>
+            </tr>
+            <tr class="target">
+              <td class="tier">Service<span class="target-tag">Recommended</span></td>
+              <td class="price">$100<span style="font-weight:400;font-size:12px;color:var(--muted);"> /mo</span></td>
+              <td>Premium models. Full registry. <strong>30 minutes of human service included every month, plus access to the human team at human-token rates.</strong></td>
+              <td>Small business owners, founders, solo operators. The sweet spot.</td>
+            </tr>
+            <tr>
+              <td class="tier">Operator</td>
+              <td class="price">$200<span style="font-weight:400;font-size:12px;color:var(--muted);"> /mo</span></td>
+              <td>Premium models. One to two hours of human service. Custom dashboards built on demand.</td>
+              <td>Small teams. Multi-property operators.</td>
+            </tr>
+            <tr>
+              <td class="tier">Business</td>
+              <td class="price">$500<span style="font-weight:400;font-size:12px;color:var(--muted);"> /mo</span></td>
+              <td>Premium plus custom-tuned models. Custom routing rules. Four to six hours of human service. Full workspace customization.</td>
+              <td>Growing businesses. Agencies. Vertical deployments.</td>
+            </tr>
+            <tr>
+              <td class="tier">Enterprise</td>
+              <td class="price">Custom</td>
+              <td>Dedicated infrastructure. Private specialists. Dedicated service team. Volume pricing.</td>
+              <td>Larger customers. Platform deals.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The $20 tier holds the line against ChatGPT, Claude, and Gemini Advanced — same price, multi-agent router instead of one model. The $100 tier is the recommended starting point because it is the only consumer-priced product on the market that includes access to a human team. Onboarding is a flat-rate setup at the Standard tier and bundled into Operator and above.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">How to start</h2>
+
+      <ol class="three-step">
+        <li>
+          <span class="step-label">Step one</span>
+          Tell us what you do. A short conversation — what your business is, what you spend time on, what you wish you could hand off. We confirm fit and quote the onboarding.
+        </li>
+        <li>
+          <span class="step-label">Step two</span>
+          We ingest your data. Documents, calendars, sales records, customer lists, whatever you have. Standard onboarding is one to two weeks. The chat learns your business while we build it.
+        </li>
+        <li>
+          <span class="step-label">Step three</span>
+          You start chatting. First session is walked. After that you use it however you want — questions, requests, deliverables. The meter runs. We answer.
+        </li>
+        <li>
+          <span class="step-label">Step four</span>
+          Tier up when you need more. Most customers start at Service ($100) and adjust after the first month based on actual usage.
+        </li>
+      </ol>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">What Studio C is not</h2>
+
+      <p>Not a video production house. We have a video production history through earlier Studio C work — that is one of the fulfillment capabilities behind the curtain, not the whole company. Not a software vendor — we sell outcomes, not seats. Not a traditional agency — the chat handles the majority of requests at software-token rates without a human touching them. Not a chatbot platform — we build customer-specific chat experiences for paying customers, not a tool other people build on.</p>
+
+      <p>The model is a hybrid. Software where software is fast. Humans where humans matter. One bill. One meter. One team.</p>
+
+      <p class="credit">Pricing and product structure per the MBT product definition locked April 30, 2026, on file at /docs/positioning/mbt-product-definition-2026-04-30.md. Studio C operates as the implementation, service, and billing engine for the Measurably Better Things product. References to the older "Studio C as production arm of Tuthill Design" framing are retired; Tuthill Design is a separate real estate photography practice.</p>
+
+      <div class="footer-meta">
+        <div class="block">
+          <span class="label">Address</span>
+          Studio C · Natchez, Mississippi
+        </div>
+        <div class="block">
+          <span class="label">Contact</span>
+          me@chasepierson.tv
+        </div>
+        <div class="block">
+          <span class="label">Start a chat</span>
+          <a class="inline" href="/chat">measurablybetter.life/chat</a>
+        </div>
+      </div>
+
+      <div class="footer-actions">
+        <a href="/studio-c/pdfs/studio-c-service.pdf">Download PDF</a>
+        <a href="/chat">Start a chat</a>
+      </div>
+    </article>
+  </div>
+</body>
+</html>

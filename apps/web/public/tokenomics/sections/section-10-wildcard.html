@@ -1,0 +1,695 @@
+<section class="approach approach-wildcard" id="approach-wildcard">
+  <style>
+    .approach-wildcard {
+      --wc-bg: #0b0a14;
+      --wc-bg-2: #14101f;
+      --wc-ink: #f4ecd8;
+      --wc-mute: #8a7e9a;
+      --wc-rule: #2a223c;
+      --wc-silicon: #6ee7c8;
+      --wc-flesh: #ff7a5c;
+      --wc-gold: #d9b25a;
+      --wc-shadow: rgba(0, 0, 0, 0.55);
+      background:
+        radial-gradient(ellipse at top, #1a1430 0%, var(--wc-bg) 55%, #050409 100%);
+      color: var(--wc-ink);
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+    }
+    .approach-wildcard *,
+    .approach-wildcard *::before,
+    .approach-wildcard *::after {
+      box-sizing: border-box;
+    }
+
+    .wildcard-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 72px 24px 96px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* the spooky drifting stars / dust */
+    .wildcard-stars {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background-image:
+        radial-gradient(1px 1px at 12% 18%, rgba(244, 236, 216, 0.5) 0, transparent 50%),
+        radial-gradient(1px 1px at 28% 72%, rgba(217, 178, 90, 0.45) 0, transparent 50%),
+        radial-gradient(1px 1px at 47% 31%, rgba(244, 236, 216, 0.35) 0, transparent 50%),
+        radial-gradient(1px 1px at 64% 88%, rgba(110, 231, 200, 0.4) 0, transparent 50%),
+        radial-gradient(1px 1px at 79% 22%, rgba(244, 236, 216, 0.5) 0, transparent 50%),
+        radial-gradient(1px 1px at 91% 64%, rgba(255, 122, 92, 0.35) 0, transparent 50%),
+        radial-gradient(1px 1px at 6% 51%, rgba(244, 236, 216, 0.3) 0, transparent 50%),
+        radial-gradient(1px 1px at 36% 9%, rgba(244, 236, 216, 0.4) 0, transparent 50%);
+      animation: wildcard-drift 60s linear infinite;
+    }
+    @keyframes wildcard-drift {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-40px, -20px, 0); }
+    }
+
+    .wildcard-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--wc-mute);
+      margin: 0 0 56px 0;
+    }
+    .wildcard-label-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--wc-gold);
+      flex-shrink: 0;
+      box-shadow: 0 0 12px var(--wc-gold);
+    }
+    .wildcard-label-divider {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--wc-rule), transparent);
+    }
+
+    /* the headline acts like a carnival barker shingle */
+    .wildcard-shingle {
+      text-align: center;
+      margin: 0 0 48px;
+      padding: 32px 24px;
+      border-top: 1px solid var(--wc-rule);
+      border-bottom: 1px solid var(--wc-rule);
+      position: relative;
+    }
+    .wildcard-shingle-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--wc-gold);
+      margin: 0 0 12px;
+    }
+    .wildcard-shingle h2 {
+      font-family: 'Playfair Display', 'Iowan Old Style', Georgia, serif;
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 0.95;
+      margin: 0 0 16px;
+      color: var(--wc-ink);
+      letter-spacing: -0.01em;
+    }
+    .wildcard-shingle h2 em {
+      color: var(--wc-gold);
+      font-style: italic;
+    }
+    .wildcard-shingle-sub {
+      font-size: 14px;
+      color: var(--wc-mute);
+      margin: 0;
+      letter-spacing: 0.04em;
+      font-style: italic;
+    }
+
+    /* The Oracle: the central interactive piece */
+    .wildcard-oracle {
+      background: linear-gradient(180deg, var(--wc-bg-2) 0%, #0e0c19 100%);
+      border: 1px solid var(--wc-rule);
+      border-radius: 4px;
+      padding: 0;
+      box-shadow:
+        0 30px 60px var(--wc-shadow),
+        inset 0 1px 0 rgba(217, 178, 90, 0.08);
+      overflow: hidden;
+      margin: 0 0 48px;
+    }
+
+    .wildcard-oracle-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: rgba(0, 0, 0, 0.35);
+      border-bottom: 1px solid var(--wc-rule);
+      font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--wc-mute);
+    }
+    .wildcard-oracle-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .wildcard-oracle-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--wc-silicon);
+      box-shadow: 0 0 10px var(--wc-silicon);
+      animation: wildcard-pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes wildcard-pulse {
+      0%, 100% { opacity: 0.4; transform: scale(0.85); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+    .wildcard-oracle-bar-right {
+      color: var(--wc-gold);
+      letter-spacing: 0.16em;
+    }
+
+    .wildcard-oracle-stage {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    /* the question wheel — the user "asks" the oracle */
+    .wildcard-wheel {
+      padding: 28px 28px 20px;
+      border-bottom: 1px dashed var(--wc-rule);
+    }
+    .wildcard-wheel-prompt {
+      font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--wc-mute);
+      margin: 0 0 14px;
+    }
+    .wildcard-wheel-prompt::before {
+      content: "❍ ";
+      color: var(--wc-gold);
+    }
+    .wildcard-questions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .wildcard-question-btn {
+      appearance: none;
+      background: transparent;
+      border: 1px solid var(--wc-rule);
+      color: var(--wc-ink);
+      padding: 10px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      border-radius: 999px;
+      transition: all 0.18s ease;
+      font-weight: 400;
+    }
+    .wildcard-question-btn:hover {
+      border-color: var(--wc-gold);
+      color: var(--wc-gold);
+      transform: translateY(-1px);
+    }
+    .wildcard-question-btn.is-active {
+      background: var(--wc-gold);
+      color: #1a1410;
+      border-color: var(--wc-gold);
+      font-weight: 500;
+    }
+
+    /* the chat-like reveal area */
+    .wildcard-chat {
+      padding: 24px 28px 28px;
+      min-height: 280px;
+      font-family: 'Inter', sans-serif;
+    }
+    .wildcard-bubble {
+      margin: 0 0 16px;
+      max-width: 88%;
+    }
+    .wildcard-bubble-from {
+      font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--wc-mute);
+      margin: 0 0 6px;
+    }
+    .wildcard-bubble.you .wildcard-bubble-text {
+      color: var(--wc-ink);
+      background: rgba(217, 178, 90, 0.08);
+      border-left: 2px solid var(--wc-gold);
+      padding: 12px 16px;
+      border-radius: 2px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .wildcard-bubble.silicon .wildcard-bubble-from { color: var(--wc-silicon); }
+    .wildcard-bubble.flesh .wildcard-bubble-from { color: var(--wc-flesh); }
+    .wildcard-bubble-text {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--wc-ink);
+      margin: 0;
+    }
+    .wildcard-bubble.silicon .wildcard-bubble-text {
+      padding: 12px 16px;
+      background: rgba(110, 231, 200, 0.06);
+      border-left: 2px solid var(--wc-silicon);
+      border-radius: 2px;
+    }
+    .wildcard-bubble.flesh .wildcard-bubble-text {
+      padding: 12px 16px;
+      background: rgba(255, 122, 92, 0.06);
+      border-left: 2px solid var(--wc-flesh);
+      border-radius: 2px;
+    }
+    .wildcard-cursor {
+      display: inline-block;
+      width: 6px;
+      height: 14px;
+      background: var(--wc-gold);
+      vertical-align: text-bottom;
+      margin-left: 2px;
+      animation: wildcard-blink 1s steps(2) infinite;
+    }
+    @keyframes wildcard-blink {
+      0%, 50% { opacity: 1; }
+      50.01%, 100% { opacity: 0; }
+    }
+
+    /* dual meters at the bottom of the oracle */
+    .wildcard-meters {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid var(--wc-rule);
+      background: rgba(0, 0, 0, 0.25);
+    }
+    @media (max-width: 600px) {
+      .wildcard-meters { grid-template-columns: 1fr; }
+    }
+    .wildcard-meter {
+      padding: 22px 24px;
+      border-right: 1px solid var(--wc-rule);
+      position: relative;
+      overflow: hidden;
+    }
+    .wildcard-meter:last-child { border-right: none; border-left: 1px solid var(--wc-rule); }
+    @media (max-width: 600px) {
+      .wildcard-meter { border-right: none; border-bottom: 1px solid var(--wc-rule); }
+      .wildcard-meter:last-child { border-left: none; border-bottom: none; }
+    }
+    .wildcard-meter-name {
+      font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .wildcard-meter.silicon .wildcard-meter-name { color: var(--wc-silicon); }
+    .wildcard-meter.flesh .wildcard-meter-name { color: var(--wc-flesh); }
+    .wildcard-meter-value {
+      font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+      font-size: clamp(28px, 4.5vw, 40px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--wc-ink);
+      line-height: 1;
+      margin: 0 0 6px;
+      font-variant-numeric: tabular-nums;
+    }
+    .wildcard-meter-detail {
+      font-size: 11px;
+      color: var(--wc-mute);
+      letter-spacing: 0.04em;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      min-height: 14px;
+    }
+    .wildcard-meter-bar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      background: var(--wc-rule);
+    }
+    .wildcard-meter-bar-fill {
+      height: 100%;
+      width: 0%;
+      transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .wildcard-meter.silicon .wildcard-meter-bar-fill { background: var(--wc-silicon); }
+    .wildcard-meter.flesh .wildcard-meter-bar-fill { background: var(--wc-flesh); }
+
+    /* the omen / coda — what the oracle "knows" */
+    .wildcard-omen {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 28px 24px 0;
+    }
+    @media (min-width: 720px) {
+      .wildcard-omen { grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: start; }
+    }
+    .wildcard-omen-glyph {
+      font-family: 'Playfair Display', 'Iowan Old Style', Georgia, serif;
+      font-size: 22px;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--wc-ink);
+      margin: 0;
+      padding: 0 0 0 24px;
+      border-left: 2px solid var(--wc-gold);
+    }
+    .wildcard-omen-glyph em {
+      color: var(--wc-gold);
+      font-style: italic;
+    }
+    .wildcard-omen-truth {
+      font-size: 13px;
+      color: var(--wc-mute);
+      line-height: 1.65;
+      margin: 0;
+    }
+    .wildcard-omen-truth strong {
+      color: var(--wc-ink);
+      font-weight: 500;
+    }
+
+    .wildcard-footer {
+      margin: 56px 0 0;
+      padding: 16px 0 0;
+      border-top: 1px solid var(--wc-rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--wc-mute);
+    }
+    .wildcard-footer-mark {
+      color: var(--wc-gold);
+    }
+  </style>
+
+  <div class="wildcard-stars" aria-hidden="true"></div>
+
+  <div class="wildcard-inner">
+    <p class="wildcard-label">
+      <span class="wildcard-label-dot"></span>
+      Approach 10 · Wildcard · By General Purpose
+      <span class="wildcard-label-divider"></span>
+    </p>
+
+    <div class="wildcard-shingle">
+      <p class="wildcard-shingle-eyebrow">Step right up · pricing as séance</p>
+      <h2>Ask the <em>Cost Oracle</em></h2>
+      <p class="wildcard-shingle-sub">She tallies two kinds of tokens. She has never been wrong.</p>
+    </div>
+
+    <div class="wildcard-oracle" role="region" aria-label="Cost Oracle interactive demo">
+      <div class="wildcard-oracle-bar">
+        <div class="wildcard-oracle-bar-left">
+          <span class="wildcard-oracle-pulse" aria-hidden="true"></span>
+          <span>session · open · meter live</span>
+        </div>
+        <div class="wildcard-oracle-bar-right">two tokens · one chat</div>
+      </div>
+
+      <div class="wildcard-oracle-stage">
+        <div class="wildcard-wheel">
+          <p class="wildcard-wheel-prompt">Choose your question for the oracle</p>
+          <ul class="wildcard-questions" id="wildcardQuestions">
+            <li><button type="button" class="wildcard-question-btn is-active" data-q="0">When does the next ferry cross at Vidalia?</button></li>
+            <li><button type="button" class="wildcard-question-btn" data-q="1">Rewrite my band bio in Chase's voice.</button></li>
+            <li><button type="button" class="wildcard-question-btn" data-q="2">My PA is humming on stage. Help.</button></li>
+            <li><button type="button" class="wildcard-question-btn" data-q="3">Negotiate the contract with the venue for me.</button></li>
+            <li><button type="button" class="wildcard-question-btn" data-q="4">Sit with my mother through hospice intake.</button></li>
+          </ul>
+        </div>
+
+        <div class="wildcard-chat" id="wildcardChat" aria-live="polite">
+          <!-- populated by JS -->
+        </div>
+
+        <div class="wildcard-meters">
+          <div class="wildcard-meter silicon">
+            <p class="wildcard-meter-name">Silicon Tokens</p>
+            <p class="wildcard-meter-value" id="wildcardSiliconValue">$0.000</p>
+            <p class="wildcard-meter-detail" id="wildcardSiliconDetail">awaiting question</p>
+            <div class="wildcard-meter-bar"><div class="wildcard-meter-bar-fill" id="wildcardSiliconBar"></div></div>
+          </div>
+          <div class="wildcard-meter flesh">
+            <p class="wildcard-meter-name">Flesh Tokens</p>
+            <p class="wildcard-meter-value" id="wildcardFleshValue">$0.00</p>
+            <p class="wildcard-meter-detail" id="wildcardFleshDetail">no human required</p>
+            <div class="wildcard-meter-bar"><div class="wildcard-meter-bar-fill" id="wildcardFleshBar"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wildcard-omen">
+      <p class="wildcard-omen-glyph">
+        “Software is cheap. Humans are the premium. <em>Same chat, two tokens — and you only pay for whichever one had to do the work.</em>”
+      </p>
+      <p class="wildcard-omen-truth">
+        Every one of these is a real chat-tier outcome. Tap a question and watch the price form itself. <strong>Easy stuff routes to silicon</strong> and costs cents. <strong>Hard stuff escalates to flesh</strong> — Studio C, the Inn team, Chase — and gets billed at premium rate. The customer never picks the path. The chat picks. The meter shows the receipts.
+      </p>
+    </div>
+
+    <div class="wildcard-footer">
+      <span>The Cost Oracle is a demo. The pricing is real.</span>
+      <span class="wildcard-footer-mark">measurably better things · ✦ · pay for the answer, not the path</span>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var scenarios = [
+        {
+          you: "When does the next ferry cross at Vidalia?",
+          path: "silicon",
+          silicon: { final: 0.004, detail: "1 API call · 312 tokens · gemini-flash" },
+          flesh:   { final: 0.00,  detail: "no human required" },
+          replies: [
+            { from: "silicon", text: "First crossing today at 6:45am, last at 9:30pm, every 45 min. Toll is $1 per axle. I pulled the schedule live." }
+          ],
+          omen: "Easy fact. Pure silicon. You pay fractions of a cent and get an answer in two seconds.",
+          siliconBar: 18, fleshBar: 0
+        },
+        {
+          you: "Rewrite my band bio in Chase's voice.",
+          path: "silicon-heavy",
+          silicon: { final: 0.018, detail: "3 API calls · 4,210 tokens · sonnet + voice doc cache" },
+          flesh:   { final: 0.00,  detail: "no human required" },
+          replies: [
+            { from: "silicon", text: "Done. I rewrote it in three drafts, cross-checked against the Chase voice doc, killed the AI tells, and shipped you the cleanest one. Want a punchier or longer version?" }
+          ],
+          omen: "Bigger silicon job — still cents. Voice transfer is exactly the work the model is good at.",
+          siliconBar: 64, fleshBar: 0
+        },
+        {
+          you: "My PA is humming on stage. Help.",
+          path: "split",
+          silicon: { final: 0.011, detail: "2 API calls · diagnostic tree · 1,850 tokens" },
+          flesh:   { final: 12.50, detail: "5 min · Studio C audio tech · text response" },
+          replies: [
+            { from: "silicon", text: "Probably a ground loop. Try lifting the ground on the offending channel, or run the amp on the same circuit as the board. I'm pinging an audio tech in case it's something else." },
+            { from: "flesh",   text: "Hey it's Miles at Studio C. If lifting ground didn't fix it, send me a 10-second phone video of the cable run and I'll spot the loop. We have an hour before doors." }
+          ],
+          omen: "Silicon takes the first pass. Human steps in when stakes are real and time is short.",
+          siliconBar: 40, fleshBar: 28
+        },
+        {
+          you: "Negotiate the contract with the venue for me.",
+          path: "flesh-heavy",
+          silicon: { final: 0.026, detail: "4 calls · contract scan · suggested redlines" },
+          flesh:   { final: 145.00, detail: "1.2 hr · Operator tier · Chase + booking" },
+          replies: [
+            { from: "silicon", text: "I read the contract. Three terms are below market for a Friday headliner: door split, hospitality, cancellation window. Drafted redlines you can use. Want me to send to the operator?" },
+            { from: "flesh",   text: "Picking it up. I'll call Stephanie at the venue tomorrow morning, walk through the redlines, and get back to you with a counter by 2pm. Operator tier — billed hourly, you'll see the breakdown." }
+          ],
+          omen: "Silicon does the prep. Human takes the call, holds accountability, owns the relationship. Flesh is the premium.",
+          siliconBar: 22, fleshBar: 78
+        },
+        {
+          you: "Sit with my mother through hospice intake.",
+          path: "flesh-only",
+          silicon: { final: 0.000, detail: "model declined · escalated immediately" },
+          flesh:   { final: 0.00,  detail: "out-of-scope · referred to a real partner agency" },
+          replies: [
+            { from: "silicon", text: "I'm not the right tool for this. I'm not going to pretend otherwise. Routing you to a human at Studio C who will help you find a hospice doula in your area — at no charge from us." },
+            { from: "flesh",   text: "It's Tracy. I called two doulas in your county. Sending names by text in 15 minutes. No bill on this one — it's not what we sell, but you asked the right place." }
+          ],
+          omen: "Some questions silicon will not answer. Some answers humans will not bill for. The meter knows the difference.",
+          siliconBar: 4, fleshBar: 0
+        }
+      ];
+
+      var chatEl = document.getElementById('wildcardChat');
+      var siliconValEl = document.getElementById('wildcardSiliconValue');
+      var siliconDetEl = document.getElementById('wildcardSiliconDetail');
+      var siliconBarEl = document.getElementById('wildcardSiliconBar');
+      var fleshValEl = document.getElementById('wildcardFleshValue');
+      var fleshDetEl = document.getElementById('wildcardFleshDetail');
+      var fleshBarEl = document.getElementById('wildcardFleshBar');
+      var btns = document.querySelectorAll('.wildcard-question-btn');
+      var activeRunToken = 0;
+
+      function fmtSilicon(v) {
+        if (v === 0) return '$0.000';
+        return '$' + v.toFixed(3);
+      }
+      function fmtFlesh(v) {
+        if (v === 0) return '$0.00';
+        return '$' + v.toFixed(2);
+      }
+
+      function clearChat() {
+        chatEl.innerHTML = '';
+      }
+
+      function addBubble(from, text, withCursor) {
+        var b = document.createElement('div');
+        b.className = 'wildcard-bubble ' + from;
+        var label = from === 'you' ? 'You · asking' : (from === 'silicon' ? 'Silicon · cents' : 'Flesh · premium');
+        var fromEl = document.createElement('p');
+        fromEl.className = 'wildcard-bubble-from';
+        fromEl.textContent = label;
+        var textEl = document.createElement('p');
+        textEl.className = 'wildcard-bubble-text';
+        textEl.textContent = text;
+        if (withCursor) {
+          var cursor = document.createElement('span');
+          cursor.className = 'wildcard-cursor';
+          textEl.appendChild(cursor);
+        }
+        b.appendChild(fromEl);
+        b.appendChild(textEl);
+        chatEl.appendChild(b);
+        return textEl;
+      }
+
+      function typeText(el, text, speed, runToken) {
+        return new Promise(function (resolve) {
+          el.textContent = '';
+          var cursor = document.createElement('span');
+          cursor.className = 'wildcard-cursor';
+          el.appendChild(cursor);
+          var i = 0;
+          function tick() {
+            if (runToken !== activeRunToken) { resolve(); return; }
+            if (i >= text.length) {
+              if (cursor.parentNode) cursor.remove();
+              resolve();
+              return;
+            }
+            cursor.insertAdjacentText('beforebegin', text.charAt(i));
+            i++;
+            setTimeout(tick, speed);
+          }
+          tick();
+        });
+      }
+
+      function animateMeter(targetVal, finalVal, formatter, valEl, detailText, detailEl, barEl, barTarget, runToken) {
+        return new Promise(function (resolve) {
+          var steps = 24;
+          var step = 0;
+          function tick() {
+            if (runToken !== activeRunToken) { resolve(); return; }
+            step++;
+            var t = step / steps;
+            var eased = 1 - Math.pow(1 - t, 3);
+            var v = finalVal * eased;
+            valEl.textContent = formatter(v);
+            barEl.style.width = (barTarget * eased) + '%';
+            if (step >= steps) {
+              valEl.textContent = formatter(finalVal);
+              barEl.style.width = barTarget + '%';
+              detailEl.textContent = detailText;
+              resolve();
+              return;
+            }
+            setTimeout(tick, 32);
+          }
+          tick();
+        });
+      }
+
+      async function runScenario(idx) {
+        activeRunToken++;
+        var runToken = activeRunToken;
+        var s = scenarios[idx];
+
+        // reset meters
+        siliconValEl.textContent = '$0.000';
+        siliconDetEl.textContent = 'metering...';
+        siliconBarEl.style.width = '0%';
+        fleshValEl.textContent = '$0.00';
+        fleshDetEl.textContent = s.flesh.final === 0 ? 'no human required' : 'standing by...';
+        fleshBarEl.style.width = '0%';
+
+        clearChat();
+        addBubble('you', s.you, false);
+
+        // small pause then meters + replies
+        await new Promise(function (r) { setTimeout(r, 350); });
+        if (runToken !== activeRunToken) return;
+
+        // animate silicon meter
+        animateMeter(0, s.silicon.final, fmtSilicon, siliconValEl, s.silicon.detail, siliconDetEl, siliconBarEl, s.siliconBar, runToken);
+
+        // type silicon reply
+        if (s.replies[0]) {
+          var el1 = addBubble(s.replies[0].from, '', true);
+          await typeText(el1, s.replies[0].text, 14, runToken);
+        }
+
+        // type flesh reply (if any) and animate flesh meter
+        if (s.replies[1]) {
+          await new Promise(function (r) { setTimeout(r, 250); });
+          if (runToken !== activeRunToken) return;
+          animateMeter(0, s.flesh.final, fmtFlesh, fleshValEl, s.flesh.detail, fleshDetEl, fleshBarEl, s.fleshBar, runToken);
+          var el2 = addBubble(s.replies[1].from, '', true);
+          await typeText(el2, s.replies[1].text, 14, runToken);
+        } else {
+          // still animate flesh meter to show the zero
+          animateMeter(0, s.flesh.final, fmtFlesh, fleshValEl, s.flesh.detail, fleshDetEl, fleshBarEl, s.fleshBar, runToken);
+        }
+      }
+
+      Array.prototype.forEach.call(btns, function (btn) {
+        btn.addEventListener('click', function () {
+          Array.prototype.forEach.call(btns, function (b) { b.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+          var idx = parseInt(btn.getAttribute('data-q'), 10);
+          if (!isNaN(idx)) runScenario(idx);
+        });
+      });
+
+      // auto-run the first scenario
+      runScenario(0);
+    })();
+  </script>
+</section>

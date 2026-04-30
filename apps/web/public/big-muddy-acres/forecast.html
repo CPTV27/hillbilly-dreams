@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>12-Month Forecast — Big Muddy Acres Briefing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink:#121212; --rule:#d8d8d8; --muted:#6a6a6a; --paper:#fff; --warm:#f5efe6;
+      --serif-display:'Playfair Display',serif; --serif-body:'Source Serif 4',Georgia,serif;
+      --sans:'Inter',-apple-system,sans-serif; }
+    *{box-sizing:border-box} html,body{background:var(--paper);color:var(--ink);margin:0;padding:0;-webkit-font-smoothing:antialiased}
+    body{font-family:var(--serif-body);font-size:18px;line-height:1.65}
+    .page{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+    .topstrap{font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+      border-bottom:1px solid var(--rule);padding-bottom:14px;margin-bottom:32px;display:flex;justify-content:space-between;align-items:center}
+    .topstrap a{color:var(--muted);text-decoration:none}
+    .topstrap a:hover{color:var(--ink)}
+    h1{font-family:var(--serif-display);font-weight:900;font-size:42px;line-height:1.08;letter-spacing:-.01em;margin:0 0 14px}
+    h2{font-family:var(--serif-display);font-weight:700;font-size:24px;margin:36px 0 12px;line-height:1.25}
+    h3{font-family:var(--sans);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;margin:28px 0 10px;color:var(--muted)}
+    p{margin:0 0 16px}
+    ul,ol{margin:0 0 18px;padding-left:24px} li{margin-bottom:6px}
+    blockquote{border-left:3px solid var(--ink);padding-left:18px;margin:18px 0;font-style:italic;color:#444}
+    code{font-family:'SF Mono',Menlo,monospace;font-size:14px;background:var(--warm);padding:2px 6px;border-radius:2px}
+    pre{background:var(--warm);padding:14px;border-radius:2px;overflow-x:auto;font-size:13px}
+    table{border-collapse:collapse;width:100%;margin:18px 0;font-size:14px}
+    th,td{border:1px solid var(--rule);padding:8px 10px;text-align:left}
+    th{background:var(--warm);font-family:var(--sans);font-weight:700}
+    hr{border:0;border-top:1px solid var(--rule);margin:36px 0}
+    .footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--rule);font-family:var(--sans);font-size:12px;color:var(--muted);line-height:1.6}
+    .pdf-link{display:inline-block;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--ink);border:1px solid var(--ink);padding:6px 12px;text-decoration:none;margin-top:12px}
+    .pdf-link:hover{background:var(--ink);color:var(--paper)}
+    @media print{body{font-size:11pt}.page{padding:0;max-width:100%}.topstrap,.pdf-link{display:none}}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topstrap">
+      <a href="/big-muddy-acres/">← Briefing index</a>
+      <span>April 30, 2026</span>
+    </div>
+    <h1 id="12-month-forecast--may-2026-to-april-2027">12-Month Forecast —
+May 2026 to April 2027</h1>
+<p><em>Drafted 2026-04-29. Voice: admin documentation. Numbers anchored
+to <code>docs/THE_THESIS.md</code> Y1 ladder ($185k net floor / $250k
+first profit / $330k baseline) and the per-business plans in this
+directory.</em></p>
+<p><em>Tracy: this exists so you have a schedule. When silence happens,
+look at the month, look at the number, and act on what's missing. If a
+month comes in within 20% of the mid-scenario row, on track. If it
+misses by 20%+, that's the panic line — see threshold rules at the
+bottom.</em></p>
+<hr />
+<h2 id="one-paragraph-summary">One-paragraph summary</h2>
+<p>Here's where money comes from each month. Inn and Photography do the
+heavy lifting all year. Touring lifts the corridor and feeds the Inn but
+is small in dollar terms. Studio C is a flat $1k/mo retainer plus
+overflow. Magazine, Records, Radio = roughly $0 in Year 1 and that's the
+plan. MBT B2B (Vicki + Paul Green pilots) ramps slowly from Q3 2026. Big
+Muddy Acres adds <span
+class="math inline">0<em>t</em><em>o</em><em>t</em><em>h</em><em>e</em><em>b</em><em>a</em><em>s</em><em>e</em><em>c</em><em>a</em><em>s</em><em>e</em>—<em>i</em><em>t</em><em>r</em><em>e</em><em>q</em><em>u</em><em>i</em><em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>p</em><em>i</em><em>t</em><em>a</em><em>l</em><em>w</em><em>e</em><em>d</em><em>o</em><em>n</em><sup>′</sup><em>t</em><em>h</em><em>a</em><em>v</em><em>e</em><em>y</em><em>e</em><em>t</em>; <em>i</em><em>n</em><em>c</em><em>l</em><em>u</em><em>d</em><em>e</em><em>d</em><em>a</em><em>s</em><em>u</em><em>p</em><em>s</em><em>i</em><em>d</em><em>e</em><em>o</em><em>n</em><em>l</em><em>y</em>.<em>M</em><em>i</em><em>d</em> − <em>s</em><em>c</em><em>e</em><em>n</em><em>a</em><em>r</em><em>i</em><em>o</em><em>l</em><em>a</em><em>n</em><em>d</em><em>s</em><em>a</em><em>t</em> * *</span>248,800
+for the 12-month window** — right at the "first profit" anchor of $250k.
+If we hit those monthly numbers within 20%, on track. If a month misses
+by 20%+ on Inn or Photography (the two carriers), that's the trigger to
+act, not panic.</p>
+<hr />
+<h2 id="month-by-month-mid-scenario-the-planning-row">Month-by-month,
+mid scenario (the planning row)</h2>
+<p>All numbers in dollars. Mid-scenario assumes the plans in
+<code>docs/presentations/plan-*.md</code> execute on schedule. Inn is
+the largest line in every month; Photography is the second carrier;
+everything else is supplementary or ecosystem brand value (not
+P&amp;L).</p>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th style="text-align: right;">Inn</th>
+<th style="text-align: right;">CPP</th>
+<th style="text-align: right;">Touring</th>
+<th style="text-align: right;">Magazine</th>
+<th style="text-align: right;">Records</th>
+<th style="text-align: right;">Radio</th>
+<th style="text-align: right;">Studio C</th>
+<th style="text-align: right;">MBT B2B</th>
+<th style="text-align: right;">BMA</th>
+<th style="text-align: right;"><strong>Total</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>May 2026</td>
+<td style="text-align: right;">12,000</td>
+<td style="text-align: right;">4,000</td>
+<td style="text-align: right;">1,500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>18,500</strong></td>
+</tr>
+<tr>
+<td>Jun 2026</td>
+<td style="text-align: right;">11,000</td>
+<td style="text-align: right;">4,500</td>
+<td style="text-align: right;">2,000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>18,500</strong></td>
+</tr>
+<tr>
+<td>Jul 2026</td>
+<td style="text-align: right;">10,000</td>
+<td style="text-align: right;">5,000</td>
+<td style="text-align: right;">2,500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>18,500</strong></td>
+</tr>
+<tr>
+<td>Aug 2026</td>
+<td style="text-align: right;">9,000</td>
+<td style="text-align: right;">5,500</td>
+<td style="text-align: right;">3,000</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,500</td>
+<td style="text-align: right;">1,000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>20,500</strong></td>
+</tr>
+<tr>
+<td>Sep 2026</td>
+<td style="text-align: right;">11,000</td>
+<td style="text-align: right;">5,500</td>
+<td style="text-align: right;">3,000</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,500</td>
+<td style="text-align: right;">1,500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>23,000</strong></td>
+</tr>
+<tr>
+<td>Oct 2026</td>
+<td style="text-align: right;">16,000</td>
+<td style="text-align: right;">6,000</td>
+<td style="text-align: right;">4,000</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,500</td>
+<td style="text-align: right;">2,000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>30,000</strong></td>
+</tr>
+<tr>
+<td>Nov 2026</td>
+<td style="text-align: right;">17,000</td>
+<td style="text-align: right;">5,500</td>
+<td style="text-align: right;">3,500</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,500</td>
+<td style="text-align: right;">2,000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>30,000</strong></td>
+</tr>
+<tr>
+<td>Dec 2026</td>
+<td style="text-align: right;">18,000</td>
+<td style="text-align: right;">4,500</td>
+<td style="text-align: right;">2,500</td>
+<td style="text-align: right;">1,500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,500</td>
+<td style="text-align: right;">2,000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>30,000</strong></td>
+</tr>
+<tr>
+<td>Jan 2027</td>
+<td style="text-align: right;">8,000</td>
+<td style="text-align: right;">3,500</td>
+<td style="text-align: right;">1,500</td>
+<td style="text-align: right;">1,500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,500</td>
+<td style="text-align: right;">2,500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>18,500</strong></td>
+</tr>
+<tr>
+<td>Feb 2027</td>
+<td style="text-align: right;">11,000</td>
+<td style="text-align: right;">4,500</td>
+<td style="text-align: right;">2,000</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,500</td>
+<td style="text-align: right;">2,500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>22,000</strong></td>
+</tr>
+<tr>
+<td>Mar 2027</td>
+<td style="text-align: right;">14,000</td>
+<td style="text-align: right;">5,500</td>
+<td style="text-align: right;">3,000</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,500</td>
+<td style="text-align: right;">3,000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>27,500</strong></td>
+</tr>
+<tr>
+<td>Apr 2027</td>
+<td style="text-align: right;">13,000</td>
+<td style="text-align: right;">5,000</td>
+<td style="text-align: right;">3,500</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,500</td>
+<td style="text-align: right;">3,300</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>26,800</strong></td>
+</tr>
+<tr>
+<td><strong>12-mo total</strong></td>
+<td style="text-align: right;"><strong>150,000</strong></td>
+<td style="text-align: right;"><strong>59,000</strong></td>
+<td style="text-align: right;"><strong>32,000</strong></td>
+<td style="text-align: right;"><strong>6,000</strong></td>
+<td style="text-align: right;"><strong>0</strong></td>
+<td style="text-align: right;"><strong>0</strong></td>
+<td style="text-align: right;"><strong>16,500</strong></td>
+<td style="text-align: right;"><strong>19,800</strong></td>
+<td style="text-align: right;"><strong>0</strong></td>
+<td style="text-align: right;"><strong>$283,300</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mid-scenario lands at ~$283k</strong>, just above the $250k
+first-profit anchor and below the $330k baseline. That's the plan.</p>
+<p>(Note: BMA reads $0 in the base case because Phase 1 RV cap-ex of
+<span class="math inline">950<em>k</em>–</span>1.6M is not yet
+capitalized. If Phase 1 lands by Q4 2026 with outside money, model adds
+<span class="math inline">5<em>k</em>–</span>15k of partial-year RV
+revenue. Treated as upside, not plan.)</p>
+<hr />
+<h2 id="per-business-notes-honest-annotations">Per-business notes
+(honest annotations)</h2>
+<p><strong>Big Muddy Inn</strong> — Carries the year. Seasonality
+follows Natchez music tourism: spring strong (Mar–May), summer dip
+(Jun–Aug, heat), fall peak (Oct–Nov, comfortable weather + festival
+routing), holidays strong (Nov–Dec), January dead. Mid-scenario assumes
+nightly rates hold + 2 whole-Inn buyouts in Q4 2026 + 2–3 weddings in Q1
+2027. <strong>The TBD line in <code>plan-big-muddy-inn.md</code>
+(trailing 12-month Cloudbeds revenue) is the calibration input.</strong>
+Until Tracy pulls that real number, every Inn row in this table is a
+planning estimate, not a confirmed baseline.</p>
+<p><strong>Chase Pierson Photography</strong> — Real-estate + editorial
+commission work. Per
+<code>docs/voice/chase-pierson-photography.md</code>, this is editorial
+/ documentary / hospitality — premium, selective. Mid-scenario assumes
+~$5k/mo average across the year, weighted to Mar–Nov shooting season,
+lighter Dec–Feb. Rate range: <span
+class="math inline">1.5<em>k</em>–</span>8k per commission, 1–2
+commissions per month sustained. <strong>Risk: this line depends on
+Chase's outbound time. If Chase is heads-down on platform, this number
+falls.</strong> Tuthill Design Photography (real-estate-only lane)
+revenue books separately to Tuthill, not here.</p>
+<p><strong>Big Muddy Touring</strong> — Per
+<code>plan-big-muddy-touring.md</code> honest range <span
+class="math inline">15<em>k</em>–</span>40k Y1. Mid-scenario picks $32k.
+Mostly door splits (Blues Room) + booking fees on corridor runs + 4–6
+Arrie Aslin private/wedding dates. <strong>Inn room nights generated by
+touring acts book to the Inn line, not here</strong> — that's a real
+ecosystem dollar but it's already counted in the Inn row.</p>
+<p><strong>Big Muddy Magazine</strong> — $0 likely first 6 months. Per
+<code>plan-big-muddy-magazine.md</code>, honest 12-month range <span
+class="math inline">0–</span>8.8k direct (sponsored content + maybe a
+print subscription test in Q4). Mid-scenario picks $6k. The real
+magazine value is Inn booking lift, which is already counted in the Inn
+row. Don't double-count.</p>
+<p><strong>Big Muddy Records</strong> — **<span class="math inline">$0
+first 12 months. Be honest.** Per `plan-big-muddy-records.md`, this is a
+12–24 month gestation play. Cost ~$</span>3,500 sunk into mastering +
+distribution. Revenue starts (small) in Year 2. Catalog asset, not a Y1
+P&amp;L line.</p>
+<p><strong>Big Muddy Radio</strong> — **<span class="math inline">$0. Be
+honest.** Per `plan-big-muddy-radio.md`, Year 1 cost ~$</span>1,500.
+Revenue (sponsor reads) starts mid-2027 if we hit 250+ monthly uniques.
+Brand value compounds; cash doesn't.</p>
+<p><strong>Studio C</strong> — <span
+class="math inline">1, 000/<em>m</em><em>o</em><em>r</em><em>e</em><em>t</em><em>a</em><em>i</em><em>n</em><em>e</em><em>r</em><em>i</em><em>s</em><em>t</em><em>h</em><em>e</em><em>f</em><em>l</em><em>o</em><em>o</em><em>r</em>(<em>p</em><em>a</em><em>i</em><em>d</em><em>b</em><em>y</em><em>M</em><em>B</em><em>T</em><em>t</em><em>o</em><em>S</em><em>t</em><em>u</em><em>d</em><em>i</em><em>o</em><em>C</em>, <em>b</em><em>u</em><em>t</em><em>b</em><em>o</em><em>o</em><em>k</em><em>s</em><em>h</em><em>e</em><em>r</em><em>e</em><em>a</em><em>s</em><em>e</em><em>c</em><em>o</em><em>s</em><em>y</em><em>s</em><em>t</em><em>e</em><em>m</em><em>r</em><em>e</em><em>v</em><em>e</em><em>n</em><em>u</em><em>e</em><em>f</em><em>r</em><em>o</em><em>m</em><em>t</em><em>h</em><em>e</em><em>p</em><em>e</em><em>r</em><em>s</em><em>p</em><em>e</em><em>c</em><em>t</em><em>i</em><em>v</em><em>e</em><em>o</em><em>f</em><em>t</em><em>h</em><em>e</em><em>c</em><em>o</em><em>n</em><em>s</em><em>o</em><em>l</em><em>i</em><em>d</em><em>a</em><em>t</em><em>e</em><em>d</em><em>f</em><em>o</em><em>r</em><em>e</em><em>c</em><em>a</em><em>s</em><em>t</em>).<em>Q</em>3<em>o</em><em>n</em><em>w</em><em>a</em><em>r</em><em>d</em>, +</span>500/mo
+overflow as AEO and Sanity build velocity picks up. Per
+<code>plan-studio-c.md</code> Y1 plan total <span
+class="math inline">24<em>k</em>–</span>48k; mid-scenario picks $16.5k
+routed through this view.</p>
+<p><strong>MBT B2B (platform engagements)</strong> — Vicki Wolpert
+(Woodstock real-estate broker directory pilot) and Paul Green (rock
+school program) are the two named pilots in conversation. Both are
+pre-contract as of 2026-04-29. Mid-scenario assumes one signs in Q3 2026
+at ~<span
+class="math inline">1<em>k</em>/<em>m</em><em>o</em>, <em>t</em><em>h</em><em>e</em><em>s</em><em>e</em><em>c</em><em>o</em><em>n</em><em>d</em><em>s</em><em>i</em><em>g</em><em>n</em><em>s</em><em>i</em><em>n</em><em>Q</em>42026<em>a</em><em>t</em> </span>1k/mo,
+both grow modestly into Q1 2027. <strong>This number can swing zero to
+$40k depending on whether either pilot lands.</strong> Honest
+unknown.</p>
+<p><strong>Big Muddy Acres</strong> — RV Phase 1 cap-ex is $18–32k per
+site, <span class="math inline">950<em>k</em>–</span>1.6M total for 50
+sites per
+<code>docs/research/big-muddy-acres-eco-tech-infrastructure-2026-04-29.md</code>.
+Earliest realistic operational date Q4 2026 only if outside capital
+lands by July 2026. Base case: $0. If Phase 1 partial-open in Q4 with
+10–15 sites, add <span class="math inline">5<em>k</em>–</span>15k
+upside. <strong>Not in mid scenario by default — needs the capital
+decision first.</strong></p>
+<hr />
+<h2 id="three-scenarios--side-by-side">Three scenarios — side by
+side</h2>
+<p>Mid is the planning row. High and Low show the realistic
+envelope.</p>
+<h3 id="annual-totals">Annual totals</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th style="text-align: right;">Inn</th>
+<th style="text-align: right;">CPP</th>
+<th style="text-align: right;">Touring</th>
+<th style="text-align: right;">Magazine</th>
+<th style="text-align: right;">Records</th>
+<th style="text-align: right;">Radio</th>
+<th style="text-align: right;">Studio C</th>
+<th style="text-align: right;">MBT B2B</th>
+<th style="text-align: right;">BMA</th>
+<th style="text-align: right;"><strong>Total</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>High</strong></td>
+<td style="text-align: right;">180,000</td>
+<td style="text-align: right;">75,000</td>
+<td style="text-align: right;">40,000</td>
+<td style="text-align: right;">8,800</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">24,000</td>
+<td style="text-align: right;">40,000</td>
+<td style="text-align: right;">12,000</td>
+<td style="text-align: right;"><strong>$380,300</strong></td>
+</tr>
+<tr>
+<td><strong>Mid</strong></td>
+<td style="text-align: right;">150,000</td>
+<td style="text-align: right;">59,000</td>
+<td style="text-align: right;">32,000</td>
+<td style="text-align: right;">6,000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">16,500</td>
+<td style="text-align: right;">19,800</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>$283,300</strong></td>
+</tr>
+<tr>
+<td><strong>Low</strong></td>
+<td style="text-align: right;">110,000</td>
+<td style="text-align: right;">36,000</td>
+<td style="text-align: right;">15,000</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">12,000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>$173,500</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-each-scenario-means">What each scenario means</h3>
+<p><strong>High</strong> — Inn books 3 weddings + 2 corporate retreats +
+premium holiday rates hold. CPP at $6.25k/mo average (8+ commissions).
+Touring fills the corridor (10+ outside acts routed). Studio C runs ~30
+hrs/mo on overflow. Both MBT pilots sign + a third lands. BMA Phase 1
+partial-opens Q4 with 15 sites generating $1k each in Dec–Apr.
+<strong>Lands at $380k — comfortably above the $330k
+baseline.</strong></p>
+<p><strong>Mid</strong> — As described above. <strong>Lands at <span
+class="math inline">283<em>k</em>—<em>b</em><em>e</em><em>t</em><em>w</em><em>e</em><em>e</em><em>n</em><em>f</em><em>i</em><em>r</em><em>s</em><em>t</em><em>p</em><em>r</em><em>o</em><em>f</em><em>i</em><em>t</em>(</span>250k)
+and baseline ($330k).</strong> This is the planning row.</p>
+<p><strong>Low</strong> — Inn at the bottom of its honest range (<span
+class="math inline">110<em>k</em>).<em>C</em><em>P</em><em>P</em><em>c</em><em>o</em><em>m</em><em>m</em><em>i</em><em>s</em><em>s</em><em>i</em><em>o</em><em>n</em><em>s</em><em>f</em><em>a</em><em>l</em><em>l</em><em>t</em><em>o</em> </span>3k/mo
+(Chase pulled into platform work). Touring stays at the floor (Amy
+residency only, minimal outside acts). Studio C at retainer floor ($12k
+= $1k/mo). MBT pilots both stall pre-contract. BMA stays $0. Magazine
+ships one sponsored piece. <strong>Lands at $173k — below the <span
+class="math inline">185<em>k</em><em>n</em><em>e</em><em>t</em><em>f</em><em>l</em><em>o</em><em>o</em><em>r</em><em>b</em><em>y</em> </span>12k.</strong>
+Not catastrophic; cuts into Tracy + Amy + Chase distributions but
+operating costs are covered.</p>
+<hr />
+<h2 id="panic-threshold-rules--what-trigger-fires-when">Panic threshold
+rules — what trigger fires when</h2>
+<p>Tracy: this is the part you act on. Don't panic; act.</p>
+<p><strong>Green (on track)</strong> — Month total within 20% of
+mid-scenario row.</p>
+<ul>
+<li>Action: nothing. Read the report, move on.</li>
+</ul>
+<p><strong>Yellow (attention)</strong> — Month total 20–35% below
+mid-scenario row, OR Inn line alone 25%+ below mid for two consecutive
+months.</p>
+<ul>
+<li>Action: 30-min call between Chase + Tracy + Amy. Look at which line
+missed. Adjust the next 60 days, not the year.</li>
+<li>Examples that trigger Yellow:
+<ul>
+<li>October Inn comes in at $11k vs. $16k planned. (~30% miss on the
+load-bearing carrier — investigate why; pricing? booking flow?
+competitor opened?)</li>
+<li>CPP zero for two months in a row. (Chase is overcommitted to
+platform — rebalance.)</li>
+<li>Studio C overflow surprises by $2k+ on an invoice. (Bucket
+discipline broke; renegotiate per <code>plan-studio-c.md</code> risk
+#1.)</li>
+</ul></li>
+</ul>
+<p><strong>Red (act this week)</strong> — Month total 35%+ below mid for
+two consecutive months, OR cash on hand drops below 60 days of operating
+cost (~$22k for the Inn alone), OR Inn line drops 40%+ in any peak month
+(Oct/Nov/Dec/Mar/Apr).</p>
+<ul>
+<li>Action: same-day call. Cut a discretionary spend. Decide whether to
+pull a wedding deposit forward, run a flash promotion, or pause Records
+/ Radio spend. The $1,500/yr Radio line and the $3,500/yr Records line
+are the first cuts because they generate $0.</li>
+<li>Hard rule: <strong>no founder gets a distribution in a Red
+month.</strong> Tracy + Amy + Chase all hold. That rule exists so the
+partner trust doesn't break the first time the number is bad.</li>
+</ul>
+<p><strong>Blue (above plan)</strong> — Month total 25%+ above mid,
+sustained 3+ months.</p>
+<ul>
+<li>Action: don't celebrate; recalibrate. Pull the next year's plan
+forward. Decide whether to capitalize BMA Phase 1, hire the
+shows-and-programming role, or accelerate the second MBT B2B pilot.</li>
+</ul>
+<hr />
+<h2 id="where-chases-effort-is-highest-leverage">Where Chase's effort is
+highest leverage</h2>
+<p>Inn and CPP carry the year. Records and Radio do not. Touring is
+small dollars but high ecosystem multiplier. Knowing this, here is where
+one hour of Chase's time produces the most Y1 dollars:</p>
+<ol type="1">
+<li><strong>Whole-Inn buyout funnel (Q2–Q3).</strong> One PDF, one
+price, one inquiry-to-booked flow. A single $6k buyout = 4% of the Inn's
+Y1 mid number. Five of these in the year = $30k = the difference between
+mid and high scenarios on the Inn line. <strong>This is the single
+highest-leverage line item in the forecast.</strong></li>
+<li><strong>Photography commission outbound.</strong> Every $5k
+commission Chase books moves Y1 by 1.7%. 2 hours of outbound per week
+(real estate clients, hospitality clients, editorial pitches) —
+<code>chase-pierson-photography.md</code> voice doc + commission-pitch
+email template — likely yields 4–6 net new commissions in Y1.</li>
+<li><strong>Booking inquiry response time on
+bigmuddytouring.com.</strong> Fast turnaround on touring inquiries
+directly grows the Touring line AND the Inn line (because the act stays
+at the Inn). Auto-template + 24-hour SLA on inquiries.</li>
+<li><strong>MBT B2B pilots — close one of the two by end of Q3.</strong>
+Vicki or Paul Green, doesn't matter which; pick the one closer to ready
+and push. Either pilot adds <span
+class="math inline">6<em>k</em>–</span>15k to the year.</li>
+<li><strong>The Cloudbeds trailing-12-month pull (Tracy's task, but
+Chase unblocks).</strong> Until that real number replaces the TBD in
+<code>plan-big-muddy-inn.md</code>, every Inn row in this forecast is an
+estimate. Once we have the real baseline, recalibrate the whole table —
+that exercise alone is worth more than any single sales action because
+it makes every subsequent decision evidence-based.</li>
+</ol>
+<p>What is <strong>NOT</strong> highest leverage in Y1: shipping more
+Records masters (they generate $0 this year), perfecting the Radio
+rotation (no listeners yet), launching the Magazine subscription model
+before Q4 (no list yet), opening BMA Phase 1 without the capital
+decision made.</p>
+<hr />
+<h2
+id="operating-cost-floor-what-we-have-to-make-to-break-even">Operating-cost
+floor (what we have to make to break even)</h2>
+<p>Per THE_THESIS, the ecosystem-level Y1 break-even is <strong>$203k
+gross</strong>. The Inn alone carries <span
+class="math inline">125<em>k</em><em>o</em><em>f</em><em>f</em><em>i</em><em>x</em><em>e</em><em>d</em><em>c</em><em>o</em><em>s</em><em>t</em>(<em>m</em><em>o</em><em>r</em><em>t</em><em>g</em><em>a</em><em>g</em><em>e</em>, <em>u</em><em>t</em><em>i</em><em>l</em><em>i</em><em>t</em><em>i</em><em>e</em><em>s</em>, <em>C</em><em>h</em><em>a</em><em>n</em><em>d</em><em>r</em><em>a</em>, <em>H</em><em>o</em><em>s</em><em>p</em><em>i</em><em>t</em><em>a</em><em>l</em><em>i</em><em>t</em><em>y</em><em>C</em><em>o</em><em>o</em><em>r</em><em>d</em><em>i</em><em>n</em><em>a</em><em>t</em><em>o</em><em>r</em>).<em>T</em><em>h</em><em>e</em><em>r</em><em>e</em><em>m</em><em>a</em><em>i</em><em>n</em><em>i</em><em>n</em><em>g</em> </span>78k
+is split across Sprinter van operating cost, Studio C retainer outflow
+(note: the <span
+class="math inline">12<em>k</em><em>S</em><em>t</em><em>u</em><em>d</em><em>i</em><em>o</em><em>C</em><em>r</em><em>e</em><em>t</em><em>a</em><em>i</em><em>n</em><em>e</em><em>r</em><em>h</em><em>e</em><em>r</em><em>e</em><em>i</em><em>s</em><em>r</em><em>e</em><em>v</em><em>e</em><em>n</em><em>u</em><em>e</em> − <em>t</em><em>o</em> − <em>S</em><em>t</em><em>u</em><em>d</em><em>i</em><em>o</em> − <em>C</em><em>a</em><em>n</em><em>d</em><em>c</em><em>o</em><em>s</em><em>t</em> − <em>t</em><em>o</em> − <em>M</em><em>B</em><em>T</em>—<em>n</em><em>e</em><em>t</em><em>z</em><em>e</em><em>r</em><em>o</em><em>a</em><em>t</em><em>t</em><em>h</em><em>e</em><em>e</em><em>c</em><em>o</em><em>s</em><em>y</em><em>s</em><em>t</em><em>e</em><em>m</em><em>l</em><em>e</em><em>v</em><em>e</em><em>l</em><em>b</em><em>u</em><em>t</em><em>e</em><em>a</em><em>c</em><em>h</em><em>s</em><em>i</em><em>d</em><em>e</em><em>b</em><em>o</em><em>o</em><em>k</em><em>s</em><em>i</em><em>t</em><em>d</em><em>i</em><em>f</em><em>f</em><em>e</em><em>r</em><em>e</em><em>n</em><em>t</em><em>l</em><em>y</em>), <em>R</em><em>e</em><em>c</em><em>o</em><em>r</em><em>d</em><em>s</em> + <em>R</em><em>a</em><em>d</em><em>i</em><em>o</em><em>s</em><em>u</em><em>n</em><em>k</em><em>c</em><em>o</em><em>s</em><em>t</em><em>s</em>, <em>m</em><em>a</em><em>r</em><em>k</em><em>e</em><em>t</em><em>i</em><em>n</em><em>g</em>, <em>i</em><em>n</em><em>s</em><em>u</em><em>r</em><em>a</em><em>n</em><em>c</em><em>e</em>, <em>t</em><em>e</em><em>c</em><em>h</em><em>n</em><em>o</em><em>l</em><em>o</em><em>g</em><em>y</em><em>s</em><em>t</em><em>a</em><em>c</em><em>k</em>(<em>V</em><em>e</em><em>r</em><em>c</em><em>e</em><em>l</em> + <em>N</em><em>e</em><em>o</em><em>n</em> + <em>S</em><em>a</em><em>n</em><em>i</em><em>t</em><em>y</em> + <em>C</em><em>l</em><em>o</em><em>u</em><em>d</em><em>b</em><em>e</em><em>d</em><em>s</em> + <em>A</em><em>z</em><em>u</em><em>r</em><em>a</em><em>C</em><em>a</em><em>s</em><em>t</em>= </span>300–500/mo),
+and accounting / legal.</p>
+<p><strong>Net floor</strong>: $185k after costs. <strong>First
+profit</strong>: $250k. <strong>Baseline</strong>: $330k.</p>
+<p>Mid-scenario forecast at $283k clears all three floors. Low scenario
+at $173k misses the net floor by $12k — uncomfortable but not
+lethal.</p>
+<hr />
+<h2 id="what-changes-this-forecast-in-priority-order">What changes this
+forecast (in priority order)</h2>
+<ol type="1">
+<li>Tracy pulls the real Cloudbeds trailing-12-month number.
+<strong>Recalibrate Inn rows.</strong></li>
+<li>Chase confirms or kills the BMA capital plan by July 2026. If
+killed, BMA stays $0 forever in Y1. If pursued, this forecast adds an
+upside row.</li>
+<li>First MBT B2B pilot (Vicki or Paul Green) signs or stalls. If signs,
+MBT B2B line is real; if stalls past Q3, drop that line to $0.</li>
+<li>The shows-and-programming role gets named or doesn't. If named,
+Touring upside grows; if not, Touring stays in the $32k mid-range.</li>
+<li>Anything bad happens (Tracy or Amy burnout, hurricane, Cloudbeds
+outage during a peak weekend). Insurance + ceiling rule + per-event
+labor model are the mitigations; see the per-plan risk sections.</li>
+</ol>
+<hr />
+<p><em>End of forecast. Re-cut quarterly. Next recut: end of July 2026
+with real Q2 actuals + Cloudbeds baseline replaced.</em></p>
+
+    <div class="footer">
+      <p>Big Muddy Acres briefing · Confidential — Hillbilly Dreams / Measurably Better Things</p>
+      <p><a class="pdf-link" href="/big-muddy-acres/pdfs/forecast.pdf">Download PDF</a></p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<section class="approach approach-enterprise" id="approach-enterprise">
+  <style>
+    .approach-enterprise {
+      --enterprise-bg: #ffffff;
+      --enterprise-ink: #0f1419;
+      --enterprise-mute: #5a6470;
+      --enterprise-rule: #d8dde3;
+      --enterprise-accent: #1a3a5f;
+      --enterprise-soft: #f4f6f9;
+      --enterprise-good: #1f6b4a;
+      --enterprise-warn: #8a4a1a;
+      background: var(--enterprise-bg);
+      color: var(--enterprise-ink);
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      box-sizing: border-box;
+    }
+    .approach-enterprise *,
+    .approach-enterprise *::before,
+    .approach-enterprise *::after {
+      box-sizing: border-box;
+    }
+
+    .enterprise-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .enterprise-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--enterprise-mute);
+      margin: 0 0 32px 0;
+    }
+    .enterprise-label-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--enterprise-accent);
+      flex-shrink: 0;
+    }
+    .enterprise-label-divider {
+      flex: 1;
+      height: 1px;
+      background: var(--enterprise-rule);
+    }
+
+    .enterprise-headline {
+      font-size: clamp(28px, 4.2vw, 40px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--enterprise-ink);
+      margin: 0 0 18px 0;
+    }
+
+    .enterprise-subhead {
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--enterprise-mute);
+      max-width: 720px;
+      margin: 0 0 40px 0;
+    }
+
+    .enterprise-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--enterprise-accent);
+      margin: 40px 0 14px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--enterprise-rule);
+    }
+
+    .enterprise-feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px 0;
+    }
+    .enterprise-feature-list li {
+      position: relative;
+      padding: 10px 0 10px 28px;
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--enterprise-ink);
+      border-bottom: 1px solid var(--enterprise-rule);
+    }
+    .enterprise-feature-list li:last-child {
+      border-bottom: none;
+    }
+    .enterprise-feature-list li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 18px;
+      width: 8px;
+      height: 8px;
+      border: 1.5px solid var(--enterprise-accent);
+      border-radius: 1px;
+    }
+    .enterprise-feature-list strong {
+      font-weight: 600;
+      color: var(--enterprise-ink);
+    }
+
+    .enterprise-table-wrap {
+      overflow-x: auto;
+      margin: 0 0 8px 0;
+      border: 1px solid var(--enterprise-rule);
+      border-radius: 4px;
+    }
+    .enterprise-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      min-width: 560px;
+    }
+    .enterprise-table thead th {
+      background: var(--enterprise-soft);
+      text-align: left;
+      padding: 12px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--enterprise-mute);
+      border-bottom: 1px solid var(--enterprise-rule);
+    }
+    .enterprise-table tbody td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--enterprise-rule);
+      vertical-align: top;
+      color: var(--enterprise-ink);
+    }
+    .enterprise-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .enterprise-table tbody tr.enterprise-row-total td {
+      background: var(--enterprise-soft);
+      font-weight: 600;
+    }
+    .enterprise-table .enterprise-num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .enterprise-table .enterprise-savings {
+      color: var(--enterprise-good);
+      font-weight: 600;
+    }
+    .enterprise-table-note {
+      font-size: 12px;
+      color: var(--enterprise-mute);
+      margin: 10px 0 0 0;
+      line-height: 1.5;
+    }
+
+    .enterprise-procurement {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .enterprise-procurement li {
+      padding: 14px 16px;
+      background: var(--enterprise-soft);
+      border-left: 3px solid var(--enterprise-accent);
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--enterprise-ink);
+    }
+    .enterprise-procurement strong {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--enterprise-mute);
+      margin: 0 0 6px 0;
+    }
+    @media (max-width: 600px) {
+      .enterprise-procurement {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .enterprise-signoff {
+      margin: 44px 0 0 0;
+      padding: 28px;
+      background: var(--enterprise-accent);
+      color: #ffffff;
+      border-radius: 4px;
+    }
+    .enterprise-signoff-title {
+      font-size: 19px;
+      font-weight: 600;
+      line-height: 1.35;
+      margin: 0 0 8px 0;
+    }
+    .enterprise-signoff-body {
+      font-size: 14px;
+      line-height: 1.55;
+      color: #d8e0ea;
+      margin: 0 0 16px 0;
+    }
+    .enterprise-signoff-meta {
+      font-size: 12px;
+      color: #8fa3bd;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+  </style>
+
+  <div class="enterprise-inner">
+    <div class="enterprise-label">
+      <span class="enterprise-label-dot"></span>
+      <span>Approach 09 &middot; Enterprise Sell Sheet &middot; By MBT Enterprise Sales</span>
+      <span class="enterprise-label-divider"></span>
+    </div>
+
+    <h2 class="enterprise-headline">One contract. One interface. Software and people, billed by the token.</h2>
+    <p class="enterprise-subhead">Measurably Better Things replaces a stack of seat-based SaaS, hourly consulting, and fractional staff with a single token-metered platform. Your team and ours work in the same chat. You pay only for tokens consumed. Procurement gets one invoice, one MSA, and a hard cap if you want one.</p>
+
+    <div class="enterprise-section-title">What you get</div>
+    <ul class="enterprise-feature-list">
+      <li><strong>One workspace, two token types.</strong> Software tokens meter LLM and platform use. Human tokens meter Studio C team time. Same interface, transparent ledger.</li>
+      <li><strong>Concurrent service desk.</strong> Your staff and our specialists collaborate in-thread. No tickets, no email tag, no separate consulting portal.</li>
+      <li><strong>Modules included.</strong> Directory, marketing automation, review management, content production, and analytics. New modules ship to all customers.</li>
+      <li><strong>SOC-ready audit trail.</strong> Every token spent is logged with prompt, output, operator, and cost. Exportable to your SIEM or finance system.</li>
+      <li><strong>SSO, SCIM, role-based access.</strong> Provisioning through your IdP. Read-only seats are free; usage is what gets billed.</li>
+    </ul>
+
+    <div class="enterprise-section-title">Annual cost &mdash; 100-employee organization</div>
+    <div class="enterprise-table-wrap">
+      <table class="enterprise-table">
+        <thead>
+          <tr>
+            <th>Line item</th>
+            <th>Traditional stack</th>
+            <th>MBT (token-metered)</th>
+            <th>Delta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Marketing &amp; CRM SaaS (100 seats)</td>
+            <td class="enterprise-num">$84,000</td>
+            <td class="enterprise-num">included</td>
+            <td class="enterprise-num enterprise-savings">&minus;$84,000</td>
+          </tr>
+          <tr>
+            <td>Outside agency retainer</td>
+            <td class="enterprise-num">$96,000</td>
+            <td class="enterprise-num">$36,000</td>
+            <td class="enterprise-num enterprise-savings">&minus;$60,000</td>
+          </tr>
+          <tr>
+            <td>Fractional content / ops staff</td>
+            <td class="enterprise-num">$72,000</td>
+            <td class="enterprise-num">$24,000</td>
+            <td class="enterprise-num enterprise-savings">&minus;$48,000</td>
+          </tr>
+          <tr>
+            <td>Software token bucket (LLM + platform)</td>
+            <td class="enterprise-num">&mdash;</td>
+            <td class="enterprise-num">$18,000</td>
+            <td class="enterprise-num">&mdash;</td>
+          </tr>
+          <tr class="enterprise-row-total">
+            <td>Annual total</td>
+            <td class="enterprise-num">$252,000</td>
+            <td class="enterprise-num">$78,000</td>
+            <td class="enterprise-num enterprise-savings">&minus;$174,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="enterprise-table-note">Illustrative model. Actual quote depends on module mix and projected token volume. Pricing per token is published; your team can model expected spend in 15 minutes.</p>
+
+    <div class="enterprise-section-title">Procurement notes</div>
+    <ul class="enterprise-procurement">
+      <li><strong>Term</strong>Month-to-month after a 90-day pilot. No multi-year lock.</li>
+      <li><strong>Spend cap</strong>Optional hard ceiling per month. Workspace pauses at cap, no overage.</li>
+      <li><strong>Billing</strong>Net-30 invoice, ACH or wire. Stripe card available for pilots.</li>
+      <li><strong>Data</strong>Your data is yours. Export on request, deleted on termination.</li>
+      <li><strong>Insurance</strong>$1M E&amp;O and cyber coverage. COI on request.</li>
+      <li><strong>Compliance</strong>SSO, SCIM, audit log export, data residency on enterprise tier.</li>
+    </ul>
+
+    <div class="enterprise-signoff">
+      <p class="enterprise-signoff-title">Pilot in 90 days. Procurement-clean from day one.</p>
+      <p class="enterprise-signoff-body">We send the MSA, SOW, and SLA as one package. Your legal team marks it up; we sign. Kickoff inside two weeks of countersignature.</p>
+      <p class="enterprise-signoff-meta">Contact &middot; sales@measurablybetter.life</p>
+    </div>
+  </div>
+</section>

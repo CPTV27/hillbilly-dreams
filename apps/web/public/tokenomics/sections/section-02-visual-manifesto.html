@@ -1,0 +1,347 @@
+<section class="approach approach-manifesto" id="approach-manifesto">
+  <style>
+    .approach-manifesto {
+      --manifesto-bg: #f5efe6;
+      --manifesto-ink: #1a1612;
+      --manifesto-accent: #b8731c;
+      --manifesto-mute: #8a7e6f;
+      --manifesto-rule: #d8cfc1;
+      background: var(--manifesto-bg);
+      color: var(--manifesto-ink);
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      box-sizing: border-box;
+    }
+    .approach-manifesto *,
+    .approach-manifesto *::before,
+    .approach-manifesto *::after {
+      box-sizing: border-box;
+    }
+
+    .manifesto-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .manifesto-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--manifesto-mute);
+      margin: 0 0 96px 0;
+    }
+    .manifesto-label-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--manifesto-accent);
+      flex-shrink: 0;
+    }
+    .manifesto-label-divider {
+      flex: 1;
+      max-width: 280px;
+      height: 1px;
+      background: var(--manifesto-rule);
+    }
+
+    .manifesto-statement {
+      font-family: 'Playfair Display', 'Times New Roman', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(56px, 9vw, 108px);
+      line-height: 0.96;
+      letter-spacing: -0.025em;
+      margin: 0 0 120px 0;
+      color: var(--manifesto-ink);
+    }
+    .manifesto-statement-line {
+      display: block;
+    }
+    .manifesto-statement-line + .manifesto-statement-line {
+      margin-top: 0.05em;
+    }
+    .manifesto-statement-accent {
+      color: var(--manifesto-accent);
+      font-style: italic;
+    }
+    .manifesto-statement em {
+      font-style: italic;
+    }
+
+    .manifesto-meters {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 48px;
+      align-items: stretch;
+      margin: 0 0 112px 0;
+      padding: 56px 0;
+      border-top: 1px solid var(--manifesto-rule);
+      border-bottom: 1px solid var(--manifesto-rule);
+    }
+
+    .manifesto-meter {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 320px;
+    }
+    .manifesto-meter-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--manifesto-mute);
+      margin: 0 0 24px 0;
+    }
+    .manifesto-meter-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(48px, 7vw, 88px);
+      line-height: 0.95;
+      letter-spacing: -0.025em;
+      margin: 0 0 28px 0;
+      color: var(--manifesto-ink);
+    }
+    .manifesto-meter-name-accent {
+      color: var(--manifesto-accent);
+    }
+    .manifesto-meter-detail {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--manifesto-mute);
+      max-width: 320px;
+      margin: 0 0 32px 0;
+    }
+    .manifesto-meter-price {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      font-family: 'Playfair Display', serif;
+    }
+    .manifesto-meter-price-num {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.015em;
+      color: var(--manifesto-ink);
+    }
+    .manifesto-meter-price-unit {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--manifesto-mute);
+    }
+
+    .manifesto-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1px;
+      background: var(--manifesto-rule);
+      position: relative;
+    }
+    .manifesto-divider-mark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--manifesto-bg);
+      padding: 14px 0;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--manifesto-accent);
+      letter-spacing: -0.01em;
+    }
+
+    .manifesto-svg-meter {
+      display: block;
+      margin: 24px 0 32px 0;
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+    }
+
+    .manifesto-coda {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      max-width: 760px;
+    }
+    .manifesto-coda-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--manifesto-accent);
+      margin: 0;
+    }
+    .manifesto-coda-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(28px, 3.6vw, 44px);
+      line-height: 1.18;
+      letter-spacing: -0.015em;
+      color: var(--manifesto-ink);
+      margin: 0;
+    }
+    .manifesto-coda-text strong {
+      font-weight: 400;
+      font-style: normal;
+      color: var(--manifesto-accent);
+      letter-spacing: -0.005em;
+    }
+
+    .manifesto-foot {
+      margin-top: 96px;
+      padding-top: 28px;
+      border-top: 1px solid var(--manifesto-rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--manifesto-mute);
+    }
+    .manifesto-foot-coord {
+      color: var(--manifesto-accent);
+    }
+
+    @media (max-width: 720px) {
+      .manifesto-inner {
+        padding: 56px 22px;
+      }
+      .manifesto-label {
+        margin-bottom: 64px;
+      }
+      .manifesto-statement {
+        margin-bottom: 80px;
+      }
+      .manifesto-meters {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 0;
+      }
+      .manifesto-divider {
+        width: auto;
+        height: 1px;
+      }
+      .manifesto-divider-mark {
+        position: static;
+        transform: none;
+        padding: 0;
+      }
+      .manifesto-meter {
+        min-height: 0;
+      }
+      .manifesto-foot {
+        margin-top: 64px;
+      }
+    }
+  </style>
+
+  <div class="manifesto-inner">
+
+    <p class="manifesto-label">
+      <span class="manifesto-label-dot"></span>
+      <span>Approach 02 &middot; Visual Manifesto &middot; By North Star</span>
+      <span class="manifesto-label-divider"></span>
+    </p>
+
+    <h1 class="manifesto-statement">
+      <span class="manifesto-statement-line">Same chat.</span>
+      <span class="manifesto-statement-line">Two meters.</span>
+      <span class="manifesto-statement-line manifesto-statement-accent">Pay for the answer,<br/>not the path.</span>
+    </h1>
+
+    <div class="manifesto-meters">
+
+      <div class="manifesto-meter">
+        <div>
+          <p class="manifesto-meter-tag">Meter I &middot; Software</p>
+          <h2 class="manifesto-meter-name">Cheap.</h2>
+          <p class="manifesto-meter-detail">
+            The model thinks. The answer ships. You're billed by the
+            cent for the cognition.
+          </p>
+        </div>
+        <svg class="manifesto-svg-meter" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="0.5" y="20.5" width="239" height="39" rx="2" fill="none" stroke="#d8cfc1" stroke-width="1"/>
+          <rect x="4" y="24" width="38" height="32" fill="#1a1612"/>
+          <line x1="60" y1="20" x2="60" y2="60" stroke="#d8cfc1" stroke-width="1"/>
+          <line x1="120" y1="20" x2="120" y2="60" stroke="#d8cfc1" stroke-width="1"/>
+          <line x1="180" y1="20" x2="180" y2="60" stroke="#d8cfc1" stroke-width="1"/>
+          <text x="0" y="14" font-family="Inter, sans-serif" font-size="9" letter-spacing="1.5" fill="#8a7e6f">FRACTIONS OF A CENT</text>
+        </svg>
+        <div class="manifesto-meter-price">
+          <span class="manifesto-meter-price-num">$0.0008</span>
+          <span class="manifesto-meter-price-unit">per call</span>
+        </div>
+      </div>
+
+      <div class="manifesto-divider" aria-hidden="true">
+        <span class="manifesto-divider-mark">&times;</span>
+      </div>
+
+      <div class="manifesto-meter">
+        <div>
+          <p class="manifesto-meter-tag">Meter II &middot; Human</p>
+          <h2 class="manifesto-meter-name manifesto-meter-name-accent">Expensive.</h2>
+          <p class="manifesto-meter-detail">
+            A person picks up the thread. The problem closes.
+            You're billed for the rare thing AI cannot do.
+          </p>
+        </div>
+        <svg class="manifesto-svg-meter" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="0.5" y="20.5" width="239" height="39" rx="2" fill="none" stroke="#d8cfc1" stroke-width="1"/>
+          <rect x="4" y="24" width="220" height="32" fill="#b8731c"/>
+          <line x1="60" y1="20" x2="60" y2="60" stroke="rgba(245,239,230,0.4)" stroke-width="1"/>
+          <line x1="120" y1="20" x2="120" y2="60" stroke="rgba(245,239,230,0.4)" stroke-width="1"/>
+          <line x1="180" y1="20" x2="180" y2="60" stroke="rgba(245,239,230,0.4)" stroke-width="1"/>
+          <text x="0" y="14" font-family="Inter, sans-serif" font-size="9" letter-spacing="1.5" fill="#8a7e6f">PREMIUM RATE &middot; THE INVERSION</text>
+        </svg>
+        <div class="manifesto-meter-price">
+          <span class="manifesto-meter-price-num">$3.20</span>
+          <span class="manifesto-meter-price-unit">per minute</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="manifesto-coda">
+      <p class="manifesto-coda-eyebrow">The thesis, in one line</p>
+      <p class="manifesto-coda-text">
+        Complexity scales the price <strong>automatically.</strong>
+        The chat decides. The customer sees both meters running.
+        No surprise bills, no hidden human, no shame about either one.
+      </p>
+    </div>
+
+    <div class="manifesto-foot">
+      <span>Inverted Intelligence</span>
+      <span class="manifesto-foot-coord">31.5604&deg; N &middot; 91.4032&deg; W</span>
+      <span>MBT &middot; 2026</span>
+    </div>
+
+  </div>
+</section>

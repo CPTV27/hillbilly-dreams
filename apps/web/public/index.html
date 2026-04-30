@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Cos — Local Dashboard · Everything Built Tonight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --rule: #d8d8d8;
+      --muted: #6a6a6a;
+      --paper: #ffffff;
+      --warm: #f5efe6;
+      --accent: #b8731c;
+      --serif-display: 'Playfair Display', Georgia, serif;
+      --serif-body: 'Source Serif 4', Georgia, serif;
+      --sans: 'Inter', -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      background: var(--paper); color: var(--ink); margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    body { font-family: var(--serif-body); font-size: 17px; line-height: 1.6; }
+
+    .topbar {
+      position: sticky; top: 0; background: var(--ink); color: var(--paper);
+      padding: 14px 28px; display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--sans); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+      z-index: 100; border-bottom: 1px solid var(--ink);
+    }
+    .topbar .brand { font-weight: 700; }
+    .topbar .meta { color: #aaa; }
+    .topbar a { color: var(--paper); text-decoration: none; margin-left: 18px; }
+    .topbar a:hover { color: var(--accent); }
+
+    .hero {
+      max-width: 1100px; margin: 0 auto; padding: 48px 28px 24px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero .kicker {
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-family: var(--serif-display); font-size: 48px; font-weight: 900;
+      line-height: 1.05; letter-spacing: -0.015em; margin: 0 0 16px;
+    }
+    .hero .dek {
+      font-family: var(--serif-body); font-style: italic; font-size: 20px;
+      color: #2a2a2a; max-width: 800px; margin: 0 0 18px;
+    }
+    .hero .stats {
+      font-family: var(--sans); font-size: 13px; color: var(--muted);
+      display: flex; gap: 28px; flex-wrap: wrap; margin-top: 20px;
+    }
+    .hero .stats strong { color: var(--ink); font-weight: 700; }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 0 28px 80px; }
+
+    section.block { padding: 36px 0; border-bottom: 1px solid var(--rule); }
+    section.block:last-of-type { border-bottom: 0; }
+
+    .section-title {
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--accent); font-weight: 700;
+      border-bottom: 1px solid var(--accent); padding-bottom: 8px;
+      margin-bottom: 24px; display: inline-block;
+    }
+    .section-intro {
+      font-size: 16px; color: #444; margin-bottom: 28px; max-width: 720px;
+    }
+
+    .grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 18px;
+    }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    @media (max-width: 760px) { .grid, .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+    .card {
+      border: 1px solid var(--rule); padding: 22px 20px;
+      transition: background 0.15s, border-color 0.15s;
+      text-decoration: none; color: inherit; display: block;
+    }
+    .card:hover { background: var(--warm); border-color: var(--ink); }
+    .card .card-kicker {
+      font-family: var(--sans); font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+    }
+    .card h3 {
+      font-family: var(--serif-display); font-size: 19px; font-weight: 700;
+      line-height: 1.25; margin: 0 0 8px;
+    }
+    .card p { margin: 0 0 8px; font-size: 14px; line-height: 1.5; color: #333; }
+    .card .meta {
+      font-family: var(--sans); font-size: 11px; color: var(--muted);
+      margin-top: 10px; display: flex; gap: 12px; align-items: center;
+    }
+    .card .pdf {
+      font-family: var(--sans); font-size: 10px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink); border: 1px solid var(--ink);
+      padding: 3px 8px; text-decoration: none;
+    }
+    .card .pdf:hover { background: var(--ink); color: var(--paper); }
+
+    .priority {
+      background: linear-gradient(135deg, var(--warm) 0%, #fff 100%);
+      border-color: var(--accent);
+    }
+    .priority .card-kicker { color: var(--accent); font-weight: 700; }
+
+    .renderings {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px;
+    }
+    @media (max-width: 760px) { .renderings { grid-template-columns: 1fr 1fr; } }
+    .renderings a {
+      display: block; aspect-ratio: 16/9; overflow: hidden; border: 1px solid var(--rule);
+      transition: border-color 0.15s;
+    }
+    .renderings a:hover { border-color: var(--ink); }
+    .renderings img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .quick-links { font-family: var(--sans); font-size: 14px; line-height: 2.2; }
+    .quick-links a {
+      color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule);
+      padding: 2px 0; margin-right: 14px;
+    }
+    .quick-links a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+
+    footer {
+      margin-top: 60px; padding: 28px; text-align: center;
+      font-family: var(--sans); font-size: 12px; color: var(--muted);
+      border-top: 1px solid var(--rule);
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">Cos · Local Dashboard</div>
+    <div class="meta">localhost:8888 · April 30, 2026 ·
+      <a href="/chat">Chat</a>
+      <a href="https://app.asana.com/0/1214376792613690/list">WPC Inbox ↗</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="kicker">Everything built tonight · One scroll</div>
+    <h1>The whole picture, in one place</h1>
+    <p class="dek">Tomorrow's call deliverables, Studio C positioning, the chat MVP, six pole barn renderings, the 12-month forecast, all the business plans, and the audit findings — without having to dig through file paths.</p>
+    <div class="stats">
+      <span><strong>11</strong> HTML pages</span>
+      <span><strong>11</strong> Senate-style PDFs</span>
+      <span><strong>6</strong> Imagen 3 renderings</span>
+      <span><strong>9</strong> business plans (~7,500 words total)</span>
+      <span><strong>~25</strong> WPC tasks captured</span>
+      <span><strong>1</strong> chat MVP shipped</span>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- BIG MUDDY ACRES — TOMORROW'S CALL -->
+    <section class="block">
+      <div class="section-title">For tomorrow's call · Big Muddy Acres briefing</div>
+      <p class="section-intro">The headline deliverable. Open the briefing index OR jump straight to the centerpiece scroll-deck. Everything has a Senate-style PDF for printing.</p>
+      <div class="grid grid-2">
+        <a class="card priority" href="/big-muddy-acres/">
+          <div class="card-kicker">⭐ Start here · Briefing hub</div>
+          <h3>Big Muddy Acres — Briefing Index</h3>
+          <p>The hub. 10 cards linking to every piece of the presentation. This is the page you walk Tracy + Amy through.</p>
+          <div class="meta"><a class="pdf" href="/big-muddy-acres/pdfs/index.pdf">PDF</a></div>
+        </a>
+        <a class="card priority" href="/big-muddy-acres/big-muddy-acres.html">
+          <div class="card-kicker">⭐ Centerpiece · 2,692 words · 6 renderings</div>
+          <h3>Big Muddy Acres — A Rockstar Retirement Community</h3>
+          <p>The full magazine-style story. Studio at the center, RV cash flow, build-out, network, outsider economy, the numbers, partners, customers, the path.</p>
+          <div class="meta"><a class="pdf" href="/big-muddy-acres/pdfs/big-muddy-acres.pdf">PDF · 272KB</a></div>
+        </a>
+        <a class="card" href="/big-muddy-acres/forecast.html">
+          <div class="card-kicker">12-month forecast · 3 scenarios</div>
+          <h3>The Schedule that Kills Arbitrary Panic</h3>
+          <p>$283K Y1 mid-scenario. Inn carries $150k. Photography $59k. Music/Records/Radio = $0 (honest). Panic threshold rules per month.</p>
+          <div class="meta"><a class="pdf" href="/big-muddy-acres/pdfs/forecast.pdf">PDF</a></div>
+        </a>
+        <a class="card" href="/big-muddy-acres/touring-destinations.html">
+          <div class="card-kicker">Touring as marketing · 35 towns · 4 tiers</div>
+          <h3>Touring as Marketing — Destinations Map</h3>
+          <p>The Sprinter van is a billboard. Tracy + Amy at bars + restaurants every night IS the marketing. Three routing recommendations, real venue names, scoring rubric.</p>
+          <div class="meta"><a class="pdf" href="/big-muddy-acres/pdfs/touring-destinations.pdf">PDF · 328KB</a></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- POLE BARN RENDERINGS -->
+    <section class="block">
+      <div class="section-title">The Mechanical Bull Pull Barn · 6 Imagen 3 renderings</div>
+      <p class="section-intro">Generated tonight via Vertex AI Imagen 3. Embedded throughout the BMA centerpiece. Click to view full size.</p>
+      <div class="renderings">
+        <a href="/big-muddy-acres/renderings/bma-pull-barn-exterior-wide-01.png" target="_blank"><img src="/big-muddy-acres/renderings/bma-pull-barn-exterior-wide-01.png" alt="Exterior wide" loading="lazy" /></a>
+        <a href="/big-muddy-acres/renderings/bma-pull-barn-exterior-entry-02.png" target="_blank"><img src="/big-muddy-acres/renderings/bma-pull-barn-exterior-entry-02.png" alt="Exterior entry" loading="lazy" /></a>
+        <a href="/big-muddy-acres/renderings/bma-pull-barn-interior-mixing-03.png" target="_blank"><img src="/big-muddy-acres/renderings/bma-pull-barn-interior-mixing-03.png" alt="Interior mixing" loading="lazy" /></a>
+        <a href="/big-muddy-acres/renderings/bma-aerial-site-04.png" target="_blank"><img src="/big-muddy-acres/renderings/bma-aerial-site-04.png" alt="Aerial site plan" loading="lazy" /></a>
+        <a href="/big-muddy-acres/renderings/bma-pull-barn-kitchen-05.png" target="_blank"><img src="/big-muddy-acres/renderings/bma-pull-barn-kitchen-05.png" alt="Kitchen" loading="lazy" /></a>
+        <a href="/big-muddy-acres/renderings/bma-property-vista-porch-06.png" target="_blank"><img src="/big-muddy-acres/renderings/bma-property-vista-porch-06.png" alt="Property vista from porch" loading="lazy" /></a>
+      </div>
+    </section>
+
+    <!-- STUDIO C + MBT POSITIONING -->
+    <section class="block">
+      <div class="section-title">MBT product · Studio C service page · The locks</div>
+      <p class="section-intro">Tonight's strategic locks. SaaS+Service, $100/mo target sell, Studio C as the operating company, S2PX as a vertical deployment.</p>
+      <div class="grid grid-2">
+        <a class="card priority" href="/studio-c/">
+          <div class="card-kicker">⭐ Internal · 1,180 words</div>
+          <h3>Studio C — The Service Page</h3>
+          <p>Studio C uses MBT as tech wrapper + LLMs + software suite + know-how + subcontractor network (Fiverr). Routing IS the value. AI helps the routing decision.</p>
+          <div class="meta"><a class="pdf" href="/studio-c/pdfs/studio-c-service.pdf">PDF · 365KB</a></div>
+        </a>
+        <a class="card" href="/chat" target="_blank">
+          <div class="card-kicker">⭐ Built tonight · Test it</div>
+          <h3>The Chat MVP</h3>
+          <p>Streaming Anthropic Sonnet, knows full Big Muddy context, escalates to Asana via create_task tool. Run pnpm dev and visit /chat. Add ASANA_PAT for escalation to fire.</p>
+          <div class="meta">Local: localhost:3000/chat</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- BUSINESS PLANS -->
+    <section class="block">
+      <div class="section-title">The 7 business plans · ~7,500 words total</div>
+      <p class="section-intro">Drafted in parallel by sub-agents tonight. Each follows the canonical template (what / today / economics / customer / 12-month / needs / risk / ecosystem multiplier).</p>
+      <div class="grid">
+        <a class="card" href="/big-muddy-acres/plan-big-muddy-inn.html"><div class="card-kicker">Hospitality · 1,229 words</div><h3>Big Muddy Inn</h3><p>The operating anchor. Rooms, bar, Blues Room.</p><div class="meta"><a class="pdf" href="/big-muddy-acres/pdfs/plan-big-muddy-inn.pdf">PDF</a></div></a>
+        <a class="card" href="/big-muddy-acres/plan-big-muddy-touring.html"><div class="card-kicker">Booking + transport · 1,575 words</div><h3>Big Muddy Touring</h3><p>Sprinter van, corridor routing, in-house Blues Room dates.</p><div class="meta"><a class="pdf" href="/big-muddy-acres/pdfs/plan-big-muddy-touring.pdf">PDF</a></div></a>
+        <a class="card" href="/big-muddy-acres/plan-big-muddy-magazine.html"><div class="card-kicker">Editorial · Tracy editor · 1,077 words</div><h3>Big Muddy Magazine</h3><p>The voice of the corridor. 5 articles published. Where it goes from here.</p><div class="meta"><a class="pdf" href="/big-muddy-acres/pdfs/plan-big-muddy-magazine.pdf">PDF</a></div></a>
+        <a class="card" href="/big-muddy-acres/plan-studio-c.html"><div class="card-kicker">Operating company · 1,198 words</div><h3>Studio C — Business Plan</h3><p>The plan version (vs the public service page). Vendor → operating-company evolution captured.</p><div class="meta"><a class="pdf" href="/big-muddy-acres/pdfs/plan-studio-c.pdf">PDF</a></div></a>
+        <a class="card" href="/big-muddy-acres/plan-chase-pierson-photography.html"><div class="card-kicker">Photography · 1,110 words</div><h3>Chase Pierson Photography</h3><p>The other revenue engine for the next 12 months.</p><div class="meta"><a class="pdf" href="/big-muddy-acres/pdfs/plan-chase-pierson-photography.pdf">PDF</a></div></a>
+        <a class="card" href="/big-muddy-acres/plan-big-muddy-records.html"><div class="card-kicker">Label · 12-24mo gestation · 899 words</div><h3>Big Muddy Records</h3><p>Mechanical Bull as the first artist. $0 Y1 — be honest.</p><div class="meta"><a class="pdf" href="/big-muddy-acres/pdfs/plan-big-muddy-records.pdf">PDF</a></div></a>
+        <a class="card" href="/big-muddy-acres/plan-big-muddy-radio.html"><div class="card-kicker">Streaming · AzuraCast · 1,020 words</div><h3>Big Muddy Radio</h3><p>SSL fix is the immediate operational unblock. Programming + revenue path.</p><div class="meta"><a class="pdf" href="/big-muddy-acres/pdfs/plan-big-muddy-radio.pdf">PDF</a></div></a>
+      </div>
+    </section>
+
+    <!-- POSITIONING + RESEARCH -->
+    <section class="block">
+      <div class="section-title">Positioning + research · The deeper docs</div>
+      <p class="section-intro">Strategic foundation behind everything above. Markdown source — render in your editor or open raw in browser.</p>
+      <div class="quick-links">
+        <a href="/../docs/positioning/mbt-product-definition-2026-04-30.md">MBT Product Definition (LOCKED)</a>
+        <a href="/../docs/audits/full-audit-2026-04-29.md">Full Codebase + Docs Audit</a>
+        <a href="/../docs/research/big-muddy-acres-eco-tech-infrastructure-2026-04-29.md">Eco-Tech Infrastructure Research (40+ vendors)</a>
+        <a href="/../docs/touring/destinations-map-2026-04-29.md">Touring Destinations Markdown Source</a>
+        <a href="/../docs/aeo/sanity-answerpage-schema.md">Sanity answerPage Schema Spec</a>
+        <a href="/../docs/aeo/aeo-publish-checklist.md">AEO Publish Checklist</a>
+        <a href="/../docs/aeo/big-muddy-pages-1-7-ready.md">Big Muddy AEO Pages 1-7 (ready for paste)</a>
+        <a href="/../docs/aeo/big-muddy-pages-8-20-ready.md">Big Muddy AEO Pages 8-20 (ready for paste)</a>
+        <a href="/../docs/operations/wpc-handbook.md">WPC Partner Handbook</a>
+        <a href="/../docs/voice/admin-documentation-voice.md">Admin Documentation Voice Guide</a>
+        <a href="/../docs/voice/cos-ingestion-rule.md">Cos Ingestion Rule</a>
+      </div>
+    </section>
+
+    <!-- WHAT'S STILL IN MOTION -->
+    <section class="block">
+      <div class="section-title">Still in motion · Captured in WPC, queued for execution</div>
+      <p class="section-intro">Captured tonight, awaiting Chase decision or Patch engineering bandwidth.</p>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-kicker">Phase 2 · Chat dashboards</div>
+          <h3>Chat → Per-User Workspaces</h3>
+          <p>Tracy + Amy design their own dashboards. Onboarding template gallery. Dispatched as engineering task for week of May 5.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Engineering · Weekend</div>
+          <h3>Replace Asana with Native Task System</h3>
+          <p>Tasks live IN the chat, not in Asana. 4-phase migration. Cuts subscription cost + simplifies stack.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Engineering · Friday</div>
+          <h3>Open Notebook on Hetzner</h3>
+          <p>SSH unblocked. Deploy is ~1 hour. Becomes the data layer for chat customer contexts.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Strategic · S2PX vertical</div>
+          <h3>S2PX = Lead-to-Quote Service</h3>
+          <p>Owen (CEO) phone-first. Elijah on-site scopes → price/sq ft. Stop trying to systematize pricing. Bill the on-site visit.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Lyra · Acoustic mesh</div>
+          <h3>EMPAC Video → Photogrammetry</h3>
+          <p>3 EMPAC studios scanned. Photogrammetry not Gaussian Splat (acoustic goal). LumaAI for first test.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Trust · Friday</div>
+          <h3>Tracy 404 + Amy Article Replies</h3>
+          <p>Replies posted tonight. 404 link itself still needs the actual fix. Amy article URL needs verification.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOUSEKEEPING -->
+    <section class="block">
+      <div class="section-title">Housekeeping</div>
+      <div class="quick-links">
+        <a href="/chat" target="_blank">→ Chat MVP (live, needs ASANA_PAT)</a>
+        <a href="https://app.asana.com/0/1214376792613690/list" target="_blank">→ WPC Inbox in Asana ↗</a>
+        <a href="/big-muddy-acres/" target="_blank">→ BMA briefing hub</a>
+        <a href="/studio-c/" target="_blank">→ Studio C service page</a>
+      </div>
+      <p style="font-size: 14px; color: var(--muted); margin-top: 24px;">
+        Server runs as <code>python3 -m http.server 8888</code> from <code>apps/web/public</code>. Dies on laptop sleep / reboot. Restart with the same command. <br>
+        Asana task captured to make this a proper always-on app feature.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    Cos · Local Dashboard · April 30, 2026 · Confidential — Hillbilly Dreams / Measurably Better Things
+  </footer>
+</body>
+</html>
