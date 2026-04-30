@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Phrases Library — Studio C / MBT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f6f7f9',
+                            100: '#eceef2',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .copy-btn-feedback {
+            animation: fadeInOut 2s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(5px); }
+            10% { opacity: 1; transform: translateY(0); }
+            80% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body class="bg-brand-50 text-brand-900 font-sans antialiased flex flex-col md:flex-row min-h-screen">
+
+    <header class="md:hidden bg-white border-b border-gray-200 p-4 sticky top-0 z-50 flex justify-between items-center">
+        <div>
+            <h1 class="text-lg font-bold tracking-tight">Marketing Library</h1>
+            <p class="text-xs text-gray-500">Last updated: 2026-04-30</p>
+        </div>
+        <button id="mobile-menu-btn" class="p-2 text-gray-600 hover:text-black">
+            <i data-lucide="menu"></i>
+        </button>
+    </header>
+
+    <nav id="sidebar" class="hidden md:block w-full md:w-72 bg-white border-r border-gray-200 h-screen sticky top-0 overflow-y-auto z-40 shadow-xl md:shadow-none absolute md:relative">
+        <div class="p-6">
+            <h1 class="text-xl font-bold tracking-tight mb-1">Marketing Phrases</h1>
+            <p class="text-xs font-medium text-gray-500 mb-6 uppercase tracking-wider">The Brand Voice</p>
+
+            <ul class="space-y-1 text-sm font-medium text-gray-600">
+                <li><a href="#anchor-lines" class="block py-2 px-3 rounded-md hover:bg-gray-100 hover:text-black transition-colors">Anchor Lines</a></li>
+                <li><a href="#campaign-script" class="block py-2 px-3 rounded-md hover:bg-gray-100 hover:text-black transition-colors">Campaign Script</a></li>
+                <li><a href="#tier-specific" class="block py-2 px-3 rounded-md hover:bg-gray-100 hover:text-black transition-colors">Tier-specific Lines</a></li>
+                <li><a href="#on-demand" class="block py-2 px-3 rounded-md hover:bg-gray-100 hover:text-black transition-colors">On Demand Everything</a></li>
+                <li><a href="#tokenomics" class="block py-2 px-3 rounded-md hover:bg-gray-100 hover:text-black transition-colors">Tokenomics & Pricing</a></li>
+                <li><a href="#ai-vs-hands" class="block py-2 px-3 rounded-md hover:bg-gray-100 hover:text-black transition-colors">AI vs Hands Thesis</a></li>
+                <li><a href="#projects" class="block py-2 px-3 rounded-md hover:bg-gray-100 hover:text-black transition-colors">Projects & Entities</a></li>
+                <li><a href="#anti-vocabulary" class="block py-2 px-3 rounded-md text-red-600 hover:bg-red-50 transition-colors mt-4">Anti-Vocabulary (Banned)</a></li>
+                <li><a href="#voice-rules" class="block py-2 px-3 rounded-md hover:bg-gray-100 hover:text-black transition-colors">Voice Rules</a></li>
+                <li><a href="#placements" class="block py-2 px-3 rounded-md hover:bg-gray-100 hover:text-black transition-colors">Placements</a></li>
+            </ul>
+
+            <div class="mt-10 pt-6 border-t border-gray-100">
+                <p class="text-xs text-gray-500 italic">"Captured 2026-04-30 evening. Every line that landed during tonight's session. Cos owns long-term updates."</p>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 p-6 md:p-12 lg:p-16 max-w-5xl mx-auto overflow-y-auto pb-32">
+
+        <section id="anchor-lines" class="mb-16 scroll-mt-24">
+            <h2 class="text-2xl font-bold tracking-tight border-b border-gray-200 pb-3 mb-6">The Four Anchor Lines</h2>
+            <p class="text-gray-500 mb-6 font-medium">Lock these — they propagate everywhere.</p>
+
+            <div class="space-y-4">
+                <div class="phrase-card group relative bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:border-gray-400 hover:shadow-md transition-all duration-200">
+                    <p class="phrase-text font-serif text-2xl font-medium text-black pr-16 leading-tight">"AI tells you. We do the rest."</p>
+                    <p class="text-sm text-gray-500 mt-3 font-medium">The campaign tagline. Goes on every ad, every landing page footer, every social bio.</p>
+                    <button class="copy-btn absolute top-6 right-6 text-gray-400 hover:text-black opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 bg-gray-50 px-2 py-1 rounded border border-gray-200">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span class="text-xs font-semibold uppercase tracking-wider">Copy</span>
+                    </button>
+                </div>
+
+                <div class="phrase-card group relative bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:border-gray-400 hover:shadow-md transition-all duration-200">
+                    <p class="phrase-text font-serif text-2xl font-medium text-black pr-16 leading-tight">"Software is cheap. Humans are the premium. We bill them differently because they are."</p>
+                    <p class="text-sm text-gray-500 mt-3 font-medium">The pricing tagline. Goes on the pricing page, in onboarding, in any tokenomics explainer.</p>
+                    <button class="copy-btn absolute top-6 right-6 text-gray-400 hover:text-black opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 bg-gray-50 px-2 py-1 rounded border border-gray-200">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span class="text-xs font-semibold uppercase tracking-wider">Copy</span>
+                    </button>
+                </div>
+
+                <div class="phrase-card group relative bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:border-gray-400 hover:shadow-md transition-all duration-200">
+                    <p class="phrase-text font-serif text-2xl font-medium text-black pr-16 leading-tight">"Same chat. Two meters. Pay for the answer, not the path."</p>
+                    <p class="text-sm text-gray-500 mt-3 font-medium">The visual manifesto. Goes on the hero of any page explaining the token model.</p>
+                    <button class="copy-btn absolute top-6 right-6 text-gray-400 hover:text-black opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 bg-gray-50 px-2 py-1 rounded border border-gray-200">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span class="text-xs font-semibold uppercase tracking-wider">Copy</span>
+                    </button>
+                </div>
+
+                <div class="phrase-card group relative bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:border-gray-400 hover:shadow-md transition-all duration-200">
+                    <p class="phrase-text font-serif text-2xl font-medium text-black pr-16 leading-tight">"Inverted Intelligence."</p>
+                    <p class="text-sm text-gray-500 mt-3 font-medium">The brand thesis. Two-word headline, infinite essays. The radio show. The publication. The reframe of the entire labor market.</p>
+                    <button class="copy-btn absolute top-6 right-6 text-gray-400 hover:text-black opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 bg-gray-50 px-2 py-1 rounded border border-gray-200">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span class="text-xs font-semibold uppercase tracking-wider">Copy</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="campaign-script" class="mb-16 scroll-mt-24">
+            <h2 class="text-2xl font-bold tracking-tight border-b border-gray-200 pb-3 mb-6">The Campaign Script</h2>
+            <p class="text-gray-500 mb-4 font-medium">Every ad uses this. "Ten easy steps" is the running gag. Swap the bracketed variables.</p>
+
+            <div class="relative bg-gray-900 text-gray-100 p-6 rounded-xl font-mono text-sm shadow-lg overflow-hidden group">
+                <button class="copy-btn-complex absolute top-4 right-4 text-gray-400 hover:text-white transition-opacity flex items-center gap-1 bg-gray-800 px-3 py-1.5 rounded border border-gray-700">
+                    <i data-lucide="copy" class="w-4 h-4"></i>
+                    <span class="text-xs font-semibold uppercase tracking-wider">Copy Script</span>
+                </button>
+                <div id="script-content" class="space-y-4">
+                    <p><span class="text-blue-400 font-bold">AI VOICE:</span> "I just told you exactly how to <span class="bg-blue-900/50 text-blue-300 px-1 rounded">[VERB + OBJECT]</span>. Ten easy steps."</p>
+                    <p class="text-gray-400 italic">[Person stares.]</p>
+                    <p><span class="text-yellow-400 font-bold">TEXT CARD:</span> "You don't have a clue where to begin. We do. We do the rest."</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tier-specific" class="mb-16 scroll-mt-24">
+            <h2 class="text-2xl font-bold tracking-tight border-b border-gray-200 pb-3 mb-6">Tier-Specific Lines</h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                    <div class="inline-block bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded uppercase tracking-wider mb-4">Standard / $20</div>
+                    <p class="text-sm text-gray-500 mb-4 italic">The killer at the consumer software ceiling.</p>
+                    <ul class="space-y-3">
+                        <li class="group flex justify-between items-start gap-4 pb-3 border-b border-gray-50 last:border-0">
+                            <span class="font-serif text-lg text-black leading-snug">"Better than ChatGPT. Same price. Multi-agent routing across 30+ specialists."</span>
+                            <button class="copy-inline text-gray-300 hover:text-brand-900"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </li>
+                        <li class="group flex justify-between items-start gap-4 pb-3 border-b border-gray-50 last:border-0">
+                            <span class="font-serif text-lg text-black leading-snug">"They give you one model. We give you a router."</span>
+                            <button class="copy-inline text-gray-300 hover:text-brand-900"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 border border-brand-800 border-t-4 shadow-md">
+                    <div class="inline-block bg-brand-900 text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wider mb-4">Service / $100</div>
+                    <p class="text-sm text-gray-500 mb-4 italic">The target sell.</p>
+                    <ul class="space-y-3">
+                        <li class="group flex justify-between items-start gap-4 pb-3 border-b border-gray-50 last:border-0">
+                            <span class="font-serif text-lg text-black leading-snug">"Talk to a human when you need to. Software when you don't."</span>
+                            <button class="copy-inline text-gray-300 hover:text-brand-900"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </li>
+                        <li class="group flex justify-between items-start gap-4 pb-3 border-b border-gray-50 last:border-0">
+                            <span class="font-serif text-lg text-black leading-snug">"$100 a month. Includes 30 minutes of a real person's time."</span>
+                            <button class="copy-inline text-gray-300 hover:text-brand-900"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </li>
+                        <li class="group flex justify-between items-start gap-4 pb-3 border-b border-gray-50 last:border-0">
+                            <span class="font-serif text-lg text-black leading-snug">"The price point where the chat hits a wall and a human picks up."</span>
+                            <button class="copy-inline text-gray-300 hover:text-brand-900"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm md:col-span-2">
+                    <div class="inline-block bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded uppercase tracking-wider mb-4">Enterprise / $200+</div>
+                    <ul class="space-y-3 grid md:grid-cols-2 gap-x-6">
+                        <li class="group flex justify-between items-start gap-4 pb-3 md:pb-0 md:border-0 border-b border-gray-50">
+                            <span class="font-serif text-lg text-black leading-snug">"Custom dashboards. Workspace your way. Real bandwidth."</span>
+                            <button class="copy-inline text-gray-300 hover:text-brand-900 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </li>
+                        <li class="group flex justify-between items-start gap-4">
+                            <span class="font-serif text-lg text-black leading-snug">"Pay for what you need. Have all your problems solved."</span>
+                            <button class="copy-inline text-gray-300 hover:text-brand-900 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="on-demand" class="mb-16 scroll-mt-24">
+            <h2 class="text-2xl font-bold tracking-tight border-b border-gray-200 pb-3 mb-6">On Demand Everything (Add-ons)</h2>
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <tbody>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 group">
+                            <td class="p-4 w-1/4 text-sm font-bold text-gray-500 uppercase tracking-wide">Tagline</td>
+                            <td class="p-4 font-serif text-lg text-black pr-12 relative">
+                                "Pay for what you need. Have all your problems solved."
+                                <button class="copy-inline absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-brand-900 opacity-0 group-hover:opacity-100 transition-opacity"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 group">
+                            <td class="p-4 w-1/4 text-sm font-bold text-gray-500 uppercase tracking-wide">In-chat upsell</td>
+                            <td class="p-4 font-serif text-lg text-black pr-12 relative">
+                                "You don't have the [Module] activated. It's $X/mo and includes [included]. Want me to turn it on?"
+                                <button class="copy-inline absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-brand-900 opacity-0 group-hover:opacity-100 transition-opacity"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 group">
+                            <td class="p-4 w-1/4 text-sm font-bold text-gray-500 uppercase tracking-wide">Customer experience</td>
+                            <td class="p-4 font-serif text-lg text-black pr-12 relative">
+                                "You ask. We have a module for that."
+                                <button class="copy-inline absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-brand-900 opacity-0 group-hover:opacity-100 transition-opacity"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 group">
+                            <td class="p-4 w-1/4 text-sm font-bold text-gray-500 uppercase tracking-wide align-top">No-friction frame</td>
+                            <td class="p-4 font-serif text-lg text-black pr-12 relative">
+                                "No procurement cycle. No sales call. No 30-day trial that turns into a 12-month contract. Just pay for what you need, the moment you need it. Pause when you don't."
+                                <button class="copy-inline absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-brand-900 opacity-0 group-hover:opacity-100 transition-opacity"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="tokenomics" class="mb-16 scroll-mt-24">
+            <h2 class="text-2xl font-bold tracking-tight border-b border-gray-200 pb-3 mb-6">Tokenomics & Pricing Transparency</h2>
+            <div class="columns-1 md:columns-2 gap-4 space-y-4">
+
+                <div class="group relative bg-white p-5 rounded-lg border border-gray-200 shadow-sm hover:border-gray-400 break-inside-avoid">
+                    <p class="font-serif text-lg text-black leading-snug">"Software answers cost cents. Human answers cost $25. Same chat. You pick."</p>
+                    <button class="copy-inline absolute top-3 right-3 text-gray-300 hover:text-brand-900 opacity-0 group-hover:opacity-100 transition-opacity bg-white"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                </div>
+
+                <div class="group relative bg-white p-5 rounded-lg border border-gray-200 shadow-sm hover:border-gray-400 break-inside-avoid">
+                    <p class="font-serif text-lg text-black leading-snug">"Pay for the answer. Not the path it took to get there."</p>
+                    <button class="copy-inline absolute top-3 right-3 text-gray-300 hover:text-brand-900 opacity-0 group-hover:opacity-100 transition-opacity bg-white"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                </div>
+
+                <div class="group relative bg-white p-5 rounded-lg border border-gray-200 shadow-sm hover:border-gray-400 break-inside-avoid">
+                    <p class="font-serif text-lg text-black leading-snug">"The harder the question, the higher the token cost. Complexity prices itself."</p>
+                    <button class="copy-inline absolute top-3 right-3 text-gray-300 hover:text-brand-900 opacity-0 group-hover:opacity-100 transition-opacity bg-white"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                </div>
+
+                <div class="group relative bg-white p-5 rounded-lg border border-gray-200 shadow-sm hover:border-gray-400 break-inside-avoid">
+                    <p class="font-serif text-lg text-black leading-snug">"You don't pay a flat rate for a concierge who sits on hold all day. You pay for the answer you actually needed."</p>
+                    <button class="copy-inline absolute top-3 right-3 text-gray-300 hover:text-brand-900 opacity-0 group-hover:opacity-100 transition-opacity bg-white"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                </div>
+
+                <div class="group relative bg-white p-5 rounded-lg border border-gray-200 shadow-sm hover:border-gray-400 break-inside-avoid">
+                    <p class="font-serif text-lg text-black leading-snug">"One meter. Two prices. Infinite combinations."</p>
+                    <button class="copy-inline absolute top-3 right-3 text-gray-300 hover:text-brand-900 opacity-0 group-hover:opacity-100 transition-opacity bg-white"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                </div>
+
+                <div class="group relative bg-white p-5 rounded-lg border border-gray-200 shadow-sm hover:border-gray-400 break-inside-avoid">
+                    <p class="font-serif text-lg text-black leading-snug">"Every token is a decision. Simple decisions are cheap. Hard ones cost what they're worth."</p>
+                    <button class="copy-inline absolute top-3 right-3 text-gray-300 hover:text-brand-900 opacity-0 group-hover:opacity-100 transition-opacity bg-white"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                </div>
+
+                <div class="group relative bg-brand-900 p-5 rounded-lg border border-brand-800 shadow-md break-inside-avoid text-white">
+                    <p class="font-serif text-lg leading-snug">"AI is the cheap labor now. Humans are the premium. We were the first to price it that way."</p>
+                    <button class="copy-inline absolute top-3 right-3 text-gray-500 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                </div>
+
+                <div class="group relative bg-white p-5 rounded-lg border border-gray-200 shadow-sm hover:border-gray-400 break-inside-avoid">
+                    <p class="font-serif text-lg text-black leading-snug">"No surprise bills. Optional caps. Pause anytime."</p>
+                    <button class="copy-inline absolute top-3 right-3 text-gray-300 hover:text-brand-900 opacity-0 group-hover:opacity-100 transition-opacity bg-white"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-vs-hands" class="mb-16 scroll-mt-24">
+            <h2 class="text-2xl font-bold tracking-tight border-b border-gray-200 pb-3 mb-6">The "AI vs Hands" Thesis</h2>
+            <p class="text-gray-500 mb-6 font-medium">Use freely in ads. The DNA of the campaign.</p>
+
+            <div class="space-y-3">
+                <div class="group flex items-center justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                    <p class="font-serif text-lg text-black">"AI can tell you how to do anything. Then you start reading the instructions and you're like, oh, I can't do any of this stuff. We do that stuff."</p>
+                    <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                </div>
+                <div class="group flex items-center justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                    <p class="font-serif text-lg text-black">"The instructions are free. The hands are not."</p>
+                    <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                </div>
+                <div class="group flex items-center justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                    <p class="font-serif text-lg text-black">"Stop asking the chatbot. Start texting us."</p>
+                    <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                </div>
+                <div class="group flex items-center justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                    <p class="font-serif text-lg text-black">"AI knows. We do."</p>
+                    <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                </div>
+                <div class="group flex items-center justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                    <p class="font-serif text-lg text-black">"ChatGPT told you. Now what?"</p>
+                    <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="mb-16 scroll-mt-24">
+            <h2 class="text-2xl font-bold tracking-tight border-b border-gray-200 pb-3 mb-6">Projects & Entities</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-gray-500 mb-3">Big Muddy Acres</h3>
+                    <div class="bg-amber-50 rounded-xl border border-amber-200 p-5 space-y-4">
+                        <div class="group flex justify-between items-start gap-4">
+                            <div><span class="text-xs font-bold text-amber-800 uppercase tracking-wide block mb-1">Tagline</span><span class="font-serif text-lg text-amber-950">"A rockstar retirement community."</span></div>
+                            <button class="copy-inline text-amber-300 hover:text-amber-800 shrink-0 mt-2"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="w-full h-px bg-amber-200"></div>
+                        <div class="group flex justify-between items-start gap-4">
+                            <span class="font-serif text-lg text-amber-950">"Built around the studio. Anchored in Mississippi."</span>
+                            <button class="copy-inline text-amber-300 hover:text-amber-800 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="group flex justify-between items-start gap-4">
+                            <span class="font-serif text-lg text-amber-950">"Twenty miles east of Natchez, an experiment is asking what happens when a small group of people decide they'd rather build a life than buy one."</span>
+                            <button class="copy-inline text-amber-300 hover:text-amber-800 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="group flex justify-between items-start gap-4">
+                            <span class="font-serif text-lg text-amber-950">"Pay nothing to start collecting. RV sites at $500 a month. Build out from there."</span>
+                            <button class="copy-inline text-amber-300 hover:text-amber-800 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="group flex justify-between items-start gap-4">
+                            <span class="font-serif text-lg text-amber-950">"Year-round, because Mississippi doesn't freeze."</span>
+                            <button class="copy-inline text-amber-300 hover:text-amber-800 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-gray-500 mb-3">Artist Equity Model (Chicken)</h3>
+                    <ul class="space-y-3">
+                        <li class="group flex items-center justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                            <span class="font-serif text-lg text-black">"We pay artists in property, not paychecks."</span>
+                            <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </li>
+                        <li class="group flex items-center justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                            <span class="font-serif text-lg text-black">"You make a record. You get a tiny house."</span>
+                            <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </li>
+                        <li class="group flex items-center justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                            <span class="font-serif text-lg text-black">"$50,000 record. One tiny house. One first resident."</span>
+                            <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </li>
+                        <li class="group flex items-center justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                            <span class="font-serif text-lg text-black">"This is what record labels look like when the math gets honest."</span>
+                            <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-gray-500 mb-3">Studio C</h3>
+                        <ul class="space-y-3">
+                            <li class="group flex items-start justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                                <span class="font-serif text-lg text-black leading-snug">"Studio C is the team behind the chat."</span>
+                                <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                            </li>
+                            <li class="group flex items-start justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                                <span class="font-serif text-lg text-black leading-snug">"You ask the chat. We answer — software, agent, or human. Same bill, same accountability, same chat."</span>
+                                <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                            </li>
+                            <li class="group flex items-start justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                                <span class="font-serif text-lg text-black leading-snug">"We have the wrapper. We have the team. We have the network. You have one front door."</span>
+                                <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                            </li>
+                            <li class="group flex items-start justify-between bg-gray-50 px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                                <span class="font-serif text-lg text-black font-bold">"Routing is the value."</span>
+                                <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-gray-500 mb-3">Inverted Intelligence</h3>
+                            <ul class="space-y-3">
+                                <li class="group flex items-start justify-between bg-indigo-50 px-5 py-4 rounded-lg border border-indigo-100">
+                                    <div><span class="text-xs font-bold text-indigo-800 uppercase tracking-wide block mb-1">Show Tagline</span><span class="font-serif text-lg text-indigo-950">"As AI gets cheaper, human work gets more valuable. Here's what that looks like."</span></div>
+                                    <button class="copy-inline text-indigo-300 hover:text-indigo-800 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                                </li>
+                                <li class="group flex items-start justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                                    <span class="font-serif text-lg text-black leading-snug">"We named the trend. We priced for it first."</span>
+                                    <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                                </li>
+                                <li class="group flex items-start justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                                    <span class="font-serif text-lg text-black leading-snug">"The publication that priced AI correctly."</span>
+                                    <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                                </li>
+                                <li class="group flex items-start justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                                    <span class="font-serif text-lg text-black leading-snug">"Be the people who name the trend, not the people who explain it three years later."</span>
+                                    <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-gray-500 mb-3">Outsider Economics</h3>
+                            <ul class="space-y-3">
+                                <li class="group flex items-start justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                                    <span class="font-serif text-lg text-black leading-snug">"The publication of record for the inversion."</span>
+                                    <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                                </li>
+                                <li class="group flex items-start justify-between bg-white px-5 py-4 rounded-lg border border-gray-200 shadow-sm">
+                                    <span class="font-serif text-lg text-black leading-snug">"Token-based pricing for human work. Post-LLM service economy. The new commerce models that priced AI correctly first."</span>
+                                    <button class="copy-inline text-gray-300 hover:text-brand-900 ml-4 shrink-0 mt-1"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="anti-vocabulary" class="mb-16 scroll-mt-24">
+            <h2 class="text-2xl font-bold tracking-tight text-red-700 border-b border-red-200 pb-3 mb-6 flex items-center gap-2">
+                <i data-lucide="ban" class="w-6 h-6"></i> What we DO NOT say
+            </h2>
+            <p class="text-gray-700 mb-6 font-medium">These phrases are banned. If a draft contains any of them, it gets rewritten. This list grows monotonically.</p>
+
+            <div class="flex flex-wrap gap-3">
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">nestled</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">vibrant</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">perfect getaway</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">world-class</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">best-in-class</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">leverage (as a verb)</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">moving forward</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">circle back</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">synergy</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">hidden gem</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">your home away from home</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">unlock potential</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">transform</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">revolutionary</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">game-changing</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">next-generation</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">end-to-end solution</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400">AI-powered</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400" title="in any pitch context — too generic">platform*</span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-red-50 text-red-700 border border-red-200 line-through decoration-red-400" title="when a more specific noun would do">ecosystem*</span>
+            </div>
+            <p class="text-xs text-gray-500 mt-4">* Context dependent, but generally avoid.</p>
+        </section>
+
+        <div class="grid md:grid-cols-2 gap-10">
+            <section id="voice-rules" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold tracking-tight border-b border-gray-200 pb-3 mb-6">Voice Rules</h2>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check-circle-2" class="w-5 h-5 text-green-600 shrink-0 mt-0.5"></i>
+                        <span class="text-gray-800">Lead with the action / verb / scene</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check-circle-2" class="w-5 h-5 text-green-600 shrink-0 mt-0.5"></i>
+                        <span class="text-gray-800">Real proper nouns over adjectives</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="help-circle" class="w-5 h-5 text-blue-600 shrink-0 mt-0.5"></i>
+                        <span class="text-gray-800 font-medium italic">"Could a tired person understand this in 4 seconds?"</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="help-circle" class="w-5 h-5 text-blue-600 shrink-0 mt-0.5"></i>
+                        <span class="text-gray-800 font-medium italic">"Could the customer act on this in 10 seconds?"</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="arrow-right" class="w-5 h-5 text-gray-500 shrink-0 mt-0.5"></i>
+                        <span class="text-gray-800 font-bold">Short > clever</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="arrow-right" class="w-5 h-5 text-gray-500 shrink-0 mt-0.5"></i>
+                        <span class="text-gray-800 font-bold">Truth over polish</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="shield-alert" class="w-5 h-5 text-amber-600 shrink-0 mt-0.5"></i>
+                        <span class="text-gray-800">Honest framing where the product isn't a fit ("if X for you means Y, look elsewhere")</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="megaphone" class="w-5 h-5 text-purple-600 shrink-0 mt-0.5"></i>
+                        <span class="text-gray-800">The product mark whispers; the customer outcome shouts</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="placements" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold tracking-tight border-b border-gray-200 pb-3 mb-6">Where These Live</h2>
+                <div class="space-y-4">
+                    <div class="border-l-4 border-gray-800 pl-4 py-1">
+                        <h4 class="font-bold text-sm uppercase tracking-wide text-gray-500">Pricing Page <span class="lowercase normal-case font-normal">(measurablybetter.life/pricing)</span></h4>
+                        <p class="text-gray-800 mt-1">Anchor lines 2 + 3 above the fold. Tier lines under each tier card.</p>
+                    </div>
+                    <div class="border-l-4 border-gray-800 pl-4 py-1">
+                        <h4 class="font-bold text-sm uppercase tracking-wide text-gray-500">Studio C Service <span class="lowercase normal-case font-normal">(studiocvideo.com)</span></h4>
+                        <p class="text-gray-800 mt-1">Studio C lines + Routing-is-the-value lines.</p>
+                    </div>
+                    <div class="border-l-4 border-gray-800 pl-4 py-1">
+                        <h4 class="font-bold text-sm uppercase tracking-wide text-gray-500">Inverted Intelligence <span class="lowercase normal-case font-normal">(invertedintelligence.fm)</span></h4>
+                        <p class="text-gray-800 mt-1">Brand thesis lines + show tagline + episode openers.</p>
+                    </div>
+                    <div class="border-l-4 border-gray-800 pl-4 py-1">
+                        <h4 class="font-bold text-sm uppercase tracking-wide text-gray-500">Chat Onboarding</h4>
+                        <p class="text-gray-800 mt-1">First message uses the customer-experience line. Module upsells use the in-chat upsell pattern.</p>
+                    </div>
+                    <div class="border-l-4 border-gray-800 pl-4 py-1">
+                        <h4 class="font-bold text-sm uppercase tracking-wide text-gray-500">Ad Campaign</h4>
+                        <p class="text-gray-800 mt-1">Master script verbatim, with the [VERB + OBJECT] swapped per ad.</p>
+                    </div>
+                    <div class="border-l-4 border-gray-800 pl-4 py-1">
+                        <h4 class="font-bold text-sm uppercase tracking-wide text-gray-500">Outsider Economics <span class="lowercase normal-case font-normal">(outsidereconomics.com)</span></h4>
+                        <p class="text-gray-800 mt-1">Editorial pillars use the publication-of-record framing.</p>
+                    </div>
+                    <div class="border-l-4 border-gray-800 pl-4 py-1">
+                        <h4 class="font-bold text-sm uppercase tracking-wide text-gray-500">Big Muddy Acres</h4>
+                        <p class="text-gray-800 mt-1">BMA tagline + Artist Equity lines on pages and press kit.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <div id="toast" class="fixed bottom-5 right-5 bg-gray-900 text-white px-4 py-2 rounded shadow-lg transform transition-transform duration-300 translate-y-20 opacity-0 flex items-center gap-2 z-50">
+        <i data-lucide="check" class="w-4 h-4 text-green-400"></i>
+        <span class="text-sm font-medium">Copied to clipboard</span>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+        });
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+
+        function copyText(text, btnElement) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                document.execCommand('copy');
+                showToast();
+
+                const originalHtml = btnElement.innerHTML;
+                btnElement.innerHTML = '<i data-lucide="check" class="w-4 h-4 text-green-600"></i><span class="text-xs font-semibold uppercase tracking-wider text-green-600 hidden sm:inline">Copied</span>';
+                lucide.createIcons();
+
+                setTimeout(() => {
+                    btnElement.innerHTML = originalHtml;
+                    lucide.createIcons();
+                }, 2000);
+
+            } catch (err) {
+                console.error('Unable to copy', err);
+            }
+
+            textArea.remove();
+        }
+
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const text = e.currentTarget.parentElement.querySelector('.phrase-text').innerText.replace(/^"|"$/g, '');
+                copyText(text, e.currentTarget);
+            });
+        });
+
+        document.querySelectorAll('.copy-inline').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                let textContainer = e.currentTarget.parentElement.querySelector('span') ||
+                                    e.currentTarget.parentElement;
+
+                let text = textContainer.innerText.replace(/^"|"$/g, '').trim();
+                if(text.includes('Copy')) text = text.replace('Copy', '').trim();
+
+                copyText(text, e.currentTarget);
+            });
+        });
+
+        document.querySelector('.copy-btn-complex').addEventListener('click', (e) => {
+            const rawText = 'AI VOICE: "I just told you exactly how to [VERB + OBJECT]. Ten easy steps."\n[Person stares.]\nTEXT CARD: "You don\'t have a clue where to begin. We do. We do the rest."';
+            copyText(rawText, e.currentTarget);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                if(window.innerWidth < 768) {
+                    sidebar.classList.add('hidden');
+                }
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
