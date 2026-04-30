@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Lyrai Architecture Diagram — full screen for share</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f0ece0;
+    --ink: #1a1a1a;
+    --rule: #d8d2c4;
+    --red: #d62828;
+    --mbt: #2c4a6b;
+    --have: #2d6a4f;
+    --build: #c97b1f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow-x: hidden; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; min-height: 100vh; }
+
+  /* TOP BAR */
+  .topbar {
+    background: white;
+    border-bottom: 1px solid var(--rule);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .topbar .title { font-weight: 800; font-size: 14px; letter-spacing: 0.05em; color: var(--ink); }
+  .topbar .title .sub { font-weight: 500; color: #888; margin-left: 12px; font-size: 12px; }
+  .topbar .actions { display: flex; gap: 8px; }
+  .topbar .actions button, .topbar .actions a {
+    background: var(--ink); color: white; border: none;
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 8px 14px; border-radius: 3px; cursor: pointer; text-decoration: none;
+  }
+  .topbar .actions button:hover, .topbar .actions a:hover { background: var(--red); }
+
+  /* DIAGRAM CONTAINER */
+  .diagram-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: var(--paper);
+  }
+  svg.diagram { width: 100%; max-width: 1300px; height: auto; display: block; }
+
+  /* LEGEND */
+  .legend { background: white; border-top: 1px solid var(--rule); padding: 14px 20px; flex-shrink: 0; }
+  .legend-row { max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: center; font-size: 12px; color: #555; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .swatch { width: 12px; height: 12px; border-radius: 2px; }
+
+  @media (max-width: 700px) {
+    .topbar { flex-direction: column; gap: 8px; padding: 10px; text-align: center; }
+    .topbar .title { font-size: 12px; }
+    .topbar .title .sub { display: block; margin-left: 0; margin-top: 2px; }
+  }
+
+  /* PRINT — full page diagram */
+  @media print {
+    .topbar, .legend { display: none; }
+    body { background: white; }
+    .diagram-container { padding: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="title">Lyrai Architecture Diagram <span class="sub">— full-screen for share</span></div>
+  <div class="actions">
+    <a href="/lyrai/">Back to overview</a>
+    <button onclick="window.print()">Print / PDF</button>
+    <button onclick="document.documentElement.requestFullscreen()">Fullscreen</button>
+  </div>
+</div>
+
+<div class="diagram-container">
+  <svg class="diagram" viewBox="0 0 1100 800" xmlns="http://www.w3.org/2000/svg" aria-label="Lyrai architecture diagram">
+    <defs>
+      <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#d62828"/>
+      </marker>
+      <marker id="arrgray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#888"/>
+      </marker>
+    </defs>
+
+    <!-- ── TIER 1: CAPTURE INPUTS ── -->
+    <text x="550" y="26" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#888" letter-spacing="0.18em">CAPTURE INPUTS</text>
+
+    <g transform="translate(60, 50)">
+      <rect x="0" y="0" width="180" height="76" rx="4" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+      <text x="90" y="26" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#1a1a1a">Phone walkthrough</text>
+      <text x="90" y="46" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#555">video + APAC audio</text>
+      <text x="90" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#c97b1f" font-weight="700" letter-spacing="0.06em">IN BUILD · LYRAI-DEFINING</text>
+    </g>
+
+    <g transform="translate(260, 50)">
+      <rect x="0" y="0" width="170" height="76" rx="4" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+      <text x="85" y="26" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#1a1a1a">LiDAR app</text>
+      <text x="85" y="46" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#555">iPhone Pro · OBJ + textures</text>
+      <text x="85" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#2d6a4f" font-weight="700" letter-spacing="0.06em">SHIPPED</text>
+    </g>
+
+    <g transform="translate(450, 50)">
+      <rect x="0" y="0" width="170" height="76" rx="4" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+      <text x="85" y="26" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#1a1a1a">DSLR / mirrorless</text>
+      <text x="85" y="46" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#555">photogrammetry image set</text>
+      <text x="85" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#2d6a4f" font-weight="700" letter-spacing="0.06em">SHIPPED</text>
+    </g>
+
+    <g transform="translate(640, 50)">
+      <rect x="0" y="0" width="170" height="76" rx="4" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+      <text x="85" y="26" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#1a1a1a">Direct mesh upload</text>
+      <text x="85" y="46" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#555">Revit · GLB · USDZ · PLY</text>
+      <text x="85" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#2d6a4f" font-weight="700" letter-spacing="0.06em">SHIPPED</text>
+    </g>
+
+    <g transform="translate(830, 50)">
+      <rect x="0" y="0" width="180" height="76" rx="4" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+      <text x="90" y="26" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#1a1a1a">Ambisonic audio</text>
+      <text x="90" y="46" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#555">separate mic rig (optional)</text>
+      <text x="90" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#2d6a4f" font-weight="700" letter-spacing="0.06em">SHIPPED</text>
+    </g>
+
+    <!-- Connector dashes from each capture box down to LYRAI surface -->
+    <line x1="150" y1="130" x2="450" y2="180" stroke="#888" stroke-width="1" stroke-dasharray="3 4"/>
+    <line x1="345" y1="130" x2="500" y2="180" stroke="#888" stroke-width="1" stroke-dasharray="3 4"/>
+    <line x1="535" y1="130" x2="550" y2="180" stroke="#d62828" stroke-width="2.5" marker-end="url(#arr)"/>
+    <line x1="725" y1="130" x2="600" y2="180" stroke="#888" stroke-width="1" stroke-dasharray="3 4"/>
+    <line x1="920" y1="130" x2="650" y2="180" stroke="#888" stroke-width="1" stroke-dasharray="3 4"/>
+
+    <!-- ── TIER 2: LYRAI SURFACE ── -->
+    <g transform="translate(330, 184)">
+      <rect x="0" y="0" width="440" height="78" rx="4" fill="#fde9e9" stroke="#d62828" stroke-width="2.5"/>
+      <text x="220" y="30" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="800" fill="#d62828" letter-spacing="0.1em">LYRAI</text>
+      <text x="220" y="56" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" fill="#1a1a1a">customer-facing surface</text>
+      <text x="220" y="70" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#555">upload · viewer · acoustic overlay · exports · API</text>
+    </g>
+
+    <line x1="550" y1="270" x2="550" y2="312" stroke="#d62828" stroke-width="3" marker-end="url(#arr)"/>
+
+    <!-- ── TIER 3: MBT PLATFORM (the big container) ── -->
+    <g transform="translate(60, 316)">
+      <rect x="0" y="0" width="980" height="318" rx="6" fill="#eef2f7" stroke="#2c4a6b" stroke-width="2.5"/>
+      <text x="490" y="32" text-anchor="middle" font-family="Inter,sans-serif" font-size="18" font-weight="800" fill="#2c4a6b" letter-spacing="0.12em">MBT PLATFORM</text>
+      <text x="490" y="52" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#5a7595">multi-tenant operating layer</text>
+      <text x="490" y="72" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a7595">Auth · Billing · Tenant routing · Job queue · REST API · Customer portals · Asset registry</text>
+
+      <text x="32" y="106" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#2c4a6b" letter-spacing="0.18em">TENANT MODULES</text>
+
+      <!-- Geospatial Module -->
+      <g transform="translate(32, 122)">
+        <rect x="0" y="0" width="280" height="172" rx="4" fill="white" stroke="#2c4a6b" stroke-width="1.8"/>
+        <text x="140" y="28" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="800" fill="#2c4a6b">Geospatial Module</text>
+        <line x1="30" y1="40" x2="250" y2="40" stroke="#d8d2c4" stroke-width="1"/>
+        <text x="140" y="64" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#1a1a1a">Mesh ingest · post-process</text>
+        <text x="140" y="84" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#1a1a1a">Texture atlas · decimation</text>
+        <text x="140" y="104" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#1a1a1a">3D viewer · annotations</text>
+        <text x="140" y="124" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#1a1a1a">Multi-format export</text>
+        <text x="140" y="158" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#2d6a4f" font-weight="700" letter-spacing="0.05em">SHIPPED · 567+ PROJECTS</text>
+      </g>
+
+      <!-- Lyrai Audio Layer -->
+      <g transform="translate(332, 122)">
+        <rect x="0" y="0" width="280" height="172" rx="4" fill="#fde9e9" stroke="#d62828" stroke-width="1.8"/>
+        <text x="140" y="28" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="800" fill="#d62828">Lyrai Audio Layer</text>
+        <line x1="30" y1="40" x2="250" y2="40" stroke="#f0c4c4" stroke-width="1"/>
+        <text x="140" y="64" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#1a1a1a">APAC extraction service</text>
+        <text x="140" y="84" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#1a1a1a">LiMIR fingerprint</text>
+        <text x="140" y="104" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#1a1a1a">RT60 · Smart Acoustic Capture</text>
+        <text x="140" y="124" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#1a1a1a">Treatment recommendations</text>
+        <text x="140" y="158" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#c97b1f" font-weight="700" letter-spacing="0.05em">2–4 WEEKS BUILD</text>
+      </g>
+
+      <!-- Other tenants -->
+      <g transform="translate(632, 122)">
+        <rect x="0" y="0" width="200" height="172" rx="4" fill="white" stroke="#888" stroke-width="1.5" stroke-dasharray="5 5"/>
+        <text x="100" y="28" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#555">Other tenants</text>
+        <text x="100" y="46" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#555">on the geospatial</text>
+        <text x="100" y="64" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#555">module</text>
+        <line x1="20" y1="80" x2="180" y2="80" stroke="#d8d2c4" stroke-width="1"/>
+        <text x="100" y="100" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#777">AEC / BIM</text>
+        <text x="100" y="118" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#777">Scanning service firms</text>
+        <text x="100" y="136" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#777">Heritage preservation</text>
+        <text x="100" y="160" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#888" font-style="italic">module is mature</text>
+      </g>
+
+      <!-- 7 Gemini Agents -->
+      <g transform="translate(852, 122)">
+        <rect x="0" y="0" width="100" height="172" rx="4" fill="#f7f4ec" stroke="#888" stroke-width="1"/>
+        <text x="50" y="24" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1a1a1a" letter-spacing="0.08em">7 GEMINI</text>
+        <text x="50" y="40" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1a1a1a" letter-spacing="0.08em">AGENTS</text>
+        <line x1="20" y1="50" x2="80" y2="50" stroke="#d8d2c4" stroke-width="1"/>
+        <text x="50" y="70" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#555">Scoping</text>
+        <text x="50" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#555">Docs</text>
+        <text x="50" y="102" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#555">QA</text>
+        <text x="50" y="118" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#555">Strategy</text>
+        <text x="50" y="134" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#555">Routing</text>
+        <text x="50" y="160" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#888" font-style="italic">cross-module</text>
+      </g>
+    </g>
+
+    <!-- Arrow down to deliverables -->
+    <line x1="550" y1="640" x2="550" y2="680" stroke="#d62828" stroke-width="3" marker-end="url(#arr)"/>
+
+    <!-- ── TIER 4: CUSTOMER DELIVERABLES ── -->
+    <g transform="translate(180, 684)">
+      <rect x="0" y="0" width="740" height="92" rx="4" fill="white" stroke="#1a1a1a" stroke-width="1.8"/>
+      <text x="370" y="30" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" font-weight="800" fill="#1a1a1a" letter-spacing="0.08em">CUSTOMER DELIVERABLES</text>
+      <text x="370" y="56" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#444">3D mesh · Acoustic profile (LiMIR) · RT60 + freq response · Treatment recs · Spatial-audio export · BIM annotations</text>
+      <text x="370" y="78" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#888" font-style="italic">All on one Scan record · One bill · One customer portal · One source of truth</text>
+    </g>
+  </svg>
+</div>
+
+<div class="legend">
+  <div class="legend-row">
+    <div class="legend-item"><div class="swatch" style="background:#fde9e9; border:1px solid #d62828"></div>Lyrai-owned</div>
+    <div class="legend-item"><div class="swatch" style="background:#eef2f7; border:1px solid #2c4a6b"></div>MBT Platform</div>
+    <div class="legend-item"><div class="swatch" style="background:#2d6a4f"></div>Shipped today</div>
+    <div class="legend-item"><div class="swatch" style="background:#c97b1f"></div>In build (2–4 wks)</div>
+    <div class="legend-item"><div class="swatch" style="background:white; border:1px dashed #888"></div>Other tenants (proves module maturity)</div>
+    <div class="legend-item" style="margin-left: 20px;">— — — informational connector  ·  ─── primary data flow</div>
+  </div>
+</div>
+
+</body>
+</html>

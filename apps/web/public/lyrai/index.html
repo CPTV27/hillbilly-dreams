@@ -367,19 +367,18 @@
 <!-- ────────── 06 LYRAI AUDIO LAYER ────────── -->
 <h2><span class="num">06</span>The audio layer — Lyrai's defining build</h2>
 
-<p>The platform handles geometry, texture, viewer, API, billing, and tenancy. The acoustic-intelligence work — what Lyrai actually <em>does</em> — is the Lyrai-owned layer that sits on top of the geospatial module.</p>
+<p>What Lyrai uniquely does sits on top of the geospatial module. Five components, all with clear interfaces to the platform underneath:</p>
 
-<p>The build is well-scoped because every component has a clear interface to the module underneath:</p>
+<table class="table">
+  <tr><th>Component</th><th>Type</th><th>What it does</th></tr>
+  <tr><td><strong>APAC extraction service</strong></td><td><span class="build">Build</span></td><td>Demuxes the 4-channel Apple Positional Audio Codec track from iPhone Pro video files. Ambisonic-style room capture with no separate mic rig.</td></tr>
+  <tr><td><strong>LiMIR fingerprint integration</strong></td><td><span class="build">Connect</span></td><td>Job queue calls LiMIR on every new scan with audio. Result stored on the Scan record as <code>acoustic_profile</code>.</td></tr>
+  <tr><td><strong>RT60 + freq-response analysis</strong></td><td><span class="build">Connect</span></td><td>Smart Acoustic Capture's Bayesian engine consumes geometry + audio, returns structured analysis on the Scan record.</td></tr>
+  <tr><td><strong>Acoustic overlay viewer</strong></td><td><span class="build">Build</span></td><td>3D viewer extension — heat maps, propagation cones, hot spots — rendered on top of the mesh.</td></tr>
+  <tr><td><strong>Spatial-audio export</strong></td><td><span class="build">Build</span></td><td>Customer downloads the room's acoustic signature as an ambisonic file Unity, Wwise, or FMOD ingests directly.</td></tr>
+</table>
 
-<ul>
-  <li><span class="build">Build</span> <strong>Spatial-audio extraction service.</strong> Modern iPhone Pro video files contain 4-channel APAC (Apple Positional Audio Codec) tracks embedded with the visual frames — full ambisonic-style room capture with no separate microphone rig. A small extraction service demuxes the APAC track, normalizes it, and routes it into the LiMIR pipeline.</li>
-  <li><span class="build">Connect</span> <strong>LiMIR fingerprint integration.</strong> The platform job queue calls the LiMIR service on every new scan that has audio attached. Result is stored on the Scan record as <code>acoustic_profile</code>, available via the public API.</li>
-  <li><span class="build">Connect</span> <strong>RT60 + frequency-response analysis.</strong> Smart Acoustic Capture's Bayesian engine consumes the room geometry and audio, returns a structured analysis. Result lives on the Scan record.</li>
-  <li><span class="build">Build</span> <strong>Customer portal: acoustic overlay.</strong> The 3D viewer extends to render the acoustic visualization layer — heat maps, propagation cones, hot spots — on top of the mesh.</li>
-  <li><span class="build">Build</span> <strong>Spatial-audio export.</strong> Customers can download the room's acoustic signature as an ambisonic file Unity, Wwise, FMOD, or any spatial-audio tooling can ingest directly.</li>
-</ul>
-
-<p>Estimated build scope: <strong>2–4 weeks of focused engineering</strong>, sequenced as: extraction first (raw input), then analysis integration (existing services slot in), then portal overlay (customers see it), then export (customers use it). None of it is research. All of it is well-understood plumbing between components that already exist.</p>
+<p><strong>Total scope: 2–4 weeks of focused engineering.</strong> Sequenced extraction → analysis → overlay → export. None of it is research. All of it is well-understood plumbing between components that already exist.</p>
 
 <!-- ────────── 07 LYRAI WALKTHROUGH ────────── -->
 <h2><span class="num">07</span>The Lyrai walkthrough</h2>
