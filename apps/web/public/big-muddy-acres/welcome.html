@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Big Muddy Acres — A studio in a pole barn, fifty acres in Adams County, Mississippi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --rule: #d8d8d8;
+      --muted: #6a6a6a;
+      --paper: #ffffff;
+      --warm: #f5efe6;
+      --serif-display: 'Playfair Display', 'Times New Roman', Times, serif;
+      --serif-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      background: var(--paper); color: var(--ink); margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    body { font-family: var(--serif-body); font-size: 19px; line-height: 1.65; }
+
+    .hero {
+      position: relative; width: 100%; min-height: 88vh;
+      background-size: cover; background-position: center;
+      background-image: url('/big-muddy-acres/renderings/bma-pull-barn-exterior-wide-01.png');
+      display: flex; align-items: flex-end; color: #fff;
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.0) 35%, rgba(0,0,0,0.65) 100%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 2; padding: 80px 36px 56px; max-width: 1080px;
+      margin: 0 auto; width: 100%;
+    }
+    .hero .topstrap {
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(255,255,255,0.85); margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: var(--serif-display); font-weight: 900;
+      font-size: clamp(44px, 6.5vw, 84px); line-height: 1.02; letter-spacing: -0.02em;
+      margin: 0 0 20px; max-width: 18ch;
+    }
+    .hero .dek {
+      font-family: var(--serif-body); font-style: italic;
+      font-size: clamp(18px, 1.6vw, 22px); line-height: 1.45;
+      max-width: 56ch; opacity: 0.95;
+    }
+
+    .page { max-width: 880px; margin: 0 auto; padding: 80px 28px 96px; }
+
+    .lede {
+      font-size: 22px; line-height: 1.55; color: #1a1a1a; margin: 0 0 36px;
+    }
+    .lede::first-letter {
+      font-family: var(--serif-display); font-weight: 900; font-size: 76px;
+      line-height: 0.82; float: left; padding: 8px 12px 0 0; color: var(--ink);
+    }
+
+    article p { margin: 0 0 22px; }
+    article p + p { text-indent: 1.2em; }
+
+    h2.section-head {
+      font-family: var(--serif-display); font-weight: 700;
+      font-size: 30px; line-height: 1.2; letter-spacing: -0.01em;
+      margin: 56px 0 18px; color: var(--ink);
+    }
+
+    h3.kicker {
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--muted); font-weight: 700;
+      margin: 36px 0 6px;
+    }
+
+    figure.full {
+      margin: 48px -100px;
+    }
+    @media (max-width: 1100px) { figure.full { margin: 40px -28px; } }
+    figure.full img { width: 100%; height: auto; display: block; }
+    figure.full figcaption {
+      font-family: var(--sans); font-style: italic; font-size: 13px;
+      color: var(--muted); line-height: 1.55; padding: 12px 100px 0;
+    }
+    @media (max-width: 1100px) { figure.full figcaption { padding: 12px 28px 0; } }
+    figure.full figcaption .attribution {
+      font-style: normal; font-size: 11px; letter-spacing: 0.12em;
+      text-transform: uppercase; display: block; margin-top: 4px; color: #909090;
+    }
+
+    .pullquote {
+      font-family: var(--serif-display); font-weight: 700; font-style: italic;
+      font-size: 28px; line-height: 1.3; color: var(--ink);
+      border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+      padding: 24px 0; margin: 44px 0; text-align: left;
+    }
+
+    .divider {
+      text-align: center; letter-spacing: 0.6em; color: var(--muted);
+      margin: 36px 0; font-size: 14px; user-select: none;
+    }
+
+    .ledger {
+      font-family: var(--sans); font-size: 14px; line-height: 1.55;
+      background: #f6f4ef; border-left: 3px solid var(--ink);
+      padding: 22px 24px; margin: 32px 0;
+    }
+    .ledger .label {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px; font-weight: 700;
+    }
+    .ledger ul { margin: 8px 0 0; padding-left: 18px; }
+    .ledger li { margin-bottom: 8px; }
+    .ledger strong { color: var(--ink); }
+
+    .footer {
+      max-width: 880px; margin: 80px auto 0; padding: 28px 28px 64px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--sans); font-size: 12px; color: var(--muted); line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero" aria-label="Big Muddy Acres — pole barn at golden hour">
+    <div class="hero-inner">
+      <div class="topstrap">Big Muddy Acres · Adams County, Mississippi</div>
+      <h1>A studio in a pole barn. Fifty acres of pine clearing. Mississippi.</h1>
+      <p class="dek">A working recording studio, a small creative residency, and a long gravel approach lit by a low sun. Anchored in Natchez. The cash flow that funds the rest of the platform.</p>
+    </div>
+  </section>
+
+  <div class="page">
+    <article>
+
+      <p class="lede">Big Muddy Acres is a fifty-acre property in Adams County, Mississippi, set into a clearing of pine trees about thirty minutes east of Natchez. At the center of the property is a pole barn — and inside the pole barn, a working recording studio. Around the barn, the land carries a residency program for visiting artists, a small RV community that pays the bills, and a tiny-house cluster planned for phase two. The whole thing is built around the studio. The studio is built around the people who come down to record in it.</p>
+
+      <h2 class="section-head">The studio</h2>
+
+      <p>The recording space is the reason the property exists. A pole-barn architecture built for sound — high ceilings, working acoustics, a kitchen visible through the doorway, a Hammond on the back wall, a console under monitors, the kind of room that makes a record sound like it was made somewhere specific. It is not a clean room. It is a working room. Producers come down for a week, a month, a season. The dirt road, the pine trees, and the hour-and-a-half drive from anywhere are the point.</p>
+
+      <figure class="full">
+        <img src="/big-muddy-acres/renderings/bma-pull-barn-interior-mixing-03.png" alt="Interior of a recording studio inside a pole barn — mixing console and monitors center, a Hammond organ on the back wall, kitchen visible through the open doorway" />
+        <figcaption>The studio. Mixing position center, kitchen through the doorway, Hammond on the back wall.<span class="attribution">Architectural rendering · Big Muddy</span></figcaption>
+      </figure>
+
+      <div class="pullquote">"A record made at Big Muddy sounds like it was made at Big Muddy. That's the point."</div>
+
+      <h2 class="section-head">The land</h2>
+
+      <p>The property sits at a clearing of mature pine, with a long gravel approach that fills with golden light at the end of the day. There's a vista, a porch, an aerial that reads like the southern Catskills with longer growing season and a Mississippi sky. Adams County is light on permitting friction, the soil is workable, and the climate doesn't freeze. Phase one runs the utilities and the RV pads. Phase two adds tiny-house pads. Phase three is the residency cabins.</p>
+
+      <figure class="full">
+        <img src="/big-muddy-acres/renderings/bma-property-vista-porch-06.png" alt="View from a porch overlooking the Big Muddy Acres property at golden hour, distant pine line, low sun" />
+        <figcaption>From the porch, looking across the property at golden hour.<span class="attribution">Architectural rendering · Big Muddy</span></figcaption>
+      </figure>
+
+      <figure class="full">
+        <img src="/big-muddy-acres/renderings/bma-aerial-site-04.png" alt="Aerial view of Big Muddy Acres showing the pole barn at center, gravel approach, RV sites at the edge of the pine clearing" />
+        <figcaption>Aerial site view. Pole barn at center, gravel approach at left, RV pads along the perimeter, pine line on three sides.<span class="attribution">Architectural rendering · Big Muddy</span></figcaption>
+      </figure>
+
+      <h2 class="section-head">The residency</h2>
+
+      <p>The residency program is built around the calendar, not the application. A producer is invited down. They bring an artist. They stay in one of the cabins, eat in the barn kitchen, and use the studio for a fixed window. The Big Muddy Inn — thirty minutes back into Natchez — handles overflow lodging when the residency is bigger than the cabins on the land. The Sprinter van handles the airport runs. The magazine documents the records that come out of it. The radio station plays them.</p>
+
+      <p>The residency is what makes the land worth having. Without it, the property is a campground with a nice barn. With it, the property is a place that produces records that exist because of the place.</p>
+
+      <figure class="full">
+        <img src="/big-muddy-acres/renderings/bma-pull-barn-exterior-entry-02.png" alt="Pole barn entry at dusk, screen door open, warm light spilling out onto the gravel" />
+        <figcaption>Barn entry at dusk. The screen door open is the signal that the room is in session.<span class="attribution">Architectural rendering · Big Muddy</span></figcaption>
+      </figure>
+
+      <h2 class="section-head">The kitchen</h2>
+
+      <p>The kitchen matters because the people in the studio have to eat for a week, and the people who come for a residency eat together. It opens onto the main room — the door is rarely closed — and it's where the conversations between sessions happen. A real kitchen, not a galley. Big enough to feed twelve at a working dinner.</p>
+
+      <figure class="full">
+        <img src="/big-muddy-acres/renderings/bma-pull-barn-kitchen-05.png" alt="Kitchen inside the pole barn — long farmhouse table, hanging pendant lights, open shelving, view through to the studio room" />
+        <figcaption>The kitchen. Working table, open to the room, the door to the studio always open.<span class="attribution">Architectural rendering · Big Muddy</span></figcaption>
+      </figure>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">Where it sits in the bigger picture</h2>
+
+      <p>Big Muddy Acres is one node in a small operating ecosystem anchored in Natchez. The Inn, six rooms on the bluff, handles hospitality and overflow. Big Muddy Touring books shows along the corridor and runs the Sprinter van. Big Muddy Magazine publishes long-form work about the music, the food, and the people who make both. Big Muddy Radio streams the records that come out of the studio. Big Muddy Records is the label they go out under when they're ready. The Acres is where they get made.</p>
+
+      <p>The property is funded by RV pads at five hundred a month — a phase-one cash-flow engine that doesn't depend on the studio booking up. The studio's revenue is gravy. The records are the point.</p>
+
+      <div class="ledger">
+        <div class="label">The piece, in one line</div>
+        <ul>
+          <li><strong>Fifty acres</strong>, pine clearing, Adams County, Mississippi.</li>
+          <li><strong>One pole-barn studio</strong> at the center, kitchen and Hammond included.</li>
+          <li><strong>RV sites</strong> at $500/month — the cash flow that keeps the lights on while the studio fills.</li>
+          <li><strong>Tiny-house pads</strong> in phase two; <strong>residency cabins</strong> in phase three.</li>
+          <li><strong>Anchor</strong> for the Big Muddy Touring + Inn + Magazine + Radio + Records ecosystem.</li>
+        </ul>
+      </div>
+
+    </article>
+  </div>
+
+  <div class="footer">
+    <p>Big Muddy Acres · Adams County, Mississippi · Anchored by Studio C</p>
+    <p>Powered by Measurably Better Things</p>
+  </div>
+
+</body>
+</html>
