@@ -22,7 +22,10 @@
     --mbt: #2c4a6b;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: hidden; max-width: 100%; }
   body { font-family: 'Inter', -apple-system, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.65; }
+  img, svg, table { max-width: 100%; }
+  .table { display: block; overflow-x: auto; }
   a { color: var(--red); text-underline-offset: 3px; font-weight: 500; }
   a:hover { color: var(--ink); }
   .display { font-family: 'Inter', sans-serif; font-weight: 800; }
