@@ -131,6 +131,7 @@ export async function middleware(request: NextRequest) {
     '/songbook/',
     '/artists/',
     '/tonight/',
+    '/partners/',
   ];
   if (PUBLIC_BYPASS_PATHS.some((p) => pathname === p.replace(/\/$/, '') || pathname.startsWith(p))) {
     return NextResponse.next();

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Big Muddy / MBT — Partner Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbf8f1;
+    --ink: #1a1614;
+    --rule: #d4c8b4;
+    --accent: #8b1a1a;
+    --gold: #b8860b;
+    --muted: #6b6157;
+    --inn-gold: #c9a368;
+    --music-red: #8b1a1a;
+    --tech-blue: #2c3e50;
+    --land-green: #5a7a3a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+  a:hover { color: var(--gold); }
+  .display { font-family: 'Playfair Display', serif; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* HEADER */
+  header.hero {
+    padding: 56px 32px 40px;
+    text-align: center;
+    border-bottom: 3px double var(--rule);
+    background: linear-gradient(180deg, #fef9f0 0%, var(--bg) 100%);
+  }
+  header .kicker { font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 12px; }
+  header h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; font-weight: 800; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 16px; }
+  header .lede { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; color: var(--muted); max-width: 720px; margin: 0 auto; }
+  header .partner-row { margin-top: 28px; font-size: 0.85rem; color: var(--muted); letter-spacing: 0.05em; }
+  header .partner-row strong { color: var(--ink); }
+
+  /* MAP SECTION */
+  .map-section { padding: 64px 24px 48px; max-width: 1200px; margin: 0 auto; }
+  .section-label { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 12px; text-align: center; }
+  .map-section h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; text-align: center; margin-bottom: 40px; line-height: 1.1; }
+
+  .map-svg-wrap { background: white; border: 1px solid var(--rule); border-radius: 8px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  svg.ecosystem { width: 100%; height: auto; display: block; }
+  svg .node { cursor: pointer; transition: transform 0.15s; transform-box: fill-box; transform-origin: center; }
+  svg .node:hover { transform: scale(1.05); }
+  svg text { font-family: 'Inter', sans-serif; font-weight: 600; pointer-events: none; }
+  svg .label-large { font-size: 18px; font-weight: 700; }
+  svg .label-medium { font-size: 14px; font-weight: 600; }
+  svg .label-small { font-size: 11px; font-weight: 500; fill: white; }
+  svg .label-tag { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; }
+  svg .connector { stroke: var(--rule); stroke-width: 1.5; fill: none; stroke-dasharray: 4 4; }
+  svg .connector-solid { stroke: var(--ink); stroke-width: 2; fill: none; }
+
+  /* MAP LEGEND */
+  .legend { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 24px; font-size: 0.78rem; color: var(--muted); }
+  .legend .item { display: flex; align-items: center; gap: 8px; }
+  .legend .swatch { width: 14px; height: 14px; border-radius: 3px; }
+
+  /* LINKS GRID */
+  .links-section { padding: 32px 24px 80px; max-width: 1200px; margin: 0 auto; }
+  .links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .col { background: white; border: 1px solid var(--rule); border-radius: 6px; padding: 20px 24px; }
+  .col h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; line-height: 1.1; }
+  .col .col-tag { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+  .col ul { list-style: none; }
+  .col li { padding: 10px 0; border-bottom: 1px dotted #ede5d3; }
+  .col li:last-child { border-bottom: none; }
+  .col li .title { font-weight: 600; font-size: 0.95rem; display: block; }
+  .col li .desc { font-size: 0.82rem; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+  .col li a { display: block; }
+  .col li a:hover .title { color: var(--accent); }
+
+  /* COLOR THEMES per column */
+  .col.theme-money { border-top: 4px solid var(--gold); }
+  .col.theme-music { border-top: 4px solid var(--music-red); }
+  .col.theme-property { border-top: 4px solid var(--land-green); }
+  .col.theme-tech { border-top: 4px solid var(--tech-blue); }
+  .col.theme-publishing { border-top: 4px solid var(--inn-gold); }
+  .col.theme-meta { border-top: 4px solid var(--muted); }
+
+  /* FOOTER */
+  footer { padding: 40px 24px; border-top: 3px double var(--rule); text-align: center; color: var(--muted); font-size: 0.85rem; }
+  footer .lastrow { margin-top: 16px; font-size: 0.75rem; color: #999; }
+
+  @media (max-width: 720px) {
+    header h1 { font-size: 2.6rem; }
+    header .lede { font-size: 1.05rem; }
+    .map-section h2 { font-size: 1.5rem; }
+    svg.ecosystem { height: 460px; }
+    .links-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="kicker">Partner Map · 2026-04-30</div>
+  <h1 class="display">Big Muddy / MBT</h1>
+  <p class="lede">Everything we're building, in one map. The diagram below is the ecosystem; the cards underneath are the live links to every page, page, audio file, and resource.</p>
+  <div class="partner-row">For: <strong>Tracy</strong> · <strong>Amy</strong> · <strong>Elijah</strong> · <strong>Miles</strong></div>
+</header>
+
+<!-- ECOSYSTEM MAP -->
+<section class="map-section">
+  <div class="section-label">The Ecosystem</div>
+  <h2>How the pieces connect</h2>
+
+  <div class="map-svg-wrap">
+    <svg class="ecosystem" viewBox="0 0 1100 700" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- CENTER: MBT (the holding/operating LLC) -->
+      <g class="node">
+        <circle cx="550" cy="350" r="78" fill="#1a1614" />
+        <text x="550" y="338" text-anchor="middle" class="label-tag" fill="#b8860b">Operating LLC</text>
+        <text x="550" y="362" text-anchor="middle" class="label-large" fill="white">Measurably</text>
+        <text x="550" y="382" text-anchor="middle" class="label-large" fill="white">Better Things</text>
+      </g>
+
+      <!-- STUDIO C — bottom-center, the operating service company -->
+      <g class="node">
+        <rect x="450" y="500" width="200" height="80" rx="6" fill="#2c3e50" />
+        <text x="550" y="528" text-anchor="middle" class="label-tag" fill="#c9a368">Operating service co</text>
+        <text x="550" y="552" text-anchor="middle" class="label-medium" fill="white">Studio C</text>
+        <text x="550" y="568" text-anchor="middle" class="label-tag" fill="#aaa">Bearsville · Natchez</text>
+      </g>
+
+      <!-- MUSIC / TOURING — left side -->
+      <g class="node">
+        <rect x="100" y="120" width="200" height="60" rx="6" fill="#8b1a1a" />
+        <text x="200" y="146" text-anchor="middle" class="label-medium" fill="white">Big Muddy Touring</text>
+        <text x="200" y="166" text-anchor="middle" class="label-tag" fill="#fbbf24">Booking · Van · Routing</text>
+      </g>
+      <g class="node">
+        <rect x="100" y="200" width="200" height="60" rx="6" fill="#8b1a1a" />
+        <text x="200" y="226" text-anchor="middle" class="label-medium" fill="white">Big Muddy Records</text>
+        <text x="200" y="246" text-anchor="middle" class="label-tag" fill="#fbbf24">Mechanical Bull · Chicken</text>
+      </g>
+      <g class="node">
+        <rect x="100" y="280" width="200" height="60" rx="6" fill="#8b1a1a" />
+        <text x="200" y="306" text-anchor="middle" class="label-medium" fill="white">Big Muddy Radio</text>
+        <text x="200" y="326" text-anchor="middle" class="label-tag" fill="#fbbf24">Streaming · AzuraCast</text>
+      </g>
+      <g class="node">
+        <rect x="100" y="360" width="200" height="60" rx="6" fill="#8b1a1a" />
+        <text x="200" y="386" text-anchor="middle" class="label-medium" fill="white">Big Muddy Magazine</text>
+        <text x="200" y="406" text-anchor="middle" class="label-tag" fill="#fbbf24">Editorial · Tracy editor</text>
+      </g>
+      <g class="node">
+        <rect x="100" y="440" width="200" height="60" rx="6" fill="#8b1a1a" />
+        <text x="200" y="466" text-anchor="middle" class="label-medium" fill="white">Big Muddy Entertainment</text>
+        <text x="200" y="486" text-anchor="middle" class="label-tag" fill="#fbbf24">Hub site</text>
+      </g>
+
+      <!-- HOSPITALITY + PROPERTY — right side -->
+      <g class="node">
+        <rect x="800" y="120" width="200" height="60" rx="6" fill="#c9a368" />
+        <text x="900" y="146" text-anchor="middle" class="label-medium" fill="white">Big Muddy Inn</text>
+        <text x="900" y="166" text-anchor="middle" class="label-tag" fill="#fff8e7">Tracy + Amy run · Natchez</text>
+      </g>
+      <g class="node">
+        <rect x="800" y="200" width="200" height="60" rx="6" fill="#c9a368" />
+        <text x="900" y="226" text-anchor="middle" class="label-medium" fill="white">Blues Room</text>
+        <text x="900" y="246" text-anchor="middle" class="label-tag" fill="#fff8e7">Amy programs</text>
+      </g>
+      <g class="node">
+        <rect x="800" y="280" width="200" height="60" rx="6" fill="#5a7a3a" />
+        <text x="900" y="306" text-anchor="middle" class="label-medium" fill="white">Big Muddy Acres</text>
+        <text x="900" y="326" text-anchor="middle" class="label-tag" fill="#e8f0d8">Property · Adams County</text>
+      </g>
+      <g class="node">
+        <rect x="800" y="360" width="200" height="60" rx="6" fill="#5a7a3a" />
+        <text x="900" y="386" text-anchor="middle" class="label-medium" fill="white">Pull Barn (planned)</text>
+        <text x="900" y="406" text-anchor="middle" class="label-tag" fill="#e8f0d8">Studio C control room</text>
+      </g>
+      <g class="node">
+        <rect x="800" y="440" width="200" height="60" rx="6" fill="#5a7a3a" />
+        <text x="900" y="466" text-anchor="middle" class="label-medium" fill="white">Tiny House Village</text>
+        <text x="900" y="486" text-anchor="middle" class="label-tag" fill="#e8f0d8">Artist Equity Model</text>
+      </g>
+
+      <!-- PUBLISHING — top center -->
+      <g class="node">
+        <rect x="350" y="40" width="200" height="60" rx="6" fill="#b8860b" />
+        <text x="450" y="66" text-anchor="middle" class="label-medium" fill="white">Inverted Intelligence</text>
+        <text x="450" y="86" text-anchor="middle" class="label-tag" fill="#fff8e7">Podcast · Radio show</text>
+      </g>
+      <g class="node">
+        <rect x="570" y="40" width="200" height="60" rx="6" fill="#b8860b" />
+        <text x="670" y="66" text-anchor="middle" class="label-medium" fill="white">Outsider Economics</text>
+        <text x="670" y="86" text-anchor="middle" class="label-tag" fill="#fff8e7">Editorial</text>
+      </g>
+
+      <!-- TECH / EXTERNAL — top-right cluster -->
+      <g class="node">
+        <rect x="800" y="40" width="200" height="60" rx="6" fill="#2c3e50" />
+        <text x="900" y="60" text-anchor="middle" class="label-medium" fill="white">Lyra (Lyrai)</text>
+        <text x="900" y="78" text-anchor="middle" class="label-tag" fill="#a3b6c8">Acoustic platform</text>
+        <text x="900" y="92" text-anchor="middle" class="label-tag" fill="#a3b6c8">Margaret · Nick</text>
+      </g>
+      <g class="node">
+        <rect x="800" y="540" width="200" height="60" rx="6" fill="#2c3e50" />
+        <text x="900" y="566" text-anchor="middle" class="label-medium" fill="white">Scan2Plan / S2PX</text>
+        <text x="900" y="586" text-anchor="middle" class="label-tag" fill="#a3b6c8">$500/mo locked customer</text>
+      </g>
+
+      <!-- PARTNER STUDIOS — bottom-left + bottom-right -->
+      <g class="node">
+        <rect x="100" y="540" width="200" height="60" rx="6" fill="#6b6157" />
+        <text x="200" y="566" text-anchor="middle" class="label-medium" fill="white">Tuthill Design</text>
+        <text x="200" y="586" text-anchor="middle" class="label-tag" fill="#d4c8b4">Elijah · Bearsville</text>
+      </g>
+      <g class="node">
+        <rect x="350" y="540" width="80" height="60" rx="6" fill="#6b6157" />
+        <text x="390" y="566" text-anchor="middle" class="label-tag" fill="white">Chase</text>
+        <text x="390" y="582" text-anchor="middle" class="label-tag" fill="#d4c8b4">CPP</text>
+      </g>
+
+      <!-- CONNECTORS — solid lines from MBT to direct subsidiaries / contracts -->
+      <line x1="472" y1="350" x2="300" y2="150" class="connector" />
+      <line x1="472" y1="350" x2="300" y2="230" class="connector" />
+      <line x1="472" y1="350" x2="300" y2="310" class="connector" />
+      <line x1="472" y1="350" x2="300" y2="390" class="connector" />
+      <line x1="472" y1="350" x2="300" y2="470" class="connector" />
+      <line x1="628" y1="350" x2="800" y2="150" class="connector" />
+      <line x1="628" y1="350" x2="800" y2="230" class="connector" />
+      <line x1="628" y1="350" x2="800" y2="310" class="connector" />
+      <line x1="628" y1="350" x2="800" y2="390" class="connector" />
+      <line x1="628" y1="350" x2="800" y2="470" class="connector" />
+      <line x1="490" y1="290" x2="450" y2="100" class="connector" />
+      <line x1="610" y1="290" x2="670" y2="100" class="connector" />
+      <line x1="628" y1="290" x2="800" y2="70" class="connector-solid" />
+      <line x1="628" y1="410" x2="800" y2="570" class="connector-solid" />
+      <line x1="490" y1="410" x2="300" y2="570" class="connector" />
+      <line x1="540" y1="428" x2="430" y2="570" class="connector" />
+      <line x1="550" y1="428" x2="550" y2="500" class="connector-solid" />
+
+    </svg>
+  </div>
+
+  <div class="legend">
+    <div class="item"><div class="swatch" style="background:#1a1614"></div>Operating LLC</div>
+    <div class="item"><div class="swatch" style="background:#8b1a1a"></div>Music brands</div>
+    <div class="item"><div class="swatch" style="background:#c9a368"></div>Hospitality</div>
+    <div class="item"><div class="swatch" style="background:#5a7a3a"></div>Property / land</div>
+    <div class="item"><div class="swatch" style="background:#b8860b"></div>Publishing</div>
+    <div class="item"><div class="swatch" style="background:#2c3e50"></div>Tech / partner</div>
+    <div class="item"><div class="swatch" style="background:#6b6157"></div>Partner studios</div>
+    <div class="item">— — — partner / contract  ·  ─── owned</div>
+  </div>
+</section>
+
+<!-- LINKS — categorized -->
+<section class="links-section">
+  <div class="section-label">Live Pages</div>
+  <h2 style="font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; text-align:center; margin-bottom:32px;">Every link in one place</h2>
+
+  <div class="links-grid">
+
+    <!-- MONEY -->
+    <div class="col theme-money">
+      <h3>Money</h3>
+      <div class="col-tag">Forecast · Customers · Pipeline</div>
+      <ul>
+        <li><a href="https://bigmuddytouring.com/the-numbers/">
+          <span class="title">The Numbers</span>
+          <span class="desc">Y1 mid combined ~$549K · 4 locked customers Day 1 ($2K MRR) · friends-and-family pipeline math</span>
+        </a></li>
+        <li><a href="https://bigmuddytouring.com/the-case/">
+          <span class="title">The Case</span>
+          <span class="desc">Stranger-facing business case · Studio C-led · 11 real Chase photographs</span>
+        </a></li>
+        <li><a href="https://bigmuddytouring.com/marketing-library/">
+          <span class="title">Marketing Library</span>
+          <span class="desc">Locked phrases · "It is what it is" · "Do the best quality of everything always"</span>
+        </a></li>
+      </ul>
+    </div>
+
+    <!-- MUSIC -->
+    <div class="col theme-music">
+      <h3>Music</h3>
+      <div class="col-tag">Big Muddy Records · Touring · Catalog</div>
+      <ul>
+        <li><a href="https://bigmuddytouring.com/artists/mechanical-bull/">
+          <span class="title">Mechanical Bull — artist page</span>
+          <span class="desc">Two albums · full press wall · film placements · UK + New Caledonia + Switzerland airplay</span>
+        </a></li>
+        <li><a href="https://bigmuddytouring.com/artists/amy-allen/">
+          <span class="title">Amy Allen — artist page (stub)</span>
+          <span class="desc">Amy: this one's for you. Reads as the ask. Drop your audio + lyrics + photos in a Drive folder, text Chase the link.</span>
+        </a></li>
+        <li><a href="https://bigmuddytouring.com/songbook/">
+          <span class="title">Mechanical Bull songbook</span>
+          <span class="desc">48 chord charts · printable for music stand · ⌘P</span>
+        </a></li>
+        <li><a href="https://bigmuddytouring.com/inverted-intelligence/episode-0-pilot-v2.mp3">
+          <span class="title">Inverted Intelligence — Episode 0 pilot</span>
+          <span class="desc">11:50 podcast pilot · voice clone of Chase · the show that names the inversion</span>
+        </a></li>
+      </ul>
+    </div>
+
+    <!-- PROPERTY -->
+    <div class="col theme-property">
+      <h3>Property</h3>
+      <div class="col-tag">Big Muddy Acres · The Inn</div>
+      <ul>
+        <li><a href="https://bigmuddytouring.com/big-muddy-acres/">
+          <span class="title">Big Muddy Acres</span>
+          <span class="desc">Adams County land · Pull Barn studio + tiny-house village · Artist Equity Model</span>
+        </a></li>
+      </ul>
+    </div>
+
+    <!-- TECH / PRODUCT -->
+    <div class="col theme-tech">
+      <h3>Tech + Product</h3>
+      <div class="col-tag">MBT platform · Studio C · Lyra</div>
+      <ul>
+        <li><a href="https://bigmuddytouring.com/studio-c/">
+          <span class="title">Studio C</span>
+          <span class="desc">The operating service company behind MBT — chat + human in the loop</span>
+        </a></li>
+        <li><a href="https://bigmuddytouring.com/tokenomics/">
+          <span class="title">Tokenomics</span>
+          <span class="desc">How the meter works · software answers vs. human answers · stacked discount math</span>
+        </a></li>
+        <li><a href="https://bigmuddytouring.com/empac/">
+          <span class="title">EMPAC × Lyra meeting briefing</span>
+          <span class="desc">S2PX → Lyra integration · capture process · today's meeting prep (Chase + Margaret + Nick)</span>
+        </a></li>
+      </ul>
+    </div>
+
+    <!-- WALKTHROUGH / DEEPER -->
+    <div class="col theme-publishing">
+      <h3>Walk-throughs</h3>
+      <div class="col-tag">Story · Sessions · Backstory</div>
+      <ul>
+        <li><a href="https://bigmuddytouring.com/walkthrough/">
+          <span class="title">Session walkthrough</span>
+          <span class="desc">16-chapter narrative of the deeper strategic work</span>
+        </a></li>
+        <li><a href="https://bigmuddytouring.com/tonight/">
+          <span class="title">"Tonight" — Chase's working index</span>
+          <span class="desc">The internal hub for everything from the 2026-04-30 push session</span>
+        </a></li>
+      </ul>
+    </div>
+
+    <!-- META -->
+    <div class="col theme-meta">
+      <h3>This page</h3>
+      <div class="col-tag">Partner Map</div>
+      <ul>
+        <li>
+          <span class="title">https://bigmuddytouring.com/partners/</span>
+          <span class="desc">Bookmark this page. As new things ship, the map and the link grid grow. Same URL, always current.</span>
+        </li>
+        <li>
+          <span class="title">No login. No account.</span>
+          <span class="desc">Everything's open. If anyone outside the partnership shouldn't see it, it isn't on this page.</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p><strong>For:</strong> Tracy Alderson Allen · Amy Allen · Elijah · Miles</p>
+  <p>Compiled by Cos · 2026-04-30 · ping Chase if anything's broken or missing</p>
+  <p class="lastrow">Internal only · noindex,nofollow</p>
+</footer>
+
+</body>
+</html>
