@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Tokenomics in five minutes — Big Muddy / Studio C</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,400&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f4ec;
+    --ink: #1a1a1a;
+    --rule: #d8d2c4;
+    --gold: #8b6914;
+    --muted: #555;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Serif 4', Georgia, serif; background: var(--paper); color: var(--ink); line-height: 1.6; }
+  a { color: var(--gold); text-underline-offset: 3px; }
+  a:hover { color: var(--ink); }
+  .display { font-family: 'Playfair Display', serif; }
+
+  article { max-width: 720px; margin: 0 auto; padding: 64px 24px 80px; }
+
+  .kicker { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 24px; }
+  h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5.5vw, 54px); font-weight: 800; line-height: 1.0; letter-spacing: -0.015em; margin-bottom: 12px; }
+  .deck { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(19px, 2.4vw, 24px); line-height: 1.35; color: var(--muted); margin-bottom: 36px; }
+  .byline { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #888; margin-bottom: 32px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+
+  .body { font-size: 18px; line-height: 1.7; color: #2a2a2a; }
+  .body p { margin-bottom: 20px; }
+  .body p:first-of-type::first-letter { font-family: 'Playfair Display', serif; font-size: 5.5rem; line-height: 0.85; padding: 6px 14px 0 0; float: left; font-weight: 800; color: var(--gold); }
+
+  .meter {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 6px 24px;
+    background: white;
+    border: 1px solid var(--rule);
+    padding: 24px 28px;
+    margin: 28px 0;
+    align-items: baseline;
+  }
+  .meter .label { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #777; }
+  .meter .val { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--ink); text-align: right; }
+
+  blockquote { border-left: 4px solid var(--gold); padding: 8px 24px; margin: 32px 0; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.35rem; color: #333; line-height: 1.4; }
+
+  h2 { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; margin: 48px 0 16px; line-height: 1.15; }
+
+  .tier-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; background: white; border: 1px solid var(--rule); }
+  .tier-table th, .tier-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--rule); font-size: 15px; vertical-align: top; }
+  .tier-table th { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #777; background: var(--paper); font-weight: 600; }
+  .tier-table .price { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; white-space: nowrap; }
+  .tier-table tr:last-child td { border-bottom: none; }
+
+  .footer { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--rule); font-family: 'Inter', sans-serif; font-size: 14px; color: var(--muted); }
+  .footer a { display: inline-block; margin-right: 16px; }
+</style>
+</head>
+<body>
+
+<article>
+
+<div class="kicker">Studio C · Tokenomics in five minutes</div>
+<h1 class="display">Same chat. Two meters.</h1>
+<p class="deck">Software answers cost cents. Human answers cost more — multiples more, because they should. The customer pays for the answer, not the path.</p>
+<div class="byline">Big Muddy / Studio C · 2026</div>
+
+<div class="body">
+
+<p>The owner of a small inn types a question into a chat box at 11:42 on a Tuesday night. Two guests are arriving Friday with a complication. She asks, plain English, what to do. Three seconds later the answer comes back. In the corner of the screen, a small number ticks up by less than a penny.</p>
+
+<p>That penny is the whole story.</p>
+
+<p>The chat is reading her booking history, her room calendar, her past notes on the same kind of guest. A model answers because the question fits inside what a model does well. Software tokens. Cheap. The meter barely moves.</p>
+
+<p>The next morning she asks a harder one. A vendor is double-billing her. She wants it fixed, not explained. The chat tries, hits a wall, hands the thread to a person on the Studio C team. They make two calls, send one email, close the loop by lunch. The meter ticks again, this time noticeably. Human tokens. Premium rate.</p>
+
+<div class="meter">
+  <span class="label">Software tokens (today)</span>
+  <span class="val">$0.04</span>
+  <span class="label">Human tokens (today)</span>
+  <span class="val">$38.00</span>
+</div>
+
+<p>Both numbers sit on the same screen. She can see exactly what she paid for the easy answer and exactly what she paid for the hard one. No invoice arrives later with a surprise on it. The bill shows up while the work is happening.</p>
+
+<blockquote>Same chat, two meters. The customer pays for the answer, not the path.</blockquote>
+
+<p>This is the trade we think is fair. A model wrote the first reply. A person resolved the second. She didn't have to know which was which to ask the question. She didn't have to negotiate two contracts to get help. Software is cheap because software is cheap. Humans cost more because humans showing up and taking accountability is, increasingly, the rare thing.</p>
+
+<p>More complicated questions burn more tokens, on either side of the line. The price scales with what the work actually took. That's it. That's the model.</p>
+
+<h2>The tiers, in one paragraph</h2>
+
+<p>Customers buy a base subscription that includes a monthly allotment of both software tokens and human tokens. If they use less than the allotment, they keep what they didn't use. If they use more, the meter just keeps running at published rates — no surprise invoice, no overage trap, an option to cap usage at any number they pick.</p>
+
+<table class="tier-table">
+  <tr><th>Tier</th><th>Monthly</th><th>What it's for</th></tr>
+  <tr><td><strong>Standard</strong></td><td class="price">$20</td><td>An honest router across 30+ specialist agents. Better than ChatGPT for the same money.</td></tr>
+  <tr><td><strong>Service</strong></td><td class="price">$100</td><td>Adds a real human in the loop. 30 minutes of a real person, included, every month, no negotiation. The price point where the chat hits a wall and a human picks up.</td></tr>
+  <tr><td><strong>Operator</strong></td><td class="price">$200+</td><td>Custom dashboards, more bandwidth, your modules activated.</td></tr>
+  <tr><td><strong>Business</strong></td><td class="price">$500</td><td>Heavy use. The big plans cost less per token of human work — heavy users save money by going bigger, not smaller.</td></tr>
+  <tr><td><strong>Enterprise</strong></td><td class="price">Custom</td><td>Full team behind you, dedicated routing, our highest discount on the human-token rate.</td></tr>
+</table>
+
+<p>Two structural discounts stack: <strong>bigger plans get a lower per-token rate on human work</strong> (heavy users save money by going up, not down), AND <strong>annual prepay knocks 20% off the subscription</strong> on top of the tier discount. We've been looking for that combo in SaaS for a year and never found it. So we built it.</p>
+
+<h2>Why this matters</h2>
+
+<p>For about two hundred years the high-margin work was the cognitive work. Analysis, writing, judgment, design. Software made it cheaper, year over year. Then the chatbots arrived and the cognitive labor floor fell to twenty dollars a month.</p>
+
+<p>The premium had to go somewhere. It went down the chain — out of the head, back to the room. To showing up. To holding accountability. To the person who actually answers the phone.</p>
+
+<p>Almost nobody has updated their pricing for this yet. Consultants still bill for the deck the chatbot now writes for free. Agencies still bill for the deck plus a markup. Software companies still sell you a seat license and call it a day.</p>
+
+<p>We bill it the new way. The math sells itself.</p>
+
+</div>
+
+<div class="footer">
+  <p>Want to dig in further:</p>
+  <a href="https://bigmuddytouring.com/the-case/">The full business case →</a>
+  <a href="https://bigmuddytouring.com/the-numbers/">The numbers →</a>
+  <a href="https://bigmuddytouring.com/marketing-library/">The phrase library →</a>
+  <p style="margin-top:24px; font-size:12px; color:#999;">Built for sharing. No login. Bookmark <code>bigmuddytouring.com/explain/</code></p>
+</div>
+
+</article>
+
+</body>
+</html>
