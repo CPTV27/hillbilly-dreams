@@ -1,6 +1,5 @@
 'use client';
 
-import PasswordGate from './PasswordGate';
 import { useState, useEffect } from 'react';
 
 // Google Palette
@@ -82,8 +81,7 @@ export default function Scan2PlanDeck() {
   if (!mounted) return null;
 
   return (
-    <PasswordGate>
-      <main style={{ color: COLORS.dark }}>
+    <main style={{ color: COLORS.dark }}>
         {/* FAB: PDF EXPORT */}
         <button 
           onClick={() => window.print()}
@@ -530,7 +528,6 @@ export default function Scan2PlanDeck() {
         }}>
           © 2026 HILLBILLY DREAMS INC // POWERED BY GOOGLE CLOUD
         </footer>
-      </main>
-    </PasswordGate>
+    </main>
   );
 }
