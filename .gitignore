@@ -128,3 +128,6 @@ voice-training/mechanical-bull-archive/documents/*.pdf
 
 # Stray dispatch image screenshots in repo root
 /dispatch-*.png
+
+# Personal / sensitive material — Chase only, never commit
+docs/personal/

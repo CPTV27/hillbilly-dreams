@@ -129,6 +129,8 @@ export async function middleware(request: NextRequest) {
     '/marketing-library/',
     '/empac/',
     '/songbook/',
+    '/artists/',
+    '/tonight/',
   ];
   if (PUBLIC_BYPASS_PATHS.some((p) => pathname === p.replace(/\/$/, '') || pathname.startsWith(p))) {
     return NextResponse.next();
