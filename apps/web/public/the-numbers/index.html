@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>The Numbers — Where we are, where we go</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --rule: #d8d8d8;
+      --muted: #6a6a6a;
+      --paper: #ffffff;
+      --paper-warm: #f6f4ef;
+      --accent: #b8731c;
+      --accent-soft: #f3e6d2;
+      --green: #2e6f4b;
+      --serif-display: 'Playfair Display', 'Times New Roman', Times, serif;
+      --serif-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      background: var(--paper);
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: var(--serif-body);
+      font-size: 20px;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 28px 96px;
+    }
+
+    .topstrap {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 14px;
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .topstrap .section { font-weight: 700; color: var(--ink); }
+    .topstrap .date { font-weight: 400; }
+
+    h1.headline {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 60px;
+      line-height: 1.02;
+      letter-spacing: -0.018em;
+      margin: 0 0 20px;
+      color: var(--ink);
+    }
+
+    .dek {
+      font-family: var(--serif-body);
+      font-style: italic;
+      font-size: 23px;
+      line-height: 1.4;
+      color: #2a2a2a;
+      margin: 0 0 32px;
+      font-weight: 400;
+    }
+
+    .byline {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .byline .author { color: var(--ink); font-weight: 700; }
+
+    .dateline {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    article p {
+      margin: 0 0 22px;
+    }
+
+    article p:first-of-type::first-letter {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 84px;
+      line-height: 0.82;
+      float: left;
+      padding: 8px 14px 0 0;
+      color: var(--ink);
+    }
+
+    .divider {
+      text-align: center;
+      letter-spacing: 0.6em;
+      color: var(--muted);
+      margin: 28px 0 28px;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    h2.section-head {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 42px;
+      line-height: 1.08;
+      letter-spacing: -0.012em;
+      margin: 56px 0 14px;
+      color: var(--ink);
+    }
+
+    h2.section-head .num {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    h3.subhead {
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 700;
+      margin: 36px 0 14px;
+    }
+
+    .pullquote {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-style: italic;
+      font-size: 28px;
+      line-height: 1.28;
+      color: var(--ink);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 24px 0;
+      margin: 36px 0;
+      text-align: left;
+    }
+
+    .pullquote .accent { color: var(--accent); font-style: normal; }
+
+    /* TABLES */
+    .table-wrap {
+      margin: 24px -10px 32px;
+      overflow-x: auto;
+    }
+
+    table.numbers {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--sans);
+      font-size: 14px;
+    }
+
+    table.numbers caption {
+      caption-side: top;
+      text-align: left;
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      padding: 0 10px 10px;
+    }
+
+    table.numbers th,
+    table.numbers td {
+      padding: 9px 10px;
+      text-align: right;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    table.numbers th:first-child,
+    table.numbers td:first-child {
+      text-align: left;
+      font-weight: 600;
+    }
+
+    table.numbers thead th {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 2px solid var(--ink);
+      font-weight: 700;
+      padding-bottom: 10px;
+    }
+
+    table.numbers tbody tr:hover { background: var(--paper-warm); }
+
+    table.numbers .total-row td {
+      font-weight: 700;
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      background: #fafaf7;
+      font-size: 15px;
+    }
+
+    table.numbers .fine {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    table.numbers .rich {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    table.numbers .tbd {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    table.numbers .zero {
+      color: var(--muted);
+    }
+
+    /* INFOGRAPHIC: REVENUE STACK */
+    .infographic {
+      background: var(--paper-warm);
+      border: 1px solid var(--rule);
+      padding: 28px;
+      margin: 36px 0;
+      border-radius: 4px;
+    }
+
+    .infographic .ig-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .infographic .ig-title {
+      font-family: var(--serif-display);
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 1.2;
+      margin: 0 0 18px;
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin: 16px 0 18px;
+    }
+
+    .stack-row {
+      display: grid;
+      grid-template-columns: 130px 1fr 90px;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--sans);
+      font-size: 13px;
+    }
+
+    .stack-row .label-cell { color: var(--ink); font-weight: 500; }
+    .stack-row .bar-cell { background: #ebe7dc; height: 22px; border-radius: 2px; overflow: hidden; }
+    .stack-row .bar { height: 100%; background: var(--ink); display: block; }
+    .stack-row .bar.accent { background: var(--accent); }
+    .stack-row .bar.green { background: var(--green); }
+    .stack-row .bar.muted { background: #b9b6ad; }
+    .stack-row .val-cell { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .stack-row .val-cell.tbd { font-style: italic; font-weight: 400; color: var(--muted); }
+
+    .stack-total {
+      display: grid;
+      grid-template-columns: 130px 1fr 90px;
+      gap: 12px;
+      margin-top: 10px;
+      padding-top: 12px;
+      border-top: 2px solid var(--ink);
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .stack-total .val-cell { text-align: right; font-variant-numeric: tabular-nums; }
+
+    /* INFOGRAPHIC: BEFORE / AFTER */
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 28px 0;
+    }
+
+    .compare-card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 22px;
+      border-radius: 4px;
+    }
+
+    .compare-card.fine { border-left: 4px solid var(--green); }
+    .compare-card.rich { border-left: 4px solid var(--accent); background: var(--accent-soft); }
+
+    .compare-card .compare-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .compare-card .compare-num {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 38px;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .compare-card.rich .compare-num { color: var(--accent); }
+
+    .compare-card .compare-cap {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* INFOGRAPHIC: TIER LADDER */
+    .ladder {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 24px 0;
+    }
+
+    .rung {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 16px;
+      padding: 14px 18px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--ink);
+      align-items: center;
+      font-family: var(--sans);
+      font-size: 14px;
+    }
+
+    .rung.target {
+      border-left-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .rung .rung-price {
+      font-family: var(--serif-display);
+      font-weight: 900;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .rung .rung-name { font-weight: 700; }
+    .rung .rung-who { color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .rung.target .rung-price { color: var(--accent); }
+
+    /* INFOGRAPHIC: GROWTH CHART */
+    .growth-chart {
+      margin: 28px 0;
+    }
+
+    .chart-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .chart-legend {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 10px;
+      padding: 0 4px;
+    }
+
+    .chart-legend .swatch {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      vertical-align: middle;
+      margin-right: 6px;
+      border-radius: 2px;
+    }
+
+    /* LEDGER (callout box) */
+    .ledger {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.55;
+      background: var(--paper-warm);
+      border-left: 3px solid var(--ink);
+      padding: 18px 22px;
+      margin: 28px 0;
+    }
+
+    .ledger.accent { border-left-color: var(--accent); }
+
+    .ledger .label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .ledger ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+
+    .ledger li {
+      margin-bottom: 6px;
+    }
+
+    .ledger strong { color: var(--ink); }
+
+    /* MATH BLOCK */
+    .math {
+      font-family: var(--sans);
+      font-size: 15px;
+      background: #111;
+      color: #f0eee6;
+      padding: 22px 26px;
+      margin: 28px 0;
+      border-radius: 4px;
+      line-height: 1.7;
+    }
+
+    .math .math-line {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      padding: 4px 0;
+    }
+
+    .math .math-line.total {
+      border-top: 1px solid #555;
+      margin-top: 8px;
+      padding-top: 12px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .math .math-line.accent .num { color: var(--accent); }
+    .math .num { font-variant-numeric: tabular-nums; font-weight: 600; }
+    .math .label { color: #b8b3a4; }
+
+    /* CTA BLOCK */
+    a.inline {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 3px;
+    }
+
+    a.inline:hover { text-decoration-color: var(--ink); }
+
+    .credit {
+      font-family: var(--sans);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 56px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      line-height: 1.55;
+    }
+
+    .footer-actions {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 40px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-actions a {
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+    }
+
+    .footer-actions a:hover { color: var(--muted); border-bottom-color: var(--muted); }
+
+    /* RESPONSIVE */
+    @media (max-width: 720px) {
+      body { font-size: 18px; }
+      h1.headline { font-size: 44px; }
+      .dek { font-size: 19px; }
+      h2.section-head { font-size: 32px; }
+      .pullquote { font-size: 22px; }
+      .stack-row, .stack-total { grid-template-columns: 100px 1fr 80px; font-size: 12px; }
+      .compare { grid-template-columns: 1fr; }
+      .compare-card .compare-num { font-size: 32px; }
+      .rung { grid-template-columns: 100px 1fr; }
+      .rung .rung-price { font-size: 20px; }
+      table.numbers { font-size: 12px; }
+      table.numbers th, table.numbers td { padding: 7px 6px; }
+    }
+
+    @media (max-width: 480px) {
+      .page { padding: 36px 18px 64px; }
+      h1.headline { font-size: 36px; }
+      article p:first-of-type::first-letter { font-size: 64px; }
+    }
+
+    @media print {
+      body { font-size: 12pt; }
+      .page { padding: 0; max-width: 100%; }
+      .footer-actions { display: none; }
+      .pullquote, .infographic, .compare, .ledger, .math { page-break-inside: avoid; }
+      .math { background: #fff; color: #000; border: 1px solid var(--rule); }
+      .math .label { color: #555; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="topstrap">
+      <span class="section">The Numbers · Where we are, where we go</span>
+      <span class="date">April 30, 2026</span>
+    </div>
+
+    <h1 class="headline">First we show we&rsquo;re fine. Then we show we&rsquo;re about to get rich.</h1>
+
+    <p class="dek">Twelve months of revenue, line by line, with the calm baseline first and the new product layered on top. The Inn and the Photography carry the year. Studio C&rsquo;s new chat-and-service product is the part that changes everything else.</p>
+
+    <div class="byline">By <span class="author">Tracy Alderson-Allen, Finance</span></div>
+    <div class="dateline">Natchez, Mississippi</div>
+
+    <article>
+
+      <p>Here is the simplest version of the next twelve months. The Inn pays the bills. Photography pays them again. Touring lifts the corridor. The magazine, the records, the radio show — those are catalog assets that pay nothing this year, and that is the plan, not a problem. Studio C runs on a small monthly retainer and steady overflow work. Add it all up and we land between the first-profit anchor and the baseline anchor. We are fine. That is the whole opening chapter.</p>
+
+      <p>Then a second story starts on top of the first one. Studio C just locked its first commercial customer for the new chat-and-service product Chase has been building. One customer at five hundred a month is not the headline. The headline is that the product is real, the pricing is set, the marketing is queued, and a pipeline of fifteen to thirty more customers is realistic between now and April. When that line lands on top of the existing forecast, the year stops being &ldquo;fine&rdquo; and starts being something else.</p>
+
+      <p>This document walks both stories in order. Calm baseline first. Then the upside, with the math in the open.</p>
+
+      <div class="divider">&bull; &bull; &bull;</div>
+
+      <h2 class="section-head"><span class="num">Part One</span>The calm baseline</h2>
+
+      <p>Eight active revenue lines. Two of them carry the year. Three of them are zero by design. The rest fill in around the edges. Below is what each one is, what it makes, and where the honest unknowns live.</p>
+
+      <h3 class="subhead">The eight revenue lines, today</h3>
+
+      <div class="table-wrap">
+        <table class="numbers">
+          <caption>Revenue lines &mdash; current state</caption>
+          <thead>
+            <tr>
+              <th>Line</th>
+              <th>Status</th>
+              <th>Y1 mid (12mo)</th>
+              <th>Honest range</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Big Muddy Inn (rooms + bar)</td>
+              <td>Running</td>
+              <td>$150,000</td>
+              <td>$110k&ndash;$180k</td>
+            </tr>
+            <tr>
+              <td>Chase Pierson Photography</td>
+              <td>Running</td>
+              <td>$59,000</td>
+              <td>$36k&ndash;$75k</td>
+            </tr>
+            <tr>
+              <td>Big Muddy Touring (booking + Sprinter)</td>
+              <td>Running, light</td>
+              <td>$32,000</td>
+              <td>$15k&ndash;$40k</td>
+            </tr>
+            <tr>
+              <td>Studio C (current production)</td>
+              <td>Running</td>
+              <td>$16,500</td>
+              <td>$12k&ndash;$24k</td>
+            </tr>
+            <tr>
+              <td>MBT B2B pilots (Vicki, Paul Green)</td>
+              <td>Pre-contract</td>
+              <td>$19,800</td>
+              <td>$0&ndash;$40k</td>
+            </tr>
+            <tr>
+              <td>Big Muddy Magazine (sponsored)</td>
+              <td>Pre-revenue</td>
+              <td>$6,000</td>
+              <td>$0&ndash;$8.8k</td>
+            </tr>
+            <tr>
+              <td>Tuthill Design Photography</td>
+              <td>Books separately</td>
+              <td class="tbd">TBD pending Tracy</td>
+              <td class="tbd">&mdash;</td>
+            </tr>
+            <tr>
+              <td>Storefront prints + art sales</td>
+              <td>Pre-revenue</td>
+              <td class="tbd">TBD pending Tracy</td>
+              <td class="tbd">OK if low</td>
+            </tr>
+            <tr>
+              <td>Book sales</td>
+              <td>Pre-revenue</td>
+              <td class="tbd">TBD pending Tracy</td>
+              <td class="tbd">OK if zero</td>
+            </tr>
+            <tr>
+              <td>Big Muddy Records</td>
+              <td>Catalog asset</td>
+              <td class="zero">$0</td>
+              <td class="zero">$0 in Y1, honest</td>
+            </tr>
+            <tr>
+              <td>Big Muddy Radio</td>
+              <td>Pre-revenue</td>
+              <td class="zero">$0</td>
+              <td class="zero">$0 in Y1, honest</td>
+            </tr>
+            <tr>
+              <td>Big Muddy Acres (Phase 1 RV)</td>
+              <td>Capital pending</td>
+              <td class="zero">$0</td>
+              <td class="zero">$0&ndash;$15k upside only</td>
+            </tr>
+            <tr class="total-row">
+              <td>Total &mdash; existing operations</td>
+              <td></td>
+              <td class="fine">$283,300</td>
+              <td>$173k&ndash;$380k</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The TBD lines are deliberate. Tracy populates them when she pulls the real numbers. Tuthill bookings have their own ledger. Storefront prints and book sales are tiny today and that is fine &mdash; the page leaves space for them so the moment they start producing, the row gets a real number. Until then, zero is honest.</p>
+
+      <p>The two carriers tell the story by themselves. The Inn at one hundred fifty thousand and Photography at fifty-nine thousand together cover seventy-four percent of the year. Everything else is supplement.</p>
+
+      <h3 class="subhead">What one month looks like, stacked</h3>
+
+      <div class="infographic">
+        <div class="ig-label">Revenue stack &mdash; October 2026 (peak Inn month)</div>
+        <div class="ig-title">A typical Q4 month, line by line</div>
+
+        <div class="stack">
+          <div class="stack-row">
+            <span class="label-cell">Big Muddy Inn</span>
+            <span class="bar-cell"><span class="bar" style="width: 100%"></span></span>
+            <span class="val-cell">$16,000</span>
+          </div>
+          <div class="stack-row">
+            <span class="label-cell">Photography</span>
+            <span class="bar-cell"><span class="bar" style="width: 37.5%"></span></span>
+            <span class="val-cell">$6,000</span>
+          </div>
+          <div class="stack-row">
+            <span class="label-cell">Touring</span>
+            <span class="bar-cell"><span class="bar" style="width: 25%"></span></span>
+            <span class="val-cell">$4,000</span>
+          </div>
+          <div class="stack-row">
+            <span class="label-cell">MBT B2B</span>
+            <span class="bar-cell"><span class="bar muted" style="width: 12.5%"></span></span>
+            <span class="val-cell">$2,000</span>
+          </div>
+          <div class="stack-row">
+            <span class="label-cell">Studio C</span>
+            <span class="bar-cell"><span class="bar muted" style="width: 9.4%"></span></span>
+            <span class="val-cell">$1,500</span>
+          </div>
+          <div class="stack-row">
+            <span class="label-cell">Magazine</span>
+            <span class="bar-cell"><span class="bar muted" style="width: 3.1%"></span></span>
+            <span class="val-cell">$500</span>
+          </div>
+          <div class="stack-row">
+            <span class="label-cell">Records / Radio / BMA</span>
+            <span class="bar-cell"><span class="bar muted" style="width: 0%"></span></span>
+            <span class="val-cell">$0</span>
+          </div>
+        </div>
+
+        <div class="stack-total">
+          <span>Total month</span>
+          <span></span>
+          <span class="val-cell" style="color: var(--green)">$30,000</span>
+        </div>
+      </div>
+
+      <p>October works because the Inn fills. The same picture in January &mdash; Inn at eight thousand, Photography at thirty-five hundred, the rest holding flat &mdash; comes in at eighteen thousand five hundred. Seasonality is the dominant variable. The forecast bakes that in.</p>
+
+      <h3 class="subhead">Twelve months, mid scenario</h3>
+
+      <p>Here is the row Tracy reads first thing each month. If the actual lands within twenty percent of the planned number, that is on track. If a peak month misses by more than thirty-five percent on the Inn line, that is the trigger to act &mdash; not panic, act.</p>
+
+      <div class="table-wrap">
+        <table class="numbers">
+          <caption>Month-by-month, mid scenario &mdash; existing operations only</caption>
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Inn</th>
+              <th>CPP</th>
+              <th>Touring</th>
+              <th>Mag</th>
+              <th>Studio C</th>
+              <th>MBT B2B</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>May 2026</td><td>12,000</td><td>4,000</td><td>1,500</td><td class="zero">0</td><td>1,000</td><td class="zero">0</td><td class="fine">$18,500</td></tr>
+            <tr><td>Jun 2026</td><td>11,000</td><td>4,500</td><td>2,000</td><td class="zero">0</td><td>1,000</td><td class="zero">0</td><td class="fine">$18,500</td></tr>
+            <tr><td>Jul 2026</td><td>10,000</td><td>5,000</td><td>2,500</td><td class="zero">0</td><td>1,000</td><td class="zero">0</td><td class="fine">$18,500</td></tr>
+            <tr><td>Aug 2026</td><td>9,000</td><td>5,500</td><td>3,000</td><td>500</td><td>1,500</td><td>1,000</td><td class="fine">$20,500</td></tr>
+            <tr><td>Sep 2026</td><td>11,000</td><td>5,500</td><td>3,000</td><td>500</td><td>1,500</td><td>1,500</td><td class="fine">$23,000</td></tr>
+            <tr><td>Oct 2026</td><td>16,000</td><td>6,000</td><td>4,000</td><td>500</td><td>1,500</td><td>2,000</td><td class="fine">$30,000</td></tr>
+            <tr><td>Nov 2026</td><td>17,000</td><td>5,500</td><td>3,500</td><td>500</td><td>1,500</td><td>2,000</td><td class="fine">$30,000</td></tr>
+            <tr><td>Dec 2026</td><td>18,000</td><td>4,500</td><td>2,500</td><td>1,500</td><td>1,500</td><td>2,000</td><td class="fine">$30,000</td></tr>
+            <tr><td>Jan 2027</td><td>8,000</td><td>3,500</td><td>1,500</td><td>1,500</td><td>1,500</td><td>2,500</td><td class="fine">$18,500</td></tr>
+            <tr><td>Feb 2027</td><td>11,000</td><td>4,500</td><td>2,000</td><td>500</td><td>1,500</td><td>2,500</td><td class="fine">$22,000</td></tr>
+            <tr><td>Mar 2027</td><td>14,000</td><td>5,500</td><td>3,000</td><td>500</td><td>1,500</td><td>3,000</td><td class="fine">$27,500</td></tr>
+            <tr><td>Apr 2027</td><td>13,000</td><td>5,000</td><td>3,500</td><td>500</td><td>1,500</td><td>3,300</td><td class="fine">$26,800</td></tr>
+            <tr class="total-row"><td>12-mo total</td><td>150,000</td><td>59,000</td><td>32,000</td><td>6,000</td><td>16,500</td><td>19,800</td><td class="fine">$283,300</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Two hundred eighty-three thousand for the year. The thesis sets a net floor of $185k, a first-profit anchor of $250k, and a baseline of $330k. Mid scenario clears all three of the lower bars and gets within fifty thousand of the top one. That is &ldquo;fine&rdquo; in plain English.</p>
+
+      <p>The honest envelope around that number runs from $173k on the low end to $380k on the high. Low requires Chase to disappear into platform work and both pilots to stall. High requires three weddings and both pilots to sign and a Big Muddy Acres partial-open in Q4. The mid is the planning row. The other two are the side rails.</p>
+
+      <h3 class="subhead">The three scenarios, side by side</h3>
+
+      <div class="compare">
+        <div class="compare-card fine">
+          <div class="compare-label">Low &mdash; survival</div>
+          <div class="compare-num">$173k</div>
+          <div class="compare-cap">Inn at the bottom of its range. Photography commissions thin. Pilots stall. Misses the net floor by ~$12k. Uncomfortable, not lethal.</div>
+        </div>
+        <div class="compare-card fine">
+          <div class="compare-label">Mid &mdash; the plan</div>
+          <div class="compare-num">$283k</div>
+          <div class="compare-cap">Between first-profit ($250k) and baseline ($330k). The row Tracy plans against. The number this document treats as &ldquo;fine.&rdquo;</div>
+        </div>
+        <div class="compare-card fine">
+          <div class="compare-label">High &mdash; everything works</div>
+          <div class="compare-num">$380k</div>
+          <div class="compare-cap">Three weddings book. Both MBT pilots sign. Photography lands eight commissions a month. Above baseline.</div>
+        </div>
+      </div>
+
+      <p>This is where the calm chapter ends. Whatever happens with the new product, the existing operations land us between $173k and $380k for the twelve-month window. Most of the variance lives in the Inn and Photography lines &mdash; the two we already know how to drive.</p>
+
+      <div class="pullquote">&ldquo;The Inn pays the bills. Photography pays them again. Everything else is the part of the year that gets to be interesting.&rdquo;</div>
+
+      <div class="divider">&bull; &bull; &bull;</div>
+
+      <h2 class="section-head"><span class="num">Part Two</span>The new layer</h2>
+
+      <p>Studio C is the operating company behind a new chat-and-service product called Measurably Better Things. Customers open a chat. They ask it anything. If the chat can answer &mdash; which it usually can, because it knows their data &mdash; it answers. If it can&rsquo;t, the request escalates to the Studio C team, who handles it. Same chat. Same bill. The customer doesn&rsquo;t care whether the answer came from a model or a person. They care that the problem got solved.</p>
+
+      <p>Software answers cost cents. Human answers are the premium. The bill shows both meters running, separately, in real time. No surprise charges. Optional caps the customer sets themselves. That is the entire pricing thesis: <em>software is cheap, humans are the premium, and we bill them differently because they are.</em></p>
+
+      <h3 class="subhead">The price ladder</h3>
+
+      <div class="ladder">
+        <div class="rung">
+          <div class="rung-price">$0</div>
+          <div>
+            <div class="rung-name">Free</div>
+            <div class="rung-who">Tire-kickers, lead funnel. Cheap models, limited routing, no human service.</div>
+          </div>
+        </div>
+        <div class="rung">
+          <div class="rung-price">$20<span style="font-size:14px;font-weight:400;color:var(--muted)">/mo</span></div>
+          <div>
+            <div class="rung-name">Standard &mdash; the consumer ceiling</div>
+            <div class="rung-who">Same price as ChatGPT. They give you one model. We give you a router across thirty-plus specialists.</div>
+          </div>
+        </div>
+        <div class="rung target">
+          <div class="rung-price">$100<span style="font-size:14px;font-weight:400;color:var(--accent)">/mo</span></div>
+          <div>
+            <div class="rung-name">Service &mdash; the target sell</div>
+            <div class="rung-who">Includes 30 minutes of a real person&rsquo;s time. The price point where the chat hits a wall and a human picks up.</div>
+          </div>
+        </div>
+        <div class="rung">
+          <div class="rung-price">$200<span style="font-size:14px;font-weight:400;color:var(--muted)">/mo</span></div>
+          <div>
+            <div class="rung-name">Operator</div>
+            <div class="rung-who">Custom dashboards, 1&ndash;2 hours of human-tokens. Multi-property operators, small teams.</div>
+          </div>
+        </div>
+        <div class="rung">
+          <div class="rung-price">$500<span style="font-size:14px;font-weight:400;color:var(--muted)">/mo</span></div>
+          <div>
+            <div class="rung-name">Business &mdash; Scan2Plan&rsquo;s tier</div>
+            <div class="rung-who">First commercial customer locked at this price tonight. 4&ndash;6 hours of human-tokens, custom routing, full workspace customization.</div>
+          </div>
+        </div>
+        <div class="rung">
+          <div class="rung-price">Custom</div>
+          <div>
+            <div class="rung-name">Enterprise</div>
+            <div class="rung-who">Dedicated service team, SLA, volume discount. Contract-priced.</div>
+          </div>
+        </div>
+      </div>
+
+      <p>The first commercial customer is Scan2Plan, locked tonight at the Business tier. Five hundred dollars a month, which captures the platform and a baseline allocation of human-tokens. Anything beyond the allocation runs on the published per-minute rate, billed against the visible meter. Customers paying more get a discount on the hourly rate &mdash; the bigger the monthly commitment, the cheaper the labor itself, because we can plan team capacity against it. Annual prepay knocks twenty percent off any tier, no usage caveats.</p>
+
+      <h3 class="subhead">Modules &mdash; what stacks on top</h3>
+
+      <p>The base subscription buys the chat door. Customers add capability modules as they need them. A solo operator at $100 might add Bookkeeping for $75 and skip everything else. A scanning company at $500 might add Content Engine for $200 and Customer Support for $100. The modules are real money on top of the base &mdash; and the higher-touch modules carry meaningful margins because the labor inside them is real.</p>
+
+      <div class="table-wrap">
+        <table class="numbers">
+          <caption>Module pricing tiers</caption>
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Add per month</th>
+              <th>What&rsquo;s included</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Light</td>
+              <td>+$20</td>
+              <td>Chat capability, occasional automation. Email triage, calendar coordination, custom prompts.</td>
+            </tr>
+            <tr>
+              <td>Standard</td>
+              <td>+$50&ndash;100</td>
+              <td>Chat + ~1 hr/mo human-tokens. Bookkeeping, lead-gen, social posting, weekly reporting.</td>
+            </tr>
+            <tr>
+              <td>Specialized</td>
+              <td>+$200&ndash;500</td>
+              <td>Chat + 3&ndash;8 hr/mo specialist tokens + dedicated queue. Video, podcast, brand identity, sales ops.</td>
+            </tr>
+            <tr>
+              <td>High-touch</td>
+              <td>+$500&ndash;2,000</td>
+              <td>Chat + 10+ hr/mo + multi-skill team rotation. Full social management, agency-of-record, dedicated CSM.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="subhead">Why the upside is realistic now</h3>
+
+      <p>This is not a product launch happening in a vacuum. Five things landed in the last sixty days that compound:</p>
+
+      <div class="ledger accent">
+        <div class="label">Why the marketing engine is loaded</div>
+        <ul>
+          <li><strong>Inverted Intelligence.</strong> The brand thesis &mdash; <em>as AI gets cheaper, human work gets more valuable</em> &mdash; now anchors a radio show, a publication, and the campaign script. Two-word headline, infinite essays.</li>
+          <li><strong>The campaign script.</strong> &ldquo;AI tells you. We do the rest.&rdquo; One verbatim ad template, one variable per spot. Queued for TikTok, Reels, Shorts.</li>
+          <li><strong>invertedintelligence.fm</strong> &mdash; domain registered, show format set, first episodes drafted.</li>
+          <li><strong>Marketing automation tooling locked.</strong> Onboarded with Dragonfly, ready to start the campaign. <em>(Cos has flagged a question to Chase to confirm what Dragonfly specifically refers to in our stack &mdash; treating as marketing automation in the meantime.)</em></li>
+          <li><strong>Studio C team prepared.</strong> Elijah on Chief of Staff, Miles on Production. The service layer has bodies behind it from day one.</li>
+        </ul>
+      </div>
+
+      <p>The product has a real customer paying real money. The pricing is sealed. The team is named. The marketing is queued. That is the difference between a wishful upside and one we can actually plan against.</p>
+
+      <h3 class="subhead">The unit economics, one customer at a time</h3>
+
+      <p>Here is what an average customer produces in a month at the Service tier &mdash; the target sell &mdash; with one specialized module attached.</p>
+
+      <div class="math">
+        <div class="math-line"><span class="label">Service tier subscription</span><span class="num">$100</span></div>
+        <div class="math-line"><span class="label">Standard module (Bookkeeping)</span><span class="num">$75</span></div>
+        <div class="math-line"><span class="label">Beyond-allocation human work (avg 30 min/mo)</span><span class="num">$135</span></div>
+        <div class="math-line accent total"><span class="label">Per-customer monthly revenue</span><span class="num">$310</span></div>
+      </div>
+
+      <p>That is one customer. Now scale it. Below is the same chart, but with a hundred customers averaging two hundred dollars per month in subscription plus an extra one hundred in module add-ons and human-token usage.</p>
+
+      <div class="math">
+        <div class="math-line"><span class="label">100 customers &times; $200 average tier</span><span class="num">$20,000</span></div>
+        <div class="math-line"><span class="label">Module add-ons (avg $75/customer)</span><span class="num">$7,500</span></div>
+        <div class="math-line"><span class="label">Beyond-allocation tokens (avg $50/customer)</span><span class="num">$5,000</span></div>
+        <div class="math-line accent total"><span class="label">Monthly recurring revenue</span><span class="num">$32,500</span></div>
+      </div>
+
+      <p>One hundred customers. $32.5k of monthly recurring. That is a bigger line than the Inn. From a single product. Same Studio C team that already runs the operating businesses. That is the &ldquo;rich&rdquo; chapter, said in numbers.</p>
+
+      <p>We do not need a hundred customers in twelve months. The forecast below is more conservative than that. It plans for fifteen by Q4 and thirty by April under the mid scenario, fifty by April under the high. A hundred is the year-two picture.</p>
+
+      <div class="divider">&bull; &bull; &bull;</div>
+
+      <h2 class="section-head"><span class="num">Part Three</span>The combined picture</h2>
+
+      <p>Three scenarios. The existing-operations forecast stays the same in all three. What changes is how many MBT customers Studio C lands in the twelve-month window, what tier mix they sign at, and how aggressively the modules attach.</p>
+
+      <h3 class="subhead">MBT customer ramp by scenario</h3>
+
+      <div class="table-wrap">
+        <table class="numbers">
+          <caption>Active MBT customers by month-end</caption>
+          <thead>
+            <tr>
+              <th>Scenario</th>
+              <th>Aug</th>
+              <th>Oct</th>
+              <th>Dec</th>
+              <th>Feb</th>
+              <th>Apr</th>
+              <th>Avg revenue / customer / mo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Low (5 customers)</td>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+              <td>$200</td>
+            </tr>
+            <tr>
+              <td>Mid (15 customers)</td>
+              <td>2</td>
+              <td>5</td>
+              <td>8</td>
+              <td>12</td>
+              <td>15</td>
+              <td>$250</td>
+            </tr>
+            <tr>
+              <td>High (30 customers)</td>
+              <td>3</td>
+              <td>8</td>
+              <td>15</td>
+              <td>22</td>
+              <td>30</td>
+              <td>$280</td>
+            </tr>
+            <tr>
+              <td>Stretch (50 customers)</td>
+              <td>5</td>
+              <td>15</td>
+              <td>25</td>
+              <td>38</td>
+              <td>50</td>
+              <td>$300</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The starting point in May is one customer (Scan2Plan, $500/mo Business tier). The average revenue per customer climbs across scenarios because the high and stretch cases assume a richer module attach rate &mdash; customers who sign on a serious tier tend to add a serious module.</p>
+
+      <h3 class="subhead">MBT revenue by month, layered on the baseline</h3>
+
+      <p>Here is the full picture. The dark column is what existing operations produce. The orange column is what the MBT layer adds in the mid scenario. The combined total is what the year actually looks like if Studio C lands fifteen customers.</p>
+
+      <div class="table-wrap">
+        <table class="numbers">
+          <caption>Combined forecast &mdash; mid scenario (15 MBT customers by April)</caption>
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Customers</th>
+              <th>Existing ops</th>
+              <th>MBT layer</th>
+              <th>Combined</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>May 2026</td><td>1</td><td class="fine">$18,500</td><td class="rich">$500</td><td class="rich">$19,000</td></tr>
+            <tr><td>Jun 2026</td><td>1</td><td class="fine">$18,500</td><td class="rich">$700</td><td class="rich">$19,200</td></tr>
+            <tr><td>Jul 2026</td><td>1</td><td class="fine">$18,500</td><td class="rich">$900</td><td class="rich">$19,400</td></tr>
+            <tr><td>Aug 2026</td><td>2</td><td class="fine">$20,500</td><td class="rich">$1,400</td><td class="rich">$21,900</td></tr>
+            <tr><td>Sep 2026</td><td>3</td><td class="fine">$23,000</td><td class="rich">$2,100</td><td class="rich">$25,100</td></tr>
+            <tr><td>Oct 2026</td><td>5</td><td class="fine">$30,000</td><td class="rich">$3,500</td><td class="rich">$33,500</td></tr>
+            <tr><td>Nov 2026</td><td>6</td><td class="fine">$30,000</td><td class="rich">$4,200</td><td class="rich">$34,200</td></tr>
+            <tr><td>Dec 2026</td><td>8</td><td class="fine">$30,000</td><td class="rich">$5,600</td><td class="rich">$35,600</td></tr>
+            <tr><td>Jan 2027</td><td>10</td><td class="fine">$18,500</td><td class="rich">$7,000</td><td class="rich">$25,500</td></tr>
+            <tr><td>Feb 2027</td><td>12</td><td class="fine">$22,000</td><td class="rich">$8,400</td><td class="rich">$30,400</td></tr>
+            <tr><td>Mar 2027</td><td>13</td><td class="fine">$27,500</td><td class="rich">$9,100</td><td class="rich">$36,600</td></tr>
+            <tr><td>Apr 2027</td><td>15</td><td class="fine">$26,800</td><td class="rich">$10,500</td><td class="rich">$37,300</td></tr>
+            <tr class="total-row"><td>12-mo total</td><td></td><td class="fine">$283,300</td><td class="rich">$53,900</td><td class="rich">$337,200</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Mid scenario combined &mdash; existing operations plus a fifteen-customer MBT cohort by April &mdash; lands at $337k. That clears the baseline anchor of $330k. It also produces a steady run rate of roughly $10,500 per month in MBT revenue by April, exiting the year on track for $126k of MBT-only revenue across year two before any further customer growth.</p>
+
+      <h3 class="subhead">The trajectory, all four scenarios</h3>
+
+      <div class="growth-chart">
+        <svg class="chart-svg" viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Monthly combined revenue across four scenarios from May 2026 to April 2027">
+          <!-- Background grid -->
+          <g stroke="#e5e3dc" stroke-width="1">
+            <line x1="60" y1="40" x2="700" y2="40"/>
+            <line x1="60" y1="100" x2="700" y2="100"/>
+            <line x1="60" y1="160" x2="700" y2="160"/>
+            <line x1="60" y1="220" x2="700" y2="220"/>
+            <line x1="60" y1="280" x2="700" y2="280"/>
+            <line x1="60" y1="340" x2="700" y2="340"/>
+          </g>
+
+          <!-- Y-axis labels -->
+          <g font-family="Inter, sans-serif" font-size="11" fill="#6a6a6a" text-anchor="end">
+            <text x="52" y="44">$60k</text>
+            <text x="52" y="104">$50k</text>
+            <text x="52" y="164">$40k</text>
+            <text x="52" y="224">$30k</text>
+            <text x="52" y="284">$20k</text>
+            <text x="52" y="344">$10k</text>
+          </g>
+
+          <!-- X-axis labels (months) -->
+          <g font-family="Inter, sans-serif" font-size="10" fill="#6a6a6a" text-anchor="middle">
+            <text x="80" y="365">May</text>
+            <text x="135" y="365">Jun</text>
+            <text x="190" y="365">Jul</text>
+            <text x="245" y="365">Aug</text>
+            <text x="300" y="365">Sep</text>
+            <text x="355" y="365">Oct</text>
+            <text x="410" y="365">Nov</text>
+            <text x="465" y="365">Dec</text>
+            <text x="520" y="365">Jan</text>
+            <text x="575" y="365">Feb</text>
+            <text x="630" y="365">Mar</text>
+            <text x="685" y="365">Apr</text>
+          </g>
+
+          <!-- Existing-only baseline (green, dashed) -->
+          <polyline points="80,289 135,289 190,289 245,277 300,262 355,220 410,220 465,220 520,289 575,268 630,235 685,239" fill="none" stroke="#2e6f4b" stroke-width="2" stroke-dasharray="4 3" />
+
+          <!-- Combined: Low (5 customers) -->
+          <polyline points="80,286 135,284 190,283 245,272 300,256 355,212 410,209 465,205 520,267 575,243 630,209 685,209" fill="none" stroke="#b9b6ad" stroke-width="2" />
+
+          <!-- Combined: Mid (15 customers) -->
+          <polyline points="80,286 135,285 190,283 245,269 300,251 355,199 410,195 465,182 520,247 575,218 630,180 685,176" fill="none" stroke="#b8731c" stroke-width="3" />
+
+          <!-- Combined: High (30 customers) -->
+          <polyline points="80,286 135,283 190,279 245,259 300,237 355,177 410,165 465,143 520,205 575,167 630,124 685,109" fill="none" stroke="#b8731c" stroke-width="2" stroke-dasharray="6 3" />
+
+          <!-- Combined: Stretch (50 customers) -->
+          <polyline points="80,283 135,277 190,267 245,235 300,202 355,131 410,107 465,75 520,135 575,89 630,40 685,18" fill="none" stroke="#121212" stroke-width="2" stroke-dasharray="2 4" />
+
+          <!-- Anchor lines (THE_THESIS) -->
+          <line x1="60" y1="220" x2="700" y2="220" stroke="#2e6f4b" stroke-width="0.6" stroke-dasharray="1 3" opacity="0.4"/>
+          <text x="700" y="216" font-family="Inter, sans-serif" font-size="9" fill="#2e6f4b" text-anchor="end" font-weight="700">$30k/mo &mdash; baseline annualized</text>
+        </svg>
+        <div class="chart-legend">
+          <span><span class="swatch" style="background:#2e6f4b"></span>Existing operations only</span>
+          <span><span class="swatch" style="background:#b9b6ad"></span>+ Low MBT (5)</span>
+          <span><span class="swatch" style="background:#b8731c"></span>+ Mid MBT (15)</span>
+          <span><span class="swatch" style="background:#b8731c;opacity:0.7"></span>+ High MBT (30)</span>
+          <span><span class="swatch" style="background:#121212"></span>+ Stretch MBT (50)</span>
+        </div>
+      </div>
+
+      <h3 class="subhead">All four totals at a glance</h3>
+
+      <div class="table-wrap">
+        <table class="numbers">
+          <caption>12-month combined revenue by scenario</caption>
+          <thead>
+            <tr>
+              <th>Scenario</th>
+              <th>Existing ops</th>
+              <th>+ MBT layer</th>
+              <th>Combined total</th>
+              <th>vs THE_THESIS baseline ($330k)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Existing only (no MBT)</td>
+              <td class="fine">$283,300</td>
+              <td>&mdash;</td>
+              <td class="fine">$283,300</td>
+              <td>$47k under</td>
+            </tr>
+            <tr>
+              <td>+ Low MBT (5 customers)</td>
+              <td>$283,300</td>
+              <td class="rich">$18,000</td>
+              <td class="rich">$301,300</td>
+              <td>$29k under</td>
+            </tr>
+            <tr>
+              <td>+ Mid MBT (15 customers)</td>
+              <td>$283,300</td>
+              <td class="rich">$53,900</td>
+              <td class="rich">$337,200</td>
+              <td>$7k over</td>
+            </tr>
+            <tr>
+              <td>+ High MBT (30 customers)</td>
+              <td>$283,300</td>
+              <td class="rich">$118,200</td>
+              <td class="rich">$401,500</td>
+              <td>$72k over</td>
+            </tr>
+            <tr class="total-row">
+              <td>+ Stretch MBT (50 customers)</td>
+              <td>$283,300</td>
+              <td class="rich">$215,000</td>
+              <td class="rich">$498,300</td>
+              <td>$168k over</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="subhead">Before and after, in two cards</h3>
+
+      <div class="compare">
+        <div class="compare-card fine">
+          <div class="compare-label">Existing ops only &mdash; we&rsquo;re fine</div>
+          <div class="compare-num">$283k</div>
+          <div class="compare-cap">12-month total. Above first-profit. Inn and Photography do the carrying. The picture without a single new product line.</div>
+        </div>
+        <div class="compare-card rich">
+          <div class="compare-label">+ Mid MBT layer &mdash; we&rsquo;re rich</div>
+          <div class="compare-num">$337k</div>
+          <div class="compare-cap">Same year. Plus 15 MBT customers by April. Clears baseline. Sets up year two with a $10k/mo recurring run rate from a single new product.</div>
+        </div>
+      </div>
+
+      <p>Two numbers. Same year. The difference is whether the marketing campaign Studio C is about to start does what we think it does. Five customers gets us within thirty thousand of the baseline. Fifteen clears it. Thirty puts us seventy thousand over. Fifty makes the year unrecognizable.</p>
+
+      <div class="divider">&bull; &bull; &bull;</div>
+
+      <h2 class="section-head"><span class="num">Part Four</span>Year two, briefly</h2>
+
+      <p>The numbers above stop at April 2027 because that is the end of the planning window. But the slope of the MBT line is the part that matters for what year two looks like. A $10k monthly run rate exiting April becomes $120k of straight-line MBT revenue across year two, and that is before any additional customer growth. If Studio C continues adding customers at the mid-scenario rate (roughly one to two per month), the run rate at the end of year two looks closer to $25k&ndash;$30k per month, which annualizes to $300k+ from MBT alone in year three.</p>
+
+      <p>Stack that on the existing operations &mdash; assuming the Inn and Photography lines hold flat, which they should and probably grow &mdash; and the year-three picture for the ecosystem comes in around $600k&ndash;$700k. That is the &ldquo;rich&rdquo; trajectory the title of this document refers to. None of it requires the existing businesses to do anything radically different. The new line is what changes the shape.</p>
+
+      <p>And the year-three picture has its own ceiling further out. Once MBT has a hundred customers, the math at the bottom of Part Two kicks in &mdash; one product line producing $32k of monthly recurring at a hundred customers, which is a bigger line than the Inn. From the same Studio C team that already runs the chat and the service layer for the existing operations.</p>
+
+      <div class="pullquote">&ldquo;<span class="accent">Software is cheap.</span> Humans are the premium. We bill them differently because they are. That is the entire pricing thesis &mdash; and it is the reason year two looks the way it does.&rdquo;</div>
+
+      <div class="divider">&bull; &bull; &bull;</div>
+
+      <h2 class="section-head"><span class="num">Part Five</span>What this asks of each of us</h2>
+
+      <p>Tracy: populate the TBD lines. The forecast cannot calibrate against estimates forever. The Cloudbeds trailing-twelve-month pull, the Tuthill Photography monthly average, the realistic storefront print and book sales numbers &mdash; once those are real, every Inn row in this document gets re-cut against actuals instead of estimates. That single exercise is worth more than any sales action because it makes every subsequent decision evidence-based.</p>
+
+      <p>Amy: keep the Inn shape on the page. The mid scenario assumes nightly rates hold, two whole-Inn buyouts in Q4, and two to three weddings in Q1. None of those happen by accident. Every booking inquiry that responds inside twenty-four hours moves the year-end number. The buyout funnel is the single highest-leverage line item in this entire document.</p>
+
+      <p>Chase: close one MBT pilot beyond Scan2Plan by end of Q3. Vicki Wolpert, Paul Green, the Hudson Valley broker network &mdash; whichever is closest to ready, push it. The mid scenario calls for fifteen MBT customers by April. Two are already realistic (Scan2Plan plus one of the pilots). Studio C&rsquo;s outreach has to find the other thirteen. That is the work the marketing engine is queued for.</p>
+
+      <p>The whole document is the answer to one question Tracy asked at the breakfast table last week: <em>so are we okay?</em> The short version: yes. The long version is the seven pages above. The shorter long version is two numbers &mdash; $283k if Studio C never lands a single MBT customer beyond Scan2Plan, $337k if the campaign produces what we think it will, and a year-two trajectory that gets a lot more interesting than either.</p>
+
+      <p>Read it through. Mark it up. The numbers will move. The TBD rows will fill in. The combined column will get reconciled against actuals month by month. What we are signing off on this week is the shape, not the precision.</p>
+
+      <p class="credit">Source data: 12-month forecast at /docs/presentations/forecast-12-month-2026-05-to-2027-04.md (existing operations baseline). MBT pricing tiers and module catalog from /docs/positioning/mbt-product-definition-2026-04-30.md. Token unit economics from /docs/positioning/token-pricing-examples-2026-04-30.md. Y1 anchors ($185k net floor / $250k first profit / $330k baseline) from /docs/THE_THESIS.md. Marketing language anchors from /docs/marketing/marketing-phrases-library-2026-04-30.md. Scan2Plan as first commercial customer locked 2026-04-30 evening.</p>
+
+      <div class="footer-actions">
+        <a href="/the-numbers/the-numbers.pdf">Download PDF</a>
+        <a href="/big-muddy-acres/">Big Muddy Acres briefing</a>
+      </div>
+
+    </article>
+
+  </div>
+</body>
+</html>
