@@ -7,117 +7,279 @@
 <title>Lyrai — Platform & Product Overview</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,400&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,400&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f7f4ec;
+    --paper: #f0ece0;
+    --paper-soft: #f7f4ec;
     --ink: #1a1a1a;
     --rule: #d8d2c4;
-    --gold: #8b6914;
+    --red: #d62828;
+    --red-dark: #a51d1d;
     --muted: #555;
     --have: #2d6a4f;
     --build: #c97b1f;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Source Serif 4', Georgia, serif; background: var(--paper); color: var(--ink); line-height: 1.65; }
-  a { color: var(--gold); text-underline-offset: 3px; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.65; }
+  a { color: var(--red); text-underline-offset: 3px; font-weight: 500; }
   a:hover { color: var(--ink); }
-  .display { font-family: 'Playfair Display', serif; }
+  .display { font-family: 'Inter', sans-serif; font-weight: 800; }
+  .serif { font-family: 'Playfair Display', serif; }
   .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.88em; }
 
-  article { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
+  /* ── HERO ────────────────────────────────────────── */
+  .hero { padding: 60px 24px 56px; text-align: center; background: linear-gradient(180deg, var(--paper-soft) 0%, var(--paper) 100%); border-bottom: 1px solid var(--rule); }
+  .hero .logo { display: inline-block; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 56px; letter-spacing: 0.05em; color: var(--ink); margin-bottom: 32px; }
+  .hero .logo .dot { color: var(--red); }
+  .hero .tagline {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(18px, 3vw, 26px);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--red);
+    line-height: 1.25;
+    max-width: 720px;
+    margin: 0 auto 28px;
+  }
+  .hero .deck-icon { margin: 8px auto 0; max-width: 380px; }
+  .hero .meta { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #888; margin-top: 28px; }
 
-  .kicker { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 24px; }
-  h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5.5vw, 50px); font-weight: 800; line-height: 1.0; letter-spacing: -0.015em; margin-bottom: 14px; }
-  .deck { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(18px, 2.4vw, 22px); line-height: 1.4; color: var(--muted); margin-bottom: 32px; }
-  .meta { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #888; margin-bottom: 36px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+  /* ── ARTICLE ─────────────────────────────────────── */
+  article { max-width: 880px; margin: 0 auto; padding: 64px 24px 80px; font-family: 'Source Serif 4', Georgia, serif; }
+  article p { margin-bottom: 18px; font-size: 17px; line-height: 1.7; color: #2a2a2a; }
+  h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 1.0;
+    margin: 56px 0 20px;
+  }
+  h2 .num { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.5em; color: var(--ink); margin-right: 12px; vertical-align: 8px; opacity: 0.4; font-weight: 500; }
+  h3 { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 700; margin: 28px 0 10px; color: var(--ink); }
 
-  h2 { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; margin: 48px 0 14px; line-height: 1.2; }
-  h2 .num { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.7em; color: var(--gold); margin-right: 10px; vertical-align: 6px; }
-  h3 { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 700; margin: 24px 0 8px; }
-
-  p { margin-bottom: 18px; font-size: 17px; line-height: 1.65; }
-
-  .have, .build { display: inline-block; padding: 1px 8px; border-radius: 3px; font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: white; vertical-align: 2px; margin-right: 6px; }
+  /* ── TAGS ────────────────────────────────────────── */
+  .have, .build {
+    display: inline-block; padding: 1px 8px; border-radius: 3px;
+    font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.08em;
+    text-transform: uppercase; font-weight: 700; color: white;
+    vertical-align: 2px; margin-right: 6px;
+  }
   .have { background: var(--have); }
   .build { background: var(--build); }
 
+  /* ── LISTS ───────────────────────────────────────── */
   ul, ol { margin-left: 22px; margin-bottom: 18px; }
-  ul li, ol li { margin-bottom: 8px; line-height: 1.55; }
+  ul li, ol li { margin-bottom: 8px; line-height: 1.6; }
 
-  .stack { background: white; border: 1px solid var(--rule); padding: 20px 24px; border-radius: 4px; margin: 20px 0 28px; }
-  .stack h4 { font-family: 'Inter', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 10px; }
-  .stack code { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #333; background: #f3efe3; padding: 1px 6px; border-radius: 2px; }
-  .stack p { margin-bottom: 8px; font-size: 14px; }
+  /* ── STACK BOX ───────────────────────────────────── */
+  .stack { background: white; border: 1px solid var(--rule); border-left: 4px solid var(--red); padding: 22px 26px; border-radius: 4px; margin: 24px 0 32px; }
+  .stack h4 { font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); font-weight: 800; margin-bottom: 12px; }
+  .stack code { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #333; background: #f3efe3; padding: 1px 6px; border-radius: 2px; }
+  .stack p { margin-bottom: 8px; font-size: 14px; font-family: 'Inter', sans-serif; }
 
-  .pipeline { background: #fdfbf3; border: 1px dashed #c9b475; padding: 18px 22px; margin: 16px 0 28px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.7; }
-  .pipeline .arrow { color: var(--gold); font-weight: 700; margin: 0 6px; }
+  /* ── PIPELINE DIAGRAM ────────────────────────────── */
+  .pipeline-diagram { background: white; border: 1px solid var(--rule); padding: 32px 24px; border-radius: 4px; margin: 24px 0 32px; }
 
-  blockquote { border-left: 3px solid var(--gold); padding: 6px 22px; margin: 24px 0; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; color: #333; line-height: 1.4; }
+  /* ── PRINCIPLE QUOTE ─────────────────────────────── */
+  blockquote {
+    border-left: 4px solid var(--red);
+    padding: 12px 26px;
+    margin: 32px 0;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--ink);
+    line-height: 1.4;
+    background: var(--paper-soft);
+  }
 
-  .table { width: 100%; border-collapse: collapse; margin: 16px 0 28px; background: white; border: 1px solid var(--rule); }
-  .table th, .table td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--rule); font-size: 14px; vertical-align: top; }
-  .table th { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #777; background: var(--paper); font-weight: 600; }
+  /* ── TABLES ──────────────────────────────────────── */
+  .table { width: 100%; border-collapse: collapse; margin: 18px 0 28px; background: white; border: 1px solid var(--rule); }
+  .table th, .table td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--rule); font-family: 'Inter', sans-serif; font-size: 14px; vertical-align: top; }
+  .table th { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: white; background: var(--red); font-weight: 700; }
   .table tr:last-child td { border-bottom: none; }
+  .table strong { color: var(--ink); }
 
-  .footer { margin-top: 52px; padding-top: 26px; border-top: 1px solid var(--rule); font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); }
+  /* ── KEY FEATURES GRID ───────────────────────────── */
+  .features { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; margin: 24px 0 32px; }
+  .feature {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 22px 18px;
+    text-align: center;
+    transition: transform 0.15s, border-color 0.15s;
+  }
+  .feature:hover { transform: translateY(-2px); border-color: var(--red); }
+  .feature svg { display: block; margin: 0 auto 12px; height: 44px; }
+  .feature .title { font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 700; line-height: 1.25; color: var(--ink); }
+
+  /* ── USE CASES ───────────────────────────────────── */
+  .usecases { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin: 24px 0 32px; }
+  .usecase {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 0;
+    overflow: hidden;
+  }
+  .usecase svg { display: block; width: 100%; height: 130px; background: var(--paper-soft); }
+  .usecase .label { padding: 14px 18px; }
+  .usecase .name { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 0.05em; }
+  .usecase .desc { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+  /* ── TEAM ────────────────────────────────────────── */
+  .team-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin: 18px 0 28px; }
+  .team-card {
+    background: white;
+    border: 1px solid var(--rule);
+    padding: 14px 14px 18px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .team-card .role { font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); font-weight: 800; margin-bottom: 6px; }
+  .team-card .name { font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--ink); line-height: 1.15; margin-bottom: 4px; }
+  .team-card .affil { font-family: 'Inter', sans-serif; font-size: 0.72rem; color: var(--muted); }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  .footer {
+    margin-top: 56px;
+    padding: 32px 24px;
+    border-top: 1px solid var(--rule);
+    background: var(--paper-soft);
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .footer .brand { font-weight: 800; color: var(--ink); font-size: 14px; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .footer .small { font-size: 11px; color: #999; margin-top: 12px; letter-spacing: 0.05em; }
+
+  @media (max-width: 600px) {
+    .hero .logo { font-size: 42px; }
+    article { padding: 48px 20px 60px; }
+    h2 { font-size: 1.8rem; }
+  }
 </style>
 </head>
 <body>
 
+<!-- ────────── HERO ────────── -->
+<header class="hero">
+  <div class="logo">LYR<span class="dot">·</span>AI</div>
+  <p class="tagline">We turn every space into an extraordinary auditory experience.</p>
+  <!-- HERO ICON: phone with concentric acoustic waves -->
+  <svg class="deck-icon" viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- concentric waves -->
+    <circle cx="190" cy="100" r="92" fill="none" stroke="#d62828" stroke-width="1.3" opacity="0.35"/>
+    <circle cx="190" cy="100" r="74" fill="none" stroke="#d62828" stroke-width="1.3" opacity="0.5"/>
+    <circle cx="190" cy="100" r="56" fill="none" stroke="#d62828" stroke-width="1.4" opacity="0.7"/>
+    <!-- phone body -->
+    <rect x="170" y="38" width="40" height="80" rx="6" ry="6" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+    <rect x="174" y="44" width="32" height="60" rx="2" ry="2" fill="#f0ece0"/>
+    <!-- waveform on screen -->
+    <path d="M178 76 L182 70 L186 80 L190 64 L194 88 L198 72 L202 78" stroke="#d62828" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- tripod -->
+    <line x1="190" y1="118" x2="190" y2="158" stroke="#1a1a1a" stroke-width="2"/>
+    <line x1="190" y1="158" x2="172" y2="178" stroke="#1a1a1a" stroke-width="2"/>
+    <line x1="190" y1="158" x2="208" y2="178" stroke="#1a1a1a" stroke-width="2"/>
+    <line x1="190" y1="158" x2="190" y2="180" stroke="#1a1a1a" stroke-width="2"/>
+  </svg>
+  <div class="meta">Lyrai.tech · Internal partner overview · 2026-04-30</div>
+</header>
+
 <article>
 
-<div class="kicker">Lyrai · Platform & Product Overview</div>
-<h1 class="display">The Lyrai platform</h1>
-<p class="deck">Acoustic intelligence built on a production multi-tenant platform — capture, processing, storage, viewer, API, and the audio analysis layer that defines the product. What ships today, what's on the build queue, and how it all connects in one stack.</p>
-<div class="meta">Lyrai.tech · Internal partner overview · 2026-04-30</div>
-
+<!-- ────────── 01 ────────── -->
 <h2><span class="num">01</span>What Lyrai is</h2>
 
-<p>Lyrai is an acoustic-twin platform: customers capture a real-world space — a concert hall, a recording studio, a heritage site, an architectural interior — and Lyrai returns both a high-fidelity 3D model and a measurable acoustic signature of that space. The output is usable in Unity, Unreal, Wwise, FMOD, BIM tools, and standalone web viewers. The platform is multi-tenant from the ground up, which means new customers, new verticals, and new branded surfaces can be added without rebuilding infrastructure.</p>
+<p>Lyrai is an acoustic-twin platform: customers capture a real-world space — a concert hall, a recording studio, a heritage site, an architectural interior — and Lyrai returns both a high-fidelity 3D model and a measurable acoustic signature of that space. The output is usable in Unity, Unreal, Wwise, FMOD, BIM tools, and standalone web viewers.</p>
 
-<p>Beneath the acoustic IP — the LMIR fingerprint database, the Acoustic Architect agent, the cultural-preservation methodology coming out of the Stony Brook research lineage — Lyrai runs on a platform layer that has been in production for over a year, with hundreds of projects through the catalog and a working customer-facing app. The platform layer is the unfair advantage: most acoustic-twin proposals on the market today are 18 months of operational engineering away from being able to ship anything to a customer. Lyrai is not.</p>
+<p>Beneath the acoustic IP — the <strong>LiMIR database</strong> (LiDAR · Material · Impulse Response), the Smart Acoustic Capture Bayesian engine, the Stony Brook research lineage — Lyrai runs on a multi-tenant platform layer that has been in production for over a year, with hundreds of projects through the catalog and a working customer-facing app. The platform layer is the unfair advantage: most acoustic-twin proposals on the market today are 18 months of operational engineering away from being able to ship anything to a customer. Lyrai is not.</p>
 
 <div class="stack">
   <h4>Platform stack</h4>
   <p><code>Frontend</code> — React 19 + Vite 6, Tailwind CSS 4, in-browser 3D viewer (Three.js), runs on phone and desktop with no plugin</p>
-  <p><code>Backend</code> — Express API on Cloud Run (us-east4), 7 Gemini-powered agents for scoping / docs / QA, REST endpoints for the full data model</p>
+  <p><code>Backend</code> — Express API on Cloud Run (us-east4), 7 Gemini-powered agents, REST endpoints for the full data model</p>
   <p><code>Data</code> — Postgres via Drizzle ORM, 61 tables covering projects, scans, customers, deliverables, financials. Tenant-isolated GCS buckets for assets.</p>
   <p><code>Auth + billing</code> — Firebase Auth, multi-tier subscription support, customer portal with usage metering</p>
   <p><code>Production</code> — staging, sandbox, and production tiers. Already serving real customers.</p>
 </div>
 
-<h2><span class="num">02</span>The capture pipeline</h2>
+<!-- ────────── 02 ────────── -->
+<h2><span class="num">02</span>The pipeline</h2>
+
+<p>Lyrai's customer flow is simple enough that a non-technical buyer understands it in 30 seconds.</p>
+
+<!-- PIPELINE DIAGRAM SVG -->
+<div class="pipeline-diagram">
+  <svg viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block;" aria-hidden="true">
+    <!-- SCAN: cube -->
+    <g transform="translate(80, 40)">
+      <path d="M0 20 L30 0 L60 20 L60 70 L30 90 L0 70 Z" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+      <path d="M0 20 L30 40 L60 20" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="30" y1="40" x2="30" y2="90" stroke="#1a1a1a" stroke-width="2"/>
+    </g>
+    <text x="110" y="145" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1a1a1a" letter-spacing="0.08em">SCAN</text>
+    <!-- arrow -->
+    <line x1="180" y1="80" x2="240" y2="80" stroke="#d62828" stroke-width="2"/>
+    <polygon points="238,75 250,80 238,85" fill="#d62828"/>
+
+    <!-- BIM MODEL: phone-with-mesh -->
+    <g transform="translate(265, 35)">
+      <rect x="10" y="0" width="50" height="90" rx="6" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+      <rect x="14" y="6" width="42" height="68" fill="#f0ece0"/>
+      <!-- mesh wireframe -->
+      <path d="M18 30 L52 30 M18 50 L52 50 M22 18 L22 70 M35 14 L35 74 M48 18 L48 70 M22 30 L48 50 M48 30 L22 50" stroke="#d62828" stroke-width="0.8" fill="none" opacity="0.7"/>
+    </g>
+    <text x="300" y="145" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1a1a1a" letter-spacing="0.08em">BIM MODEL</text>
+    <!-- arrow -->
+    <line x1="370" y1="80" x2="430" y2="80" stroke="#d62828" stroke-width="2"/>
+    <polygon points="428,75 440,80 428,85" fill="#d62828"/>
+
+    <!-- CAPTURE: phone-on-tripod with waveform -->
+    <g transform="translate(455, 30)">
+      <rect x="14" y="0" width="38" height="56" rx="4" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+      <rect x="17" y="4" width="32" height="42" fill="#f0ece0"/>
+      <path d="M21 26 L25 22 L29 30 L33 18 L37 32 L41 24 L45 28" stroke="#d62828" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="33" y1="56" x2="33" y2="84" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="33" y1="84" x2="22" y2="96" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="33" y1="84" x2="44" y2="96" stroke="#1a1a1a" stroke-width="2"/>
+    </g>
+    <text x="490" y="145" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1a1a1a" letter-spacing="0.08em">CAPTURE</text>
+    <!-- arrow -->
+    <line x1="560" y1="80" x2="620" y2="80" stroke="#d62828" stroke-width="2"/>
+    <polygon points="618,75 630,80 618,85" fill="#d62828"/>
+
+    <!-- SIMULATE: cube with sound dot -->
+    <g transform="translate(660, 40)">
+      <path d="M0 20 L30 0 L60 20 L60 70 L30 90 L0 70 Z" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+      <path d="M0 20 L30 40 L60 20" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="30" y1="40" x2="30" y2="90" stroke="#1a1a1a" stroke-width="2"/>
+      <circle cx="40" cy="55" r="6" fill="#d62828" opacity="0.85"/>
+      <circle cx="40" cy="55" r="11" fill="none" stroke="#d62828" stroke-width="1.2" opacity="0.5"/>
+    </g>
+    <text x="690" y="145" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1a1a1a" letter-spacing="0.08em">SIMULATE</text>
+  </svg>
+</div>
 
 <p>Lyrai accepts spatial data through four input methods. Three are shipped today; the fourth is the new flow that defines the product going forward.</p>
 
-<div class="pipeline">
-  CAPTURE  <span class="arrow">→</span>  INGEST  <span class="arrow">→</span>  PROCESS  <span class="arrow">→</span>  STORE  <span class="arrow">→</span>  CUSTOMER PORTAL  <span class="arrow">→</span>  API / EXPORT
-</div>
-
 <table class="table">
   <tr><th>Method</th><th>Status</th><th>Best for</th></tr>
-  <tr><td><strong>LiDAR app</strong> (iPhone Pro)</td><td><span class="have">Shipped</span></td><td>Highest geometric fidelity per minute of capture. Standard <code>.obj</code> + <code>.mtl</code> + texture atlas output.</td></tr>
+  <tr><td><strong>LiDAR walkthrough</strong> (iPhone Pro)</td><td><span class="have">Shipped</span></td><td>Highest geometric fidelity per minute of capture. Standard <code>.obj</code> + <code>.mtl</code> + texture atlas output.</td></tr>
   <tr><td><strong>Image-set photogrammetry</strong> (DSLR / mirrorless)</td><td><span class="have">Shipped</span></td><td>Highest texture fidelity. Customers with existing photo workflows route through the same ingest path.</td></tr>
-  <tr><td><strong>Direct mesh upload</strong> (RealityCapture, Blender, etc.)</td><td><span class="have">Shipped</span></td><td>Customers with established pipelines. <code>.glb</code>, <code>.usdz</code>, <code>.ply</code>, <code>.obj</code> all accepted.</td></tr>
+  <tr><td><strong>Direct mesh upload</strong> (Revit, RealityCapture, Blender)</td><td><span class="have">Shipped</span></td><td>Customers with established BIM/3D pipelines. <code>.glb</code>, <code>.usdz</code>, <code>.ply</code>, <code>.obj</code>.</td></tr>
   <tr><td><strong>Phone-video walkthrough</strong> (any iPhone Pro)</td><td><span class="build">In build</span></td><td>The Lyrai-defining flow — see §05. Lowest customer friction, highest addressable market.</td></tr>
 </table>
 
-<h3>Ingest mechanics</h3>
-<ul>
-  <li>Hot-folder watcher OR direct upload via the customer portal</li>
-  <li>The platform registers a <code>Scan</code> record on every new asset, with: project, room, capture date, GPS, file paths, capture method, and capture-conditions metadata</li>
-  <li>The job queue dispatches downstream processors in parallel — geometry, texture, audio</li>
-</ul>
-
-<h3>Mesh post-processing</h3>
-<ul>
-  <li>Auto-decimation for meshes over 50 MB, with quality-preserving normal recomputation</li>
-  <li>Hole-fill, normal smoothing, texture atlas optimization for real-time engines</li>
-  <li>Multi-format export: OBJ, GLB, USDZ, PLY for Unity, Unreal, web viewers, BIM tooling</li>
-</ul>
-
-<h2><span class="num">03</span>What the platform does with spatial data — already</h2>
+<!-- ────────── 03 ────────── -->
+<h2><span class="num">03</span>Spatial data — already shipping</h2>
 
 <p>Once a scan lands, the customer portal provides the full set of post-capture capabilities customers expect from a modern acoustic-twin service:</p>
 
@@ -129,6 +291,7 @@
   <li><strong>Public REST API</strong> — endpoints at <code>/api/scans</code>, <code>/api/scans/:id/mesh</code>, <code>/api/scans/:id/textures</code>, <code>/api/projects/:id/scans</code>. Authenticated via tenant API keys. Lyrai-acoustic services consume the same API as third-party customer integrations.</li>
 </ul>
 
+<!-- ────────── 04 ────────── -->
 <h2><span class="num">04</span>The audio layer — Lyrai's defining build</h2>
 
 <p>Where Lyrai differentiates is the audio layer. The platform handles geometry, texture, viewer, API, billing, and tenancy. The acoustic-intelligence work — what Lyrai actually <em>does</em> — sits on top.</p>
@@ -136,40 +299,187 @@
 <p>The build is well-scoped because every component has a clear interface to the platform underneath:</p>
 
 <ul>
-  <li><span class="build">Build</span> <strong>Spatial-audio extraction service.</strong> Modern iPhone Pro video files contain 4-channel APAC (Apple Positional Audio Codec) tracks embedded with the visual frames — full ambisonic-style room capture with no separate microphone rig. A small extraction service demuxes the APAC track from the source file, normalizes it, and routes it to the LMIR fingerprint pipeline.</li>
-  <li><span class="build">Connect</span> <strong>LMIR fingerprint integration.</strong> The platform job queue calls the LMIR service on every new scan that has audio attached. Result is stored on the Scan record as <code>acoustic_profile</code>, available via the public API.</li>
-  <li><span class="build">Connect</span> <strong>RT60 + frequency-response analysis.</strong> Same pattern. The Acoustic Architect agent consumes the room geometry and audio, returns a structured analysis. Result lives on the Scan record.</li>
+  <li><span class="build">Build</span> <strong>Spatial-audio extraction service.</strong> Modern iPhone Pro video files contain 4-channel APAC (Apple Positional Audio Codec) tracks embedded with the visual frames — full ambisonic-style room capture with no separate microphone rig. A small extraction service demuxes the APAC track, normalizes it, and routes it into the LiMIR pipeline.</li>
+  <li><span class="build">Connect</span> <strong>LiMIR fingerprint integration.</strong> The platform job queue calls the LiMIR service on every new scan that has audio attached. Result is stored on the Scan record as <code>acoustic_profile</code>, available via the public API.</li>
+  <li><span class="build">Connect</span> <strong>RT60 + frequency-response analysis.</strong> Smart Acoustic Capture's Bayesian engine consumes the room geometry and audio, returns a structured analysis. Result lives on the Scan record.</li>
   <li><span class="build">Build</span> <strong>Customer portal: acoustic overlay.</strong> The 3D viewer extends to render the acoustic visualization layer — heat maps, propagation cones, hot spots — on top of the mesh.</li>
   <li><span class="build">Build</span> <strong>Spatial-audio export.</strong> Customers can download the room's acoustic signature as an ambisonic file Unity, Wwise, FMOD, or any spatial-audio tooling can ingest directly.</li>
 </ul>
 
-<p>Estimated build scope: <strong>2–4 weeks of focused engineering</strong>, sequenced as: extraction first (raw input), then analysis integration (Lyrai's existing services slot in), then portal overlay (customers see it), then export (customers use it). None of it is research. All of it is well-understood plumbing between components that already exist.</p>
+<p>Estimated build scope: <strong>2–4 weeks of focused engineering</strong>, sequenced as: extraction first (raw input), then analysis integration (existing services slot in), then portal overlay (customers see it), then export (customers use it). None of it is research. All of it is well-understood plumbing between components that already exist.</p>
 
-<h2><span class="num">05</span>Lyrai Walkthrough — the customer-facing flow</h2>
+<!-- ────────── 05 ────────── -->
+<h2><span class="num">05</span>The Lyrai walkthrough</h2>
 
 <blockquote>One phone capture. Mesh and acoustic profile. No separate rig.</blockquote>
 
-<p>The product story is simple enough that a non-technical customer understands it immediately:</p>
+<p>The customer flow:</p>
 
 <ol>
   <li>Customer shoots a 1–3 minute phone-camera walkthrough of their space.</li>
   <li>Uploads via the Lyrai customer portal.</li>
-  <li>Platform pipeline extracts video frames into a high-fidelity mesh and demuxes the spatial audio into the LMIR analysis service in parallel.</li>
-  <li>Customer portal shows a processing indicator with ETA. When done, the customer receives a single notification: mesh, acoustic profile, viewer link, exports — all on one Scan record, one bill, one source of truth.</li>
+  <li>Platform pipeline extracts video frames into a high-fidelity mesh and demuxes the spatial audio into the LiMIR analysis service in parallel.</li>
+  <li>Customer portal shows a processing indicator with ETA. When done, they receive a single notification: mesh, acoustic profile, viewer link, exports — all on one Scan record, one bill, one source of truth.</li>
 </ol>
 
 <p>This is the flow that defines the addressable market. No specialized hardware. No LiDAR phone. No dedicated acoustic mic. Any iPhone Pro user is a candidate Lyrai customer. Compared to LiDAR-only approaches the addressable market expands by roughly an order of magnitude.</p>
 
-<h2><span class="num">06</span>How the IP layers stack</h2>
+<!-- ────────── 06 KEY FEATURES ────────── -->
+<h2><span class="num">06</span>Key features</h2>
+
+<div class="features">
+  <div class="feature">
+    <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M22 6 L22 38 M6 22 L38 22" stroke="#1a1a1a" stroke-width="1.5"/>
+      <circle cx="22" cy="22" r="6" fill="#d62828"/>
+      <circle cx="22" cy="22" r="14" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+    </svg>
+    <div class="title">Precision Spatial Anchoring</div>
+  </div>
+  <div class="feature">
+    <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M4 22 L11 22 L14 12 L18 32 L22 8 L26 36 L30 18 L34 22 L40 22" stroke="#d62828" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="title">Real-Time Impulse Response</div>
+  </div>
+  <div class="feature">
+    <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="8" y="8" width="28" height="6" rx="1" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+      <rect x="8" y="19" width="28" height="6" rx="1" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+      <rect x="8" y="30" width="28" height="6" rx="1" fill="#d62828" stroke="#1a1a1a" stroke-width="1.5"/>
+    </svg>
+    <div class="title">Full Revit Model Integration</div>
+  </div>
+  <div class="feature">
+    <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="8" y="8" width="28" height="28" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+      <text x="22" y="28" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="13" fill="#d62828">AI</text>
+      <line x1="14" y1="14" x2="14" y2="8" stroke="#1a1a1a" stroke-width="1.5"/>
+      <line x1="22" y1="14" x2="22" y2="8" stroke="#1a1a1a" stroke-width="1.5"/>
+      <line x1="30" y1="14" x2="30" y2="8" stroke="#1a1a1a" stroke-width="1.5"/>
+      <line x1="14" y1="36" x2="14" y2="42" stroke="#1a1a1a" stroke-width="1.5"/>
+      <line x1="22" y1="36" x2="22" y2="42" stroke="#1a1a1a" stroke-width="1.5"/>
+      <line x1="30" y1="36" x2="30" y2="42" stroke="#1a1a1a" stroke-width="1.5"/>
+    </svg>
+    <div class="title">AI Acoustic Optimization</div>
+  </div>
+  <div class="feature">
+    <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="6" width="24" height="32" rx="2" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+      <line x1="14" y1="14" x2="30" y2="14" stroke="#1a1a1a" stroke-width="1.5"/>
+      <path d="M14 28 L18 24 L22 27 L26 20 L30 22" stroke="#d62828" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <polyline points="26,20 30,20 30,24" stroke="#d62828" stroke-width="1.5" fill="none"/>
+    </svg>
+    <div class="title">Exportable Reports & Annotations</div>
+  </div>
+</div>
+
+<!-- ────────── 07 USE CASES ────────── -->
+<h2><span class="num">07</span>Use cases</h2>
+
+<div class="usecases">
+  <div class="usecase">
+    <svg viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="220" height="130" fill="#f0ece0"/>
+      <!-- chalkboard -->
+      <rect x="80" y="32" width="60" height="36" fill="#3a4d3a" stroke="#1a1a1a" stroke-width="1.5"/>
+      <line x1="86" y1="42" x2="134" y2="42" stroke="white" stroke-width="0.7" opacity="0.5"/>
+      <line x1="86" y1="50" x2="120" y2="50" stroke="white" stroke-width="0.7" opacity="0.5"/>
+      <!-- desks -->
+      <g stroke="#1a1a1a" stroke-width="1.3" fill="white">
+        <rect x="40" y="86" width="22" height="14"/>
+        <rect x="74" y="86" width="22" height="14"/>
+        <rect x="108" y="86" width="22" height="14"/>
+        <rect x="142" y="86" width="22" height="14"/>
+        <rect x="40" y="108" width="22" height="14"/>
+        <rect x="74" y="108" width="22" height="14"/>
+        <rect x="108" y="108" width="22" height="14"/>
+        <rect x="142" y="108" width="22" height="14"/>
+      </g>
+      <!-- window -->
+      <rect x="14" y="40" width="20" height="32" fill="white" stroke="#1a1a1a" stroke-width="1.3"/>
+      <line x1="24" y1="40" x2="24" y2="72" stroke="#1a1a1a" stroke-width="0.8"/>
+      <line x1="14" y1="56" x2="34" y2="56" stroke="#1a1a1a" stroke-width="0.8"/>
+    </svg>
+    <div class="label">
+      <div class="name">Schools</div>
+      <div class="desc">Classroom acoustics, speech intelligibility, learning outcomes</div>
+    </div>
+  </div>
+  <div class="usecase">
+    <svg viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="220" height="130" fill="#f0ece0"/>
+      <!-- proscenium -->
+      <rect x="0" y="0" width="220" height="130" fill="#a51d1d"/>
+      <!-- stage front -->
+      <rect x="0" y="100" width="220" height="30" fill="#1a1a1a"/>
+      <!-- seating arc -->
+      <g fill="#7a1818" stroke="#a51d1d" stroke-width="0.6">
+        <ellipse cx="110" cy="118" rx="105" ry="12"/>
+        <ellipse cx="110" cy="106" rx="100" ry="10"/>
+        <ellipse cx="110" cy="94" rx="95" ry="9"/>
+        <ellipse cx="110" cy="83" rx="88" ry="8"/>
+        <ellipse cx="110" cy="73" rx="80" ry="7"/>
+        <ellipse cx="110" cy="64" rx="70" ry="6"/>
+        <ellipse cx="110" cy="56" rx="60" ry="5"/>
+      </g>
+      <!-- house lights -->
+      <circle cx="60" cy="20" r="3" fill="#f0ece0"/>
+      <circle cx="110" cy="14" r="3" fill="#f0ece0"/>
+      <circle cx="160" cy="20" r="3" fill="#f0ece0"/>
+    </svg>
+    <div class="label">
+      <div class="name">Performance Halls</div>
+      <div class="desc">Concert venues, theaters, recording rooms, broadcast stages</div>
+    </div>
+  </div>
+  <div class="usecase">
+    <svg viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="220" height="130" fill="#f0ece0"/>
+      <!-- atrium walls -->
+      <rect x="0" y="20" width="40" height="110" fill="white" stroke="#1a1a1a" stroke-width="1.3"/>
+      <rect x="180" y="20" width="40" height="110" fill="white" stroke="#1a1a1a" stroke-width="1.3"/>
+      <!-- windows -->
+      <g fill="#cce0e8" stroke="#1a1a1a" stroke-width="0.8">
+        <rect x="6" y="32" width="12" height="14"/>
+        <rect x="22" y="32" width="12" height="14"/>
+        <rect x="6" y="52" width="12" height="14"/>
+        <rect x="22" y="52" width="12" height="14"/>
+        <rect x="186" y="32" width="12" height="14"/>
+        <rect x="202" y="32" width="12" height="14"/>
+        <rect x="186" y="52" width="12" height="14"/>
+        <rect x="202" y="52" width="12" height="14"/>
+      </g>
+      <!-- skylight oculi -->
+      <circle cx="80" cy="22" r="6" fill="#cce0e8" stroke="#1a1a1a" stroke-width="1"/>
+      <circle cx="140" cy="22" r="6" fill="#cce0e8" stroke="#1a1a1a" stroke-width="1"/>
+      <!-- tree -->
+      <rect x="106" y="86" width="8" height="38" fill="#6b4f2c"/>
+      <circle cx="110" cy="78" r="22" fill="#6a8a4a"/>
+      <circle cx="98" cy="86" r="14" fill="#6a8a4a"/>
+      <circle cx="122" cy="86" r="14" fill="#6a8a4a"/>
+      <!-- bench seating -->
+      <rect x="60" y="112" width="34" height="10" rx="3" fill="#a3aab1" stroke="#1a1a1a" stroke-width="1"/>
+      <rect x="126" y="112" width="34" height="10" rx="3" fill="#a3aab1" stroke="#1a1a1a" stroke-width="1"/>
+    </svg>
+    <div class="label">
+      <div class="name">Healthcare</div>
+      <div class="desc">Hospitals, clinics, atria — patient-experience acoustics</div>
+    </div>
+  </div>
+</div>
+
+<!-- ────────── 08 IP STACK ────────── -->
+<h2><span class="num">08</span>How the IP layers stack</h2>
 
 <p>Clean separation. The acoustic-intelligence IP is what the customer is buying. The platform layer is what makes it deliverable.</p>
 
 <table class="table">
   <tr><th>Layer</th><th>Owner</th><th>Why this layer matters</th></tr>
-  <tr><td>LMIR acoustic-fingerprint database</td><td><strong>Lyrai</strong></td><td>The defensible IP. Ties to the Stony Brook research lineage and Margaret's ongoing grant pipeline.</td></tr>
-  <tr><td>Acoustic Architect agent</td><td><strong>Lyrai</strong></td><td>The analytical brain — what customers are paying for.</td></tr>
+  <tr><td>LiMIR (LiDAR · Material · Impulse Response) database</td><td><strong>Lyrai</strong></td><td>The defensible IP. Tied to the Stony Brook research lineage and the academic grant pipeline.</td></tr>
+  <tr><td>Smart Acoustic Capture — Bayesian AI engine</td><td><strong>Lyrai</strong></td><td>The analytical brain — what customers are paying for.</td></tr>
   <tr><td>RT60 / frequency response / spatial-audio pipelines</td><td><strong>Lyrai</strong></td><td>Acoustic-specific analysis. Customer deliverable.</td></tr>
-  <tr><td>Cultural-preservation methodology</td><td><strong>Lyrai</strong></td><td>Academic positioning. Funding pipeline.</td></tr>
+  <tr><td>Acoustic-treatment recommendation engine</td><td><strong>Lyrai</strong></td><td>Immersive comparison and treatment preview, the simulator output.</td></tr>
   <tr><td>Capture ingest, mesh processing, viewer, exports</td><td>Platform</td><td>Commodity capability. Already built. Lyrai customers benefit; Lyrai engineering doesn't have to write it.</td></tr>
   <tr><td>Customer authentication, billing, tenant isolation</td><td>Platform</td><td>Already built. Scales to Lyrai without modification.</td></tr>
   <tr><td>Job queue, AI-agent orchestration, REST API</td><td>Platform</td><td>Already built. The acoustic services integrate via the API.</td></tr>
@@ -177,7 +487,8 @@
 
 <p>The customer never sees the platform layer as a separate thing. The customer sees Lyrai. The platform is what makes Lyrai shippable.</p>
 
-<h2><span class="num">07</span>Worked example — EMPAC</h2>
+<!-- ────────── 09 EMPAC ────────── -->
+<h2><span class="num">09</span>Worked example — EMPAC</h2>
 
 <p>The Experimental Media and Performing Arts Center at RPI (Troy, NY) is the current evaluation site. Three rooms have full-pipeline data ready to run through the platform end-to-end:</p>
 
@@ -190,24 +501,39 @@
   <tr><td>Concert Hall lobby (bonus)</td><td>—</td><td>14 frames</td><td>—</td></tr>
 </table>
 
-<p>The three primary rooms have LiDAR meshes ready for Unity drop-in today. DSLR-frame uploads are in cloud processing for the higher-fidelity overlay pass. Audio extraction runs once the mesh upload completes; first acoustic-profile output through the LMIR pipeline lands within the week.</p>
+<p>The three primary rooms have LiDAR meshes ready for Unity drop-in today. DSLR-frame uploads are in cloud processing for the higher-fidelity overlay pass. Audio extraction from the .MOV files is queued behind the mesh upload — first .wav files for LiMIR test land within the week.</p>
 
-<h2><span class="num">08</span>Open questions for the partnership</h2>
+<!-- ────────── 10 TEAM ────────── -->
+<h2><span class="num">10</span>The team behind it</h2>
+
+<div class="team-row">
+  <div class="team-card"><div class="role">CEO</div><div class="name">Dr. Schedel</div><div class="affil">SBU · Multichannel & immersive audio (VR/AR)</div></div>
+  <div class="team-card"><div class="role">CTO</div><div class="name">Dr. Hwang</div><div class="affil">UW Whitewater · Unity + sound media</div></div>
+  <div class="team-card"><div class="role">Audio Eng</div><div class="name">R. Pond, MM</div><div class="affil">SBU '14 · Surround sound specialist</div></div>
+  <div class="team-card"><div class="role">CAIO</div><div class="name">Dr. Youngblood</div><div class="affil">SBU postdoc · Bayesian acoustic capture</div></div>
+  <div class="team-card"><div class="role">CCO</div><div class="name">Dr. Yuditskaya</div><div class="affil">DeVinci U. · Tech ↔ creative execution</div></div>
+  <div class="team-card"><div class="role">COO</div><div class="name">Chase Pierson</div><div class="affil">LiDAR + startup logistics</div></div>
+  <div class="team-card"><div class="role">AI Eng</div><div class="name">Dr. Kwan</div><div class="affil">Oregon State · Musician + AI PhD</div></div>
+</div>
+
+<!-- ────────── 11 ────────── -->
+<h2><span class="num">11</span>Open questions</h2>
 
 <p>Three threads that today's conversation moves forward:</p>
 
 <ol>
-  <li><strong>Architectural buy-in.</strong> The platform-as-foundation, acoustic-IP-on-top model is what makes Lyrai shippable on a startup timeline. Confirm shape, identify any concerns from the technical side.</li>
-  <li><strong>Lyrai Walkthrough commitment.</strong> The phone-video flow is the addressable-market unlock. Naming, GTM positioning, customer-flow design all live downstream of confirming this is the lead product.</li>
+  <li><strong>Architectural buy-in.</strong> The platform-as-foundation, acoustic-IP-on-top model is what makes Lyrai shippable on a startup timeline. Confirm shape, surface concerns from the technical side.</li>
+  <li><strong>Lyrai walkthrough commitment.</strong> The phone-video flow is the addressable-market unlock. GTM positioning, customer-flow design, and naming all live downstream of confirming this is the lead product.</li>
   <li><strong>Capture cadence going forward.</strong> EMPAC is the first evaluation site. Establishing a regular monthly cadence during the academic year creates a continuous data flow Lyrai can showcase publicly and use to refine the product.</li>
 </ol>
 
-<div class="footer">
-  <p><strong>Lyrai.tech</strong> · Acoustic intelligence platform · 2026-04-30 partner overview</p>
-  <p style="margin-top:12px; font-size:12px; color:#999;">Internal-only · noindex · prepared for the Lyrai partnership conversation</p>
-</div>
-
 </article>
+
+<div class="footer">
+  <div class="brand">LYR·AI</div>
+  <div>Acoustic intelligence platform · <a href="https://lyrai.tech">Lyrai.tech</a></div>
+  <div class="small">Internal partner overview · 2026-04-30 · noindex</div>
+</div>
 
 </body>
 </html>
