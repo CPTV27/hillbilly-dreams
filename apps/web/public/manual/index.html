@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>The Manual — How Measurably Better Things Works</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --paper: #ffffff;
+      --muted: #6a6a6a;
+      --rule: #d8d8d8;
+      --warm: #f6f4ef;
+      --accent: #b8651a;
+      --serif-display: 'Playfair Display', 'Times New Roman', Times, serif;
+      --serif-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      background: var(--paper); color: var(--ink); margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    body { font-family: var(--serif-body); font-size: 19px; line-height: 1.7; }
+    .page { max-width: 760px; margin: 0 auto; padding: 64px 28px 96px; }
+
+    .topstrap {
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+      border-bottom: 1px solid var(--rule); padding-bottom: 14px;
+      margin-bottom: 36px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .topstrap .section { font-weight: 700; color: var(--ink); }
+
+    h1.headline {
+      font-family: var(--serif-display); font-weight: 900;
+      font-size: clamp(48px, 6.5vw, 76px); line-height: 1.02; letter-spacing: -0.02em;
+      margin: 0 0 16px;
+    }
+    .dek {
+      font-family: var(--serif-body); font-style: italic; font-size: 22px;
+      line-height: 1.45; color: #2a2a2a; margin: 0 0 32px;
+      max-width: 38ch;
+    }
+    .dateline {
+      font-family: var(--sans); font-size: 12px; letter-spacing: 0.12em;
+      color: var(--muted); padding-bottom: 28px;
+      border-bottom: 1px solid var(--rule); margin-bottom: 28px;
+    }
+
+    nav.toc {
+      font-family: var(--sans); font-size: 14px; line-height: 1.8;
+      background: var(--warm); border-left: 3px solid var(--ink);
+      padding: 24px 28px; margin: 32px 0 56px;
+    }
+    nav.toc .label {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 12px; font-weight: 700;
+    }
+    nav.toc ol { margin: 0; padding-left: 20px; }
+    nav.toc a { color: var(--ink); text-decoration: none; }
+    nav.toc a:hover { text-decoration: underline; text-decoration-color: var(--accent); }
+
+    article p { margin: 0 0 22px; }
+    article p:first-of-type::first-letter {
+      font-family: var(--serif-display); font-weight: 900; font-size: 76px;
+      line-height: 0.82; float: left; padding: 8px 12px 0 0; color: var(--ink);
+    }
+    article a {
+      color: var(--ink); text-decoration: underline;
+      text-decoration-color: var(--rule); text-underline-offset: 3px;
+    }
+    article a:hover { text-decoration-color: var(--accent); }
+
+    h2.section-head {
+      font-family: var(--serif-display); font-weight: 700;
+      font-size: 30px; line-height: 1.2; letter-spacing: -0.01em;
+      margin: 56px 0 18px; padding-top: 32px;
+      border-top: 1px solid var(--rule);
+    }
+    h2.section-head:first-of-type {
+      padding-top: 0; border-top: none; margin-top: 36px;
+    }
+    h3.kicker {
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--muted); font-weight: 700;
+      margin: 32px 0 4px;
+    }
+    h3.subhead {
+      font-family: var(--serif-display); font-weight: 700;
+      font-size: 22px; margin: 32px 0 8px;
+    }
+
+    .pullquote {
+      font-family: var(--serif-display); font-weight: 700; font-style: italic;
+      font-size: 26px; line-height: 1.3;
+      border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+      padding: 22px 0; margin: 36px 0;
+    }
+
+    .ledger {
+      font-family: var(--sans); font-size: 14px; line-height: 1.65;
+      background: var(--warm); border-left: 3px solid var(--ink);
+      padding: 22px 24px; margin: 28px 0;
+    }
+    .ledger .label {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px; font-weight: 700;
+    }
+    .ledger ul { margin: 6px 0 0; padding-left: 18px; }
+    .ledger li { margin-bottom: 8px; }
+    .ledger strong { color: var(--ink); }
+
+    table.spec {
+      font-family: var(--sans); font-size: 14px;
+      width: 100%; border-collapse: collapse; margin: 28px 0;
+    }
+    table.spec th, table.spec td {
+      text-align: left; padding: 10px 14px;
+      border-bottom: 1px solid var(--rule); vertical-align: top;
+    }
+    table.spec th {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); font-weight: 700;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .divider {
+      text-align: center; letter-spacing: 0.6em; color: var(--muted);
+      margin: 48px 0; font-size: 14px;
+    }
+
+    .footer {
+      margin-top: 80px; padding-top: 24px; border-top: 1px solid var(--rule);
+      font-family: var(--sans); font-size: 12px; color: var(--muted); line-height: 1.6;
+    }
+
+    code {
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+      font-size: 0.88em; background: var(--warm); padding: 1px 6px; border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topstrap">
+      <span class="section">The Manual · How everything works</span>
+      <span>v0.1 · May 1, 2026</span>
+    </div>
+
+    <h1 class="headline">The Manual.</h1>
+    <p class="dek">How Measurably Better Things actually works. The thesis, the architecture, the product, the team, the tools — and where to find every workflow.</p>
+    <div class="dateline">For everyone joining the MBT / Big Muddy / Studio C ecosystem.</div>
+
+    <nav class="toc">
+      <div class="label">Contents</div>
+      <ol>
+        <li><a href="#what">What this is, and how to use it</a></li>
+        <li><a href="#thesis">The thesis — Inverted Intelligence</a></li>
+        <li><a href="#architecture">The architecture — three layers</a></li>
+        <li><a href="#product">The product — chat, tokens, modules</a></li>
+        <li><a href="#studio-c">Studio C — the production vendor</a></li>
+        <li><a href="#brands">The brands — Big Muddy and its implementations</a></li>
+        <li><a href="#team">The team — who does what</a></li>
+        <li><a href="#tools">Tools — what you'll use day-to-day</a></li>
+        <li><a href="#where">Where everything lives</a></li>
+        <li><a href="#escalation">How decisions and escalation work</a></li>
+        <li><a href="#state">Current state — what's shipped, what's coming</a></li>
+        <li><a href="#start">Where to start, by role</a></li>
+        <li><a href="#glossary">Glossary</a></li>
+      </ol>
+    </nav>
+
+    <article>
+
+      <h2 class="section-head" id="what">1. What this is, and how to use it</h2>
+
+      <p>This is the manual for how Measurably Better Things — MBT — and the surrounding ecosystem work. If you're joining as a partner, operator, contractor, vendor, or customer, you can read this once and have the full mental model. The chapters are short. The links are real. Where something is still being built, the manual says so explicitly. Where something is decided and shipped, the manual says that too.</p>
+
+      <p>Three rules for using this document:</p>
+
+      <div class="ledger">
+        <div class="label">How to read this</div>
+        <ul>
+          <li><strong>Top to bottom is the manual.</strong> It builds on itself. The thesis explains the architecture. The architecture explains the product. The product explains the team. Skip around and you'll miss the load-bearing pieces.</li>
+          <li><strong>Every link is a deeper layer.</strong> When the text says "see <a href="/the-case">The Case for Studio C</a>," that's the operating page that goes one level deeper than the summary here.</li>
+          <li><strong>Honesty about status is part of the doc.</strong> Where something is still in progress or not yet decided, you'll see "TBD" or "in progress" or a date. Don't read past those.</li>
+        </ul>
+      </div>
+
+      <h2 class="section-head" id="thesis">2. The thesis — Inverted Intelligence</h2>
+
+      <p>For two hundred years, "intelligence" meant the cognitive work humans did better than machines: analysis, writing, judgment, design. That was the high-margin work. Manual labor was cheap because machines, and later software, commoditized it. The premium was on the mind.</p>
+
+      <p>Now the inversion. AI handles cognitive work for cents per call. The premium moves to the things AI can't do — being physically present, being accountable to a face, holding institutional knowledge inside a relationship, making a judgment call that someone has to live with. Human-in-the-loop becomes the luxury good. Pure software becomes the floor.</p>
+
+      <p>Most software companies haven't priced for this yet. They still charge twenty dollars a month for software and fifty to two hundred dollars an hour for humans. We priced for the inversion first: software cheap, humans expensive, same interface for both. That's the whole bet.</p>
+
+      <p>Read the full concept doc at <a href="/inverted-intelligence">/inverted-intelligence</a>. The radio show by the same name is one expression of the thesis; the pricing model is another; the way Studio C is structured is a third. Everything ties back here.</p>
+
+      <div class="pullquote">"Software is cheap. Humans are the premium. We bill them differently because they are."</div>
+
+      <h2 class="section-head" id="architecture">3. The architecture — three layers</h2>
+
+      <p>The ecosystem has three layers. They sit on top of each other, with money and value flowing both directions.</p>
+
+      <h3 class="subhead">Layer 1 — HDI (Hillbilly Dreams Inc)</h3>
+      <p>The holding company. Backstage and minimal. Owns the master cap table and the long-term IP. Most days, nobody is doing anything inside HDI directly. <em>Note: HDI is dead language as of 2026-04-18 — the operating identity going forward is MBT. HDI may be wound down or kept as a holding shell.</em></p>
+
+      <h3 class="subhead">Layer 2 — MBT (Measurably Better Things)</h3>
+      <p>The technology platform. The chat, the agents, the billing meters, the multi-tenant infrastructure, the AI router, the brand kits, the production ops module. This is the product customers buy. Built and operated by Chase. Legal entity Measurably Better Things LLC, Mississippi (formation in progress as of 2026-04-24).</p>
+
+      <h3 class="subhead">Layer 3 — Implementations</h3>
+      <p>Specific deployments of the platform for specific customers. Big Muddy is the flagship implementation (we run our own ops on it daily). Bearsville Creative is the next implementation (summer 2026 activation). Future implementations will include real-estate brokers, scanning companies, civic Main Street programs, and other verticals — same platform, different system prompts, different data, different pricing.</p>
+
+      <p>The flywheel: HDI holds the strategy. MBT builds the platform. Implementations prove the platform works and generate revenue. Revenue funds further platform development. Platform improvements lift every implementation.</p>
+
+      <p>Deeper detail in <a href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/BUSINESS_ARCHITECTURE.md">docs/BUSINESS_ARCHITECTURE.md</a>.</p>
+
+      <h2 class="section-head" id="product">4. The product — chat, tokens, modules</h2>
+
+      <p>MBT is a chat-first AI platform with a hybrid SaaS-plus-service business model. A customer signs up, uploads their business data, and gets a chat that knows their business. The chat answers what software can answer. When it can't, it escalates to a human on our team — typically Studio C — who finishes the work.</p>
+
+      <p>Two meters at the bottom of every conversation. <strong>Software tokens</strong> at a thin margin over the underlying model cost — a fraction of a cent per call. <strong>Human tokens</strong> at the rate of skilled production time — five dollars a minute for ops-grade work, ten or more for specialist work. Customers see both meters. Customers pay for both. No surprise bills.</p>
+
+      <p>Six tiers, designed to span Free → Enterprise. Add modules à la carte for specific capabilities (lead gen, video production, podcast editing, social management). Add interface options for where the chat lives (MBT web, terminal CLI, Apple Notes, ClickUp, Notion, Slack, custom-built UI billed in tokens). The full module + interface menu is at <a href="/mbt/modules">/mbt/modules</a>.</p>
+
+      <p>Tokenomics in five minutes: <a href="/explain">/explain</a>. Detailed product definition: <a href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/positioning/mbt-product-definition-2026-04-30.md">docs/positioning/mbt-product-definition-2026-04-30.md</a>.</p>
+
+      <h2 class="section-head" id="studio-c">5. Studio C — the production vendor</h2>
+
+      <p>Studio C is the production arm of MBT. When the chat escalates, Studio C is who arrives to do the work. Video edits, audio production, design deliverables, content writing, brand kits — anything that needs human hands on a deliverable. Studio C also handles the admin of the production pipeline (intake, scheduling, vendor coordination, QA, delivery).</p>
+
+      <p>Two important boundaries: <strong>Studio C is not responsible for running MBT.</strong> The chat working, the agents working, the platform staying up — that's Chase's job, not Studio C's. <strong>Studio C is responsible for production work and pipeline admin.</strong> Inside that scope, they own it. Outside, they don't.</p>
+
+      <p>Three founders: Chase, Elijah Tuttle (Chief of Staff), Miles Dubois (Production Manager). Currently operating as a service line under Tuthill Design LLC. Planned future incorporation as a New York corporation. Working ownership scenario: five shares × twenty percent each, three to founders, two reserved for future market partners — not committed.</p>
+
+      <p>For incoming Studio C operators, start with <a href="/onboarding/studio-c">/onboarding/studio-c</a>. Background brief: <a href="/studio-c/brief">/studio-c/brief</a>. Action layer: <a href="/studio-c/elijah-miles-pitch">/studio-c/elijah-miles-pitch</a>.</p>
+
+      <h2 class="section-head" id="brands">6. The brands — Big Muddy and its implementations</h2>
+
+      <p>Big Muddy is a multi-brand entertainment and hospitality ecosystem anchored in Natchez, Mississippi. It is MBT's flagship implementation and its anchor customer.</p>
+
+      <table class="spec">
+        <thead><tr><th>Brand</th><th>What it is</th><th>URL</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Big Muddy Inn</strong></td><td>Six-room hospitality property on the Natchez bluff. Bar with the Blues Room. Owned by Tracy and Amy.</td><td>thebigmuddyinn.com</td></tr>
+          <tr><td><strong>Big Muddy Touring</strong></td><td>Artist booking and corridor routing. The Sprinter van.</td><td><a href="/touring">bigmuddytouring.com</a></td></tr>
+          <tr><td><strong>Big Muddy Magazine</strong></td><td>Quarterly editorial magazine about the corridor.</td><td>bigmuddymagazine.com</td></tr>
+          <tr><td><strong>Big Muddy Radio</strong></td><td>Streaming station running on AzuraCast. Inverted Intelligence airs here weekly.</td><td>stream.bigmuddytouring.com</td></tr>
+          <tr><td><strong>Big Muddy Records</strong></td><td>Small label. First artist: Mechanical Bull. 12-24 month gestation.</td><td>bigmuddyrecordlabel.com</td></tr>
+          <tr><td><strong>Big Muddy Acres</strong></td><td>Fifty-acre property with a pole-barn recording studio. RV sites + tiny homes phase 2.</td><td><a href="/big-muddy-acres/welcome">bigmuddytouring.com/big-muddy-acres/welcome</a></td></tr>
+          <tr><td><strong>Bearsville Creative</strong></td><td>Northeast node, Hudson Valley/Catskills. Summer 2026 activation.</td><td>bearsvillemediagroup.com</td></tr>
+          <tr><td><strong>Chase Pierson Photography</strong></td><td>Commercial and editorial photography practice. Revenue line that funds the build.</td><td>buycurious.art (and others)</td></tr>
+        </tbody>
+      </table>
+
+      <p>External implementations in motion or planned: Utopia (live), Scan2Plan (proposed), Vicki Wolpert real-estate brokerage (pilot), and others as they sign on.</p>
+
+      <h2 class="section-head" id="team">7. The team — who does what</h2>
+
+      <p>Equity partners and operators. Roles will sharpen as Studio C incorporates and the ownership structure locks.</p>
+
+      <div class="ledger">
+        <div class="label">Equity partners (HDI / MBT)</div>
+        <ul>
+          <li><strong>Chase Pierson</strong> — CEO, CTO, Showrunner. Builds the platform. Final approval on Tier A work.</li>
+          <li><strong>Tracy Alderson-Allen</strong> — Finance and Inn ops. Equity partner. Tracy + Amy are partners, not employees, and the manual will say "partner" everywhere.</li>
+          <li><strong>Amy Allen</strong> — Inn and Bar ops. Equity partner.</li>
+        </ul>
+      </div>
+
+      <div class="ledger">
+        <div class="label">Studio C founders</div>
+        <ul>
+          <li><strong>Chase Pierson</strong> — Strategy, technology, final approval on Tier A.</li>
+          <li><strong>Elijah Tuttle</strong> — Chief of Staff. Routes escalations from the chat. Owns vendor roster and ops coordination.</li>
+          <li><strong>Miles Dubois</strong> — Production Manager. Hands on the wheel for video and creative deliverables.</li>
+        </ul>
+      </div>
+
+      <div class="ledger">
+        <div class="label">Partner and contractor relationships</div>
+        <ul>
+          <li><strong>Tuthill Design LLC</strong> — Tracy + Chase. Operating entity Studio C is currently billed under, until NY corp incorporates.</li>
+          <li><strong>JP Houston</strong> — Contractor delivering mixes. Not a partner.</li>
+          <li><strong>Cos (Chief of Staff agent)</strong> — AI agent that runs the day-to-day coordination across the ecosystem. The voice you're reading right now is Cos, not Chase.</li>
+          <li><strong>Delta Dawn</strong> — Cloudbeds-aware AI agent for the Inn. Open Notebook-backed. <em>Deployment in progress.</em></li>
+        </ul>
+      </div>
+
+      <p>Tracy and Amy are <strong>equity partners</strong>, never employees. This rule is in CLAUDE.md and never changes.</p>
+
+      <h2 class="section-head" id="tools">8. Tools — what you'll use day-to-day</h2>
+
+      <p>The tool stack is intentionally small. Each tool earns its place by doing exactly one job well.</p>
+
+      <table class="spec">
+        <thead><tr><th>Tool</th><th>What it's for</th><th>Login path</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Asana</strong></td><td>Tasks, tickets, recurring ops. The team coordination layer.</td><td>app.asana.com</td></tr>
+          <tr><td><strong>The chat</strong></td><td>The MBT product surface. Customers use it. Operators check it.</td><td><a href="/chat">bigmuddytouring.com/chat</a></td></tr>
+          <tr><td><strong>Sanity Studio</strong></td><td>CMS for editing magazine, brand, and marketing content.</td><td>chasepierson.tv (project)</td></tr>
+          <tr><td><strong>Bitwarden</strong></td><td>Source of truth for ALL credentials. Never hardcode secrets.</td><td>vault.bitwarden.com</td></tr>
+          <tr><td><strong>Vercel</strong></td><td>Deploy target for the platform. Read-only for most operators.</td><td>vercel.com (chasepierson.tv org)</td></tr>
+          <tr><td><strong>Cloudbeds</strong></td><td>Hospitality reservations for the Inn.</td><td>app.cloudbeds.com</td></tr>
+          <tr><td><strong>Buzzsprout</strong></td><td>Podcast publishing.</td><td>buzzsprout.com</td></tr>
+          <tr><td><strong>GitHub</strong></td><td>Code, docs, and PR review. CPTV27 org.</td><td>github.com/CPTV27</td></tr>
+          <tr><td><strong>Postiz</strong></td><td>Social scheduling. <em>Planned, not yet deployed.</em></td><td>TBD</td></tr>
+          <tr><td><strong>Open Notebook</strong></td><td>Self-hosted NotebookLM-style corpus tool. Powers Delta Dawn. <em>Planned for Hetzner host.</em></td><td>TBD</td></tr>
+        </tbody>
+      </table>
+
+      <p>To log in to platform tools: <a href="/admin/login">/admin/login</a>. If Google OAuth fails, use the email-and-password form with the team password (in Bitwarden).</p>
+
+      <h2 class="section-head" id="where">9. Where everything lives</h2>
+
+      <p>Three buckets:</p>
+
+      <h3 class="subhead">Live on the website</h3>
+      <p>Polished pages anyone can read with a link. <a href="/the-case">/the-case</a>, <a href="/the-numbers">/the-numbers</a>, <a href="/explain">/explain</a>, <a href="/inverted-intelligence">/inverted-intelligence</a>, <a href="/mbt/modules">/mbt/modules</a>, <a href="/studio-c/brief">/studio-c/brief</a>, <a href="/onboarding/studio-c">/onboarding/studio-c</a>, <a href="/big-muddy-acres/welcome">/big-muddy-acres/welcome</a>, <a href="/marketing-library">/marketing-library</a>, and the resource center index at <a href="/workflows">/workflows</a>.</p>
+
+      <h3 class="subhead">In the GitHub repo (login required)</h3>
+      <p>Markdown documentation: ~400 files under <code>docs/</code>. Source code under <code>apps/web/</code> and <code>packages/</code>. Workflow drafts under <code>docs/workflows/drafts/</code>. Design rationale docs under <code>docs/positioning/</code>, <code>docs/operations/</code>, and similar.</p>
+
+      <h3 class="subhead">In credentials and infrastructure</h3>
+      <p>Bitwarden for secrets. Vercel for deploys. Neon Postgres for the production database. Google Cloud Storage bucket <code>bmt-media-bigmuddy</code> for media assets. Hetzner CCX23 host <code>bigmuddy-services</code> for self-hosted services. Full inventory in <a href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/CANONICAL_INFRASTRUCTURE_2026-04-20.md">docs/CANONICAL_INFRASTRUCTURE_2026-04-20.md</a>.</p>
+
+      <h2 class="section-head" id="escalation">10. How decisions and escalation work</h2>
+
+      <p>Three approval tiers. They apply equally to production work, customer commitments, and platform changes.</p>
+
+      <table class="spec">
+        <thead><tr><th>Tier</th><th>Who can decide</th><th>SLA</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td><strong>A</strong></td><td>Chase only</td><td>48h</td><td>Pilot launches. Commercial deliverables. External-paid client work. Pricing changes. Brand-defining decisions.</td></tr>
+          <tr><td><strong>B</strong></td><td>Elijah or Miles (Studio C); Tracy or Amy (Inn)</td><td>24h</td><td>Recurring work matching an approved template. Routine ops. Vendor coordination.</td></tr>
+          <tr><td><strong>C</strong></td><td>Automated, no human</td><td>Instant</td><td>Social clip generation under approved show rules. Deliverable rendering from approved masters. Status updates.</td></tr>
+        </tbody>
+      </table>
+
+      <p>Tier A jobs cannot be shipped at Tier B even if a Tier B operator thinks the work is fine. The state machine enforces this: a job marked Tier A must route through "chase_review" before delivery, not directly from "internal_review."</p>
+
+      <p>If you're not sure which tier something is, default up. Treat it as Tier A and ask Chase. The cost of an extra check is small. The cost of shipping a Tier A decision under Tier B authority is real.</p>
+
+      <h2 class="section-head" id="state">11. Current state — what's shipped, what's coming</h2>
+
+      <h3 class="kicker">Live and operational</h3>
+      <div class="ledger">
+        <ul>
+          <li>The chat MVP at <a href="/chat">/chat</a></li>
+          <li>The multi-provider AI router (Gemini, Claude, Perplexity)</li>
+          <li>Multi-tenant Next.js platform with five tenants</li>
+          <li>Studio C team accounts provisioned (Elijah, Miles)</li>
+          <li>Studio C production ops module schema (PR #161, awaiting review)</li>
+          <li>Workflow resource center at <a href="/workflows">/workflows</a></li>
+          <li>Marketing pages: /the-case, /the-numbers, /explain, /inverted-intelligence, /mbt/modules</li>
+          <li>The Big Muddy Inn running on the stack as the proof case</li>
+        </ul>
+      </div>
+
+      <h3 class="kicker">In progress</h3>
+      <div class="ledger">
+        <ul>
+          <li>Stripe metering wiring (token billing implementation)</li>
+          <li>Studio C pilot rollout in Natchez (May 22 target)</li>
+          <li>Inverted Intelligence radio show — pilot recorded, full format launch pending</li>
+          <li>"AI Tells You. We Do It." ad campaign — concepts ready, production queued</li>
+          <li>MBT LLC formation (Mississippi, Tracy filing)</li>
+          <li>Studio C NY corp formation</li>
+          <li>Workflow drafts via the AI router (router-driven SOP generation)</li>
+        </ul>
+      </div>
+
+      <h3 class="kicker">Planned, not yet deployed</h3>
+      <div class="ledger">
+        <ul>
+          <li>Open Notebook on the Hetzner host (Delta Dawn corpus)</li>
+          <li>Postiz social scheduling integration</li>
+          <li>Iconik MAM (deferred until search is a revenue problem)</li>
+          <li>LucidLink active editing storage (Studio C)</li>
+          <li>Frame.io review integration</li>
+          <li>Tentacle Sync timecode standard across both studios</li>
+          <li>Bearsville Creative summer 2026 activation</li>
+        </ul>
+      </div>
+
+      <h2 class="section-head" id="start">12. Where to start, by role</h2>
+
+      <h3 class="subhead">If you're Chase</h3>
+      <p>You wrote this. The manual exists so you don't have to keep explaining it on calls.</p>
+
+      <h3 class="subhead">If you're Tracy or Amy</h3>
+      <p>Read <a href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/onboarding-2026-04-20/02-tracy-amy-operator-manual.md">the operator manual</a>. Then the financial pages: <a href="/the-numbers">/the-numbers</a>. Skip the deeply technical parts.</p>
+
+      <h3 class="subhead">If you're Elijah or Miles</h3>
+      <p>Start at <a href="/onboarding/studio-c">/onboarding/studio-c</a>. That page links to the brief, the action plan, and the workflows you'll touch.</p>
+
+      <h3 class="subhead">If you're Tuthill (or another partner agency)</h3>
+      <p>Read this manual top to bottom. Then read <a href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/partners/tuthill-photography-scope-2026-04-20.md">the scope doc</a> for your engagement specifically.</p>
+
+      <h3 class="subhead">If you're a contractor (vendor, freelancer, specialist)</h3>
+      <p>Read sections 4 (the product) and 5 (Studio C) of this manual, plus the workflow you're about to touch from <a href="/workflows">/workflows</a>. Skip the rest unless you're asked for it.</p>
+
+      <h3 class="subhead">If you're a customer</h3>
+      <p>Use the chat at <a href="/chat">/chat</a>. The chat will tell you what it can do. If it can't do what you need, ask anyway — escalation is the product, not a failure mode.</p>
+
+      <h2 class="section-head" id="glossary">13. Glossary</h2>
+
+      <table class="spec">
+        <tbody>
+          <tr><td><strong>Approval tier</strong></td><td>The authority required to ship a piece of work. A = Chase only, B = Elijah/Miles/Tracy/Amy, C = automated.</td></tr>
+          <tr><td><strong>Big Muddy</strong></td><td>The flagship implementation of MBT. Multi-brand entertainment and hospitality ecosystem anchored in Natchez, Mississippi.</td></tr>
+          <tr><td><strong>Cos</strong></td><td>Chief of Staff agent. Runs day-to-day coordination across the ecosystem. The voice writing this manual.</td></tr>
+          <tr><td><strong>Delta Dawn</strong></td><td>Cloudbeds-aware AI agent for the Inn. Powered by Open Notebook. Deployment in progress.</td></tr>
+          <tr><td><strong>HDI</strong></td><td>Hillbilly Dreams Inc. The original holding company. Dead language as of 2026-04-18 — replaced operationally by MBT.</td></tr>
+          <tr><td><strong>Human token</strong></td><td>A unit of metered human production work, billed by the minute. Premium price. The whole product is built on this idea.</td></tr>
+          <tr><td><strong>Implementation</strong></td><td>A specific deployment of the MBT platform for a specific customer. Big Muddy is one. Bearsville will be another.</td></tr>
+          <tr><td><strong>Inverted Intelligence</strong></td><td>The thesis. Software cheap, humans expensive, same interface for both. Also the radio show.</td></tr>
+          <tr><td><strong>MBT</strong></td><td>Measurably Better Things. The technology platform. The legal entity will be Measurably Better Things LLC.</td></tr>
+          <tr><td><strong>Module</strong></td><td>An add-on capability customers activate inside the chat (lead gen, video production, podcast editing, etc.).</td></tr>
+          <tr><td><strong>Production track A</strong></td><td>High-volume podcast production. Premiere ecosystem. Line cut on set.</td></tr>
+          <tr><td><strong>Production track B</strong></td><td>Cinematic / commercial production. Resolve ecosystem. Pre-production locked before shoot day.</td></tr>
+          <tr><td><strong>Software token</strong></td><td>A unit of metered AI / model work. Cheap. The chat-side meter.</td></tr>
+          <tr><td><strong>Studio C</strong></td><td>The production vendor MBT hires to do the human-token work. Three founders: Chase, Elijah, Miles.</td></tr>
+          <tr><td><strong>Tenant</strong></td><td>A brand that runs on the multi-tenant Next.js platform. Five today: big-muddy, bearsville, studio-c, tuthill, dctv.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="divider">• • •</div>
+
+      <p>If something in this manual is wrong, missing, or unclear, tell Chase. We'll fix it in the next revision. The manual is a living document — version is in the topstrap.</p>
+
+    </article>
+
+    <div class="footer">
+      <p>The Manual · MBT platform · Maintained by Cos · Last updated May 1, 2026</p>
+      <p>Companion: <a href="/workflows">/workflows</a> for SOPs. <a href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/THE_THESIS.md">docs/THE_THESIS.md</a> for the canonical mental model.</p>
+      <p>Powered by Measurably Better Things</p>
+    </div>
+  </div>
+</body>
+</html>
