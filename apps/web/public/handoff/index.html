@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Handoff Readiness Charter — When We're Done Building</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --paper: #ffffff;
+      --muted: #6a6a6a;
+      --rule: #d8d8d8;
+      --warm: #f6f4ef;
+      --accent: #b8651a;
+      --pass: #2d6e3e;
+      --partial: #b8651a;
+      --fail: #a13a2c;
+      --serif-display: 'Playfair Display', 'Times New Roman', Times, serif;
+      --serif-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      background: var(--paper); color: var(--ink); margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    body { font-family: var(--serif-body); font-size: 19px; line-height: 1.7; }
+    .page { max-width: 800px; margin: 0 auto; padding: 64px 28px 96px; }
+
+    .topstrap {
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+      border-bottom: 1px solid var(--rule); padding-bottom: 14px;
+      margin-bottom: 36px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .topstrap .section { font-weight: 700; color: var(--ink); }
+
+    h1.headline {
+      font-family: var(--serif-display); font-weight: 900;
+      font-size: clamp(48px, 6.5vw, 76px); line-height: 1.02; letter-spacing: -0.02em;
+      margin: 0 0 18px;
+    }
+    .dek {
+      font-family: var(--serif-body); font-style: italic; font-size: 22px;
+      line-height: 1.45; color: #2a2a2a; margin: 0 0 32px;
+      max-width: 38ch;
+    }
+    .dateline {
+      font-family: var(--sans); font-size: 12px; letter-spacing: 0.12em;
+      color: var(--muted); padding-bottom: 28px;
+      border-bottom: 1px solid var(--rule); margin-bottom: 36px;
+    }
+    article p { margin: 0 0 22px; }
+
+    h2.section-head {
+      font-family: var(--serif-display); font-weight: 700;
+      font-size: 30px; line-height: 1.2; letter-spacing: -0.01em;
+      margin: 56px 0 16px; padding-top: 28px;
+      border-top: 1px solid var(--rule);
+    }
+    h3.dimension {
+      font-family: var(--serif-display); font-weight: 700;
+      font-size: 24px; margin: 36px 0 8px;
+    }
+    h3.dimension .num {
+      color: var(--accent); font-style: italic; margin-right: 10px;
+    }
+    h4.criterion {
+      font-family: var(--sans); font-size: 14px; font-weight: 700;
+      margin: 24px 0 6px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    h4.criterion .badge {
+      font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 3px; font-weight: 700;
+    }
+    h4.criterion .badge.pass { background: var(--pass); color: #fff; }
+    h4.criterion .badge.partial { background: var(--partial); color: #fff; }
+    h4.criterion .badge.fail { background: var(--fail); color: #fff; }
+
+    .criterion-body {
+      font-size: 16px; line-height: 1.6; margin: 0 0 16px;
+      padding-left: 0;
+    }
+    .criterion-body p { margin: 0 0 8px; }
+    .criterion-body .label {
+      font-family: var(--sans); font-size: 10px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--muted); font-weight: 700;
+      margin-top: 12px;
+    }
+
+    .pullquote {
+      font-family: var(--serif-display); font-weight: 700; font-style: italic;
+      font-size: 26px; line-height: 1.3;
+      border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+      padding: 22px 0; margin: 36px 0;
+    }
+
+    .ledger {
+      font-family: var(--sans); font-size: 14px; line-height: 1.6;
+      background: var(--warm); border-left: 3px solid var(--ink);
+      padding: 22px 24px; margin: 28px 0;
+    }
+    .ledger .label {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px; font-weight: 700;
+    }
+    .ledger ul { margin: 6px 0 0; padding-left: 18px; }
+    .ledger li { margin-bottom: 8px; }
+    .ledger strong { color: var(--ink); }
+
+    .scoreboard {
+      font-family: var(--sans); display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px; margin: 32px 0;
+    }
+    .score {
+      padding: 18px 16px; border: 1px solid var(--rule);
+      text-align: center;
+    }
+    .score .num {
+      font-family: var(--serif-display); font-weight: 900;
+      font-size: 36px; line-height: 1; margin-bottom: 6px;
+    }
+    .score .num.pass { color: var(--pass); }
+    .score .num.partial { color: var(--partial); }
+    .score .num.fail { color: var(--fail); }
+    .score .label {
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted); font-weight: 700;
+    }
+    .score .desc {
+      font-size: 12px; color: var(--muted); margin-top: 4px;
+    }
+
+    .punch-list {
+      font-family: var(--sans); font-size: 14px;
+      border-top: 1px solid var(--ink); margin-top: 28px;
+    }
+    .punch-item {
+      display: grid; grid-template-columns: 60px 1fr 100px 90px;
+      gap: 14px; padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+    }
+    .punch-item .id {
+      font-weight: 700; color: var(--accent); font-size: 12px;
+      letter-spacing: 0.1em;
+    }
+    .punch-item .desc {
+      font-size: 14px; line-height: 1.5;
+    }
+    .punch-item .owner {
+      font-size: 12px; color: var(--muted); text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .punch-item .eta {
+      font-size: 11px; color: var(--muted); text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 3px 8px; border: 1px solid var(--rule);
+      text-align: center; align-self: flex-start;
+    }
+    .punch-item .eta.short { border-color: var(--pass); color: var(--pass); }
+    .punch-item .eta.medium { border-color: var(--partial); color: var(--partial); }
+    .punch-item .eta.long { border-color: var(--fail); color: var(--fail); }
+
+    .footer {
+      margin-top: 80px; padding-top: 24px; border-top: 1px solid var(--rule);
+      font-family: var(--sans); font-size: 12px; color: var(--muted); line-height: 1.6;
+    }
+    article a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--rule); }
+    article a:hover { text-decoration-color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topstrap">
+      <span class="section">Handoff Readiness Charter · v0.1</span>
+      <span>May 1, 2026</span>
+    </div>
+
+    <h1 class="headline">When we're done building.</h1>
+    <p class="dek">A measurable definition of "ready for autonomous mode" — and an honest audit of where we are today.</p>
+    <div class="dateline">For Chase, Elijah, and the operating team. Reviewed monthly. Updated continuously.</div>
+
+    <article>
+
+      <p>"Done building" is a milestone, not a feeling. The criteria below define what has to be true for Chase to step out of active building and Elijah to oversee the platform's day-to-day. The charter exists so the goalposts don't move once we're close. It also exists so the team can see, at any time, exactly how many criteria are passing, partial, or failing — and what's blocking each open one.</p>
+
+      <div class="pullquote">"Autonomous mode means: Elijah can look up how to do X and find a tested workflow. Chase only gets paged for Tier A decisions and platform-level emergencies."</div>
+
+      <h2 class="section-head">Today's score</h2>
+
+      <div class="scoreboard">
+        <div class="score">
+          <div class="num pass">3</div>
+          <div class="label">Pass</div>
+          <div class="desc">criterion fully met</div>
+        </div>
+        <div class="score">
+          <div class="num partial">11</div>
+          <div class="label">Partial</div>
+          <div class="desc">progress, not yet there</div>
+        </div>
+        <div class="score">
+          <div class="num fail">10</div>
+          <div class="label">Not started</div>
+          <div class="desc">work needed</div>
+        </div>
+        <div class="score">
+          <div class="num">24</div>
+          <div class="label">Total criteria</div>
+          <div class="desc">across 6 dimensions</div>
+        </div>
+      </div>
+
+      <p style="font-size: 16px; color: var(--muted);">Honest read: 12% pass rate today. That's a starting line, not a failure. The point of having the charter is making the path visible.</p>
+
+      <!-- ─────────── DIMENSION 1 ─────────── -->
+      <h2 class="section-head">Dimension 1 — Code stability</h2>
+      <p>Does the platform run without Chase babysitting it? Tests catch regressions. Critical paths have coverage. Builds don't break for surprise reasons.</p>
+
+      <h4 class="criterion"><span class="badge fail">NOT STARTED</span> 1.1 — E2E test coverage on every customer-facing endpoint</h4>
+      <div class="criterion-body">
+        <p>Playwright tests for /chat, /admin/login, all public marketing pages (the-case, the-numbers, manual, workflows, mbt/modules, explain, inverted-intelligence, big-muddy-acres, studio-c/brief, onboarding/studio-c, lyrai). Each test validates page renders, key content present, no 500s. Run on every PR.</p>
+        <p class="label">Why it matters</p>
+        <p>Today's failure mode: we ship a tsconfig change and don't notice /the-case stops rendering until a user reports it. Tests catch this in 30 seconds.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge partial">PARTIAL</span> 1.2 — Type safety enforced</h4>
+      <div class="criterion-body">
+        <p>turbo typecheck passes on main. No <code>any</code> escape hatches in customer-facing code paths.</p>
+        <p class="label">Today</p>
+        <p>typecheck passes (as of PR #161). No audit of <code>any</code> usage yet.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge fail">NOT STARTED</span> 1.3 — Health checks on critical services</h4>
+      <div class="criterion-body">
+        <p>Automated probes for: Vercel app uptime, Neon connectivity, Sanity availability, Stripe webhook reachability, Hetzner host (Caddy + Immich + Open Notebook when live). Page Chase only on real outages, not transient blips.</p>
+        <p class="label">Today</p>
+        <p>No automated monitoring. We find out something broke when a human notices.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge partial">PARTIAL</span> 1.4 — Sentry / error tracking active</h4>
+      <div class="criterion-body">
+        <p>Sentry config exists in next.config.mjs. Need: confirm errors are reaching the dashboard, alert routing is set, weekly review cadence.</p>
+      </div>
+
+      <!-- ─────────── DIMENSION 2 ─────────── -->
+      <h2 class="section-head">Dimension 2 — Documentation consistency</h2>
+      <p>Every doc reflects what's actually built. No orphan claims. No stale references. New team members can trust what they read.</p>
+
+      <h4 class="criterion"><span class="badge fail">NOT STARTED</span> 2.1 — Doc-consistency sweep tooling</h4>
+      <div class="criterion-body">
+        <p>A script that walks every public page + extracts URLs, prices, feature claims, dates → cross-checks against the codebase + live deployments → reports drift. Runs on every PR.</p>
+        <p class="label">Why</p>
+        <p>The Studio C entity field in <code>config/tenants.ts</code> (still says Tuthill DBA) is exactly the kind of drift this catches.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge partial">PARTIAL</span> 2.2 — CLAUDE.md is current</h4>
+      <div class="criterion-body">
+        <p>Updated 2026-04-24. Reflects MBT LLC formation status, HDI deprecation, current customer roster.</p>
+        <p class="label">Open</p>
+        <p>HDI is "dead language" but still appears in entity fields, page footers, brand registry. Cleanup pass scheduled (Phase 5 of the Asana migration plan).</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge pass">PASS</span> 2.3 — The Manual exists and is canonical</h4>
+      <div class="criterion-body">
+        <p>Live at <a href="/manual">/manual</a>. 13 sections covering thesis, architecture, product, team, tools, escalation. Cross-linked from /workflows.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge pass">PASS</span> 2.4 — /workflows resource center exists</h4>
+      <div class="criterion-body">
+        <p>Live at <a href="/workflows">/workflows</a>. Categorized cards. Web/repo/draft badges so readers can tell what's reviewed vs router-drafted.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge fail">NOT STARTED</span> 2.5 — All public marketing pages audited</h4>
+      <div class="criterion-body">
+        <p>Every page on bigmuddytouring.com (and the brand subdomains) reviewed for: factual accuracy, current entity language, no broken links, no false product claims, photos appropriate to the content.</p>
+        <p class="label">Why</p>
+        <p>The /the-case fabricated-team / mislabeled-photo issues from 2026-04-30 are the canonical example. We caught them; we want the audit to surface the next ones before customers do.</p>
+      </div>
+
+      <!-- ─────────── DIMENSION 3 ─────────── -->
+      <h2 class="section-head">Dimension 3 — Workflow coverage</h2>
+      <p>Every recurring process has an SOP. Elijah can search /workflows and find an authoritative answer. AI router generates drafts; humans accept; tests verify.</p>
+
+      <h4 class="criterion"><span class="badge partial">PARTIAL</span> 3.1 — Router-driven workflow generator works</h4>
+      <div class="criterion-body">
+        <p>Script written: <code>scripts/generate-workflow.ts</code>. Calls the AI router (role=editorial). Outputs to <code>docs/workflows/drafts/</code>.</p>
+        <p class="label">Open</p>
+        <p>Not yet runtime-tested. Verification needed on a machine with API keys (Mac).</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge fail">NOT STARTED</span> 3.2 — Top 20 workflows drafted, reviewed, accepted</h4>
+      <div class="criterion-body">
+        <p>Card-to-cloud ingest, brand kit creation, episode publishing, booking → Inn arrival, touring run booking, magazine article workflow, social campaign launch, customer onboarding, contract review, invoicing, weekly retro, daily standup format, vendor onboarding, photo session, post-shoot QC, edit pass review, deliverable approval, retention transition, incident response, deploy.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge fail">NOT STARTED</span> 3.3 — Each accepted workflow has machine-parseable spec</h4>
+      <div class="criterion-body">
+        <p>YAML front-matter with inputs/outputs/triggers/state_machine/automation_hooks. Schema documented in <code>docs/workflows/README.md</code>.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge fail">NOT STARTED</span> 3.4 — Workflow tests</h4>
+      <div class="criterion-body">
+        <p>Each accepted workflow gets a test fixture or live exercise. "Tested = real." Untested workflows can't drive automation.</p>
+      </div>
+
+      <!-- ─────────── DIMENSION 4 ─────────── -->
+      <h2 class="section-head">Dimension 4 — Operational maturity</h2>
+      <p>The day-to-day tools are running. Open Notebook live for Delta Dawn. Asana clean. Bitwarden current. Team can do their jobs without Chase.</p>
+
+      <h4 class="criterion"><span class="badge partial">PARTIAL</span> 4.1 — Asana project structure clean</h4>
+      <div class="criterion-body">
+        <p>Plan: 13 active projects + 1 template. Migration kicked off (some new projects created, deprecated ones still live).</p>
+        <p class="label">Open</p>
+        <p>Need PAT-driven cleanup. Personal Access Token in Bitwarden but not yet wired to a migration script.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge fail">NOT STARTED</span> 4.2 — Open Notebook deployed for Delta Dawn</h4>
+      <div class="criterion-body">
+        <p>Plan exists at <code>docs/manual/open-notebook-delta-dawn-deployment-plan.md</code>. Hetzner host ready. Needs ~1 hour on the box to deploy + configure + load corpus.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge partial">PARTIAL</span> 4.3 — Studio C team operational</h4>
+      <div class="criterion-body">
+        <p>Elijah + Miles provisioned (User accounts in DB). Onboarding page live. Brief + action layer published.</p>
+        <p class="label">Open</p>
+        <p>Login flow needs verification on their next attempt. Vendor roster build (50 vendors, 10 categories) hasn't started.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge pass">PASS</span> 4.4 — Bitwarden is the credentials source of truth</h4>
+      <div class="criterion-body">
+        <p>Practice locked. Every credential created in 2026 went through Bitwarden. CLAUDE.md enforces the rule.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge fail">NOT STARTED</span> 4.5 — Stripe metering wired</h4>
+      <div class="criterion-body">
+        <p>Token billing implementation. Software tokens at thin margin, human tokens at minute-billed rates. Per-tier subscription + overage.</p>
+        <p class="label">Why this is dimension 4 not 1</p>
+        <p>It's the operational unblocker for actually running the business with real customer payments. Until this is live, every paid customer is invoiced manually.</p>
+      </div>
+
+      <!-- ─────────── DIMENSION 5 ─────────── -->
+      <h2 class="section-head">Dimension 5 — Financial / legal posture</h2>
+      <p>The entities exist. The contracts are current. The cap table is real. The IRS won't have questions.</p>
+
+      <h4 class="criterion"><span class="badge partial">PARTIAL</span> 5.1 — Measurably Better Things LLC formed</h4>
+      <div class="criterion-body">
+        <p>Mississippi formation in progress (Tracy filing). Plan locked 2026-04-24. EIN, bank account, Stripe migration, vendor migration all queued behind formation.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge fail">NOT STARTED</span> 5.2 — Studio C NY corp formed</h4>
+      <div class="criterion-body">
+        <p>Three founders agree on structure. File. EIN. Bank account. Operating agreement. IP assignment from Tuthill DBA.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge fail">NOT STARTED</span> 5.3 — FarleyPierson LLC closed</h4>
+      <div class="criterion-body">
+        <p>Stripe migrated to MBT. Vendor contracts migrated. Closing letter filed. Tax wrap.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge partial">PARTIAL</span> 5.4 — Customer contracts current</h4>
+      <div class="criterion-body">
+        <p>Big Muddy ecosystem internal — no contracts needed. Utopia + Scan2Plan + the two new clients — TBD whether engagement letters exist.</p>
+      </div>
+
+      <!-- ─────────── DIMENSION 6 ─────────── -->
+      <h2 class="section-head">Dimension 6 — Customer-facing honesty</h2>
+      <p>Every public claim is true. Every page is current. Nothing on the site implies a state we're not in.</p>
+
+      <h4 class="criterion"><span class="badge partial">PARTIAL</span> 6.1 — No fabricated team members or false equity claims</h4>
+      <div class="criterion-body">
+        <p>Major sweep done 2026-04-30 (the Chicken / founder-photo / fabricated-Elijah-Miles issues on /the-case). Tier A jobs (commercial deliverables, fundraising-language pages) need ongoing audit.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge partial">PARTIAL</span> 6.2 — Entity language consistent across the site</h4>
+      <div class="criterion-body">
+        <p>Most pages updated to MBT framing. Some footers still say "Hillbilly Dreams Inc." Sweep needed.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge fail">NOT STARTED</span> 6.3 — No broken links anywhere</h4>
+      <div class="criterion-body">
+        <p>Crawler runs nightly. Reports broken internal + external links. Auto-issue creation for fixes.</p>
+      </div>
+
+      <h4 class="criterion"><span class="badge fail">NOT STARTED</span> 6.4 — Photo + visual asset audit</h4>
+      <div class="criterion-body">
+        <p>Every photo on a public page has a caption, attribution, rights record. No mystery faces. No stock photos posing as real customers.</p>
+      </div>
+
+      <!-- ─────────── PUNCH LIST ─────────── -->
+      <h2 class="section-head">Punch list — what to burn down</h2>
+      <p>Consolidated tasks across all six dimensions. Owner and ETA shown. Priority order: top to bottom. ETA buckets are coarse: <strong>S</strong> = days, <strong>M</strong> = 1-2 weeks, <strong>L</strong> = 3+ weeks.</p>
+
+      <div class="punch-list">
+        <div class="punch-item">
+          <div class="id">P-01</div>
+          <div class="desc"><strong>E2E test scaffold for top 10 endpoints.</strong> Playwright pattern. Run on every PR. Catches the "/manual 404" class of bugs before merge.</div>
+          <div class="owner">Cos / Patch</div>
+          <div class="eta short">S</div>
+        </div>
+        <div class="punch-item">
+          <div class="id">P-02</div>
+          <div class="desc"><strong>Doc-consistency sweep tooling.</strong> Script extracts claims from public pages, cross-checks codebase. First run surfaces every drift.</div>
+          <div class="owner">Cos</div>
+          <div class="eta short">S</div>
+        </div>
+        <div class="punch-item">
+          <div class="id">P-03</div>
+          <div class="desc"><strong>Verify the AI router works.</strong> Run scripts/generate-workflow.ts against a real workflow on the Mac. If errors, fix.</div>
+          <div class="owner">Chase (Mac access)</div>
+          <div class="eta short">S</div>
+        </div>
+        <div class="punch-item">
+          <div class="id">P-04</div>
+          <div class="desc"><strong>Generate 20 router-drafted workflows.</strong> Card-to-cloud, brand kit creation, episode publishing, etc. Per the dimension 3 list.</div>
+          <div class="owner">Cos (generation), Chase + Elijah (review)</div>
+          <div class="eta medium">M</div>
+        </div>
+        <div class="punch-item">
+          <div class="id">P-05</div>
+          <div class="desc"><strong>Open Notebook deployed on Hetzner.</strong> Plan exists. Execute Phase 1-4 of the deployment plan.</div>
+          <div class="owner">Chase or Patch</div>
+          <div class="eta short">S</div>
+        </div>
+        <div class="punch-item">
+          <div class="id">P-06</div>
+          <div class="desc"><strong>Public-page audit.</strong> Walk every URL on bigmuddytouring.com + brand domains. Flag inaccuracies, stale entity language, broken links.</div>
+          <div class="owner">Cos</div>
+          <div class="eta medium">M</div>
+        </div>
+        <div class="punch-item">
+          <div class="id">P-07</div>
+          <div class="desc"><strong>Asana cleanup via PAT.</strong> Use the personal access token in Bitwarden to run the project consolidation that was partially done.</div>
+          <div class="owner">Cos</div>
+          <div class="eta short">S</div>
+        </div>
+        <div class="punch-item">
+          <div class="id">P-08</div>
+          <div class="desc"><strong>Stripe metering wired.</strong> Token billing live for software + human meters. First customer can be billed automatically.</div>
+          <div class="owner">Chase / Patch</div>
+          <div class="eta long">L</div>
+        </div>
+        <div class="punch-item">
+          <div class="id">P-09</div>
+          <div class="desc"><strong>Health-check + Sentry alerting confirmed.</strong> Synthetic uptime probes. Sentry routing alerts to a real channel Chase reads.</div>
+          <div class="owner">Cos / Patch</div>
+          <div class="eta short">S</div>
+        </div>
+        <div class="punch-item">
+          <div class="id">P-10</div>
+          <div class="desc"><strong>MBT LLC formation complete.</strong> Mississippi filing → EIN → bank → Stripe migration.</div>
+          <div class="owner">Tracy</div>
+          <div class="eta long">L</div>
+        </div>
+        <div class="punch-item">
+          <div class="id">P-11</div>
+          <div class="desc"><strong>Studio C NY corp formed.</strong> Three founders sign. Operating agreement.</div>
+          <div class="owner">Chase + Elijah + Miles</div>
+          <div class="eta long">L</div>
+        </div>
+        <div class="punch-item">
+          <div class="id">P-12</div>
+          <div class="desc"><strong>FarleyPierson LLC closure.</strong> Final tax wrap, vendor migration done.</div>
+          <div class="owner">Tracy</div>
+          <div class="eta long">L</div>
+        </div>
+        <div class="punch-item">
+          <div class="id">P-13</div>
+          <div class="desc"><strong>HDI dead-language cleanup pass.</strong> Footer references, entity fields, brand registry.</div>
+          <div class="owner">Cos</div>
+          <div class="eta short">S</div>
+        </div>
+        <div class="punch-item">
+          <div class="id">P-14</div>
+          <div class="desc"><strong>Vendor roster build (Studio C).</strong> 50 vendors, 10 categories, paid sample task per vendor.</div>
+          <div class="owner">Elijah</div>
+          <div class="eta medium">M</div>
+        </div>
+        <div class="punch-item">
+          <div class="id">P-15</div>
+          <div class="desc"><strong>Photo + visual asset audit.</strong> Every public photo has caption, attribution, rights record.</div>
+          <div class="owner">Cos + Bearsville Studio</div>
+          <div class="eta medium">M</div>
+        </div>
+      </div>
+
+      <h2 class="section-head">Out of scope for "done building"</h2>
+
+      <div class="ledger">
+        <div class="label">Things we deliberately exclude from the readiness criteria</div>
+        <ul>
+          <li><strong>Bearsville Creative summer activation</strong> — that's a new implementation, not a platform readiness gate.</li>
+          <li><strong>Iconik MAM</strong> — deferred until search becomes a revenue problem.</li>
+          <li><strong>LucidLink, Frame.io, Tentacle Sync</strong> — Studio C-specific tooling, gated on actual production volume justifying the spend.</li>
+          <li><strong>Repo migration to <code>measurably-better-things</code></strong> — separate architectural decision, not a readiness criterion.</li>
+          <li><strong>Voice corpus + Pro Voice Clone</strong> — quality-of-life for Chase, not a readiness blocker.</li>
+        </ul>
+      </div>
+
+      <h2 class="section-head">How this charter gets used</h2>
+
+      <p>Once a week, Cos updates the scoreboard at the top. Pass count goes up only when criteria genuinely meet the standard — no rounding up. Partial → Pass requires evidence (a test passing, a deployment confirmed, a doc landed and reviewed).</p>
+
+      <p>When all 24 criteria pass, Chase can move to autonomous mode. Elijah takes the operational seat. Chase becomes a Tier-A escalation target only.</p>
+
+      <p>If a criterion regresses (test starts failing, doc gets stale, service goes down), it goes back to Partial and the punch list reopens. The charter is a living state machine, not a one-time checklist.</p>
+
+      <h2 class="section-head">Sign-off</h2>
+
+      <p>This charter is the agreed definition of "done building." Anyone who wants to argue with it argues with the criteria, not the milestone. To change a criterion, propose a revision in writing and get Chase + Elijah on the same line.</p>
+
+      <p>Reviewed by: <strong>Cos</strong> (drafter), <strong>Chase</strong> (TBD), <strong>Elijah</strong> (TBD).</p>
+
+    </article>
+
+    <div class="footer">
+      <p>Handoff Readiness Charter · v0.1 · May 1, 2026</p>
+      <p>Companion: <a href="/manual">/manual</a> for the operating model. <a href="/workflows">/workflows</a> for SOPs.</p>
+      <p>Powered by Measurably Better Things</p>
+    </div>
+  </div>
+</body>
+</html>
