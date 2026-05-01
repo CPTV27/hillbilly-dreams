@@ -47,7 +47,7 @@ export const ALL_JOB_STATES: JobState[] = [
 export type ApprovalTier = 'A' | 'B' | 'C';
 
 /** Terminal states — no further transitions allowed. */
-export const TERMINAL_STATES: ReadonlySet<JobState> = new Set(['archived', 'cancelled']);
+export const TERMINAL_STATES: ReadonlySet<JobState> = new Set<JobState>(['archived', 'cancelled']);
 
 /** Transition record — `to` is the destination, `requires` is the minimum tier
  *  required to authorize this move. C means automated (no human required). */

@@ -27,9 +27,9 @@ describe('job-lifecycle — basic structure', () => {
   });
 
   test('terminal states have no outbound transitions', () => {
-    for (const t of TERMINAL_STATES) {
-      assert.deepEqual(legalTargets(t as never), []);
-    }
+    Array.from(TERMINAL_STATES).forEach((t) => {
+      assert.deepEqual(legalTargets(t), []);
+    });
   });
 
   test('archived and cancelled are terminal', () => {
