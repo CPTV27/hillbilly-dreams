@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Workflows — Resource Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --paper: #ffffff;
+      --muted: #6a6a6a;
+      --rule: #d8d8d8;
+      --warm: #f6f4ef;
+      --accent: #b8651a;
+      --serif-display: 'Playfair Display', 'Times New Roman', Times, serif;
+      --serif-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      background: var(--paper); color: var(--ink); margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    body { font-family: var(--serif-body); font-size: 19px; line-height: 1.65; }
+    .page { max-width: 1080px; margin: 0 auto; padding: 56px 28px 96px; }
+
+    .topstrap {
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+      border-bottom: 1px solid var(--rule); padding-bottom: 14px;
+      margin-bottom: 36px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .topstrap .section { font-weight: 700; color: var(--ink); }
+
+    h1.headline {
+      font-family: var(--serif-display); font-weight: 900;
+      font-size: clamp(48px, 6vw, 72px); line-height: 1.05; letter-spacing: -0.02em;
+      margin: 0 0 16px;
+    }
+    .dek {
+      font-family: var(--serif-body); font-style: italic; font-size: 22px;
+      line-height: 1.45; color: #2a2a2a; margin: 0 0 28px;
+      max-width: 60ch;
+    }
+    .legend {
+      font-family: var(--sans); font-size: 13px; line-height: 1.6;
+      background: var(--warm); border-left: 3px solid var(--accent);
+      padding: 18px 22px; margin: 32px 0;
+    }
+    .legend strong { color: var(--ink); }
+    .legend .badge {
+      display: inline-block; font-size: 10px; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 2px 8px; margin-right: 6px;
+      border-radius: 3px; font-weight: 700; vertical-align: middle;
+    }
+    .legend .badge.web { background: #1a1a1a; color: #fff; }
+    .legend .badge.repo { background: var(--warm); color: var(--ink); border: 1px solid var(--ink); }
+    .legend .badge.draft { background: #fff3d4; color: #6b4c00; border: 1px solid #d4a059; }
+
+    h2.category {
+      font-family: var(--serif-display); font-weight: 700;
+      font-size: 28px; letter-spacing: -0.01em;
+      margin: 48px 0 14px; padding-top: 24px;
+      border-top: 1px solid var(--rule);
+    }
+    .category-dek {
+      font-family: var(--sans); font-size: 13px; color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      display: block; padding: 18px 20px;
+      border: 1px solid var(--rule); background: var(--paper);
+      text-decoration: none; color: inherit;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .card:hover { border-color: var(--ink); background: var(--warm); }
+    .card .badge {
+      font-family: var(--sans); font-size: 9px; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 2px 7px; margin-bottom: 10px;
+      display: inline-block; font-weight: 700; border-radius: 3px;
+    }
+    .card .badge.web { background: #1a1a1a; color: #fff; }
+    .card .badge.repo { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+    .card .badge.draft { background: #fff3d4; color: #6b4c00; border: 1px solid #d4a059; }
+    .card h3 {
+      font-family: var(--sans); font-size: 15px; font-weight: 700;
+      margin: 0 0 4px; line-height: 1.3;
+    }
+    .card p {
+      font-family: var(--sans); font-size: 13px; line-height: 1.5;
+      color: var(--muted); margin: 0;
+    }
+
+    .footer {
+      margin-top: 80px; padding-top: 24px; border-top: 1px solid var(--rule);
+      font-family: var(--sans); font-size: 12px; color: var(--muted); line-height: 1.6;
+    }
+    .footer a { color: var(--ink); }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topstrap">
+      <span class="section">MBT · Workflows · Resource Center</span>
+      <span>v0.1 · May 1, 2026</span>
+    </div>
+
+    <h1 class="headline">Every process. Documented and tested.</h1>
+    <p class="dek">The canonical home for how we run. Each workflow has a human-readable SOP and a machine-parseable spec for automation. New workflows arrive here as we generate, review, and accept them.</p>
+
+    <div class="legend">
+      <strong>How to read this page.</strong>
+      <span class="badge web">Web</span> means the workflow has a polished, on-site page you can read and share.
+      <span class="badge repo">Repo</span> means it lives as Markdown in the GitHub repo (login required).
+      <span class="badge draft">Draft</span> means it's been generated by the router but hasn't passed human review yet — do not use as authoritative.
+    </div>
+
+    <!-- ─────────── PRODUCTION ─────────── -->
+    <h2 class="category">Production · Studio C</h2>
+    <p class="category-dek">How we shoot, ingest, edit, review, and deliver. Owner: Miles (Production) and Elijah (Chief of Staff).</p>
+    <div class="grid">
+      <a class="card" href="/studio-c/brief">
+        <span class="badge web">Web</span>
+        <h3>Studio C — Orientation Brief</h3>
+        <p>Who Studio C is, where it fits, what's expected. Pre-read for new operators.</p>
+      </a>
+      <a class="card" href="/studio-c/elijah-miles-pitch">
+        <span class="badge web">Web</span>
+        <h3>Studio C — The Plan (action layer)</h3>
+        <p>Roles, marketing plays, vendor roster categories, weekly cadence.</p>
+      </a>
+      <a class="card" href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/studio-c/workflow-synthesis-2026-05-01.md">
+        <span class="badge repo">Repo</span>
+        <h3>Production Ops — Synthesis Doc</h3>
+        <p>Cross-LLM stress test synthesis. Storage split, approval tiers, build order.</p>
+      </a>
+      <a class="card" href="https://github.com/CPTV27/hillbilly-dreams/blob/main/apps/web/lib/studio-c/state-machines/job-lifecycle.ts">
+        <span class="badge repo">Repo</span>
+        <h3>Job Lifecycle State Machine</h3>
+        <p>Canonical state transitions: intake → prep → shooting → ingesting → editing → review → conforming → delivered.</p>
+      </a>
+    </div>
+
+    <!-- ─────────── ONBOARDING ─────────── -->
+    <h2 class="category">Onboarding</h2>
+    <p class="category-dek">How new partners, operators, and customers come into the system. Owner: Cos.</p>
+    <div class="grid">
+      <a class="card" href="/onboarding/studio-c">
+        <span class="badge web">Web</span>
+        <h3>Studio C Team Onboarding</h3>
+        <p>Login, what to read, what to do this week. For Miles and Elijah.</p>
+      </a>
+      <a class="card" href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/onboarding-2026-04-20/02-tracy-amy-operator-manual.md">
+        <span class="badge repo">Repo</span>
+        <h3>Tracy + Amy — Operator Manual</h3>
+        <p>Daily ops at the Inn, the Bar, the magazine, and the touring arm.</p>
+      </a>
+      <a class="card" href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/onboarding-2026-04-20/04-sanity-studio-cheat-sheet.md">
+        <span class="badge repo">Repo</span>
+        <h3>Sanity Studio — Cheat Sheet</h3>
+        <p>How to publish content via the CMS without breaking schema rules.</p>
+      </a>
+      <a class="card" href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/onboarding/realtor-template.md">
+        <span class="badge repo">Repo</span>
+        <h3>Realtor Onboarding Template</h3>
+        <p>Reusable template for bringing a real-estate broker onto the MBT platform.</p>
+      </a>
+    </div>
+
+    <!-- ─────────── OPERATIONS ─────────── -->
+    <h2 class="category">Operations · Engineering</h2>
+    <p class="category-dek">How the platform stays up. Owner: Chase (today). Future: Patch / engineering team.</p>
+    <div class="grid">
+      <a class="card" href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/operations/INCIDENT_RESPONSE_RUNBOOK.md">
+        <span class="badge repo">Repo</span>
+        <h3>Incident Response Runbook</h3>
+        <p>What to do when something is on fire. Triage, comms, rollback.</p>
+      </a>
+      <a class="card" href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/operations/DEPLOY_ROLLBACK_RUNBOOK.md">
+        <span class="badge repo">Repo</span>
+        <h3>Deploy + Rollback Runbook</h3>
+        <p>Vercel deploy procedure and how to roll back when production breaks.</p>
+      </a>
+      <a class="card" href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/operations/DATABASE_MIGRATION_RUNBOOK.md">
+        <span class="badge repo">Repo</span>
+        <h3>Database Migration Runbook</h3>
+        <p>Prisma migrations against Neon production. How to do it safely.</p>
+      </a>
+      <a class="card" href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/operations/TENANT_PROVISIONING_RUNBOOK.md">
+        <span class="badge repo">Repo</span>
+        <h3>Tenant Provisioning Runbook</h3>
+        <p>Adding a new brand/tenant to the multi-tenant platform.</p>
+      </a>
+      <a class="card" href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/operations/MULTI_TENANT_DEVELOPER_GUIDE.md">
+        <span class="badge repo">Repo</span>
+        <h3>Multi-Tenant Developer Guide</h3>
+        <p>How tenants, route groups, and middleware work together.</p>
+      </a>
+      <a class="card" href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/operations/ENVIRONMENT_VARIABLES.md">
+        <span class="badge repo">Repo</span>
+        <h3>Environment Variables Reference</h3>
+        <p>Every env var, what it's for, where it's set.</p>
+      </a>
+    </div>
+
+    <!-- ─────────── BRAND + CONTENT ─────────── -->
+    <h2 class="category">Brand + Content</h2>
+    <p class="category-dek">Voice, tone, and how we talk about ourselves and our customers. Owner: Cos / Bearsville Studio (visual).</p>
+    <div class="grid">
+      <a class="card" href="/the-case">
+        <span class="badge web">Web</span>
+        <h3>The Case for Studio C</h3>
+        <p>Editorial framing of the business model for outside readers.</p>
+      </a>
+      <a class="card" href="/the-numbers">
+        <span class="badge web">Web</span>
+        <h3>The Numbers — 12-Month Forecast</h3>
+        <p>Where revenue comes from each month. Three scenarios.</p>
+      </a>
+      <a class="card" href="/explain">
+        <span class="badge web">Web</span>
+        <h3>Tokenomics in Five Minutes</h3>
+        <p>The billing model in plain English.</p>
+      </a>
+      <a class="card" href="/inverted-intelligence">
+        <span class="badge web">Web</span>
+        <h3>Inverted Intelligence — Concept</h3>
+        <p>The narrative through-line for everything MBT does.</p>
+      </a>
+      <a class="card" href="/marketing-library">
+        <span class="badge web">Web</span>
+        <h3>Marketing Phrases Library</h3>
+        <p>Reusable copy templates for ad and social production.</p>
+      </a>
+    </div>
+
+    <!-- ─────────── FINANCE + LEGAL ─────────── -->
+    <h2 class="category">Finance · Legal · Strategy</h2>
+    <p class="category-dek">Money, structure, and big-picture decisions. Owner: Tracy (finance), Chase (strategy).</p>
+    <div class="grid">
+      <a class="card" href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/THE_THESIS.md">
+        <span class="badge repo">Repo</span>
+        <h3>The Thesis</h3>
+        <p>The canonical mental model. Read first, before everything else.</p>
+      </a>
+      <a class="card" href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/BUSINESS_ARCHITECTURE.md">
+        <span class="badge repo">Repo</span>
+        <h3>Business Architecture</h3>
+        <p>Three layers: HDI / MBT / Implementations. Two products. The flywheel.</p>
+      </a>
+      <a class="card" href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/decision-briefs/measurably-better-things-llc-formation-plan-2026-04-21.md">
+        <span class="badge repo">Repo</span>
+        <h3>MBT LLC Formation Plan</h3>
+        <p>How Measurably Better Things LLC gets formed and what flows where.</p>
+      </a>
+      <a class="card" href="https://github.com/CPTV27/hillbilly-dreams/blob/main/docs/partners/inn-mbt-investment-history-2026-04-20.md">
+        <span class="badge repo">Repo</span>
+        <h3>Inn ↔ MBT Investment History</h3>
+        <p>Money flows between the Inn and MBT. Honest record.</p>
+      </a>
+    </div>
+
+    <!-- ─────────── NEXT WAVE ─────────── -->
+    <h2 class="category">Next wave (router-generated, awaiting review)</h2>
+    <p class="category-dek">Workflows we don't have docs for yet. The AI router is generating drafts. Each draft must pass human review before getting promoted to a numbered slot above. Drafts live in <code>docs/workflows/drafts/</code>.</p>
+    <div class="grid">
+      <div class="card" style="opacity: 0.6; cursor: not-allowed;">
+        <span class="badge draft">Draft pending</span>
+        <h3>Card-to-cloud ingest workflow</h3>
+        <p>Studio C: how we offload cards from the field to LucidLink with checksums. Generation queued.</p>
+      </div>
+      <div class="card" style="opacity: 0.6; cursor: not-allowed;">
+        <span class="badge draft">Draft pending</span>
+        <h3>Brand kit creation workflow</h3>
+        <p>How a new client's brand kit (logos, fonts, colors, voice) gets built and locked. Generation queued.</p>
+      </div>
+      <div class="card" style="opacity: 0.6; cursor: not-allowed;">
+        <span class="badge draft">Draft pending</span>
+        <h3>Booking → Inn arrival workflow</h3>
+        <p>Cloudbeds reservation → guest arrival → check-in → memorable touch points.</p>
+      </div>
+      <div class="card" style="opacity: 0.6; cursor: not-allowed;">
+        <span class="badge draft">Draft pending</span>
+        <h3>Touring run booking workflow</h3>
+        <p>Big Muddy Touring: from inquiry → contract → routing → load-in → settlement.</p>
+      </div>
+      <div class="card" style="opacity: 0.6; cursor: not-allowed;">
+        <span class="badge draft">Draft pending</span>
+        <h3>Episode publishing workflow</h3>
+        <p>Podcast episode: record → ingest → edit → master → publish to Buzzsprout + radio + social.</p>
+      </div>
+      <div class="card" style="opacity: 0.6; cursor: not-allowed;">
+        <span class="badge draft">Draft pending</span>
+        <h3>Magazine article workflow</h3>
+        <p>Pitch → assignment → draft → editorial pass → publication.</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Workflows resource center · MBT platform · Last updated May 1, 2026</p>
+      <p>Each workflow on this page must pass human review before it's authoritative. Drafts are generated by the router (<a href="https://github.com/CPTV27/hillbilly-dreams/blob/main/apps/web/lib/ai-models.ts">lib/ai-models.ts</a>) and queued in <code>docs/workflows/drafts/</code> for review.</p>
+      <p>Powered by Measurably Better Things</p>
+    </div>
+  </div>
+</body>
+</html>
