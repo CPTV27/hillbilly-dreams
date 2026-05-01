@@ -138,6 +138,7 @@ export async function middleware(request: NextRequest) {
     '/mbt/modules/',
     '/onboarding/',
     '/workflows/',
+    '/manual/',
   ];
   if (PUBLIC_BYPASS_PATHS.some((p) => pathname === p.replace(/\/$/, '') || pathname.startsWith(p))) {
     return NextResponse.next();
