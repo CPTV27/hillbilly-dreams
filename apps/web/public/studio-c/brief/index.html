@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Studio C — Pre-read for Miles and Elijah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --rule: #d8d8d8;
+      --muted: #6a6a6a;
+      --paper: #ffffff;
+      --warm: #f6f4ef;
+      --serif-display: 'Playfair Display', 'Times New Roman', Times, serif;
+      --serif-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      background: var(--paper); color: var(--ink); margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    body { font-family: var(--serif-body); font-size: 19px; line-height: 1.65; }
+    .page { max-width: 720px; margin: 0 auto; padding: 56px 28px 96px; }
+    .topstrap {
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+      border-bottom: 1px solid var(--rule); padding-bottom: 14px;
+      margin-bottom: 28px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .topstrap .section { font-weight: 700; color: var(--ink); }
+    h1.headline {
+      font-family: var(--serif-display); font-weight: 900;
+      font-size: 52px; line-height: 1.05; letter-spacing: -0.02em;
+      margin: 0 0 16px;
+    }
+    .dek {
+      font-family: var(--serif-body); font-style: italic; font-size: 22px;
+      line-height: 1.45; color: #2a2a2a; margin: 0 0 28px;
+    }
+    .byline {
+      font-family: var(--sans); font-size: 12px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+    }
+    .byline .author { color: var(--ink); font-weight: 700; }
+    .dateline {
+      font-family: var(--sans); font-size: 12px; color: var(--muted);
+      margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--rule);
+    }
+    article p { margin: 0 0 20px; }
+    h2.section-head {
+      font-family: var(--serif-display); font-weight: 700; font-size: 28px;
+      line-height: 1.2; letter-spacing: -0.01em;
+      margin: 40px 0 14px; color: var(--ink);
+    }
+    h3.kicker {
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--muted); font-weight: 700;
+      margin: 32px 0 4px;
+    }
+    .pullquote {
+      font-family: var(--serif-display); font-weight: 700; font-style: italic;
+      font-size: 26px; line-height: 1.3; color: var(--ink);
+      border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+      padding: 22px 0; margin: 32px 0;
+    }
+    .ledger {
+      font-family: var(--sans); font-size: 14px; line-height: 1.6;
+      background: var(--warm); border-left: 3px solid var(--ink);
+      padding: 20px 22px; margin: 28px 0;
+    }
+    .ledger .label {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px; font-weight: 700;
+    }
+    .ledger ul { margin: 6px 0 0; padding-left: 18px; }
+    .ledger li { margin-bottom: 8px; }
+    .ledger strong { color: var(--ink); }
+    .divider {
+      text-align: center; letter-spacing: 0.6em; color: var(--muted);
+      margin: 32px 0; font-size: 14px;
+    }
+    .footer {
+      margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--rule);
+      font-family: var(--sans); font-size: 12px; color: var(--muted); line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topstrap">
+      <span class="section">Studio C · Pre-read for Miles + Elijah</span>
+      <span class="date">April 30, 2026</span>
+    </div>
+
+    <h1 class="headline">Where Studio C fits</h1>
+
+    <p class="dek">An orientation in advance of tonight's call. Read this first. The conversation goes faster if we start at the same place.</p>
+
+    <div class="byline">From <span class="author">Chase</span> · To Miles + Elijah</div>
+    <div class="dateline">Natchez · Woodstock · April 30, 2026</div>
+
+    <article>
+
+      <p>Two threads to pull on tonight, and this document gets them both pointing the same direction before we get on the phone. Thread one: there is a software platform I have been building for about a year called Measurably Better Things. Thread two: there is a service operation we want Studio C to be the production arm of. The relationship between those two things is the whole conversation. The faster we agree on the relationship, the faster we can talk about what to do Monday.</p>
+
+      <h2 class="section-head">What MBT is</h2>
+
+      <p>Measurably Better Things — MBT — is the platform. It's a chat-first AI product that customers sign up for. They upload their business data, and they get a chat that knows their business and routes between models, agents, and humans. Software answers what software can answer cheaply. When the request needs a human, the chat escalates to a person who finishes it. Two meters: software tokens at a thin margin over the model cost, human tokens at a much higher rate. Same chat, two prices, total transparency.</p>
+
+      <p>I built it. I run it. I keep building it. The technology, the agents, the billing infrastructure, the chat surface — all of that is on me. MBT is the product Big Muddy and our other customers are paying for.</p>
+
+      <h2 class="section-head">What Studio C is</h2>
+
+      <p>Studio C is the production arm. When the chat escalates, somebody has to actually do the work — edit the video, write the email, build the deck, deliver the thing. That's Studio C. You also handle the administrative work that surrounds production: intake from the chat, scheduling, vendor coordination, QA, delivery back to the customer. The pipeline that turns a request into a deliverable.</p>
+
+      <p>Two important things to be clear about. <strong>One:</strong> Studio C is not responsible for running MBT. The chat working, the agents working, the platform staying up — that's me. You don't carry that weight. <strong>Two:</strong> Studio C's responsibility is production work and the admin of the production pipeline. That's the scope. Inside that scope, you own it; outside that scope, you don't.</p>
+
+      <div class="pullquote">"MBT is the platform that enables Studio C's production sales. Studio C is the production arm that makes those sales real."</div>
+
+      <h2 class="section-head">How they connect</h2>
+
+      <p>A customer signs up for MBT. They get a chat. They ask the chat for something. If the request is one the AI can finish — drafting an email, summarizing a document, looking something up — the chat finishes it and meters software tokens. If the request requires production — a video edit, a brand deliverable, a real piece of work — the chat hands it off into the Studio C pipeline. Studio C delivers. The chat reports the result back to the customer and meters human tokens for the production time.</p>
+
+      <p>Without MBT, Studio C is just another production shop competing on price. With MBT, Studio C sells through a chat-first interface with software margins on the AI side and human margins on the production side. Same screen, two meters. That's the leverage.</p>
+
+      <h2 class="section-head">Current customers</h2>
+
+      <div class="ledger">
+        <div class="label">Real customers, real money, today</div>
+        <ul>
+          <li><strong>Big Muddy Touring</strong> — internal anchor customer. The Inn, the magazine, the radio station, the touring arm. We run our own ops on MBT every day. This is the proof case.</li>
+          <li><strong>Utopia</strong> — first external client. Production engagement live.</li>
+          <li><strong>Two new clients</strong> — just brought on. $500/month engagements.</li>
+          <li><strong>Scan2Plan</strong> — proposed engagement, not yet closed. Production for marketing + administration of the platform I built for them.</li>
+        </ul>
+      </div>
+
+      <p>The model we're selling is a $500/month base engagement — call it ten hours of human-token work at fifty an hour, plus access to the chat, plus the platform infrastructure. Anything beyond the ten hours bills hourly through the human-token meter. That's the standard offer for the customers we're talking to right now. There are smaller and larger tiers above and below that, but the $500 retainer is what's working.</p>
+
+      <h2 class="section-head">The billing model</h2>
+
+      <p>The way the meter works: when a customer interacts with the chat, every interaction has a cost. Software-generated answers cost software tokens — a fraction of a cent per call, in line with what the underlying model costs us, with a thin margin. Human-generated work costs human tokens — priced by the minute, at a rate that reflects what skilled production time is actually worth. Five dollars a minute for ops-grade work; ten or more for specialist work. The customer sees both meters at the bottom of the chat. No hidden bills. No surprise invoices. Pause anytime.</p>
+
+      <p>The reason this works is that it's honest about what costs what. Software is cheap. Humans are expensive. Most software companies bury that. We surface it. Customers actually like it because it explains what they're paying for.</p>
+
+      <p>For Studio C: the human-token meter is your revenue line. Every minute you log against a customer request is a minute that bills. Time tracking has to be honest from day one or the model breaks.</p>
+
+      <h2 class="section-head">Entity status</h2>
+
+      <p>Studio C has not been incorporated yet. To date, the work has been billed through Tuthill Design (Tracy + me). New customers we bring on under the Studio C banner will route through a new entity we form — most likely a New York corporation. The new entity gives us clean billing, a clean cap table, and the ability to bring on partners properly. Until that's filed, treat Studio C as a service line operating under Tuthill Design.</p>
+
+      <p>The incorporation is on the near-term list. Not tonight's decision, but it's coming.</p>
+
+      <h2 class="section-head">Ownership — a working scenario</h2>
+
+      <p>Three founders: me, Elijah, Miles. Beyond that, the structure is an open question. One scenario we've talked about: five shares at twenty percent each. Three shares to the three of us. Two shares reserved — held back for future market partners as we expand. That gives us room to bring on, say, a Natchez operator down the road who plays the role you two are playing in the Northeast. It's a working scenario, not a decision. Tonight is a good place to start the conversation about what feels right.</p>
+
+      <h2 class="section-head">What I'm asking of you tonight</h2>
+
+      <div class="ledger">
+        <div class="label">The actual ask</div>
+        <ul>
+          <li>Agree the positioning is right: <strong>MBT is the platform; Studio C is the production arm + pipeline admin; you don't run MBT</strong>.</li>
+          <li>Agree to the working ownership scenario, or propose what feels better. Five-share / three-founders / two-reserved is a starting point, not a contract.</li>
+          <li>Agree on roles: <strong>Elijah = Chief of Staff</strong> (intake, routing, vendor coordination, ops); <strong>Miles = Production</strong> (the deliverables — video, audio, design, hands on the wheel).</li>
+          <li>Agree on the immediate work: build the vendor roster (Elijah) and ship the first five customer deliverables (Miles). Companion details in the action doc, link below.</li>
+          <li>Agree on the billing discipline: every escalation is logged, every minute is metered, time tracking is honest from day one.</li>
+        </ul>
+      </div>
+
+      <h2 class="section-head">Open questions worth raising</h2>
+
+      <div class="ledger">
+        <div class="label">Bring these to the conversation</div>
+        <ul>
+          <li>Comp structure during the pre-revenue ramp — straight equity, salary against equity, hourly against equity, something else?</li>
+          <li>The Northeast / Natchez split — do we run two operating nodes from day one, or stay centralized for the first six months?</li>
+          <li>Where do you each want the most pull on the roadmap? Production tooling, customer scope, vendor relationships, marketing — what's most yours?</li>
+          <li>What's a no-go for you? What's a deal-breaker about the way I've described any of this?</li>
+        </ul>
+      </div>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">Companion docs</h2>
+
+      <p>Read alongside this if you have time before the call. Not required, but they're the operational layer behind what's described here.</p>
+
+      <div class="ledger">
+        <div class="label">In order of usefulness for tonight</div>
+        <ul>
+          <li><strong>The Plan — for Elijah and Miles</strong> · <a href="/studio-c/elijah-miles-pitch">/studio-c/elijah-miles-pitch</a> — the action layer. What gets done Monday. Marketing plays, vendor categories, the realistic ship dates.</li>
+          <li><strong>The Numbers</strong> · <a href="/the-numbers/">/the-numbers/</a> — the 12-month forecast across the whole ecosystem. Studio C's revenue line is small for the first few months and ramps as the chat fills.</li>
+          <li><strong>The Case for Studio C</strong> · <a href="/the-case/">/the-case/</a> — the editorial version of the same story, written for outside readers.</li>
+        </ul>
+      </div>
+
+      <div class="divider">• • •</div>
+
+      <p>That's the orientation. We can use the time on the phone for the parts that matter — the open questions, the comp structure, the share split conversation, what each of you wants the work to feel like in practice — instead of background. See you at nine.</p>
+
+    </article>
+
+    <div class="footer">
+      <p>Studio C pre-read · For Miles Liss + Elijah Aalam · April 30, 2026</p>
+      <p>Confidential. Not for distribution.</p>
+      <p>Powered by Measurably Better Things</p>
+    </div>
+  </div>
+</body>
+</html>
