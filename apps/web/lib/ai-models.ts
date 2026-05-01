@@ -14,7 +14,7 @@ import { GoogleAuth } from 'google-auth-library';
 
 // ── Provider Configuration ──
 
-export type Provider = 'gemini' | 'anthropic' | 'perplexity';
+export type Provider = 'gemini' | 'anthropic' | 'perplexity' | 'openai' | 'grok';
 
 export interface ModelConfig {
   provider: Provider;
@@ -38,6 +38,12 @@ export const MODELS: Record<string, ModelConfig> = {
   'claude-haiku': { provider: 'anthropic', model: 'claude-haiku-4-5-20251001', label: 'Claude Haiku 4.5' },
   // Perplexity (live web search)
   'perplexity': { provider: 'perplexity', model: 'sonar', label: 'Perplexity Sonar' },
+  // OpenAI (ChatGPT) — used for cross-LLM evaluation panels
+  'gpt-4o': { provider: 'openai', model: 'gpt-4o', label: 'OpenAI GPT-4o' },
+  'gpt-4o-mini': { provider: 'openai', model: 'gpt-4o-mini', label: 'OpenAI GPT-4o mini' },
+  // xAI Grok — OpenAI-compatible API at api.x.ai
+  'grok-2': { provider: 'grok', model: 'grok-2-latest', label: 'xAI Grok 2' },
+  'grok-beta': { provider: 'grok', model: 'grok-beta', label: 'xAI Grok Beta' },
 } as const;
 
 // ── Role-Based Routing ──
@@ -243,10 +249,69 @@ async function callPerplexity(config: ModelConfig, req: AIRequest): Promise<stri
   return data.choices?.[0]?.message?.content || '';
 }
 
+/** Call OpenAI (ChatGPT). Used for cross-LLM evaluation panels. */
+async function callOpenAI(config: ModelConfig, req: AIRequest): Promise<string> {
+  const key = process.env.OPENAI_API_KEY;
+  if (!key) throw new Error('OPENAI_API_KEY not set');
+
+  const res = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${key}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: config.model,
+      messages: [
+        { role: 'system', content: req.system },
+        ...req.messages,
+      ],
+      max_tokens: req.maxTokens || 4096,
+      temperature: req.temperature ?? 0.7,
+    }),
+    signal: AbortSignal.timeout(60000),
+  });
+
+  if (!res.ok) throw new Error(`OpenAI ${res.status}: ${await res.text()}`);
+  const data = await res.json();
+  return data.choices?.[0]?.message?.content || '';
+}
+
+/** Call xAI Grok. The xAI API is OpenAI-compatible, just a different base URL.
+ *  Accepts either GROK_API_KEY or XAI_API_KEY (alias). */
+async function callGrok(config: ModelConfig, req: AIRequest): Promise<string> {
+  const key = process.env.GROK_API_KEY || process.env.XAI_API_KEY;
+  if (!key) throw new Error('GROK_API_KEY (or XAI_API_KEY) not set');
+
+  const res = await fetch('https://api.x.ai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${key}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: config.model,
+      messages: [
+        { role: 'system', content: req.system },
+        ...req.messages,
+      ],
+      max_tokens: req.maxTokens || 4096,
+      temperature: req.temperature ?? 0.7,
+    }),
+    signal: AbortSignal.timeout(60000),
+  });
+
+  if (!res.ok) throw new Error(`Grok ${res.status}: ${await res.text()}`);
+  const data = await res.json();
+  return data.choices?.[0]?.message?.content || '';
+}
+
 const CALLERS: Record<Provider, (config: ModelConfig, req: AIRequest) => Promise<string>> = {
   gemini: callGemini,
   anthropic: callAnthropic,
   perplexity: callPerplexity,
+  openai: callOpenAI,
+  grok: callGrok,
 };
 
 // ── Main API: Call with Failover ──
