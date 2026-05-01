@@ -1046,6 +1046,13 @@ model User {
   groups                   GroupMember[]
   apiKeys                  ApiKey[]
 
+  /// Studio C production ops back-relations (added 2026-05-01).
+  studioJobsOwned          StudioJob[]             @relation("StudioJobOwner")
+  studioApprovalsSigned    StudioApproval[]
+  ingestRecords            IngestRecord[]
+  versionHistoriesAuthored VersionHistory[]
+  qcChecksReviewed         QcChecklist[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -2133,12 +2140,20 @@ model ConstellationEdge {
 // ─────────────────────────────────────────────────────────────
 
 model Brand {
-  id        String   @id @default(cuid())
-  slug      String   @unique
-  name      String
-  jobs      Job[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                 String             @id @default(cuid())
+  slug               String             @unique
+  name               String
+  jobs               Job[]
+  /// Studio C production ops back-relations (added 2026-05-01).
+  productionClientId String?
+  productionClient   ProductionClient?  @relation(fields: [productionClientId], references: [id])
+  brandKit           BrandKit?
+  studioShows        StudioShow[]
+  studioJobs         StudioJob[]        @relation("StudioJobBrand")
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  @@index([productionClientId])
 }
 
 model StyleGuide {
@@ -3384,4 +3399,397 @@ model BroadcastAgentInstruction {
 
   @@index([status, priority, issuedAt])
   @@index([status, claimedAt])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// STUDIO C PRODUCTION OPS MODULE — Phase 1 (2026-05-01)
+// ─────────────────────────────────────────────────────────────────────────────
+// Production operations spine for Studio C: clients, brand kits, recurring shows,
+// episodes, jobs (work orders), ingest, approvals, version history, QC, rights,
+// retention, and deliverables.
+//
+// Naming: prefixed `Studio*` where existing models would conflict (Show, Episode,
+// Job all exist with different semantics elsewhere in this schema). Otherwise
+// neutral names where there's no collision.
+//
+// Storage split rule:
+// - Sanity = canonical content humans edit (Brand, BrandKit, StudioShow, StudioEpisode meta)
+// - Postgres (these models) = operational state with state machines + frequent queries
+//
+// Relations to existing models:
+// - Brand (existing, minimal: slug, name) → extended with BrandKit (1:1) and StudioShows
+// - User (existing) → assigned to StudioJob, signs StudioApproval
+//
+// Phase 1 = schema only. No migration is run by this PR. Migration plan is in
+// docs/studio-c/workflow-synthesis-2026-05-01.md.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// Production client. The entity paying for the work.
+/// Distinct from the existing `Client` model (Deep South Directory directory
+/// listings with tier=front-porch/route). A ProductionClient is who Studio C
+/// invoices.
+model ProductionClient {
+  id              String        @id @default(cuid())
+  /// Tenant scope. Most clients today are 'mbt' (Measurably Better Things)
+  /// with internal brands. External clients can sit under 'studio-c' tenant.
+  tenantId        String        @default("mbt") // see apps/web/config/tenants.ts
+  name            String
+  slug            String        @unique
+  /// Internal MBT brand (Big Muddy, Bearsville, etc.) vs External (paid client).
+  kind            String        @default("internal") // internal | external
+  /// Primary contact email for billing and approvals.
+  contactEmail    String?
+  contactName     String?
+  /// The legal entity invoiced. Empty for internal MBT brands.
+  billingEntity   String?
+  /// Notes (engagement scope, special terms, etc.).
+  notes           String?       @db.Text
+  brands          Brand[]
+  jobs            StudioJob[]
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([tenantId])
+  @@index([kind])
+}
+
+/// Machine-readable brand kit. Drives downstream NLE template generation
+/// (.mogrt for Premiere, .drfx for Resolve), social templates, and chat voice
+/// routing.
+///
+/// The Sanity `brandKit` doc is the human-edited source of truth; this Postgres
+/// row is a denormalized cache for fast querying + foreign-key relations.
+model BrandKit {
+  id              String        @id @default(cuid())
+  brandId         String        @unique
+  brand           Brand         @relation(fields: [brandId], references: [id])
+  /// Sanity document ID — the human-edited canonical version.
+  sanityDocId     String?
+  /// Versioned. Bump when any field changes; downstream templates reference a
+  /// specific version so re-renders are reproducible.
+  version         Int           @default(1)
+  /// Logos: { light, dark, mono } — URLs pointing at GCS / R2.
+  logos           Json
+  /// Fonts: array of { name, url, weights, role } where role = display | body | mono.
+  fonts           Json
+  /// Color palette: array of { hex, name, role } where role = primary | secondary | accent | bg | ink.
+  /// Locked at 5 colors max per the onboarding spec.
+  palette         Json
+  /// Tone of voice + do/don't list. Plain text or structured.
+  voice           String?       @db.Text
+  /// Lower-third template reference (Sanity asset ID or path).
+  lowerThirdRef   String?
+  /// Intro / outro sting references.
+  introStingRef   String?
+  outroStingRef   String?
+  /// Social templates per platform. { instagram, tiktok, youtube_short, etc. }
+  socialTemplates Json?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([brandId])
+}
+
+/// Recurring show. The container for episodes.
+/// Examples: "The Big Muddy Podcast", "Ask Me Anything", "Inverted Intelligence".
+/// Maps loosely to the existing PodcastShow model on the publishing side, but
+/// represents the production concept (multicam setup, recurring cadence).
+model StudioShow {
+  id              String           @id @default(cuid())
+  brandId         String
+  brand           Brand            @relation(fields: [brandId], references: [id])
+  slug            String           @unique
+  title           String
+  description     String?          @db.Text
+  /// Track A (high-volume podcasts) or Track B (cinematic / commercial).
+  track           String           @default("A") // A | B
+  /// Cadence: weekly | biweekly | monthly | irregular.
+  cadence         String           @default("weekly")
+  /// Studio location: woodstock (Bearsville, BMD ecosystem) | natchez (Sony ecosystem).
+  primaryStudio   String           @default("woodstock") // woodstock | natchez
+  /// Approval tier for episodes that match this show's template.
+  /// A = Chase only. B = Elijah/Miles can ship. C = automated.
+  approvalTier    String           @default("B") // A | B | C
+  /// Default deliverable specs (frame rate, color space, audio LUFS, exports).
+  /// Drives the technical specs bible.
+  technicalSpecs  Json?
+  episodes        StudioEpisode[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  @@index([brandId])
+  @@index([track])
+  @@index([approvalTier])
+}
+
+/// Individual episode within a recurring show.
+model StudioEpisode {
+  id              String        @id @default(cuid())
+  showId          String
+  show            StudioShow    @relation(fields: [showId], references: [id])
+  /// Sequential within the show. e.g., 001, 002, 003.
+  episodeNumber   Int
+  slug            String        @unique
+  title           String
+  /// Planned shoot date. Null if not yet scheduled.
+  shootDate       DateTime?
+  /// Guest list, topic, prep notes — markdown/text.
+  prepNotes       String?       @db.Text
+  /// Status: planned | shot | in_post | published | archived
+  status          String        @default("planned")
+  jobs            StudioJob[]
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@unique([showId, episodeNumber])
+  @@index([status])
+  @@index([shootDate])
+}
+
+/// Studio C work order. The canonical job ticket. Every shoot, edit, conform,
+/// or deliverable runs through one of these. State machine in
+/// apps/web/lib/studio-c/state-machines/job-lifecycle.ts.
+model StudioJob {
+  id                 String              @id @default(cuid())
+  /// Optional — recurring show episodes link here. One-off commercial work
+  /// has no episodeId; just clientId + title.
+  episodeId          String?
+  episode            StudioEpisode?      @relation(fields: [episodeId], references: [id])
+  /// Required — who's paying.
+  clientId           String
+  client             ProductionClient    @relation(fields: [clientId], references: [id])
+  title              String
+  /// Track A (podcast pipeline) or B (cinematic / commercial).
+  track              String              @default("A") // A | B
+  /// State machine. See job-lifecycle.ts for valid transitions.
+  state              String              @default("intake") // intake | prep | shooting | ingesting | editing | internal_review | chase_review | revisions | conforming | delivered | archived | cancelled | on_hold
+  /// Approval tier — drives who can advance the state machine on review steps.
+  approvalTier       String              @default("B") // A | B | C
+  /// Owner — typically Miles (production) or Elijah (chief of staff).
+  ownerId            String?
+  owner              User?               @relation("StudioJobOwner", fields: [ownerId], references: [id])
+  /// Studio executing the work.
+  studio             String              @default("woodstock") // woodstock | natchez
+  /// Brand the job is FOR. Allows joining to BrandKit for template generation.
+  brandId            String?
+  brand              Brand?              @relation("StudioJobBrand", fields: [brandId], references: [id])
+  /// Delivery deadline.
+  dueAt              DateTime?
+  /// SLA timestamps for tier-based escalation.
+  /// Set when state enters internal_review. Auto-escalation if exceeded.
+  reviewSlaExpiresAt DateTime?
+  /// Free-form notes.
+  notes              String?             @db.Text
+  ingestRecords      IngestRecord[]
+  approvals          StudioApproval[]
+  versions           VersionHistory[]
+  qcChecks           QcChecklist[]
+  rights             RightsRecord[]
+  deliverables       Deliverable[]
+  retention          RetentionStatus?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+
+  @@index([clientId])
+  @@index([state])
+  @@index([approvalTier])
+  @@index([ownerId])
+  @@index([episodeId])
+  @@index([dueAt])
+}
+
+/// Card offload log with checksums. Religious about this — every automation
+/// downstream depends on the integrity of the ingest record. One row per card
+/// (or per logical batch) per shoot day.
+model IngestRecord {
+  id                String        @id @default(cuid())
+  jobId             String
+  job               StudioJob     @relation(fields: [jobId], references: [id])
+  /// Camera identifier: A, B, C (or A1, A2 for unit splits).
+  camera            String
+  /// Card identifier — usually the card label from set.
+  cardLabel         String
+  /// Filesystem path or LucidLink URI where files were offloaded to.
+  destinationPath   String
+  /// xxhash or md5 of the source card. Compared after copy completes.
+  sourceChecksum    String?
+  /// Checksum after copy. Must match sourceChecksum or the row is failed.
+  destChecksum      String?
+  checksumVerified  Boolean       @default(false)
+  fileCount         Int           @default(0)
+  byteCount         BigInt        @default(0)
+  /// Was an ISO backup recorded for this shoot day? Cheap insurance against
+  /// line cut failure. Per the synthesis doc: every podcast records ISOs.
+  isoBackupPresent  Boolean       @default(false)
+  ingestedAt        DateTime      @default(now())
+  ingestedById      String?
+  ingestedBy        User?         @relation(fields: [ingestedById], references: [id])
+  notes             String?       @db.Text
+
+  @@index([jobId])
+  @@index([camera])
+  @@index([checksumVerified])
+}
+
+/// Approval record. One row per approval gate the job passes through.
+/// Tiered: A (Chase), B (Elijah/Miles), C (automated under approved show rules).
+model StudioApproval {
+  id                String        @id @default(cuid())
+  jobId             String
+  job               StudioJob     @relation(fields: [jobId], references: [id])
+  /// What stage of the lifecycle this approval is for.
+  /// Examples: prep_approval | rough_cut | client_review | final_release
+  gate              String
+  /// A | B | C — the tier required to sign off on this gate.
+  requiredTier      String
+  /// pending | approved | revisions_requested | rejected
+  status            String        @default("pending")
+  /// Who signed off. Null if status is pending.
+  signedById        String?
+  signedBy          User?         @relation(fields: [signedById], references: [id])
+  signedAt          DateTime?
+  /// SLA deadline for this approval. Auto-escalation rules in Phase 2.
+  slaExpiresAt      DateTime?
+  notes             String?       @db.Text
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@index([jobId])
+  @@index([status])
+  @@index([requiredTier])
+  @@index([slaExpiresAt])
+}
+
+/// Version history. Tracks v01_editor → v05_final progression for every
+/// deliverable on a job. No "final_final_REAL" — every version has a numbered
+/// label and a clear stage.
+model VersionHistory {
+  id                String        @id @default(cuid())
+  jobId             String
+  job               StudioJob     @relation(fields: [jobId], references: [id])
+  /// Sequential version number (1, 2, 3...).
+  versionNumber     Int
+  /// Stage: editor | internal | chase_notes | client_review | final
+  stage             String
+  /// Storage path or LucidLink URI for this version's master file.
+  storagePath       String
+  /// Notes on what changed in this version.
+  changeNotes       String?       @db.Text
+  /// Who produced this version.
+  authorId          String?
+  author            User?         @relation(fields: [authorId], references: [id])
+  createdAt         DateTime      @default(now())
+
+  @@unique([jobId, versionNumber])
+  @@index([stage])
+}
+
+/// QC checklist instance — one per deliverable, filled out before sign-off.
+/// Enforces "definition of done" so Chase doesn't become the QC robot.
+model QcChecklist {
+  id                String        @id @default(cuid())
+  jobId             String
+  job               StudioJob     @relation(fields: [jobId], references: [id])
+  /// Which deliverable this QC is for. Null if checking the master itself.
+  deliverableId     String?
+  deliverable       Deliverable?  @relation(fields: [deliverableId], references: [id])
+  /// JSON object: { audio_lufs_pass: true, captions_present: true, brand_kit_applied: true, names_spelled_correctly: true, ... }
+  /// Schema for items lives in apps/web/lib/studio-c/qc-checklist-schema.ts (Phase 2).
+  checks            Json
+  /// Overall pass/fail. Computed from checks. Set explicitly when reviewer signs off.
+  passed            Boolean       @default(false)
+  /// Reviewer who signed off (or flagged failure).
+  reviewerId        String?
+  reviewer          User?         @relation(fields: [reviewerId], references: [id])
+  reviewedAt        DateTime?
+  notes             String?       @db.Text
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@index([jobId])
+  @@index([passed])
+}
+
+/// Rights / releases / music licensing tied to a job.
+/// Lives next to the project record, not in email.
+model RightsRecord {
+  id                String        @id @default(cuid())
+  jobId             String
+  job               StudioJob     @relation(fields: [jobId], references: [id])
+  /// Type: model_release | location_release | music_license | sync_license | guest_appearance | other
+  kind              String
+  /// Subject — name of person, location, song, etc.
+  subject           String
+  /// Storage path to scanned/signed document.
+  documentPath      String?
+  /// Usage windows / term constraints. e.g., "perpetual" | "1 year, broadcast only".
+  termsSummary      String?       @db.Text
+  /// Effective + expiration dates. Null expiration = perpetual.
+  effectiveAt       DateTime?
+  expiresAt         DateTime?
+  /// Has the document actually been collected? Pending = we haven't gotten it.
+  status            String        @default("pending") // pending | collected | expired | invalid
+  notes             String?       @db.Text
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@index([jobId])
+  @@index([kind])
+  @@index([status])
+  @@index([expiresAt])
+}
+
+/// Retention status. Computed from delivery date + tier policy, but stored
+/// for audit. Drives the auto-tier-to-cold-storage and auto-purge automations
+/// in Phase 2.
+model RetentionStatus {
+  id                String        @id @default(cuid())
+  jobId             String        @unique
+  job               StudioJob     @relation(fields: [jobId], references: [id])
+  /// Current tier: active | delivered_30d | cold_90d | minimal_1yr | forever | purged
+  tier              String        @default("active")
+  /// When the job was delivered. Drives all downstream tier transitions.
+  deliveredAt       DateTime?
+  /// Next tier transition date (computed).
+  nextTransitionAt  DateTime?
+  /// Last automated tier change. Manual overrides bypass the automation.
+  lastTransitionedAt DateTime?
+  /// Override flag — Chase or Elijah can extend retention.
+  manualOverride    Boolean       @default(false)
+  notes             String?       @db.Text
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@index([tier])
+  @@index([nextTransitionAt])
+}
+
+/// Final output artifact — the thing the client gets.
+/// One job can have many deliverables: a 30-min episode + 5 social cuts
+/// + a thumbnail + chapter markers all hang off the same StudioJob.
+model Deliverable {
+  id                String        @id @default(cuid())
+  jobId             String
+  job               StudioJob     @relation(fields: [jobId], references: [id])
+  /// Type: master | social_clip | thumbnail | transcript | chapters | sponsor_read | bts | other
+  kind              String
+  title             String
+  /// Storage path or URL of the final exported file.
+  storagePath       String
+  /// Spec: { frameRate, resolution, audioLufs, container, codec }
+  spec              Json?
+  /// Where it was delivered to. e.g., "youtube" | "spotify" | "client_dropbox" | "frame_io_review"
+  destination       String?
+  /// External ID at destination (e.g., YouTube video ID, Postiz post ID).
+  destinationRef    String?
+  /// Has it been delivered? false = exported but not yet sent.
+  delivered         Boolean       @default(false)
+  deliveredAt       DateTime?
+  qcChecks          QcChecklist[]
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@index([jobId])
+  @@index([kind])
+  @@index([delivered])
 }
