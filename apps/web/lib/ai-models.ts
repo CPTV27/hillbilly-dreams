@@ -80,6 +80,8 @@ const providerHealth: Record<Provider, { healthy: boolean; lastCheck: number; fa
   gemini: { healthy: true, lastCheck: 0, failCount: 0 },
   anthropic: { healthy: true, lastCheck: 0, failCount: 0 },
   perplexity: { healthy: true, lastCheck: 0, failCount: 0 },
+  openai: { healthy: true, lastCheck: 0, failCount: 0 },
+  grok: { healthy: true, lastCheck: 0, failCount: 0 },
 };
 
 const HEALTH_RESET_MS = 5 * 60 * 1000; // Retry failed providers after 5 minutes
