@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Measurably Better Things — Modules and Capabilities</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121212;
+      --rule: #d8d8d8;
+      --muted: #6a6a6a;
+      --paper: #ffffff;
+      --warm: #f6f4ef;
+      --serif-display: 'Playfair Display', 'Times New Roman', Times, serif;
+      --serif-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      background: var(--paper); color: var(--ink); margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    body { font-family: var(--serif-body); font-size: 18px; line-height: 1.65; }
+    .page { max-width: 920px; margin: 0 auto; padding: 56px 28px 96px; }
+    .topstrap {
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+      border-bottom: 1px solid var(--rule); padding-bottom: 14px;
+      margin-bottom: 28px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .topstrap .section { font-weight: 700; color: var(--ink); }
+    h1.headline {
+      font-family: var(--serif-display); font-weight: 900;
+      font-size: clamp(40px, 5.5vw, 64px); line-height: 1.05; letter-spacing: -0.02em;
+      margin: 0 0 16px;
+    }
+    .dek {
+      font-family: var(--serif-body); font-style: italic; font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.45; color: #2a2a2a; margin: 0 0 28px; max-width: 64ch;
+    }
+    .dateline {
+      font-family: var(--sans); font-size: 12px; color: var(--muted);
+      margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid var(--rule);
+    }
+    article p { margin: 0 0 18px; }
+    h2.section-head {
+      font-family: var(--serif-display); font-weight: 700; font-size: 32px;
+      line-height: 1.2; letter-spacing: -0.01em;
+      margin: 56px 0 16px; color: var(--ink);
+    }
+    h3.kicker {
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--muted); font-weight: 700;
+      margin: 32px 0 6px;
+    }
+    .pullquote {
+      font-family: var(--serif-display); font-weight: 700; font-style: italic;
+      font-size: 26px; line-height: 1.3; color: var(--ink);
+      border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+      padding: 22px 0; margin: 36px 0;
+    }
+    .module-tier {
+      border: 1px solid var(--rule); padding: 24px 26px; margin: 18px 0;
+      background: var(--paper);
+    }
+    .module-tier.target { background: var(--warm); border-left: 4px solid var(--ink); }
+    .module-tier .tier-name {
+      font-family: var(--serif-display); font-weight: 700; font-size: 22px;
+      margin: 0 0 4px;
+    }
+    .module-tier .tier-price {
+      font-family: var(--sans); font-size: 13px; letter-spacing: 0.05em;
+      color: var(--muted); margin-bottom: 14px; display: block;
+    }
+    .module-tier .tier-includes {
+      font-size: 16px; line-height: 1.55; margin-bottom: 12px;
+    }
+    .module-tier .tier-examples {
+      font-family: var(--sans); font-size: 13px; color: var(--muted); line-height: 1.6;
+    }
+    .module-tier .tier-examples strong { color: var(--ink); }
+
+    .module-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px; margin: 24px 0 32px;
+    }
+    .module-card {
+      border: 1px solid var(--rule); padding: 18px 20px;
+      background: var(--paper);
+    }
+    .module-card .name {
+      font-family: var(--serif-display); font-weight: 700; font-size: 18px;
+      margin: 0 0 4px;
+    }
+    .module-card .price {
+      font-family: var(--sans); font-size: 12px; letter-spacing: 0.05em;
+      color: var(--muted); margin-bottom: 10px; display: block;
+    }
+    .module-card .desc {
+      font-size: 14px; line-height: 1.55; color: #333; margin: 0;
+    }
+
+    .interface-table, .vertical-table {
+      width: 100%; border-collapse: collapse; margin: 20px 0 32px;
+      font-family: var(--sans); font-size: 14px;
+    }
+    .interface-table th, .interface-table td,
+    .vertical-table th, .vertical-table td {
+      text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+    .interface-table th, .vertical-table th {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); font-weight: 700; border-bottom: 1px solid var(--ink);
+    }
+    .interface-table td:first-child, .vertical-table td:first-child {
+      font-family: var(--serif-display); font-weight: 700; font-size: 15px;
+    }
+    .vertical-table td:last-child {
+      font-family: var(--sans); font-weight: 600; color: var(--ink); white-space: nowrap;
+    }
+
+    .ledger {
+      font-family: var(--sans); font-size: 14px; line-height: 1.6;
+      background: var(--warm); border-left: 3px solid var(--ink);
+      padding: 22px 24px; margin: 32px 0;
+    }
+    .ledger .label {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px; font-weight: 700;
+    }
+    .ledger ul { margin: 8px 0 0; padding-left: 18px; }
+    .ledger li { margin-bottom: 8px; }
+    .ledger strong { color: var(--ink); }
+
+    .chat-example {
+      font-family: var(--sans); font-size: 14px; line-height: 1.55;
+      background: #1a1a1a; color: #e8e6e1; padding: 22px 26px;
+      border-radius: 4px; margin: 28px 0;
+    }
+    .chat-example .turn { margin-bottom: 12px; }
+    .chat-example .turn:last-child { margin-bottom: 0; }
+    .chat-example .speaker {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      opacity: 0.6; margin-bottom: 4px;
+    }
+    .chat-example .speaker.them { color: #f5b86c; }
+    .chat-example .speaker.us { color: #6cb9f5; }
+    .chat-example .text { color: #e8e6e1; }
+
+    .divider {
+      text-align: center; letter-spacing: 0.6em; color: var(--muted);
+      margin: 40px 0; font-size: 14px;
+    }
+    .footer {
+      margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--rule);
+      font-family: var(--sans); font-size: 12px; color: var(--muted); line-height: 1.6;
+    }
+
+    @media (max-width: 720px) {
+      .interface-table, .vertical-table { font-size: 13px; }
+      .interface-table th, .interface-table td,
+      .vertical-table th, .vertical-table td { padding: 10px 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topstrap">
+      <span class="section">Measurably Better Things · Modules</span>
+      <span class="date">April 30, 2026</span>
+    </div>
+
+    <h1 class="headline">The Modules</h1>
+
+    <p class="dek">Measurably Better Things is a chat-first AI platform with a service operation behind it. The chat is the front door. Modules are what the chat can <em>do</em>. Customers turn modules on as they need them. They pay only for what they use. They never wait for a sales call.</p>
+
+    <div class="dateline">A walkthrough of every module class, the interface options, the verticals it serves, and what it costs.</div>
+
+    <article>
+
+      <p>Most software companies bundle features into tiers and force customers to pay for things they will never use. Measurably Better Things does the opposite. The platform is a base subscription — the chat itself, the router that picks the right model, the agent registry, the human escalation path, the billing meter — and on top of that, customers add modules à la carte. Each module is a focused capability with its own monthly fee, often bundled with included human-tokens for the work the module will actually do.</p>
+
+      <div class="pullquote">"The chat is always the front door. Modules just expand what the chat can do behind the scenes. From the customer's perspective: 'I need this.' → 'We have a module for that. Activate it?'"</div>
+
+      <h2 class="section-head">The four module classes</h2>
+
+      <p>Modules are organized by how much human-token work they typically consume per month. Light modules are mostly automation. Standard modules add an hour of skilled human time. Specialized modules dedicate a person on a queue. High-touch modules wrap a multi-skill team.</p>
+
+      <div class="module-tier">
+        <div class="tier-name">Light modules</div>
+        <span class="tier-price">+$20/month</span>
+        <div class="tier-includes">Chat capability + occasional automation. Mostly software-token work, with the chat itself doing the lift.</div>
+        <div class="tier-examples"><strong>Examples:</strong> Email triage. Reminders sync. Calendar coordination. Link-in-bio management. Custom prompts tuned to the customer's voice. Routine scheduling. Inbox-zero loops.</div>
+      </div>
+
+      <div class="module-tier target">
+        <div class="tier-name">Standard modules</div>
+        <span class="tier-price">+$50–$100/month · ~1 hr of human-tokens included</span>
+        <div class="tier-includes">Chat capability plus about an hour of human-token work each month for the module's recurring needs. The sweet spot — most operating customers live here.</div>
+        <div class="tier-examples"><strong>Examples:</strong> Bookkeeping ingest. Customer support triage. Lead-gen automation. Social posting cadence. Weekly reporting. Inventory alerts. Auto-generated analytics dashboards.</div>
+      </div>
+
+      <div class="module-tier">
+        <div class="tier-name">Specialized modules</div>
+        <span class="tier-price">+$200–$500/month · 3-8 hr of human-tokens + dedicated specialist on queue</span>
+        <div class="tier-includes">Modules that require humans with rare skills. The customer pays the real cost of the capability plus margin. The specialist is on the queue, not generic ops.</div>
+        <div class="tier-examples"><strong>Examples:</strong> Video production (editor + colorist + sound designer). Podcast editing + show notes + clip generation. Brand identity refresh. Sales pipeline operations. Recruiting screen + scheduling. Content engine — weekly blog + newsletter + repurposed clips.</div>
+      </div>
+
+      <div class="module-tier">
+        <div class="tier-name">High-touch modules</div>
+        <span class="tier-price">+$500–$2,000/month · 10+ hr of human-tokens + multi-skill team rotation</span>
+        <div class="tier-includes">Full agency-grade capability. A team rotation around a single customer relationship. Comparable to hiring a small agency, billed inside the same chat.</div>
+        <div class="tier-examples"><strong>Examples:</strong> Full social media management. Ongoing PR and press outreach. Agency-of-record on retainer. Custom ML model maintenance. Dedicated customer success manager.</div>
+      </div>
+
+      <h2 class="section-head">The sample catalog</h2>
+
+      <p>This is what's shipping or in flight. The catalog grows as the platform serves more customers and more verticals.</p>
+
+      <div class="module-grid">
+        <div class="module-card">
+          <div class="name">Lead Gen</div>
+          <span class="price">$50/mo · Standard</span>
+          <p class="desc">Outbound email sequences plus a qualifying chat that hands off warm leads into your sales workflow.</p>
+        </div>
+        <div class="module-card">
+          <div class="name">Social Media</div>
+          <span class="price">$100/mo · Standard</span>
+          <p class="desc">Scheduled posts and engagement responses across three platforms. Scales up with the High-touch full-management tier.</p>
+        </div>
+        <div class="module-card">
+          <div class="name">Bookkeeping</div>
+          <span class="price">$75/mo · Standard</span>
+          <p class="desc">Receipt categorization, monthly P&amp;L, expense reports. Hands off to your accountant at year end.</p>
+        </div>
+        <div class="module-card">
+          <div class="name">Customer Support</div>
+          <span class="price">$100/mo · Standard</span>
+          <p class="desc">First-line ticket triage and escalation routing. The chat handles the easy ones. We handle the hard ones.</p>
+        </div>
+        <div class="module-card">
+          <div class="name">Content Engine</div>
+          <span class="price">$200/mo · Specialized</span>
+          <p class="desc">A weekly blog post plus a newsletter plus repurposed clips. The thing that keeps your audience warm without you writing every word.</p>
+        </div>
+        <div class="module-card">
+          <div class="name">Video Production</div>
+          <span class="price">$500/mo · Specialized</span>
+          <p class="desc">Four short-form videos a month plus thumbnails plus posting. Editors, colorists, and sound on the queue.</p>
+        </div>
+        <div class="module-card">
+          <div class="name">Podcast Production</div>
+          <span class="price">$300/mo · Specialized</span>
+          <p class="desc">Edit and master per episode. Show notes. Clip generation. Whatever the show needs to ship reliably.</p>
+        </div>
+        <div class="module-card">
+          <div class="name">Recruiting</div>
+          <span class="price">$200/mo · Specialized</span>
+          <p class="desc">Job posts. Initial screening. Scheduling. Hands the qualified candidates back to you.</p>
+        </div>
+        <div class="module-card">
+          <div class="name">Inventory</div>
+          <span class="price">$75/mo · Standard</span>
+          <p class="desc">Stock alerts, reorder triggers, supplier communications. Closes the loop on the boring but critical stuff.</p>
+        </div>
+        <div class="module-card">
+          <div class="name">Analytics</div>
+          <span class="price">$100/mo · Standard</span>
+          <p class="desc">Auto-generated weekly and monthly reports drawn from your live data. The chat answers any follow-up question on demand.</p>
+        </div>
+        <div class="module-card">
+          <div class="name">Brand Identity</div>
+          <span class="price">$1,500–$5,000 one-time + $50/mo · Specialized</span>
+          <p class="desc">Refresh build up front, ongoing tweaks at the monthly rate. Visual system + voice + asset library.</p>
+        </div>
+        <div class="module-card">
+          <div class="name">PR / Press</div>
+          <span class="price">$500–$1,500/mo · High-touch</span>
+          <p class="desc">Pitch list, outreach, response handling. Earned media that actually shows up.</p>
+        </div>
+      </div>
+
+      <h2 class="section-head">How customers actually shop</h2>
+
+      <p>No procurement. No sales call. No 30-day trial that turns into a 12-month contract. The customer asks the chat for help with something. The chat tells them which module covers it, what it costs, and whether to turn it on.</p>
+
+      <div class="chat-example">
+        <div class="turn">
+          <div class="speaker them">Customer</div>
+          <div class="text">Can you help me with my Instagram?</div>
+        </div>
+        <div class="turn">
+          <div class="speaker us">Chat</div>
+          <div class="text">You don't have the Social Media module activated. It's $100/mo and includes scheduled posts plus engagement responses across three platforms. Want me to turn it on?</div>
+        </div>
+        <div class="turn">
+          <div class="speaker them">Customer</div>
+          <div class="text">Yes.</div>
+        </div>
+        <div class="turn">
+          <div class="speaker us">Chat</div>
+          <div class="text">Activated. Tell me your handles and what kind of content you want to run. I'll come back in fifteen minutes with a draft posting calendar.</div>
+        </div>
+      </div>
+
+      <p>Pay for what's used, the moment it's needed. Pause when it's not. The chat keeps the meter visible at the bottom of every conversation, so the customer always knows what software-token work cost and what human-token work cost.</p>
+
+      <h2 class="section-head">Where the chat lives — interface choice</h2>
+
+      <p>The chat is the engine. The interface is configurable per tier. Customers don't have to switch tools — we meet them where they already work. Apple Notes is a thread. Slack is a bot. ClickUp is a task creator. The chat surface adapts to the customer's existing workflow.</p>
+
+      <table class="interface-table">
+        <thead>
+          <tr>
+            <th>Interface</th>
+            <th>Tier</th>
+            <th>Where the chat lives</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>MBT web chat</td>
+            <td>Free / $20 / $100</td>
+            <td>chat.measurablybetter.life</td>
+          </tr>
+          <tr>
+            <td>MBT terminal CLI</td>
+            <td>$20+</td>
+            <td><code>cos chat</code> in your shell</td>
+          </tr>
+          <tr>
+            <td>Apple Notes</td>
+            <td>$100+</td>
+            <td>A thread in your Notes app, synced across devices</td>
+          </tr>
+          <tr>
+            <td>Apple Reminders / Tasks</td>
+            <td>$100+</td>
+            <td>Escalations land as reminders</td>
+          </tr>
+          <tr>
+            <td>ClickUp</td>
+            <td>$200+</td>
+            <td>Chat creates ClickUp tasks, syncs both ways</td>
+          </tr>
+          <tr>
+            <td>Notion</td>
+            <td>$200+</td>
+            <td>Chat threads into Notion pages</td>
+          </tr>
+          <tr>
+            <td>Slack / Discord bot</td>
+            <td>$500+</td>
+            <td>Chat is a bot in your team's channels</td>
+          </tr>
+          <tr>
+            <td>Custom interface</td>
+            <td>Token-priced per build</td>
+            <td>We design and build a UI that matches your brand. Build cost is a number of tokens — small custom = few, large custom = many. Same billing rail as everything else.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>The custom-interface tier matters. Every other software platform charges a separate engineering retainer or implementation fee for custom work. MBT bills custom builds the same way it bills everything else — token-metered, transparent, paused when the customer says pause. Engineering is just more tokens.</p>
+
+      <h2 class="section-head">Vertical deployments — the same chat, different data</h2>
+
+      <p>The chat-and-service model works for any vertical where customers have data they want to interrogate but no time to write SQL or analyze it themselves. Each vertical equals a customer profile plus a system-prompt persona plus a curated agent registry plus appropriate human-token pricing.</p>
+
+      <table class="vertical-table">
+        <thead>
+          <tr>
+            <th>Vertical</th>
+            <th>Customer data</th>
+            <th>What they ask the chat</th>
+            <th>Pricing band</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hospitality</td>
+            <td>Cloudbeds reservations, calendar, payments, guest history</td>
+            <td>"What weekend should I push the Blues Room package?" / "Who's the best fit for the founders' suite?"</td>
+            <td>$20–$100/mo</td>
+          </tr>
+          <tr>
+            <td>Music / touring</td>
+            <td>Booking calendar, artist contacts, venue history</td>
+            <td>"What's the routing for a Sept run through MS-LA?" / "Which agents work the corridor?"</td>
+            <td>$100–$200/mo</td>
+          </tr>
+          <tr>
+            <td>Scanning companies</td>
+            <td>Scans, project files, client lists, deliverables, rate cards</td>
+            <td>"Marketing piece for this scan." / "Show me revenue trends." / "How should I price this Boston job?"</td>
+            <td>$500/mo + tokens</td>
+          </tr>
+          <tr>
+            <td>Real estate brokers</td>
+            <td>Listings, comps, client database, transaction history</td>
+            <td>"Draft a listing description." / "What's the right offer strategy?" / "Who are my best referral sources?"</td>
+            <td>$200–$500/mo</td>
+          </tr>
+          <tr>
+            <td>Civic / Main Street</td>
+            <td>Local business directory, event calendar, member roster</td>
+            <td>"Write the monthly newsletter." / "Identify businesses that haven't engaged in 90 days."</td>
+            <td>$500–$2,000/mo</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Same product, same engine, same operating team behind the chat. Different system prompts, different data ingest pipelines, different pricing reflective of the customer's willingness to pay.</p>
+
+      <div class="divider">• • •</div>
+
+      <h2 class="section-head">Why this works</h2>
+
+      <div class="ledger">
+        <div class="label">The four reasons modular pricing wins</div>
+        <ul>
+          <li><strong>Customers don't pay for what they don't use.</strong> A solo operator might add Bookkeeping plus Social Media for $175/mo and skip everything else. A small business might add Content Engine plus Customer Support plus Lead Gen. The bill matches the actual need.</li>
+          <li><strong>The chat is easy to ship.</strong> Major model APIs handle the model layer. The data layer is a stable open-source stack. Custom dashboards are built on demand, not pre-spec'd. The platform is leveraged, not bespoke.</li>
+          <li><strong>The service is where defensibility lives.</strong> Anyone can stand up a chatbot. Few can stand up a chatbot that escalates cleanly to humans who actually resolve the operational task. That's MBT's edge — the chat plus the team behind it.</li>
+          <li><strong>The same engine serves any vertical.</strong> Hospitality, music, scanning, real estate, civic. Each vertical is a system prompt and a data pipeline away. Big Muddy Inn is the proof case running on the same stack.</li>
+        </ul>
+      </div>
+
+      <h2 class="section-head">Where Studio C fits</h2>
+
+      <p>Measurably Better Things is the platform. Studio C is the production arm — the operating vendor that handles the human-token side of every module that requires real production work. Video editing, podcast cutting, brand work, content building, the deliverables a customer can hold and look at. When the chat escalates, somebody has to actually do the thing. That's Studio C.</p>
+
+      <p>Studio C's responsibility is production work plus the admin of the production pipeline — intake, scheduling, vendor coordination, quality control, delivery. Studio C is not responsible for the platform itself. The chat working, the agents running, the billing system staying up — that's Chase, on the MBT side. Studio C delivers what gets escalated. Same screen, two meters, two operating teams behind the same surface.</p>
+
+      <div class="pullquote">"MBT is a SaaS with a production service layer on top. We make the customer's problems go away so we can focus on making awesome stuff so they can make money."</div>
+
+    </article>
+
+    <div class="footer">
+      <p>Measurably Better Things · Modules and Capabilities · April 30, 2026</p>
+      <p>Confidential. Not for distribution.</p>
+      <p>Companion docs: <a href="/the-numbers/">The Numbers</a> · <a href="/the-case/">The Case</a> · <a href="/explain/">Tokenomics in five minutes</a></p>
+    </div>
+  </div>
+</body>
+</html>

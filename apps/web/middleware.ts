@@ -135,6 +135,7 @@ export async function middleware(request: NextRequest) {
     '/explain/',
     '/lyra-overview/',
     '/lyrai/',
+    '/mbt/modules/',
   ];
   if (PUBLIC_BYPASS_PATHS.some((p) => pathname === p.replace(/\/$/, '') || pathname.startsWith(p))) {
     return NextResponse.next();
