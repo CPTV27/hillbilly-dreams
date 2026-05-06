@@ -79,13 +79,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       allowDangerousEmailAccountLinking: true,
       authorization: {
         params: {
+          // Base scopes — always safe, no Google verification required.
+          // Sensitive scopes (gmail/drive/calendar) are gated behind
+          // GOOGLE_OAUTH_EXTRA_SCOPES so login isn't blocked when the
+          // OAuth consent screen is in Testing mode or pending verification.
+          // Set GOOGLE_OAUTH_EXTRA_SCOPES in Vercel to a space-separated
+          // list of full scope URLs to re-enable Gmail/Drive/Calendar
+          // ingestion (api/ingestion/google, api/cron/sync-google).
           scope: [
             'openid',
             'email',
             'profile',
-            'https://www.googleapis.com/auth/calendar.readonly',
-            'https://www.googleapis.com/auth/drive.readonly',
-            'https://www.googleapis.com/auth/gmail.readonly',
+            ...(process.env.GOOGLE_OAUTH_EXTRA_SCOPES?.split(/\s+/).filter(Boolean) ?? []),
           ].join(' '),
           access_type: 'offline',
           prompt: 'consent',

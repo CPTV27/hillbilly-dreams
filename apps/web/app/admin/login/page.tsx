@@ -3,12 +3,41 @@
 
 import { signIn } from '@/lib/auth';
 
+// NextAuth error codes — surface the actual reason instead of a generic
+// "Something went wrong." Codes come from the `?error=` query parameter
+// that NextAuth appends when redirecting to the configured errorPage.
+// Source: https://next-auth.js.org/configuration/pages#error-codes
+const AUTH_ERROR_MESSAGES: Record<string, string> = {
+  Configuration:
+    'Server auth misconfiguration. Check NEXTAUTH_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, and the OAuth client redirect URIs.',
+  AccessDenied:
+    'Access denied. Your email is not on the allow-list, or you cancelled at the consent screen.',
+  Verification: 'The verification token is invalid or has expired.',
+  OAuthSignin:
+    'Could not start the OAuth sign-in. Often caused by an invalid GOOGLE_CLIENT_ID or a redirect_uri that is not registered in Google Cloud Console.',
+  OAuthCallback:
+    'OAuth callback failed. Google rejected the redirect — most commonly a redirect_uri mismatch (the URI must be registered in Google Cloud Console exactly).',
+  OAuthCreateAccount: 'Could not create the OAuth account record in the database.',
+  EmailCreateAccount: 'Could not create the email account record in the database.',
+  Callback: 'NextAuth callback handler failed. Check the server logs.',
+  OAuthAccountNotLinked:
+    'This email is already registered with a different sign-in method. Sign in with the original method first, then link this provider.',
+  EmailSignin: 'Could not send the email sign-in link.',
+  CredentialsSignin: 'Invalid email or password. Check your credentials and try again.',
+  SessionRequired: 'You must be signed in to access that page.',
+  Default: 'Something went wrong. Please try again.',
+};
+
 export default function LoginPage({
   searchParams,
 }: {
   searchParams: { error?: string; callbackUrl?: string };
 }) {
   const callbackUrl = searchParams?.callbackUrl || '/ops';
+  const errorCode = searchParams?.error;
+  const errorMessage = errorCode
+    ? AUTH_ERROR_MESSAGES[errorCode] ?? AUTH_ERROR_MESSAGES.Default
+    : null;
 
   return (
     <div className="login-shell">
@@ -24,11 +53,12 @@ export default function LoginPage({
         <h1 className="login-title">Big Muddy Command</h1>
         <p className="login-sub">Welcome to the team. Sign in below.</p>
 
-        {searchParams?.error && (
+        {errorMessage && (
           <div className="login-error">
-            {searchParams.error === 'CredentialsSignin'
-              ? 'Invalid email or password. Check your credentials and try again.'
-              : 'Something went wrong. Please try again.'}
+            <strong style={{ display: 'block', marginBottom: '0.25rem' }}>
+              {errorCode ?? 'Error'}
+            </strong>
+            {errorMessage}
           </div>
         )}
 
