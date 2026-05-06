@@ -67,6 +67,7 @@ export const BMT_DOMAIN_ROUTES: DomainRoute[] = [
   { pattern: 'hillbillydreams', routeGroup: 'hillbilly' },
   { pattern: 'measurablybetter', routeGroup: 'measurably-better' },
   { pattern: 'bearsville', routeGroup: 'bearsville' },
+  { pattern: 'arrieaslin', routeGroup: 'arrie-aslin' },
   { pattern: 'dctvny', routeGroup: 'dctv' },
   { pattern: 'dctv.org', routeGroup: 'dctv' },
 ];
@@ -110,6 +111,7 @@ export const BMT_BRAND_PREFIXES = [
   '/welcome',
   '/whiteboard', '/whiteboard/v1-jp-meeting', '/tour',
   '/bearsville',
+  '/arrie-aslin',
   '/dctv',
   '/feed-farm',
   '/snap',

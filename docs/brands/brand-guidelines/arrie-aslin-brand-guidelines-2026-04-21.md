@@ -1,7 +1,7 @@
 # Arrie Aslin — Brand Identity Guidelines
 
 **Spec version:** 2026-04-21
-**Brand owner:** Amy Allen (equity partner, Hillbilly Dreams / Big Muddy)
+**Brand owner:** Amy Allen — equity partner, Measurably Better Things LLC (MBT) and a2natchez LLC. (Spec was originally drafted under the legacy "Hillbilly Dreams Inc." framing; HDI is dead language as of 2026-04-18 — see `CLAUDE.md`. The operating entity is MBT; recordings ship under the Big Muddy Records DBA.)
 **Stage name, canonical spelling:** Arrie Aslin (NEVER Ari, Arri, Aslan, or Ari B. Aslan — enforced per `CLAUDE.md`)
 **Designer:** Chase Pierson + Amy Allen (in-house — executed in Figma + Canva Team)
 **Template reference:** Rosemary Hallmark Creative / The Big Muddy Inn + Blues Room, March 2023
@@ -14,7 +14,7 @@
 - Primary mark: "Arrie Aslin" wordmark in **Nathan-style connected script** (display), cream, centered, large.
 - Subline directly below wordmark: `SINGER · NATCHEZ · BIG MUDDY RECORDS` in tight small-caps sans, cream.
 - Bottom-left small text: `BRAND IDENTITY GUIDELINES`
-- Bottom-right small text: `BY HILLBILLY DREAMS INC.`
+- Bottom-right small text: `BY MEASURABLY BETTER THINGS`
 - Optional photographic motif: silhouetted mic stand tinted in brand-family magenta in one corner, sparse.
 
 ## 2. Table of contents
@@ -145,14 +145,14 @@ Use rule matches Rosemary's: SVG for web first, PNG fallback; EPS for any print 
 
 ```
 BRAND PACKAGE CREATED BY CHASE PIERSON + AMY ALLEN
-HILLBILLY DREAMS INC. · NATCHEZ, MS
+MEASURABLY BETTER THINGS · NATCHEZ, MS
 LAST UPDATED [YYYY-MM]
 me@chasepierson.tv
 
 Artist management:  Tracy Alderson-Allen
                     tracy@thebigmuddyinn.com
 Booking:            booking@arrieaslin.com (planned alias — routes to Tracy until staffed)
-Label:              Big Muddy Records — a division of Hillbilly Dreams Inc.
+Label:              Big Muddy Records — a DBA of Measurably Better Things LLC
 ```
 
 ---

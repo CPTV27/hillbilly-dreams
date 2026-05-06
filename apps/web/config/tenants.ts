@@ -90,6 +90,23 @@ export const TENANTS: TenantConfig[] = [
     // Shared access to Creative Hub + Google AI Studio
   },
   {
+    id: 'arrie-aslin',
+    name: 'Arrie Aslin',
+    entity: 'Measurably Better Things LLC d/b/a Big Muddy Records',
+    domains: ['arrieaslin.com'],
+    primaryDomain: 'arrieaslin.com',
+    routeGroup: 'arrie-aslin',
+    themeClass: 'theme-arrie-aslin',
+    gcsBucket: 'bmt-media-bigmuddy',
+    accentColor: '#994878',
+    tagline: 'Singer · Natchez · Big Muddy Records',
+    location: { city: 'Natchez', state: 'MS' },
+    features: ['music', 'shows', 'press', 'mailing-list'],
+    // Artist site for Amy Allen (stage name Arrie Aslin).
+    // Brand spec: docs/brands/arrie-aslin-brand-package-2026-04-20.md
+    // Visual spec: docs/brands/brand-guidelines/arrie-aslin-brand-guidelines-2026-04-21.md
+  },
+  {
     id: 'dctv',
     name: 'DCTV',
     entity: 'DCTV',
