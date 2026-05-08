@@ -107,6 +107,9 @@ const publicRoutes = [
 
   // ── Admin (public login page) ──
   '/admin/login',
+
+  // ── Dispatch No. 01 landing (added 2026-05-08) ──
+  '/dispatch',
 ];
 
 for (const route of publicRoutes) {
