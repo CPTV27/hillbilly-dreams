@@ -107,6 +107,21 @@ const publicRoutes = [
 
   // ── Admin (public login page) ──
   '/admin/login',
+
+  // ── Handoff Readiness Charter top-10 (added 2026-05-08, P-01) ──
+  '/chat',
+  '/the-case',
+  '/the-numbers',
+  '/manual',
+  '/workflows',
+  '/mbt/modules',
+  '/explain',
+  '/inverted-intelligence',
+  '/big-muddy-acres/welcome',
+  '/studio-c/brief',
+  '/onboarding/studio-c',
+  '/lyrai',
+  '/handoff',
 ];
 
 for (const route of publicRoutes) {
