@@ -11,9 +11,10 @@ import {
   LOUISIANA_CITIES,
   ARKANSAS_MISSOURI_CITIES,
 } from '@/lib/articles';
+import { getPublishingBaseUrl } from '@/lib/base-url';
 import type { Article } from '@bigmuddy/config';
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
+const baseUrl = getPublishingBaseUrl();
 
 interface DirectoryClient {
   id: number;

@@ -7,10 +7,11 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { BLUR_DATA_URL } from '@bigmuddy/ui';
 import { CITY_GUIDE_ARTICLES_FALLBACK, getArticleBySlugAsync, getArticleSlugs, getArticles as fetchArticlesFromSanity } from '@/lib/articles';
+import { getPublishingBaseUrl } from '@/lib/base-url';
 import { JsonLd, getArticleSchema } from '@/lib/structured-data';
 import type { Article } from '@bigmuddy/config';
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
+const baseUrl = getPublishingBaseUrl();
 
 interface Props {
   params: { id: string };
