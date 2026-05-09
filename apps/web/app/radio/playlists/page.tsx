@@ -3,6 +3,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { PlaylistCard, BLUR_DATA_URL } from '@bigmuddy/ui';
+import { getPublishingBaseUrl } from '@/lib/base-url';
 import type { Playlist } from '@bigmuddy/config';
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   description: 'Every curated playlist from Big Muddy Radio — Delta blues, soul, jazz, and the full soundtrack of the Deep South.',
 };
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bmt--bigmuddy-ff651.us-east4.hosted.app';
+const baseUrl = getPublishingBaseUrl();
 
 async function getPlaylists(): Promise<Playlist[]> {
   try {
