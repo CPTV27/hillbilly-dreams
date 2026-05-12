@@ -1,0 +1,42 @@
+bucket,line_item,monthly_low,monthly_high,annual_low,annual_high,owner,confidence,notes
+A,Google Workspace Ultra (1 seat),35,35,420,420,Chase,verify price,Master identity; Gemini Advanced + 2TB Drive included
+A,Claude Max,125,125,1500,1500,Chase,confirmed,Largest single line item
+A,Claude Pro — Tracy,20,20,240,240,Tracy auth / MBT pay,confirmed,Partner agent
+A,Claude Pro — Amy,20,20,240,240,Amy auth / MBT pay,confirmed,Partner agent
+A,Perplexity Pro,20,20,240,240,Chase,confirmed,Search + research
+A,Perplexity API,20,50,240,600,API / agents,estimate,Pay-as-you-go usage variable
+A,ChatGPT API (capped),50,50,600,600,API / scripts,confirmed cap,Hard $50/mo cap
+A,Canva Teams (5 seats),30,30,360,360,Team-wide,verify price,Estimate
+A,Adobe Photography,10,10,120,120,Chase (CPP),confirmed,Lightroom + Photoshop
+A,Bitwarden Family,3,3,36,36,All (vault),confirmed,Canonical secrets store
+A,Spotify Family (6 seats),17,17,204,204,Team,confirmed,Personal + research
+B,Adobe Creative Cloud full,60,60,720,720,Elijah primary,confirmed,Full suite for video
+B,Restream.io,20,49,240,588,Studio C,verify tier,Multi-stream destination
+B,CapCut Team (3 seats),45,60,540,720,Studio C,verify tier,Chase / Amy / Elijah
+C,Vercel Pro,20,40,240,480,Chase / Elijah,verify seats,Hosts 14 brand domains
+C,Sanity CMS,15,99,180,1188,Content team,verify tier,Free / Team / Growth
+C,Neon Postgres,19,19,228,228,DB,verify plan,Primary Postgres
+C,Cloudflare,0,20,0,240,Chase,verify Pro vs free,DNS + email routing
+C,Resend,20,20,240,240,Platform,confirmed,Transactional email
+C,ElevenLabs,25,25,300,300,Platform,estimate,Voice synthesis
+C,GitHub Team,20,20,240,240,Devs,verify seats,Private repos
+C,Buzzsprout Standard,18,18,216,216,Chase + Amy,confirmed,Podcast hosting
+C,Attio CRM,0,0,0,0,Tracy primary,confirmed,Free tier Y1
+C,Stripe,0,0,0,0,Platform,confirmed,Per-transaction only
+C.1,Vertex AI — Gemini 2.5,30,60,360,720,Agents,estimate,Volume-dependent
+C.1,Vertex AI — Imagen 3,10,20,120,240,Wizard,estimate,Image generation
+C.1,GCS bucket bmt-media-bigmuddy,5,10,60,120,Platform,confirmed range,Photo library
+C.1,Cloud Logging + Monitoring,5,5,60,60,Platform,estimate,Observability
+C.1,Cloud TTS Journey (fallback),0,5,0,60,Platform,minimal,Backup audio
+C.1,Cloud SQL sovereign-db-primary,0,50,0,600,Platform,TBC,Unknown purpose — open audit
+C.2,Self-hosted services (Mac mini),0,0,0,0,Mini ops,confirmed,CapEx paid; marginal cost zero
+C.3,DistroKid Label tier,12,12,139,139,Big Muddy Records,confirmed,Unlimited artists
+C.3,SoundCloud For Artists Pro Unlimited,12,12,144,144,Big Muddy Records,confirmed,Main + per-artist profiles
+D,Hetzner CCX23 bigmuddy-services,40,40,480,480,Chase,confirmed,Immich + Caddy live
+D,DigitalOcean droplet bigmuddy-radio,12,48,144,576,Chase,TBC,AzuraCast streaming
+INN,Cloudbeds PMS,300,500,3600,6000,Big Muddy Natchez LLC,verify plan,Not in MBT cap — Inn cost basis
+INN,Twilio SMS,10,10,120,120,Big Muddy Natchez LLC,verify usage,Not in MBT cap
+PLANNED-P1,Klaviyo-class email marketing,50,100,600,1200,Future,not yet active,Before Week 3 of 90-day plan
+PLANNED-P1,Meeting recording / transcription,10,30,120,360,Future,not yet active,Before next partner meeting
+PLANNED-P2,Buzzsprout upgrade (if needed),6,16,72,192,Future,Q3 decision,If cadence justifies
+PLANNED-P2,Social scheduler hosted (if Postiz gaps),15,99,180,1188,Future,Week 1-2 decision,If Postiz coverage incomplete
