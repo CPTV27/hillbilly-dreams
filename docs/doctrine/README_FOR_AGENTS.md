@@ -9,10 +9,15 @@
 
 1. **`docs/doctrine/OPERATING_DOCTRINE.md`** — the constitution. Core truths, hard prohibitions, evaluation rules.
 2. **`docs/doctrine/DECISIONS.md`** — the decision ledger. What has been settled and what would reopen it.
-3. **`docs/doctrine/CURRENT_STATE.md`** — what is actually true today (vs. aspirationally true).
-4. **`docs/doctrine/OPTIMIZATION_ANTI_GOALS.md`** — what NOT to optimize for.
-5. **`docs/doctrine/ENERGY_RULES.md`** — founder cognition as the scarce resource.
-6. **`docs/doctrine/SYSTEM_HIERARCHY.md`** — the seven-layer importance hierarchy.
+3. **`docs/doctrine/OPTIMIZATION_ANTI_GOALS.md`** — what NOT to optimize for.
+4. **`docs/doctrine/ENERGY_RULES.md`** — founder cognition as the scarce resource.
+5. **`docs/doctrine/SYSTEM_HIERARCHY.md`** — the seven-layer importance hierarchy.
+6. **`docs/doctrine/AUTONOMY_RULES.md`** — how much initiative to take, authority tiers, escalation, anti-patterns.
+
+Then check current operational state:
+
+7. **`docs/doctrine/THIS_WEEK.md`** — what is actually happening this week, hard deadlines, active partner items.
+8. **`docs/doctrine/OPEN_LOOPS.md`** — unresolved items without hard deadlines.
 
 If you have not read these, **do not propose anything yet.** The probability of a misaligned recommendation is too high.
 
@@ -72,4 +77,4 @@ Default to the doctrine. The doctrine wins over your instinct. The decision ledg
 
 ---
 
-*This README sits above every other agent context. Update it rarely; update the operational docs (CURRENT_STATE, DECISIONS) frequently.*
+*This README sits above every other agent context. Update it rarely; update the operational docs (`THIS_WEEK.md`, `OPEN_LOOPS.md`, `DECISIONS.md`) frequently.*

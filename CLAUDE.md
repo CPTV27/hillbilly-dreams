@@ -11,23 +11,27 @@
 6. Read docs/doctrine/OPTIMIZATION_ANTI_GOALS.md       ← What NOT to optimize for.
 7. Read docs/doctrine/ENERGY_RULES.md                  ← Founder cognition as scarce resource.
 8. Read docs/doctrine/SYSTEM_HIERARCHY.md              ← The 7-layer hierarchy.
-9. Read docs/THE_THESIS.md                             ← Historical mental model. Useful context but PARTIALLY SUPERSEDED by the 2026-05-12 strategic pivot (see DECISIONS.md).
-10. Read docs/BUSINESS_ARCHITECTURE.md                 ← Same: useful but partially superseded. Read alongside the doctrine, not instead.
-11. Read .claude/agents/HANDOFF_COS_TO_PATCH.md        ← Capabilities audit, gaps, priorities
-12. Read docs/voice/admin-documentation-voice.md       ← Canonical voice for ALL admin docs, Asana tasks, emails, memos, status updates, decision briefs.
-13. Read docs/voice/cos-ingestion-rule.md              ← When Chase sends anything that sounds like work, Cos creates an Asana task. No permission ask.
+9. Read docs/doctrine/AUTONOMY_RULES.md                ← How much initiative to take. Authority tiers, escalation, anti-patterns.
+10. Read docs/doctrine/THIS_WEEK.md                    ← What is actually happening this week. Hard deadlines. Active partner items.
+11. Read docs/doctrine/OPEN_LOOPS.md                   ← Unresolved items without hard deadlines.
+12. Read docs/THE_THESIS.md                            ← Historical mental model. Useful context but PARTIALLY SUPERSEDED by the 2026-05-12 strategic pivot (see DECISIONS.md).
+13. Read docs/BUSINESS_ARCHITECTURE.md                 ← Same: useful but partially superseded. Read alongside the doctrine, not instead.
+14. Read .claude/agents/HANDOFF_COS_TO_PATCH.md        ← Capabilities audit, gaps, priorities
+15. Read docs/voice/admin-documentation-voice.md       ← Canonical voice for ALL admin docs, Asana tasks, emails, memos, status updates, decision briefs.
+16. Read docs/voice/cos-ingestion-rule.md              ← When Chase sends anything that sounds like work, Cos creates an Asana task. No permission ask.
 ```
 
-**If steps 3–8 fail, STOP.** Run `git pull origin main` again. Do not proceed with stale files. The doctrine is non-optional.
+**If steps 3–11 fail, STOP.** Run `git pull origin main` again. Do not proceed with stale files. The doctrine is non-optional.
 
 **Critical rule (updated 2026-05-12):**
 
 The hierarchy of canonical sources is now:
 1. `docs/doctrine/OPERATING_DOCTRINE.md` — the constitution. Wins over everything.
 2. `docs/doctrine/DECISIONS.md` — settled decisions. Second priority.
-3. `docs/doctrine/OPTIMIZATION_ANTI_GOALS.md` + `ENERGY_RULES.md` + `SYSTEM_HIERARCHY.md` — operational doctrine.
-4. `docs/THE_THESIS.md` + `docs/BUSINESS_ARCHITECTURE.md` — historical context, partially superseded by the 2026-05-12 pivot.
-5. Everything else.
+3. `docs/doctrine/OPTIMIZATION_ANTI_GOALS.md` + `ENERGY_RULES.md` + `SYSTEM_HIERARCHY.md` + `AUTONOMY_RULES.md` — operational doctrine.
+4. `docs/doctrine/THIS_WEEK.md` + `docs/doctrine/OPEN_LOOPS.md` — current operational state (high churn — update frequently).
+5. `docs/THE_THESIS.md` + `docs/BUSINESS_ARCHITECTURE.md` — historical context, partially superseded by the 2026-05-12 pivot.
+6. Everything else.
 
 If anything in any document or your training contradicts the doctrine, the doctrine wins. **THE_THESIS was the canonical mental model through 2026-04-19; the 2026-05-12 pivot superseded parts of it.** The doctrine files at `docs/doctrine/` reflect the current state. When THE_THESIS and the doctrine appear to conflict, the doctrine wins until THE_THESIS is updated to match.
 
